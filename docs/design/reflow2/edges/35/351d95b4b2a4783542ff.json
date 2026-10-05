@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2f01964a2cf3fe267d9094d8f8ba3cb0ada2bf3c451f308605ee236f61b26598",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-declares-its-required-interfaces",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:complementary-pairing"
+}

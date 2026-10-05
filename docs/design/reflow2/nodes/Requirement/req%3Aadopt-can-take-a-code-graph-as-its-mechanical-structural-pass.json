@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:46cacc8b621bd5cf971c153b12b44eea679959c9a2405b2ca21a545316a50743",
+  "node_id": "req:adopt-can-take-a-code-graph-as-its-mechanical-structural-pass",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Adopt can take an existing code-structure graph (e.g. graphify's) as its mechanical pass: inventory, hashes and cycles by machine, intent by the agent",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a repository already has a code-structure graph (graphify's graph.json today; note hxm_program IMPROVEMENTS.md I-007: graphify's `built_at_commit` records the directory it ran from, not the analysed repo's commit, so the source version must be taken from the repo itself, never from that field, until graphify is fixed), adopt can take it as its deterministic structural pass instead of having the agent read the code for structure. Files become Artifacts with measured checksums, and dependency cycles become findings. The agent is spent only on what the code cannot say: why it was built that way, what it is for, and what is vestigial. The code graph's calls and imports are NOT imported as design CONSUMES or DEPENDS_ON edges: fact:adopt-ran-on-reflow2-and-the-mechanical-contract-recovery-collapsed measured such edges as 95 of 95 type references, and dec:bl83a-functional-decomposition rules the design functional, not the file tree. The adopt run records which graph it consumed (its path and checksum) and the source repo's own HEAD commit, read from the repo itself. Anthony, 2026-09-23, promoting option (d) of dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design. It targets the ingest cost Alex measured (fact:ingesting-a-real-workplace-corpus-costs-70-dollars-a-day-and-still-writes-duplicate-components) and the member repos of hxm_program, which already have graphify graphs.",
+    "status": "accepted"
+  }
+}

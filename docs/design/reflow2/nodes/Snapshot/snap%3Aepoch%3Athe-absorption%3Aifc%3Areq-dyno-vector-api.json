@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33b340eb4035a39c3d958e949ad31ec5f6f78fe66c09acb9e4845140df62ecaf",
+  "node_id": "snap:epoch:the-absorption:ifc:req-dyno-vector-api",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONSUMES\",\"other_type\":\"Component\",\"other_id\":\"cmp:dimensions\",\"properties\":{\"dependency_type\":\"function_call\",\"optional\":true,\"weight\":0.4,\"weight_basis\":\"evidence\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-08-09\",\"role\":\"author\"}}]",
+    "state": "{\"auth\":\"unspecified\",\"designation\":\"required\",\"medium\":\"library\",\"name\":\"Vector, HNSW and statistics API\",\"paradigm\":\"synchronous\",\"payload_format\":\"unspecified\",\"provenance\":\"authored\",\"spec\":\"REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-vector`, pinned at v0.12.0.\\n\\n⚠️ DECLARED BECAUSE IT IS LINKED, NOT BECAUSE IT IS USED HEAVILY. reflow2's search is lexical BM25 today and dec:idea-embeddings-adoption is still open about whether embeddings and HNSW get adopted at all. So this is a real compile-time dependency whose runtime use is thin — exactly the kind of thing req:the-design-says-what-was-built-and-never-used was captured to surface, and worth revisiting if that detector ever lands.\",\"transport_security\":\"unspecified\"}",
+    "target_id": "ifc:req-dyno-vector-api",
+    "target_type": "Interface"
+  }
+}

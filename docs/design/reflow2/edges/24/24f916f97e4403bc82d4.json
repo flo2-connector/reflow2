@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce150c8df4995e1a54aa15f7c445b4de7de46dd15191d8f50c8b185feb21ad71",
+  "edge_type": "CHANGED",
+  "from_id": "chg:federation-decided",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

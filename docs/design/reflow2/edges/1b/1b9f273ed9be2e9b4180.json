@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8019e440c7b38c20a7eb4adfb390303e9d23250076ba6a13bfb3799a6ad2a3fd",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-repo-front-door-is-minimal-and-the-documentation-is-a-small-site",
+  "properties": {
+    "evidence": "Kept as intent by Anthony, 2026-09-28, with the site generated from the graph. It extends the existing public-page requirement rather than duplicating it."
+  },
+  "to_id": "req:reflow2-has-a-public-page-anyone-can-read"
+}

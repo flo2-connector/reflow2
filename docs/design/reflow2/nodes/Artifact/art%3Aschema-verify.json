@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4b88391f43c327bc381f45f9fe8775ec7a471e765dc9ff494c383b749fca74de",
+  "node_id": "art:schema-verify",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/verify.yaml",
+    "name": "verify.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b349d916043045bf897964b8d1c6177a7833f38899144fa303dae9bd58aeb33",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-open-question-its-own-promotion-answered-is-noticed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

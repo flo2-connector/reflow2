@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b879b50f813a64273e739a50a08f588f9ad00ee842ec816f8625d8e3e8cc4f1a",
+  "edge_type": "REALIZES",
+  "from_id": "art:latent",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path"
+}

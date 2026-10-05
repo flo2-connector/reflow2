@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:758687be9352dd73d3dacce94691a543a0a7aa9a190131db9b4a9c03a17fee25",
+  "node_id": "decision:ack:63a3514d98ab022d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:63a3514d98ab022d.",
+    "name": "Reviewed: gap:63a3514d98ab022d",
+    "rationale": "YES — the same question, and it is already recorded as such: a DUPLICATES edge was drawn between them on 2026-09-08 with the reasoning in its evidence. dec:idea-a-finding-carries-its-bounds (2026-08-07/08) asks whether a Verification gains structured BOUNDS and FINDINGS fields; wish #42 (2026-09-07) asks for `not_established` and #46 for `not_exercised`. The older node's own text already says it 'must be settled as ONE question rather than two'. They are deliberately NOT merged: the two were said a month apart for different reasons — the first because loop_status's rollup was unreadable, the second because a bounded finding was being quoted later as settled — and both reasons bear on the answer. What is owed is a DECISION, which is Anthony's, not another link.",
+    "status": "accepted"
+  }
+}

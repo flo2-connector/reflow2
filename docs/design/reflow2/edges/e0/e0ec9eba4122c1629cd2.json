@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b99c13379ca81c09dc27934e0ba1e2ff20b03df9eab2c0bf9c74c731b15cf599",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-reply-is-sent-once-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-reply-is-sent-once-gate"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c0d1f45ffd774862a01023c7aef05fb67d8c5903c155713954de978c8de4fbe9",
+  "node_id": "epoch:v0321",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.32.1 cut — F24 reaches a consumer without waiting for the next increment, and the launch wrapper stops shielding schema and skill changes from cargo",
+    "sequence": 343,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:32e5e2dbcf16bec93b1d8a32dfc7acbdc8a78e00e67de5686c953107d4ad0b0f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-write-records-the-agent-beside-the-principal-it-acts-for",
+  "properties": {},
+  "to_id": "req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for"
+}

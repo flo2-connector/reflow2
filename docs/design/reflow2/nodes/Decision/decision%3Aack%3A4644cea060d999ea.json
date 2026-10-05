@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:219f8531e4612631190e3fa4e7c057b80453deee966d96482b6b90858e89cb26",
+  "node_id": "decision:ack:4644cea060d999ea",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4644cea060d999ea.",
+    "name": "Reviewed: gap:4644cea060d999ea",
+    "rationale": "Checked 2026-09-07: still open. Both named remedies are unlanded: the schema still declares 69 injected defaults, and a comparison across builds still says only that the builds differ, never that property-only differences may be attributable to the build change.",
+    "status": "accepted"
+  }
+}

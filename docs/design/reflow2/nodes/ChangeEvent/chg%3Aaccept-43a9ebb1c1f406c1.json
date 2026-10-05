@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5b310ec70487c384f8dcc792e039c0d2cc2fd32dec73800b759d92c41c8f2d5b",
+  "node_id": "chg:accept-43a9ebb1c1f406c1",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-15",
+    "name": "v0.61.0 cut: the version string moved. The design meaning of a cut lives in the Release and the epoch, not in this string.",
+    "subject": "system"
+  }
+}

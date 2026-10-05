@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:440ac3822ced2b78d3d897165b564beff56dc9701a3b0b2c732024a74e7a7867",
+  "node_id": "fact:the-already-passed-listing-never-reached-the-wire-because-it-was-wired-only-into-the-err-arm-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02: the missing-field refusal's 'MISSING FROM THIS CALL … Already passed' listing never reached a caller. It was wired into call_tool's Err arm, which rmcp 3 never reaches; the live Ok(isError) arm called the no-arguments variant and listed the whole obligation instead",
+    "source": "art:service",
+    "statement": "Found while building dec:idea-every-argument-refusal-names-the-tool-and-the-field-path (fix program item 4). OBSERVED on reflow2-mcp 0.77.0 through --call on a scratch store: set_requirement_status with only {\"status\": \"accepted\"} answered \"EVERY argument this tool requires, listed together … NOT a claim that you omitted all of them\" — never \"MISSING FROM THIS CALL\" or \"Already passed\". CODE, origin/main d9e2a8f: call_tool's `Err(e) if e.message.contains(\"missing field\")` arm called missing_fields_hint(…, given), and the `Ok(Complete(r)) if is_error` arm — the one rmcp 3 uses for a deserialisation refusal, measured 2026-09-11 — called missing_field_hint without the arguments. The capability's own test called missing_fields_hint as a pure function, so it passed while the feature never fired: the same dead-arm class tools/refusal_speaks.py was written to stop, met again on the arm beside it. FIXED in the same change: the set-apart listing is built by the schema check, before deserialisation, and asserted over an MCP session (the_refusal_names_what_this_call_lacked_and_sets_apart_what_it_passed).",
+    "subject_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+    "valid_from": "2026-10-02"
+  }
+}

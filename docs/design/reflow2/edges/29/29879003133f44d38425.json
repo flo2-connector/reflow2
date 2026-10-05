@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0edc77a08eb5d63643df486a00d52975b21f3f77e6985e39018244334984ae85",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "TODAY'S SYMPTOM. Of 23 served skills, 5 were loaded: 3 because the user typed a command or asked, 1 because the Artifact tool made it a hard precondition, 1 self-invoked. The skip pattern that observation recorded — capture/orient used, change-governing skipped — is explained by WHO INITIATED rather than by what kind of skill it is, and the pause-versus-interrupt reading proposed there was refuted: all 23 are mirrored identically and impact-check, revise-design and link-artifacts all have slash commands. ⚠️ PARTIAL: this does NOT explain the author case within that observation, where the skill was known and valued and still missed because its trigger named only the loud failure. That is a second, recognition-side cause.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-author-of-a-skill-did-not-use-it-an-hour-later"
+}

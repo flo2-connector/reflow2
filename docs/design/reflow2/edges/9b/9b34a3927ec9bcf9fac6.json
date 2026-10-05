@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:322fc79b2e47e90fce393cf03319dd7dee72a7bbde2271b7a0b7277c18d9f51e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

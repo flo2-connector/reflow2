@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e2658f2ee730b25e6b35f90b5babb087cbb5b92b6dbf109805e351e55d48c6f2",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-build-can-call-one-tool-from-the-shell",
+  "properties": {},
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

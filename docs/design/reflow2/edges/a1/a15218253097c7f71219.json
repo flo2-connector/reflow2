@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f28e454e212f4094f59d71f83fb064130bae98253e116cc134139727f44d0a7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-gate-checks-the-item-layout-and-per-item-lineage"
+}

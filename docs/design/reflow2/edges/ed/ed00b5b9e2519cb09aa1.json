@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4db81bbaff98a1d0ff4261527f9f44275a9b0d17554f14275bba79be0e76bca7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-skill-generates-candidates-from-the-design",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:root-cause-skill"
+}

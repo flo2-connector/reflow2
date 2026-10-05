@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a14bff982855c300c166a91da97f7f82203a03c55fcbd8703481aee20cd58c6",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:graph",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:provenance-sidecar"
+}

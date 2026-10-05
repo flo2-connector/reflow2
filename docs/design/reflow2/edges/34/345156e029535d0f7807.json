@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58f2f9c063b528af0a70c522607bc3fdde0ae13a5247cfb56795de74d73f8067",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-project-is-asked-what-its-artifacts-must-be-in",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-project-is-asked-what-its-artifacts-must-be-in"
+}

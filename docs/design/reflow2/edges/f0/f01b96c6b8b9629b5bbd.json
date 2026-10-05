@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b4381f72474d27602c210f43d8675cb0b00545c66fd51ec6c061dce4a280d09",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-agent-asks-who-it-is-talking-to",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

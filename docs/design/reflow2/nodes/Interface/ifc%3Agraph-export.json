@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:093595110aa9881aee186580ece5f8e3b2d1cea2b953fb13ece9dcc6ddb544e1",
+  "node_id": "ifc:graph-export",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "none",
+    "designation": "published",
+    "endpoint": "A filesystem path the caller names. There is no address and no service: `export_graph {path}` writes the document, `import_graph {path}` reads it, and `-` means stdin/stdout so an export on one machine pipes straight into an import on another. Conventionally `docs/design/<name>.json` inside the designed project, committed to that project's repository.",
+    "error_model": "Faults are reported ALL AT ONCE with their positions rather than one per round trip: an invalid document returns an ERROR whose data carries every failure named by index (`nodes[1]`, `edges[0]`), and the whole import is refused rather than partially applied (`dec:bulk-is-all-or-nothing-with-per-item-findings`). DISTINGUISH THE THREE HONEST ABSENCES from failures: a missing `stamp`, a missing `content_hash` and a missing `edges` list are reported states, not errors. A `content_hash` that does not match the document's own content means it was hand-edited or corrupted and IS a fault.",
+    "medium": "data",
+    "name": "Design export document",
+    "operations": "Read and write of a whole document. WRITE: `export_graph` (refuses to clobber an existing path without `overwrite`, and refuses to write a document that would DELETE design the existing file holds unless `accept_divergence` says so on purpose). READ: `import_graph`, which is an UPSERT — ids already present are overwritten, anything absent is left alone. There is no partial read, no query, and no delete.",
+    "paradigm": "batch",
+    "payload_format": "json",
+    "payload_schema": "`GraphExport` in crates/reflow2-core/src/export.rs, serialized as sorted-key JSON so two exports of an unchanged design are byte-identical. MANDATORY for a consumer: `nodes` (each with `node_id`, `node_type`, `properties`). OPTIONAL AND EACH ABSENCE IS A FIRST-CLASS REPORTED STATE, never a refusal: `edges` (may be omitted entirely — a document of nodes and nothing else is exactly what the adopt skill instructs), `stamp` (which reflow2 wrote it and the vocabulary it knew), `content_hash` (fingerprint of the design content, deliberately EXCLUDING the stamp and the chain fields so the same design hashes identically whichever build wrote it), `prev_content_hash` (the hash of the export this one superseded — file lineage), and `graph_id` (demanded from hand authors until BL-138 and then never read by the operation demanding it).",
+    "provenance": "authored",
+    "spec": "Corrected 2026-07-28: claimed `medium: REST` by default. It is a JSON document written to a path and read back — a data contract, not a network one. Its shape is the export schema (nodes, edges, graph_id, stamp, content_hash, prev_content_hash).",
+    "transport_security": "none"
+  }
+}

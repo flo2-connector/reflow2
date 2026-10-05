@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:abb70a82f43f581d2120b0cec102ce76c2b825368dfd7b56e43a014a4ca54953",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-one-owner-many-projects",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

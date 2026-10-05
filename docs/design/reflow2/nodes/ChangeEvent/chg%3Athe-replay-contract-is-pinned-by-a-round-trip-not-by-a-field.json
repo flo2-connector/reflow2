@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:46f5dc716799c7caf8bb276119453ac195b0a82ee9c29c877575deecfbec67bd",
+  "node_id": "chg:the-replay-contract-is-pinned-by-a-round-trip-not-by-a-field",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-26",
+    "name": "F-01 fixed at the cause: a stated replay contract was maintained by hand, and is now pinned by a round-trip test",
+    "rationale": "FIRST WORKED EXAMPLE OF `rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed`, written the same day.\n\nTHE FIRST-ORDER READING WAS WRONG AND WOULD HAVE PATCHED THE WRONG THING. \"The budgeted reply withheld a field\" is true and leads to making the budget keep `suggested_depth` — which fixes today and leaves the class open.\n\nTHE ROOT CAUSE: `GapCandidate` states a replay contract in its own doc comment — \"a compact row handed straight back to `gap_to_prompt` has to deserialize\" — and enforces it FIELD BY FIELD. Two fields carried `#[serde(default)]` and two did not, so the contract held wherever somebody remembered and broke wherever nobody did. The cause is a stated contract maintained by hand with nothing checking it; the budget and the handshake then cancelled on exactly the designs where both matter.\n\nTHE PIN IS THE ROUND TRIP, NOT THE FIELD. It serializes every budgeted row and reads it back, and separately deserializes a row whose optional fields are ABSENT rather than empty — which is what `skip_serializing_if` produces and what a caller reconstructing a row by hand sends. Any future field added without a default fails it.\n\n⚠️ HONEST LIMIT: the test was written after the diagnosis and verified passing, not verified FAILING against the unfixed code first. Step ② of the rule it exemplifies was therefore weaker than the rule asks, on the rule's own first outing.",
+    "subject": "system",
+    "summary": "`GapCandidate` gains `#[serde(default)]` on `affected_ids` and `#[serde(default = \"default_suggested_depth\")]` (=2) on `suggested_depth`, plus `a_budgeted_row_replays_into_the_handshake_it_was_meant_for` in `reply_budget.rs`. Reported by hxm_program as F-01: a budgeted `detect_gaps` replayed into `gaps_to_prompts` exactly as documented was refused with `invalid GapCandidate: missing field 'suggested_depth'`. 11 tests pass in that file."
+  }
+}

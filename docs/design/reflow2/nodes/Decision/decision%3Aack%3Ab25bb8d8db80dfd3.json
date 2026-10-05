@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:889ecaecd31dfd362ff8ee655c93daaa70c35b5763b6edafdf2e4d537db45ac0",
+  "node_id": "decision:ack:b25bb8d8db80dfd3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b25bb8d8db80dfd3.",
+    "name": "Reviewed: gap:b25bb8d8db80dfd3",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, re-applied 2026-07-27): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:coverage joined the set (56 → 57). Worth naming for this one specifically, because it is the capability whose validation is most concretely pending and most knowable: the tests prove the algorithm — an opaque directory claims its subtree, regions roll up and rank, exclusions come back named. What they cannot prove is the operational intent, which is whether a real adopt pass over a real system (the NSLS-II bluesky stack is the obvious candidate) reports unclaimed regions a person recognises as the parts nobody modelled, at a granularity they can act on. That is a trial, not an assertion, and it is the same trial that will say whether the whole corpus-ingest direction earns its keep.",
+    "status": "accepted"
+  }
+}

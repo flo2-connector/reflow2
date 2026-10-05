@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e6f5d91d110e6652cd3bfb62a46c697a676adeefffa7fc82c03cdd55da26ea5a",
+  "node_id": "ver:every-served-skill-carries-a-summary-for-a-person-and-an-audience",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/served_skills.rs::every_served_skill_carries_a_line_for_a_person_and_says_who_it_is_for; build.rs refuses a skill without them.",
+    "findings": "pr run: passing on 30 skills.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served skill carries a summary that is not trigger-shaped and at most 120 chars, and an audience in {anyone, operator, agent}",
+    "status": "passing"
+  }
+}

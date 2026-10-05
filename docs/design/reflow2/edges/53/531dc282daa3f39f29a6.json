@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f4769277114800e69eed9fd675607d1929ea7faa1bef44ac97ce89399eec358a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a3545c799197f0fa887764d94e37f561691a92f863c5ca433c944e506d4b7a96",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}

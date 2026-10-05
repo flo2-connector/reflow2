@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:952d64cab8d01748b1be77384a0f6aab471264f39b535d27ed468446e6b06c46",
+  "node_id": "fact:a-hub-attached-to-a-child-server-started-without-export-to-and-its-writes-went-unexported-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: a client passing `--export-to` attached to a child's shared server that had been started WITHOUT it, so writes through that client were never exported (live 623 nodes, file 620) until an explicit export_graph",
+    "source": "dev_reflow2 hub trial session, 2026-09-22, reflow2 v0.66.0; flo2 loop_status sync block",
+    "statement": "OBSERVED from the dev_reflow2 hub. flo2's shared server (pid 242157) had been started earlier, by flo2's own session, as `--graph-path .reflow2/graph --serve-shared`, with NO `--export-to`. The hub's client entry for flo2 passes `--export-to docs/design/flo2.json`, but it attached to that existing server, so the flag had no effect. The hub then wrote three nodes into flo2 (a decision, a requirement, a finding). flo2's loop_status reported live 623 nodes against 620 in docs/design/flo2.json. The writes existed only in the store until the hub called export_graph by hand. For contrast, reflow2's own server (pid 36234, started WITH `--export-to`) exported the hub's writes on its own (auto_export: 142 exports, in step). WHY IT MATTERS: a writer cannot tell, without asking, whether the server it joined will keep the committed record current. Whether the export happens depends on who started the server and with which flags. For a hub writing into several children this is invisible and silent. NOT ROOT-CAUSED as a design question: whether `--export-to` should belong to the DESIGN (stored beside the graph) rather than to whichever process started first is open, and is recorded here as a question rather than an answer.",
+    "subject_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+    "valid_from": "2026-09-22"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1ec49bbd109104c01afe1fc3da35ff02380d0603234ed6ce77a8446504afe077",
+  "edge_type": "CHANGED",
+  "from_id": "chg:update-is-one-word",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:updating-doc"
+}

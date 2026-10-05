@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:816caf80cb8186d618a340ddfd12b78715be23801ace31901e21788c6adce7ae",
+  "node_id": "fact:manual-work-ac2c8a4c428ba086",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python pass over the 167 committed toolsnaps to split every served tool description into sentences, flag the ones asserting what the code does (never/cannot/refuses/only), classify them by reading a random sample, and count them — then repeated it over the 25 skill files. It produced the numbers that settled a design question: 767 sentences, 343 asserting, ~80% checkable, ~100 testable refusal claims, ~6.5 new per week. Nothing in the served surface reads reflow2's OWN prose as data; find_tools returned only itself and this tool for the question.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-03",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

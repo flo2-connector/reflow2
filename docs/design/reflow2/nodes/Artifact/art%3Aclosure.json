@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:524734a98406584c64d13774c5b0611a5d531f4a2cb8e4ad9cbd64727b04fa66",
+  "node_id": "art:closure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "closure_report, closure_summary (read by release_report), set_closure_criterion (Project.closure_legs / closure_threshold, validated against CLOSURE_LEGS), quantity_provenance_sweep. A counted leg that swept nothing does not close and says so; no criterion reads no_closure_criterion_stated; a report, never a gate.",
+    "location": "crates/reflow2-core/src/closure.rs",
+    "name": "closure.rs — the closure report: five legs summed against the owner's declared threshold, each saying what it swept, the first hole in declared order, and the provenance sweep shared with the detector",
+    "status": "realized"
+  }
+}

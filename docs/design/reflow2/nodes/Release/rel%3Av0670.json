@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a5940ae46f84d4afe66fa516440f6ab49ef6c082e00ae2cf33276f5f4f6af9b8",
+  "node_id": "rel:v0670",
+  "node_type": "Release",
+  "properties": {
+    "description": "Sixteen changes since v0.66.0. A settled decision can be gone back to (fork_point, reopen_choice) and bad news is walked back to the choices behind it (choices_in_doubt). A real test run can be fed back by file, and loop_status says whether a real result has ever come back. A published contract carries its promise and the checks behind it, and reflow2 publishes its first six requirements. THE ONE THAT SETS THE DATE: the server and the CI gate now give one answer about an artifact's location — a URI-located artifact read as missing in loop_status while the gate called it not judged, which kept a consumer (flo2) reporting twelve missing files after its CI went green; the gate now asks the server to measure, via the new --tree-root flag. Also: a --shared client outside its project attaches to the running server instead of spawning a rival; link_artifact draws IMPLEMENTS for a check; an unmeasured MCP client gets the payload; the schema serves what tells the node types apart. No upgrade note: the schema stamp is unmoved.",
+    "name": "v0.67.0 — the server and the CI gate give one answer about an artifact's location",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.67.0"
+  }
+}

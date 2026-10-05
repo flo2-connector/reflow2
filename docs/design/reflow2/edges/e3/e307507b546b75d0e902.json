@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b3f79227c46feb7d9511af54292bea84889d9c27a00866b38671b6f502239da",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 gap (nothing says whether an export is owed on a hosted graph): loop_status speaks of exports only after this session exported to a tracked path, which a hosted store never has.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28"
+}

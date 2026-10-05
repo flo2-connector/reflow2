@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8c6e53d97ddccd43526d241ce136f24b010978ced7bc80934e8435b7ca27a443",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:find-tools-corpus-fixture",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

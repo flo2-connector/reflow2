@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dd49658b07fbf0adca4a8223557bb4447912dce7cd5788da1bc9fdc95af514ad",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-black-box-owes-an-interface-the-way-a-capability-owes-a-requirement",
+  "properties": {
+    "evidence": "Anthony asked the same thing on 2026-08-20 - a defined black box should have an interface, MOSA is not possible without contracts. This node is that question with the per-subsystem measurement attached (0 of 10 publish a contract; required 9/9 specified, internal 0/4) and a THIRD return added that the earlier node does not name: mockable test doubles."
+  },
+  "to_id": "dec:idea-what-would-a-provided-contract-buy-substitution-derived-tests-or-a-mock"
+}

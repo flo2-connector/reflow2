@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:285e439a2a56f2d488c847020dc80a26ad3f3fd4baad8840a815b170b2fbe700",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

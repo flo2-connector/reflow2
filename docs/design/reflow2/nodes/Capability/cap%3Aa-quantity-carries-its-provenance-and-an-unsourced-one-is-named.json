@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:23734f8fb3e22d5ede8e993b83db952b7dfafc6d355bcfd9017cd810fdebc54d",
+  "node_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built (2026-09-17): a Constraint's limit carries limit_basis (measured | computed | asserted), limit_source (the tool, artifact or person it came from) and limit_measured_at; a contribution on CONSTRAINS carries source beside its basis and measured_at, stored only when there is a number for it to describe; a TemporalFact carries source. quantity_without_source names a limit with no limit_source and a contribution with a number and no source — an asserted number that names who asserted it is an answer, and the detector is silent on a design with no numeric limit. quantity_check_without_executable_form names a Verification that VERIFIES a Constraint with a limit and has no incoming IMPLEMENTS from an Artifact. budget_report reports limit_basis, limit_source and the unsourced contributors beside the total, which still includes them. The partnership contract is stated on the constrains tool: design the budget here, measure it in the partner tool, write the number back with basis measured and source naming the tool. Built after the unit-system capability, which it depends on.",
+    "name": "A quantity carries its provenance (measured, computed, asserted-by) and an unsourced one is named",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

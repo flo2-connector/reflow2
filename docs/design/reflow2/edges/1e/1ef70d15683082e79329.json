@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:64fbdacf674fb1ba01b57703a41d9d4981b60e78c58e93e08bc5382835d833e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2189fbe1a8e7bf365d86d40a6ab02a439dbe43567778434e2abdf07e90bd4bb1",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported"
+}

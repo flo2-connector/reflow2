@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b7434152fadd9294b08e95daebcb1ca43a70cc481f268eba674a356561b08a32",
+  "node_id": "fact:the-shared-stdio-client-never-reaps-its-children-and-accumulates-zombies",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "12 defunct reflow2-mcp processes, all children of one --shared client, accumulating about one every two hours of session life",
+    "statement": "FOUND SIDEWAYS 2026-09-11, while checking whether an overnight tool sweep had leaked processes after the harness reported low system memory. It had not — every server the harness opened exited cleanly. This was underneath.\n\n**12 defunct (zombie) `reflow2-mcp` processes, every one a child of the same parent**: the session's `reflow2-mcp --graph-path ./.reflow2/graph --shared` stdio client. Ages spanned 1 h to 25 h across a ~25 h session — roughly one every two hours. The `--shared` client spawns a child when it starts or replaces a detached server and does not appear to `wait()` on it.\n\n⚠️ BOUNDED HONESTLY, BECAUSE THE OBVIOUS READING IS WRONG: **this is not a memory problem.** A zombie holds a process-table entry and 0.0 MB RSS. The memory pressure that led me here came from the sweep's own servers, each hydrating a 4,131-node graph alongside the 576 MB shared daemon, and it cleared when they exited (7 GB of 11 available afterwards). What leaks is PIDs and process-table slots.\n\n⭐ WHY IT IS WORTH RECORDING ANYWAY: the deployment shape `--serve-shared` exists for is the LONG-LIVED one — several sessions against one daemon, for days. A leak of one PID per two hours is invisible in a short session and is exactly the kind of thing that surfaces only in the configuration the feature was built for.\n\n🛑 WHAT I COULD NOT ESTABLISH, and it is most of it. I observed this from outside the process with `ps`. I did not read the spawn path, so I cannot say whether the parent reaps on its own exit (which would make this harmless), whether it is one child per server start or per something else, or whether the same shape appears on `--serve-shared` rather than only on `--shared`. Confidence is 0.8 on the observation and much lower on the mechanism. No root-cause pass was run.",
+    "subject_id": "cap:shared-sessions",
+    "valid_from": "2026-09-11",
+    "value": "{\"zombies\":12,\"all_children_of\":\"reflow2-mcp --graph-path ./.reflow2/graph --shared\",\"ages\":\"1h to 25h\",\"rate\":\"~1 per 2h of session life\",\"rss_each_mb\":0.0,\"memory_impact\":\"none - process table entry only\"}"
+  }
+}

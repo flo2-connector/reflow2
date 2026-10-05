@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:974f80d7450e7818990dd6d9cf958e0a5cebd7db57efa0c1079b616293473ca3",
+  "node_id": "rel:v0640",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-17 on Anthony's word (\"Merge 533 and then cut v0.64.0\"). Ships two PRs since v0.63.0, the second and third of Alex's three ideas: #532 — adopt is incremental and resumable (a deferred_derivation marker that quiets unmotivated_capability and unallocated_component on its subject and is listed as owed in loop_status; the served frontier read: structure without intent, the deferred, the uncaptured from a handed-in sweep, the resume point; adopt's Region mode); #533 — a repository's procedural know-how is delivered at the step it bears on and the design knows the adapter exists (convention_delivered_nowhere, agent_instructions_unregistered, adopt Phase 0 and link-artifacts; reflow2 registers its own AGENTS.md and CLAUDE.md). Minor: one new tool (frontier) and two new loop_status fields. The schema stamp did not move (28/65/1); no upgrade note.",
+    "name": "v0.64.0 — incremental adopt with a frontier and a deferral marker, and a repository's know-how delivered at the step it bears on",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.64.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5ec06abebc69b987a68325a20aab5fb77a393ac333f531b43a189493e5ac6b38",
+  "node_id": "dec:idea-argument-less-tools-accept-and-ignore-underscore-prefixed-fields",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — dev_storyflow field report 2026-09-05, wish #28. 'loop_status takes NO arguments; the harness needed a parameter, the tool refuses one.' The idea: one convention — accept and ignore unknown `_`-prefixed fields. WHAT MAKES THE `_` PREFIX DEFENSIBLE: no real field starts with an underscore, so `_dummy` cannot be a typo of anything, and the honesty argument below does not apply to it. The narrow form (ignore `_`-prefixed keys ONLY, and perhaps only on zero-argument tools) keeps the existing guarantee for every field that could be a mistake.",
+    "kind": "exploratory",
+    "name": "OPEN — loop_status takes no arguments and rejects `_dummy`, but some harnesses cannot send an empty call. Should argument-less tools accept and ignore `_`-prefixed fields?",
+    "rationale": "THE TENSION IS A DELIBERATE DECISION: chg:bl57-tool-boundary-honesty made EVERY request struct deny unknown fields on purpose, so a typo'd parameter is REJECTED rather than swallowed (schemars publishes additionalProperties:false). A blanket carve-out would reopen that; the underscore-only form would not. NOT MEASURED: which harness needs this, and whether it is one harness or a class — one report, one occurrence.",
+    "status": "proposed"
+  }
+}

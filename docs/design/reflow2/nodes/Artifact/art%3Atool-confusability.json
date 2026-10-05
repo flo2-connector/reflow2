@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:949e04aaeaea1ee3507b3668f49dbb8d7c811b53801df3d79170d704a0f42010",
+  "node_id": "art:tool-confusability",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/tool_confusability.py",
+    "name": "tool_confusability.py — the offline replica of find_tools' scorer: not-first tools and who beats them, mutual pairs, crowders, never-called tools; --baseline rewrites the ratchet fixture",
+    "status": "realized"
+  }
+}

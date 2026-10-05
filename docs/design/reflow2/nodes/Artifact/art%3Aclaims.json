@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:59f8b34a77a8a17a8e34a4712e1d0f8185a4e7a946d2703729062a64a4498b9e",
+  "node_id": "art:claims",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/claims.rs",
+    "name": "claims.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:10d80e07a00db2787eb6c0db2e053ccc7334c0121aeb2659c32f47fb8a163b5a",
+  "node_id": "req:genesis-in-an-empty-folder-creates-the-design-where-the-client-points",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "/genesis in a folder with no design creates the design wherever the client is set to, attaches to it and writes the pointer, in the same session",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-26",
+    "statement": "When a person runs /genesis (or /adopt on code that has no design yet) in a folder that holds no design, reflow2's local client shall create the design where its setup says: locally, as today, or on the remote server through that server's account address (for flo2.io, https://api.flo2.io/mcp). On a remote server it then writes the committed pointer file into the folder and attaches the session to the new design at once, so genesis carries on with no restart and every later session in that folder attaches through the pointer.\n\nNOT THIS: a folder that already holds a design (a committed export or a local store) is never \"created\" again; the empty-design nudge offers the one-time move instead (dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once).\n\nIN ANTHONY'S WORDS: \"When I cd to new_project and then type claude, how does it create the design in the remote reflow2 mcp via api.flo2.io? ... I'm saying to do this from Claude code\".",
+    "status": "accepted"
+  }
+}

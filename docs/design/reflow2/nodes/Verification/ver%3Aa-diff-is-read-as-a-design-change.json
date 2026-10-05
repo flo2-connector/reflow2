@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f3d255e7309ed2b849d8260e091fb07abf9cfb8e1e8d570cf7ec7f929bf717d9",
+  "node_id": "ver:a-diff-is-read-as-a-design-change",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_impact_of_diff.py, six cases, run in CI's workspace job. Builds a four-node golden thread and one unregistered file with the real binary, exports into a real git repository, commits changes, and runs the driver as a subprocess: the registered file's diff lands on its capability and the requirement sits in the direct ring; the unregistered file is reported before the radius and the \"every file maps\" line is absent; --fail-on-unmapped is exit 1 and the same run without it is exit 0; the export is record_only, never unmapped; a deletion still seeds; a range with no base exits 2.",
+    "findings": "6 passed, 0 failed, 10.3 s, against target/debug/reflow2-mcp built from #519's tree. First run on the real repository (9caacab..76712b2): 17 files changed, 12 mapped, 4 invisible (crates/reflow2-mcp/tests/tools.rs and three tools/toolsnaps/*.json), 1 record-only, 22 seeds, 9 requirements reached directly.",
+    "kind": "verification",
+    "last_run_at": "2026-09-16",
+    "level": "integration",
+    "method": "test",
+    "name": "A commit range reaches the requirement its files serve, and an unmapped file is named first",
+    "status": "passing"
+  }
+}

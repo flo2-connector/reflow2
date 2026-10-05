@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fd20ede1724108debf3b5dae5b4c7ca25aaa25b19f3ef420df562b30d918b710",
+  "node_id": "req:reflow2-keeps-working-entirely-on-one-machine",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2 keeps working entirely on one machine — no network, no sign-in, no server elsewhere — for anyone who wants it that way",
+    "priority": "critical",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-25",
+    "statement": "A person shall always be able to run reflow2 completely locally, as it runs today: the design store on their own disk, the agent talking to it over stdio or through `--shared` on loopback, with no network, no account, no sign-in and no server anywhere else. Remote servers (flo2's api.flo2.io, an organization's shared server) are options added beside this, never a replacement for it, and never a precondition of it.\n\nIN ANTHONY'S WORDS, 2026-09-25: \"we're not getting rid of the current local only setup for reflow2 (basically how I'm using it now)? I still want the option to use it completely locally.\"\n\nCONSISTENT WITH WHAT IS ALREADY RECORDED: dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id draws the line that stdio and loopback `--shared` never meet an authentication step, and Anthony said on 2026-08-26: \"I don't do any authentication and I don't want to change that by adding in some authentication step.\"",
+    "status": "accepted"
+  }
+}

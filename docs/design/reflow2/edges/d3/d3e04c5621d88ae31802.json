@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff6ac3a4450f6789dad67db5e45c75dc534ca7a0c999cfa9eed7c7e43d19b248",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:musicjug-genesis-feedback-2026-08-31",
+  "properties": {
+    "note": "A new member of the genre this ruling was written over: an agent-authored field report from the 2026-08-31 musicjug genesis session, frozen as of that date. It implements nothing, specifies nothing and describes nothing — it records what one session saw — so none of REALIZES / DOCUMENTS / SPECIFIES / PRODUCES / SATISFIES is true of it, and DOCUMENTS in particular would invert the direction of obligation by making every future design change read as staling a report that is simply history.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

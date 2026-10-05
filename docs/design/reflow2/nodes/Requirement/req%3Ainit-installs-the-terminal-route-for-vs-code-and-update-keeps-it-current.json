@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:63722c38a3f01af9add6473624552b2fe5043fa805fcb9176391506ecb6a0de3",
+  "node_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:field-report-vscode-copilot-with-mcp-blocked-reaches-reflow2-only-through-the-call-door-2026-10-01"
+    ],
+    "lineage": "original",
+    "name": "`reflow2 init` installs the terminal route for VS Code, `reflow2 update` keeps it current, usage records name it, and CI drives it the way an agent does",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Step 5 of the plan to make the `--call` door work for an agent that cannot use MCP (Anthony, 2026-10-01; his ideas 1, 7, 8 and 11 in using_call.md).\n\nToday the route rests on one user's hand-written VS Code instructions file, which init and update neither install nor refresh. Calls are recorded as `reflow2-mcp --call`, and nothing tests the route.\n\nMUST:\n- `reflow2 init --harness vscode` (or its own harness name) writes `.github/instructions/reflow2.instructions.md` from text the BINARY serves, so `reflow2 update` refreshes it. The starting text is Anthony's working file.\n- Skill stubs go in `.github/skills/<name>/SKILL.md`: frontmatter plus one line saying to fetch the skill with get_skill. The body stays served (req:thin-install).\n- Door calls can be attributed to the product that made them, so usage_report tells VS Code from a Makefile.\n- A CI test drives the binary the way the instructions tell an agent to:\n  - discovery;\n  - an exit-2 refusal naming the missing argument;\n  - a write on a free graph;\n  - a refused write and a snapshot read on a held graph;\n  - an export.\n  This keeps served text that says \"call X\" true through the door (dec:one-reflow2-serves-both-routes-mcp-and-the-call-door).",
+    "status": "proposed"
+  }
+}

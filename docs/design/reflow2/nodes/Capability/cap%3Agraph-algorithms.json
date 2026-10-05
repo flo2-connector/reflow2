@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ca9deab5426ff3406c12247aaa7a9c1866cc44483e98f6b6fb2ef26ef0161bc",
+  "node_id": "cap:graph-algorithms",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The algorithms the structural detectors run on, in-tree rather than obtained across a required interface: `GraphBuilder`, Leiden community detection, Tarjan SCC, connected components, directed cycle detection, articulation points and bridges (DFS lowlink), and Brandes betweenness centrality.\n\nConsumed by `cmp:structure` and `cmp:allocate` (`sys:coherence-loop`) and `cmp:flow` (`sys:vocabulary`) — three consumers across two subsystems, which is why the component sits in `sys:foundation`.\n\n⭐ EXACT, NOT APPROXIMATE, and that is a real property rather than an implementation note: upstream chose it on the ground that consumer graphs are 10^2-10^3 nodes, so there are no streaming or sampled variants. A design large enough to need them would need a different answer, and this capability does not provide one.\n\n🛑 WHAT IT DELIBERATELY DOES NOT COVER: pagerank, eigenvector and closeness centrality, clustering coefficient, link prediction, max-flow/min-cut, shortest path, topological sort, degree centrality. 1,613 lines left upstream because nothing in reflow2 asks those questions. `cut_structure` in particular does NOT need max-flow — articulation points come from a DFS lowlink walk — which is the one closure result worth stating, because the intuition that \"cuts need flow\" would have dragged 248 lines in.\n\n⚖️ Carries `#![allow(dead_code)]` on eight unused items, kept so the files stay byte-comparable with upstream. Anthony's call, 2026-08-24: trim later if still unused, not on the day it arrived.\n\n(Distinct from `chg:absorb-graph-algorithms`, which records the MOVE and its measurements; this records what reflow2 can now do. The ChangeEvent is history, this is capability.)",
+    "name": "reflow2 owns the graph theory it analyses designs with",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

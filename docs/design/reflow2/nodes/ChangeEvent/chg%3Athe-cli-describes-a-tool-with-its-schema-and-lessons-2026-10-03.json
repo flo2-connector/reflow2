@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9115abd318c2a86d47c476df0b1ad3e5ba351feb04c34d9d7258ee90e6291941",
+  "node_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "56f5ef9fd539bf507fa2fe8f957e43974ac4672d,972f10cd7dbdd165b820dac667289d3f89abe116",
+    "detected_at": "2026-10-02",
+    "name": "The CLI describes a tool with its full schema and its lessons: --describe, --list-tools and describe_schema with tool, built from the opened design (--call door step 4, fix program item 7c)",
+    "rationale": "THE CAUSE (fact:root-cause-argument-shapes-are-learned-by-refusal-because-the-door-holds-the-full-schema-and-prints-none-of-it-2026-10-02, fact:root-cause-tool-lessons-reach-only-tools-list-and-no-door-reply-carries-one-2026-10-02, fact:the-call-doors-tool-list-is-built-on-an-empty-design-so-it-holds-no-lessons-2026-10-02): the --call door reaches the CALL path and not the LISTING path, so everything reflow2 delivers at tools/list (schemas, nested shapes, enums, lessons) was invisible through it, and the one list the door built was built on an empty in-memory design. CONFIRMED ON MAIN 293f957 before the change, on a scratch import of main's export (6,511 nodes): --describe and --list-tools were unknown arguments (clap, exit 2); describe_schema refused `tool`; a find_tools reply carried {tool, score, summary, parameters} and no route to the rest; stdio tools/list carried 269 lessons on 91 of 195 tools and no reply the door could reach carried one; prepare_call built its list on ReflowService::in_memory(). Built as settled in dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons (step 4 of the door plan), with the empty-probe correction applied: the listing is built from the OPENED design, and the tests assert that a lesson's ID arrives, not only a shape. Closed for every door, not only the CLI: describe_schema with `tool` is served, so --call, a gateway and a client that defers or truncates tool schemas read the same answer, and the brief form is held to the reply budget. NOT INVALIDATED: the argument-shape finding, because its add_epoch half (`sequence` publishes no description) is a tool cause this change does not touch.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "reflow2-mcp gains --describe <tool>, --list-tools and --full, rows of the one-shot table (Access::Describes), and describe_schema takes `tool` and `full`. All three render describe_tool.rs from ReflowService::tool_listing, the served list built by served_list (the function tools/list uses) from the opened design, so its lessons ride on it. Brief by default within the reply budget; --full is the tools/list entry unaltered. find_tools replies carry `describe`. prepare_call reads names and annotations from the static served surface instead of a list built on an empty design; --call and the describe modes share one opener (open_the_design), so a held design is read from the same snapshot copy."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8de8f9e8c0526fdd1adb1471d3c575eb7f4424fc3d54631ec9f587d68d25b4c3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0611",
+  "properties": {
+    "as_checksum": "sha256:1ef022b7cc39b9a498590f36f6c2b33e5b77497e0cdc89df7e403dc08e69a3f8"
+  },
+  "to_id": "art:test-a-choice-is-not-a-musing"
+}

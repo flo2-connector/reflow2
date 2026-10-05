@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d69bae3325bf8210f52f9b8ef6829986a814eee4d2fcec2baa62d3dde07d9e72",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-first-guards-writes-not-assertions",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-search-first-fires-without-being-remembered"
+}

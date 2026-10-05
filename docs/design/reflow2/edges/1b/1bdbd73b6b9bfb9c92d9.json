@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2254281a307a38baa2133517b55e96ce720fea625c001ec0395fdf9656681862",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reconcile-built",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

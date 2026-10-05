@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cc6268adf232c0cece7304011af437396d4251bdaf7c6f99448a8c26e808aafa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-judge-whether-a-check-is-meaningful",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

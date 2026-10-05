@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:723afd90e372ab53b951b505e66a92de1493fd28ec7b5ea5d579b3208b07db71",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-built",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:work-declares-who-it-reaches"
+}

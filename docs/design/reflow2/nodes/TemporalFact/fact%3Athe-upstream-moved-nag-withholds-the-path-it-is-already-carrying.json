@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:fd1e2e58eb0c4d782e0bb980fef9bbf0e4085aa629c4b937c5766cbf15b84efa",
+  "node_id": "fact:the-upstream-moved-nag-withholds-the-path-it-is-already-carrying",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "The one loop_status line that says to go and read something is the only one that does not say where — and it carries the path in its own struct",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "FLO2 F17: of seven items loop_status put in `next` on 2026-09-19, six name their instrument ('read them (open_questions)', 'run detect_defects', 'export before you finish'). The seventh says \"Read what changed before assuming that pin still describes it\" and names no tool, no file and no path. MEASURED 2026-09-19 at crates/reflow2-core/src/depends.rs:764: the finding this sentence belongs to is an `UpstreamFinding` whose OWN STRUCT already carries `design_export: Some(path)`, and the `detail` string it formats beside that field does not use it. `upstream_status` returns the same path plus the hash and the date last seen. So the answer is one field away from the sentence, in the same value, and the sentence withholds it — in the one place a reader is already looking. ⚠️ Filed by the reporter as friction rather than as a defect: it did not cause the failure it was found in, and find_tools on 'mirror' reaches the right tools anyway. The claim is narrow and it is correct.",
+    "steps": [
+      "loop_status",
+      "upstream_status"
+    ],
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-09-19"
+  }
+}

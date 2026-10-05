@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:497cf60f366183762a00f3b17ce896ce3504a720f0bf92a532bfddab19bab7fb",
+  "node_id": "req:a-person-feeds-results-back-by-upload-chat-or-folder",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A person can feed test results and feedback back into a design by upload, by chat, or by pointing at a folder",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-25 (dev_reflow2 hub session)",
+    "statement": "A person who tested or inspected an implementation can put the results into its design by whichever route is at hand. On a hosted design (flo2.io): upload them on flo2.io, attach documents in an AI chat, or simply type the results or feedback into the chat. On a design used locally: say them in the agent session, or put the documents in a folder and point the agent at its path. Whichever route, the results land in the design against what they test, so a physical build (a house, an inspection) closes the loop the same way a CI run does. In Anthony's words, 2026-09-25: \"the results can be uploaded directly in flo2.io OR via the AI chat + upload documents or simply type test results/feedback into chat ... a user can either provide feedback or test results via a chat (like I'm doing now) or put documentation in some folder and point the agent at its path.\"",
+    "status": "proposed"
+  }
+}

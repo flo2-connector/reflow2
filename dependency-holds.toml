@@ -1,0 +1,14 @@
+# Dependencies held back ON PURPOSE, each with its reason and a date to look again.
+#
+# req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases (accepted
+# 2026-10-02): "a dependency held back carries a written reason and a date to look
+# again. An exception is recorded, never silent." tools/dependency_currency.py reads
+# this file. Anything behind a new major or 0.x series with no entry here fails the
+# `dependencies` workflow, and so does an entry whose look_again date has passed. An
+# entry for something that is no longer behind is reported, so remove it when its
+# bump lands.
+#
+#   kind       = "crate" | "action" | "toolchain"
+#   name       = the crate name, the action's owner/repo, or "rust-version"
+#   reason     = why, in a sentence somebody else can check
+#   look_again = a date (YYYY-MM-DD) after which this hold stops counting

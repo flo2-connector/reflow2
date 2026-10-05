@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8507b3755f2df2f72314523a56d22691619c7b855ac140423766212cab53b350",
+  "node_id": "art:test-a-replaced-value-is-kept",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_replaced_value_is_kept_when_it_would_be_lost.rs",
+    "name": "a_replaced_value_is_kept_when_it_would_be_lost.rs",
+    "status": "realized"
+  }
+}

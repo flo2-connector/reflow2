@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:12cdfdd3d3fb994eeae510ea3d135cb498e450271d6b9296dcd3ed0d077896b1",
+  "node_id": "req:a-drawn-relation-is-read-back-as-a-sentence",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A drawn relation is read back as a sentence, so a reversed one reads wrong immediately",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. flo2 landed two BLOCKS edges asserting the reverse of what their own evidence prose said, in one session, caught only by re-reading their own call. The direction flag exists and lets a caller draw the edge they meant; it does nothing to confirm they got it right. 'Requirement X blocks component Y' reads wrong instantly where a bare arrow and a target does not. Scope: the asymmetric relations, since a symmetric one cannot be drawn backwards.",
+    "status": "accepted"
+  }
+}

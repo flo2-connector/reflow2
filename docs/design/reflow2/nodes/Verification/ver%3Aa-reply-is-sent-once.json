@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1d08c5ae87268d84a6f562fbaf7c8354411b6d937d2f67ed01e3d4a241601049",
+  "node_id": "ver:a-reply-is-sent-once",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/reply_is_sent_once.rs, 3 cases. It pins the two properties that make the saving safe rather than merely small: the `content` block does NOT carry the payload again and is strictly smaller than it; and it is NOT EMPTY and NAMES `structuredContent`, because a client reading the wrong field must get an instruction rather than a silence indistinguishable from reflow2 being absent. The third case guards the blast radius in the other direction: graph_report_markdown declares no structured output, so `content` is its only carrier and must still hold the document, never a signpost pointing somewhere it never wrote. Proven non-inert by restoring the duplicate and watching the first two fail while the prose case correctly stayed green.",
+    "findings": "3 cases passing, alongside `cargo test --workspace` (50 suites, 0 failures), fmt, mcp clippy, smoke_mcp and all 155 toolsnaps. MEASURED EFFECT on this design: detect_gaps fell from 53,181 bytes on the wire to 26,096 (157,785 before the reply budget) with the payload itself unchanged at 27,846 characters — the signpost is 489. PROVEN NON-INERT: restoring the duplicate made the two saving-related cases fail, while the prose case correctly stayed green because it guards a different property. THE SWEEP AFTERWARDS IS THE MORE USEFUL RESULT: `loop_status` went 72,886 → 13,943 and needs no work of its own, so measuring cancelled a piece of planned work outright; `graph_report` is now the worst tool on the surface at 165,858 and is what where-am-i reads. See `fact:what-the-read-surface-costs-once-a-reply-is-sent-once`.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "A JSON reply carries its payload once, and the text block names where it went",
+    "status": "passing"
+  }
+}

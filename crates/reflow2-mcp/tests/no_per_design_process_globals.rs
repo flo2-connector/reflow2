@@ -134,6 +134,28 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          every design it opens.",
     ),
     (
+        "reflow2-mcp/src/service/unit.rs",
+        "CALL",
+        "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: \
+         it holds the ONE served call now running and its write unit \
+         (dec:idea-a-refused-typed-write-stores-nothing), set by `call_tool` around \
+         that call's handler and gone when it returns. The unit carries the identity \
+         of the graph it was opened for, and the doors that read it match on that, so \
+         a handler that opens a SECOND design never has that design's writes staged \
+         in this call's unit, and two calls each see only their own.",
+    ),
+    (
+        "reflow2-mcp/src/arguments.rs",
+        "TRANSPORT",
+        "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: it \
+         holds which door the ONE tool call now being served came through (an MCP \
+         session or the `--call` door), set by `call_tool` around that call's handler \
+         and gone when it returns, so a handler that checks arguments itself \
+         (`draw_edges`, per item) gives the advice the call would. It is a fact about \
+         the caller's connection, never about a design: two calls each see only their \
+         own value.",
+    ),
+    (
         "reflow2-mcp/src/content_policy.rs",
         "OVERRIDE",
         "The operator's `--content-policy` / REFLOW2_CONTENT_POLICY, parsed once \

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:62e497837b31254824749c7efe25ca4137122856d523a4cd759b03b16123aec9",
+  "node_id": "fact:format-before-the-export-or-the-export-is-written-twice",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "Run cargo fmt --all BEFORE the export: a reformat after it changes artifact checksums and forces a second export and an amended commit",
+    "statement": "Measured on PR #490 (2026-09-12): the increment's Rust edits were never formatted; CI's Format gate was the only red; running `cargo fmt --all` then changed three source files whose checksums the design holds, which meant accepting three baselines, re-exporting, and amending — a full extra cycle for whitespace. The order that avoids it, for this repo's chain: build → tests → `cargo fmt --all && cargo fmt --all --check` → clippy → toolsnap/render/lint → graph record → checksums → export → gates with `rc=$?` captured → commit. The export is last relative to every file the design checksums, and formatting is a file change. Moved here from an agent's machine-local memory file (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory).",
+    "steps": [
+      "export_graph"
+    ],
+    "subject_id": "rule:the-export-is-written-once-per-branch",
+    "valid_from": "2026-09-12"
+  }
+}

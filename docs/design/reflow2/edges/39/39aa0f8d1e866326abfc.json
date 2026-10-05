@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74356a202a84438dd546f04de072b1437e7f73160103759ffd578e4bfab6dccc",
+  "edge_type": "REALIZES",
+  "from_id": "art:maturity",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:undeclared-seam-is-named"
+}

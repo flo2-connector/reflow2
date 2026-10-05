@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:24f4ab7487c940da75a61cec3984bcc36c9347c4ae26144902d024f0f6c727fc",
+  "node_id": "chg:accept-b1853f74f24284bf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "Four field terms the feedback skill names (never_called, other, refusals_by_tool, unexplained) registered in NON_TOOL_TERMS so the lint does not read them as tool names. No rule changed.",
+    "subject": "system"
+  }
+}

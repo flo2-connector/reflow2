@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad09e20f5f4301a117cd490e20aeacfcc2e0a3946bac24cd32dd91dbbdca08e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-latent-server-promotes-itself-in-place-and-announces-the-changed-tool-list",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:latent"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59bd772e4efd3ae26ba0e468f20e74b78afcdd265ddf017d693d84f71b049a80",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-declared-enum-is-wired-or-exempt-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-design-says-what-its-own-tools-cannot-write"
+}

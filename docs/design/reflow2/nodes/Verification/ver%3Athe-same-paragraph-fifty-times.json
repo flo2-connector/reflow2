@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6ceb6ae3b9c142d64e39de8fa7218f5003c02ec67c33fa8f3e836e045bc502ed",
+  "node_id": "ver:the-same-paragraph-fifty-times",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_same_paragraph_fifty_times.rs, 5 cases. Because nothing is withheld here, what has to hold is that the saving cannot make a reader WRONG: every finding still resolves by `row.repair_is_a_judgement ?? map[row.category]`; a row whose text differs from its category's keeps its own, so the fallback is never merely probably right; the lift fires on BOTH list shapes (`defects` unscoped, `items` scoped); and it does not fire on a category with one row, where a map entry plus the sentence explaining it costs more than the paragraph inline. THE SHAPE CASE IS PINNED DIRECTLY RATHER THAN THROUGH A FIXTURE, and that is the finding: the first version of it passed against the bug it was written for, because the categories carrying a repair note are the ones whose findings are disconnected by definition, so its scoped region held none and the assertion loop never executed.",
+    "findings": "5 cases passing, alongside `cargo test --workspace` (50 suites, 0 failures), fmt, mcp clippy, skill_lint, smoke_mcp and all 155 toolsnaps. MEASURED: detect_defects 46,314 → 26,169 bytes on the wire, all 50 findings present, every one resolving to its explanation; scoped proj:reflow2 at depth 3 also lifts (10,243 bytes, 18 rows, none left inline). PROVEN NON-INERT TWICE, and the second time is the finding: with lifting removed entirely one case fails; with the SCOPED-BLIND bug restored (looking only for `defects`, so `Scoped<T>`'s `items` is untouched) the shape case fails. IT DID NOT, IN ITS FIRST FORM. That version drove a real fixture whose scoped region contained no note-bearing findings, so its assertion loop never executed and it stayed green against the exact bug it was written for. Rewritten to pin both list shapes directly.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "detect_defects sends each repair explanation once, and every finding still resolves to its own",
+    "status": "passing"
+  }
+}

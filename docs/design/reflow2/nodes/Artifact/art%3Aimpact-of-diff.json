@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0c705cc5c4b517b897a929781e46027c29505f7dfa962b5e1ab36c7326590a00",
+  "node_id": "art:impact-of-diff",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The driver that reads a git range as a design change: changed files, to registered artifacts by location, to reconcile_artifacts' propagation seeds, to propagate_from's radius. Unmapped files first and counted; --fail-on-unmapped is the opt-in exit code; the export itself is set aside as the record. Same stdio client and hash helper as reflow2_check.py.",
+    "location": "tools/impact_of_diff.py",
+    "name": "impact_of_diff.py",
+    "status": "realized"
+  }
+}

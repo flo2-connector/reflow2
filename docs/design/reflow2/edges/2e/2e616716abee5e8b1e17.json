@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4073df552e65fe0b2a832821c2e59421927d82bece524e37fc2f9ffe98fe210c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-928cf018a5ad578b",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:structure"
+}

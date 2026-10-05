@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7338c0888ba876467b853ebd7627fc74b937fce2d9e6204eef1387f17aa50cfe",
+  "node_id": "cap:hierarchy",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Find missing intermediates and level mismatches — axis Y.",
+    "name": "Check decomposition levels",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

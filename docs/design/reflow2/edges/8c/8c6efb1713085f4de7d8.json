@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe67344b4325afd9e5db95c1377ac85d2cb4fc59537283e6748c2a359079e71f",
+  "edge_type": "MITIGATES",
+  "from_id": "fact:the-diamond-meets-at-dynographs-internals-not-its-interface",
+  "properties": {
+    "evidence": "Answers the obvious hazard before anyone spends time on it. \"Does removing the dependency break storyflow, which also uses dynograph?\" — no: that fact measured storyflow consuming dynograph as a REST API over HTTP while reflow2 consumes it as a Rust library API. Disjoint surfaces over one shared implementation, so dropping the Rust surface cannot touch storyflow's endpoints. Drawn from the fact TO this idea: the measurement is what removes the risk."
+  },
+  "to_id": "dec:idea-cannibalize-dynograph-foundation-into-reflow2"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:fb8c78974b9ca8f7d7e5a42f8deb0ddb99b6e68987ac9ae550104f26a804fa62",
+  "node_id": "ver:a-claim-reads-back-with-its-age",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A dated claim reads back with its age, and an undated one says nothing (crates/reflow2-core/tests/a_claim_carries_its_age.rs) — 15 cases, all passing 2026-08-16. WHY THE FILE EXISTS AT ALL: 112 of 205 TemporalFacts carried a `valid_from` the schema did not declare and NOTHING read, so declaring it without a reader would have changed the schema and left the corpus exactly as inert. These cases are the evidence that the property now does something. THE ARITHMETIC IS TESTED WHERE IT FAILS SILENTLY — the epoch and the day either side of it (a sign error's first victim), and the Gregorian century exceptions: 1900 was NOT a leap year and 2000 WAS, which a naive `% 4` gets wrong one way and a naive `% 100` the other. Ten malformed inputs are checked to DECLINE rather than guess, including `16-08-2026`, which is a real date in the other convention and must never be silently accepted. WHAT A HIT SAYS: a dated fact reports `as_of` and `age_days`; an UNDATED node serialises to `{}` so the ordinary hit is byte-identical to what it was before ages existed; and a date that will not parse still reports `as_of` but no `age_days` — the two fields are separate precisely so \"dated, but I cannot read the date\" is sayable, and collapsing them would make it indistinguishable from undated. THREE COUNTERWEIGHTS DECIDE THE SHAPE, each guarding against a plausible wrong answer: a claim dated in the FUTURE reports a NEGATIVE age rather than clamping to zero, because clamping renders a forecast or a typo as \"current\"; a claim expiring TODAY is NOT yet expired, since `valid_to` is the last day it holds and an off-by-one here retires a live fact a day early; and an UNREADABLE `valid_to` never expires anything, because guessing would silently mark real facts dead. `today` IS A PARAMETER IN EVERY CASE — a test that read the clock would pass today and fail in a fortnight, which is the one failure mode a module about staleness must not have. NOT COVERED: `where-am-i` still does not mark age, so only half of `cap:claims-carry-their-age` part 3 is checked here.",
+    "findings": "MUTATION-CHECKED FOUR WAYS, each killing exactly the right case: dropping the century exception fails the leap and anchor cases; clamping a future date fails the negative-age case; expiring on the last valid day fails the boundary case; treating an unreadable end date as expired fails the counterweight. VERIFIED END-TO-END on the real store through a restarted server: `age_days: 0` on a fact dated today, `age_days: 9` on one dated 2026-08-07, and no age fields at all on an undated fact, in one reply.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A dated claim reads back with its age, and an undated one says nothing",
+    "status": "passing"
+  }
+}

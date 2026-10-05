@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:63010fd6b711f044c587fe4be5abf0db05c28af3750309ce337ba9160cdecf77",
+  "node_id": "epoch:v0611-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The release cut for v0.61.1, 2026-09-15, on Anthony's word, the same night as v0.61.0: it ships #513 alone — the per-client content policy (epoch 498) — so Alex's Grok Build gets the answer in the text block it reads. Patch bucket: no surface shape or schema change; the stamp did not move (28 node types, 65 edge types, schema 1). Sequence 499 follows the policy's own revision (498) and the v0.61.0 cut (497). The only ChangeEvent in the increment is chg:the-content-block-is-chosen-per-client, pinned to 498.",
+    "epoch_type": "release_cut",
+    "name": "v0.61.1 cut — the content block is chosen per client",
+    "sequence": 499,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:621fade47ae8580d4f8ac5d54aea2b8261e519972733176fb29b09073e2acbea",
+  "node_id": "fact:defect-whether-a-project-link-is-real-cannot-be-asked",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "'THESE TWO PROJECTS ARE LINKED' IS NOT A STATE reflow2 CAN CONFIRM, AND A LINK CAN BE HOLLOW IN THREE INDEPENDENT WAYS THAT EACH LOOK FINE. Found by doing it end to end twice. (1) MIRRORED but `mirror_content_hash: null` — staleness detection silently off and PERMANENTLY so, because `mirror_surface` refuses collisions once the mirrored nodes have acquired local edges; `mirrors` shows the entry, and you must read the FIELD. (2) AGREED — `seam_report` returning a confident `agreed: 5, incompatible: 0` on pairs that were SUPPLIED BY HAND rather than computed. (3) PAIRED — `pair_designs` returning `paired: []` with every candidate below the name threshold, while roles are correct and all axes agree. THREE TOOLS EACH REPORT THEIR OWN THIRD, NONE REFERENCES THE OTHERS, AND THE REASSURING ANSWER IS AVAILABLE FROM ALL THREE WHILE THE LINK DOES NOTHING. The reporter's own diagnosis of why the lane produced 22 items instead of 3: four seats each read one number and stopped. FIX SHAPE: one `link_status` / `linked_designs` rollup answering 'is this link real?' per partner — surface hash present and current, pairs computed vs supplied, boundaries paired vs candidate vs unmet. Everything it needs already exists in three separate places. RELATED HAZARD, same lane: sibling projects under ONE owner share a house naming style, which is exactly when fuzzy matching is weakest — one package's interface matched a DIFFERENT package's API at 80/100. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.",
+    "subject_id": "cmp:compare",
+    "value": "{\"hollow_modes\":[\"mirror_content_hash null\",\"pairs supplied not computed\",\"paired empty\"],\"tools_involved\":[\"mirrors\",\"seam_report\",\"pair_designs\"],\"ask\":\"link_status rollup\",\"false_match_score\":\"80/100 cross-package\"}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:abe3467604f3885c0a0a83ea5dabd8b1ae3d8ca1462f2afbe82db82c3d917a6b",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:five-of-one-sessions-storyflow-asks-were-already-built-when-filed",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "CORROBORATION, and it MARKS THE BOUNDARY between two causes that produce one symptom. Most of that session's unmet asks were version blindness — already built, unseen. The INVALIDATES one was NOT: the ranking would hide that edge from them today, on a current build, and it promoted two edges they correctly judged wrong above the right one. The fact exists partly to stop this decision being dissolved into the version story."
+  },
+  "to_id": "dec:idea-a-deliberately-open-edge-can-never-be-ranked-as-a-fit"
+}

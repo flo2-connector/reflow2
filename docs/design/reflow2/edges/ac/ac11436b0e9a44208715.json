@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:696908769070ce87f14d5ce2cea812b4cc0dbbe118b3717d546ce7096fbb325f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:f8d14a991b90377fab5074ee51dbbcf165d2ab813b1b5e742688b19d534c700b"
+  },
+  "to_id": "art:sibling-merge-test"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f0785c712f5b53db5be3939233b0c82ce56075d8a646671c9bf5e456f737bf77",
+  "node_id": "cmp:service",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "service",
+    "provenance": "authored",
+    "purpose": "The service module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce7f8b6af49ac9ebc5166b5976b0e986644debb124b87822cd592c5edb3c9068",
+  "node_id": "epoch:v0450",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.45.0 — a container is found by its level not by how its id is spelled, a derived number carries what it was computed over, and an idea becomes a declared kind",
+    "sequence": 269,
+    "status": "arrived"
+  }
+}

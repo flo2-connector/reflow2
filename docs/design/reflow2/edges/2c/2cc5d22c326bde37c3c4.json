@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28bbd7aba04836a6f577c64ddb9215829a212d3a4550dda908991a6048b4598d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-status-advance-says-whether-its-prose-predates-it",
+  "properties": {
+    "at": "2026-09-04",
+    "note": "FIXED and merged in #426: cap:a-status-advance-says-whether-its-prose-predates-it. When set_capability_status / set_verification_status / set_epoch_status moves a status and the node carries prose, the reply now carries a prose_currency block naming both statuses and quoting the prose. It is option A of dec:idea-a-status-that-advances-past-its-own-prose, which was the design question this defect raised. Pinned by ver:a-status-advance-says-whether-its-prose-predates-it (observed failing first) and it fired on its own verification's planned->passing during this work. Drawn by hand because the defect fact's subject_id is the feedback artifact, not this ChangeEvent's affected nodes, so unclaimed_findings could not surface it — the documented 'change and finding hang off different nodes' limit, and the reason the fix read as open for a day after it shipped."
+  },
+  "to_id": "fact:defect-a-status-can-advance-past-its-own-prose-and-nothing-says-so"
+}

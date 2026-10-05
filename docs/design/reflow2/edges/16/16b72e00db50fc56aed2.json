@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c86051f957679fb38b58b0609595a730db78eca823900c58a833d274ca44e026",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:docker-build-script",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:docker-build-script"
+}

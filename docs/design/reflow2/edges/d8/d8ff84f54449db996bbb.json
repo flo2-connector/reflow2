@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:470e99b49b77e7903dc04ea1acd73b9c9f0eaf044c5dfe36c660ee934041be92",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "evidence": "Two more instances of the same class were found and closed here — the constructor sweep's exemption list, where three of four entries were already dead, and the schema-size claims in four documents, where the edge count had been wrong for weeks. MITIGATES rather than INVALIDATES: each list now checks its own entries, but nothing yet finds the NEXT hand-maintained list, so the cause the fact names is still live."
+  },
+  "to_id": "fact:the-preserve-on-revise-guard-draws-its-membership-on-a-call-name-not-on-a-behaviour"
+}

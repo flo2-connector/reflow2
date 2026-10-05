@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e302aaddf5fefaf06e264d6f07427253162f42e0e923b7958da5f8625c8a8f28",
+  "node_id": "chg:baseline-a7cbaa42349b3d83",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-19",
+    "name": "First baseline. New test file for the ChangeEvent text fields — 3 cases, pinning the front door rather than the storage, because upsert_node could always hold summary and rationale and that is precisely why nothing noticed the constructor took neither.",
+    "subject": "record"
+  }
+}

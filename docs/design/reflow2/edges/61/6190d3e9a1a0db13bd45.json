@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:87ab7da15b49e82fe8a309980f02b40aeb597420ee9fef6dc9a74f1214e91e4a",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-the-toolsnap-gate-defaults-to-a-binary-nobody-rebuilt",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:defect-the-toolsnap-gate-defaults-to-a-binary-nobody-rebuilt"
+}

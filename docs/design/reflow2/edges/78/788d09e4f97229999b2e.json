@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68d831fe3494fc7418491c9eff7c4d8e14b5dceb266665ee6e74331698e03e5a",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:a-retired-dependencys-facts-keep-describing-this-project",
+  "properties": {
+    "alignment": "opposing"
+  },
+  "to_id": "fact:the-storage-seam-is-published-in-design-and-private-in-code"
+}

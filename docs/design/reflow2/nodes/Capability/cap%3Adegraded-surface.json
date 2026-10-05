@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:76549a2ecc0ee80fb8bef7938cb0bdb54523b709150975b77bcfac32e1acbc3d",
+  "node_id": "cap:degraded-surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "On any open failure, serve a handshake plus exactly one tool (reflow2_unavailable) whose name is the diagnosis, with the translated reason in the server instructions, the remedies in the tool payload, and an explicit do-not-conclude-reflow2-is-missing.",
+    "name": "The server explains its own absence instead of vanishing",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

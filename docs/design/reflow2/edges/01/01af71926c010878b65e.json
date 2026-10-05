@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b8c3c00c43da94b22a858b352837f3c2e4ef4779d2e50a80b9dd7a5844a8d71f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-coherence"
+}

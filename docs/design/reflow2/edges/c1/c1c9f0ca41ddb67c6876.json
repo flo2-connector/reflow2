@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4a6ca5f44da27dbbe08360ce1461400ae2f315474b7ddb916ff4609ff41b1482",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-branch-fact-never-appears-in-a-sibling-branchs-export",
+  "properties": {},
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

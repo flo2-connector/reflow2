@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff3be62f8108e4bce21546539d7a752922fdab3c4da9cc529a06d267751dfb06",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-prescribed-layer-pairs-stop-refusing",
+  "properties": {
+    "at": "2026-09-01",
+    "note": "Its central claim — \"THE FILTER HAS TWO TERMS AND NEITHER IS THE NODE TYPE\" — stopped being true on 2026-09-01. `refuse_unless_deliberate` now drops prescribed-layer matches before deciding whether to refuse, so the type pair IS read in the selection and not only printed in the message.\n\n⭐ THE FACT ALSO PREDICTED ITS OWN REPAIR AND WAS RIGHT: \"the type pair is already in hand at line 190, so the guard can act on it without any new lookup, plumbing or vocabulary.\" That is exactly what was done. Its option ② shipped on 2026-08-29 and its option ① on 2026-09-01, once the count it said was missing had been taken.\n\n📌 The measurement, the code reading and the two-shapes analysis all stand and are preserved verbatim — only the present-tense claim about the filter is closed."
+  },
+  "to_id": "fact:the-near-match-filter-has-no-node-type-term"
+}

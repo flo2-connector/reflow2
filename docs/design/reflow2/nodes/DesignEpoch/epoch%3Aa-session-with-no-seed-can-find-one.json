@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:41382505b8c0905be54f3263c5be79be19822c477491bd2695fa80a7e4512b09",
+  "node_id": "epoch:a-session-with-no-seed-can-find-one",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The seedless orientation read ships, and the measurement of it finds that a SEEDED read at its default depth returns two thirds of the design",
+    "sequence": 354,
+    "status": "arrived"
+  }
+}

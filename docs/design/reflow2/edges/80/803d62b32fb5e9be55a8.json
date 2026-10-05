@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ea00aa088f18d6e187f14755684f13374eefa20df9cb1237dd6909a9df106563",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:merge-rerere",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:merge"
+}

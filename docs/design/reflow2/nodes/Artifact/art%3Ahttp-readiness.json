@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cded232ecd5fd06c927e7f22ae21555f0343060e7c155cf0014a780fa40fe85e",
+  "node_id": "art:http-readiness",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Readiness that tells the truth (GitHub issue #616). /readyz answers 200 only while the design is served, and 503 with one path-free sentence otherwise. /healthz answers 200 while the process serves HTTP. Both are answered in front of the Host gate, because an orchestrator probes by pod IP or name and the two answers expose no design. Only GET and HEAD are exempt. A server recovering in place turns ready the moment it serves, and a registry is ready when it is up. Not to be confused with art:readiness, crates/reflow2-core/src/readiness.rs (TRL/MRL readiness assessments).",
+    "location": "crates/reflow2-mcp/src/readiness.rs",
+    "name": "readiness.rs (reflow2-mcp) — GET /readyz and /healthz on every HTTP surface, in front of the Host gate",
+    "status": "realized"
+  }
+}

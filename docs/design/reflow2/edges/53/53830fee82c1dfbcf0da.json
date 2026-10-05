@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:40432214206af4dbb477bac3590656acf4af3598a07c931dfa9bf21501c1b927",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-node-attached-to-nothing-is-reported-whatever-its-type"
+}

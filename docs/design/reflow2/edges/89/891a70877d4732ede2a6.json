@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23d40b3470d6ada6415c97ed0705f72e309994b7a95c7a905e5c3462bbd6fccb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unreachable-count-is-split-by-intent-so-only-the-holes-are-work",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-vocabulary-reach"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fb6997c0131a2e5ea16dce34fe700f15d6da2a7140cbbf8d55bebcff8fff889f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-contract-answers-at-the-altitude-you-asked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

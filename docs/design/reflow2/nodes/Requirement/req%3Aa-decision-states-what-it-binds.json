@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:d913161368e463d3b026d6c977e643ac6d27060ec4e8ad7436c0cebc52328c60",
+  "node_id": "req:a-decision-states-what-it-binds",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A Decision can state what it binds, and an unstated scope is visible rather than inferred",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A Decision can declare its SCOPE — node ids, a node type, a region, or free text — and where nobody stated one, the absence is explicit and readable rather than left to inference.\n\nTHE GAP THIS CLOSES. A Decision records WHAT was decided and WHY. It does not record WHAT IT APPLIES TO. Six weeks later the question is never \"what did we decide\" — it is \"does that decision cover THIS?\", and the node cannot answer.\n\nTHE VALUABLE HALF IS THE HONEST ABSENCE, not the field. \"Nobody recorded a scope\" is a different fact from \"scope is everything\" and from \"scope is this one component\", and today all three look identical. An unstated scope must be VISIBLE, not inferred — which is the same shape as the tri-state reflow2 already accepted for rule enforcement (dec:does-enforced-default-to-gate-blocking: a rule's power is stated, never defaulted) and as dec:certainty-derived's refusal to let a default assert what nobody chose.\n\nEVIDENCE. A 2-of-3 ruling changed a trigger. Two documents were corrected; a third was found still teaching the old rule — and whether that third file was in scope had two defensible readings. The work stopped there, correctly. The stall was caused by a missing field, not by a hard question.\n\nGENERALITY: this is not a multi-agent problem. A solo developer six months later faces the identical question about their own past decision, with no colleague to ask.\n\nSOURCE: storyflow fleet governance report, api-boss (05af57c1), 2026-08-09, v0.26.1. Bound as stated by its author: one project, one month, one fleet shape — hypotheses to test, not requirements.",
+    "status": "proposed"
+  }
+}

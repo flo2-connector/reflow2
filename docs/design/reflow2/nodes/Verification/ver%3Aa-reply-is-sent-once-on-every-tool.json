@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0d0e397ecf06e067885ea2285c63b2f763e676c877d4dc036375404ce9a4ef43",
+  "node_id": "ver:a-reply-is-sent-once-on-every-tool",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/a_reply_is_sent_once.py, run in CI. It seeds a scratch graph from the committed export, calls every served tool that needs no arguments plus get_skill and find_skills by name, and for every reply carrying structuredContent asserts four things: the text block is not the payload again in any serialization, it is not empty, it names the field to read, and the same single signpost is used across the whole surface. Tools with no structured half are recognised on the wire and passed as document-shaped. It fails if it measured nothing, because a detector with nothing to run on reads exactly like one that ran clean. DISTINCT FROM ver:a-reply-is-sent-once, which states three of these properties in Rust against ONE tool. That one is kept; this is the one that covers the class.",
+    "findings": "First run 2026-09-20, against the unfixed build, FAILED on exactly six tools: get_instructions, list_skills, get_skill, find_skills, usage_report and design_identity, each reported as carrying the payload again beside its structuredContent. Observed to fail before the fix was written, which is the only evidence that the gate does anything. After the one-line delegation in tools/skills_tools.rs it measured 43 structured replies across 46 tool calls and passed. Two tools were recorded as document-shaped (graph_report_markdown, wall_check) and one skipped on a JSON-RPC error (manual_work_report), which is not this gate's question.",
+    "kind": "verification",
+    "last_run_at": "2026-09-20",
+    "level": "system",
+    "method": "measurement",
+    "name": "Every structured reply carries one payload and one signpost, asked of the whole served surface",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:539f4cadd549f0018b1cecb5207c49ffb281e0ee67b2181687868a05e7a60b02",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-dimensions",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:schema"
+}

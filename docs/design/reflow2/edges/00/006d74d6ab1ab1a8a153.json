@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:546b5e194e482ff236bff04b50806d97a2470156631c92e3bb0dbaa4a20b5410",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:work-declares-who-it-reaches"
+}

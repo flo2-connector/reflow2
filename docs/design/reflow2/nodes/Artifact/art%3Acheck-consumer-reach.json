@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ee2d8caa4792934eec8a514cdd1a20270c1e14e22ba7a73f29395f1433d332f0",
+  "node_id": "art:check-consumer-reach",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/check_consumer_reach.py",
+    "name": "check_consumer_reach.py",
+    "status": "realized"
+  }
+}

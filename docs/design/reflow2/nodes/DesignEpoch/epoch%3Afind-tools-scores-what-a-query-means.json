@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0ae06e60a758e07cbaa7ec8d0c39466f2b51738cacd58a0cdc778252e794f317",
+  "node_id": "epoch:find-tools-scores-what-a-query-means",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-11, after PR #474. The scorer half of criterion 1 (`req:every-served-tool-is-reachable-by-find-tools-on-a-users-words`): `term_weights` and `score_tool` match whole words rather than substrings, zero-weight a term present in every entry, and normalise for description length — measured over the 180-query corpus as 53 misses → 42 with no tool regressing. Must NOT include the vocabulary half (12 zero-overlap misses), which needs the user's register carried on each tool and awaits Anthony's ruling on option (b) of dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it. Sequence 415 follows epoch:reference-parameters-name-their-type (414).",
+    "epoch_type": "revision",
+    "name": "find_tools scores what a query means",
+    "sequence": 415,
+    "status": "arrived"
+  }
+}

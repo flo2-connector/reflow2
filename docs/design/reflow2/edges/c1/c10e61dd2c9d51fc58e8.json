@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24be3ddd4fc21a37b82d014521e043766f9dc117fa9fe2714266485a888a67d5",
+  "edge_type": "REALIZES",
+  "from_id": "art:upstream",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:upstream"
+}

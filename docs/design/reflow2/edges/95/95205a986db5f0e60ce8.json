@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2ef36e90310e91587be4c70b5f7296ff751162220e3402b7a8a459adc0017d1d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:vocabulary-covers-states",
+  "properties": {
+    "authored_at": "2026-08-07",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

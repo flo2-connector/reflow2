@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:130e420e641462f5905c483b820a5410080f627753675be834845cd7701c0d2d",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:reflow-spirit-review-2026-09-13",
+  "properties": {
+    "note": "The artifact's own description already named this ruling and called itself \"Dated and parked, never linked with DOCUMENTS\" — but the edge was never drawn, so the claim lived in prose where no detector reads it. The BL-199 gate went red on the committed export of PR #497 for exactly that: one artifact attached to nothing but bookkeeping edges.\n\nWHY PARKS IS THE TRUE ANSWER HERE, checked against the ruling's own genre test rather than assumed: it is a frozen observation — what five readers found on one day, reading the original reflow repository — and it must NOT be revised as reflow2 moves. A DOCUMENTS edge would invert the direction of obligation, claiming the file should stay in step with the design, which would make every future change read as staling a record that is simply history. It realizes nothing, specifies nothing, and describes no node of the design; the findings it produced are their own nodes.\n\nONE HONEST STRETCH, recorded rather than glossed: the ruling's genre is worded as a report \"written from outside its development\", and this review was written from inside it, about reflow2's predecessor. The defining property the ruling actually turns on — a dated observation that is correct precisely by not tracking the design — holds exactly. If that wording should be widened to cover an internal retrospective, that is a change to the ruling and not a reason to file this one differently.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

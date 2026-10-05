@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f154334342d2ce330d8ef7b0215d14360384e530ea6dff90786619186ccb8d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:vacuous-trigger-fixed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:arrival-delta"
+}

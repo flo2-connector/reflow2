@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f4d0a9e72dff08a5f7fd7e4ef31502aae9c2e991a7550abc4ad1938411d215fc",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms",
+  "properties": {
+    "evidence": "Anthony promoted option (a) of this idea to intent on 2026-09-28 (\"promote it to intent\"); options (b)-(e) — status vocabulary, clocks, who-says-so on edges, endpoint sorts — remain open ideas here."
+  },
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

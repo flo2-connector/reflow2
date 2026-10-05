@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a65f7a800773b32f51a15bafb8a9d23b8da12304ad895eb58e580bd46afbf606",
+  "node_id": "chg:kpp-proposal-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Build the KPP capture half: the ask-don't-promote skill, and a typed way to record what the user confirms"
+  }
+}

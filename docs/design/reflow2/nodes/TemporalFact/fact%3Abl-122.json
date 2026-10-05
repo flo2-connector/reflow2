@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ef699c42c3094feb51de6647cfed8bce03c09686515b87e1a3b9e6175c57d04",
+  "node_id": "fact:bl-122",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-122] Nothing detects a Release with no epoch",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Found by me, 2026-07-31, while building cap:changelog-view \\u2014 and the release it was found on had been cut four hours earlier in the same session.* rel:v0190 had no AT_EPOCH edge to epoch:v0190. The epoch node existed, the naming convention matched, and nothing anywhere reported the absence, so the changelog window for the most recent release \\u2014 the first anyone would ask about \\u2014 had no lower bound and silently widened to the beginning of the design. 16 of 20 releases carried the edge; v0.17.0 is still missing it to this day, and v0.18.0's own commit message boasts that *\\\"v0.17.0 was cut without an epoch or deploy/retire bookkeeping, which this cut does not repeat\\\"* \\u2014 a claim nothing verified, made about a fault nothing detects, immediately before the same fault recurred. The invisibility is the finding: a matching name and an existing epoch node make a missing edge look exactly like a present one to every reader, human or otherwise. Fix shape: a gap or defect for a Release with no AT_EPOCH \\u2014 cheap, and changelog_view already has to report the condition, so the computation exists and only the detector rung is missing. Same recurring shape as [BL-107] and [BL-110]: a designed dependency that nothing validates. Size XS\", \"origin\": \"Migrated from docs/backlog.md BL-122 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: XS.\"}"
+  }
+}

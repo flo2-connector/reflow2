@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b7daa0d43bbc7e700442e0296e4ddaafa61cdd7fee4d83e63ee3dcdcc28d3196",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:flow",
+  "properties": {
+    "dependency_type": "function_call",
+    "weight": 0.8,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-graph-api"
+}

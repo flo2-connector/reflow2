@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:10fe756c045108004be7359830d0915c295892a80f47a70c8e65984043b5ae57",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-prose-does-not-rot-it-is-born-false",
+  "properties": {
+    "basis": "causal",
+    "confidence": 1.0,
+    "evidence": "The mechanism behind the class, established by a measurement that could have refuted it and did not: `git log -S` on each instance, then reading the code AT the introducing commit. Four were false at birth, one rotted and was caught the same session, one was not false. The prediction 'prose rots as code changes' is refuted for the majority.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

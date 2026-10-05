@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3bf8f8b5209ffdaa5b65ea7e680086026a75c2862c26b8e3780e66222b45446f",
+  "node_id": "rel:v060",
+  "node_type": "Release",
+  "properties": {
+    "description": "The first release to actually reach a user (v0.5.0's run never published). Carried the deep-review tier-1 fixes and BL-57 tool-boundary honesty. Superseded in place by v0.6.1.",
+    "name": "v0.6.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.6.0"
+  }
+}

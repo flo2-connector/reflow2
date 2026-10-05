@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fde4d551039ef37b03dacede127568d5d54fba3066528a2e5903422d5aa8165e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

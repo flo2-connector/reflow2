@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:174519d5bd2f581795e5c575f15e0d6d3a4d7a43a52554840a41770e367c186c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-stops-being-injected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:defaults-are-not-serialized"
+}

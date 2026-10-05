@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4d7db9bf584f35762fc3a4ecf4c4626f4b32606eea45403dfcc98bb3f491fdf3",
+  "edge_type": "CAUSES",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this issue's hosting note (a StatefulSet, because a second pod cannot take the lock): the second server serves the degraded surface, looks alive, and never retries after the lock frees.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28"
+}

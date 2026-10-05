@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8caa8c22be2d715f4ae38d21e12c9c41dd95ecdec03a2ee7a906ebf5fd5ec306",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-discontinued-is-a-first-class-state",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "Both are about retirement vocabulary and the answer to one bears on the other: dec:one-retire-edge asks which of two unread edges survives, this asks what a successor-less withdrawal IS. Linked as supporting rather than opposing — they are the same problem at two altitudes, not a conflict."
+  },
+  "to_id": "dec:one-retire-edge"
+}

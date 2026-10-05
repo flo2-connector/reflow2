@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8164f475085f6c6ba264fb489e1208766893fcebc0584f6896fef5a4c74806c6",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-served-skills",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-hub-skill-names-a-local-hubs-declared-dependencies"
+}

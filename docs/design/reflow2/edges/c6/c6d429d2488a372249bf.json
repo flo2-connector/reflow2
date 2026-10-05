@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5e90b1c8d5c1754822c0a03901e0f7dd2cae3261d7ae70b6f522cfbc743bae46",
+  "edge_type": "CAUSES",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That change made every dual-mode constructor publish required: [\"id\"] so a revise needs no content; JSON Schema's required list cannot say 'required only on create', so add_epoch's create-time sequence and epoch_type are stated in no schema and in no description.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:add-epoch-create-requirements-are-published-nowhere-and-describe-schema-says-only-name-is-required-2026-10-02"
+}

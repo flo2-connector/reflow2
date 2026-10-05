@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87c6f49a69919367f5aced0aca4b40c4b789400317de2a12864627613d194c26",
+  "node_id": "art:reply-sent-once-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/reply_is_sent_once.rs",
+    "name": "reply_is_sent_once.rs",
+    "status": "realized"
+  }
+}

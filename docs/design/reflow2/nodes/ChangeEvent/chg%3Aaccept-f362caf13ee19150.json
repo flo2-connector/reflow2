@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3dd165c466080e5afd48fea134792f6414a568e30d06d05a18c4515655f7ed0e",
+  "node_id": "chg:accept-f362caf13ee19150",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-31",
+    "name": "`cargo fmt --all` reflowed the file after it was registered; no assertion, arm or measured number moved.",
+    "subject": "system"
+  }
+}

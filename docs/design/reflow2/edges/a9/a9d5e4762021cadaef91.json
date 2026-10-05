@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ade7d3c13f60c7f99453889c5582c78a82f983d4e2cd421e8b8bd07fa5f4d4f4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:topic-skill"
+}

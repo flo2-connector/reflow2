@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1adc11edbed949e502ec69536a74f24a27ca7236bc5f4e3cc02d3ac583331ec1",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:a-cut-exports-the-record-once-from-the-new-binary",
+  "properties": {
+    "step_order": 6,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

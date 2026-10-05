@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11bc798eb30cf6186dc0f738d391e3823ea4021bd73c33b87c53ce4bf68701c6",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-12"
+  },
+  "to_id": "epoch:planned-feedback-is-a-computed-tally"
+}

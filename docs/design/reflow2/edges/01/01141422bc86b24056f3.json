@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bf150442296c37ef55b95093af66e9197af4fa5fb0dec6f4c60aa80698b98928",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "ifc:req-dyno-storage-api"
+}

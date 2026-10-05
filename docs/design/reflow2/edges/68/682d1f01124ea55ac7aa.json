@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e96b663247d020974a636ce7e3bb74a028b713d52abf2a06d52f4232da0c8f61",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

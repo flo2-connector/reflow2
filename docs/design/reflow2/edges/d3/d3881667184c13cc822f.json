@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8b343b33a6916bc4bc9887e7ebef78498bae9788d7a9a2da6dad61bf6b4cb57c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-cut-ends-by-rebuilding-the-served-release-binary",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

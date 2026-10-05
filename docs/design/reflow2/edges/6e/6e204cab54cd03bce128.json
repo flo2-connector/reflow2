@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dffeca1fc203f6161c15af74a5fba837e5dc7f627d6991e2c1a50847388887c1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-choice-can-be-gone-back-to",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

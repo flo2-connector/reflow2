@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:880134026a418da81c3bcb498aa94134da75fdc59ff2e741357f954c4081b88e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp",
+  "properties": {
+    "evidence": "Every option here packages and tests the existing build door; none is worth anything without it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

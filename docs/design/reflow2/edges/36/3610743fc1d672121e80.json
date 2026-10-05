@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b879ba1cb63286cc20b42ed612dbc6d305114a9bbeba03c6631678eda0f1996",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-discontinued-is-read",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-discontinued-is-read"
+}

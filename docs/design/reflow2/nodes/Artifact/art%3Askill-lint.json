@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7f7a897e5b1bea24b5b31ccfb112d96aa27c5137fcd17b84c3473068b241bf60",
+  "node_id": "art:skill-lint",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/skill_lint.py",
+    "name": "skill_lint.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

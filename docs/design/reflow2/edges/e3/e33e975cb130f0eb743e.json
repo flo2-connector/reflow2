@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e04b37b529ddea75c1fed507dde47d3091c2edde9b855a8d2b7b7db102726509",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-refusal-for-an-unknown-field-should-name-the-nearest-parameter-and-never-guess-that-the-client-is-stale",
+  "properties": {
+    "evidence": "Option (a) built 2026-09-19; (b) serde aliases for names that never existed rejected — two doors for one field; (c) the corrected call over-promises."
+  },
+  "to_id": "chg:an-unknown-field-refusal-names-the-nearest-served-parameter-first"
+}

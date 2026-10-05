@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5cfdc02cd010a2eb4eb76d308ca5ce0e6b7271f9147bc86c3c9e91220c4b1bec",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-backlog-belongs-in-the-graph",
+  "properties": {
+    "authored_at": "2026-08-04",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

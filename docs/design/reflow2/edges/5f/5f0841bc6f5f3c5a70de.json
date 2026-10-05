@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8aa4be97449c579ae7cbb96b5bcfb2458571e6029f4afa57836bc3ce59fa8453",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:many-people-and-many-projects-compose",
+  "properties": {
+    "authored_at": "2026-08-05T23:15:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

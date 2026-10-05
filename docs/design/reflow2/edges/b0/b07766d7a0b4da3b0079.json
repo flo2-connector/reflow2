@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5eabefb5b8f7e44a3b921fc4d9c38a2d61c8a9179daf254ddf753535362334d9",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-refused-write-stores-nothing",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-refused-write-stores-nothing"
+}

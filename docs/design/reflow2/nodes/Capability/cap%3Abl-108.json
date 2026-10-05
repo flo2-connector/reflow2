@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:af30d78dae8d1063a76df17f793da5a475acee35493cd4b381aa8fdfcdc9d76b",
+  "node_id": "cap:bl-108",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Design the simulator, and test there before the real thing\n\n*Anthony, 2026-07-27, offered explicitly as a future idea rather than current work — captured as req:design-the-simulator (proposed, wants his word), and this row is the pointer.* The argument: a design has to operate in an environment, and where a simulated environment or a digital twin is reasonable to build, exercising the design there first removes risk while it is still cheap — an issue found in simulation costs a rebuild, the same issue found in the field costs a deployment. So the simulator is something to be designed, not an implementation detail that shows up later, and the progression simulation → progressively more realistic tests → fielding is part of the design process rather than an afterthought. The caveat is part of the requirement: not every design admits a meaningful simulation, and a tool that insisted would generate elaborate fictions for the ones that do not — so *is a simulator feasible and worth it for THIS design* is asked, never assumed, and a design that answers no says so on the record without being nagged. What already exists to build on (checked, not assumed): Verification.method accepts simulation, so a check CAN already be recorded as having been run in one; Environment and EnvironmentRule hold deployment and platform context. What is genuinely missing: nothing treats the simulator as a designed thing with its own requirements and fidelity claims; nothing expresses that a check run in simulation is weaker evidence than the same check run for real, which is the whole point of the progression; and there is no place to record the feasibility judgement. Note the fidelity axis reflow2 already has — as-designed / as-built / as-fielded — is the natural home for 'as-simulated' sitting before as-built, and that is probably the shape rather than a new subsystem. Size M–L\n\nMigrated from docs/backlog.md BL-108 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M–L.",
+    "name": "[BL-108] Design the simulator, and test there before the real thing",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

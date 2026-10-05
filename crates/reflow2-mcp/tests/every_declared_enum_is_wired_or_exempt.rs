@@ -157,7 +157,7 @@ const EXEMPT: &[(&str, &str, &str)] = &[
         "last_reconciled_outcome",
         "A STAMP, never a parameter: reconcile_verification writes it from each observed \
          run's `outcome`, which the core already refuses by name outside \
-         passed/failed/skipped. No caller sets it directly, and giving it a parameter would \
+         OBSERVED_OUTCOMES. No caller sets it directly, and giving it a parameter would \
          let a caller type a run that never happened — the thing the stamp exists to tell \
          apart from a claim.",
     ),

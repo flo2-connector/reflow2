@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47369c2f0b46b7c30217880d69d91012edf30bf1a4596cc3e09c620daec7be81",
+  "node_id": "chg:accept-041e39df97343a36",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-24",
+    "name": "Initial baseline of the alternatives/AoA module (alternatives.rs; realizes cap:compare-alternatives + cap:decision-point). Previously no_baseline — recording the as-built fingerprint so future edits are caught; no design change."
+  }
+}

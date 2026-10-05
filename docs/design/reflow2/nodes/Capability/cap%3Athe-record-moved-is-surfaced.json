@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:80389725b86532aea56d55b88458de3ff5382d0a040118faaed2c4bdac5912b8",
+  "node_id": "cap:the-record-moved-is-surfaced",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Checks every file this seat has synced with before, and reports one finding each: `in_step` (exactly where this graph left it), `behind` (THE ACTIONABLE ONE — the record holds nodes this graph lacks, named, with `import_graph` as the remedy), `moved_but_current` (somebody exported, this seat already holds it all), `missing`, `unreadable`.\n\nServed as the `sync_status` tool, and carried on `loop_status` as `record_moved` when there is something to say.\n\nTHE GATE IS THE DESIGN, not an optimisation on it. A seat merely AHEAD of the record is silent, because the file has not moved and every difference is its own unexported work. The check speaks only when the record's content hash differs from what this seat recorded — meaning somebody else has been there. That is what keeps it rare enough to be read.\n\n⚠️ THE HASH IS COMPUTED, NEVER READ OFF THE DOCUMENT. `effective_content_hash` believes the `content_hash` a file states about itself and computes one only when absent, so a record edited by anything other than `export_graph` — a merge, a hand-fix, another tool — keeps its old stamp and reads as untouched. A check must never believe a claim made by the thing it is checking. The discrepancy is itself reported, as `stamp_disagrees`.\n\nIT NEVER ACTS. No auto-import: `import_graph` is an upsert, so an unasked one would silently overwrite live session work (`dec:ask-not-repair`). It names the remedy and leaves the choice.\n\nAN EMPTY ANSWER MEANS THIS SEAT HAS NEVER SYNCED WITH ANY FILE — never that all is well. Every known target is listed, including the quiet ones, so \"checked three records, all in step\" and \"checked nothing\" cannot share an answer.\n\nCOST: the export to compare against is built LAZILY and never on the in-step path, which is the one every ordinary session takes.\n\nNOT COVERED: anything about a record this seat has never synced with, and any design held somewhere this seat has no path to.",
+    "name": "A seat reports which shared records have moved ahead of it, and names what arrived",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

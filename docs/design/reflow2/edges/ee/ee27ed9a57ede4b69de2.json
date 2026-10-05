@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5feda782ed5c9e113dd5ee7442bebf3844112c5b7b22eeaecdeaa9eb298a5f6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl160-checksum-length-dialect",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:gate-suite"
+}

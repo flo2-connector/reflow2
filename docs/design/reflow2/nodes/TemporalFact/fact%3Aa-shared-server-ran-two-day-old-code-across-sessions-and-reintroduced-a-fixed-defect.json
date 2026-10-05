@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a702ef7f454eb6706861a27002bf0f2eb002d1864a7c1bd8fe4e5682775e1cec",
+  "node_id": "fact:a-shared-server-ran-two-day-old-code-across-sessions-and-reintroduced-a-fixed-defect",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-23: the --shared server for reflow2's own design ran a binary built 2026-09-20 until a manual --stop-shared on 09-23, so this session's link_artifact calls drew REALIZES onto 6 checks — the defect #567 fixed on 09-22",
+    "statement": "The shared daemon outlives sessions by design, and the launch wrapper's rebuild only matters when a NEW daemon starts. From 2026-09-20 21:36 until this session stopped it on 2026-09-23, every session on this design was served by that build — eight merged PRs later. loop_status's served_by read `stale: false` throughout, because the check compares the running process to the file at the binary's path, and nothing had rebuilt that file: the question it answers is 'was I replaced?', not 'am I behind the source?'. Consequence measured: link_artifact on a Verification, called 6 times this session, drew REALIZES (the pre-#567 behaviour) instead of IMPLEMENTS. It surfaced only when the server was finally refused an export after a local rebuild replaced the binary. Not root-caused further here; the class is 'a long-lived shared server is trusted to be current by a check that cannot see source moving'.",
+    "subject_id": "cap:shared-sessions",
+    "valid_from": "2026-09-23"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bac610dd8fce27a2bbf8daf90e7bf79af357ded38b568779438c39634d9d705e",
+  "node_id": "cap:store",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A typed vocabulary of node and edge types, validated on write, over a pluggable graph storage backend — the foundation everything else hangs off.",
+    "name": "Schema-validated graph store",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

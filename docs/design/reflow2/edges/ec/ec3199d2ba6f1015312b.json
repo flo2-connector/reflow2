@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6930c4b21f73b83f996fc0b9d108cec0ea66fcf43a83b1d19dec4b0e57beef9d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "evidence": "Kept as intent 2026-09-25; this is where the design lives."
+  },
+  "to_id": "req:a-design-lives-in-its-server-not-in-the-code-repo"
+}

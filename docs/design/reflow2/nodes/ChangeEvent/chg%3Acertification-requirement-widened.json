@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19b10e497462289a5264aa93bc83517458552e38bc4975fb212e35909b8e37b1",
+  "node_id": "chg:certification-requirement-widened",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Snapshot before widening: the statement named only Capability/Requirement addition-or-removal and SATISFIES change"
+  }
+}

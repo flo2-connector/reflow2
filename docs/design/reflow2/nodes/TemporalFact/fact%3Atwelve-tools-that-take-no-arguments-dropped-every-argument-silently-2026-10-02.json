@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cef53950b0e363045a9db060b4695def2a404c37c1f6523197d5f16f0dee1414",
+  "node_id": "fact:twelve-tools-that-take-no-arguments-dropped-every-argument-silently-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02: twelve served tools that take no arguments ignored any argument they were sent and answered as if it had been read — rmcp gives a parameterless handler the open schema {type: object, properties: {}}",
+    "source": "art:service",
+    "statement": "Found while building dec:idea-every-argument-refusal-names-the-tool-and-the-field-path. OBSERVED on 0.77.0 through --call: mirrors with {\"project_id\": \"proj:x\"} exited 0 with its ordinary reply. The twelve: claim_report, dimension_drifts, evaluate_allocation, graph_report_markdown, hierarchy_issues, linking_report, manual_work_report, mint_seat, mirrors, repair_report, reviewed_defects, surprising_connections — every one a handler with no Parameters, whose rmcp-generated schema has no additionalProperties, while the other no-argument tools take an empty deny_unknown_fields struct and refuse. A silent drop (AGENTS.md rule 4). FIXED in the same change: arguments::close_empty_schemas closes every parameterless schema once at assembly, so the check refuses the argument naming the tool and the key, and the next such tool is covered too.",
+    "subject_id": "cmp:service",
+    "valid_from": "2026-10-02"
+  }
+}

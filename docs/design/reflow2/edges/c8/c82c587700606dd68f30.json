@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:837c8b9322c9374c4e2ea10d2dcbfcdb81735364abd27085b66775aa689b6971",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "detect_gaps is budgeted (budget_chars, default 30000, detect.rs:1078) and reports which tier it landed in, and the duplicated payload is gone from every reply."
+  },
+  "to_id": "fact:the-first-move-of-a-session-did-not-fit"
+}

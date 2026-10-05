@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8d055dfea3b16a26302f5fd5a5b9cae5317fca567019102da91ccabcc91efa7c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:51c5f07c34b7149425c9847ee87ebf8e446617b4d24c696fb8b3c40da250fc7a"
+  },
+  "to_id": "art:test-a-detector-consults-what-the-graph-already-holds"
+}

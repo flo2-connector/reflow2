@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:07b29cd738d9ec6eeb53690b043ad3954b2b2c15fde2fb5ea4bb866471d73a94",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:claim-liveness",
+  "properties": {},
+  "to_id": "req:claims-have-owners"
+}

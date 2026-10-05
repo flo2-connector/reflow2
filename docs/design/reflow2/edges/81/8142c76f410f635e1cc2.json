@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97c8596722bf27416af15bd8bc05671008f35699c4823f5bbe79c3233e178c8a",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-should-the-gate-set-be-selected-per-diff",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "The doctrine drawn from that incident and its two predecessors is that a subset of a gate set is not the gate set; this idea proposes running a computed subset, and the design has to pick which holds."
+  },
+  "to_id": "fact:the-local-gate-subset-was-reconstructed-by-hand-a-third-time-and-this-one-truncated-the-suite-it-was-checking"
+}

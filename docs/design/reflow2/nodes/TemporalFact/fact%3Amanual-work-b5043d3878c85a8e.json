@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:debd1df44fdba0718979c9e1896e9a9aaaafee0d4954b53bb2a38926bc9f9d58",
+  "node_id": "fact:manual-work-b5043d3878c85a8e",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Built a Python harness that drives the built binary over stdio JSON-RPC and runs a scripted PLAN of tool calls against an ISOLATED COPY of the design — copy seeded by importing the committed export into a fresh store, with an assertion refusing any path that resolves to the live store — recording every call, reply, refusal and latency to JSONL for later analysis. Used it for 430 calls exercising all 180 served tools, in tranches: predict from the published schema, call, diff prediction against outcome, then re-run the failures with values read from the schema instead of guessed. Nothing served does this: there is no way to ask reflow2 to exercise its own surface, no way to run a batch of calls against a scratch copy of a design, and no way to get a machine-readable record of what a call returned. The two things that come closest answer different questions — one finds a tool by description, the other reports what a session did by hand. The sweep's central measurement (guessing enum values refused 13 of 20 constructors; reading the published schema refused 0) is only obtainable by actually issuing both sets of calls, so the harness was the instrument, not a convenience.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-11",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70b770e59e97f68782ca08df2b3dad82784db65dd1558dbbb31a3c0a1cdd00d4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-derived-number-carries-what-it-was-computed-over",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c39deac86b732dc84ce40bdf84b209b77a595aae9e68ee4c61096af77c246f9a",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:constraint-not-numeric-skill-lint-allowlist",
+  "properties": {},
+  "to_id": "epoch:constraint-is-not-only-numeric"
+}

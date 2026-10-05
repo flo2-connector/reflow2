@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c6d404894a2725cf8d90707ca05a9b469c3fe3c2216d257c9356f0b906f50c0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-record-moved-is-surfaced"
+}

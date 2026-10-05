@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d5b1a59468388b69262fef147db3934202193d127d285d13f87fb82b091450f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
+  "properties": {
+    "evidence": "The provenance requirement says every number must say whether it was measured or asserted. A checksum an agent pasted is asserted; one the server computed is measured. The requirement supplies the vocabulary that makes this idea decidable, and the checksum is the one number in reflow2's own graph the requirement does not yet reach."
+  },
+  "to_id": "dec:idea-should-reflow2-measure-files-itself-and-what-the-no-file-io-rule-actually-protects"
+}

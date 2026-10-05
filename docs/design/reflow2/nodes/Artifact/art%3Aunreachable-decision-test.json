@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b89140fd1d5b897f00a3bddff6687d4f280bc231c670a380f147ef1cca83333c",
+  "node_id": "art:unreachable-decision-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/unreachable_decision.rs",
+    "name": "unreachable_decision.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

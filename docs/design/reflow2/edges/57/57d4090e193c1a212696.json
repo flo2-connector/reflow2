@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f261d8e2320289c7479581d26c459490762f20d14e9f92d9eca0c5a9e6348322",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-owns-the-host-refusal-and-says-which-flag-2026-09-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:host-gate"
+}

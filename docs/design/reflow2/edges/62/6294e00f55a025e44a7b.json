@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:10a472bd6f9d6e8cb777ba775a7650152ef3a46327743248790d48c1c9ecb537",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing",
+  "properties": {
+    "confidence": 0.85,
+    "evidence": "This is the third leg of that idea and has nothing to detect against until its first leg exists. A detector for unlinked ideas shipped before the linking step would report 111 of 145 on day one and be correct, which is not a useful thing to ship. Drawn 2026-08-21 by the linking step itself.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

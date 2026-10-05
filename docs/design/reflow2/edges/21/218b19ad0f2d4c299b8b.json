@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b4e1439a6d7b15d57089bdf41e49406c73a66b209aa170a79dd04f44f61ea28",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "dec:what-reflow2-does-when-a-server-does-not-rotate-refresh-tokens",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-signs-in-as-an-oauth-client"
+}

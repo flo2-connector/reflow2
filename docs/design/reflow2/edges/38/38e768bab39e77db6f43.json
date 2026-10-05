@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d66de894cb8e7b8654b6bb2a2bc2554dd961363a283f41b2004818b0fbb9fced",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-session-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:capture-session-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:345e2951dd09a7a85f2932d34fabaecb890d62c8fe432bddaad7fa1b12dadbce",
+  "node_id": "chg:content-growth-guard",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The size guard with a recorded override, and the manifest reporting total bytes"
+  }
+}

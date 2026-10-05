@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7dc3b44ba1ad8415f8c0f21a88c2a7999b22b0c1f3f7f69909a5db2f2edbb13c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-release-workflow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:85abcd1bdeb1923b5fa4e52a475fc7dce04065d817267468f388b2e615f254a0",
+  "node_id": "req:ci-runs-the-primitives-conformance-kit-with-a-ratchet",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2's CI runs the primitives project's conformance kit at a pinned version — the mechanical checks gate against a ratchet baseline of today's gaps, the behavioural checks report — and the auditor re-runs the same version and compares",
+    "priority": "high",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"keep your recommended starting set as intent\" — the conformance-testing starting set of the graph-primitives design on flo2 (graph 85a2a1a36e7c942d), from his brainstorm \"need to come up with some valid tests (maybe in CI if we can) to measure that they meet the direction from the primitives project (you're my helper/auditor)\".",
+    "statement": "Levied by the graph-primitives design on flo2 (req:a-conformance-kit-runs-in-each-systems-ci-and-the-auditor-re-runs-it-independently and req:mechanical-checks-gate-with-a-ratchet-and-behavioural-checks-report). reflow2's CI runs the conformance kit the primitives project publishes beside the shared vocabulary, pinned to a version, over the five test requirements levied on reflow2 (req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types and its four siblings):\n- MECHANICAL checks (readings, status kinds, clocks, participant roles, identity links) fail the build on any gap not in a committed baseline file and on any baseline entry that has been fixed but not removed; the baseline starts as today's gaps and can only shrink, and its length is printed every run.\n- BEHAVIOURAL checks (twins agree, semantic invariance, declared rule equals code, recomputation) report without failing until Anthony promotes one to a gate.\n- No gate on the vocabulary itself until a vocabulary version is published.\nIt sits beside reflow2's own checks — ver:every-edge-type-declares-a-well-formed-reading and the CI design gate — and does not replace them. The auditor re-runs the same kit version against the same commit and records any disagreement with what reflow2's CI reported.",
+    "status": "proposed"
+  }
+}

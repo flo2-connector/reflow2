@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:37a2349c38bbd79f4710119a1970f315c29ab17399b98eb93bdc974d9bec73cc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:verbs",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:verbs"
+}

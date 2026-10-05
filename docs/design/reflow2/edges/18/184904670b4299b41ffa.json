@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0211190ea8651b36100746f4458f2c9a3b8a9ab38f97525583d9282db7358117",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:0821236d8afe47d3f27b1d4553ae874b24ff8a2c062de175ad6c013254f4260c"
+  },
+  "to_id": "art:checksum-dialect-test"
+}

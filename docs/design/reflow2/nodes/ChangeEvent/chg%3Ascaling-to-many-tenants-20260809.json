@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2237be3e7346e7f4538fe08a7f08f61e665be2a677db7072ae45fca7f9c7ab33",
+  "node_id": "chg:scaling-to-many-tenants-20260809",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Scaling to 1k/100k/1M single-writer tenants captured as a distinct operating context from the state-funeral case, with the non-foreclosure rule recorded unstated for Anthony to rule on"
+  }
+}

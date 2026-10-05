@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:28a02aeb7246f5cac9a0dbb329a75bb720cde0ca9b4a609e6548bc689056c578",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:service",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

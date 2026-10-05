@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:49a54f83a4e116b2a84d7c86b38581ab9ce5d8c4c687a5e15e14f44f3ef1bb83",
+  "node_id": "art:understated-status-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The executable form of ver:understated-status-tests: 15 core tests of the understated_status rule, matched on the finding's key string so they compiled, and were watched failing, against the code before the rule existed.",
+    "location": "crates/reflow2-core/tests/understated_status.rs",
+    "name": "tests/understated_status.rs",
+    "status": "realized"
+  }
+}

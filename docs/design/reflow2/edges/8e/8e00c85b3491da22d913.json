@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6d22f315fbaa120a0aa653e09782876d3b580bc2a68bfc3386d4b5fce616932f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-refused-typed-write-stores-nothing",
+  "properties": {
+    "approved_at": "2026-10-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

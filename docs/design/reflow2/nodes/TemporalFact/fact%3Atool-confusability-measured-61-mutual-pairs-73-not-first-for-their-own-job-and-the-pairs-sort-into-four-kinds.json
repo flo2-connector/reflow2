@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bf7d4d4695f2e65ab286831709ad518756f2fb0204e98a3d2d67299080fa7368",
+  "node_id": "fact:tool-confusability-measured-61-mutual-pairs-73-not-first-for-their-own-job-and-the-pairs-sort-into-four-kinds",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "measurement",
+    "name": "Tool confusability measured on the 185-query corpus: 61 mutual pairs, 58 near one-way neighbours, 73 of 185 tools not ranked first for their own job; the pairs sort into singular/plural doors (7), constructor-plus-edge (6), two doors onto one computation (3), and confusions that want names not deletion (2)",
+    "source": "find_tools on target/debug 0.64.0 over crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json; .reflow2/graph.usage.jsonl",
+    "statement": "Every corpus query (one per served tool, in a user's words) put to find_tools on the 0.64.0 binary, top 5 kept, joined with this project's usage ledger (2,082 calls, 98 distinct tools; 87 served tools never called here — one project, weak evidence, BL-155's caveat). 61 pairs are MUTUAL (each in the other's top 5 for its own job); 58 one-way neighbours sit at rank 2 within 3 points; 73 of 185 tools are not ranked first for their own job, so the top-5 test passes them while another tool owns their words. Crowders: answer_question in 21 other tools' top 5, reviewed_defects 16, release_report 14, reviewed_gaps 13, require_resource 13. Prunable by the earns-its-place rule: 7 singular/plural pairs (the bulk form subsumes the singular), 6 constructor+commonest-edge pairs (the add_capability shape already absorbs satisfies and allocated_to; verifies is already a parameter of add_verification), 3 two-doors pairs (propagate_change/propagate_from; graph_report/graph_report_markdown; contain_component/move_component — the first is the recorded cause of multiple_parents). Not prunable but the confusion his question named: add_change_event vs record_change (26 vs 30 calls, mutual, the agent building reflow2 called the wrong one this day) and manual_work_report vs report_manual_work — names and first sentences, not deletion. All three prunable kinds taken: 186 → 170. A first-for-its-own-job gate would be a ratchet from here (73 fail today), not a bar cleared now. Instrument: ~60 lines over find_tools and the ledger, in the session scratchpad, not yet in tools/.",
+    "subject_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+    "valid_from": "2026-09-18"
+  }
+}

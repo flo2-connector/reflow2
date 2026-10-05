@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4275ed52935ac947f60ba1c4e72485e5996a9d817dad7e92a98ff19492cd7758",
+  "node_id": "ver:readiness-gating",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Readiness gates an increment and the roadmap says why (crates/reflow2-core/tests/readiness.rs) — 15 cases, plus 7 driven over real stdio in smoke_mcp.py §7b2. THE WORKED EXAMPLE IS THE ROW'S OWN: laser satellite refuelling, where the demonstrator and the fielded increment demand TRL 3 and TRL 7 of the SAME converter and get two different answers — which is the whole reason the threshold rides the edge rather than either endpoint. THE TWO REFUSALS ARE WHAT IS ACTUALLY PINNED: an increment with no stated threshold reports `ungated` and NEVER ready (mutating that verdict to achievable_now fails exactly the one test the item rests on), and a gate whose technology has no level and no clearing forecast makes the whole answer `indeterminate` — skipping it instead, and computing a date from the gates that happen to carry evidence, fails FIVE. That second one is the subtler half: an optimistic date built by ignoring the inconvenient record is exactly the undefendable slide-roadmap BL-68 exists to replace. ALSO PINNED: the slowest gate decides (an increment waits for its slowest dependency) while within one gate the earliest clearing forecast wins; a measured TemporalFact is not a projection; TRL and MRL are not interchangeable on EITHER the measured or the forecast path; the highest measured level wins rather than the latest, because readiness is ratcheted evidence and picking by date would make the answer depend on how completely history was backfilled; a rung outside 1-9 is refused at both ends rather than clamped; a Capability is gated by the same machinery as a Release; and GATED_ON is a traceability edge, so a slipped technology reaches the blast radius of every increment gated on it.",
+    "findings": "MUTATION-CHECKED NINE WAYS, each failing exactly the tests that name it. THE MUTATION CHECK FOUND A HOLE IN THIS SUITE RATHER THAN CONFIRMING IT: dropping the ladder filter from the FORECAST path passed everything, because every existing case exercised only the MEASURED path — so an MRL projection silently clearing a TRL gate would have shipped a date built on the wrong evidence entirely. The sibling case was added and the mutation now fails it. AND THE SURFACE BUG ONLY THE REAL BINARY SHOWED: the typed Rust tests were green while the served JSON carried `Ungated` and `{\"GatedUntil\": ...}` — Rust's default enum tagging in an otherwise snake_case surface — caught by driving it over stdio, which is AGENTS.md's \"every other layer is a client we wrote\" landing on new code the same day it was written.",
+    "kind": "verification",
+    "last_run_at": "2026-08-02",
+    "level": "integration",
+    "method": "test",
+    "name": "Readiness gates an increment, and the roadmap says why",
+    "status": "passing"
+  }
+}

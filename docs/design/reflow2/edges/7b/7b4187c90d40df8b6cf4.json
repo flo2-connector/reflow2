@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70ea9f53dadf6fe399941789f7b199737715226e4f2f6a9b3a942c1de22fb5a2",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-hub-starts-a-new-child-design",
+  "properties": {
+    "evidence": "@ajs chose option (c) on 2026-09-23; this requirement is that option stated as a need."
+  },
+  "to_id": "req:a-session-opens-another-design-without-restarting"
+}

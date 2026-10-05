@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:668b9ee0a6d049697caddbf69fc351a9e392f8b3df08070453713c36be110044",
+  "node_id": "fact:a-measurement-recorded-only-as-prose-is-one-nothing-can-close-and-it-produced-a-wrong-plan",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "A measurement written as PROSE inside a Decision can never be retired — one such claim was six weeks stale, was quoted five times in one session, and produced a planned increment whose second item was already built",
+    "statement": "MEASURED 2026-09-22, and it is the second instance of the same shape in a single session.\n\nTHE INSTANCE. `dec:idea-a-session-holds-several-graphs` carried, in its prose: \"**`mirror_surface` HAS NO REFRESH** — a second mirror of the same design collides with itself… leaves `mirrors` reporting the old pin, so the staleness register READS FRESH after a failed refresh. That is the concrete blocker under every option in this node.\" Written 2026-08-12.\n\n**IT WAS FIXED THE SAME DAY.** `8575304` / PR #160, 2026-08-12: \"A mirror can be refreshed, and a withdrawal you depend on is refused.\" Verified before this was written — `a_mirror_can_be_refreshed.rs`, 7 tests passing, one of them named `the_pin_advances_so_the_staleness_register_stops_lying`.\n\n⇒ THE COST, COUNTED: in one session on 2026-09-22 that claim was quoted as a LIVE BLOCKER **five times** — in two brainstorm nodes' option counters, in a PLANNED EPOCH where fixing it was item 2 of six and called \"the single thing every composition option rests on\", in that epoch's pull-request body, and in a recommendation to the owner that it was \"the one thing I'd build next\". The wrong plan was written, reviewed, committed and MERGED before anybody opened the source file. It was corrected only because the agent went to start the work.\n\n⭐ THE STRUCTURAL CAUSE, AND IT IS NOT CARELESSNESS: **`unclaimed_findings` reaches TemporalFacts anchored to a `subject_id`. It cannot see a sentence inside a Decision's body.** It was run clean in this same session — `subjects_examined: 6, candidates: 0` — and was structurally incapable of surfacing this. The measurement was never minted as a fact, so no mechanism in the design could ever retire it, however long it stayed false.\n\n⇒ **A MEASUREMENT RECORDED ONLY AS PROSE IS A MEASUREMENT NOTHING CAN CLOSE.** The loop's staleness machinery has exactly one handle — an anchored fact — and a number written into an argument has no handle at all.\n\n📌 SECOND INSTANCE, SAME SESSION, SAME NODE, SAME SHAPE: that node's trial section also stated \"**ZERO MIRRORED NODES EXIST IN EITHER GRAPH**\" (2026-08-12). flo2 established its mirror on 2026-08-26, two weeks later. That claim was corrected earlier the same day — and it had already caused an agent to measure the wrong side of the link and report its emptiness as evidence, which the owner had to correct in conversation. Two false prose claims, one node, both costing real work in one session.\n\n⚠️ WHAT THIS DOES NOT SAY. It is not an argument for putting every number in a TemporalFact — a Decision's argument NEEDS its figures inline or it cannot be read. The honest form is probably BOTH: the figure in the prose where the argument needs it, and an anchored fact where the loop can retire it, with the prose citing the fact's id. Nothing enforces or even suggests that today.\n\n📌 AND ONE CANDIDATE REPAIR, UNVERIFIED: a detector could read Decision bodies for sentences that look like measurements (a number plus a dated claim) and report which ones name no fact. That is text-shaped and fuzzy, which this design is usually right to refuse — recorded as a candidate, not a recommendation.",
+    "steps": [
+      "unclaimed_findings",
+      "capture-session",
+      "record_finding"
+    ],
+    "subject_id": "cap:the-record-moved-is-surfaced",
+    "valid_from": "2026-09-22"
+  }
+}

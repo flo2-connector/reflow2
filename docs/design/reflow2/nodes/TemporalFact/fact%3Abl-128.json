@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:505d030fd5c1b823f6b376e85188cff24e887a5ed2e4f1742fbb36355e55c398",
+  "node_id": "fact:bl-128",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-128] brainstorm ships as a skill and the vocabulary cannot hold its output — there is no node type for an idea",
+    "subject_id": "cmp:vocabulary",
+    "value": "{\"evidence\": \"*Found 2026-07-31; the skill was followed exactly and had nowhere to put the result.* The skill's contract is *\\\"record the ideas as ideas\\u2026 do not turn any of them into requirements or capabilities\\\"*. Of 28 node types, none is an idea, hypothesis or candidate. The two near-fits both fail for stated reasons: Question is reserved by its own schema for the DETECT\\u2192PROMPT loop (*\\\"not extracted from prose \\u2014 authored by the loop\\\"*), and register_alternative requires each alternative to be an Artifact with a location pointing at where that alternative's design export lives on disk (service.rs:1812-1820, non-optional) \\u2014 for six paragraphs of thinking with no export, that writes six pointers to files that do not exist. Six unexplored directions were recorded as Decision nodes at proposed, which the schema does describe as an undecided fork, and it works \\u2014 but a reader six months out sees seven Decision nodes and reasonably assumes seven things were decided. Brainstorming is where most design work starts. Fix, either: a lightweight Idea/Candidate type, OR make location optional on register_alternative \\u2014 an alternative that is still just a thought is the normal case at the moment you most want to record it. The second is much cheaper and probably sufficient. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-128 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

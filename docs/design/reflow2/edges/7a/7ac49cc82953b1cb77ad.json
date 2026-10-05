@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bd1b06d1cd17b82a93b35373292aa945e7370bfaba598a3477a30046ed96506",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:plan-increments",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

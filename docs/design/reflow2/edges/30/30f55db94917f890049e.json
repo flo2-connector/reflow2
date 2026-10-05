@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2d8572a27308ad2d898ea6361b613d8cea615fa1724775e1e4ba07b9b7e0aed",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-projection-is-named-and-the-battery-runs-over-it",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

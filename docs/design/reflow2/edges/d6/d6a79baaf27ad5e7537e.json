@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3952d2046792a7d5249bb1a49bebbf9a2f3a3a821cc5937662fff828838aa88d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

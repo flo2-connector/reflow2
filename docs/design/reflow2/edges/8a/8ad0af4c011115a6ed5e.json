@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cc4eeeab3b8a7d4ae462d14537af407f3de7cac4d9ffbb31ced07f033e0aee23",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change",
+  "properties": {
+    "evidence": "One is a hazard to the other. That requirement's overwrite refusal compares an export file's current hash against what this seat believes it last wrote there — a guard designed for an occasional deliberate act. Under continuous export with two sessions on one design, every write by one seat invalidates the other's belief, so a check meant to fire rarely runs on a hot path and would either refuse constantly or be turned off."
+  },
+  "to_id": "req:stale-seat-knows"
+}

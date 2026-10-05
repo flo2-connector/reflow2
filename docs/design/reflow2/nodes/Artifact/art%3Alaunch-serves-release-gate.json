@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:81f5c29b7b6be43c0e367baf67b294533b0eab29bb60f80c0798b83d57d73934",
+  "node_id": "art:launch-serves-release-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "CI gate on the two properties of the launcher that are one careless edit from reverting: the profile it defaults to, and that the release path runs no cargo. Also checks that staleness is compared and that the refusal names the way out. Says in its own docstring what it CANNOT see — it reads the script, never a running session, so it would pass on a box whose release binary is a month old.",
+    "location": "tools/launch_serves_release.py",
+    "name": "launch_serves_release.py",
+    "status": "realized"
+  }
+}

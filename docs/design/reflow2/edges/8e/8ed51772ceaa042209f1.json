@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:346ff78d99071131239b00b6118fd3e45d1ae1ecf2d9811c80fa1cf020bda3e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl97-103-idea-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

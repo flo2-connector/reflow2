@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ab4a3cab8ffce1b97a431925b0905b9f6c06c5fe3d2f79a3dff5eddac22b0d31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9b9f0e13f76c8280676ec63aa2cd2637f83c64610545b11b01a8081422ec596f"
+  },
+  "to_id": "art:orphan-attachment-test"
+}

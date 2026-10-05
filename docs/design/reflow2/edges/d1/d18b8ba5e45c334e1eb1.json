@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45ca380ac39c9f3dd4fe13694ef789838ec56edfa27a7a38e63a138ca0d718e6",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-registry-names-every-store-it-cannot-serve",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

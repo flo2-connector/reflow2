@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2110d6cd4b0bdab6c8e572226379ecd705ef5d40d6187fe6800fbe54b4a2e0fb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-finding-closed-under-test-seven",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:the-orientation-reads-cost-ten-seconds-and-the-store-is-not-why"
+}

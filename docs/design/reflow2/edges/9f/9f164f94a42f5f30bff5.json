@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7443251eab297ad8ab5304e0c3761a8af94df849ddb500fa6371c8ee09a0e39a",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:byte-store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:kv-backend"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d3e83fd54d8c257885fee7cb1e4235734f6df8c8ae2db7999f14da05ed3ec0b4",
+  "edge_type": "REALIZES",
+  "from_id": "art:export",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:publishable-promise"
+}

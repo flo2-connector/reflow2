@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:744dadff32c9a35d6cbb4c334c3208f5ba286d11ef572374c4b3b7e3a3bb513d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-handoff-file-contradicts-an-accepted-decision-and-nobody-reconciled-them",
+  "properties": {
+    "evidence": "Only the EXOGENOUS half of a handoff is homeless — 'Jakub said finish the tests', 'CI was pending when I stopped' — because loop_status already computes the rest. That exogenous half is precisely the ground the task-capture question opened on 2026-08-25, so option (c) here cannot be built until that one has an answer.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-there-a-lightweight-task-capture-below-the-increment-grain"
+}

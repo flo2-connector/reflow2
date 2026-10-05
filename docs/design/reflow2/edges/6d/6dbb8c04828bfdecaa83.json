@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:feff3437f24a09777fad77614923f74184316e81975a9c2bddb867f5a140c82c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:smoke-mcp",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:smoke-mcp"
+}

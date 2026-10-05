@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64fff8c8a14df62ef48eef6142ceb4dc4cf09ec0e4444e479933ff81327f11a5",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:coherence-loop",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

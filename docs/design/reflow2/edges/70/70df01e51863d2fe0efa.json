@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:459eb14b92c12e443897cc04545f62584899110dd5ed7548c13d0b490add0a2d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:grok-gets-the-config-file-grok-actually-reads",
+  "properties": {
+    "at": "2026-09-21",
+    "note": "The half about REFLOW2 is fixed and shipped in v0.66.0: grok is its own harness writing .grok/config.toml, verified end to end by grok mcp list printing the server. NO valid_to — the other half is a measurement of GROK BUILD 1.0.30, that it reads ~/.grok/config.toml and not .mcp.json, and that is a fact about their product which this change cannot make false."
+  },
+  "to_id": "fact:grok-build-does-not-read-mcp-json-so-the-installer-writes-a-config-that-client-never-opens"
+}

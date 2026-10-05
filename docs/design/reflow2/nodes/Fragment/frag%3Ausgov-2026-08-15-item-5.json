@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ddde9c1218a8243939213cfdc3b9ccd0e8997d8e9521c7e60dba3c88b06b0f7f",
+  "node_id": "frag:usgov-2026-08-15-item-5",
+  "node_type": "Fragment",
+  "properties": {
+    "content_ref": "docs/feedback/2026-08-15-usgov-genesis-session.md",
+    "fragment_type": "feedback",
+    "note_kind": "reviewer",
+    "provenance": "imported",
+    "status": "ingested",
+    "title": "Item 5 of the usgov genesis report: 'Small things that went right, recorded so they don't get regressed' — batch failure reporting, describe_schema ranking modelled pairs above wildcards, Requirement.source vs provenance, CONTRADICTS with alignment (called the single most valuable thing reflow2 gave the model), and the gap_to_prompt two-step handshake."
+  }
+}

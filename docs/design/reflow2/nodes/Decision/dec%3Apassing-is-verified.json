@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:94b3b1d3ae7f12fbda26f8c45fe7f1fe42d134e097624432763b50b4f334b016",
+  "node_id": "dec:passing-is-verified",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "verification_coverage counts passing checks; a failing check is its own 0.8 gap.",
+    "name": "Verified means a check that passes, not one that exists",
+    "rationale": "A failing test used to satisfy the gap that asked for a test, and passing vs failing were byte-identical to every diagnostic — counting test nodes while ignoring test results. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); evidence: phase-coverage trial, BL-30.",
+    "status": "accepted"
+  }
+}

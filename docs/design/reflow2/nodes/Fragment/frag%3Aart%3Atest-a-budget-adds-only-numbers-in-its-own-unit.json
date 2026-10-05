@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:44727232e7aeec72060f9c949155743c3f36435b0df0849eea49d322ad7ed565",
+  "node_id": "frag:art:test-a-budget-adds-only-numbers-in-its-own-unit",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_budget_adds_only_numbers_in_its_own_unit.rs — the rollup adds only matching units, reports a mismatch beside the total and leaves the verdict open, names a silent unit but still totals it"
+  }
+}

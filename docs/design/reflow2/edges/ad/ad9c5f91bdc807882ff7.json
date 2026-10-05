@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad8511da3fa5ecb8ec681bf790a487067659ec10cca567cdc31dbfe15d53d1b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:seam",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:seam-incompatibility"
+}

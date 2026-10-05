@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:37a40ff0ca7d327ee59068fc27411b3a674e5db19a44ceec772ab1d3bff7ee67",
+  "node_id": "art:item-layout",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/item_layout.rs",
+    "name": "item_layout.rs",
+    "status": "realized"
+  }
+}

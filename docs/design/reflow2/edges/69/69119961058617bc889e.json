@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57d80bcb7732a521b44920d8d5192fc44c09bd0be043c107d5a8efbdc59bcbff",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

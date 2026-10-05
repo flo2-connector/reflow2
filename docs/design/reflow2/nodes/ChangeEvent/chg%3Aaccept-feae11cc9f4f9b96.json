@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcd1b47f33984c22084bd0d2b42f9a6a005279953c1f292d2d9f93f0bbd4a253",
+  "node_id": "chg:accept-feae11cc9f4f9b96",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Accepted 2026-09-09 for the repair-disposition and relation-coverage increment: ChangeEvent gains `repair` + `stands_in_for`, record_change carries them and refuses an unpaired one, two new report tools are served, and root-cause's step 8 routes to repair_report.",
+    "subject": "system"
+  }
+}

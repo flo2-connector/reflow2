@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8a0451cb4fcd8008d85252375fdce27c32baf0b68eec128bb511b42474527a79",
+  "node_id": "fact:manual-work-d5cb58f477a2b865",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a ~150-line script over a design's exported JSON to compute reflow2's own derived relations (the 23 listed in an outside study) and get a derived-to-asserted fact ratio, because no served read evaluates the derived relations.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

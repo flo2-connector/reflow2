@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5643314b7aa9535d2bc36ac7e19d084dba1164b6e743f739860586ba7d883225",
+  "node_id": "art:test-edge-prose-is-governed-like-node-prose",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/edge_prose_is_governed_like_node_prose.rs",
+    "name": "edge_prose_is_governed_like_node_prose.rs",
+    "status": "realized"
+  }
+}

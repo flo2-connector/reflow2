@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1360d02dd0ebfe455ca9e0db49ad137ed7bf262718866de7b320bd51a4a632b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gate-list-is-run-not-only-cross-checked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:sweep-harness"
+}

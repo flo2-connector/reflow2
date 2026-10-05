@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:68bbb397803cf20d9e68b65195e160426e5c43bdbed8d3611d9e29a45e68d533",
+  "node_id": "ver:a-degraded-server-recovers-when-its-cause-clears",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_degraded_server_recovers_when_its_cause_clears.rs, six real-binary tests, run by `cargo test --workspace` in CI:\n- HTTP: server B started on a store server A holds answers /readyz 503 with a path-free reason and /healthz 200, and serves the one tool. After A stops, the SAME process and port serve the design and /readyz goes 200.\n- HTTP, served for others (--http-allow-host team.example.org): after the wait, the handshake says SERVED FOR OTHERS, a settle is refused naming --http-trusted-gateway, and the operator banner says how signatures are held — the caller rule of #616 fix 4 holds on the recovery door as on the startup door.\n- stdio: the degraded handshake declares tools.listChanged; when the holder stops the client is told notifications/tools/list_changed and sees the full list.\n- --shared: a session whose election timed out re-elects and serves the design in place.\n- /readyz and /healthz answer any Host; the design stays behind the Host gate; a registry is ready when up.\n- a broken stamp is not polled and readiness stays 503.",
+    "findings": "OBSERVED FAILING FIRST on unfixed main (329a074), 2026-09-28: 5 of 5 failed. /readyz answered rmcp's \"400 Bad Request: Session ID is required\" (three tests); the degraded stdio handshake declared no tools.listChanged; the --shared session was never told its tool list changed within 120 s of the holder stopping.\nOBSERVED FAILING FIRST on the merge of main into #620 without the fix, 2026-09-30: the sixth test failed — the recovered design came up LOCAL, with no SERVED FOR OTHERS in its handshake. Passing with chg:a-design-served-after-a-held-lock-frees-is-prepared-the-way-a-healthy-start-prepares-it (6 of 6).",
+    "kind": "verification",
+    "last_run_at": "2026-09-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_degraded_server_recovers_when_its_cause_clears.rs",
+    "method": "test",
+    "name": "A server behind a held store serves it in place when it frees, and /readyz says whether the design is served",
+    "status": "passing"
+  }
+}

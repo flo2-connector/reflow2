@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:30d29d3014a7b77196f385a7bce4e11a3960672d200e1636090ade47519ed8c0",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-client-mode-honours-read-only",
+  "properties": {},
+  "to_id": "cap:shared-sessions"
+}

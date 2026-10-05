@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d99f7449b945983239141b6dde0a8404de7a8bce938c7af1e556ae6766c333d0",
+  "node_id": "chg:what-next-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "what_next served: marked / ranked / one unexplored. Builds the ranking half of req:what-next (accepted 2026-07-31) whose capability had sat `planned` with an EXPIRED blocker nobody noticed. Three bands because the user's own approver-marking is durable self-prioritisation that no score may reorder, and ranking somebody's own marks back at them says nothing; the fifth slot is a required exploration term, derived independently from the Q-table framing and from Anthony's own \"top 4 and bottom 1\". Score is deliberately coarse against his stated criterion that a rough top-N beats a flat list of 86. Rotation for the unexplored pick comes from the count of settled decisions — no clock, no RNG, and it advances exactly when a decision is made."
+  }
+}

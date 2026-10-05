@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7388ff50dca80ee96610bea611a2be129c67deddce95b5c83ae59da6ebbc29e4",
+  "node_id": "decision:ack:6bce37248bacaa09",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:6bce37248bacaa09.",
+    "name": "Reviewed: gap:6bce37248bacaa09",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Captured the same day and accepted: the graph owns the MAP from epoch/increment to the git ref that holds it, rather than duplicating what git already stores. Scheduled for a later increment. The backward-direction precedent already exists in-repo (rel:v0180 in the graph, tag v0.18.0 in git), so this extends a working division of labour rather than opening a new one.",
+    "status": "superseded"
+  }
+}

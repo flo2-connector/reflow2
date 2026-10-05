@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d790162d338388565c3ccc7aa817fac3104bbb3691a198d85e179c9d2a0191b",
+  "node_id": "chg:baseline-369dbb688010362b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:check-consumer-reach' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: edited for the item layout, per-item lineage, checksums on the change, and CHANGELOG fragments (fix program item 13)",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2e9f827d3f2744d59424b4677b33fc3b03949bf7f63a5bfb19f17fb6732eae3c",
+  "node_id": "fact:the-call-doors-tool-list-is-built-on-an-empty-design-so-it-holds-no-lessons-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "CORRECTION to this decision's \"CHEAP\" line: `--call` does build the served list (main.rs:750), but on ReflowService::in_memory(), an empty design. So it holds every schema and NO lessons. A `--describe` that printed that list would pass a shape test while dropping exactly the half that is L6",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "FROM THE 2026-10-02 TRIAGE (agent B), idea I5 of art:vscode-call-door-field-report-2026-10-02. The report's idea 5 IS this decision, settled 2026-10-01 as step 4 of the door plan, so no new idea was minted. This finding adds three measured points for whoever builds req:the-cli-describes-any-tool-with-its-full-schema-and-lessons.\n\n1. THE PROBE IS EMPTY. The rationale says \"CHEAP: --call already builds the served list with lessons (tools_with_lessons, main.rs ~750)\". In code (origin/main 66620f7), main.rs:750 calls tools_with_lessons on `ReflowService::in_memory()`, and that (service.rs:6348) opens `DesignGraph::open_in_memory()`. lessons_by_step over an empty graph returns nothing.\n   - So the probe's list has the schemas and no lesson.\n   - The listing must be built from the OPENED store, as list_tools builds it, to carry the 218 lessons measured on reflow2's own design (fact:root-cause-tool-lessons-reach-only-tools-list-and-no-door-reply-carries-one-2026-10-02).\n   - A held store can be read from the snapshot the door already uses for read-only tools.\n2. NESTED SHAPES LIVE IN $defs. 16 of 195 tools carry them (35 required nested fields), for example RelationLinkReq, ChecksumAcceptReq and AffectedNodeReq. The describe must print `$defs` with the schema, not only `properties`. A cheat-sheet generator that flattens properties loses exactly the shapes the report says are learned by refusal.\n3. A TEST THAT WOULD HAVE CAUGHT POINT 1: describe a tool that a scratch design hangs a lesson on, and assert that the lesson's id appears. A shape-only assertion passes against the empty probe.\n\nRecorded as an observation on the decision, not a change to it. The status is untouched.",
+    "subject_id": "dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons",
+    "valid_from": "2026-10-02"
+  }
+}

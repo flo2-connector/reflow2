@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b1c295f01fff2aac91d15ffb80284d166d9b5b8eac3b447661f6af3846ef965c",
+  "node_id": "art:include-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "IncludeEdges (Off / All / Filter) with a deserialiser that hands an object to the filter's derived deserialiser, so a bad key or direction is refused by name; the schema is type [boolean, object, null] with properties and additionalProperties false, keeping it inside the keyword subset every served schema is checked against.",
+    "location": "crates/reflow2-mcp/src/include_edges.rs",
+    "name": "crates/reflow2-mcp/src/include_edges.rs — get_node's include_edges parameter: true or a filter, its hand-written deserialiser and its published schema",
+    "status": "realized"
+  }
+}

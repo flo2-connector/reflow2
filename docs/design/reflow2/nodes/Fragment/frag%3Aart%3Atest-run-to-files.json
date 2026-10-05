@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:09096999faadff40c04041881def706bceba9440a53d6cecb083b0e61860322e",
+  "node_id": "frag:art:test-run-to-files",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered run_to_files.py"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6f4dfef170a77249b92083ad6ce63d56aa7876e15fa8625eba232cd6025b8fda",
+  "node_id": "dec:idea-should-a-revising-write-say-what-it-removed",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from flo2's F4 SHARPENED, not as a proposal.\n\nTHE OPTIONS, the reporter's own, cheapest first.\n(a) A DELTA IN THE REPLY. The prior value is already returned; comparing lengths is trivial. 'replaced `statement`: 4,102 → 3,741 chars (−361)' would have caught both measured losses instantly. Cheapest, adds no parameter, changes no contract, and is a report rather than a judgement.\n(b) REFUSE A SHRINK WITHOUT A FLAG — `allow_shrink: true`, the way export_graph asks for `overwrite`. Strongest, and the one that can be wrong: a deliberate deletion is a legitimate edit and would now cost a retry every time. A threshold (more than N characters, or more than X%) softens it and introduces a number nobody can justify.\n(c) DO NEITHER, on the grounds that `replace_text` (v0.65.0) removes the pressure that caused the rewrites. COUNTER, and it is the reporter's: the pressure is reduced, not the operation; a rewrite somebody performs anyway is still unguarded, and the API cannot know which edits were deliberate.\n\n⚠️ WHAT MAKES THIS ONE DIFFERENT FROM THE REST OF THAT FILE, in their words: 'Every other entry costs a retry or a confusing message. This one degrades the record permanently unless a human re-reads a four-thousand-character field character by character, which nobody does twice.'\n\n⭐ AND A MITIGATION ALREADY IN USE, worth knowing while this is open: the exposure is per-FIELD, not per-node. A typed constructor merges, so passing only the field being changed leaves every other field untouched. The reporter halved their own blast radius this way, and `revise-design` documents the merge behaviour — it simply was not being used.",
+    "kind": "exploratory",
+    "name": "OPEN — should a revising write report what it REMOVED (a length delta, or a refusal to shrink without a flag), given that two of thirteen rewrites in one session silently dropped a load-bearing paragraph?",
+    "status": "accepted"
+  }
+}

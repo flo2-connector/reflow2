@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dd33a3c6622befcdb9591e48705b1b5b653c233812fb245c46df7fe159446db4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:what-next",
+  "properties": {
+    "evidence": "The prerequisite cap:what-next names in its own text: without derived completion it is blind to what is merely unfinished. Now verified, so the dependency is satisfied rather than blocking — and drawing it makes the condition computable instead of a sentence nothing reads.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cap:derived-completion"
+}

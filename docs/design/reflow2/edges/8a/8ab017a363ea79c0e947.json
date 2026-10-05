@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b2dbdce3611463018063676981bbf58e949b87d602f225c6b8b7ead985d2f8cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8f5ffbc7c6e84b5e"
+  },
+  "to_id": "art:built-right-review"
+}

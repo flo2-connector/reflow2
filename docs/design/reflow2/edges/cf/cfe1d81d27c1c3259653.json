@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0bc5581df6988cdbace34cf2807883c7d87e16159c30d86c5639571c2d226b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:claim-liveness"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b9b0cd198bab633360f3f29fc6086cfa173ee6d15c32a3029fd8513430f217a",
+  "node_id": "decision:ack:f78628387e7c41cc",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:f78628387e7c41cc.",
+    "name": "Reviewed: gap:f78628387e7c41cc",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24). The check this needs, named now because the obvious one would pass while missing the point: a fixture where a REGISTERED artifact grows a new capability must report understatement, and must be distinguishable from the same artifact having a typo fixed — today both are checksum_change, and a test that only asserts \"drift was detected\" would pass on both and prove nothing about direction. A second case should assert the report names WHAT the design now claims wrongly, not merely that bytes moved, since the whole failure mode is that a human is told the design is stale without being told what to fix and therefore does not fix it. This capability's real validation is a field one and belongs to the trials programme: run it against storyflow, where the understatement was observed, and see whether it names the same delta a person would.",
+    "status": "accepted"
+  }
+}

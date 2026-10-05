@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9f0cf2708052048a5b6e0633d2b0bcb74434c5a3a9ef5d3f5dd50cf10fd00e1",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-ownership-is-the-third-who-axis",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "That decision is ACCEPTED and set the condition: decide on OWNED_BY only after the claims-based cut is built and shown insufficient. Its rationale named the disqualifying evidence in advance — claims being transient work-in-hand while ownership is durable. dev_storyflow filed exactly that distinction one day later, and Anthony supplied the two-person use case himself. This node records the evidence arriving; whether it closes the condition is his call."
+  },
+  "to_id": "dec:ownership-reads-claims-before-adding-an-edge"
+}

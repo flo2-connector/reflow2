@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:38702b8c80a5fd3f147732f0d60c753155575104703219a3abcb7c82bf5858c2",
+  "node_id": "rel:v0580",
+  "node_type": "Release",
+  "properties": {
+    "description": "Prose that outlives the Decision governing it now says so, in the reply that settled it — and the cause-recording discipline gets its boundary fixed.\n\nThe user-facing half is one new block, `settled_question_prose`, carried on `set_decision_status` when a Decision reaches accepted and on `governed_by` when something is linked to an already-accepted one. It names each governed node whose prose still asserts the question is open, names the phrase that matched, and quotes the text around the match. The sibling of `prose_currency`: that one catches a status outrunning its own description inside one node, this one catches prose outrunning a Decision that governs it, across an edge.\n\nThe design half is the boundary for `req:a-fix-says-whether-it-corrected-the-cause`: the cause-edge limb binds from its own detector's landing, and the 228 pre-detector fixes are parked rather than acknowledged, so the detector stays live for everything after them.\n\nSchema stamp unchanged at 28 node types and 65 edge types, so no migration is owed.",
+    "name": "v0.58.0",
+    "status": "retired",
+    "unit_type": "package",
+    "version": "0.58.0"
+  }
+}

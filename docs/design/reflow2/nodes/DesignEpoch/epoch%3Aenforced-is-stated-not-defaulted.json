@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:492658fb90b01cbc479c7a0575b971abc099b270855de51b76336e4c5ebdd643",
+  "node_id": "epoch:enforced-is-stated-not-defaulted",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Anthony removes the `enforced` default: a rule's power becomes three-state, and absence is reported rather than read as either answer (2026-08-08)",
+    "sequence": 290,
+    "status": "arrived"
+  }
+}

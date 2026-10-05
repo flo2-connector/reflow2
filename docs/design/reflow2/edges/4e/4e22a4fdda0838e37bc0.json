@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8044142547d70153193ae130df7019d7692f6770be5b40b126ec7e67e4d75a90",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-tool-finds-its-own-blind-spots",
+  "properties": {
+    "authored_at": "2026-08-07",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

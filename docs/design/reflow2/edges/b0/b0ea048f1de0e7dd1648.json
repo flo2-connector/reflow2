@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c548b7575e01f66b91fad254f78a1efc5809e54571809cb6cdb8176c7af19e4d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-handoff-file-contradicts-an-accepted-decision-and-nobody-reconciled-them",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

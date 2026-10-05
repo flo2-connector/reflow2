@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:195f8ec9a121b18c8628d898bf983cd5fcce6c394261003499d15bd543448f2a",
+  "node_id": "chg:classification-and-dependency-are-orthogonal",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "Correction to dec:idea-need-to-know-compartments: \"upward may be fine, downward is spillage\" conflated the DEPENDENCY direction with the CLASSIFICATION direction. They are independent axes, and in reflow2's own real case they run OPPOSITE — the least sensitive design (dynograph-foundation) is the most upstream."
+  }
+}

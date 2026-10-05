@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a3721990f4c6684e00888c98e26297bf13c50f3ce1ac35fd955e1f77ac99d1f0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-item-1",
+  "properties": {
+    "action": "updated"
+  },
+  "to_id": "fact:defect-change-event-has-no-type-for-a-field-reported-defect"
+}

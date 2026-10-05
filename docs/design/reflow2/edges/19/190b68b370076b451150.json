@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:90fbd9d39d8b803c1467b11f4e96ca6f82738f31f545dd1461c1db701f02e353",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-windows-build-waits-for-a-windows-user",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

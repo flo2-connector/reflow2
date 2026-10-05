@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b29a8af33b1bff338b244e721c8f5d284ee2cae154fabbdb66c9b659a19b04ba",
+  "node_id": "cap:interface-spec",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Interface gains the properties two systems actually have to agree on, structured so a computation can compare them: paradigm (synchronous / asynchronous / streaming / batch), payload_format, payload_schema, endpoint, operations, auth, transport_security and error_model, set through set_interface_spec. Before this, Interface carried the technology (medium) and its published/internal designation, and everything else went into one free-text `spec` string — so two designs could be linked and reflow2 still could not say they disagreed, because prose cannot be compared. EVERY FIELD IS OPTIONAL AND OMITTING ONE LEAVES IT ALONE, so a spec can be filled in over time and by different people without one person's entry erasing another's — pinned by a test. UNSET READS AS `unspecified`, NEVER A FLATTERING DEFAULT: silence about authentication must not read as `none`, which would tell a consumer the contract is open when nobody has said anything at all. An invented enum value is refused rather than stored, because the vocabulary is what two designs get compared in and a typo'd auth scheme would make a sound seam look mismatched. DELIBERATELY NOT ADDED: rate limits, timeouts and maximum concurrency. Those are numeric limits with a unit and a direction, which is exactly what Constraint already carries (quantity/limit/direction) and budget_report already rolls up, and CONSTRAINS is already `*`→`*` so a Constraint can bind an Interface today — a second place to say the same number would drift from the first. That decision is pinned by its own test rather than left as a comment. Additive properties only, so the version stamp (which counts node and edge TYPES) does not move and older graphs stay readable.",
+    "name": "A published contract says what a consumer must agree with",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

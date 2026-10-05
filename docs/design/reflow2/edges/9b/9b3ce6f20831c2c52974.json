@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:72f5435e22ed54d31190192779db1f791ccf99b06bd6ff22c1dd3525318f04ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-which-docs-can-never-be-a-projection",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

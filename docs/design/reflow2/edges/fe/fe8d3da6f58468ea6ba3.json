@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ab03ba6e52fad6f796cfe700be3ed584367674e7ca6ab96bfb76eca43e33bdd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-dated-observation-does-not-read-as-standing-doctrine"
+}

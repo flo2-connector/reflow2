@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5abdbf304117ba85e592d59e80ec7cd1a86950bd4f9b37ca870ff1dca2d78129",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "properties": {
+    "note": "The rule this had to survive: certainty is derived from status, so a status the agent promotes on its own forges the owner's signature. The one-call form keeps it by making the approver mandatory when the status settles, and by writing the same AUTHORED_BY role=approver edge the intent gate reads."
+  },
+  "to_id": "dec:certainty-derived"
+}

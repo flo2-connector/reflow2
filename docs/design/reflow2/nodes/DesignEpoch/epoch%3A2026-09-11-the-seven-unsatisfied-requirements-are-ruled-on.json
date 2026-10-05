@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:298c7b12d102706d4b51d9f354013ba97d6e5d045fd9531739dc55230cc41ba2",
+  "node_id": "epoch:2026-09-11-the-seven-unsatisfied-requirements-are-ruled-on",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "2026-09-11. The seven requirements carrying nothing that satisfies them were put to Anthony one at a time, each with a recommendation, its hinge and the consequence of every option. He answered \"go with your suggested order\": release binary first, then the server-guaranteed export, then the vocabulary guard, then the set-aside decision status; findability and description accuracy run together as one pass; and the sweep-findings requirement retired as a requirement.\n\nWHAT THIS EPOCH RECORDS: six requirements gained a capability that delivers them and an increment they are due in, and one was withdrawn. Two corrections were found while writing the answers and are on the record rather than quietly absorbed — the findability requirement was already delivered and merged (#476), and eleven of the thirteen description failures had already been closed by #477 and #478, so both questions were put to him describing more open work than actually existed.",
+    "epoch_type": "milestone",
+    "name": "The seven unsatisfied requirements are ruled on and ordered",
+    "sequence": 429,
+    "status": "arrived"
+  }
+}

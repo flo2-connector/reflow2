@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9da2bf2a22163856da4163d3f7186432b2ddd3eace1327cd1893fe9488c96a9e",
+  "node_id": "rel:v0471",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.47.1 — loop_status stops claiming unexported work that is already in the record",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.47.1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:84cb977fa3a69dea0cbb679b05da9d82825e224002acf6bf44c18cb740796192",
+  "node_id": "chg:accept-cb0f5504050ea74f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-14",
+    "name": "rustfmt only, on the two impossible-hook tests moved to VS Code; CI's Format gate caught it. Behaviour unchanged, 22 nudge tests pass.",
+    "subject": "system"
+  }
+}

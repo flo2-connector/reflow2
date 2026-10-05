@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a55921c1c6edb294b15269603a9e6e2f6b8a0cbc6e7f24888893445c6783060",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-design-lives-in-its-server-not-in-the-code-repo",
+  "properties": {
+    "evidence": "The 2026-09-25 proposed requirement already said a design's home is its reflow2 server, not the code repository; this idea is its fuller form, adding what a photocopy is and how one comes back."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

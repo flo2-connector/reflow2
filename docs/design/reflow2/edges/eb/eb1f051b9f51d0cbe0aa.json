@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c2c91439404132d6325b743fb79f919f1b673fbc08f77dfa08cc4d0d493ba212",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-a4adfda7dd327dd7",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

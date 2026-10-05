@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:73e013827017743cf5d01ef492d85bd696cf649429ead613a62288b9a0675eb6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-design-closes-against-a-declared-threshold",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-design-closes-against-a-declared-threshold"
+}

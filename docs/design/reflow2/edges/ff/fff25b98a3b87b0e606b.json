@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc43dd77f325521b9270aa4dfd8532a67066a54195a7c3a3fdcb9dd478e34ec3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-overridden-tool-list-is-built-in-one-place-2026-09-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26"
+}

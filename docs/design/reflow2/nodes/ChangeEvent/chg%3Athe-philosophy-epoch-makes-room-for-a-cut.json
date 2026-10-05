@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e03872b0514e2559d8cdfeb16ffede44df6fa5def005d469ccb542d5f62a66b1",
+  "node_id": "chg:the-philosophy-epoch-makes-room-for-a-cut",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The planned philosophy epoch moves 360 -> 365 so the v0.35.0 cut can take the sequence it actually happened at"
+  }
+}

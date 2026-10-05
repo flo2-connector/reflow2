@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:62f40d70523c83bc60e50ac102bdaee1b4277f03f0163f1a8867e50485a34c75",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-claim-liveness-is-the-servers-pid-not-the-sessions",
+  "properties": {},
+  "to_id": "cap:claim-liveness"
+}

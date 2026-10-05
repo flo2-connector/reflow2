@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a9c5abe4b79ec1ea776c9d566aa95bccd68dd17234ee04674e86bf6057565d98",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cmp:service",
+  "properties": {},
+  "to_id": "snap:epoch:the-reply-budget-sweep:cmp:service"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd122c7781bf408b899b3fd157a512b4d95c3e16b0bb506b78f45f7326210bdc",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:root-cause-the-853-is-an-older-binary-writing-the-old-role-default-onto-a-newer-document-not-the-export-leaving-a-default-implicit",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That record's first reading — the 853 are the roles migration — rested on a count match; the measured migration is 842 edges gaining `roles`, while the 853 is the old release binary adding `role: author` to a newer document. The number and the field both refute the first reading; the class it named still holds."
+  },
+  "to_id": "fact:field-confirmation-flo2-853-authored-by-edges-gained-roles-on-import-the-roles-migration-seen-from-the-consumer-side"
+}

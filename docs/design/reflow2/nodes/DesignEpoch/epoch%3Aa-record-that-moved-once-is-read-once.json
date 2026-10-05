@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5883d53a4c2c512b2438ebc938beb3fae2a2c5d880ecce2b841c149d4fa9966a",
+  "node_id": "epoch:a-record-that-moved-once-is-read-once",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The second repair of the 2026-09-12 optimisation campaign, chosen by the frequency x cost ranking: the post-write tax — a fixed ~1.1 s paid by the first store-touching read after ANY write, 27% of all measured tool time over 47 sessions, and the entire cost of get_node and search_design.\n\nROOT-CAUSED BY MEASUREMENT (fact:the-first-store-read-after-any-write-pays-a-fixed-1-1s-tax-whichever-tool-it-is): the read path's record_moved check calls sync_debt, whose stat gate (dec:an-unchanged-sync-target-is-not-re-parsed) skipped the parse only when the file was unchanged AND observed.hash == last_synced. A record that has moved once — a colleague's export pulled in — and then sits still fails the second clause on every check, because observed is refreshed by the check path and last_synced only by export/import. Every write generation then re-read and re-parsed the whole file (~620 ms of the 1.1 s) and rebuilt the live export (~490 ms). Nothing in the design was wrong; the implementation of a correct decision conflated two facts.\n\nTHIS EPOCH: the gate asks the two questions separately. Unchanged-and-in-step answers from the recorded count as before; unchanged-but-moved answers from the document already parsed in this process (a per-path cache keyed by content hash, one document per target that has ever moved). A real read still records its observation; a cache hit no longer rewrites the sidecar per read. Pinned by a test that corrupts the file's bytes under the same length and mtime between two checks — observed to fail `unreadable != behind` against the old code.\n\nMEASURED: 16 MB moved target, first read after a write, 1,162 -> 646 ms. The remaining ~490 ms is the live export built to answer a set-membership question; whether to replace it with store lookups (a signature change across five test files, for a cost that exists only between a pull and the next export) is put to Anthony rather than decided here.",
+    "epoch_type": "revision",
+    "name": "A record that moved once is read once — the stat gate stops conflating \"unchanged\" with \"in step\", and the first read after every write stops re-parsing a 16 MB file (2026-09-12)",
+    "sequence": 442,
+    "status": "arrived"
+  }
+}

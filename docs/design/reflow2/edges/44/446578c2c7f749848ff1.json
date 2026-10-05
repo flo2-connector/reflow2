@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89eac3364ea2b2407372c176824e3c1031758639c009727a2f608501c69f3846",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:2026-09-22-link-artifact-draws-implements-for-a-check",
+  "properties": {
+    "at": "2026-09-22",
+    "note": "The mechanism the finding describes no longer exists: link_artifact branches on the target type and draws IMPLEMENTS for a Verification, pinned by four tests three of which were observed red first. The 46 links it had drawn in error were migrated the same day, so the trap population it measured (40 checks with a registered file and no form) is 0. What the finding RECORDS stays true as history and its numbers stay readable — this says the defect is closed, not that the measurement was wrong."
+  },
+  "to_id": "fact:link-artifact-draws-realizes-only-so-the-discoverable-way-to-register-a-check-gives-it-no-executable-form"
+}

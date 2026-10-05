@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6daa7a2b138e2291d5fcce1b1bf84bc6d5e1ff670bcb8f1356e050018cb1c71e",
+  "edge_type": "MITIGATES",
+  "from_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design",
+  "properties": {
+    "evidence": "The accepted write-time warning answers this hazard for NEW writes by a design that knows its family. It cannot catch overlaps that already exist when repos are adopted, which is why this question stays open."
+  },
+  "to_id": "dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other"
+}

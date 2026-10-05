@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9468e6f1e985b9efdde6fa7caa1d945fe6cc57b8b353774b73d4d6771a39bed",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-two-reported-fields",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-two-reported-fields"
+}

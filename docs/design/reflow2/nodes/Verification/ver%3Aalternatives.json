@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1cec57993fed028f24d30c7c34382dcfc9e84123da1f2ecc67121567721a6839",
+  "node_id": "ver:alternatives",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "AoA + decision-point suite (tests/alternatives.rs) — 8 cases",
+    "status": "passing"
+  }
+}

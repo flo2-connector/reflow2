@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:209acf3f7cf0e4b74663c48295042d0d7c42679f619673860518ca694a627e5b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-verifies-takes-a-list-of-targets",
+  "properties": {
+    "authored_at": "2026-09-06",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

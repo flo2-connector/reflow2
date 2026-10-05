@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:56853298001dc74703d863cb012e69f742e25673579a74334741da9eebd4380e",
+  "edge_type": "CAUSES",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this issue's hosting note (mount the parent, or the design silently comes up empty): a single-design server refuses a sidecar-less store loudly, but --registry-root drops it and says \"no designs\", and the Dockerfile still describes the pre-guard behaviour.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-registry-drops-a-store-without-identity-and-says-no-designs-2026-09-28"
+}

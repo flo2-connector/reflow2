@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:34bc8fdecdb4db73877821d1acb56d09cf7d05fa382e0eda0371769b7aa20e96",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:unallocated-component-detector",
+  "properties": {},
+  "to_id": "req:structure-with-no-function-is-asked-about"
+}

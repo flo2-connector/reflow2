@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90047b63950da223c3b066f1e054bc71331beaf6f5d3d7c85a782062f9779f19",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph",
+  "properties": {
+    "evidence": "A reference whose function headers are 244 of 247 unsigned is a list of names; the reference has content only once signatures are asked for at capture.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-capability-is-asked-for-its-signature-and-the-unsigned-fraction-is-reported"
+}

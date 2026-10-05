@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ccca0fe78273970fb162dc25459228d46a71fdf7fc726f5c0e144bde37336c2d",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:arrival-delta:dec:external-blob-store-pressure",
+  "properties": {},
+  "to_id": "epoch:arrival-delta"
+}

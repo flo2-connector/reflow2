@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dd96db57e17599dac0d385d5100a24a6d0dc038c4309bf765a448cc3566643da",
+  "edge_type": "VALID_TO",
+  "from_id": "fact:defect-lineage-message-omits-its-own-decision",
+  "properties": {},
+  "to_id": "epoch:defects-closed-2026-08-07"
+}

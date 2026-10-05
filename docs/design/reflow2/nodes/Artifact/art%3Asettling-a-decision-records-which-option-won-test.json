@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f909a97bababd4e06e2bd4232473433069504c080b087aa7291110c7f4e27dfd",
+  "node_id": "art:settling-a-decision-records-which-option-won-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/settling_a_decision_records_which_option_won.rs",
+    "name": "settling_a_decision_records_which_option_won.rs",
+    "status": "realized"
+  }
+}

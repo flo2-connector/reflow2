@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4200d823d95f91f6805ce08b61ba75b2c70c36545884e9b3803698c032dfc98a",
+  "node_id": "rel:v0150",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.15.0",
+    "notes": "Cut 2026-07-26, the same day as v0.14.0. A MINOR bump because the schema moved, with docs/upgrading-to-v0.15.0.md written — and the upgrade doc's honest headline is that there is nothing to do. TWO THINGS SHIP. (1) `Verification.method` gains `demonstration` and `observation`, from Anthony's own taxonomy. Test, analysis, inspection and DEMONSTRATION are the four canonical verification methods in DoD and INCOSE practice and reflow2 carried three of them, so 'we showed it working' — which is how a great deal of acceptance actually gets closed — had to be miscoded as a test; `observation` is the as-fielded method, watching a system run without changing it, which is neither inspecting an artifact nor running a contrived example. `review` and `simulation` are KEPT, because removing a value would strand every node carrying it. Additive: an older reflow2 still READS a graph containing the new values — PROVEN by building a binary with the previous value set and pointing it at one — and only refuses to write them, since validation runs on write and the stamp counts node/edge TYPES (unchanged at 28/55). (2) THE v0.14.0 REGRESSION IS FIXED, found the same day it shipped and by hand rather than by any detector: with the graph held AND --http given, the degraded surface was served over STDIO and nothing listened on the port, so every session pointed at that URL got a refused connection — indistinguishable from reflow2 never having been configured, which is exactly the outage req:never-silently-absent exists to end. serve_http is now generic over the service it carries so both arms answer on the transport requested, and the startup line distinguishes the surfaces. The four new cases were MUTATION-CHECKED: reverted against v0.14.0 all four fail with 'nothing ever listened on the port the caller asked for'. ALSO RECORDED THIS CUT, built or not: dec:read-while-held-mechanism DECIDED (a read-only view as of open, not a catchable-up secondary) and req:verification-keeps-up ACCEPTED with cap:verification-freshness planned — the design now knows that a passing check proves only the paths it drives, which is the general form of the bug this release fixes. Manifest: 72 artifacts with frozen cut-time checksums plus cmp:docs, cmp:skills, cmp:claims.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.15.0"
+  }
+}

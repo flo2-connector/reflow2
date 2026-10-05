@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:821f6f18ebd7b6dfbecad041820a0a5294fa3062c6bc9391defed8106a57c5fa",
+  "edge_type": "CAUSES",
+  "from_id": "art:artifact",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "One of two reflow2-side causes, measured at v0.74.0: artifact.rs:651 says \"PROPAGATE deliberately does not traverse DOCUMENTS yet\", so a file linked to a Decision is never reported stale when that Decision is revised, and a project must hand-check its decision log instead. The other cause is an absence (no served surface for a reader who does not run reflow2), which has no node to point at.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-reader-who-never-runs-reflow2-has-no-served-surface-so-each-decision-is-kept-by-hand-in-three-places-2026-09-28"
+}

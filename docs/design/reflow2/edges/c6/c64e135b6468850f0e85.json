@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a3cdc29d9aba5410f7b85f24738aa1011ea5dbf78397604d96b77285c6e5e1bb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:retire-from-design-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:retire-from-design-skill"
+}

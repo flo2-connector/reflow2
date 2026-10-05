@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be75b4e5536c2062fcf7500822062d0b170f0121b6a3df184ef068da2b0f2dc3",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-servers-resident-memory-is-export-retention-not-rocksdb-2026-09-13",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 0.85,
+    "evidence": "It opposes the HYPOTHESIS that record carried, not its measurement. The 448 MB reading stands as taken. What is refuted is the explanation offered with it — six ALL_CFS column families at Options::default() giving ~384 MB of memtable — which the baseline record deliberately filed as arithmetic from source rather than as a cause. A fresh server on an identical 4,403-node store with those exact defaults measures 62 MB. The refutation is therefore of the RocksDB clause and of the work it implied (tune write buffers, share a block cache, cap open files), which addresses 43 MB rather than 400 MB. Note the limit: this was measured on reflow2's own 14.7 MB export, and it does NOT account for 448 MB on flo2's 2.9 MB design, which stays unexplained."
+  },
+  "to_id": "fact:one-open-design-holds-448mb-resident-2026-09-13"
+}

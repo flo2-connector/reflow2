@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:abf0012e22c4862fbf2ccba502207e4a01454a2ad522787ba22a26b0debf29a5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:unreachable-decision-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:unreachable-decision-test"
+}

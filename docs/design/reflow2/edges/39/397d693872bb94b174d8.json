@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55fdc37b00aafb898dd4b1a0dae8e617dfcac452fe1b179519ba79b844ef13f9",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-field-feedback-rule-was-broken-the-same-day-it-was-ruled-on-and-the-half-that-held-was-the-half-already-in-context",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The second cause existed to be found the whole time and was found only when the skill was finally run. Skipping the skill is why the first pass stopped at one cause.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-reachability-instrument-is-wired-into-no-gate-so-its-filter-was-never-the-only-cause"
+}

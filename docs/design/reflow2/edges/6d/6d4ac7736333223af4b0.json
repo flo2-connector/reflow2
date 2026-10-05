@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5ee3abe39ec4036382ed013cadbc16eb2098a58fd73ef5204421573c4b8bfbe",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok",
+  "properties": {
+    "note": "It decides the one command people run to add reflow2, and where the release publishes the plugin."
+  },
+  "to_id": "dec:where-the-reflow2-plugin-marketplace-lives"
+}

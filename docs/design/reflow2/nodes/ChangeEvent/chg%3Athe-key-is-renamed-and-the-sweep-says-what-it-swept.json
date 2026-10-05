@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac111b5b6f6516c953ecc279e3960f3cd77eddc4c6996399c6ae317ad708db80",
+  "node_id": "chg:the-key-is-renamed-and-the-sweep-says-what-it-swept",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The misnamed defect category is renamed and the unscoped sweep returns what it examined — both breaks taken now under rule:fix-it-properly-while-it-is-still-cheap, reversing dec:a-misnaming-is-fixed-in-the-message-not-the-key"
+  }
+}

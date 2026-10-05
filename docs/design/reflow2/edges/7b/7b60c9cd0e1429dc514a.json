@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:57eb0eb510171824e558cdc0496068225d6a66453dc77cf9bfd5ba784737e842",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

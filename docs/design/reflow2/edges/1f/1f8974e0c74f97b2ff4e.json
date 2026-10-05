@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1bbeeaf20af3b5f57ca85245a4d683c3fa4c9e97c6a0f67d6dbe90bec38c3e75",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-what-gets-searched-repeatedly-is-becoming-important",
+  "properties": {
+    "confidence": 0.8,
+    "evidence": "Both ideas notice the SAME discarded material: what a pre-capture search surfaced, and how relevant each hit was, is read once and thrown away. The 2026-08-10 idea proposed keeping it as a weighted importance signal; this one proposes keeping it as an edge. The earlier one had already seen that the search result carries information worth persisting — it differs on what to do with it, not on the observation. Drawn 2026-08-21."
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

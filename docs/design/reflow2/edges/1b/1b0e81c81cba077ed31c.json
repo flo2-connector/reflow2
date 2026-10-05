@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd81a2cdf0b3865ad13ea4885a1dd7f91c21a0ba722b0a92bec38b3d93465388",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:kpp-proposal",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

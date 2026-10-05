@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:613a4aa8593c325732326bb837f8fe8384652c983c4b4b13bc5ea78090cf6ce5",
+  "node_id": "art:drain",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The stop sequence every --http server runs (one design, --registry-root, the shared server): stop accepting; each connection finishes its exchange and closes; every non-GET request is work and gets up to --shutdown-grace to finish (Tracked counts it until its body is done); rmcp's cancellation token ends sessions and streams; a waiting write-through is flushed; every design closes and its store is released within CLOSE_BOUND; the server reports what it did. Holds says what a stop must close (one design, a router's every design, or nothing for the degraded surface). stop_signal resolves on SIGTERM or SIGINT.",
+    "location": "crates/reflow2-mcp/src/drain.rs",
+    "name": "drain.rs — a server told to stop drains its work in progress, writes a waiting export, closes every store, then exits",
+    "status": "realized"
+  }
+}

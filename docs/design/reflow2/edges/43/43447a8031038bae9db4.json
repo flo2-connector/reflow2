@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6d0d40b813e1c47fc3dc5fc475d943ce88bd85d3cc66ac19cb10bdf81a44b127",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:update-is-one-word",
+  "properties": {},
+  "to_id": "req:frictionless-update"
+}

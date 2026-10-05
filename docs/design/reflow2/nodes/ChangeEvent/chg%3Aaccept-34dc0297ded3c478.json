@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:85ccb781241c4d07368fd8987134d724167189b291fde1040a17fbe901329fd7",
+  "node_id": "chg:accept-34dc0297ded3c478",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-08-19",
+    "name": "One case added: the orphan repair note must name `parks`, say the ruling has to be ACCEPTED, warn against deleting, and name what parking does NOT reach. Pinned because message text regresses silently — nothing else in the suite would notice the sentence going away, and its absence is what cost two registered documents on 2026-08-19.",
+    "subject": "system"
+  }
+}

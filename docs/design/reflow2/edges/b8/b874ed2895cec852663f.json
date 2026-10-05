@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33b871b0c36004627dcbe7fb23de1615adf074879e100b3af8236f8650c2ad2f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-design-is-named-by-an-id-not-a-path",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

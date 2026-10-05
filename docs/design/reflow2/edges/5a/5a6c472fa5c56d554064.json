@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5151d1d01b0cec0b4d64a68fc6fc67033d64885e8f77d2eea13e2e7647ce4ee4",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-24 report (add_capability refused over a dated finding): only 14 listed cross-type pairs are exempt from the guard; TemporalFact↔Capability is not one of them, so four constructors refuse.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-dated-finding-blocks-four-intent-constructors-because-an-unlisted-cross-type-pair-refuses-2026-09-28"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:33d44259e63269f8621b1f5d516447e562883911df8b10fc27d6f73be5ac2e0f",
+  "node_id": "ver:a-topic-report-groups-hits-names-the-latest-dated-change-and-always-says-what-it-did-not-find",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_topic_report_says_what_it_holds_and_what_it_did_not_find.rs (3 tests) on a small rainfall design: a subject comes back grouped (Requirement, Capability, …) with the capability's realized status, its SATISFIES-out and VERIFIES-in connections, and the newest DATED change as latest while an undated change is never offered and a dated measurement is the other side of latest; an unrelated node does not appear; the not-found line names a populated type that matched nothing (Contributor) and a zero-hit query says NOTHING MATCHED and that the subject may be held in other words; a 600-character budget lands in titles_only with connections and latest withheld, at least one hit per group kept, and count and by_type unchanged.",
+    "findings": "3 tests (one of them now also pinning the limit-cut wording) passed; reflow2-mcp 384 / 0 and reflow2-core 1596 / 0 with the module in; clippy clean on both crates; toolsnap gained exactly one golden (topic_report). Read against reflow2's OWN design through the built binary on a copy of the store (\"root cause\", budget 8000): 20 hits across 8 of 19 populated types, titles-only tier, and the not-found line exposed a wording defect in itself — it reported 436 TemporalFacts as NOT matched when the list had merely been cut at 20. Fixed before shipping (a type absent from a list cut at its limit is \"not among the top N\") and pinned in the same test file.",
+    "kind": "verification",
+    "last_run_at": "2026-09-06",
+    "level": "integration",
+    "method": "test",
+    "name": "A topic report groups hits by type with status and connections, offers only the latest DATED change, always carries a not-found line, and trims detail before hits",
+    "status": "passing"
+  }
+}

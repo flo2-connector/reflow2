@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:589006c6ba37c9088bb6d3e2eacf85235735017f586a1bd7220f24940c577d17",
+  "node_id": "chg:accept-774f1fe469ddec75",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-16",
+    "name": "v0.32.1 cut: the version string in reflow2.toml moved 0.32.0 -> 0.32.1 and nothing else did. The design meaning of a cut lives in the Release and its epoch, not in a version string. Accepted BEFORE release_includes_all so the manifest freezes the post-bump value. `refactor` remains the least-wrong change_type and none of the twelve fits a release bookkeeping bump — the same gap #199 closed for defect_fix, still open for this case.",
+    "subject": "system"
+  }
+}

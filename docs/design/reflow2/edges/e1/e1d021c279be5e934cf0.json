@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4cb780ceef8b05cda146edc8c8e31e50f49b952628227f8b33dedb2eb2cbbedb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "properties": {},
+  "to_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write"
+}

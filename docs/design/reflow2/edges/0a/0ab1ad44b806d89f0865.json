@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de4619b434a7fb9ccd7fbfb1d4b126d241c58fa5ca60110de217395745186a35",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Step 6 of the root-cause pass on this document's three revise-path reports: a sweep of 22 revise-capable constructors found four that break 'omitted fields keep their stored value', each by a different mechanism.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-revise-contract-is-implemented-per-handler-and-guarded-by-instances-2026-09-28"
+}

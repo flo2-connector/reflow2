@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d9433ddd25a324e655e31afbdf0592b993a26d87b603555dff735dd691e4fc6f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-report-can-name-what-was-talking-to-what",
+  "properties": {
+    "authored_at": "2026-08-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

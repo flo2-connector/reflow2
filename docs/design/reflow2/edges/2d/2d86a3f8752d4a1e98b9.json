@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d193f364fcd1353424c87507f134f650b8261e6b6aeb34f35160e471470899fb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-vocabulary-change-has-no-identity-so-a-consumer-is-told-its-version-is-wrong-not-which-change-it-lacks",
+  "properties": {
+    "evidence": "Anthony promoted this idea to intent on 2026-09-11 (\"go with what you'd take — the stamp gap and deferred state\"). The idea stays open on the MECHANISM — wider stamp, named per-change identities, or a severity per change — and the requirement carries only the obligation the promotion settled: the silent case must not happen."
+  },
+  "to_id": "req:a-vocabulary-change-a-consumers-binary-cannot-read-is-never-silent"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ca21bb794f266cddb5f7477dc52b989849b821713e7feb3b78597953565a2ad",
+  "node_id": "art:test-item-layout-merges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "tools/test_item_layout_merges.py",
+    "name": "tools/test_item_layout_merges.py — the item layout under git's ordinary merge",
+    "status": "realized"
+  }
+}

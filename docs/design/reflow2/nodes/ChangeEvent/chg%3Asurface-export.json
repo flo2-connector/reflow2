@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74531521cef2a177134b644885a40b3906b7f237e7c5adcf59e543c1507c9e5b",
+  "node_id": "chg:surface-export",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Export just the published surface — the one piece of composition that every architecture option needs"
+  }
+}

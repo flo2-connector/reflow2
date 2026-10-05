@@ -50,7 +50,7 @@ pub fn node_content_hash(props: &std::collections::HashMap<String, Value>) -> St
 /// and only when exact: an integer a `f64` cannot represent is left alone to
 /// fail loud, and a property the schema does not declare float is never
 /// touched.
-fn widen_ints_for_float_props(
+pub(crate) fn widen_ints_for_float_props(
     defs: &std::collections::HashMap<String, PropertyDef>,
     props: &mut std::collections::HashMap<String, Value>,
 ) {
@@ -121,6 +121,11 @@ pub struct DesignGraph {
     /// (`crate::twins`). Kept so `loop_status` can say it: a repair on open
     /// that went only to a startup log would be the silent kind.
     pub(crate) repaired_on_open: crate::twins::TwinRepairs,
+    /// What opening this store found wrong with its search index, when the
+    /// open had to rebuild it (`crate::search::SearchIndexRebuild`). `None` is
+    /// an index that already held what the store holds, and every in-memory
+    /// graph, whose index is built by the same writes that build the graph.
+    pub(crate) search_rebuilt_on_open: Option<crate::search::SearchIndexRebuild>,
 }
 
 /// What [`DesignGraph::derived`] holds. `generation` is the engine write
@@ -349,6 +354,7 @@ impl DesignGraph {
             acting: None,
             signer: None,
             repaired_on_open: Default::default(),
+            search_rebuilt_on_open: None,
         })
     }
 
@@ -464,16 +470,18 @@ impl DesignGraph {
             acting: None,
             signer: None,
             repaired_on_open: Default::default(),
+            search_rebuilt_on_open: None,
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
         // on-disk store uniform when nothing is stamped on it to key a
         // one-shot migration.
         graph.migrate_authored_by_roles()?;
-        // REALIZES onto a Verification became IMPLEMENTS on 2026-09-23 when
-        // REALIZES stopped accepting any target; a store written before then is
-        // brought over on open, the same way and for the same reason.
-        graph.migrate_realizes_onto_checks()?;
+        // An edge a narrowing gave a single right answer is brought over on
+        // open, the same way the import brings it over — today REALIZES onto a
+        // Verification, IMPLEMENTS since 2026-09-23 when REALIZES stopped
+        // accepting any target (`narrowing::EDGE_REWRITES`).
+        graph.migrate_edge_rewrites()?;
         // Relations stored twice are brought into step with their authority
         // on every open, idempotently, and what changed is KEPT for
         // `loop_status` rather than dropped: the two migrations above discard
@@ -481,6 +489,27 @@ impl DesignGraph {
         // `req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed`
         // exists to end.
         graph.repaired_on_open = graph.repair_stored_twins()?;
+        // THE SEARCH INDEX IS A COPY DERIVED FROM THE STORE, and an open is where
+        // a store meets an index it may not have been written with: a directory
+        // copied without its `fulltext/` subdirectory (what `--call` reads while
+        // another process holds the design), a store written by a build without
+        // the feature, an index lost or restored from elsewhere. Every one of
+        // those opened cleanly onto an empty index and answered "nothing
+        // matched" for words the store held (measured 2026-10-02). So the open
+        // compares the two and rebuilds an index that does not hold what the
+        // store holds — the rebuild the shared server already ran at start, made
+        // a property of every open. A rebuild that fails fails the open, loudly,
+        // the way an index that cannot be opened already does.
+        #[cfg(feature = "fulltext")]
+        {
+            graph.search_rebuilt_on_open = graph
+                .engine
+                .ensure_fulltext_covers(&graph.graph_id)?
+                .map(|found| crate::search::SearchIndexRebuild {
+                    indexed_before: found.indexed,
+                    searchable: found.searchable,
+                });
+        }
         Ok((graph, provenance))
     }
 
@@ -538,6 +567,40 @@ impl DesignGraph {
     /// The merged schema backing this graph.
     pub fn schema(&self) -> &Schema {
         self.engine.schema()
+    }
+
+    /// Run `write` against this store under `schema` instead of this binary's
+    /// own, then put this binary's schema back — the store an OLDER reflow2
+    /// wrote, whose vocabulary accepted something this one refuses.
+    ///
+    /// ⭐ WHY IT EXISTS. A narrowing's whole hazard is data written BEFORE it,
+    /// and that data cannot be made through this binary's write path, because
+    /// the write path is exactly what refuses it. Until 2026-10-03 that made
+    /// the class untestable here: `a_file_realizes_only_what_it_implements.rs`
+    /// says in its header that the on-open rewrite "cannot be exercised through
+    /// the public API". The store keeps no vocabulary of its own — nodes and
+    /// edges are bytes — so writing under the older schema and reading under
+    /// this one IS the upgrade, not a simulation of it.
+    ///
+    /// For tests of what a newer binary does with an older store. Not a way to
+    /// write something this schema refuses: the schema comes back before this
+    /// returns, and every read after it judges what was written by today's rules.
+    #[doc(hidden)]
+    pub fn write_under_schema<T>(
+        &mut self,
+        schema: Schema,
+        write: impl FnOnce(&mut Self) -> Result<T, DynoError>,
+    ) -> Result<T, DynoError> {
+        let current = self.engine.schema().clone();
+        self.engine.replace_schema(schema);
+        let out = write(self);
+        self.engine.replace_schema(current);
+        // A memo filled under the other schema answered by the other rules.
+        self.derived
+            .lock()
+            .expect("derived memo poisoned")
+            .generation = None;
+        out
     }
 
     // ---- Generic, schema-validated CRUD -----------------------------------
@@ -629,6 +692,20 @@ impl DesignGraph {
     /// Empty for an in-memory graph and for a store that was already in step.
     pub fn repaired_on_open(&self) -> &crate::twins::TwinRepairs {
         &self.repaired_on_open
+    }
+
+    /// What opening this store found wrong with its search index, when the open
+    /// rebuilt it; `None` when the index already held what the store holds.
+    pub fn search_rebuilt_on_open(&self) -> Option<&crate::search::SearchIndexRebuild> {
+        self.search_rebuilt_on_open.as_ref()
+    }
+
+    /// Take the open's search-index rebuild out of the record, for a caller
+    /// to whom it is not news: a COPY of a store is made without its index,
+    /// so its open always rebuilds one, and that says nothing about the
+    /// design the copy was taken from.
+    pub fn take_search_rebuilt_on_open(&mut self) -> Option<crate::search::SearchIndexRebuild> {
+        self.search_rebuilt_on_open.take()
     }
 
     /// Refuse a write whose property NAMES a node that does not exist.
@@ -1214,23 +1291,106 @@ impl DesignGraph {
             .delete_edge(&self.graph_id, edge_type, from_id, to_id)
     }
 
-    // ---- Atomic batches (used by HEAL's apply step) -----------------------
+    // ---- Atomic batches (HEAL's apply step, import, the bulk forms) --------
 
     /// Begin buffering writes; nothing hits the store until [`commit_batch`].
+    /// Inside an open batch (a tool call's write unit, say) this opens an
+    /// inner one that nests rather than committing the outer.
     ///
     /// [`commit_batch`]: Self::commit_batch
     pub(crate) fn begin_batch(&mut self) {
         self.engine.begin_batch();
     }
 
-    /// Flush all buffered writes atomically.
+    /// Flush all buffered writes atomically — or, for an inner batch, hand
+    /// them to the batch around it.
     pub(crate) fn commit_batch(&mut self) -> Result<usize, DynoError> {
         self.engine.commit_batch()
     }
 
-    /// Drop all buffered writes without applying them.
+    /// Drop all buffered writes without applying them — for an inner batch,
+    /// only its own.
     pub(crate) fn discard_batch(&mut self) {
         self.engine.discard_batch();
+    }
+
+    // ---- One write unit per tool call ---------------------------------------
+    //
+    // `dec:idea-a-refused-typed-write-stores-nothing` (accepted 2026-10-02):
+    // ONE ATOMIC WRITE PER TOOL CALL, AT THE STORE'S SINGLE WRITE POINT. The
+    // served surface opens a unit before a write tool's handler first writes,
+    // and settles it once when the handler answers: committed if it succeeded,
+    // discarded if it refused. Everything the call writes — the node body, its
+    // optional fields, its links and edges, the twin edges the store draws,
+    // the snapshot of what it replaced, the credit to whoever it wrote for —
+    // lands together or not at all.
+    //
+    // The unit IS the store's atomic batch, not a second mechanism beside it:
+    // reads inside it see its writes (derived scans and search included), and
+    // a bulk form, an import or HEAL inside it nests.
+    //
+    // MEASURED BEFORE IT EXISTED, on 0.77.0
+    // (`fact:root-cause-a-typed-constructor-writes-the-node-before-its-later-checks-and-a-refusal-leaves-it-2026-10-02`):
+    // 13 typed constructors stored the node, then checked an optional enum, a
+    // link item or an edge in a later write, and a refusal there left the node
+    // behind — on a revise, after a reply saying "nothing was written".
+
+    /// Open a write unit. Every write until [`commit_unit`] or
+    /// [`discard_unit`] is staged; reads see it.
+    ///
+    /// A batch already open here was left behind by a call that never settled
+    /// (it cannot belong to a live one: the unit is opened under the write
+    /// lock). It is DISCARDED — nobody committed it, so nothing in it may land
+    /// — and said in the log, because silently building on it would commit a
+    /// dead call's writes with the next one's.
+    ///
+    /// [`commit_unit`]: Self::commit_unit
+    /// [`discard_unit`]: Self::discard_unit
+    pub fn begin_unit(&mut self) {
+        let left_open = self.engine.batch_depth();
+        if left_open > 0 {
+            tracing::error!(
+                "a write unit was opened over {left_open} batch(es) nobody settled; they are \
+                 discarded, so none of their writes land"
+            );
+            self.discard_unit();
+        }
+        self.engine.begin_batch();
+    }
+
+    /// Commit the open write unit: everything it staged lands in one atomic
+    /// write. Returns how many store operations it wrote (`0` when the unit
+    /// wrote nothing, or none is open).
+    ///
+    /// REFUSED, with everything discarded, when a batch opened inside the unit
+    /// was never settled: committing would land part of a write that never
+    /// finished, which is the very thing the unit exists to prevent.
+    pub fn commit_unit(&mut self) -> Result<usize, DynoError> {
+        match self.engine.batch_depth() {
+            0 => Ok(0),
+            1 => self.engine.commit_batch(),
+            depth => {
+                self.discard_unit();
+                Err(DynoError::Storage(format!(
+                    "the write could not be committed: {} batch(es) opened inside it were never \
+                     settled, so it was discarded and nothing was written",
+                    depth - 1
+                )))
+            }
+        }
+    }
+
+    /// Discard the open write unit, and anything opened inside it: the store
+    /// is left exactly as the unit found it.
+    pub fn discard_unit(&mut self) {
+        while self.engine.is_batching() {
+            self.engine.discard_batch();
+        }
+    }
+
+    /// Whether a write unit (or any batch) is open.
+    pub fn in_unit(&self) -> bool {
+        self.engine.is_batching()
     }
 
     // ---- Typed golden-thread constructors ---------------------------------
@@ -2532,43 +2692,43 @@ impl DesignGraph {
         Ok(moved)
     }
 
-    /// Rewrite every stored `Artifact REALIZES Verification` as `Artifact
-    /// IMPLEMENTS Verification`, and return how many moved.
+    /// Rewrite every stored edge [`crate::narrowing::EDGE_REWRITES`] names —
+    /// today `Artifact REALIZES Verification` as `Artifact IMPLEMENTS
+    /// Verification` — and return how many moved.
     ///
-    /// The ONE class of the old wildcard's misuse with a single right answer:
-    /// a file registered against a check is that check's executable form,
-    /// which is what IMPLEMENTS says and what `link_artifact` has drawn since
-    /// #567. MEASURED before this was written: every refused REALIZES found
-    /// in the other designs on the maintainer's machine (dynograph-foundation
-    /// 3, qbench 5) was this class. Idempotent — one edge scan, runs on every
-    /// open like the AUTHORED_BY migration — so a store is uniform without a
-    /// one-shot marker. Other refused targets are NOT guessed at: they stay
-    /// and are named when an export carrying them is imported.
-    pub fn migrate_realizes_onto_checks(&mut self) -> Result<usize, DynoError> {
+    /// The REALIZES row is the ONE class of the old wildcard's misuse with a
+    /// single right answer: a file registered against a check is that check's
+    /// executable form, which is what IMPLEMENTS says and what `link_artifact`
+    /// has drawn since #567. MEASURED before it was written: every refused
+    /// REALIZES found in the other designs on the maintainer's machine
+    /// (dynograph-foundation 3, qbench 5) was this class. Idempotent — one edge
+    /// scan, runs on every open like the AUTHORED_BY migration — so a store is
+    /// uniform without a one-shot marker. Other refused targets are NOT guessed
+    /// at: they stay, `detect_defects` reports them (`refused_by_schema`) with
+    /// the replacement the import names, and an export carrying them is
+    /// refused on import by name.
+    ///
+    /// Read from the same table the import reads, so the two doors cannot come
+    /// to disagree about what an old edge becomes (until 2026-10-03 each
+    /// carried its own copy of the one rule).
+    pub fn migrate_edge_rewrites(&mut self) -> Result<usize, DynoError> {
         let index = self.node_type_index()?;
         let mut moved = 0usize;
         for e in self.engine.scan_all_edges(&self.graph_id)? {
-            if e.edge_type != edge::REALIZES
-                || index.get(&e.to_id).map(String::as_str) != Some(node::VERIFICATION)
-                || index.get(&e.from_id).map(String::as_str) != Some(node::ARTIFACT)
-            {
+            let (Some(ft), Some(tt)) = (index.get(&e.from_id), index.get(&e.to_id)) else {
                 continue;
-            }
+            };
+            let Some(r) = crate::narrowing::edge_rewrite_for(&e.edge_type, ft, tt) else {
+                continue;
+            };
             let already = self
-                .outgoing(&e.from_id, Some(edge::IMPLEMENTS))?
+                .outgoing(&e.from_id, Some(r.becomes))?
                 .iter()
                 .any(|x| x.to_id == e.to_id);
             if !already {
-                self.create_edge(
-                    edge::IMPLEMENTS,
-                    node::ARTIFACT,
-                    &e.from_id,
-                    node::VERIFICATION,
-                    &e.to_id,
-                    Props::new(),
-                )?;
+                self.create_edge(r.becomes, ft, &e.from_id, tt, &e.to_id, Props::new())?;
             }
-            self.delete_edge(edge::REALIZES, &e.from_id, &e.to_id)?;
+            self.delete_edge(&e.edge_type, &e.from_id, &e.to_id)?;
             moved += 1;
         }
         Ok(moved)

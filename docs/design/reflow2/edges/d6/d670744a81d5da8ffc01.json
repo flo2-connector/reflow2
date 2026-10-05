@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:595bc054300c41bf0142e17663758eccf164f4a2aea85d3c56f1125b08f75a7e",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:capture-intent-registers-its-source",
+  "properties": {},
+  "to_id": "epoch:capture-registers-its-source"
+}

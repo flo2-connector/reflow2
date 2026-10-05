@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8079d1ec9c14d61df33653c2397317cb3d5f9c336815fe6910dadc91d75fc1f9",
+  "node_id": "frag:art:coverage-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/coverage.rs"
+  }
+}

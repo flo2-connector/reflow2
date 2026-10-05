@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6db0c02dd7002662c6eacbae879cef8554e7c65fc91d7646a8242a9f144d884",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-four-2026-09-rules-are-advisory-because-no-detector-can-yet-see-a-violation",
+  "properties": {
+    "approved_at": "2026-09-07T13:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

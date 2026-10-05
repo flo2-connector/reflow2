@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2dc1a79009e12302f030b12373ce9c5379458189f6d521e1d0dee999c014e780",
+  "node_id": "chg:a-check-that-could-not-run-lands-as-blocked-and-never-reads-as-failed-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "A check that could not run lands as blocked, and a blocked check is a gap that never says the part failed",
+    "rationale": "Root cause (fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02), confirmed on main at 293f957: OBSERVED_OUTCOMES was passed/failed/skipped, run_to_files mapped every JUnit <error> to failed, and no detector read status blocked, so the honest status was quiet and the dishonest one loud (failing_verification: \"did not work as designed\"). THE CLASS covered: all three routes (reconcile, converter, detector). Deliberately left: an <error> raised while the test body ran (JUnit in Java) stays failed, because that test did run; a python script's non-zero exit stays failed, because the converter cannot tell why it exited. a_check_that_could_not_run_is_blocked.rs observed failing on main (4 of 5; the fifth is the regression guard).",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "reconcile_verification takes the outcome `blocked`; run_to_files.py writes it for pytest's collection-failure and failed-on-setup errors and for a cargo test target that never started; a Verification at status blocked raises the gap blocked_verification (0.65), which says nothing is known about the part and never that it failed. Verification.status now describes `blocked`."
+  }
+}

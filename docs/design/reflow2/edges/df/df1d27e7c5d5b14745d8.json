@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4127cf22c4f0515257a116549c39df9284f16938fda539126ce69435ab7f2b5",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-where-do-lessons-learned-live-and-can-a-user-state-a-precondition",
+  "properties": {
+    "evidence": "That requirement, accepted the same day, forbids the agent from AUTHORING an artifact carrying professional sign-off — a permit being the type case. It creates an obligation the design cannot currently MODEL: nothing expresses 'this permit must be obtained, by that authority, before this activity'. Making a precondition expressible is what would let the design carry the thing the rule refuses to let the agent forge."
+  },
+  "to_id": "req:the-agent-never-authors-what-requires-accountable-sign-off"
+}

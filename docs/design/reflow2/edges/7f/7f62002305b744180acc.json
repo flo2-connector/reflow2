@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:992c83c81fde6f630d1d11ff03dfe1ae0482962be157c17c6d198dd6080de3d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:derived-release-manifest",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:derived-release-manifest"
+}

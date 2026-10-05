@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:772330d16235a95b686e375ef14a8f715be39603616fb82f04b097b39274bc72",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1809d9de2628c8660fd6af7c6190f0f8778eceacf0516751d7ba8b990678c515"
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-07b"
+}

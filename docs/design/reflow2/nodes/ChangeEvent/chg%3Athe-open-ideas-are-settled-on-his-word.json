@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4c8ba53d3b01e35ea6bc1bf477ab86e44314e06384450956e1ece7b1e5289aca",
+  "node_id": "chg:the-open-ideas-are-settled-on-his-word",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-09-20",
+    "name": "The open ideas are settled on his word: ten promoted to accepted intent, one closed as answered, one given the status its promotion should have set",
+    "rationale": "Anthony 2026-09-20, on a plain-English readback of the twelve open ideas with a recommendation on each: 'Agree with all your recommendations.'",
+    "summary": "Ten Requirements accepted with the owner as approver, each carrying the option chosen on its EVOLVES_INTO edge from the idea it came from; the two already built (the shell door and the skill finder) wired to the intent they satisfy, which also clears their unmotivated-capability state; the four-status-contracts idea superseded as answered by v0.65.0; the memory-boundary idea moved to accepted, the status its own promotion on 2026-09-19 should have set and did not."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be58afd41144b1ae7e0f81943accd124a2d285d96b9bb25aff906a145cbb083c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-cement-is-measured-as-the-decision-layers-a-change-must-unpeel",
+  "properties": {
+    "evidence": "A marked decision point is the thing a reversal walks back to; the layer count is only meaningful where the design recorded which decisions rest on which, and decision points are where that is cheapest to record.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:decision-point"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d2cdb6351f957ac9d9adfcad11d421a9559ea31e01be572c9d374c5af520a2a4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-regression-corpus-guards-the-upgrade-path",
+  "properties": {
+    "authored_at": "2026-09-21",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c27bf37304ad4ffb5160d248cc14637c546a3f4a3f0dc19cbacb9d8cf3d9a048",
+  "edge_type": "CHANGED",
+  "from_id": "chg:import-adopts-identity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

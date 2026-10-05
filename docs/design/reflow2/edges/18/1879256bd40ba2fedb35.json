@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:540405506bf07f7195f5741385551bb34cb76cfb6eee393ae70a601f07467bc7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-guard-reads-the-request-before-refusing",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:062f213deb91dd4b92cf4512c611ab7151a60406361304481edcee8cdf0eeb1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gate-survives-a-directory-and-honours-its-exit-codes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

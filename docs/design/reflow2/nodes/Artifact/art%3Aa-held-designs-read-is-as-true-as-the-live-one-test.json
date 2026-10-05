@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6259545dc3b69a24d3fd519e23ceae516e00c7097c479556a89c8de585eea94d",
+  "node_id": "art:a-held-designs-read-is-as-true-as-the-live-one-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_held_designs_read_is_as_true_as_the_live_one.rs",
+    "name": "a_held_designs_read_is_as_true_as_the_live_one.rs",
+    "status": "realized"
+  }
+}

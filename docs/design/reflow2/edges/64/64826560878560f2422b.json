@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:35fe804610147c815f65d5f13e7f75846025253f280ebe5c0895462c7318dcaa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl75-certainty-derived",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:service"
+}

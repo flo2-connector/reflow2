@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8e702daecd73196377bccdaa2835bd6e9a060ac22d14889c825e77fe2ec0d0f9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:rendezvous-sidecar",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

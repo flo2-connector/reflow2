@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:213c36a1959dd3017295b0a474ad9d4920fda2f1d043e984e68ce77c66cbe28c",
+  "node_id": "cap:a-relation-tool-accepts-the-other-familys-names",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Item 4 of v0.50.0 (dec:idea-one-way-to-name-which-node-across-the-tool-surface, ruled 2026-09-06). One convention, taught once: a relation tool whose ends play different roles names the role end by its role and the other end target_id / target_type; peers use from_id / to_id. Serde aliases on 30 request structs: from_* / to_* accepted on every role-named tool (verifies, realizes, constrains, documents, release_includes, set_evidence_scope, schedule_for, gate_on, link_artifact, deploy_to, performed_in, part_of_flow, register_alternative, contains, pin_at_epoch, move_component, authored_by, owned_by, invalidates, calibrated_against, require_resource, answers); the role names accepted on the from/to tools (capability_id/component_id on allocate, capability_id/requirement_id on satisfies, component_id/interface_id on provides and consumes, parent_id/child_id on decomposes and contain_component, dependent_id/dependency_id on depends_on) — the one shared pair struct split into seven so each can carry its own roles; node_id / node_type accepted for the from end everywhere. The published schema is unchanged (aliases are not advertised, toolsnap goldens byte-identical); deny_unknown_fields still refuses a misspelling; both spellings of one end is refused as a duplicate field. The kit instructions state the convention once.",
+    "name": "Every relation tool accepts the other family's spellings for its ends, and search_design's node_id lands on the next tool",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

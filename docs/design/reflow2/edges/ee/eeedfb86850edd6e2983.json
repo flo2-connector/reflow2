@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6f6df262d20fce3ecc6962d414a0bd4f7a6cd44885df5c743146a479e44a1ecc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools"
+}

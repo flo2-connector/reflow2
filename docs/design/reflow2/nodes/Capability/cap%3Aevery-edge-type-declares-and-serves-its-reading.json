@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1b01e292cbc8d6a6953e9aa3279801c3d5bdf5c4aea99e3c2186b6abb686db89",
+  "node_id": "cap:every-edge-type-declares-and-serves-its-reading",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Each edge type in schema/*.yaml carries a `reading` block — the primitive it is an instance of or the composition it stands for, sign, possibility, whether its direction is the primitive's inverse, which of its properties are modifiers and of what kind, and a basis saying who says so (`classified` until the owner reviews it). EdgeTypeDef keeps the block, describe_schema serves it with the edge type on every read, and a core test fails when an edge type has no reading, names a primitive or modifier kind outside the declared sets, or calls a property a modifier that the edge does not declare. The first readings are the 2026-09-28 three-graph classification's, marked `classified`.",
+    "name": "Every edge type carries a declared reading, and describe_schema serves it beside the edge",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

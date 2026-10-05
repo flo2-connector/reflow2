@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ebd1a639a7ac84fb64f8c15d5ae6596e5daa36a5881f91657915c65dc4f7f5aa",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-the-byte-backend-selectable-at-runtime",
+  "properties": {
+    "evidence": "Both ask what sits behind the KvBackend seam. A third backend and a runtime selector are the same seam seen from two sides: if selection stays compile-time, adding Redis is a third feature flag rather than a third choice anyone can make at run time.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-redis-a-third-backend-option-and-what-would-it-buy-over-rocksdb-or-in-memory"
+}

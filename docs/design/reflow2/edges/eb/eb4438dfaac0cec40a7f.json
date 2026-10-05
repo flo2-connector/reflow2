@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7d752719f6736350ba42033e52c15fa480fc1f4ef536fb14042fd5250543a981",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-ci-write-its-run-results-back-into-the-design",
+  "properties": {
+    "authored_at": "2026-09-21",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

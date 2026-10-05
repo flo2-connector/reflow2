@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab1fe3c0ddfd0c06084998e8e1c3a1d1504009b2a9428fe19cc10beec02e0204",
+  "edge_type": "CHANGED",
+  "from_id": "chg:container-packaging",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

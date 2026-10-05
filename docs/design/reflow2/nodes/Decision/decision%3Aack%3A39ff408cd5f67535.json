@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:acf4341cac2f2dbc3c2be7d9668bd63a3132a4d60192ea867caab7e9cd06f423",
+  "node_id": "decision:ack:39ff408cd5f67535",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:39ff408cd5f67535.",
+    "name": "Reviewed: gap:39ff408cd5f67535",
+    "rationale": "Checked 2026-09-07: still open. Nothing reads Verification.level outside a scan filter, so no gap and no loop_status line asks green-where. The sibling fix that shipped was on the REALIZES edge, which is a different layer from this status claim.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2416393e881718736c8897d5fca4fec938d87572d70dfcfdd4a80325e6004a36",
+  "node_id": "decision:ack:ec1f9f94c89d2f67",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ec1f9f94c89d2f67.",
+    "name": "Reviewed: gap:ec1f9f94c89d2f67",
+    "rationale": "Approved for build by Anthony on 2026-07-30 but not yet built, so there is nothing to verify. The capability is `planned` and its verification will be written with it. This is deliberately NOT a judgement that the capability needs no check — it needs one, and the check is owed at build time. Recorded so the open list keeps meaning `needs a decision` rather than `needs typing`; the decision here has been made and it is `build it`. NOTE THE EXPIRY THIS DEPENDS ON: this acknowledgement should stop holding the moment the capability moves off `planned`, and the sibling requirement req:review-expires-when-what-it-judged-changes exists precisely because that expiry is currently keyed on the affected node SET rather than its CONTENT — so this note may outlive its own truth until cap:review-expires-on-content is built.",
+    "status": "accepted"
+  }
+}

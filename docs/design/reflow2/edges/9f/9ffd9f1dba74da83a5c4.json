@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4fe33b82d39119c4dd78fb133ee536dfedb5ad3ff0c58d2a8285a6d8ff90045f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl68-readiness-gating",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

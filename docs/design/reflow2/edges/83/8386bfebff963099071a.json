@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d0af6cee52bdf28dfb85ac414541e0a3d9b8ead40d50fe3dc4b3fb8fbdf2ca8",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "The same accepted decision that retires every other field report: the repository is public, so a field report is captured into the graph and the file itself is untracked. Its absence from a checkout is the design and the build agreeing, not drift."
+  },
+  "to_id": "art:dev-storyflow-feedback-2026-09-27"
+}

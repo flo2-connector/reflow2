@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b958c1c62ebe183e8d5c32b145ff38e3d7bfc5fad962b906f63d17f4c8d75fdc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

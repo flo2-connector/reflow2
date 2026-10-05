@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e761cde72202f63543f92409bf95aaff687a2f6c3c19ffff58994b4a8732bd75",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:setup",
+  "properties": {
+    "doc_kind": "runbook"
+  },
+  "to_id": "cmp:service"
+}

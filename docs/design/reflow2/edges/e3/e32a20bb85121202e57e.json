@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e48bd1d435a0693ce9ccc2f43acb0396181492e5a617b6bbd24dd4ffb2dbfbd4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-design-watches-another-design-at-the-server-that-holds-it",
+  "properties": {
+    "note": "Rule 3 retires watching a photocopy file, so the only way left to watch a design is at the server that holds its blueprint (rule 1)."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

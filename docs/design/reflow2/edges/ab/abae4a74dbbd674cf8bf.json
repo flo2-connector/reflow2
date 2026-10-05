@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e2c1c73efa58ee140c46624599145a62b410316e8b6029be25bbbc55695a02b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d9d9d48c554c6783490b7758f47a42fa6bb9adc7d79548e1afc01ef32bf66a5a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:report-friction-skill"
+}

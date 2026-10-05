@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9bb68b30e4fde1c7a46954f5e756a5914799b4f315474e5ae150c5ac66699d7b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:describe-design-at-path",
+  "properties": {},
+  "to_id": "req:a-session-chooses-its-design"
+}

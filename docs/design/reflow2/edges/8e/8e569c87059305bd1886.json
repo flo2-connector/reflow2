@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:35905d68a4931645ef6dfacafb29d8967a2ad05d87867dd06c2340c4e60b7b0e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "note": "Triaged 2026-09-28 under the rule, on Anthony's word (\"As is the rule for feedback, please /root-cause all issues and /brainstorm all ideas\"), in six parallel groups each running the root-cause and brainstorm skills and measuring on 0.72.0 scratch stores. FIFTEEN ISSUES → 15 root-cause findings plus 4 class findings (the revise contract per handler; one root from the store's folder; instructions routed to paths that cannot take them; served text describing one deployment), and one flo2-side finding in flo2's design (fact:root-cause-the-door-rebinds-approver-and-says-so-only-in-its-refusal-2026-09-28). THREE REPORTER CONCLUSIONS OVERTURNED OR NARROWED: VERIFIES→Decision (GOVERNED_BY already models a check on a ruling), caused_by with no node (the deferred route works; only the instruction is missing), add_change_event has no repair (it has since v0.68.0). ONE MAINTAINER GUESS OVERTURNED: #604 recorded the false 'undated' note but never fixed it. IDEAS → 9 new exploratory Decisions, 3 appended to existing ideas as further sightings, and 2 recorded as a finding's proposed fix (record_finding keeps omitted fields; repair on add_change_event already exists). WHAT WORKED → 8 dated observations on the capabilities praised. The CAUSES and DOCUMENTS back-edges from this artifact name each."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

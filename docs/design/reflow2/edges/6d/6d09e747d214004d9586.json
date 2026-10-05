@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5426b94303f967b4edbfe16c6d0478b8d4666286abd89176eefa6f3d150a7713",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-interop-as-a-game",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

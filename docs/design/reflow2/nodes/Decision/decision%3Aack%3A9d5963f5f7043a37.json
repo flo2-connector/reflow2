@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17b4dcf52d00aa61828e3e79881bc946303ad7f19a1e23fea1663312368c2252",
+  "node_id": "decision:ack:9d5963f5f7043a37",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:9d5963f5f7043a37.",
+    "name": "Reviewed: gap:9d5963f5f7043a37",
+    "rationale": "Checked 2026-09-07: substantially mitigated, not closed. The per-seat scope and the moving-baseline note exist but sit behind an opt-in flag, so a default call still returns unlabelled fleet totals, and no payload reports an attached-session count or a since-your-first-call delta.",
+    "status": "accepted"
+  }
+}

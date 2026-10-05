@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:20e494255b1b156572efa432aeadac91161cc77742248f075cca62de62dcd9ec",
+  "node_id": "fact:eighteen-served-writers-sign-in-another-contributors-name-through-a-registry-2026-09-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED on clean origin/main 3a14696: through a real --registry-root engine, 18 of the 117 served write tools recorded an AUTHORED_BY in another contributor's name for a caller the gateway named",
+    "source": "crates/reflow2-mcp/tests/a_signature_is_the_callers_own_through_every_writer.rs (R-S3, #616 fix 4)",
+    "statement": "MEASURED 2026-09-30 by R-S3 (#616 fix 4), on a clean origin/main 3a14696 build under the shared build lock, with a class test that reads the write tools off the SERVED tool list (117) and drives each through a real `--registry-root` engine. Every call carried the caller in _meta[\"reflow2/writes_for\"] = who:alice, as flo2's gateway sends it. Each call was run as the caller, then again with every occurrence of who:alice, at any depth, replaced by who:mallory.\n\nOBSERVED: 18 tools recorded an AUTHORED_BY naming who:mallory for caller who:alice. They were acknowledge_defect, acknowledge_gap, acknowledge_gaps (per-item approver), add_decision, add_design_rule, add_requirement, apply_merge (a document by path), authored_by, collapse_decision, create_edge, create_edges, create_node, create_nodes, delete_edge (it REMOVED mallory's approval), draw_edges (a nested authored_by item), import_graph, set_decision_status and set_requirement_status.\n\nA second test measured the same engine with nothing declared: set_decision_status with an approver, create_edge AUTHORED_BY approver, create_node of an accepted Requirement with an approver, import_graph of an unsigned accepted Decision, and delete_edge of another's approval were all written.\n\nEXPECTED, per dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id option (e): every AUTHORED_BY a call writes is the caller's, and a call naming anyone else is refused; with nothing declared, no signing and no settling.",
+    "subject_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled",
+    "valid_from": "2026-09-30"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bead8b504ff922046ac6970fb20edb5f07b4f9415dc7f47c9b431bc6e612672a",
+  "node_id": "ver:a-check-that-could-not-run-lands-as-blocked",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "5/5 on the item 8 branch; 4 of 5 observed failing on main at 293f957 (the fifth guards the failing gap).",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_check_that_could_not_run_is_blocked.rs",
+    "method": "test",
+    "name": "A run can report blocked; blocked agrees with blocked, diverges from passing at medium severity, outranks a passed file and never hides a failed one; a blocked check raises blocked_verification and never failing_verification",
+    "status": "passing"
+  }
+}

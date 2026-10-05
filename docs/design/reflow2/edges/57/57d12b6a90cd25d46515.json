@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad935d863281610fc5af9b6b6b19df3309057955838632b218f50a7dd4fcc9a6",
+  "edge_type": "REALIZES",
+  "from_id": "art:prose-currency",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-settled-decision-names-governed-prose-that-still-reads-open"
+}

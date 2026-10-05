@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d2b3f14745fe1069b4193aaa9901adf36ca7a1bda6beea00ddbb1ddae07965e5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:98ea57e7b52febdb28bb3e58b1924c8b30fefd0ba606fc2a7592a9abab4f2594"
+  },
+  "to_id": "art:replies-are-bounded-gate"
+}

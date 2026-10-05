@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:d3d22f2c4d0d0e67fdd49966549f616f034a9d400f92fcf24a8dadeec64c4122",
+  "node_id": "fact:add-epoch-create-requirements-are-published-nowhere-and-describe-schema-says-only-name-is-required-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED on 0.77.0: a first add_epoch with no sequence is refused in one clear round trip that names BOTH missing fields (sequence and epoch_type) and says any integer works. Neither field is marked required anywhere an agent can read beforehand. The published schema requires only `id` and gives `sequence` no description, and describe_schema's required_only answer for DesignEpoch names only `name`. So this friction is the tool's, not the door's, and MCP clients meet it too",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "FROM THE 2026-10-02 TRIAGE (agent B), root-cause skill fetched fresh. Tool friction \"add_epoch refuses a missing `sequence` on every first epoch (clear message, one extra round trip)\" in art:vscode-call-door-field-report-2026-10-02.\n\n② PRECEDENT, so this is ALREADY RECORDED:\n- This decision (OPEN, Alex 2026-09-05) asks whether to auto-assign or to name the value.\n- chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only shipped the naming half.\nThe report confirms that half works.\n\n⑤ MEASURED through `--call` on an empty scratch store. `add_epoch {\"id\":\"epoch:first\",\"name\":\"First\"}` exits 1 with: \"`sequence` is required to CREATE DesignEpoch 'epoch:first': there are no epochs yet, so any integer works (1, or 10 to leave room). It is not auto-assigned because a sequence is a position claim only you can make. Also missing: epoch_type.\"\nWHERE ELSE AN AGENT COULD HAVE LEARNED IT FIRST:\n- stdio tools/list: add_epoch has `required: [\"id\"]`. `sequence` is an int-or-null with no description; epoch_type has an enum and no \"required to create\".\n- The description says \"CONTENT FIELDS ARE REQUIRED TO CREATE\" without naming which.\n- `--call describe_schema {\"node_type\":\"DesignEpoch\",\"required_only\":true}` returns properties [name (required)] and written_by [add_epoch, plan_epoch, set_epoch_status]. So the one served schema reader says only `name` is needed, which contradicts the tool.\n- The same holds for 22 dual-mode constructors (all publish required [id], or describe the rule generically). For example, add_decision with only an id is refused for `name` and `decision`.\n\nANSWERING THE TRIAGE QUESTION, \"is a default possible, and why is it required?\": the refusal states the reason, \"a position claim only you can make\". This decision's rationale records the counter-argument to max+1 (sequences are deliberately spaced and re-ordered: chg:the-philosophy-epoch-makes-room-for-a-cut). Its middle path (`sequence: \"next\"` only when asked) is still open. This finding changes none of that. That is Anthony's call.\n\nNEW HERE: the cost is not the refusal, which is good. It is that no reader, describe_schema included, can say beforehand what CREATE needs. A per-tool \"required to create\" list in the description or schema (an `x-required-to-create`, or the description naming its fields) would let both routes learn it before the call.",
+    "steps": [
+      "add_epoch",
+      "plan_epoch"
+    ],
+    "subject_id": "dec:idea-add-epoch-assigns-the-next-sequence-or-names-it",
+    "valid_from": "2026-10-02"
+  }
+}

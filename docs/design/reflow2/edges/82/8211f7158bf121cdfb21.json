@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a7d894a5ff3b0073276e6a6c1b76b2ba186f6d381a6e0f7a47410f491d80de4",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:writers-map",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:writers-map"
+}

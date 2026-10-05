@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:837a189edc5060a5eb23e075966056a75bb7682b42912b323f5a63b539a05ee8",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-open-question-its-own-promotion-answered-is-noticed"
+}

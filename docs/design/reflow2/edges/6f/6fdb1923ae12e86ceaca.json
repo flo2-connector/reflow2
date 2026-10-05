@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a2539098752e0fec1053d7848b937fe8802f4b137f1715f900de0a13c83fc11",
+  "edge_type": "REALIZES",
+  "from_id": "art:lens-core-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-skill-response-carries-the-lens"
+}

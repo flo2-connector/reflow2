@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bbbcf98b3a378332a405111ee7e4265709128d6b34f65a3ba471a4ad658ea0e2",
+  "edge_type": "MITIGATES",
+  "from_id": "req:the-mcp-surface-is-sized-for-tokens-per-task",
+  "properties": {
+    "evidence": "A write receipt names every edge the call drew as a subject-first sentence — that finding's proposed fix, for add_decision and add_capability alike."
+  },
+  "to_id": "fact:root-cause-add-decision-discards-the-edge-echo-its-related-to-computed-2026-09-28"
+}

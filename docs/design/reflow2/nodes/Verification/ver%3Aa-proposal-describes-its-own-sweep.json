@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bfbb7d8b9f264890133d2c1e72241f4aad18cd413936bcccc5482375174ff5fb",
+  "node_id": "ver:a-proposal-describes-its-own-sweep",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A heal proposal says what it swept and whether its scorer ran (crates/reflow2-core/tests/heal.rs) — 5 cases. THE CASE: with no duplicate in the design the reply reports `merge_candidates_considered: 0` and its summary says in words that the zero is NOT a pass — the state a fleet read as a clean bill while a standing stop on `apply_heal`, which deletes nodes, hung on it. THE COUNTERWEIGHT THAT KEEPS IT HONEST: a scorer that WAS given a candidate reports 1 and must NOT be labelled vacuous, because a fix that calls every zero vacuous is a different lie at the same address. THE THIRD STATE is pinned separately — a `suspected` duplicate never reaches the scorer, so it is not counted as considered, which stops the count quietly meaning `duplicates that exist`. SCOPE: one Project is named without ambiguity and `scope` still reads `whole design`; with TWO Projects the label must stop naming either, and THAT case is the one reflow2's own graph cannot produce, because it holds exactly one Project — which is why the self-host never saw the defect.",
+    "findings": "MUTATION-CHECKED TWICE, each killing exactly one test: restoring first-project-wins fails only the two-project case, and forcing every zero to read vacuous fails only the exercised-scorer counterweight.",
+    "kind": "verification",
+    "last_run_at": "2026-08-16",
+    "level": "unit",
+    "method": "test",
+    "name": "A heal proposal says what it swept and whether its scorer ran",
+    "status": "passing"
+  }
+}

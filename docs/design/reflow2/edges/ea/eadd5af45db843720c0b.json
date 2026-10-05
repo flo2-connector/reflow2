@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ec6969250388170bed8ad7c01c645b8041ae4b1f6c8533ff860f5f815a468144",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

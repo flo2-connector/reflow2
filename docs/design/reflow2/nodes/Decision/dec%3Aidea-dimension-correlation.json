@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:520bf1cb3927f1428bf5d8ecef181c4ef47c38795da85565dee60d8f99c31bf8",
+  "node_id": "dec:idea-dimension-correlation",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from the 2026-08-01 dynograph-foundation review. Nothing here is settled.\n\nTHE OBSERVATION: reflow2 uses exactly TWO functions from dynograph-vector — mean and linear_regression_slope, both in dimensions.rs. The depth axis records DimensionObservations and computes drift as a slope WITHIN one dimension over time.\n\nTHE IDEA: pearson_correlation and spearman_rank_correlation (unused) would answer a question the axis cannot currently ask — do two dimensions move TOGETHER across components? \"Does complexity track defect count?\" \"Does coupling track change frequency?\" Spearman is the rank version, so it survives non-linear but monotone relationships and is the safer default on small samples.\n\nCHEAP: pure functions, already a dependency, and the observations are already stored.\n\nTHE HONEST COUNTER-ARGUMENTS, and there are two. First, this is the most SPECULATIVE idea in the batch — no backlog item asks for it and no trial has reported wanting it, so it is a capability looking for a user. Second and more serious: correlation invites causal reading, and a design brain reporting \"complexity correlates with defects\" will be read as \"complexity causes defects\". The schema already takes this seriously — the CAUSES edge carries a `basis` enum (observed / correlational / causal / spurious) with the instruction \"do not assert causal without a mechanism\" — so the vocabulary for the caveat exists, but the report would have to carry it loudly.",
+    "name": "OPEN — should the depth axis compute CORRELATION between dimensions, not just drift within one?",
+    "rationale": "The only genuinely unexplored idea in dynograph-vector; the rest of that crate is either already used (mean, slope), already a parked question (embeddings), or thin (softmax, percentile).",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8c41e417706c073b17de1eeb8e1c81c5ce56892e59c53912111c0e8036f7ee7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:c003201a187543bed9202ee909fa580e314e6a69b467f18e4233ae5a317eaef9"
+  },
+  "to_id": "art:vocabulary-reach"
+}

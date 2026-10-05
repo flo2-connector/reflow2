@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:32fbb1215248a264e4405aa63dd5935ecd0d53f0aaa99b045a8a3b749b674291",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e6c577629d975ff83031bab6959ed988f009c8d1db4c3395ec4fb310104c9373",
+  "node_id": "ver:derived-declarations-are-held-to-the-code-they-reach-the-crate-and-their-rule",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/derived_relations_are_declared_and_checked.rs",
+    "method": "test",
+    "name": "Every derived declaration matches everything its code reaches (any depth, consts, the inference selector, never a writer); every edge-naming function in reflow2-core is declared or listed; components are the composition's primitives; a declared edge the rule does not state is named",
+    "status": "passing"
+  }
+}

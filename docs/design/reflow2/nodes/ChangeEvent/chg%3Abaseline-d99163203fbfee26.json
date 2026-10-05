@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf38e6461916af0414fa07ea57932cccd7c6a6d6945bec23724adbc087242d39",
+  "node_id": "chg:baseline-d99163203fbfee26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-09",
+    "name": "First baseline for the v0.27.0 upgrade note, written because the schema stamp moved (60 to 61 edge types, OWNED_BY added). Nothing moved; this is a new file getting its first hash."
+  }
+}

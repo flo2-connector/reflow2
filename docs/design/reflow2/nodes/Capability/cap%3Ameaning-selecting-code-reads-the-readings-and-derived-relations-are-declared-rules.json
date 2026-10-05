@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2676df927999056efd7db41c2ab87f1431d06f19790e0905447a3f934a5e781d",
+  "node_id": "cap:meaning-selecting-code-reads-the-readings-and-derived-relations-are-declared-rules",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Replaces private edge-name lists and exclusion constants with selection by declared reading; declares each of the 23 derived relationships as a composition of primitives; and either runs each rule from its declaration or checks it against the code's result on a real design.",
+    "name": "Code that selects relationships by meaning reads the declared readings, and each derived relationship is a declared rule that runs or is checked against the code",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

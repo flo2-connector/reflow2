@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a3e09061b1b3047f52f9b7d217da5f5343af69200280869a2ee6976b8d7fdd0",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:updating-doc",
+  "properties": {
+    "doc_kind": "runbook"
+  },
+  "to_id": "dec:backup-belongs-to-the-consumer"
+}

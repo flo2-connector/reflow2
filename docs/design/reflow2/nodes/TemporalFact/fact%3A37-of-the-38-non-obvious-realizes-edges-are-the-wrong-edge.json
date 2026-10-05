@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd4735432a7a372d5857db438df277d5422b36c6a4142e6cb8e4466400be7a59",
+  "node_id": "fact:37-of-the-38-non-obvious-realizes-edges-are-the-wrong-edge",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-23: of the 38 REALIZES edges that point at something other than a Capability or Component, 37 are the wrong edge and 1 (an Interface) is right — the question the idea said would decide it",
+    "statement": "Measured on the committed export at main 93d6397. REALIZES targets: Capability 411, Component 115, ChangeEvent 29, Requirement 7, Verification 6, TemporalFact 2, Interface 1. Judged one by one: INTERFACE (1) — art:graph-read → ifc:graph-read, code implementing the interface it serves: correct. CHANGEEVENT (29) — tests, code and skills pointed at the change that added them; REALIZES says a file implements a function, not that it belongs to a change. 17 already have the right record (CHANGED chg → art); 12 have none. REQUIREMENT (7) — test files 'realizing' a requirement; a test VERIFIES, through a Verification it IMPLEMENTS. None of the 7 test files is linked to any check at all. VERIFICATION (6) — test files → the check they are; IMPLEMENTS is the edge, and all 6 already have it: every one was written by THIS session (2026-09-22/23) through link_artifact on a shared server built 2026-09-20, before #567 fixed exactly this at the call site. TEMPORALFACT (2) — field-report documents → the finding recorded from them; DOCUMENTS is the edge; neither has it. ⇒ By the idea's own test (\"if most are the same defect, enumerating pays for itself\"), option B is favoured: Capability, Component and Interface are the three targets REALIZES is actually used correctly for.\n\n⚠️ CORRECTION, same day: the totals above are 29 + 7 + 6 + 2 + 1 = **45** edges off Capability/Component, of which **44** are the wrong edge and 1 is right — not \"37 of 38\". The 38 was the idea's own count from 2026-09-22, taken before this session added the 6 on Verifications, and it was carried over without re-adding. The per-class judgements are unchanged. Also found while planning the repair: two of the Requirement-class test files already had a matching check in the design (ver:constructors-preserve, ver:vocabulary-reach-is-validated-against-known-cases), passing but implemented by nothing — the repair ties the files to those rather than minting duplicates.",
+    "subject_id": "dec:idea-should-realizes-stop-being-a-wildcard",
+    "valid_from": "2026-09-23"
+  }
+}

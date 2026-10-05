@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2abe2bedcf04eccec5d90253e607ca842bab2de75542beac3545cac2ccef3312",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-capture"
+}

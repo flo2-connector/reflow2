@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0649dfa0c8b3259cdcdbf9379e9f8602ec1aa4690e4a92a4f098e4e9a70eb063",
+  "node_id": "art:derived",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/derived.rs",
+    "name": "crates/reflow2-core/src/derived.rs — loads the declarations and evaluates each by its code path",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:349e0fc7167172d0fcf8ddb565c7322fc6bf494e08425d41fb962597b1e07946",
+  "node_id": "fact:a-report-with-no-way-to-narrow-itself-crossed-its-cap-because-the-design-grew-not-because-anything-changed",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "A report with no way to narrow itself crossed its reply cap because the design GREW, not because anything about the report changed",
+    "source": "tools/replies_are_bounded.py against the live export, 2026-09-20",
+    "statement": "MEASURED 2026-09-20 by the gate that seeds a real design from the committed export and calls every no-argument read tool: `ility_report` answered 30,301 characters against a 30,000 budget and was the ONLY UNBOUNDED overflow of the 40 measured. Five other reports also exceeded the cap and all five narrow themselves, so the instrument reported them and passed.\n\n⭐ NOTHING ABOUT THE REPORT CHANGED. The session's own records — a release, two triages, twelve settled ideas and four increments — grew the design past the line. That is the failure mode the reply budget exists for arriving by growth rather than by an edit, which is the case a test written once at a fixed size can never catch and a gate run against the real export catches for free.\n\nFIXED IN THE SAME PASS: the tool took an empty request struct, which is why it had nowhere to put a bound; it now takes the shared budget request and samples like its neighbours. The counts are never budgeted away, so a shorter answer is not a quieter one.",
+    "subject_id": "cap:every-oversized-reply-offers-a-bound",
+    "valid_from": "2026-09-20"
+  }
+}

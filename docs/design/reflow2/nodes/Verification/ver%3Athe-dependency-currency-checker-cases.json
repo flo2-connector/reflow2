@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:856d553e7bac44494c014f9bfc70c96d09f4e2583a5032676d8349eb44501c21",
+  "node_id": "ver:the-dependency-currency-checker-cases",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "12/12 locally on 2026-10-03; CI runs it in the core job.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "unit",
+    "location": "tools/test_dependency_currency.py",
+    "method": "test",
+    "name": "tools/test_dependency_currency.py: 12 hermetic cases for the currency checker, run in ci.yml's core gates",
+    "status": "passing"
+  }
+}

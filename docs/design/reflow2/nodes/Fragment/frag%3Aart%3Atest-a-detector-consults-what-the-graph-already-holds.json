@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5b46aab5abd31ff3fca8fc7dd534645b3a83c7f8bf2d3f9d77b93367de8a7001",
+  "node_id": "frag:art:test-a-detector-consults-what-the-graph-already-holds",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_detector_consults_what_the_graph_already_holds.rs — a withdrawn rule raises no gap; gaps sharing one cause name each other; and the header records the deferred-requirement pin that was WRONG and why"
+  }
+}

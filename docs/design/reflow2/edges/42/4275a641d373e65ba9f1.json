@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca0f1b216ec9e5f6906840b5a767070a7dbd1b7a1593924fdca99a8592339adf",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-a-verification-cannot-record-a-partly-blocked-run",
+  "properties": {
+    "evidence": "The qs report of 2026-09-04 recorded the same gap (one status per run, qualification only in prose) in a partly-blocked shape and warned that a `partial` status owes every reader a ruling. This is its second sighting, from dev_storyflow, in an expected-change shape."
+  },
+  "to_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28"
+}

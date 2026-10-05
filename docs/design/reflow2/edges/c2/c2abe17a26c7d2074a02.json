@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9883f502d2754701115e9b3964663617ccc98afb03db82dfb714bea190fc9c91",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:capture-asks-for-the-signature-and-the-unsigned-fraction-is-one-finding",
+  "properties": {},
+  "to_id": "req:every-capability-is-asked-for-its-signature-and-the-unsigned-fraction-is-reported"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4838b272e67caf5d74c2684362cd542c4c802128e310592565075acd68c5fc1e",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-write-replies-with-a-receipt",
+  "properties": {},
+  "to_id": "cap:a-revising-write-keeps-what-it-would-have-lost"
+}

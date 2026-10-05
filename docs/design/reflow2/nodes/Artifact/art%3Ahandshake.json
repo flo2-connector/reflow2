@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:51ff2ae7656150186a90b21de5e6c5d61338caa1cbd745e4684e7de5eefcbb43",
+  "node_id": "art:handshake",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/handshake.rs",
+    "name": "handshake.rs",
+    "status": "realized"
+  }
+}

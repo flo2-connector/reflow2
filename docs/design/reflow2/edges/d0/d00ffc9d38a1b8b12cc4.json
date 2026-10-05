@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:03aefd2abfd5d8e326b2f8d1ec8844d3fdee7bb6e468d8edc0a88e51eed4738b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:fd8767e1fb0ad3ede7ea0156aaae43c1d3e9f8fd345f4be31776abe3f18d86dc",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:evidence-quality-instrument"
+}

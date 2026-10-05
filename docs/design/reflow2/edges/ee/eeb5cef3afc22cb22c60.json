@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:df23037db04ef486578bb264d0d208d023604e3a15b2fa777591b495604b8dc7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:edge-prose-is-read-when-the-node-moves",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:propagate"
+}

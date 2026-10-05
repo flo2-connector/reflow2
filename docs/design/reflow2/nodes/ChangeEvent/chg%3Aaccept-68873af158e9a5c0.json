@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ef30cb8f5f10db190b0f59b936efdc2543c8ddd18ded39200c6d0af753046ad",
+  "node_id": "chg:accept-68873af158e9a5c0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical: two internal add_change_event call sites take the new trailing detected_at argument. Behaviour unchanged.",
+    "subject": "system"
+  }
+}

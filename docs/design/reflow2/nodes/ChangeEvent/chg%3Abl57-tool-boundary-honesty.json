@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bcab86594938d94705d43bef2560cc80e0507d445080c3f8c093240152dbe93f",
+  "node_id": "chg:bl57-tool-boundary-honesty",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "BL-57: the tool boundary tells the truth — dyno_err maps caller mistakes to invalid_params not internal_error (one choke point, ~60 tools); every request struct denies unknown fields (a typo'd param is rejected, not swallowed — schemars publishes additionalProperties:false); export_graph refuses to overwrite without opt-in and reports the resolved path; the serve path gets the single-writer lock explanation; get_node returns one named {node} shape both ways; withdraw_gap_acknowledgement aligns on {withdrawn}"
+  }
+}

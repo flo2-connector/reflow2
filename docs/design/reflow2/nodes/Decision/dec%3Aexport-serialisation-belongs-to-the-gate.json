@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:58f212322d8c6e410ac9836c4393cf107cbf121ebc4be26a274c6c3c397ffcf3",
+  "node_id": "dec:export-serialisation-belongs-to-the-gate",
+  "node_type": "Decision",
+  "properties": {
+    "chose": "Superseded 2026-10-03 on Anthony's word by dec:the-designs-lineage-is-kept-per-item (fix-program item 13): the saved design becomes one file per item, so serialisation is per item and the whole-design hash is computed on read.",
+    "decision": "Implement req:the-export-is-serialised-rather-than-socially-enforced in reflow2_check.py (the CI gate), which already reads the committed export, rather than by adding serialisation or refusal to the MCP server.",
+    "name": "A second exporting commit is caught by the CI gate, not by the server",
+    "rationale": "Anthony's word, 2026-08-08, when accepting the requirement; the fleet's own framing ('the tool could refuse or serialise') deliberately left the location open. THE GATE IS WHERE THE EVIDENCE ALREADY IS: the lineage chain lives in the committed export document and its prev_content_hash, which is a property of the COMMIT HISTORY rather than of any live server session — so the server would have to be told about git to enforce it, while the gate already reads exactly the artifact in question. IT ALSO MATCHES WHERE THE FAILURE HAPPENS: two exporting commits break the chain at merge time, not at write time, and both projects that hit this hit it in a pull request. A server-side lock would additionally have to survive the case reflow2's own release procedure records, where a fold rewrites history after the exports were made — which no live serialisation can see. NOTE THE HONEST LIMIT: the gate catches it at CI rather than preventing it at authoring time, so a session still learns about the collision late. That is accepted as the cost of putting the check where the data is.",
+    "status": "superseded"
+  }
+}

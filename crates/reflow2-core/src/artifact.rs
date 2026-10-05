@@ -283,11 +283,73 @@ impl DesignGraph {
                 message: format!("checksum_basis must be `measured` or `asserted`, got {basis:?}"),
             });
         }
-        self.upsert_node(
+        // The basis describes the CURRENT accepted checksum, which since
+        // 2026-10-03 rides the accepting change's CHANGED edge too
+        // (dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr):
+        // stamp it there as well, so the record's two copies say the same thing
+        // and the node's can be derived from the edge.
+        let node = self.upsert_node(
             node::ARTIFACT,
             artifact_id,
             Props::new().set("checksum_basis", basis),
-        )
+        )?;
+        let current = node
+            .properties
+            .get("checksum")
+            .and_then(|v| v.as_str())
+            .map(str::to_string);
+        if let Some(current) = current
+            && let Some(edge) = self.current_acceptance(artifact_id)?
+            && edge
+                .properties
+                .get("checksum_after")
+                .and_then(|v| v.as_str())
+                .is_some_and(|c| c == current)
+        {
+            let mut props: std::collections::HashMap<String, crate::foundation::core::Value> =
+                edge.properties.clone();
+            props.insert("checksum_basis".into(), basis.into());
+            self.create_edge(
+                edge::CHANGED,
+                node::CHANGE_EVENT,
+                &edge.from_id,
+                node::ARTIFACT,
+                artifact_id,
+                props,
+            )?;
+        }
+        Ok(node)
+    }
+
+    /// The acceptance that is current for `artifact_id`: among the CHANGED
+    /// edges into it that carry `checksum_after`, the one with the highest
+    /// `accepted_seq` (ties broken by the smaller change id, so the answer is
+    /// stable). None when no change has accepted a checksum on it yet.
+    pub fn current_acceptance(&self, artifact_id: &str) -> Result<Option<StoredEdge>, DynoError> {
+        let mut best: Option<StoredEdge> = None;
+        for e in self.incoming(artifact_id, Some(edge::CHANGED))? {
+            if e.properties
+                .get("checksum_after")
+                .and_then(|v| v.as_str())
+                .is_none()
+            {
+                continue;
+            }
+            let seq = |x: &StoredEdge| {
+                x.properties
+                    .get("accepted_seq")
+                    .and_then(|v| v.as_i64())
+                    .unwrap_or(0)
+            };
+            let better = match &best {
+                None => true,
+                Some(b) => seq(&e) > seq(b) || (seq(&e) == seq(b) && e.from_id < b.from_id),
+            };
+            if better {
+                best = Some(e);
+            }
+        }
+        Ok(best)
     }
 
     /// Record the FIRST checksum on an artifact that has none — the baseline
@@ -575,6 +637,11 @@ impl DesignGraph {
             self.create_node(node::DRIFT_EVENT, &ev.node_id, props)?;
         }
 
+        // THE ACCEPTED CHECKSUM GOES ON THE ACCEPTING CHANGE'S EDGE (decision 3
+        // of dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr),
+        // and the node keeps the current one — which the record then derives.
+        self.stamp_acceptance(&event_id, artifact_id, checksum)?;
+
         let mut props = Props::new().set("checksum", checksum.as_str());
         for (k, v) in &existing.properties {
             if k != "checksum" {
@@ -598,6 +665,87 @@ impl DesignGraph {
             Props::new()
                 .set("action", ChangeAction::Modified.as_str())
                 .set("accepted_baseline", true),
+        )?;
+        Ok(())
+    }
+
+    /// Put the checksum an accept ACCEPTED on the accepting change's CHANGED
+    /// edge (`checksum_after`), numbered so the current one is computable
+    /// without a clock (`accepted_seq`). Anthony, 2026-10-03,
+    /// `dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr`
+    /// decision 3: an accepted checksum lives on the change that accepted it,
+    /// so two pull requests that edit one file each write their OWN edge and
+    /// never one shared value. The Artifact's `checksum` stays in the store as
+    /// the current one and is derived from these on import.
+    ///
+    /// Re-stating the acceptance that is already current keeps its number, so
+    /// re-running an accept is idempotent; anything else takes the next one.
+    pub(crate) fn stamp_acceptance(
+        &mut self,
+        event_id: &str,
+        artifact_id: &str,
+        checksum: &str,
+    ) -> Result<(), DynoError> {
+        let mut max_seq = 0i64;
+        let mut existing: Option<StoredEdge> = None;
+        for e in self.incoming(artifact_id, Some(edge::CHANGED))? {
+            if e.properties
+                .get("checksum_after")
+                .and_then(|v| v.as_str())
+                .is_some()
+            {
+                max_seq = max_seq.max(
+                    e.properties
+                        .get("accepted_seq")
+                        .and_then(|v| v.as_i64())
+                        .unwrap_or(0),
+                );
+            }
+            if e.from_id == event_id {
+                existing = Some(e);
+            }
+        }
+        let current = self.current_acceptance(artifact_id)?;
+        let already_current = current.as_ref().is_some_and(|c| {
+            c.from_id == event_id
+                && c.properties
+                    .get("checksum_after")
+                    .and_then(|v| v.as_str())
+                    .is_some_and(|v| v == checksum)
+        });
+        let seq = if already_current {
+            max_seq
+        } else {
+            max_seq + 1
+        };
+        let mut props: std::collections::HashMap<String, crate::foundation::core::Value> =
+            existing.map(|e| e.properties).unwrap_or_default();
+        let same_checksum = props
+            .get("checksum_after")
+            .and_then(|v| v.as_str())
+            .is_some_and(|v| v == checksum);
+        if !same_checksum {
+            // A basis describes one checksum; a new one has not been measured
+            // or asserted yet, and set_checksum_basis says which it was.
+            props.remove("checksum_basis");
+        }
+        props.insert(
+            "action".into(),
+            ChangeAction::Modified.as_str().to_string().into(),
+        );
+        props.insert("accepted_baseline".into(), true.into());
+        props.insert("checksum_after".into(), checksum.to_string().into());
+        props.insert(
+            "accepted_seq".into(),
+            crate::foundation::core::Value::Int(seq),
+        );
+        self.create_edge(
+            edge::CHANGED,
+            node::CHANGE_EVENT,
+            event_id,
+            node::ARTIFACT,
+            artifact_id,
+            props,
         )?;
         Ok(())
     }

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c585bc40694628176b0eadb97b9d199cca60419fcf5f4bbdfe84261a4845f3d1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:link-projects-skill",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

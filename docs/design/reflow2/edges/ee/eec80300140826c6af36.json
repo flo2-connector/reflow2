@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00f4c75706a936edc43ef2928e3c8fc3a3ba005a874947f6acfa5e58798a0ed3",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-hub-flags-an-identical-file-in-two-projects-when-a-project-changes",
+  "properties": {
+    "evidence": "The flag compares checksums reflow2 already records for registered files. Without measured checksums there is nothing mechanical to compare.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reflow2-measures-registered-files-and-never-reads-them-for-meaning"
+}

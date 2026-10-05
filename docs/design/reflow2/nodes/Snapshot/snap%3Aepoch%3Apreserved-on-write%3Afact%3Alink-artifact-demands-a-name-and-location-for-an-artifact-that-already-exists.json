@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:845374bc66724e650a6bb722ecc6f221c1378b3ef04d365cf1f7fa02f9563232",
+  "node_id": "snap:epoch:preserved-on-write:fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"basis\":\"measured\",\"confidence\":1.0,\"fact_type\":\"observation\",\"statement\":\"TOOL FRICTION MET WHILE WORKING, CAPTURED UNDER THE STANDING RULE THAT EVERY REFLOW2 TOOL FAILURE IS WRITTEN DOWN. Attaching an existing Artifact to a ChangeEvent with link_artifact on 2026-09-07 was refused with `missing field name`, then required the artifact's full name and location to be re-sent — roughly 300 characters the graph already held and had just returned from add_artifact. The call succeeded only on the third attempt.\\n\\nTHREE SEPARATE COSTS IN ONE CALL. First, name and location are mandatory even when artifact_id resolves an existing node, so the caller re-types stored state. Second, link_artifact does NOT accept `description` though add_artifact does, so creating an artifact with prose and then linking it takes two tools with different field sets for the same node. Third, and worst, re-sending a name invites a caller to send a SHORTER one than the stored value and silently overwrite good prose with a stub.\\n\\nTHE CLASS THIS BELONGS TO is the sibling-shape inconsistency already recorded twice: constructors and their linking counterparts disagree about which fields they accept for the same node type. This is one more instance, and the first measured on the artifact family.\\n\\nNOT INVESTIGATED: whether link_artifact overwrites or preserves a stored name when a different one is sent. That is the question worth answering first, because the answer decides whether this is friction or data loss.\",\"subject_id\":\"art:tools-operate\",\"valid_from\":\"2026-09-07\"}",
+    "target_id": "fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists",
+    "target_type": "TemporalFact"
+  }
+}

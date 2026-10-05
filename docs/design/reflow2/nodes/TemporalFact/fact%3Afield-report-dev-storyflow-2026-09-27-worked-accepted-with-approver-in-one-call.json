@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca819984c17edf3bb7def24b0948edb08aca28f5fa46949490793c16ed8310ec",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-accepted-with-approver-in-one-call",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, 2026-09-27, local store): `add_decision` with `status: accepted` + `approver` in one call — no second signing call",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Reporter (session 62995724, before the move to flo2.io): \"`add_decision` with `status: accepted` + `approver` in one call — no second signing call.\" NOTE THE CONTRAST, triaged separately: the same evening, on the hosted engine, `approver` was refused by flo2 (\"an approval recorded through flo2 is always the signed-in person's own … leave `approver` out\"), so the one-call form that worked locally is refused as written on flo2.io.",
+    "subject_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+    "valid_from": "2026-09-27"
+  }
+}

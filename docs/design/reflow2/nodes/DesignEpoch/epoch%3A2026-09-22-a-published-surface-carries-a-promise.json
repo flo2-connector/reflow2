@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:107321ef21794a77a415b7ccfd35a29982126622d7a8e12dd2f964796c89e10b",
+  "node_id": "epoch:2026-09-22-a-published-surface-carries-a-promise",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "THE LESSON: a capability can be built, verified, documented and used by nobody, and every signal in the design will read green.\n\n`cap:publish-surface` was VERIFIED. `req:publishable-promise` was ACCEPTED — \"a published surface must be able to carry a behavioural promise, not only structure\". `set_requirement_designation` shipped and works. And reflow2 published 0 of its 262 requirements, for months, while a real consumer mirrored it correctly and received 22 nodes of pure structure.\n\n⭐ THE SYMPTOM ARRIVED AS A HUMAN COMPLAINT, NOT AS A FINDING. Anthony: flo2's sessions keep needing to be reminded they can read reflow2's design. flo2's own graph already held a root-cause record for that from three days earlier, which named it the THIRD occurrence and closed with \"there is no test that fails today for any of this — an agent did not look has no executable form — so this is a CONTAINMENT, not a cure.\" True of THAT cause. It hid a second one underneath: there was nothing in the mirror worth looking at.\n\n⇒ AN AGENT THAT STOPS MENTIONING A RESOURCE WHICH NEVER ANSWERS ANYTHING IS BEHAVING SENSIBLY. The repair was not to the agent.\n\nWHAT LANDED: `published_surface_carries_no_intent`, and six requirements marked `published` on Anthony's word — chosen for what flo2 actually relies on: many designs on one service, the trust boundary at ingress, the read-only hosted surface, a refusal naming what would have worked, conventions riding the tool, and a design reachable without the repo.\n\nAND THE DISCIPLINE THAT SHAPED THE CHOICE: four of the first six candidates were still `proposed`. Publishing a proposed requirement would promise a consumer something the owner has not settled, so the set was narrowed to accepted ones. `rule:design-intent-moves-only-on-the-owners-word` is why an agent may not simply accept them to make the list nicer.",
+    "epoch_type": "revision",
+    "name": "The published surface gains its first promises, and something finally notices when it has none",
+    "sequence": 550,
+    "status": "arrived"
+  }
+}

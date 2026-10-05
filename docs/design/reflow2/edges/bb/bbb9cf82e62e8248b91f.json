@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33e928bb3de041d91772b0eabafbdca9fb717d495383d26deccece66f90ffec7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-should-a-drawn-relation-be-echoed-back-as-a-sentence",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

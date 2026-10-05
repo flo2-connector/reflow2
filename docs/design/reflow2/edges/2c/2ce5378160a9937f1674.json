@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d861fce942ad157211ab08a999d6f429e898a7a31e6bb775b12bf57c482984f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revise-of-an-epoch-keeps-its-status",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

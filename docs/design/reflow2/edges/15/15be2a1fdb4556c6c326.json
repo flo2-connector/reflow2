@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11e4813334c89c2b792cd414acd214def726eedc59df1f2133d748a82cd38cd7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-floating-parts-get-a-home",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:registry"
+}

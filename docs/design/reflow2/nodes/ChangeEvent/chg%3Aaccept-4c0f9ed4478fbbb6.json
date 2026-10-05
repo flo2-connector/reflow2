@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:570c1ab71abb62738b7f5bfc317ef1c46c0b51079efad67106fb015dcb74de7c",
+  "node_id": "chg:accept-4c0f9ed4478fbbb6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Caller moved to open_defects() when detect_defects gained its sweep envelope; behaviour unchanged.",
+    "subject": "system"
+  }
+}

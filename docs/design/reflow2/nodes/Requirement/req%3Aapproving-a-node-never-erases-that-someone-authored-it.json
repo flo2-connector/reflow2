@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:575a07056f1fb68edfc3bfef9eb3056291a0ee20eda126d3f2b3e99a8f5370d7",
+  "node_id": "req:approving-a-node-never-erases-that-someone-authored-it",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Approving a node never erases the record that someone authored it — a contributor's roles toward a node accumulate",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A contributor can stand in more than one relation to the same node — wrote it, reviewed it, signed it off — and each is a fact with its own date. Recording one must never displace another. The design's own word (dec:design-authorship-identity) is that authorship \"is past tense and never changes\"; a settling write that removed it broke that promise silently, and flo2 lost August authorship on two rules to September rulings before a diff happened to catch it.\n\nThe call surface a user or agent already knows stays as it is: `authored_by(role=…)`, and `approver` on the constructors and status setters. What changes is underneath: the stored relation carries the SET of roles and a date per role, and a write adds to it. A store or export written before this reads correctly and is brought to the new shape without anyone asking for it.\n\nAnthony's word, 2026-09-14: \"Go with (a), fix it at the root.\"",
+    "status": "accepted"
+  }
+}

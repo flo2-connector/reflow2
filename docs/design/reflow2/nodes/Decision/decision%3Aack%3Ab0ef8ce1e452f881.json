@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a3e8eecec4627c251b7a62ac10fa22dca412be9ccc03cb49474970bbf994d98e",
+  "node_id": "decision:ack:b0ef8ce1e452f881",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b0ef8ce1e452f881.",
+    "name": "Reviewed: gap:b0ef8ce1e452f881",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. The rule stands and is explicitly NOT dropped: a default must not assert a choice nobody made. Enforcement is deferred to a later increment, including the schema sweep of the ten defaults that assert an unchosen value — the clearest being Requirement.concern, which sits at 'core' on 67 of 67 nodes with zero code references, so the value carries no information and no one selected it.",
+    "status": "accepted"
+  }
+}

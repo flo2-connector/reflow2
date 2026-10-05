@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1b5b940aae041a6742a34cde42f709ff309c9a4683ebb0747781da82580d69c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0580",
+  "properties": {
+    "as_checksum": "sha256:6ce194d4464eeb313b861daf1d9b170c0817c493f983b073eb5cdf53a6aeb171"
+  },
+  "to_id": "art:kit-instructions"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3e4c1aba6e80a221d9a9f384407f196e4cc48d845971fa9635ded13332574552",
+  "node_id": "cmp:sanitize",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "sanitize",
+    "provenance": "authored",
+    "purpose": "The ingress trust boundary: the one place that neutralises instruction-carrying characters in text arriving from outside the session, and reports what it stripped. Deliberately a separate module rather than a helper inside ingest, because the same boundary has to serve graph import and, later, any hosted surface — a filter that lives inside one caller is a filter the next caller forgets.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88366e9af748f98e89908629da485f8e444136a64dd3b651b1d0f13eadc44f3b",
+  "node_id": "ver:compare-designs",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "compare.rs",
+    "status": "passing"
+  }
+}

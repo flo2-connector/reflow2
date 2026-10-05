@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af5b7fa0374d7445b8173f1e6cb5a446095750f986e8e6140c01cac2097caf9c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:schedule-is-structural",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:schedule-is-structural"
+}

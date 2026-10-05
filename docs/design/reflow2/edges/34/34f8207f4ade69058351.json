@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5f13a3df55b64c60d145840dcb651e72cbe81dc9f7be4fd03e7199fc3484c70",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

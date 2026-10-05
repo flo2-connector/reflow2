@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:da05028866df6a189aaf9a56d0ab397275a96c837eedb3ce126ad4a6b875df15",
+  "edge_type": "CAUSES",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That change made sync_debt::unexported_work the one producer of the export sentence (\"A record is the only copy that survives losing the graph directory: export before you finish\"). It returns nothing when the seat has no in-step tracked record (`let best = best?`). Sync records are a sidecar beside the store (provenance.rs read_sync_state), so a store imported onto a host starts with none. flo2 strips export_graph's `path`, so a hosted store never gets one. Measured on 0.72.0: silence on a registry-served store, and the sentence appears on a local store only after a tracked export.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28"
+}

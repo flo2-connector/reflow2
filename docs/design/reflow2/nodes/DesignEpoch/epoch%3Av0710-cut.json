@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:166c3d3eff5b76075448f8c4fe6ee252a479024a9dff8ab9f7afe2953258aa99",
+  "node_id": "epoch:v0710-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships writes_for: a session names the Contributor it writes for, once through the tool or per call under _meta reflow2/writes_for, and every node it writes afterwards is credited to them as author. Credit only, never an approval. Also carries the same day's design-only scope change: the design no longer has to live in the code repository. Two changes pinned. Follows epoch:v0700-cut.",
+    "epoch_type": "release_cut",
+    "name": "v0.71.0 release cut (2026-09-25)",
+    "sequence": 621,
+    "status": "arrived"
+  }
+}

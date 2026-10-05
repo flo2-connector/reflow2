@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:57ac1a392f01ffefed1be93ddc439ec8984517b1bb310328a1db995e22abf31a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-reflow2s-own-scaffolding-manufactures-the-findings-it-then-reports",
+  "properties": {
+    "evidence": "Option ① is that decision's pattern applied to reflow2's own scaffolding. It established that a deliberate island can be declared correct and the detectors told to expect it, rather than reported forever as a defect — which is exactly what a Question created by gap_to_prompt needs. The mechanism it proved is the one this question proposes reusing.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:documentation-has-no-operational-coupling"
+}

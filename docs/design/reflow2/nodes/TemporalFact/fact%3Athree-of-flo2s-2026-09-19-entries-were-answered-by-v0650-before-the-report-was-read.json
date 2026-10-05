@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8cf798ac024e9dfae0e59b822f23ceef166d3375319123381ea9953d488c8c25",
+  "node_id": "fact:three-of-flo2s-2026-09-19-entries-were-answered-by-v0650-before-the-report-was-read",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "status",
+    "name": "Three of flo2's entries were already answered by v0.65.0, cut the same day the report was written",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "Checked entry by entry against the v0.65.0 surface on 2026-09-19. ① F13 ('add_epoch lands at arrived, so creating a FUTURE release cut asserts it already shipped') — ANSWERED: add_epoch now takes `status`, its description names what omitting it lands, and `planned` is sayable on the same call. ② The F8/F9/F14 correction's real ask ('list_skills DROPS them — the data exists one layer down and never reaches a consumer') — ANSWERED: list_skills and get_skill now serve `summary` and `audience`, and `find_skills` finds a skill from a sentence in a person's words. flo2's palette can show real human copy without a hand-maintained allowlist. ③ F4's original ask, an append or section-replace on a long prose field — ANSWERED by `replace_text`, which moves one sentence or appends a dated note without re-sending the field. WHAT IS NOT ANSWERED and stands as its own finding: F4 SHARPENED's measurement that a full-field rewrite SILENTLY DROPS content, and its cheapest remedy, a length delta in the reply. replace_text removes the pressure to rewrite; it does not guard a rewrite somebody performs anyway.",
+    "subject_id": "cap:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+    "valid_from": "2026-09-19"
+  }
+}

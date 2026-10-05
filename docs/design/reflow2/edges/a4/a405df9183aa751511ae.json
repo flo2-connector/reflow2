@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c81036017d8441c773b5bfd31741269406924175be86a8c32ce84550910c6d28",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-02f735709d987075",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

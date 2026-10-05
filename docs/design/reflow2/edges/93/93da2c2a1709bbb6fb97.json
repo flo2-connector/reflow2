@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:01ad168f5d1bdf1c04717d4572f8a1132a12d99254c26533d4aefce58d66dc4d",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-derived-scan-runs-once-per-write-generation",
+  "properties": {},
+  "to_id": "con:loop-status-warm-latency-ms"
+}

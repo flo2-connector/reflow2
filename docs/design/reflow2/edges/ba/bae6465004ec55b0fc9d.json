@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:742409f55ad872123fd47303d7433991d8f79c0ad3e59978453b3e7975924a87",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "lift_to_level now resolves a parent by looking the node up as a Component instead of matching an id prefix (maturity.rs:389-431), and the scope note says coupling/contract pairs rather than endpoints."
+  },
+  "to_id": "fact:seam-roll-up-found-a-container-by-id-prefix-and-answered-a-false-zero"
+}

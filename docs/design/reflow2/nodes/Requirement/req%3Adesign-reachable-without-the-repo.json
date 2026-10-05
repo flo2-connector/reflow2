@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:72d3ba157a8152b4b7f010ce421e03c91e919dcf5f9efe472ebaceed853c1f69",
+  "node_id": "req:design-reachable-without-the-repo",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "published",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Someone without the repo can reach a design, read it, and contribute to it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony and his brother work on each other's ideas from opposite coasts, and today the only way to reach a design is to clone the repository that carries it. The intent is that a design can be made reachable to a named collaborator without handing them the code: they can read what it says, ask it questions, and contribute intent back — the collaboration is on the DESIGN, which is often the part a second person can help with before they know anything about the implementation. Two things this must not become. It must not make the design's home ambiguous: whatever hosts a shared copy, the repo file stays the durable record, or a hosting outage becomes a design outage (req:persistence, dec:repo-file-embedded). And it must not silently widen who can write: reaching a design is not the same as authoring in it, so a contribution must be attributable to a person (the Contributor layer, which exists) and the reach must be granted rather than assumed. Whether this is served by git remotes that already span both coasts, by a hosted service, or by both, is the open question recorded as dec:central-host — this requirement states the need, not the machinery.",
+    "status": "accepted"
+  }
+}

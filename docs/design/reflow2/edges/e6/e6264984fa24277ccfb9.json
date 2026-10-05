@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:955f2a71a67c00804172abed757f704f3318ef5cefec52545435d0120f6c655c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:serde-yaml-ng-replaces-serde-yaml-and-the-lock-is-refreshed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:schema"
+}

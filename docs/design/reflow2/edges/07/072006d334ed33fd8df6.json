@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b349458391dba21f1f179cec8c022fd1f937228c82f3564eeb05a490380d1cc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-search-first",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-search-first"
+}

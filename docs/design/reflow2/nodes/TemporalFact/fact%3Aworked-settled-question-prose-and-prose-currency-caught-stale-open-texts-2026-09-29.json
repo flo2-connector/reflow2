@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5c097ab6b686967fbf34bc94716af5fa91c903cb525221c59eebb4e501897d59",
+  "node_id": "fact:worked-settled-question-prose-and-prose-currency-caught-stale-open-texts-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-09-29, 0.74.0 through the flo2 connector): settled_question_prose and prose_currency caught two \"open question\" texts a designer agent had left behind after settling them, in a session where each settlement was the owner agent's word relayed by hand. Do not regress it",
+    "source": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+    "statement": "From art:dev-reflow2-two-agent-exercise-feedback-2026-09-29, item W2 (friction-log entry #26).\n\nThe designer said: \"`settled_question_prose` and `prose_currency` caught two stale 'open question' texts.\" That was during round 2, recording a separate owner agent's answers as settlements (governed_by to accepted decisions, and status moves).\n\nWhy it mattered here: the settling party and the writing party were different agents, and every answer arrived relayed. That is exactly when the prose drafted before the answer is most likely to be left saying \"OPEN\". The warning arrived in the reply to the call that created the divergence, so the fix cost one edit rather than a later audit.\n\nThe same holds for cap:a-status-advance-says-whether-its-prose-predates-it (prose_currency), which fired on status moves in the same session. Not separately recorded: this one finding covers both checks, as the report does.",
+    "subject_id": "cap:a-settled-decision-names-governed-prose-that-still-reads-open",
+    "valid_from": "2026-09-29"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:59eaacc108c8027e12a5a60aca66b9516d52a7926229e2933710d0c8c52f4cf1",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:idea-what-do-we-call-the-thing-that-runs-the-agent",
+  "properties": {
+    "evidence": "MCP's own specification calls the product an agent runs inside a HOST, which is the obvious vendor-neutral term to adopt. That decision already uses 'host' for the opposite end of the connection — the machine SERVING reflow2 over HTTPS. Adopting MCP's sense while that question is open would leave one word meaning both ends, so this naming question cannot take its most promising industry option until that one settles or the collision is deliberately accepted."
+  },
+  "to_id": "dec:central-host"
+}

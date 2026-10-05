@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:000baaab411297a0e306fefde0fc3687205a5922beb4029023b0c8bded918233",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:7e94e450dbda74bbb0e6b367ea082d0efecc5d353472db92c57d02728051aec2"
+  },
+  "to_id": "art:enforced-rule-detector-test"
+}

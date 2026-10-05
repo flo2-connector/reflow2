@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d389858c5f33d9f630a9c967f648354bcae599865eb4b6c4f21676a0defd21e6",
+  "edge_type": "REALIZES",
+  "from_id": "art:hub-command",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs"
+}

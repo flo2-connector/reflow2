@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3a0712260ac51b331f39701850bffe376dad8e7775d0b797e804502a0065870",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-consumable-as-an-image",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

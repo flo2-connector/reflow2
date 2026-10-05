@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:da4a851e2827f9e6b4f77925460982cbf096630a0c21cc7368d043c3128130a6",
+  "node_id": "decision:ack:b89b95a950b25a99",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b89b95a950b25a99.",
+    "name": "Reviewed: gap:b89b95a950b25a99",
+    "rationale": "Checked 2026-09-07: half open. The loss note now quotes priority and status by value before a merge, but the survivor is still chosen by provenance rank with the smaller id as tiebreak, so a critical node can still lose to a medium one.",
+    "status": "accepted"
+  }
+}

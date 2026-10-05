@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:54db1170a037f364d23e2d202a3703df1fbed11bba4a38de538e4755d6916bf1",
+  "edge_type": "OBSOLETES",
+  "from_id": "epoch:planned-read-half",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "epoch:v0250-planned"
+}

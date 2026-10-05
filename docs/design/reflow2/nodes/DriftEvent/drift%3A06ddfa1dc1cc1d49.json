@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:208e4e0865ba6ebea8208591f1eda8a00c30ca4a037f5c10ed41faea098f1986",
+  "node_id": "drift:06ddfa1dc1cc1d49",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-08-06T08:55:00Z",
+    "drift_type": "checksum_change",
+    "name": "art:tools-coherence drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:tools-coherence' has changed since it was registered against the design"
+  }
+}

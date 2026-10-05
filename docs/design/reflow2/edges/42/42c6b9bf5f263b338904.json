@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fe31a96b46602cc825e5aed0d6e097553be61981193e0622a06ddba48f8ae32e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:in-flight-branches-are-visible-but-not-merged-into-reads",
+  "properties": {},
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

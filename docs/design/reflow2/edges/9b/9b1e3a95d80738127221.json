@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0284b32c927c4f1edbd6e36a2f663b8d2b8c6b8898bc1838c2664dd34404c8da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f6c963c9d6dcc570f6f4a987e0f4c37b2cef4d70cf1f9acc2a392e799ec10214"
+  },
+  "to_id": "art:test-ephemeral-says-so"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b8ef1fe8448a0246b598175579d778c289b007cccf537ee8fde2be370407ff94",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:no-foreclosure",
+  "properties": {
+    "reviewed_at": "2026-07-25",
+    "roles": [
+      "reviewer"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

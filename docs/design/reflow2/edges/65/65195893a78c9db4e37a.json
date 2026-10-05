@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77ec81178b8bb5989a7530c44485ae1fa2391cbdb75138f514f19512855ce8e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl48-bl49-tool-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

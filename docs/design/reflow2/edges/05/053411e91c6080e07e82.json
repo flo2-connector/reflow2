@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89dd143c40e2f7330909b33f12c128913a35d90f794ed47ba3f4835160bd17e3",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-design-watches-another-design-at-the-server-that-holds-it",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-a-design-is-watched-at-its-address"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8be016241213dfd4c772480d035ee72025feeb17f211e4f9709e565db58dec80",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-drawn-relation-is-read-back-as-a-sentence-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test"
+}

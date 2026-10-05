@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41015ff5a2f3f829eae984b0ee150d5c7ad3f33cb693787324e7a619f8f084b6",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-init",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:install-reaches-the-agent"
+}

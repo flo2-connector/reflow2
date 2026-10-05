@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08d749c0d007f58408730007983c3436ead4198c5809d9f2fe3e1b14681d9db5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f73c2c13c744bc8778962dda6d41b4ebd4e1f7727a41bef6b18497e1942ad99",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door",
+  "properties": {
+    "evidence": "Reading a member's local store while its own session holds it goes through the snapshot, which answers keyword search with a false absence; option (b) is only as good as that defect's fix.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:root-cause-a-held-design-answers-search-through-the-door-with-a-false-nothing-matched-2026-10-02"
+}

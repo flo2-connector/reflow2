@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1adef3e14dfe73098d4d37270bcff17d6481e00854c847cadd81f18a676e569",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d26ea448514bee825cff104ce357aee8c7145bb606423d24826d9765fcec80da",
+  "node_id": "chg:accept-e8649fb89e9ed28a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-25",
+    "name": "Examined the day it was written, so the ledger reads \"checked\" rather than \"nobody has ever looked\": the file on disk is the file the design registered, the three mirrors are byte-identical, and every tool the prose names is served (skill_lint). What is NOT established, and the ledger must not be read as claiming: that the practice works — that a person thinking out loud recognises their own ideas in what got recorded, and that the promotion step at the end actually gets taken rather than skipped. Both are trials, and the first honest one is a session where Anthony brainstorms and then disagrees with what was written down."
+  }
+}

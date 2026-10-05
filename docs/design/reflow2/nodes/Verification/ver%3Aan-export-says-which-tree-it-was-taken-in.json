@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c9402f6f38cb6813c4673c8f726b241308a6d55e38d44304de763ac34a9189dc",
+  "node_id": "ver:an-export-says-which-tree-it-was-taken-in",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three suites. an_export_says_where_it_was_taken.rs (core, 4): the document contract — round trip, absence on an old document, detached HEAD, excluded from the content hash. an_export_says_which_tree_it_was_taken_in.rs (mcp, 4): a real git repository — branch and HEAD on receipt and file, dirty excludes the export itself, an unchanged design keeps its coordinate byte-for-byte across a commit, nothing outside git. test_reflow2_check.py TakenOnThisBranch (4): a modified export taken on another branch is refused with PHANTOM and exit 1; the same on its own branch passes; a committed one is not re-judged; one with no coordinate is not judged.",
+    "findings": "4 + 4 + 4 passed. The chain, record-moved and auto-export suites and the whole gate suite (46) still green. One wrong turn on the way: the first cut of the write-path edit never landed on disk and three MCP cases failed with taken_at null; the instrumented rerun showed the reader was never called, and the edit was reapplied. The export_graph description had to be trimmed from ~1590 to 1470 characters to stay under the lint's 1500 budget.",
+    "kind": "verification",
+    "last_run_at": "2026-09-16",
+    "level": "integration",
+    "method": "test",
+    "name": "An export names its branch and commit, keeps them while unchanged, and the gate refuses one about to be committed elsewhere",
+    "status": "passing"
+  }
+}

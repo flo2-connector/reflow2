@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ed8c39641fb5032fcca2fa89c22daaf2cfb620a03e093a95b50901e90ae3b0a7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:maturity-restructuring-delta",
+  "properties": {
+    "authored_at": "2026-08-02",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

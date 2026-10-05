@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:96590f8baf4f1526cce094cfdd95e409a4dcd16c3a26ff5f0f4e92585fcdd657",
+  "node_id": "art:check-command-surface",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/check_command_surface.py",
+    "name": "tools/check_command_surface.py",
+    "status": "realized"
+  }
+}

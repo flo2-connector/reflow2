@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6f0b3a538c038a6e8bb8b905c54d9587d03cfc5d3087087514f52911ef706031",
+  "node_id": "cap:read-loop-hint",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A conditional loop_hint rides the orientation-shaped reads (graph_report, graph_report_markdown, scan_nodes, search_design, get_node) and surfaces outstanding coherence-loop debt at the agent's most frequent action — the mid-session trigger between SessionStart (fires once) and Stop (fires at the end). Option C of dec:read-hint-shape: the pointer appears ONLY when loop_status would report real debt (never static-every-read), and only when the owed-set has CHANGED since it was last surfaced (fire-on-change). The owed-set can change only on a write, so the recompute is gated on a service write-generation counter, bounding per-read cost. The read-side sibling of the write tools' static loop_hint (dec:loop-status-state-not-history).",
+    "name": "Reads surface loop debt when it's real",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

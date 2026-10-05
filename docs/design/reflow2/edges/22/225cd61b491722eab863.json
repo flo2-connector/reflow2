@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:78dfbd66d1987c26dcd5eee624e9915d671304eae2a29d0891a306d360204f9d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-restore-judges-a-reference-against-the-document-not-the-walk",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

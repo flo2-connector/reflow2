@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:94d6b840b438f2f684d35dc62f178676a38535127db081ef6d261b21d9981a73",
+  "node_id": "ver:stamp",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "provenance.rs",
+    "status": "passing"
+  }
+}

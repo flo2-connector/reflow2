@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3d60701f22f4fbd4a110cf5b5d848fd93398e489c4d16d0cc338c43cb4598d84",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-agent-learns-who-it-is-talking-to",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d95ae84a5c12e6af62843f7f06970ee829ec9ae5b2245b72a502ba34882f970a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:evidence-scope",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

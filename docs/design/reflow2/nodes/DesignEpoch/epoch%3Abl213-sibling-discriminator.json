@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7037138bdfebadcc0aac908f358f37999ef603eb53a66ce4b5b28da5c11c8964",
+  "node_id": "epoch:bl213-sibling-discriminator",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "BL-213: the trial's finding is fixed — a token discriminator holds siblings apart, and the corpus report stops reducing merges to a count (2026-08-05)",
+    "sequence": 277,
+    "status": "arrived"
+  }
+}

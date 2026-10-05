@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5798bd6a21829722008fc5c8e41ee9acc6b4d43356db6429e27bf18e5259d626",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:twins",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:twins"
+}

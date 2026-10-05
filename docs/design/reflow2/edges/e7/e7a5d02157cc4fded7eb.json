@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb8d8ba95324922d75719baa79b11becf7bf463469f8b4af20a43038710377f2",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "sys:agent-surface"
+}

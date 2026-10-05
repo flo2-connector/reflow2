@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:964a65104dc9949509b5ac06033417d12fb403b064fd06e1f784f9b7ca2bffe5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:eff5e13a0920d032a51e6b4471a05edd9021ac385c7b927b06de2c86e7092861"
+  },
+  "to_id": "art:test-a-dangling-reference-is-found-whatever-its-degree"
+}

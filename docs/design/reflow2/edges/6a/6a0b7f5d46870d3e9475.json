@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7dfacdf96b63bdd689870f1a95ea9671d285ee3bfa0257ff7a812ce4345c70f2",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:skills",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:mcp-tools"
+}

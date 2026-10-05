@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:106b7a92101e43dc8301e13c6ae10b21562f90d36b88adb3009784bdae5f5258",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-search-first-fires-without-being-remembered",
+  "properties": {
+    "evidence": "That node asks how ONE discipline (search-before-you-add) fires without being remembered, and records that it is written into five skills and still needs somebody to load one. It is the specific case; this is the general mechanism. A typed obligation riding the tool response would answer it, so it depends on this landing rather than the other way round.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-governance-rides-the-tool-that-does-the-thing"
+}

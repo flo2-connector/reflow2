@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d95435f03e602dadee966d87f4fcf96cd535fd2c3e02ea1756bded44b89aff2b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-revising-write-says-what-it-removed",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

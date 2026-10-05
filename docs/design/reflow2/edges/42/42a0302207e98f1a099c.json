@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08271f4bb5bd52759c7851cbb940ba3264e6b6f2ba27aa36ec4b7a26f29631b3",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-capability-states-what-it-takes-and-gives"
+}

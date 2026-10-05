@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5764ecbad65d92cb77e837142f296380a290881f5d79cf83fe4910858665b869",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-should-an-idea-be-linked-to-the-intent-that-scopes-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Option A here — every idea links to its scoping rule — would make an idea that connects to nothing structurally impossible, and would therefore empty out that node's detector by construction rather than by anyone having done the thinking. Both cannot hold as stated: either the connect-to-nothing finding is meaningful, or a universal scoping edge removes it. Recorded so whichever is chosen has to face the other."
+  },
+  "to_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing"
+}

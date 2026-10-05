@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:28f02da7bd8120500cbff7fc945c85cdcc00be518f823fbeb2a502c7811e3e32",
+  "node_id": "chg:the-design-no-longer-lives-in-the-code-repo-2026-09-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "req:persistence (the design persists in-repo alongside the code) is retired and replaced by the principle that design and implementation stay coherent in both directions, wherever each lives.",
+    "subject": "system"
+  }
+}

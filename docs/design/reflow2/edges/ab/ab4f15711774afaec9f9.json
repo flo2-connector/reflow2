@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8d01beae18e226e7ea24bf479c465a07677141c5e9edeb912b64ddfbae0aa100",
+  "edge_type": "CAUSES",
+  "from_id": "req:persistence",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "req:persistence's layout — the graph at ./.reflow2/graph inside the one repo it describes — is exactly how the measurement root is still derived (wall_check::project_root: `<root>/.reflow2/graph` → `<root>`, used by measure.rs and now by pointer::location_for). The requirement was dropped 2026-09-25, but its one-root assumption survives in that function. Measured 2026-09-28 on 0.72.0: no location form and no CLI option lets one design measure both its own folder and a sibling repo, and #609's pointer refuses a `roots` key.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-one-root-derived-from-the-stores-folder-leaves-a-sibling-repo-unmeasured-2026-09-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4c162b93a8f6f84134b21402a7c18d5a94ed6eeea862643e90a1633d4db61a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:duplicate-merge-needs-a-human-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

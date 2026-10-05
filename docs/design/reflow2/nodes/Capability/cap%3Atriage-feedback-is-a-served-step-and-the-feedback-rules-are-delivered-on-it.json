@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0b9efa5cfd6da5a5d6a18b74353f83ccc43f8088b68f54aeb714debe00f5634b",
+  "node_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-18. getting-started/skills/triage-feedback/SKILL.md, served like every skill (build.rs), mirrored to .claude and .grok, command getting-started/commands/triage.md copied to .claude/commands and user scope, alias ('triage', triage-feedback) in COMMAND_ALIASES. The skill: read the report as observations; per issue get_skill root-cause, measure the reporter's cause, record_finding with caused_by/cause_evidence; per idea get_skill brainstorm, one exploratory Decision each, review_relations; what-worked recorded as findings; never fold findings into the document; loop_status; ask once which ideas to promote. rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed now carries steps [triage-feedback]; rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written carries steps [root-cause, record_finding]. Verified: get_skill triage-feedback returns the feedback rule among its lessons.",
+    "name": "triage-feedback is a served skill (/triage) and the two feedback rules are delivered on it and on root-cause / record_finding",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

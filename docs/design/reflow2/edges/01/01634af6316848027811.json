@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5faa172e37690c63006ba8a75d34ee4d9e5875a5eb16e680a231c73b079f42cc",
+  "edge_type": "CAUSES",
+  "from_id": "art:root-cause-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Step ⑧ of root-cause/SKILL.md, unchanged since 2026-09-23 05:04 (before #579 gave add_change_event the field), names only `snapshot_before_change` for `repair`. That route needs an arrived epoch and a target node. The ordinary-path tool that has taken the field since v0.68.0 is named nowhere an agent reads before the call. repair_report's description names the refusing stub record_change as well.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-repair-reached-add-change-event-in-0-68-and-no-instruction-followed-it-2026-09-28"
+}

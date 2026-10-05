@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:91332c759479508513afa9b5e856a592d2133a0fb70356fe293526319ab51efd",
+  "node_id": "question:c7c58ee8f8328d68",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Same thing as the authored 'Install into a consumer project' — merge them (user: \"go with your recommendation on all the duplicates\"). Keep the four-harness / merge-not-overwrite detail in the survivor.",
+    "context_setter": "Nothing verifies “Consumer install kit”",
+    "gap_id": "gap:c7c58ee8f8328d68",
+    "question": "How will you confirm the one-command setup really installs everything into a user's project without breaking their existing configuration — or is this the same ability your design already covers and tests under the name 'install into a consumer project'?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

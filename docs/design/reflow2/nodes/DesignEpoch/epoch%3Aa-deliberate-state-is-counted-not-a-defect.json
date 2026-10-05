@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90bec0711aecf38dd1606b058f04a7770ba3121ed7a8caa3d74bea2c29fadfd4",
+  "node_id": "epoch:a-deliberate-state-is-counted-not-a-defect",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A ruling can declare a state deliberate, and the deliberate ones are COUNTED rather than silenced — silence was already available and was the problem",
+    "sequence": 353,
+    "status": "arrived"
+  }
+}

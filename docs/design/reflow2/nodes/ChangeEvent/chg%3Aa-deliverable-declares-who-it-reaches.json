@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:270179dd92966106b5a23f466e96dc27d1cf6f321292ad48b8bf7619d7facc20",
+  "node_id": "chg:a-deliverable-declares-who-it-reaches",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A deliverable declares who it is for — `Artifact.audience`, and a need nothing consumer-facing delivers is reported",
+    "rationale": "Anthony's ruling: merge the duplicate rules, and build the proxy detector advisory rather than blocking. The requirement exists because a rule binds only the people building reflow2 while a requirement makes it something reflow2 DOES for every project — the split `req:a-fix-says-whether-it-corrected-the-cause` established at his request on 2026-08-17. NEVER PATH-DERIVED: a first sketch classified by directory, which encodes one project's layout and is the exact failure the rule forbids. MUTATION-CHECKED THREE WAYS; the third mutation caught nothing, which proved a guard dead and exposed that `vocabulary_coverage` names unused node and edge TYPES but never PROPERTIES — recorded as an open hole rather than closed.",
+    "subject": "system",
+    "summary": "`Artifact.audience` (`consumer` | `internal`) added to the schema, reachable through `set_artifact_intent` beside granularity and volatility, refused outside the enum. New `internal_only_delivery` finding names a Requirement whose every DECLARED delivering artifact is internal with none declared consumer — per-requirement, severity 0.45. Also merges the two duplicate DesignRules stating that reflow2 is built for other projects, moving all six governance edges to the survivor, and adds `req:work-says-whether-it-reaches-a-consumer` as the product form of that rule."
+  }
+}

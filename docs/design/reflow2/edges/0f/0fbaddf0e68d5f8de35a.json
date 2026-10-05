@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f747558166e4f544b839e3b9524955e013d7bf2f422136c82b2404b4e09bae18",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:declared-vocabulary-is-reachable-from-the-surface",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-18T00:20:00Z"
+  },
+  "to_id": "epoch:vocabulary-the-tools-cannot-reach"
+}

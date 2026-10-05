@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b20c85de612adc29ce61a0793fa61def2bd2bb84fae46a6c44236ccc51bdeaa5",
+  "node_id": "decision:ack:f96161fede3434d9",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:f96161fede3434d9.",
+    "name": "Reviewed: gap:f96161fede3434d9",
+    "rationale": "Checked 2026-09-07: still open, and it is the mechanism behind a defect reported by a user today. Defaults are still injected inside the upsert validation path; the schema declares 69, down from 81, with requirement lineage and flow tier still carrying one.",
+    "status": "accepted"
+  }
+}

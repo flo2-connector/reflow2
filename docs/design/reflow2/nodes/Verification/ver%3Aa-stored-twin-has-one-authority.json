@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:dcbc4a9ff4f345e0921ccde00c55c92ba78f8793724e775717a122edcc06c5e5",
+  "node_id": "ver:a-stored-twin-has-one-authority",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A core test file, nine tests, pinning the class rather than one writer:\n- every declared twin is an edge that can join its node type;\n- a finding written through the generic writer, and a by-hand report, hang from their subject;\n- a moved subject takes its edge with it;\n- a writer that draws its own copy gets exactly one;\n- an import out of step repairs the missing copy, the second subject (moved to ABOUT_ENTITY) and the retired flow values, names each repair, and reports nothing when run again;\n- a snapshot outlives its node without a repair;\n- the refusal names the property and ABOUT_ENTITY;\n- an out-of-step RocksDB store is repaired on reopen and keeps the report.\nA companion MCP test, crates/reflow2-mcp/tests/a_stored_twin_is_kept_by_the_store.rs, pins the tool doors: the generic create_node, create_edge, create_edges (all or nothing) and delete_edge.",
+    "findings": "9 core tests and 5 MCP tests pass, the fifth driving the CLI import then an export back over the same file; the full workspace, 305 test binaries, passes. Observed failing first with the fix switched off: 5 core and 4 MCP tests failed for the reason the fix exists. The open test stopped at its own setup, so that run did not isolate the open repair.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_stored_twin_has_one_authority.rs",
+    "method": "test",
+    "name": "A stored twin is kept in step by every writer, on import and on open",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3fe330087d1814c5841495b1053a86e33c762929bfec65efdb198f4a9be54515",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-levied-requirement-is-recordable-in-one-call-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

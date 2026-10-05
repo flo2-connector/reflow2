@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f794308c42c26f4f458a863994962f955f30fde78220c013d3f6b0a3756feed8",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "req:trust-boundary-at-ingress"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:18cbce2cde2dffc56fbee726f3b46e176de67ee63e2c022f5b1de9138a1208bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-fddc34a32a931396",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:checksum-dialect-test"
+}

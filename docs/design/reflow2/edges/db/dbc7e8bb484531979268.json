@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58a197cd3660e0f50c810d3c733e5c6f017958a4911df07be8d6c9bd2c165851",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-writer-signs-as-the-caller-fixture",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-signature-is-the-callers-own-through-every-writer"
+}

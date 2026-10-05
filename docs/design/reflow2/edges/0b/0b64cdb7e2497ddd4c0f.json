@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f4eaa14f21d0c300cf766d6cdff7f446c23d00b13fdfd74d467ba0aba18d235",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-change-says-how-its-reason-is-known",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-change-says-how-its-reason-is-known"
+}

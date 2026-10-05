@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d0e4aca156c70b97896b0497615ed440d3fff731665b519f59ebbe10d262311",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-set-aside-decision-is-recorded-where-the-loop-can-read-it",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-11"
+  },
+  "to_id": "epoch:planned-a-set-aside-decision-is-not-debt"
+}

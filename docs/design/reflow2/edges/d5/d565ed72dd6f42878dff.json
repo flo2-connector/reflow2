@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6e3afba9cf59ebdc8e57b9fd93456f99423b3891ae2d7c2f80dc683c1bb9d24e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:derived-release-manifest",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:operate"
+}

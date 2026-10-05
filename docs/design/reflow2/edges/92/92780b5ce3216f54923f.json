@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e4fb43d2dbc5c715ba8e37ecb45dc76d31820d5638c10b8e751a5c019ad36ff",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:changelog-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:changelog-view"
+}

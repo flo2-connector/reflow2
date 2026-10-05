@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b5bdd6f72e258fb9d4d840cd7ce0eb84c13a88a2faba1d795bd97141dce0d6c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "note": "This change builds the accepted choice: validate against the published schema before deserialising, one validator at the choke point, the refusal gate widened to the whole class and generated from the schemas, and the false 'publishes no description' hint fixed in the same change."
+  },
+  "to_id": "dec:idea-every-argument-refusal-names-the-tool-and-the-field-path"
+}

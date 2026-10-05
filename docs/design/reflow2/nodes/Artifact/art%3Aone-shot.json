@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:11d749300cf67be8d55e7fbe762e5349f082eae22d924806bd346c50d49bdc6b",
+  "node_id": "art:one-shot",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The two steps main() runs FIRST, once, for every one-shot mode (--call, --export, --export-snapshot, --import, --diff, --merge, --merge-apply, --merge-driver, --stop-shared, setup), before anything can open a store. `gate` applies the table (Mode::honours): every flag given on the command line that the mode does not read is refused by name with the mode, exit 1; two modes are refused together; environment and default values are left alone. `resolve_design` answers \"where is this design?\" without opening anything: a folder whose .reflow2.toml names a design on a server is refused with its id and address; --read-only refuses a write and creates nothing; --only-if-present keeps its session meaning; and a READ (the mode, or the --call tool's served read_only_hint) never creates a design — except in a folder that opted in (.reflow2/ present and empty).",
+    "location": "crates/reflow2-mcp/src/one_shot.rs",
+    "name": "one_shot.rs — every one-shot mode resolves its design first, and the flag × mode table",
+    "status": "realized"
+  }
+}

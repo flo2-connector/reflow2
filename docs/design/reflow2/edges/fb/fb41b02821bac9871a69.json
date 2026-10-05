@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa688553f205798ec0b1300839a69b77ec41b060a4119c2f8ba8e1e85bf40404",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "properties": {
+    "evidence": "Promoted 2026-09-19: option (a), both fields, required rather than optional on reflow2's own skills so the lint keeps them true."
+  },
+  "to_id": "req:a-served-skill-carries-a-line-a-person-reads-and-says-who-it-is-for"
+}

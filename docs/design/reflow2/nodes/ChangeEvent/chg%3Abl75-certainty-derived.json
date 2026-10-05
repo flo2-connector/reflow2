@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46522426bf88e7bd7085090617d264d6d9bfc53604b72902d4717820c4067a49",
+  "node_id": "chg:bl75-certainty-derived",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-75: requirement certainty derived and rendered (user-confirmed / asserted / recovered)"
+  }
+}

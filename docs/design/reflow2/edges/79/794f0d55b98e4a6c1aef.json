@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f48ec1b56ba54f291ed37b41665c792f6c1f427504b9f534323b4fe8ce8f1e93",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:work-declares-who-it-reaches",
+  "properties": {
+    "note": "The declaring half — `Artifact.audience` and the `set_artifact_intent` path that writes it. Dual allocation because the capability genuinely spans both: one component lets a deliverable SAY who it is for, the other REPORTS the need nothing consumer-facing delivers. Precedent: cap:the-loop-holds-the-invitation is allocated to cmp:agent and cmp:skills.",
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:artifact"
+}

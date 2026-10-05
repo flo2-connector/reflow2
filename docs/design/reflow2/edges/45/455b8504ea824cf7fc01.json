@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfa4ef56a390c6e34e86ffc7bd25827f36420581a33de17357666c705752b91c",
+  "edge_type": "REALIZES",
+  "from_id": "art:compose",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:composed-analysis"
+}

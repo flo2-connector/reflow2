@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87b765b9524e24a8d17f6b421a4ac87b97383e16d4f04dc5e587be56b3789e79",
+  "node_id": "chg:no-idea-goes-quiet",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Anthony's dev_storyflow framing becomes intent: an idea in the graph must stay loud and stay traceable to its source, and \"automatically linked\" is restated as its inverse"
+  }
+}

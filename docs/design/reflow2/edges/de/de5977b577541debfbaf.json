@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cff653d34d8af7dc19c0fcea5736c115b6e5adade48657888245fde55622aedf",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:corpus-ingest",
+  "properties": {},
+  "to_id": "dec:corpus-ingest-mechanism"
+}

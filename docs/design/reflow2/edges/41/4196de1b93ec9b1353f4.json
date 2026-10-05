@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:930563207a43cdc342916cbba6460a19e60518bcdcf27ab3567f22dc94bd2328",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed",
+  "properties": {},
+  "to_id": "req:a-session-that-reads-and-never-writes-is-seen"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0975fdaa63ad50f1bb91e3ccc425e0755fdb4e111e1fa7f439dd0869d019fdf8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:closure-is-one-computation-and-both-read-surfaces-use-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-superseded-finding-does-not-read-as-current"
+}

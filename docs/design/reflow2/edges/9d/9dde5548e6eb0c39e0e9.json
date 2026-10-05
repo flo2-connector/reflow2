@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9eebdd06798879b5f8fd4e5209b5b15f446673fdda6d1d2ba460bf451b03a570",
+  "edge_type": "CHANGED",
+  "from_id": "chg:documentation-subsystem",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:documentation-has-no-operational-coupling"
+}

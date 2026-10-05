@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:82438f9cd251c0245d3e4a0fdc8265dbf8f1f8c9a871306934b323101839f123",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:todays-binary-reads-exports-taken-at-past-releases",
+  "properties": {},
+  "to_id": "req:todays-binary-reads-exports-taken-at-past-releases"
+}

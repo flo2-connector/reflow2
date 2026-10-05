@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d2a3a91cbed9cce6e222410bf79b031dc88e0dedb954b77cc883b1ded8b20a30",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:the-loop-nudge-reaches-opencode-through-a-plugin-adapter",
+  "properties": {
+    "evidence": "The adapter holds no judgement: every threshold, counter, shape match and graph probe it delivers comes from loop_nudge.py, so this is only worth anything while that script is the single implementation.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

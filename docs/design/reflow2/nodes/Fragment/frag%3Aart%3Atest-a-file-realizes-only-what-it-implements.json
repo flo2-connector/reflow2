@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:db61f5f27f3aca2dca312e86b8d9500b8142bf69a13089b7950bed5bdec6edb1",
+  "node_id": "frag:art:test-a-file-realizes-only-what-it-implements",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_file_realizes_only_what_it_implements.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:67bc296c155a619eee3191d012c7a82fa3ed249174c9d931c68598064876ce2e",
+  "node_id": "cap:claim-a-region-by-query",
+  "node_type": "Capability",
+  "properties": {
+    "description": "claim_region accepts a QUERY describing the region, alongside the existing seed+depth. The query is evaluated at read time, every time, so the claim still follows the design as it changes — the property the seed+depth rule was chosen for, and the reason an explicit stored node list is refused (dec:a-claim-may-need-a-list-rather-than-a-radius). Serves cross-cutting duties a radius cannot describe: an audit, a sweep over everything of one kind, cold-validating what another session recorded. Two questions are deliberately left to the build: which query language, and whether an unevaluable or empty query is refused at claim time or reported at read time. claim_report must be able to say which shape a claim used, or a reader cannot tell a narrow region from a query that stopped matching.",
+    "name": "A claim describes its region by a query, for work no radius can express",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d1f26f857b4a224bad0a024cdf972d9b2552c0013da339d578f32f07b80fcd2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rule-narrowed-to-the-globals-clause",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:per-design-state-is-never-a-process-global"
+}

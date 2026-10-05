@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6f475dad206801e616fb3aa9cdc381ae6ca3b1a9d0067993b717ae6316bcc613",
+  "node_id": "frag:art:caller",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered caller.rs: who is calling, from how the engine is served (#616 fix 4)"
+  }
+}

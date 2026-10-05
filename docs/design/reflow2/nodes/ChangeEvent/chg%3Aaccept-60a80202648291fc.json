@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bcbca55e46e60aeaf7608a14cea1e287639bcd2e3099c2ee3701ad15ac51ca04",
+  "node_id": "chg:accept-60a80202648291fc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The v0.55.0 cut moved the version claim in reflow2.toml. No design meaning — the manifest says the same thing about the same dependencies. Accepted BEFORE freezing the release manifest, which is the order flow:release-cut names as load-bearing: release_includes_all freezes each artifact's CURRENT checksum, so freezing first pins the pre-bump value and sends the cut back a step.",
+    "subject": "system"
+  }
+}

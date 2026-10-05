@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a00f56c184ae072687b29deaf6a4951d4904c4377848033d5ab6a5fd073842db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundation-v0120",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dep:dynograph-foundation"
+}

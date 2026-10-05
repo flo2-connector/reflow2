@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db0f7990e077e613465950b0b870c227cbce134d660213d0d975cf1af21963de",
+  "node_id": "chg:session-capture-2026-08-17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Session capture: the reachability sizing that set a build order, and the three searches that did not happen",
+    "subject": "record"
+  }
+}

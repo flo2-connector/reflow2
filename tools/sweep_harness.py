@@ -17,6 +17,7 @@ import argparse, json, os, pathlib, shutil, subprocess, sys, time
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from smoke_mcp import Server  # reuse the stdio JSON-RPC client
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 
 def build_copy(dest: pathlib.Path, export: pathlib.Path, binary: str) -> dict:
@@ -88,7 +89,7 @@ def main() -> int:
     ap.add_argument("--graph", default=None, help="reuse an existing copy")
     ap.add_argument("--fresh", action="store_true", help="rebuild the copy first")
     ap.add_argument("--binary", default=str(ROOT / "target/debug/reflow2-mcp"))
-    ap.add_argument("--export", default=str(ROOT / "docs/design/reflow2.json"))
+    ap.add_argument("--export", default=design_io.default_export(str(ROOT)))
     a = ap.parse_args()
 
     graph = pathlib.Path(a.graph) if a.graph else pathlib.Path(

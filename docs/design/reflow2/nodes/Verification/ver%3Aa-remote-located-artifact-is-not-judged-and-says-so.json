@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2e736a1fa817ce92975bb4fcfbacc23752979ea31c26a15aa9a46587a812f37f",
+  "node_id": "ver:a-remote-located-artifact-is-not-judged-and-says-so",
+  "node_type": "Verification",
+  "properties": {
+    "description": "4 cases, tools/test_reflow2_check.py::RemoteLocatedArtifact, driven end to end against the built binary and a real throwaway graph. TWO BEHAVIOURAL: a `https://` location is not reported `missing_artifact`, and the gate says \"not judged\" naming which artifact it could not judge. TWO COUNTERWEIGHTS, and without them the fix would be a way to HIDE drift: a genuinely absent local path is still `missing_artifact`, and an ordinary relative path is not mistaken for a URI (the pattern is anchored and scheme-shaped, not a bare \"://\" search). MUTATION-CHECKED 2026-08-22: disabling the new branch failed exactly the two behavioural cases and left both counterweights green; restoring it returned all four to green — so the check has been observed red and is known to be capable of failing.",
+    "findings": "4 of 4 passing. Observed RED first: the pre-fix gate reported \"FAIL DRIFT art:remote: missing_artifact\" on a design whose only fault was registering a document at its URL, which is the bug reproduced rather than argued. After the fix the same design reports a note naming the unjudged artifact and exits clean.",
+    "kind": "verification",
+    "last_run_at": "2026-08-22T15:50:00Z",
+    "level": "system",
+    "method": "test",
+    "name": "A URI-located artifact is neither called missing nor silently passed",
+    "status": "passing"
+  }
+}

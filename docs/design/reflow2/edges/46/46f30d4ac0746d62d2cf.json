@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:367101732ca2da850d6f240390d7e90f101bdc4273bf577569915b8f95c7f11d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:75b5715deb231ec83ac74b3c08f6ba0dc81334d73c6ae484ca7cb8b3689ac854"
+  },
+  "to_id": "art:launch-serves-release-gate"
+}

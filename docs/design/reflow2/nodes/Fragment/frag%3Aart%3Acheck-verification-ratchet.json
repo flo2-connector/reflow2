@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:931430572b6890af09bd6f02e1628148322c1c9236f33d83cc520ba41bf1f242",
+  "node_id": "frag:art:check-verification-ratchet",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tools/check_verification_ratchet.py"
+  }
+}

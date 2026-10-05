@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:05c7d936ccabc4f4922b4dd4d8a88711cbaf80b74be950b26b2dc098a05c697c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory:r3"
+}

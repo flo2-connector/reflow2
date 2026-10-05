@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:923f72cbc2578cdc343da6f3c583616518c207aa8f4a8853db54539581419074",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-writing-call-exports-afterwards",
+  "properties": {
+    "evidence": "The idea became step 2 of the door plan Anthony agreed on 2026-10-01."
+  },
+  "to_id": "req:a-writing-call-keeps-the-committed-export-current"
+}

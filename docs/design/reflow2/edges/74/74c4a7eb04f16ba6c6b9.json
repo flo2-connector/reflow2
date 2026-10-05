@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b52a1d214e54bf4a723434a0c1ee38c47e76eda1350009b0fb2622d8fa5dfc58",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-spawned-daemon-inherits-nothing-it-should-not"
+}

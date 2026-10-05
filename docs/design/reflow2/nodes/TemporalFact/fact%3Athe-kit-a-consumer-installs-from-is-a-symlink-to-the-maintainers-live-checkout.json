@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d2d03885d8b9ac68cbc55ae3d22097e3485cae935d074cf324dec0c89d85b789",
+  "node_id": "fact:the-kit-a-consumer-installs-from-is-a-symlink-to-the-maintainers-live-checkout",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "Every project on the builder's box installs from the maintainer's LIVE WORKING TREE, because the kit path is a symlink to the development checkout",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "FLO2 F15 reported `reflow2 init .` refusing to install all 30 skills — \"['audience','summary'] are not read by every harness\" — and concluded that \"the validator and the skill library disagree with each other\". MEASURED 2026-09-19 and the conclusion does not hold for any committed state. ① `readlink -f ~/.local/share/reflow2/kit` resolves to `/home/ajs7/project/reflow2`: the kit path is a SYMLINK to the development checkout, made 2026-08-07, sharing its .git. ② `git log --all -S` for those top-level keys on a skill file finds them in NO commit: `summary`/`audience` have lived inside `metadata:` since they were introduced (bc157eb, PR #541), because the installer's harness-portability check refused the top-level form during that very PR and the fields were moved to satisfy it. ③ Running the installer today into a throwaway repo exits 0 and writes the full set. SO WHAT FLO2 MET WAS AN UNCOMMITTED WORKING TREE, mid-edit, half-way through the change that fixed it — not a released or committed state, and not a disagreement between the validator and the library. The validator was right and its input was a half-finished edit. ⭐ THE REAL FINDING IS LARGER THAN THE ONE REPORTED: a consumer project on this machine installs from whatever the maintainer's editor holds at that second. Every `init` in flo2, bhome or SeattleArch has been reading the dev tree, so a consumer's install can be broken, or silently ahead of every release, by an edit in progress. The workaround flo2 documented — skip `init`, since the machine-wide registration is enough — sidesteps it without addressing it.",
+    "subject_id": "cap:kit",
+    "valid_from": "2026-09-19"
+  }
+}

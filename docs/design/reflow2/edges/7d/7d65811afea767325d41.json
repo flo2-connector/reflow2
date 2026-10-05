@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:77676a955a3c1f6b889f3190e29fba9bfc0f3940b41d358645bcdcdb6ea09def",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:reflow2-conforms-to-the-mcp-specification-revision-it-serves",
+  "properties": {},
+  "to_id": "fact:rmcp-3-5-0-moves-latest-to-2026-07-28-and-reflow2s-pin-will-fail-by-design-2026-10-01"
+}

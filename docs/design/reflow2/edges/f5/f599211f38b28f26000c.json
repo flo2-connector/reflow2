@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3887ff0c9e6908f88033c82c22a95a2b8e80d53a7f5e7f4f213e60d10a689849",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph-read",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-module-can-be-read-swapped-and-tested-behind-a-contract"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57c81fc87a3b912d8d15befc91372825c95d1ded09abd39157b2e425b3930130",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-diff-driven-impact",
+  "properties": {
+    "evidence": "The brainstorm grew up into the driver: what it said was cheap (a script over git diff plus hashing, calling reconcile then propagate) is what shipped, and the unmapped-file question it flagged is settled the loud way."
+  },
+  "to_id": "chg:a-git-diff-is-read-as-a-design-change"
+}

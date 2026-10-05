@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91f450b944c392a21c6c9b1f20c2a1211d4a7de2776cacade378ace0f555eb4b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

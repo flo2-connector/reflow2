@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2c71847015e0c9be2674cacf42a85ad39a76089125188406303f06e93fc68341",
+  "node_id": "fact:defect-no-way-to-mark-a-capability-contested",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "BETWEEN LEARNING A CAPABILITY'S CLAIM IS FALSE AND BEING READY TO RESTATE IT, THE GRAPH GOES ON ASSERTING THE FALSE THING, BECAUSE THERE IS NO WAY TO MARK A STATUS AS UNDER CHALLENGE. Reported 2026-08-08 by sb-boss ab2291fa, item 4. They demoted `cap:storybook_output` from `realized` to `in_progress` after a failing walk. Between the walk and the demotion the graph asserted something false WITH NO WAY TO SAY SO — and on a `--shared` graph that window is not private: every other attached session reads the stale claim as current. The status enum (planned / in_progress / realized / verified) has no value meaning 'disputed pending evidence', and demoting early is itself a claim — it asserts a position on work that may turn out fine. FIX SHAPE, theirs, and they offered two: a lightweight `contested` marker; OR let a FAILING `kind=validation` VERIFIES edge automatically flag the capability's status as unsafe to trust, which needs no new status value and is computed rather than remembered. THE SECOND SHAPE FITS THIS DESIGN BETTER ON ITS FACE — dec:passing-is-verified already computes 'verified' from a check that passes rather than from a status field, so computing 'contested' from a check that fails is the same move in the other direction. WORTH NOTING THE ADJACENCY: req:blocking-is-partial ('work that drifted can be frozen without freezing the work that did not') is the same instinct applied to drift rather than to a failing check.",
+    "subject_id": "cap:reconcile-verified",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, sb-boss ab2291fa item 4\",\"case\":\"cap:storybook_output demoted realized -> in_progress after a failing walk; the window between asserted something false\",\"shared_graph\":\"the stale claim is visible to every attached session during that window\",\"gap\":\"no status value or marker means 'disputed pending evidence'; demoting early is itself a claim\",\"fix_shape_a\":\"a lightweight contested marker\",\"fix_shape_b\":\"a failing kind=validation VERIFIES edge flags the capability as unsafe to trust - computed, not remembered\",\"fits_existing\":\"dec:passing-is-verified already computes verified from a passing check; this is the same move inverted\",\"adjacent\":\"req:blocking-is-partial\"}"
+  }
+}

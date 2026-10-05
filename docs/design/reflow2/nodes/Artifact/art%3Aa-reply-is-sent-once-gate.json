@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:94593005d06a84ead5e2cb0e1063cfe6a051a8ec0f96df35e5c9e1ecb588cd4a",
+  "node_id": "art:a-reply-is-sent-once-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The wire-level gate that asks the WHOLE served surface whether a JSON reply carries its payload once. It seeds a scratch graph from the committed export, calls every tool that needs no arguments plus two named ones that do, and for every reply carrying structuredContent asserts the text block is not the payload again, is not empty, names the field to read, and is the same single signpost across the surface. It fails if it measured nothing, because a detector with nothing to run on reads exactly like one that ran clean. Written 2026-09-20 after the invariant, pinned on detect_gaps alone since 2026-08-23, missed six tools for 28 days. It deliberately does NOT assert the signpost is smaller than the payload: that holds on a large reply and is false across the surface, since the signpost is one fixed sentence and some replies are shorter than it, and keeping it would need a tuned size threshold this project has twice rejected in favour of asking a better question.",
+    "location": "tools/a_reply_is_sent_once.py",
+    "name": "a_reply_is_sent_once.py",
+    "status": "realized"
+  }
+}

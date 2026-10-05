@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1178987c237ac14c518ed381564f833ce2f3ac52f6fa2058693c4dab795edeb",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "at": "2026-09-22",
+    "note": "The contradiction it recorded is repaired: row 1 now carries delivery phrasings only (\"it has to…\", \"it needs to…\", \"the system must provide…\"), and the prohibition row covers every modal — must/can/cannot/may not/shall not — and states in the table that the subject is irrelevant. Merged as #564, green. The finding is closed as an observation of the table's PAST state; its reasoning is why the repair took the shape it did, and the correction of the prohibition_in_prose speculation inside it remains true and worth reading."
+  },
+  "to_id": "fact:the-routing-table-contradicts-itself-and-routes-a-prohibition-to-requirement-on-the-word-it"
+}

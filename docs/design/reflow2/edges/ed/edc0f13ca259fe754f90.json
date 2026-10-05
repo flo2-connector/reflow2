@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:72a533700c0aa96707c13ee1b3ba00276334eebc00d56a9e78e2d8cd590b834b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-built",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-built"
+}

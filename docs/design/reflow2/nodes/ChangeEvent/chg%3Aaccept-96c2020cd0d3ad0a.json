@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:46c161d97c95c38f4d2d8d934f71b75ea7cf9878bd80ddeddac23ad73645362e",
+  "node_id": "chg:accept-96c2020cd0d3ad0a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-16",
+    "name": "Five field terms the new skill names added to NON_TOOL_TERMS; the lint's behaviour is unchanged.",
+    "subject": "system"
+  }
+}

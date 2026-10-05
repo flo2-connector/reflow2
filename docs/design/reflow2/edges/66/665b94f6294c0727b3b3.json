@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:265d7b856d2a5f971463bdcef5dca91a71587afbc5228a811988809d91701fc3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "note": "The KPP question was asked and deferred; the requirement itself is unaffected and buildable now"
+  },
+  "to_id": "dec:the-telemetry-kpp-question-waits-for-flo2"
+}

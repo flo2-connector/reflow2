@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5413f2e2bf90f04bf497fcde7b4e8fa245ed449857f12c2a6cd31bf00d55580",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them",
+  "properties": {
+    "evidence": "Option C of the brainstorm, promoted to accepted intent on Anthony's word 2026-09-13: the project's unit system is a governed rule and a missing or off-system unit is reported. Options B, D, E and F stay recorded on the idea as roads not taken."
+  },
+  "to_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported"
+}

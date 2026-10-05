@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:263bb84197a08ec9f6efcbd57f3c27e51e96046a1bdcaad60831350dd042ad5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:authorship-survives-approval",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "cap:a-contributors-roles-toward-a-node-are-a-set-that-a-write-adds-to"
+}

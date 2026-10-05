@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0ed202b5da1eecb098764feb0b7ec6c5dd18cc37932b3df463e4b9a6f89c865",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl181-service-split",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:service"
+}

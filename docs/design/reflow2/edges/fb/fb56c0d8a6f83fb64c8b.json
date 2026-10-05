@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6649a0165b729854f2f36dbcfe48d05781c75641375e2f2c4472da98050cd76",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6f0eddb8466447ff26874c6e731537bf02370a794d79a1d4932b3a296ae6f35a"
+  },
+  "to_id": "art:test-the-frontier-is-served-and-a-deferral-is-a-recorded-finding"
+}

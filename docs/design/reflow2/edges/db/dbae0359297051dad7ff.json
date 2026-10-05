@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:862d2a6cecead0484453f7657f27a9dd4a3b04d48f74805c94fb6cc8ef569eac",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-orientation-reads-cost-ten-seconds-and-the-store-is-not-why",
+  "properties": {
+    "evidence": "The earlier one saw this coming, explicitly. That fact records that on 2026-08-23 an agent asked exactly this question — where else should we optimise — read it, and quoted three already-false claims back as current, and it names that incident as the reason req:the-graph-can-say-what-has-already-been-done exists. It anticipates the failure mode of the very question this node opens."
+  },
+  "to_id": "dec:idea-is-there-performance-left-after-the-four-wins-and-what-is-the-budget"
+}

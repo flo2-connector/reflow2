@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:706ff27eccc2462b80214128f459ad46580400b812504c7ff4d0d2e355cdfe3c",
+  "node_id": "chg:supporting-is-not-conflict",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The contradiction detector reads `alignment`, so recording that one decision qualifies another no longer turns the graph red"
+  }
+}

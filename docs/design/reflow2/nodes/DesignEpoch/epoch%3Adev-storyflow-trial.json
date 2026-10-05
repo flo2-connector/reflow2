@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75b1d63b0139d14f6f68ed1ebccfd8f75b188ee5949938ffe88a1112a40aaf20",
+  "node_id": "epoch:dev-storyflow-trial",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "The first real trial of cap:corpus-ingest, on six dev_storyflow architecture documents — and it found a silent data-loss defect in ingest that predates the corpus layer (2026-08-05)",
+    "sequence": 276,
+    "status": "arrived"
+  }
+}

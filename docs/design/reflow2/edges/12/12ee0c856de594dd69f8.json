@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e71967ffb9c365ddfc2a9a7fd11bf69821000a515698738dfd5d0d4c412baee",
+  "edge_type": "CAUSES",
+  "from_id": "cap:every-oversized-reply-offers-a-bound",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "export_graph's `path` is optional by design. Its served description says \"Pass `path` to write the document to a file instead of returning it — a large design overflows a session\". The reply-bound sweep exempts export_graph by tool name as \"the design document itself\" (fact:the-reply-budget-sweep-is-built-2026-09-13). So `{}` is the document mode, with no bound and nothing to refuse.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-export-graph-with-no-path-is-a-documented-default-exempt-from-the-reply-bound-and-the-door-prints-27-mb-2026-10-02"
+}

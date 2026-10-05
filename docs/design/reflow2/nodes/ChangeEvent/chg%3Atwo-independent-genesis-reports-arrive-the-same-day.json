@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6be5a813e1ccd38c756a2ea2c283a97e988dbfeedc44afe8eb2ffdc3429e09ca",
+  "node_id": "chg:two-independent-genesis-reports-arrive-the-same-day",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-31",
+    "name": "Two independent genesis field reports arrive the same day, and they corroborate each other",
+    "rationale": "Registered as working-tree paths the drift gate can hash, following the convention every other field report here uses. Both are agent-authored feedback from projects Anthony owns, which is the case `req:agent-authored-feedback-is-reproducible-and-never-leaves-unasked` governs: the human whose project it was written inside still decides whether it leaves.\n\nA dated field report is registered and PARKED (`dec:a-dated-field-report-is-registered-and-parked`) — its unattached state is correct, because it is a frozen record of what one session saw and is not tracking the design as it moves.",
+    "subject": "record",
+    "summary": "Two agent-authored field reports from two of Anthony's own projects, both from `/genesis` sessions on 2026-08-31, both registered byte-identical into docs/feedback/. bhome's is the SAME append-only file already triaged earlier today, grown from 385 to 650 lines — the 385-line version was verified as a STRICT PREFIX of the 650-line one before registering, so only lines 386-650 are new material. musicjug's is a first arrival: a browser rhythm game for a 9-year-old, 71 nodes, no code written yet.\n\nTHE TWO REPORTS WERE WRITTEN INDEPENDENTLY, BY SESSIONS THAT COULD NOT SEE EACH OTHER, ON DESIGNS WITH NOTHING IN COMMON — a shipping-container aquaponics build and a children's music game. That is what makes their agreement evidence rather than repetition."
+  }
+}

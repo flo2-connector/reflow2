@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4f3ace11181404bc2b287341f4810550b27811015f6db6deaad8cb996156425",
+  "node_id": "epoch:planned-read-half",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "PLANNED — \"The graph can be READ at the size it has reached.\" The OUT half. WIDENED 2026-08-05 on Anthony's word from \"the loop tells the truth about what it is owed\" to the whole out half (dec:the-transition-is-two-halves-and-reads-are-the-unscheduled-one, accepted). THE MEASUREMENT THAT FORCED IT: of 33 collection-returning read tools, THREE let the caller bound the result and only scan_nodes can page; reviewed_gaps returned 130,922 characters and had to be read with jq. Today a document BEATS the graph for making a decision, and that is a fair fight the graph loses — so no capture improvement is worth anything until this lands. CONTENTS: BL-194 open_questions all-clear; BL-192 enums name legal values; BL-195 the bridge a ruling forbids; BL-201 wire or retire Requirement.concern; BL-203 an unexercised type is visible; generalise scan_nodes' envelope (total/returned/omitted/next_offset/capped_by + payload budget) to the other 30 tools, since it already solved this and was adopted by exactly one; dec:gap-reporting-when-most-intent-is-unbuilt (accepted), because 300 captured ideas produce 300 identical gaps. JOINED 2026-08-08 from dev_storyflow: scan_nodes has no status filter and get_node returns no edges, which cost a lane its stated bound — and a filtered count MUST name its predicate, or it becomes the fifth number in their four-counts report. BL-205 is DONE (shipped early in #70). NO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number): the number is assigned at the cut from what actually ships. Supersedes epoch:v0250-planned.",
+    "sequence": 250,
+    "status": "planned"
+  }
+}

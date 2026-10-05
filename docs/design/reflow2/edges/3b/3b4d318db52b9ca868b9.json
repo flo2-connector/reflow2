@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:863781f65860424f97cdf2b37e3df6543553a39c15e1b54a514830f426bcbc04",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:recursive-black-box-decomposition",
+  "properties": {
+    "evidence": "The earlier one saw this coming. That accepted requirement asks for nesting 'as deep as the design needs' — and 'as the design needs' is precisely the quantity span of control computes, rather than the open-ended invitation it has been read as. Its own measurement already flagged 'DEPTH IS TWO, not as deep as the design needs' as the shortfall; a fan-out rule is what would say how deep is actually needed instead of leaving it to judgement."
+  },
+  "to_id": "dec:idea-depth-is-derived-from-fan-out-not-declared-by-a-ladder"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:95c189d6ca4481068705ef812ab48dbc4c3c0be6d3b734dea8a2bc79607efcdf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-no-per-design-globals"
+}

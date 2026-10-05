@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0fff0c5cee801c8d085c77a55ae9ffa68132767e1c43542b6b8f84c39a6ff967",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:plan-increments-skill"
+}

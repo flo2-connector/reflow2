@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0a730520d562699684a2546e9db1afa89184e6c181c236dfd113b9faeb0a4f7a",
+  "node_id": "epoch:v0750-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships the fix program of epoch:fix-what-the-two-agent-exercise-found-2026-09-29 (its REL package, wave 4) together with GitHub issue #616's fixes. Cut on Anthony's word in the dev_reflow2 hub session, 2026-09-29/30: \"Fix all the root causes …\", then \"go with your order of 1 through 5\"; step 2 of that order is this cut. Contents, by PR: #621 every edge type declares what it means; #622 a stored twin has one authority; #623 add_decision draws related_to for every kind; #624 a revise keeps what it was not passed; #625 a finding or refusal names the route that works; #626 closure reads design and build phases; #627 a budget says how it composes; #628 every settling call declares what settles it; #629 draw_edges; #630 write receipts; #631 derived relations declared, with derived_report; #632 ACTS_FOR; #633 the derived check starts from populations the declarations do not choose; #634 addressed questions; #635 generic writers settle through one rule (settles version 2); #636 on an engine served for others, a signature is the caller's own; #638 manual_work_ledger takes budget_chars; plus #615, #618 and #619 merged after v0.74.0, and #637, the design record that folded the 2026-09-29 live records into main before this cut. The schema stamp moves (ACTS_FOR, 66 edge types; Constraint.composition), so docs/upgrading-to-v0.75.0.md is owed and written. Sequence 654 places it after epoch:v0740-cut (653) and before the planned milestones from 656.",
+    "epoch_type": "release_cut",
+    "name": "v0.75.0 release cut (2026-09-30)",
+    "sequence": 654,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:80b348bd1d02e045d2512fd80843b89611cbadf5bf982c94ed427cc683c89e1c",
+  "node_id": "sub:finding",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Finding",
+    "provenance": "authored",
+    "purpose": "The detectors — the parts whose job is to NOTICE something the design cannot see in itself: gaps, structural defects, hierarchy problems, undeclared seams, granularity mismatches, coverage and consumption holes.\n\nSeparated from Telling deliberately, and that separation is the point rather than tidiness. `dec:reflow2-is-built-for-observability` says this design is built so its answers never misrepresent what it knows, and observability-driven allocation wants THE INSTRUMENT SEPARATED FROM THE SUBJECT — a part that finds a problem must not be the same part that decides how loudly to report it. Fusing detection and reporting is how a green gate over uncovered ground gets built without anybody choosing to.\n\nEvery part here owes the same obligation the target imposes: it must be able to say it COULD NOT TELL, rather than reporting clean over ground it never ran on.",
+    "status": "planned"
+  }
+}

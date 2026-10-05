@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6af83319397dcca244df8df424225d6399b673904240112b5d96f747fbe39889",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:8344d5c803961e9e9c25814e17995e021797fbdbc48969c4d4875e2e5e976777"
+  },
+  "to_id": "art:surprises"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f123c1395ffdf523cd94977342f1fb6066af987a5b26c3479bf3637e20ea16ff",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:intake",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:reasoning-channel"
+}

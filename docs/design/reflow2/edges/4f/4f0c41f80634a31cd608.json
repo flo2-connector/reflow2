@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adee8724890a4227c7b1fc90eb8b4892e0e1df2504b6cf46ef402906569df868",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-writing-call-keeps-the-committed-export-current",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b82c413af8bde5a0ceafc810e51cc516c21e4eeafc2b3d3ed014c48c9fcb47c4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

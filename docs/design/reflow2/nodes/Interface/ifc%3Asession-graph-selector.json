@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:45ee375bbf5084b96f5cf108f40a98cd2ff6c2081102f59df5a390c6bd67f431",
+  "node_id": "ifc:session-graph-selector",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "internal",
+    "medium": "unspecified",
+    "name": "How a session says which design it is attached to — graph_id in, bound session out",
+    "paradigm": "unspecified",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "transport_security": "unspecified"
+  }
+}

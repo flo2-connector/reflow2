@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:33d0e304c215591e1043fa8006fd3fd28ff664c6ee041b13d2526d92bc2519fb",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "properties": {},
+  "to_id": "epoch:a-node-with-no-edges-is-not-clean"
+}

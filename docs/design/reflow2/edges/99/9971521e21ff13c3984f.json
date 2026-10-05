@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8be9459cbacb8650286626c08f931c840f721a0e49509b394deb02195651bb87",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:derived-release-manifest",
+  "properties": {},
+  "to_id": "req:a-project-records-how-it-ships"
+}

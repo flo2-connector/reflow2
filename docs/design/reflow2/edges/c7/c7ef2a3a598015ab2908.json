@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de59e909f661286a622920c9d3cf63b62edebc2655ebbb832758e91b57eb61ab",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-10",
+  "properties": {
+    "basis": "observed",
+    "evidence": "F-19 in that report is the one field that exposed the class; this change closes the class its contained_symptom disposition stood in for.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:every-declared-enum-is-wired-or-exempt"
+}

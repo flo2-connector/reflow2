@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e8fc68dfd644501cbd97f8577abbbe2f9a3da83cae3c4ecc7a19a0b7c53473c3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3d9747b54bf878655d1f84909f884da267fb9f70033a139698d15ebee6e113ea",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:impact-check-skill"
+}

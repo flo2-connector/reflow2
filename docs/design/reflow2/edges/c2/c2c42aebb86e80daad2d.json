@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c321f9eba64bb7fc78f49f368e25163b7d1ede23dc92b174713e8482177beabb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-choice-can-be-gone-back-to",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:fork-alternatives"
+}

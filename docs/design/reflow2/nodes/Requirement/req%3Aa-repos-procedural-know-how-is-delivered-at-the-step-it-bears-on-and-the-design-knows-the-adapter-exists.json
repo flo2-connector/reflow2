@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fbd37a266304b1cdce6131b9518900826507cdc2b4f8cacf5cdfe5fe37f53780",
+  "node_id": "req:a-repos-procedural-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A repository's procedural know-how (import, resolver and test conventions, how to navigate the repo) reaches the agent at the served step it bears on, and the design knows that the project's thin adapter exists and notices when it goes stale",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "After served skills, what remains in a project is a thin adapter, not a competing playbook: per-repo procedural knowledge that reflow2 cannot hold because it does no file I/O. reflow2 gives that residue a first-class home. A repo's conventions are recorded in the design as conventions delivered at the step they concern (a DesignRule of category convention whose steps name the served skills it bears on — adopt, link-artifacts, root-cause — so get_skill hands the convention over beside the skill); a project-local skill file that carries the procedural half is registered as an Artifact that DOCUMENTS the Project as agent instructions, so the design can say the adapter exists and reconcile notices when it drifts from what was registered. The local override already wins over the served skill; this makes it visible and delivered. Honest limit: reflow2 will not navigate a repository; the adapter stays a text a person or agent maintains, and what reflow2 adds is to know it exists, deliver it at the right step, and notice when it goes stale. Promoted from Alex's idea (relayed by Anthony 2026-09-17) on Anthony's word the same day: \"accept/promote all of Alex's ideas\".",
+    "status": "accepted"
+  }
+}

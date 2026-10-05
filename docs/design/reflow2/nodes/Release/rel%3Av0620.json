@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b9ba5fbf1338fde61bde48bf03f5616f27fc4464963a13ead172726057cdc555",
+  "node_id": "rel:v0620",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-16 on Anthony's word (\"Cut the release\"). Ships six PRs since v0.61.2: #519 — the contradiction and unresolved_setup rules compute the condition their message names (dec:a-rule-computes-the-condition-its-message-names), add_artifact takes a first checksum, Interface.medium gains `procedural`, and the thirteen overtaken-defect records are ruled on; #520 — rmcp 3.4 (ServerInfo renamed to ServerConfig), sha2 0.11, base64 and the MCP crate's sha2 declaration removed as never called, rocksdb held at 0.24; #521 — tools/impact_of_diff.py reads a git range as a design change and names every changed file the design cannot see; #522 — the served log-issue skill and /log-issue command, loop_status.follow_ups, capture-session's boundary read; #523 — GraphExport.taken_at (branch, commit, dirty) kept while unchanged, and the gate's PHANTOM refusal of an export about to be committed on a branch it was not taken on; #518 — the 2026-09-15 capture. Minor: three new user-facing capabilities. The schema stamp did not move (28/65/1); no upgrade note. First release whose exports carry taken_at.",
+    "name": "v0.62.0 — /log-issue, a diff read as a design change, an export that says where it was taken",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.62.0"
+  }
+}

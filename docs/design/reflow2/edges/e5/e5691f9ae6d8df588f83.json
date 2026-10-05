@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd105cea8c34de398157fe5ce3d265ae32051ec052303f784c6289cfe9defd80",
+  "edge_type": "REALIZES",
+  "from_id": "art:derived-edge-readers",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:schema"
+}

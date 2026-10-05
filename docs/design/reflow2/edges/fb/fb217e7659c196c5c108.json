@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e663d813b896e4ef68381ef73e269255b08456bfc0f09c2b77457f35a3361c6a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "decision:vocab:environment",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

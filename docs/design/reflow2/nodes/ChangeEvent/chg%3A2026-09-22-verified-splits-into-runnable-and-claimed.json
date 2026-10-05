@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2dc07dfb07dd30785982720d7e42b435864378c7bc93c8f2af36bbee2cfc52c8",
+  "node_id": "chg:2026-09-22-verified-splits-into-runnable-and-claimed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The coverage report tells a check something can re-run from a check somebody typed, and a CI gate forbids a new claim-only capability",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

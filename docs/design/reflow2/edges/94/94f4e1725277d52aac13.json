@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0dacdc4325676ac2766e17c63357efbff16147f7cf0d30d7dbbc8c573e39d904",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:intent-is-reinjected",
+  "properties": {
+    "note": "Which node type carries the re-injected payload depends on this decision: Snapshot has 14 live instances and already generalizes the P2-to-P3 Anchor, while Anchor has zero and is still advertised by describe_schema."
+  },
+  "to_id": "dec:anchor-retire-or-implement"
+}

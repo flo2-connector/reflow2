@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b76c33f588d102fcc21aa86243638854373be65ac878874c46dba490f068a46a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-optimize-be-a-served-skill-any-project-can-run",
+  "properties": {
+    "evidence": "The whole argument that the skill has content rests on one observation from one run: the budget refused a 14.8x speedup as not-yet-done at 2.79ms, and released the work at 266us. That Constraint IS the evidence. If it turns out to be the only budget anyone ever writes, the skill is instructing people to do something nobody does, and this node should be revisited against that.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "con:graph-construction-is-setup-not-work"
+}

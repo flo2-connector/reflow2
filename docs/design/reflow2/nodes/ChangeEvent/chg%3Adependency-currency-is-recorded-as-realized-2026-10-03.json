@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:06a52ed277db509db59cd43e3d64f793139f997554b1fd9b3d1d4edcfbfa1568",
+  "node_id": "chg:dependency-currency-is-recorded-as-realized-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "The dependency-currency check is recorded as realized: the workflow, the checker and the hold file realize it, its test verifies it, and it is allocated to packaging",
+    "rationale": "A design-record correction, no code: the capability's own description named the files and the 12-case test, and nothing linked them, so understated_status could not see it and the thread from req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases stopped at an in_progress capability. Allocated to cmp:packaging, which holds the other release-cut capabilities, because the check runs before every cut.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "cap:dependency-currency-is-checked-monthly-and-before-every-cut read in_progress with no REALIZES, no Verification and no allocation, though #651 built it. Recorded: .github/workflows/dependencies.yml, tools/dependency_currency.py and dependency-holds.toml REALIZE it, tools/test_dependency_currency.py (12/12 locally) verifies it, cmp:packaging hosts it, status realized."
+  }
+}

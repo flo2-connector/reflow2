@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96e0a0ca74ddd9b27a4b1fc115d25dfea27e4f50f6d163fd4dafe9722c1d2a7f",
+  "edge_type": "REALIZES",
+  "from_id": "art:the-export-can-be-ordered-before-its-writes",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:mcp-surface"
+}

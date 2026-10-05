@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f2ddef16c207909157ee7f1c2e2c7f88f33d791a798b0eb7ddeaffd9775e38d7",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "get_node's description truthfully names no edges because it returns none; with no tool that returns a node with its edges, the term 'edges' correctly ranks the edge WRITERS first.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:find-tools-ranks-get-node-eighth-for-a-node-with-its-edges-because-nothing-served-returns-both-2026-10-02"
+}

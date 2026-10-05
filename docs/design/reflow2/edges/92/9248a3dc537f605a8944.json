@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81ede9bcda5eb5b0b4fa1e6c64e3ca2e0ceec64259e82380ee27d917e519cfa3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:plan-increments-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:plan-increments-skill"
+}

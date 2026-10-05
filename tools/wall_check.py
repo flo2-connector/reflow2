@@ -66,7 +66,10 @@ import re
 import sys
 from collections import defaultdict
 
-DEFAULT_EXPORT = "docs/design/reflow2.json"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
+
+DEFAULT_EXPORT = design_io.default_export()
 
 
 # ---------------------------------------------------------------- prose stripping
@@ -251,7 +254,7 @@ def reverse_reach(nodes, edges):
 
 def read_design(export_path):
     """Component → files, containment, levels and declared coupling, from the graph."""
-    doc = json.load(open(export_path, encoding="utf-8"))
+    doc = design_io.load_design(export_path)
     node_type = {n["node_id"]: n["node_type"] for n in doc["nodes"]}
     props = {n["node_id"]: n.get("properties", {}) for n in doc["nodes"]}
     components = [i for i, t in node_type.items() if t == "Component"]

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a90b09cf534eb058b9ebb9ddbe246a11036c8fd7eb099c895bb3368149e2c1fb",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That fact reads '0 of 8 subsystems provide an interface; every interface is provided by a leaf one level down' as the tier having NO CONTRACTS AT ALL. Under this proposal the same observation is the rule being correctly followed. Same measurement, opposite verdict — the design will have to pick which reading it holds."
+  },
+  "to_id": "fact:the-eight-subsystems-are-groupings-not-black-boxes"
+}

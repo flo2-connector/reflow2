@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7058dc88c9598e11ef328ae41f82f1d4deb3fbfc361f558e832dc7346439fe98",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:loop-closure",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:loop-closure"
+}

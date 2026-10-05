@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c1ca79b3c66babb8950965faa8c911c142b6aee31ab37aba146931449e7f3ec7",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-session-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

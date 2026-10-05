@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5d6e10553371c3b83e9350fe287afc9dc84211d1768c252ce5dd1857570b7509",
+  "node_id": "art:test-surface-orphaned",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/surface_says_what_it_orphaned.rs",
+    "name": "surface_says_what_it_orphaned.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

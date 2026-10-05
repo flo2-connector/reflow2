@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad1c6b49e75eb2d74268111897f61030a796ff7e11f11f5b826b9c51cfae0357",
+  "node_id": "art:test-a-code-folder-attaches-to-the-design-it-names",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "End to end over the real binary: a registry server holds the named design; the client is started in a code folder with --graph-path .reflow2/graph --shared --only-if-present and REFLOW2_CONFIG_DIR isolated. Three tests: a pointer plus a leftover local store attaches to the named design, the handshake says so, and nothing is spawned for the local store; a pointer naming a design the server does not hold attaches nothing and says which design it holds; an unusable pointer is refused by name and the local store is not opened.",
+    "location": "crates/reflow2-mcp/tests/a_code_folder_attaches_to_the_design_it_names.rs",
+    "name": "a_code_folder_attaches_to_the_design_it_names.rs — with the machine-wide entry's flags, a folder's pointer wins over a leftover store; a wrong design or a bad file attaches nothing",
+    "status": "realized"
+  }
+}

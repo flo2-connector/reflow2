@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba804beea08d28f3ed203b4efa1adfa84a0916f38a9a10fdb148c44685fd3ecf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:duplicate-merge-needs-a-human-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-inference"
+}

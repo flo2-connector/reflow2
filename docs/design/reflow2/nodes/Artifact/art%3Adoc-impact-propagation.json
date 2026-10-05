@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:18a8e3b8a34e46a39fad860a36fb17c85bd8fb2c7ecb76025451ec8718c8df9d",
+  "node_id": "art:doc-impact-propagation",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/impact-propagation.md",
+    "name": "impact-propagation.md — the first outward-facing doc rendered from the graph, with its confessions",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

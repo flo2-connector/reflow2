@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4bb3bac67b30fe65d6548fb36737c72a2dbf094aba09a510f280b76df54bfd6c",
+  "node_id": "frag:art:docker-build-script",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered docker/build.sh"
+  }
+}

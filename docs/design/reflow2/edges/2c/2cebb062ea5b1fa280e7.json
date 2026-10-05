@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8fb647fb2eec513e4b0a9da62747ae766bb447026723d1d877bf5564a8e754c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0200",
+  "properties": {
+    "as_checksum": "sha256:8f406602ed3bdb046af77130ca482951818dd4ccfeada8afd4cfc0a9c0ea5e10"
+  },
+  "to_id": "art:test-design-identity"
+}

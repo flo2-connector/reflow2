@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ac41b5c46ddb96f9857e7d678d257b09c330a4129380b92c0cfb5401ba5f6e52",
+  "node_id": "rel:v0100",
+  "node_type": "Release",
+  "properties": {
+    "description": "Minor. The alternatives + three-way merge + rerere thread (BL-70/BL-80: merge_designs, apply_merge, recall_resolutions, decision points, AoA, --merge CLI), Contributor authorship identity (BL-79), detector honesty + the critical detect↔verify cycle break (BL-84/BL-92, detect_defects zero-critical), unstamped import (BL-87), adopt ergonomics (BL-89), hermetic CI-gate suites (BL-88), the loop-nudge total-bypass backstop (BL-90), and the read-side loop_hint on orientation reads (BL-91). No schema change. First release whose manifest carries merge.rs and alternatives.rs. Supersedes v0.9.0 in place.",
+    "name": "v0.10.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.10.0"
+  }
+}

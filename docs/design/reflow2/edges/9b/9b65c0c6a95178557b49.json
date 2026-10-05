@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64555d36e3b0230a13fdca4cd8deae75940c7df6dcdc5cc7edf37bb422d78b1d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0350",
+  "properties": {
+    "as_checksum": "sha256:7be3062dbe9327ac959652734116c350d114d3ca4348ba0f8aa1050c5e91f2c0"
+  },
+  "to_id": "art:schema-temporal"
+}

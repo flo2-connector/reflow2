@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e723d977534385f3b2428004a026f3a82d9163ebbf4b684fd047c58c52f81e92",
+  "node_id": "cmp:artifact",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "artifact",
+    "provenance": "authored",
+    "purpose": "The artifact module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

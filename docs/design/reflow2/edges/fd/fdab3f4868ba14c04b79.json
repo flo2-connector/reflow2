@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ec31c68ac7566841eb34fbd5e39de08f0214b64ce5c6feb9756b1058d90be1a5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

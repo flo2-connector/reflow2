@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e6ebe34cfbd47a3c533cf5eb6abe610c22c77c14f124b3cbc2d926a3f9b4d713",
+  "node_id": "cmp:surprises",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "surprises",
+    "provenance": "authored",
+    "purpose": "The surprises module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

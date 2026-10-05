@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3f5db40c09ad17b77682b76413e9bee187809b24ce69fe15875eedd61b9fbc65",
+  "node_id": "chg:baseline-b359c83c6549a618",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-21",
+    "name": "First baseline, set at registration rather than left null — art:detect sat with no baseline for releases because that step was skipped, and reported no_baseline on every gate run since.",
+    "subject": "record"
+  }
+}

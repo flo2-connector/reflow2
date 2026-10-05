@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8d4c7f78c9a5f9c18ce0d3e86b1ec9c72083f87616630e435a889b6e5a5d6d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-three-built-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:completion-computed"
+}

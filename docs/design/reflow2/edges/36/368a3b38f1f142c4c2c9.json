@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:888df1aee0202c80be4376d2dc0ed6f1ba755d1add9527edcfea5ef0bd4fefcd",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-declared-dependency-is-watched-not-imported",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The detail sentence is formatted from the dependency's name, date and version and never from the export path held on the same struct, so the prose and the data disagree about what the reader is given.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-upstream-moved-nag-withholds-the-path-it-is-already-carrying"
+}

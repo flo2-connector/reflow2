@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4437e5fe948eeb6a81b14a5441ce315cb1bc9ac9de4d033c32c8eeacc50004a6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:build-loop-shape-reassessed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:build-loop-is-bounded"
+}

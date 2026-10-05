@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a31ee6bee59512e02d1b39c5817641c6a32fdfe67f979a97597e6c394d2ef056",
+  "node_id": "frag:art:usage-ledger",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered usage.rs"
+  }
+}

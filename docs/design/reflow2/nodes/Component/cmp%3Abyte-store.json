@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7fa65eabf19494f5cba51ac57bc68fa0543a4c9ac6c1c480307597d48e34f054",
+  "node_id": "cmp:byte-store",
+  "node_type": "Component",
+  "properties": {
+    "level": "component",
+    "name": "byte-store",
+    "provenance": "authored",
+    "purpose": "The RocksDB-backed graph store: schema-validated node and edge persistence, six column families for nodes/edges/adjacency/indexes, MessagePack values, graph isolation (many graph_ids in one instance), batch writes, iterator scans, a read cache and a write-buffer overlay.\n\nAbsorbed from `dynograph-storage` at v0.12.0 on 2026-08-24 (increment 4 of `dec:absorb-the-foundation-subset-and-end-the-dependency`) into `crates/reflow2-core/src/foundation/store/`. Carries the crate's own tests (2,187 lines of them).\n\n⭐ IT CONTAINS THE `KvBackend` SEAM — six byte-level primitives (`get`, `put`, `delete`, `prefix_scan`, `prefix_delete`, `commit_batch`) over six named column families, with ordered prefix iteration as the one structural assumption. Two implementations exist: RocksDB and an in-memory HashMap.\n\n🛑 THAT SEAM IS `pub(crate)` UPSTREAM AND STILL IS, which is exactly why the redb spike in `dec:idea-a-byte-backend-that-compiles-in-seconds` was IMPOSSIBLE to write before this increment: nothing outside the defining crate could implement the trait. It is now inside reflow2, so the spike Anthony asked for became writable the moment this landed. `fact:the-storage-seam-is-published-in-design-and-private-in-code` measured that gap; this is the increment that makes it reflow2's own to close.\n\nEXTERNAL DEPENDENCIES IT BROUGHT: `rocksdb` (0.24, absorbed verbatim — see `dec:absorb-rocksdb-024-unchanged-then-switch-separately`), `rmp-serde`, `lru`, `tracing`.",
+    "status": "planned"
+  }
+}

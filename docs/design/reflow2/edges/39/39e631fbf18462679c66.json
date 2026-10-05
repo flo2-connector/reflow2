@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4b429194c24f4e3fb5d694acc67655ce259fa26444994ff9c1eb11e49b2b803c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reconcile-deployed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:fielded"
+}

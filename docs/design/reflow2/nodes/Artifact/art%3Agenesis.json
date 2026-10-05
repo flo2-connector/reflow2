@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:00cfaaa7bbe05053dde8baad3b612d6cb6f7a1004236ecbf5020b3c51b022333",
+  "node_id": "art:genesis",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/genesis.rs",
+    "name": "genesis.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

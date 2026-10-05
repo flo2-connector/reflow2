@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0b461c8d49ad5720270e0440feb81b79330e7d7629fdb585c40f01742e26604",
+  "node_id": "chg:decomposition-coverage-is-asked",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "detect_gaps gains decomposition_coverage: per decomposed parent, \"what did this parent hold that none of its children hold?\" — asked, never answered, and re-asked when the split changes"
+  }
+}

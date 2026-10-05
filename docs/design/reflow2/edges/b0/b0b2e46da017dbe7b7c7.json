@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8fd9d262a62598c236f9ee51268e0b365bc48e162ec6c51d4865aaf9a65a0988",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-is-allocation-running-ahead-of-the-seams",
+  "properties": {
+    "note": "whether allocation runs ahead of seams depends on which graph allocation was drawn on",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-ility-chooses-the-allocation-graph"
+}

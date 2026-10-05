@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce41f55f875a0e3a56b222d090ac0d9fad8dfcc00801eb4af2be1fd66d95c73b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified",
+    "note": "ALIASED now applies to a property with no instance yet; found when Project.closure_legs was aliased and still reported as unreachable"
+  },
+  "to_id": "art:vocabulary-reach"
+}

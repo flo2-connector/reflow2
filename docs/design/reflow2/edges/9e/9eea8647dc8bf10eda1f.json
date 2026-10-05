@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6057d4b4392848cb73b7fbe465c569af88ed4233cb9bd943ce938ce070dc5781",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-a-one-thing-at-a-time-skill-serve-a-whole-codebase-sweep",
+  "properties": {
+    "evidence": "Whether the skill's single-target shape is a problem depends entirely on whether there is more than one target left worth taking. If the performance question resolves to 'nothing here', a scalpel is the right instrument and the sweep-vs-scalpel tension never arises.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-there-performance-left-after-the-four-wins-and-what-is-the-budget"
+}

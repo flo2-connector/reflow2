@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f44e76598921860be8c3efbe516cb12ef650ccdb511d3268bc582a73e55dc4cb",
+  "node_id": "decision:ack:be224976b1f4f6e1",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:be224976b1f4f6e1.",
+    "name": "Reviewed: gap:be224976b1f4f6e1",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call, applied again 2026-07-24): cap:session-memory was captured today and nothing is built, so a Verification would have nothing to run against. Worth naming the check it will need when it is built, because it is not the obvious one: the test is not \"does a node get written\" but \"does a LATER session, with no memory of this one, find what this session decided by asking a question in its own words\". That makes it an integration check spanning the trigger, the epoch anchor and the query surface — and it cannot pass while ver:search-natural-language is failing, since the query half is the same machinery. Sequence it after the foundation search fix lands.",
+    "status": "accepted"
+  }
+}

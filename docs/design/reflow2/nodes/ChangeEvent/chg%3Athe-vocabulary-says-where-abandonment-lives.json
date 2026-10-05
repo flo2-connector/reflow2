@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:892fe294a0e192f1e6e8cdb33723efd98dc61365d52cd7ba3862fd9ab874a295",
+  "node_id": "chg:the-vocabulary-says-where-abandonment-lives",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Capability.status gains a description naming OBSOLETES and saying no cancelled value exists on purpose; OBSOLETES's hint gains the Decision-as-source rule and its four readers"
+  }
+}

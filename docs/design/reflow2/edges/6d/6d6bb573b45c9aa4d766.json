@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4b7b3803baa118a222dfc0b8e97bce68cb4de558864abb92e16b59bdd23d82d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:three-additive-surface-fixes-from-field-feedback",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE COMMONEST MISTAKE NOW TEACHES AT THE MOMENT OF FAILURE: add_change_event accepts a `description` field only to refuse it with a message naming summary and rationale, instead of a bare serde field-list. This is the fact's own point — the fix went to the tool DESCRIPTION (read once, mid-work not at all) and a third project hit it anyway; the refusal is the surface actually read at the failure. NOT CLOSED, and this is one of four: the fact records add_change_event taking FOUR round-trips (description, then affected's struct shape, then change_type enum, then subject enum). Only the first is addressed here. The other three are serde errors that already enumerate their legal values — the reporter praised two of them — so they are lower-value; the general 'report all violations at once' ask is dec:idea-should-a-refusal-teach-every-rule-it-knows-in-one-reply, still open."
+  },
+  "to_id": "fact:defect-the-commonest-changeevent-mistake-was-fixed-in-the-description-and-a-third-project-hit-it-anyway"
+}

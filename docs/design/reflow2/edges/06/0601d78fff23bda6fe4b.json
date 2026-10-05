@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74cb5fdc0cf2abb6d14b924f0eca8fb67673d4a55894e5089dfe461346b18d96",
+  "edge_type": "REALIZES",
+  "from_id": "art:service",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:work-declares-who-it-reaches"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c8ceb5f9fe4cb691e3e57e590aed64f2a5f2582eb3937b2d5ea29481daf2a3f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-moved-record-is-diffed-against-the-store-not-an-export",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

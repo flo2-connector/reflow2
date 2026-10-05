@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8c65d73f646c2c35d97872d7d7a64786657063f6bbb6e54e23031cde0fadb007",
+  "node_id": "question:91a36377633a95bd",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Approved and BUILT this session (Anthony, 2026-07-25: \"we need to get rid of the issue of a stale release. if going with the catalogue-in-instruction is the cost, I think it is worth that\"). cap:skills-served now delivers it: skills compiled into the binary, served by list_skills/get_skill, catalogue in the handshake instructions, and the installer copies nothing and removes what an older kit left.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “After setup, a project never has to change again for reflow2 to move”",
+    "gap_id": "gap:91a36377633a95bd",
+    "question": "Your brother expects that once reflow2 is set up in a project, upgrading it should never touch that project's files again — the paragraph of instructions and the server address stay put, and everything else lives in the reflow2 package. Today an upgrade re-copies fifteen skills into two folders plus the instructions file, so his repo fills with changes that have nothing to do with his work. Do you want that expectation to become the way it works?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

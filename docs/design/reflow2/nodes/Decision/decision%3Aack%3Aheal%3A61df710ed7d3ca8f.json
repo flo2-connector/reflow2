@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:20e743c5d4064157c243a36d7b60988f51ccf257109df43d71d116999688d2d8",
+  "node_id": "decision:ack:heal:61df710ed7d3ca8f",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:61df710ed7d3ca8f (single point of failure: ifc:core-api).",
+    "name": "Reviewed: heal:61df710ed7d3ca8f",
+    "rationale": "Carries dec:core-api-spof-accepted (2026-07-24): one store and one surface over it (req:agent-native, single-writer storage) makes the bridge between them inherently single. Duplicating the contract would contradict req:invocation's one binary spoken to over stdio.",
+    "status": "accepted"
+  }
+}

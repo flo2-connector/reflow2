@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bb6027f59a1b58095cfc1f1d1890d334e81225a180dc65974a2cdc7619529bd6",
+  "node_id": "fact:a-long-lived-shared-proxy-leaks-zombie-children-42-in-seven-days",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-21: a `--shared` reflow2-mcp proxy running seven days had 42 un-reaped zombie children, a second had 4 in two days — the proxy spawns child servers and never wait()s them",
+    "statement": "Found incidentally while clearing a laggy machine, not by looking for it. `ps` showed 46 processes in state Z, all named reflow2-mcp. Grouping by parent: 42 belong to pid 2719297, a `target/release/reflow2-mcp --graph-path ./.reflow2/graph --export-to ./docs/design/reflow2.json --shared` that had been up 7 days 7 hours; 4 belong to pid 901496, a `--shared --only-if-present` up 2 days 2 hours. So the rate is roughly six a day on an actively used project and two a day on a quiet one, and it scales with how often clients attach. A zombie holds no memory and no CPU — it holds a process-table entry and its exit status, waiting for a parent that never calls wait(). NOT THE CAUSE OF THE LAG, and saying so matters because it was found during a lag investigation and the temptation is to blame what you just noticed. The lag was a cargo link and compile from an obsolete local gate sweep: two processes at 108% and 72% CPU. Killing them took the machine to 91% idle while all 46 zombies were still there. WHY IT IS STILL WORTH FIXING. It is unbounded in time. A proxy is meant to outlive the sessions it serves — that is the whole point of `--shared` — so a leak of one entry per attach has no natural ceiling, and the failure at the end of it is a process-table exhaustion that will present as something else entirely on a machine nobody has restarted in 47 days. NOT ESTABLISHED: which code path spawns the children, whether it is the proxy in proxy.rs or the shared-daemon path, whether a normal client detach leaks one or only an abnormal one does, and whether the count tracks attaches or something else. Nobody has read the spawn site; this is an observation about process state, not a diagnosis, and it has NOT been through root-cause.",
+    "subject_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+    "valid_from": "2026-09-21"
+  }
+}

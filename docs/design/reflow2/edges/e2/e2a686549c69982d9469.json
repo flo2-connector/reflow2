@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5cc28463e7ba456b6befcc8e558fd648d5b2da8034858f66202beb1dd2112b52",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-projects-first-session-leaves-the-adapter-in-place",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The next first session on each of those projects can now leave the adapter; the finding stays as the measurement."
+  },
+  "to_id": "fact:three-consumer-projects-on-the-dev-box-carry-no-pointer-file-and-no-hook-because-init-never-ran-the-user-scope-route-bypasses-it"
+}

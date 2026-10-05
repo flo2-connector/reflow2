@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3f1f482c46fbc64d61f0d56f9102d76574cddfd82ea01b529dc1960d7b04337",
+  "edge_type": "REALIZES",
+  "from_id": "art:sync-debt",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:sync-debt"
+}

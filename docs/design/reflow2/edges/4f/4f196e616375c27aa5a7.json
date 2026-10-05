@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3f057b1df06d7c1abf3c677cc2a627eb52edfba4181001fdfd4dc35b4952aadc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:hosted-state-outlives-the-image",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

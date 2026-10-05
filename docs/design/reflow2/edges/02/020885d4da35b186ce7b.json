@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d79bb0ebca603cf17d21f7e10d1f1d066221c696a15a96d7cdb3d81247f31712",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-a-finding-has-no-bounds-so-grading-goes-in-the-name"
+}

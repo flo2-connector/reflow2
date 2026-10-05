@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6590e477cb5187fbbaeea8cc0aaacca4950096f69ac22a391af4a4605374ede0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:publishable-promise",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a87e5df033472ac582f2ba1ae508f2a79370e6e339b384ebc27935f3e38fa9ae",
+  "node_id": "cmp:agent",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "agent",
+    "provenance": "authored",
+    "purpose": "The agent module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

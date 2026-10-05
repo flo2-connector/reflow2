@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7932877865f4eac62843cc113673162769777b7c8ba3b81e59480a9436baf424",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:the-handshake-is-written-down-beside-the-graph",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:idea-how-does-a-content-only-client-get-an-answer"
+}

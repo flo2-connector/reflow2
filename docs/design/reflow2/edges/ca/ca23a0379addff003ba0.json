@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:beb6194bb8bb7f7fba14149598209a92354ca3e6345869bba2af421bbb080940",
+  "edge_type": "REALIZES",
+  "from_id": "art:claims",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:claim-liveness"
+}

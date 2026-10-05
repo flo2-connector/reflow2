@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d88ae824c6ef3bc930a5f91b798374b5a36fa610d1037111972efb3a8a5ae430",
+  "node_id": "question:159ab608b850e46d",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Keep only the diagrams and mockups that something in the design actually points at. The link is the filter — the store holds what someone will look at again, not every intermediate render. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “What a session PRODUCES is captured too — diagrams, mockups and rendered explanations, not just the decisions distilled from them”",
+    "gap_id": "gap:159ab608b850e46d",
+    "question": "Diagrams and mock-ups an assistant makes during a session are usually thrown away, even though they are often the clearest picture of what was agreed. Should reflow2 keep them automatically — and if so, all of them, or only the ones a decision actually points at?",
+    "rephrase_degraded": false,
+    "status": "withdrawn"
+  }
+}

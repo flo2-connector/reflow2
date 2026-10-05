@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:43a6bfed9a17579402f6b7d539f92092d60901bd634fcc18dee5bc590000d2c4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:revise-trigger",
+  "properties": {},
+  "to_id": "req:roads-not-taken"
+}

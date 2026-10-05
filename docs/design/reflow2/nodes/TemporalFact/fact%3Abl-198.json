@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9bcec56f30625eed1f164b5b2638f598147a0e2a7ce1b9381cd00f2f24711655",
+  "node_id": "fact:bl-198",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-198] A serialized default is indistinguishable from a choice — 28 properties carry exactly one value across every instance, 22 of them the schema's own default",
+    "subject_id": "cmp:export",
+    "value": "{\"evidence\": \"*Same census, 2026-08-04.* Capability.tier = operational on 112/112, Component.kind = module on 54/54, Requirement.kind/concern/lineage/provenance/designation each single-valued on 110/110, Fragment.fragment_type/provenance/status on 123/123. None of these is a statement anybody made; each is the default, materialized into every node and every export. The consequence is not byte bloat, it is a doctrine hole: this project enforces the confirmed-vs-asserted distinction at requirement level \\u2014 that is what graph_report's \\\"Requirement certainty\\\" line is for, and dec:certainty-derived argues the distinction must be DERIVABLE rather than stored \\u2014 and at property level it is neither derivable nor stored. Nothing in the export can tell you whether anyone ever chose core. Fix shape: do not serialize a value equal to the default, so an absent property honestly means *\\\"nobody said\\\"* \\u2014 which is already what it means in every case that matters. Check before building: import_graph and the merge driver both compare property maps, so suppressing defaults changes what \\\"changed\\\" means to compare_designs and to merge=reflow2. That is the real cost of this row and it should be measured, not assumed. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-198 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

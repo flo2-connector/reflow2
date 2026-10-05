@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72aa24e4db47f13a38e8d3c94ad11dae5eac63d414195a00f805c0f2f2463e86",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-setup-command-chooses-local-or-remote-2026-09-26",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-local-client-works-against-a-remote-server"
+}

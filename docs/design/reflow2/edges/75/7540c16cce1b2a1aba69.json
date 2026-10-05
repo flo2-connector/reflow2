@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:678b1d59d71483e9338ebf95cfe91d462bc5eab924ae0e181e8590555a80c8ca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:duplicate-merge-needs-a-human-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:corpus-ingest"
+}

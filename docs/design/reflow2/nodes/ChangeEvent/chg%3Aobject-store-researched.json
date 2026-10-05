@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24b037f12680edd8d64ab5dca195741147bd3c948e7a766270f7a3735cc95990",
+  "node_id": "chg:object-store-researched",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "object_store researched against dec:where-content-lives — the storage fork mostly dissolves, the sync/async one sharpens"
+  }
+}

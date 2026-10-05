@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4df25cfd9b375d5c1f83a89d2664bf9316608235a4ca62dc5bfd033aa92baecb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:07fa8bebaecd2fb6e841af82c1d09e222d7fc280c9e2e715157e23565ca339c1"
+  },
+  "to_id": "art:test-a-finding-or-refusal-names-the-route-that-works"
+}

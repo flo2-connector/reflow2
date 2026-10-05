@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4eeb72e16a4458e126ee903aa4a272d7efcb8011a5a8240fb891fc917f5a501",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0430",
+  "properties": {
+    "as_checksum": "sha256:1f837083572d7f058cd78c289e38d1765fd1695e2191b36852f2452ad66f9378"
+  },
+  "to_id": "art:tools-ingest"
+}

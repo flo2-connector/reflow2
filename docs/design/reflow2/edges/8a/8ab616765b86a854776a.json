@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:308fbd26d14109e5cbbbd17c5f540b41fa24476110cabc9f79c1a1e78e8fc006",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-missing-edge-prediction",
+  "properties": {
+    "authored_at": "2026-08-01",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

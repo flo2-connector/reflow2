@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:426c184b10fd480070bf75cac2245a887b94e2e68214039b664775bc9f683136",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:seat-identity-survives-stateless-mcp",
+  "properties": {},
+  "to_id": "dec:stateless-seat-handle"
+}

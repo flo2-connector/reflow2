@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca6b99e4e8b3591c519e2164107a60e0e57f9cb0a2c6b8ebb865be05aa607ca8",
+  "node_id": "fact:worked-a-missing-top-level-argument-through-the-door-exits-2-and-names-it-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-10-02, 0.77.0): through `--call`, a write missing an argument is refused and names it. A deserializer-level miss exits 2, and a constructor's missing create-time content exits 1 with every missing field listed at once. Do not regress it; its nested-field case is the defect recorded beside it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From art:vscode-call-door-field-report-2026-10-02, measured table row \"a write with a missing argument | exit 2; the message names the missing argument\".\n\nRe-measured by triage agent B on 0.77.0, scratch store:\n- A required field missing at deserialisation exits 2 and names the tool and the field (add_decision `evidence`, set_artifact_checksums `disposition`).\n- A constructor's create-time content exits 1 (refusal on stderr) and names ALL of it in one go: add_epoch \"Also missing: epoch_type\"; add_decision with only an id names `name` and `decision`.\nSo \"exit 2\" holds for the deserializer path only. An instructions file that tells an agent \"exit 2 means missing argument\" would misread the exit-1 constructor case. Both are clear.\n\nTHE PART THAT DID NOT WORK is recorded separately: for a field inside an array item the message falsely says the schema \"publishes no description\" (fact:root-cause-a-missing-nested-field-refusal-says-the-schema-publishes-no-description-when-it-does-2026-10-02).",
+    "subject_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+    "valid_from": "2026-10-02"
+  }
+}

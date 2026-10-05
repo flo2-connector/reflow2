@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ead26e43d629eacbc204959614ac8a50c48a30531db8579f4115951aa6cd1f76",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:nudge",
+  "properties": {},
+  "to_id": "fact:bl-112"
+}

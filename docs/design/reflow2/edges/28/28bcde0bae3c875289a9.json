@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1fb5a26e1d962278c93bed9dfcfe77ed6ad5733c4c655ce7fee79012628d6636",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:provenance",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:provenance-sidecar"
+}

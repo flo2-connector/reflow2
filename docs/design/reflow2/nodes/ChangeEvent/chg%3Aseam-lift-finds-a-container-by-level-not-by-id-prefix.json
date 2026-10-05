@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:daa911d23001c9679918b9ead345fab4ace3459109cdcad0d52a40491b45ba5d",
+  "node_id": "chg:seam-lift-finds-a-container-by-level-not-by-id-prefix",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-30",
+    "name": "Seam roll-up finds a container by level, not by id prefix",
+    "rationale": "Ten of this design's eighteen subsystems are named `sub:*`, so 58 of 86 modules never lifted and their pairs were dropped from BOTH the coupling and contract sets. seam_coverage therefore answered `0 uncovered` at subsystem altitude — a FALSE ZERO, the shape fact:ten-components-report-a-zero-blast-radius-the-source-contradicts already names as the worst answer a coupling model can give. The honest reading is 13 of 19 covered, with six named subsystem boundaries owing a contract; and the `seams 18%` trajectory band was the same defect seen from module level.\n\nTHE CLASS, recorded one day earlier on fact:which-properties-are-node-references-is-a-judgement-made-once-and-never-recorded-for-the-others: an id's spelling treated as authoritative about what a node IS, instead of asking the graph. That fact found ids CONSTRUCTED by convention; this is ids INTERPRETED by convention. The guard is that an id prefix is a naming convention carrying no meaning a computation may read — `level`, `node_type` and the schema are where that meaning is declared.\n\nWHY NO TEST CAUGHT IT: all five existing seam_coverage tests named their fixture containers `sys:a`/`sys:b`, so the suite shared the implementation's assumption and stayed green. High coverage of the function, zero coverage of the question. Full analysis on fact:seam-roll-up-found-a-container-by-id-prefix-and-answered-a-false-zero.",
+    "subject": "system",
+    "summary": "`DesignGraph::lift_to_level` in crates/reflow2-core/src/maturity.rs chose a containment parent with `p.starts_with(\"cmp:\") || p.starts_with(\"sys:\")` — an id naming convention standing in for the `level` declaration. Replaced with a test that the parent IS a Component, and made the choice deterministic (smallest id) where containment forks. Also corrected `SeamSets.unreachable`'s scope_note, which counted PAIRS across both sets while calling them \"endpoint(s)\". Two regression tests added and OBSERVED FAILING against the unfixed code: `a_container_is_found_by_its_level_not_by_how_its_id_is_spelled` and `a_dropped_pair_is_reported_as_a_pair_not_as_an_endpoint`. 508 core tests pass."
+  }
+}

@@ -1,7 +1,7 @@
 # Reflow 2.0 — Documentation Overview
 
 **Start here.** This is the map that ties the rest of `docs/` together. Reflow 2.0 is a
-clean-room rebuild ([github.com/sligara7/reflow2](https://github.com/sligara7/reflow2))
+clean-room rebuild ([github.com/flo2-connector/reflow2](https://github.com/flo2-connector/reflow2))
 that captures the **entire lifecycle of a design — concept → operations — in one graph**,
 so that when anything changes, the ripple effects are automatically found, surfaced to the
 user as plain questions, and healed back to coherence. The user never needs to know
@@ -108,6 +108,11 @@ Three records, three questions — kept separate on purpose:
   to a collaborator as-is.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.78.0.md](upgrading-to-v0.78.0.md) — **upgrade everywhere, together**: the stamp
+  moves by an enum value (`Verification.last_reconciled_outcome` gains `blocked`). A v0.77.0
+  binary does NOT refuse a design that stores it: it opens the design, re-stamps it, and writes an
+  export it cannot import. Nothing to migrate. Also: argument refusals, `--read-only` everywhere,
+  and a writing `--call` keeps the export current.
 - [upgrading-to-v0.75.0.md](upgrading-to-v0.75.0.md) — **upgrade everywhere, together, and read
   it BEFORE upgrading a server others reach**. An engine behind a gateway must declare
   `--http-trusted-gateway` or it refuses every approval, and an exposed `--http` server with no

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d9791af7946075552a07674e5bb5d9dc0334f02bde62cca0770d6b47d5e1d323",
+  "node_id": "ver:loop-status-scoped-to-a-contributor",
+  "node_type": "Verification",
+  "properties": {
+    "description": "loop_status answers what is owed to ONE NAMED PERSON, and a scoped answer can never be read as the design being clean (crates/reflow2-core/tests/report.rs, 5 cases). SPLIT OUT of ver:owed-to-a-contributor rather than widening it, because that check's statement is about the COUNTER and it was passing before any of this existed — a green check that quietly grows to stand for behaviour it never exercised is the failure this project has now written down twice. THE CASES: assigned decisions are LISTED, not merely counted, carrying decision_id, name and approver_id (flo2's F4, hit independently here the same day where finding two meant jq-ing the export); scoping to one contributor returns only their assigned decisions and names them in `next`; scoping does NOT make an unassigned musing somebody's problem, so the deliberate quiet around thinking out loud survives; an unknown contributor_id is REFUSED rather than answered with an empty list, with a positive control proving the same call succeeds for a real id — because a typo would otherwise produce 'nothing is owed to you', the most reassuring possible reply and the one least likely to be questioned. THE LOAD-BEARING CASE is a_scoped_answer_never_reads_as_the_design_being_clean: a contributor with nothing assigned gets clean=true, AND scope.not_attributable is non-empty, AND `next` says in words that the rest carries no per-person attribution, AND the design-wide counters come back unchanged by scoping. That is the guard against the defect class this project has now met four times — a value that cannot tell a real NONE from an I-CANNOT-SAY. WHAT IS NOT COVERED, stated rather than left to be discovered: nothing verifies attribution for any relationship OTHER than the approver edge, because none is attributed. Claim-derived ownership and gap-to-judge attribution are unbuilt, and req:the-loop-says-what-is-owed-to-a-person names that as a real open question rather than an oversight.",
+    "kind": "verification",
+    "last_run_at": "2026-08-09",
+    "level": "unit",
+    "method": "test",
+    "name": "loop_status answers what is owed to one named person, and never reads as clean",
+    "status": "passing"
+  }
+}

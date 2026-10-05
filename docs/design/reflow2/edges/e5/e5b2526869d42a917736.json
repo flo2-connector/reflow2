@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d639045acd8665bd6f0b133179fe9d537e377013f749c372982b0991e8dac476",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "evidence": "Separating the design from its code is only workable if the design can still find its implementation and receive results from it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is"
+}

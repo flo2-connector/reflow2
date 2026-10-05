@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:53a96160718c09151c6bf966a196cb79e92c09e13d2e86ddcf26999ab3f08675",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "rule:fixes-are-judged-by-the-third-party",
+  "properties": {
+    "evidence": "Merged 2026-08-22 on Anthony's ruling. This 2026-08-06 statement is the earlier form; the survivor carries his own wording and absorbed this one's worked examples and its where-does-the-fix-land test verbatim. Neither was authoritative while both stood — a live instance of req:a-rule-knows-where-it-is-authoritatively-stated. SUPERSEDES was tried first and is not a legal DesignRule-to-DesignRule edge; EVOLVES_INTO is the honest relation anyway, since nothing here was withdrawn, only grown into one place. Retired on the record rather than deleted: it was true when written."
+  },
+  "to_id": "rule:reflow2-is-built-for-other-projects-not-for-itself"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d17e6762445e911a04d894d368241181bca68d9d6e1180a012dcc898fa000efc",
+  "node_id": "chg:baseline-966418b6faa4d715",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-02",
+    "name": "FIRST baseline — nothing moved. The report was originally registered at /home/ajs7/project/chama/feedback.md, a path that exists only on one machine, so the coherence gate correctly failed it as missing_artifact in CI. Copied into docs/feedback/ per the convention every prior field report follows, and baselined there. A frozen observation needs a versioned copy the design can actually point at.",
+    "subject": "record"
+  }
+}

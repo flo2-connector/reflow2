@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6869fe6f68b9ab6e6a3a603c2b42d41a0149381f848f278acd7267a2fe348539",
+  "node_id": "ver:drift-direction",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "Drift reports which way it went, and names what the design has wrong",
+    "status": "passing"
+  }
+}

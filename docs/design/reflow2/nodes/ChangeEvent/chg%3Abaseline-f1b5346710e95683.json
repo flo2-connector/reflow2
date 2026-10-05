@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f2d09aecef062536d2e627f6a9baa8422b00eed119b1c6d5d62f696d09fae9f8",
+  "node_id": "chg:baseline-f1b5346710e95683",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-31",
+    "name": "First baseline. Copied byte-identical from /home/ajs7/project/bhome/feedback.md and verified with diff before registering, following the convention every other field report here uses — a working-tree path the drift gate can hash, rather than a path outside the repo it would have to report as unjudgeable.",
+    "subject": "record"
+  }
+}

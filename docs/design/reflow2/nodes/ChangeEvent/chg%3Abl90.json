@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b9d2365619cf3a66498e5b1ae42859c5deee62df496523032fc0edfc395c5a2",
+  "node_id": "chg:bl90",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-90: loop-nudge covers the total-bypass session (edited code, zero reflow2 calls)"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a348ac9b2cdc4dd7b15726e8df1fcac5d268730698dc7ade435a951673d7d2c8",
+  "node_id": "ver:detect",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "detect.rs",
+    "status": "passing"
+  }
+}

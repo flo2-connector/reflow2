@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5764dfe363f82c7fc530bc2113076eaf28c0e308b3e6b0bfe02bc6391234e14a",
+  "node_id": "decision:ack:b13f13bfabebbd39",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:b13f13bfabebbd39.",
+    "name": "Reviewed: gap:b13f13bfabebbd39",
+    "rationale": "Approved for build by Anthony on 2026-07-30 but not yet built, so there is nothing to verify. The capability is `planned` and its verification will be written with it — and in this case the acceptance test is already stated in his own words, so the check is not undefined, merely unwritten: which capabilities are due to be released in epoch 5, and what did we not achieve that we were supposed to in increment 10. Recorded so the open list keeps meaning `needs a decision`; the decision has been made and it is `build it`. Same expiry caveat as its siblings: this should stop holding once the capability moves off `planned`.",
+    "status": "accepted"
+  }
+}

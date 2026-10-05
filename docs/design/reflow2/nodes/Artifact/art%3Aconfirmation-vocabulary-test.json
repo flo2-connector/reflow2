@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ae5de2d181edc577d12bdb1109914fab7f4fe20de17646cf96eb4b92df6c4ff5",
+  "node_id": "art:confirmation-vocabulary-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/confirmation_vocabulary.rs",
+    "name": "confirmation_vocabulary.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

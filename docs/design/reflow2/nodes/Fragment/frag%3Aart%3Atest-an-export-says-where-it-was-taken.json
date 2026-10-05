@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:399a085e5f34332ae48ef6af35030c2683f2318b16327ab1b9cb708343c29ae9",
+  "node_id": "frag:art:test-an-export-says-where-it-was-taken",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered an_export_says_where_it_was_taken.rs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fff42d4b24a219c9457e5be56a9adcd7e685be0b92d2e76c6395e0fd35a09897",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-ruling-parks-a-node",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

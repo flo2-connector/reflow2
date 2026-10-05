@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f7bf2cb0cc46836288231cf5b20fc1831ebf04fe97910f576772bb618c2470f9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-drives-a-capability-up-the-ladder-instead-of-somebody-typing-it",
+  "properties": {
+    "evidence": "The measurement is what separates 'the rungs are missing' from 'the rungs exist and nothing drives them', and the options here only make sense against the second reading.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:every-link-of-the-founding-chain-exists-as-a-tool-and-the-chain-has-never-been-walked-on-reflow2-itself"
+}

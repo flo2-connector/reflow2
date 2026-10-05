@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5da3cd6733c9f697b2f5ec4bebfc8e8ff95e072669555f290451335ead570724",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:genesis",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

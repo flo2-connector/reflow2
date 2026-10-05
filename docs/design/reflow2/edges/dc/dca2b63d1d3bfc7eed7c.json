@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:072cd19c25e17c856488d93407eb154a4737efadce06fbebec90ce564e09a0c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-feedback-review-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:cluster-claims"
+}

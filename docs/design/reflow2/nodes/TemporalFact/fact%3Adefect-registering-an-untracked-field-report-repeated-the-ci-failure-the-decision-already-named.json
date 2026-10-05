@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e14f152a8caf2677697e268ac63a9c342d39f15599c2103fe1f2ddab56eff040",
+  "node_id": "fact:defect-registering-an-untracked-field-report-repeated-the-ci-failure-the-decision-already-named",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "Registering a new gitignored field report without the OBSOLETES retirement repeated the missing_artifact CI failure that dec:field-reports-are-untracked already measured — the third write lived only in that decision's prose",
+    "statement": "① SYMPTOM: PR #444's coherence gate failed in CI with `art:dev-storyflow-feedback-2026-09-07: missing_artifact` while every local gate was green — the file exists on this machine and is gitignored, so CI's checkout never had it. ② PRECEDENT, found by the search: dec:field-reports-are-untracked-because-the-repository-is-public measured exactly this failure on 2026-09-02 (art:chama-genesis-feedback) and settled the mechanism — each untracked report is RETIRED from the build's view by an OBSOLETES edge from that decision, which the gate reads as expected_absence. ③⑥ CAUSE AND CLASS: the register-a-report procedure had three writes (artifact + parks + OBSOLETES) and only the first two were anywhere an agent reads at capture time; the third sat in a Decision's prose, which is read once if at all. Same class as the epoch-hint recurrence: a fix placed where one reader was, not where the next one will be. ⑧ FIX: the OBSOLETES edge drawn now; the three-write procedure written into AGENTS.md rule 9 beside the rule the registration serves. Not established: whether the gate should instead read `git check-ignore` and report a gitignored path as expected absence on its own — that would remove the third write entirely and is a design question left open.",
+    "subject_id": "art:kit-instructions",
+    "valid_from": "2026-09-07",
+    "value": "{\"pr\":444,\"gate\":\"reflow2_check missing_artifact\",\"precedent\":\"dec:field-reports-are-untracked-because-the-repository-is-public (2026-09-02)\",\"fix\":\"OBSOLETES edge + AGENTS.md rule 9 addendum\",\"open\":\"gate could read git check-ignore\"}"
+  }
+}

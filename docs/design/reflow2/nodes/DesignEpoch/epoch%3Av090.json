@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dac91997d18fcc58a2ac81cdb8aebc05d5193ffeeacf0db3f33f10f0c709001f",
+  "node_id": "epoch:v090",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "checksum": "sha256:f4e7c27d768059c5802140ee688300a2815c69dec0687b34b9e9851ea185a265",
+    "description": "Cut at git tag v0.9.0. First epoch whose export carries an embedded content_hash (dec:export-hash-chain shipped in this release), so this is the first fork point addressable by checksum rather than by tag alone.",
+    "epoch_type": "release_cut",
+    "name": "v0.9.0 release cut (2026-07-22)",
+    "sequence": 70,
+    "status": "arrived"
+  }
+}

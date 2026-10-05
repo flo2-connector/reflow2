@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18efc794ab6c2445a5a0e86f43650993bc302ee9b8d81a1bac034dbae9b9ef03",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0290",
+  "properties": {
+    "as_checksum": "sha256:4d3313a3988968e436920662419a02f89fcc46d443d09ecd19d018bfe78dc688"
+  },
+  "to_id": "art:test-loop-nudge"
+}

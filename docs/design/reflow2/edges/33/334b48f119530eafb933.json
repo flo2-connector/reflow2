@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dc58a0a91c625d5755ce2644b830b2b510867cb3323a13f8f2135ee00b033a09",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-does-a-capability-need-a-cancelled-state",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

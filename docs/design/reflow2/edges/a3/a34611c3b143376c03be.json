@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:21e0c382b5078e6c5ee4d804c0ba34eab0534845ef876b05b6c05ab8784c91c9",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-the-latent-surface-never-re-probes-after-a-cli-restore",
+  "properties": {
+    "basis": "causal",
+    "confidence": 1.0,
+    "evidence": "The reported mechanism is the one fixed: the surface is chosen once at startup and nothing re-probes, so a design built by `--import` after the handshake stays invisible. Validated by a test that builds a real store under a latent service and asserts `reflow2_start_design` refuses rather than starting a second design, plus two mutations that each kill exactly one case. Their ask (a), promoting the surface in place, is recorded as NOT buildable rather than silently substituted.",
+    "validation_status": "validated"
+  },
+  "to_id": "chg:the-latent-surface-notices-a-design-arrived"
+}

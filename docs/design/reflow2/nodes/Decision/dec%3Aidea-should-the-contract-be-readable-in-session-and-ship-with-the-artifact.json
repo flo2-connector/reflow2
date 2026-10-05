@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8170a15e04bd90eb5190804e6049dc8965db6257690387c470ff187eb4e10901",
+  "node_id": "dec:idea-should-the-contract-be-readable-in-session-and-ship-with-the-artifact",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-19 from flo2 F21's residue and F23, not as a proposal. Two halves of one hole: a consumer is told the committed tool schemas are the contract, and can reach them neither from inside a session nor from the thing it runs.\n\nTHE IN-SESSION HALF. Options: (a) have find_tools return each tool's full inputSchema rather than parameter names; (b) a `describe_tool(name)`; (c) neither, on the grounds that a stale client's real remedy is reconnecting and the refusals now name the missing fields. COUNTER to (c), and it is the reporter's: their roughly 19 rejections were within-version shapes, not drift, so reconnecting would have fixed none of them. COUNTER to (a): every find_tools reply would carry full schemas for five tools when the caller wanted a name, which is the reply-size problem the budget work exists for — (b) pays only when asked.\n\nTHE PACKAGING HALF. Options: ship tools/toolsnaps inside the container image; publish them per tag as a release asset; or both. MEASURED: they appear in neither the Dockerfile nor the release workflow, and the kit is staged file by file, so this is an addition to a list rather than a new mechanism.\n\n⭐ WHAT IT UNLOCKS, and the reason to treat the two halves as one question: 'what changed, between these two versions, for THESE twelve tools?' is flo2's whole upgrade process under the black-box rule. Answering it needs the schemas of two versions side by side, which the in-session half alone does not give and the packaging half alone does.\n\n⚠️ AND A SCOPE QUESTION WORTH ASKING ONCE: if the schemas ship as an asset, they become a published surface with its own compatibility expectations — the contract about the contract. That is probably correct and it should be deliberate.",
+    "kind": "exploratory",
+    "name": "OPEN — if the tool schemas are the seam contract, should they be readable from inside a session and shipped with the artifact a consumer runs?",
+    "status": "accepted"
+  }
+}

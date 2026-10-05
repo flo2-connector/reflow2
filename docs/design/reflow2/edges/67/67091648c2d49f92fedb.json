@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6c176f2742a8421fe2184a7bfb2c8b8e7a054f10a835b30bdcbd5ef4caa657ed",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:a-write-can-be-conditional-on-what-was-read",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

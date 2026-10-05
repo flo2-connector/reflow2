@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7e964c8d074b027ab18f39c882ed2ddb756b72acc8798209c5b00d9fce755ef",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-approving-a-node-you-authored-silently-erases-that-you-authored-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The defect is the instance; this is the class it belongs to. The defect was invisible for six weeks because edge writes preserve and report nothing, which is precisely what this question asks whether to change.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-an-edge-write-report-and-preserve-what-it-replaced-the-way-a-node-write-does"
+}

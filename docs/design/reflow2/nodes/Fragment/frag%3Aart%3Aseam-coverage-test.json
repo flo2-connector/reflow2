@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d423b4d4d942ed26eeeccca6dc1c63dfa0eaa7169bc20eeffcfda5790f5a1c1c",
+  "node_id": "frag:art:seam-coverage-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered seam_coverage.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5e9b8defc72392e7de9e34af9416008ea447ea45a5b5b457424e85ca833a9e1a",
+  "node_id": "art:schema-accepted-at-last-release",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "The narrowing gate's baseline: narrowing::Acceptance of the schema reflow2 0.77.0 shipped, written by REFLOW2_BLESS_ACCEPTANCE=1. Re-blessed at each cut, never by hand.",
+    "location": "schema/accepted-at-last-release.json",
+    "name": "accepted-at-last-release.json — what the last release's schema accepted",
+    "status": "realized"
+  }
+}

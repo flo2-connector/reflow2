@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:38bc8b1f4a3be0fc8ddc4206535c712451677d3725153b00f0b164ba40a9bbf6",
+  "node_id": "cap:stamp",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Stamp and check, refusing a graph from the future — and, since 2026-09-12 (#486, dec:the-stamp-records-enum-values-and-nothing-finer), refusing by NAME a graph that stores an enum value this binary does not know. The stamp carries node type names, edge type names, and every declared enum vocabulary keyed Type.property; property ADDITIONS are deliberately not recorded, and semantic changes are not claimed to be caught. Step 3 of flow:release-cut reads it to decide whether an upgrade note is owed: the note is owed when the stamp MOVED, which now includes a new enum value — v0.59.0 is the first such cut (Decision.status gained `deferred`), and its note warns that an OLDER binary cannot see that move and shows a deferred decision as gone. An older stamp with no enum record still opens: an absent record is not a claim.",
+    "name": "Say which reflow2 wrote a graph",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

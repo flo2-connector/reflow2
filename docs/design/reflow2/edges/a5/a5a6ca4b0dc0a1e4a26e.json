@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:637d039aacae5c273fa9a4f46c07d0ee8ef2a7ffb092ce2f74859f0f970fda33",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it",
+  "properties": {
+    "evidence": "The open question asked what a check must BE before the design counts it. The ruling is the answer that was taken: it must have an executable form — something IMPLEMENTS it — and passing alone is not enough. The idea stays open as the record of the wider question (what makes a check GOOD is deliberately still unanswered); this is the part that was settled."
+  },
+  "to_id": "dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone"
+}

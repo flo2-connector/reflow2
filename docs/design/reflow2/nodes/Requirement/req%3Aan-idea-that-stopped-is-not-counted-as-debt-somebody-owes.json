@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:790df32d4834994bbee10d8b182cfa0c13b1db4e85226926f3d52604dc1e0737",
+  "node_id": "req:an-idea-that-stopped-is-not-counted-as-debt-somebody-owes",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "An idea that stopped is not counted as debt somebody owes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A Decision that has been set aside — the idea is sound, the moment is wrong — must be recordable as such in a field a computation can read, so the coherence loop stops reporting it as work somebody owes.\n\n**MEASURED, 2026-09-11.** 690 Decisions. The status vocabulary is `proposed | accepted | superseded | rejected`. **10 say DEFERRED in prose and 20 say WITHDRAWN, against 4 carrying `rejected` in the field** — and one node is literally NAMED `\"DEFERRED, SHAPE ONLY —\"` while its status reads `proposed`. People are recording the state; they are recording it where nothing can read it. (⚠️ The 30 is a substring count over decision text, so read it as a floor on the pressure rather than a census.)\n\n**WHY IT IS NOT COSMETIC.** A `proposed` Decision carrying an approver edge is DEBT: `loop_status` reports it as owed and `what_next` ranks it. A deferred idea is not debt. Today it sits in the same bucket as a live question somebody is waiting on, so every deferred idea makes the \"what needs me\" list slightly less true — and a list that degrades is how a person learns to stop reading it.\n\n**SCOPED DELIBERATELY TO `deferred`, NOT TO `withdrawn`.** The test for a candidate state is not whether the distinction is real but *what would read it*. For deferral there is an answer — `loop_status` and `what_next` both change behaviour. For withdrawn there may not be one, and that asymmetry is the most useful thing the measurement produced. Whether the author-stopped-this case is a status or belongs in the rationale stays open in `dec:idea-the-decision-status-enum-is-thinner-than-the-lifecycle-people-actually-use`, along with the alternative of DERIVING deferral from age (PEP-1 derives it from \"not updated in over a year\"; reflow2 Decisions carry no timestamp at all).\n\n⚠️ **AND THIS CHANGE IS ITSELF THE HAZARD NAMED IN `req:a-vocabulary-change-a-consumers-binary-cannot-read-is-never-silent`.** Adding an enum value moves nothing the version guard reads, so an older binary would meet `deferred` and silently drop the decision. That requirement is a prerequisite in practice even though neither is logically prior to the other.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ee15d3f829b3b1bef935da9a540267fad8d639a963cf111b90aef5261b26bd54",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:corpus-ingest",
+  "properties": {},
+  "to_id": "req:sources-are-kept-not-just-parsed"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d79346384eec0e85fec8fc14452967773de626687d5743c529772a73b7a3fed4",
+  "node_id": "chg:bl104-derived-completion",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-104 captured: derive delivery from the golden thread; the requirement lifecycle is 3/5 unused"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a8b7f0818f26f4f02cf61036c2aa0471b58e3095c3d9388f3aa84ec095f133b2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "Same shape one level up: a signal that exists but is delivered where nobody is looking is not delivered."
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

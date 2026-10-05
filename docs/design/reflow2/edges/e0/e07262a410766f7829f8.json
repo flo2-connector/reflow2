@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4b9db4559ec55b5e82c369d91b715c9d82489ee0cf9fc781ec347a3f765142f",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-writing-call-keeps-the-committed-export-current",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

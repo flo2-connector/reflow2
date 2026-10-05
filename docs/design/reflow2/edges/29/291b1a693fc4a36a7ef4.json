@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a36bd8b0ac762ad74aa755450957b992289f320a4e19fb66247e46e585e1800",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mcp-tools-http-medium-json-rpc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

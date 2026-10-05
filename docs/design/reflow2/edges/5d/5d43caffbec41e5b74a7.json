@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:490853e7d13348cf389b60ddcba2ae4f37b2ae1a119714d4a015e53a11a3418f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:correspondence-rules-are-stateable",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:key-interfaces"
+}

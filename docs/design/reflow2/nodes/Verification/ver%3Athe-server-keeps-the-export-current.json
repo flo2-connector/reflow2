@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8f06b1745e6d6e9278df870c65d628fd2399128a7212bbe8cd0869e07237f016",
+  "node_id": "ver:the-server-keeps-the-export-current",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/the_server_keeps_the_export_current.rs`, four tests on a real RocksDB store — real because the hand-edit baseline is recorded against the graph path, and a memory-backed service would exercise a different path than the one that ships.\n\n1. A write reaches disk with nobody calling export_graph. The feature; without it the guarantee is a claim.\n2. Ten writes spread 300 ms apart still cost one export. The debounce is what makes this affordable.\n3. A hand edit survives untouched, AND loop_status carries the reason — both the `auto_export.skipped` field and an entry in `next`, because a guarantee that has silently stopped guaranteeing is worse than none.\n4. A read-only server refuses the write-through and reports no status.\n\n⚠️ TEST 2 WAS CAUGHT LYING AND REWRITTEN, and the note is on the test itself. The obvious version — ten writes back to back — passed with the debounce set to ZERO, because the task has not been scheduled yet and the pokes collapse: it was measuring the scheduler, not the feature. Spacing the writes is what makes it discriminate.\n\nWHAT IT DOES NOT COVER: the behaviour of two servers pointed at one file, and anything about the git anchor (that is ver:the-export-chains-from-main).",
+    "findings": "All four pass. Both guards were shown to FAIL before being trusted: disabling the hand-edit check makes test 3 fail on the assertion that the edit survived; setting the quiet period to zero makes test 2 report 10 exports against a ceiling of 2. The full mcp suite — 64 test binaries — passes alongside, with toolsnap, smoke_mcp, empty_speaks and refusal_speaks green and 180 tool schemas unchanged.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "A write reaches the file unasked, a burst costs one export, and a hand edit survives",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f54ceddc11d630c0d3dabb8b2d14e9b021484bd696a104e1bec33daf8d6a9d54",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-server-says-when-it-is-stale"
+}

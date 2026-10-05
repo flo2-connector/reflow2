@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f21591b4d979dc4921da74cdad055f9e6ec50a56bd327f159f143638896e437a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-lives-in-its-server-not-in-the-code-repo",
+  "properties": {
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

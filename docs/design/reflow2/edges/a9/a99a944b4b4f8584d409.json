@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0e3d73516b3419e6c0a43057421995872ba410dda4d6ddda7e17a3dcd439dd8a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-location-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:where-content-lives"
+}

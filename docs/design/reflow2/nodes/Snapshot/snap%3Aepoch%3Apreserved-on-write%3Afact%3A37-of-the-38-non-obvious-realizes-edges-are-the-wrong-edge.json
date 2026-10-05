@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:480dae8aeaa76252111b7773d72ba062e1cb08511a3e107b1661cd19735893cb",
+  "node_id": "snap:epoch:preserved-on-write:fact:37-of-the-38-non-obvious-realizes-edges-are-the-wrong-edge",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Decision\",\"other_id\":\"dec:idea-should-realizes-stop-being-a-wildcard\",\"properties\":{}}]",
+    "state": "{\"basis\":\"measured\",\"confidence\":0.9,\"fact_type\":\"finding\",\"name\":\"MEASURED 2026-09-23: of the 38 REALIZES edges that point at something other than a Capability or Component, 37 are the wrong edge and 1 (an Interface) is right — the question the idea said would decide it\",\"statement\":\"Measured on the committed export at main 93d6397. REALIZES targets: Capability 411, Component 115, ChangeEvent 29, Requirement 7, Verification 6, TemporalFact 2, Interface 1. Judged one by one: INTERFACE (1) — art:graph-read → ifc:graph-read, code implementing the interface it serves: correct. CHANGEEVENT (29) — tests, code and skills pointed at the change that added them; REALIZES says a file implements a function, not that it belongs to a change. 17 already have the right record (CHANGED chg → art); 12 have none. REQUIREMENT (7) — test files 'realizing' a requirement; a test VERIFIES, through a Verification it IMPLEMENTS. None of the 7 test files is linked to any check at all. VERIFICATION (6) — test files → the check they are; IMPLEMENTS is the edge, and all 6 already have it: every one was written by THIS session (2026-09-22/23) through link_artifact on a shared server built 2026-09-20, before #567 fixed exactly this at the call site. TEMPORALFACT (2) — field-report documents → the finding recorded from them; DOCUMENTS is the edge; neither has it. ⇒ By the idea's own test (\\\"if most are the same defect, enumerating pays for itself\\\"), option B is favoured: Capability, Component and Interface are the three targets REALIZES is actually used correctly for.\",\"subject_id\":\"dec:idea-should-realizes-stop-being-a-wildcard\",\"valid_from\":\"2026-09-23\"}",
+    "target_id": "fact:37-of-the-38-non-obvious-realizes-edges-are-the-wrong-edge",
+    "target_type": "TemporalFact"
+  }
+}

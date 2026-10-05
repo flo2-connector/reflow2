@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7eda7e43d12294e619afad39ef3a7287290bd8eaff515c079d54f2e3873af393",
+  "node_id": "chg:accept-594ba9dd44a76e8f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.59.0 cut, step 1: the version string in reflow2.toml moved 0.58.0 → 0.59.0. The design meaning of a cut lives in rel:v0590 and epoch:v0590-cut, never in a version string — accepted BEFORE the manifest is frozen, as the step's own trap note demands.",
+    "subject": "system"
+  }
+}

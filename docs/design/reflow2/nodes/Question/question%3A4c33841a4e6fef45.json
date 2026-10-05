@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5ecee8629be7573c5a13807cecab2ef11840d053ab559be10bab0dcd5f7ff6f4",
+  "node_id": "question:4c33841a4e6fef45",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Build it, local files only — adopt object_store with the local filesystem backend and no cloud features. Smallest useful slice; cloud backends stay one config change away with no rework. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “The graph holds pointers; a content store holds the bytes — narrative, transcripts, diagrams and drawings travel WITH the design”",
+    "gap_id": "gap:4c33841a4e6fef45",
+    "question": "You want conversations, transcripts and hand-drawn diagrams kept as part of the design itself, with the design file just pointing at them. Nothing is being built for that yet — do you want it built now, and should those files live inside the project's repository or somewhere alongside it?",
+    "rephrase_degraded": false,
+    "status": "withdrawn"
+  }
+}

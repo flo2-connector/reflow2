@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ab7548ae986be707a1d3a67bed31a0daca94b109217436ee2fec632fc7c6e9f",
+  "node_id": "chg:two-more-modules-behind-the-read-contract",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "`coverage` and `confirm` move behind `ifc:graph-read`, taking the count from one module to three. Both were selected by MEASUREMENT rather than guess: of the 17 read-only modules, only these two make zero calls outside the contract's five operations. `confirm` is the first to exercise FOUR of the five (scan_nodes, get_node, outgoing, incoming), so it is the first real test that the contract is wide enough to stand a module on rather than merely wide enough for the easy case. Both keep a one-line inherent method, so no caller changed. Also corrected an earlier suggestion: `report` is NOT cheap — it needs 26 other DesignGraph methods.",
+    "subject": "system"
+  }
+}

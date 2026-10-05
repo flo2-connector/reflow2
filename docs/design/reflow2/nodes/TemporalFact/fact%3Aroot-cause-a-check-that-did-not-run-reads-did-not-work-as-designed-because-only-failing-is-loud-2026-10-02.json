@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:3a25600084cdd9fbe01b99c11a9b7a006e24a56fe050d7ce20e17c6f51ebeb04",
+  "node_id": "fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "ROOT CAUSE (walked, measured): a test COLLECTION error recorded as `failing` produces \"did not work as designed\". The vocabulary CAN say \"did not run\" (Verification.status `blocked`, `skipped`), but `blocked` raises no gap. The automated route cannot produce it either: reconcile_verification takes only passed/failed/skipped, and tools/run_to_files.py maps a JUnit <error> to failed. A fourth shape of the one-status class",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-02, triaging art:vscode-call-door-field-report-2026-10-02, tool friction 3. Triage agent C, dev_reflow2 hub.\n\n① OBSERVED, the reporter's words: \"A Verification recording a test collection error (no test body ran) produces failing_verification prose saying the part 'did not work as designed', which overstates the run.\" The report does not say whether `failing` was set by hand or by a reconcile.\n\n② PRECEDENT: the class is fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28: one machine-read outcome per run, with the qualification left in `findings`. Siblings:\n- dec:idea-a-run-can-pass-with-its-exceptions-stated (open);\n- fact:sighting-3-a-check-with-three-of-four-evidence-parts-measured-reads-blocked-2026-09-29.\nThis is the error-not-failure shape of the same class.\n\n⑤ MEASURED, reflow2-mcp 0.77.0 --call on a scratch store. Logs: measure.log, g5-gaps-*.txt and g5-loop-blocked.txt in /home/ajs7/.claude/jobs/fa666a94/tmp/triage-C/.\n- A capability verified by a check recorded `failing`, with findings \"pytest collection error: ImportError in conftest.py; 0 tests ran\", made detect_gaps say: \"The check \"parser test suite\" was failing when it last ran, at 2026-10-02, so \"Parser reads config files\" did not work as designed then.\"\n- The same check set to `blocked` with the same findings: NO gap about the check or the capability. Only loop_status's verifications digest lists it under `attention`, as status blocked.\n\n③④ CODE, origin/main:\n- detect.rs ~4161: the prose is keyed on status=failing. The findings text is never read, and it hedges only on last_run_at.\n- schema/verify.yaml: status [planned, passing, failing, skipped, blocked, superseded], with no description of what `blocked` means.\n- verify.rs OBSERVED_OUTCOMES = passed/failed/skipped, and reconcile maps failing↔failed.\n- tools/run_to_files.py from_junit: `if case.find(\"failure\") … or case.find(\"error\") …: outcome = \"failed\"`. pytest reports a collection error as <error>, so a run fed back by file records a check that never executed as failing.\n\n⑥ THE CLASS: the vocabulary distinguishes \"ran and failed\" from \"could not run\". The two routes that matter do not:\n- the converter and the reconcile collapse error into failed;\n- the detector treats blocked as nothing to say and failing as proof.\nSo the honest status is quiet, and the dishonest one is loud.\n\nUNDER MCP: identical. These are core detectors and the same tools.\n\n⑨ NOT ESTABLISHED: which route the reporter used. Whether a `blocked` check should raise its own gap (\"could not run, so nothing is known\") is a design question for the owner, not answered here.",
+    "steps": [
+      "set_verification_status",
+      "add_verification",
+      "reconcile_verification",
+      "detect_gaps"
+    ],
+    "subject_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28",
+    "valid_from": "2026-10-02"
+  }
+}

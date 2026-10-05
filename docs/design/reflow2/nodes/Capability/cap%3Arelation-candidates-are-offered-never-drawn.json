@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:78bb02fde1243d68f46aef477e8d4e2c59782496d7c1e5da308c082f937c8264",
+  "node_id": "cap:relation-candidates-are-offered-never-drawn",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`relation_candidates` — read-only, index-free ranking of what a node might relate to, plus the `link-ideas` skill and command that drive the backlog, plus the `what_next` fix that stops an idea contradicting settled intent from scoring zero.\n\nTWO SIGNALS: a shared neighbour (both nodes relate to some third node) and distinctive shared terms (IDF-weighted across the pool, so words true of everything count for nothing). Structural presence is the PRIMARY SORT KEY, not a multiplier — an asserted edge outranks a vocabulary coincidence categorically.\n\nREFUSALS ARE THE DESIGN: it never writes and never proposes an edge; a candidate whose reason cannot be stated is dropped rather than offered; nodes already related are excluded from the ranking and returned in `already_related`; and an empty answer names which of three empties it is.\n\nLives in its own module rather than in `relate.rs`, whose docs reserve suggestion for \"the dedup guard's job and the skill's\" and forbid a machine proposing edges there.",
+    "name": "Offer an unlinked idea its likely neighbours, with the walk that produced each",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

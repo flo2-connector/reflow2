@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3e0774c739ef245220d07988700e96ce42edb88cd3ee75d00e5143631bd57544",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

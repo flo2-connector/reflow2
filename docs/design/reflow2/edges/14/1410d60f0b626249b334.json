@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90a0ecf877e7a8748230ce8a6e45e26975851c61707af1495c20851193db6ad9",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

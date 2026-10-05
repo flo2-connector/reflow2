@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1bed91d5646121964e737898f9f73b920262a11076b816cf9a5c58e237a474d9",
+  "node_id": "art:edge-prose",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/edge_prose.rs",
+    "name": "crates/reflow2-core/src/edge_prose.rs",
+    "status": "realized"
+  }
+}

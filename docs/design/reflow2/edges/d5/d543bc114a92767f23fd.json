@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caaebe07170e5f0b4b2bc9f5bd8a5f4668ddb8a33abcfde22911802cc6704743",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-session-with-no-seed-can-find-one",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-session-with-no-seed-can-find-one"
+}

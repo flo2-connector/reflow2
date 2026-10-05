@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:083039092d1ee79f8025383d80251bf7dbb6c0f01fe38ff7a28a718e7ee1b129",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl80-merge-apply-cli",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:019776e96e9701368d42c517b2db25acf334ddac7b5e1e4080a817ad9663fbdc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:coverage",
+  "properties": {},
+  "to_id": "req:coverage-visible"
+}

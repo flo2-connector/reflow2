@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4651137dbb63486dc663c7aa56f4c633166c0fa2e2894221843b8bb07d6b3b8f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:absorb-rocksdb-024-unchanged-then-switch-separately",
+  "properties": {
+    "evidence": "That decision defers the rocksdb → rust-rocksdb switch to its own later PR. Whoever does it has to know WHERE the pin lives, and today the answer differs by crate: `rocksdb` reached the workspace table only on 2026-08-24, while `rmcp` — the other crate Anthony named in the same breath — is still crate-local. The switch is a one-line change only if this question has been answered first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-one-place-to-bump-a-dependency"
+}

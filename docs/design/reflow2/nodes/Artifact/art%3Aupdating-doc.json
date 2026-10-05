@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bda9f7fb42e71f46132e60ca0629ae12e2939df96ded8665d5317a63f5b42d69",
+  "node_id": "art:updating-doc",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/UPDATING.md",
+    "name": "UPDATING.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

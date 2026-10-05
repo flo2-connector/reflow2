@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:29d86499b23de0e2614a3630cc43a640865d96dbd810e454eadfea1b39d7e1ad",
+  "node_id": "req:the-agent-renders-the-design-for-the-reader-who-needs-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When someone else needs to understand the design, the agent asks who they are and what they care about, and renders the view that answers that reader's concern, without the person choosing a diagram type",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-09-28, the core-identity brainstorm (UAF 1.3 read)",
+    "statement": "When a person wants someone else to understand their design (a builder, an investor, an inspector, a teammate), the agent asks in plain words who that reader is and what they care about. It then renders the view of the design that answers THAT reader's concern. The view is chosen by concern, following UAF and ISO 42010's stakeholder → concern → viewpoint, not by the person picking an aspect or a diagram type they would need expertise to name. The view is a projection of the graph, and anything it cannot render from what the design holds is said, not invented (dec:views-are-projections).\n\n@ajs, 2026-09-28, keeping option (d) of dec:idea-what-reflow2-takes-from-uaf-1-3 as intent (\"Who needs to understand it (d)\"), after UAF 1.3 was read against reflow2 (fact:uaf-1-3-read-against-reflow2-2026-09-28).",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1d079ac11727b748165a3cdcd14ce351a51b87bddb7a8eb6b8c33e3f6d86dd4a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-coupling-is-one-typed-call-and-the-name-that-says-so-means-that",
+  "properties": {
+    "approved_at": "2026-09-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

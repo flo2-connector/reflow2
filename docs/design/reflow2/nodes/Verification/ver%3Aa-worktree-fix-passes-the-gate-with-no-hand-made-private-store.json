@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:37ea79aa8f40b6a22adf5ed8ea8253204913d2ff5a0fbaa4315e02f17f2f6fc3",
+  "node_id": "ver:a-worktree-fix-passes-the-gate-with-no-hand-made-private-store",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The #571 path, end to end. A session attached from a worktree on a fix branch edits a registered file, accepts its checksum and records the change through the shared server, then exports its worktree. PASS: tools/reflow2_check.py on that branch exits 0, with no import into a private store and no manual re-export. The main checkout's working copy is untouched by any of it. Reproduces fact:a-worktree-fix-recorded-its-design-changes-in-the-live-store-and-the-branch-gate-failed-2026-09-22.",
+    "kind": "verification",
+    "level": "acceptance",
+    "method": "test",
+    "name": "A fix made in a worktree through the shared server passes the coherence gate on its own branch, with no hand-made private store",
+    "status": "planned"
+  }
+}

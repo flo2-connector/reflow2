@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:94c717fe8ac72ac4c39e458fe620c790f14f6770d5dc714c99b1fce0fd4c617d",
+  "node_id": "chg:every-relation-tool-accepts-the-other-familys-names",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-06",
+    "name": "Every relation tool accepts the other family's names for its ends, and the kit states the one convention",
+    "rationale": "dev_storyflow's fleet lost five calls in one workflow to spellings, and diagnosed it themselves: locally sensible, globally inconsistent. Aliases forgive the other family's name without growing the taught surface — the precedent was ContributorReq.id taking contributor_id. Two choices on the record: (1) node_id/node_type accepted for the from end, because the sharpest reported form was search_design handing back a key the next tool refused; (2) the shared pair struct split rather than aliased in place, because component_id is the from end of provides and the to end of allocate, and one struct cannot alias both ways. Option D (get_node's either/or message) is separable and still open.",
+    "subject": "system",
+    "summary": "Item 4 of v0.50.0. Serde aliases on 30 relation request structs: from_*/to_* on the role-named tools, role names on the from/to tools, node_id/node_type for the from end everywhere; the shared EdgePairReq split into seven per-tool structs so each carries its own role names; the seven handlers and twelve test literals moved to them. The kit's AGENTS.md Tools section states the convention once. Published schema unchanged (toolsnap goldens byte-identical). Five table-shaped tests plus the fleet's handoff end to end."
+  }
+}

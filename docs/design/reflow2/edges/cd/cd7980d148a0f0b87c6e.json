@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11f223626839ae68625b46df18590a24e0f82294e5dcf0f96fdb4fdfdf7a7c02",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "properties": {
+    "at": "2026-09-15",
+    "note": "The fix shape the finding proposed is what shipped: before emitting, the rule checks for a Decision linked to both endpoints, and the open question it flagged — must it be accepted — is answered yes. The proof case (an accepted decision GOVERNED_BY from both endpoints) is now a passing test."
+  },
+  "to_id": "fact:defect-a-contradiction-cannot-be-resolved-only-acknowledged"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b2406ba50b6819a40f302f5fe1104d3b55d225b81d50de8783c79a8a92cfa9fb",
+  "node_id": "chg:accept-653dc51730e238d0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-26",
+    "name": "Fixture only — the existing declaration literal gains the three new fields as None. Not one assertion changed, and the design's account of what these checks cover is unmoved.",
+    "subject": "system"
+  }
+}

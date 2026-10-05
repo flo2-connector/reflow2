@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:306a6c237ffbb8cc57f092291802a6113a2adbe5f9818f0dd5bc26efebfdd6ce",
+  "node_id": "question:634fc0554d9ccfc6",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Keep it and wire it up: promote to authored, allocate to the schema/graph/storage components, add a Verification backed by the real test suite. It is the foundation, not a stub artifact.",
+    "context_setter": "Nothing verifies “Schema-validated graph store”",
+    "gap_id": "gap:634fc0554d9ccfc6",
+    "question": "How will you prove the design store only ever keeps valid, well-formed records — or is this the same store your design already describes and tests elsewhere under a different name?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

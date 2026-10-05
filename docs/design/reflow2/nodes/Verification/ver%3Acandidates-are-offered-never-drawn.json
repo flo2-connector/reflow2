@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cd413a1e17f4798f3d2e7de49ead161ab00d8465546b3356165ea0fbcc738e20",
+  "node_id": "ver:candidates-are-offered-never-drawn",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Nine cases over `relation_candidates` and the `what_next` intent-contradiction fix, in `crates/reflow2-core/tests/candidates_are_offered_never_drawn.rs`.\n\nTHE REFUSALS CARRY THE WEIGHT, because every way this feature goes wrong is a false neighbour: a word true of everything must not manufacture seven neighbours; a candidate that cannot say why it surfaced is never offered; something already related is excluded AND reported rather than silently dropped; an empty answer names which of three empties it is; and an unknown node is refused by name.\n\nTWO CASES EXIST BECAUSE THE FIRST DRAFT WAS WRONG AND THE TESTS CAUGHT IT. The background-term filter rejected EVERY term on a small pool — any shared word is 50% of a two-node pool by arithmetic rather than by being common — and shared vocabulary could outrank a shared neighbour, which was fixed by making structural presence the primary sort key rather than by tuning a multiplier.\n\nAlso pinned: an idea contradicting SETTLED intent now scores and says which kind of clash it is, while one contradicting intent the user settled OUT (`dropped`) scores zero, because contradicting something already abandoned is not a live tension.",
+    "findings": "9 passed / 0 failed. Whole workspace alongside it: `cargo test --workspace --no-fail-fast` WS_EXIT=0, 157 result lines against 152 test files, 1,795 passed, 0 failed. Core-only: 129 suites, 1,486 passed, 0 failed.\n\nTWO OF THE NINE EXIST BECAUSE THE FIRST DRAFT WAS WRONG, and both are recorded rather than quietly fixed. The background-term filter rejected EVERY term on a small pool, because any shared word is 50% of a two-node pool by arithmetic rather than by being common — the proportional rule now applies only once the pool is big enough for a proportion to mean anything. And shared vocabulary could outrank a shared neighbour, fixed by making structural presence the PRIMARY SORT KEY rather than by raising a multiplier until the example passed.\n\n⚠️ THE SUITE ALSO COST THE MACHINE SOMETHING WORTH KNOWING: on a 4-core box, `--workspace --no-fail-fast -- --test-threads=2` drove load average to 5.8 and the user reported interactive lag. Renicing the run to +19 dropped it to 4.4 within seconds and it finished green at 1.99. That is the tail of `dec:the-gate-runs-every-test-binary-before-reporting`: a run that executes every binary costs more wall-clock and more CPU than one that stops at the first failure. The trade is still right — a red run should yield every fact it has — but the pre-push gate is not free on a small machine, and renicing it is the cheap mitigation.",
+    "kind": "verification",
+    "last_run_at": "2026-08-25",
+    "level": "unit",
+    "method": "test",
+    "name": "candidates_are_offered_never_drawn.rs",
+    "status": "passing"
+  }
+}

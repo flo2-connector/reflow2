@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e1d1b12d0fbf4609461f1381e0d07b0697d033922acfca0051d70f1afb5ba8a2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:design-dependencies-declared",
+  "properties": {},
+  "to_id": "rule:reflow2-is-built-for-other-projects-not-for-itself"
+}

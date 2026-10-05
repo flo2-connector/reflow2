@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2222d436a1d68e2a76fb2a57fbb4ee0aebb28441519edeb3261350d7830136fa",
+  "node_id": "art:server-currency-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/the_server_says_when_it_is_stale.rs",
+    "name": "the_server_says_when_it_is_stale.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad471249bd14cae5874d4302cebc59f1eaec7964ac41bbd5f9085522e3ddf488",
+  "edge_type": "CAUSES",
+  "from_id": "req:a-refusal-names-what-would-have-worked",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "git show v0.62.0 toolsnaps + current toolsnaps: 7 of 8 names absent in both; add_change_event.id required in both; the earlier fact on reading the schema",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-bhome-2026-09-18-seven-of-eight-version-skew-refusals-were-names-that-never-existed-second-project"
+}

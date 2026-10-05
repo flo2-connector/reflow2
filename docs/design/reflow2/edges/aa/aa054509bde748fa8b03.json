@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a5098ebe2f9a5341b07b4981333c0e640305560922402353026fd0e9b1fd112",
+  "edge_type": "REALIZES",
+  "from_id": "art:machine-install",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:machine-wide-install"
+}

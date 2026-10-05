@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:91290472267fb5adc7156a3d5c959df4b648efd6648488189e2753d786baf0eb",
+  "node_id": "req:a-write-says-what-it-did-not-recognise",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A write says what it did not recognise, so a caller can tell an extension from a typo",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A write that stores something the schema does not describe must SAY SO in its reply — without refusing it — so that an invented field and a deliberate extension stop being indistinguishable.\n\nTHE OBSERVATIONS ARE `fact:defect-an-undeclared-property-is-stored-without-complaint` and `fact:defect-a-property-naming-a-node-is-unguarded-while-edges-are-not`; this is the intent behind fixing them. They are ONE theme in two directions: an unknown property NAME going in, and a declared property holding a DANGLING node reference coming out.\n\nTHE ASYMMETRY THAT MAKES IT A REQUIREMENT: reflow2 already refuses an unknown TOOL ARGUMENT — `#[serde(deny_unknown_fields)]` appears 134 times in the served surface — and refuses an EDGE to a missing node through all sixteen typed helpers, with atomicity and a size-floor test. The one hole is `props`, a free object, which is exactly where a property name lands. So the vocabulary is guarded at the type level and the edge level and open at the property level in both directions.\n\n⚠️ THE COUNTER-ARGUMENT IS PART OF THE REQUIREMENT, NOT AN OBJECTION TO IT: the store is deliberately a property BAG, and open-world properties are what let a project record what reflow2 did not anticipate. So this must NOT become strict validation. The ask is a REPORT, not a refusal — hence the wording.\n\nMEASURED: `enforcement: \"advisory\"` was accepted, stored and echoed back on a DesignRule whose schema declares no such property; the real field is `enforced`, a bool. The write succeeded and meant nothing, and only an unrelated gap firing exposed it.\n\nCHEAPEST FORM, and probably sufficient: echo which stored properties the schema does not declare. One comparison, no policy change. Naming the nearest declared property is a second step — `enforcement` vs `enforced` is one edit distance, and the near-duplicate guard already does this kind of suggestion for ids.",
+    "status": "proposed"
+  }
+}

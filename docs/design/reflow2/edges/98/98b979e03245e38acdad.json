@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b84581822e946222f15db6298fd5f6e3ab0e9067bd1060230406f803ed0a9404",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-design-lives-in-its-server-not-in-the-code-repo",
+  "properties": {
+    "evidence": "Taking the design out of the code repo is only workable once reflow2 keeps the link to the code.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-design-knows-where-each-implementation-is"
+}

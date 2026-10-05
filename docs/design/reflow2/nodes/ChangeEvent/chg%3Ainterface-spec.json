@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a8adc31fb0ef90686ec1d98405092e225bfbccab420fff8a8b1b2fbdf3057c2",
+  "node_id": "chg:interface-spec",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "An Interface carries its whole contract — paradigm, payload format and schema, endpoint, operations, auth, transport security, error model — with unrecorded fields reading as unspecified, never as none"
+  }
+}

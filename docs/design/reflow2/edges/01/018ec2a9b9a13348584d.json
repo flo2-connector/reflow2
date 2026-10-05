@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:584aa98b392ab2a9c32db1bb9ced2c8deeff3a4fac09f2cf4aeb5c1982db3899",
+  "edge_type": "CHANGED",
+  "from_id": "chg:link-projects-skill-served",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:link-projects-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8de43cb5039f81adb0813e86db593090d572eb2128ecb8b6d15df4796e67bd04",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:ci-checks-the-code-against-its-design-on-the-server",
+  "properties": {
+    "note": "Rule 4 (reflow2 works only from the blueprint) means CI must ask the server, not read a committed photocopy."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

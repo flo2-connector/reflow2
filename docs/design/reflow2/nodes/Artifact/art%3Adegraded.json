@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0aee5114ff8613dfe160caba0e5442decfa302bea7b84a7f30e4dfa120c4b10c",
+  "node_id": "art:degraded",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/degraded.rs",
+    "name": "degraded.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:402a35848733acaffb091cb9e54b6815748b87e41d417044d06d5862ca8f2761",
+  "node_id": "fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: a stdio, --http or --serve-shared server started with --read-only where there is no store CREATES an empty one as it opens the path — while --read-only's help said \"no design store is created where there is none\" from the day it was written (item 1, #654)",
+    "source": "art:main",
+    "statement": "The serving half, outside item 1b (which closed the client half). OBSERVED, scratch folders, isolated HOME: `--graph-path .reflow2/graph --read-only` over stdio refused add_requirement and left .reflow2/ holding a new store (main c4e1cbd); `--graph-path .reflow2/graph --http 127.0.0.1:0 --read-only` left .reflow2/graph, graph.id.json and graph.meta.json (branch build, this code path unchanged); `--shared --read-only` in an opted-in folder spawned a --serve-shared daemon that created the store (main; the client now refuses to spawn there). The cause is visible in main.rs: every server path opens with ReflowService::new_reporting, which creates a missing store, before into_read_only is applied. RULE 8 (a refusal claim is born wrong): item 1's help sentence was false for these servers when written; item 1b's help now names them as the exception rather than claim it. THE FIX NEEDS ITS OWN DECISION: refusing at start leaves an MCP client with no server and no reason (item 1's objection); a degraded surface naming --read-only (what --shared --read-only now does) answers that objection, but it changes what an operator's read-only server serves on an empty path.",
+    "subject_id": "cap:a-surface-can-refuse-every-write",
+    "valid_from": "2026-10-03"
+  }
+}

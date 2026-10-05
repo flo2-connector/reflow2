@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c188cd0cec63c6f62c7078d5df456ad2559b625979b8ee3bdcde067edc83c83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4a5259a44e27c9d23ac65d9350bd8429843cde80ee46a3a54849dae514d6a564"
+  },
+  "to_id": "art:test-a-project-declares-its-unit-system-and-the-sweep-reports"
+}

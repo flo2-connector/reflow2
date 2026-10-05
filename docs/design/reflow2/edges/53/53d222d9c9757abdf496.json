@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d101ee550cc3476bbcdbc4fa867822797aa294c67306c6acec05b0add770e68b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-nothing-asks-what-a-session-made-false"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:69775baa387ccb6173d579b209e08132662d0bdd89c88d4d99d9a6c9ca8c4dad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-surface-refuses-at-the-write-guard",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

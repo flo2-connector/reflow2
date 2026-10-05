@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0083a270dbadd5f073654fe3e3576af502dba172758b046c91d00fefb57dcff8",
+  "edge_type": "REALIZES",
+  "from_id": "art:self-host-documents-guard",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:heal"
+}

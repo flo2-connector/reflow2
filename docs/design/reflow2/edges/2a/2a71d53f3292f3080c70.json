@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b0e0636d1e1ccc1a898e7304982a4dcbda4af93845cddefa6a09964d631aa814",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:the-remote-client-sends-no-writes-for-and-point-2-is-in-no-planned-step-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:the-remote-client-sends-no-writes-for-and-point-2-is-in-no-planned-step-2026-09-28"
+}

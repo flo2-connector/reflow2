@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44689b3864009736607b74a65204a35c92223f9e59e963116d35a55f1041312c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:instructions-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-served-skills"
+}

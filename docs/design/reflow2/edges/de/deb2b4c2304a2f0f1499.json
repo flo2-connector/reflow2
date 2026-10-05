@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5dbf5a9ca3879f1a32ba5d92e9b65a4ca8a9cf13d4b41d44804a72a9aff5d1a1",
+  "edge_type": "PROVIDES",
+  "from_id": "cmp:rocksdb-backend",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:kv-backend"
+}

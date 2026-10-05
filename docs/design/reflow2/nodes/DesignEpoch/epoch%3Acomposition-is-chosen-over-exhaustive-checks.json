@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ff4b80e5571ca6165f970687e5ccf7e3c4c40ee9cd444b9606dadc04465bc22",
+  "node_id": "epoch:composition-is-chosen-over-exhaustive-checks",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Composition is chosen: skills composed of attribute classes, not stamped by one factory or swept by one check",
+    "sequence": 387,
+    "status": "arrived"
+  }
+}

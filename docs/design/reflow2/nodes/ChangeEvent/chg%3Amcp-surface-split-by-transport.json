@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2437f7907bff9a56c6defca7ec5548eef70d2fa434a530ae475bc0e3a16535d2",
+  "node_id": "chg:mcp-surface-split-by-transport",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "One Interface was describing two boundaries — the MCP surface split into its stdio and HTTP transports, on Anthony's word, rather than adding a protocol to the medium enum"
+  }
+}

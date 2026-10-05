@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:05e80d75a636119461cfb00ae916246611d8e9d481f4ee805864e91290160ea8",
+  "node_id": "dec:anchored-first",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "detect_gaps sorts anchored gaps before project-level phase nudges, severity within each band.",
+    "name": "A gap that names nodes outranks a phase nudge",
+    "rationale": "A named gap says something is wrong NOW; a nudge says what comes next. Ranking 'next' above 'broken' made three brownfield trials do the useless thing first. Nudges are demoted, never suppressed. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); evidence: gap-surfacing disciplines 3 and 8.",
+    "status": "accepted"
+  }
+}

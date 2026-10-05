@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8be15abf2c94cee4401325df851b87b5eeb7df1a438b9de2daaabfd0a703bd70",
+  "node_id": "art:a-set-aside-decision-is-not-debt-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four tests through the served tools. The same decision is debt while proposed and not while deferred — measured on ONE node before and after in loop_status' assigned decisions and what_next's open pool, so the test cannot pass by the lists being empty for another reason. Neither gap detector raises a deferred decision. Deferring wants the owner's name: refused at the constructor, reported at the setter. A deferred choice cannot have alternatives registered. Mutating the two readers to count deferred as owed makes exactly the first test fail, on the assertion that names the point.",
+    "location": "crates/reflow2-mcp/tests/a_set_aside_decision_is_not_debt.rs",
+    "name": "a_set_aside_decision_is_not_debt.rs",
+    "status": "realized"
+  }
+}

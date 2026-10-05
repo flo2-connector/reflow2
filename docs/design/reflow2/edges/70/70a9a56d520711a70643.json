@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e2d386fff7ff307604bec93570b9971a97f0e836951f89fb7f02805cdd14e66",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:a-record-can-say-which-question-it-answered",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "Delivers api-boss's own fix (3) — \"let a Decision CLOSE a Question with an edge, making the linkage first-class and surviving whichever id scheme wins\". MITIGATES rather than INVALIDATES on purpose: their PRIMARY defect is untouched. `answer_question` still derives the question id by pure string manipulation from the gap id, so a Question stored under any other id remains unreachable by that tool. What this closes is the LINKAGE half they named as durable-but-unmodelled; the id scheme half is still open."
+  },
+  "to_id": "fact:defect-a-question-not-created-by-gap-to-prompt-can-never-be-answered"
+}

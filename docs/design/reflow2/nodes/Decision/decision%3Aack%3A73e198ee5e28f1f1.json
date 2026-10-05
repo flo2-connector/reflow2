@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:84e2b320d7570a4a5ca13b3d11f0f218c42201c8cdd486a6c89e44ec79762ef4",
+  "node_id": "decision:ack:73e198ee5e28f1f1",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:73e198ee5e28f1f1.",
+    "name": "Reviewed: gap:73e198ee5e28f1f1",
+    "rationale": "Deferred on Anthony's established disposition for this review, 2026-07-28 — every capture from the reflow workflow comparison is accepted, recorded and scheduled for a later increment rather than built now. Not dropped. Note it is the largest of the captures: adding a scenario or use-case object is new schema, not a check over existing data, and it would give validation somewhere to land — the same day, 67 capabilities were acknowledged as verified-but-not-validated precisely because operational intent has no node to attach to. Two things must be settled before building: whether a scenario is a new node type or a specialisation of Flow (already implemented in flow.rs with ordered steps, so the sequence half exists), and what happens to Actor, which is declared but appears once in the whole core as a line in report.rs's SNAPSHOT_TYPES and whose INTERACTS_WITH edge has no reader — the actor half of a scenario is currently unread vocabulary, so this cannot be built without also resolving that. Related to the behavioural-equivalence question held open the same day: a scenario replayed against an old and a new implementation is what would answer it.",
+    "status": "accepted"
+  }
+}

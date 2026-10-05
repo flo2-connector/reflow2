@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:c9202da65928ce40dfa0a6df08f705bff45eb9c4804c7090daae91afae38e335",
+  "node_id": "fact:the-documented-path-for-a-levied-requirement-named-two-fields-no-typed-tool-could-write",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "The mechanism this design documents for a consumer's levied requirement names `source` and `provenance: imported`, and `add_requirement` accepted neither — 1 of 263 requirements carried either, written by hand through the escape hatch",
+    "statement": "MEASURED 2026-09-22, found by walking the design's own documented path for the first time.\n\n`dec:idea-gap-flows-to-the-dependency` states the mechanism in as many words: a levied requirement \"is expressible TODAY as: add_requirement (lands proposed) + authored_by <them> role=author + source '<their design>' + provenance imported. **NOTHING IN THE SCHEMA NEEDS TO CHANGE.**\"\n\nThat last sentence was true and it was not the whole story. **The schema did not need to change and the TOOL did.** Both properties are declared on Requirement; `add_requirement` accepted neither; so the only way to finish the documented path was a second call to the generic `create_node` escape hatch.\n\nTHE NUMBERS, on this design at the moment it was found:\n  · Requirements carrying `source` — **1 of 263**\n  · Requirements with `provenance: imported` — **1 of 263**\n  · The other 262 read `authored`, which is the schema default.\n  · **Both were the SAME node** — written by hand that afternoon, through `create_node`, in the first live exercise of the mechanism.\n\n⇒ In the whole history of this design the documented path had been walked exactly once, and only by stepping outside it.\n\n⭐ THE THREE-LEGS SHAPE WITH TWO LEGS, which this project keeps finding in itself: the VOCABULARY existed (both properties declared), the INSTRUCTION existed (a Decision naming the exact call sequence), and no typed tool could write it. `vocabulary_reach.py --check` did not catch it because that gate guards a NEW declared property the surface cannot write, and these were grandfathered.\n\n📌 HOW IT WAS FOUND, and it is the argument for consumers: not by a sweep, and not by an instrument. A real consumer levied a real requirement through a hub session, an agent followed the design's own written instructions, and the instructions ran out halfway. Nothing internal to this design had exercised that path in the seven weeks since it was specified.\n\nFIXED THE SAME DAY: `add_requirement` takes `source` and `provenance`, written through the same `set_optional_props` path `priority`, `concern` and `kind` already use — so omitting them leaves the schema default exactly as it was. Pinned by `ver:a-levied-requirement-is-recordable-in-one-call`.\n\n⚠️ WHAT WAS NOT DONE AND WHY. `add_capability` has the same missing pair, and was deliberately left alone: capability `provenance: imported` is already used 16 times, so something else reaches it, and there is no evidence of a blocked path there. Fixing what was measured rather than the whole constructor family. Whether the other constructors have the same hole is unmeasured.",
+    "steps": [
+      "add_requirement",
+      "capture-intent",
+      "link-projects"
+    ],
+    "subject_id": "cap:vocabulary",
+    "valid_from": "2026-09-22"
+  }
+}

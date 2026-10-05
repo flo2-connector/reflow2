@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5496aa8645c9c049225adefdbeeaf3ebd3c8577441c8ab9b7b7d26712acddfbc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:capture-intent-registers-its-source",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:capture-registers-its-source"
+}

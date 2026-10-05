@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44cbac5996261b8988d47133aa6a3a39c459ffc4de8277a0db0d048f932cc3ef",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:seat-identity-survives-stateless-mcp",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:seat-per-client"
+}

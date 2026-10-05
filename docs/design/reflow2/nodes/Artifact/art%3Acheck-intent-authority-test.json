@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed3713f417f9744adcee2cc94050c1c4f0e9c55b9c60e21973665c8866aad387",
+  "node_id": "art:check-intent-authority-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/test_check_intent_authority.py",
+    "name": "test_check_intent_authority.py",
+    "status": "realized"
+  }
+}

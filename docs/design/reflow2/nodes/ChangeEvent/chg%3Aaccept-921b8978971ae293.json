@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7e8c4e58c9372410912c17873757de46bf8ec3159a4cb7fb5ed44ec0c7b172fb",
+  "node_id": "chg:accept-921b8978971ae293",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-08",
+    "name": "reflow2.toml's version string bumped 0.24.0 -> 0.25.0 for the cut. The design meaning of a release lives in the Release node and its epoch, not in a version string, so the design holds. Accepted BEFORE release_includes_all so the manifest freezes the shipped value rather than the pre-bump one — the recorded v0.20.0 trap, avoided rather than repeated."
+  }
+}

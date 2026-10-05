@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3ea339a9638e1492e2528f1df92ff08971ef84244a768a9ac4a239599b3bd968",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-a-true-causes-edge-does-not-thread-a-cluster-and-the-finding-never-says-which-edges-do-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-a-true-causes-edge-does-not-thread-a-cluster-and-the-finding-never-says-which-edges-do-2026-09-29"
+}

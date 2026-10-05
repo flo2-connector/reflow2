@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e968b621dec37e54749650f85bd0676bdb34dcb1aa0f918a37f2c415aea55b54",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-local-files-are-measured-for-a-remote-design"
+}

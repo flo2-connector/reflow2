@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:293568fd14fad9c9554b45dd42d4cec1eae31db02f520d45bde19ba1b788585c",
+  "edge_type": "CAUSES",
+  "from_id": "fact:gap-to-prompt-welds-the-title-and-the-why-into-one-string-and-returns-only-the-string-so-the-one-consumer-splits-prose",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The welded string is what this change unwelds.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-composed-prompt-serves-its-pieces"
+}

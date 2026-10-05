@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:95edfce3ec026b27348021886c1cd4ae4fb059a675efae11c93bad1c5abebb75",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker"
+}

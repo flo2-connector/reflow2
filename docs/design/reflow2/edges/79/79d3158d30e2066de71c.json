@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:419927ec2768f3cbe1521aa9ae26c5fdafaf8e08aa21c1438c412543592049e0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported",
+  "properties": {
+    "evidence": "A unit-system rule is one instance of a rule the project follows: it is captured with its consequence stated (stop the build or advise) and its violation computed, which is exactly the machinery that requirement provides.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-rule-is-recorded-with-its-consequence"
+}

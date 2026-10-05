@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:256a65fc09eb404e01983677d5227ac3d7eb3e5ef3bbcd874ffa09e98d94a4cd",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:alexs-third-report-lands-and-one-of-its-two-standing-items-is-already-fixed",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting. That fact set up the output-schema experiment: one tool declares an output contract, the rest do not, and a user calls both in one session. This report is the pre-condition arm measured on 0.43.0 — neither arrives — produced by a real user without anyone asking. Putting him on 0.44.0 turns his ordinary work into the experiment's live arm."
+  },
+  "to_id": "fact:reflow2-sends-a-structured-payload-for-tools-that-declare-no-output-contract"
+}

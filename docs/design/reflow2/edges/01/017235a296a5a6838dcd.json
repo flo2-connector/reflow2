@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:72023e09aa112a4f3185e107e058de58428a928264716c1d0f9c549a1e10fb8d",
+  "edge_type": "CAUSES",
+  "from_id": "ifc:graph-export",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Controlled A/B on two identical copies of the same 4,403-node store, same release binary, same machine, 2026-09-13. A freshly opened server sits at 62 MB. Ten heavy reads take it to 101 MB, thirty writes to 140 MB, and FIVE export_graph calls to 433 MB — +293 MB from the export path alone against +78 MB from every other kind of work combined. The same store opened fresh stays at 62 MB until something exports, so the retention is not proportional to anything RocksDB holds. Ten further exports oscillate in a 504-542 MB band and fall as often as they rise, which is a bounded working set being recycled rather than an unbounded leak. The allocator is confirmed as the retaining layer by a third arm: an otherwise identical server run with MALLOC_ARENA_MAX=2 reaches 233 MB after the same five exports instead of 433 MB.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-servers-resident-memory-is-export-retention-not-rocksdb-2026-09-13"
+}

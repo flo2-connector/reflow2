@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5cbb59fcaf32c959c07afb260235c77eecef06647afe1b59b9d41ca499f9a2f1",
+  "node_id": "art:manual-work",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/manual_work.rs",
+    "name": "manual_work.rs",
+    "status": "realized"
+  }
+}

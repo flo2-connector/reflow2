@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:01a6678399025e886990c38a8c8a5b45fe88160d4d18f6101e84a5f9781bc85a",
+  "node_id": "ver:a-build-can-call-one-tool-from-the-shell",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_build_can_call_one_tool_from_the_shell.rs: five tests run the built binary (CARGO_BIN_EXE) against temp graph directories; the last spawns a second binary on stdio to hold the RocksDB lock for real.",
+    "findings": "pr run: 5 passing; full workspace suite green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "system",
+    "method": "test",
+    "name": "A write then a report from the shell reply as JSON; a refusal is stderr + exit 1; an unknown tool or non-object args refuse before the graph exists; args read from stdin; a read answers from a snapshot while a server holds the graph and a write refuses",
+    "status": "passing"
+  }
+}

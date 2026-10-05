@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dba24fdd0978a2536c8f9c90dd6ff09272a62bf968cec88958ec1de0b264537b",
+  "node_id": "dec:idea-enum-near-synonyms-are-accepted-with-a-note",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal. dev_storyflow agent, 2026-09-06 on 0.48.0, wish #34: \"Every message named the legal values, so no guessing — but four round-trips for one capture. Wish: accept the obvious near-synonyms (`test` → `code`, `additive` → `new_feature`) with a note in the reply, or list the enum in the tool description.\"\n\nWHAT ALREADY SHIPPED: the second half. Since 0.49.0 (#435) every enum request field publishes its legal values in the tool schema, so a current build's first call can be right. The first half — accepting synonyms — is the open question.\n\nOPTIONS: (a) a per-field synonym table (`test`→`code`, `additive`→`new_feature`, `process`→`methodology`), accepted and REPORTED in the reply (`read_as: {artifact_type: \"code (from test)\"}`), never silent. (b) no synonyms; the refusal already names every legal value and costs one round-trip. (c) fix the vocabulary where the synonym exposes a missing VALUE rather than a spelling: `test` is not a synonym of `code`, it is fact:defect-link-artifact-has-no-type-for-a-test-source (two reports now) asking for a value the enum lacks.",
+    "kind": "exploratory",
+    "name": "OPEN — should an enum field accept an obvious near-synonym (`test` → `code`, `additive` → `new_feature`) and say so in the reply, or is a synonym a judgement the caller has to make?",
+    "rationale": "COUNTER-ARGUMENTS. (a) makes a judgement on the caller's behalf — `test` → `code` throws away the very distinction the test-source defect says is missing, and `additive` → `new_feature` could equally mean `scope_change`; a synonym table also grows without bound and the reply note is easy to skim. (b) is what exists, is honest, and the reporter called it 'the right failure mode' — the cost is one round-trip per new vocabulary word, paid once per agent. (c) is the one case where the ask is really a vocabulary gap, and it is already on the record. A RANKING IS A FINDING: (b) with (c) fixed, and (a) only for a spelling that maps to exactly one value with no meaning lost — if any such pair exists. Anthony's call.",
+    "status": "proposed"
+  }
+}

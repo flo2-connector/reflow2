@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c0f1e85532a5365b704d25abe744b04dcdfcacb0745133f0fffd6c717d5eb41",
+  "edge_type": "REALIZES",
+  "from_id": "art:item-layout",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:lineage-is-kept-per-item"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:01b0641839e17b8fba92aeae8c3d443211c60531e818eedbc368a5c10e26444c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:does-enforced-default-to-gate-blocking",
+  "properties": {},
+  "to_id": "snap:epoch:enforced-is-stated-not-defaulted:dec:does-enforced-default-to-gate-blocking"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f3f3e5843e18ef6ca9765de4990624aec5775a1fd7199c7cddc09de770eb991",
+  "node_id": "chg:every-skill-has-a-command",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Eleven new commands ship, and skill_lint gains the missing direction: every served skill must be named by at least one command"
+  }
+}

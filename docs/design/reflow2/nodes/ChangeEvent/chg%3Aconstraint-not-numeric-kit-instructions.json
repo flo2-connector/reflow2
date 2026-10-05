@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:736a16c15599ce744a45790adf7d3675f0d86f3cd1b373f5389b513eac57dfbe",
+  "node_id": "chg:constraint-not-numeric-kit-instructions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Served instructions stop describing Constraint as a numeric limit and name prohibitions and value sets first"
+  }
+}

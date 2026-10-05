@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d67b5871ecd91a0f789a73ba6e814f7586770219456b6f3295068c8fa7541ff7",
+  "node_id": "fact:reflow2-offers-2025-11-25-because-the-sdk-latest-is-that-and-not-the-2026-07-28-revision-it-also-knows",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "status",
+    "name": "Answering flo2's unanswered question: reflow2 offers 2025-11-25, because the SDK's LATEST is that — the SDK knows the 2026-07-28 revision and does not make it latest",
+    "source": "flo2 reflow2_feedback.md, F26/F27/F28, 2026-09-20",
+    "statement": "FLO2 F28 item 2 asks what rmcp 3 negotiates, whether it implements 2026-07-28, and whether it provides `server/discover`, noting the question 'has never been checked'. Measured 2026-09-20 against the vendored rmcp 3.4.0 and reflow2's own source.\n\n① REFLOW2 OFFERS `ProtocolVersion::LATEST` (service.rs describe_protocol_version, deliberately following the SDK rather than pinning a literal, with a test that makes any move loud).\n② IN rmcp 3.4.0, `LATEST = V_2025_11_25`. So reflow2 offers 2025-11-25 — a HANDSHAKE-ERA revision, exactly as flo2 suspected.\n③ THE SDK KNOWS 2026-07-28: it is in KNOWN_VERSIONS and is named `STANDARD_HEADERS`, the first revision requiring SEP-2243 headers. It is simply not LATEST.\n④ `server/discover` EXISTS in the SDK as a request method constant. Whether reflow2 answers it is inherited from rmcp's server handler rather than implemented here, and was not exercised.\n\n⭐ WHAT THIS MEANS FOR THE CONNECTOR QUESTION: a connector speaking 2026-07-28 meets a server offering 2025-11-25, which the newer revision explicitly keeps an interop path for. So the compatibility question flo2 raised has an answer and it is not alarming — but it is the SDK's answer, not reflow2's, and it moves when the SDK moves. The existing test that pins which version LATEST resolves to is what makes that move loud rather than silent.",
+    "subject_id": "cap:the-handshake-is-written-down-beside-the-graph",
+    "valid_from": "2026-09-20"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cfce32516e21560a8f8618635c962e5c3538543d631bb2ebd27cf233088db5fa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-does-unmotivated-severity-key-on-built-not-provenance",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

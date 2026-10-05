@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5e28172b839b5d4c5fcd223b5c6f93d6380c01ad1c8165038d4637c0988cb3d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

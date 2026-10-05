@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8473ebc11602f94059865d3bdfda8246ed2afa60df75b7f8f1b85bdc894a9ae0",
+  "node_id": "ver:a-capability-claiming-reach-beyond-this-repo-is-realized-by-something-a-consumer-gets",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/check_consumer_reach.py reads the committed export and fails the build when a capability that claims reach beyond this repo is realized only by something under tools/ that no consumer receives; tools/test_check_consumer_reach.py is its hermetic regression net, shown to fail on the class before it was wired. Both are steps of the CI full job (ci.yml: \"A capability that claims reach beyond this repo is realized by something a consumer gets\" and \"Consumer-reach gate suite\").",
+    "findings": "Green on every CI run through #516 (2026-09-15).",
+    "kind": "verification",
+    "last_run_at": "2026-09-15",
+    "level": "system",
+    "method": "test",
+    "name": "The consumer-reach gate runs in CI, and its own suite proves it fails on the class",
+    "status": "passing"
+  }
+}

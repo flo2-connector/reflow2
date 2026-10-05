@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2f8a2919da650f8793d5746be06ae2a27b9a47b860755543b87148ac821789a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-lens-names-the-person-beside-the-id-and-orientation-offers-the-match",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

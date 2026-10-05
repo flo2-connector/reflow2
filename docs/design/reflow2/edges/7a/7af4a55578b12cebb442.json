@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eca1caf3700b175ed9d2f0a8ceaf7b9b4905519c09bed1c2b4b5ae1a8afd7c2d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-decision-resting-on-numbers-keeps-its-math-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:25f07bf0f7e0d03f732b9aba78d2ee526cb406a28ce8fe98a45fcc5a1e49026d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:brainstorm-skill"
+}

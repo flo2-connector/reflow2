@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:19024480871bb690eb1303ed990e6629fe8ef871367dfcbd36ddabf942ce17b1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:defaults-are-not-serialized",
+  "properties": {},
+  "to_id": "req:an-absent-property-means-nobody-said-it"
+}

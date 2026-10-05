@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4eb76df74a82b335543c94b325dab46adfdecccc520e63d611644554245028c1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-finding-carries-its-bounds"
+}

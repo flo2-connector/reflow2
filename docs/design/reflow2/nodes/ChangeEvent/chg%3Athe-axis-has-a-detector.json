@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d40175e339b1528a3532b7bf0fd4fb72d43ee68b49586d2aa30b86aeb5477142",
+  "node_id": "chg:the-axis-has-a-detector",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The third leg — `change_axis_unstated` asks about changes that never said what kind of change they were",
+    "rationale": "Anthony, for the third time: reflow2 is a tool for other projects, not about itself. The typed tool and the instruction shipped in #293 and the detector was deferred on the grounds that 468 legacy events would be noise — but those 468 are REFLOW2'S OWN graph, and a team adopting reflow2 next week has none of them. That reasoning used a fact about the self-host to decide what a user's project gets, which is the failure mode he has now named three times. The noise concern was also simply wrong on the mechanics: the aggregate-gap machinery (`is_aggregate`) already collapses any population into ONE finding with a stable id, so 468 events produce one question, not 468. Without this leg the field ships reachable and stays empty in every project forever, invisible to the loop that exists to surface gaps.",
+    "subject": "system",
+    "summary": "A new aggregate GapSource, `ChangeAxisUnstated`, firing on ChangeEvents that carry no `subject`. Reports its denominator (468 of 594 on this design), severity 0.30, one acknowledgement settling the practice. Written deliberately as an ABSENCE check so it fires where the vocabulary has NEVER been used — the case `decomposition_coverage` structurally cannot see, because that one keys on a node already carrying the edge it is about."
+  }
+}

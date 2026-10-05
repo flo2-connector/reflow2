@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1370919b3c78c78d5ead82c10730f863282400610087734bc9bdcf7c7cc6615b",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:the-content-store-is-discontinued",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "First real instance: cap:content-store is built, withdrawn, and has no terminal status to say so. The ChangeEvent carrying change_type `deprecation` is the only marker, which is exactly the gap Alex reported and Anthony reached from the other side."
+  },
+  "to_id": "dec:idea-does-a-capability-need-a-cancelled-state"
+}

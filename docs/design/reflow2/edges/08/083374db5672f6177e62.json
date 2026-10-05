@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf5ddd50407046237abd2bdd572eb64e304c363eb49b9ad24ad92fc719ede226",
+  "edge_type": "REALIZES",
+  "from_id": "art:registry-http",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6780e52441ef4bee1cb23a043eb408de0347a1d827a0edb787da07e86b5d7f6",
+  "edge_type": "VIOLATES",
+  "from_id": "fact:defect-installer-cannot-warn-that-the-graph-dir-is-already-tracked",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "The installer reports the ignore line as added and stays silent about the tracked files that make it inert, so a user who read their .gitignore reasonably concludes the graph is excluded when it is still in version control."
+  },
+  "to_id": "req:no-silent-fallback"
+}

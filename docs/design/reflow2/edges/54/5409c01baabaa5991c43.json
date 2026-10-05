@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c142e3c30f33a6a5006a3ab9767e933287a595ef0c69d694f1d484ed5c650e52",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:comparison-discloses-build-skew",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-10"
+  },
+  "to_id": "epoch:a-comparison-discloses-its-own-confound"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:56fb455997755a29b47dde42ea3a90a784b8ec11a699d707c0ef2f54b7071b55",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bl-97",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:ingest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:479bde5305ba07333118edd513529a907d689727058ad6e1078ad3d5b29a9fe5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capability-carries-its-thread-in-one-call",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c7393a307a98d02c40d989b5871bb87f1e0c6551bc06c63db3ca5f536fbfa370",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-write-can-be-conditional-on-what-was-read",
+  "properties": {},
+  "to_id": "req:a-write-cannot-silently-lose-someone-elses-work"
+}

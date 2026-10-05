@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:edc87e58b3aa47323feb8fc95c67002b35ca721f3303f18cd2ba15fa438450e8",
+  "node_id": "ver:reconcile-deployed",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "fielded.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:55d4485d93739dbd5e155a6b98cfb5a4a3f6c568e9529dd02c3b5c4838be8fa1",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:session-posture",
+  "properties": {},
+  "to_id": "cmp:sync-debt"
+}

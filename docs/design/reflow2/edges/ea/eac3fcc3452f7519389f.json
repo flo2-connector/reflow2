@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24052dbca6b4b4cd34d181a5818a86ad59f51bf91003d9645d95e3c583db25c5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:coverage",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:coverage"
+}

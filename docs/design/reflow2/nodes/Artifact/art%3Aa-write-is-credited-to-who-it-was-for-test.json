@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aa3614b259f9a9f6888dd1bdf7a08fc262547af77f9eb708f77b562519ae9862",
+  "node_id": "art:a-write-is-credited-to-who-it-was-for-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_write_is_credited_to_who_it_was_for.rs",
+    "name": "a_write_is_credited_to_who_it_was_for.rs",
+    "status": "realized"
+  }
+}

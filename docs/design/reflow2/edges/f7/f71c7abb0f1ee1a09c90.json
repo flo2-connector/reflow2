@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9b7e263c6b9b50511d763072a26ab5fa3aefa78b07658b6c24683f8d9f286bd4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "evidence": "The removal exists because of this ruling and its scope came from it: the type goes, the record of what it was for stays, and the condition for bringing it back is stated rather than left to be re-argued."
+  },
+  "to_id": "dec:qualitygate-is-retired-the-phase-gate-dissolved-into-the-detectors"
+}

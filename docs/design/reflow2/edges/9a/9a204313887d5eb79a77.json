@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:219cfb4982e464872d2c480b1d1dae1e3471c4838360f2d387f56c30770ca0ca",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-cannot-reach-another-designs-graph",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

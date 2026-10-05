@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9e6430bad1eeba4cdbfbbfbf20fa570a613b485769b972fc1a49d2bbe1c9696",
+  "edge_type": "CHANGED",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

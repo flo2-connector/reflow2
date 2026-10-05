@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ed373e983d260c91d057e37bc0b0461a9816392892ae5e713d6b2a29c374dc11",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-design-says-what-was-built-and-never-used",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

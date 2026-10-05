@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c865d1e7cac9f7d69e0ebbf7bab77943ac862b6b1b4207621bc4f24dcb9779a",
+  "node_id": "chg:mcp-tools-boundary-specified",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "reflow2's own published MCP boundary was specified — five unstated axes filled, prompted by a cross-project seam check rather than by any internal detector"
+  }
+}

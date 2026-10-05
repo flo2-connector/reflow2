@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a0674cc086cfaf00a7bb3c63d21ea7df3ec41e279d33d22f5172d7bb329a3c5f",
+  "node_id": "cap:change",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Snapshot prior state at an epoch, then edit — axis Z.",
+    "name": "Record a change",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

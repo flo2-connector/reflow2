@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00efd317dd0c009346ca59e93facce5f324593b18c4b5261025bade808b0e107",
+  "node_id": "chg:find-tools-matches-whole-words-zero-weights-universal-terms-and-normalises-for-length",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "find_tools scores what a query means: whole-word matching, a term in every entry weighs zero, and description length no longer buys rank — 53 misses → 42 on the 180-query corpus, no tool regressing",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

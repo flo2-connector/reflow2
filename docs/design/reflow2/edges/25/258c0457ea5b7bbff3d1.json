@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d706f1fc81426eced59adc931fcb2820323c836ffb18767b0e12781f358d0a6f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mode-chosen",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "proj:reflow2"
+}

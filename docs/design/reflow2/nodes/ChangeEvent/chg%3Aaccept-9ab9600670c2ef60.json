@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2746d05b5d906ef75f26359c4a17f8646e1c5f9837a641b6511c21e9bcd134ac",
+  "node_id": "chg:accept-9ab9600670c2ef60",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "detected_at": "2026-09-10",
+    "name": "The v0.58.0 version bump, and nothing else. `reflow2.toml` is a registered artifact, so moving the version string in it reads as drift; the design meaning of a cut lives in the Release and its epoch, not in a version string, so the design HOLDS. Accepted BEFORE `release_includes_all` freezes the manifest — the recorded trap is that freezing first records the release as having shipped the pre-bump file, which costs a gate failure and a second export.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51fd6ddfd3f4a4e6cd30607d069367d2125ca187a2c0bb1ec5c8a00fb15d0ff6",
+  "node_id": "chg:baseline-4a060277f9d98d5e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "A new file, so nothing moved — this is its first baseline. The five tests that pin the whole leg together.",
+    "subject": "record"
+  }
+}

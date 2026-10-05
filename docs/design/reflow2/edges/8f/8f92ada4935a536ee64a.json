@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:54ae1c347095c608c9a054864b64756a978d7b1346b3a4bc5a5b7f94f59fb282",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-agent-asks-who-it-is-talking-to",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

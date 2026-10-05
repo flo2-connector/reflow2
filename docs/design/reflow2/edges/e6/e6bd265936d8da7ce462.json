@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:76f4054c184044b2e2f3508de7cbc68858efeea92f35b37fa09f9e4d13dabf8a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:c565c0afd0dd35f2321ee9a5453fbd800eea7601261d3cf7fb03a17578105ee0",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:sweep-harness"
+}

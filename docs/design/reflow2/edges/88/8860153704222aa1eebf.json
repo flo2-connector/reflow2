@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7b9ce7fac3cb326645d7075c3e93c9da66044d9c8823801211f8e4147ca03766",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-environment",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-domain-standard-is-asked-recorded-and-its-absence-noticed"
+}

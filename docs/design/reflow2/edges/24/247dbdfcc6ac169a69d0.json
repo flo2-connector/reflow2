@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8a4469fac6b107dd60a05ba691fde991fade6a04f33d973006708ea980a63bc6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-design-closes-and-the-design-says-when",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

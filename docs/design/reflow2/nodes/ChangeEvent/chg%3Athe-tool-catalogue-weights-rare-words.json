@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:42eae5cafa1fa12cb622a3fd863b8cd4f7608618c96c8168bc36a4f7ab8bb763",
+  "node_id": "chg:the-tool-catalogue-weights-rare-words",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "find_tools weights a term by how rare it is, so the catalogue stops being unstable under its own growth",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:729bbf48a793ba32752120b21bb0e8d6a56e16e6a9e8cc8382d5ee0a594ff793",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-read-only-server-with-no-store-serves-the-latent-surface"
+}

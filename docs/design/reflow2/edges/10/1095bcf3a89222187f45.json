@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb84426e266b2cdf09c05242a95b42e655be4cacab1febda66a90b7be33adfd8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mode-chosen",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

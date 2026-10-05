@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0cc96a46f82eae9f8ce49b523af6ccf906f2fee4b7c3ed135d8875ef00c4a738",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-run-can-pass-with-its-exceptions-stated",
+  "properties": {
+    "evidence": "Every option here except (e) gives the qualification a place the rollups can read, which answers the defect that finding measured: a qualified run is counted as a plain pass."
+  },
+  "to_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:91eb5c4ca20d05543485ff2f29c092b91ab1d6351143d2cf2c0ea22448977277",
+  "node_id": "fact:the-server-measures-a-uri-location-as-an-absent-file-while-the-gate-calls-it-not-judged-2026-09-23",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-23: the server's own file measurement calls a URI-located artifact MISSING, while the CI gate calls it NOT JUDGED — the same two-instrument disagreement as outside_root, from the other side",
+    "source": "who:claude-code, flo2 PR #47: loop_status on flo2's design after its twelve mirrored artifacts were re-located to https://github.com/sligara7/reflow2/blob/v0.66.0/...; tools/reflow2_check.py (v0.66.0 kit) on the same export; reading crates/reflow2-mcp/src/measure.rs at b1118af",
+    "statement": "SECOND SHAPE OF THE DISAGREEMENT RECORDED IN fact:the-out-of-tree-notion-exists-but-is-keyed-on-the-path-shape-and-only-one-instrument-honours-it. There, the server said `unmeasurable / outside_root` and the gate said missing. Here it is reversed.\n\nWHAT WAS OBSERVED. flo2 re-located its twelve mirrored reflow2 artifacts to pinned GitHub URLs (the correct modelling; add_artifact's description says location is \"Path / URI / content-hash\"). On the same design, same state:\n  tools/reflow2_check.py (v0.66.0 kit):  twelve `not judged: ... is not a working-tree path` NOTES, gate OK\n  loop_status → artifacts:              missing: 12, all twelve listed under `attention`\n\nWHERE, READ FROM THE SOURCE (not yet pinned by a test). crates/reflow2-mcp/src/measure.rs `resolve()` joins any non-absolute location to the project root. `https://github.com/...` is not absolute, so it becomes `<root>/https:/github.com/...`, does not exist, and returns `NotMeasured::Absent`. The `NotMeasured` enum has no variant for a URI at all; tools/reflow2_check.py has had one (REMOTE_LOCATION, chg:a-remote-located-artifact-is-not-a-missing-file) since 2026-08-22, and it never reached the server-side measurement added on 2026-09-18.\n\nWHY IT MATTERS. flo2's gate is now green, and its session's loop still says twelve files are missing — so the instrument an agent reads every session keeps the exact noise PR #47 removed from CI. That is the readership cost flo2 measured in F29, still present in the one place it most trains people to skim.\n\nTHE CLASS, as the earlier fact already says: two instruments each implement \"what does this location mean\" separately, and every new location shape gets taught to one of them. Two instances now, one in each direction. A repair that adds a `Remote` variant to measure.rs fixes the instance; the class is fixed only when both instruments share one classification of a location (or the gate asks the server) and a test holds them to the same answer for every shape — path under root, absolute outside root, `..` escape, directory, URI.",
+    "steps": [
+      "loop_status",
+      "reconcile_artifacts"
+    ],
+    "subject_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted",
+    "valid_from": "2026-09-23"
+  }
+}

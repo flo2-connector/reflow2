@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:81d071714f063eefa7534e4a25b008cd82c8761a8c95e20c869afec9b85dba6d",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:defaults-are-not-serialized",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-10"
+  },
+  "to_id": "epoch:a-default-is-not-a-difference"
+}

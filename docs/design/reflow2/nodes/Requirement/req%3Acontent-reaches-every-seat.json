@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9c698c60a57ca698877d9f88e132b4d0376e47bfa90edd373a302e4b114faa1b",
+  "node_id": "req:content-reaches-every-seat",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A pointer resolves for everyone holding the design, not only for the machine that wrote it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-07-31: \"as one of the features we've worked on previously was that multiple people could use reflow2, may have to think about how the blob contents can be made available to multiple users of reflow2 on multiple machines? Maybe the git repo also backs-up the blob contents?\"\n\nTHE REQUIREMENT: any seat holding the design must be able to resolve a pointer to its bytes, or be told plainly that it cannot. A design where half the diagrams open for one person and not the other is worse than one with no diagrams, because the first person cannot tell that the second is missing something.\n\nWHY IT IS THE HARDEST PART OF THE CONTENT STORE, and why it belongs as its own requirement rather than a footnote to `req:content-store-for-what-the-graph-points-at`: the graph already solved distribution by being a FILE — `dec:multi-writer-architecture` chose a repo file plus merge-on-pull precisely so that cloning gets you the design and no service is needed. Blobs do not inherit that for free. A content store that lives only where it was written recreates the exact failure `cap:session-memory` already names about machine-local paths, one layer up: it resolves for one person and silently misses for everyone else.\n\nTHIS IS ALSO WHERE THE COMMITTED-OR-GITIGNORED QUESTION IS ACTUALLY DECIDED. `dec:where-content-lives` asks it as a repo-weight trade-off; read through this requirement it is not really about weight at all, it is about whether the bytes are DISTRIBUTED BY THE SAME MECHANISM AS THE DESIGN. Anthony's own suggestion — let the git repo carry the blobs — is the option that makes distribution automatic and identical to how the design already travels, at the cost of repo size and git's poor handling of binary churn. The alternative is a second distribution channel, which means a second thing to configure, be down, or be out of step.\n\nWHAT MUST HOLD EITHER WAY: an unresolvable pointer FAILS LOUD and is nameable (`req:no-silent-fallback`), and content is addressed BY HASH so a blob fetched from anywhere can be verified as the right one — which also makes several distribution mechanisms interchangeable rather than requiring one to be chosen forever.\n\nNOT SETTLED HERE: the mechanism. That stays with `dec:where-content-lives`, which this requirement reframes rather than answers.",
+    "status": "accepted"
+  }
+}

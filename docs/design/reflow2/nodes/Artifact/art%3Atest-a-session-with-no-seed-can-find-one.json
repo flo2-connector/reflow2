@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:332835d21e6003681217464b227e73c507650113babf583d122bd7a8cf05dc29",
+  "node_id": "art:test-a-session-with-no-seed-can-find-one",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_session_with_no_seed_can_find_one.rs",
+    "name": "crates/reflow2-core/tests/a_session_with_no_seed_can_find_one.rs",
+    "status": "realized"
+  }
+}

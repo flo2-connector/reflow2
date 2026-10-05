@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bf119539fe2f48112d37b111852328eb56c299666f0a9a626b3e5269d080ce72",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-0843156a493e1864",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coverage-test"
+}

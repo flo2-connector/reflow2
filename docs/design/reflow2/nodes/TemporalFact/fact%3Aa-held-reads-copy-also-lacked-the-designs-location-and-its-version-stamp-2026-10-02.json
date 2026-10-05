@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a6266125d9b045f9635a86d68b784c5e825812e330fddfaa5c655ebb0fc5ed60",
+  "node_id": "fact:a-held-reads-copy-also-lacked-the-designs-location-and-its-version-stamp-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02 (0.77.0, and main d9e2a8f): the copy `--call` reads on a held design lacked more than the search index. Opened at its own path in the temp dir, `loop_status` measured registered files under /tmp and called them MISSING, `sync_status` found no export to check, and `wall_check` read /tmp as the project. Without the version stamp, a binary behind the holder read the copy where the live store refuses it",
+    "source": "art:main",
+    "statement": "FOUND by the item-3 fix agent of the 2026-10-02 fix program, measuring the class behind fact:root-cause-a-held-design-answers-search-through-the-door-with-a-false-nothing-matched-2026-10-02, whose step ⑨ left open which other reads the copy cannot answer. RUN AS THE SKILL (root-cause, fetched fresh).\n\n① OBSERVED. A scratch project: `.reflow2/graph` with a project, two requirements, one registered source file (src/main.rs, checksum taken), and an export at docs/design/zoo.json. Each read was run through `--call` with the design free, then again while a `--serve-shared` server held it. Binary: 0.77.0 release, and main d9e2a8f debug.\n- `loop_status`: free, `artifacts.root` is the project, 1 unchanged, 0 missing, and `sync` shows the export in_step. Held, `root` is `/tmp`, `missing: 1`, `attention: [art:main]`, `next` opens with \"ON DISK NOW: … 1 are missing — … set_artifact_checksums with a disposition per file: art:main\", and `sync` is absent.\n- `sync_status`: free, `checked: 1`, state in_step. Held, `checked: 0, sync: []`.\n- `wall_check`: free, `root:` the project. Held, `root: /tmp`.\n- `reconcile_dependencies`, `coverage_report`, `graph_report` and `get_node` answered the same both ways.\n- The version stamp. With the stamp beside the store edited to name a node type this binary lacks (what a newer writer's stamp looks like), `--call get_node` exits 1 with the BEHIND refusal when the design is free. Held, it exits 0 and answers.\nLogs: /home/ajs7/.claude/jobs/fa666a94/tmp/held-search/measure/ (run.sh, stamp.sh; v077/, stamp-main/).\n\n② PRECEDENT: searched for the copy's location and stamp; nothing beyond the parent finding.\n\n③④⑤ CAUSE, in code. `call_one_tool` opened the copy with `ReflowService::new(<copy path>)`. The service derives its project root from that path (`wrap_at`), and every sidecar read uses it: the sync record (`<path>.sync.json`), the harness settings the nudge reads, `wall_check`'s `project_root(graph_path)`. `snapshot_dir` copied only `.id.json` beside the store, so the copy had no `.meta.json` either, and `check_and_stamp` treats a missing stamp as Unstamped, never Behind.\n\n⑥ CLASS: the same as the parent finding. The copy supplies the store's bytes, and every read that finds something from the store's PATH found the copy's path instead. The index was one thing a read depends on. The project tree, the records beside the store and the version stamp were three more.\n\nWHY IT MATTERS: on a held design, `loop_status` told the agent to record a disposition for a file that is present, which records a deletion that never happened. An older binary reading a newer design is the case the version guard exists for.",
+    "steps": [
+      "loop_status",
+      "sync_status",
+      "wall_check"
+    ],
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-02"
+  }
+}

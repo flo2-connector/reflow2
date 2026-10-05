@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:95bf3d86474b6181fe3971d8f14807a398ee779f7956446b66c6df453751ca02",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "This is the park itself, drawn as an edge so it is computable rather than only readable: an ACCEPTED decision now stalls the work the other accepted decision owes. Anthony's word, 2026-08-25. It stalls only the SWITCH half — the absorb-verbatim half was completed in #329 — and it lifts the moment the store question settles either way."
+  },
+  "to_id": "dec:absorb-rocksdb-024-unchanged-then-switch-separately"
+}

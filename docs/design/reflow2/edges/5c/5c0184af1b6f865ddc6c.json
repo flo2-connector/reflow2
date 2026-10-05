@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:51551c3cefe2b319f003cf3577a77d378bd490149816321a86d289497c0cd57b",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:detect",
+  "properties": {},
+  "to_id": "fact:defect-scoped-detectors-do-not-flag-a-degenerate-region"
+}

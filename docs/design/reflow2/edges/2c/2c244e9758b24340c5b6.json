@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1819201176d8d02d7c077bcf828f99bddb6971f5309ff370a19f82a3adbcc6d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it",
+  "properties": {
+    "evidence": "That decision's rationale states the general form in as many words — 'a rule maintained by hand with nothing checking it is a rule that silently stops being true' — and names itself the third instance of the class. It saw this general question coming while answering one instance of it."
+  },
+  "to_id": "dec:idea-a-tool-class-should-carry-a-contract-that-something-checks"
+}

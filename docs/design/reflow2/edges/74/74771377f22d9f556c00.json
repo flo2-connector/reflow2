@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7cf4619ae0eef49e5577244d01473f159255ecf22f3ad2be4413f2dd55336ffa",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "evidence": "Every option answers the measured hazard: an argument of the wrong type refused, on every tool, in a string that names neither the tool nor the field."
+  },
+  "to_id": "fact:root-cause-a-wrong-type-argument-is-refused-in-the-bare-serde-string-because-the-interception-matches-two-phrasings-2026-10-02"
+}

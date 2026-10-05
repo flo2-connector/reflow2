@@ -54,6 +54,10 @@ import json
 import pathlib
 import re
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 
@@ -65,7 +69,7 @@ MIN_NAME_CHARS = 4
 
 def real_people(export: pathlib.Path) -> dict[str, list[str]]:
     """{needle: [why]} for every Contributor of kind `person` in the design."""
-    doc = json.loads(export.read_text(encoding="utf-8"))
+    doc = design_io.load_design(str(export))
     needles: dict[str, list[str]] = {}
     for node in doc.get("nodes", []):
         if node.get("node_type") != "Contributor":
@@ -100,7 +104,7 @@ def served_texts() -> list[tuple[str, str]]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--export", default="docs/design/reflow2.json")
+    ap.add_argument("--export", default=design_io.default_export())
     a = ap.parse_args()
 
     export = REPO / a.export

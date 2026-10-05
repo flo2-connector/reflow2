@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:54b5e88e81f1531a6fc16578674f7b5c277493a983f1f56c10babed3f77d081c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported",
+  "properties": {
+    "approved_at": "2026-09-13",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

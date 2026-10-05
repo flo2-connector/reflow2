@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:abf0fe5dc99eef229d631f038d2b35bad1cdbe618498c85f847b2229a7d34f7b",
+  "node_id": "frag:art:handshake",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered handshake.rs"
+  }
+}

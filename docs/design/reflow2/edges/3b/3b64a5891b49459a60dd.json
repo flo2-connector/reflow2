@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ec36d5005a0efe813ddfee9fc292dc2175d6ec2c777f9533dae2690183677a7f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:optimize-skill"
+}

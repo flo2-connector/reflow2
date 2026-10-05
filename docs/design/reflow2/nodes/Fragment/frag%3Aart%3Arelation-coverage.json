@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90051acea4e03435271efc121bff7fba73d1aab7b6ac4712a174eed9096b3e1d",
+  "node_id": "frag:art:relation-coverage",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered relation_coverage.rs — of my N things of kind X, how many carry relation R"
+  }
+}

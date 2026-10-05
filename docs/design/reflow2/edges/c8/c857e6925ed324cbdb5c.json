@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:996c8d32a0e3cf527e1e1743504b100959527dd4663fa111829c73016b6e0f2f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:export-reports-what-it-wrote",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

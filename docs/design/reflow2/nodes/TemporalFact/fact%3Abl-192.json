@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a26fe9e50e45212993358864466ef08ac2e4c47b1c8de3f359f526bfd3b397f9",
+  "node_id": "fact:bl-192",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-192] Recording ONE change event took six rejected calls — every rejection individually correct, not one of them predictive",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-03, recording a container recreate against 3 nodes: a 3-minute bookkeeping task that cost ~8 round-trips.* In order: get_node{node_id} \\u2192 *\\\"unknown field node_id, expected node_type or id\\\"* (the field is node_id in every RESPONSE and id in the request) \\u00b7 set_verification_status{evidence} not a field \\u00b7 record_change{affected_ids} not a field \\u00b7 then *\\\"missing change_event_id\\\"*, revealing that record_change LINKS an existing event while add_change_event CREATES one \\u2014 which neither its name nor its description said \\u00b7 {affected: [\\\"cmp:embeddings\\\"]} \\u2192 *\\\"expected struct AffectedNodeReq\\\"* without saying what that struct is \\u00b7 {affected:[{node_type,id}]} \\u2192 *\\\"unknown field id, expected node_type, node_id, action\\\"*, so the nested object wants node_id while the parent wants id, the exact inverse of get_node \\u00b7 {change_type:\\\"modify\\\"} \\u2192 *\\\"unknown change type\\\"* with no list of legal values. Only describe_schema ended it, returning ~8k tokens of edge documentation to answer *\\\"what are the 10 legal change_type values\\\"*. The cost lands exactly where it hurts most: at the moment the loop is most likely to be skipped under operational load \\u2014 the failure PROTOCOL.md names as \\\"doing the bookkeeping without the loop\\\". Fixes, cheapest first: (1) enum rejections list the legal values \\u2014 this alone kills three of the eight; (2) field-name rejections name the accepted spelling FOR THAT POSITION, the id/node_id inversion being the single biggest trap; (3) record_change's description says it links an existing ChangeEvent and points at add_change_event; (4) a describe_schema{properties_only:true} that returns the property table without the full edge catalogue. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-192 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

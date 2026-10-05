@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b73d517e083eb5baaf55145c7ad59f756d11274bc8bbd963892ee40e454439f",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-one-command-switches-reflow2-between-local-and-remote",
+  "properties": {
+    "evidence": "Settled by Anthony 2026-09-26; the setup command and its terms became this requirement."
+  },
+  "to_id": "req:one-setup-command-chooses-local-or-remote-once"
+}

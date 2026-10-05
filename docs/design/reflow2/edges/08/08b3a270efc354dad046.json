@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a9b424f61b7096f68606a520ecd15e94e660d18e4c0dd3c98e4f40024911260f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-governance-rides-the-tool-that-does-the-thing",
+  "properties": {
+    "note": "That accepted requirement establishes WHAT must be true — a discipline that applies mid-flow cannot be served by a catalogue read once. This idea is a candidate mechanism for delivering it, keyed on the node/edge type acted on. Linked GOVERNED_BY rather than DEPENDS_ON to match how dec:idea-search-first-fires-without-being-remembered is already wired to the same requirement, so the three sit in one neighbourhood a traversal can walk."
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

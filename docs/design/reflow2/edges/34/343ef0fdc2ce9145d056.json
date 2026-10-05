@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:50209b5d3bb17702c5d72b63264389b4103b11335dce22a5034b0930c266476a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-top-level-graph-holds-what-the-component-graphs-share",
+  "properties": {
+    "evidence": "Alex asked the parent-graph question first and Anthony's framing on that node supplied the vertical/horizontal vocabulary this one is asked in. It anticipates the QUESTION and not this SHAPE: that node's parent decomposes into parts of one product, with roll-up arithmetic attached and a deferral that waits behind the decomposition coverage check. A parent over two independent products has no roll-up to perform, so neither the arithmetic nor the deferral reaches this case."
+  },
+  "to_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs"
+}

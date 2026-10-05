@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66b8bba3fd50b8fcdfbc2746fddeff98d7d89d0d03e5942e102eec58fa954e87",
+  "node_id": "chg:seat-handle",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "art:service gained mint_seat and the claim_region seat guard"
+  }
+}

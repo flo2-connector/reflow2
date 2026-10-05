@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:23354efa013b02f5121d2c34c4430c0572ea24159258d49680af99eb155c0008",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:a-pr-export-goes-stale-behind-a-green-mergeable-badge",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Corroboration rather than conflict, and the pair is the general shape: BOTH say a branch-local green says nothing about the merge base. The older fact measured it on the LOCAL gate (HEAD vs HEAD~1, so a stacked branch has no merge base to check against); this one measures the same blindness one level up, where the branch is internally coherent and the SUBTRACTION against main is what nothing checks. 2026-08-16 added a third instance on the same theme: #194's base branch was another PR's branch rather than main, so its green CI had been testing the wrong base entirely, `gh` reported MERGEABLE until that base was merged and deleted, and retargeting the base to main did NOT re-trigger CI — a force-push was needed. `SUPPLEMENTS` would be the better word; no edge type models TemporalFact to TemporalFact, so this uses the corroboration form rather than asserting a relation the schema does not carry."
+  },
+  "to_id": "fact:the-local-lineage-gate-cannot-see-a-stacked-export"
+}

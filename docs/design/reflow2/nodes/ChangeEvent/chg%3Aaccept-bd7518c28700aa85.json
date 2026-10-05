@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:117fc8e11a586aff3b520b1d9d08e8de989e417ab48cdc5ca63fe92b117dcd27",
+  "node_id": "chg:accept-bd7518c28700aa85",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Field visibility widened to the crate so the skills module can read the graph path; no behaviour change."
+  }
+}

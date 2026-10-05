@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ff30f5f2104303bb9c6e3282d7a29211d29e5be8eb4166012966bd971c43b06",
+  "edge_type": "REALIZES",
+  "from_id": "art:caller",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:intent-authority-is-checked"
+}

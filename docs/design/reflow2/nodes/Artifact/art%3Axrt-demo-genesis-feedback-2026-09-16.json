@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cd1cc25b69eec633ab60b698085c30a3ae4dd971a2f7ffb20574fe4485cbef29",
+  "node_id": "art:xrt-demo-genesis-feedback-2026-09-16",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "Copied verbatim from /home/ajs7/project/xrt-demo/reflow2_feedback.md (336 lines) on 2026-09-16; inbound field reports are kept out of git and registered here so the finding they yielded can point back at them. Session 2 (the beamline and the first traces) is pending in the original.",
+    "location": "docs/feedback/2026-09-16-xrt-demo-genesis-feedback.md",
+    "name": "reflow2_feedback.md from the xrt-demo genesis (2026-09-16) — 8 wins, 12 frictions, 3 ideas, from a 7.5 KB brief seeded with no xrt call",
+    "status": "realized"
+  }
+}

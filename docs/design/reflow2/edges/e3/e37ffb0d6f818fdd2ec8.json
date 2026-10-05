@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:472c638c7da00ace1c740234c6080b7da1303c54326166a36ec885239f555d29",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:capture-intent-skill",
+  "properties": {},
+  "to_id": "snap:epoch:constraint-is-not-only-numeric:art:capture-intent-skill"
+}

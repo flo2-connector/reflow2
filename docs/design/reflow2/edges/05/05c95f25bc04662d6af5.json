@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c5987d14b12886925e6a958f5cbf24718a38ec81286f76511f5492543b6f5b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-closes-against-a-declared-threshold-and-the-report-names-the-first-hole",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

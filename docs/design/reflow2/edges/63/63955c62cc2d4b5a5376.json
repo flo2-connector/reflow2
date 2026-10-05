@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:137c509f356d75347a4842f1804e8b640bda1a11d76eebb70ca08e97ad08d08a",
+  "edge_type": "REALIZES",
+  "from_id": "art:scope",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-scoped-answer-says-whether-it-narrowed"
+}

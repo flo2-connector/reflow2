@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9266a0d982cf78d7b99a07493e0d117df79e2d91cd729332463d342bb818cac7",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:content-manifest",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0190"
+}

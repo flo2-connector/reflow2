@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d4688b217e91ba4ce78c31c277cd4ea5e387faca64da53cb53af1da31b9430c8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-signature-is-the-callers-own-where-it-is-written",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

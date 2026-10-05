@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25c3020b803fb3ac7dfaf3033a63b110a84c21ebab466a1b26a182febcb8cff5",
+  "edge_type": "REALIZES",
+  "from_id": "art:check-consumer-reach",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-capability-claiming-reach-beyond-this-repo-is-realized-by-something-a-consumer-gets"
+}

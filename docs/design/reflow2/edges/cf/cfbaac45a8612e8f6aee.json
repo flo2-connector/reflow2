@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c2ad68b8e8939a2d9ff51cfaee04fb96833ac8c1bd960d8b0aec1e569a255cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-get-skill-carries-no-version"
+}

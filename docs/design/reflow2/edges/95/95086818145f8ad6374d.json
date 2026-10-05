@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:056e2ad7953e2b3677054873b1175009f668e12300a00489457124f9e14b7e62",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:derived-relations-are-served-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:derived-relations-are-declared-checked-against-the-code-and-served"
+}

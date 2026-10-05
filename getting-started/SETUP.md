@@ -5,12 +5,12 @@ There is no per-project setup.**
 
 ## Install
 
-If a [GitHub release](https://github.com/sligara7/reflow2/releases) exists for your platform
+If a [GitHub release](https://github.com/flo2-connector/reflow2/releases) exists for your platform
 (Linux x86_64 and arm64, macOS arm64/x86_64; Linux arm64 from the first release after v0.76.0),
 you need **no toolchain at all** — no Rust, no C++, no ~10-minute RocksDB compile:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 That is the whole install. It puts the `reflow2-mcp` binary in `~/.local/bin` and the kit in
@@ -103,7 +103,7 @@ sudo apt install -y clang cmake libclang-dev pkg-config
 ## 2. Build the server
 
 ```bash
-git clone https://github.com/sligara7/reflow2.git
+git clone https://github.com/flo2-connector/reflow2.git
 cd reflow2
 cargo build -p reflow2-mcp --release        # first build compiles RocksDB (~10 min, then cached)
 ```
@@ -252,7 +252,62 @@ the day, stopping is a perfectly good answer. Everything decided so far is alrea
   JSON on stdout (the arguments are a JSON object; `-` reads them from stdin). A report a
   document cites can be read from the graph at build time instead of hand-copied. If a server
   holds the graph, a READ-ONLY tool answers from a best-effort snapshot copy (stderr says so);
-  a tool that writes refuses, because a copy is not the design.
+  a tool that writes refuses, because a copy is not the design. It works on a design on THIS
+  machine and never creates one by asking. In a folder whose `.reflow2.toml` names a design on a
+  server, it refuses and names that design's address. Where there is no design, a tool that reads
+  refuses ("no design at …"), and only a tool that writes (or `--import`) creates one.
+  `--read-only --call …` changes nothing: a tool that writes is refused, and so is a file that
+  `export_graph` or `export_surface` would write. A flag the call does not read, such as
+  `--remote` or `--shared`, is refused by name rather than ignored.
+- **A call that writes keeps the committed export current.** When it succeeds, the design export
+  is written before the command exits, by the same write-through a running server uses — it
+  never overwrites a file changed since reflow2 last wrote it, and its lineage chains from the
+  committed record. The file is `--export-to FILE` if you pass one, otherwise the `--export-to`
+  your project's MCP configuration (`.mcp.json`, `opencode.json`, `.vscode/mcp.json` or
+  `.grok/config.toml`, which `reflow2 init` writes) names for this design. One line on stderr
+  says where it was written, or that no file is named anywhere. A read, or a write the tool
+  refused, writes no export. **Exit 3** means the write landed but the export could not be
+  written (stderr says why): fix the file, and do not repeat the write. Each write then costs an
+  export — seconds on a very large design — so a script making many writes can pass
+  `--no-export` on each and finish with one `--call export_graph`.
+- **Read how to call a tool before you call it.** `reflow2-mcp --graph-path .reflow2/graph
+  --describe add_decision` prints the tool's input schema (every nested shape, allowed value and
+  required field) and the lessons your design holds for it — what an MCP session on that design
+  is given, which `--call` alone never shows. It is brief by default; `--full` prints the entry
+  unchanged, and `--list-tools --full` prints every tool, for rendering a reference. It only
+  reads. The same answer is the tool `describe_schema` with `tool`, through any door.
+- **An agent in a terminal can have every read approved once and each write still asked.**
+  `reflow2 read <tool> '<json>'` runs a tool only if it changes nothing — no node, edge or
+  property of the design, and no file — and refuses every other tool by name before anything is
+  opened, naming `reflow2 write <tool>`, which runs any tool exactly as `--call` does, so a write
+  keeps the committed export current (`reflow2 --export-to FILE write …` names the file, and
+  `reflow2 --no-export write …` asks for none). Both take the arguments as a JSON object after
+  the tool, as `--args`, or as `-` from stdin; only the tool, its arguments and `--graph-path` may
+  follow the verb. `reflow2 read --list` prints which tools each verb runs. (`reflow2-mcp read …`
+  is the same thing without the installer's `reflow2` command.)
+
+  In **VS Code**, where the agent runs reflow2 as terminal commands, approve the reads in your
+  settings and leave the writes asking:
+
+  ```json
+  "chat.tools.terminal.autoApprove": {
+    "/^reflow2 read /": true
+  }
+  ```
+
+  (With only the binary on your PATH, the rule is `"/^reflow2-mcp read /": true`.) What this rule
+  does and does not cover:
+  - VS Code matches each command of a compound line, so `reflow2 read … && rm …` still asks
+    about the `rm`. A shell redirection (`reflow2 read export_graph > design.json`) is the SHELL
+    writing a file, which reflow2 never sees; VS Code's own detection of file writes
+    (`chat.tools.terminal.blockDetectedFileWrites`) is experimental. VS Code describes
+    auto-approval as a best-effort convenience, not a security boundary.
+  - How VS Code matches a heredoc body (`--args - <<'EOF'`) is not established, so a read with
+    a heredoc may still ask. The one-line form (`reflow2 read get_node '{"id":"req:x"}'`) is one
+    command the rule matches as written.
+  - Opening a design still updates the store's own housekeeping (RocksDB's files, and the version
+    stamp, handshake record and usage ledger beside it), as `--read-only` does. None of it is the
+    design.
 - **Gate CI on the committed export.** `tools/reflow2_check.py` (in the kit) rehashes every
   registered artifact against the working tree and runs the gap detectors, exiting non-zero on
   unaccepted drift or a serious open gap — so the design is checked on every commit, not once a

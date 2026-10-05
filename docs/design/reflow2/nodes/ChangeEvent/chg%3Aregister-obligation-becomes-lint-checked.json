@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57f8b8d9ec627a650c01817335aab9b7b7d022c8e1bef17e36e8199050dddf3d",
+  "node_id": "chg:register-obligation-becomes-lint-checked",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "skill_lint's ASK_CONTRACT gains the domain obligation — the first register rule the build fails without"
+  }
+}

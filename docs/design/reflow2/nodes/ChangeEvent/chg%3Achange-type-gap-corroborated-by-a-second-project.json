@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c52ea455de100602ae5a984ded29e379ada0f06d5cc1a6b74afc3279824ac61",
+  "node_id": "chg:change-type-gap-corroborated-by-a-second-project",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "RECORDED UNDER `resync` BECAUSE THE ENUM STILL HAS NO VALUE FOR WHAT THIS IS — the design's knowledge of an unchanged defect improved, which is verbatim what `baseline_established` was created to express and is reserved away from this path. Nothing about the system changed; a second project independently hit the same enum gap. THIS NAME WAS WRITTEN TWICE: the first copy was silently overwritten by the `record_change` call that followed it (see fact:defect-record-change-overwrites-the-name-of-the-event-it-is-filed-under), which is how that defect was found."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55ce968977d50068478719c39ec0f3c75ac464c54109f91c688d9243f48d50c6",
+  "node_id": "snap:epoch:bl199-reattachment:art:upgrading-v0210",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0210\",\"properties\":{\"as_checksum\":\"sha256:d16abc28ea59e3f9\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0220\",\"properties\":{\"as_checksum\":\"sha256:d16abc28ea59e3f9\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0221\",\"properties\":{\"as_checksum\":\"sha256:d16abc28ea59e3f9\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0230\",\"properties\":{\"as_checksum\":\"sha256:d16abc28ea59e3f9\"}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:independent-evidence\",\"properties\":{\"completeness\":\"complete\"}}]",
+    "state": "{\"artifact_type\":\"document\",\"checksum\":\"sha256:d16abc28ea59e3f9\",\"location\":\"docs/upgrading-to-v0.21.0.md\",\"name\":\"Upgrading to v0.21.0 — the stamp moves, and your evidence can say what it covers\",\"status\":\"realized\"}",
+    "target_id": "art:upgrading-v0210",
+    "target_type": "Artifact"
+  }
+}

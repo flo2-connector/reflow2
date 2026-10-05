@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4dbb252a0d69729db67a0df2ac5604f7e19a10a0d6b27482c2821ecba6e79749",
+  "node_id": "frag:art:fixture-bearer-test-rsa-key",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered bearer_test_rsa_2048.pk8 — a throwaway RSA key generated for the bearer test; it protects nothing"
+  }
+}

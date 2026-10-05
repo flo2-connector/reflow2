@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6eb3d44db225a3cc56e80c9e19431895acfc2033277cf2a4a3a149780a12340e",
+  "node_id": "req:claims-have-owners",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim names its owner, and a claim with no live owner is reported stale",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A claim records the session that made it (its harness session id — assigned out of band, so it cannot race), and claim_report distinguishes a claim held by a live seat from one left behind by a session that closed. Liveness is computed from the owner, not asserted by the claim: a claim nobody is working is a ghost that makes the overlap report lie.",
+    "status": "accepted"
+  }
+}

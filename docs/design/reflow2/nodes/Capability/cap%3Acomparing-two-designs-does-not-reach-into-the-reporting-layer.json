@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aef322ec1dd4d1616d50da3dcad5e3d85ddb916e7503c5758220d58faabac4ae",
+  "node_id": "cap:comparing-two-designs-does-not-reach-into-the-reporting-layer",
+  "node_type": "Capability",
+  "properties": {
+    "delivery": "model",
+    "description": "CHANGE 2 of epoch:the-declared-walls-hold. Anthony's word, 2026-08-20. DISTINCT FROM change 1: that one moves nothing in the code and this one moves ~15 lines; they share an epoch and neither blocks the other.\n\nTHE WHOLE DEPENDENCY, read rather than assumed: `compare.rs` line 45 is `use crate::report::is_design_type;` and that is ALL of it. The function is two lines — `SNAPSHOT_TYPES.contains(&node_type)` — answering \"is this design content, or supporting material like provenance and history?\". So a 974-line module reaches into a 2025-line reporting module to borrow a lookup in a constant list, and that single edge is the whole `sys:time-history -> sys:coherence-loop` back-edge behind the second subsystem cycle.\n\nWHAT IT DOES NOT DO: duplicate the list. The sharing is CORRECT and report.rs says why in as many words — compare reuses it so \"design vs supporting\" means one thing everywhere. Two copies would drift.\n\nWHAT IT DOES: move SNAPSHOT_TYPES and is_design_type down into `nodes`. Three reasons, and the third is why this is a better home rather than a cycle-driven contortion:\n  1. the list is built ENTIRELY out of `node::` constants — it is a statement about node types, so it belongs with the node types;\n  2. `report` and `compare` BOTH already depend on `nodes`, so this adds no coupling at all — it only stops compare reaching sideways;\n  3. one shared definition survives, which is the property worth protecting.\n\nSIMULATED: with change 1 also applied, dropping this edge makes all eight subsystems a DAG — no cycles at any level.\n\nSHAPE WORTH NAMING: this is the same shape all three of PR #262's cycles had — ONE back-edge, and the fix is to ask what the borrowing module actually needed rather than to restructure anything.",
+    "name": "Comparing two designs stops reaching into the reporting layer for a two-line lookup",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3571966be15f1a0feadba91564ce7fb7496b383c7eb69a7f1a1f5de4c274f97c",
+  "node_id": "chg:accept-e688cb8f664f5e7f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-14",
+    "name": "One line: `decomposition_coverage` added to the not-a-tool term list, alphabetically beside `design_without_intent` and `missing_intermediate_level`, which are gap_source values too. The lint reads backticked identifiers in served skills and asks whether each names a tool; a new gap_source appearing in detect-and-ask's expectation list is a field term, not a tool, and the lint's own failure message names this list as the fix. NO RULE CHANGED — no check added, removed or weakened, and the trap this list can become (adding a REAL tool to it, which teaches you to lie to the gate) is not triggered here: nothing named decomposition_coverage is or ever was a served tool."
+  }
+}

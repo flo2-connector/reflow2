@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57d5fc07ff5c6b29860eb4a1c65f34cd306785d116ca52d9ca5aba098dcaf0fb",
+  "node_id": "chg:import-cluster",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The import_graph cluster (BL-117/118/138): the bulk door tells you its document shape, names every fault in one response instead of one per round trip, and stops demanding the receiver's own identity from a hand author"
+  }
+}

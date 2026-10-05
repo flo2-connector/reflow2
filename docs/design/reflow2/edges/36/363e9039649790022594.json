@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf720c5690a1a1ddee5bf0ce217ecbb7029ecc0b8766e4352e0df9c34afad32d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-skill-tools-move-out-of-the-skill-data",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills"
+}

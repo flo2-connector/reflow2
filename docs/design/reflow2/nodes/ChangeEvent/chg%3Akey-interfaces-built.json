@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:15afc5fccc07adfdb19bce36548956bf7527b1deeec54799f12dd1601a3a5dff",
+  "node_id": "chg:key-interfaces-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Published boundaries designated, severability computed, and a new Decision now lands proposed"
+  }
+}

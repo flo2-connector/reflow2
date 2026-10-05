@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f2909eb1a887c707e15a49fb1bbc2b33cbe1da53d7ceb73d236127c4b82176a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-composed-prompt-serves-its-pieces-and-a-closed-gap-refuses-branchably",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-ask"
+}

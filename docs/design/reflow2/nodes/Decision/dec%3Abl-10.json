@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d7c611ed7029c3650daf347bd6eb79529a6b8171e1e74f9c1a6d1448eba90aa",
+  "node_id": "dec:bl-10",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Root-cause classification of drift\n\ndrift.rs detects divergence with no notion of *why*, so no notion of which side is wrong. Reflow's seven-category taxonomy ends in a decision rule. Needs a scalar coherence score to gate on.\n\nMigrated from docs/backlog.md BL-10 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\n\nUNANSWERED. Migrated as a `proposed` Decision because the row states a fork rather than a defect or a need: nobody has chosen, and recording it as intent would assert an answer.",
+    "name": "OPEN [BL-10] — Root-cause classification of drift",
+    "status": "proposed"
+  }
+}

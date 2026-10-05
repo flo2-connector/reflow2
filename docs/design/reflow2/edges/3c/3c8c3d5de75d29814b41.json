@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f59672938b758b6e5f8060a920153f2b04dcfc4737c7dda36dd654d233012326",
+  "edge_type": "REALIZES",
+  "from_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted"
+}

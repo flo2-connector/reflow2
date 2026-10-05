@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f1544f7c2f1322d427100ab138eefb27dc987a152d31e0506694627d5c24663",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-an-enum-field-publishes-its-legal-values",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-an-enum-field-publishes-its-legal-values"
+}

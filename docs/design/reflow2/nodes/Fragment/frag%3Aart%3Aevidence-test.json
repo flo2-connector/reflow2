@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:078e7a42469a8917b3a1f1eb7bfd353f1df200266d9e8f35f3455ae7a59b8563",
+  "node_id": "frag:art:evidence-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/evidence.rs"
+  }
+}

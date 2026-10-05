@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e7df54533f905b4062fce00d96795ec878fbf57427dc7a7e8753dae9b01f740c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:corpus-is-one-design"
+}

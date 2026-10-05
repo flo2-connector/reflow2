@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a4b7e64622fb43fa4cd6a5051047b217f8ad305956707a25a965046f7a0fff8d",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {},
+  "to_id": "fact:what-flo2s-clerk-and-a-team-keycloak-accept-from-a-cli-oauth-client-2026-10-01"
+}

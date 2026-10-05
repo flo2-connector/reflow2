@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ae562c6440d5ee6011492d178ed6f309f3bebddfad01898bb3e99a79e9f7a33",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-gets-its-transport",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:select-graph-by-id"
+}

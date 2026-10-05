@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8080de43ec26d8df3a79075d8f122837426705ab01108d0ede6ec558ffd64bb9",
+  "node_id": "ver:describing-changes-nothing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Describing a design at a path changes nothing, and something-unnamed never reads as nothing (crates/reflow2-core/tests/discover.rs, 7 cases). The load-bearing case asserts the directory tree is BYTE-IDENTICAL before and after a describe, because opening a store to inspect it writes a schema stamp and MINTS an identity where there is none — so the obvious implementation would name a design by the act of looking at it. Also pinned: a store with no identity reports `unnamed` and NEVER `absent`; a corrupt identity file warns against starting a design rather than being swallowed; a real design is named from its sidecar alone; opted-in-but-empty is its own state; and a sweep returns one row per path including the absent ones.",
+    "findings": "MUTATION-CHECKED: making describe write an identity when none exists — exactly what opening would do — flips the state from `unnamed` to `design` and changes the tree, failing precisely the two tests that name those properties while the other five stay green.",
+    "kind": "verification",
+    "last_run_at": "2026-08-05",
+    "level": "unit",
+    "method": "test",
+    "name": "Describing a design at a path changes nothing, and unnamed never reads as nothing",
+    "status": "passing"
+  }
+}

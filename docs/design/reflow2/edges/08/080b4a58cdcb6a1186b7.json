@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:adf48d048d98f9d76be5750b186a5199213a82bdcae5ec038405df8a2eee561e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order",
+  "properties": {},
+  "to_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed"
+}

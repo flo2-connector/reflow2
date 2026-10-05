@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdc2fb08c00577a4222e356c86d26f70589e805ce145424f26122ce23cce38a7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-module-stands-behind-the-read-contract",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:graph-read"
+}

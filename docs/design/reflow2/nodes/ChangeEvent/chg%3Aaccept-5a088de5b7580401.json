@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ea4326d11efd669fe7d5b500b8265098da54ab5b1dd1389fbcd55bb7c9e8481",
+  "node_id": "chg:accept-5a088de5b7580401",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-14",
+    "name": "CI clippy: the nested `if let` pair around the lens insert collapsed into one tuple match; rustfmt applied. Behaviour unchanged, four lens tests still pass.",
+    "subject": "system"
+  }
+}

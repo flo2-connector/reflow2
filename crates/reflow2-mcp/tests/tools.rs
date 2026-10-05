@@ -605,9 +605,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
 
     // Unchanged: no drift.
     let clean = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
+            }))
+            .expect("an observation")
+        ],
         record_events: false,
         exhaustive: false,
         budget_chars: None,
@@ -618,9 +621,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
 
     // The agent edits the file; now the hash differs.
     let drifted = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
+            }))
+            .expect("an observation")
+        ],
         record_events: true,
         exhaustive: false,
         budget_chars: None,
@@ -665,9 +671,12 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
         at: Some("2026-07-19T12:00:00Z".into()),
     })));
     let after = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v2"
+            }))
+            .expect("an observation")
+        ],
         record_events: false,
         exhaustive: false,
         budget_chars: None,
@@ -748,9 +757,12 @@ async fn the_surface_can_say_that_nothing_moved() {
 
     // A clean sweep now says what it confirmed, instead of writing nothing.
     let clean = j!(s.reconcile_artifacts(Parameters(ReconcileArtifactsReq {
-        observed: vec![obj(&serde_json::json!({
-            "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
-        }))],
+        observed: vec![
+            serde_json::from_value(serde_json::json!({
+                "artifact_id": "art:flight", "present": true, "checksum": "sha256:v1"
+            }))
+            .expect("an observation")
+        ],
         record_events: true,
         exhaustive: false,
         budget_chars: None,
@@ -920,32 +932,45 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
 
 /// The protocol version we advertise, pinned so a change is never silent.
 ///
-/// `get_info` uses `ProtocolVersion::LATEST` deliberately: a hand-written
-/// literal sat at `V_2024_11_05` for the project's whole life with no recorded
-/// reason while rmcp's own LATEST moved on four releases, which is a claim about
-/// ourselves that nothing checked. Following the SDK fixes the staleness — but
-/// following it *silently* would just trade one invisible drift for another, so
-/// this test records what LATEST currently resolves to.
+/// `get_info` follows an rmcp constant deliberately: a hand-written literal sat
+/// at `V_2024_11_05` for the project's whole life with no recorded reason while
+/// rmcp's own LATEST moved on four releases, which is a claim about ourselves
+/// that nothing checked. Following the SDK fixes the staleness — but following
+/// it *silently* would just trade one invisible drift for another, so this test
+/// records what the constants currently resolve to.
 ///
 /// When an rmcp bump fails this, that is the test doing its job: look at what
 /// changed in the protocol, decide whether reflow2 should still speak it, and
 /// update the expectation deliberately. Same discipline as the schema type
 /// counts in `schema.rs` — growth must be conscious.
+///
+/// FOLLOWED DELIBERATELY ON 2026-10-02, rmcp 3.4.0 → 3.5.0: LATEST moved from
+/// 2025-11-25 to 2026-07-28, the revision with no `initialize` handshake, and
+/// rmcp added LATEST_WITH_INITIALIZE for the subject this value is about. The
+/// handshake answer stays 2025-11-25 and 2026-07-28 is served through
+/// `server/discover`, as `describe_protocol_version` explains.
 #[test]
 fn the_advertised_protocol_version_is_the_sdks_latest_and_is_pinned() {
     use rmcp::model::ProtocolVersion;
     assert_eq!(
         ProtocolVersion::LATEST,
-        ProtocolVersion::V_2025_11_25,
+        ProtocolVersion::V_2026_07_28,
         "rmcp's LATEST protocol version moved — decide deliberately whether \
          reflow2 should follow it, then update this expectation"
+    );
+    assert_eq!(
+        ProtocolVersion::LATEST_WITH_INITIALIZE,
+        ProtocolVersion::V_2025_11_25,
+        "rmcp's newest revision WITH a handshake moved — decide deliberately \
+         whether reflow2 should answer `initialize` with it, then update this"
     );
     let declared = ReflowService::describe_protocol_version();
     assert_eq!(
         declared,
-        ProtocolVersion::LATEST,
-        "the server must advertise the SDK's current protocol, not a literal \
-         copied from an example years ago"
+        ProtocolVersion::LATEST_WITH_INITIALIZE,
+        "the server must answer `initialize` with the SDK's newest handshake \
+         revision, not a literal copied from an example years ago, and never \
+         with a revision that has no handshake"
     );
 }
 
@@ -958,6 +983,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         v["node_types"].as_array().unwrap().len(),
@@ -993,6 +1020,8 @@ async fn describe_schema_answers_the_directed_question() {
         from: Some("Capability".into()),
         to: Some("Component".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert!(
         q["exact_matches"].as_u64().unwrap() >= 1,
@@ -1015,6 +1044,8 @@ async fn release_pairs_report_their_true_standing() {
         from: Some("Release".into()),
         to: Some("Component".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         q["exact_matches"].as_u64().unwrap(),
@@ -1027,6 +1058,8 @@ async fn release_pairs_report_their_true_standing() {
         from: Some("Release".into()),
         to: Some("Requirement".into()),
         required_only: false,
+        tool: None,
+        full: false,
     })));
     assert_eq!(
         loose["exact_matches"].as_u64().unwrap(),
@@ -1049,6 +1082,8 @@ async fn describe_schema_focuses_one_node_type() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     let outgoing = d["outgoing"].as_array().unwrap();
     assert!(
@@ -1077,6 +1112,8 @@ async fn describe_schema_required_only_is_compact() {
         from: None,
         to: None,
         required_only: false,
+        tool: None,
+        full: false,
     })));
     let compact = j!(s.describe_schema(Parameters(DescribeSchemaReq {
         budget_chars: None,
@@ -1084,6 +1121,8 @@ async fn describe_schema_required_only_is_compact() {
         from: None,
         to: None,
         required_only: true,
+        tool: None,
+        full: false,
     })));
 
     // The full view carries the edge lists; the compact one drops them.
@@ -1118,6 +1157,8 @@ async fn describe_schema_rejects_a_half_given_pair() {
             from: Some("Release".into()),
             to: None,
             required_only: false,
+            tool: None,
+            full: false,
         }))
         .await
         .is_err(),
@@ -1131,6 +1172,8 @@ async fn describe_schema_rejects_a_half_given_pair() {
             from: None,
             to: None,
             required_only: false,
+            tool: None,
+            full: false,
         }))
         .await
         .is_err(),
@@ -1614,7 +1657,8 @@ async fn a_wrong_edge_can_be_retracted_without_deleting_its_endpoints() {
     assert!(
         j!(s.get_node(Parameters(GetNodeReq {
             node_type: Some("Requirement".into()),
-            id: "req:physics".into()
+            id: "req:physics".into(),
+            ..Default::default()
         })))["node"]["node_id"]
             == "req:physics",
         "the requirement must survive the retraction"
@@ -2408,6 +2452,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     let requires = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Resource".into()),
         id: "res:gpu".into(),
+        ..Default::default()
     })));
     assert_eq!(requires["node"]["node_id"], "res:gpu");
 
@@ -2486,6 +2531,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     let gone = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Component".into()),
         id: "cmp:typo".into(),
+        ..Default::default()
     })));
     // get_node returns one named shape both ways (BL-57): `{node: null}` absent.
     assert!(
@@ -2651,7 +2697,8 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
     })));
     let after_write = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
-        id: "cap:flight".into()
+        id: "cap:flight".into(),
+        ..Default::default()
     })));
     assert!(
         after_write
@@ -3157,7 +3204,8 @@ async fn choosing_a_mode_preserves_everything_else_about_the_project() {
     })));
     let after = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Project".into()),
-        id: "proj:m".into()
+        id: "proj:m".into(),
+        ..Default::default()
     })));
     assert_eq!(
         after["node"]["properties"]["name"].as_str(),
@@ -3191,7 +3239,8 @@ async fn an_unknown_mode_fails_loud_rather_than_leaving_the_old_one() {
 
     let after = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Project".into()),
-        id: "proj:m".into()
+        id: "proj:m".into(),
+        ..Default::default()
     })));
     assert_eq!(
         after["node"]["properties"]["mode"].as_str(),
@@ -3460,6 +3509,7 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
         .get_node(Parameters(GetNodeReq {
             node_type: Some("Epoch".into()),
             id: "epoch:real".into(),
+            ..Default::default()
         }))
         .await
         .expect_err("an unknown node type must be refused, not answered null");
@@ -3477,7 +3527,8 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
     // and nothing else.
     let found = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("DesignEpoch".into()),
-        id: "epoch:real".into()
+        id: "epoch:real".into(),
+        ..Default::default()
     })));
     assert_eq!(found["node"]["node_id"], "epoch:real");
 
@@ -3485,7 +3536,8 @@ async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
     // "no such node", and it must not have been collateral damage.
     let absent = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("DesignEpoch".into()),
-        id: "epoch:nope".into()
+        id: "epoch:nope".into(),
+        ..Default::default()
     })));
     assert!(
         absent["node"].is_null(),
@@ -3822,7 +3874,8 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
     })));
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:solo".into(),
-        node_type: None
+        node_type: None,
+        ..Default::default()
     })));
     assert_eq!(
         got["node"]["node_type"], "Requirement",
@@ -3831,7 +3884,8 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
     // Unknown id, no type: a null node, not an error (same as the typed form).
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:nope".into(),
-        node_type: None
+        node_type: None,
+        ..Default::default()
     })));
     assert!(got["node"].is_null(), "{got}");
     // A COLLISION (the same id under two types — a convention violation, but
@@ -3847,6 +3901,7 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         .get_node(Parameters(GetNodeReq {
             id: "req:solo".into(),
             node_type: None,
+            ..Default::default()
         }))
         .await
         .expect_err("two types hold this id — refuse, do not pick");
@@ -3915,7 +3970,8 @@ async fn a_bulk_write_can_be_checked_without_being_written() {
     // And NOTHING was written — not even the good item.
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:ok".into(),
-        node_type: Some("Requirement".into())
+        node_type: Some("Requirement".into()),
+        ..Default::default()
     })));
     assert!(
         got["node"].is_null(),
@@ -3929,7 +3985,8 @@ async fn a_bulk_write_can_be_checked_without_being_written() {
     assert_eq!(out["would_apply"], true, "{out}");
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:ok".into(),
-        node_type: Some("Requirement".into())
+        node_type: Some("Requirement".into()),
+        ..Default::default()
     })));
     assert!(got["node"].is_null(), "{got}");
 }

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a7447ecead7c46516915065794414ad90ecb5025235fb430c6b936e1120369c",
+  "edge_type": "PROVIDES",
+  "from_id": "sys:foundation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

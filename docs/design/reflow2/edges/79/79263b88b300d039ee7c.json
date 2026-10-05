@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3b60d70f221670d665f1ab2774c5fcb9eb8cb19146f7a90f47a31c6c078f37a3",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cmp:compare",
+  "properties": {},
+  "to_id": "snap:epoch:wall-check-works-on-any-project:cmp:compare"
+}

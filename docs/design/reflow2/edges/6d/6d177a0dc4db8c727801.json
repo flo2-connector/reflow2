@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:38fd5d975113158dc4e38a033374ed92f308096372a664e442e885a109cdde00",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:surprises",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:structure"
+}

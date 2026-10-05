@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:512af0326cffe7c6f16e36b440a687c2e1de3adf75268c0a72832e13ec791771",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-session-that-reads-and-never-writes-is-seen-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:twenty-five-reads-and-no-write-puts-a-line-in-next-and-one-write-removes-it"
+}

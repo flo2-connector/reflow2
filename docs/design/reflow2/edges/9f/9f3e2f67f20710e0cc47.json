@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b72b7647d440a7f68d0aaa0288b4d1dd416c7b8324e9e938452d1112fa5e6ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-handshake-writes-down-who-connected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-protocol"
+}

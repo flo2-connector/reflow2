@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2ba341799ac67ac64eef1f36998136847e57158e556524df89a03413669f5c43",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:git-merge-driver",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:main"
+}

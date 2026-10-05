@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d35be45ace5f5145502b2e3cbe28b112facd4d485713270e1e47ffd883c913cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kpp-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

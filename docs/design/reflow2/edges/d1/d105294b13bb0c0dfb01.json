@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5c63060c3c2ff88a592abcfcb37b23b9a5e7caa3e0f3cf49940e92b88599687",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

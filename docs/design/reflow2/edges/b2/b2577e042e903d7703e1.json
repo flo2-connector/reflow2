@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d4540d381b39a9df6b28d282a7de5d80dd9d344b278e3e0e56107697fdb5e15",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-derived-number-carries-what-it-was-computed-over",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-30"
+  },
+  "to_id": "epoch:planned-seams"
+}

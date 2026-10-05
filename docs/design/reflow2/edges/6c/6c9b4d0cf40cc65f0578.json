@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5e6d76d73c3c507dc64d22ca0dc9e3673306c6abdc93d08d6b63e46f8570175d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:parallel-work-skill"
+}

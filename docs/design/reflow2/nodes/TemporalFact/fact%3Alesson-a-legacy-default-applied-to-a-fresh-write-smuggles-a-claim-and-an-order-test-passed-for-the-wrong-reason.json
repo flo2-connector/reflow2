@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:20cb60a75e9b8b32e34a60178654e944c03acef5cdeb8e1dcb5c7aa02dd613cd",
+  "node_id": "fact:lesson-a-legacy-default-applied-to-a-fresh-write-smuggles-a-claim-and-an-order-test-passed-for-the-wrong-reason",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "LESSON: a normaliser's \"absent means the old default\" rule, applied to a FRESH write, smuggled `author` into a first-ever `approver` — and the order-independence test passed because both orders were wrong the same way; only the write-once test caught it",
+    "statement": "While fixing AUTHORED_BY (roles as a set), the writer called the legacy normaliser on whatever it found for the (node, contributor) pair — including an EMPTY map when no edge existed. The normaliser's rule \"no `role` recorded means `author`\" is correct for a stored legacy edge (the old schema default) and WRONG for a map that is empty because nothing was ever written: the first `approver` write came out as [author, approver].\n\nTWO TESTS HAD ALREADY PASSED OVER THIS. `approving_what_you_authored_keeps_both_roles` wrote author first, so the phantom coincided with the truth. `the_roles_are_a_set_in_canonical_order_whatever_the_write_order` compared the two orders to EACH OTHER — both produced [author, approver], both wrongly, and the equality held. The test that failed was the smallest one: write `approver` twice, expect exactly [approver].\n\nTHE RULES:\n1. A default belongs to STORED data with a history, never to a value that is absent because it was never written. Normalise what you found; do not normalise nothing.\n2. An order-independence test proves symmetry, not correctness. Pair it with a single-write test that pins the exact expected value, or it will bless two identical mistakes.\n3. This is the schema-defaults finding again (`fact:the-schema-declares-81-defaults-and-nothing-reads-them`, BL-198): \"absent\" and \"somebody said the default\" look the same in the store, and any code that resolves absence to a default is deciding, silently, which one it was.",
+    "steps": [
+      "root-cause"
+    ],
+    "subject_id": "dec:design-authorship-identity",
+    "valid_from": "2026-09-14"
+  }
+}

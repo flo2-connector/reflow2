@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1526ccd1bf7f67bbc7ecc1b8eb317f674b6e036bd12d4fa87b0fcf0d8f22d98c",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-composed-prompt-serves-its-pieces-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-composed-prompt-serves-its-pieces-and-a-closed-gap-refuses-branchably"
+}

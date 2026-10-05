@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:eecd502b3e3baf6ca9dcc97bf0e10cd997c52e0a9626ed5e60c277ff337bd384",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:skill-triggers",
+  "properties": {},
+  "to_id": "req:skill-use-survives-a-long-session"
+}

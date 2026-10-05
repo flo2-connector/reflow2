@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b5e4f1ad0108ddda9613c93cca1364a62790863352a73913ce41a65822f2677",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:skill-usage-becomes-measurable"
+}

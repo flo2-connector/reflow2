@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd4b934d688b99d0a84aff4e00488629bbea8636e32c8649610cf82538bc7a86",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-have-the-three-legs-been-applied-uniformly-and-are-three-legs-enough",
+  "properties": {
+    "evidence": "That question proposed this audit as its option (a) and predicted what it would find — that the legs were never applied uniformly, and that three legs may not be sufficient. Both came back confirmed: 58% carry all three, and five types carry all three while sitting unused."
+  },
+  "to_id": "fact:the-three-legs-audit-run-at-last-54-of-93-and-five-types-exist-only-in-the-schema"
+}

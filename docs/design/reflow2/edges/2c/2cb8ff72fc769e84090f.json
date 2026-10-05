@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19b2c79fb175914583fd7029afdba90ba019ababc38b95a3f41d35e7d8ce657f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-question-arrives-with-a-reading",
+  "properties": {
+    "evidence": "A bare gap question hands the user back the systems-engineering analysis that requirement exists to spare them; the recommendation is what makes it answerable without it.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:no-se-knowledge"
+}

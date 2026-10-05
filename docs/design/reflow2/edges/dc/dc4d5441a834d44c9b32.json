@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:41d21c481080b7c500a38a1ee3fdc1d96d600af8faa85be0bbd76e8daf7ae066",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:service-unit",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:service-unit"
+}

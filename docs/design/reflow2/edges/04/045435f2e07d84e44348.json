@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1663a3af1ee181176f3f0226e166f33701eb0d3304f219e05d00b37411dbd265",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:the-field-feedback-rule-was-broken-the-same-day-it-was-ruled-on-and-the-half-that-held-was-the-half-already-in-context",
+  "properties": {
+    "evidence": "Evidence bearing directly on that ruling: the rule was broken invisibly within hours of it, by the agent that recommended it. It does not overturn advisory, since an enforced rule would still gate on a check that cannot exist, but it dates the cost of the missing detector."
+  },
+  "to_id": "dec:the-four-2026-09-rules-are-advisory-because-no-detector-can-yet-see-a-violation"
+}

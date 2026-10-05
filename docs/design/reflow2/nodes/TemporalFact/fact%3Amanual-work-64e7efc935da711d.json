@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e147a9f91519dc771c164e6fbd6e5c744c7e9a80be1fb8d2bb204622529f0cc3",
+  "node_id": "fact:manual-work-64e7efc935da711d",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python script — three separate times in one session — that loads the committed export and the working-tree export, diffs their node-id sets and per-node property maps, and prints ADDED / REMOVED / PROPERTIES CHANGED, to check an export for cross-branch drift before committing it. Used it before every export commit today. compare_designs does exactly this with the committed file as base_path; the where-am-i skill even names it first. I reached for the script because I wanted node-id sets I could eyeball, and did not think to ask whether the served tool already returned them.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-11",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"compare_designs\"}"
+  }
+}

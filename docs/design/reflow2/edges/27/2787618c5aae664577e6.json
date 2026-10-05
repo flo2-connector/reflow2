@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81aea8de9c40810f2b79629271a1523b7a2345b8a875472970afd6a1a6d6b23b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-write-can-be-conditional-on-what-was-read",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

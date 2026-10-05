@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:013b65c21ab34150d94c7410c6ba45e9599bff89c757a278128495ff29f1d3a3",
+  "node_id": "snap:epoch:the-opt-in-finishes-inside-mcp-on-any-client:cap:latent-surface",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:latent\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:latent-mode\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:latent\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:install-once-per-machine\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"decision:ack:d1c2d599af5b45ce\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:no-setup-per-project\",\"properties\":{}}]",
+    "state": "{\"description\":\"With `--only-if-present`, a session opened where no design has been started is served the LATENT surface: the handshake says reflow2 is installed and available and that this directory has no design, exactly one tool is served (`reflow2_start_design`), and NOTHING is created — no store, no state, no files. The check is a filesystem test on the graph's own directory, because opening is the thing that would create. Distinct from the degraded surface on purpose: degraded means a graph exists and could not be opened, which is an outage; latent means nobody ever made one, which is ordinary. The loop-nudge hook is gated by the same test, so a machine-wide hook registration is silent everywhere reflow2 is not being used.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"A directory with no design costs nothing\",\"provenance\":\"authored\",\"status\":\"realized\",\"tier\":\"operational\"}",
+    "target_id": "cap:latent-surface",
+    "target_type": "Capability"
+  }
+}

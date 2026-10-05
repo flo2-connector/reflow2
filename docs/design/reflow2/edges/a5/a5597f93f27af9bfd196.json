@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9c9496fd8afcc5a3a646b24ef2e1aa8c934e27d1dbb466177feaaee51c546da",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check",
+  "properties": {
+    "note": "The rule says a change carries a test; this capability is what lets the design tell whether it did. Without the split, a change that recorded a check nobody can run is indistinguishable from one that wrote a test."
+  },
+  "to_id": "rule:every-change-to-the-built-design-carries-a-test-and-regression-cover"
+}

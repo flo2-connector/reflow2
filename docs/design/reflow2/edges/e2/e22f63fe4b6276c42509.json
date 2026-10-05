@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe1f55a574bbe173ab601e5151f30924e92ece898e6e978797d768bd56348d9c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:granularity",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:granularity"
+}

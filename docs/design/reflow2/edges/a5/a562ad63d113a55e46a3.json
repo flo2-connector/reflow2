@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8853436f8c838d97b333782d36b40466d120787cc6c47a23b21bfa7495de491f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-report-is-not-a-list-of-every-check",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:bounded-reads"
+}

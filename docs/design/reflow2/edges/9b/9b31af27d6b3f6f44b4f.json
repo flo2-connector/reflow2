@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:83472540d5f6770e910fc17ec4ba59e6e419d24d5d8e7b760d53ace2101f79ab",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-reply-is-sent-once-on-every-tool",
+  "properties": {},
+  "to_id": "art:a-reply-is-sent-once-gate"
+}

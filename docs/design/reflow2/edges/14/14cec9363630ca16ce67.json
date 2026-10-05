@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0ed197a73fb5d50f811b22d6d66dd6a5da296a9232f47a198a301fd2297eb241",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:derived-relations-are-served-test"
+}

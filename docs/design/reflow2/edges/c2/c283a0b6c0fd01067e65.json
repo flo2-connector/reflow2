@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60eb37418f6ee6e18c456d2ffe990aaf1d97268c570ee12c491aed7572ba0ee2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current",
+  "properties": {
+    "note": "Its CI probe and served instructions file are how one reflow2 keeps both routes true."
+  },
+  "to_id": "dec:one-reflow2-serves-both-routes-mcp-and-the-call-door"
+}

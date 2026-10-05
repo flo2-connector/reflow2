@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:08a1da44c9792ed8dc5389d0ab4c41e2e0dd896f013380ddecf917a1e54afdd2",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both",
+  "properties": {
+    "evidence": "Building the rung is the fix shape for that measured defect, where the deciding agent is lost at both flo2 and reflow2."
+  },
+  "to_id": "fact:root-cause-an-agent-deciding-for-its-principal-has-no-record-because-the-acts-for-rung-was-deferred-2026-09-29"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e9f104523c946398bd41d1f08de1884e38294fe14b520e44f8a55fb1e95bb2e",
+  "node_id": "chg:a-repos-know-how-is-delivered-at-the-step-it-bears-on-and-the-design-knows-the-adapter-exists",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-17",
+    "name": "A repository's procedural know-how is delivered at the step it bears on, and the design knows the adapter exists",
+    "rationale": "Third of Alex's three ideas promoted on Anthony's word 2026-09-17, built after #532 on his word (\"Merge 532, then Alex's 3rd requirement\"). Measured before building: DesignRule.steps and its delivery already existed and DesignRuleReq already carried steps, so the two of the three legs were in place and nobody had said so; what was absent was a detector for a convention delivered nowhere (8 of reflow2's own 9 were) and for a design that does not know where its agent's instructions live (reflow2's own root AGENTS.md was unregistered). Both findings fire on reflow2 itself, honestly.",
+    "summary": "The delivery leg already existed (add_design_rule steps, carried by get_skill and the tool list via lessons.rs); this increment adds the noticing. detect.rs: convention_delivered_nowhere (a live DesignRule of category convention with no steps; keyed on the set; silent with no conventions) and agent_instructions_unregistered (five or more artifacts and no Artifact DOCUMENTS a Project with doc_kind agent_instructions; one per design). adopt Phase 0 records the repo's conventions with steps and registers the instruction file as an Artifact that documents the Project with doc_kind agent_instructions; link-artifacts names that doc_kind for the file an agent reads first; detect-and-ask has both rows; gap-surfacing rows; CHANGELOG entry. Self-host: reflow2's own AGENTS.md and CLAUDE.md registered as agent instructions documenting the Project; steps set on three of its nine conventions. Tests: a_repos_know_how_is_delivered_at_the_step_it_bears_on.rs (core, two cases) and a_convention_reaches_the_skill_it_bears_on.rs (served, three: a convention with steps rides get_skill; an unknown step is refused with the nearest; the adapter is asked for and a documents edge answers it)."
+  }
+}

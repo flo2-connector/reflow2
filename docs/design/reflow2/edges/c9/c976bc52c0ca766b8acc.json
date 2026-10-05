@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:609fe0a37283a058e66b6e486518923d4e132e252585287b854fa022975c899e",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-closure-has-a-design-phase-reading-and-a-build-phase-reading",
+  "properties": {
+    "evidence": "Every option gives the closure report a pre-build traceability reading, the thing that finding measured as missing."
+  },
+  "to_id": "fact:root-cause-closure-cannot-read-design-done-because-traceability-was-bound-to-the-delivery-line-2026-09-29"
+}

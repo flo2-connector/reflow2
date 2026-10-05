@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a3cc812823861a71dfab3aabba769d422270812b97600b5fc2b93673875e3aab",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:init-installs-only-the-harness-you-name",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

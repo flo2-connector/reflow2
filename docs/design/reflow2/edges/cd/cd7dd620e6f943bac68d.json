@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d8e316149fc01e09d1c9eb774ce30b65160773d65bcc6f79b1df79b449c3929",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:seam-incompatibility",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:seam"
+}

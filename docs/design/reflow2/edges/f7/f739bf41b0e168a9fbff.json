@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cce90d22a2e63e0ccf8c6170530781d90f04195e1b2326bbbd0e0d5ad21a98db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-overtaken-defect-question-names-the-likeliest-fix-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68ec70fecb4f5881722aa5581734ac82e825255315f2d001ad00061bff80d010",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them",
+  "properties": {
+    "evidence": "A unit axis has to be WRITABLE before it can be compared: set_interface_spec and the nine agreement axes are the write side that option A extends, and the same materialised-default trap (unspecified read as an answer) applies to it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:interface-spec"
+}

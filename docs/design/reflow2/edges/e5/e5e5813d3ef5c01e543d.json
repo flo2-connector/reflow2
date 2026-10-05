@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:faed6e23c391cc1771519c31d6f6eafe67a187bba2c74791d2bc6c4adfb1a3bf",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:unbounded-reads-counted",
+  "properties": {},
+  "to_id": "epoch:reads-are-the-failing-half"
+}

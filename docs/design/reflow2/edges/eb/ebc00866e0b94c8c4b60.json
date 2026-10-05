@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4c9c0429a7ee826071e0255a735ebcf1611eb8c0aa7a2d4021298c1556ab5f03",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-finding-has-no-bounds-so-grading-goes-in-the-name",
+  "properties": {},
+  "to_id": "cap:loop-status"
+}

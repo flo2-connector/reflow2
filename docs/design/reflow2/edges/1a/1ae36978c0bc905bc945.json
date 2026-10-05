@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d5da127e13cc4102361266aa083823f6e4243e6ef021bd4f9ddfe9f5e8c1cd30",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0450",
+  "properties": {
+    "as_checksum": "sha256:43b2258a9537a2cbb3e131acb781e11085a4b1e89fa599bd5325d46c1e42fe2f"
+  },
+  "to_id": "art:claim-not-hidden-test"
+}

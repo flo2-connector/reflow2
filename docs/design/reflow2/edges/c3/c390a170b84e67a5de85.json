@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c13bc60cca067291847c22acc880806d703a5fc8a5a070e445774964e026f14",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:an-export-says-which-tree-it-was-taken-in"
+}

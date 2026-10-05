@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:388211903ebae59aa1285ebb3dfcad9d95f86487de1043c2836765ee0e2daccf",
+  "node_id": "art:every-declared-enum-is-wired-or-exempt-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Two probes. FIRST: each of 31 wired request fields (30 top-level plus one nested in a list item's `$defs`) publishes exactly the values `reflow2_core::schema::enum_values` returns for its type — so the served list cannot drift from what the server enforces. SECOND, and the reason this is a class guard rather than a snapshot: every enum the schema DECLARES is either wired somewhere in enum_schema.rs or named in EXEMPT with a reason, so a newly declared enum fails the build until somebody decides which it is. A staleness check runs the other way too — an EXEMPT entry naming something the schema no longer declares is a stale excuse that would quietly shrink what the test can see.\n\n⭐ BOTH OF ITS OWN BUGS ARE RECORDED IN IT, because each was caught by the half of the test that was right. (1) It parsed `schema_enum!` LINE BY LINE, and `cargo fmt` wraps long invocations across four lines, so its first run reported 41 unwired of which a dozen were wired — a guard wrong in the SAFE direction is still wrong, and would have had somebody write exemptions for fields that did not need them. (2) The staleness half then caught four of the five original \"must not wire\" entries being name-collisions rather than declared enums, so they never belonged in a list keyed on declared enums; that reasoning moved to the module doc.\n\n⚠️ THE WIRED LIST IS HAND-MADE ON PURPOSE and the test does not derive it. Five request fields share a name with a declared enum and mean something else — `add_component`'s `level` is the deliberately-open decomposition ladder, and wiring it by name would contradict `dec:the-decomposition-ladder-is-open-not-a-fixed-enum`.",
+    "location": "crates/reflow2-mcp/tests/every_declared_enum_is_wired_or_exempt.rs",
+    "name": "every_declared_enum_is_wired_or_exempt.rs — the wired publish the schema's values, and nothing declared is unaccounted for",
+    "status": "realized"
+  }
+}

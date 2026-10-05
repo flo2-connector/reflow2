@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8bb5672cef5cc4c2dcefe8fdc5887ffb48704db742bd693d11c0c58b5049382",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:host-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:host-gate"
+}

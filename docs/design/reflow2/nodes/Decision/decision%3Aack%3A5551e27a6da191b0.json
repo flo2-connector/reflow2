@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:110193ba0aff21a0e1d6cc5edc7f5785ed674c41f08765e78ce7dcdd121675f6",
+  "node_id": "decision:ack:5551e27a6da191b0",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:5551e27a6da191b0.",
+    "name": "Reviewed: gap:5551e27a6da191b0",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities (user's 2026-07-23 call). The owning component arrives with the build and is not invented ahead of it: claims are new core code and will need their own module, but which module — a new claims.rs, or folded into the provenance layer that already holds Contributor identity — is a real choice about where the seam falls, and guessing it now would put a component in the design that nothing has yet justified. Distinct from the cap:explains-itself case, where allocation was left open because the answer was genuinely ambiguous; here it is simply not yet earned.",
+    "status": "accepted"
+  }
+}

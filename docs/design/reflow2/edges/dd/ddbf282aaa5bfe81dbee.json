@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a872654d8a88a481ac639e02ef0a022520ddb38cedc341a50812bde56caf787",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-c08ff09348fbbe16",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-command-surface-answers-for-itself"
+}

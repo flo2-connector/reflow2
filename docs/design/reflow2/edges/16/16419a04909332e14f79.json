@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdccd3da3b8e1cee2513b1f021510f2b3592eb9c243203db0fa4104f00e8d36b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-a-realized-capability-can-be-dead-for-want-of-an-input-path"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b383bee36971451aef2d53f6490b19cfb2bf13cabafdadd31d47ce0e0e010ad",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-built",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-built"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2f4b0708f86702308e2b3dcb214fe5b11b034d6310db59c99f6ae5d7c7aef5e4",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-a-latency-budget-with-parallel-branches-is-judged-on-the-sum-while-its-worst-path-is-computed-beside-it-2026-09-29",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-a-latency-budget-with-parallel-branches-is-judged-on-the-sum-while-its-worst-path-is-computed-beside-it-2026-09-29"
+}

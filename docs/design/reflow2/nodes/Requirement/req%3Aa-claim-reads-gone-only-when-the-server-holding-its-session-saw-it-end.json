@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:811f59ff7ac392a1cfa0bc8f2b07a8ffea6bc7044204f97e918b0b0f90411867",
+  "node_id": "req:a-claim-reads-gone-only-when-the-server-holding-its-session-saw-it-end",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim reads `gone` only when the server holding its session saw that session end; every other reader reports it unverifiable",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session: \"Let's go with your 3 likeliest candidates\". Option (b) of dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified, the liveness rule borrowed from orca's review (\"no asserting what you cannot observe\").",
+    "statement": "Only the server that holds a claiming session may report the claim as `gone`, and only once it has observed that session end. Every other reader reports the claim as unverifiable (`unknown`), never as `gone`, whether that reader is another server, a restarted server, or a hosted design. `gone` tells a colleague the ground is free. This sharpens req:claims-have-owners, which asks that a claim with no live owner be reported stale, by saying who may conclude that. It is the fix for fact:two-active-sessions-claims-both-read-gone-2026-09-22.",
+    "status": "accepted"
+  }
+}

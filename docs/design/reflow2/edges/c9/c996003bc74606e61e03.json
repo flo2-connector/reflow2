@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d88b7af466312b1e5099aa978526943ef422312fe61ff6bf4d11f2115c6918e2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-projects-unit-system-is-a-governed-rule-and-a-sweep-reports-unitless-and-off-system-quantities",
+  "properties": {},
+  "to_id": "req:a-project-declares-its-unit-system-as-a-governed-rule-and-undeclared-or-off-system-units-are-reported"
+}

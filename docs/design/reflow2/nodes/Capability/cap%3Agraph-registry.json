@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5e14acdd56efd81b05fed4c82fe1bfe4040fa18c92d30502dc5ac13e56d131a1",
+  "node_id": "cap:graph-registry",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A process-level map from graph key to an open design, plus the metadata that currently rides on the service — graph_path, content_path, identity, and the write_gen counter the loop nudge reads (service.rs:94-99) — all of which become per-graph rather than per-process.\n\nOpening is ON DEMAND AND BOUNDED. A cold open builds the full-text index and takes seconds on a large design (shared.rs allows 30 seconds for it), so the first request for a graph cannot be treated as cheap, and concurrent first requests for the same graph must COLLAPSE INTO ONE OPEN rather than racing. Eviction has a policy, because each open graph costs a RocksDB instance with its own block cache, file handles and tantivy index: an idle timeout per graph (today's --idle-timeout is per process) plus a cap on simultaneously open graphs, with a stated error when the cap is hit rather than silent thrashing.\n\nSingle-writer is untouched: the registry holds N stores and N locks, one lock each. Single-graph mode becomes a registry of one, pre-populated at startup with selection defaulted — not a second code path — so --graph-path, --only-if-present and the latent surface behave exactly as they do today.\n\nREALIZED 2026-09-27, as its name says (chg:the-registry-closes-idle-designs-2026-09-27; ver:a-server-closes-idle-designs-and-says-busy-when-full):\n- one process holds many designs;\n- each opens on demand, with concurrent first requests collapsed into one open;\n- open designs are bounded by --registry-max-open, reusing the least recently used slot rather than refusing;\n- a design idle past --registry-idle is closed;\n- the stated error when the limit is truly hit is 503 with Retry-After.\n\nTWO CLAUSES ABOVE ARE NOT DONE, and are kept as the plan:\n- Single-graph mode (--graph-path, --http without --registry-root) is still its own code path, not \"a registry of one\".\n- Eviction frees a design's store, but each open design still carries RocksDB's own per-store block cache. The shared budget is req:one-open-design-costs-a-deliberate-amount-of-memory, next on epoch:planned-the-hosted-engine-closes-idle-designs-and-drains.",
+    "name": "One process holds many designs: open on demand, bounded, evicted when idle",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

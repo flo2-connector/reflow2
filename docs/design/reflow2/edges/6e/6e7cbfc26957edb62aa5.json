@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:083f425c7f7ad19aa978f153d65cc5d2e6a5b859c87936543726107d391660c2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:projection-cycles-carry-their-birth-and-death-epochs",
+  "properties": {},
+  "to_id": "req:each-projections-cycles-are-tracked-across-design-epochs-from-birth-to-death"
+}

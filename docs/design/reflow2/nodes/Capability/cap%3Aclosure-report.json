@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:53a13aa96913be5dc4c612b6b40d27722163df7e921b65038b6583813d6a0c77",
+  "node_id": "cap:closure-report",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built (2026-09-17): closure_report sums five computations that already exist — requirement_is_delivered per live requirement, budget_report per Constraint with a limit (against a declared margin when one is stated), seam_coverage, the scheduled work still governed by a proposed decision, and the quantity provenance sweep the detector shares — into one read. Each leg reports swept, closed, share, a swept_note in words and its worst offender; a counted leg that swept nothing carries closes: None and the design does not close on it, with the hole saying 'nothing to run on'. The criterion is Project.closure_legs and Project.closure_threshold, declared with set_closure_criterion (validated against the five legs, 0–100, no default); first_hole is the first leg in the DECLARED order that fails. No declaration reads no_closure_criterion_stated with the legs still shown. closure_criterion_undeclared asks once on a design with live requirements. release_report carries a ClosureSummary beside its own answer — a report, never a gate. Constraint.margin is read by the budgets leg; budget_report's verdict is against the bare limit.",
+    "name": "A closure report: five legs, what each swept, the first hole, and a verdict against the declared threshold",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d53d994b8e7ec65eaf84a9442238d4793ee0cde4d35260eb2c9800742c7892b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl182-granularity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:granularity-observation"
+}

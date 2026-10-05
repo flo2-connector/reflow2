@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d113b4e2d183ab6b640d3189182b30b556590d642d3b965cceaa7c69f375e04c",
+  "edge_type": "REALIZES",
+  "from_id": "art:self-host-documents-guard",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-finding-names-the-mechanism-that-parks-a-deliberate-state"
+}

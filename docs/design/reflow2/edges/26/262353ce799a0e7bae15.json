@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f30f81eba10f8d783dbb31b009543291fcaab2662028566b2a2b2780489e8e1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call"
+}

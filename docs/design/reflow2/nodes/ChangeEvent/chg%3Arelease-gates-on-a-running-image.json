@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b33ab74418ebed9a33acd1761bd313f79a57c9d06545c51119a8b69a9b9d80b7",
+  "node_id": "chg:release-gates-on-a-running-image",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The release builds --load and smoke-tests the image before publishing it"
+  }
+}

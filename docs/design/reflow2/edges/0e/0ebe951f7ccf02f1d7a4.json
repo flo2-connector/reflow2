@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a965b1f905a31b7f2907b1106b2a6e47270356e545b5fe1d00529b0d224a65ce",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-node-is-named-by-its-id-and-the-type-is-optional",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:785a2d64c73050f93fbb78f09595429edb15b74bc36b7df2929584f432b46cb3",
+  "node_id": "art:feedback-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The served skill behind /feedback: get the tally from usage_report, add the self-reported model, disposition every refusal row (guard working / real defect / unexplained), read never_called honestly, append to the project's reflow2_feedback.md and show it — send it nowhere. Mirrored byte-for-byte into .claude/skills and .grok/skills as skill_lint requires; the command file is getting-started/commands/feedback.md.",
+    "location": "getting-started/skills/feedback/SKILL.md",
+    "name": "feedback SKILL.md",
+    "status": "realized"
+  }
+}

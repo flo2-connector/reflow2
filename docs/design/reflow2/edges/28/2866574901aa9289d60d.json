@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:de8ca525583bb8d5ac930a71807f8d0f7a034db758b9b2fb0cc2cf0cd817ca3e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:66ac2fa5e29087d6d1e4dad6145243a6a54e7a7eb2508e9ab0ccfbd894321bc3"
+  },
+  "to_id": "art:a-parked-report-that-produced-nothing-test"
+}

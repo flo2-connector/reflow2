@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:07fd8d8c9d9da71c89275d62c1b5b0070dc722c613b5a419eea22c227db8006d",
+  "node_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-18",
+    "name": "A field report is triaged by a served step (triage-feedback, /triage) with the feedback rules riding it; a finding is written before the answer; loop_status and the stop hook see reads without writes",
+    "rationale": "Anthony 2026-09-18: 'let's start addressing these and implementing fixes', on the seven root-caused flo2 findings and the lapse; this increment is the pair that share a cause — a rule and a finding that could not reach the moment they bore on.",
+    "summary": "New skill triage-feedback (+ mirrors), command triage.md (+ copies), COMMAND_ALIASES entry; capture-intent paragraph; service.rs session_reads/session_writes + is_write_tool + count_call + note_call_for_test; coherence.rs loop_status `session` block + next line; tools/loop_nudge.py reads tally + Stop inverse nudge (REFLOW2_READS_WITHOUT_WRITES_THRESHOLD); tests: crates/reflow2-mcp/tests/a_session_that_reads_and_never_writes_is_seen.rs (3) and two in tools/test_loop_nudge.py; graph: two rules gain steps, one new rule, two requirements accepted, two ideas accepted; CHANGELOG."
+  }
+}

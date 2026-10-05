@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5cd905591451e39800a6e925190504b67ceb354fcbb20fa5f869b43b5719e355",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:remote-sessions",
+  "properties": {},
+  "to_id": "req:sessions-across-machines"
+}

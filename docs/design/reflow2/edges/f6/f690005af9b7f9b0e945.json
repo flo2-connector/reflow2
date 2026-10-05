@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8fc25adc0bae4bb11a0223f5f0d2ba63aa6acb6a2ef74739ee8a4524d7a66536",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "req:nudge-covers-bypass"
+}

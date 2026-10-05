@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1890a2ffd3d0430d4295c77186576dd20046bc2e28007e1890a6fb50dfd7df1d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:allocate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:allocate"
+}

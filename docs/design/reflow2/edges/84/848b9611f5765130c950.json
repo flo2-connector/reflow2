@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b8658c869e2a7e9eaa50d77408f3f3c5ee2949660e2a64bb2e590b0ed3e9300a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:epochs-can-be-planned",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

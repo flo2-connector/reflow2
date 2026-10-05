@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6258bd7a53579559044cfd81baee0966b61bb35b7b5241e7b19507385e690286",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:lineage-is-kept-per-item",
+  "properties": {},
+  "to_id": "req:the-saved-design-merges-correctly-under-gits-ordinary-merge"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5442ef36aff1c5610666470623d92a0c0108d03a812d0f090c70e5a5118d62f1",
+  "node_id": "decision:ack:90a90e90df05c31a",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:90a90e90df05c31a.",
+    "name": "Reviewed: gap:90a90e90df05c31a",
+    "rationale": "User (who:ajs, 2026-07-25): accepted intent, BLOCKED on dec:central-host, same disposition as its sibling req:many-designs-one-service and left `accepted` rather than `deferred` for the same reason. One thing his answer DID settle, and it narrows the eventual build rather than leaving it open: contributing means PROPOSE-THEN-ACCEPT, not direct write. A named collaborator can read the design and put intent to it; the owner accepts it. That is not a UX preference — a design brain whose entire loop is ask-the-human-and-record-the-decision cannot let a second person's word enter as the first person's, which is dec:certainty-derived's forgery rule applied across people instead of across time, and it means the machinery this needs is the Question/answer surface plus Contributor attribution that already exist, not a second write path. Worth noting for whoever builds it: the cheapest form of this requires no service at all — a read-only export shared as a file is already \"reach without write\", and the proposals could ride back as a design export that the owner merges. That may be enough, which is exactly why the decision is upstream.",
+    "status": "accepted"
+  }
+}

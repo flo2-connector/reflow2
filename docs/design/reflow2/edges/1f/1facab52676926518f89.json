@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:68d0d124a097f41662f6138872ac4445e2de7f9c3f67285804b25494df6f2c4a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it",
+  "properties": {},
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

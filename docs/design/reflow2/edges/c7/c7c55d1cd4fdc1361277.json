@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c9e7a5920f4b7c0c7283472d72aaf942c5a369ecf4da686e2b5ad1eb9d70e3e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-absence-claim-names-where-it-was-checked-in-the-served-text",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:94e9e3d42a6bdd433f95d9c702c941519465629427885c6f7ff0b81e24f40b32",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:work-declares-who-it-reaches",
+  "properties": {},
+  "to_id": "req:work-says-whether-it-reaches-a-consumer"
+}

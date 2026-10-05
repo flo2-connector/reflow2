@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:efcb803b20fa04b6911d0fdc709b1644a43b1701ab278908dba608b33d94019f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

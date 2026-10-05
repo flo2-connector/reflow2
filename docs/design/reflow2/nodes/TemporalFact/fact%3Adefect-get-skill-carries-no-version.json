@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0116c82f411577f1e66512194a7060afc4d1d4be80acf04288dcbccc231b75f2",
+  "node_id": "fact:defect-get-skill-carries-no-version",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "A SESSION THAT READ A SKILL AT MINUTE 0 AND ACTS ON IT AT MINUTE 90 HAS NO WAY TO KNOW THE SERVED SKILL CHANGED UNDERNEATH IT, BECAUSE `get_skill` OUTPUT CARRIES NO VERSION OR HASH. Reported 2026-08-08 by w-02baf79f (dev_storyflow), and filed by them as an ADJACENT risk rather than a reflow2 bug — the honest framing, which is worth preserving. WHAT HAPPENED TO THEM was not in reflow2: their binding rulebook PROTOCOL.md grew from 801 to 819 lines WHILE THEY WERE READING IT, the delta was a new binding rule, a peer had committed into the shared clone, and their working tree was clean so nothing warned them. THE REASON IT IS FILED HERE IS A COMPLIMENT AND A GAP IN ONE: reflow2's skills are SERVED, NOT INSTALLED, explicitly so they cannot go stale relative to the binary (dec:skills-served) — which the reporter notes solves exactly the class of problem they just hit in a file that is NOT served. THE RESIDUE: served-ness makes the skill current at the moment of the CALL; it says nothing across a long session. A skill can be revised between minute 0 and minute 90 of the same session and nothing in the response would differ. FIX SHAPE, theirs: stamp get_skill output with a version or content hash, so a long session can cheaply detect that the instructions it is following have been revised. THE SECOND-ORDER VALUE THEY NAME IS THE BETTER ARGUMENT: it makes 'I read the skill' A CHECKABLE CLAIM RATHER THAN A DURABLE-SOUNDING ONE — which lands directly on cap:skill-loads-are-counted, where the count currently records that a skill was opened but not WHICH TEXT was opened.",
+    "subject_id": "cap:skills-served",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, w-02baf79f, filed by them as an adjacent risk not a bug\",\"their_incident\":\"PROTOCOL.md grew 801->819 lines mid-read, the delta was a new binding rule, nothing warned them\",\"why_here\":\"dec:skills-served solves that class for reflow2 - the reporter says so - but only at call time\",\"residue\":\"a skill revised mid-session is indistinguishable in the response; no version or hash is carried\",\"fix_shape\":\"stamp get_skill output with a version/content hash\",\"second_order\":\"makes 'I read the skill' checkable; lands on cap:skill-loads-are-counted, which counts opens but not which text\"}"
+  }
+}

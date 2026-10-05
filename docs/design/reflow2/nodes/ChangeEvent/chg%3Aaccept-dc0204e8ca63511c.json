@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dd59742cd508688a7b93a82996a98a0fad26dddf3633ae1f0ed226e47ec945ed",
+  "node_id": "chg:accept-dc0204e8ca63511c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-26",
+    "name": "`.map(|t| observe_one(t))` → `.map(observe_one)`, the redundant_closure CI's mcp clippy gate caught and this session had not run. Behaviour and intent unmoved, so the design holds. The gate reached CI because the pre-push list in AGENTS.md was grepped rather than read, and the grep matched an earlier line naming only the core crate.",
+    "subject": "system"
+  }
+}

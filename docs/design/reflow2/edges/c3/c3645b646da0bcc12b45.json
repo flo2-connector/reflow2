@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:173dc39b2d93f2d328cbfe61185c913f8d60c060c68cf602cbcb8fd284a13a57",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "resolve_question_id tries the derived id and then the argument verbatim (detect.rs:1737-1745), so answer_question and withdraw_question accept either identifier. Pinned by a_question_is_answerable_by_either_id.rs."
+  },
+  "to_id": "fact:defect-a-question-not-created-by-gap-to-prompt-can-never-be-answered"
+}

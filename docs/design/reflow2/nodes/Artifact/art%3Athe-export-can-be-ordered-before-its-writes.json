@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:437a9864de7e6cdb9de095e8051b117dc63e8d661448c4b7967d62ed06d2466e",
+  "node_id": "art:the-export-can-be-ordered-before-its-writes",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/the_export_can_be_ordered_before_its_writes.rs",
+    "name": "the_export_can_be_ordered_before_its_writes.rs",
+    "status": "realized"
+  }
+}

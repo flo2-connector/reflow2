@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ac159fb2ea9dc6cfb365e37d379c14b8422d89f6084bae6333699c65d553925e",
+  "node_id": "req:drift-has-direction",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Drift is reported with its direction and its meaning, not just its magnitude",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When the design and the build diverge, reflow2 must say which way and about what — not merely that a file's contents moved. Three things follow. Direction: a system that has grown capability the design never recorded is a different condition from one whose design overstates it, and today both arrive as an identical checksum change, so understatement is invisible exactly where it is largest. Meaning: the report must say what the design now claims wrongly, because asking someone to decide whether the design still holds while telling them only that bytes changed puts the entire burden of finding the delta on the person least likely to have time for it — which is how the design goes stale despite a mechanism designed to stop it. And write-back: where the design was recovered from documents, bringing the design up to date must be able to reach those documents, or the source everyone actually reads stays wrong while the graph quietly becomes right.",
+    "status": "accepted"
+  }
+}

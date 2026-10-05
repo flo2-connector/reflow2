@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b3c11d16121c480b09c35eb637f6b275f75807ddd541d51a926e310a1aa5335",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bulk-forms",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:bulk-forms"
+}

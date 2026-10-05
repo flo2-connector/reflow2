@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4514b767c74ee05aa025c4532d6939e204ea3e7954294b8e652b685ea0e994b0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write"
+}

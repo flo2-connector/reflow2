@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cadff118ef8556b59eb0dbbad6675bb0539c3eb2f2db4879593a6c7f090d2a84",
+  "node_id": "req:the-design-saves-itself-wherever-the-owner-chooses",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "sustainment",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The design saves itself automatically to wherever its owner chooses",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony and Alex, 2026-09-25 (relayed in the dev_reflow2 hub session)",
+    "statement": "The design's export is written automatically, on every change, to a destination the owner chooses — a design repository they can commit (the work case), a folder, a backup location, or the code repository itself for projects where that is welcome. Choosing where is the owner's; remembering to save is nobody's. From a discussion between Anthony and Alex, 2026-09-25: \"For work, it still needs to be something I can git commit though or at least something I can save somewhere that I choose ... this becomes optional where and how you want to export your design.\"",
+    "status": "proposed"
+  }
+}

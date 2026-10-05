@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3f5fb4d2952ffb6351950ce7d605154a40b4638d3998b407c2cbab1bf17fb130",
+  "node_id": "sub:across-designs",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Across designs",
+    "provenance": "authored",
+    "purpose": "The parts that reason about MORE THAN ONE design at once: composing two without merging them, declaring and checking a dependency on another design's version, and saying when two linked designs disagree at a boundary.\n\nThe smallest group at three, and deliberately not folded into a larger one. Everything else in this system assumes a single design and can read whatever it needs; these three cannot, and each has to handle a design it does not own and cannot write. That is a different set of assumptions, and burying it inside a bigger box would hide the one boundary in the system where the other side is out of reach.",
+    "status": "planned"
+  }
+}

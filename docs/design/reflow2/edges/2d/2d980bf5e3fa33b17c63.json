@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2cec93ed99a36c3e9726d24f43236aaea17f238a7021c4e612a96ccafa9304a6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f1e8b98cdfbe1d1509302009bedb3b90a24676d1c58171ce296134faaa35d68b"
+  },
+  "to_id": "art:reflow2-rebuild"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e7409b328071d33940b20bc679587ae8c746506d42199aee6f7b6a8b0f38fb14",
+  "node_id": "cap:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran",
+  "node_type": "Capability",
+  "properties": {
+    "description": "tools/run_ci_gates.py already reads the gate list from ci.yml through skill_lint's parser and already knows each gate's command, exit code and elapsed time; today it prints them and discards them. This capability writes that same material out as a machine-readable file — one row per gate with name, command, exit code, duration, plus the commit sha and timestamp for the run as a whole — and CI publishes it as a build artifact.\n\nThe runner's three existing refusals carry over and are the reason this is cheap: running zero gates is already a failure rather than a pass, a near-empty parse of the workflow is already refused as broken, and a failing gate already fails the EXIT CODE and not only the printed summary. A run record inherits those, so a record showing nothing ran is distinguishable from a record showing nothing failed.\n\nDeliberately stops at the file. Nothing maps gate names to Verification ids and nothing writes a status; that is the open half.\n\nWHY THIS IS NOT cap:the-gate-list-is-run-not-only-cross-checked, which lives in the same script: that capability is EXECUTION — the gate list can be run locally in one command, read from the workflow rather than restated — and it is already realized. This one is EVIDENCE — the run leaves something behind that outlives the terminal — and it is unbuilt. Folding the second into the first would have made a realized capability assert that unbuilt work is done, which is the one thing the status field must never be able to say by accident.",
+    "name": "The gate runner emits a run record — every gate it ran, its exit code, its duration, and the commit",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

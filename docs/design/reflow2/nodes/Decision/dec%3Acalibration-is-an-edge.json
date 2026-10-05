@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6afcf1457d362f84890c07e3e301a90e72c57c68d69cd1382f9dda1757a3d8b2",
+  "node_id": "dec:calibration-is-an-edge",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "A new CALIBRATED_AGAINST edge runs from a fitted node to the evidence its value was derived from (an Artifact or a Verification). A VERIFIES edge whose Verification IS, or PRODUCES, evidence its own target was calibrated against is reported as CONSUMED — a fit, not a test — and is excluded from the count of independent evidence. A capability whose only passing checks are consumed is reported as not independently verified.",
+    "name": "Circular validation is made structurally visible by a CALIBRATED_AGAINST edge, never detected analytically",
+    "rationale": "Anthony's call, 2026-08-01. BL-136's closing evidence decides the shape and rules out the alternatives: the project that hit this built four independent internal diagnostics — a back-solve, a coefficient locus, a space-time frontier and a physical-floor proof — and every one narrowed the question correctly while none could have found the defect. Only the outside source could. So a circular check is not a weak check to be strengthened from inside; NO INTERNAL EVIDENCE CAN DETECT IT, BY CONSTRUCTION. That rules out any analytic detector and leaves exactly one move: record what a value was fitted to, and refuse to let that same evidence count as its validation. An edge rather than a provenance value because the detector is then a graph query rather than a scan, and because the relation carries WHAT was consumed, which a provenance enum cannot. The `calibrated` provenance value (BL-120(d), and what the originating project actually built) stays open and is not foreclosed — it answers HOW the value entered, a different question from WHAT it consumed. Stakes, from the same closing entry: a single-point fit does not merely get a number wrong, it can silently hold a wrong EQUATION in agreement with the data — the fitted coefficient absorbed a structural error in the functional form and agreed with the anchor anyway.",
+    "status": "accepted"
+  }
+}

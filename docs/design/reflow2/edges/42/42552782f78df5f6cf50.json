@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c25fd57ec831582352ac4f129d0821764a3df2cf8889c47c8971fdfbe904f6ab",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-reflow2-flo2-seam-reran-against-http-2026-08-26",
+  "properties": {
+    "at": "2026-08-26",
+    "note": "The 2026-08-13 measurement closes by asking that the seam be re-run against the HTTP boundary before its result is treated as still true. flo2 took that re-run on 2026-08-26 and the answer MOVED: incompatible 0 → 2 (medium REST vs json_rpc, transport_security tls vs none). The original's headline finding — \"the two projects are compatible as far as anything is stated\" — was measured against the stdio MCP surface and does not hold against HTTP, which is what a hosted flo2 speaks to. The rest of the 2026-08-13 record (pair_designs finding nothing, the name matcher ranking a wrong pair above the right one, mirrors returning 0) is untouched and still stands."
+  },
+  "to_id": "fact:reflow2-flo2-seam-measured-2026-08-13"
+}

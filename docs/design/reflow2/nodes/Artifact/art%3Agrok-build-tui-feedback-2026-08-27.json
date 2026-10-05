@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:22970e484b0ad146242209ac0d7b003c1c60148ce4f64311a94d71983e92eae2",
+  "node_id": "art:grok-build-tui-feedback-2026-08-27",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "audience": "internal",
+    "granularity": "atomic",
+    "location": "docs/feedback/2026-08-27-grok-build-tui-agent-feedback.md",
+    "name": "Grok Build TUI agent feedback, 2026-08-27 — the structured-content stub makes the whole read surface unusable on a content-only client",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

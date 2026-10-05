@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b926debe1560db527c9dfcd0439ff3b4b16febd7c6a4d4d3641d971b78be33fb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:vocabulary"
+}

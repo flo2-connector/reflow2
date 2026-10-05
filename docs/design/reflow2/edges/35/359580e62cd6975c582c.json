@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bb2fe929332e880c674d2574f2918351d9358a9b490930d6408e0aaaa502d1f4",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-a-hotspot-node-holds-the-live-worklist-and-is-deliberately-not-history",
+  "properties": {
+    "note": "The rule is why the hotspot is a product question rather than a self-hosting one: a working set has to live where every agent can reach it, and the graph is the only candidate. It also rules out any design that leans on a harness memory store or hook to maintain the list."
+  },
+  "to_id": "rule:mcp-and-the-graph-are-the-only-common-ground"
+}

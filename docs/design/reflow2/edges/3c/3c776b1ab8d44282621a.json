@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5832c47eb0f9235a64dde3829f9365702de417b746729996b8ec75bcef51182c",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:install"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:265e3a4a0d35425fb84eae940dab30601a76bb00ff83b064ebc313581ca48dd6",
+  "node_id": "chg:publishable-promise",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A published surface can carry a behavioural promise: Requirement gains a `designation`, and export_surface carries the published ones alongside the boundaries"
+  }
+}

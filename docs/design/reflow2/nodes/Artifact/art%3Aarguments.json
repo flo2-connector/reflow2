@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5398568668cfeb50c59e82d0e8584bc56f3c0648f474973f455d8927023e94b9",
+  "node_id": "art:arguments",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The argument check every served surface shares: validates a call against the tool's published input schema (the subset reflow2's schemas use, aliases included) and writes the refusal naming the tool and the field path.",
+    "location": "crates/reflow2-mcp/src/arguments.rs",
+    "name": "arguments.rs",
+    "status": "realized"
+  }
+}

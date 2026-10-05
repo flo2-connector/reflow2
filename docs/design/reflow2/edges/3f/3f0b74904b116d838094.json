@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9bfd6b779c42385d3d5f0516ea82a3e398c3aa17da5c4625f095e7de21ff8a95",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:skill-lint",
+  "properties": {
+    "covers": "whole",
+    "evidence": "skill_lint.py's ANSWER_FIRST_CONTRACT is this check. CI runs it on every push (python3 tools/skill_lint.py), and it failed on exactly these six clauses before the skill text was written."
+  },
+  "to_id": "ver:the-brainstorm-skill-looks-for-the-answer-first"
+}

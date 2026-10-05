@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:26c1d3b236ec3e49ab73a5be983ff33e44c8eaa656585870b981d65c7f4f0631",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-27-design-rules-are-unreachable-by-the-violation-vocabulary-because-it-resolves-to-environment-rule",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The cause this repair addresses: `rule_id` on three tools was a bare string with no description, so nothing on the served surface said it resolves to EnvironmentRule rather than the DesignRule a caller holds. The repair states the type on all three, and generalises to every required reference parameter whose name cannot resolve. Drawn as CAUSES so `fix_without_recorded_cause` does not count this fix as unexplained — the design gate reported 3 of 263 fixes with no cause immediately after this change was recorded with only TRIGGERS edges. It addresses the SAYING half only; the missing edge path stays open on the fact.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:every-required-reference-parameter-says-its-type"
+}

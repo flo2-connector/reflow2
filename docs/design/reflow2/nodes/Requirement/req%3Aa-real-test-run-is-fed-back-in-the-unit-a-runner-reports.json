@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ed52faaea727c8b43bfc9d71460ed86665bbc92b68dd343c939fa8556ae5a10c",
+  "node_id": "req:a-real-test-run-is-fed-back-in-the-unit-a-runner-reports",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A real test run is fed back in the unit a test runner reports — the file — without hand-mapping check ids",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design shall accept a real test run's outcomes per test file and resolve each file to the checks the design says it carries, so a run can be fed back as it comes out of the runner. Common runner outputs (cargo test text, JUnit XML, a script's exit code) shall convert to that form without hand-mapping. Files the design names no check for are reported, never silently dropped, and a file whose target never produced a result counts as failed.",
+    "status": "accepted"
+  }
+}

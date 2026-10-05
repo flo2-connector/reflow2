@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9742167702731ce4d863c3ab95e22e589f6e98c675e048a11f6e9a68f11ae07f",
+  "node_id": "fact:field-report-flo2-2026-09-18-findings-stayed-in-chat-and-the-accepted-session-memory-requirement-has-only-a-planned-capability",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2, 2026-09-18): a document review produced six design findings and a hosting analysis that stayed in chat; every loop signal is about nodes that exist, so a session that writes nothing reads as clean — and the accepted requirement covering this is satisfied only by a PLANNED capability",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "F0 in flo2's feedback, in the agent's words: 'A session that reasons about the design for an hour and writes none of it down is, to every detector, a clean session.' Its own cause: it generalised 'intent waits for the owner's word' into 'everything waits for permission'; a finding is the agent's observation and needs none. SEARCHED: req:session-memory-in-graph ('what a session learns is written to the graph as it is learned') is ACCEPTED and satisfied by cap:session-memory, status PLANNED. MEASURED: no served skill contains an instruction to write a finding before answering (grep over getting-started/skills: none); loop_status has no field about reads without writes; the usage ledger records every call per seat with the tool name, so reads-without-writes per session is computable today. The two missing legs are the instruction and the detector; the vocabulary (record_finding) exists.",
+    "subject_id": "cap:session-memory",
+    "valid_from": "2026-09-18"
+  }
+}

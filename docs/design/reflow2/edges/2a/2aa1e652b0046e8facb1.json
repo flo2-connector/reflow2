@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a34c5d3b3eeaa1dee4d19bb77c2c7cd6f697e3be9158a746be1050419b208cd5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0450",
+  "properties": {
+    "as_checksum": "sha256:f2019afd72ee2dbf3e3806a54e397a638e6b1ab37cc181c8a9b1f86c1089b229"
+  },
+  "to_id": "art:docker-smoke-script"
+}

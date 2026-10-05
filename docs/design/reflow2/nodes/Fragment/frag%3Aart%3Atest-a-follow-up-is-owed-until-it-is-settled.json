@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3eb8ede83e7105d25e0745c8cb959686bd0a94bcb4b7d1beb977977de7558644",
+  "node_id": "frag:art:test-a-follow-up-is-owed-until-it-is-settled",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_follow_up_is_owed_until_it_is_settled.rs"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cfb1ae4c4c82c1de58d6b861c9c775e945a30a04f80d11297d9fda1193557e9c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0340",
+  "properties": {
+    "as_checksum": "sha256:810c3100d3bc707836572fbe68fbf1649e42f28bb1a3d4e7bf1f1e34fc68e937"
+  },
+  "to_id": "art:unreachable-decision-test"
+}

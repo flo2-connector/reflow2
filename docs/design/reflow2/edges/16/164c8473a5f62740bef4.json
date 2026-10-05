@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:471a7ac331b15e3362614c57e3cfbb5c31b29cf11e9412be689bdccd387c1ba0",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-quantity-says-how-it-was-obtained-and-a-check-can-be-rerun",
+  "properties": {
+    "evidence": "Anthony's 2026-09-16 founding worry, 'rules out that the AI agent just didn't make up a measurement', foresaw checking an agent's numbers deterministically. This idea is one concrete form of that check."
+  },
+  "to_id": "dec:idea-an-asserted-number-is-checked-against-data-already-within-reach"
+}

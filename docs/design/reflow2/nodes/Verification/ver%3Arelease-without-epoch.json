@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:84a4168b503e0d0b6ac07e5f72148859fd7e21237649b89227b8912b42e565ed",
+  "node_id": "ver:release-without-epoch",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-31",
+    "level": "unit",
+    "method": "test",
+    "name": "release_without_epoch suite (tests/detect.rs) — 8 cases, 4 mutation-checked",
+    "status": "passing"
+  }
+}

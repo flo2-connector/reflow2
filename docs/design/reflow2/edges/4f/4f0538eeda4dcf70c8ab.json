@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a06e0e8041aab07afccd9ba27b2da7c5c12ae1b84c87e5a4aeb7a8ce55d2b40",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-name-the-agent-invented-reads-exactly-like-one-it-was-told",
+  "properties": {
+    "evidence": "Option (d) is that requirement generalised beyond licensure: when a fact has an owner elsewhere, the agent fetches it rather than reconstructing it from memory. If that reading holds, this question is already half answered by an accepted requirement.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-agent-never-authors-what-requires-accountable-sign-off"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:306697aa4b337846e0c203f7a81332e817a819830dcd3efaa5bbb24474547f9b",
+  "node_id": "question:474b1fc09f5593ed",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Downgrade them to advisory for now. The enforcement flag currently claims something untrue, and making it advisory costs nothing because nothing breaks the build on these today anyway.",
+    "asked_at": "2026-08-23",
+    "context_setter": "Nothing detects a violation of “Design information lives in the graph, not in documents”",
+    "gap_id": "gap:474b1fc09f5593ed",
+    "question": "Three design rules are set to stop the build when broken, and nothing detects a violation of any of them: design information lives in the graph not documents, graph text is data never instructions, and success is read from the authoritative object not a tool's exit code. Build detectors for them, or downgrade them to advisory so the enforcement claim matches reality?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

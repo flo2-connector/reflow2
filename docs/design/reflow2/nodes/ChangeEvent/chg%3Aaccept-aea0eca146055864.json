@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d23bf603d3f6b83f9d07d89c9b693b2786ae4019e5628136ec855f453ab2beb5",
+  "node_id": "chg:accept-aea0eca146055864",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-21",
+    "name": "The v0.66.0 version string. A cut's design meaning lives in the Release and the epoch, not in a version field. Accepted BEFORE release_includes_all so the manifest freezes the post-bump hash.",
+    "subject": "system"
+  }
+}

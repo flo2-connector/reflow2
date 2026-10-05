@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dfc737fef5176bf30445f1d4f807daea1393f39bc9c1f7dbf6985dfb0899ef7c",
+  "node_id": "frag:art:degraded",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered degraded.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c995cf45c80211d4936469b67f821341c5fed07337298b7db75e6c7db288816e",
+  "node_id": "art:test-content-policy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Wire proof over the real binary: four client names and the operator flag, asserting the content block's shape and that structuredContent is kept; a prose tool and a refusal reach grok untouched. CI full job.",
+    "location": "tools/test_content_policy.py",
+    "name": "test_content_policy.py",
+    "status": "realized"
+  }
+}

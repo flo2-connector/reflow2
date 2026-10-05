@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4fb55d3b045ae75be3b817740a2997a0fc2b3fb7aa8de78068bd05249e64d6aa",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:reflow2-can-say-which-of-its-own-skills-a-session-reached-for",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:skill-usage-becomes-measurable"
+}

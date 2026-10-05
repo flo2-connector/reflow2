@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f478a5b6106d7fe0ce652acd601456163a06e11322c3991f76a36cbb6526cd9b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-design-says-who-can-reach-each-artifact",
+  "properties": {
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

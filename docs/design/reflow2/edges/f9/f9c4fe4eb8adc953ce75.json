@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6ee157d7e9a80bb941d9f455b34ad1fb79de5c62002682f0a9fa5937e352082c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "coverage": "full"
+  },
+  "to_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server"
+}

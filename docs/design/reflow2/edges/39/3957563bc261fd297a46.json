@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7cee5824c5cdf7e74fc85c2b88b1daa2164f7a5593e3053fe09df33536737e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:measure"
+}

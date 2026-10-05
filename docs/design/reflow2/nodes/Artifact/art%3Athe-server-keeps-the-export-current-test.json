@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36f72bc30c0de6310946350a0cbbecc42659909a568f92e4ad0d89db9582adf4",
+  "node_id": "art:the-server-keeps-the-export-current-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four tests on a real store: a write reaches disk with nobody asking; writes spread over three seconds still cost one export; a hand edit survives untouched AND loop_status carries the reason in `next`; a read-only server refuses the write-through. The debounce test carries its own warning — the obvious version of it passed with the debounce set to zero, because ten back-to-back writes coalesce whatever the quiet period is.",
+    "location": "crates/reflow2-mcp/tests/the_server_keeps_the_export_current.rs",
+    "name": "the_server_keeps_the_export_current.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:03e0698fce96f10d58795b1b86b02a746bf40c6a3d3413ab079092cb5edba93c",
+  "node_id": "chg:accept-87a2fdd74483062e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-21",
+    "name": "Accepted a new baseline: the change carries no design meaning",
+    "subject": "system"
+  }
+}

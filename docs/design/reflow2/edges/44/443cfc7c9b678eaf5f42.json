@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:35773fd28796156ff5c341bc3ed74932317a91dcb2ff00dd4178344ed56d94a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:graph-indexes-snapshots",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

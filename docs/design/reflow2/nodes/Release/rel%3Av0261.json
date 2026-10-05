@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dab3fac0e47aca76ad3ba80dddb448cde0c772f8d1c1f7595b069a65c09aaf1b",
+  "node_id": "rel:v0261",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.26.1 — rmcp 3.1.2, with the seat probe as the verdict rather than the suite",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.26.1"
+  }
+}

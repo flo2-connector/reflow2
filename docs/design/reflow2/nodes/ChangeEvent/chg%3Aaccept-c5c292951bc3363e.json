@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:afc3d888ed81a56b6cac6ce8df43ee694b2c7cd2b4d601e0426b977f171a34fd",
+  "node_id": "chg:accept-c5c292951bc3363e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-02",
+    "name": "One dated feature-density illustration only: \"93 tools, 28 node types\" -> \"142 tools, 29 node types, measured 2026-08-02\". The skill's method — size a model by contracts and capabilities, never by an LOC ratio — is unchanged. Dated rather than merely corrected, because an undated measurement in prose is exactly what BL-164 is about: it had been silently wrong since the tool count moved."
+  }
+}

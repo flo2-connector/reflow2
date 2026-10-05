@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d3fef00d7884c32cb3338294513409489049e1687154e0b9a46b4238f142ea66",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-claims",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

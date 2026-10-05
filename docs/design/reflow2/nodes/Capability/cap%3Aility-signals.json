@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9579d056cb1563b86f6cf4fb413173918a6aaa2a28ad80f05e78febd80bc760",
+  "node_id": "cap:ility-signals",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Gather what the existing detectors and reports already found — dependency cycles, articulation points, misplaced capabilities, decomposition mismatches, modularity, surprising couplings, build granularity, the trajectory bands — and attach each to the quality axis it bears on, naming the computation it came from. Report per axis whether a design graph can inform it at all, with the reason where it cannot. Never derive a score and never write to the graph. A finding counts against an axis only where its producing computation already treats it as a defect; ratios and positions are context. Where an asserted DimensionAssessment scores a target above the scale's own midpoint on an axis whose detectors found something against that same target, report the disagreement without ruling on it.",
+    "name": "Connect computed evidence to the quality axis it informs",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

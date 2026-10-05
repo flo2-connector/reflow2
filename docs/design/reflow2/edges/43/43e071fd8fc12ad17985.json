@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a144af4c2d77b48b01ff1d575b4486a443e522e07db36fb04addc50b7c91c40b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:inviolable-intent",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

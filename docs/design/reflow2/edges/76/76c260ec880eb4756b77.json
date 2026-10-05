@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a419737da03c6ada5b5cb65daa7e87fca580a799f60f9a84f7643d6a8178a76",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

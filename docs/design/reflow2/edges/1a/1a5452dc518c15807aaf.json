@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8fdd61ac07a77dbddfaa61d584c3e40012b2a2a54a6d5de06e0d051de0641c28",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "dec:content-growth-is-bounded-by-what-not-by-size"
+}

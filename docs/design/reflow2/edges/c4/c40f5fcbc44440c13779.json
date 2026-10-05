@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:63449eb388f2336cc9f82ccfeddabea4e21e0c171c33f87652b471b00512a44c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-contribution-may-be-negative-and-a-refusal-says-which-fields-are-missing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

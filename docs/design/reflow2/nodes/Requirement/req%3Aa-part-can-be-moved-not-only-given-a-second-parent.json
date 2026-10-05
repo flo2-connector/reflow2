@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0af85a2c40045a2d0ac471ba7c960516bdf9a4955a378b357993f46dd9d9c6b1",
+  "node_id": "req:a-part-can-be-moved-not-only-given-a-second-parent",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A part can be MOVED to a different place in the decomposition, not only given an additional parent",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Reorganising a decomposition must be reachable as ONE operation. Where the only available act is 'add a parent', a part acquires a second one and the design silently gains a defect the user was never warned about.\n\nTHE NEED, stated from the failure rather than from what was built. A session asked the tool surface, in a user's words, how to move a component to a different parent; the discoverable answer was `contain_component`, which ADDS a parent and never removes the old one. Following the tool's own recommendation therefore CREATES a `multiple_parents` defect. Measured by hitting it first-hand, 2026-08-20.\n\nTHIS CAN FAIL INDEPENDENTLY of anything built for it: a surface that offers only additive containment violates it however the move is implemented, which is what makes it a requirement rather than a restatement.",
+    "status": "accepted"
+  }
+}

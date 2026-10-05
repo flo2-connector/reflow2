@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56aefe07794ac394f12d8f10a898a8fe56875410cdfdc595fbf3ae01afff10dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl160-checksum-length-dialect",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

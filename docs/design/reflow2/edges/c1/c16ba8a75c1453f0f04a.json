@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:199b4b052164761e41c0797d80216642d08b93c8cac85dc65b176e79a7e2cb78",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:the-hub-waits-for-somebody-to-ask-for-it",
+  "properties": {
+    "evidence": "The accepted deferral stops any of the hub thread being BUILT until a real user asks. This brainstorm does not override it; whether the trigger has fired is Anthony's call."
+  },
+  "to_id": "dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it"
+}

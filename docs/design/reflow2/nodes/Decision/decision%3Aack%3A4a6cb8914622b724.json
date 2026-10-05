@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eaa502163edcdb097b67860235277197718c3de64472eee9dc0ce8b4a4504967",
+  "node_id": "decision:ack:4a6cb8914622b724",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:4a6cb8914622b724.",
+    "name": "Reviewed: gap:4a6cb8914622b724",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities, with a caveat that matters more here than usual: this capability is semantic, so a deterministic test can only pin its GUARDS, never its judgement. What must be asserted is that a suggested requirement enters at `proposed` and never higher, that it is attributed to inference rather than to the user, and that nothing downstream treats it as intent until a human confirms it. Whether the suggestions are any GOOD is a trials question, not a test one. The failure to guard against is a tool that quietly invents requirements and then reports them as the design — which would violate dec:human-decides more seriously than any gap it closed.",
+    "status": "accepted"
+  }
+}

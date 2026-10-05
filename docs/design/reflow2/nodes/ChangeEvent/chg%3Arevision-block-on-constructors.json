@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91e3410bf747d9d5c570cd90aab6a6f6d199935b1ce4b2d5930889a66842b07f",
+  "node_id": "chg:revision-block-on-constructors",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Constructors report the properties they overwrote, with the prior values"
+  }
+}

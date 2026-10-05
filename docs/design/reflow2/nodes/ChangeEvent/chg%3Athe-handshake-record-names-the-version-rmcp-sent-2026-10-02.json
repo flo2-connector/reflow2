@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bf76c434089fe9fe1f473a6f5be88e62856835597e518b11eb560fabc0db15d6",
+  "node_id": "chg:the-handshake-record-names-the-version-rmcp-sent-2026-10-02",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "90f83a0496c03ed8883eb5305b80bb7b40e83f01,c58823ebd7df511104172053e5a635a09ccdb033,7007101f6f52ce8bd5946ffe75cf5ec6ba2f7402,b9688c3b1d22c7206a3aee51a36c649e38302225",
+    "detected_at": "2026-10-02",
+    "name": "The handshake record names the revision rmcp actually sent: reflow2's copy of rmcp's negotiation rule is rmcp 3.5.0's, and a wire test compares the two",
+    "rationale": "Root cause: fact:root-cause-the-handshake-record-named-a-revision-rmcp-never-sent-2026-10-02. The class is a rule maintained by hand with a test that compared the copy with itself; the same class as the latent tool list (fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26). corrected_cause because the new test compares the copy with rmcp's behaviour rather than with itself, so any future divergence fails it. The wire answer was always right: rmcp re-runs its own rule on what the override returns.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "handshake::negotiate, the copy of rmcp's pub(crate) negotiate_protocol_version, was copied at 3.1.2 and drifted at 3.4.0: rmcp echoes only a version that has a handshake and replaces a fallback without one by the newest supported one that does. The copy is now rmcp 3.5.0's rule (None = rmcp's unsupported_protocol_version refusal, returned by the initialize override). tests/an_initialize_is_recorded_as_rmcp_answered_it.rs compares <graph>.client.json's `negotiated` with the version on the wire, over the real binary, for every revision rmcp knows plus 2024-01-01 and 2027-01-01 — observed failing against the pre-fix rule (record 2026-07-28, wire 2025-11-25) and passing after."
+  }
+}

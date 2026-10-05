@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fce1354db9171b8f7eedf3b0cbd144d7a2e70ffb8ef892b4cf49cde79bfd234b",
+  "node_id": "epoch:2026-09-09-prose-that-outlives-its-decision-says-so",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Built the same day the incident that prompted it was recorded, and from that incident rather than from a hypothesis. `fact:a-settled-question-was-re-asked-because-the-requirements-prose-outlived-its-decision` observed a settled question being put to the owner a second time because a requirement's statement still said the fork was open three weeks after the Decision closed it. This epoch carries the instrument that would have caught it: `cap:a-settled-decision-names-governed-prose-that-still-reads-open`.\n\nFOLLOWS THE STATUS-SIDE SIBLING'S SHAPE DELIBERATELY — a block in the reply the caller is already reading, at the moment the divergence is created, rather than a detector that finds it later on a graph where the prose has already misled somebody. The choice was re-measured rather than inherited: 48 of 640 governed nodes would fire as a sweep, and a good share of those are legitimate.",
+    "epoch_type": "revision",
+    "name": "The prose-currency family grows a second member: prose that outlives the Decision governing it",
+    "sequence": 410,
+    "status": "arrived"
+  }
+}

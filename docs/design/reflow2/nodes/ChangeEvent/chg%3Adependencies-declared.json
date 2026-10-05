@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e58e59f0d9867e2ba86bb1ff86d24c53c67b1bfb04832ed1536b9a0347ba0ec2",
+  "node_id": "chg:dependencies-declared",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A design can declare which version of another design it depends on, and reflow2 checks that claim against what the build actually resolves"
+  }
+}

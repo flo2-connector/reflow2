@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a23d8cc40f1ae95a4b329e9518038d28ca83fca49b9316304f3b0fa2e00de2b6",
+  "node_id": "decision:ack:e2be93b4c2890af2",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e2be93b4c2890af2.",
+    "name": "Reviewed: gap:e2be93b4c2890af2",
+    "rationale": "Checked 2026-09-07: still open. The authored_by description still calls itself deliberately not a traceability edge and says nothing about the approver role on a proposed Decision feeding the loop's assigned-decisions lines. The one-sentence repair was never made.",
+    "status": "accepted"
+  }
+}

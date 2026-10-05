@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:06399d728f5e52530c28aac521d5b989f780316dc771d6f2be64b7dc5ff7e4ca",
+  "node_id": "req:intent-preserved",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The past is never overwritten",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Updating the design to match the build must not erase what was intended.",
+    "status": "accepted"
+  }
+}

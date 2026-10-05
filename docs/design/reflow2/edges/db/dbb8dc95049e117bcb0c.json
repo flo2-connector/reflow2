@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1839c40f5bbe4c329c9fe28bed854c809a05a3e75fecf4263d568bdab9a9e87a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:many-graphs-one-store",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-many-graphs-one-store"
+}

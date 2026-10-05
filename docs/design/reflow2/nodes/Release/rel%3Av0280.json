@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c40b4e219ab73f81a0549251f0e7afcd087bc8c299bb3c3c0d4b2032cc48337a",
+  "node_id": "rel:v0280",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.28.0 — the surplus half of DETECT, search-before-you-add enforced at the tool, and a seat that knows the record moved",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.28.0"
+  }
+}

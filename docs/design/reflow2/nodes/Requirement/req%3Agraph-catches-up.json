@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:27b70f9bf8c5d77661eb87d4b471a5e0c40105d43973f244f20124631389c869",
+  "node_id": "req:graph-catches-up",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The graph can catch up after unrecorded change",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When work arrives from elsewhere — a git pull bringing commits made on another machine or by a session that never touched this machine's live store — the design must be able to catch up on demand, in two layers. LAYER 1, THE RECORD: a machine's live store is a long-lived cache of the committed export (req:stale-seat-knows states the write-side guard; this is the read side). After a pull, the store must take on the pulled record's changes: fast-forward when only the record moved, three-way merge (base = the last export both sides share, from git history) when both moved — never a blind overwrite in either direction. LAYER 2, THE CODE: commits in the pull that changed the project without updating the graph must then be walked against the synced graph through the ordinary two-sided drift questions. Catching up is an interrogation, never a bulk import: the graph re-earns coherence, it does not absorb whatever happened. Anthony's scenario, 2026-07-28 (amending his first wording of today): 'I have been working reflow2 from a home computer mostly; I'm doing this in another session on a different computer. When I get home I'd like to git pull the latest, then run delta and it should reconcile any deltas with what it had. I often don't restart the claude code session at home, so the graph it has will be in whatever state I left it.'",
+    "status": "proposed"
+  }
+}

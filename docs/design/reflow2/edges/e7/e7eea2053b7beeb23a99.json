@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b12456e5e4db9d20f37c22ff7963551dce3b0c0d07a6d7d0b863f0654e2ecf69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-vector-stats",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:dimensions"
+}

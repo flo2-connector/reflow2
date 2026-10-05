@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:43c414fc47d5d49a03a226e8c11d50d6fbe835527f2c1366e17f8676eb7ea399",
+  "node_id": "cmp:tools-capture",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "capture",
+    "provenance": "authored",
+    "purpose": "The CAPTURE slice of the served surface, and the largest at 35 tools: turning intent into typed nodes and the golden thread between them — genesis, add_project, add_requirement, add_capability, add_component, move_component, satisfies, allocate.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

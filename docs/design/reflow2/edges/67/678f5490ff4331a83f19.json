@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2e523387fcb95364a6ffc79e50b6465994afb3555cde68e801fc82127780cd80",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd7de632c46b2f597213baf646abe3c2d6fb88755ce2311e3c589478752e7acb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:agent",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:agent"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea6e07a9a24ffec281bdd7ea2a2e6a0a6193b239f484fd9aa3beb64eafb928e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:retire-from-design-skill"
+}

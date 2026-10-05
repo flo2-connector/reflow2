@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7cd743e4a5d84c43ac858c490cfabfa7d095ad2f0f1155100e114cbd688bfe99",
+  "node_id": "cap:certify-restructuring",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Classify every divergence between two as-designed records as function-bearing, structural, or unclassified, and return a verdict — preserved / not_preserved / indeterminate — naming the invariant checked and what the check could not see. Function is the Capability and Requirement population plus the SATISFIES links between them; structure is allocation, containment, interfaces and the seams between components. Unclassified never passes: an unrecognised divergence makes the verdict indeterminate, so a classifier that has not been taught a new part of the vocabulary cannot certify a design it never examined.",
+    "name": "Certify that a restructuring preserved function",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caeb23b68893c51e1bb4d96ad2e959f77b9d9991b7038396fe7b33dd42aa67dc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:scope-corpus-ingest",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

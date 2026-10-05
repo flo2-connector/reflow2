@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ed06ef2f48f2b8513e2a0e65c864d7a158490dec6074e241efe1e067003b1da3",
+  "node_id": "ifc:rendezvous-sidecar",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "internal",
+    "medium": "unspecified",
+    "name": "&lt;graph-path&gt;.server.json — a running server announcing, beside the store, that it holds this design and where it can be reached",
+    "paradigm": "unspecified",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "transport_security": "unspecified"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1bb7b4777f8a34cbd5177a348032ced83816e39d11f27ad894ac1e5672174680",
+  "node_id": "art:intent",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The one table every writer asks before it writes whether a node's stored value settles intent; the typed settles rows and CI's check_intent_authority.py are held to it.",
+    "location": "crates/reflow2-core/src/intent.rs",
+    "name": "reflow2-core intent.rs — which stored values settle intent, one predicate",
+    "status": "realized"
+  }
+}

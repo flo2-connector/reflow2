@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:83dc17532370f01c4fd3bbc95657485bdd78d02deaa0fa61c23c575749560007",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:8099a23be89243cb2152dc136275ed416a30afa95e75a22d473e5e910f84b2d3"
+  },
+  "to_id": "art:store-backend"
+}

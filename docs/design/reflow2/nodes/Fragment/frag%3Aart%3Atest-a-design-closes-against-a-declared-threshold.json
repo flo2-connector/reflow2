@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:42b4f2190479ed6ab167f9fc3564271c8ee98d7d306652adb53637842df2eb36",
+  "node_id": "frag:art:test-a-design-closes-against-a-declared-threshold",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_design_closes_against_a_declared_threshold.rs — nine cases: no criterion is never a default, an unknown leg is refused by name, a delivered thread closes and a failing check reopens it, a counted leg with nothing to run on cannot read as closed, 50% is legal, margin, declared order, the decisions hole, the release report carries the verdict"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:42b9c40002ab25d88c1407cf4c30b8fe31059a962060ad9e2b7ddafb23e921b9",
+  "node_id": "cap:the-gate-checks-the-item-layout-and-per-item-lineage",
+  "node_type": "Capability",
+  "properties": {
+    "description": "tools/reflow2_check.py reads the item layout. Its LINEAGE check becomes: every item changed on the branch carries prev_item_hash equal to that item's hash at the merge-base, and unchanged items are not checked. The whole-file checks and the \"one exporting commit per PR\" rule (dec:export-once-per-pr, dec:export-serialisation-belongs-to-the-gate) are superseded. The drift and round-trip checks run unchanged over the loaded design. Designed 2026-09-23.",
+    "name": "The coherence gate reads the item layout and checks lineage per item",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

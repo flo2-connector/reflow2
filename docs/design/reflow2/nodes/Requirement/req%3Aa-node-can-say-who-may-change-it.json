@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6779ee95f897b4d513af424a886398df60ec5609556156c02381246b68c3efcb",
+  "node_id": "req:a-node-can-say-who-may-change-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A node can declare who may change it, so \"what may I change alone?\" is answerable from the graph rather than from prose",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design node can carry a declared CHANGE POLICY — who may alter it, how many approvals it takes, and whether the approval must be recorded before or after the change. reflow2 REPORTS violations (\"changed without the declared approval\") and NEVER blocks the write.\n\nTHE GAP THIS CLOSES. reflow2 can say who AUTHORED a node — AUTHORED_BY carries role author/reviewer/approver — which is a record of what DID happen. It cannot say who MAY change it, which is a constraint on what MAY happen. Those are different facts and only the first is modelled.\n\nWHY REPORTING AND NOT ENFORCING, which is the load-bearing half: a tool that blocks writes becomes a tool people route around, and then the graph stops matching reality — the one failure it cannot survive. Enforcement is itself a policy choice, so making it the mechanism would be reflow2 taking a position that belongs to the project. The value is that the boundary becomes QUERYABLE: \"what may I change alone?\" is the question every arriving session actually has, and today it can only be answered by reading prose that session may never read.\n\nWHAT IT MUST NOT BECOME: roles, permissions, identity, or a review workflow. Just a declared constraint and a report of whether it held. Who someone IS stays the harness's problem; Contributor is enough.\n\nGENERALITY, tested rather than assumed — the source applied the standard \"could a solo hobbyist, a two-person team and a regulated enterprise each express THEIR policy with this, without reflow2 having an opinion about which is right?\" Solo: nothing declared. Two people: \"my areas and my brother's\". Team: \"two reviewers on a migration\". Regulated: \"QA sign-off, recorded, before release\".\n\nEVIDENCE, frequency rather than drama: one storyflow session hit \"this is not mine to decide\" FIVE times in a single sitting — a rule change needing multi-party agreement, an idea that must not be promoted to intent by anyone but its author, a gate-blocking flag that was the human's call, a shared file two other parties depended on, and a scope question about someone else's earlier ruling. Every one is this same missing primitive.\n\nSOURCE: storyflow fleet governance report, api-boss (05af57c1), 2026-08-09, reflow2 v0.26.1, written to a deliberate MECHANISM-vs-POLICY frame at Anthony's request (\"keep it generally applicable — give reflow2 the set of tools that can make most governance strategies possible\"). Their own stated bound: one project, one month, one fleet shape, biased toward multi-agent operation — \"treat the shapes as hypotheses worth testing against other projects, not as requirements.\"",
+    "status": "proposed"
+  }
+}

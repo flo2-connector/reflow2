@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:118523ed1ec7fa4ea8fdbf1e0f20a9cc4df278513fb4a8e138cdb5ad4e37b7bb",
+  "node_id": "decision:ack:967cb35c16df7571",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:967cb35c16df7571.",
+    "name": "Reviewed: gap:967cb35c16df7571",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped: reflow made framework selection a user-confirmed architectural decision (00b-framework_selection.json, nine actions, LESSON-01 \"Do NOT default to UAF!\") because the choice gated which analyses were available; reflow2's vestige is Project.domain, written by genesis and read by nothing. Building it means a framework registry and a selection handshake — a substantial increment, not a patch. Scheduled later.",
+    "status": "accepted"
+  }
+}

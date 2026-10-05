@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4f8b2227c2dfb44808773632abde4eb822df359e5a613b0e84a60aab1acd4ce9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-factory-builds-the-mechanics-in-so-a-class-fix-is-one-edit",
+  "properties": {
+    "evidence": "A factory can only guarantee mechanics somebody has named. Until the class contract question is answered — which axes, obliging what — there is nothing for a factory to build in, so this is worth nothing until that one lands.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-tool-class-should-carry-a-contract-that-something-checks"
+}

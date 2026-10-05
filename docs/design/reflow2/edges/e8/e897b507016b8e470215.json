@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bd2be5cdd59a5b1c87e255a42ca2e2c021cedee6ffb090582c430cbb3c648a39",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation",
+  "properties": {
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

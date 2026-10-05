@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:44f17ca326a7c4c824b6a7ff6446850321da02f5c7e447570b7c6229325e4e9b",
+  "node_id": "req:the-design-says-who-can-reach-each-artifact",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The design says where each artifact is kept and who can reach it from where",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-25 (dev_reflow2 hub session)",
+    "statement": "Every artifact location in a design says how reachable it is: saved on the hosted server (any collaborator's chat can open it, whether claude.ai or grok.com), in a public repository (any agent anywhere can read it), or in a private repository or on one person's machine (only that machine can open it). A chat that cannot reach an implementation reports where it is being built rather than pretending to read it. From Anthony, 2026-09-25: \"if the repo is private, then it is pretty much limited to my machine only, but reflow2/flo2 still need to note in the design that it is being developed on my local machine and a grok chat or claude.ai chat won't be able to reference the actual implementation - it'll just have to note where it is being implemented.\"",
+    "status": "proposed"
+  }
+}

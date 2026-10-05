@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:88da5bf1522febfde8d5ddc3ae12119405c2f7a0ec389d33e7b15264e0ab774c",
+  "node_id": "dec:idea-should-the-served-instructions-tell-a-reader-to-ask-whether-it-exists-first",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming on 2026-09-20 from flo2's meta-point, not as a proposal. The reporter calls it the most useful thing in their addendum and they may be right.\n\nTHE MEASUREMENT: four things rebuilt that reflow2 already served, each filed upstream as 'reflow2 should add X'. The served instructions are 416 lines, name `get_skill` and `list_skills` twice between them, and name `find_tools` zero times. Both discoveries in the same addendum came from two find_tools calls once the reporter thought to make them.\n\nOPTIONS.\n(a) ONE LINE IN THE INSTRUCTIONS, their wording: 'before you build a capability against reflow2, search for it: find_tools takes a job description.' Cheapest by far, reaches every session unasked, and is the only option that acts before the work starts.\n(b) DELIVER IT AT THE STEP instead, as a rule naming the moments a capability is proposed — the mechanism this project already uses for rules that kept being broken. COUNTER: the moment a CONSUMER decides to build something is not a moment reflow2 sees, which is the same limit the memory-boundary rule ran into.\n(c) BOTH.\n(d) NOTHING, on the grounds that an agent that believes it knows the surface will not search whatever it is told. COUNTER: untested here, and the cost of (a) is one sentence.\n\n⚠️ WHAT THIS IS NOT, and the distinction matters: it is not that the tools are hard to find. Every served tool ranks for a job sentence and a held-out corpus proves it. It is that the one document every session receives unasked never says the catalogue exists.",
+    "kind": "exploratory",
+    "name": "OPEN — should the served instructions tell a reader to ask whether a thing already exists before building it?",
+    "status": "proposed"
+  }
+}

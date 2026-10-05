@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f9d39849220bef49dc9f342ae144cbb624265370b9cd72bc38e6f146bae258bb",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_tool names every caller from peer_info alone, and for a stateless request rmcp fills peer_info with Implementation::default() (the library's own name and version) and ignores the request's _meta clientInfo; measured on a scratch 0.74.0 server, a stateless call was logged `rmcp 3.4.0` with and without a declared clientInfo.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-stateless-caller-is-named-by-the-mcp-librarys-default-2026-09-28"
+}

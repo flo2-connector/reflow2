@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:30f97de1d9c52a07791bfef2fef3e10871a1fdcd70156f9e4bc1360bf9f2a7b5",
+  "node_id": "cmp:degraded",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "degraded",
+    "provenance": "authored",
+    "purpose": "The server that starts when the graph cannot be opened: one tool, reflow2_unavailable, and the reason in the handshake instructions.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

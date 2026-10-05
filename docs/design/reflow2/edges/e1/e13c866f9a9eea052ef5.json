@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab434feda1f73d9033d47fc8bb06c3fe8bf17a91bd2f147c504a8dc2cb66cd30",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:fixes-are-judged-by-the-third-party",
+  "properties": {},
+  "to_id": "snap:epoch:reflow2-states-its-own-rules:rule:fixes-are-judged-by-the-third-party"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef7266c15b8f7fc0e6aff2095bc1a87cf874b467895ac845b9b505da8fef82c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-graph-can-say-what-has-already-been-done"
+}

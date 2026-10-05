@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd40674dbc831f7388f4bbb42bb6091dc5a0467f23e829b3e048154438b21add",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:reflow2-check-defaults-to-the-export-the-graph-is-in-step-with",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The fix this change records answers the finding; the finding stays as the measurement that led to it."
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-the-gate-defaults-to-a-file-none-of-three-layouts-has"
+}

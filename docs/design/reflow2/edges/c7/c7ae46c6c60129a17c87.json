@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5e81ca59a8b2d55e9f89780fdd43c4d547ba7741b7665642ba4b362907c0e536",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-session-can-report-and-read-back-hand-rolled-work",
+  "properties": {},
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

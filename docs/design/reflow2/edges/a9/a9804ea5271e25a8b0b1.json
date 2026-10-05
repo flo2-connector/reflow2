@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a59e4fc4708eb153576ae72a4baf1c074e72a110fb599c405d2eebcd530a4085",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-a-one-thing-at-a-time-skill-serve-a-whole-codebase-sweep",
+  "properties": {
+    "evidence": "Asking whether the skill's SHAPE fits a sweep is only worth anything once the skill exists and is served — which is precisely what that node asked, and what events have since settled. It is the parent question; this one becomes askable only after it resolved.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-optimize-be-a-served-skill-any-project-can-run"
+}

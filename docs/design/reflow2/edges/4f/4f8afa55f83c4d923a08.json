@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:214976d474e81de802275f4c93542fc759ad876d3cd104182475d38a25dc3f6e",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:epochs-can-be-planned",
+  "properties": {
+    "note": "How readiness enters the satisfaction schedule: as an OBSERVATION on the enabling technology, with the gating threshold stated on what it gates and never defaulted. This is what lets the epoch a requirement is satisfied in be computed rather than declared, which is what this requirement asks for."
+  },
+  "to_id": "dec:readiness-is-an-observation-the-threshold-is-the-judgement"
+}

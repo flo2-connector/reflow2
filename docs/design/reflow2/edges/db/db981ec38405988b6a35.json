@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ff717cf4e92e2199b2f76e8511019ce3c9a0c51d828b1d1e86a2d6f498dde306",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:revise-trigger",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:revise-trigger:r2"
+}

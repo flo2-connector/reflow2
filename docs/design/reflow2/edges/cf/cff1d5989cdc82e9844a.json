@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:04cc788813f169a535fa9616739a10ecc950b9ebce9336c268c2859c2dcda69d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:pointers-follow-the-retired-backlog",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

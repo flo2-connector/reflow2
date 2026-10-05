@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5dc7461dc2702693cfabf26f54c6855f66ddcb261879b76625de172f9e5b5802",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f1e7e0f7b6d69373",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:self-host-documents-guard"
+}

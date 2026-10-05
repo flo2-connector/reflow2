@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2aa159877bbd27f9a710d99abeec30ab5ac933f79ca2c52ef41b07627570d83a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0730",
+  "properties": {
+    "as_checksum": "sha256:1c743b8cd133851aec0caf1c869acf8e85ab517f5c727b9ea7c48cfb62be6731"
+  },
+  "to_id": "art:jot-skill"
+}

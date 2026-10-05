@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:d71c26444bac6178e6b3d70b5fc4a68f897cd99baa6feebd0ba5a7e1131542cb",
+  "node_id": "fact:manual-work-ledger-outgrew-the-reply-budget-with-no-bound-and-the-gate-caught-it-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-28: manual_work_ledger answers 31,037 chars on reflow2's own design, over the 30,000 reply budget, and takes no bound. CI's \"every oversized reply offers a bound\" gate failed PR #620 on it, after two manual-work reports raised the ledger from 44 to 46 records",
+    "statement": "OBSERVED. PR #620 (fix 3 of issue #616) failed CI's workspace job, step \"Every oversized reply offers a bound (the class, not the instance)\". Log: \"31037  manual_work_ledger  OVER BUDGET AND UNBOUNDED\", with \"measured 43 no-argument read tool(s); 9 exceeded 30000 chars\". Every other over-budget tool reads \"over budget, but BOUNDED\". Core gates passed. Fix 3's own tests passed locally and are not implicated.\n\nMEASURED CONTEXT. The step seeds from the committed export. origin/main's export holds 44 fact:manual-work-* records; #620's export holds 46. The two new ones are fact:manual-work-9ee5ab72eff8c3df and fact:manual-work-b8dcc36636ba321e, filed by the dev_reflow2 hub session's capture-session the same day and carried by #620's final export. So on main the ledger fits the budget, and with two more records it does not. The ledger grows with every manual-work report, and it has no budget_chars. The 2026-09-13 sweep (epoch:the-reply-budget-sweep, fact:the-reply-budget-sweep-is-built-2026-09-13) bounded nine tools through one shared helper. manual_work_ledger was renamed from manual_work_report on 2026-09-18, and whether it was ever in the sweep's list was not checked.\n\nNOT ROOT-CAUSED, and recorded as an observation because the session was closing. A candidate for the class, to be walked with the root-cause skill: the sweep bounded the tools that exceeded the budget when it ran, and the gate fails a tool only once it crosses. So any read whose reply scales with the design stays unbounded until the day it crosses, and then it fails someone's unrelated PR. The correct fix gives manual_work_ledger a bound through the shared helper. If the class holds, every read whose reply scales with the design gets one by construction, not by measurement. Removing the two records to get the PR green would be a containment that hides a true record, and it was not done.",
+    "steps": [
+      "manual_work_ledger"
+    ],
+    "subject_id": "cap:every-oversized-reply-offers-a-bound",
+    "valid_from": "2026-09-28",
+    "valid_to": "2026-09-30"
+  }
+}

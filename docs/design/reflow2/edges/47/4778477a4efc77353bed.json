@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9fdaa18185a25fac5e11d5b1e44fc1fb576af09a6f921a08192fa4892f1f599f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art-alternatives",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:alternatives"
+}

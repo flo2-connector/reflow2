@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:556cb3489c1c3439c24f682aca9a41b759449d0901eb4bfb493a47f741826f0b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-the-launch-wrapper-cannot-see-a-schema-change",
+  "properties": {
+    "basis": "causal",
+    "confidence": 1.0,
+    "evidence": "The fact recorded the defect and named the one-line fix; acting on it found a second, wider instance (the skills tree) that the fact did not know about. Validated by measuring both formulas against four edits: schema and SKILL.md each move the new hash and not the old, while a test edit moves neither and a src edit moves both.",
+    "validation_status": "validated"
+  },
+  "to_id": "chg:the-launch-wrapper-sees-everything-compiled-in"
+}

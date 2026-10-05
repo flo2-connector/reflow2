@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c6085bc8b8819d8498de850802f8fd68b8ad1a4b925906c00bc2bca214e8845",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-rule-states-its-scope-and-a-conflict-is-surfaced",
+  "properties": {
+    "note": "That rule is one half of the tension, and the requirement asks it to state the scope it binds in"
+  },
+  "to_id": "dec:export-once-per-pr"
+}

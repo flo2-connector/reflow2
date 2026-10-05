@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:07ee7c101ff9bbe12523d9bdb6c38a1c66417cb8fd5643fbab9f73a6ff046928",
+  "node_id": "frag:art:test-check-kit-manifest",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_check_kit_manifest.py"
+  }
+}

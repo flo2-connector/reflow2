@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2b2be31ac5834a4e3a255623562585017f2a5d9bd3ccef07ebe52e6de617c0b4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-published-surface-with-no-promise-is-asked-about",
+  "properties": {},
+  "to_id": "req:publishable-promise"
+}

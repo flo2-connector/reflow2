@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45386179fa205c84279f15ce8eae4070038049f07b68b5e1d5abf0411775a00e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-report-is-not-a-list-of-every-check",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

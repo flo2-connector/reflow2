@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2ef0e723e13e00e33105b4856c7d45fac22ef629b2395df521284267d7c4c30b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:backup-belongs-to-the-consumer",
+  "properties": {},
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58e5c02a0af6e8a584f6bce5f884dce5f3eeb88c51f5fe6678facbe7979e6570",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:idea-should-ci-write-its-run-results-back-into-the-design",
+  "properties": {
+    "evidence": "That idea infers 'rerun owed' by matching a finding's prose against changed filenames, which is a workaround for nobody recording when a check actually ran; if CI writes the run dates, the heuristic has no remaining job."
+  },
+  "to_id": "dec:idea-a-failing-check-whose-findings-name-a-changed-file-is-flagged-rerun-owed"
+}

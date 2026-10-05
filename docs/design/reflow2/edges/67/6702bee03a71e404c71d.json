@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e09aa6f273e71f799e50568623b12dc1213ef04b997e8e7e628b4c7b335ea503",
+  "edge_type": "DECOMPOSES",
+  "from_id": "req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it",
+  "properties": {},
+  "to_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened"
+}

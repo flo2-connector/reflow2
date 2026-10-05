@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6416577360b1f8a2a92cdeb63f5eb07c5bd7ca0d73757d15a203a81124d9fb50",
+  "node_id": "art:test-the-committed-design-round-trips-through-the-item-layout",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Core (in-memory) test: the committed design, in either form, round-trips import -> export -> item files -> import -> export with nothing lost and every accepted checksum restored.",
+    "location": "crates/reflow2-core/tests/the_committed_design_round_trips_through_the_item_layout.rs",
+    "name": "crates/reflow2-core/tests/the_committed_design_round_trips_through_the_item_layout.rs — reflow2's own design through the item layout",
+    "status": "realized"
+  }
+}

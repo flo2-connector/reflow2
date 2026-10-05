@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eed9d20b0c23bcb93e761b1bb31978c168a9a7ed67308521a8b95900311e2d05",
+  "node_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-19: `find_skills` (skills_tools.rs) ranks the served skills with the SAME scorer find_tools uses (service.rs term_weights + score_tool) over each skill's name and its summary followed by its trigger description, no parameters — one scorer, two catalogues, so they cannot drift apart. Each match carries `name` (what get_skill takes), `shortcut` (what a person types; can differ from the name), `summary`, `audience` and the score; the envelope is find_tools' (count, items, matched, omitted, searched, query). The served catalogue line (skills.rs catalogue()) and the session-start hook (tools/loop_nudge.py) name it beside get_skill and list_skills. Corpus: crates/reflow2-mcp/tests/fixtures/find_skills_corpus.json, one query per skill in a person's words; test: crates/reflow2-mcp/tests/every_skill_is_found_by_a_query_in_the_users_words.rs (every skill has a query and nothing stale; every skill in the top 5; rank-first ratchet against crates/reflow2-mcp/tests/fixtures/find_skills_rank_baseline.json; a match carries what a person and an agent each need). Measured at first build: 30 of 30 in the top 5, 25 of 30 first; the five not first are listed in the baseline, which only shrinks. Built under the OPEN idea on the owner's 'work through them one by one'; option (a) — a separate finder — rather than find_tools scoring both, because the tools' ratchet corpus would otherwise have thirty skills competing in every tool's top-5 list.",
+    "name": "A skill is found by describing the job, and a committed 30-query corpus is the test that it can be",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

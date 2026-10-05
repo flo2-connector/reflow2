@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:616210b58d2ac44a7f77a8d63085e098464f79b6ca4c8db36146ee42ea29ed0d",
+  "node_id": "chg:the-lens-names-the-person-beside-the-id-and-orientation-offers-the-git-author-match",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "ReaderLens carries each person's name and the lens line renders \"who:ajs (Anthony Sligar)\" on every skill and loop_status reply, telling the agent, when more than one background is recorded, to match the git author, offer the match in one sentence and attribute to the same person; the orientation skill's reader step carries the same clause in three mirrored copies under a lint contract — two legs on Anthony's word, pinned by four served-reply tests and three lint checks that failed first",
+    "subject": "system"
+  }
+}

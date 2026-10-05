@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:98137226a69f563196c2a1a32ef57032caa9644ff15eb147daaf6bdaa7e4ba56",
+  "node_id": "req:structure-with-no-function-is-asked-about",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A part with no function allocated to it is asked about",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A design that records structure no function has been allocated to SHALL be told so. A leaf Component carrying no ALLOCATED_TO is a box the design says exists without saying what it is for, and until 2026-08-25 nothing in reflow2 asked about it.\n\nTHE HOLE WAS BETWEEN TWO DETECTORS GATED IN OPPOSITE DIRECTIONS. `concept_without_design` fires only at ZERO components and goes silent forever once a design grows one. `unallocated_capability` is gated the other way and stays quiet until a component exists. Between them they cover a capability with no home and a design with no structure; neither covers structure with no function. Measured on reflow2's own design: 33 of 95 components were leaf boxes owning no capability at all, and every detector reported clean.\n\nTHE RULE MUST EXEMPT PARENTS. A component holding child components is allocated THROUGH them, so asking it directly would turn every well-formed hierarchy into a finding — 40 components against 33 on the same design. Leaf-only is not a tidy-up; it is what makes the finding mean anything.\n\nIT MUST NAME THE METHOD AND NOT PERFORM IT. `propose_allocation` groups capabilities by coupling and `evaluate_allocation` scores the result; both were served, correct, and named in no skill. The finding points at them and the user accepts or overrules the proposal, because reflow2 can see THAT a box holds no function and cannot know WHICH function belongs in it.",
+    "status": "proposed"
+  }
+}

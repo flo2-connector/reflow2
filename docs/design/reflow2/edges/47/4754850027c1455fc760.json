@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:56f01e224dd5664dd2be86bb374d71b8c2e941130c77c7f0ec325cad3ab3af82",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-root-cause-become-automatic-rule-hook-detector-or-composition",
+  "properties": {
+    "evidence": "The hook option is only possible because the nudge infrastructure exists (SessionStart, PostToolUse, Stop hooks registered by reflow2_init.py); a PostToolUse on Bash would be one more tuple in that list. Without the nudge there is no in-the-moment channel to the agent.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

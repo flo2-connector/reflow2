@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4d358c1cd7155308d9b5555a6e5edc9d4e1d0c3d43d39526e0b9e74cf220dfb1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+  "properties": {},
+  "to_id": "req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path"
+}

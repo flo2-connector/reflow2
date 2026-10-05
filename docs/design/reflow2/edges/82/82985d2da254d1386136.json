@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e560bd1aec08ea721238eef55c74c31e9110017477dd5e32e0fb21b29b4f5c68",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:complementary-pairing",
+  "properties": {},
+  "to_id": "req:seam-incompatibility"
+}

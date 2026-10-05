@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:969e01f64ddf1fa61d531438340c67a8084edc0ffa58c43b9c3f7f6e435fcd69",
+  "node_id": "chg:the-move-decisions-write-back-clause-is-withdrawn-2026-09-27",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "detected_at": "2026-09-27",
+    "name": "The move decision's \"the local client writes the export back\" clause is withdrawn under the design-and-export rules, resolving the contradiction between the two decisions",
+    "rationale": "The contradiction was real but covered a single clause. Rule 3 of the accepted design-and-export decision (an export is a copy nothing tracks) cannot hold beside a client that keeps an export current for CI to read. The fix is to withdraw the clause, not either decision: the move-by-import, the empty-folder nudge offering the move, and cure-first all stand. The same half of point 3 was withdrawn from req:a-local-client-works-against-a-remote-reflow2-server-by-url the same day. Both revisions keep the earlier text in their preserved-on-write snapshots.",
+    "subject": "system",
+    "summary": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once had said that after a move the repo's export \"becomes a copy the local client writes back into the working tree ... so the CI design gate still reads it\". That clause is withdrawn, and the rest of the decision stands. Its hold on flo2's and reflow2's own designs now ends at step 8 of the tracked-export retirement plan. The CONTRADICTS edge drawn at capture from the one-design idea to this decision was true until this revision and is retired with it."
+  }
+}

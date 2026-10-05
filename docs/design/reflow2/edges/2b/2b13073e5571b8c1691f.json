@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2ca1a881d591770ed984585f499b5e53001c0d782ed2bd76a3feb6b803c5019",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-claim-region-describes-an-architecture-it-is-not-running",
+  "properties": {
+    "evidence": "Its recorded fix shape (2026-08-07), 'make the description architecture-neutral or deployment-aware', is this idea 52 days earlier, raised for claim_region's description."
+  },
+  "to_id": "dec:idea-tool-descriptions-match-the-hosted-door"
+}

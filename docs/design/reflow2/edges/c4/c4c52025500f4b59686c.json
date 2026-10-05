@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90b55e0dad1902a06407bd3d38afdd7ccac07628b5c613b20d7bdcb3efd7d69f",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-early-export-is-measured-and-a-property-only-write-is-invisible-to-the-net",
+  "properties": {
+    "at": "2026-08-31",
+    "note": "TWO CLAUSES RETIRED, AND THE NODE OTHERWISE STANDS IN FULL. (1) Its ⑦ says \"whether export_graph can in fact be ordered before a write in the same batch is reasoned from the shared lock, not measured\" — it is now measured at ~45% with each call on its own task. (2) Its ⑤ names the cause of the recurrence as \"the fix addressed the pair and THE DESCRIPTION WAS NEVER WRITTEN\"; the description now exists in two places, both shipped in PR #392 the same day that fact was written — service.rs:397 gives every NodeNotFound refusal the ordering hazard, and exchange.rs gives export_graph the silent-early-export warning.\n\n⚠️ AND THE STALENESS ALREADY COST SOMETHING, which is why this edge is drawn rather than left to a reader. On 2026-08-31 a session read this node's ⑦, reported all three items as outstanding, and recommended building work that was already on main and passing. The record said \"not established\" about work that had shipped hours earlier — the same shape as the Verification-status incident that put Constraints into the where-am-i pass.\n\n🛑 WHAT STILL STANDS AND IS NOT CLAIMED HERE: its ① and ② (the pin's Node not found is the CORRECT answer, not a write-path defect), its ③ discriminating measurement on the checksum call, its ④ reading that the danger is write-then-export rather than write-then-write — now confirmed rather than overturned — and its remaining ⑦ clause that whether the checksum write landed is INFERRED from the refusal channel, not observed in Alex's graph. That last is untouched."
+  },
+  "to_id": "fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed"
+}

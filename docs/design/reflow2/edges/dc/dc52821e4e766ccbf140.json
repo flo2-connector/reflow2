@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7cc9bd56dd4808576ac28d60d29eeaa4c5c30455e1f2017eef3389201539f9b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:three-additive-surface-fixes-from-field-feedback",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

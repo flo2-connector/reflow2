@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a24c9903c606c7bbf1d9cdfe0bbf9634fd9560f1e9c8704bb941d576628ca91c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f1bc9c50281568c4af02ac5ac4319b06417c87bb5ef4c5fb4c28689429874fea",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tool-confusability"
+}

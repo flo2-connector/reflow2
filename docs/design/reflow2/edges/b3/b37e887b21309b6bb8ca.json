@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a60f9d525fd695c6cb04753baae0efdac7efbb920da5646e7b09ee0a1f09eb1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:43b2258a9537a2cbb3e131acb781e11085a4b1e89fa599bd5325d46c1e42fe2f"
+  },
+  "to_id": "art:claim-not-hidden-test"
+}

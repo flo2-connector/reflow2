@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f24c29f6cfd2ea36451c14801e075bbd8a645d867452418f1371dc8fca96c577",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:five-of-one-sessions-storyflow-asks-were-already-built-when-filed",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "CORROBORATION, not conflict — alignment=supporting. The 2026-08-23 fact generalised from one instance and predicted the shape; triaging the rest of that same session found four more, so its claim holds on a sample five times larger. It also survived a test that could have refuted it: two other unmet asks in the same session were measured to have DIFFERENT causes (plan_epoch exists and find_tools ranks it first; describe_schema's ranking is a live defect), so the class did not simply absorb everything."
+  },
+  "to_id": "fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b7bfa3b6c5571698623f232edcf81f24b99efc06d62fad6969c4041a2db29e32",
+  "node_id": "chg:accept-3cc73354216aa1f4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The version string moved for the v0.37.0 cut. The design meaning of a cut lives in the Release and its epoch, not in a version string, so nothing in the design moved with it.",
+    "subject": "system"
+  }
+}

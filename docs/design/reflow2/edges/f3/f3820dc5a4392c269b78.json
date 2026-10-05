@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e2f37d6b8a884f88c62e29860b8dd960d7bc042ae6780ebe26d1d225bf76b09",
+  "edge_type": "CAUSES",
+  "from_id": "cap:select-graph-by-id",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Registry serving opens each design with without_tree().without_reaching_out() (registry_http.rs:575), which is the one bit that says \"this is hosted\". Only one served answer reads it: artifact measurement's NoTree note in loop_status. Everything else is built without it: the handshake instructions, tools/list, get_instructions and the skills measured byte-identical between `--graph-path … --http` and `--registry-root … --http` on 0.72.0. And no argument, flag or handshake field lets the host that fronts it say which rules it has changed.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-served-text-describes-one-deployment-and-a-host-changes-the-rules-under-it-2026-09-28"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d694387a0ec3fc5ab7de24a4942eb077b0d9d1759c2072783ffd24febe45f54f",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "rule:a-finding-is-written-before-the-answer-and-needs-no-permission"
+}

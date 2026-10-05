@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4fc1b029a8482e575922178634d8e684c7980399c398b6f4505da3e255848945",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-probe-slot-is-claimed-atomically",
+  "properties": {},
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

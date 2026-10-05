@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9aa8ae84be61b6f8abe322d9a726dc9ae95a2bee25dc3fb0627d47e4ba1c2837",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-change-says-how-its-reason-is-known",
+  "properties": {},
+  "to_id": "req:a-reason-given-after-the-fact-says-so-and-is-never-read-as-a-check"
+}

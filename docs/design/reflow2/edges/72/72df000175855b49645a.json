@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fa8c2afa41f11386ca015a5d5a672bdb04b88be544906e3acd28e4f8fd911973",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:heal",
+  "properties": {},
+  "to_id": "req:no-silent-fallback"
+}

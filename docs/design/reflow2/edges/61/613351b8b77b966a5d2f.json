@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9dc693dc17df20a85f3d7737bffcd286db18b546a72462021ed1ea1229a6526b",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:stamp",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:stamp"
+}

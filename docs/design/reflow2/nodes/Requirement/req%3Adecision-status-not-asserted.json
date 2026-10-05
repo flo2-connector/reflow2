@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e4bba91a3a33c6daedc5f6c75998df430b9f55638e9f7bf338eecb69a0eabd6d",
+  "node_id": "req:decision-status-not-asserted",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Recording an open question must never assert that it was settled",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A Decision's status must not be set on the user's behalf. Recording a choice someone is still facing — an open question, a brainstormed option, a decision point held for later — must land as `proposed`, and reaching `accepted` must be a separate, deliberate act. Found as friction 2026-07-25: add_decision defaults to `accepted`, so six open questions recorded in one session each landed as settled and needed correcting immediately afterwards. This generalises dec:certainty-derived from requirements to decisions, and the reason is the same: an accepted Decision is what where-am-i reads back to the user as \"what you decided\", what the fork layer treats as binding, and what the KPP contradiction check reads as a trade already made. A musing recorded as a reasoned choice is therefore worse than a missing record — it is a false one, attributed to them. Evidence it was systemic rather than one slip: the correction had become a standing note carried across sessions, and the brainstorm skill had to instruct it in prose (\"this call is not optional\"), which is a defect with a bandage on it.",
+    "status": "accepted"
+  }
+}

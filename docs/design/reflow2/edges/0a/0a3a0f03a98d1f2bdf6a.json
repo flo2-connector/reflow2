@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8962f76507134bcae5c2f57a7a2fac73708aef6a0dc846a70029522d0a155ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl71c-compare-designs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:export"
+}

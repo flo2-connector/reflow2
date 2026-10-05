@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b9f7ebed50d0fa1d9e4fef095b632123ff49cdd6856d631b1f171868f2abaf94",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:sweep-coverage-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:sweep-coverage-test"
+}

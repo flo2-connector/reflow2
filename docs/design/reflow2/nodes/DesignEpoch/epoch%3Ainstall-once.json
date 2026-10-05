@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:18725c8ad7b1539146b90ce885309f11efe14b1b33dae105c13e0b91d407d89d",
+  "node_id": "epoch:install-once",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Install once per machine: no project needs setting up, and a directory with no design costs nothing (2026-07-28, post-v0.17.0)",
+    "sequence": 23,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:886d6492be9cbd898c15682ed85287bdfac287e71ef8fe427ff18795a43f918e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-proposal-describes-its-own-sweep"
+}

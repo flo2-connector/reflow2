@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0f0338eb34addcea89bdfc55411d2697929e7f07e7d7cdf21bd9c4e66d733a10",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-vocabulary-says-where-abandonment-lives"
+}

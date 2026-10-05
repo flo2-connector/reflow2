@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c5e6e4eff0965f404f480ae0d2fa4198c231e3bb45e43741c13d3d35487b5d10",
+  "node_id": "chg:spawn-daemon-survives-a-replaced-binary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "spawn_daemon stops resolving a deleted inode. FOURTH INSTANCE, 2026-08-11: a mid-session `cargo build -p reflow2-mcp` relinked target/debug/reflow2-mcp under the attached daemon, so current_exe() returned a path ending ' (deleted)' and Command::new on that literal path returned ENOENT — blocking every graph tool for ~40 minutes. Implements the fix_shape fact:defect-rebuild-strands-the-shared-server recorded on 2026-08-07 and nobody built: fall back to the resolved binary path when current_exe() no longer exists, and name the path in the error. NOTE issue #91 (finding 2 of 3) is CLOSED with this finding unfixed. Independently reported the same week by an unrelated project's agent-side feedback, whose ask was narrower and also right: the error never names the file it could not find."
+  }
+}

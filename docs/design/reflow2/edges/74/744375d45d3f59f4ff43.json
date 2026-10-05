@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e69629bc7ff01ed042d03c3e74d2482f02b7fb25d84a2526810270411fa8911b",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design",
+  "properties": {
+    "evidence": "That finding measured loop_status silent about exports on a registry-served design, where the silence cannot be told from 'not checked'. Stating the answer explicitly is what would remove that hazard."
+  },
+  "to_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28"
+}

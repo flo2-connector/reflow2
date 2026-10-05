@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da48650f4e3ffed0a8b09bda72e3d0eddf44e441275eea22ea8463d6b7821e75",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-moved-record-that-sat-still-is-parsed-once-per-design",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

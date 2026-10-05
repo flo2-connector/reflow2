@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f1af5d387ede2bde35d52fef51390597fbc4115f168b80e04f0c1064d9ae12e3",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:a-release-that-shipped-nothing-is-reported",
+  "properties": {
+    "role": "forces resync — an empty release_report sends the cut BACK to the derivation, to be re-run with apply: true. This is the v0.38.0 loop, and it stayed unrun because nothing closed it: the tag was already pushed before anyone read the object"
+  },
+  "to_id": "cap:derived-release-manifest"
+}

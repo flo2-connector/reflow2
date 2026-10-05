@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b25555227b9232e85c57e9e5e16d0dae8260472a0750f4e3ed8430f9a16ca62",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:3af2947547a0ddc4fd4cd38f74738331bcee2b2df319c0e4a23327ab8d8056c9"
+  },
+  "to_id": "art:the-server-keeps-the-export-current-test"
+}

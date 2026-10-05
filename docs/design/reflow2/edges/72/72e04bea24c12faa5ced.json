@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae61e1413b2bfe5d4d379fa976bbc5d1bd2d07daa40cef8d3e5224c1b144f053",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-project-migrates-to-the-item-layout",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

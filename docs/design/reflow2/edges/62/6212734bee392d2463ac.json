@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aba4540e247ab9892010d442c264b6f898b7e3bbb4f84e34d19ce9f487801b09",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:parallel-alternatives",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

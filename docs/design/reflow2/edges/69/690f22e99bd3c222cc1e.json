@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5850e2fc4fce737497094e94c341738ec9ad26d5298637f7ee4af310c779da31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:gap-reporting-at-corpus-scale",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:gap-reporting-when-most-intent-is-unbuilt"
+}

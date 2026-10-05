@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33f2055f017ee6986e09dc42870e22639d3b4d23e2c07435f3eb3671e14acebd",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-silence-is-reported-not-inferred",
+  "properties": {
+    "evidence": "The earlier idea asked whether reflow2 should add a detector for every newly discovered blind spot or make silence reportable — the same growth question one level down, about detectors (49 today) instead of rules (26); this idea generalises it to the ruleset and asks for the convergence measure."
+  },
+  "to_id": "dec:idea-does-a-growing-ruleset-converge-or-bloom-and-can-any-design-be-assured-of-closure"
+}

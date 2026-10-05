@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b9f0a02c2e071931ef9446b9eb153f01e08428edc9aa32180cd51d719ea197b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-records-what-it-found-separately-from-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

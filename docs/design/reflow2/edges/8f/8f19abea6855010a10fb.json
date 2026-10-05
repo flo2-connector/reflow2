@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:643e058c5022f79da6320a573b4f2a318a263ba26609ceba2d609e244bbaca07",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:ask-for-one-rung-of-the-decomposition",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "Makes the ladder ASKABLE. Says nothing about whether the boxes have contracts, which is the larger half of that requirement and remains open."
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

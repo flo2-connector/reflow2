@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bde010d83fc0017fca1fa0226a105c5ffc5b296524dbf55169862be43ae117ef",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write",
+  "properties": {
+    "evidence": "Option (6), the batch door, became step 6 of the same plan."
+  },
+  "to_id": "req:a-batch-of-calls-runs-under-one-approval-and-one-export"
+}

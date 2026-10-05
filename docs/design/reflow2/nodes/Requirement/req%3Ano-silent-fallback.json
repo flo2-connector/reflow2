@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:53227a88ba3b5197ffc7d0e185d8d5a4111ce7b7e93c620eb1ab189cfe242f32",
+  "node_id": "req:no-silent-fallback",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "No silent fallbacks or drops",
+    "priority": "critical",
+    "provenance": "authored",
+    "statement": "Failures and skipped work are surfaced loudly, never swallowed.",
+    "status": "accepted"
+  }
+}

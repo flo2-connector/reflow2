@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:37823c0e17f52097f1829746a58dc6c7cab2ca8135fcf2c2555052a706a72d78",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-regression-corpus-guards-the-upgrade-path",
+  "properties": {
+    "evidence": "Anthony promoted this idea on 2026-09-21 as option (a), the bounded golden-export corpus, so that option became the requirement; options (b) the old binary, (c) the published image and (d) the field-defect corpus stay unpromoted here."
+  },
+  "to_id": "req:todays-binary-reads-exports-taken-at-past-releases"
+}

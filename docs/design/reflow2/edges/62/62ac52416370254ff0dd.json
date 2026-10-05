@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:112c23af06f84cda6c8620199855ed0ca85de65f060d12828cae72f28bdf4a40",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-diff-is-read-as-a-design-change",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

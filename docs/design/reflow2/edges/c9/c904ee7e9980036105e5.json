@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd77e43a0621c6a2447e0408a28f90e6b4f023b49486def6e870c2f46113f88c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-constructor-can-say-what-the-thing-it-makes-is",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mcp-surface"
+}

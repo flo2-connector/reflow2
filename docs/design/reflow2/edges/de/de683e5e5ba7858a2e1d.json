@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3401c331f2a4debbbebb06786c2d4a43d4226f21ba6eed8c7251b6bf38999638",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-feedback-review-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:claims-carry-their-age"
+}

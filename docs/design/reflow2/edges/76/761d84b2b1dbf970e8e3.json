@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:df8be9de74df135792c2abac22b1d6543f50dbab63a17d39d8fcadf3cd835faf",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:export-once-per-pr",
+  "properties": {
+    "note": "The export cadence is defined by the PR boundary this rule establishes"
+  },
+  "to_id": "rule:nothing-lands-on-main-directly"
+}

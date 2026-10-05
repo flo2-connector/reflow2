@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:29c2f2d37aee95201ab7f143a9811438878354e43940b10adc5710f2479f405a",
+  "node_id": "drift:f7bf5e47116ee992",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:heal drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:heal' has changed since it was registered against the design"
+  }
+}

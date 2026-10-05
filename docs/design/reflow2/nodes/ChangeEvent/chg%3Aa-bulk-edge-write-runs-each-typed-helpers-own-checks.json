@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2f9f7410adb6ec66eb21a963d9239b87a0317bb8339e6581cfa57beee8a7d36b",
+  "node_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-29",
+    "name": "A bulk typed-edge write runs each typed helper's own checks (draw_edges), and every helper names it",
+    "rationale": "At the cause: the bulk form was a bypass of the helpers, not a form of them, and nothing named it. Running the helper's own body means no check exists twice. Root cause and requirement live in the live design: fact:root-cause-a-bulk-edge-form-was-offered-and-no-typed-helper-names-it-2026-09-29, req:every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks, dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks (not settled here).",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "I24 of art:dev-reflow2-two-agent-exercise-feedback-2026-09-29: ~270 single-edge calls built one design; create_edges was reachable for the thin helpers and named by none, and ~100 calls (constrains, governed_by, authored_by) had no bulk route that kept their checks. Fix: draw_edges takes {tool, arguments} per item and runs that helper's own body (32 helpers refactored into <helper>_on, the one code path the tool and the bulk form share) inside one atomic batch; every helper's served description names it (generated); create_edges says it is the generic form and runs no helper's checks."
+  }
+}

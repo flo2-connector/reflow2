@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f84a9b63a3752b8afd1abc2a485df997cd943407979c522013dc9f787dce3656",
+  "node_id": "req:a-design-lives-in-its-server-not-in-the-code-repo",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design lives in its reflow2 server, not in the code repository it describes",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony and Alex, 2026-09-25 (relayed in the dev_reflow2 hub session)",
+    "statement": "A design's home is the reflow2 server that holds it — local on the owner's machine, or hosted (flo2.io) — and not the repository of the code that implements it. A code repository needs nothing from reflow2; at most it carries an MCP configuration and an agent-instructions file, and for a project the owner does not control (bluesky, ophyd-async) even those live in user- or machine-level configuration, so a pull request upstream can never carry anything of reflow2's. Revisit when reflow2 designs are widely understood in repositories. From a discussion between Anthony and Alex, 2026-09-25.",
+    "status": "proposed"
+  }
+}

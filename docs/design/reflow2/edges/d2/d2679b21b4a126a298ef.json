@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d82942962babbc0a920eb8ef6dbec5790a0f4e848205c5d7c2ae597404bd3aa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rules-can-be-verified-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:vocabulary"
+}

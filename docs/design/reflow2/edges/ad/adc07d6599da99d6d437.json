@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1cc00a02923958fc52b0c5a72d1846e74aab15a0682910f952abdfa452406492",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:session-memory",
+  "properties": {},
+  "to_id": "req:explains-itself"
+}

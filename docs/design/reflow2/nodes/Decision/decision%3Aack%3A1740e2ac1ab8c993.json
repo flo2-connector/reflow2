@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8d7dbc1da8eb4b915cc12295e4f96953ca706bbc2a43431676d712417867f950",
+  "node_id": "decision:ack:1740e2ac1ab8c993",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1740e2ac1ab8c993.",
+    "name": "Reviewed: gap:1740e2ac1ab8c993",
+    "rationale": "Deferred on the established disposition for this review, 2026-07-28. Accepted and not dropped, and distinct from the rest of the batch in provenance: it comes from ISO/IEC/IEEE 42010 rather than from reflow, which had no equivalent. Deferred because the shape is a genuine fork, not a schedule: either correspondence rules become AUTHORABLE DATA (a predicate over node types, properties and edges, evaluated by the existing detector machinery) — powerful, and the thing that would let a team state a rule the maintainer never imagined — or they stay code and only the VOCABULARY becomes explicit, which is cheaper and safer. The first raises a question dec:report-dont-judge would have to answer: a user-authored rule must not become a way to make the tool assert something nobody checked. Also entangled with req:scenarios-are-modelled, since both want Actor to grow up from a line in report.rs's SNAPSHOT_TYPES into something read, and with Requirement.concern, which is dead precisely because no stakeholder-concern-viewpoint chain consumes it.",
+    "status": "accepted"
+  }
+}

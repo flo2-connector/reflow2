@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd9c50db37b79f67d1c9fb0197a82a93da8decbccf751af3f6770e3903cad388",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-exposed-server-verifies-bearer-tokens-itself",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:collaborating"
+}

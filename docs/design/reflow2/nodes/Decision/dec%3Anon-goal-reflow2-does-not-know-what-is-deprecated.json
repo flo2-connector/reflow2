@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75fc190ba86b1827c26b4970394c5be55a3d2a1cd5e3f7ecb9320fd2d24393a9",
+  "node_id": "dec:non-goal-reflow2-does-not-know-what-is-deprecated",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "reflow2 has no notion of the outside world's calendar. It will not tell you that an endpoint was deprecated two years ago, that a framework version is unsupported, or that a pattern has fallen out of use. Everything it knows about currency is INTERNAL: whether the design and the build agree with each other, and when a claim was last checked.\n\nWHOSE JOB IT IS: the upstream project's changelog, a dependency auditor, a deprecation linter, or a person who follows the ecosystem.\n\n⚠️ WHY IT IS WRITTEN DOWN. Anthony named it on 2026-08-17: agents \"frequently mix legacy version code with modern framework configurations\", and \"the code looks structurally perfect but relies on an API endpoint deprecated years ago\". STRUCTURALLY PERFECT IS EXACTLY WHAT REFLOW2 CHECKS. A design whose thread is complete, whose artifacts match their checksums and whose verifications pass can be built entirely on dead APIs, and every reflow2 report will be green — correctly. The greenness is about internal coherence and says nothing about the world.\n\n⇒ WHAT REFLOW2 DOES DO NEARBY: it dates its own claims. `search_design` returns `as_of` and `age_days` on a fact that carries one, an expired `valid_to` reads as expired, and the confirmation ledger reports when a claim was last checked against reality. So reflow2 can tell you THAT NOBODY HAS LOOKED IN SIX WEEKS — which is the honest signal available to it — but never that what they would find has changed.\n\nRECORDED AS A NON-GOAL, 2026-08-17. Retiring it is part of shipping anything that voids it.",
+    "name": "NON-GOAL — reflow2 does not know whether an API, version or practice is current or deprecated",
+    "rationale": "reflow2's greenness is about internal coherence between design and build, and a design built entirely on dead APIs is internally coherent. It can report that nobody has checked in six weeks; it can never report that the world moved. Written down because \"structurally perfect\" is precisely what reflow2 measures, which makes this the easiest wrong inference on the list.",
+    "status": "accepted"
+  }
+}

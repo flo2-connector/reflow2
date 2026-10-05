@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:34c0f2d9d6079e50ea779038c9d8429dec02685cee49297e3b5554b7a427f260",
+  "node_id": "ifc:mcp-protocol",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "unspecified",
+    "name": "The MCP protocol revision reflow2 negotiates — a contract defined elsewhere and implemented here",
+    "paradigm": "synchronous",
+    "payload_format": "json",
+    "provenance": "authored",
+    "spec": "REQUIRED, declared 2026-08-09 on Anthony's word. reflow2 IMPLEMENTS the Model Context Protocol; it does not define it. The revision is negotiated per connection by rmcp, and reflow2 supports three transports: stdio, legacy Streamable HTTP (2025-06-18), and stateless HTTP (2026-07-28).\n\nDISTINCT FROM ifc:mcp-tools, WHICH IS PUBLISHED. That node is reflow2's OWN tool surface — the 149 tools it offers. THIS node is the protocol those tools are carried over, which somebody else owns and can change underneath. Two different contracts pointing in opposite directions across the same wire, and only one of them is reflow2's to keep.\n\nWHY DECLARING IT MATTERS RATHER THAN BEING BOOKKEEPING — flo2's reflow2_updates.md §7 names it: there are TWO version axes at this seam and only ONE negotiates. The protocol version negotiates per connection and rmcp handles it. reflow2's own tool surface does NOT, and the toolsnaps stop a surface change landing silently in THIS repo while telling a consumer nothing. A consumer that pins an image gets a surface it cannot interrogate.\n\nTHE LIVE DETAIL WORTH PINNING: rmcp 3.1.2's ProtocolVersion::LATEST is still 2025-11-25, so the sessionless path is NOT yet the default. There is a tripwire test at service.rs that fires when it crosses. dec:stateless-seat-handle turns on that boundary: on the sessionless transport the server builds a handler per REQUEST and cannot infer who is calling, so `seat` may not be omitted — a wrapper written against stdio habits works in development and is refused in production.",
+    "transport_security": "unspecified"
+  }
+}

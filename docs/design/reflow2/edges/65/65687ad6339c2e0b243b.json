@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:505c75f953fdf544cefe123cf2c0ab7664344a89bb5e472af3d9e06ec1343202",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-sysml-v2-boundary",
+  "properties": {
+    "authored_at": "2026-08-03",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

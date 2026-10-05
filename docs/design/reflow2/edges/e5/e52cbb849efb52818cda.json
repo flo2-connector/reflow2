@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:01027bab4890a86eb7a13ba4e42603f9391c0dcb9001df8aac6886f15edc4f91",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-withdrawn-decision-stops-reading-as-a-conflict",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4f2048fcde025ac769275e1f487935754f5af111e9b560b483dddafbc06fc30b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified",
+  "properties": {
+    "evidence": "Option (b), the liveness rule, promoted by Anthony on 2026-09-29: \"Let's go with your 3 likeliest candidates.\""
+  },
+  "to_id": "req:a-claim-reads-gone-only-when-the-server-holding-its-session-saw-it-end"
+}

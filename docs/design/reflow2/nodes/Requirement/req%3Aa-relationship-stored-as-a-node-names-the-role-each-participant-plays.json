@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9d68a991af5e87528b2114627f353f22f29b5e4e62b28c1000695a67272fe6e7",
+  "node_id": "req:a-relationship-stored-as-a-node-names-the-role-each-participant-plays",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A relationship stored as a node names the role each participant plays in it — subject, object, conduit, witness — so a pointer from it reads as \"fills this role\", not as \"about\"",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"promote as intent the new ideas from vector math, Topology (sheaves), Topology (persistent homology), and Relations with 3+ participants. Add to the reflow2 and storyflow designs accordingly.\" Promoted from the graph-primitives design on flo2 (graph 85a2a1a36e7c942d): dec:idea-relations-with-more-than-two-participants-as-hyperedges, option (a).",
+    "statement": "Every node type in reflow2's schema that stands for a relationship among its participants (6 at 4659832b — e.g. Interface, the conduit between a provider and a consumer; TemporalFact, a fact about a subject) declares the roles its participants fill, and the declared reading of each edge or pointer from it names the role. The conduit shape — PROVIDES ∘ CONSUMES⁻¹ through an Interface — then reads as a declared three-party relation, the same shape market_graph builds independently through a SupplyChainNode.\n\nNative hyperedges are NOT required: reification with named roles is the standard and lossless answer (Hogan et al., ACM Computing Surveys 2021, §3.3.3; Wikidata qualifiers; RDF-star). Sources: Fatemi, Taslakian, Vazquez & Poole, \"Knowledge Hypergraphs: Prediction Beyond Binary Relations\", IJCAI 2020; the three-graph classification (primitives repo, analysis/synthesis/ANALYSIS.md §9), where three of five classifiers independently asked for argument roles because these pointers could only be read as \"about\". Serves test 1 of the accepted definition of a true knowledge graph (graph-primitives design: dec:what-a-true-knowledge-graph-is).",
+    "status": "proposed"
+  }
+}

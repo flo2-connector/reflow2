@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b9ff8e4dceabe0a0a9ef954747f31719d2a5283a0d3d259b7b1d44b00043f17f",
+  "node_id": "chg:the-run-converter-is-not-named-like-a-test-and-refuses-an-empty-log",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-23",
+    "name": "The run converter is renamed so a test glob never runs it, and refuses a log with no test target instead of reporting zero files",
+    "rationale": "Corrected at the cause, not contained. Both met while feeding reflow2's own run back (fact:reflow2s-own-real-run-was-fed-back-for-the-first-time-78-checks-agree-231-test-files-map-to-nothing). The name made every test_*.py glob record the converter's usage error as a failed test — fixed at the name rather than excluded at each call site. The empty log was read as 'files: 0', indistinguishable from nothing to report — now refused.",
+    "subject": "system",
+    "summary": "tools/test_run_to_files.py → tools/run_to_files.py (its tests take tools/test_run_to_files.py); ci.yml and AGENTS.md gate lines, the reconcile tool's field doc, and the design's artifact locations follow. A --cargo source with no 'Running' line now exits 2 by name."
+  }
+}

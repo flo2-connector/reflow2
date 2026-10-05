@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d0d8b004d2626239bc5b6955746957c6e4845d0fc266778c58f423f907dd58a6",
+  "node_id": "fact:field-report-hxm-2026-09-28-worked-root-cause-shaped-a-hardware-incident-it-could-not-model",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-28): the root-cause skill ordered a live hardware incident (a motion-controller axis fault) the design did not model. It refuted the agent's own first inference within one message, and it closed with \"root cause: NOT established\" instead of \"fixed by power cycle\"",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Reporter (the hxm_program hub, 2026-09-28, an operations incident on a detector motion axis): \"its steps set the order of the work before anything was reset: symptom as observation, including what is NOT affected; precedent search; at least three candidates; a distinguishing measurement; 'say what you could not establish'.\" Concretely, the agent compared the faulted axis's status against two healthy axes on the same controller. That comparison refuted its own \"kill-when-idle\" inference within one message. It added the vendor's brake hypothesis as a candidate with a predicted signature, and closed with \"root cause: NOT established\". The reporter: \"The skill earns its place even when the graph holds nothing.\"\nThe same hub reported this three times on 2026-09-09/10: the first plausible cause was wrong each time, and step ④ killed four candidates in one reading.\nWhat must not regress: the steps still order the work, and step ⑨ still permits \"not established\", when no design node exists for the failing part.\nThe gaps beside it are triaged separately. The incident produced no design node (F-30), and step ② could not search the hub's file archive of past fixes (F-31).",
+    "subject_id": "cap:root-cause-skill",
+    "valid_from": "2026-09-28"
+  }
+}

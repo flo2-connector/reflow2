@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:51f3d330cfd41993423d7b37e95b76588d6cd07c7cc646795bbf88fd73fed6ba",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:declared-rules-run-by-an-embedded-datalog-engine-and-updated-by-delta",
+  "properties": {},
+  "to_id": "req:derived-relations-and-reports-are-maintained-incrementally"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:72b3be483cdd64709e1125f49bf87572dc9a89265bc154b09716bb3b1511602c",
+  "node_id": "ver:questions",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "gap_review.rs",
+    "status": "passing"
+  }
+}

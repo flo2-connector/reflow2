@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0f6321ec958ac6ee96ebd681b2e2f8f3f4038931df3aec2a79460edf773849d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a1c5f2a7114f8b29cef175420be55d82e9b3f46e01661cc34844a0200bb39737"
+  },
+  "to_id": "art:skill-lint-test"
+}

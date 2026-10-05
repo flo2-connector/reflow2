@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:42cff71383058c1b861f342e8efa8395fd250cc24ddf1d3850b58c2bc23ba5b4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-a-standing-rule-reach-a-moment-that-is-not-a-reflow2-step",
+  "properties": {
+    "evidence": "Whatever the answer is, it must not make the user the trigger; that requirement is accepted.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:skill-use-survives-a-long-session"
+}

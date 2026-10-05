@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cb6f49fc60ded7a39367a07c58c7e2dc77631afa4a53d311c3aab69e6c2d1b75",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:settling-a-decision-records-which-option-won",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

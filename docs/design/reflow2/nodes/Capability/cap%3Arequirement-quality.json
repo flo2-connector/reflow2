@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cad2aba93254bb61146af4f021d4c84bd29f0710a488af71399959b0ed837805",
+  "node_id": "cap:requirement-quality",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The INCOSE-style criteria Anthony brought from acquisitions, 2026-07-25: a good requirement is unambiguous, verifiable, necessary, minimally constrained (implementation-free), traceable, feasible and consistent. THE USEFUL STRUCTURE IS THAT THEY DO NOT ALL BELONG TO THE SAME PARTY (dec:three-party-checks). THREE ARE STRUCTURAL and the core can judge them deterministically today or nearly so. TRACEABLE is already half-built — unsatisfied_requirement asks downward (nothing satisfies it), and cap:requirement-lineage supplies upward (a requirement claiming decomposition with no parent is a defect; an original with no parent is correct). VERIFIABLE splits: whether anything CHECKS it is structural and already computed; whether the statement contains a measurable threshold is semantic. CONSISTENT splits the same way: CONTRADICTS already exists as an edge, so a recorded contradiction is checkable — finding an unrecorded one is not. FOUR ARE SEMANTIC and belong to the agent, never the core. UNAMBIGUOUS (does it say \"fast\" where it means a number), NECESSARY (would removing it leave a real capability gap), MINIMALLY CONSTRAINED (does it dictate a solution instead of stating a need — the one engineers violate most, and the one that quietly forecloses design alternatives before the fork layer ever sees them), FEASIBLE (needs domain knowledge and cost/schedule context the graph does not hold). Bound exactly as cap:missing-sibling is: the agent may flag and propose, the human decides, and nothing enters above `proposed`. WHY IT IS WORTH BUILDING THE STRUCTURAL THREE FIRST: they are cheap, they never produce a false accusation about meaning, and they give the semantic four somewhere to attach. PLANNED.",
+    "name": "Judge whether a requirement is well formed, and say which part a machine can judge",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cc52c34b6c0ef2c9e32854ddc987650a86b3c2ccad7e4472fc545d3d29129897",
+  "node_id": "art:tools-temporal",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/temporal_tools.rs",
+    "name": "tools/temporal_tools.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

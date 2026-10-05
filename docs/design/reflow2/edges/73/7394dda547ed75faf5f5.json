@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b244ae9238b281ae69ea6f3b4ce141ad711fee63ed3b60be0b67d5dae0bcdea9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-growth-guard",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

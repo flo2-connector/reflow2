@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:af52bddd80a8d161c41b398a621a1888190ecf6303592520c05e3f5162a17a09",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-realized-capability-can-be-dead-for-want-of-an-input-path",
+  "properties": {},
+  "to_id": "req:the-store-is-reachable-from-a-session"
+}

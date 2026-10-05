@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97f12da21469138c2594c88c696904cb1ac07b6d7bcfd21f0aec7f1a7165f5f8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-can-reflow2-say-whether-a-design-has-ever-closed-its-own-loop",
+  "properties": {
+    "evidence": "Option (c) proposes a sixth leg on the closure report — has this design's evidence ever been confirmed against reality — which only works if it is built on that report's existing five-leg shape rather than beside it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:closure-report"
+}

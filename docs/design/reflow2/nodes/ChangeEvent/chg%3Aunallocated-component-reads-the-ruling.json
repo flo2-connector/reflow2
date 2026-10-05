@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:118f144a9d9f6206222a5c00ad84352d866a4075fdeac93292db3a4adf3043e5",
+  "node_id": "chg:unallocated-component-reads-the-ruling",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-25",
+    "name": "unallocated_component now reads a parking ruling, like its two siblings already did",
+    "rationale": "THIS REACHED THE CAUSE RATHER THAN WORKING AROUND IT (`req:a-fix-says-whether-it-corrected-the-cause`). The workaround available was `acknowledge_gap` on the whole finding, which would have silenced the two genuinely-unruled parts along with the twelve ruled ones — buying a green list by making it mean less.\n\nThe cause is that `req:a-deliberate-state-is-not-a-defect` was implemented detector by detector rather than as a rule every structural detector obeys. `unsatisfied_requirement` reads the ruling, `unreviewed_ideas` excludes parked nodes, this one did neither — and nothing noticed, because a detector that over-reports looks exactly like a design with more holes in it. Measured here: twelve tool-surface slices ruled deliberately empty by an accepted Decision kept counting as defects, so RECORDING THE CORRECT JUDGEMENT DEGRADED THE INSTRUMENT — the same failure dev_storyflow's fleet reported when defects climbed 88 to 97 across ten correct writes.\n\n⚠️ STILL OPEN, and worth a sweep rather than another one-off: nothing checks that a NEW structural detector reads the ruling. The next one written will have the same hole for the same reason.",
+    "subject": "system",
+    "summary": "`detect_unallocated_components` did not consult `is_parked`, so a leaf Component whose emptiness an ACCEPTED Decision declares correct kept reporting as a hole. It now skips parked leaves and REPORTS THE COUNT on the evidence line, so a design with no empty parts cannot be mistaken for one whose empty parts were ruled deliberate. Three tests added: a parked leaf is not a finding, a `proposed` ruling parks nothing, and the parked count reaches the evidence."
+  }
+}

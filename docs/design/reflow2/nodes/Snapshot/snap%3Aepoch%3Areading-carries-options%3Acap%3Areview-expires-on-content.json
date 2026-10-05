@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e2efa94a51b7dc8dc40880c70ee7f09d89f396ce9351e3194bbbcea6db56f956",
+  "node_id": "snap:epoch:reading-carries-options:cap:review-expires-on-content",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:detect\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"decision:ack:1d9ec21937d2d172\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:review-expires-when-what-it-judged-changes\",\"properties\":{}}]",
+    "state": "{\"description\":\"A gap acknowledgement records a human judgement about specific text. Today its expiry is keyed on the gap id, which hashes the affected node IDS — so a review expires when the affected SET changes membership, and NEVER when the affected nodes change CONTENT. Found live on 2026-07-30 while promoting the planning axis: acknowledgements written on 2026-07-28 reading roughly deferred, scheduled for a later increment went on suppressing gaps for requirements that had since been accepted and were being worked, so two things Anthony had just committed to were invisible as open work. Sharper still, req:graph-indexes-snapshots' acknowledgement was still justifying a framing that had been removed an hour earlier — an accepted review left defending a requirement that no longer said that. THE REASON IT MATTERS, and why this is not cosmetic: a review outliving the wording it reviewed is worse than no review, because it reads as a human having agreed to something they never saw. The nearest working sibling is defect-side expiry-by-shape, which already does content-sensitive invalidation. Approved for build by Anthony 2026-07-30.\",\"is_entry_point\":false,\"is_exit_point\":false,\"name\":\"A sign-off expires when the thing it judged is reworded, not only when the affected set changes\",\"provenance\":\"authored\",\"status\":\"planned\",\"tier\":\"operational\"}",
+    "target_id": "cap:review-expires-on-content",
+    "target_type": "Capability"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:023e0caea1258af459a1ce59227bb71ff126e509f8003211ed3f17ca2f131c2c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:structure"
+}

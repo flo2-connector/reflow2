@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61f82d753f676031b2359d7c620ba8f5ead84591906cbf5f4dad5c5d12d7c9e5",
+  "edge_type": "REALIZES",
+  "from_id": "art:report-friction-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:skills-served"
+}

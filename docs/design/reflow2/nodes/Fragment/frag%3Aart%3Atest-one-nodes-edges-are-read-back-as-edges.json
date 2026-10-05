@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19b3f96652a7a86419156eaee6e93365b12869fc7f51cc03495731363ac86bdb",
+  "node_id": "frag:art:test-one-nodes-edges-are-read-back-as-edges",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered one_nodes_edges_are_read_back_as_edges.rs — the core edge reader: both directions with evidence and a twin, filters, refusals, every empty answer, the limit, the dominant type, the size bound, a self-loop"
+  }
+}

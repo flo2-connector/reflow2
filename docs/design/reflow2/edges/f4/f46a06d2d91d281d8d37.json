@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:520ddfd67d8c592c9a966f71af5ba0edd434be39ff31139e8cd52f59b8be97d3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-design-saves-itself-wherever-the-owner-chooses",
+  "properties": {
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e060c257760d07a4bb3d5c4ca885a09dff54a72c0599473cbcea3b69bfd75475",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:propagate",
+  "properties": {},
+  "to_id": "snap:epoch:a-walk-does-not-recompute-the-whole-network:art:propagate"
+}

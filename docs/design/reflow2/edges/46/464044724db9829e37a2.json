@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b7dd589ffe09d35d06dbcf32685ac8919b00455294cd7aab40e219c20e037b99",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-08-23",
+  "properties": {
+    "doc_kind": "field_report"
+  },
+  "to_id": "fact:an-agent-stopped-reaching-for-reflow2-and-a-second-one-reproduced-it-the-same-day"
+}

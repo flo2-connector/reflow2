@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8287548794cd61d8cdbf891dcd9c95e43eab5fd16be0e16fa31379a3526eb873",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-composed-prompt-serves-the-pieces-it-was-composed-from",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

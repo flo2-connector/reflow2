@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:456eeb1bf1e0d74a2da6544fa3d431511237518409be59bfa6e45fe869c6cc75",
+  "node_id": "snap:epoch:preserved-on-write:rel:v0611",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:ci\",\"properties\":{\"status\":\"active\"}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:container\",\"properties\":{\"status\":\"active\"}},{\"direction\":\"out\",\"edge_type\":\"DEPLOYED_TO\",\"other_type\":\"Environment\",\"other_id\":\"env:dev\",\"properties\":{\"status\":\"active\"}}]",
+    "state": "{\"description\":\"Cut 2026-09-15 on Anthony's word (\\\"merge 513 if green, then cut v0.61.1\\\"), minutes after v0.61.0, because Alex on Grok Build still received the signpost sentence and nothing else for every structured tool: the content block of a JSON reply is now chosen per client in call_tool (#513) — grok* gets the payload duplicated into the text block, opencode* an empty one, everyone else the signpost; --content-policy / REFLOW2_CONTENT_POLICY overrides and is forwarded to a spawned daemon; the signpost names the flag. Patch: no tool-surface shape or schema change; the schema stamp did not move (28/65/1); no upgrade note. Measured from Anthony's own Grok Build 1.0.30 session on this repo the same night.\",\"name\":\"v0.61.1 — a reply takes the shape its client can read\",\"status\":\"planned\",\"unit_type\":\"container\",\"version\":\"0.61.1\"}",
+    "target_id": "rel:v0611",
+    "target_type": "Release"
+  }
+}

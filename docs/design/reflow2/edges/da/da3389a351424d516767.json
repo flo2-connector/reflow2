@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0a1182e6924a4ec92d0e011f328812480da005c21a588451ad1fe7695cba7891",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary",
+  "properties": {
+    "authored_at": "2026-08-29",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

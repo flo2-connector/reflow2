@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:328fa45b391536e571fb4467415535d0a5ca8371912ac3c4fcf24503edbbe304",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revising-write-says-what-it-removed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-revising-write-says-what-it-removed-test"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2089de09023878aa05486eece7ffd6870a8979d347f247275230c9a3016193c9",
+  "node_id": "fact:every-gate-chose-its-own-binary-so-reflow2-bin-reached-one-of-them-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: of the python gates ci.yml runs, 22 hard-coded target/debug/reflow2-mcp, two read their own variables ($REFLOW2_MCP, $REFLOW2_MCP_BIN), and only reflow2_check and three tests read $REFLOW2_BIN. So `REFLOW2_BIN=… run_ci_gates.py` reached one gate, and with only a release build replies_are_bounded and a_reply_is_sent_once failed",
+    "source": "fix program item 8: an AST scan of every python gate ci.yml runs, on main at 293f957",
+    "statement": "Item 5 of the fix program after the VS Code --call triage named the instance: tools/run_ci_gates.py passes its environment to every gate and $REFLOW2_BIN reached reflow2_check but not replies_are_bounded or a_reply_is_sent_once, so they failed locally without a debug build. Measured the class: smoke_mcp, empty_speaks, refusal_speaks, toolsnap, replies_are_bounded and a_reply_is_sent_once defaulted `--bin` to target/debug; phase_trial, model_the_loop and coherent_erosion_trial built the same path; ten test_*.py files set BINARY = REPO/target/debug/reflow2-mcp; test_content_policy read $REFLOW2_MCP and test_latent_promotion $REFLOW2_MCP_BIN. Each gate chose its binary by itself and nothing checked that they agreed. Fixed by tools/reflow2_bin.py (one order: $REFLOW2_BIN, the debug build, the release build said on stderr) and pinned by tools/test_run_ci_gates.py, which fails on any ci.yml gate that names a binary path in code.",
+    "subject_id": "art:run-ci-gates",
+    "valid_from": "2026-10-03"
+  }
+}

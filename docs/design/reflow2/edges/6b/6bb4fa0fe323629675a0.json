@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33725242ac52c4e67eac4ede0b957aa1b9fc049cf14d3862450186173987a129",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-question-is-put-to-a-person-and-records-who-answered",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

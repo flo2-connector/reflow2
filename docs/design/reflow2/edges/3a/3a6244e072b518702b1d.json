@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1657ec4da31069dddfbb1ea7b313863fdccf0840ed2164fb62981a9bb09e67ec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:unbounded-reads-counted",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:the-transition-is-two-halves-and-reads-are-the-unscheduled-one"
+}

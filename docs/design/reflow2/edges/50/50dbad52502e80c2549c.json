@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65b39d350c01be7de15138489b09ba90f354c2f7342db0e175ab62bbf35d29a8",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:upgrading-v0130",
+  "properties": {
+    "doc_kind": "runbook"
+  },
+  "to_id": "rel:v0130"
+}

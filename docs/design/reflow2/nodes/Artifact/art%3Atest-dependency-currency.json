@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17ca1ca96ee82f961688fdd6992e9534ab88abd1a63a6bf5443f5655200f100c",
+  "node_id": "art:test-dependency-currency",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "tools/test_dependency_currency.py",
+    "name": "test_dependency_currency.py — 12 hermetic cases for the currency checker",
+    "status": "realized"
+  }
+}

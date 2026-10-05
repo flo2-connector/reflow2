@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:08ae705d9b5eaf98d0bdcd537eab371af289967fb7312375d8b4b4358eea7c25",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:human-channel",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a9e6cb4c3d71a929ce653d92f2ee91bf2f5e4beee9ac041f0c92184f44cf36da",
+  "node_id": "chg:baseline-cb75f99caf3e0a6a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "new; measured in the fix/every-tool-list-carries-the-cache-hints worktree",
+    "subject": "record"
+  }
+}

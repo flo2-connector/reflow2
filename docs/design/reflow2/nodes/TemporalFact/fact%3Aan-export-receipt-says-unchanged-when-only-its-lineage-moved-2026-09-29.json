@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c76d00792a322a028b48b8d0a7feefa5fae89bd073b55c3645ad6908adfd026a",
+  "node_id": "fact:an-export-receipt-says-unchanged-when-only-its-lineage-moved-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-09-29: export_graph reported `wrote: unchanged` for a write that DID change the file, because only prev_content_hash moved (the chain anchor changed after merging main into a branch)",
+    "source": "shipping PR #622 in the dev_reflow2 hub session, reflow2 0.74.0 + branch build",
+    "statement": "Observed while merging main (#621) into feat/a-stored-twin-has-one-authority.\n- The first export was written before the merge commit existed, so it chained from the OLD merge-base (329a074) and recorded that export's hash as its prev_content_hash.\n- After the merge commit, the same store was exported again. The receipt said chained_from origin/main@686b955 and `wrote: unchanged`.\n- Yet `git status` showed the file modified: exactly one line, prev_content_hash, moved from 329a074's export hash to 686b955's.\n- The gate (reflow2_check LINEAGE) read the committed copy, which still had the old anchor, and failed.\n\nExpected: `wrote: changed` whenever the file's bytes change, lineage fields included. The tool description says to READ `wrote`, because the hashes cannot tell a no-op from a save.\n\nNot established: whether `wrote` compares content_hash only (which excludes lineage) rather than the bytes written. No cause is claimed. The workaround used: export only after the merge commit exists, and read git status rather than `wrote`.",
+    "subject_id": "cmp:export",
+    "valid_from": "2026-09-29"
+  }
+}

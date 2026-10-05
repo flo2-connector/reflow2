@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d9dbd3cd8a144363c254f93a30eae9c693e551132c8f8898f77968406c3b1482",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:store",
+  "properties": {},
+  "to_id": "req:deterministic-core"
+}

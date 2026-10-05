@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:36aaf11631f111266e687825185773da23f2759114a67fa3787742571d58fd6b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0670",
+  "properties": {
+    "as_checksum": "sha256:2e77d869536dd2ec9b41412e8ced1f4516682f0c546a16a620b6219fb7dc6ff7"
+  },
+  "to_id": "art:optimize-command"
+}

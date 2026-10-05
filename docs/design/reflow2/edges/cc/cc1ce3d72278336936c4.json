@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba8346c0c543f9150b5f1033f02ffdaede1804dfd5b1f40c65ea224ad40a8b17",
+  "edge_type": "CHANGED",
+  "from_id": "chg:units-are-declared-compared-at-the-seam-and-governed-by-a-rule",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

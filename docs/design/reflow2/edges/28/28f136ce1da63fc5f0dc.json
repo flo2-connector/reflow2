@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c287ece0bae9dc7698493120118a07861164742a46e043b5e3f77a0fb5b7fc0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-first-move-must-fit",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:detect"
+}

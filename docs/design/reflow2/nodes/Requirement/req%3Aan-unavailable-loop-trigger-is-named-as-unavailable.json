@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:808a947699fd2135b053b1c255fa06983b2e47f5ddc93774388c9091a6c5a6ac",
+  "node_id": "req:an-unavailable-loop-trigger-is-named-as-unavailable",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A harness that cannot carry the loop nudge is told so, distinctly from one that merely has not installed it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a project runs on an agent harness reflow2 has no loop-nudge hook for, that is reported as a DISTINCT state from a harness that supports the hook and does not have it registered. The two are different situations and only one of them is actionable:\n\n  · NOT INSTALLED HERE — the harness can carry the trigger and it is missing. Fixable: install it.\n  · CANNOT BE INSTALLED HERE — the harness has no event reflow2 can register. Permanent: the coherence loop is the user's to run by hand, and saying so is the whole of what is owed.\n\nReporting them identically sends the second user to fix something that cannot be fixed, and leaves them believing reflow2 is misconfigured when it is working as designed.\n\nTHIS EXTENDS AN EXISTING ANNOUNCEMENT RATHER THAN ADDING A SECOND ONE. `cap:nudge-path-proven` already reports `installed | absent | broken | unknown` on the handshake instructions and as a machine-readable field on `loop_status`. `absent` currently carries both meanings above. The requirement is the distinction, not the channel — nothing new should be built to say it.\n\n⚠️ WHAT THIS COSTS, and it is the part most likely to be missed: the backstop infers the nudge's state by looking for a registered Stop hook in the Claude settings file. It does not know WHICH harness the project uses, so it cannot presently tell \"this harness has no hook\" from \"this hook is missing\". **The harness answer that `req:init-installs-only-the-harness-you-name` collects must therefore be PERSISTED somewhere the server can read it** — otherwise the distinction has no input, and the report can only ever guess.\n\nRaised by Alex (`who:alex`) 2026-08-14 as the parenthetical of his settings note — *\"or whatever settings file is relevant for the agent harness\"*; settled by Anthony the same day on `dec:idea-the-loop-nudge-exists-for-one-harness-only`.",
+    "status": "proposed"
+  }
+}

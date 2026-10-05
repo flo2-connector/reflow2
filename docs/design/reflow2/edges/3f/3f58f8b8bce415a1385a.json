@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61f79b02969c7aff3188bec538b005edc53f2b0bcee571a7a52f408baae92add",
+  "edge_type": "INTERACTS_WITH",
+  "from_id": "act:ci-runner",
+  "properties": {
+    "interaction": "reads — the committed export is the only thing it can see"
+  },
+  "to_id": "ifc:graph-export"
+}

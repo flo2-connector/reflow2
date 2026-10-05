@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d20e57a7c8d4f6575c1324eebdc7038e658f1b37c2dd0ca72725f898ffb5485d",
+  "node_id": "chg:baseline-51b4ae0c8b2eaa5e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-16",
+    "name": "First baseline. 6 cases, three mutation-checked, three of them counterweights against the silent-field non-fix.",
+    "subject": "record"
+  }
+}

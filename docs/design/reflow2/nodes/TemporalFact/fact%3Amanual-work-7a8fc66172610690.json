@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ce2052e19b836cf679c76bc81ae1cfeb0507686f0a4e764685013f2b276a8e0c",
+  "node_id": "fact:manual-work-7a8fc66172610690",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Searched the git history of a committed design export (git log -S on the node id) to find why a requirement had been dropped; the reason was already in the design, on the decision that retired it, reachable from the dropped node by one edge.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-28",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":\"topic_report\"}"
+  }
+}

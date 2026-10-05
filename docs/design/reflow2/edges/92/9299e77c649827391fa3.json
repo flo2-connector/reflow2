@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:36c38b1a57151d473546865e8c83fef8041f441123a03bd52e4412f7a4c7a03c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:read-loop-hint",
+  "properties": {},
+  "to_id": "req:read-surfaces-debt"
+}

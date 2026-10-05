@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3076d5ac368992ff2e81b22df4497263bc08b2355df3876dd89dee307f9e299e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-nudge-report-says-whether-a-hook-was-possible",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:nudge-absence-says-why"
+}

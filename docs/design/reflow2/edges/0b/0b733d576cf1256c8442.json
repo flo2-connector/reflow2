@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:22714ced85330d946ea5fe42f0de88f0ddd5748793afd0a87eae15714de112b1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "approved_at": "2026-09-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

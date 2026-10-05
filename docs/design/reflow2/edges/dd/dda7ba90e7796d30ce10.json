@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca96278b3d6bcc6c7fe2fcd1ef9f6ac2aa81b2182dbf3a37b6601d09b1a1006f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-structure"
+}

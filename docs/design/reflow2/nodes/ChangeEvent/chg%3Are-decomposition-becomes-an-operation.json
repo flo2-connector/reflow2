@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:538e579e3c82179ba0de72de67e674c3327cd3bc35c4715bc7ad464fe899cdf7",
+  "node_id": "chg:re-decomposition-becomes-an-operation",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Re-decomposition becomes an operation — move_component ships, and the discoverable route to re-parenting stops being the one that creates a defect",
+    "subject": "system"
+  }
+}

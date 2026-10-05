@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a9e5543bc95770944b8cc3994203bf3bc02dcbbde71424436d23681bc8d7fc19",
+  "node_id": "fact:the-write-through-trusts-the-files-own-stamp-so-a-hand-edit-that-keeps-it-is-overwritten-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: the write-through's hand-edit guard reads the export's own STAMPED content_hash, so a hand edit that leaves the stamp in place (an ordinary edit of the pretty-printed JSON) is overwritten without a word. An edit that drops or changes the stamp is caught",
+    "source": "art:auto-export",
+    "statement": "FOUND while writing the hand-edit test for step 2 of the --call door plan (fix program item 7a), on branch feat/a-writing-call-keeps-the-export-current.\n\nOBSERVED (debug binary, scratch project, .mcp.json naming ./docs/design/p.json): (1) --call add_project wrote the export. (2) sed changed the project's \"name\": \"P\" to \"P, edited by hand\" in the file, leaving content_hash as it was. (3) --call add_requirement exited 0 and printed 'export written … (changed …)'; the hand edit was GONE from the file. CONTROL: the same kind of edit with content_hash deleted was declined ('has changed since reflow2 last wrote it'), exit 3, file untouched.\n\nPRECEDENT, found by searching first: chg:sync-debt-surfaced fixed THIS CLASS in sync::assess_overwrite ('effective_content_hash TRUSTS the content_hash a document states about itself … Now computed from content'). The write-through's own guard, the sibling, was left on the stamp — a recurrence of the class in the place the fix did not reach.\n\nWHY (code read, consistent with both runs): auto_export::write_through compares on_disk.effective_content_hash() with the recorded sync; effective_content_hash returns the STAMPED content_hash when present (export.rs), so an edit that keeps the stamp matches. chain_and_write's assess_overwrite (computed from content since that fix) did not stop it either: it stops only a LOSS, and a hand-changed property value was not counted as one. The server's background write-through runs the same function, so it is affected too (inferred from the code, not separately measured). A git pull that brings a newer export is NOT affected: that file carries its own different stamp.\n\nNOT FIXED in item 7a, deliberately: comparing the computed hash (verify_content_hash) would also decline any file whose stamp disagrees for another reason (a merge driver's output, a canonicalisation change across versions), which stops the write-through and needs its own decision. The test for the door's guard uses a merge-mangled file, which the guard does catch.",
+    "subject_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+    "valid_from": "2026-10-03"
+  }
+}

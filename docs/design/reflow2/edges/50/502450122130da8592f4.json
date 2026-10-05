@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:578e8ee1b8b3eb555b89d628498321d10ae5f4b540b713ec60d72285c7e1d750",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

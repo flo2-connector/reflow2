@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f20c7ec1dfec31102401963525d204b591af130f462619f8954146c3780891c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:v0380-status-corrected-to-deployed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rel:v0380"
+}

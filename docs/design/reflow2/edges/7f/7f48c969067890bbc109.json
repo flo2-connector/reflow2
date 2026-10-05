@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f825c3ad18b234090302767bb8376fcaf8bf151e925cb4eadd975938aae44a7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:edge-prose-is-read-when-the-node-under-it-moves",
+  "properties": {
+    "at": "2026-08-31",
+    "note": "\"NO DETECTOR READS THEM\" stopped being true the same day it was written. `stale_edge_evidence` reads edge `evidence` and `note`, surfaced through `propagate_change`.\n\n📌 IT TOOK THE FACT'S OWN OPTION ① AND THEN SHARPENED IT. The fact proposed a crude term check against the changed node's CURRENT text; that version was built first and thrown away, because on this fact's own counter-example it fires on healthy edges. The shipped check compares against the node's PRIOR snapshot instead. The proposal was right about where to put the check and wrong about what to compare — both worth keeping, which is why the text stands unedited."
+  },
+  "to_id": "fact:edge-prose-is-as-perishable-as-node-prose-and-nothing-reads-it"
+}

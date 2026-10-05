@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d42f923475a69e646cd98d0d573ee08668bd6d374c94c06a095171586101ca8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

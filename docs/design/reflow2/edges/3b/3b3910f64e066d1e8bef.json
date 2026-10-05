@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ff4591b5a93d0d6a5b7045e549ab1c8b72c652a9982896dae4667390516c619",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-0da0e8c66a8d93bc",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:increment-plan"
+}

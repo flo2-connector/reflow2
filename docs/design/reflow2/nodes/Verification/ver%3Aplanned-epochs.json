@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8f4590324b5c217f0d3f8c37de74b27a1d3523563229895368e531cab5eafa05",
+  "node_id": "ver:planned-epochs",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-30T20:30:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "Planned epochs, arrival, and the two refusals — crates/reflow2-core/tests/temporal.rs",
+    "status": "passing"
+  }
+}

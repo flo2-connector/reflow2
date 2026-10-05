@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10fdf5d56f8f2ffa61fc93c4ce83b7e27f845795ec700f38a9cb1fc0fde2d756",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-repair-can-say-what-it-invalidated",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

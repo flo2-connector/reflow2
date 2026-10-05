@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:17f795886eef747707c3de2b43c11fe1d853e6a1ce476df4610e4812f681686d",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Same mechanism, re-measured on 0.74.0: Verification.status is still one enum [planned, passing, failing, skipped, blocked, superseded], with nothing per part, and the qualification went into findings, which no rollup reads.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:sighting-3-a-check-with-three-of-four-evidence-parts-measured-reads-blocked-2026-09-29"
+}

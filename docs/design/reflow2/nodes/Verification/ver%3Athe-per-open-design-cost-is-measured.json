@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:73cd4c0ddd6c64cdaabd6351ed8909cd84b8845574a40bad1c389b960df71edd",
+  "node_id": "ver:the-per-open-design-cost-is-measured",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Run one server, attach one design, read resident memory. Attach a SECOND design and read it again. The delta is the per-open-store cost; the intercept is the per-process cost. One process with one store gives one point and cannot separate them.\n\nReproduce the reading with: grep -E '^(VmRSS|VmHWM)' /proc/$(pgrep -f 'reflow2-mcp.*serve-shared')/status\n\nWHY THIS PARTICULAR MEASUREMENT: it is the single split that decides one-service-many-graphs against process-per-project. dec:one-process-many-stores was accepted CONDITIONALLY on 2026-08-06 and its own risk list says \"N open graphs is N block caches and N tantivy indices, and without a cap a busy server degrades in a way that looks like reflow2 being slow\" — that risk has never been quantified. Every capacity claim on flo2's side is currently arithmetic over this unknown.\n\nRequested by @ajs from flo2's 2026-09-13 session.",
+    "findings": "Re-measured 2026-09-27 with the method now executable (tools/measure_open_design_memory.py), on 4 copies of reflow2's own design (5,616 nodes) with MALLOC_ARENA_MAX=2:\n- intercept about 16 MB;\n- about 36 MB per open design, nearly all private heap (RssAnon 35.7, RssFile 0.7), taken at open.\nThe 2026-09-13 slope of ~5 MB was on small designs. See fact:a-reflow2-sized-open-design-costs-about-36mb-of-heap-and-rocksdb-is-not-most-of-it-2026-09-27.",
+    "kind": "verification",
+    "last_run_at": "2026-09-27",
+    "level": "system",
+    "location": "tools/measure_open_design_memory.py",
+    "method": "measurement",
+    "name": "The per-open-design memory cost is measured, separating per-process from per-store",
+    "status": "passing"
+  }
+}

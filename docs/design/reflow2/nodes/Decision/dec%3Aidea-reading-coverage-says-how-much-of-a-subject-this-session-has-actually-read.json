@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bb37305e3f23f2c63d785cf3f52bf231e32097b5936cdc7e5dadafccf0fadae5",
+  "node_id": "dec:idea-reading-coverage-says-how-much-of-a-subject-this-session-has-actually-read",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming, not as a proposal. The idea is the hxm_program session's, relayed by Anthony on 2026-09-14 and filed there as its first-ranked fix. In its words: \"My failure was confident partial knowledge, not absent tooling. reflow2 served every call, so it knows what this session has read, and it knows what exists on a subject. One line saying 'you have read six of the forty-one change events touching this' would have turned an invisible bias into a number I could not ignore. Every other signal measures what I owe the graph. That one would measure what the graph owes me.\" Options as they stand: (a) a per-subject line on topic_report and where-am-i replies, computed from the nodes this seat has fetched this session against the nodes the subject touches; (b) the same figure on loop_status, design-wide, as \"read coverage\"; (c) nothing, on the ground that the session should read first and a coverage figure only rewards the session that already did.",
+    "kind": "exploratory",
+    "name": "OPEN — should reflow2 say how much of a subject the session has actually READ (\"you have read 6 of the 41 change events touching this\"), since it serves every call and knows what exists? Every other signal measures what the agent owes the graph; this one would measure what the graph owes the agent",
+    "rationale": "Cheap or expensive: the count of what EXISTS on a subject is already computed by the topic view. The count of what this session has READ is not held anywhere today: the usage ledger deliberately records the verb (which tool) and never the object (which node), which is the honest counter-argument and the reason this is an open question rather than a small feature. Recording objects per seat is a privacy and size decision the ledger already refused once. The finding that produced this idea: fact:field-report-hxm-a-progress-deck-was-written-from-a-checklist-and-recency-and-the-design-was-read-only-after-a-challenge.",
+    "status": "proposed"
+  }
+}

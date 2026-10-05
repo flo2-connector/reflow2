@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eaa15cf09acceb24ab73a5068fdd19c1cdd853bb757347c65f17ff5f568ccf1f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:llm",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:llm"
+}

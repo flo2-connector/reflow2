@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be752883e7c0e71d922942a294ec9287e71c62d6bdf517dd62690be9a0136d9d",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_one_tool (main.rs ~731) never reads cli.export_to and never calls start_auto_export. start_auto_export appears only in the long-lived branches (~1281, ~1939, ~2278). clap declares no conflict between --call and --export-to, so the combination parses and the flag is dropped without a word.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02"
+}

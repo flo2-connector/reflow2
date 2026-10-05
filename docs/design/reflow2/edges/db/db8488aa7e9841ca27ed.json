@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba6a6be3c6905a36b99221df862f1e64ed4cdfce6daaff77b3ea80f462c103c3",
+  "edge_type": "REALIZES",
+  "from_id": "art:merge",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:merge"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:244f6c6393752d7cceb914cd25de2cb485fd4233f858737b32153e0522fbd4bf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:skill-loads-are-counted"
+}

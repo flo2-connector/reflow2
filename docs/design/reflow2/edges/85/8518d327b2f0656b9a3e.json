@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44754c2553796d2b0031941460fc2b58b90be7e88f38a7ea092226415800f083",
+  "edge_type": "CONSTRAINS",
+  "from_id": "rule:bl-212",
+  "properties": {
+    "basis": "estimated",
+    "note": "Migrated from docs/backlog.md BL-212 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S."
+  },
+  "to_id": "cmp:ingest"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:574c1572364a84c485d13f06522e427898089b9b12aadc98094b20bb58e79e3e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:34030a6f1064429d35eb55038b5d687dd03194f2db7391d35f4e06587f6877c4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

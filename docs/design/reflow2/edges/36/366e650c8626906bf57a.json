@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ff0b9f8c5d90845fee9b2e4249fea761a6595f3333aad31e34c992e3f7a69d4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door",
+  "properties": {
+    "evidence": "Option (c), every local design at a stable address, is only reachable from the door once a one-shot call can reach a served design; today --remote plus --call drops the call silently.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:398f61c8b22cfc9a61f160097ddbdb1cf91f6380a75259fe7a62451188df2b4f",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "fact:root-cause-the-loops-order-is-fixed-for-the-design-phase-and-the-operations-signal-is-not-in-it-2026-09-28"
+}

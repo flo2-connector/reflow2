@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a72954a679207a250abb95d7d7b7d821c92dedd5a3ac4b73484ddee84a8dae87",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:reflow2-owns-the-host-refusal-and-says-which-flag-2026-09-28",
+  "properties": {
+    "at": "2026-09-28",
+    "note": "The cause (the explanation lived where the operator configured, never where the failure is met, because the refusal came from rmcp) is answered at its root. reflow2 now owns the Host rule in front of every HTTP surface, and the reply and the per-host log name the host, the allowlist and --http-allow-host. Not answered here: candidate (C), an orchestrator's HTTP probe meeting the check. A probe addressed to the pod's own name now gets the readable refusal, but no health route is exempt. That belongs with the degraded-server and readiness fix (issue #616, fix 3 of 4)."
+  },
+  "to_id": "fact:root-cause-the-host-refusal-is-the-librarys-opaque-403-and-the-fix-is-named-only-at-startup-2026-09-28"
+}

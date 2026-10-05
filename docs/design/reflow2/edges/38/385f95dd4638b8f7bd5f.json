@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:095ea9ca9e796b0348b12118055c55a345583ece3ee4e42b579e6a0edb22163f",
+  "edge_type": "CAUSES",
+  "from_id": "fact:flo2-shipped-two-days-of-work-with-no-change-event-and-rebuilt-the-history-from-git-a-day-late",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That measurement is why the ask exists: two days of flo2 work with no ChangeEvent behind it, found at a reconcile pass and rebuilt from git a day late. The cost came first and the requirement is what it produced — which is why this is a levied need rather than a preference.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2003207336f1b83ea8237ef4d9b00c0b803278ddc5b235f55ad032ca90ca9c5b",
+  "node_id": "art:the-export-chains-from-main-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two hermetic tests over a scratch git repository. The first builds the shape dec:export-once-per-pr could not survive — a committed export on main, then TWO exports and a commit on a branch — and asserts both branch exports carry main's hash as prev_content_hash, so a squash lands one hop. The second asserts that outside a repository the on-disk chain still forms and the receipt says why. The first was shown to FAIL against the pre-fix behaviour before it was trusted.",
+    "location": "crates/reflow2-mcp/tests/the_export_chains_from_main.rs",
+    "name": "the_export_chains_from_main.rs",
+    "status": "realized"
+  }
+}

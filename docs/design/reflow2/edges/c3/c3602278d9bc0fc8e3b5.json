@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2e4deba12bd7130712f04fd85d2da4528ed39448a614d1eecd4fd22d7346ceb6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:readiness-gating",
+  "properties": {},
+  "to_id": "req:readiness-gates-the-roadmap"
+}

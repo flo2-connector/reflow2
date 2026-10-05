@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:615e032680156bf3f807dc052304a82ee4c6143c7dc46bdd6ba9621f33dd2504",
+  "node_id": "rel:v0101",
+  "node_type": "Release",
+  "properties": {
+    "description": "Patch. BL-86: the set-based schema stamp — record which types the graph carried (not just counts), so the upgrade refusal names the offending types and splits retired (migrate the graph) from unknown (update reflow2); fixes the pre-removal graph v0.10.0 refused with 'update your binary'. Also: the design-coherence CI gate now runs in the job that builds the binary (it silently never ran — FileNotFound in the no-RocksDB core job). No schema change. Supersedes v0.10.0 in place.",
+    "name": "v0.10.1",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.10.1"
+  }
+}

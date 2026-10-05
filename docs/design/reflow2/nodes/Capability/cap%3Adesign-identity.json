@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5b00a37f5b2a9ee603c4adb9c3e40d58a3431ccf645dfa9318610d97c1b02f56",
+  "node_id": "cap:design-identity",
+  "node_type": "Capability",
+  "properties": {
+    "description": "An id is established on first open and read on every one after, from <graph-path>.id.json — a sibling of the store, because the id namespaces every stored key and so must be known before the design can be read. Minted with zero coordination (creation nanosecond + process + absolute path through fnv1a, no dependency added); the friendly label is a changeable layer on top and never load-bearing. An unreadable identity is REFUSED, never defaulted, because defaulting opens a different design at the same path and reports nothing wrong. THE MIGRATION IS THE FEATURE: a store that already holds a design under the old shared id adopts that id forever, which is what keeps every existing export, chain link and committed record valid — graph_id is inside the export's content hash. Served as design_identity (read, or rename via label).",
+    "name": "A design is given a name nobody negotiates for, and keeps it",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

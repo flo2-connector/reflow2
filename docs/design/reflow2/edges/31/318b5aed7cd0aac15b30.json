@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6a49bef504c9ec8c9668940d099c75231d9c8bdd4bf7f5f0fb3c309e65e5c05b",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:some-edge-types-are-several-relations-split-by-a-property-value-so-a-per-type-reading-is-wrong-for-part-of-them-2026-09-28",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

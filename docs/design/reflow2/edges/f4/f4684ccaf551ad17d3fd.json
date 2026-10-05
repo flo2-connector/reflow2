@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75555dff9d5e5c232ea4808fbb84acc7fdf7ba4db591d87d15b0473cebd77723",
+  "edge_type": "CHANGED",
+  "from_id": "chg:adopt-is-incremental-with-a-frontier-and-a-deferred-derivation-marker",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-the-frontier-is-served-and-a-deferral-is-a-recorded-finding"
+}

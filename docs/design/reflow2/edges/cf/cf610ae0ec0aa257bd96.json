@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0573c1c73bdb31b32392aa30ce3be0d878d8d7c637816a627b3a1b2ac523d512",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-gate-runner-never-passes-having-run-nothing",
+  "properties": {},
+  "to_id": "art:run-ci-gates"
+}

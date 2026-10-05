@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7893ac0193e62ea35a3d1b7697a17818497a064b8ca73a40711035c07844c9fa",
+  "node_id": "rel:v0120",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.12.0",
+    "notes": "Cut 2026-07-25. A minor bump, and the release that ends the consumer-repo churn: the skills AND the ~20 KB working-instructions document are compiled into the binary and served (list_skills / get_skill / get_instructions), so an install leaves a 2.4 KB pointer, the MCP configs and .reflow2/ — nothing a later release rewrites (req:thin-install, on Alex's proposal). docs/upgrading-to-v0.12.0.md is written because this is the first release that REMOVES files from a project. Also ships the two fixes from six concurrent sessions on one graph: a server that never exits silently (one tool reflow2_unavailable plus the reason in the handshake instructions) and --export-snapshot for reading a graph another seat holds. And req:stale-seat-knows: an export that would DELETE design the shared file already holds is refused, naming what would go and the remedy, because a stale export is a COMPLETE document that merges cleanly and takes the other person's work with it. Plus canonical_checksum (a bare hex digest had read as 100% drift), import_graph gaining a path, and the fleet-lessons decisions accepted (dec:identity-out-of-band, dec:advisory-concurrency). Manifest: 63 artifacts with cut-time checksums plus cmp:docs and cmp:skills.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.12.0"
+  }
+}

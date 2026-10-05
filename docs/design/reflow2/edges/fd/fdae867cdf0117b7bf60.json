@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b1738e159380b728679ed21f77c0f4323ece34b687a7c1c2689b41d2f11ba46",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:should-a-realizes-edge-say-that-nobody-checked-the-file-still-obeys-the-rule",
+  "properties": {
+    "authored_at": "2026-08-14",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

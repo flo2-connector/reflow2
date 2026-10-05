@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f06240b9c2540a60558489c6f0d5b22bee4649735102e69cd4785f745b0e59fe",
+  "node_id": "cap:the-record-moved-reaches-an-ordinary-read",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Option D. `read_loop_hint` now computes the sync debt alongside `loop_status` and attaches the record-moved finding to the `loop_hint` that already rides on orientation reads.\n\n⭐ THE FINDING ALREADY EXISTED AND WAS UNREACHABLE. `loop_status` computed `record_moved` correctly and had done since `dec:idea-the-graph-notices-the-record-moved-without-being-asked`; the read hint built itself from the CORE `LoopStatus`, which has no sync knowledge at all. So the pull half of \"he pushes, I pull\" — the only one of four steps that is loud — was loud only inside a call nobody makes on the way past. Same shape as everything else in this increment: the information existed where the person was not.\n\n📌 EITHER DEBT ALONE FIRES. A design whose loop is otherwise CLEAN can still have a record that moved under it, and gating on `clean` would have made that the one case nothing says.\n\n🛑 IT SAYS, IT DOES NOT ACT. The hint names `import_graph` and stops there; import is an upsert and an unasked one would silently overwrite live session work (`dec:ask-not-repair`). That is why option C — import-on-first-use — was NOT taken alongside this one.\n\nThe existing fire-on-change cache carries it: computed once per write generation, so a standing state appears at the first read of a session and then stays quiet, which is the cost bound the read hint already rests on.",
+    "name": "A session is told the shared record moved on any read, not only when it calls loop_status",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

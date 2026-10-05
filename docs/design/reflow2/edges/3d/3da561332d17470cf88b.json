@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4908247271921f154d491b0597a3e4b801e439b7ec14ebccff99542fa3fbeb1b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:certify-restructuring",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:preserve"
+}

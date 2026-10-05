@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f01832dd879ffdadb2283e1e2909af819ff43e84411ec92050ccc18107c34467",
+  "node_id": "chg:a-wish-routed-to-capability-is-not-silent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "dec:exploratory-staging gains the measured Capability half. Its 2026-07-25 finding — that a brainstormed idea is SILENT BY CONSTRUCTION because detect_gaps raises undecided_decision_point only on two or more REGISTERED alternatives — holds for Decisions and NOT for Capabilities. Measured 2026-08-10: 34 of 73 open gaps are the [BL-nnn] rows dec:backlog-is-retired routed to Capability, each generating up to three gaps forever (unmotivated, unrealized, unverified). The two accepted decisions therefore collide, and neither knew it."
+  }
+}

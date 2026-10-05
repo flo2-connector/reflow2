@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfb9b7f2d7eb807025ea711b54c64c4fa6d1b3492c40c6640ff470f74ba0d7b0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:read-only-is-honoured-by-every-client-mode-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

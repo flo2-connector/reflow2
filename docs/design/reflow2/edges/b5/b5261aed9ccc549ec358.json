@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b48654f22833c1835ee44498020d61198594ef52167cfce4609017061f2c419d",
+  "edge_type": "CAUSES",
+  "from_id": "art:upstream",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "upstream.rs accepted a document as a design record as soon as it parsed into GraphExport (observe_one, baseline_hash). GraphExport deliberately defaults every field (graph_id optional since BL-138, nodes and edges default) so a hand-authored document can be imported, so every JSON object parses. Measured: a stand-in server whose export_graph reply was {\"hello\":\"world\"} produced Fingerprint { graph_id: \"\", nodes: 0, content_hash: sha256:0f34… } instead of an error.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-upstream-watch-read-any-json-object-as-a-design-2026-09-27"
+}

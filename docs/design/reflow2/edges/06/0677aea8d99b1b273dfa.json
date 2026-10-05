@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b3c3d45e1d6bd52dd4df29095ca3e2884114b23df8634a99adc421ad2fa345f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:5787ba8537b5656c724c4edd3e5755de8dfcea0860ff0c555d1cb2711e243d50"
+  },
+  "to_id": "art:test-a-server-closes-designs-nobody-is-using"
+}

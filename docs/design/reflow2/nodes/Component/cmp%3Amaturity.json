@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:289f343d884ed626a8ea0ad6256ca42cb67a87acea21e1e1d9496acbb9312453",
+  "node_id": "cmp:maturity",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "maturity",
+    "provenance": "authored",
+    "purpose": "Where a design sits on the trajectory from function to structure. The report that put seams at 0 of 73 and started the black-box work.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

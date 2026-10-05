@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f48fa7b98af9a18dad014b4d285905ed3006a41971796de892bc14d816dbad27",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-gate-is-run-against-the-state-it-will-be-judged-in",
+  "properties": {
+    "approved_at": "2026-08-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

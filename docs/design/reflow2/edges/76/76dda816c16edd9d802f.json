@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a538ab4e51ae219524381d00b514f172b095b57d7aac57e52f80dae7eeac9cc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-add-artifact-takes-the-first-checksum",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-add-artifact-takes-the-first-checksum"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:00cabb21fcad94b30dbf8180128c7dbb669c909cf471c5ba8708aaf9a922b549",
+  "node_id": "chg:corpus-trial-finds-silent-merge-loss",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The dev_storyflow trial ran end to end and found that auto-merge at 90 silently destroyed 4 of 9 crates from a single document — the threshold is inverted for prefixed sibling names, and the defect predates the corpus layer"
+  }
+}

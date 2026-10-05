@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e9750a1c494bbc37c962458846b476e8ea52a1728f3dd3f17d55413c20d13c3",
+  "edge_type": "REALIZES",
+  "from_id": "art:adopt-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "Phase 0 records conventions where they are delivered and registers the adapter"
+  },
+  "to_id": "cap:a-repos-conventions-are-delivered-by-step-and-its-adapter-is-registered"
+}

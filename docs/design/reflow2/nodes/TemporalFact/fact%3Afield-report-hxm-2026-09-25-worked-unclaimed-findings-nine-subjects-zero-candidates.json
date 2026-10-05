@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:be9e88ee3ee105c815611442bcb7f2961d312c3ea7fc6e909fb4f6f8db9adc5e",
+  "node_id": "fact:field-report-hxm-2026-09-25-worked-unclaimed-findings-nine-subjects-zero-candidates",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (hxm_program, 2026-09-25): `unclaimed_findings` gave a crisp \"9 subjects examined, 0 candidates\" at session end — the third hxm session to report an honest empty answer from it",
+    "source": "art:hxm-program-feedback-2026-09-28",
+    "statement": "Recorded so a regression is checkable. Reporter (the hxm_program hub's session of 2026-09-25): \"`unclaimed_findings` gave a crisp '9 subjects examined, 0 candidates' answer at session end.\" The same hub reported this on 2026-08-28 (\"6 subjects examined, 0 candidates — a real 'nothing went stale' answer instead of silence\") and on 2026-09-10 (honest shortlists of 0, 1 and 1). dev_storyflow saw the non-empty case on 2026-09-27 (fact:field-report-dev-storyflow-2026-09-27-worked-unclaimed-findings-scoped-to-a-sessions-changes). What must not regress: an empty answer names how many subjects were examined, so \"nothing is stale\" can be told apart from \"nothing was looked at\".",
+    "subject_id": "cap:the-graph-asks-what-a-session-made-false",
+    "valid_from": "2026-09-25"
+  }
+}

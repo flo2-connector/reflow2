@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:be8c65a58f5be7134a8b951332396381cfd908236cfacd2083284b13f2d8ca78",
+  "node_id": "art:merge",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/merge.rs",
+    "name": "merge.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

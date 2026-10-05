@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:132782867d4f5e01c1128103f37c54565cf74928d78e97048868d779af5be648",
+  "edge_type": "CHANGED",
+  "from_id": "chg:atproto-hash-chain",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:service"
+}

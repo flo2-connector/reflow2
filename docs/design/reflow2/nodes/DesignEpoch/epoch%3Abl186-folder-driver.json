@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a98518c0f7b0392b3239dde0399889788264e27d7176577ffaf022153fab7058",
+  "node_id": "epoch:bl186-folder-driver",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "BL-186 complete: a folder of documents becomes one design, in one batched handshake (2026-08-05)",
+    "sequence": 275,
+    "status": "arrived"
+  }
+}

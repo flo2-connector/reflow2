@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e119edda7491f46c66454f70439310994911b923182faf80f7dcfd023160af5a",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-ephemeral-says-so",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-design-can-be-served-ephemerally"
+}

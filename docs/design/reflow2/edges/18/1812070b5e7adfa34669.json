@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:40af9d8d0c71d5e52c05079e24e55930b0c69acaf719baa011f638cf21e1069c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9a68cfd176d8f9ec2bb08585f7e13dd70586946f823619d57b503a12b8bcbdfd",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:twins"
+}

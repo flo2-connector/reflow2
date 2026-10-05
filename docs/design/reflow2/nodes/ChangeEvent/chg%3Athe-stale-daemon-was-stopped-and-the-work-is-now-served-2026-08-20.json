@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9dcd4c884d89e994e13d708dc06a5b520b1fcf85904a0050185e57e5acefb6ef",
+  "node_id": "chg:the-stale-daemon-was-stopped-and-the-work-is-now-served-2026-08-20",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "The stale shared daemon was stopped and six merged PRs are finally serving",
+    "rationale": "THIS CALL IS ITSELF THE VERIFICATION. `summary` and `rationale` are the fields #256 added to this constructor, and a stale server would have REFUSED them — the request struct is deny_unknown_fields — so the fact that this event exists with both populated proves the new binary is answering. The other four checks passed the same way: hierarchy_issues returned the three predicted findings, scan_nodes(level:\"subsystem\") returned exactly 8, get_skill(\"rules\") named governance-proposal. The lesson worth keeping is the ORDER of what failed: a session restart did nothing, a /mcp reconnect did nothing, and only `--stop-shared` moved it — which is what STALE_NOTE has said since 2026-08-08 and what nothing surfaced until #259 put it on loop_status.",
+    "subject": "system",
+    "summary": "pid 3861122 (`--serve-shared`, up 5h41m) was stopped with `--stop-shared` and respawned from the current binary. PRs #254-#259 are now actually being served, having been merged and green for hours without ever running live."
+  }
+}

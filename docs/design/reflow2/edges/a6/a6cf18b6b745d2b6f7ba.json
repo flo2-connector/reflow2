@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c9d72c42a0353a6207e80b198d5f8c24052ab68d776c9ef4488754c4ae9cdff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-no-per-design-globals"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b1f0fdcc309ebb368309538693454f6872a815561111f9f9f8faad5c67a060a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:review-expiry-reproduced",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:review-expires-on-content"
+}

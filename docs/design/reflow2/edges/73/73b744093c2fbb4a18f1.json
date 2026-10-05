@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d5f7d2186569fe738af9611cd37e224cc69b0d414e1f081b3ee1fc1757cccca1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "note": "An id-only create that stored name \"\" was a silent fallback: a placeholder written where a refusal was owed."
+  },
+  "to_id": "req:no-silent-fallback"
+}

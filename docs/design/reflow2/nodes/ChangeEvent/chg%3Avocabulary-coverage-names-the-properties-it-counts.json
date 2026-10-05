@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5673747d14f73d36be46eba6f50638907575023f35e570d735871ba9a78a4e4",
+  "node_id": "chg:vocabulary-coverage-names-the-properties-it-counts",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "`vocabulary_coverage` names the unused PROPERTIES it has only ever counted — the third leg made general instead of one more special case",
+    "subject": "system"
+  }
+}

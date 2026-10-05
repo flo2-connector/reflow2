@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:6efee3679d99d9bd49066360b0f4460108c1be688875db9746ecf80a40f682a5",
+  "node_id": "ver:a-published-promise-carries-its-evidence",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Five tests in `crates/reflow2-core/tests/a_published_promise_carries_its_evidence.rs`: the check on a published Requirement travels; the check on a published Interface travels; a check on an INTERNAL requirement stays home and so does the requirement; a design publishing nothing still exports no checks; and `SurfaceExport.evidence` names the carried checks, sorted.\n\nOBSERVED FAILING first — the two \"travels\" tests red, the two \"stays home\" tests passing vacuously, which is the shape a carve-out's tests take before the carve-out exists.\n\nALSO MEASURED AGAINST THE REAL DESIGN rather than only the fixtures: 3 of 315 Verifications travel on reflow2's own surface, and two of those three carry internal build paths and ChangeEvent ids in `findings` — which is what turned the disclosure from a documented risk into a named one.\n\nRE-RUN: `cargo test -p reflow2-core --no-default-features --test a_published_promise_carries_its_evidence`.",
+    "findings": "5/5 green 2026-09-22 after two were observed red. Full core suite 183 suites green, both clippy clean.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_published_promise_carries_its_evidence.rs",
+    "method": "test",
+    "name": "The check on a published target travels, one on an internal target stays home, and the report names what left",
+    "status": "passing"
+  }
+}

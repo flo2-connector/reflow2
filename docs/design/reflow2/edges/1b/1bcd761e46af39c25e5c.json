@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2ea871a6c5aa25952daced06da5858c38382525695f560050393aecc85b83d0c",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-quantity-says-how-it-was-obtained",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-quantity-says-how-it-was-obtained"
+}

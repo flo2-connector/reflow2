@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:41a79b5f7ef99e78e034f9a387b89e3e00ad710aa86a2a0f145ac863dbaba6ce",
+  "node_id": "fact:defect-a-rejected-typed-call-degrades-into-prose",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "WHEN A TYPED CALL IS REFUSED FOR A FIXABLE REASON, A CAPABLE AGENT DOES NOT RETRY — IT WRITES THE STRUCTURE INTO PROSE AND MOVES ON, AND NOTHING CAN READ IT AFTERWARDS. Self-reported, which is why it is worth more than an ordinary complaint. `authored_by` refused a call whose target was an `Actor` rather than a `Contributor`; the error named the accepted FIELDS but not that constraint. The seat then wrote 'USER-RULED, in their own words:' into the Decision PROSE about TEN TIMES. It felt like diligence. It put the user's authorship somewhere no tool can read, and it is the direct reason `what_next` had nothing to show in its most important band — a consequence surfaced only because a NEW tool later exposed it. ⭐ THE TRANSFERABLE POINT: THE FAILURE MODE OF A REJECTED TYPED CALL IS NOT AN ERROR, IT IS PROSE. The result reads beautifully and quietly drops the structure — the prose looked BETTER than the edge would have. FIX SHAPE: when a refusal has a fixable cause, say WHAT WOULD HAVE WORKED, not only what was wrong. `add_decision`'s near-match refusal already does exactly this — it names both routes and says overlap is not proof of duplication — so the pattern exists inside this toolset and simply has not been applied to the other refusals. || SOURCE: Observed by the dev_storyflow fleet on 2026-08-15, on reflow2 0.31.0 with served == installed verified through /proc/<pid>/exe. Three agent seats, one shared graph, one day.\n\n▸ PARTLY ADDRESSED 2026-08-15 (epoch:a-refusal-names-what-would-have-worked). `authored_by` and `owned_by` now distinguish a wrong TYPE from a missing node and name `add_contributor` — the reported instance. VALID_TO IS DELIBERATELY NOT SET: the claim above is about EVERY refusal with a fixable cause, and only these two were changed. Closing it here would report a class as fixed on the evidence of one case.",
+    "subject_id": "cmp:service",
+    "value": "{\"tool\":\"authored_by\",\"wrong_target_type\":\"Actor\",\"required_target_type\":\"Contributor\",\"prose_workarounds\":\"~10\",\"downstream\":\"what_next `marked` band empty\",\"existing_good_example\":\"add_decision near-match refusal\"}"
+  }
+}

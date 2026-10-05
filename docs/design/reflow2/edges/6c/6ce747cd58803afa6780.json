@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:48bffbd0093bcc970bbd19cd78c3cae7cfef955cfa5bd904dd4f6776ced00c5f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-four-sibling-constructors-four-status-contracts",
+  "properties": {
+    "evidence": "Option C is that fact's unfinished half. The 2026-08-15 report recorded add_verification as too narrow to say what a check IS; this session found it equally unable to say what a check FOUND. Same constructor, same shape, and any answer here should close both rather than add a third partial fix.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:defect-add-verification-cannot-reach-its-own-fields"
+}

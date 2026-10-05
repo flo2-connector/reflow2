@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:807eb7a566138b980381d25a65c089df7c9664e829c163a1fdcf048c6c60eba5",
+  "node_id": "req:trajectory-position-is-computed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design can be located on the function-to-structure trajectory",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2 shall compute where a design sits on the trajectory from function to structure, reporting each band of that trajectory as a count over a population and naming the lowest as the frontier — and shall never state where the design ought to be, because a demonstrator may correctly sit at function-first indefinitely while a fielded increment may not.",
+    "status": "accepted"
+  }
+}

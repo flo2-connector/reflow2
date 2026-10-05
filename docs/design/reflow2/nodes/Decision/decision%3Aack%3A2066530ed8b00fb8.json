@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:725b70fd69f9193612418ebac3edcd9d231b9ee24fb52d0d6ec5da7cd6ea9f76",
+  "node_id": "decision:ack:2066530ed8b00fb8",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2066530ed8b00fb8.",
+    "name": "Reviewed: gap:2066530ed8b00fb8",
+    "rationale": "User (who:ajs, 2026-07-25): accepted intent, BLOCKED on dec:nested-graphs — the same disposition req:concurrent-planning and the two hosting requirements carry, and left `accepted` rather than `deferred` for the same reason: deferred reads as \"parked, nobody act\", and this is real intent with exactly one thing in front of it. Nothing should be built toward it until the mechanism is chosen, because the three options need materially different machinery: option (a) needs nothing new, option (b) needs a cross-design coordinate, an evidence roll-up and a staleness model at every seam, and option (c) needs all of that plus a rule for where the boundaries fall. Guessing would build for the road not taken. Two things are NOT blocked and are deliberately left as open gaps rather than swept in here: req:key-interfaces and req:modularity-computed. Both serve this requirement when it is built, both are useful without it, and both are the honest next rung — so their gaps stay open, because a gap that names real work owed is doing its job.",
+    "status": "superseded"
+  }
+}

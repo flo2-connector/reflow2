@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:975c68b4ac1d327e6d78be33b4ac42d64f358454a5ea8f66948cc69c1f54dafb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0630",
+  "properties": {
+    "as_checksum": "sha256:94524681284a3bcd44a76a603ec790f9bf53d4fda8991b8dd0e2a8f1c87ff724"
+  },
+  "to_id": "art:contradiction-alignment-test"
+}

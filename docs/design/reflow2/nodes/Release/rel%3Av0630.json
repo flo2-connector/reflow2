@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:af01251a071f4258c93f51afb3e01b45f8c13ff942a61856523c657113e7694c",
+  "node_id": "rel:v0630",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-17 on Anthony's word (\"Then cut v0.63.0\"). Ships six PRs since v0.62.0: #525 — a project is asked from genesis what standard its design artifacts must be in (EnvironmentRule.checker, COMPLIES_WITH from a Project, artifact_standard_undeclared and artifact_not_under_declared_standard); #526 — units declared per quantity, compared at the seam, added only when they match, governed by a per-kind rule (Interface.units, Constraint.unit, CONSTRAINS.unit, DesignRule.units, three sweep findings); #527 — four root causes from two field reports fixed at the cause (Artifact.status undefaulted, the guard reads the request, satisfies coverage and partially_satisfied, CONSTRAINS.basis undefaulted, orphan_level names the cure); #528 — a quantity says how it was obtained (limit_basis, limit_source, source; quantity_without_source, quantity_check_without_executable_form); #529 — the closure report against an owner-declared threshold (closure_report, set_closure_criterion, Constraint.margin, closure_criterion_undeclared, release_report.closure); #530 — the taxonomy decided once before bulk capture (establish-taxonomy skill and /taxonomy, encoding_undecided, add_component.kind). Minor: schema properties added on Constraint, CONSTRAINS, TemporalFact, Project, Interface, DesignRule, EnvironmentRule, Artifact; two new tools and one new skill. The schema stamp did not move (28/65/1); no upgrade note.",
+    "name": "v0.63.0 — the domain artifact standard, units, quantity provenance, closure, the taxonomy, and four root causes fixed",
+    "status": "retired",
+    "unit_type": "container",
+    "version": "0.63.0"
+  }
+}

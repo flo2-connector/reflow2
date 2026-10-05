@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22c513197321325182114ab5f7b0d63236b96ac5a29ea9dd7598535682184426",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:no-per-design-process-globals",
+  "properties": {
+    "pinned": "struct_field_scoping,runtime_behaviour,whether_a_global_is_semantically_per_design",
+    "swept": "declaration_kind,crate,visibility,function_body_scope,macro_form"
+  },
+  "to_id": "rule:per-design-state-is-never-a-process-global"
+}

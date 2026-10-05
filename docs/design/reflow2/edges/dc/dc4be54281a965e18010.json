@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2f88eece3ec3ddb20cf8cfa8421f9a8b170dc56244e4d5ee5a704fc5135c6edc",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:dec:derived-scans-are-memoised-per-write-generation",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

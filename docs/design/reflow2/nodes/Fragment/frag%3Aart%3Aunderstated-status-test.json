@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb2ab5f294b81c9d42ac1e70efc8cefc97b5521044e672dc2f229316004ee9bf",
+  "node_id": "frag:art:understated-status-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/understated_status.rs"
+  }
+}

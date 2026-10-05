@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cbe9b4343f68b4849544628d809f579c31842471ba7bacbfd5c081eca905e0a1",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:defect-rebuild-strands-the-shared-server",
+  "properties": {
+    "note": "Names which of this node's clauses still stands. Its recoverability claim is withdrawn on the record rather than edited out, so the fact that the graph carried a confident untested claim stays visible."
+  },
+  "to_id": "dec:the-stranded-server-correction-stands"
+}

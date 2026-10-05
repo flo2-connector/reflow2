@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5e8c7fed1046dfa3ceae68e6e759acb4b701fb686f4ebfd47d7298f6bbabd70",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-bcc8d2cb7857453a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ophyd-service-fork-feedback-2026-08-31"
+}

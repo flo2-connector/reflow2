@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:03f4cb9248d293ba55f64a6c2ec29e704ef2378fa2f8938d22c410f45d193794",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:defect-a-verification-cannot-record-a-partly-blocked-run",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

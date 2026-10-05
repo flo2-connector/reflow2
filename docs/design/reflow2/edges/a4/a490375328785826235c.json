@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ffa71dea367183062adf0d7f24f54dee1ceed311b23eff7292a06e17a29e20bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-is-asked-why-what-could-go-wrong-and-how-youll-know-in-plain-words",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

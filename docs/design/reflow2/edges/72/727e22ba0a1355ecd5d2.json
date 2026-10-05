@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:520f8e6f5f6c3cf1a83fd131c343d5aa4f20e68d2c6a25ebf038f9d9c22a53a9",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-startup-refusal-and-the-clients-give-up-are-both-thirty-seconds",
+  "properties": {
+    "basis": "causal",
+    "evidence": "The measurement is why the change has the shape it has: t+30.0s against the client 30s is what refuted shortening READY_TIMEOUT and forced the reason to travel instead.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:a-refusal-no-peer-can-resolve-stops-the-wait-instead-of-timing-out"
+}

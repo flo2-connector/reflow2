@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:55e0feaa8e5aecbab99b6cb6940eef59acb6490b4ca49b8e400ced8d7f6e13cf",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-server-closes-designs-nobody-is-using",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:graph-registry"
+}

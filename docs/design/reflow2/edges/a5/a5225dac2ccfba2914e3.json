@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5ec3fa57a9ba7cb4b660cc96da7e620257801e60bf7d55b9f8f6c6e70e03538",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-change-event-is-written-complete-in-one-call",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

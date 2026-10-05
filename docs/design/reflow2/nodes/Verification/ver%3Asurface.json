@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8a61cb1e74d1fe2c4424c53f3d1f389dfe7d1821ca8b1e1182fc73eaeae9f54f",
+  "node_id": "ver:surface",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "llm.rs",
+    "status": "passing"
+  }
+}

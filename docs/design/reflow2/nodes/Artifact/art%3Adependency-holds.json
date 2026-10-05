@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fd506a2b93e4e4b977883c866e58fc217936c9a0e4ca78f872b920e014ec1f34",
+  "node_id": "art:dependency-holds",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "location": "dependency-holds.toml",
+    "name": "dependency-holds.toml — each dated, reasoned hold that lets a dependency stay behind a new series",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1d962db602c00da5683ec99c7f3ffe2f4ef0914e3cf91862681bef9eeb6cb9d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-sweep-says-what-it-could-not-have-found",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

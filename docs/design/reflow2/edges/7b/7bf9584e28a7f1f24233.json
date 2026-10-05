@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2bb3d37bbbdcb816ab0133cc041c9b18dd715bd860ebcfa561068e39cd2c7d6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-write-replies-with-a-receipt",
+  "properties": {},
+  "to_id": "req:a-write-replies-with-a-receipt-not-the-whole-node"
+}

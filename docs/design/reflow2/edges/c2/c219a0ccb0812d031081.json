@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d4b34d12baaa420c9fc74003550ed7439d82354daeb1d623094c922ae6c7a02",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-field-feedback-rule-was-broken-the-same-day-it-was-ruled-on-and-the-half-that-held-was-the-half-already-in-context",
+  "properties": {
+    "evidence": "That record's explanation, that the half whose skill was in context held, did not survive the discriminating measurement: check-health's text was in context too and was also skipped. Read this one as the later and corrected answer."
+  },
+  "to_id": "fact:the-root-cause-skill-is-demanded-by-no-tool-and-named-by-no-trigger-so-it-loads-only-by-luck"
+}

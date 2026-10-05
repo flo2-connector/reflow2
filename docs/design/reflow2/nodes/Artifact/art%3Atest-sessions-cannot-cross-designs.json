@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c763b68292a146727668e64a733043ae3d01272f7bf31a813945e9ad49246ed6",
+  "node_id": "art:test-sessions-cannot-cross-designs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/sessions_cannot_cross_designs.rs",
+    "name": "sessions_cannot_cross_designs.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

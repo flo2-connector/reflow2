@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:48ef298fc91bb28ed9f3f738e6602f8c0f7884534c0e89c6dee9616e0dee3cb4",
+  "node_id": "fact:dynograph-foundations-export-will-not-import-because-five-checks-verify-its-project",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-23: dynograph-foundation's committed design export does not import into current reflow2 — 5 checks VERIFY its Project, the target left unlisted and unruled since the VERIFIES narrowing of August. Found while proving the REALIZES change breaks no consumer; unrelated to it",
+    "statement": "Every other committed design export on the maintainer's machine was imported, in memory, with the REALIZES-restricted build: qbench imports (5 legacy REALIZES-onto-check edges converted and reported), flo2, nymath, wordplay and dev_reflow2 import unchanged. dynograph-foundation is REFUSED — but not by REALIZES: by 5 `VERIFIES ver:<clippy|doc-versions|feature-matrix|fmt|release-mode> -> prj:dynograph-foundation`, 'VERIFIES cannot connect Verification to Project'. That is the pre-existing case schema/verify.yaml already records: Project was deliberately left off VERIFIES' list as 'a separate question… not ruled on', with dev_storyflow's export named as unimportable until somebody decides. This is a SECOND design in that state, and the checks are real project-wide gates (clippy, fmt, doc versions, feature matrix, release mode) — which is some evidence for what the ruling should be. Not acted on: the ruling is the owner's.",
+    "subject_id": "dec:realizes-is-restricted-to-capability-component-and-interface",
+    "valid_from": "2026-09-23"
+  }
+}

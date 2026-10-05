@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2cec14d61f13d46c963457c504f1d03440f956f8f07b789112d50cba24b54472",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-v3",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:remote-sessions"
+}

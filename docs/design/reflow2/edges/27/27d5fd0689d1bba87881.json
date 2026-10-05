@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e7b2f02391608d7b588e6b3618566e2e6bda907fa01f5ae866a9421321f9172",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:one-setup-command-chooses-local-or-remote",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-v0720-the-remote-client-is-released"
+}

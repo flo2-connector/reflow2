@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d47a960a5f2dddeb241d6662aaecb4122a43128975647aa962b5a31d54e33345",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false 2026-10-02: mirrors with project_id through --call now exits 2 naming `mirrors` and `project_id` ('it takes none'); the generated walk probes an unknown key on all 218 closed objects."
+  },
+  "to_id": "fact:twelve-tools-that-take-no-arguments-dropped-every-argument-silently-2026-10-02"
+}

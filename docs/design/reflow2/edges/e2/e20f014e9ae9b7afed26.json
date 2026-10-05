@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac3943cce6610b86d30a2bb8bec696d794991b944c5ea1e56ce3591aad30423f",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:core-api"
+}

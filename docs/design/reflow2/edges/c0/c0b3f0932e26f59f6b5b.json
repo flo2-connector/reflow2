@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba3fc0cae0041af7b0ea02dc312835ee0d390cd842795554b3817fea26a97f6f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:increment-plan"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a17798f5d6fa91be12cc89c5e530b0e2f57ccdaf89145c5c5889adfce107a673",
+  "node_id": "fact:the-sync-roll-test-fails-under-two-concurrent-cargo-test-runs-and-passes-alone",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "observation",
+    "statement": "A SIDEWAYS FINDING, so nothing else will record it. 2026-09-06: two full `cargo test -p reflow2-mcp` runs were started overlapping (one launched before the other finished). In that run, the_sync_roll_is_bounded_and_says_so.rs::a_seat_that_accumulated_records_opens_a_bounded_number_and_names_the_rest FAILED at its 'every record is either opened or NAMED' assertion (line ~87). Re-run ALONE, the same test passed in 0.01 s; the full suite run alone that followed passed 358/358 and later 366/366. No code the failing test exercises had changed between the runs. So the failure correlates with CONCURRENT suite processes, not with the code under test. NOT ESTABLISHED (candidates, unmeasured): the test may read or write a shared path (a temp dir keyed on something not process-unique, or the real .reflow2 sidecar), or it may count records under a time window that a slow, contended machine violates. WHY IT IS WORTH A NODE: a later session that sees this test fail once will otherwise root-cause a phantom in the sync roll. The first check is 'was another cargo test running?' — and the habit to keep is one suite run at a time, sequentially, which is also what every honest measurement this week needed.",
+    "subject_id": "cap:the-record-moved-is-surfaced",
+    "valid_from": "2026-09-06",
+    "value": "{\"test\":\"the_sync_roll_is_bounded_and_says_so::a_seat_that_accumulated_records_opens_a_bounded_number_and_names_the_rest\",\"fails_when\":\"two cargo test runs overlap\",\"passes_when\":\"run alone (0.01s)\",\"code_changed_between\":false,\"cause\":\"not established\"}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:879641d3987d0f3fc59c921c7baa1f78bed193addd717435e87fc72a45656b11",
+  "edge_type": "CONTRADICTS",
+  "from_id": "req:functional-vocabulary-computes",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Corroboration, not conflict. is_entry_point and is_exit_point default to false on every Capability, which asserts 'not an entry point' across the whole design without anyone choosing it — a concrete field instance of the general rule. Found 2026-07-28 via the system_of_systems_graph_v2.py comparison, where three ported functional-mode detectors turned out to be unimplementable because of it."
+  },
+  "to_id": "req:defaults-do-not-assert"
+}

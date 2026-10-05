@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e8763d4722b30e9e0eb40f855ad71aa17c6bef249ac4c9d2d7a1c62a0f80748",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-scope-actually-narrows",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-scoped-answer-says-whether-it-narrowed"
+}

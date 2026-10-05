@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ee456b6fc5c8aba11edc5a4df548c6aec90ca7de5f37730b86bee6c332f58af",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:06ddfa1dc1cc1d49",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:tools-coherence"
+}

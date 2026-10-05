@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8fa23607e6ec799b74edf1d2d018fe32b0d875b44953b20f8fbbfa6492082432",
+  "node_id": "cmp:readiness",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "location": "crates/reflow2-core/src/readiness.rs",
+    "name": "readiness",
+    "provenance": "authored",
+    "purpose": "TRL/MRL readiness assessments, the GATED_ON thresholds an increment states, and the forward roadmap computation that turns them into a delivery epoch with a named reason. Separate from `dimensions` on purpose: a dimension TRENDS a quality axis of the design, a readiness level is a FACT about the maturity of an enabling technology and it GATES.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

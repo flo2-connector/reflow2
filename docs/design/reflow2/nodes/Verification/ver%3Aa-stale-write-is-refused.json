@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:543b93bb18dc46549096d3828a039d9df2c9d54706b65125177caa5e00dbedef",
+  "node_id": "ver:a-stale-write-is-refused",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-17",
+    "level": "integration",
+    "method": "test",
+    "name": "Seven probes across engine and tool: a stale write is refused and names both hashes, the other party's work survives, a deleted node is not resurrected, an unraced write goes through, a caller stating no expectation is unaffected, and the hash is stable across property ordering — MUTATION-CHECKED, discarding the refusal fails exactly the two that should",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1465a13ca177ba5fbe42971d2d98ff3588575e3f6322f240a79487e402463783",
+  "node_id": "snap:epoch:preserved-on-write:cap:closure-reads-a-design-phase-and-a-build-phase",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:report\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:closure-reads-design-done-separately-from-build-done\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"This adds a design-phase reading to closure_report beside today's build reading:\\n- traceability over allocation plus planned checks;\\n- budgets that read `basis`;\\n- parking honoured.\\nEvery reading names its phase. Planned by the 2026-09-29 fix program.\",\"name\":\"closure_report reads a design phase (allocated and traced, checks planned, budgets closing on based estimates, parked items parked) and a build phase (delivered, checked, measured), and names which it reports\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:closure-reads-a-design-phase-and-a-build-phase",
+    "target_type": "Capability"
+  }
+}

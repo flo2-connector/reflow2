@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0f08213d2d548cad602830fcca80a74fc13aecb047e22aefd71f38e9bb4f46e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-module-can-be-read-swapped-and-tested-behind-a-contract",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

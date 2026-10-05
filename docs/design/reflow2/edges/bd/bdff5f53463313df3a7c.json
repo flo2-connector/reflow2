@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:10c4b99d4d39698829c10c9678bfe7a96fc935f5150337aff09312ab5fb4a5a4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-failing-check-whose-findings-name-a-changed-file-is-flagged-rerun-owed",
+  "properties": {
+    "authored_at": "2026-09-06",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a9f54ca5b1af1fa2e4f97084410349912f19fd7aef09f48dc074acfbb50fac3e",
+  "node_id": "cmp:report",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "report",
+    "provenance": "authored",
+    "purpose": "The report module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

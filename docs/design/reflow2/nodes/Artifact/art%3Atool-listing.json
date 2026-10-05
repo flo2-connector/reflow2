@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b69ef7f2f52b2c07af1af11389e3a9e152e07e9d2a07ea80ab87c22d8991770",
+  "node_id": "art:tool-listing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/tool_listing.rs",
+    "name": "tool_listing.rs — the one place an overridden tools/list reply is built; owns the 2026-07-28 cache-hint rule rmcp writes inline in its macro",
+    "status": "realized"
+  }
+}

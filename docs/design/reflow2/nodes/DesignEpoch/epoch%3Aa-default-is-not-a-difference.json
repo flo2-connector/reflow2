@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6a1d859d7987a03358e79e8803600c2461b2c119890c284eb5f583ad139c2e43",
+  "node_id": "epoch:a-default-is-not-a-difference",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "A default is not a difference — stop serializing schema defaults, so absence means nobody said. SPLIT OUT of epoch:planned-one-write-surface, which keeps BL-202/197/204: Anthony ordered THIS half first (dec:fix-the-comparison-before-pointing-it-earlier step 1), and making the whole one-write-surface epoch a prerequisite would overstate what he agreed. Partly landed already in the exporter between 0.25.0 and 0.27.0, so part of this is reconciling the plan with what shipped.",
+    "sequence": 311,
+    "status": "arrived"
+  }
+}

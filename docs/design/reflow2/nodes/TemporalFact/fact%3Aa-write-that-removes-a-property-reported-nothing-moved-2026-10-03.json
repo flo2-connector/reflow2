@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:09040d00d3aa50129317516788093e94efcc247f25e8c112147f39d6aac3849d",
+  "node_id": "fact:a-write-that-removes-a-property-reported-nothing-moved-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: a write that REMOVED a property reported `changed: false`, \"nothing moved\", and kept no snapshot of what it removed. revision_of and preserve_prior compared only the properties the node still held, so a removal was invisible to both",
+    "source": "fix program item 8, --call on a scratch store with the main binary at 293f957",
+    "statement": "FOUND while making external_dependency reply with a receipt (fix program item 8). On main at 293f957, `--call create_node` with {\"rationale\": null} on a requirement holding a 29-character rationale removed it and listed it under `unset`, and its `revision` said `changed: false`, `replaced: []`, \"This node already held exactly what this call passed; nothing moved.\" No preserved-on-write snapshot was taken. The same blindness is why a dependency re-declare that dropped a description said nothing (fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23): crates/reflow2-mcp/src/tools/capture.rs revision_of iterated the NEW properties only, and preserve_prior likewise. Fixed in the same change: a removed property is listed in `replaced` with its prior value and named in `removed`, counted in `shortened`, and preserved. Pinned by a_write_that_removes_a_property_says_what_left_and_keeps_it.",
+    "steps": [
+      "create_node",
+      "external_dependency"
+    ],
+    "subject_id": "art:tools-capture",
+    "valid_from": "2026-10-03"
+  }
+}

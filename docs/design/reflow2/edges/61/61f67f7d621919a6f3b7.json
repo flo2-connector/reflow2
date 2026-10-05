@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d008d07aaafd4fe22a7f9e475b043b3372f384e05ce27117b8fe77c9de3f14c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-change-can-state-its-axis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b4ca7cbb6a663f02ad040bb4b7a0b6ab5491a76250b8b1359dfb5df5fda41b09",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:grok-shell-feedback-2026-08-29",
+  "properties": {
+    "note": "A dated field report from Alex's grok-shell seat, 2026-08-29. Registered so the design knows the evidence exists and where it lives; it describes a moment on one machine and must not be revised as the design moves. Same genre and same ruling as its five siblings. Note this one DOES carry two DOCUMENTS edges — to the finding it produced and to the open decision whose question it answered — which is the ruling working as written: parking suppresses the unattached-document defect, it does not forbid saying what the report bears on.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

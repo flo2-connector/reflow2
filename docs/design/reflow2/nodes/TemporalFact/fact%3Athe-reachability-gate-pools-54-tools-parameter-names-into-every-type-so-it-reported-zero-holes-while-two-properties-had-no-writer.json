@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:73d025bf64eb186602644ab2dee3cd9c48774f1b4f35406dcee2c04624e0a700",
+  "node_id": "fact:the-reachability-gate-pools-54-tools-parameter-names-into-every-type-so-it-reported-zero-holes-while-two-properties-had-no-writer",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "The instrument built to catch properties with no typed writer reported 0 HOLE while two had none, because it pools every non-constructor tool's parameter NAMES into every type's offered set",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening), entries F19 and F19 GENERALISED",
+    "statement": "FLO2 F19: `Requirement.kind` is listed by describe_schema, is READ by the `encoding_undecided` detector that flo2's own users see on the page, and is REJECTED by add_requirement; no `set_requirement_kind` exists. A second instance found the same accidental way: `Verification.location`, documented as 'Path to the test/inspection artifact', rejected by add_verification, with no setter. Their ask was an audit, on the honest grounds that finding two by accident is weak evidence that two is the total.\n\n⭐ THE AUDIT ALREADY EXISTS AND RUNS IN EVERY GATE RUN — tools/vocabulary_reach.py --check, which reported on this same tree: 'OK — 29 unreachable, none new (0 HOLE, 16 written by an operation, 13 unused)'. It was built for exactly this class and it called both of flo2's cases reachable.\n\nMEASURED 2026-09-19, why it cannot see them. tool_parameters() builds a per-type view as that type's constructor parameters PLUS `shared`, where `shared` is every parameter of every tool NOT known to write some type — 54 tools contributing 109 distinct NAMES, attached to EVERY node type at once. So a property counts as writable when an unrelated tool happens to use the same word:\n  · `Requirement.kind` looks offered because `forecast_readiness` and `gate_on` each take a parameter called `kind`. Neither writes a Requirement.\n  · `Verification.location` looks offered because `register_alternative` takes a `location` (the path to a per-branch design export). Nothing to do with a Verification.\nBLAST RADIUS, same measurement: 24 of 238 declared node properties are counted reachable ONLY on the strength of that pool, so 24 is the upper bound of what the gate may be excusing and 2 are confirmed false by direct call.\n\n⚠️ THE POOL IS DELIBERATE AND ITS REASON IS SOUND — the comment says keeping setters, relation tools and indirect writers in is 'what stops this becoming the naive name-match the module docstring rejects for over-reporting'. The defect is that it attaches them to every type rather than to the types they write, so avoiding a false alarm bought a false all-clear. The fix is to narrow the pool by extending the tool-to-type map, NOT to build the audit flo2 asked for: it exists.\n\n⭐ AND THE SHAPE FLO2 NAMES: this is F8/F9/F14 in reverse. There a field existed and was not served, and absence was wrongly inferred from a reply. Here the field exists, a detector READS it, and it genuinely has no typed writer — and the instrument that should have said so was reading names rather than tools.",
+    "steps": [
+      "ci-gate"
+    ],
+    "subject_id": "art:vocabulary-reach",
+    "valid_from": "2026-09-19"
+  }
+}

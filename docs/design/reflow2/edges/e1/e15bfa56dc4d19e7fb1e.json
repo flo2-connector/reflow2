@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8c6cd1982ce269bec70416b35e5043823cd19e3367bf75b884f185a3a45e1996",
+  "edge_type": "REALIZES",
+  "from_id": "art:budget",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named"
+}

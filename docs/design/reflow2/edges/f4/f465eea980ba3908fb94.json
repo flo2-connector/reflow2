@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c209b642cc6129e964613e6581378bcf5262bf1afed3a6c37b493042d6af2836",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "adopt now carries an explicit nesting step in Phase 1 (getting-started/skills/adopt/SKILL.md:50-70): recover the hierarchy, nest with contain_component, give each part a level, then check hierarchy_issues, with the measured before-and-after and a warning about what nesting cannot recover. Recorded as chg:adopt-recovers-the-hierarchy-it-was-never-told-to-look-for."
+  },
+  "to_id": "fact:adopt-never-builds-a-hierarchy-so-every-adopted-design-comes-out-flat"
+}

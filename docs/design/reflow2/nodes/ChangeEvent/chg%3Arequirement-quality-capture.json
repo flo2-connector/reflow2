@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb257c6160fae899c2ec5f53fef1cc0c382f8770d3aa185e5bbdaeadea50af6b",
+  "node_id": "chg:requirement-quality-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Requirement quality criteria captured, split by which party can judge each"
+  }
+}

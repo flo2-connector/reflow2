@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9124a338729766364af003921467ac3c7fdce6f06bad99fedb0412b9c78b2245",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-resolution-fuzzy",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

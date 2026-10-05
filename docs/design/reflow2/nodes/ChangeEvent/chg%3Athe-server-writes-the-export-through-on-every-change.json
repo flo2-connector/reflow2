@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1c9fe9eac8ec23fe4ca2d9072fe11e88ff17f428e52ac12d66da3a92e31dd81",
+  "node_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The server writes the export through after every change, debounced — and declines rather than overwrite a hand edit",
+    "subject": "system"
+  }
+}

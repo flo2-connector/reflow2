@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1c9e4f105d8407e93c47bc8aeed54288de44196ec2f5da9e8919bb366346c535",
+  "node_id": "fact:the-upstream-watch-read-any-json-object-as-a-design-2026-09-27",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-27: the upstream watch read ANY JSON object as a design — `{}` in a watched file, or a server answering with something else, parsed as an empty unidentified export and was fingerprinted — because GraphExport defaults every field for import (BL-138) and the watch trusted a successful parse",
+    "source": "who:claude-code, building req:a-design-watches-another-design-at-the-server-that-holds-it on branch feat/watch-a-design-at-its-address",
+    "statement": "① OBSERVED while building the address watch (2026-09-27). The test a_server_answering_with_something_that_is_not_a_design_is_unreadable failed. A stand-in answered `export_graph` with structuredContent {\"hello\":\"world\"}, and upstream::fingerprint_at returned Ok(Fingerprint { content_hash: \"sha256:0f3471642ec6…\", graph_id: \"\", nodes: 0 }) where `unreadable` was expected.\n\n② THE SAME HOLE IN THE SHIPPED FILE WATCH. observe_one and baseline_hash (since 2026-08-26, #355) took any file that parsed as GraphExport as a design. A watched path holding `{}` or any other JSON object would read as a design with no nodes and no id: `moved` against a real baseline, `graph_id_mismatch` \"belongs to ''\", or a baseline taken against nothing. Nothing in the field is known to have hit it. The measured case is new code; the file case follows from the same parse.\n\n③ CAUSE. GraphExport defaults every field on purpose. graph_id has been optional on the way in since BL-138, and nodes and edges default, so hand-authored documents can be imported. The watch borrowed the import type and trusted \"it parsed\" as \"it is a design record\". Import tolerates an unidentified document because the receiver supplies the identity. A watch cannot, because it compares one named design over time. mirror_surface already draws this line (it refuses an unidentified document); the watch never did.\n\n④ FIX (branch feat/watch-a-design-at-its-address): one helper, upstream::identified, rejects an unidentified document in all three watch readers (the file read, the file baseline, the server read). Each now reports `unreadable`, or takes no baseline. Pinned by a_json_file_that_names_no_design_is_unreadable_and_takes_no_baseline (the file half) and a_server_answering_with_something_that_is_not_a_design_is_unreadable (the server half). BOTH WERE OBSERVED TO FAIL without the check: the server test on first run, and the file test with the check disabled on purpose, then restored.\n\n⑤ NOT ESTABLISHED: whether an unstamped but identified document should also be refused as a watch target. A hand-written record naming a design is still accepted.",
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-08-26",
+    "valid_to": "2026-09-27"
+  }
+}

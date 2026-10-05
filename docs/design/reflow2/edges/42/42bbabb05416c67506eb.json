@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6eb7cef18ec376d0546f6da8a6ef75612acf0d5b69c7a841db047636f8392426",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-signature-is-the-callers-own-where-it-is-written",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

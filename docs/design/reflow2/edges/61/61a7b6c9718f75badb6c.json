@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:84f5317c661650da8fa2768bc907c023ed0d5f9e1d2c13fe89c79dae90996437",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:replies-are-bounded-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:replies-are-bounded-gate"
+}

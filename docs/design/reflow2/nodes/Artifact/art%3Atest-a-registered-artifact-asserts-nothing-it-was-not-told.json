@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ba5ceafc046fcf4b07e99b99384c6e9345b8491aae6b7de98aaa89c5976f5512",
+  "node_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three cases. The first read `realized` against the unfixed schema (the field was materialised on write); the third pins the re-link contract the artifact.rs comment had recorded as a silent downgrade.",
+    "location": "crates/reflow2-mcp/tests/a_registered_artifact_asserts_nothing_it_was_not_told.rs",
+    "name": "a_registered_artifact_asserts_nothing_it_was_not_told.rs — add_artifact stores only the status it is told; link_artifact writes realized on first registration and never downgrades on a re-link",
+    "status": "realized"
+  }
+}

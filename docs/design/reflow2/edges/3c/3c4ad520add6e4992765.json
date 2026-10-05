@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba49a66c5cf3576c87a8ede7f06a53270fcc91877e4c6a81ed43b7c2b1e11e5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:handed-out-seat-liveness"
+}

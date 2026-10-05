@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:84bd22b76da6c09914c517228df2514e25477becbd4f6bdf96232838f5297613",
+  "edge_type": "CHANGED",
+  "from_id": "chg:flo2-proposal-multi-graph-hosting",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:design-reachable-without-the-repo"
+}

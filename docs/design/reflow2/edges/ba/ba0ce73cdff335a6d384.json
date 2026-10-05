@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aeaad5294d7732cbdebb93a3f24a74754615f0d9739896a5a4b4ccd8723a9b62",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-installer-cannot-warn-that-the-graph-dir-is-already-tracked",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The one-line skip is check (1) of the six, already half-built and silently inert. Whether it is fixed in place or absorbed into a wider diagnosis is part of this decision.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-the-kit-diagnoses-a-stale-project"
+}

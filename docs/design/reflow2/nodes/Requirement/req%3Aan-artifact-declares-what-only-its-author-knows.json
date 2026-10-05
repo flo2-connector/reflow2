@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c01f71fca0185bef6faeaf706f95cd6a45821fe9d126457d4eda11f6e134ccf0",
+  "node_id": "req:an-artifact-declares-what-only-its-author-knows",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A registered file says what it stands for and how its content is expected to behave, because no amount of looking can tell",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When something is registered against the design, reflow2 must let its author state two things nothing can observe from the outside: WHAT THE NODE STANDS FOR — one finished thing, a folder deliberately claimed as a single item, or a placeholder still meant to be broken up — and WHETHER ITS CONTENT IS EXPECTED TO KEEP CHANGING. Reports must then tell those states apart rather than reading them alike.\n\nANTHONY, 2026-08-05, answering the standing question (\"was it worth adding, and if so what problem does it solve, or should it come back out?\"): KEEP IT, and write the requirement.\n\nWHY IT IS A REQUIREMENT AND NOT A FEATURE THAT ESCAPED. The two states this distinguishes are OPPOSITE and read IDENTICALLY without it. A directory artifact claims its whole subtree — which is the adopt skill's own rule — so a registration check reported \"every live doc is registered\", truthfully, across 359 individually unreferenceable files, and `coverage_report` counted the directory as covering everything beneath it. \"Deliberately opaque\" (a settled archive, a vendored tree) and \"nobody has got to it yet\" are a DECISION and UNFINISHED WORK, and a report that cannot separate them is confidently wrong rather than merely incomplete. The same shape on the content side: checksumming a live append-only file fires drift forever, so the disposition is owed again on every reconcile and the signal trains its reader to ignore it.\n\nTHE GENERAL FORM, which is why this belongs in the design rather than as two properties: SOME FACTS ABOUT AN ARTIFACT ARE ONLY KNOWABLE BY THE PERSON WHO PUT IT THERE. Neither hashing a file nor walking a tree can say whether a directory was left whole on purpose or whether a file is supposed to grow. reflow2 performs no file IO by doctrine, so it cannot even try — which makes the author's declaration the only possible source, and makes its ABSENCE a silent default rather than an unanswered question.\n\nRECORDED AS THE ANSWER TO A GAP THAT WAS RIGHT TO FIRE. `unmotivated_capability` asked why a capability existed that no requirement wanted, and the honest answer was that it was built from measured friction before the intent was written down. The gap did its job; this is the intent catching up, not the gap being explained away. Note the ordering deliberately: the capability shipped first and the requirement follows, which is the reverse of the loop this project prescribes — worth seeing rather than tidying, because the friction that produced it was real and the design was genuinely silent.\n\nSTATUS `accepted` ON ANTHONY'S EXPLICIT WORD, given 2026-08-05 in reply to the question as asked.",
+    "status": "accepted"
+  }
+}

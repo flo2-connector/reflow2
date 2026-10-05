@@ -167,12 +167,18 @@ fn batch_commit_makes_writes_visible_and_discard_rolls_back() {
             props! { "title" => "committed", "body" => "x" },
         )
         .unwrap();
-    // Buffered: not yet visible.
-    assert!(
+    // Inside the batch a search answers for the batch's own writes, as every
+    // other read does. It used to be empty here — Tantivy's uncommitted text
+    // is invisible — which was harmless until a tool call's write unit made
+    // the duplicate guard search for the node its own call had just written
+    // (dec:idea-a-refused-typed-write-stores-nothing).
+    assert_eq!(
         engine
             .search_fulltext("g1", "committed", None, 10)
             .unwrap()
-            .is_empty()
+            .len(),
+        1,
+        "read-your-own-writes holds for search inside a batch"
     );
     engine.commit_batch().unwrap();
     assert_eq!(
@@ -208,6 +214,116 @@ fn batch_commit_makes_writes_visible_and_discard_rolls_back() {
             .len(),
         1
     );
+}
+
+fn found(engine: &StorageEngine, word: &str) -> Vec<String> {
+    let mut ids: Vec<String> = engine
+        .search_fulltext("g1", word, None, 10)
+        .unwrap()
+        .into_iter()
+        .map(|h| h.node_id)
+        .collect();
+    ids.sort();
+    ids
+}
+
+/// A search inside a batch PUBLISHES the batch's text so far; discarding the
+/// batch afterwards must take it back out, and put back what a revise inside
+/// the batch replaced. Rolling the writer back alone cannot: part of the
+/// batch's text is already committed to the index.
+#[test]
+fn a_discard_after_a_search_inside_the_batch_restores_the_index() {
+    let mut engine = StorageEngine::new_in_memory(ft_schema());
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "kept",
+            props! { "title" => "original", "body" => "before" },
+        )
+        .unwrap();
+
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "staged",
+            props! { "title" => "transient", "body" => "y" },
+        )
+        .unwrap();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "kept",
+            props! { "title" => "rewritten", "body" => "inside" },
+        )
+        .unwrap();
+    // The search publishes both.
+    assert_eq!(found(&engine, "transient"), vec!["staged"]);
+    assert_eq!(found(&engine, "rewritten"), vec!["kept"]);
+    assert!(found(&engine, "original").is_empty());
+    // Written after the publish: still pending when the batch is discarded.
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "late",
+            props! { "title" => "latecomer", "body" => "z" },
+        )
+        .unwrap();
+    engine.discard_batch();
+
+    assert!(
+        found(&engine, "transient").is_empty(),
+        "a discarded create is unindexed"
+    );
+    assert!(found(&engine, "latecomer").is_empty());
+    assert!(
+        found(&engine, "rewritten").is_empty(),
+        "a discarded revise is unindexed"
+    );
+    assert_eq!(
+        found(&engine, "original"),
+        vec!["kept"],
+        "and what it replaced is searchable again"
+    );
+}
+
+/// An inner discard after a publish drops the inner batch's text and keeps the
+/// outer batch's, which then commits with it.
+#[test]
+fn an_inner_discard_after_a_search_keeps_the_outer_batchs_text() {
+    let mut engine = StorageEngine::new_in_memory(ft_schema());
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "outer",
+            props! { "title" => "outerword", "body" => "a" },
+        )
+        .unwrap();
+    engine.begin_batch();
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "inner",
+            props! { "title" => "innerword", "body" => "b" },
+        )
+        .unwrap();
+    assert_eq!(found(&engine, "innerword"), vec!["inner"]);
+    engine.discard_batch();
+    assert!(
+        found(&engine, "innerword").is_empty(),
+        "the inner discard takes its published text back out"
+    );
+    assert_eq!(found(&engine, "outerword"), vec!["outer"]);
+    engine.commit_batch().unwrap();
+    assert_eq!(found(&engine, "outerword"), vec!["outer"]);
+    assert!(found(&engine, "innerword").is_empty());
 }
 
 #[cfg(feature = "rocksdb")]
@@ -421,4 +537,115 @@ fn reindex_inside_batch_errors() {
         DynoError::Storage(msg) => assert!(msg.contains("batch"), "got: {msg}"),
         other => panic!("expected Storage error, got {other:?}"),
     }
+}
+
+/// THE CLASS, at the engine: an index that does not hold what the store holds
+/// must never answer "nothing matched". Measured 2026-10-02 through `--call` on
+/// a held design: the copy it read had an index rebuilt empty, and search said
+/// `{"hits": []}` for a word the store held. Here the index loses its documents
+/// while the store keeps its nodes — the same shape, built in memory.
+#[test]
+fn an_index_that_does_not_cover_the_store_refuses_an_empty_answer() {
+    let mut engine = StorageEngine::new_in_memory(ft_schema());
+    engine
+        .create_node(
+            "g1",
+            "Document",
+            "n1",
+            props! { "title" => "zebra pattern", "body" => "stripes" },
+        )
+        .unwrap();
+    engine
+        .create_node("g1", "Tag", "t1", props! { "name" => "zebra" })
+        .unwrap();
+    // In step: one searchable node (Tag declares no fulltext), one document.
+    assert_eq!(
+        engine.fulltext_coverage("g1").unwrap(),
+        Some(FulltextCoverage {
+            indexed: 1,
+            searchable: 1
+        })
+    );
+    assert_eq!(engine.fulltext_indexed("g1").unwrap(), 1);
+
+    // The index loses the graph; the store does not.
+    let ti = engine.text_index.as_ref().expect("an index");
+    ti.delete_graph("g1").unwrap();
+    ti.commit().unwrap();
+
+    let err = engine
+        .search_fulltext("g1", "zebra", None, 10)
+        .expect_err("an empty answer from an index that holds nothing of the store is refused");
+    let msg = err.to_string();
+    assert!(
+        msg.contains("SEARCH REFUSED") && msg.contains("holds 0") && msg.contains("holds 1"),
+        "the refusal names what the index holds and what the store holds: {msg}"
+    );
+
+    // The open-time repair rebuilds it, says what it found, and the word is found.
+    let found = engine.ensure_fulltext_covers("g1").unwrap();
+    assert_eq!(
+        found,
+        Some(FulltextCoverage {
+            indexed: 0,
+            searchable: 1
+        })
+    );
+    assert_eq!(
+        engine
+            .search_fulltext("g1", "zebra", None, 10)
+            .unwrap()
+            .len(),
+        1
+    );
+    // Covered now, so nothing more to do — and a true miss stays an ordinary empty.
+    assert_eq!(engine.ensure_fulltext_covers("g1").unwrap(), None);
+    assert!(
+        engine
+            .search_fulltext("g1", "okapi", None, 10)
+            .unwrap()
+            .is_empty()
+    );
+}
+
+/// On disk: a store directory without its `fulltext/` subdirectory — exactly
+/// what `--call`'s snapshot copy was — opens onto an EMPTY index. Before
+/// 2026-10-02 that answered every query "nothing matched"; now an empty answer
+/// refuses until the index is rebuilt from the store.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn a_store_reopened_without_its_index_directory_refuses_until_rebuilt() {
+    let dir = tempfile::tempdir().expect("temp dir");
+    let path = dir.path().to_str().expect("utf-8 temp path").to_string();
+    {
+        let mut engine =
+            StorageEngine::new_rocksdb(ft_schema(), &path).expect("open rocksdb engine");
+        engine
+            .create_node(
+                "g1",
+                "Document",
+                "n1",
+                props! { "title" => "zebra pattern", "body" => "z" },
+            )
+            .unwrap();
+    }
+    std::fs::remove_dir_all(dir.path().join("fulltext")).expect("the index directory exists");
+
+    let engine = StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen rocksdb engine");
+    assert_eq!(
+        engine.fulltext_coverage("g1").unwrap(),
+        Some(FulltextCoverage {
+            indexed: 0,
+            searchable: 1
+        })
+    );
+    assert!(engine.search_fulltext("g1", "zebra", None, 10).is_err());
+    assert!(engine.ensure_fulltext_covers("g1").unwrap().is_some());
+    assert_eq!(
+        engine
+            .search_fulltext("g1", "zebra", None, 10)
+            .unwrap()
+            .len(),
+        1
+    );
 }

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:675d8b4c7a04580eb21fb445657cdea9a23ece1d35bdd57419649c4fdbaeb6bf",
+  "node_id": "chg:accept-e1668bec9f44fdce",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-22",
+    "name": "DOC COMMENT ONLY — no behaviour moved, so the design HOLDS; the code was always right and only its description of itself was stale. `verifies()` carried `/// target_type is required because the schema allows any target`, true until 2026-08-08 when `to: \"*\"` became an enumeration precisely so `unverified_enforced_rule` could be asked. Admitting Interface makes it doubly wrong: a reader taking it at face value would conclude no schema edit was needed for that change at all. Replaced with the true reason (the target type is not inferable from the id) and a pointer to schema/verify.yaml as the authority, where the list now carries the reasoning for every type on it and for Project being deliberately off it. Recorded as `defect_fix` rather than `refactor` because nothing was restructured — a false statement was corrected. There is no `documentation` change type; the legal list has no room for \"the code was right and the comment lied\", which is worth noticing given how this project keeps finding records that disagree with what they describe.",
+    "subject": "system"
+  }
+}

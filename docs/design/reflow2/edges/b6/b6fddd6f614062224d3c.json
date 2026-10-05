@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:49c7cb8157c91382e36cf366162bd84de1be96bb54e2d783271f11d9a912456f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-one-tool-declares-its-output-contract",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:one-tool-declares-its-output-contract"
+}

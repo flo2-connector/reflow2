@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:50d177903f8a3b5fad1d4e145a35eaf1ec6a3e520f3758967df528414f40555f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:coverage",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:coverage"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b5eca441a9e3b25ba2062bdf60c3efaa9aae25dec7b2fb6548c2f99375a0595",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:the-isolation-proof-runs-against-the-image-that-ships",
+  "properties": {
+    "evidence": "That requirement already asks for the proof to run against the published image rather than the crate, which is option (c) of this idea recorded earlier and still unsatisfied."
+  },
+  "to_id": "dec:idea-what-regression-corpus-guards-the-upgrade-path"
+}

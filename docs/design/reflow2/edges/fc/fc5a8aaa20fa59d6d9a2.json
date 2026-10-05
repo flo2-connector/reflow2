@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2dd855abcdfa0379dabcee0855aa8078473b950e286c27433746dab9b2aac217",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-status-that-advances-past-its-own-prose",
+  "properties": {
+    "evidence": "The idea, captured 2026-09-02 from the dev_storyflow report, turned over four options A-D. Anthony chose A on 2026-09-04 ('build the status-vs-prose sentence') and this capability is that build: one block in the reply the caller already receives, at the moment the divergence is created. The decision's status is left `proposed` deliberately - the ruling is his and recording it as accepted on his behalf is what dec:certainty-derived forbids."
+  },
+  "to_id": "cap:a-status-advance-says-whether-its-prose-predates-it"
+}

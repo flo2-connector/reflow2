@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:205598a62e17063dd881096650b553c3ea59ae68417d89e066c6a3c5e2187520",
+  "node_id": "chg:the-memory-boundary-is-settled-into-three-places-and-the-rule-is-delivered-at-the-step",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "The memory boundary is settled into three places, and the rule that says so is delivered at the step",
+    "rationale": "Anthony 2026-09-19: 'Promote your recommended fix.' Options (a) and (b) of the brainstorm; (c) dropped because reflow2 cannot see an agent's memory directory and should not learn to; (d) kept as the unbuilt local check; (e) dropped as the status quo that produced the problem.",
+    "summary": "The rule's operative sentence now names ENCODE / GRAPH / MEMORY and sits inside the 600 characters a served lesson carries; the rule gained `steps` (capture-session, root-cause, triage-feedback, record_finding, add_design_rule); the dated ruling, its measured basis, its stated limit and one withdrawn counter-argument were appended with replace_text rather than a full-field rewrite."
+  }
+}

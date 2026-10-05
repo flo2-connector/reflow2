@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:152af4c3f78aaaff2a9ebd0c2d775c2f0c187c88b110292736b3723b2b13efa4",
+  "edge_type": "REALIZES",
+  "from_id": "art:dimensions",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:dimensions"
+}

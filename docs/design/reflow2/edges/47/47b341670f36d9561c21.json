@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c20c4705b8ca64128a650f0cd3c040eaf7afd1b84353b352ff7bd26b4b27dbf3",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-finding-has-somewhere-to-put-its-evidence",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:instruments-stop-overstating"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:befdaa0927b93bd594c6e27b190875f71794067e6169d5d58e5778f46472af7d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:select-graph-by-id",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:registry"
+}

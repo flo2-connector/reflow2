@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3fd079d242743f9c08e505dde25d0471dcdf53e8b0f15ef56aa08dc9b024ed72",
+  "node_id": "chg:settling-a-decision-records-which-option-won",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-20",
+    "name": "Settling a decision records which option won",
+    "rationale": "flo2 F12, promoted 2026-09-20 on Anthony's word and built last in the order he agreed. The free-text field was chosen over registering prose options as alternatives (far larger) and over leaning on replace_text (two acts where the user performed one, with nothing tying the new heading to the settlement).",
+    "summary": "structure.yaml: Decision.chose declared; service.rs: the `chose` parameter on SetDecisionStatusReq; exchange.rs: written at the moment the status moves, and named in the tool description; one test file; eight struct literals gained the field; CHANGELOG."
+  }
+}

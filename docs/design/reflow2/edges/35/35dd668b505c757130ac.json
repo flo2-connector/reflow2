@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:228628178c8623e99911067134102bab4c8e941f17c59467c424d09b4d9b5c3a",
+  "edge_type": "REALIZES",
+  "from_id": "art:depends",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-declared-dependency-is-watched-not-imported"
+}

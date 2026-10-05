@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:36683acffff3b2b4aa92170a0b0976845f920c095dc07aa47a3f67222cd47ad7",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:vocabulary",
+  "properties": {},
+  "to_id": "fact:bl-120"
+}

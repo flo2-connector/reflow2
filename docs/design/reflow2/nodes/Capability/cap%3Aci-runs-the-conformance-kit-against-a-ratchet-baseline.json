@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75f0a6fd400b782e1b1ba72a492b8c2cbf0f5bf01a1c3afc50e3d9d15dda892e",
+  "node_id": "cap:ci-runs-the-conformance-kit-against-a-ratchet-baseline",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A CI step that fetches the pinned kit and vocabulary version, runs it over reflow2's schema, code and a real design, fails on any mechanical gap not in the committed baseline or any fixed gap left in it, prints the baseline length, and prints the behavioural results without failing.",
+    "name": "reflow2's CI runs the pinned conformance kit against a committed ratchet baseline, gating mechanical checks and reporting behavioural ones",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

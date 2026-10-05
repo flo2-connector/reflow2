@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:69e5744c59d788cac8e85992663a626ebdd383d4b84eb3d8e3e8e390b9f6fd88",
+  "node_id": "art:the-build-question-is-silent-while-nothing-is-built-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_finding_says_when_the_state_is_normal_for_the_phase.rs",
+    "name": "a_finding_says_when_the_state_is_normal_for_the_phase.rs",
+    "status": "realized"
+  }
+}

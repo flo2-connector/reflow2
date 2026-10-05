@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6890370c40497ad1fe1250b7412cdf05f48d677d531874fa72856f7de9a0eab5",
+  "node_id": "fact:the-prohibition-detector-finds-30-of-1003-and-the-gap-to-the-estimate-is-the-exclusions",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "name": "MEASURED before merge: 30 of 1,003 scanned nodes carry an unfiled prohibition — half the regex estimate, and the difference is exactly what the rule refuses to nudge",
+    "statement": "MEASURED 2026-09-14 on reflow2's committed export (4,477 nodes) with the shipped detector, before merge.\n\nTHE NUMBER: 30 of 1,003 scanned nodes — Requirement 14, Capability 9, accepted Decision 7; Component 0, Interface 0. One aggregate finding at severity 0.35, among 35 gaps in the whole design.\n\nWHY IT IS HALF THE MORNING'S ESTIMATE. fact:capture-is-blind-to-three-families-… estimated ≈61 from a regex over EVERY node's prose including ChangeEvents, TemporalFacts, Verifications, brainstormed Decisions and the rationale field, then sampled 9/10 genuine. The shipped rule excludes all of those on purpose: records and checks are not intent, a proposed Decision's \"must never\" is a musing the brainstorm skill says not to nudge, and a rationale is the why. So ≈31 of the 61 were sentences the detector is DESIGNED not to raise, and the 30 that remain are the ones a reader should actually file or dismiss. The estimate was right about the practice and loose about the population; the rule is the tighter statement.\n\nWHAT THE 30 LOOK LIKE (from the evidence line): cap:describe-design-at-path (\"something-unnamed must never read as nothing-here\"), cap:capture-registers-its-source, cap:a-session-reports-the-work-it-did-by-hand (\"the report must never become telemetry\"), cap:a-declared-wall-is-checked-against-the-coupling-it-contains, req:the-kind-of-system-is-established-before-its-parts-are-captured (\"it must never determine which analyses reflow2 will run\") — standing house prohibitions, each of which a Constraint could bind to the node it governs and a check could then read.\n\nFALSIFIED BOTH WAYS, run not assumed: detector disabled → 5 of 11 fail (every positive); every exclusion widened at once → 5 of 11 fail (every exclusion). The remaining test (parked, silence) cannot fail by construction and says so.\n\nBOUNDS: one design, a self-host. Six phrases; \"shall not\" and the closed-set row deliberately outside. Whether the 30 SHOULD become Constraints is the reader's ruling, not this record's.",
+    "subject_id": "cap:a-prohibition-living-in-prose-is-noticed-once-as-a-practice",
+    "valid_from": "2026-09-14",
+    "value": "{\"scanned\":1003,\"flagged\":30,\"by_type\":{\"Requirement\":14,\"Capability\":9,\"Decision\":7,\"Component\":0,\"Interface\":0},\"severity\":0.35,\"total_gaps_in_design\":35,\"regex_estimate\":61,\"tests\":11,\"fail_when_disabled\":5,\"fail_when_widened\":5}"
+  }
+}

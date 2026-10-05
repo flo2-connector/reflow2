@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:efe7b64d2861037c835bbe961434123820a5a0b81adfabdfff0d57b0ad258d99",
+  "node_id": "ver:a-write-records-the-agent-beside-the-person-it-acts-for",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Drives the served surface in-process: enumerates every settle path from the tools own _meta[\"reflow2/settles\"] declaration, signs each with the person through the request _meta route naming the agent, and reads the export: every approver edge carries approved_via = [the agent], the agent is ACTS_FOR the person, and the agent is never an author or approver. Also: a credited write carries authored_via; the session declaration and the client handshake name each name the agent (a stranger client names nobody and nothing is minted); loop_status assigned decisions say acted_through or \"no agent known\"; a settle with no approver through an agent still carries nobody name; an unknown agent and a person named as the agent are refused before anything is written. The core file pins stamping, role-scoping, the generic edge path, self-exclusion, refusals, client matching and export/import.",
+    "findings": "Failing first on a clean origin/main build (db305d4) under the shared build lock: 6 of 7 failed (every settle path named [] as approved_via; a credited write carried no authored_via; writes_for refused acting_agent as unknown; no acted_through note; an unknown agent was not refused; the client name found nothing); the 7th, naming an agent signs nothing, passed as regression cover. On the fix: 7 of 7 pass, core 8 of 8, and the neighbouring suites (writes_for, settles, revise, globals, bulk draw_edges, receipts, find_tools ranking, derived relations, tools, lens, loop_status) pass after merging #629, #630 and #631.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_write_records_the_agent_beside_the_principal.rs",
+    "method": "test",
+    "name": "Every settle path and a credited write record the agent beside the person; a session, a request and the client name each name it; no agent known is said plainly; naming an agent signs nothing; an unknown or person agent is refused",
+    "status": "passing"
+  }
+}

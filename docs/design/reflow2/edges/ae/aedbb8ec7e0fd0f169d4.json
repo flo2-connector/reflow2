@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0f8750b15b593447ff239b99a338b483a38eaeabd524f65e184b9957f5adfc6",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:tool-call-markup-bleeds-into-the-last-prose-field-and-typed-fields-catch-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "alignment=supporting. All five were caught by reading the tool's echoed reply rather than by any check — which is exactly the habit that rule exists to install, doing the work it was written for. Three of them would otherwise have been stored silently and looked like prose somebody meant."
+  },
+  "to_id": "rule:success-is-read-from-the-authoritative-object"
+}

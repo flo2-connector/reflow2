@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4d2ea1b9f286fe25ecb9022cc540b7e5de4c36493faeeefcf88e44ff3becf7fe",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:dependency-currency-checker",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:dependency-currency-checker"
+}

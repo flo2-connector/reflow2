@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:20479390aaecb42a0bb943974ba1bf4d22d45a2fa53d655de93bd473e9fa9150",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:exclusive-local-store",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

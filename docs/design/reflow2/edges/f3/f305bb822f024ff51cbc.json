@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57f4882e2b793430df6fc0fee07350ae9c43bfe5b2094832a7b86f65740af02a",
+  "edge_type": "REALIZES",
+  "from_id": "art:dto",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:dto"
+}

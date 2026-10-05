@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:139d84f6f68978f320186080d5f12f72797dd13bcb0ef221340bbcdae185a1a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl176-orphan-attachment",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:heal"
+}

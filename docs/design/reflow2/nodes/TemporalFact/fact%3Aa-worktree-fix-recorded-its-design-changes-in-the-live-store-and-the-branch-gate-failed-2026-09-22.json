@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:02b750bbdfd6d449f2659c73371753ec70dd918233a7f6503057af93f9d37769",
+  "node_id": "fact:a-worktree-fix-recorded-its-design-changes-in-the-live-store-and-the-branch-gate-failed-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-22: a fix built in a worktree recorded its design changes in the LIVE shared design (which saves into the main checkout), so the branch shipped code with no matching design change and the coherence gate failed CI with checksum_change x3",
+    "source": "PR #571 CI run 35800987532 (workspace job, Design coherence gate); dev_reflow2 hub session",
+    "statement": "OBSERVED on PR #571. The fix was built from the dev_reflow2 hub in a separate worktree (branch fix/shared-attach-by-any-path-spelling), while the owner's session kept working in the main checkout. The hub recorded the fix's design side (root cause, defect_fix ChangeEvent) in the LIVE shared design, served by the one shared server, whose write-through export lands in the MAIN checkout's working copy. The branch therefore carried code changes to three registered artifacts and a design export still naming their old checksums. CI's coherence gate failed: `checksum_change` on art:shared, art:main, art:agent-instructions (\"reflow2 check: FAILED — 3 finding(s)\"). The gate was right. REPAIRED as cap:parallel-work intends: the branch's committed export was imported into a worktree-private store (root = the worktree, so it measures the branch's files); in it the change was recorded, the three checksums were accepted with per-item dispositions, and the new gate test was registered. It was exported onto the branch (bf3f3a4); the local gate then read OK. WHAT IS MISSING IN REFLOW2, recorded as the finding rather than a diagnosis: nothing tells an agent that there are TWO kinds of design write when it works on a branch while a shared server is live. Writes about WHAT the design is (requirements, ideas, findings) belong in the live design. Writes about what THIS BRANCH changed (checksum acceptances, the ChangeEvent for its code, new file registrations) must travel with the branch. The shared-sessions model and the parallel-work model each describe one side; an agent holding both connections (a hub, or any session that uses a worktree) gets no guidance on which write goes where, and the default (the live one) is wrong for the second kind. Side effect to watch: the same ChangeEvent id now exists in both stores with near-identical content.",
+    "subject_id": "cap:parallel-work",
+    "valid_from": "2026-09-22"
+  }
+}

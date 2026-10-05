@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0d79337e73922aebdc7c999681c85896b8f7c69c5a951232e56783395a210240",
+  "node_id": "chg:accept-559b8b69621b3816",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-13",
+    "name": "v0.60.0 cut: the version string moved 0.59.0 -> 0.60.0 and nothing else. The design meaning of a cut lives in the Release and its epoch, not in a version literal, so the design holds. ACCEPTED BEFORE release_includes_all runs, deliberately: the manifest freezes each artifact's CURRENT checksum, and accepting afterwards would record that this release shipped the pre-bump file.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d843be12da2104dc8810b34796f96e9d673519f07ec3a1794ada90ad3196cd4a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-closure-reads-a-design-phase-and-a-build-phase"
+}

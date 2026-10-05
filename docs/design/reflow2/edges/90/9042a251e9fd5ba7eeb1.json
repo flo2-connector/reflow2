@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:48d5f9f4aa4a9a5ca9baf79ebf533fd68bafc41eec2b0aa8242a3ed1442b4951",
+  "edge_type": "REALIZES",
+  "from_id": "art:replace-text-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard"
+}

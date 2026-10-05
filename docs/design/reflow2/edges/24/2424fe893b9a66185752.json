@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e56ade9ad0d92de4788d2c148fc29ee5dc30eecad81a5a7ccf6ff222724a1cf8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:memory-backend",
+  "properties": {
+    "note": "An interchangeable implementation behind ifc:kv-backend; what it is for is the contract it PROVIDES, not a function of its own.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:an-interchangeable-backend-is-named-by-its-contract-not-by-a-function"
+}

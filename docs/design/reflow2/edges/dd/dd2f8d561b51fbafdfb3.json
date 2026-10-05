@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8244f72fa20b356f8d196529354fb505a19eaeb1952ea6ddcda5c26dea619bb6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-to-record-relations-are-modelled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

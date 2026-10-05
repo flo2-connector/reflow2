@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:316cd385a4ab7bee7096e49e76255ed2bfbfef83da99be974e25ad0509619e87",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-check-closes-at-a-stated-evidence-grade-under-an-owner-set-rule",
+  "properties": {
+    "evidence": "Each option answers the measured cause: a stale check leaves attention only by its own run, and neither other evidence nor an owner's ruling can answer it."
+  },
+  "to_id": "fact:root-cause-a-stale-check-leaves-attention-only-by-its-own-run-and-other-evidence-cannot-answer-it-2026-09-28"
+}

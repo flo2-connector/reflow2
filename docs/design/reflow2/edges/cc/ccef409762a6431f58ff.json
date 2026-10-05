@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d91bf65c394ace5fd9ee8abb70eac999515cf8e81d9a4e81f4e6fb683cb987bb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:skill-ingest-corpus",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:skill-ingest-corpus"
+}

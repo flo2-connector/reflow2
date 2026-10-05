@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d6a4abe592548f4437b881669bdbfd1fdcd093d20d949358e98535feed76a62e",
+  "node_id": "chg:the-graph-read-side-becomes-a-contract",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The read side of the graph is specified as a contract — `ifc:graph-read`, five operations derived by counting every call site in reflow2-core, with its exclusions and its error model written down. Provided by cmp:graph, consumed by the 16 modules measured to read the store and never write it. This is step 1 of making a module swappable, independently testable and independently optimisable: the spec is the test of whether the boundary is real, and it comes before any Rust.",
+    "subject": "record"
+  }
+}

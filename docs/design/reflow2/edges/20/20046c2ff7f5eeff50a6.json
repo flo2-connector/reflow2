@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:934b6abe3abb36a1f0d96af15fea6f030bc44bb7ef3b1bd80e0cf6b3a4ec8d6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:taxonomy-command"
+}

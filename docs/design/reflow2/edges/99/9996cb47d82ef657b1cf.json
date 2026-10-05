@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b56f371ad4e3a9930517f1bfe233d3229d35a36332786dedf27d7dd0535bea7d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claim-liveness",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:claim-liveness"
+}

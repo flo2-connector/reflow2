@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:00d6e73dfc5460eac7fa0a1efa3db9bad16fde7c3306a837469427fb6bc82c6b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5bce5511379f9f153aae300433f80b107d2eef1249931ad8c107bc9535b73da8",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:onboarding-skill"
+}

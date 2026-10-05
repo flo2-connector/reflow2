@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d16404502083b0f46db98b6f904c1a73d0fd2c3475eea52394eba85b6b8e6f2e",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f035e115dd711c7900692920b45cf9674d88077a50a3e3ac70370736979e6141",
+  "edge_type": "REALIZES",
+  "from_id": "art:reflow2-rebuild",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-session-serves-a-release-binary"
+}

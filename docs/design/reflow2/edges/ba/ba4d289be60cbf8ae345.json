@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4976415fd71de910bd1ab543649baf05d70d710a45894704c72774e9539cdfab",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-session-that-reads-and-never-writes-is-the-one-the-loop-cannot-see",
+  "properties": {
+    "evidence": "Promoted 2026-09-18: options (a) the skill line, (b) loop_status per-seat reads/writes and (c) the stop hook's inverse all taken; (d) cap:session-memory remains the wider capability."
+  },
+  "to_id": "req:a-session-that-reads-and-never-writes-is-seen"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aeb64f01b694c9340a6972c9e6920ac20f2e20f41c354001b3dd68b1da773157",
+  "node_id": "decision:ack:66c6e5b6a10c8ac3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:66c6e5b6a10c8ac3.",
+    "name": "Reviewed: gap:66c6e5b6a10c8ac3",
+    "rationale": "Same standing disposition as the other planned-but-unbuilt capabilities in this thread (the user's 2026-07-23 call, applied again 2026-07-24): cap:coverage is `planned` and captured today from Anthony's storyflow field report; nothing is built yet, so a Verification node would have nothing to run against. It arrives with the build (BL-95). Note that this gap is itself an instance of what BL-95 exists to fix: the detector can tell us a capability we DID model lacks a check, and cannot tell us anything about the parts of a system nobody has modelled at all.",
+    "status": "accepted"
+  }
+}

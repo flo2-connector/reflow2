@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:359e9b737cee8687b28f32fbc1717a3083c77358197d6b09d4bc811890b8b988",
+  "node_id": "rule:bl-212",
+  "node_type": "DesignRule",
+  "properties": {
+    "enforced": false,
+    "name": "[BL-212] A folder of documents carries no recoverable chronology, so EVOLVES_INTO and SUPERSEDES — both directional — can never b",
+    "statement": "A folder of documents carries no recoverable chronology, so EVOLVES_INTO and SUPERSEDES — both directional — can never be drawn from a corpus\n\n*Found 2026-08-04 while capturing [req:accreted-intent-becomes-a-design].* The vocabulary for \"someone changed their mind over years\" is already there and is entirely unused for this: CONTRADICTS carries alignment: opposing\\ | supporting with confidence and evidence, EVOLVES_INTO is literally *\"source is an earlier form that becomes target over time\"*, SUPERSEDES/OBSOLETES retire on the record, and TemporalFact holds a time-bounded assertion with VALID_FROM/VALID_TO. All of it needs to know which document came FIRST, and a folder cannot say. File mtimes lie (checkout, copy, sync all rewrite them), a document corpus may have no git history at all, and the dates inside documents are prose. This is the exact inverse of the bug fixed in this same increment: there, arrival order wrongly decided the canonical NAME and the fix was to stop consulting order; here order genuinely carries meaning and there is no way to learn it. So the honest default is that a corpus ingest draws CONTRADICTS (symmetric, needs no direction) and NEVER EVOLVES_INTO/SUPERSEDES (directional) unless a human or an explicit in-document date supplies the arrow — which makes \"you changed your mind here\" answerable and \"this replaced that\" a question. Candidate signals worth measuring before choosing: an explicit date in frontmatter or filename, git log --follow --diff-filter=A first-commit date where a repo exists, and the corpus's own supersession language (\"replaces\", \"superseded by\"). Do not infer the arrow from mtime. Size S\n\nMigrated from docs/backlog.md BL-212 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S."
+  }
+}

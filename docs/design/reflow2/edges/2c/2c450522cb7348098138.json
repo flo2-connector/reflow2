@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ff0be255570fd60b5c58cb3d0869cafa38132676fb95ed8076a417e18f02a2fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

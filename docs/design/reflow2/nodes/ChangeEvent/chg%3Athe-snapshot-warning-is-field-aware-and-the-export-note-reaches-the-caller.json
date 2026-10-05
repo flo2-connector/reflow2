@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c1b99f3fda2196b1c9d4422c6270720cc7f2e770e809ba8cfc4510c64f244ccb",
+  "node_id": "chg:the-snapshot-warning-is-field-aware-and-the-export-note-reaches-the-caller",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Two wrong-in-the-reassuring-direction reports fixed: a snapshot warning that was false and prescribed a corrupting undo, and a durability aid that was written, tested and filtered out of everything served",
+    "rationale": "Both came from the dev_storyflow reflow2_feedback.md read of 2026-08-23 (411 new lines since the 2026-08-16 triage at 6,203). Both were reported by a session that DISBELIEVED a reassuring answer and checked — one read the snapshot back by hand, the other re-exported as a control and got `wrote: changed` against a green verdict. Neither would have surfaced from inside.",
+    "subject": "system",
+    "summary": "`prior_state_coverage` replaces a whole-node snapshot test with a field-aware one, so a revising write stops claiming \"no snapshot holds the state it replaced\" about a value the snapshot holds verbatim. And `loop_status` now surfaces the unexported-work sentence in `next` — it already existed on the in-step line and was filtered out because `in_step` is not `is_actionable()`."
+  }
+}

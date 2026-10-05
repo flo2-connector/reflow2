@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e9eb9e98c149ff11633b4634d45e9631546d5b8b82083dc2dfe81787cf4867c3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0540",
+  "properties": {
+    "as_checksum": "sha256:8c3c78378baf76139a8f8ccd64c4947fca6edb5ce70aad1712f0397daeb0e78f"
+  },
+  "to_id": "art:fielded"
+}

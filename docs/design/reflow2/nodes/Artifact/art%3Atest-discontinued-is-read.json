@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9adce327fb631cb8a54d7e04d560ffa4547db3aeeb55171fd6258d6ff3e6ff3b",
+  "node_id": "art:test-discontinued-is-read",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/discontinued_is_read.rs",
+    "name": "discontinued_is_read.rs — eight cases: the defect, the authority check, the cascade, the visible count, two counterweights, and the two that pin the VOCABULARY saying where abandonment lives",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

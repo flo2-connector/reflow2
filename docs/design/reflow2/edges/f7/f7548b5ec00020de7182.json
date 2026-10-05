@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e854d235bb58ec064ab081f67463e34c3da4c8fdf927079e4ec83011d914ad8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-an-ingesting-agent-ask-what-the-graph-already-holds-without-paying-to-read-it",
+  "properties": {
+    "evidence": "That question asks how a large corpus should be mass-ingested at all; this one asks what the agent can cheaply ask the graph while doing it, so it is a sub-question that only matters once a strategy exists.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-corpus-ingest-strategies"
+}

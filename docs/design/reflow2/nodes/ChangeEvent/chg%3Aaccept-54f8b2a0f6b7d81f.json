@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:702b941e53167165f54dea4c4feffa9c99fcb3a8e0d0d4d7fe0d29290e5901d5",
+  "node_id": "chg:accept-54f8b2a0f6b7d81f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-07",
+    "name": "v0.50.0 cut, step 1: the version claim in reflow2.toml moved 0.49.0 → 0.50.0. The design meaning of a cut lives in the Release and its epoch, never in a version string; accepted BEFORE the manifest is frozen so the release ships the post-bump checksum.",
+    "subject": "system"
+  }
+}

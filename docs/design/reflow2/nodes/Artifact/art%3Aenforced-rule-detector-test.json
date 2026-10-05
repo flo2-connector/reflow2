@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:271b5f6bb2e885685533c2f62af1734f56b972ec2e2d79371e7468447e190f67",
+  "node_id": "art:enforced-rule-detector-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/enforced_rule_needs_a_detector.rs",
+    "name": "enforced_rule_needs_a_detector.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

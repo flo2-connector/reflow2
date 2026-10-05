@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:883fd6e68e978555de8d67b890f35a12d05c9463ff3558a9729c636ef2241a8d",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:reconcile-verified",
+  "properties": {},
+  "to_id": "fact:defect-verification-evidence-is-prose-so-passing-can-contradict-itself"
+}

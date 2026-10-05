@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:304005261ef46666acc15cc5ff8c253d34f62eea260e2cf98aaee6e37f09b185",
+  "node_id": "chg:ask-elicits-a-lens",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The orientation ask now requests a background rather than a name, and carries an example of a useful answer"
+  }
+}

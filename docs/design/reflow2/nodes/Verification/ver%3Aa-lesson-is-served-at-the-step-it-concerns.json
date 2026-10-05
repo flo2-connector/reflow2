@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c223ef70608d972e766a42f8f76c659dbc44a0c22e15c68e535a6337d49b89d8",
+  "node_id": "ver:a-lesson-is-served-at-the-step-it-concerns",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three layers. (1) Unit tests in lessons.rs: a served name passes and is de-duplicated; an unserved name is refused naming the nearest served name; enrichment touches only the named tools and an empty map leaves the surface untouched. (2) Handler tests (a_lesson_is_served_at_the_step_it_concerns.rs): get_skill carries the lessons naming that skill and no other; the tool list carries a lesson on its tool and nowhere else, keeping the served description whole; a no-step lesson is kept and delivered nowhere; an unserved step is refused with the nearest names and nothing is written; rules take steps and the newest lesson comes first. (3) The wire test on the real binary (tools/test_a_lesson_is_served_at_the_step.py): tools/list — the listing a harness reads before every call — carries the lesson on exactly one tool's description with the other 180 byte-identical, before and after in one process; get_skill carries it for its skill only; a typo is refused. MUTATION: delivering every lesson to every tool broke 2 handler pins and 2 wire pins; restored and re-proved green. LIVE: on reflow2's own graph after the migrated lessons named their steps, get_skill(where-am-i) carries the harness lesson, export_graph's listed description carries the format-first fact and the export-once rule, and plan_epoch's carries its defect. Surface: toolsnap 181/181 (record_finding and add_design_rule re-blessed for +steps), skill_lint, render --check, clippy clean.",
+    "findings": "2026-09-12, increment 438: 3 unit + 5 handler + 1 wire test (11 pins) green; the deliver-everything mutation broke 2 + 2 pins; live delivery verified on reflow2's own graph; full mcp suite 68 binaries green. Same day, a sixth handler pin: a finding whose valid_to is set is no longer served (found when the plan_epoch defect was closed and kept being delivered) — 6 of 6 green, workspace suite 226 binaries green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "integration",
+    "method": "test",
+    "name": "A lesson names its step and is delivered there — and nowhere else",
+    "status": "passing"
+  }
+}

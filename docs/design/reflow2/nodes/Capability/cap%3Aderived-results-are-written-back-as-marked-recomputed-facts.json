@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:582597461e811e94a21f79936dc4b50f57e2a7323beca6651ef58287ce264252",
+  "node_id": "cap:derived-results-are-written-back-as-marked-recomputed-facts",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A computed-fact record carrying the producing analysis, its inputs and their versions, deduced-vs-induced and a confidence for induced results; recomputation triggered by any input change; refusal of manual edits; and at least one later analysis that consumes such a fact.",
+    "name": "Chosen derived results are written back as facts marked computed (analysis, inputs, deduced or induced with confidence), recomputed when inputs change and never editable as asserted",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b1438f2f0fd8879203dcd41bdf431db84de49b9969065086e68fc0f1b8bb2760",
+  "node_id": "sys:agent-surface",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "system",
+    "name": "Agent Surface",
+    "provenance": "authored",
+    "purpose": "The boundary the agent lives behind: the reflow2-mcp binary spoken to over stdio, and the consumer kit that installs it.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:260b5ee329c38b5b3011d921cb4fa21f407434cc4a099f340ec0b9a3b7dfa88e",
+  "node_id": "chg:manifest-answers-without-a-store",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "content_manifest and content_exists answer without a store; only the byte paths refuse"
+  }
+}

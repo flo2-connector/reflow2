@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c849a1a329109eda920ff6dd2e446dffc42dd6161232294324633282e3946b20",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id",
+  "properties": {
+    "evidence": "That requirement treats authentication as ABSENT and relocates the residual confidentiality risk to the tailnet. This says the relocation is not a workaround but the correct placement — a tunnel or proxy authenticates before a packet arrives — so the first cut needs zero authentication code rather than merely tolerating its lack. Delegated is a stronger position than missing."
+  },
+  "to_id": "req:the-hosted-surface-is-read-only-so-it-can-ship-before-authentication-exists"
+}

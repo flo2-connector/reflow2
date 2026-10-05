@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:14c62b1067967b47b1fa8d354e0d7a94f7f8c37b986fad1c4269314dc3615586",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-per-version-upgrade-notes-retire-into-the-changelog",
+  "properties": {
+    "evidence": "Kept as intent by Anthony, 2026-09-28."
+  },
+  "to_id": "req:the-changelog-is-the-one-record-of-what-changed-and-no-required-upgrade-step-is-lost"
+}

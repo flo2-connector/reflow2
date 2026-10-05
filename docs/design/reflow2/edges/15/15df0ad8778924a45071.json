@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0d754340346183b172f4ebaa328caba5ebba0a7107db2c8d7714cd9419cb6f85",
+  "edge_type": "CAUSES",
+  "from_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "reflow2_check.py:781; ls of the three projects; graph.sync.json shape",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-the-gate-defaults-to-a-file-none-of-three-layouts-has"
+}

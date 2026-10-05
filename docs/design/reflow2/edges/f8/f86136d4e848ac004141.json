@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93a6c5474f7bb5791857f00096b0466cca68bb140ef2a4c19077bf703fdb94ad",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:manual-work-ledger-offers-a-bound",
+  "properties": {
+    "at": "2026-09-30",
+    "note": "Fixed: manual_work_ledger takes budget_chars and bounds its reply (prose first, list never sampled), so the gate's run on the folded design reads it as fitting (19,899 characters). The code is PR #620's uncommitted fix of 2026-09-28, landed unchanged in #638."
+  },
+  "to_id": "fact:manual-work-ledger-outgrew-the-reply-budget-with-no-bound-and-the-gate-caught-it-2026-09-28"
+}

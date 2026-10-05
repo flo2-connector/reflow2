@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7ccbd1073d11d0bcebdfeb09f30eed88ba32c9a5b3c7f343c4e76b5b65e9e0b6",
+  "node_id": "fact:the-revision-warning-holds-the-only-copy-of-what-it-warns-was-lost",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE REVISION WARNING ARRIVES AFTER THE WRITE, FOR AN OPERATION THE TOOL DOCUMENTS AND SUPPORTS, AND OFFERS NO FORWARD ACTION. Measured in musicjug, 2026-08-31 (art:musicjug-genesis-feedback-2026-08-31, \"The bad\" §3).\n\nSharpening a Decision with a quality bar the owner had just supplied produced: \"`record_change` BEFORE the merge is what puts the old state in the design's own timeline; called now it would snapshot the REPLACEMENT and the history would be wrong.\"\n\nThe advice is correct and the risk is real. The complaint is about WHEN, and about what is left to do: \"a well-earned warning that reads like an accusation and offers no forward action, only an undo recipe\" — fired at the moment the agent was doing exactly the right thing, recording new information the owner had just given.\n\n⭐ THE TOOL IS UNIQUELY POSITIONED TO PREVENT THE LOSS IT WARNS ABOUT. The reply says, correctly, that it holds THE ONLY COPY IN EXISTENCE of the replaced field — which means the warning is emitted by the one caller that could still save it. musicjug's proposal: snapshot automatically, or offer `snapshot_prior: true`, \"and the warning becomes a receipt rather than a regret.\" This capability already COMPUTES whether the replaced state survived, which is the hard half; what it does not do is keep it.\n\n🛑 AND THE PRESCRIBED ORDER IS NOT RELIABLY ACHIEVABLE FROM THE CALLER'S SIDE: \"the prescribed order is not reliably achievable from a harness that emits parallel tool batches.\" A rule that depends on call ORDER is a rule an agent host can break without either party choosing to — which makes before-the-write sequencing the wrong place to rest a guarantee reflow2 could enforce itself.\n\n📌 THE SAME SHAPE APPEARS IN bhome, FROM THE OTHER DIRECTION (art:bhome-genesis-feedback-2026-08-31, part 6): a refused bulk write meant re-sending a ~4 KB decision body verbatim, because nothing was created. \"Field-level validation before the write, or a dry-run, would make long-prose nodes cheaper to get right. This is the same underlying gap as the append-vs-replace friction: reflow2 has no way to say 'change this one thing' on a large node.\"",
+    "subject_id": "cap:a-revising-write-says-whether-the-state-survived",
+    "valid_from": "2026-08-31",
+    "valid_to": "2026-09-01"
+  }
+}

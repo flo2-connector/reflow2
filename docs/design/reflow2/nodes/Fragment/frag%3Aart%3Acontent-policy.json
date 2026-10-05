@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:488e87c325f54e722c126e03a7ffbeb8ce90e3fe1a11dfdb98d3577c99d5592e",
+  "node_id": "frag:art:content-policy",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered content_policy.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a54fda3d8e514eafe3e145ab6eee809b7c9441602c92a701935e0ba45de00792",
+  "node_id": "cap:capture-asks-for-the-signature-and-the-unsigned-fraction-is-one-finding",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The two legs missing since v0.35.0 around set_capability_signature. Instruction leg: genesis, capture-intent and adopt's recover step carry the question in the user's domain words (\"what goes into it, what comes out?\") and write the signature at capture; add_capability's loop_hint names set_capability_signature as the next call when inputs/outputs were not given. Absence leg: one detector, keyed on the practice (aggregate_gap_keying), reports \"N of M capabilities carry no signature\" with the list, at low severity — never one finding per capability. Planned 2026-09-13.",
+    "name": "The guided capture paths ask each capability what it takes in and gives out, add_capability names the signature as the next call, and the unsigned fraction is one aggregate finding",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

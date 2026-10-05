@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1d7646b4e254a228232ab4110a72479810bc61aebc9b2301169da6f2a66e3550",
+  "node_id": "cmp:relate",
+  "node_type": "Component",
+  "properties": {
+    "level": "component",
+    "name": "Relate",
+    "provenance": "authored",
+    "purpose": "Recording what a node relates to — and the judgement when nothing does. Holds review_relations (one door for both outcomes, refusing when given neither), has_review_relation (direction-blind on purpose, so the second node of every pair is not reported as an orphan) and unreviewed_ideas (the population the aggregate finding ranges over). Placed beside detect rather than inside it: this module WRITES the judgement the detector READS, and folding them together would let the detector's convenience shape what a person is asked to record.",
+    "status": "planned"
+  }
+}

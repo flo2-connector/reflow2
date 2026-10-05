@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83cc1248a2f1d07ef734a8205f526116f494c8cbf6293db8dbc7ceaecc2a8609",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-read-hands-out-a-nodes-fingerprint-and-every-write-can-require-it",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

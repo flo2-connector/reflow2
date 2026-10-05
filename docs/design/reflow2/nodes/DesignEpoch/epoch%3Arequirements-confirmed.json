@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a23bcfc2598e96238b56ed6aeb27b0b3a0b1a54b3bb8d0a5e4e204ac6b522af",
+  "node_id": "epoch:requirements-confirmed",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Anthony confirms both open requirements, and one is widened first — the certification requirement was narrower than what shipped",
+    "sequence": 259,
+    "status": "arrived"
+  }
+}

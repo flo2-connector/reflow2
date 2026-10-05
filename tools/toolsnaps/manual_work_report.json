@@ -4,6 +4,7 @@
   },
   "description": "RENAMED to `manual_work_ledger` on 2026-09-18 — the READ of everything sessions reported doing by hand. The old name differed from the WRITE (report_manual_work) only by word order, and the two were mistaken for each other. This name refuses and points at the new one; it is removed next release.",
   "inputSchema": {
+    "additionalProperties": false,
     "properties": {},
     "type": "object"
   },

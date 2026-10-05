@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4def45998bdb77cac649a65ab10c226c96b1fdfc2d1302c31e79a03c15482462",
+  "edge_type": "CHANGED",
+  "from_id": "chg:lineage-message-names-its-decision",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

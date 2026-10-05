@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b993e9ed615dc7bbc6e596ababbc2d3ced483d12978d18d1d943b78fe7a71f11",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enforced-is-stated-not-defaulted-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:governance-proposal-skill"
+}

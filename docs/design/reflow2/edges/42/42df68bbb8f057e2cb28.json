@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8312fb9685372195ea3f5857e2d43ca2214ec71c257a80afabb1fb1119970532",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:ci-checks-the-code-against-its-design-on-the-server",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

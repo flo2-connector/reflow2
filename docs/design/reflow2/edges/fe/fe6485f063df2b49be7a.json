@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:34964f9edb05f7bf0933658ae4e1db8bc7fb4898bd2575bf4d8e477d914756d1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl180-function-preservation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:certify-restructuring"
+}

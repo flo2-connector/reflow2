@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:122ad6411a5913de16255f6ae4d2cac26e9890725f627869c16e39540bc8f34f",
+  "node_id": "chg:bl58-silent-failure-batch",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-58: core silent-failure batch — ingest re-ingest merges instead of resetting (upsert), snapshots serialize sorted for byte-stable exports, propagate_change errors on a missing event instead of returning empty, apply_heal is one atomic batch across all operations, swallowed edge-creation errors now surface, budget rejects non-finite contributions and reports a provable overrun instead of Incomplete, integer widening rejects the i64::MAX saturation edge, truncated_beyond_depth documented as the frontier lower-bound, drift skips the dangling edge for undocumented additions, missing-intermediate gaps get distinct ids per edge type, a reused ingest fragment_id is refused, node_type_index scans in sorted order"
+  }
+}

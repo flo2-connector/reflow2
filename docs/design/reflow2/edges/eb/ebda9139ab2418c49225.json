@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e33ccee71f5292d916cf1ab368e5cc738a4474301fa6ef4837bfc229caf9802f",
+  "edge_type": "REALIZES",
+  "from_id": "art:surprises",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:surprises"
+}

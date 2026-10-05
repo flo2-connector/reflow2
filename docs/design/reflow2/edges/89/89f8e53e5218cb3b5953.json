@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d77198a0b659a1957bf762836616aa52bdc95d099c6cc129fe8c2a9b49025a8d",
+  "edge_type": "CAUSES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The served hub skill, section 1, says of a local hub \"one connection per child design in the session's MCP configuration. That configuration is the list.\" The code says otherwise: upstream.rs (\"Why the child list is the manifest\") reads the hub's declared dependencies as its child list, and dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub searches \"every design it tracks\". So under --call the skill points an agent at a list that does not exist and away from one that does.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02"
+}

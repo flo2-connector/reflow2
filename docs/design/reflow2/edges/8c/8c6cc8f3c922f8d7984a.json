@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d32631ea15500e04326353bbd713c8494f428967f6e85a40db7a1d60097b61e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deliverable-declares-who-it-reaches",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

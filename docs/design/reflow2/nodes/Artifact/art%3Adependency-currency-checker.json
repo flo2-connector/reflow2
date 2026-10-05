@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a549e9d8ad40f9d1619b787d58eb64d10f3cf64ebf5e35c802fe74f9f0925231",
+  "node_id": "art:dependency-currency-checker",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/dependency_currency.py",
+    "name": "dependency_currency.py — every dependency, action and the Rust floor against its latest release; fails on an unheld new series",
+    "status": "realized"
+  }
+}

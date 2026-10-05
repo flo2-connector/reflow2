@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2227e5f364f0264ad6acb3413cd8b0212bd04d48a1e77b50661ed74467579931",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:qualitygate-is-retired-the-phase-gate-dissolved-into-the-detectors",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

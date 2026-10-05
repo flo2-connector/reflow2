@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4eb901b20352be8820af7461b65338584b1bbe55baabbe11279ca1f3a8706917",
+  "node_id": "chg:the-lens-rides-loop-status-and-the-nudge-says-its-words-are-for-the-agent",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "loop_status carries `lens` (the skill rail's sentence, prefixed by one naming `next` as the agent's list), every Stop-nudge message ends with the register line, and served AGENTS.md's standing rule names tool replies as addressed to the agent — root-caused from the 2026-09-14 field report, pinned by four server tests and one nudge test that failed first",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

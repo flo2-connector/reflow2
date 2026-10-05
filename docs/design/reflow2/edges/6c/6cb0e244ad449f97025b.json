@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:62885121182636d5903ef2c83a4cd0a4796e9cf2ed0d4c6b2c4511ac1ea517c6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:heal",
+  "properties": {},
+  "to_id": "req:reviewed-defects"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:49cabb16e7fd644c3c46049154352a9431d9f609c5bd244a009b3ed98e9b102f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:core-api-withdrawn-from-the-published-surface",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:core-api-spof-accepted"
+}

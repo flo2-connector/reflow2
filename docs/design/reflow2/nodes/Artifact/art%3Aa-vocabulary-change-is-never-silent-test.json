@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ff99ac1e737dea6da244ec024ddf04d2887dec1bae8290a90c13d85b62275052",
+  "node_id": "art:a-vocabulary-change-is-never-silent-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five tests pinning the enum half of the version guard against real stamp files and the shipped schema: a declared-but-unstored value opens, a stored one is refused by name, a pre-enum stamp opens, an uncountable population refuses, and the collector really records the vocabulary. Blinding the comparison fails exactly the two refusal tests. THE UNKNOWN VALUE IS ONE NO REFLOW2 WILL EVER DECLARE: until 2026-09-12 it was `deferred`, and the day increment 433 added that to the schema two of these tests failed — correctly, there was nothing left to refuse — so they were generalised, and the collector test now asserts `deferred` IS present as the pin on the real case.",
+    "location": "crates/reflow2-core/tests/a_vocabulary_change_is_never_silent.rs",
+    "name": "a_vocabulary_change_is_never_silent.rs",
+    "status": "realized"
+  }
+}

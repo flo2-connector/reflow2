@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:de4cdd5ec90966c2d22df808992ed70e543dec22296760b2a9f40fd9a84b5198",
+  "node_id": "fact:the-guard-half-of-the-merged-node-question-was-built-without-deciding-it-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "BUILT 2026-09-29 (PR #624): notes and defaults now read the merged node, and the add_verification guard kept its rule but now names the stored verdict. The guard question stays OPEN for the owner",
+    "source": "PR #624 (branch fix/a-revise-keeps-what-was-not-passed), dev_reflow2 hub fix program 2026-09-29",
+    "statement": "What PR #624 built against this open question, so the idea is not read as settled by the code:\n- DEFAULTS read the merged node (option B's half that nobody objected to). record_finding writes fact_type/basis defaults on CREATE only.\n- NOTES read the merged node (option A). add_change_event's `undated` note reads the stored event.\n- GUARDS were left on the call; only the refusal was changed, which is option C's shape. add_verification still refuses findings without a status on a revise. The refusal now names the verdict and run date the check already holds, so the caller re-sends knowing what is stored.\n\nThe ruling this question asks for — may new findings on a revise inherit a stored verdict (a text correction) or must they restate it (a new run)? — was NOT taken. It is still the owner's.\n\nPinned by crates/reflow2-mcp/tests/a_revise_keeps_what_it_was_not_passed.rs, whose fourth case asserts the refusal names `passing`. That case would need to change if the owner chooses B for guards.",
+    "subject_id": "dec:idea-revise-notes-guards-and-defaults-read-the-merged-node",
+    "valid_from": "2026-09-29"
+  }
+}

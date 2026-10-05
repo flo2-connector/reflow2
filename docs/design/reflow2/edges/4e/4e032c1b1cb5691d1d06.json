@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:18d53b4d1b19ebbfa127ee9a8b98b62b0ce5206fd32d57d7a7aa7a5123af9100",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-query",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:5fc2b7fd138c4f34b01db1516793ca82a2995928b6b4a4dee3ef8a0228867782",
+  "node_id": "req:reflow2s-kit-is-packaged-to-the-agent-plugins-specification",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "reflow2's kit (its skills, commands and MCP server entry) is packaged to the Agent Plugins specification (agent-plugins.org), for every harness that supports it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "Anthony, 2026-09-28: \"In general, probably adhering to: https://agent-plugins.org/ is a good idea, though I see that claude is not in this yet. I also cloned the repo at /home/ajs7/project/agent-plugins-spec.\" Kept as intent the same day.\n\nreflow2's installable kit is published as an Agent Plugins package, so any harness implementing the specification installs reflow2 the same way. The kit is its skills, its slash commands and its MCP server entry. Today it is installed per harness (reflow2_init.py, the .claude and .grok copies).\n· Harnesses that do not implement the specification yet (Claude Code at the time of writing) keep today's install route until they do. Nothing that works now is removed for the sake of the package.\n· This answers fact:reflow2s-mechanisms-for-reaching-an-agent-are-mostly-claude-code-shaped (2026-08-26) with one portable shape, instead of one installer per harness.\n· req:kit-reaches-the-agent still governs: the package must land its instructions where each harness actually reads them.\n\nThe specification is a moving draft. The local clone, at v1.1.0 working draft (ff8ab5e) when this was written, is how revisions are watched: req:the-hub-tracks-the-standards-reflow2-and-flo2-follow-and-reviews-each-new-revision in the hub's design.",
+    "status": "accepted"
+  }
+}

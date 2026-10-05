@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b27646b796b993d2aa2e747cd042d317a68defe0c69461f4208600e5145dea56",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7a4462c0a58f226c91ed3f1cebfc53ccd50e8b2c6bfda9545146a7c3e2190c31",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-set-aside-decision-is-not-debt-test"
+}

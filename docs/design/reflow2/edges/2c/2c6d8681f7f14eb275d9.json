@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b1034ae33139cbe07ddb450546aae225ec9b27492fda267264450cdbfc1342fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2ac46b6977a7415dc6f1fb27e031088ed3b80ab66fd988745fe9809bdcd5e285"
+  },
+  "to_id": "art:test-absence-means-nobody-said-and-a-plan-holds-a-check"
+}

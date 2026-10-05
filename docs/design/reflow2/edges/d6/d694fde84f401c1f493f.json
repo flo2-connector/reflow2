@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b972ef11a628ea60088bca4f4c5f980123311b189f4aca5c20e537a53519f8de",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-project-names-its-domains-standard-from-the-beginning",
+  "properties": {
+    "evidence": "That requirement records that Project.domain is written and never read. A declared domain standard would be the first thing that reads it: the question 'what does this domain accept?' has no anchor until the domain itself is a fact the graph consults.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:framework-is-chosen-not-defaulted"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f75d6357356f62bba7b44e321efb91fdd6d57c4f9f859871c86e36ee9cb7f32d",
+  "node_id": "art:revising-an-epochs-prose-keeps-its-status-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two pins: arrive an epoch, revise its prose with plan_epoch, still arrived (read `planned` before the fix — shown to fail first); a new epoch lands planned and a revise of a still-planned one leaves it planned (which caught the first draft of the fix: the write replaces the property set, so status had to be carried forward, not omitted).",
+    "location": "crates/reflow2-mcp/tests/revising_an_epochs_prose_keeps_its_status.rs",
+    "name": "revising_an_epochs_prose_keeps_its_status.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54d33584fbb3dfbfde06f92ece9b89473a88551d9944ebeea630f3d653932b29",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

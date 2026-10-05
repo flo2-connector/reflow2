@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9501081672dcce05ad1b291279ea54f9f49b693bd5ab0178e37278ebabf0def7",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-projects-decision-log-for-readers-who-never-run-reflow2-is-rendered-or-checked-from-the-design",
+  "properties": {
+    "evidence": "Rendering or checking the decision log from the design answers the root-caused defect: a reader who never runs reflow2 has no served surface, and a linked file is never reported stale."
+  },
+  "to_id": "fact:root-cause-a-reader-who-never-runs-reflow2-has-no-served-surface-so-each-decision-is-kept-by-hand-in-three-places-2026-09-28"
+}

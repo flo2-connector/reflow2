@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:afc249ec20234abccd19d3e679ba97b094fb8fa25f8a4aa1509beb9eb5c3e490",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replace-text-moves-one-sentence-without-resending-the-field",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:brainstorm-skill"
+}

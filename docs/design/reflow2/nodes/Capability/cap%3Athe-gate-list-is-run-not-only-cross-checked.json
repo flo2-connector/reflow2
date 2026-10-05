@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8745b882b3dbee8dd8cc48e86e03be4574ca2024994d9cfbf2e0383b26edbc90",
+  "node_id": "cap:the-gate-list-is-run-not-only-cross-checked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "tools/run_ci_gates.py executes the gate list in ci.yml's own order. It reads the list through skill_lint's ci_gates() — the parser the build already trusts, itself covered by test_skill_lint.py — rather than carrying a fourth copy of the contract, because a fourth hand-kept copy would be the drift it exists to end. It takes optional keyword filters, so the export-dependent gates can be re-run alone after an export, and --list shows the set without running anything. Three refusals are built in: running zero gates is a failure rather than a pass, a near-empty parse of the workflow is refused as broken rather than reported as a short workflow, and a failing gate fails the run in the EXIT CODE rather than only in the printed summary. Nothing is piped through head. tools/test_run_ci_gates.py is its regression net and pins all three, plus the requirement that the runner never grows its own copy of the list or a pyyaml dependency.",
+    "name": "Every gate CI runs can be run locally in one command, read from the workflow rather than restated",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

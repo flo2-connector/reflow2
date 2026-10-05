@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:09212d042f4fa58d3edce332b87c0cc3efeb0454577876451b596da988fccbd4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4d4c44f5af2705a7d94cf0b3d9c703e72e9ab027197ffcbf72f1483c389d7933",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:run-ci-gates"
+}

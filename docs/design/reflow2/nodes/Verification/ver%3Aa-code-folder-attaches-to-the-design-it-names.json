@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:33a2becb1dfd02a6a0ef7e5c562cf4c0f5c534bec41ed3f8711962a0dc1a97ad",
+  "node_id": "ver:a-code-folder-attaches-to-the-design-it-names",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Eleven tests.\n\npointer.rs, seven: a pointer names its design and the designs beside it; it sits beside the folder's .reflow2/; no file is no pointer; an unusable pointer is refused by name (missing id or address, a non-id, a non-address, a key, not a table, a bad [[also]]), naming the file; the notice names the design and says the local store was left alone and lists [[also]]; a different design or a refusal attaches nothing and says why, an unconfirmed server does not; the graph id is read from structured content or text, never from an error.\n\nproxy.rs, one: the notice goes in front of the server's handshake instructions and nowhere else.\n\nEnd to end over the real binary, three, with the machine-wide entry's flags (--graph-path .reflow2/graph --shared --only-if-present) and an isolated REFLOW2_CONFIG_DIR against a registry server holding the named design: a folder with a pointer AND a leftover local store is attached to the named design (design_identity returns its id), the handshake says so and that the local store was not opened, and no shared server is spawned for it; a pointer naming a design the server does not hold attaches nothing and says which design it holds; an unusable pointer is refused by name and the local store is not opened.",
+    "findings": "All eleven pass. The whole reflow2-mcp suite passes with them: 109 test binaries, 707 tests, 0 failures. So do the gates that drive the real binary through start-up: test_shared_sessions, test_export_to_reaches_the_daemon, test_shared_attach_from_another_folder, test_degraded_server, test_stale_seat, test_latent_promotion, test_nudge_path, stateless_seat_probe, smoke_mcp, toolsnap. Clippy -D warnings and fmt are clean.\n\nOBSERVED FAILING FIRST, on the released 0.72.0 binary: the same folder (a local store plus a .reflow2.toml naming another design), started with the same flags, attached to the local store (design_identity returned its id, cc047a498dc416df) and spawned a shared server for it.",
+    "kind": "verification",
+    "last_run_at": "2026-09-28",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_code_folder_attaches_to_the_design_it_names.rs; crates/reflow2-mcp/src/pointer.rs (tests); crates/reflow2-mcp/src/proxy.rs (tests)",
+    "method": "test",
+    "name": "A client started in a folder with a .reflow2.toml attaches to the named design over a leftover store, refuses a wrong design or a bad file, and says so",
+    "status": "passing"
+  }
+}

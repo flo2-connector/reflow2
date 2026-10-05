@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b56aaa6c508324979a5694999d25b8908f833a61e0b98a706953f3be2f7a1108",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9c966923e23e2e19c8e0ee76726f7effc9cfc87a56e6820f0b9c8a7f0e0db130",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes-core"
+}

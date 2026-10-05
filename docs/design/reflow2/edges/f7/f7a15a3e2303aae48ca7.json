@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64f36dd02591eb124aaf879b7d2ef559dcb75f630a36c66b4a750d51af7b02ee",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-design-closes-against-a-declared-threshold",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-design-closes-against-a-declared-threshold"
+}

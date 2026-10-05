@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:228ac8d2c222ecd57e7974067a5645f974d35a8e04ddc403e198cfca142013e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:corpus-is-one-design"
+}

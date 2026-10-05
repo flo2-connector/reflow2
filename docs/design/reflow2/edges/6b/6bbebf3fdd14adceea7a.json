@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ee93d5f9f8dd5ffda57742cc2baedf74e3376c041f7fb774af5a89359f000ea6",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-add-verification-cannot-set-kind-or-last-run-at",
+  "properties": {},
+  "to_id": "cap:reconcile-verified"
+}

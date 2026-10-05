@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b96004b8e1398a35fe87c11428feacf1092f08406b17a0c57482c9e0dead5390",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0640",
+  "properties": {
+    "as_checksum": "sha256:5f56b945f7593ad8af45b3821f1ae22d24171bc6c1d9a7cbdfc9afb3c4dfc346"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-report-test"
+}

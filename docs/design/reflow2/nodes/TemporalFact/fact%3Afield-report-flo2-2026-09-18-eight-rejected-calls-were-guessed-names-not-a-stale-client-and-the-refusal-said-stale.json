@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9b879455703bdea633f6551477c052f3b04736f5b6745d3b61ea4f01598e72de",
+  "node_id": "fact:field-report-flo2-2026-09-18-eight-rejected-calls-were-guessed-names-not-a-stale-client-and-the-refusal-said-stale",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2, 2026-09-18): eight calls rejected for unknown fields were reported as client/server schema drift — MEASURED: five of the six names never existed in any release, and the session began ten hours after the last server rebuild; the agent guessed by analogy across an inconsistent surface, and the refusal's 'your client's tool list may predate the server' named a cause that was false",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "F1 claimed 'my tool list predated the running 0.64.0'. MEASURED against the toolsnaps at v0.62.0, v0.59.0 and v0.50.0: add_decision.node_id, contains.parent_id, review_relations.relations, authored_by.authored_at and add_requirement.rationale existed in NONE; only add_change_event.description had. The flo2 session's first timestamp is 22:55Z; the release binary was rebuilt at 13:00 local. So the client was not stale: the names were guessed — `node_id` where the constructor takes `id`, `parent_id` where `contains` takes `project_id` — and the refusal's self-diagnosis ('if this reflow2 was updated after your client connected…') was accepted as the cause and written into the field report. Precedent: dec:idea-one-way-to-name-which-node-across-the-tool-surface (accepted 2026-09-06) made relation tools accept both name families as serde aliases; constructors (`id`) and readers (`node_id`) remain two families, and that seam is where the guesses landed. The refusal is excellent at naming the legal set and wrong about why.",
+    "subject_id": "dec:idea-one-way-to-name-which-node-across-the-tool-surface",
+    "valid_from": "2026-09-18"
+  }
+}

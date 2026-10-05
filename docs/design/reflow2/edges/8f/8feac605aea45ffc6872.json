@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4c9288e10191ed34ba40b79884a3dc20b21888ef977c888c987e2156783b34e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write",
+  "properties": {
+    "evidence": "Both options (read/write verbs, a batch door) are shapes of the --call door, and the split reuses its existing read_only_hint classification (main.rs ~757). Corrects the first note, which cited the door in text instead of linking it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

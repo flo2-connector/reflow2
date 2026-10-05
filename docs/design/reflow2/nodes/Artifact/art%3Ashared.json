@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d2858c20fdb62083efe37dd7b49616507f1cd6793927e96a678a2bd06ed513cc",
+  "node_id": "art:shared",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/shared.rs",
+    "name": "shared.rs",
+    "status": "realized"
+  }
+}

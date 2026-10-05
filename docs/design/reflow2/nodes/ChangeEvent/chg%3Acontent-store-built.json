@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a8d9c53c9f59aea6708995155192eaa702ce96e7fbe071566c86fe7483ebe34",
+  "node_id": "chg:content-store-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "cap:content-store built — realized, checked, and its description no longer says PLANNED"
+  }
+}

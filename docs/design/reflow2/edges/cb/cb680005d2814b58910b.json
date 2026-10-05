@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ed284a3ea733f76316f0c5cc7d86171a6b562fbd16a23e82f414e537bf6fea5c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-user-can-trigger-capture-of-what-only-the-session-holds",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

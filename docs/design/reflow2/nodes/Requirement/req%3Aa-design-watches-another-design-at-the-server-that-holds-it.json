@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4b5096175adeef4af8092fb86af69913ce739c80a0c110cc461cbde497eaa022",
+  "node_id": "req:a-design-watches-another-design-at-the-server-that-holds-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design that depends on another design watches it at the server that holds its design, never through a file",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-27",
+    "statement": "A design that declares a dependency on another reflow2 design shall be able to watch it by that design's ADDRESS: the server that holds its design (flo2.io's https://api.flo2.io/g/<id>/mcp, an organisation's shared server, or a local server). When the dependency is declared, reflow2 asks that server for the design's current fingerprint and records it as the baseline. Later reads ask again and report moved or unchanged. A server that cannot be reached, or refuses the credential, is reported as exactly that and never as \"unchanged\". The credential is carried by the client and never written into the declaration. Reaching the network is opt-in and needed only for a remote address; a design that watches nothing remote stays entirely local (req:reflow2-keeps-working-entirely-on-one-machine).\n\nWHY: under the design-and-export rules (dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy) an export is perishable and reflow2 never tracks it, so watching an export file is retired as the way to watch. It was also shown to fail: fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27. This requirement is that finding's fix option (b); the finding is the observation, this is the intent.\n\nFIRST CASE: the dev_reflow2 hub watching cure at https://api.flo2.io/g/54ae4a4f0b458b77/mcp. Anthony, 2026-09-27: \"For cure, delete the old store and hub watches by address.\"",
+    "status": "accepted"
+  }
+}

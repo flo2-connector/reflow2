@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1d03f7128d126f87ae2f09e67112b7ef30babc5e8d86ce4eaffd6296537f2caf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-ledger-can-say-the-record-was-wrong",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:94a78fa68f514de66c9df488ec396ce6afd1785a1310d71ae79f5433465a882e",
+  "node_id": "decision:ack:ac64f6e79aa8a17d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ac64f6e79aa8a17d.",
+    "name": "Reviewed: gap:ac64f6e79aa8a17d",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities: what realizes this is documentation — the README, the getting-started material, the diagrams — and none of it is written yet. It arrives with BL-102, at which point those documents should be registered as artifacts like any other deliverable, since a doc that drifts from the design is the same defect as code that does.",
+    "status": "accepted"
+  }
+}

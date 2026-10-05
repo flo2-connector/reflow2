@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:31f7b5fbefe474e1e2756660499b5ae3e8d47e226a0e2d25073ba6938d4ef939",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-can-say-which-of-its-own-skills-a-session-reached-for",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

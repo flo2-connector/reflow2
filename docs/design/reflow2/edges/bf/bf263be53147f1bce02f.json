@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e185800b2254bc38bb1766b230208627a584097cddd0a9792dbb90a1ab879029",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "dec:idea-scoping-exists-and-did-not-narrow-what-a-builder-sees"
+}

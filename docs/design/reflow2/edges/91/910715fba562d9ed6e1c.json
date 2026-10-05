@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d07f0195dd541e558d70def0194b2f55e6dd278a955b2be033e16a2591ac8527",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:a-dangling-reference-is-only-detected-when-the-node-is-also-edgeless",
+  "properties": {},
+  "to_id": "decision:ack:b282848d8c49faf3"
+}

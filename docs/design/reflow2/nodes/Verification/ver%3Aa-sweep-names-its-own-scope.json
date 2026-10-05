@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:331071f390a3ecf1ad27a2b9bd6ab9f9c7ec9fee3b2a6fc7b6d150cc0ee1ffb9",
+  "node_id": "ver:a-sweep-names-its-own-scope",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-17",
+    "level": "unit",
+    "method": "test",
+    "name": "Four probes: an empty graph's zero is marked vacuous and a real sweep's is not, the topology walk is reported as narrower than the graph, the rules that ran are named, and every category is listed in ALL",
+    "status": "passing"
+  }
+}

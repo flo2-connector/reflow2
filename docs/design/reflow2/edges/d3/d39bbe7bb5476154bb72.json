@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2811bb53814f581c786d0474a7b87879e02828a153ab9e1875081464f2e97290",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:merge-three-way",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

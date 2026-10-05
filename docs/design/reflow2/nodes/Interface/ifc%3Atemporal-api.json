@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:abfeab24bb8ed732e6bed251e8b816162a5c375f747c7a0353c1042d294029f6",
+  "node_id": "ifc:temporal-api",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "description": "What sys:time-history PRESENTS: epochs, snapshots, schedules and the planned-versus-delivered delta. ONE of its five modules is reachable from outside — `temporal` — and the other four (compare, merge, readiness, alternatives) are internal. That 1-of-5 ratio is what makes this subsystem an actual black box rather than a label: the face is narrow and the inside is hidden.",
+    "designation": "internal",
+    "medium": "unspecified",
+    "name": "Temporal API",
+    "paradigm": "unspecified",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "transport_security": "unspecified"
+  }
+}

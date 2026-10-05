@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7eaba7826be65436c997bf2d5f3abb4bd4c45b396f567b0a08a97170dd6dbbeb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:session-memory",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

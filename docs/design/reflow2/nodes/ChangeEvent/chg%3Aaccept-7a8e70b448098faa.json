@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13828405ee3d1dceaff48a1b07903ec5ed7dd90ffa548fac7c18ec1c51503800",
+  "node_id": "chg:accept-7a8e70b448098faa",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-08",
+    "name": "NON_TOOL_TERMS gains would_destroy, priority, status, false. The lint's own contract is unchanged — it still fails when a skill names a tool that is not served; these are the field terms the amended check-health skill now tells a reader to look at, and the lint's failure message asks for them in the same diff. No design meaning moved, so design_holds."
+  }
+}

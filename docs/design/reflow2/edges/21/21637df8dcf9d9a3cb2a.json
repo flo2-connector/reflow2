@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a780666274d00b0185b670570baf09d929c5f06353bf315e694b00c65b4a377c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0700",
+  "properties": {
+    "as_checksum": "sha256:935cc0bbab78d4c14b20409f1a03c71980531f2e479d90a69b9b6d9d5929b18b"
+  },
+  "to_id": "art:confirmation-vocabulary-test"
+}

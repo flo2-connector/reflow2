@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:76be2cde90de94af783e6e5e95a105be444b8868298e7ef2b91250e051e46560",
+  "node_id": "ver:derived-relations-are-declared-checked-against-the-code-and-served",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two test files. reflow2-core derived_relations_are_declared_and_checked.rs (7 tests): well-formedness, declarations == evaluators, every declared edge read in the relation's primitives, and a source scan holding each declaration to its functions (declared edge read nowhere, undeclared edge in a dedicated function, undeclared helper). reflow2-mcp derived_relations_are_served.rs (3 tests): the tool reports all 23, narrows, refuses an undeclared id. OBSERVED FAILING on origin/main 72917f6 under the shared build lock: the three served tests failed with tool not found. Mutating the declarations (dropping VERIFIES and its helper from checked, renaming a relation) failed four of the seven core tests, each naming the relation.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "method": "test",
+    "name": "Every derived relation is declared, its declaration matches the edges its code reads, and derived_report counts it by that code",
+    "status": "passing"
+  }
+}

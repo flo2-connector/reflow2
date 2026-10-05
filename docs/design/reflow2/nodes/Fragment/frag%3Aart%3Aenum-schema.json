@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dccd1aa3a9f4cad1310ae8d0aa9e9104ea798323961db9e337a3fb9093a4da87",
+  "node_id": "frag:art:enum-schema",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered enum_schema.rs — one schema_with fn per enum request field, reading legal values from the compiled-in schema (or the handler's own const) at tool-listing time"
+  }
+}

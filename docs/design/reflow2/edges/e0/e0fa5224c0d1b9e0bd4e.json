@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d567ed620aba567a5beab782d68da2205a56cb62bc1a4e6673aa79110dd54884",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-fix-says-whether-it-corrected-the-cause",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-17"
+  },
+  "to_id": "epoch:the-philosophy-is-in-the-product"
+}

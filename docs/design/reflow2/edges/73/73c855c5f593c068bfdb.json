@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2744a44e9484d08da6a4c053f4a65c7de26c02ee366d7da0373eeb548389dce1",
+  "edge_type": "REALIZES",
+  "from_id": "art:brainstorm-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:brainstorm"
+}

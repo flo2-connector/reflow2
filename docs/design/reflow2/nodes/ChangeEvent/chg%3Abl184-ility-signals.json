@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f5968dcfdd86756f291aa9b8390a2b4e8990dd2cac90d3b85d35056357a21ef8",
+  "node_id": "chg:bl184-ility-signals",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Computed evidence now reaches the quality axis it informs — Anthony's correction that the ilities are not a blanket judgement call, built as a separate reading that flags disagreement and never derives a score"
+  }
+}

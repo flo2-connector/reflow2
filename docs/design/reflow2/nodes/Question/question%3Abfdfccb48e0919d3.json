@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:73d7a2c384983ec9e4f1ccd00a9e7ab5702abe6ba0652b7b369d8177839aeeeb",
+  "node_id": "question:bfdfccb48e0919d3",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Yes, capped at roughly one sentence per tool — only what a capable agent would never infer. The served skill keeps the depth; the tool carries the irreducible minimum so it cannot be skipped. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “What an agent cannot infer must travel on the tool, not only in the skill it may never load”",
+    "gap_id": "gap:bfdfccb48e0919d3",
+    "question": "An agent can usually work out most of a skill's advice on its own, but not the parts specific to how reflow2 does things — and it loses those silently if it never opens the skill. Do you want those few must-know sentences moved onto the tools themselves, where they can't be missed?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

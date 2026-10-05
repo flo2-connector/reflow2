@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:14d12b573619a3d3e373b446bd8095d821c0688788ec68cfdfcb15e8cc0e1773",
+  "node_id": "ver:dependency-names-its-design",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A dependency that is itself a reflow2 design can say so, and one that is not stays silent (crates/reflow2-core/tests/depends.rs, 2 cases added, 12 passing in the file). LINKED: graph_id round-trips through the store and appears in reflow2.toml as `graph_id = \\\"dynograph-foundation\\\"`. UNLINKED, which is the case that carries the doctrine: a second declaration without one round-trips as None AND its manifest entry contains no graph_id line at all — absence is stored as absence, so a reader can tell \\\"this dependency has no reflow2 design\\\" from \\\"nobody recorded whether it does\\\". BLANK IS NOT A VALUE: a whitespace-only graph_id is treated as unstated rather than as a design whose id happens to be blank.",
+    "findings": "A TEST-AUTHORING SLIP WORTH KEEPING: the first version of the blank case asserted the whole manifest contained no \\\"graph_id =\\\", which passed for the wrong reason and then failed for the right one — the [reflow2] header always emits the design's OWN graph_id, so the assertion had to be scoped to the dependency entry. The test caught the test.",
+    "kind": "verification",
+    "last_run_at": "2026-08-06T14:40:00Z",
+    "level": "unit",
+    "method": "test",
+    "name": "A dependency that is itself a reflow2 design can say so, and one that is not stays silent",
+    "status": "passing"
+  }
+}

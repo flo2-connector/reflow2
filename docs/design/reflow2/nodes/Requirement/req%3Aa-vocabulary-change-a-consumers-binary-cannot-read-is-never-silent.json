@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4176ae3ca1f4452a29dfc488d134fb0efbb1ad42489fe1762895e43ec83217bb",
+  "node_id": "req:a-vocabulary-change-a-consumers-binary-cannot-read-is-never-silent",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A vocabulary change a consumer's binary cannot read is never silent",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "When a design is written under a vocabulary an older reflow2 does not know, that reader must either be told what it lacks or be refused — it must never open the graph and quietly show less of the design than it holds.\n\n**THE MEASURED HOLE, 2026-09-11.** `GraphStamp` carries `reflow2_version`, `schema_version`, node/edge type COUNTS and node/edge type NAMES. That is the complete set of facts a consumer's binary can compare, and it names only TYPES. Every other vocabulary change is invisible to the guard:\n\n· an ENUM VALUE — `Decision.status` gaining `deferred` moves no count and no name, so an older binary opens the graph with no warning, compares `status == \"proposed\"`, and the decision vanishes from `loop_status` and `what_next`;\n· a PROPERTY added to an existing type;\n· a SEMANTIC change, where a field's meaning moved and its name did not (`dec:change-type-splits-into-two-axes` is one that already happened).\n\n**This is the harm the guard's own refusal message names** — *\"opening it could silently show you less of your design than it holds\"* — arriving through the door the guard does not watch. Two thirds of the mechanism is already built: `chg:the-version-guard-refuses-on-a-population-not-a-declaration` refuses rather than degrading, and probes the store for a real population rather than trusting the declaration; `chg:bl86` gave the stamp type-name sets.\n\n⚠️ **WHAT THIS REQUIREMENT DOES NOT DECIDE.** Whether the answer is a wider stamp, per-change identities with names, or a severity per change is open in `dec:idea-a-vocabulary-change-has-no-identity-so-a-consumer-is-told-its-version-is-wrong-not-which-change-it-lacks` — and option (a) is in direct tension with the stamp's own stated reason for being small (*\"it must not depend on the vocabulary it is describing\"*). The requirement fixes the OBLIGATION, not the mechanism.\n\n**THE BOUND THAT MATTERS.** Being told to migrate is an inconvenience and this project has shown the migration is lossless (3,989 nodes and 21,555 edges in, same out). Reading a design wrong without knowing is the failure this is about, and only the silent case argues for any of it.",
+    "status": "proposed"
+  }
+}

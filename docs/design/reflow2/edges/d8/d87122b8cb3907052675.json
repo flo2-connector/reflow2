@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:15b0ce6754597721c341892995dd1c22e0e13329a7a985ffbae91980cbd979bd",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-reply-is-sent-once-on-every-tool",
+  "properties": {},
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29fd868f1526db8350777fb84d62866083364910315cbd3dc5c6f25dbb71713a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-absent-referent-gets-an-answer-and-three-replies-stop-overclaiming",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

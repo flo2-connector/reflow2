@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fa644ea9bd6aaad1df3a99f0612460fe3bb514da368e2f69eaf25ef03b2a89b3",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

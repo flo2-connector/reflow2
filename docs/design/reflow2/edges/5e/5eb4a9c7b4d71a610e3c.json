@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4562ec5c2f9af517b8e953993d76479aefd82e49116a0701f5f7b2232b6b1bbf",
+  "edge_type": "REALIZES",
+  "from_id": "art:confirmation-vocabulary-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:nothing-moved"
+}

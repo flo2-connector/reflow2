@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:254ccb12d095aab0525b35b93dd7dee9de27cc423a3f68dd612046f36653ea11",
+  "node_id": "frag:art:test-closure-reads-a-design-phase-and-a-build-phase",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered closure_reads_a_design_phase_and_a_build_phase.rs"
+  }
+}

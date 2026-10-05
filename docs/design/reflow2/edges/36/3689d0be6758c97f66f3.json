@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6c8605332eeb128192c584cc167272660250b7d01b061c13bfb9e9afbbe03eb3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-3fac4692fb0601d6",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-sessions-cannot-cross-designs"
+}

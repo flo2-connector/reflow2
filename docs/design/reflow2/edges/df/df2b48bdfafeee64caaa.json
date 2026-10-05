@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0a3ea84cc37cb4037568544d9fbc8d0662563f6a15f97ec989843a77816a37fc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-refusal-for-an-unknown-field-should-name-the-nearest-parameter-and-never-guess-that-the-client-is-stale",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

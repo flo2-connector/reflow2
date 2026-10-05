@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8474d72aa6bbb3038f54e9ef9c1a0339743c999a24dab44d20f02c25877e4354",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-registry-names-every-store-it-cannot-serve",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-registry-names-every-store-it-cannot-serve"
+}

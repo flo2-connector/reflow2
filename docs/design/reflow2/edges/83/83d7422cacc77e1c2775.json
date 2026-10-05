@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:013488053e55b51b2a38f0bbaa6941361739dba2ddb3510a29b27812d6de739f",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: the 09-24 'Opportunity' (caused_by names a Decision created in the same call, or a free-text class with the edge drawn later) was appended to this existing idea as sighting five, options (e) and (f)."
+  },
+  "to_id": "dec:idea-the-thing-you-need-to-point-at-is-usually-not-a-node-yet"
+}

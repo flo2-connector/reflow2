@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4b1d2c68f094fbcb8847dd7d996bd036b2c13c2eaffaa994086d4dd5f239b26",
+  "node_id": "chg:the-server-says-when-it-is-stale-20260809",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The server stops making a human compare two numbers: served_by derives `stale` from its own /proc/self/exe, and the note carries the remedy that actually works"
+  }
+}

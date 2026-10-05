@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cae38e6cb4d5f19c9d0f63242b98b5c90db0fae6ce4ce71b31c1cc5aad905e2f",
+  "node_id": "chg:accept-dd727430f01e0fae",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-16",
+    "name": "Version string 0.61.2 -> 0.62.0 for the cut. The design meaning of a cut lives in the Release and its epoch, not in this string; accepted BEFORE the manifest is frozen so the release records the post-bump file.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:286665d744228f0ffdca3372d875699f8ab3eadb4ecbb9b6745fc8e7b7f6ba6e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:dockerfile",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:dockerfile"
+}

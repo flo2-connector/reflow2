@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:597b516415a2c2a39f191f0d47f7427907d269cac6fad9c395555332d9d45ba2",
+  "node_id": "dec:idea-search-expands-with-the-projects-own-domain-vocabulary",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — dev_storyflow field report 2026-09-05, wish #23. Two search-before-write misses in one session were both on the AGENT's phrasing; the hits needed the USER's own vocabulary ('lens', 'seamless'). Both times the correction came from the graph — the tool worked — but only on the second try. The idea: a search_design that also expands with the Project's recorded domain terms (lens, universe, campaign, fragment) would have found the lens principle first time. WHAT IS CHEAP: the Project node and the served lens already carry domain vocabulary; expanding a query with a small synonym set from them is a retrieval-side change with no schema impact.",
+    "kind": "exploratory",
+    "name": "OPEN — search misses on the agent's phrasing and hits on the user's. Should search_design expand a query with the Project's recorded domain terms?",
+    "rationale": "THE COUNTER-ARGUMENT: query expansion trades precision for recall and can bury the exact hit under domain-term noise. And the same miss was reported against find_tools by the qs project (a design-rule constructor not surfaced), which suggests the weakness may be the ranking rather than the vocabulary. Worth measuring the miss rate before building: how often does a first phrasing fail where a second succeeds? Related open finding of the same shape: fact:the-external-dependency-node-exists-and-no-skill-points-at-it.",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:62fe4066d5484b3396ade603427733b8d625aeb70fe5e59403b43ea8c8f27f79",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:intent-authority-is-checked",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

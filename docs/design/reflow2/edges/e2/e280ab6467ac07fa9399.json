@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9349f3a47ab07cc44d7b7e0365122e66f09ea3c19ab4e5e84ae3524f8fbcf20d",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {},
+  "to_id": "epoch:the-server-keeps-the-export-current"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d9f6bbde74f006e4b2d4df9145a29b4c7e1e4669aa75f9de047c96d9eb8aba87",
+  "node_id": "art:test-a-taxonomy-is-decided-once-before-bulk-capture",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Also pins that a materialised unspecified Interface.medium reads as nothing said, and that a proposed decision governs nothing.",
+    "location": "crates/reflow2-core/tests/a_taxonomy_is_decided_once_before_bulk_capture.rs",
+    "name": "a_taxonomy_is_decided_once_before_bulk_capture.rs — six cases over encoding_undecided: the silences (under three, once every silent instance cites an accepted decision, under five where nobody has said) and the mixed encoding named with its counts, keyed on the pair",
+    "status": "realized"
+  }
+}

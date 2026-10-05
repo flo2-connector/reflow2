@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3750e98df9517540cf649bc5806aaa110e59309fa5b60dff8129b297cbb8d508",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 2026-09-25 report (F-28, the export reply carries the whole stamp): the path-mode receipt echoes the stamp by reference since 07-20, the stamp grew enum sets for the import guard on 09-12, and the reply-bound gate exempts export_graph by tool name.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-export-receipt-echoes-a-stamp-that-grew-for-the-import-guard-2026-09-28"
+}

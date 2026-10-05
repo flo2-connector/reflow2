@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:751959d590a23705123b51f4a2bd417cf012a1364e7b9bdbb069dff2d1b58818",
+  "node_id": "rel:v0760",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-01 overnight on Anthony's word (\"merge the PRs as needed. when ready, deploy to flo2.io … you have my approval to act autonomously throughout the night to finish up the oauth 2.1 tasks\"). Completes GitHub issue #616: v0.75.0 shipped fixes 1 and 2 and fix 4's enforcement half (#636); this release adds fix 3 (#620) and fix 4's resource-server half (#643).\n\nMINOR, and the schema stamp does NOT move (28 node types, 66 edge types; distinct_from is an additive property). No upgrade note is owed: a caller who changes nothing sees nothing break.\n\nWHAT AN OPERATOR SHOULD KNOW:\n- #643: --http-oidc-issuer (with --http-public-url and --http-contributor-id) makes an exposed --http server an OAuth 2.0 resource server that verifies bearer tokens itself and serves RFC 9728 metadata. New flags: --http-oidc-issuer, --http-public-url, --http-contributor-id, --http-contributor-map, --http-oidc-audience, --http-oidc-jwks-uri / --http-oidc-jwks-file, --http-oidc-required-scope, --http-oidc-required-claim. With the issuer, every request except the metadata needs a valid token. With neither issuer nor trusted gateway, an exposed engine still serves reads and proposals only, as in v0.75.0. stdio, --shared, loopback --http and a trusted gateway are unchanged. reflow2 does not terminate TLS.\n- #620: a server whose design another process holds serves it in place once that process lets go; GET /readyz and /healthz on every HTTP surface; the image HEALTHCHECK probes /readyz instead of a TCP connect.\n\nALSO: #642 the served lens no longer tells an agent to write a reader's background into the design; #641 a capture can say it replaces a node, and distinct_from is kept; #640 understated_status (severity 0.40). The design record for the 2026-09-30/10-01 live work was folded into main by #644 before the cut.",
+    "name": "v0.76.0 — #616 complete: an exposed server verifies OAuth bearer tokens itself, and a held design is served the moment it frees",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.76.0"
+  }
+}

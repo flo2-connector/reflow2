@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2af292d7dd4adc1a67b00525eb530f79e602a5e454826120b165e6f44a433134",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:drift-rolls-up-to-a-score",
+  "properties": {},
+  "to_id": "snap:epoch:reflow-workflow-review:req:drift-rolls-up-to-a-score"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa90898191e0f64e4b02fb474f7504f4c416dde45caed410d9635ce1c7a4dc02",
+  "node_id": "fact:making-the-repo-private-would-break-the-way-reflow2-ships",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "property",
+    "statement": "ANTHONY, 2026-09-02, rejecting the option this agent had recommended twice: *\"If I make the repo private, nobody can install any longer from it.\"*\n\nRECORDED BECAUSE THE REASON EXISTS NOWHERE ELSE AND THE OPTION WILL BE RE-PROPOSED. The public repository is not an oversight and not inertia — **it is the distribution mechanism.** reflow2 installs by one-liner from GitHub, and `user-iterative-release-preference` records that one-liner install and one-word update are things he has asked for explicitly. Making the repo private would trade the whole install path for a privacy improvement that, as measured the same day, would not even reach the material already published.\n\nTHE AGENT RECOMMENDED PRIVATE AS THE STRONGEST OPTION and repeated the recommendation after the first decision was recorded, because it is the only move that covers git history AND the 275 storyflow-naming nodes in the committed export at once. That reasoning was correct about coverage and wrong about cost, and the cost was invisible from inside the design — nothing in the graph said how reflow2 reaches its users.\n\n⭐ THE GENERAL SHAPE, worth more than the instance: **a design can be complete about what a system IS and silent about how it REACHES anybody**, and an agent reasoning only from the design will confidently recommend something that severs distribution. `req:a-project-records-how-it-ships` exists and this is a live example of what it is for.\n\n⚠️ NOT ESTABLISHED: whether the public repository is the only viable distribution path, or merely the current one. A private repo with released assets, or a package registry, might preserve the one-liner — nobody has costed either, and this fact records the constraint as stated, not as proven exhaustive.",
+    "subject_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+    "valid_from": "2026-09-02"
+  }
+}

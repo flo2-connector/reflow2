@@ -170,6 +170,22 @@ pub enum GapSource {
     /// which is the reflow1 failure in miniature (BL-30, the phase-coverage
     /// trial's headline).
     FailingVerification,
+    /// A `Verification` whose status says the check COULD NOT RUN (`blocked`):
+    /// a collection error, a test file that did not compile, a setup that
+    /// failed before the body ran.
+    ///
+    /// The honest status for a check that never executed, and until
+    /// 2026-10-03 the quiet one: `failing` raised a 0.8 gap saying the part
+    /// "did not work as designed", `blocked` raised nothing, so the dishonest
+    /// status was the loud one
+    /// (fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02).
+    /// This says what IS known — the check did not run, so nothing is known
+    /// about the part — and never that the part failed. Below
+    /// `failing_verification` and `unresolved_drift`, because it is not reality
+    /// contradicting the design; above `unverified_capability`, because a
+    /// check somebody tried to run and could not is a fault in the checking
+    /// itself, and may be hiding a failure.
+    BlockedVerification,
     /// A recorded divergence whose second question was never answered: a
     /// `DriftEvent` with `resolved: false`. Reality moved, the movement was
     /// *observed and written down* — and then nobody said what it meant.
@@ -829,6 +845,7 @@ impl GapSource {
             // the acknowledgement Decision. Renaming it expires every existing
             // capability acknowledgement with nothing to tell the user why.
             GapSource::FailingVerification => "failing_verification",
+            GapSource::BlockedVerification => "blocked_verification",
             GapSource::UnresolvedDrift => "unresolved_drift",
             GapSource::UnreleasedComponent => "unreleased_component",
             // Must match the serde snake_case of the variant: clients match on
@@ -1089,6 +1106,7 @@ impl GapSource {
             | GapSource::UnallocatedCapability
             | GapSource::UnrealizedCapability
             | GapSource::FailingVerification
+            | GapSource::BlockedVerification
             | GapSource::UnresolvedDrift
             | GapSource::UnreleasedComponent
             | GapSource::StatusContradiction
@@ -2544,8 +2562,8 @@ impl DesignGraph {
     /// On a graph with nothing anchored yet it is still the first thing the user
     /// sees. It only yields once there is something specific to say.
     ///
-    /// [`gap-surfacing.md`]: https://github.com/sligara7/reflow2/blob/main/docs/gap-surfacing.md
-    /// [aidrone trial]: https://github.com/sligara7/reflow2/blob/main/docs/trials/2026-07-18-greenfield-aidrone.md
+    /// [`gap-surfacing.md`]: https://github.com/flo2-connector/reflow2/blob/main/docs/gap-surfacing.md
+    /// [aidrone trial]: https://github.com/flo2-connector/reflow2/blob/main/docs/trials/2026-07-18-greenfield-aidrone.md
     fn all_gaps(&self) -> Result<Vec<GapCandidate>, DynoError> {
         let pop = self.population()?;
         let mut gaps = Vec::new();
@@ -2570,6 +2588,7 @@ impl DesignGraph {
         self.detect_encoding_undecided(&mut gaps)?;
         self.detect_repo_know_how(&mut gaps)?;
         self.detect_failing_verifications(&mut gaps)?;
+        self.detect_blocked_verifications(&mut gaps)?;
         self.detect_unresolved_drift(&mut gaps)?;
         self.detect_unreleased_components(&mut gaps)?;
         self.detect_releases_without_epoch(&mut gaps)?;
@@ -3161,8 +3180,8 @@ impl DesignGraph {
     /// fire on almost every correct design. Duplicate capabilities need the
     /// semantic path.
     ///
-    /// [gap-surfacing.md]: https://github.com/sligara7/reflow2/blob/main/docs/gap-surfacing.md
-    /// [heal-process.md]: https://github.com/sligara7/reflow2/blob/main/docs/heal-process.md
+    /// [gap-surfacing.md]: https://github.com/flo2-connector/reflow2/blob/main/docs/gap-surfacing.md
+    /// [heal-process.md]: https://github.com/flo2-connector/reflow2/blob/main/docs/heal-process.md
     /// [`HealOp::Merge`]: crate::heal::HealOp::Merge
     /// A `DUPLICATES` edge a MACHINE proposed — asked as a question, because
     /// nobody has confirmed it.
@@ -4169,6 +4188,97 @@ impl DesignGraph {
                      contradicting the design rather than absence of a check — but only as of that \
                      run; if code has landed since, the gap may be stale rather than real.",
                     ver.node_id
+                ),
+            });
+        }
+        Ok(())
+    }
+
+    /// A check recorded `blocked`: it COULD NOT RUN, so nothing is known about
+    /// what it checks. See [`GapSource::BlockedVerification`].
+    ///
+    /// The wording is the point. It never says the part failed or did not
+    /// work: a check that never executed is evidence of nothing, and the
+    /// failing gap's "did not work as designed" is exactly the overstatement
+    /// this exists to stop. The check's own `findings`, when recorded, are what
+    /// usually says what stopped it, so the gap points at them rather than
+    /// guessing.
+    fn detect_blocked_verifications(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let index = self.node_type_index()?;
+        for ver in self.scan_live_nodes(node::VERIFICATION)? {
+            let status = ver
+                .properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str)
+                .unwrap_or("planned");
+            if status != "blocked" {
+                continue;
+            }
+            let name = node_name(&ver);
+            let mut affected = vec![ver.node_id.clone()];
+            let mut target_names = Vec::new();
+            for e in self.outgoing(&ver.node_id, Some(edge::VERIFIES))? {
+                if let Some(t) = index.get(&e.to_id)
+                    && let Some(n) = self.get_node(t, &e.to_id)?
+                {
+                    target_names.push(node_name(&n));
+                }
+                affected.push(e.to_id);
+            }
+            affected.sort();
+            let what = if target_names.is_empty() {
+                "what it checks".to_string()
+            } else {
+                target_names.sort();
+                format!("“{}”", target_names.join("”, “"))
+            };
+            // The same recency rule as the failing gap: a status is a reading
+            // at an instant, said next to when it was taken, and no clock is
+            // consulted.
+            let last_run = ver
+                .properties
+                .get("last_run_at")
+                .and_then(crate::foundation::core::Value::as_str)
+                .filter(|s| !s.is_empty());
+            let when = match last_run {
+                Some(t) => format!(" when it was last tried, at {t}"),
+                None => String::new(),
+            };
+            let has_findings = ver
+                .properties
+                .get("findings")
+                .and_then(crate::foundation::core::Value::as_str)
+                .is_some_and(|f| !f.trim().is_empty());
+            let why = if has_findings {
+                "Its recorded findings say what stopped it."
+            } else {
+                "Nothing recorded says what stopped it: set_verification_status with `findings` \
+                 is where that goes."
+            };
+            gaps.push(GapCandidate {
+                id: gap_id(GapSource::BlockedVerification, &affected),
+                gap_source: GapSource::BlockedVerification,
+                scope: GapScope::Capability,
+                severity: 0.65,
+                title: match last_run {
+                    Some(t) => format!("“{name}” could not run (last tried {t})"),
+                    None => format!("“{name}” could not run"),
+                },
+                description: format!(
+                    "The check “{name}” could not run{when}, so it says nothing about whether \
+                     {what} works: not that it works, and not that it fails. {why} Make it \
+                     runnable and run it again, then record what the run found."
+                ),
+                affected_ids: affected,
+                suggested_depth: 2,
+                evidence: format!(
+                    "Verification '{}' has status=blocked{}. A blocked check is the absence of \
+                     a result, not a failing one: no claim about the checked part is made here.",
+                    ver.node_id,
+                    match last_run {
+                        Some(t) => format!(", last_run_at={t}"),
+                        None => String::from(", no last_run_at recorded"),
+                    }
                 ),
             });
         }
@@ -5897,24 +6007,61 @@ impl DesignGraph {
         Ok(())
     }
 
-    /// Recorded defects whose subject moved after they were written, with
-    /// nothing saying whether that was the fix
-    /// (`GapSource::DefectOvertakenByChange`).
+    /// Recorded defects that may already be fixed with nothing saying so, and
+    /// WHICH change most likely fixed each (`GapSource::DefectOvertakenByChange`).
     ///
-    /// One finding per open `defect` TemporalFact for which a dated REPAIR — a
-    /// ChangeEvent of `change_type` `defect_fix` or `test_failure_fix` —
-    /// `CHANGED` its subject, or an Artifact that `REALIZES` the subject,
-    /// strictly after the fact's `valid_from`, and no record `INVALIDATES` the
-    /// fact. Keyed on the fact AND the later repairs, so a further repair on
-    /// the same subject asks again: the world moved, and the earlier judgement
-    /// was about a different state of it.
+    /// One finding per open `defect` TemporalFact (no `valid_to`, no incoming
+    /// `INVALIDATES`, not parked) for which some change may have been its fix,
+    /// naming those changes most likely first. Two kinds are offered, and the
+    /// order between them is the point:
     ///
-    /// Repairs only, and that was measured rather than assumed: over every
-    /// later change of any kind, reflow2's own design raised 65 findings and
-    /// one hub component carried 39 members — a question nobody can answer.
-    /// Over later repairs it raises 45 with a median of 3 members. A feature
-    /// or a refactor that touched the subject is counted in the evidence and
-    /// never offered as the thing that fixed it.
+    /// 1. **JOINED** — the record already ties the change to this defect: the
+    ///    defect `CAUSES` it (it was made because of the defect), it
+    ///    `MITIGATES` the defect, or it is a repair whose `CHANGED` set names
+    ///    the defect itself. Any `change_type`, and no date needed: the join
+    ///    places it after the defect it answers. Named first.
+    /// 2. **NEAR** — a REPAIR (`defect_fix` / `test_failure_fix`) that
+    ///    `CHANGED` the defect's subject, or an Artifact that realizes the
+    ///    subject AND NOTHING ELSE, dated on or after the defect's `valid_from`
+    ///    — the same day included, because a defect found and fixed in one
+    ///    session is the usual case.
+    ///
+    /// Never offered: a change that `CAUSES` the defect (it introduced it); a
+    /// change dated before the defect; and, for NEAR, a repair already
+    /// recorded as fixing ANOTHER finding (it `INVALIDATES` or `MITIGATES`
+    /// one, or another finding `CAUSES` it), an undated one (it cannot be
+    /// ordered), one that reached the subject only through a file shared with
+    /// other capabilities, and anything that is not a repair. Each of those is
+    /// NAMED in the evidence, so nothing is dropped silently.
+    ///
+    /// # Why, measured
+    ///
+    /// The 2026-10-03 sweep judged all 77 of these questions on reflow2's own
+    /// design (`fact:the-overtaken-defect-question-named-the-real-fix-once-in-77-2026-10-03`).
+    /// The rule before this one — dated repairs strictly after the fact, on the
+    /// subject or ANY realizing file — named the real fix ONCE. Of the 20
+    /// defects that really were fixed it could see the fixing change for one:
+    /// ten fixes were undated, seven were dated the day the defect was
+    /// recorded, two were typed `new_feature`, and seven were already JOINED
+    /// to their defect by CAUSES, MITIGATES or by naming it — a join the rule
+    /// never read. And the noise came from two places: a broad repair on a
+    /// hub file (`art:service` realizes 19 capabilities) asks about every
+    /// defect on all of them, and of the near-but-wrong candidates, 195 of 363
+    /// were repairs already recorded as the fix of something else, against one
+    /// of the eight near fixes. Under this rule the same design asks 35
+    /// questions instead of 62 and names the real fix first for 9 of the 20,
+    /// and the open PR whose one broad repair re-asked 24 questions changes
+    /// none of them.
+    ///
+    /// # A judgement is remembered per change
+    ///
+    /// Acknowledging the finding records that each change it named did not fix
+    /// the defect (the acknowledgement's `GOVERNED_BY` edges from the fact and
+    /// from each change). A change already judged is never asked about again
+    /// for that defect, even when the set of candidates moves for some other
+    /// reason; only a change nobody has judged re-opens the question. The id is
+    /// still keyed on the fact AND every candidate, so an unchanged set keeps
+    /// its id and its acknowledgement exactly as before.
     ///
     /// # The case it was written from
     ///
@@ -5926,14 +6073,10 @@ impl DesignGraph {
     ///
     /// # What it cannot see, stated rather than swept
     ///
-    /// Ordering needs two dates. A change with no `detected_at` cannot be
-    /// placed before or after the fact and is COUNTED in the evidence, never
-    /// treated as later; a fact with no `valid_from` is skipped entirely. And
-    /// only the subject and its direct realizers are watched: a defect
-    /// recorded against the document that REPORTED it, rather than against the
-    /// part that was wrong, is out of reach — that was the shape of the very
-    /// case above, whose fixer was also undated, so this detector as specified
-    /// would NOT have caught it. Recorded on the fact.
+    /// A fix joined to nothing and touching neither the subject nor a file
+    /// realizing only it — four of the sweep's twenty — is out of reach of any
+    /// structural rule; so is an undated fix that is only near. Drawing
+    /// INVALIDATES when the fix lands is the cure, and the gap says so.
     fn detect_defect_overtaken_by_change(
         &self,
         gaps: &mut Vec<GapCandidate>,
@@ -5950,9 +6093,9 @@ impl DesignGraph {
             let Some(subject) = prop("subject_id").filter(|s| !s.is_empty()) else {
                 continue;
             };
-            let Some(recorded_on) = prop("valid_from").and_then(crate::dates::parse_day) else {
-                continue;
-            };
+            // CLOSED BY INVALIDATES, from anything, and by nothing weaker: a
+            // CAUSES or MITIGATES edge says the change answered the defect, not
+            // that the defect is gone.
             if !self
                 .incoming(&fact.node_id, Some(edge::INVALIDATES))?
                 .is_empty()
@@ -5962,73 +6105,66 @@ impl DesignGraph {
             if self.is_parked(&fact.node_id)? {
                 continue;
             }
-            // The subject, and the artifacts that realize it: a capability's
-            // defect is only ever fixed by changing something that realizes it.
-            let mut watched = vec![subject.to_string()];
-            for e in self.incoming(subject, Some(edge::REALIZES))? {
-                watched.push(e.from_id);
-            }
-            let mut later: Vec<String> = Vec::new();
-            let mut undated = 0usize;
-            let mut not_a_repair = 0usize;
-            for w in &watched {
-                for e in self.incoming(w, Some(edge::CHANGED))? {
-                    if self.is_discontinued(&e.from_id)? {
-                        continue;
-                    }
-                    let Some(ev) = self.get_node(node::CHANGE_EVENT, &e.from_id)? else {
-                        continue;
-                    };
-                    let change_type = ev
-                        .properties
-                        .get("change_type")
-                        .and_then(Value::as_str)
-                        .unwrap_or("");
-                    let is_repair =
-                        change_type == "defect_fix" || change_type == "test_failure_fix";
-                    match ev
-                        .properties
-                        .get("detected_at")
-                        .and_then(Value::as_str)
-                        .and_then(crate::dates::parse_day)
-                    {
-                        Some(day) if day > recorded_on && is_repair => later.push(e.from_id),
-                        Some(day) if day > recorded_on => not_a_repair += 1,
-                        Some(_) => {}
-                        // Undated, so unordered — whether or not it was a
-                        // repair, it cannot be placed after the fact.
-                        None => undated += 1,
-                    }
-                }
-            }
-            later.sort();
-            later.dedup();
-            if later.is_empty() {
+            let recorded_on = prop("valid_from").and_then(crate::dates::parse_day);
+            let sweep =
+                self.changes_that_may_have_fixed(&index, &fact.node_id, subject, recorded_on)?;
+            let Some(first) = sweep.offered.iter().find(|c| !c.judged) else {
+                // Nothing offered, or every change offered has been judged.
                 continue;
-            }
-            let n = later.len();
+            };
             let name = node_name(&fact);
             let subject_name = index
                 .get(subject)
                 .and_then(|t| self.get_node(t, subject).ok().flatten())
                 .map(|s| node_name(&s))
                 .unwrap_or_else(|| subject.to_string());
+            let n = sweep.offered.len();
+            let fresh = sweep.offered.iter().filter(|c| !c.judged).count();
+            let others = match fresh {
+                0 | 1 => String::new(),
+                2 => ", or one other change,".to_string(),
+                k => format!(", or one of {} other changes,", k - 1),
+            };
+            let recorded = prop("valid_from").unwrap_or("");
+            let listed: Vec<String> = sweep
+                .offered
+                .iter()
+                .enumerate()
+                .map(|(i, c)| {
+                    format!(
+                        "({}) {}{} — {}; {}{}",
+                        i + 1,
+                        c.id,
+                        if c.name == c.id {
+                            String::new()
+                        } else {
+                            format!(" “{}”", c.name)
+                        },
+                        c.link.reason(&subject_name),
+                        c.dating(recorded_on),
+                        if c.judged {
+                            " — ALREADY JUDGED not to have fixed it"
+                        } else {
+                            ""
+                        }
+                    )
+                })
+                .collect();
+            let joined_present = sweep.offered.iter().any(|c| c.link.is_joined());
+            let join_note = if joined_present {
+                " A CAUSES or MITIGATES edge, or naming the defect among what a change \
+                 CHANGED, records that the change ANSWERED the defect — it does not close it."
+            } else {
+                ""
+            };
             let mut affected = vec![fact.node_id.clone()];
-            affected.extend(later.iter().cloned());
+            affected.extend(sweep.offered.iter().map(|c| c.id.clone()));
             affected.sort();
-            let mut swept = String::new();
-            if undated > 0 {
-                swept.push_str(&format!(
-                    " {undated} further change(s) on the same subject carry no detected_at and \
-                     could not be ordered against the fact; they are not counted as later."
-                ));
-            }
-            if not_a_repair > 0 {
-                swept.push_str(&format!(
-                    " {not_a_repair} later change(s) on the same subject were not repairs (a \
-                     feature, a refactor, a resync) and are not offered as the fix."
-                ));
-            }
+            let recorded_phrase = if recorded.is_empty() {
+                "with no valid_from".to_string()
+            } else {
+                format!("on {recorded}")
+            };
             gaps.push(GapCandidate {
                 id: gap_id(GapSource::DefectOvertakenByChange, &affected),
                 gap_source: GapSource::DefectOvertakenByChange,
@@ -6040,33 +6176,264 @@ impl DesignGraph {
                 // design rather than the record lagging it.
                 severity: 0.5,
                 title: format!(
-                    "“{name}” still reads open, and {n} later repair(s) touched “{subject_name}” after it was recorded"
+                    "“{name}” still reads open — did “{}”{others} fix it?",
+                    first.name
                 ),
                 description: format!(
-                    "The defect “{name}” was recorded against “{subject_name}” on {} and nothing \
-                     says it was fixed — yet {n} later dated repair(s) touched that subject or an \
-                     artifact realizing it: {}. If one of them was the fix, draw INVALIDATES from \
-                     that ChangeEvent to the fact (the `invalidates` tool) so the finding stops \
-                     reading as open; a session that trusted a stale open defect re-fixed it wrongly \
-                     within a day. If the defect is genuinely still open despite the repairs, \
-                     acknowledge this once for these repairs — a further repair on the subject will \
-                     ask again.",
-                    prop("valid_from").unwrap_or(""),
-                    later.join(", ")
+                    "The defect “{name}” was recorded against “{subject_name}” {recorded_phrase} \
+                     and nothing closes it. {n} change(s) may have fixed it, most likely first: \
+                     {}. If one of them fixed it, draw INVALIDATES from that ChangeEvent to the \
+                     fact — the `invalidates` tool — because only INVALIDATES (or a valid_to) \
+                     closes a defect.{join_note} A session that trusted a stale open defect \
+                     re-fixed it wrongly within a day. If the defect is still open despite them, \
+                     acknowledge this gap with its affected_ids: each change named is then \
+                     remembered as judged for this defect, and only a change nobody has judged \
+                     asks again.",
+                    listed.join("; ")
                 ),
                 affected_ids: affected,
                 suggested_depth: 1,
-                evidence: format!(
-                    "TemporalFact '{}' (fact_type=defect, valid_from={}, no valid_to) has no incoming \
-                     INVALIDATES; {n} ChangeEvent(s) of change_type defect_fix or test_failure_fix \
-                     with detected_at after valid_from CHANGED its subject '{subject}' or an \
-                     Artifact that REALIZES it.{swept}",
-                    fact.node_id,
-                    prop("valid_from").unwrap_or("")
-                ),
+                evidence: sweep.evidence(&fact.node_id, recorded, subject),
             });
         }
         Ok(())
+    }
+
+    /// The changes that may have fixed one defect, ranked, with everything
+    /// near it that was NOT offered and why — the attribution half of
+    /// [`Self::detect_defect_overtaken_by_change`].
+    fn changes_that_may_have_fixed(
+        &self,
+        index: &std::collections::HashMap<String, String>,
+        fact_id: &str,
+        subject: &str,
+        recorded_on: Option<i64>,
+    ) -> Result<FixSweep, DynoError> {
+        let is_change = |id: &str| index.get(id).map(String::as_str) == Some(node::CHANGE_EVENT);
+        let is_finding = |id: &str| index.get(id).map(String::as_str) == Some(node::TEMPORAL_FACT);
+        // A CAUSES edge a person marked refuted or spurious asserts no cause.
+        let asserts = |e: &crate::foundation::store::StoredEdge| {
+            let p = |k: &str| e.properties.get(k).and_then(Value::as_str);
+            p("validation_status") != Some("refuted") && p("basis") != Some("spurious")
+        };
+        // A change that CAUSES the defect introduced it.
+        let introduced: BTreeSet<String> = self
+            .incoming(fact_id, Some(edge::CAUSES))?
+            .into_iter()
+            .filter(|e| is_change(&e.from_id) && asserts(e))
+            .map(|e| e.from_id)
+            .collect();
+        let mut sweep = FixSweep::default();
+        let mut seen: BTreeSet<String> = BTreeSet::new();
+
+        let mut joins: Vec<(String, FixLink)> = Vec::new();
+        for e in self.outgoing(fact_id, Some(edge::CAUSES))? {
+            if is_change(&e.to_id) && asserts(&e) {
+                joins.push((e.to_id, FixLink::CausedByTheDefect));
+            }
+        }
+        for e in self.incoming(fact_id, Some(edge::MITIGATES))? {
+            if is_change(&e.from_id) {
+                joins.push((e.from_id, FixLink::Mitigates));
+            }
+        }
+        for e in self.incoming(fact_id, Some(edge::CHANGED))? {
+            joins.push((e.from_id, FixLink::NamesTheDefect));
+        }
+        for (id, link) in joins {
+            if seen.contains(&id) || introduced.contains(&id) || self.is_discontinued(&id)? {
+                continue;
+            }
+            let Some(c) = self.fix_candidate(&id, link)? else {
+                continue;
+            };
+            // Only a REPAIR that names the defect among what it changed is a
+            // claim to have answered it: the change that RECORDED the defect
+            // names it too, and is a resync or a review.
+            if matches!(c.link, FixLink::NamesTheDefect) && !c.is_repair {
+                continue;
+            }
+            if c.before(recorded_on) {
+                continue;
+            }
+            seen.insert(id);
+            sweep.offered.push(c);
+        }
+
+        // NEAR needs the defect's own date: without it nothing can be ordered.
+        if recorded_on.is_some() {
+            let mut watched: Vec<(String, FixLink)> =
+                vec![(subject.to_string(), FixLink::ChangedTheSubject)];
+            let mut shared: Vec<String> = Vec::new();
+            for e in self.incoming(subject, Some(edge::REALIZES))? {
+                let realizes: BTreeSet<String> = self
+                    .outgoing(&e.from_id, Some(edge::REALIZES))?
+                    .into_iter()
+                    .map(|r| r.to_id)
+                    .collect();
+                if realizes.len() == 1 {
+                    watched.push((e.from_id.clone(), FixLink::ChangedItsOwnFile(e.from_id)));
+                } else {
+                    shared.push(e.from_id);
+                }
+            }
+            for (w, link) in watched {
+                for e in self.incoming(&w, Some(edge::CHANGED))? {
+                    let id = e.from_id;
+                    if seen.contains(&id)
+                        || introduced.contains(&id)
+                        || !is_change(&id)
+                        || self.is_discontinued(&id)?
+                    {
+                        continue;
+                    }
+                    let Some(c) = self.fix_candidate(&id, link.clone())? else {
+                        continue;
+                    };
+                    if c.before(recorded_on) {
+                        continue;
+                    }
+                    if !c.is_repair {
+                        if c.day.is_some() {
+                            sweep.not_repairs.insert(id);
+                        }
+                        continue;
+                    }
+                    if self.recorded_as_fixing_another(&id, fact_id, &is_finding)? {
+                        sweep.attributed.insert(id);
+                        continue;
+                    }
+                    if c.day.is_none() {
+                        sweep.undated.insert(id);
+                        continue;
+                    }
+                    seen.insert(id);
+                    sweep.offered.push(c);
+                }
+            }
+            for file in shared {
+                for e in self.incoming(&file, Some(edge::CHANGED))? {
+                    let id = e.from_id;
+                    if seen.contains(&id) || introduced.contains(&id) || !is_change(&id) {
+                        continue;
+                    }
+                    let Some(c) = self.fix_candidate(&id, FixLink::ChangedTheSubject)? else {
+                        continue;
+                    };
+                    if c.is_repair && c.day.is_some() && !c.before(recorded_on) {
+                        sweep.shared_only.insert(id);
+                        sweep.shared_files.insert(file.clone());
+                    }
+                }
+            }
+        }
+        for id in &seen {
+            sweep.undated.remove(id);
+            sweep.attributed.remove(id);
+            sweep.not_repairs.remove(id);
+            sweep.shared_only.remove(id);
+        }
+        // Attributed and not-a-repair outrank "shared": say the stronger reason.
+        let named: BTreeSet<String> = sweep
+            .attributed
+            .iter()
+            .chain(sweep.not_repairs.iter())
+            .chain(sweep.undated.iter())
+            .cloned()
+            .collect();
+        sweep.shared_only.retain(|id| !named.contains(id));
+
+        let (judged, decisions) = self.repairs_judged_for(fact_id, &is_change)?;
+        for c in &mut sweep.offered {
+            c.judged = judged.contains(&c.id);
+        }
+        sweep.judged_by = decisions;
+        sweep.offered.sort_by_key(FixCandidate::rank);
+        Ok(sweep)
+    }
+
+    /// One change as a candidate fix, or `None` when the id holds no
+    /// ChangeEvent.
+    fn fix_candidate(&self, id: &str, link: FixLink) -> Result<Option<FixCandidate>, DynoError> {
+        let Some(ev) = self.get_node(node::CHANGE_EVENT, id)? else {
+            return Ok(None);
+        };
+        let p = |k: &str| ev.properties.get(k).and_then(Value::as_str);
+        let change_type = p("change_type").unwrap_or("");
+        let detected_at = p("detected_at")
+            .filter(|s| !s.is_empty())
+            .map(str::to_string);
+        Ok(Some(FixCandidate {
+            id: id.to_string(),
+            name: node_name(&ev),
+            day: detected_at.as_deref().and_then(crate::dates::parse_day),
+            detected_at,
+            is_repair: change_type == "defect_fix" || change_type == "test_failure_fix",
+            breadth: self.outgoing(id, Some(edge::CHANGED))?.len(),
+            link,
+            judged: false,
+        }))
+    }
+
+    /// Whether a change is already on record as the fix (or partial fix) of a
+    /// finding OTHER than `fact_id`: it INVALIDATES or MITIGATES one, or one
+    /// CAUSES it. Such a change has a stated purpose, so nearness alone does
+    /// not offer it for a different defect.
+    fn recorded_as_fixing_another(
+        &self,
+        change_id: &str,
+        fact_id: &str,
+        is_finding: &dyn Fn(&str) -> bool,
+    ) -> Result<bool, DynoError> {
+        for e in self.outgoing(change_id, Some(edge::INVALIDATES))? {
+            if e.to_id != fact_id && is_finding(&e.to_id) {
+                return Ok(true);
+            }
+        }
+        for e in self.outgoing(change_id, Some(edge::MITIGATES))? {
+            if e.to_id != fact_id && is_finding(&e.to_id) {
+                return Ok(true);
+            }
+        }
+        for e in self.incoming(change_id, Some(edge::CAUSES))? {
+            if e.from_id != fact_id && is_finding(&e.from_id) {
+                return Ok(true);
+            }
+        }
+        Ok(false)
+    }
+
+    /// The changes an accepted acknowledgement has already judged for this
+    /// defect — those `GOVERNED_BY` the same `decision:ack:…` Decision as the
+    /// fact — and the Decisions that judged them.
+    fn repairs_judged_for(
+        &self,
+        fact_id: &str,
+        is_change: &dyn Fn(&str) -> bool,
+    ) -> Result<(BTreeSet<String>, BTreeSet<String>), DynoError> {
+        let mut judged = BTreeSet::new();
+        let mut decisions = BTreeSet::new();
+        for e in self.outgoing(fact_id, Some(edge::GOVERNED_BY))? {
+            let Some(hash) = e.to_id.strip_prefix("decision:ack:") else {
+                continue;
+            };
+            if hash.starts_with("heal:")
+                || self.gap_acknowledgement(&format!("gap:{hash}"))?.is_none()
+            {
+                continue;
+            }
+            let mut any = false;
+            for g in self.incoming(&e.to_id, Some(edge::GOVERNED_BY))? {
+                if is_change(&g.from_id) {
+                    judged.insert(g.from_id);
+                    any = true;
+                }
+            }
+            if any {
+                decisions.insert(e.to_id);
+            }
+        }
+        Ok((judged, decisions))
     }
 
     /// An open question the design has already answered by building it
@@ -8023,6 +8390,186 @@ pub(crate) fn ordered_pair(a: &str, b: &str) -> (String, String) {
         (a.to_string(), b.to_string())
     } else {
         (b.to_string(), a.to_string())
+    }
+}
+
+/// How a change is tied to the defect it may have fixed — the reason it is
+/// offered, strongest kinds first.
+#[derive(Debug, Clone, PartialEq, Eq)]
+enum FixLink {
+    /// The defect `CAUSES` the change: it was made because of the defect.
+    CausedByTheDefect,
+    /// A repair whose `CHANGED` set names the defect itself.
+    NamesTheDefect,
+    /// The change `MITIGATES` the defect.
+    Mitigates,
+    /// A repair that `CHANGED` the defect's subject.
+    ChangedTheSubject,
+    /// A repair that `CHANGED` this Artifact, which realizes the subject and
+    /// nothing else.
+    ChangedItsOwnFile(String),
+}
+
+impl FixLink {
+    fn is_joined(&self) -> bool {
+        matches!(
+            self,
+            FixLink::CausedByTheDefect | FixLink::NamesTheDefect | FixLink::Mitigates
+        )
+    }
+
+    fn reason(&self, subject_name: &str) -> String {
+        match self {
+            FixLink::CausedByTheDefect => {
+                "the defect CAUSES it (it was made because of this defect)".to_string()
+            }
+            FixLink::NamesTheDefect => "a repair whose CHANGED set names this defect".to_string(),
+            FixLink::Mitigates => "it MITIGATES this defect".to_string(),
+            FixLink::ChangedTheSubject => format!("a repair that CHANGED “{subject_name}”"),
+            FixLink::ChangedItsOwnFile(file) => {
+                format!("a repair that CHANGED {file}, which realizes “{subject_name}” alone")
+            }
+        }
+    }
+}
+
+/// One change offered as the possible fix of one defect.
+#[derive(Debug, Clone)]
+struct FixCandidate {
+    id: String,
+    name: String,
+    link: FixLink,
+    detected_at: Option<String>,
+    day: Option<i64>,
+    is_repair: bool,
+    /// How many records the change `CHANGED`: the narrower, the more it is
+    /// about each of them.
+    breadth: usize,
+    /// An accepted acknowledgement already judged it not to be this
+    /// defect's fix.
+    judged: bool,
+}
+
+impl FixCandidate {
+    /// Dated strictly before the defect was recorded: it cannot be the fix.
+    fn before(&self, recorded_on: Option<i64>) -> bool {
+        matches!((self.day, recorded_on), (Some(d), Some(r)) if d < r)
+    }
+
+    fn dating(&self, recorded_on: Option<i64>) -> String {
+        match (&self.detected_at, self.day, recorded_on) {
+            (Some(at), Some(d), Some(r)) if d == r => {
+                format!("dated {at}, the day the defect was recorded")
+            }
+            (Some(at), Some(d), Some(r)) => format!("dated {at}, {} day(s) after it", d - r),
+            (Some(at), _, _) => format!("dated {at}"),
+            (None, _, _) => "undated — the join places it after the defect".to_string(),
+        }
+    }
+
+    /// Not yet judged first; then joined before near; then repairs, dated,
+    /// nearest the defect, narrowest; the id breaks ties so the order is
+    /// stable.
+    fn rank(&self) -> (bool, bool, bool, bool, i64, usize, String) {
+        (
+            self.judged,
+            !self.link.is_joined(),
+            !self.is_repair,
+            self.day.is_none(),
+            self.day.unwrap_or(i64::MAX),
+            self.breadth,
+            self.id.clone(),
+        )
+    }
+}
+
+/// What one defect's attribution found: the changes offered, ranked, and
+/// every change near it that was NOT offered, by the reason it was not.
+#[derive(Debug, Default)]
+struct FixSweep {
+    offered: Vec<FixCandidate>,
+    /// The acknowledgement Decisions that judged any offered change.
+    judged_by: BTreeSet<String>,
+    undated: BTreeSet<String>,
+    attributed: BTreeSet<String>,
+    not_repairs: BTreeSet<String>,
+    shared_only: BTreeSet<String>,
+    shared_files: BTreeSet<String>,
+}
+
+impl FixSweep {
+    fn evidence(&self, fact_id: &str, recorded: &str, subject: &str) -> String {
+        /// Name at most this many ids per reason; the count is always whole.
+        const NAMED: usize = 5;
+        let names = |ids: &BTreeSet<String>| {
+            let mut s = ids
+                .iter()
+                .take(NAMED)
+                .map(String::as_str)
+                .collect::<Vec<_>>()
+                .join(", ");
+            let more = ids.len().saturating_sub(NAMED);
+            if more > 0 {
+                s.push_str(&format!(" and {more} more"));
+            }
+            s
+        };
+        let joined = self.offered.iter().filter(|c| c.link.is_joined()).count();
+        let near = self.offered.len() - joined;
+        let recorded = if recorded.is_empty() {
+            "no valid_from, so only changes joined to it are offered".to_string()
+        } else {
+            format!("valid_from={recorded}")
+        };
+        let mut s = format!(
+            "TemporalFact '{fact_id}' (fact_type=defect, {recorded}, no valid_to) has no incoming \
+             INVALIDATES. Offered: {joined} change(s) JOINED to it (it CAUSES them, they MITIGATE \
+             it, or a repair's CHANGED set names it) and {near} repair(s) dated on or after it \
+             that CHANGED its subject '{subject}' or an Artifact realizing that subject alone."
+        );
+        let judged = self.offered.iter().filter(|c| c.judged).count();
+        if judged > 0 {
+            s.push_str(&format!(
+                " {judged} of them were already judged not to be its fix ({}) and are not the \
+                 question.",
+                names(&self.judged_by)
+            ));
+        }
+        if !self.undated.is_empty() {
+            s.push_str(&format!(
+                " {} undated repair(s) on the subject could not be ordered against the fact and \
+                 are not offered: {}.",
+                self.undated.len(),
+                names(&self.undated)
+            ));
+        }
+        if !self.attributed.is_empty() {
+            s.push_str(&format!(
+                " {} repair(s) on the subject are recorded as fixing another finding and are not \
+                 offered: {}.",
+                self.attributed.len(),
+                names(&self.attributed)
+            ));
+        }
+        if !self.shared_only.is_empty() {
+            s.push_str(&format!(
+                " {} repair(s) touched only a file shared with other capabilities ({}) and are \
+                 not offered — a change to a shared file counts only where it CHANGED the \
+                 subject itself: {}.",
+                self.shared_only.len(),
+                names(&self.shared_files),
+                names(&self.shared_only)
+            ));
+        }
+        if !self.not_repairs.is_empty() {
+            s.push_str(&format!(
+                " {} later change(s) on the same subject were not repairs (a feature, a refactor, \
+                 a resync) and are not offered unless joined to it: {}.",
+                self.not_repairs.len(),
+                names(&self.not_repairs)
+            ));
+        }
+        s
     }
 }
 

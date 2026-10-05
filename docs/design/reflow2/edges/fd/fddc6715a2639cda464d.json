@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b202b76618256d08abc93fe8c074a8e8dbabd9a7595fb622ffd4cff6867b2aa",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:degraded-follows-transport",
+  "properties": {
+    "at": "2026-07-26",
+    "note": "BL-105 said the degraded surface ignores --http, so the outage it exists to explain went silent on the new transport. The fact's own closing clause reads \"FIXED 2026-07-26, same day\", and this ChangeEvent is that work — the degraded surface now follows the transport that was asked for. Edge drawn 2026-08-28 during the field-defect sweep; the closure was written in the fact's prose where no computation could read it."
+  },
+  "to_id": "fact:bl-105"
+}

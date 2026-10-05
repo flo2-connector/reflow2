@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2ef95010681fa49a144e7745e6de804abed92aed3785b49e4d1d60b381476c7e",
+  "node_id": "art:schema-build",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/build.yaml",
+    "name": "build.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

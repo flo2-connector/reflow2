@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:77155909bc0c384f349786d5720bbeaf1d6a58a6328a92f3195a002890b07a5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:848ca1aa1407d3ff7450b843033646dddfede1084add0a74512c06e39c74c11b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:the-argument-check-agrees-with-the-deserialiser-test"
+}

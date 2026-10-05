@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b9797fa9501b37058bf235fd8a2002fba66c7b31189b0e3bb9aee41e02395735",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-and-tools"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c3cd4368c3e87b024128f5df74652728e94fafeddfccb454a5e45f69842a1de",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

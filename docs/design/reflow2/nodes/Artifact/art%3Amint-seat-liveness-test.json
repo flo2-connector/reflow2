@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ff6287e5885f1e7763bc6bc188a91ebeb8ef84e51d3d3db447449fe938e528ec",
+  "node_id": "art:mint-seat-liveness-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/mint_seat_liveness.rs",
+    "name": "mint_seat_liveness.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

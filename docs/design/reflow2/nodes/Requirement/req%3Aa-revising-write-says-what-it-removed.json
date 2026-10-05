@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:60bd4345a6aa222acf319bfd1517fe8d6d0f2594536a761720934a3541c8d95e",
+  "node_id": "req:a-revising-write-says-what-it-removed",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A revising write says what it removed, and never silently shortens the record",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word. flo2 measured thirteen full-field rewrites in one session; two silently dropped a load-bearing paragraph, both caught only by the author re-reading their own call. The reply already carries the prior value and compares nothing. THE OBLIGATION: a write that shortens a field says so in its reply, naming the field and the size of the loss. DELIBERATELY NOT a refusal: deleting on purpose is a legitimate edit, and a flag to permit it would cost a retry on every honest one. This is a report, not a gate.",
+    "status": "accepted"
+  }
+}

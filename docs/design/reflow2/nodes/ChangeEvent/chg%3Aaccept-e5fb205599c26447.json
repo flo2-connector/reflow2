@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8345d2f37da65dc55d881faacaec93ccc6d691786ed9b2e3c2368f846f75718d",
+  "node_id": "chg:accept-e5fb205599c26447",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "get_skill's refusal maps the slash-command aliases. Eight advertised commands had no skill of that name and the refusal listed twenty names, none of them the one asked for. TWO of the eight resolve to no skill at all — /decisions is scan_nodes(Decision), /debt is loop_status — so the table carries Ok(skill) | Err(call this instead) rather than inventing a mapping. Four tests added, including that every alias claiming a skill names one that exists.",
+    "subject": "system"
+  }
+}

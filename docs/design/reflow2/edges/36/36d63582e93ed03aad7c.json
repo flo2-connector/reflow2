@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:710bc6b4af8b121ea27a69f8741597642643c200882dbc65a438ff32508d32cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-86120115ec83ae15",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:server-currency-test"
+}

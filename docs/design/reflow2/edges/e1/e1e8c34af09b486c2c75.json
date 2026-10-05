@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:caf3b13e19216ed55d2daea9746c97eebd0a6b04b94df97a397aad42d0b83bbe",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:design-dependencies-declared",
+  "properties": {},
+  "to_id": "req:design-dependencies-declared"
+}

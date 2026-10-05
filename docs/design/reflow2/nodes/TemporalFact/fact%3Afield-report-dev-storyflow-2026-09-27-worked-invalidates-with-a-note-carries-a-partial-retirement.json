@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c02bddfb6806acf441b296e78fc5b9107900282197aa35dd97c7315b9c14576c",
+  "node_id": "fact:field-report-dev-storyflow-2026-09-27-worked-invalidates-with-a-note-carries-a-partial-retirement",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "observation",
+    "name": "WHAT WORKED (dev_storyflow, reported four times 2026-09-23 to 2026-09-27): `invalidates` with a `note` lets a fix retire ONE row of a failing walk, or part of a finding, while saying on the edge what still holds",
+    "source": "art:dev-storyflow-feedback-2026-09-27",
+    "statement": "Recorded so a regression is checkable. Four independent reports in three sessions, in the reporter's words: 09-23 \"`invalidates` with a `note` let me say the fix answers ONE row of a failing walk without pretending the walk passes — exactly the right shape for a partial repair\"; 09-25 \"let me close yesterday's four-call finding while saying in its note that the full scan found a fifth — the correction rides on the closing edge instead of a new node\"; 09-25 (#654) \"let the closing edge carry what the finding had left open … and say production is still open until deploy\"; 09-27 evening (on flo2.io) \"handles a PARTIAL retirement well. I kept the Pass 2 root-cause finding open and still recorded, on the edge, which four defects were answered and which three claims still hold.\" What must not regress: the note is free text on the INVALIDATES edge, and an invalidation does not claim the whole finding is closed.",
+    "subject_id": "cap:a-repair-can-say-what-it-invalidated",
+    "valid_from": "2026-09-27"
+  }
+}

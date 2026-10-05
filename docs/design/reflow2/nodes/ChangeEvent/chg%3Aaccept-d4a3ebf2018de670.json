@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec88b4602b5ff70a2cfa1c32da4e4517b668cf1131a51cb7f37b59b322f3032c",
+  "node_id": "chg:accept-d4a3ebf2018de670",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-29",
+    "name": "The v0.43.0 version bump, and nothing else. The design meaning of a cut lives in the Release and its epoch, not in a version string, so the design holds.\n\nACCEPTED BEFORE THE MANIFEST FREEZE, DELIBERATELY: `release_includes_all` records each artifact's CURRENT checksum as shipped, so accepting afterwards would leave the release recording that it shipped the pre-bump file. Doing it in this order is one step; the other order is a gate failure and a second export, budgeted on every cut before someone wrote down which way round it goes.",
+    "subject": "system"
+  }
+}

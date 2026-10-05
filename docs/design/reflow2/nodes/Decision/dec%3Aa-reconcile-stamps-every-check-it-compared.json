@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d18809e8812fdd27ae4625aad62f771ecfeb7256d8bfc95504dc7f30b4b40829",
+  "node_id": "dec:a-reconcile-stamps-every-check-it-compared",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "reconcile_verification with record_events stamps each observed Verification with last_reconciled_outcome (passed/failed/skipped), last_reconciled_at (its detected_at) and, for a dated failure, last_failed_run_at — which a later passing run does not clear. `status`, the design's claim, is carried over untouched. An unrecorded reconcile stamps nothing.",
+    "kind": "choice",
+    "name": "A real run fed back with recording on stamps every check it compared — agreeing or not — beside the claim, never over it",
+    "rationale": "Before this, a real run that AGREED with the recorded status left no trace — only a disagreement minted a DriftEvent — so \"no test result has ever come back into this design\" and \"results came back and every one matched\" were the same graph, and the loop-closure reading could not tell a design that closed its loop from one that never tried. Anthony chose this 2026-09-22 over two alternatives: reading the server's own call tally (no schema change, but local to one machine and unable to say WHICH checks were covered), and building the reading on what was stored and stating the blind spot. The stamp travels with the export, so it works for every consumer.",
+    "status": "accepted"
+  }
+}

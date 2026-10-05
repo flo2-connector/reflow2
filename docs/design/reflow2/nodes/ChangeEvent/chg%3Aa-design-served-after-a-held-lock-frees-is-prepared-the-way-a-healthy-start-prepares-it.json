@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:422ba7b90a7582436238ee04630762d9912f0a2b39bb7e6ee1049093561e72e8",
+  "node_id": "chg:a-design-served-after-a-held-lock-frees-is-prepared-the-way-a-healthy-start-prepares-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "61f49354da71ea3fc02e3b5ab81d5f0af10ff698,d20043fc315ed5259e0a5db4caa6f7ba0e776759",
+    "detected_at": "2026-09-30",
+    "name": "A design a plain server serves after a held lock frees is prepared by the same steps as one served at startup, the caller rule included",
+    "rationale": "FOUND WHILE MERGING origin/main (v0.75.0 + #641 + #642) into #620 on 2026-09-30. It compiled, git merged main.rs with no conflict, and every test on both sides was green. #616 fix 4 (#636) installs the caller rule at each place main.rs serves a design over HTTP; #620 had added a NEW place, the recovery opener, written before fix 4 existed. The opener's doc said it opens \"EXACTLY as the healthy start would\", but it was a copy of the start's steps, and a copy does not take a step added to its original.\n\nROOT CAUSE: two constructions of one served design. FIX AT THE CAUSE: one preparation (ServeAs::prepare) that both doors call, so a step added to the start is taken by the recovery too. The opener now takes a ServeAs instead of reading the command line itself.\n\nFAILING FIRST: a_recovered_server_served_for_others_keeps_the_caller_rule_a_healthy_start_installs (in crates/reflow2-mcp/tests/a_degraded_server_recovers_when_its_cause_clears.rs) starts a holder, then a second --http server with --http-allow-host team.example.org on the same store, stops the holder, and after /readyz goes 200 checks three things: the handshake says SERVED FOR OTHERS, an unsigned settle (an accepted Decision through import_graph) is refused naming --http-trusted-gateway, and the operator banner says how signatures are held. On the merged code without the fix it FAILED: the design was served (/readyz 200) and its handshake carried no SERVED FOR OTHERS. With the fix all six tests in the file pass.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "main.rs: a new ServeAs readies an opened design (read-only, tree root, provenance note, write-through export, and over HTTP the caller rule of #616 fix 4). The healthy start and the degraded surface's recovery opener (#616 fix 3) both call it. Before, the opener kept its own copy of the start's steps, and after main was merged into #620 that copy lacked the caller rule: an --http server with --http-allow-host naming another machine that waited out a held lock served its design LOCAL, taking any caller's signature."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c96544895da8e2c161136373a93493632a3734546f9004a10108041ee4d5e7c1",
+  "node_id": "chg:the-loop-notices-a-fix-with-no-cause-and-a-defect-its-subject-outran",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-06",
+    "name": "The loop notices a fix with no recorded cause, and a defect its subject outran",
+    "rationale": "The third leg: the skill and the rules existed, and nothing noticed a fix that recorded no cause, so the accepted requirement that a fix say what it reached was unenforceable. Three design choices worth the record. (1) The tight definition — a CAUSES edge on an artifact the fix touched is NOT accepted — because measured on this design the loose reading whitewashed 33 fixes through one old cause on a hub artifact. (2) Forward-only by parking rather than by a date in the detector: the graph already has the word for a deliberate unattached state, and a dated cutoff would be a second mechanism for the same thing. (3) The mirror counts later REPAIRS only: read from the served surface before merge, later changes of any kind raised 65 findings and one hub component carried 39 members — a question nobody can answer — where repairs raise 45 with a median of 3; a feature or refactor is counted in the evidence and never offered as the fix. On first run this design reads 183 of 209 fixes uncaused and 45 overtaken defects; the origin case of the mirror is NOT reachable as specified (subject was the reporting document, fixer undated), recorded and closed with that bound. The link-artifacts skill is not a registered artifact, so its edit owes no checksum accept.",
+    "subject": "system",
+    "summary": "Two gap detectors land in detect.rs: fix_without_recorded_cause (aggregate over defect_fix/test_failure_fix ChangeEvents on no CAUSES edge and with no outgoing INVALIDATES; parked fixes skipped and counted) and defect_overtaken_by_change (per open defect fact whose subject or a realizing artifact was CHANGED by a dated later REPAIR, no INVALIDATES; undated changes and later non-repairs counted, never offered as the fix). Composition: a root-cause pointer in check-health, link-artifacts and capture-session; both sources named in detect-and-ask; skill lint allowlist and docs/gap-surfacing.md rows. Item 2 of v0.50.0, mechanisms (c) and (d) of the mechanism ruling."
+  }
+}

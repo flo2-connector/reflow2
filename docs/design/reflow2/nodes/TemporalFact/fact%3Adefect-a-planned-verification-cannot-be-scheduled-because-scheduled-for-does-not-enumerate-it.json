@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f286fbd4465bb7427612b11828ccad693d0e164cc47279ccc62d5828e58c276a",
+  "node_id": "fact:defect-a-planned-verification-cannot-be-scheduled-because-scheduled-for-does-not-enumerate-it",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "A CHECK WRITTEN TODAY TO BE RUN IN A FUTURE INCREMENT HAS NO HONEST HOME IN THE PLAN. dev_storyflow 2026-09-05: schedule_for(Verification -> DesignEpoch) is refused ('cannot connect Verification to DesignEpoch'). The only edge the schema offers between them is OCCURS_DURING, whose hint is past tense — 'happened during an epoch'. The reporter used it anyway and 'it reads as a lie in the hint's own words.'\n\nCAUSE, READ FROM THE SCHEMA: SCHEDULED_FOR.from is [Requirement, Capability, Question] (schema/temporal.yaml:139). Verification is not enumerated. Neither is Decision — wish #7, reported earlier, same family: 'the plan can list builds and nothing else.' A plan today can carry what to BUILD and what to ASK, but not what to CHECK and not what to DECIDE, though all four are things an increment owes.\n\nTHIS IS THE SAME CLASS AS A FIX ALREADY MADE ON THE OWNER'S CALL: fact:a-contract-is-the-one-thing-reflow2-cannot-attach-evidence-to found VERIFIES could not target an Interface because the `to` list under-enumerated itself; Interface was added on 2026-08-22 on Anthony's word. An endpoint list enumerated by hand will be found short by the next honest use — that finding said so, and here is the next instance.\n\nTHE FIX IS ONE SCHEMA LINE — add Verification (and Decision) to SCHEDULED_FOR.from — and it is NOT made here: a schema endpoint change is the owner's call by precedent, and the reporter's alternative (a future-tense sibling of OCCURS_DURING) is a real second option. SCHEDULED_FOR already carries dec:arrival-delta's semantics (a commitment arrival measures against), which fits a planned check well. Needs a ruling. RELATED AND OPEN: dec:idea-how-do-triage-findings-become-plannable-work.",
+    "subject_id": "cap:planned-epochs",
+    "valid_from": "2026-09-05",
+    "value": "{\"refused\":\"schedule_for(Verification->DesignEpoch)\",\"cause\":\"SCHEDULED_FOR.from = [Requirement, Capability, Question]\",\"same_class_as\":\"Interface added to VERIFIES.to 2026-08-22\",\"fix\":\"one schema line, owner ruling\"}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:573eb66a1c21a7ff13af6c5a8c20cc46a888cf1fd3c1465d46c7cc736ea2d7f8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:e47a7334e964121b3bda3d369d81e259b6aae16eae3ae52b03bbf0c9ae664053"
+  },
+  "to_id": "art:docker-publish-index-script"
+}

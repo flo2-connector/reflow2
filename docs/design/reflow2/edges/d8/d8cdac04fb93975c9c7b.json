@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:46757a996edc86acfe7d25a50db68198295bd446cb0c11d67287166064808af5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:adopt-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:adopt-skill"
+}

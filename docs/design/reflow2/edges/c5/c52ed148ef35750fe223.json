@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9315a7263d6f46699087a190a9b300f626771e449337124e76b8105393b74447",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:who-needs-to-know",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

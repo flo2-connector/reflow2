@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2b86e6f78d06428ddea02d3f6317a8e7d27b9e4990483accb6cc3d5c012bc121",
+  "node_id": "fact:a-writing-call-on-reflow2s-own-design-costs-1-6-s-alone-and-6-0-s-with-its-export-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-03 (release build of the step-2 branch): on reflow2's own design (6,478 nodes, 41,875 edges, a 28 MB export) a writing --call took 1.65 s with no export configured and 6.0 s when it kept the configured export current; export_graph took 3.1 s to a new path and 5.1 s onto the committed path. Peak 413 MB",
+    "source": "art:call-export",
+    "statement": "Measured for step 2 of the --call door plan (fix program item 7a), as its brief asked, with the release binary of branch feat/a-writing-call-keeps-the-export-current, in a scratch git repository holding a copy of docs/design/reflow2.json imported into .reflow2/graph and committed (script and log: /home/ajs7/.claude/jobs/fa666a94/tmp/call-exports/cost.sh, cost-release.log). Medians of five: add_requirement with no MCP configuration 1.65 s; the same with .mcp.json naming the committed export 6.0 s (5.88-6.53); export_graph to a NEW path 3.1 s; export_graph onto the committed path 5.1 s; peak RSS of one write+export 413 MB. So the export adds about 4.3 s per write on the largest design there is; on the test designs it is milliseconds. The debug binary was about 10x slower (2.5 s and 27-30 s) and is not the number to quote.\n\nINFERRED from the differences, not separately profiled: about 1.5 s is building the export, about 2 s is chaining it onto the committed record and the overwrite check (the committed predecessor read through git and the file on disk each parsed), and the write-through's hand-edit guard parses the file once more. What it means: a script of many writes on a large design pays seconds per write, which is why --no-export exists, and a batch of calls (req:a-batch-of-calls-runs-under-one-approval-and-one-export) should export once. Parsing the same 28 MB file more than once per export is the obvious place an optimisation would start.",
+    "subject_id": "req:a-writing-call-keeps-the-committed-export-current",
+    "valid_from": "2026-10-03"
+  }
+}

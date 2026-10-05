@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d81ca8ea1ceda65bb8f1440292b8b9afe4458f0473a91a0a14c62bff1055bed",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:tools-temporal",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:tools-temporal"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:76ab8bcc13b312df161a378ae236f08f9793655f3b9aaa182eac402b6a29f5de",
+  "node_id": "req:adopt-asks-sibling-designs-who-else-has-this-before-writing-a-region",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Before adopt writes a region, it asks the sibling designs whether they already hold it, and the owner chooses new, reference, or merge",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When a design being adopted belongs to a family (a hub and its children, or siblings under one hub), adopt checks each region against the sibling designs BEFORE writing it: do they already hold the same components, capabilities or requirements? Matches are shown by project with what each holds and its status, and the owner answers per match: new here, reference the sibling's node, or flag for merge. The answer is recorded in the adopted design, so \"we checked, and here is why this is not X\" survives. Advisory: nothing is refused. Anthony, 2026-09-22, promoting option (b) of dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other. Adopt is where cross-project duplicates are born when many existing repos are brought under a hub (Alex's work hub already reports duplicates being written within ONE design during ingest), so this is the check at the source.",
+    "status": "accepted"
+  }
+}

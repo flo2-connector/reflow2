@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e994456cb74e55572c8042873c8bbb56ab2927455ef0ac31c9a0f5d2f4058866",
+  "node_id": "decision:ack:cee341f46e8067f7",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:cee341f46e8067f7.",
+    "name": "Reviewed: gap:cee341f46e8067f7",
+    "rationale": "Checked 2026-09-07: still open. The structural analyses still span only the dependency, provides and consumes edges; nothing runs cycle, centrality or community detection over satisfies, realizes, verifies or precedes.",
+    "status": "accepted"
+  }
+}

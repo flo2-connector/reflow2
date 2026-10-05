@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c9c69e04532f76184155e0d8797cef61ebeb7f67c40351b271bfff85aea45d9d",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:framework-is-chosen-not-defaulted",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:framework-is-chosen-not-defaulted"
+}

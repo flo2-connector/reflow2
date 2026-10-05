@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:276ba123eb230d2a86d50a86c762d86e0d45009b9de28e4cc291471088dfa25f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-coupling-has-a-typed-call-of-its-own",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:depends"
+}

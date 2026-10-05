@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c791f8475705ba15fb9c4e4347e00944b531e6f6bb127557d419be3a7ca6451b",
+  "node_id": "chg:bl26-documents-write-side",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-26 (recorded late): the DOCUMENTS write side — artifact.rs gained the documents() constructor so a descriptive file can say what it explains. The design moved with the code in commit 2d86ccb (2026-07-20); this event records the design side that session omitted, found by the 2026-07-21 reconcile sweep."
+  }
+}

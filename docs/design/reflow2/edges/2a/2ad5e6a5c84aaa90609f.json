@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8557889ca4ef2db498f571b503921a7bdd4966907eacc22cc1e0ef2cae7d1583",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-node-with-a-node-type-says-why-an-id-is-absent-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a7fb661057116c68e2ff85e912cfbd96dba9965ad40bd9fad238fcd2bbdba111",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:portability",
+  "properties": {},
+  "to_id": "dec:export-once-per-pr"
+}

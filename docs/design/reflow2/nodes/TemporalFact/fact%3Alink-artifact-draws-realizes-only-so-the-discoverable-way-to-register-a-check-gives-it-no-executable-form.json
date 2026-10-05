@@ -1,0 +1,21 @@
+{
+  "content_hash": "sha256:aef09ad2e2443f9524387977a00969721fb6a2c0f8b702d7fde0fa91a3bbef85",
+  "node_id": "fact:link-artifact-draws-realizes-only-so-the-discoverable-way-to-register-a-check-gives-it-no-executable-form",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "finding",
+    "name": "`link_artifact` draws REALIZES and only REALIZES, so registering the file that IS a check leaves the check with no executable form — the IMPLEMENTS edge is a separate call nothing asks for",
+    "source": "art:a-claimed-check-is-counted-apart-from-a-runnable-one-test",
+    "statement": "MET BY HAND 2026-09-22, writing the test that pins the runnable/claimed split. The test registered a file against a Verification with `link_artifact` and expected the check to become runnable. It did not. Reading `write_artifact_link` in `crates/reflow2-core/src/artifact.rs`: the call always ends in `self.realizes(...)`, whatever `target_type` is. There is no branch on Verification and no second edge.\n\nSo the discoverable sequence — \"name the file that IS the check\", which is what `detect_gaps`' own `quantity_check_without_executable_form` text tells you to do — produces an Artifact REALIZING the Verification and ZERO incoming IMPLEMENTS. `has_executable_form` reads IMPLEMENTS, so the check still reports as having no form, and the reply from `link_artifact` says nothing about a second edge being owed.\n\n⭐ THEN MEASURED ON THIS DESIGN'S OWN EXPORT, the same day, which turned it from a mechanism into a cause:\n\n  · 31 Verifications have an executable form. **30 of them were drawn purely by `create_edge`** — the artifact has an IMPLEMENTS edge and no REALIZES to that check at all, so `link_artifact` was never used. The single exception is the one written in this session, by hand, after hitting the trap.\n  · **40 Verifications carry a REALIZES from an artifact and NO IMPLEMENTS.** Somebody registered the file that is the check, exactly as instructed, and the check still reports as having no form. That is the trap, with 40 instances in the record.\n\nSo the route that WORKS is the one nothing points at, and the route that IS pointed at produced 40 checks with a file named and nothing runnable. Those 40 are cheap to correct — the files exist and are registered; only the edge is missing — and correcting them is not backfill, because nothing new would be claimed.\n\nThe same shape as `contain_component`, which adds a parent and never removes the old one: the discoverable sequence produces the defect, and the user is blamed for a step nothing pointed at.",
+    "steps": [
+      "link_artifact",
+      "verifies",
+      "add_verification"
+    ],
+    "subject_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check",
+    "valid_from": "2026-09-22",
+    "valid_to": "2026-09-22"
+  }
+}

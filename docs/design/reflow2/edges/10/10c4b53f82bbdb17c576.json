@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cfd8629a90ad7659c2154053487ea79b39a4cb3ccaee426a5977f7eeeb929eeb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:defaults-are-declared-and-injected-deliberately",
+  "properties": {},
+  "to_id": "cap:defaults-are-not-serialized"
+}

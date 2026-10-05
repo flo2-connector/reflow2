@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:897757bcc55b762042d9f31868a6ca43778a8803e3281d053c7b7af2e26c9880",
+  "node_id": "ver:a-settled-decision-names-governed-prose-that-still-reads-open",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/a_settled_decision_names_prose_that_still_says_open.rs`, driven through ReflowService against an in-memory graph.\n\nTWO FIRING PROBES — a Decision reaching `accepted` while a requirement it governs still says NOT YET DECIDED, and a GOVERNED_BY edge drawn to an already-accepted Decision from prose that reads open. Each asserts the node is named, the matched phrase is named, and the prose is QUOTED, plus that the note ASKS rather than concludes and says in words that the judgement is not its own.\n\nFOUR SILENCE PROBES, which are what decide whether the instrument survives contact with real use: `rejected` (retires rather than settles), `accepted` -> `accepted` (moves nothing), governed prose with no marker (the common case), and a link to a merely `proposed` Decision (a musing has settled nothing).\n\n⚠️ WHAT IT DOES NOT COVER, stated so a green reading is not over-read.\n(a) IT DOES NOT MEASURE THE FALSE POSITIVE RATE ON REAL PROSE. The calibration that shaped the marker list was a one-off over the live design — 43 of 640 nodes governed by an accepted Decision carry a shipped marker, and a share of those are legitimate quotations. Nothing re-runs that as the design grows, so if the markers start firing on correct nodes this suite stays green while the instrument becomes noise.\n(b) THREE OF THE NINE MARKERS ARE UNEXERCISED BY THE CORPUS — `to be decided`, `not been decided`, `awaiting a decision` match nothing in this design. The unit probes cover the mechanism, not those phrases against real writing.\n(c) NO PROBE DRIVES THE REAL STDIO BINARY. `smoke_mcp.py` covers the served surface generally and passed, but not this block specifically.",
+    "findings": "RUN 2026-09-09, `cargo test -p reflow2-mcp --test a_settled_decision_names_prose_that_still_says_open`: 6 passed, 0 failed.\n\nOBSERVED FAILING FIRST against the unfixed binary in the same session, which is the evidence step ② of `rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed` asks for and the only evidence there can be: 3 of 6 failed (the two firing probes plus the re-set probe's precondition), while the three pure-silence probes passed vacuously because nothing fired at all. The pin was written before the implementation, not after it.\n\nALSO ON THIS DATE: `smoke_mcp.py` all checks passed against the freshly built binary, `cargo clippy -p reflow2-mcp --all-targets` clean, `validate_schema.py` OK, toolsnaps regenerated for the two tools whose descriptions changed.",
+    "kind": "verification",
+    "last_run_at": "2026-09-09",
+    "level": "integration",
+    "method": "test",
+    "name": "Six probes: the two firing moments, and the four silences",
+    "status": "passing"
+  }
+}

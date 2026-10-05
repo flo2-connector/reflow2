@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c794285be93979f34bfa8ed7bcb043649451d420f77b06681901183da6bd754",
+  "node_id": "art:read-cache",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/foundation/store/cache.rs",
+    "name": "cache.rs",
+    "status": "realized"
+  }
+}

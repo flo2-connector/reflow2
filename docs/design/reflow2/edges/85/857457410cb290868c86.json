@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d5da2a6e73c13eb3200c9540a5bccf07bb4e533a40844735de97709986c3abc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl97-103-idea-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:onboard-newcomer"
+}

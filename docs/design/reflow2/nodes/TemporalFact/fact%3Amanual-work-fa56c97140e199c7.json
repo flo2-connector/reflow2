@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0cfb5f58a9c77f2c10c8cec28bbc8ef19cc4ae82be60b9cd6afe23d65e97f421",
+  "node_id": "fact:manual-work-fa56c97140e199c7",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Hand-diffed ChangeEvent ids between the previous release tag's export and the live design, to work out which events belong to this increment and must be pinned to the cut's epoch. Done with a throwaway script, and it is done on every cut.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-21",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

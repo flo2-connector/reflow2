@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa736b4f1a2f0062929c40635a2e42f8148ccc19c737ca6ff902a76b70b504df",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-do-we-call-the-thing-that-runs-the-agent",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

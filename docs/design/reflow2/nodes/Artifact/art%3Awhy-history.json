@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:40bdfb64ff6cfa673cf92ca3d7e33e05f897cad81decd24f9464ee5f09fbe805",
+  "node_id": "art:why-history",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Reads a repository's git main line as the why skill's agenda; stdlib only, shipped in the kit.",
+    "location": "tools/why_history.py",
+    "name": "why_history.py",
+    "status": "realized"
+  }
+}

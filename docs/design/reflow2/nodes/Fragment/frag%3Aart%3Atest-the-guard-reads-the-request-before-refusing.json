@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4f4dabcf4cc128f09ac991bb006f1241afa51f95dd7400f326ffe5ba366e2b2",
+  "node_id": "frag:art:test-the-guard-reads-the-request-before-refusing",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered the_guard_reads_the_request_before_refusing.rs — a near-match the write names as its own relation target is never refused; Requirement↔Component reports and does not refuse; a same-type near duplicate still does"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5440d6818f72526b8d33d71b97a4966625ff6b6fba4a7715f61217e8117fe8a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

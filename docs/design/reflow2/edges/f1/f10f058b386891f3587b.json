@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:967b184d7d22168c9399666a37f380f9c360b2c65a667618dc51b729367aebd2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8d9f94a314969bf4f1a3e6e88e594391636bc59efb1b043f8222404ed0c652e0",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-every-rule-a-project-parent-cures-says-so"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8925586a688539ad9372d367c5cb20b283a82100ceeb23fb11a26c5a7e3894d",
+  "node_id": "epoch:v0470-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.47.0 cut — the seven decisions from the chama and dev_storyflow field reports, settled and built",
+    "sequence": 393,
+    "status": "arrived"
+  }
+}

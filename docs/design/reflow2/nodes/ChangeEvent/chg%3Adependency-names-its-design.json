@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20ca03148845e6de3d0aa6e40b33a4b7095947378138f14116486c3c3d1460d3",
+  "node_id": "chg:dependency-names-its-design",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A dependency declaration can name the graph_id of the dependency's OWN reflow2 design, optionally — so a composition target is derivable from a committed, version-pinned manifest instead of a per-machine config, and the direction the dependency edge carries survives. Absent means \"nobody has said\", never \"there is no design\"."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6346a896087a99279e139afa9543da7bb167fc25244d72f19b241c49cdb80a96",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-spine-be-re-derived-from-the-actual-structure",
+  "properties": {
+    "evidence": "Whether re-carving can deliver the stated goal turns on whether the code has black-box boundaries to find, which is exactly what that node measures: 45 of 88 modules hang methods off one shared struct. If the struct is never split, no re-carving produces black boxes and options ①-④ are all about description rather than encapsulation.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-is-the-restructure-target-the-shared-struct-rather-than-the-subsystem-contracts"
+}

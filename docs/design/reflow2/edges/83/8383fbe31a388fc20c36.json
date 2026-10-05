@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:92c753cd95fd5391a47f46906fce0b6a12bee06807e4cb2d7b8f5f701cb5e337",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-crossing-corrected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-intent-crosses-designs"
+}

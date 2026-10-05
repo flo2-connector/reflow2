@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94ee93160edd832d4468ecac8ef1b3a98d790627577c1ed1bc3108f34d647300",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-client-replaces-a-mismatched-server-instead-of-reporting-it",
+  "properties": {
+    "at": "2026-08-29",
+    "note": "CLOSED BY THE REPORTER, NOT BY THE FIX. v0.43.0 shipped and Alex — who filed this with the original measurements — upgraded and confirmed it resolved. That confirmation is the evidence; the passing unit tests were not, and this node was deliberately left open through the release cut for exactly that reason.\n\n⭐ THE FIX TOOK A DIFFERENT ROUTE FROM HIS SUGGESTION, AND THE DIFFERENCE MATTERS. He proposed that `install.sh` restart the shared process after replacing the binary. Instead the CLIENT re-elects: the rendezvous now carries an `exe_fingerprint` (size+mtime), and a session meeting a mismatch SIGTERMs that daemon and spawns its own. `tools/install.sh` is UNCHANGED and still has zero awareness of a running daemon — which is now correct rather than a gap, because the repair sits on the side that can actually observe the skew.\n\nTWO CONSEQUENCES OF THAT ROUTE, both good and neither obvious from the report: it fixes the DEVELOPER direction too (`cargo build` replacing the binary under a running daemon — the same skew hit this project six times in one day on Linux, which no installer change would have touched); and it sidesteps the open question this node flagged as NOT ESTABLISHED — whether an installer may SIGTERM every `--serve-shared` process machine-wide — because a client stops only the one daemon serving ITS graph. That question is not answered, it is no longer on the path.\n\n🛑 WHAT REMAINS TRUE AND IS NOT CLOSED BY THIS: the sibling finding that an agent which cannot NAME its running version reports already-fixed bugs. That is a reporting problem, not an attach problem, and this fix does not reach it — see the ANTICIPATES edge between the two."
+  },
+  "to_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary"
+}

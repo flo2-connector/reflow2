@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c21a73a9192534a734e074f4b4cf2d5a6bac2e0311513d2955692ef359a18de7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-contract-can-carry-evidence",
+  "properties": {
+    "at": "2026-08-22",
+    "note": "This change admitted Interface to the VERIFIES target enumeration, which is the exact absence the finding measured. Verified 2026-09-07 against the running schema: VERIFIES now reaches Artifact, Capability, Component, Constraint, DesignRule, Interface and Requirement. The finding's central claim - that a contract is the one thing reflow2 cannot attach evidence to - stopped being true on that date and had gone 16 days without anything saying so, which is the fixed-but-never-closed class the overtaken-defect detector exists to catch. WHAT REMAINS TRUE IN IT and is worth keeping: the reasoning about why a contract is the node MOSA turns on, and the third-instance pattern about VERIFIES under-enumerating its own targets twice before. The record is stale in its verdict, not in its argument."
+  },
+  "to_id": "fact:a-contract-is-the-one-thing-reflow2-cannot-attach-evidence-to"
+}

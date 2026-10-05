@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:02ecb921b08af98b80b998530828d881adf116b8c6875f3cf798cb23cb091060",
+  "node_id": "art:why-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The /why slash command that loads the why skill.",
+    "location": "getting-started/commands/why.md",
+    "name": "why.md",
+    "status": "realized"
+  }
+}

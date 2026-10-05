@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:06ab3cbd8cfb2bea02e388472e2e2596a74135c2ee2276713641c44e9793bda2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "decision:ack:35fba97e7da18f5d",
+  "properties": {
+    "approved_at": "2026-09-07T14:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70f618bebd948454f6a8b0030f217bc6f5ac1db34fdc965e0156b27df95db2f7",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-session-says-what-it-did-by-hand-that-reflow2-already-serves",
+  "properties": {
+    "note": "The requirement is the intent promoted out of that open question on 2026-08-26 — option (b), ask at session end, chosen over the transcript-side detector. The question keeps the three roads not taken and their counter-arguments."
+  },
+  "to_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand"
+}

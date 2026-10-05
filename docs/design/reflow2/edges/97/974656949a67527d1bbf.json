@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c904ec4560aaee87ed50a9d0521d1db60a9dea6994cb4e33816bd4bdc29f957",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:0553d5de06de3b16",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:report"
+}

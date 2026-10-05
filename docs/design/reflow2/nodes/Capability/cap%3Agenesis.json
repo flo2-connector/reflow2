@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3e92fa24749afc1b09efdfd283cee5f63d511f4c8436bb141cfa535849a7a5c",
+  "node_id": "cap:genesis",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Seed a project, its requirements and capabilities, refusing to clobber an existing graph.",
+    "name": "Bootstrap a design from a brief",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:36c71b21976d06fd776acc397ba214f6534e166d05f51355a2496066abc0d745",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-early-export-warning-earns-its-number",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

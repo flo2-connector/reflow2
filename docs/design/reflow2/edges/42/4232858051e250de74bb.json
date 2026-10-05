@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9aa7edd2a782f889fafe9d221802e287e0e5996b16ab7c5694f4ab450962e9a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-assure"
+}

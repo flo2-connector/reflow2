@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00dd0f365af963439c47027d4bed4e3cbfebcddeb855cf6bdcbc73a75f0a7c8e",
+  "node_id": "snap:epoch:2026-09-25-the-design-lives-apart-from-its-code:req:persistence",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTAINS\",\"other_type\":\"Project\",\"other_id\":\"proj:reflow2\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Decision\",\"other_id\":\"dec:idea-the-design-lives-apart-from-the-implementation\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Options (b) and (c) take the design out of the implementation repo, which that accepted requirement puts it in; (d) contradicts it only for projects the owner does not control.\"}},{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-design-lives-in-its-server-not-in-the-code-repo\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"That accepted requirement puts the design in the code repo; this one takes it out.\"}},{\"direction\":\"in\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:store\",\"properties\":{}}]",
+    "state": "{\"concern\":\"core\",\"designation\":\"internal\",\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"The design persists in-repo alongside the code\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"The graph lives at ./.reflow2/graph inside the consumer project, so the design travels with the repo; export/import is deterministic so a backup under git shows what actually changed.\",\"status\":\"accepted\"}",
+    "target_id": "req:persistence",
+    "target_type": "Requirement"
+  }
+}

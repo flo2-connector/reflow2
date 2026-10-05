@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:008b95f251b2a23c998554f2774e818181efc66e0ecf142590c6e4b2b48cee3b",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-status-advance-says-whether-its-prose-predates-it",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"description\":\"When a set_*_status call actually MOVES a status and the node carries prose, the reply carries a prose_currency block naming both statuses, the field, and an excerpt - so the caller can judge whether the description still reads true here rather than in another call. Silent when the status did not move and silent when there is no prose. It never judges the text: it states that the prose was written under the OLD status and asks, per dec:report-dont-judge. Built from a 2026-09-02 field report; the reporter's reasoning is why it is a reply and not a detector - the call already knows the description was not touched, so the divergence is caught while the author is still in the room.</description>\\n</invoke>\\n\",\"name\":\"A status that moves past the prose describing it says so, in the reply that moved it\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+    "target_type": "Capability"
+  }
+}

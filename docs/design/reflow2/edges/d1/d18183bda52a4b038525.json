@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fb51ac49ef6f4a6a01af28d5896cc958e8d959a39be82fba95b47d5d810c543b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-writes-the-export-through-on-every-change",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:shared"
+}

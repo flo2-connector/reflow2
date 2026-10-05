@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8c6735e5eb7b85b6443789ded3c1d3c33145c574318acf599f66e14669a91ba",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02",
+  "properties": {
+    "evidence": "Agent A's finding named the class the same day: one-shot branches return before serve-time flags are read and declare no conflicts. --read-only is a further instance, and the one where the silent no-op is a safety failure."
+  },
+  "to_id": "fact:call-ignores-read-only-and-the-write-lands-2026-10-02"
+}

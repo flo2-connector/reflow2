@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0708cfc445b2190e511345806a15c1d829fcf66eefcfca4eec7aaccb922c2377",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-driver-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills-catalog"
+}

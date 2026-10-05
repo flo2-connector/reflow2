@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c3c4abbcc0331a11a74e8e2ded6e5589118eca9d0ac7c5d40713f1c83a198e71",
+  "node_id": "cap:report",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One rollup answering 'what should I look at?'.",
+    "name": "Say where the design stands",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

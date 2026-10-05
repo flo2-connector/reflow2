@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:67e9f322776940f44a9f2f8bf183c76ac9b72ceec75251331ed20fc4912ad4c5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art-claims",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:claims"
+}

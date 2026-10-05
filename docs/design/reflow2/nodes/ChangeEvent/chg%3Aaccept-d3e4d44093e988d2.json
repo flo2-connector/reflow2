@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0c24ad8414e93aff46034b281fb4c40b79770ced5bac436dd07cc8e33f8fd28a",
+  "node_id": "chg:accept-d3e4d44093e988d2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "properties_hash now delegates to the core's node_content_hash; the value is unchanged, and one implementation replaces two.",
+    "subject": "system"
+  }
+}

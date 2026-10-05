@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:774a4b2945a54ccf3c65d41fc0160d050341a0bf6a297fea7b12ab5c424edef7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:render-views",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:render-views"
+}

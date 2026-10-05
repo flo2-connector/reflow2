@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b959a645ec10c6a6b46c1e21c249e28ae0bacb38a366e8b3f3972050f90eb019",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

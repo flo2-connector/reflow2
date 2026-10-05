@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dac82abf5842901016fb2f7b8b939bb7ac3fb5089be5f578fd9ecfc8c604fd4b",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:coord-board-in-graph",
+  "properties": {},
+  "to_id": "snap:epoch:coord-moves-into-the-graph:dec:coord-board-in-graph"
+}

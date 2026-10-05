@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9c3a97c288a12f29e9d9ba6305a8664a982aa13864312439a3403d4f8061cd97",
+  "node_id": "dec:service-spof-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "cmp:service is the sole bridge between the reflow2-mcp subsystem and both the core and the kit, and it stays that way. The single_point_of_failure warning on it is accepted as intentional, not resolved by adding redundancy.",
+    "name": "The single MCP service is an accepted single point of failure",
+    "rationale": "req:invocation mandates one reflow2-mcp binary spoken to over stdio as the entire user-facing surface; a redundant second service would contradict that 'one door' design and buys nothing while there is a single local writer (dec:repo-file-embedded). Articulation-point analysis of the component/interface dependency graph (2026-07-21 self-host review) confirms cmp:service is a genuine cut vertex — removing it disconnects the MCP surface — so the finding is true, and the right disposition is to accept it rather than fix it. Contrast cmp:flow, flagged by the same detector but NOT a cut vertex (BL-69). Redundancy is the wrong fix; this SPOF is the architecture working as intended.",
+    "status": "accepted"
+  }
+}

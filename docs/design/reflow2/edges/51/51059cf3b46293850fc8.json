@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:24b9de79f65635bd48bf59687d753f179153f9f68a92bcf18c43c2fcfa675cca",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-setup-command-saves-only-what-the-server-accepted",
+  "properties": {},
+  "to_id": "cap:one-setup-command-chooses-local-or-remote"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:01d00796174b181ad2e26187ef054fc4ae605ccb65779d418f6be24267a868be",
+  "node_id": "ver:granularity",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The granularity reading stays quiet when it should (crates/reflow2-core/tests/granularity.rs) — 9 cases, and most of them are silences. Anthony's objection is what shaped this suite: \"avoid monoliths\" IS a subjective design principle, so the module deliberately does not detect monoliths — it detects that two records the design already holds disagree about how many things there are (N Capabilities vs one Artifact) and refuses to say which side is wrong. THE LOAD-BEARING TEST IS `a_uniformly_coarse_design_is_not_punished`: eight artifacts each swallowing four capabilities produce NO finding, because a breadboard-phase design where everything lives in one file has nothing to be out of line with — dec:maturity-restructuring-delta's trap as an executable guarantee. `the_observation_carries_no_verdict` asserts the serialized report contains none of severity / suggested_fix / monolith / too big / should be split / violation / defect. `two_capabilities_in_one_file_is_not_worth_saying` pins MIN_DISTINCTIONS against a real statistical weakness found while writing the tests: counts pile up at one, the standard deviation collapses, and the distributional cutoff alone fires on noise — the test asserts z clears the bar and that the finding is suppressed anyway. `several_coarse_artifacts_mask_each_other` records z-masking as a known property rather than leaving it to be discovered in the field.",
+    "findings": "Verified against reality twice: run on the committed design it names exactly one artifact (art:service, 10 capabilities, z=6.46, alone in the design), and run on the v0.21.0 export — BEFORE the observation was ever made — it names the same one at 9 capabilities, z=5.75, which is what makes this discovery rather than a rule fitted to a known answer.",
+    "kind": "verification",
+    "last_run_at": "2026-08-02",
+    "level": "unit",
+    "method": "test",
+    "name": "The granularity reading stays quiet when it should",
+    "status": "passing"
+  }
+}

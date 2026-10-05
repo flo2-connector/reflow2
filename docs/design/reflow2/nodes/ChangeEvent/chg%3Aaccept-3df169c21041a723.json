@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4d43ca2e62466d02305d0dc52ce034ae7c7f34cabf478ff036a580d1edc86f3",
+  "node_id": "chg:accept-3df169c21041a723",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-27",
+    "name": "v0.72.0 cut, step 1 of flow:release-cut: reflow2.toml's version moved 0.71.0 -> 0.72.0. A version string carries no design meaning; the cut's meaning lives in rel:v0720 and its epoch. Accepted before the manifest is frozen.",
+    "subject": "system"
+  }
+}

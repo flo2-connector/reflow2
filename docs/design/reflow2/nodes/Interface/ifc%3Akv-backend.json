@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:46b5fd57b9a6abc6cbc459bbbc732ee8635d55b70190a1d25041f35689b4c248",
+  "node_id": "ifc:kv-backend",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "none",
+    "designation": "internal",
+    "endpoint": "crates/reflow2-core/src/foundation/store/backend.rs — `pub(crate) trait KvBackend: Send + Sync`",
+    "error_model": "`DynoError`. An unknown column family is refused rather than created. NO SILENT FALLBACK: with the `rocksdb` feature off, `open_rocksdb` fails loud instead of quietly returning the in-memory backend, so a caller can never believe it has durability it does not have.",
+    "medium": "library",
+    "name": "KvBackend trait — the byte seam under StorageEngine",
+    "operations": "Six byte-level primitives over six named column families: get(cf, key) -> Option<bytes>; put(cf, key, value); delete(cf, key); prefix_scan(cf, prefix) -> ordered (key, value) pairs; prefix_delete(cf, prefix); commit_batch(ops) applying Put / Delete / PrefixDelete atomically and IN ORDER.",
+    "paradigm": "synchronous",
+    "payload_format": "binary",
+    "payload_schema": "Opaque bytes on both sides. The seam is deliberately schema-blind: every schema-aware behaviour — validation, the reverse index, the read cache, the write-buffer overlay, the full-text sidecar — sits ABOVE this trait in StorageEngine, and everything that touches bytes goes through it. Keys are built by `foundation/store/keys.rs` and namespaced by graph_id, which is what lets many graphs share one instance.",
+    "provenance": "authored",
+    "transport_security": "none"
+  }
+}

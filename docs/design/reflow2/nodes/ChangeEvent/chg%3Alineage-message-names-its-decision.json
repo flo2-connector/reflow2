@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f5b749d647c82f8e46fcbb77df2e75596359ce4d10be499ed9ea34d14839df9",
+  "node_id": "chg:lineage-message-names-its-decision",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The lineage gate names dec:export-once-per-pr and admits a third cause — a PR that already exported, where restore-and-re-export cannot help"
+  }
+}

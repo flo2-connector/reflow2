@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c821e8f6d64e92602777eab46ab91367ebac2838e3e42ec2a952cc0b87e311d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:granularity-observation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:granularity"
+}

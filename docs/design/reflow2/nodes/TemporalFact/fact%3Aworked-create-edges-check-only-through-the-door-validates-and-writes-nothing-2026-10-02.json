@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d69c8705e2656b75542414d2e7c0b4990563fa9c53a478d77a6c334ea2f2696a",
+  "node_id": "fact:worked-create-edges-check-only-through-the-door-validates-and-writes-nothing-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-10-02, 0.77.0): `--call create_edges` with `check_only: true` validates a whole batch, lists each failure by index and writes nothing. It is the door agent's cheapest way to learn edge shapes before writing. Do not regress it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From art:vscode-call-door-field-report-2026-10-02, measured table row \"`--call create_edges` with `\\\"check_only\\\": true` | validates the batch and writes nothing\", and the working pattern \"check_only for an edge batch\".\n\nRe-measured by triage agent B on 0.77.0, scratch store. A two-edge batch, one valid DEPENDS_ON and one with edge_type NOT_A_TYPE, returned exit 0 with {applied: false, check_only: true, checked: 2, would_apply: false, failures: [{index: 1, error: \"Unknown edge type: NOT_A_TYPE\"}]} and a note to resend the whole batch. A propagate_from depth-1 read afterwards found no edge on the source node, so nothing was written.\n\nThe refusal shape is the one the report asks every write to have: all of it checked at once, nothing half-written. Typed constructors do not yet do this (the report's L17, another triage slice).",
+    "subject_id": "cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+    "valid_from": "2026-10-02"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3c92b4cc2374807f2fda5717b3c5f4cc843a4750ba46b9c9c6262ed09253d60d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-user-carries-a-persona-that-shapes-every-reply",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "authored_at": "2026-08-18",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

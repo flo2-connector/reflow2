@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c0311fb47eb33177a347fabc0b0544a99fe183678d081132cabc23d9b9314475",
+  "node_id": "epoch:v0680-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships /why — the reasons behind an existing system, recorded from the person who designed it and marked as recalled — and narrows REALIZES to the three types it can mean. Three changes pinned.",
+    "epoch_type": "release_cut",
+    "name": "v0.68.0 release cut (2026-09-23)",
+    "sequence": 600,
+    "status": "arrived"
+  }
+}

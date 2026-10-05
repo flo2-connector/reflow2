@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:936000bf4dd73a64c3b3746182ee98ac1577dd03d53caaf32243e0ed1a290670",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-says-when-it-is-stale-20260809",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

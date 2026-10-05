@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d7802ec3c418dedadc17b8e91b8ded0a03ed258df2b3eb48176d9753b4b48c8a",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-realized-capability-can-be-dead-for-want-of-an-input-path",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The field report is why this decision point exists: cap:storybook_output was realized, built and rendering while dead, and no edge type could express the missing writer.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-capability-declares-its-input-path"
+}

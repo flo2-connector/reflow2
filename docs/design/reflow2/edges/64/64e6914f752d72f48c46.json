@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2708e2432bbf6b8b315722978b9e17a4fffce806dc27b9df6f9062ee946bb7b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-small-surface-frictions-contributor-field-and-stale-echo"
+}

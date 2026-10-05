@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3be89676e4edf94cc30389ab74268b4594324feaaf5247cba28ca1cc49d0269",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-revising-write-says-whether-the-state-survived"
+}

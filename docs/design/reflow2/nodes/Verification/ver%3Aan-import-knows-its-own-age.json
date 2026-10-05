@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b351bf2e0fd20edb31a97310dff1c52fb7994796fea4d875d0954f71663be759",
+  "node_id": "ver:an-import-knows-its-own-age",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/export.rs: a document stamped 99.0.0 is refused (both versions, BEHIND, accept_newer named; nothing written) and imports under accept_newer; documents from this or an older version import without ceremony; stripping one default-valued property from a document makes the report name exactly that Type.property once and the stored value equal the default, while a fully-stated document materialises nothing. provenance.rs unit test: is_newer's direction and pre-release safety; same_vocabulary_verdict yields NewerWriter (note says BEHIND and 853) vs OlderGraph. crates/reflow2-mcp/tests/an_import_from_a_newer_reflow2_is_refused.rs: the served import_graph refuses and names the way through, accepts on purpose and reports materialized keyed by Type.property, imports this-or-older versions as before; behind_record is absent when current and names written_by/running/hazard when behind, and BEHIND_NEXT points at it.",
+    "findings": "21/21 core export tests, 12/12 provenance unit tests, 4/4 mcp tests; the full mcp suite, clippy -D warnings on both crates, fmt and smoke_mcp green on the branch.",
+    "kind": "verification",
+    "last_run_at": "2026-09-15",
+    "level": "integration",
+    "method": "test",
+    "name": "A newer document is refused, materialised values are named, and a behind server says so",
+    "status": "passing"
+  }
+}

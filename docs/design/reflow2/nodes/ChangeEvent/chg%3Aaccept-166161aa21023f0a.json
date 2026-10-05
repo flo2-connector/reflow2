@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5c7d644553d907d50cbee3b66047620856b3e5a9538fef85cef0a538ef12a045",
+  "node_id": "chg:accept-166161aa21023f0a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-05",
+    "name": "Version claims moved 0.47.1 -> 0.48.0 for the v0.48.0 cut (Cargo.toml, Cargo.lock, reflow2.toml, AGENTS.md x2); nothing reflow2.toml declares about dependencies changed, only the number naming which reflow2 declares them. The design meaning of a cut lives in the Release and its epoch, not in a version string. ACCEPTED BEFORE THE MANIFEST FREEZES, deliberately — release_includes_all records each artifact's CURRENT checksum as shipped, so accepting afterwards would leave the release recording the pre-bump file (the flow's own forces-resync trap, budgeted on every cut before it was written down).",
+    "subject": "system"
+  }
+}

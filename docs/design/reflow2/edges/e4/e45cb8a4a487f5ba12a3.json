@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:70a88c6878aa433acdbbe3a6e6b392c8b73a9d2a30aee74349e67c5125f83316",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-hosted-surface-is-read-only-so-it-can-ship-before-authentication-exists",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

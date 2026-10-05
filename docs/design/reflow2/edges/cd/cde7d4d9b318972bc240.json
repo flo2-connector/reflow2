@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c3e225abe9c834edb3d5a93d82642181380ee43ea3c2afaecb400220ede6f96",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gate-list-is-run-not-only-cross-checked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-gate-list-is-run-not-only-cross-checked"
+}

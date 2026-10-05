@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a88b77c1674e9ea0e7e3df5911891c9acd8c2460f1cf0a11542b370d50961643",
+  "node_id": "art:increment-plan",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/increment-plan.md",
+    "name": "increment-plan.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

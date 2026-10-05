@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aca66da219cc1b3acfa846f2e7160c236d6687a767d061a6e2d87d1d2f613f7b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:wall-check-reads-the-mapping-instead-of-guessing-it",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains"
+}

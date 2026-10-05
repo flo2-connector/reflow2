@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea9692b1bbf9a80c9de2b90d3d7f85bdd9fae603f7ea7b01c8b0a69e7d30c15e",
+  "node_id": "chg:an-unknown-field-refusal-names-the-nearest-served-parameter-first",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-19",
+    "name": "An unknown-field refusal names the nearest served parameter first; the stale-client line is a possibility offered second",
+    "rationale": "flo2 F1, root-caused 2026-09-18: five of six rejected names never existed in any release; the refusal's leading sentence produced a wrong field report. The server cannot know its history; it can name the nearest served name.",
+    "subject": "system",
+    "summary": "service.rs stale_client_hint parses serde's unknown-field message, picks the closest legal name by edit distance with a shared-prefix/suffix tie-break (node_id → id, parent_id → project_id, authored_at → acted_at), and leads with it; the version/staleness sentence follows as 'if nothing listed is what you meant'. Test: crates/reflow2-mcp/tests/an_unknown_field_refusal_names_the_nearest_parameter.rs (3)."
+  }
+}

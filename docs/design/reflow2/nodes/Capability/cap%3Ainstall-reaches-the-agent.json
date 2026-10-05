@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4103764afd3cae21153a465e0e2ad1b37571e76ab74bf7d4aea4ec4daf77a109",
+  "node_id": "cap:install-reaches-the-agent",
+  "node_type": "Capability",
+  "properties": {
+    "description": "When a project owns no instruction file at all — the ordinary state of a repo that has never been agent-worked, and therefore of an adopt target — the installer CREATES the primary-harness convention carrying a pointer to the kit's own file, instead of only appending to files that already exist. Narrow on purpose: a project that already owns any instruction convention gets a line appended to it and nothing invented, and the created file stays a pointer rather than a second home for instructions.",
+    "name": "The install lands where the agent will actually read it",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

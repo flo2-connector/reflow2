@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c50e50aeab49e67df6b7fd2bfbe5d01dc7cc285cb289283c8f84769339b58be5",
+  "node_id": "chg:cut-v0650",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "Cut v0.65.0",
+    "rationale": "Anthony 2026-09-19: 'Please cut v0.65.0'. Eleven PRs since v0.64.0; minor by the changelog's own bucket rule — two new tools (replace_text, find_skills), a new CLI verb (--call), new constructor parameters and id aliases.",
+    "summary": "Version moved to 0.65.0 in Cargo.toml, reflow2.toml and Cargo.lock, and in the two AGENTS.md claims; CHANGELOG section closed; docs/upgrading-to-v0.65.0.md written and linked from the overview, owed because the schema stamp moved (ChangeEvent.change_type gained `decision_settled`)."
+  }
+}

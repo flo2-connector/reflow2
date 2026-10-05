@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:56bc143c79ae465d616a654084bb6ff4ddcae720aec8b749f4ce7b9faaee1dc0",
+  "node_id": "frag:art:confirmation-vocabulary-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered confirmation_vocabulary.rs"
+  }
+}

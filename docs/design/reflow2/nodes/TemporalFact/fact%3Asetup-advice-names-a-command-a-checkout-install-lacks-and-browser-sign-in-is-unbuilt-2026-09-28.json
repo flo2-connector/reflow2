@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:29ced425ca12f56dbe1ce215d13409182bb4985a9c5257a69348b256618c99ef",
+  "node_id": "fact:setup-advice-names-a-command-a-checkout-install-lacks-and-browser-sign-in-is-unbuilt-2026-09-28",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-09-28: served advice says `reflow2-mcp setup remote …`, which is \"command not found\" on a machine installed from a checkout (only `reflow2` is on PATH); and a person already signed in to flo2.io by browser through Claude Code still had to paste a key, because setup's browser sign-in is unbuilt",
+    "source": "who:ajs's terminal, dev_reflow2 hub session 2026-09-28; grep of crates/ at the #620 branch",
+    "statement": "Two observations from one step in the dev_reflow2 hub, 2026-09-28, both on the way to letting the hub watch flo2 at its address.\n\n1. THE ADVICE NAMES A COMMAND THAT IS NOT THERE. upstream_status answered flo2's 401 with \"`reflow2-mcp setup remote https://api.flo2.io` stores one in the OS keychain\". Anthony ran exactly that and got `reflow2-mcp: command not found`. This machine was installed from a checkout: tools/reflow2_install.py put only a `reflow2` wrapper in ~/.local/bin, which execs target/release/reflow2-mcp for anything it does not handle itself, and no `reflow2-mcp` is on PATH. `reflow2 setup remote https://api.flo2.io` worked first time (\"Connected: 8 designs there. key: in the OS keychain\"). 16 places in crates/ name `reflow2-mcp setup` in text (pointer.rs, client_setup.rs, upstream.rs, service.rs, mcp_http.rs, main.rs, one test). Not walked: whether a release install puts `reflow2-mcp` on PATH, and which name served advice should use.\n\n2. A BROWSER SIGN-IN DID NOT CARRY OVER. Anthony had signed in to flo2 by browser through Claude Code's /mcp, and asked why a key was needed at all. That sign-in belongs to Claude Code's connection; the hub's own reflow2 server calls api.flo2.io separately and has no credential of its own. This requirement says setup signs in \"by browser for a server that offers it, or with a key\", and only the key half is built (client_setup.rs: \"Browser sign-in is a later step; the shape leaves room for it as another `KeySource`\").",
+    "steps": [
+      "upstream_status"
+    ],
+    "subject_id": "req:one-setup-command-chooses-local-or-remote-once",
+    "valid_from": "2026-09-28"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:4b4452c081e98af31446130dfaafb641c57175f3ad278cb388da900d0287a460",
+  "node_id": "ver:review-relations",
+  "node_type": "Verification",
+  "properties": {
+    "description": "14 cases over review_relations and unreviewed_ideas. The boundary they exist to pin is that 'nobody looked' and 'somebody looked and there was honestly nothing' are DIFFERENT STATES — including that a blank note is not an answer, that one bad link writes none of them, that being related TO counts as connected, and that a detector with nothing to run on says nothing rather than reporting '0 of 0'.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "A review records one of exactly three states, and refuses to record none",
+    "status": "passing"
+  }
+}

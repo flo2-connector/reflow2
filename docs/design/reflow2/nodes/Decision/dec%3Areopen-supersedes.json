@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47a1b08a4b49c45769129b609e230210efb2e2fed94ff1b398ea44996d57feac",
+  "node_id": "dec:reopen-supersedes",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "When a past decision is re-opened to take a different road, the original Decision stays `accepted` untouched, and a NEW `proposed` Decision is created that OBSOLETES it and holds the alternatives (including the road originally taken, now a sibling rather than the incumbent). The decision-point machinery already built (register_alternative / alternatives_for / collapse_decision, and the undecided_decision_point gap) applies unchanged to the new node, because it is a genuinely open choice. The record therefore shows both that the question was settled and that it was later re-asked, with the reasoning of each visible in its own node.",
+    "name": "Re-opening a settled choice mints a new Decision that obsoletes the old one; the accepted Decision is never un-accepted",
+    "rationale": "User decided 2026-07-24. THE REJECTED ALTERNATIVE: flip the original Decision's status back to `proposed` and hang the new alternatives on it — simpler, and reuses the existing node. Rejected because it overwrites the fact that the choice was ever settled: a reader of the graph afterwards sees an open question and cannot tell it was once answered, or when, or on what grounds. That is the ADR failure mode this whole system was built against (dec:two-sided-accept, \"silent drift-accept does not exist\"), and it would make the strongest evidence for re-opening — that we chose X, lived with it, and the trials found the hole — the very thing the re-opening erases. Snapshots would in principle preserve it, but only if one was taken, which makes the integrity of the record contingent on remembering a second step. Superseding is unconditional. It also composes with the existing vocabulary rather than straining it: OBSOLETES already means \"retired on the record, not deleted\" (the retire-from-design exit), and the new node's own `alternatives` obituary is written by collapse_decision when the re-opened choice closes, so the second decision documents the first without rewriting it.",
+    "status": "accepted"
+  }
+}

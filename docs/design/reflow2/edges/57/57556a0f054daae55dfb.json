@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:febfe93dea627cda9e4bac7cd8b2b1e82586e07a30c7520e5411f13418165a7d",
+  "edge_type": "CAUSES",
+  "from_id": "dec:derived-scans-are-memoised-per-write-generation",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The memo that makes loop_status cheap is keyed on the write generation, so it is invalidated by every write. Measured on the live store in the live server configuration: loop_status is 1,291 ms with no write before it and 4,096 ms steady with one small write before each call — a 3.2x tax that lands precisely on a working session, because the tool the loop tells every session to call is the one guaranteed to run in its most expensive state. This is the largest code-side term; load and concurrency are environmental and the baseline itself is only 1.28 s.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:loop-status-cost-is-amplifiers-not-baseline-and-80pc-of-calls-are-automation"
+}

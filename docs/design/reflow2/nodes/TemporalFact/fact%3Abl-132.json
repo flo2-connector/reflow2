@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1a03be441fa17615daf2a44ce7946f3413b2571d1c2cb404b6acaf437c381dda",
+  "node_id": "fact:bl-132",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-132] Error-message quality is wildly inconsistent, and the bad half cost a false bug report against reflow2",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Found 2026-07-31, and reproduced independently by two sessions within the same hour.* Same product, same session: artifact_type: \\\"source\\\" returns *\\\"invalid enum value 'source', expected one of [code, config, document, \\u2026]\\\"* and is fixed in one retry with no guessing; change_type returns bare *\\\"unknown change type: <value>\\\"* with no list, no hint and no pointer. One session guessed refactor and happened to be right; the reviewing session hit the identical wall on defect_fix. The valid values DO exist in prose \\u2014 test_failure_fix appears in set_artifact_checksum's docstring \\u2014 so the vocabulary is documented everywhere except where the error rejects you. Same family, and this one has a measured cost: rephrase_degraded: true says THAT the gap\\u2192question rephrase degraded and not WHY, which caused a case study to file a bug against reflow2 that it had to retract two entries later \\u2014 the real cause was its own malformed payload, and one line of reason would have shown that immediately. A tool that degrades gracefully and says only \\\"degraded\\\" makes the caller suspect the tool. Fix: make the enum-error format universal, and give rephrase_degraded a reason. The good version already exists in the codebase \\u2014 this is consistency work, not new work. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-132 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

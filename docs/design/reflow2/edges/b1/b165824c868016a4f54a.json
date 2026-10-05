@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e40acd1eab2210e6b7af5d7c0806178c8c25753af30c0d91ed5999491d37fc5",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-revising-write-warning-fired-correctly-and-the-overwrite-happened-anyway",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.85,
+    "evidence": "Corroboration across two different mechanisms, same underlying shape: a discipline that is written down, correct, and read by the agent still fails at the moment it applies. One is a warning read hours before it was ignored; the other is a computation that answers correctly and cannot reach the case it was built for. Both were caught by a human noticing, not by the mechanism, and both are direct evidence for the open question of how an agent comes to use reflow2's disciplines without being prompted."
+  },
+  "to_id": "fact:unclaimed-findings-cannot-join-a-change-to-a-finding-hung-off-a-different-node"
+}

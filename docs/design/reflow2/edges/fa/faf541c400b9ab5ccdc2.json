@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:675c421f14298ddb0e1b7d966269b34a30aceead12b211c88a7290849b9bdfa5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:enforced-is-stated-not-defaulted-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-core"
+}

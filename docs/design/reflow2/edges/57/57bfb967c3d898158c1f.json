@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:733b10e52ac60c0acc1bd55c0f68a5c948535a765eaef1f1ebcd1d471d3435cb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types",
+  "properties": {
+    "evidence": "It extends the declared reading that requirement builds for the 65 edge types to the other 148 relationship-bearing items; the reading mechanism has to exist first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-edge-type-declares-what-it-means"
+}

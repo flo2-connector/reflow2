@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d4b4481b30b328b12b037f36879e82972c8711f8c5819c2f46fafb604d3656df",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:satisfaction-schedule",
+  "properties": {},
+  "to_id": "req:epochs-can-be-planned"
+}

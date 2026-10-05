@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4314aae725df38752ba61bd6abce1d1c1c06e2be498cc9d860fdcbff40943fd4",
+  "node_id": "cap:lineage-is-kept-per-item",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Replaces the whole-file content_hash/prev_content_hash chain (dec:export-hash-chain's mechanism, not its purpose) with per-item chains. Tamper evidence and ancestry (compare_designs) are computed over items. A squash-merge lands each changed item exactly one hop, and unchanged items keep main's hash, so an export taken mid-merge cannot mis-chain. Designed 2026-09-23 (dec:the-designs-lineage-is-kept-per-item).",
+    "name": "Each node and edge carries its own content hash and the hash of the version it replaced, so the design's history stays independent of git",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:693d5c2842e19c1a53f822cf38810d54cb3bede9385a441c595693c8fba1b83d",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-published-contract-is-asked-for-its-evidence"
+}

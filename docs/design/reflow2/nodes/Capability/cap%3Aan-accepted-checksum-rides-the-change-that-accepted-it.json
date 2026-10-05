@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de8294ad07ca5b4ddd627c364d915a116750794c1a5ffb22e284cb4b778535c8",
+  "node_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "set_artifact_checksum(s) writes the accepted checksum onto the accepting change's CHANGED edge (checksum_after, checksum_basis, accepted_seq); the export leaves the Artifact's checksum off while it equals the current acceptance (highest accepted_seq) and the import derives it back, so two pull requests that edit one file each write their own edge and never one shared value. For the item layout the coherence gate's design-vs-build check is git-aware: on a PR every registered file the PR changed is covered by an acceptance in the PR that matches the file at the PR head; on the default branch every registered file a commit changed is covered by an acceptance in that commit; a mismatch on a file the change did not touch is a note. Decision 3 of dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr (Anthony, 2026-10-03).",
+    "name": "An accepted checksum rides the change that accepted it, and the gate checks every changed file is covered",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

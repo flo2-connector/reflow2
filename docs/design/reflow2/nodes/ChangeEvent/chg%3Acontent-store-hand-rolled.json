@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b955160a2205b7b18425d6ba7896ec5cfe87fd922d0ee9e4905f82ffe526b22c",
+  "node_id": "chg:content-store-hand-rolled",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "cap:content-store rewritten: hand-rolled sync store in reflow2-core, not object_store in reflow2-mcp"
+  }
+}

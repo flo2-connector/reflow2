@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5fdf8b34a4e42b5becf6639fd7635b4c3774861f5b94c20e5db7bc32642d0b1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:bulk-forms"
+}

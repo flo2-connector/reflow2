@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d696627ffb31b021a8735d3356b872e14aca46c6890d54ef372015313f8f0e51",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-capability-is-asked-for-its-signature-and-the-unsigned-fraction-is-reported",
+  "properties": {
+    "approved_at": "2026-09-13",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

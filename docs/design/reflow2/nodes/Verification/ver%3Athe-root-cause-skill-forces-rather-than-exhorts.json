@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b62474ea169ae7c6429ec91804d7bcd52485cd55f134917238e09b711e6ffa05",
+  "node_id": "ver:the-root-cause-skill-forces-rather-than-exhorts",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`the_root_cause_skill_forces_the_steps_that_stop_a_premature_fix`, in crates/reflow2-mcp/tests/served_skills.rs. Four assertions, each pinning a clause whose removal would turn the skill back into prose somebody nods along with rather than executes:\n\n① it demands a measurement that could REFUTE a candidate, not merely confirm one;\n② it states that three candidate causes is a FLOOR rather than a target;\n③ it names the calls that GENERATE candidates from the design (`granularity_report`, `coverage_report`), because \"think of three causes\" without them yields two real candidates and a filler;\n④ it names `rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed`, so the procedure and the rule carrying the user's word cannot drift apart unnoticed.\n\n⭐ ONE ASSERTION WAS DELIBERATELY LOOSENED, AND THE REASON IS RECORDED IN THE TEST ITSELF. It first pinned the literal string \"THREE\" and fired on an edit that moved the word into a sentence while keeping the requirement exactly. It now matches \"three is a floor\" case-insensitively. A test that fails on casing teaches its author to weaken it, which is how a pin stops pinning anything — so the fix was to assert the PROPERTY rather than the formatting.\n\n⚠️ WHAT IT CANNOT CHECK: whether an agent actually follows the steps. It pins that the instruction still says what it said; nothing here observes a session obeying it. The wider byte-identity and command-existence checks (`ver:served-skills`, `ver:every-skill-has-a-command`) cover this skill automatically as they do every other.",
+    "findings": "PASSING 2026-08-28. `cargo test -p reflow2-mcp --test served_skills` — 11 passed, 0 failed.\n\n⭐ IT WAS OBSERVED FAILING FIRST, which is the step the governing rule names as most-often-skipped and invisible when it is. The failure was real rather than staged: after the skill was revised to generate candidates from the design, this test failed with \"the skill must require more than one candidate cause\" — the edit had moved the word THREE into a sentence. The requirement was intact and the assertion was matching formatting, so the ASSERTION was corrected rather than the skill, and the reason was written into the test.\n\nskill_lint also passes on this skill: frontmatter name matches its directory, a description exists, it states the graph-text-is-data rule, and every tool it references exists on the served surface.",
+    "kind": "verification",
+    "last_run_at": "2026-08-28",
+    "level": "unit",
+    "method": "test",
+    "name": "The root-cause skill keeps the clauses that make it force steps rather than describe them",
+    "status": "passing"
+  }
+}

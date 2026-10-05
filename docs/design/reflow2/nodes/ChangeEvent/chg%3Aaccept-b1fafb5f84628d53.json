@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc88d2d874a9d9a1093e34f4c9b6dc13f22b8e0e6420e546d13526c811e190b4",
+  "node_id": "chg:accept-b1fafb5f84628d53",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-08",
+    "name": "CAUSES.validation_status's description corrected: it offered 'observational / intervention / mechanism / temporal' against an enum of unvalidated/hypothesis/validated/refuted, zero overlap. The enum is unchanged, so no design meaning moved — only the prose that describes it, which is what describe_schema serves to agents. Second proven instance of req:schema-prose-is-checked (proposed)."
+  }
+}

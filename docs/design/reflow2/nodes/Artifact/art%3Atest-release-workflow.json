@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e88bf36b3bd688736089188b0cf2563988a7442541226b1accb7222fbcc03d8d",
+  "node_id": "art:test-release-workflow",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Eight hermetic tests (core CI job). Failed 0 of 8 on a5be4dc (v0.76.0); passes 8 of 8 on the #617 branch. See ver:each-architecture-is-smoke-tested-before-any-push-and-only-a-two-platform-index-is-tagged.",
+    "location": "tools/test_release_workflow.py",
+    "name": "test_release_workflow.py — the release workflow's shape, and the scripts it calls driven against stand-ins, failing first",
+    "status": "realized"
+  }
+}

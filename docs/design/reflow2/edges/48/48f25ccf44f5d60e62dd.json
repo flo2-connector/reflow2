@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:be07ec2b4fbc3e2a6db03271a42ea56ea8c5078bf7c47a8619e56817cebf3180",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0550",
+  "properties": {
+    "as_checksum": "sha256:a358730d2a92e587c9980a358a86a7a5ca2f28096d82f39aa47d2099d97dad6e"
+  },
+  "to_id": "art:capture-session-skill"
+}

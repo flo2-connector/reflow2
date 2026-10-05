@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33c46d722bccc0bcf71114f51e4c2ff53001154c5d91e1436b4285f8fabe8d74",
+  "node_id": "chg:accept-85dee05f31b9910e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-26",
+    "name": "`cargo fmt` reflowed the new upstream block after the earlier baseline was taken. Formatting only.",
+    "subject": "system"
+  }
+}

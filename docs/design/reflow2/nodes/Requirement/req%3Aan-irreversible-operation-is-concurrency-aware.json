@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:2fd89d6f7a6ed8e84515dda24bdbfe74d84ae457821492d3c9bdaaaa64242ce1",
+  "node_id": "req:an-irreversible-operation-is-concurrency-aware",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Deleting a node is never mechanical, and never quiet on a shared graph",
+    "priority": "critical",
+    "provenance": "authored",
+    "rationale": "THE SAFETY MODEL IS CURRENTLY INVERTED, and it is not a hypothetical: propose_heal offered 10 operations, every one a Merge that DELETES its remove_id, including a load-bearing requirement — while the check-health skill tables `duplicate` as the machine-fixable half and tells the agent in terms that requires_human_review being true 'does not mean you should withhold the mechanical merge'. So THE HALF AN AGENT IS TOLD TO APPLY UNREVIEWED IS THE DESTRUCTIVE ONE, AND THE HALF IT IS TOLD TO ESCALATE MUTATES NOTHING. An agent following the skill exactly deletes ten design nodes; the reporter stopped only because the pairings looked implausible enough to read. Root cause and the full chain are recorded in fact:defect-ingest-writes-duplicates-that-heal-then-merges. THE SHARED-GRAPH MULTIPLIER, which is why this is a separate requirement from fixing the scorer: on a solo graph a bad merge is one person's undo. Here one session's apply hits three bosses and four workers instantly, with no undo and no notification to anyone else. All three bosses stood down on it 3/3 and the whole fleet was barred from check-health. A SECOND INSTANCE OF THE SAME SHAPE, different tool: propose_heal offered generate_bridge on req:stateless_scaling where the user had explicitly ruled that drawing a SATISFIES edge would be a forgery. THE TOOL'S SUGGESTED FIX BEING THE HARM IS NOW TWICE — a bridge adds a wrong edge; this deletes a node. NOTE THE TENSION TO RESOLVE DELIBERATELY: reflow2 already holds dec:ask-not-repair (accepted) saying merge is safe only because the endpoints were asserted by a human. This requirement is arguably not new intent but a second guard for a decision that is already accepted and currently defeated — worth deciding which of those it is before building.",
+    "statement": "An operation that destroys design content SHALL NOT be classified as a mechanical fix an agent may apply without review, and on a shared graph it SHALL require the acting seat to acknowledge that other sessions are attached. Requested as the #6 fleet ask, and as the highest-severity item dev_storyflow has sent this channel (sb-boss ab2291fa, api-boss 5d608b85, 2026-08-07).",
+    "status": "accepted"
+  }
+}

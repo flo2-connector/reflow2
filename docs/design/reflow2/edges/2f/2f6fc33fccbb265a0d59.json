@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2878dda4f54ee931ad64476070b1a0fdbcb8af091c8cd666294f4d1b58c1dff8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-d98d4bdc9939d8fb",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:cycles-test"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d71e73c42fe3288764133b00a39c41fd21c4b819c2a4c2179647c5285c9238ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed",
+  "properties": {
+    "approved_at": "2026-09-28",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

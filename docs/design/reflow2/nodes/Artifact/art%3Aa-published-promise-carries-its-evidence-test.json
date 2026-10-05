@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c4eda6ca15d207ce86f51f3f28924d6bf7a242c0447684c00f7e1daef509fb2b",
+  "node_id": "art:a-published-promise-carries-its-evidence-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five tests: the check on a published Requirement and on a published Interface travel, a check on an internal target stays home, a design publishing nothing exports no checks, and the report names what left.",
+    "location": "crates/reflow2-core/tests/a_published_promise_carries_its_evidence.rs",
+    "name": "crates/reflow2-core/tests/a_published_promise_carries_its_evidence.rs",
+    "status": "realized"
+  }
+}

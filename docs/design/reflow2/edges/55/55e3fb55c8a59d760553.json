@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6209e0e74e2ecef8ee85c79e714e894a263929eb1492cfd48b2f42bed1e1c619",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0650",
+  "properties": {
+    "as_checksum": "sha256:5fe3320f1340265f67dac22148d83c98a69379ab9f21837a801446b276c23aa1"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

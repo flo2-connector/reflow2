@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abb7025b60a929338dab0e2a8a78c8b8288dfec7669cc94a1f99f6c2c5053f8b",
+  "node_id": "chg:baseline-c389615b2823d8c9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:a-fix-says-whether-it-corrected-the-cause-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: First baseline for the repair-disposition and relation-coverage increment, so later drift in these files is detectable rather than merely unbaselined.",
+    "subject": "record"
+  }
+}

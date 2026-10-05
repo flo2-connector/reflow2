@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:610474652a85ddcbefc7b2cdacaa4c2339116209a5b315090690e906d3b923fb",
+  "node_id": "req:a-diff-is-read-as-a-design-change",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "A git diff is read as a design change, and every changed file the design cannot see is named",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Given a commit range, reflow2 says which capabilities and requirements the changed files reach through the golden thread, and names, first and counted, every changed file that no registered Artifact points at — because a blast radius that silently omits an unregistered file reads as \"this change is safe\" when the truth is \"this change is invisible to the design\". Unmapped files are never folded into a clean result; failing a build on them is opt-in, so the read never punishes a project that has not finished registering.",
+    "status": "accepted"
+  }
+}

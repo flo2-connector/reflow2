@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0ac27344dcc4cfbdea8e3580f9e3d32e3b705067995bfec712faea24e2562dc3",
+  "node_id": "art:read-only-client",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The screen every forwarding loop in proxy.rs puts in front of a --read-only session (--remote, --shared, a client attached through .reflow2.toml). A tools/call leaves only when this build's served surface, the server's own tools/list and the file rule (service::FILE_WRITING_TOOLS with path) all say it reads; a call it cannot classify is refused as a write, as an MCP tool error naming --read-only, and nothing is sent. Non-read methods are refused by name; lines are forwarded re-serialised from the value that was judged; a non-JSON line and a batch carrying a refused call are not sent.",
+    "location": "crates/reflow2-mcp/src/read_only_client.rs",
+    "name": "read_only_client.rs — a --read-only CLIENT screens every line before it is sent",
+    "status": "realized"
+  }
+}

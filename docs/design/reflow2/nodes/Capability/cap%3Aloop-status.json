@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:03449ec2c5655dff18857814a0d78790d6815465b9205beddf0a9425784e35c3",
+  "node_id": "cap:loop-status",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One cheap call returning the coherence loop's outstanding debt as an ordered to-do list, computed from graph state alone.",
+    "name": "Say what the loop is owed",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

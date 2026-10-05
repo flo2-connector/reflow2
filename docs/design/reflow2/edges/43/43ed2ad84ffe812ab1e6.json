@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:075818a354e9fb81dd48d1e55573e45ca982856284bb483145fed3c61241f8b6",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-vocabulary-change-has-no-identity-so-a-consumer-is-told-its-version-is-wrong-not-which-change-it-lacks",
+  "properties": {
+    "evidence": "That idea's option (a) is to add `deferred` and `withdrawn` to Decision.status, and its own counter-argument is that a vocabulary change costs every consumer a migration. Measured while writing this node: GraphStamp carries reflow2_version, schema_version, node_types, edge_types, node_type_names and edge_type_names — no enum vocabularies at all. So that change would move NOTHING the version guard reads, and an older binary would open the graph silently and meet a status value it has never heard of. This idea is the mechanism that would make that hazard visible; it answers the hazard that one creates, which is what MITIGATES means here."
+  },
+  "to_id": "dec:idea-the-decision-status-enum-is-thinner-than-the-lifecycle-people-actually-use"
+}

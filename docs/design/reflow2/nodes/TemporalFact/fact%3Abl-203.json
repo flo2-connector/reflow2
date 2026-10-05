@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:878abea8b5e4332edc3b13db5d15896bf071f37ca936982b441ecc9537df78f0",
+  "node_id": "fact:bl-203",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-203] Nine node types and thirty-five edge types have never been instantiated — and a computation written over an unused type reads an empty set in silence",
+    "subject_id": "cmp:vocabulary",
+    "value": "{\"evidence\": \"*Same census, 2026-08-04.* 29 node types and 60 edge types declared; 9 node types (31%) and 35 edge types (58%) have zero instances in this graph. Domain by domain the shape is sharper than the percentage: dimensions is entirely inert (both node types), and so are environment's EnvironmentRule, readiness's ReadinessAssessment, temporal's TemporalFact, verify's QualityGate and functional's Flow \\u2014 six of eleven domains with a dead centre. This is [BL-184] generalised: that row found DimensionAssessment count = ZERO and, with it, that dimension_drifts had been computing a slope over an empty set silently for eleven releases. The census says that was not a one-off \\u2014 it is the expected condition of a third of the vocabulary, and any computation over an unused type inherits the same defect with nothing in the build to say so. THE HONEST COUNTERWEIGHT, and it must survive into whatever gets built: an unused type is NOT automatically a mistake. EnvironmentRule is for regulated deployment-heavy designs, Flow for behavioural ones; reflow2 is neither, and a design tool whose vocabulary covered only its own shape would be useless. The defect is that nothing distinguishes \\\"unused because inapplicable here\\\" from \\\"unused because unreachable\\\", and no computation over an empty population is ever challenged. Actionable half: make an unexercised type visible rather than silent \\u2014 a report or a gate that names every declared type with zero instances and every computation reading an empty population, so [BL-184]'s eleven-release silence cannot recur. The other half \\u2014 whether the vocabulary should have been grown on demand from real subjects rather than declared up front across eleven domains \\u2014 is a standing judgement about how the schema evolves and is Anthony's, not a row. Size M\", \"origin\": \"Migrated from docs/backlog.md BL-203 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

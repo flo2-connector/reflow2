@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d4c9fcb1d4f690b1600fd6f2b608ccdda6a21853cdbb383ea6465aee0f355520",
+  "node_id": "cap:tool-search",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25 as the `find_tools` tool. Imported from github-mcp-server's pkg/tooldiscovery, which fuzzy-searches its own tool list with weighted scoring and returns three results by default. reflow2 serves 97 tools, and req:agent-native's promise — every capability reachable from a coding agent over one surface — is only true in principle if the agent can find the tool: a surface too large to hold in context is reachable the way a library with no catalogue is readable. Scored over `tool_router.list_all()`, the served surface itself, so the catalogue cannot drift from the tools that exist — the failure mode skill_lint exists to catch in prose, avoided here by construction rather than by a second list. Weights follow the source: an exact name outranks a name substring, which outranks a description hit, which outranks a parameter-name hit. Ties break by name so the same query answers the same way twice, because a ranking that reshuffles teaches an agent not to trust it. Summaries come back trimmed to the first sentence — a catalogue that costs as much to read as the surface it indexes is pointless — and the result names `matched`, `omitted` and `searched`, so a query that found nothing says so instead of falling back to the whole list.",
+    "name": "Find the right tool on a surface too large to hold in context",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

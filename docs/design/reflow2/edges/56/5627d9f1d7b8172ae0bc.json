@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1684e133cf40779572c9c21f5ffedbacbfad946a1c19b6e7633d440dc5fe040",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-local-client-reaches-a-remote-server-2026-09-26",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:mcp-http"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c684e84679efb701935f3e63ba982f32c67e3b4b01a00b0c5ea6c419740b75af",
+  "node_id": "ver:publish-surface",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "The surface carries the boundary, its ICD and both sides; nothing internal leaves; the note names what was withheld; an undesignated design gets an EMPTY SURFACE warning; no dangling edges; it does not join the hash chain; and the other side imports it cleanly (tests/surface_export.rs, 7 cases)",
+    "status": "passing"
+  }
+}

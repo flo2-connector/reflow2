@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5770c614f46f0307f3f51bdac1da5415b3f3671b2f73ab851326db500ae058c3",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:pairing-stops-at-the-boundary",
+  "properties": {
+    "basis": "evidence"
+  },
+  "to_id": "cap:publish-surface"
+}

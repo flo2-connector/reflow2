@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1566444c072743ed79d40f68493f6c4a7a3cd8633403294c5dfe5dba65b3db3b",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:prune-proposed:req:supporting-is-not-conflict",
+  "properties": {},
+  "to_id": "epoch:prune-proposed"
+}

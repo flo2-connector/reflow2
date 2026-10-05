@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2f4b37ba2ddbccf3b9ed8cfcc0bce2cf43041cc92fd0f92f69db6a00f07fcec",
+  "node_id": "chg:describe-designs-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "describe_designs ships on both surfaces, reading only sidecars so it never opens, locks or mints — and start_design now requires a nearby sweep instead of saying it is safe to call when unsure"
+  }
+}

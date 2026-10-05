@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:110256d2f9f1bc2306a8c3ffb086ff9132ddf8e3b35f2e2fe90d2b474c4ffd18",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-a-true-causes-edge-does-not-thread-a-cluster-and-the-finding-never-says-which-edges-do-2026-09-29",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

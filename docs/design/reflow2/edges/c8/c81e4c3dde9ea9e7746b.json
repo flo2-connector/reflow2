@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cd697bacd44f0275b2d30c07324970e8a5b9f0d9aacffa7332f3a5a1254dd0bf",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0580",
+  "properties": {
+    "as_checksum": "sha256:fdc87d24e87c3e839914afa992cb3195c5297078c2502528a7a9de082c628767"
+  },
+  "to_id": "art:vocabulary"
+}

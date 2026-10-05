@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c28f7dfe6bdd6c9da9a8187ceece68cf883b8b7d1dd8e0ba69250166a5abb429",
+  "edge_type": "CAUSES",
+  "from_id": "fact:an-accepted-principle-stopped-at-the-sidecar-it-was-written-for",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The fix follows directly from the cause: carry the accepted principle to the second sidecar. The guard now asks the store what it holds, exactly as the identity decision already required for its own sidecar.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:the-version-guard-refuses-on-a-population-not-a-declaration"
+}

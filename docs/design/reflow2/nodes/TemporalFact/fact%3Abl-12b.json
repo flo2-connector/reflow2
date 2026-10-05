@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ae2476705b226c1bd7ac452d500c6145e4975d02a11aec584088c332afde0e43",
+  "node_id": "fact:bl-12b",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-12b] A wedged shared server stalls an attached session for 335.7s measured (CALL_TIMEOUT 300s + the re-election attempt on top), which is indistinguishable from a hang",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"Raised by w-74c2989e (2026-07-27) while proving the timeout fix, and explicitly flagged by them as unmeasured reasoning, not a result \\u2014 they did not wait the five minutes out. Session *startup* is not affected and that part IS measured: initialize/tools/list/the probe use the 5s bound, so a fresh session against a SIGSTOPped server degrades at 35.8s (control: 0.0s against a healthy one). \\u26a0\\ufe0f The figure was first reported as 300s by quoting the CONSTANT rather than the PATH; w-74c2989e measured the real number at 335.7s \\u2014 the bound, then a re-election attempt. A constant is not a measurement. The bound applies only to an in-flight tools/call, and is deliberately generous because a bound that fires on legitimate detector work would turn a slow answer into a false failure \\u2014 with no measurement of a large design to pick a tighter number from. The tension is real and worth recording rather than settling by guess: *the fix's whole argument is that a hang is worse than an outage, and a five-minute stall reads as a hang to the agent waiting.* Candidate answers, theirs: a progress/heartbeat line while a call is in flight, or a per-method bound. Wants a measurement of detector latency on a big design first.\", \"origin\": \"Migrated from docs/backlog.md BL-12b on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

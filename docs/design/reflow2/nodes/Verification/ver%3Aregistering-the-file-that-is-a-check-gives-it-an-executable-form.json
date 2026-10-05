@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:0fccb88a86bbdbc25131c82396ea5a66f24963736692e232f4855c5366eb896c",
+  "node_id": "ver:registering-the-file-that-is-a-check-gives-it-an-executable-form",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Four tests in `crates/reflow2-core/tests/registering_the_file_that_is_a_check_gives_it_an_executable_form.rs`: an IMPLEMENTS edge is drawn; the wrong edge (REALIZES) is not; ONE call is enough for `capabilities_verified_by_runnable_check` to count the capability; and registering a file against a CAPABILITY still realizes it and grows no IMPLEMENTS, so the 400-odd artifacts already registered that way are untouched.\n\nThe third is the one that would have caught the original defect — it asserts the user-visible consequence rather than the edge, and every other signal in the design read green while the answer was wrong.\n\nOBSERVED FAILING first: three of the four red, the fourth (the unchanged half) green from the start.\n\nRE-RUN: `cargo test -p reflow2-core --no-default-features --test registering_the_file_that_is_a_check_gives_it_an_executable_form`.",
+    "findings": "4/4 green 2026-09-22 after three were observed red. The fix moved this design's own record: executable forms 30 -> 71, capabilities verified by a runnable check 22 -> 58, checks with a registered file and no form 40 -> 0.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/registering_the_file_that_is_a_check_gives_it_an_executable_form.rs",
+    "method": "test",
+    "name": "One link_artifact call against a Verification leaves the check re-runnable, and draws no REALIZES",
+    "status": "passing"
+  }
+}

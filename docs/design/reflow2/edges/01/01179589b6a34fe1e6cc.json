@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80ee192156042c8ca270dc3a3ec154120f480e4588cb9ba167988971a9289590",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:session-posture"
+}

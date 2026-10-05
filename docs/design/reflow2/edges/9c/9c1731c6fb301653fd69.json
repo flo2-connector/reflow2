@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7aaf1afc6f7070fd2d3be17b43dc5bf6b43bacd63b6d04c4fc587a554a8ff023",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:dev-storyflow-feedback-2026-09-08",
+  "properties": {
+    "note": "Triaged 2026-09-09 under the rule: two issues root-caused (capture-session routing; the CONNECT_TIMEOUT refusal), one refutation recorded (three of eight reported verification gaps were already built), and five wishes recorded as exploratory Decisions. The back-edges below are what makes that checkable rather than claimed."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

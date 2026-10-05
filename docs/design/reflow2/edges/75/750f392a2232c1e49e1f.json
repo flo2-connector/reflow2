@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3bb0edd00a1dab54fb2f582d3ca64948a6441e777b26267e536888591b6bc4d3",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-settling-a-decision-record-which-option-won",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: A free-text field on the status setter. Registering prose options as alternatives at settle time was rejected as far larger, and leaning on the sentence-level edit was rejected because it is two acts where the user performed one."
+  },
+  "to_id": "req:settling-a-decision-records-which-option-won"
+}

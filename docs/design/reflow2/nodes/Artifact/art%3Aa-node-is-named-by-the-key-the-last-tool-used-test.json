@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3803adb1ed0744846e690667b7af8b818518d4e65eef45a445a4b289ea9d59c6",
+  "node_id": "art:a-node-is-named-by-the-key-the-last-tool-used-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_node_is_named_by_the_key_the_last_tool_used.rs",
+    "name": "a_node_is_named_by_the_key_the_last_tool_used.rs",
+    "status": "realized"
+  }
+}

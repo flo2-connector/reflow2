@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3bc70748ff171b87292de6d49aa0120efe21d434251ab59eb0b7f56fd4825ba0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:ownership-is-durable",
+  "properties": {},
+  "to_id": "req:ownership-is-an-edge-so-debt-has-an-addressee"
+}

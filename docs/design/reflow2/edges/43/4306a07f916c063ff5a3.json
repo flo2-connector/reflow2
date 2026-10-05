@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06416998f14083f360fe4ba6e40d22acc58fa6fdff203bbe57a7ff96e474cba5",
+  "edge_type": "REALIZES",
+  "from_id": "art:retire-from-design-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:every-served-report-is-reachable-from-an-instruction"
+}

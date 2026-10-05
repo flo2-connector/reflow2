@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2a9b7aef2c84dbe16c7bf09671f5b00ce30918ec3f1fcfda30a31ecbfcf25aa8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:80a4006b69165d761a8cf600ea22f81e9123ba54236a6f647adba4b6d54b9395",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:coherence-gate-test"
+}

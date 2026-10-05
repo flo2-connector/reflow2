@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0011deec7b9f1410045cf52d3de50f4478ded1838a819230cf4799da5a696a6a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:a-new-refusal-claim-is-asserted-before-it-ships",
+  "properties": {
+    "approved_at": "2026-09-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

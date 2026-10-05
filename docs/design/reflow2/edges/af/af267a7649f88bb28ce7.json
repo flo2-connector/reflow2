@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:69027a83c7aada9f74a784155194c9dd03c986bb4defe95463a4fa9fb2394df2",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-edge-type-declares-and-serves-its-reading",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

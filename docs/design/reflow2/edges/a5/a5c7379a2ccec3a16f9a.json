@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5450cd726f899424c68bf82becf706b73f04996455a6740ea6a5d0d95c096f02",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-owner-reads-what-they-are-asked-to-approve-in-one-addressed-digest",
+  "properties": {
+    "evidence": "A digest of what a person is asked can only list questions once questions name whom they were put to.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:586032bd29dcad170eefd3653c6f617a4c274b52bfaa96a5ef9ba824eadcde94",
+  "node_id": "fact:defect-orientation-needs-a-seed-and-a-new-session-has-none",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE MOMENT A SESSION HAS THE MOST TIME AVAILABLE IS THE MOMENT THE DESIGN BRAIN IS LEAST USABLE, BECAUSE EVERY ORIENTATION TOOL WANTS A SEED AND A SESSION AT CHECK-IN HAS NONE. Reported 2026-08-08 by w-02baf79f (dev_storyflow), sitting AVAILABLE in the pool with no lane. Every piece of guidance they are given says ORIENT BEFORE YOU TOUCH ANYTHING. The orientation tools are shaped around a seed: detect_gaps and detect_defects want a `scope` node id, claim_region wants a `seed_id`. A worker at check-in has no lane and therefore no seed. THE ONLY SEEDLESS CALLS ARE GLOBAL ROLLUPS, WHICH THEIR OWN DOCTRINE FORBIDS THEM TO ATTRIBUTE TO THEMSELVES (see fact:defect-rollups-became-fleet-numbers-without-saying-so). So the honest options were (a) call nothing, or (b) call an unscoped tool and hedge the number in a paragraph. THEY CHOSE (a) AND RECORDED WHY, which is what makes this a measurement rather than a complaint. THE INVERSION IS THE FINDING, in their words: the moment with the most time available — sitting available, nothing to do — is the moment the design brain is least usable, and the moment they are busiest, mid-lane, is when they are told to orient. NOTE WHAT REFLOW2 ALREADY HAS AND WHY IT DOES NOT CLOSE THIS: search_design is seedless and works, but it requires you to already know the WORDS — which is the same guessing problem recorded in dec:idea-what-governs-this-file, where an accepted decision was found only because the right search term was guessed. FIX SHAPE, theirs: a search_design-backed 'what regions exist and how big are they' summary, or let detect_gaps take a FREE-TEXT TOPIC instead of a node id, so a seedless session can FIND its seed rather than needing one to start.",
+    "subject_id": "cap:scoped-analysis",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, w-02baf79f, at an unclaimed pool check-in\",\"shape\":\"detect_gaps/detect_defects want scope; claim_region wants seed_id; a session at check-in has no seed\",\"only_seedless\":\"global rollups, which their doctrine forbids attributing to themselves\",\"what_they_did\":\"called nothing, and recorded why\",\"inversion\":\"most time available = least usable; busiest mid-lane = when told to orient\",\"why_search_does_not_close_it\":\"search_design is seedless but needs the right words - the guessing problem in dec:idea-what-governs-this-file\",\"fix_shape\":\"a 'what regions exist and how big' summary, or detect_gaps taking a free-text topic\"}"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5da251ebc7af6e11626b43813aa40db13d51b868b40b7f00b8100a0674fb5090",
+  "node_id": "req:a-lesson-is-served-at-the-step-it-concerns",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "lineage": "original",
+    "name": "A lesson a design holds is delivered at the step it concerns — when the skill is fetched or the tool is about to be used — not only where it was filed",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-12, promoting option C of `dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent` (\"go with your recommendations\"). The measured premise: a lesson written in prose does not change the next command. The same trap was written down three times in three places and repeated anyway (`fact:the-pipe-trap-recurred-twice-on-2026-09-12-a-month-after-it-was-written-down`); what stopped each recurrence was something arriving at the step — a gate, a guard, a refusal that carried the lesson.\n\nTHE REQUIREMENT. A design's own lessons — DesignRules and dated TemporalFacts — can name the STEP they concern: a served skill (`capture-intent`, `where-am-i`, …) or a served tool (`export_graph`, `plan_epoch`, …). When an agent fetches that skill with `get_skill`, the reply carries the lessons this design holds for it, beside the skill's body, in the same moment the agent reads how to do the work. When an agent is about to use that tool, the tool's description as this server lists it carries the lessons this design holds for it. The lesson reaches the agent with its hands on the step, the way reflow2's own tool descriptions already carry reflow2's own measured lessons — generalised to any project's lessons about its own work.\n\nWHAT IT IS NOT. Not a new node type (the notepad exists: rules and facts, hung on what they concern). Not a lessons page read at session start (measured insufficient). Not a memory file (machine-local). A lesson that names no step is still a lesson — findable by search, hung on its node — it is simply not delivered at a step, and that absence is not an error.\n\nHONEST LIMIT. Only steps that go through reflow2 can carry a lesson: a served skill or a served tool. A shell command, a git operation, a CI job has no step here to hang on — unless the project models that procedure as a Flow whose steps are reflow2 skills, which is the project's choice and reflow2's own release procedure already makes.\n\nMEASURE. The baseline is on the record: three recurrences of one lesson before delivery-at-the-step existed. Whether the next session repeats it is the test, and nothing in this increment claims the answer.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4bd4064e2852d9d549979962a2e26f460a08b7f6e487ee18b2519ab98fcb6efe",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:git-anchor",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:git-anchor"
+}

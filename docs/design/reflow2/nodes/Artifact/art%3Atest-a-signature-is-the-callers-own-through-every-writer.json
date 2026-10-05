@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4973bffe4d597fd6b060a6401bcb5229f1942a9759a6c2415f4688abb58217c7",
+  "node_id": "art:test-a-signature-is-the-callers-own-through-every-writer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_signature_is_the_callers_own_through_every_writer.rs",
+    "name": "a_signature_is_the_callers_own_through_every_writer.rs (the class test over every served writer)",
+    "status": "realized"
+  }
+}

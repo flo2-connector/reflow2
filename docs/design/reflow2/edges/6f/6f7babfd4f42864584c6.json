@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dcfc2037c5d54518767797dc38f050276a70ac6aedf676e92cc4d81a39378d83",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-a-finding-has-no-bounds-so-grading-goes-in-the-name",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The bounds/grade/findings half of the question.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-finding-carries-its-bounds"
+}

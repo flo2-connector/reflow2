@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:54ca92cc67e7506028db1a84147aa574b23d04d635e6f0c210fe81ad9d5ee7fb",
+  "node_id": "decision:ack:532359c4b9e132a3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:532359c4b9e132a3.",
+    "name": "Reviewed: gap:532359c4b9e132a3",
+    "rationale": "Correct and expected: cmp:degraded was built after v0.11.0 was cut, so it ships in the NEXT release. dec:intent-preserved settled that unreleased-component gaps from work done after a cut are answered by the next manifest rather than backfilled into a shipped one — a release record must say what that release contained. Will close by inclusion at the next cut, not by editing rel:v0110.",
+    "status": "accepted"
+  }
+}

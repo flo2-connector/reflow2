@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:34aa529d480d2bab3cd8eec8c723e5a6037ab9eaeb78936ac4b0aed25d9069d3",
+  "node_id": "art:store-backend",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The byte-level KV seam under StorageEngine, with its RocksDB and in-memory implementations.\n\nThe RocksDB backend opens six column families. Since 2026-09-27 every family of every store draws on one process-wide StoreBudget (--store-memory, default 128 MB):\n- a shared LRU block cache holding index and filter blocks;\n- memtables charged to that cache through one WriteBufferManager;\n- a 4 MiB write buffer per family instead of 64 MiB;\n- at most 64 open table files per store.\nRegistered 2026-09-27; it had no artifact node before.",
+    "location": "crates/reflow2-core/src/foundation/store/backend.rs",
+    "name": "backend.rs — the KvBackend seam, the RocksDB backend's column families and options, and (since 2026-09-27) the one memory budget every store in the process shares",
+    "status": "realized"
+  }
+}

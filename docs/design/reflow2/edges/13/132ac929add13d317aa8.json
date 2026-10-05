@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90799a0268dda86a6a4d43faccfdfa9172da721ac407d78e21b48011fe53ef33",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-the-design-lives-apart-from-the-implementation",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Options (b) and (c) take the design out of the implementation repo, which that accepted requirement puts it in; (d) contradicts it only for projects the owner does not control."
+  },
+  "to_id": "req:persistence"
+}

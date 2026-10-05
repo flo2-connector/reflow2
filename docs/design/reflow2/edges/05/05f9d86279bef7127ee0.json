@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5cce13def395da140bca2288d0877727d796c4b04be4aa43d2a38ee473a50e88",
+  "edge_type": "CHANGED",
+  "from_id": "chg:external-dependency-replies-with-a-receipt-and-a-re-declare-keeps-what-it-was-not-passed-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:depends"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ddc2fdcbfe3bd89550bb488f5e0aa7a2705162b8efcca2ccf5397ff4f9cc701c",
+  "node_id": "req:functional-vocabulary-computes",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The functional vocabulary must compute something or not be declared",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "reflow2's schema declares a functional-analysis vocabulary that nothing in the core reads: Capability.is_entry_point and Capability.is_exit_point (schema/functional.yaml:20, both defaulting to false), plus inputs, outputs and capability_type. Only Flow.entry_point is actually read. add_capability cannot write any of them, so they are reachable only through the create_node escape hatch, and no detector consults them. Found 2026-07-28 by comparing reflow2 against the original reflow's system_of_systems_graph_v2.py (2,146 lines, NetworkX): three of that tool's five FUNCTIONAL-mode gap detectors are unimplementable in reflow2 purely because of this — unreachable_functions needs is_entry_point, dead_end_functions needs is_exit_point, unexplained_outputs needs outputs. The service-mode analysis DID come over and in better form (cycles, communities, centrality, orphans, unimplemented services, orphaned interfaces all have reflow2 detectors); the functional mode did not. The schema was ported and the computations were not, which is req:defaults-do-not-assert at the scale of a whole workflow: a property defaulting to false asserts 'this capability is not an entry point' on every node in the design, and nobody chose that. Anthony's word 2026-07-28: add it. Recorded after the originating session was killed by an OOM before it could write. The honest resolutions are to compute against the vocabulary or to remove it — storing it while nothing reads it is the shape this project keeps rediscovering (BL-96 inviolable-intent, BL-106 last_run_at, the temporal axis before BL-70). Sibling of req:defaults-do-not-assert, which is parked as deferred.",
+    "status": "dropped"
+  }
+}

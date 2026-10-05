@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f26e39cc357ea967b4ed51e0173d9a202d51c8dff5809647329ee23e723f0bc2",
+  "node_id": "decision:ack:260a7ea303ec87f1",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:260a7ea303ec87f1.",
+    "name": "Reviewed: gap:260a7ea303ec87f1",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because the three github-mcp-study imports joined the set (39 → 42). Apt for each of them in a different way. cap:sanitize-ingress: the tests prove a payload is stripped and honest text survives, but whether the CLASSES chosen are the ones attackers actually use is answered by the field, and the day a real adopted repo carries something the filter misses is the only real evidence. cap:bounded-reads: the tests prove a cap names itself; whether the budget is set at a useful number is answerable only by sessions that stop being truncated. cap:tool-search: the tests prove an exact name ranks first and a described job finds link_artifact, but whether the ranking helps an agent that does not already know the answer is a trial — and the honest instrument is a session where an agent finds a tool it had never used.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91cd4ca2c1055c58b7b9dd93ae6504cf0de58e36818c9fec1321b3f4da36e448",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test"
+}

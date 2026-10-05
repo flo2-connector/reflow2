@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:85c71d7f88163d3d47244d2a0a55cabfb37c1d06373e9dfb6e0e1137de04b69f",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-a-drawn-relation-be-echoed-back-as-a-sentence",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: The sentence echo. Scoped to asymmetric relations so the cases that cannot fail add no noise."
+  },
+  "to_id": "req:a-drawn-relation-is-read-back-as-a-sentence"
+}

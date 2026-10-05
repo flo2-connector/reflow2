@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e76d7d7ac2d165127ec08b5296d63a578f5d7f6dea7827352f6c37e281c5b7cb",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:stale-seat-refusal",
+  "properties": {},
+  "to_id": "req:stale-seat-knows"
+}

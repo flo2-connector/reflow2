@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d61467fce52b17bc7c439b4060aae932c7f758cc8b6c0f22118c7c9e90b22c62",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "fact:the-exhaustive-check-was-built-and-can-only-carry-universal-obligations",
+  "properties": {
+    "evidence": "Anthony's argument for composition is a MOSA argument, and that node is where MOSA already lives in this design. The claim is structural rather than aesthetic: a MOSA module is severable and meets a stated interface, so it composes selectively and upgrades without touching neighbours; an exhaustive check is one monolithic predicate over a whole population and has neither property. If reflow2 is going to report MOSA conformance for other people's designs, its own skill surface failing the severability criterion is worth knowing.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:mosa-conformance"
+}

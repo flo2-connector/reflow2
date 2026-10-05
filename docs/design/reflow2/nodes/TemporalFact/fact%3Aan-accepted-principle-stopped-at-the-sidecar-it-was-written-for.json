@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bc93816b390bb44bf6aa99f74885ae745e86ebacc91a67a2fb3dfb85eb3c840a",
+  "node_id": "fact:an-accepted-principle-stopped-at-the-sidecar-it-was-written-for",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "THE CAUSE OF THE v0.55.1 LOCKOUT, AND IT IS NOT THAT A CHECK WAS TOO STRICT.\n\nreflow2 keeps TWO sidecars beside a graph: `<path>.id.json` (identity) and `<path>.meta.json` (the version stamp). For the IDENTITY sidecar, `dec:sidecar-loss-guarded-by-store-evidence` is ACCEPTED and rules that a refusal must be conditioned on WHAT THE STORE ACTUALLY HOLDS — \"answered BEFORE the store is opened, from the filesystem alone\". For the VERSION sidecar, the guard refuses on the sidecar's DECLARATION with no evidence about contents at all.\n\nSO THE PRINCIPLE WAS SETTLED AND THEN STOPPED AT THE SIBLING IT WAS WRITTEN FOR. That is the finding. A design that had already reasoned its way to \"condition the refusal on evidence\" applied it to one of two structurally identical cases.\n\nWHY IT HIT EVERY USER RATHER THAN A FEW. The stamp records the SCHEMA the writing binary had, not the data. So every graph written before a type retirement names that type, instances or none — the population is irrelevant to the stamp by construction. Measured on the reporting user's graph: QualityGate in the stamp YES, QualityGate nodes across 3,130 ZERO.\n\n⚠️ SECOND OCCURRENCE FOR THE SAME USER. Their store carries `graph.pre-0.10.1-unreadable-2026-07-24` beside the one bricked on 2026-09-08. A version guard has locked this user out twice, which makes this a recurrence rather than an incident.\n\nAND MY OWN FIRST DIAGNOSIS WAS WRONG IN THE DIRECTION THAT WOULD HAVE DEFERRED THE FIX. I reported that the guard could not see the data because the decision ran before the store opened. Measured: `StorageEngine::new_rocksdb` runs ONE LINE EARLIER than `check_and_stamp`, and `holds_a_design_probe` was already probing that engine at that same point for the identity question. The engine was there the whole time. A cheap fix looked expensive because I described the constraint without checking it — the same shape as the guard itself, one level up.\n\nNOT ESTABLISHED: whether anyone reasoned about the retired branch and judged the stamp sufficient, or whether it was simply never considered. Measured separately that the node-side retired branch was unreachable until 2026-09-07, because RETIRED_NODE_TYPES was empty until then — so it had never executed before the day it locked a user out.",
+    "subject_id": "dec:sidecar-loss-guarded-by-store-evidence",
+    "valid_from": "2026-09-08"
+  }
+}

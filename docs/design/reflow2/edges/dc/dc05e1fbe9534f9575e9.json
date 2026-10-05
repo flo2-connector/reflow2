@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aa954790603b4c718a86b20b28080f8075cb1f42c50416c54583cc357377f8be",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {},
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

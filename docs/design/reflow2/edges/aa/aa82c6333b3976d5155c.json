@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8645d0b838250055430651d414b18a59a3ef55a8d387afda0cf051f86e72d6a4",
+  "edge_type": "REALIZES",
+  "from_id": "art:refusal-speaks-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path"
+}

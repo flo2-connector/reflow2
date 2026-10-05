@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:82791fc41f6e2fd17bed0a07c968fb8863c41b98306c6bfe8946f8e3b4e2fbb5",
+  "node_id": "chg:two-repair-rules-compute-the-condition-their-message-names",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-15",
+    "name": "The contradiction and unresolved_setup rules now test the condition their own message names, and a cleared finding is counted under its own heading",
+    "rationale": "Three records were one defect: a contradiction could be acknowledged or erased but never resolved (2026-08-08, proved by execution), two rules asserted a condition they never tested (2026-08-10), and unresolved_setup fired the moment an anticipated question was ANSWERED (2026-09-02, defects 73 -> 74 for finishing the work). The cause in every case was the same sentence the alignment fix in the same function had already recorded — a property the detector ignores is a property that lies — applied one step along to a CONDITION the detector never computed. The fix needed two definitions nobody had asked the owner for; dec:a-rule-computes-the-condition-its-message-names carries them and the counter-argument (any definition can under-fire), which is why both were chosen narrow and each is pinned from both sides. CORRECTED THE CAUSE: yes — the rules now compute what they claim, rather than exempting one more case.",
+    "subject": "system",
+    "summary": "heal.rs: the CONTRADICTS loop skips a pair when an ACCEPTED Decision governs BOTH endpoints (resolving_decision), and the ANTICIPATES loop skips a target that EVOLVES_INTO anything or has arrived on its own type's terms — Decision accepted, Capability/Component realized or verified, Requirement met, epoch arrived (follow_through_exists). The Suppressed counter became a struct with two maps, `parked` and `resolved`, and the sweep report gained `suppressed_by_resolution` beside `suppressed_by_parked_idea`, so a finding cleared because the design answered is never filed as one the sweep did not look at. Pinned from both sides in crates/reflow2-core/tests/a_rule_tests_the_condition_its_message_names.rs (12 tests: the case each definition clears and the nearest case it must not); the one older test that asserted accepted-anticipating-accepted still fires was rewritten to a faced choice nobody made, with the reason in place. Failing first observed, then 12 passing; heal.rs, contradiction_alignment.rs, proposed_asserts_nothing.rs and a_choice_is_not_a_musing.rs still green."
+  }
+}

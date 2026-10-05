@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9d5b298d178ff20094b147d1185918bee60a1bec009f01caba1b65e56b0fc800",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:self-host-documents-guard",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:self-host-documents-guard"
+}

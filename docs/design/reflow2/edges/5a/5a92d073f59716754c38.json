@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a2b15246c3a359fa543d1ba595c3db2ff613419ea4b2f8be0dd73783e710d998",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-registry-root-is-the-tenant-boundary",
+  "properties": {
+    "approved_at": "2026-08-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:96a91b7b8c7f99fbf18021875fb110071c7a558daefe309dc945f4d065303bd5",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-file-realizes-only-what-it-implements",
+  "properties": {},
+  "to_id": "req:a-record-can-say-what-runs-it-what-complements-it-and-what-replaced-it"
+}

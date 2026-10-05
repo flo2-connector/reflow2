@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e56d220c5b7a6d1fe2ff0e452c0a55061346279a9562de41bd160834396864c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-topic-view-shows-what-the-design-holds-about-one-subject-read-only",
+  "properties": {
+    "approved_at": "2026-09-06",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2681d98e7c9af9e4729126eb05a341380476f177f7e7d13e6d69f50605f19d5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:address-watch-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:address-watch-test"
+}

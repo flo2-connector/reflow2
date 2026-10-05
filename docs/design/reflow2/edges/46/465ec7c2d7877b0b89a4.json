@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:653f75a7d7d9a7480ff4a2777f29718ec1146e3bb4e8ad74404f6b4a96107ab2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:one-reflow2-serves-both-routes-mcp-and-the-call-door",
+  "properties": {
+    "approved_at": "2026-10-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

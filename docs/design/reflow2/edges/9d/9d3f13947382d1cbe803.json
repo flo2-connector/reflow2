@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:03d1692a3f20d448fbada6c4dbdc1eeb22916c0d7b5178ac4a83cd28cb6231de",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-who-judges-requirement-text-quality",
+  "properties": {
+    "authored_at": "2026-08-11",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

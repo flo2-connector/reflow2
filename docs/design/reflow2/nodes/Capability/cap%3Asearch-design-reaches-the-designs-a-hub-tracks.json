@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4d5130ad6ceff65a16853aaf8d4bd264da7cdb19bde0f249ec43fb4623348688",
+  "node_id": "cap:search-design-reaches-the-designs-a-hub-tracks",
+  "node_type": "Capability",
+  "properties": {
+    "description": "An opt-in parameter on search_design. The design's own hits come back exactly as without it. `tracked_designs` then lists every declared design dependency that names a design: its id and name, how it was reached (export or address), a state (`searched`, `not_watched`, `missing`, `unreadable`, `refused`), its hits when searched, and a sentence when not. An export is loaded into an in-memory design and searched with the same full-text engine, so scores mean the same thing in each design. An address is asked with the MCP handshake and a search_design call, carrying the key `reflow2 setup` stored for that server, and never on a server that does not reach out (a registry of other people's designs), which reports `refused` in upstream_status's own words. Bounded by upstream's read cap, and the cap is reported. Realizes req:one-search-reaches-every-design-a-hub-tracks; ruled by dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub.",
+    "name": "search_design with `tracked_designs: true` runs the same query in every design this one tracks (its export on disk, or its server with this machine's key) and reports each design's hits and each one it could not search",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

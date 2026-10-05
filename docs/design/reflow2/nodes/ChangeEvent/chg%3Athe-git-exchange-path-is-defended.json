@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:697db9dc47b2a0e05fc01c772e4fd9b35a6648b37857ddad51f4bc34e52637ed",
+  "node_id": "chg:the-git-exchange-path-is-defended",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Options B and D built — the installer registers the merge driver in every clone, and a moved record reaches an ordinary read instead of waiting to be asked"
+  }
+}

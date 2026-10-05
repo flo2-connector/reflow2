@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:959b5788a00793516286c187fff2b93acad46987cf34d34b1fb8dff11ac1b6ed",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-session-names-its-design",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-sessions-cannot-cross-designs"
+}

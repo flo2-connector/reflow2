@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a6404df9af96385c4da279e0ac14e233bc0cc71c7aeab133ad441d7e9ab84e68",
+  "node_id": "ver:served-skills",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "What is served equals the kit source — names, bytes and descriptions — and the catalogue names every skill and says the harness will not offer them (tests/served_skills.rs, 5 cases); the installer copies nothing, an upgrade leaves the project byte-identical, and old copies are removed with their reason or kept with the shadowing named (tools/test_init.py, 23 cases)",
+    "status": "passing"
+  }
+}

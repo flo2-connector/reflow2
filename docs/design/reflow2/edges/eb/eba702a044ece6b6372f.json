@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b903c3870d302e58942e02df39fadfabc4fbcf1e00e5d4ab6e72e0799b925162",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:design-composes",
+  "properties": {},
+  "to_id": "dec:nested-graphs"
+}

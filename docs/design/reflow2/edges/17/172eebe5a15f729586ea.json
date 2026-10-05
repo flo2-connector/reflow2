@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:196dad13a4db7226d4dcaf5ac1b5f080f61e41ee27d4a72b39e8193c863590ac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:realizes-is-restricted-to-three-target-types",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export"
+}

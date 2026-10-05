@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7d55502ed4020abb7568c6f596ab1095e9825e92d03200a4e848c23dfa925164",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:cap:content-store:r2"
+}

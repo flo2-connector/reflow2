@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a6738c951e7c59c47eff33c8ed26aed6c9875837b50faf7259b7281940840da",
+  "node_id": "frag:art:report-roll-withheld-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_report_is_not_a_list_of_every_check.rs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e96d9b1a4eb60b4cbd79e5db77b815034fcb6237c0f5930a086ebe332cf295d9",
+  "node_id": "epoch:cmp-skills-gets-one-parent",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "cmp:skills is re-parented with move_component — the operation's first use on a real design, on the defect that motivated building it (2026-08-20)",
+    "sequence": 368,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80682ced33672f3b8b20720cf5434017b6fc00f2e565467ebc75a038531982ab",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-loop-stops-recomputing-itself-on-every-read",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "PARTIALLY SUPERSEDED, drawn late (found by unclaimed_findings during capture-session, 2026-09-06). THE THREE CAUSES THIS FACT LOCATED WERE ALL FIXED BY THIS CHANGE (#428, merged 2026-09-05): cause 3, the read-after-write multiplier, is gone (read_loop_hint no longer recomputes loop_status); cause 1, open_defects uncached, is memoised per write generation; cause 2, five dead scratch exports costing sync_status ~3.5 s, is stat-gated (sync 3,556 ms -> ~75 ms). The re-measurement is fact:the-three-perf-changes-killed-the-multiplier-and-two-budgets-hold-one-misses-on-my-own-derivation: loop_status after a write 12,502 -> ~6,350 ms; read-after-write 7,700 -> ~1.4 ms. So the '35 of 40 seconds' and 'per boundary ~12 s' FIGURES are stale and must not be quoted as current. STILL TRUE AND STILL OPEN, which is why this is not a closure: the four falsified hypotheses stand (they are evidence, not figures); the 'still unexplained' items — open_questions ~7 s over 57 Questions and tantivy's commit+GC on every read-only open (~300 ms) — were NOT investigated and remain open; and the method (subtraction against describe_schema/claim_report) is the reason the causes were found and outlives the numbers."
+  },
+  "to_id": "fact:the-agent-surface-profiled-orientation-is-35-of-40-seconds-and-two-causes-are-located"
+}

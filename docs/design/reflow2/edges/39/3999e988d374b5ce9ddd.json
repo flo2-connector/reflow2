@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bfa4c166997162b8b1f2fb99564819a72aabf9f8efa8a4a900f6215f7a5c825b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-settled-decision-names-governed-prose-that-still-reads-open",
+  "properties": {
+    "at": "2026-09-09",
+    "note": "The finding's general clause — \"there is no equivalent for a Requirement whose statement claims something is undecided while an ACCEPTED Decision governing it has decided exactly that\" — is what this change answers, and it names the reachable version the finding itself specified: state which phrase matched, quote both, let a reader decide. ⚠️ THE CLAIM IS BOUNDED. The finding also observes that `search_design` does not surface a governing Decision from a query about the node it governs; NOTHING HERE TOUCHES THAT, and it remains true. A session that reads a node without accepting a decision or drawing an edge still gets no warning — this fires at the two moments the divergence is CREATED, not when it is read."
+  },
+  "to_id": "fact:a-settled-question-was-re-asked-because-the-requirements-prose-outlived-its-decision"
+}

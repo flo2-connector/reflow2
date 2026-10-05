@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a621ff51469cc4a64310e5e66a650c4119c3f5c89b1320ee4cf23065de7d51a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0570",
+  "properties": {
+    "as_checksum": "sha256:6f68a66b8a16c7fe96abc529cba05c0c4d3ebc8fdb145ed72b5b7df5882b5eb8"
+  },
+  "to_id": "art:coverage-test"
+}

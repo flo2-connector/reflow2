@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:148aa1d1738cecaef99408dc0b79016de4bce86244062a93e05e7ea670450a20",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:graph"
+}

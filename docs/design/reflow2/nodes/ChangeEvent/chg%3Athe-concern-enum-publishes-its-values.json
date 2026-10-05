@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6209d3e593d7f6a4e039e842d5c2f2e993bdbe3961c6a8208928686a3c876427",
+  "node_id": "chg:the-concern-enum-publishes-its-values",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-10",
+    "name": "Requirement.concern publishes its eleven values instead of teaching them by refusal",
+    "rationale": "hxm_program F-19: \"`concern: \\\"operability\\\"` → validation error listing the eleven allowed values. One retry. The parameter description names the property but not the set.\" Its neighbour `priority`, on the SAME request struct, already published its values — two fields of one type, one discoverable and one not, which is what makes this an oversight rather than a policy.\n\nSAFE BY MEASUREMENT, NOT BY ASSUMPTION. The one way publishing an enum can break a caller is a value in use that is not in the declared list — a validating client would begin refusing something that works today. Measured across the committed export: 96 declared enum properties, and ZERO out-of-list values in 4,110 nodes and 24,102 edges. The server already validated (that is how F-19 surfaced at all), so publishing can only convert a server-side refusal into client-side knowledge.\n\nREPAIR: `contained_symptom`. STANDS IN FOR: a check that every declared enum reachable through a request field publishes its values, so the next one cannot ship unwired. THE INSTANCE IS FIXED AND THE CLASS IS NOT — wiring is per-field and manual, with nothing measuring completeness.\n\n⚠️ AND THE CLASS IS SMALLER THAN THIS SESSION FIRST REPORTED, which is worth recording because the wrong number was put to the user. A first sweep claimed ~40 unwired enums with a constructor param; that used a regex matching any same-NAMED field anywhere in service.rs, so `Constraint.concern` and `Requirement.concern` both counted off one match. Checked per request struct the real figure is about three — `Capability.tier`, `Component.tier`, `Decision.kind`. The remaining unwired ones are edge properties written through generic `props` maps with no typed parameter to hang a schema on, which is a different and larger question.",
+    "subject": "system",
+    "summary": "`add_requirement`'s `concern` parameter now publishes the schema's eleven values in its served schema, wired through `schema_enum!` so the list is read from the compiled-in schema and cannot drift from what is enforced. One line plus one attribute."
+  }
+}

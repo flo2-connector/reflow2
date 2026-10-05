@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9bda603277fd8308befb53fec93a578bbd98975717868b9f0667a385fa1a7aae",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:adopt-recovers-depth-cleanly-and-cannot-recover-the-functional-carving",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "The pair completes an argument neither half makes alone. That fact established the ABSENCE — adopt's instructions never mention nesting, and every design it produced came out flat. This establishes the COUNTERFACTUAL by doing the omitted step on the same subject: four rungs, hierarchy_issues 0, span of control clean everywhere. Together they show the flatness was never a property of the systems being adopted or of what users need; it was a missing instruction, and supplying it costs nothing but the asking."
+  },
+  "to_id": "fact:adopt-never-builds-a-hierarchy-so-every-adopted-design-comes-out-flat"
+}

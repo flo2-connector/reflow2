@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a7268ee9cacbd33a06082a5aed76de31af481e5c43432a0ce811f4d31bade8a0",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:schema"
+}

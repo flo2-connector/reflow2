@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dca6902716f2808d87a3527a7c9fdbf05fa78e82f54c3245d4ff14be3e308212",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-2534c9f49685e499",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

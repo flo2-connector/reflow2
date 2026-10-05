@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b01d4b61f5ac50def3669c55bb0e4c45776c0929f3b143d5e46f3a5faad50e7d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:does-enforced-default-to-gate-blocking",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

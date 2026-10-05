@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f53fe7308ac6e8203d0378a089e0591533e8b8500e7a239632062f1b5b0bab1f",
+  "node_id": "fact:bl-194",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-194] open_questions returning 0 reads as \"nothing owed\" — and it is the orientation call the SessionStart hook tells every new session to run FIRST",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Same field report, 2026-08-03, and reproduced in this repo while filing these rows.* In the field: open_questions at session start returned {\\\"count\\\":0,\\\"items\\\":[]}, and loop_status in the very next call reported 11 structural defects, 3 capabilities claiming realized with no passing check, and 17 built capabilities never checked against reality. Reproduced here 2026-08-04 \\u2014 open_questions returned 0 while loop_status reported 2 outstanding structural defects: the same shape at smaller scale, so this is not a property of one messy graph. Both answers are true and they answer different questions; the problem is purely that the call a session runs first is the one that looks like an all-clear, and the hook's own wording points at it. Fix is small and needs no schema: have open_questions name the other outstanding counts when they are non-zero \\u2014 even *\\\"0 questions; loop_status reports 31 other items\\\"* \\u2014 so an empty result cannot be read as an empty loop. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-194 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

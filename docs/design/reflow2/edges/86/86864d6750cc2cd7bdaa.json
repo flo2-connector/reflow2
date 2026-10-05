@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc69dbfacaa34879121da5dd4cd38103a84447a8fc812990d5cdef04342c0a96",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl186-folder-driver",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:corpus-ingest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e892a5710bd98bf6f1e83e0e77614ba9d9becbe896ae647e4b606d867ad66fd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nine-tools-gain-a-reply-budget",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-exchange"
+}

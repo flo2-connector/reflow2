@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:107076bb6e8c8b4660fb19594e481ef40469bcc4e844536f951b7917b8ab0d5f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-loop-says-what-is-owed-to-a-person",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:570085f281de47854f1ffe1b92c5eda708752d84ac915db85a007146eb915708",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is",
+  "properties": {
+    "evidence": "Added 2026-09-25 when Anthony described claude.ai, grok.com and a private local checkout reaching different things."
+  },
+  "to_id": "req:the-design-says-who-can-reach-each-artifact"
+}

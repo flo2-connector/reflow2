@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:80b5b8a2aae6a7d3e53c0a1469ce488211ca077168e3c75c46b7e6f105a30ba4",
+  "node_id": "art:check-discrimination-rules",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "CI gate (core job). Asserts that every node type the capture-intent routing table routes to declares a `discrimination` block in the merged schema with at least one cue and one confused_with; that every `confused_with.type` names a node type that actually exists; and that every cue phrase in the schema appears in the routing table, so the agent's prose and the consumer's data cannot drift apart.\n\nWHY IT EXISTS: serving the rules as data (flo2 F24) put the SAME contract in two places — the schema for a consumer, the markdown table for an agent reading a skill. Two hand-kept records of one contract is the BL-159 defect, and skill_lint already keeps AGENTS.md and ci.yml honest for exactly this reason.\n\n⚠️ RUNNING ZERO CHECKS IS A FAILURE, not a pass: an unparseable table or a schema where no routed type carries a block is a red build, because \"the two records agree\" and \"I could not compare them\" must not share an exit code.\n\nOBSERVED FAILING ON REAL DRIFT, unseeded, on its first run: it caught two cue phrases that had been written into the schema and not into the table (\"the system must provide…\" for Requirement, \"the steps are…\" for Flow). Both were then added to the table rather than removed from the schema.",
+    "location": "tools/check_discrimination_rules.py",
+    "name": "check_discrimination_rules.py — the schema's discrimination rules and capture-intent's routing table are one contract",
+    "status": "realized"
+  }
+}

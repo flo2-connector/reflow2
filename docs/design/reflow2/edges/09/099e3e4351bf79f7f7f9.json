@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6b2446d18a8c10bdcaf0ed49473029e5d0911b3f6465a02425232f6e578544f0",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

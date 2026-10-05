@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d23dbbd76116773ff8ca1499ede7f72ec405d3befe72a49a660a19e8f29e94a6",
+  "node_id": "decision:ack:034e96a2e1a7f4d0",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:034e96a2e1a7f4d0.",
+    "name": "Reviewed: gap:034e96a2e1a7f4d0",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, with the rest of the reflow workflow review. Accepted and not dropped, and unusually concrete for a parked item: the mechanical half is specified in the requirement and needs no LLM — does every node type and edge type NAMED in a hint exist in the merged schema, and does every relationship a hint asserts have a corresponding edge type declared between those endpoints. Both are answerable from the schema alone and both would have caught the Anchor case, where two hints assert an Anchor-to-DriftEvent DEPENDS_ON with zero instances and no code path, while passing validate_schema.py cleanly. Deferred rather than built because it is coupled to dec:anchor-retire-or-implement: writing the check before deciding whether Anchor is retired, implemented or aliased would either red-light the build on a type about to be removed, or bless prose about to be rewritten. Decide the Anchor question first, then the check has a known-good corpus to run against. Also worth carrying forward: the check must not overreach — whether a hint's ADVICE is good stays a human question, and a linter that pretended otherwise would be the flattering default this design keeps refusing.",
+    "status": "accepted"
+  }
+}

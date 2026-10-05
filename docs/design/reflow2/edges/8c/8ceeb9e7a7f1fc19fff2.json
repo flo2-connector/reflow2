@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4df982c50f831dd46addbcbc25720dfb2b6519ce0a0767ed6f3bb4e52ff919be",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-level-ladder-has-a-hard-floor-at-component-and-no-assembly-rung",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Taking one forced the other. Hitting the floor while modelling the KvBackend implementations produced two level_mismatch findings and the realisation that `component` is rank 0 with nothing below it; that measurement is what put the fork to Anthony, and he chose open. Mechanism, not correlation: the decision would not exist without the measurement, and the measurement carries the research that decided which fork to take.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:the-decomposition-ladder-is-open-not-a-fixed-enum"
+}

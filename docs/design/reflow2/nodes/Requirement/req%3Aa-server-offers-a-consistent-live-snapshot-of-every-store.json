@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:997cad03bd43e7492c6ac084603f72724c50f6c6218daecb5c6f3d024f2b5c61",
+  "node_id": "req:a-server-offers-a-consistent-live-snapshot-of-every-store",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "sustainment",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A reflow2 server offers a consistent snapshot of every store it holds while it keeps running, so an operator can back up without stopping it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-27",
+    "statement": "A reflow2 server shall be able to write a consistent, crash-safe copy of every design store it holds, with their identity sidecars, without being stopped. RocksDB's checkpoint is the obvious mechanism. It is one command covering all stores, the \"mass\" backup of rule 6 in dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy. Scheduling, retention and where the copies go stay the operator's (dec:backup-belongs-to-the-consumer); this is the \"honest primitive\" that decision says reflow2 owes. It replaces flo2's nightly practice of stopping the reflow2 container (~10 s) because --export-snapshot is \"NOT crash-consistent … never a backup\" (cap:snapshot-read). NOT BLOCKING the export retirement. Anthony, 2026-09-27.",
+    "status": "accepted"
+  }
+}

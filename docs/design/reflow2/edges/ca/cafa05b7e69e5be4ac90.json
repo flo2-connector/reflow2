@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:95e32cf718bcee45ab34d38f2a97b14fa00c5d30a1e3a1a86c4caa453e4dd44b",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-import-knows-its-own-age",
+  "properties": {},
+  "to_id": "cap:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so"
+}

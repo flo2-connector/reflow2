@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce4267b492d21006d8c9eeb411d307ac73da0fd18a34056d80ba531fbccfc073",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-node-reads-a-nodes-edges-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:tool-search"
+}

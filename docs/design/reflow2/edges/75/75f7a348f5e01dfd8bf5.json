@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:89f6ab5b7854cac9e35ce9f47d086a74baacec1ede6a25bf2265c4aec9951171",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-vocabulary-reach",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-vocabulary-reach"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4ad96f736a0cd9d87cf5c835c4e2c666a0272ae144f705ac0213e90fa7760290",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:bounded-reads",
+  "properties": {},
+  "to_id": "cap:bounded-reads"
+}

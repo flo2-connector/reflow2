@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a4e4323e0bb79c24324aecd7140595524ce09342eedd83522d2841426131988",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:snapshot-per-revision-not-per-epoch",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:intent-preserved"
+}

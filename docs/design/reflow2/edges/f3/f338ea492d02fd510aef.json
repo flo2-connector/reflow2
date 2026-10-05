@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2f81dfcbc46c74e742fe47f6208b1c60e5aef96a1b6e6d4d96fdb5d355118455",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: this exploratory Decision is the 09-23 'Opportunity' (a configured list of extra roots, e.g. roots = [\"../storyflow\"]), recorded in the reporter's words from this document."
+  },
+  "to_id": "dec:idea-a-design-measures-under-a-configured-list-of-extra-roots"
+}

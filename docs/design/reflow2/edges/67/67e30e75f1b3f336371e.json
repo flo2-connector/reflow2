@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e65fd3b8471db2db635e1d6f83d0b3c9e4cd008304f2b549176428d8e634c07f",
+  "edge_type": "REALIZES",
+  "from_id": "art:dates",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:claims-carry-their-age"
+}

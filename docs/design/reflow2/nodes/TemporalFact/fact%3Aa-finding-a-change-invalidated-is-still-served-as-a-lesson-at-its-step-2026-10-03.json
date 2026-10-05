@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fb7bfe3f53cff5e1367b91559ac81c4d5149212dbbad45d756cc210d7c4a2406",
+  "node_id": "fact:a-finding-a-change-invalidated-is-still-served-as-a-lesson-at-its-step-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "A finding a change has INVALIDATED is still served as a lesson at its step: lessons_by_step retires a finding only by its own valid_to, so 23 refuted findings on reflow2's own design ride tools/list (and now --describe), and get_node is still told that no served read returns a node's edges",
+    "statement": "FOUND 2026-10-03 by fix program item 7c, while verifying that --call describe_schema delivers get_node's lessons. On a scratch import of main 293f957's export (6,511 nodes): 23 TemporalFacts carry `steps`, have no `valid_to`, and have an incoming INVALIDATES edge from a change event. Each is still appended to its tools' descriptions in stdio tools/list (main's own binary) and returned by get_skill and, since this change, by --describe and describe_schema with `tool`. Instance: get_node carries fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02, which chg:get-node-reads-a-nodes-edges-2026-10-03 invalidated when include_edges shipped, so the lesson at the step tells the agent the opposite of what get_node now does. Two other invalidated root causes (the non-atomic typed write, the bare serde refusal) ride 17 tool descriptions.\n\nCAUSE, from the code: crates/reflow2-mcp/src/lessons.rs::lessons_by_step skips a finding whose `valid_to` is set and reads no edge. It is the class fact:closure-was-one-question-with-two-answers-so-a-refuted-finding-read-as-current-on-the-surface-a-person-meets-first named on 2026-09-07 (closure answered by the date on one surface and by the INVALIDATES edge on another), which was fixed for search_design and topic_report through DesignGraph::claim_age_of and noted that no sweep was run for other surfaces. Lesson delivery is one it missed.\n\nNOT FIXED HERE, ON PURPOSE: whether an invalidated finding stops being served is a judgement, not a mechanical fix. Some invalidated root causes carry a discipline that still holds after the code moved (fact:reflow2-jargon-reaches-the-user-unfiltered-by-the-lens-... at loop_status is one), so retiring every one by the edge may drop advice the owner wants kept. The likely fix reads claim_age_of's superseded_by in lessons_by_step, with a way to keep a lesson on purpose.",
+    "subject_id": "cap:a-lesson-is-served-at-the-step-it-concerns",
+    "valid_from": "2026-10-03"
+  }
+}

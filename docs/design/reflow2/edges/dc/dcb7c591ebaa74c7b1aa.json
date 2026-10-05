@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bda3ed540e28a5abffaaf338e8e21b5e6a9b325e5a5a511707d218637924249",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:decomposition-coverage-is-asked"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ced6a1132f5eb86ec2430461b9e22bc387dbf2582ece3d0e874ce8a88168f592",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-local-client-reaches-a-remote-server-2026-09-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:proxy"
+}

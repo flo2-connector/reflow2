@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:136e597055f0f24f93701e361a822aa63663e21d9d2ce7083e46d2a7bee4bf1d",
+  "node_id": "fact:a-sentence-the-extraction-could-not-place-has-no-home-and-is-lost-after-one-render",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "A sentence the extraction could not place has no home, so the best material for the next question is rendered once and lost",
+    "source": "flo2 reflow2_feedback.md, 2026-09-19 addendum (F24, F25 and the meta-point)",
+    "statement": "FLO2 F25. Their extraction returns `unmatched`: the clauses it could not turn into design entries, verbatim. Their point is that these are the single best material for the next question to put to the person — they are, literally, the things said that the design does not yet understand. Today they are rendered once in a transcript and then gone.\n\nMEASURED 2026-09-20: the vocabulary DOES exist — `Fragment` with `fragment_type: note` — and nothing points at it for this. Of the served write tools, only `ingest_step`, `ingest_corpus_step` and `link_artifact` touch a Fragment at all, and each mints one as a side effect of something else (a corpus step, a registered file's provenance). `grep` finds no mention of Fragment, 'unmatched' or an unplaced utterance anywhere in the capture-intent skill.\n\n⭐ THE REPORTER NAMES THE SHAPE THEMSELVES and they are right: it is the `EVOLVES_INTO` story again — the vocabulary existed, no instruction pointed at it, and a consumer found the hole by needing it. reflow2 recorded that lesson on 2026-08-31 after bhome hit it. THEIR ASK IN PREFERENCE ORDER: (a) a sentence in capture-intent saying unplaced utterances belong as Fragments, or (b) a named tool so it is findable by find_tools. They prefer the cheap one.",
+    "steps": [
+      "capture-intent",
+      "ingest_step"
+    ],
+    "subject_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+    "valid_from": "2026-09-20"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e66c46b2962bd464fb34609c35f04d5486f251fb036587a954e8b2a1dac2a18f",
+  "node_id": "dec:read-while-held-mechanism",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "DECIDED (a) READ-ONLY AT OPEN, on Anthony's word 2026-07-26: `open_cf_descriptors_read_only` — a consistent view as of the moment of opening. No lock, no secondary directory, nothing to clean up; seeing newer writes means reopening, which is cheap and explicit. (b) SECONDARY (`open_cf_as_secondary` + `try_catch_up_with_primary`) was rejected, not unconsidered: it refreshes on demand but needs its OWN directory for private state — the same class of thing as --export-snapshot's scratch dir, which has already bitten twice (a leaked sidecar, and a residue test that stripped only the suffix it knew about) — and StorageEngine's read cache could serve a value cached before a catch-up, stale in a way the caller cannot see. THE INTERACTION THAT DECIDED IT is with req:stale-seat-knows: (a) makes staleness BOUNDED AND KNOWABLE, so a read-only seat can state exactly how old its view is, which is the same property the export refusal just bought; (b) makes staleness fixable but turns 'how stale am I right now?' into a live question the seat must keep answering, which is the complete-but-older trap arriving from a new direction.",
+    "name": "A locked-out seat gets a read-only view as of open, not a catchable-up secondary",
+    "rationale": "Scoped 2026-07-26 by reading dynograph-foundation and tantivy rather than from memory, and the scoping changed the shape of the work: it is THREE crates, not one. FIRST UNKNOWN NOW CLOSED BY MEASUREMENT, not by documentation: two separate reader processes open and search a tantivy index while a third holds a live writer, the writer keeps working afterwards, and a second WRITER is still refused (crates/dynograph-text/tests/readers_beside_a_writer.rs, the first integration test that crate has had). Tantivy's own source claimed this was supported; nothing had ever done it, and a whole feature was about to be built on the claim. The reflow2 layer adds a third blocker of its own: reindex_search runs on EVERY server start and is a write.",
+    "status": "accepted"
+  }
+}

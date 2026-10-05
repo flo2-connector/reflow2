@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee3067a4e6bbcf9dfaf754443c6358a98ef734b065e8d9296e0af2b788cbd56f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:mode-is-chosen-and-changeable",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:defaults-do-not-assert"
+}

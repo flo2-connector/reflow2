@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8f045240ae9b64c24e2e4f64d19ae582afa444487d787f96ca846028a465187d",
+  "node_id": "art:drawn-edges",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Holds the invariant that every edge a constructor draws is named in its reply as a subject-first sentence, and an edge a revise re-sends is named as already present. add_decision, add_capability, add_verification, add_change_event and record_finding report through it.",
+    "location": "crates/reflow2-mcp/src/drawn_edges.rs",
+    "name": "drawn_edges.rs — the one path by which a constructor names the edges it drew",
+    "status": "realized"
+  }
+}

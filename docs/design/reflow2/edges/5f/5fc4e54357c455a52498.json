@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d7d2f24c4598663347939fdbe0db4adef0ab386bbcd7adaf82eec37f007e822",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:recursive-black-box-decomposition",
+  "properties": {
+    "approved_at": "2026-08-18T04:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

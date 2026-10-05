@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:901ed37f8dd11ae650f89884f1c966b2db7292262cf39cd9a93b0322242ce7ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl75-certainty-derived",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

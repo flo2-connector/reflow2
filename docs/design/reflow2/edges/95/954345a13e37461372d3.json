@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:df1a6b74b06cf8ec27fd5c80bfab23e0de741ba1b956766f40b7f8eb6c91288f",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-served-read-evaluates-every-derived-relation-reflow2-computes",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): declare the derived relations first, then serve a read that runs them, as the hub put it to him."
+  },
+  "to_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them"
+}

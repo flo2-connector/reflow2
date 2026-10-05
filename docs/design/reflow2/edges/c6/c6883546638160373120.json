@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:93e3f031517314e62074bcdc9d9ff49ab9c628ea7bebf20e6cb90e97467954ac",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-project-is-asked-what-its-artifacts-must-be-in",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-project-is-asked-what-its-artifacts-must-be-in"
+}

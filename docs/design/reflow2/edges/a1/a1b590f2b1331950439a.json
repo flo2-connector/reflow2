@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4cc46801d1854a48615e9fdadfa7f45074c9dcde46c56b9cdf2462c09823c97f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:reflow2-rebuild",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:reflow2-rebuild"
+}

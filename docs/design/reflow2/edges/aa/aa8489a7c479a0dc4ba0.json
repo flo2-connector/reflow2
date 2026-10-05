@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5ec99de6f699127ed5be676b709729963ca5f08ce15089d8b8bbf3b1f43a0020",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

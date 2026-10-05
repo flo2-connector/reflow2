@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a55e9c64453e9767d2da4453b93c6f433b8b978257c4b293076cc63461f63eb5",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph",
+  "properties": {
+    "evidence": "The reference is the black-box statement of the design with the insides left empty — function and ports, no mechanism; that requirement defines the shape this one serves.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

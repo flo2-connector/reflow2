@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3cd4c121b8707436f8e0d28eff3e462ab6301f409ae606624cb4334a084048a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:stateless-seat-probe"
+}

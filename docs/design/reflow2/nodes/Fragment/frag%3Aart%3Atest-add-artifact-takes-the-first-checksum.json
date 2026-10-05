@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4d46254be0ded774e9495e55715bf84f1c75b31a50b11cc0caa454ffcd1885e6",
+  "node_id": "frag:art:test-add-artifact-takes-the-first-checksum",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered add_artifact_takes_the_first_checksum.rs"
+  }
+}

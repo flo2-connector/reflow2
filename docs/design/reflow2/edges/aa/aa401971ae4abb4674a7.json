@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18418e0a41a0283bad59be276fabf683561603628ca163f692eb37ad9f0e6508",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0540",
+  "properties": {
+    "as_checksum": "sha256:7201c53b7e2c794b871f3d48b7da761884f5bccd7d9f90b9b7d07210e79053cc"
+  },
+  "to_id": "art:schema-environment"
+}

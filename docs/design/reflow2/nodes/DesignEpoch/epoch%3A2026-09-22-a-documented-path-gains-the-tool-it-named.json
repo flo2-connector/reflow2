@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:277a6c761a704523aa35fffe91cdf1f3e2d46fa4550d8d87c8903db1369399bd",
+  "node_id": "epoch:2026-09-22-a-documented-path-gains-the-tool-it-named",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "THE LESSON: **an instruction that names a field no tool can write is an instruction that will be followed once, badly, by whoever tries hardest to follow it.**\n\n`dec:idea-gap-flows-to-the-dependency` had said since 2026-08-06 exactly how a consumer's levied requirement is recorded — `add_requirement` + `authored_by role=author` + `source` + `provenance: imported` — and closed with \"NOTHING IN THE SCHEMA NEEDS TO CHANGE.\" True. The schema did not need to change; the TOOL did. `add_requirement` accepted neither field.\n\nMEASURED at the moment it was found: 1 of 263 Requirements carried `source`, 1 of 263 carried a non-default `provenance`, and **both were the same node** — written that afternoon through the generic escape hatch by an agent following the instruction. Seven weeks of a specified path, walked once, from outside.\n\n⭐ HOW IT SURFACED, which is the part worth keeping: not a sweep, not a detector. A real consumer levied a real requirement through the dev_reflow2 hub, and the written instructions ran out halfway through being obeyed. `vocabulary_reach.py --check` was green throughout and correctly so — it guards a NEW declared property the surface cannot write, and these were grandfathered.\n\n⇒ THE GATE THAT WOULD HAVE CAUGHT IT DOES NOT EXIST: nothing compares a documented call sequence against the surface that must serve it. That is not proposed here; it is named so the next person sees the shape rather than the instance.\n\nWHAT LANDED: two optional parameters, written through the same `set_optional_props` path `priority`, `concern` and `kind` already use, so omitting them leaves the schema default exactly as it was. Sixteen test files gained two `None`s. One tool's input schema moved and was blessed deliberately.\n\nWHAT WAS DELIBERATELY NOT DONE: `add_capability` has the same missing pair and was left alone — its `provenance: imported` is already used 16 times, so something else reaches it and no path is blocked. Fixing what was measured rather than the family it belongs to.",
+    "epoch_type": "revision",
+    "name": "A path this design documented for seven weeks could not be walked without stepping outside it",
+    "sequence": 580,
+    "status": "arrived"
+  }
+}

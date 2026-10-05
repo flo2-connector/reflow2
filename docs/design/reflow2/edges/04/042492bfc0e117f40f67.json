@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:862f4c1c4dfd5c65cdcf71bdd4f09cbef09a538beeb9991aa9f83e91b4f1d4d8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:bl-108",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

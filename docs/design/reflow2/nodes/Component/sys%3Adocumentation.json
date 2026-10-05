@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:49f9e5a437b4d0982aa1943975f62c96ed3f168bc4c78fa50f78352cf9ed951b",
+  "node_id": "sys:documentation",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Documentation",
+    "provenance": "authored",
+    "purpose": "The explanation reflow2 ships with itself. Modelled as a subsystem of the product rather than as material about the product, on the user's call (2026-07-24): documentation is part of any deliverable, and a system handed over without it has not been fully delivered — his analogy was designing a fighter jet in reflow2 and shipping no documentation to the people who must operate it. The consequence taken seriously here is that documentation gets the same treatment as code: its files are registered Artifacts with checksums, so a README that drifts away from what the system does is a detectable defect rather than a thing someone eventually notices.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

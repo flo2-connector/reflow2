@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d9cd48e816933bbd34e86fa13cc5f7dc34a1388ddae119e08f095ea4e375b21",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-detect-vocabulary-that-nothing-reaches",
+  "properties": {
+    "alignment": "supporting",
+    "evidence": "dec:edge-orthogonality is ACCEPTED and states the rule this node found unenforced: a vocabulary distinction earns its keep only if a computation reads it. It was applied once by hand (retiring VALIDATES and ENABLES); eight more unreached edge types accumulated afterwards because nothing computes it."
+  },
+  "to_id": "dec:edge-orthogonality"
+}

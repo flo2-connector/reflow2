@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:889764adb5014883cdfeb41a5a3ece380fbcfd365da24d565a3aa3ee0d35e97d",
+  "node_id": "cmp:verify",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "verify",
+    "provenance": "authored",
+    "purpose": "The verify module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

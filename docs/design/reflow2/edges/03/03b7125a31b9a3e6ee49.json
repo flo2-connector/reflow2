@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca5e459e99e4eee547f4db196aa5e28e6dae8ba08662d22043b52840ae6f9278",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-answered-question-line-says-only-what-it-knows",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "The recurrence this fact recorded is closed at the source: the computation is unchanged but the sentence no longer claims past it, on all seven surfaces. What the fact says about the COST of withholding a fix from consumers who cannot see this graph remains true and is not invalidated."
+  },
+  "to_id": "fact:the-answered-question-message-recurred-in-a-third-project-with-the-computation-unchanged"
+}

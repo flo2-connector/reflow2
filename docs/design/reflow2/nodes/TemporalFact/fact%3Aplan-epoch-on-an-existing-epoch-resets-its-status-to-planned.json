@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:78d40d1c1592a740790af58a540c6c8abf5e0efd391c6e07066369f160acdf4a",
+  "node_id": "fact:plan-epoch-on-an-existing-epoch-resets-its-status-to-planned",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "DEFECT — plan_epoch called on an epoch that already exists resets its status to `planned`, even when only the prose was being revised",
+    "statement": "Measured on every arrival of increments 430–434 (2026-09-11/12): revising an epoch's description with `plan_epoch` (the constructor's \"call again with the same id to revise\" path) put the epoch back to `planned`, and it had to be re-arrived with `set_epoch_status`. The constructor's own contract says omitted fields keep their stored value; `status` is not a parameter, so it should be left alone on a revise and only set to `planned` on CREATE. This is the same class as BL-183 (a revise silently un-confirming a status) on a different type, and it is a root-cause fix of a few lines in the temporal slice — not built yet; recorded so it is enduring. Workaround until then: revise the prose FIRST, then `set_epoch_status(arrived)`. Moved here from an agent's machine-local memory file (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory).",
+    "steps": [
+      "plan_epoch",
+      "set_epoch_status"
+    ],
+    "subject_id": "cap:planned-epochs",
+    "valid_from": "2026-09-11",
+    "valid_to": "2026-09-12"
+  }
+}

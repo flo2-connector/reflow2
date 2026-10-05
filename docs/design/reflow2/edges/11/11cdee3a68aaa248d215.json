@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10da5a80b44ef3658df441420bd78f0edcff52c91a843dec8b2ce3bfd8f120c5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:composed-analysis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:compose"
+}

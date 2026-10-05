@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ee05909ccd6b8a56b89bd21cbc8b070b92edc07a4c2c00d998fba692b28ceb42",
+  "node_id": "req:a-design-holds-who-contributed-never-a-readers-persona",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design holds its content and who contributed to it, never a reader's persona; the agent applies the reader's lens from what its host or its own memory supplies",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-09-28, dev_reflow2 hub session",
+    "statement": "reflow2 keeps the design, and who contributed to it: each Contributor as attribution and authority (who wrote, who approved) and, where it matters, their role on this design. It does NOT store a reader's persona: their background, the vocabulary they bring, or how they like to think.\nApplying a lens is the agent's job. The persona comes from the agent's host (flo2 hands over the signed-in person's persona with the design) or, with no host, from the agent's own memory of its user. With neither, the agent follows the person's own vocabulary and may ask once, without writing the answer into the design. reflow2's served text says this, rather than telling the agent to record a background in the design.\nWHY: the lens already never shapes the record (req:the-agent-learns-who-it-is-talking-to, clause 3), so the design gains nothing from holding it. reflow2 never deletes history, so a persona written into a design could never be taken back. A person who only reads a design leaves no trace in it. And the host knows who is reading, where reflow2 can only guess.\n\n@ajs, 2026-09-28: \"reflow2 should just maintain the pure design and who contributed to it like who:ajs ... It is the agent's job to apply the lens and I think flo2 should be what stores it ... Then reflow2 isn't in the practice of tracking the persona of every person who may view the design.\" Kept as intent: \"Yes, keep as intent\".",
+    "status": "accepted"
+  }
+}

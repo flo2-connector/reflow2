@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f4dfa5d4132e2238dd960299ca11d6254dea7396a4a6a19aaf7ec4be7e28270",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-export-survives-being-read-back"
+}

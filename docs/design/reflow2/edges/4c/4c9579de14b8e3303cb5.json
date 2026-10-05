@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:059de93da0da7c8b486edcb2cf460477efe85d547fb6d13429600b8a7120eea6",
+  "edge_type": "CAUSES",
+  "from_id": "req:a-refusal-names-what-would-have-worked",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "grep RequiredFields::new: 22 handlers, all constructors; link_artifact and snapshot_before_change roll their own; serde 'missing field' mapping in call_tool",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:field-report-bhome-2026-09-18-every-constructor-lists-its-missing-fields-at-once-and-the-other-tools-refuse-one-at-a-time"
+}

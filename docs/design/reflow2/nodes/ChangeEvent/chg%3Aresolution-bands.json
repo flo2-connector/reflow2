@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3c9ab625ffd6521aa496959b6adcb66a5d1024e2c7f07777b356b898ce11c581",
+  "node_id": "chg:resolution-bands",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Ingest reads the schema's two thresholds, and the ask-band stops being invisible"
+  }
+}

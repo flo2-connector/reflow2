@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3aa382409a17c99c46bbe54521a5a48b04cf5005ee0d7e7392adaf1a6fb2afaf",
+  "node_id": "chg:federation-decided",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Anthony collapses the nested-graphs decision: a graph per ownership boundary, levels inside each"
+  }
+}

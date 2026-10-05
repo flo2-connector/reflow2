@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c978a1090e226da96d96a32cf39248ecaa085331771f6027f6ba50836a07b35",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-resolution-fuzzy",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:ingest"
+}

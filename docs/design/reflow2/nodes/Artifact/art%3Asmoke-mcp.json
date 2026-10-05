@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6b13beac8b54ac6a71b964cdce89636631906ca18838b8f77d19bfd7f648c4fc",
+  "node_id": "art:smoke-mcp",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/smoke_mcp.py",
+    "name": "smoke_mcp.py",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3e89f3b48769ef861147ca0ebe17e7b4da14fef2745e1878523a6e0d54806c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:reflow2-consumable-as-an-image"
+}

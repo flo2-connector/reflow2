@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cfa4b9409c94b4fe8a1373e16659a7deeeec254521fd0659cfaecbb4722d88e1",
+  "edge_type": "CAUSES",
+  "from_id": "cap:a-finding-describes-the-walk-that-produced-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its unthreaded_cluster message (heal.rs) lists the node kinds not walked and \"CONTAINS is not a traceability edge\", but says nothing of the inference and relation edges (CAUSES, CONTRADICTS, EVOLVES_INTO, DEPENDS_ON between ideas...). nodes.rs structural_rule excludes those by design. The skills teach agents to draw exactly those, so a drawn CAUSES reads as a thread and is not one.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-true-causes-edge-does-not-thread-a-cluster-and-the-finding-never-says-which-edges-do-2026-09-29"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a60ac42ddc7ac9def7574400ed5387d77c5f1079b2f1b9e329a670d526d3ff92",
+  "node_id": "art:skill-link-projects",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/link-projects/SKILL.md",
+    "name": "link-projects/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

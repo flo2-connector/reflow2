@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aebdb50fc0852694e045ce63181901ef08f0fb388a49c5d996062344b14ca692",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:a-write-carries-who-made-it-and-the-server-records-that-it-happened",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04db41dd1b761e0a87cb9f6f808681ee306238296b4a3d840b56a7bf45128d2e",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:shared-attach-from-another-folder-gate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:shared-attach-from-another-folder-gate"
+}

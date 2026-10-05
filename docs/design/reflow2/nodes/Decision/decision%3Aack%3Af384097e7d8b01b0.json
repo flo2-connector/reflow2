@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1658d9248caa5f415f03a6aefe1d2c9f2214dee22c4578dd120f7267f7e13003",
+  "node_id": "decision:ack:f384097e7d8b01b0",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:f384097e7d8b01b0.",
+    "name": "Reviewed: gap:f384097e7d8b01b0",
+    "rationale": "These 64 boundaries are held in the code, not in the design, and that is correct rather than missing. A contract is declared at the lowest level that actually defines it and higher levels answer by roll-up (`dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up`, accepted 2026-08-23 on Anthony's word) — so the absence of an interface between two modules of one subsystem is the rule being followed, not a hole in the record.\n\nMeasured, not asserted: at module altitude `seam_coverage` reads 72 couplings, 8 covered, 64 uncovered; lifted to subsystem it reads 11 couplings, 11 covered, 0 uncovered. Independently, all 64 pairs sit inside ONE crate with zero crossing a crate boundary, and 44 of the 55 files in reflow2-core carry `impl DesignGraph` — so the majority of these \"couplings\" are impl blocks of the same struct calling each other. Writing 64 interface contracts for them would document a struct's method calls as system boundaries.\n\nTHE ACKNOWLEDGEMENT IS DELIBERATELY NARROW. It accepts this finding on THIS design; it does not change what the undeclared-seam detector reports anywhere else. Defaulting the detector to subsystem altitude was offered and declined, because a roll-up answering \"covered\" at subsystem level says nothing about a coupling covered by no contract at ANY level — the counter-argument Anthony recorded beside his own idea before he was asked to settle it.\n\nWHAT WOULD OVERTURN THIS: reflow2 splitting into separately-released crates. The moment one of these module pairs crosses a release boundary it becomes a real contract, and this reason stops holding for that pair. The review expiring when any of the 31 affected components change is the mechanism that should catch it.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b39a5d9c33d7aeb6336e9a3dc5cdd3fd1034c1752903800d864ae8320c053f7",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-a-hotspot-node-holds-the-live-worklist-and-is-deliberately-not-history",
+  "properties": {
+    "evidence": "Option (a) puts a single node with edges to everything needing attention into the same graph the structural detectors run on. Betweenness centrality, Leiden community detection and articulation-point analysis all reason about connectivity, so a worklist hub would be read as topology — reported as a god-node or a sole bridge by machinery that cannot tell a scratchpad from structure."
+  },
+  "to_id": "cap:graph-algorithms"
+}

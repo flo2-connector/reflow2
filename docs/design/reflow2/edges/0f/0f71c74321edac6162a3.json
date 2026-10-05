@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5f56b1b221e751f93dd7c4b938c10eb41f8f470d16047e9a8d79f3c651055f0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:lineage-message-names-its-decision",
+  "properties": {
+    "at": "2026-08-20",
+    "note": "BL-217's correction was that the export-lineage gate was RIGHT — it enforces dec:export-once-per-pr — but never NAMED the decision it was enforcing, so a reader hitting it could not tell a real violation from a gate bug. This ChangeEvent is that fix: the lineage gate now names dec:export-once-per-pr and admits a third cause. Edge drawn 2026-08-28 during the field-defect sweep."
+  },
+  "to_id": "fact:bl-217"
+}

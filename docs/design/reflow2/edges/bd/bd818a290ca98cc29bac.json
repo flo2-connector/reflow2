@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90c1a350511a53f0c9906cd7e6ef78bafa2b18dce02d252c514ff6799e8a7740",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {},
+  "to_id": "fact:the-demand-that-enforces-root-cause-sits-downstream-of-the-moment-it-exists-to-catch"
+}

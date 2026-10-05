@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:86e945b5845fab8ff4713f76650c722e834133bd3bf623fd24feabf39cc81658",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "approved_at": "2026-10-02",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

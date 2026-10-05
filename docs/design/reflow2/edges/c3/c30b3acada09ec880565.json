@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:955c503afc678f27c8c9855e889c7c338158e2269e324c89248f9231b6508843",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "A null value in props now unsets the property: split_null_props (service.rs:1196) plus remove_properties (graph.rs:548), reported back under `unset`, with a required property refused. Landed in v0.51.0."
+  },
+  "to_id": "fact:defect-a-property-once-written-cannot-be-removed"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:55639467abbee8617404616c37c26a8ec7601b29bf87b1b08b70a6703bb067c9",
+  "node_id": "cap:the-loop-nudge-reaches-opencode-through-a-plugin-adapter",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built by the flo2 session (PR #511, 2026-09-14) and integrated in review. getting-started/plugins/reflow2-loop-nudge.js is an adapter that holds no judgement: it maps OpenCode's chat.message (first message per session) to SessionStart, tool.execute.after to PostToolUse (translating reflow2_<op> to the mcp__reflow2__<op> name loop_nudge.py parses, and OpenCode's edit/write/apply_patch to the edit tools it counts), and the session.idle event to Stop; it runs tools/loop_nudge.py with that event on stdin, never throws or hangs (10 s timeout), and delivers the script's sentence through experimental.chat.system.transform before the next model call. reflow2_init.py installs it into .opencode/plugins/ for a project that names OpenCode; reflow2_install.py into ~/.config/opencode/plugins/ machine-wide; tools/check_kit_manifest.py gates trees per harness the same way. Pinned by tools/test_opencode_plugin.py, which drives the four hooks as OpenCode does and asserts the nudge arrives (skips where node is absent). In review the server's nudge-presence check (nudge.rs) learned to recognise the plugin file so an OpenCode project is told \"installed\" rather than \"no nudge is possible here\". The stop-time nudge cannot block on OpenCode; it lands at the top of the next turn. The plugin locates loop_nudge.py by convention (REFLOW2_LOOP_NUDGE, the machine kit, or a checkout beside it) and is silent when none holds.",
+    "name": "The coherence loop's trigger reaches OpenCode: a plugin adapter feeds OpenCode's hooks to loop_nudge.py, and the server's nudge-presence check sees it",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

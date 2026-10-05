@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b1d2c2ad8cd5c828a3731369e01078840b4c5a55817f7824cf38e7b183f0dfa",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-mcp-around-xrt-so-a-beamline-design-is-ray-traced-not-asserted",
+  "properties": {
+    "evidence": "A ray trace is proof against a MODEL of the beamline, not against the beamline as commissioned; flux and spot size from xrt must land as model-fidelity evidence, and only a measurement at the beamline promotes them. Without that distinction the pairing would let a simulation read as reality, which is the founding fear in a new coat.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:evidence-fidelity"
+}

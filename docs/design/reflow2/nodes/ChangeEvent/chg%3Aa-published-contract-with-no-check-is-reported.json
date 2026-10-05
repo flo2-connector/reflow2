@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59c3353bc8ac5b9582949d5dec474608d5b66bf93357299aa0aac3e225c9ed01",
+  "node_id": "chg:a-published-contract-with-no-check-is-reported",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A published contract with no check is reported — and a design that publishes nothing is asked which it meant",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b01e1b94cd13288d5a6713ca3996f3bc8b96370fb7217e6783134a6608f6eafa",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-build",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:work-declares-who-it-reaches"
+}

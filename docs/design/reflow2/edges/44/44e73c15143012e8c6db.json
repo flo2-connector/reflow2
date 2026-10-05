@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cf53a753d3b00d6e31b5ffb47862e936a624cbfb4ff11c6846ca815fbdc8f333",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-file-realizes-only-what-it-implements",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-file-realizes-only-what-it-implements"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:60434db255f571ee07b10a50b081f9aee3184c97d706dfb5e4ade329fddad1ce",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:idea-the-hub-holds-a-copy-per-sub-repo-and-copies-go-stale",
+  "properties": {
+    "note": "The CUSTODY question — where a sub-project's design lives and what keeps a hub-held copy current. Parked. Its copy-versus-reference half was answered on 2026-08-29 (a mirror is a pinned copy that keeps the origin id and is marked not-yours-to-edit); what stays open is whether a sub-project needs a design of its own at all, which is the part that would make this a different product.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:the-hub-waits-for-somebody-to-ask-for-it"
+}

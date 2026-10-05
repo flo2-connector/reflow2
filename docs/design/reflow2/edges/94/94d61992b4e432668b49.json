@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43c878a24dc700d5811fff1063706777b2c6b963f5d068e65b1ab6a205b8a97d",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-what-is-the-minimum-path-to-fork-ophyd-service-today",
+  "properties": {
+    "evidence": "This answers the blocked-today half of that finding without settling its expensive half. Option ④ also feeds it: running a real fork is precisely the evidence dec:parallel-alternatives deferred world-scoping pending, so the unblock and the experiment are the same act."
+  },
+  "to_id": "fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met"
+}

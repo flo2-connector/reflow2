@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:661fdd708106cdae0781f2b59bc8bb02f00daf3ccaf582dece2233e769ee6ef6",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-quantity-carries-its-provenance-and-an-unsourced-one-is-named"
+}

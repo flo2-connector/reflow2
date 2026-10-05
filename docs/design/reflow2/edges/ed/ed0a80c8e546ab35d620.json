@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:015672070d62d49c70927fd2108e42c0ce82ae22e35cf3f21e623718d3b573a2",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is",
+  "properties": {
+    "evidence": "That accepted idea names the two directions of the link and leaves the mechanism unchosen; this asks the code-to-design direction for a remote server holding several designs."
+  },
+  "to_id": "dec:idea-a-checkout-knows-which-remote-design-it-implements"
+}

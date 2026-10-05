@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7216ce20097a976b57c2549d06e477406bcc3792eeedfe5d2b62e79d34751f5",
+  "node_id": "frag:art:test-dependency-currency",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_dependency_currency.py — 12 hermetic cases for the currency checker"
+  }
+}

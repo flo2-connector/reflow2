@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9fa3bdd0d92c098ce7132f37b65b567fe0f4cd4f24bd119ac865958b6f4058d4",
+  "node_id": "art:tools-built",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/built.rs",
+    "name": "tools/built.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

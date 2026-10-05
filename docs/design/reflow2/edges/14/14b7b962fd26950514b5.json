@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:13e83bfee57b1960b3ee44bd8eed5d8d9060cd5e52a0411d848fec4f962c452b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:concurrent-work-isolation",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

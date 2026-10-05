@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bd02a95f717bd63189014ade73014999c6dc8c35c81c79b4de4465246564d546",
+  "node_id": "frag:art:test-a-server-drains-before-it-stops",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_server_drains_before_it_stops.rs — under a real SIGTERM, a change made just before the stop reaches the export and the store reopens; a registry server closes every design by name"
+  }
+}

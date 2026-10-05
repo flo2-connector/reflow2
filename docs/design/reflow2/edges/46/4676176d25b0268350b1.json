@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0231aafff733f70ab9a311584a2aca28b7bc9994d8089b46fefb8dad9d702eba",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-a-gap-body-say-when-the-state-it-reports-is-normal-for-the-phase",
+  "properties": {
+    "evidence": "Promoted 2026-09-20 on Anthony's word ('Agree with all your recommendations'). Option chosen: One sentence in that body, the cheapest of the three options. Suppressing the per-capability form was rejected because naming which capability is the useful part once building starts."
+  },
+  "to_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase"
+}

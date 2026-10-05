@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:774fde6303e920a9429be0a9cd38251292b0171f6ffec129ac909f9d0e111999",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:83ef9f672ce8f420e9fccaa94e7d48f942c712e7d7468adac814b87d20447d2d"
+  },
+  "to_id": "art:seam-test"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5d9ea0c1d16fdaae27022899d4015f6e5450294c8e5a979bc8170a7adff8e78",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl182-granularity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:build-granularity-is-visible"
+}

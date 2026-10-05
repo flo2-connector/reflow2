@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:709043ee9f5aa6071bbd208af532209a47dac62ae0ed2f55f6443f841f3639af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:derived-release-manifest",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

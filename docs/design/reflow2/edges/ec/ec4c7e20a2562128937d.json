@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c0ff9c776adf934f464b4fa5c117dbd040e11d0e5fc4e142e748756bfe337973",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-session-holds-several-graphs",
+  "properties": {
+    "authored_at": "2026-08-12",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

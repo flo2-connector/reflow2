@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b7e799b99b58cbaeb04329c64f01634576405b4b816f051d78d7dff3e49cf088",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:run-ci-gates-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:every-gate-runs-the-binary-it-is-told"
+}

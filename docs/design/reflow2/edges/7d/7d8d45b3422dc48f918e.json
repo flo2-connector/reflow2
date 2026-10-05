@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecb892c672aea7a0a537123ce05c3b8f5e5309b4a6f5dea6e96e60f6690dcf57",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0690",
+  "properties": {
+    "as_checksum": "sha256:8d97afa726ae7a67ddf8827ea9e03f049f0ceee48ede28dc8b20840bbfd03bb8"
+  },
+  "to_id": "art:shared"
+}

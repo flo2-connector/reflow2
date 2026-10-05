@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ec0c7de7f5b84984b9f6dbe23ae4edd0130f727a9324bd48c15bf8ddb8d57f3a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-change-says-how-its-reason-is-known",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bd0fbbbdcb22f228b8a5b52a84932d0b1152da8be5424fc8dd8ed1a353815d7c",
+  "node_id": "chg:accept-00129362c2a670f3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-06",
+    "name": "Same: literals gained the new optional fields as None; the test's claim is unchanged.",
+    "subject": "system"
+  }
+}

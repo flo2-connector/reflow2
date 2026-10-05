@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:da9eacdd6cf3677e7b1349f987301fbcaf3b2555283b24005340b26fc55ae4b1",
+  "node_id": "frag:art:test-the-compliance-layer-is-whole",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "note_kind": "author",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered the_compliance_layer_is_whole.rs — the environment compliance layer pinned as one leg: the rule is recordable with its authority, the edges are writable without the escape hatch, a mandatory rule nobody answered is asked about, an advisory one is not, and a granted variance is KEPT"
+  }
+}

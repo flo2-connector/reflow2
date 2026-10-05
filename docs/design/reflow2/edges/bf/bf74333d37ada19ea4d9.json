@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4a329895850d429632464a861819676bb67d1e50ab77b403142bae1f43555c63",
+  "edge_type": "REALIZES",
+  "from_id": "art:triage-feedback-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it"
+}

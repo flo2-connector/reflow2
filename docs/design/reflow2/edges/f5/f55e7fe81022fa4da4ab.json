@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c4fc6c78fb1096fe1b81948bbbe267190272d516700d5a87f7d2d0b0a8dc780",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-can-be-asked-what-the-record-does-not-hold",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:loop-status"
+}

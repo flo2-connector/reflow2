@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e11d3fc55e4a0f248a31c20143d2e8bbb0eece6b347bf75dde61b38229f057bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-v0550-upgrade-note-says-it-is-superseded",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:upgrading-v0550"
+}

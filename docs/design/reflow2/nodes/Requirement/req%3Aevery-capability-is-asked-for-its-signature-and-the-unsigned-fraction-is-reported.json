@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8416e620a53678d640e715cd797640ed07b0493953c12fdf02f0c1eb2d1c80ed",
+  "node_id": "req:every-capability-is-asked-for-its-signature-and-the-unsigned-fraction-is-reported",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "lineage": "original",
+    "name": "Every capability is asked what it takes in and gives out at capture, and the fraction left unsigned is reported in aggregate — the function half of the pseudo-design gets populated",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-09-13: keep \"populate the function half\". The capability signature (inputs, outputs, kind) is the pseudocode of a capability — function stated without mechanism — and it is the content of the pseudo-design layer; without it the layer is only statuses. The setter shipped in v0.35.0 as the TOOL leg alone, deliberately, and today 3 of 247 capabilities on reflow2's own design carry one.\n\nWHAT IS REQUIRED — the two missing legs of the three (typed tool, instruction, detector that notices absence):\n1. THE INSTRUCTION LEG. The guided capture paths — genesis, capture-intent, adopt's recovery step — ask, in the user's own words, what each capability takes in and puts out, and write the signature at capture; and the add_capability response names the signature as the next call when one was not given. Asked about the thing, never about the field.\n2. THE ABSENCE LEG, AGGREGATE. One finding reports the fraction of capabilities with no signature and lists them, keyed on the practice rather than per node — per-capability it would have fired 244 times overnight on this design, which is the wall-of-red failure the vocabulary-coverage trial was run to avoid. The design reference (req:the-implementing-agent-holds-a-compact-design-reference-derived-from-the-graph) reports the same fraction where it is read, so an agent holding a reference of unsigned functions knows how much of it is empty.\n\nAn empty list is a statement (\"this takes nothing in\") and is distinguished from nobody having said, as the setter already does.",
+    "status": "accepted"
+  }
+}

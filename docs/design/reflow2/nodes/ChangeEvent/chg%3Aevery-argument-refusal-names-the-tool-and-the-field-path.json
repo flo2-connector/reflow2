@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0fcd3a968e7cce1c180157bc62e6d462dcb417092e5e3b795d36d799763111de",
+  "node_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "fe5f319c4148144faa67d26e940a203154801a57,268323aa0d21a3491d6bd3c39b5dfbd53fff1c7a,28bd10e86a0ac792a1ce2baf54c25bce6b7d0208,38c7c4a964146f4ec5804244ed37945baa61e1d9,202d4af613777db0450bf24525b5cf4d8c44ee73,b2a524d7d9745ea65079833fdd27b0710a57b205",
+    "detected_at": "2026-10-02",
+    "name": "Arguments are checked against the published schema before anything deserialises them, so every argument refusal names the tool and the field path",
+    "rationale": "The cause was a refusal rebuilt from serde's words, which know one field at one depth and no path for a type error: matching phrasings one at a time left wrong types bare (fact:root-cause-a-wrong-type-argument-is-refused-in-the-bare-serde-string-because-the-interception-matches-two-phrasings-2026-10-02), and reading descriptions from top-level properties called 22 described nested fields undescribed while the guard test shared the blind spot (fact:root-cause-a-missing-nested-field-refusal-says-the-schema-publishes-no-description-when-it-does-2026-10-02). The schema knows every field at every depth, so the refusal is built from it, at the one choke point, and the gate is generated from the same schemas so a new tool joins it when served. Matching more serde phrasings was rejected by the decision. Exit codes through --call are unchanged on purpose: an argument that does not fit the published schema is an isError reply (exit 2, as MCP specifies for input validation), and exit 1 stays a tool's own rule refusing — a field required only to create is that until the schema publishes it. Failing-first: 10 of 11 new wire tests and 1,488 of 1,537 generated probes failed on the unfixed dispatch.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "One validator (crates/reflow2-mcp/src/arguments.rs) checks every served call against the tool's published input schema at the dispatch choke point — call_tool, and the latent and degraded surfaces — before anything deserialises it. A wrong type, a missing or unknown field at any depth, a value outside its enum or range, or a field given twice is refused before the tool runs, naming the tool, the path, what the schema expects and the field's description, all at once, with what the call did pass set apart. It replaces the two-phrasing interception and the top-level-only description hint. Aliases are declared as x-reflow2-aliases, checked against serde, stripped from the listing. The 12 no-argument tools close their schemas; the 5 handler-decoded lists publish their item shapes; the 13 undescribed nested required fields are described; the guard test walks nested schemas; the reconnect advice reaches sessions only; refusal_speaks.py generates its probes from every schema; the usage ledger gains invalid_argument."
+  }
+}

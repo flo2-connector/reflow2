@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a2f8c32688d7c3c1a19a2738ea8fce15e90811c6c6d6ef90d558688c16f48d3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:ec7a2afa778f6b849d72a4e5dac40bc8b7b1990858c6377e870de821de98bbab",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-every-one-shot-mode-resolves-its-design-first"
+}

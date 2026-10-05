@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a7bea67ba74bad619f9153f146da5508cb8a5dc0b69feb1c77ddf8564ca77c1e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-reports-assigned-decisions",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:owed-to-a-contributor"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c4923585ce432cf8e6951d3ba12be778563c76d212552b3957c012defa1b58fb",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-branch-fact-never-appears-in-a-sibling-branchs-export",
+  "properties": {},
+  "to_id": "cap:branch-facts-are-held-in-a-per-branch-overlay"
+}

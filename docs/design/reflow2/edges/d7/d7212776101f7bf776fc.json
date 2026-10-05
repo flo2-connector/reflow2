@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca12221985969c1b663e51dbcb2119fd99d62eb867cfed23904f060d5d8bc98f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-same-paragraph-fifty-times",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:bounded-reads"
+}

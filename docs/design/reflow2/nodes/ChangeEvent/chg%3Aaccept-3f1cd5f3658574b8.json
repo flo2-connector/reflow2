@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed9ba47db60836057bc0a59a9599bae9f7f714b4889ac402d865bf50869f3071",
+  "node_id": "chg:accept-3f1cd5f3658574b8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "cap:skill-triggers + cap:session-artifacts: the nudge learns four SHAPES and names the skill each calls for. Refines the existing nudge only — never arms it, so the count of interruptions is unchanged and only the sentence improves."
+  }
+}

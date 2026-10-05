@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:afac6dcab7113698c76cc18f2558a829691e86776d72f55177f0712740252723",
+  "node_id": "req:no-setup-per-project",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Setting up a project is not a step — reflow2 is installed once per machine",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "FROM ANTHONY, 2026-07-28, twice in one session and the second time as scope: \"we need to make this as easy as possible. it is getting too hard to just start a project and then there are multiple steps after just to get it working\" — and then, decisively: \"my brother is using reflow2 on his machine. I'm using it another machine and this machine to develop it and use it. this isn't a fix for just this machine - it is a fix to make this easy for all users that ever use reflow2 from now on.\"\n\nWHAT HE HAD MEASURED, on a real project (brainmaker) minutes before saying it: install the binary, run a per-project installer naming an absolute path into a reflow2 checkout, restart the agent, then type a slash command that had never shipped. Four steps to reach the first design action, three of them after the install, and the last one failed.\n\nTHE OBSERVATION THAT MAKES IT SOLVABLE: none of reflow2's per-project footprint is per-project in NATURE. `--graph-path .reflow2/graph` is relative to the working directory, so ONE registration still gives every project its own graph. The slash commands are pointers at served skills, so one global copy carries nothing that can go stale. The loop hooks are the same script in every project. What is genuinely per-repo is only the committed design export, and a pointer file for a repo whose OTHER contributors' agents must be told reflow2 governs it.\n\nSO THE REQUIREMENT IS: after a one-time machine install, a user starts designing any project by opening their agent in a directory and asking — no installer, no config, no restart, no per-project step of any kind. Setup that survives per project is a defect, not a feature.\n\nTHE COUNTERWEIGHT, and it is what makes this honest rather than merely convenient: a machine-wide install must cost a directory that will never be designed exactly NOTHING. No graph created, no hook output, no state written. Most directories on a machine should stay untouched, and they must stay untouched by construction rather than by the user avoiding them.",
+    "status": "accepted"
+  }
+}

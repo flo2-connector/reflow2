@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf59b55c131c67b2818dc1e40a68db3f2fa10c4f3ad07b12c30650a69d5799a6",
+  "node_id": "chg:accept-7b156be2cc1f45cc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "AddChangeEventReq gains summary and rationale. The struct is deny_unknown_fields, so `description` was actively REFUSED rather than stored — which is why both reporting projects fell back to a second create_node call. The field docs now say there is no `description` and name the two that exist.",
+    "subject": "system"
+  }
+}

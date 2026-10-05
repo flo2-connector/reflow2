@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bf6edb1419116f2a9fe614cd7647e99b1919dea1a36d31d7382e69d4cfc64e49",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-27 evening report (findings without status refused on a revise): the guard tests the call's status, not the stored run's; reproduced locally on 0.72.0.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-run-2026-09-28"
+}

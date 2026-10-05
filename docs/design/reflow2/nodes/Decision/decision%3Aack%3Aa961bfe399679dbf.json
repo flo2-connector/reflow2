@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40833ba3a93d193cc33f5a9ba90e0d95a4273fd8b57e5dd069dd374c8f34b819",
+  "node_id": "decision:ack:a961bfe399679dbf",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:a961bfe399679dbf.",
+    "name": "Reviewed: gap:a961bfe399679dbf",
+    "rationale": "Anthony's word, 2026-08-24: accept the component-granularity check once, and add a per-skill check later only where a specific skill earns its own proof.\n\nTHE GAP OFFERED EXACTLY THIS as one of its two ways on (\"accept component granularity here once\"), and it is the right one here. The coverage is real, not absent — cmp:skills has a PASSING check, one hop away, and these nine capabilities sit under it.\n\nWHY DEEPENING WOULD BE CEREMONY RATHER THAN ASSURANCE. A skill is text served to an agent. What a check can actually assert about one — that it is well-formed, that it is reachable, that its trigger conditions are stated — is precisely what the component-level check already asserts across all of them, and asserting it nine more times in nine more places multiplies maintenance without adding evidence. Nine checks that all prove the same property are one check with extra bookkeeping.\n\n⭐ THIS IS AN OVER-ENGINEERING CALL AND WAS MADE AS ONE. Anthony's standing concern is designs that get overcomplicated where a simple solution will do. A blanket rule that every capability needs its own verification produces exactly that, and the granularity detector exists to ASK rather than to demand — which is why it offers both roads instead of failing.\n\nWHAT WOULD REOPEN IT: a skill whose behaviour is more than well-formed text — one that computes something, or whose output a person acts on directly — deserves its own proof. The review expires if these capabilities change, so this is accepted for what they are TODAY, not forever.",
+    "status": "accepted"
+  }
+}

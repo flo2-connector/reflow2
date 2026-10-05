@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64c0b0243c5364d1b8d199fd2696ecbcd86d9c4b0274ffdbd8fde20dfccff07e",
+  "node_id": "chg:a-reply-is-not-sent-twice",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "A JSON reply goes out once, and the text block becomes a signpost rather than a second copy",
+    "subject": "system"
+  }
+}

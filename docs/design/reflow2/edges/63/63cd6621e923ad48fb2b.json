@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:318a568d9f19b938f23bbc5a58959c465d6ec7b73fc58b40ffa2347619454403",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:fork-alternatives",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:fork-alternatives"
+}

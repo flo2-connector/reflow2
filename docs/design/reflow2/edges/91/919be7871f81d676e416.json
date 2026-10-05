@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:338fbfca9d043e2e329ebc6006b6d68d5d6ecf240a60deecceaf172809ebcc84",
+  "edge_type": "CONSTRAINS",
+  "from_id": "rule:bl-41",
+  "properties": {
+    "basis": "estimated",
+    "note": "Migrated from docs/backlog.md BL-41 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: ~~S~~ + M."
+  },
+  "to_id": "sys:agent-surface"
+}

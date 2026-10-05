@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4d4990430132042c850c122c1005b1c9828d1afbb078eef63d57fc4834cc2e25",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-the-server-journal-every-write-itself",
+  "properties": {
+    "evidence": "The 'who' half of this proposal needs a current identity to attribute to, and flo2's other proposal is where that identity would come from; journalling who without settling that question records whatever the client asserted.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what"
+}

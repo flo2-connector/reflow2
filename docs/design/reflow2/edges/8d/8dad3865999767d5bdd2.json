@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4fc02a1d0f552dbdb248598dce6e9369f9a6dc4c9c72846747cdcfbe4a3b64d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

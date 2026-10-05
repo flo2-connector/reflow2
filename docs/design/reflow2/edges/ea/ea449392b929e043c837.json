@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25264a14524bfb235623322c328f3b085a2349440b7e27d4733b98ec1899f288",
+  "edge_type": "REALIZES",
+  "from_id": "art:the-export-chains-from-main-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

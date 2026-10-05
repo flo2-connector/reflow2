@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c9dd06f59e465ea7dd37fa1effb0c1696566fc666e6819f91ad76e568b865cf",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-built",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-declared-wall-is-checked-against-the-coupling-it-contains"
+}

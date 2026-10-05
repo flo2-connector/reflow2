@@ -46,6 +46,8 @@ import sys
 import tempfile
 
 from smoke_mcp import Server
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 DEFAULT_BUDGET = 30_000
 
@@ -71,10 +73,11 @@ SKIP = {"import_graph", "mint_seat", "propose_heal", "reconcile_dependencies"}
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp")
-    ap.add_argument("--export", default="docs/design/reflow2.json")
+    ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
+    ap.add_argument("--export", default=design_io.default_export())
     ap.add_argument("--budget", type=int, default=DEFAULT_BUDGET)
     a = ap.parse_args()
+    a.bin = a.bin or default_bin()
 
     export = pathlib.Path(a.export)
     if not export.exists():

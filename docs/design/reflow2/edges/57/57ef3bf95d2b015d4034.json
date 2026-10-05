@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0ad471ca45a0a332af9705afe5593d10d04e70cbd8c02fdf46a4c28fc91d79c",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "evidence": "The brainstorm pass this rule requires: the issue's attribution idea (verify a signed token, derive the contributor from a verified claim) is appended to this open decision as option (e), with what the issue does to options (a) and (d), in the reporter's words."
+  },
+  "to_id": "dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id"
+}

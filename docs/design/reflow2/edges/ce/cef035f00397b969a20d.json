@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c727ae347a5c0d8e0d493472b954a62dfb3dd6390cade2775b9af79c53b73c15",
+  "edge_type": "REALIZES",
+  "from_id": "art:stats",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:dimensions"
+}

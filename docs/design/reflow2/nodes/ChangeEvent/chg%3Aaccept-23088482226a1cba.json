@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f22fd0c3d723b308019e3cb4455aba313409fdbd716d9f0cd9202a8786562978",
+  "node_id": "chg:accept-23088482226a1cba",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-24",
+    "name": "One assertion rewritten to satisfy `clippy::unnecessary_get_then_check` — `get(\"valid_to\").is_none()` became `!contains_key(\"valid_to\")`. Identical meaning, identical result; the design did not move. Caught by the CI clippy gate BEFORE pushing, which is where it should be caught.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:27dd3987d79992372dc796a4d510c46f3151e49c4e46c89a20ad1a0c13004e2d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:backup-belongs-to-the-consumer",
+  "properties": {
+    "approved_at": "2026-08-06T15:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

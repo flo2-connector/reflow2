@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a6811e5664c74db0ba175a9b1126f884c2254d064873bcdd3c155d09c31cf374",
+  "node_id": "chg:a-write-replies-with-a-receipt",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-29",
+    "name": "A write replies with a receipt, cut at call_tool for every write tool; echo: \"node\" returns the reply as built",
+    "rationale": "THE CAUSE (dev_reflow2 two-agent exercise, art:dev-reflow2-two-agent-exercise-feedback-2026-09-29, item I4; fact:root-cause-a-write-replies-with-the-whole-stored-node-and-replace-text-adds-each-prior-field-2026-09-29, which lives in the live design and is closed there by hand): no reply contract for a write was ever written — each handler returned the stored node by convention, and replace_text added each prior value in full. WHY THIS REMOVES THE CAUSE: the contract is stated once and applied at the one place every call passes, so no handler can forget it and a new write tool joins by being served. PINNED, observed failing on a clean origin/main build (72917f6) under the shared build lock: crates/reflow2-mcp/tests/a_write_replies_with_a_receipt.rs, 3 of 3 failed (116 write tools declared no `echo`; echo: \"node\" refused as an unknown field; a 201-character value was echoed, not sized). MEASURED on the same calls (as built → receipt): add_decision 6,311 → 560; replace_text 12 chars 6,961 → 1,243; replace_text 170 chars 13,322 → 1,453; set_decision_status 6,397 → 473; add_component revise 6,786 → 1,067; add_requirement 6,818 → 1,064; record_finding 6,356 → 606; create_edge 6,165 → 414. CONSUMERS: flo2's gateway reads no write reply's node (it passes replies through and reads inputSchema only), so nothing there changes; no served skill tells an agent to read a write reply's properties.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "crates/reflow2-mcp/src/receipt.rs shapes the structured reply of every tool the served surface marks as a write (read_only_hint false), at ReflowService::call_tool: stored values over 200 characters are given by size under `elided`; a revise's replaced fields carry prior_chars, after_chars and prior_in; a prior value nothing else holds (fields_at_risk) is still echoed in full. Every write tool's input schema declares `echo` (receipt | node); `echo` is taken out of the arguments before the handler runs, and any other value is refused before anything is written. Read tools are untouched."
+  }
+}

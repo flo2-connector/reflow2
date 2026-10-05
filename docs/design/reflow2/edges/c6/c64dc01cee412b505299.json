@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12188bfe849931846d57c73cb88cac041025e62918eab0131c951b5c43f1c329",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-third-leg-notices-an-unconnected-idea",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing"
+}

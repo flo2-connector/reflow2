@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59b313484af54f431f5e5f3356e777ff5c3d451dc84161ecd45571e14a86a2b6",
+  "node_id": "chg:intent-authority-check-and-planned-exemption",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Anthony's grandfathering answer becomes a running check, and unbuilt work stops being asked for proof. `tools/check_intent_authority.py` enforces `rule:design-intent-moves-only-on-the-owners-word` from a boundary of 356 already-settled nodes recorded on his ruling — the mechanism that ruling deliberately deferred to build time. Separately, `unverified_capability` now exempts a capability that is `planned` AND that nothing directly realizes, removing 28 of 92 findings while keeping the one whose status is merely stale.",
+    "subject": "system"
+  }
+}

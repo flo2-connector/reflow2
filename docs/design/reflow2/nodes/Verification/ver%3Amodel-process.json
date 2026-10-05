@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:141e2eb7b176da922399181ed789fc1ff4b773cd08dc118d19a93808bb31dd0b",
+  "node_id": "ver:model-process",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "flow.rs",
+    "status": "passing"
+  }
+}

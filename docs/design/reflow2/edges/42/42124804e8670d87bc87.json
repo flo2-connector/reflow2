@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eafcf4486b849f91f445cfec9e15ee7f72236b3d89280095a557f31c021b65df",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:reflow2s-mechanisms-for-reaching-an-agent-are-mostly-claude-code-shaped",
+  "properties": {
+    "note": "The reason the hotspot idea is a product question rather than a self-hosting one: the graph is the only thing every agent on a project shares, so it is the only place a working set can live and be readable by all of them."
+  },
+  "to_id": "dec:idea-a-hotspot-node-holds-the-live-worklist-and-is-deliberately-not-history"
+}

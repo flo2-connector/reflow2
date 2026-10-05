@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:16c4e1e50d64c295edc494dc12fa42800be2e76497ae3f63f9e3e39bf5787d52",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-reference-parameter-says-its-type",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:tool-carries-convention"
+}

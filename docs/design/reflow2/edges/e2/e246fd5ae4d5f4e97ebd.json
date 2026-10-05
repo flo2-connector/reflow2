@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:730befc20e74187c0e8e2fb5fcc5e1cdfc4d3bf661fe16d3555b4405b1f9d62b",
+  "edge_type": "CAUSES",
+  "from_id": "cap:nothing-moved",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The disposition surface (set_artifact_checksum and its bulk form) defaulted a missing change_type on design_holds to test_failure_fix — service.rs parse_disposition, `unwrap_or(\"test_failure_fix\")` — so every reconcile-pass acceptance made without a stated reason entered the fix population; measured on reflow2's own export as 104 of 281 fix-typed events wearing that default, none with a cause.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-default-put-every-reconcile-pass-into-the-fix-population-and-the-gap-offered-to-decline-the-rule"
+}

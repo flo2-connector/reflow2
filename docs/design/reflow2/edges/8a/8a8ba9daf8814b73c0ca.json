@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e623db80ee7215a963c7eac1599446e23a45eefd172964fa2ff349f5e797af31",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-instructions-can-be-read-in-parts-and-the-signpost-speaks-to-the-agent",
+  "properties": {
+    "at": "2026-08-28",
+    "note": "ANSWERED, AND PARTLY CORRECTED — read both halves before treating this record as history.\n\nWHAT IS FIXED: the fact proposed three shapes — standing rules first; sectioned get_instructions with a manifest; state the byte length so a truncated reader can detect it. All three now hold. The first measured as ALREADY DONE; the other two are built here, and the largest section (11,260 bytes) fits under the ~19.5 KB cap that truncated the reporter twice.\n\nWHAT WAS WRONG IN THE ORIGINAL: its central claim was that the order is \"worst-first-lost\" and that the sections a truncated agent loses are the ones telling it to distrust the tools and report the friction — the SELF-SEALING argument, which is why it was rated above a formatting nit. Measured on the current document 2026-08-28: the standing rules sit at 3.5%, 4.5% and 7.6%, and \"## If reflow2 gets in your way, say so\" sits at 63% — INSIDE the reporter's 73% cut. It reached him, and his 2026-08-27 report proves it: he filed the truncation. What he actually lost was the tail — the gap→question handshake (73.8%) and the tool inventory (78%).\n\n⚠️ SO THE FINDING WAS REAL AND ITS DIAGNOSIS HAD ROTTED. The defect persisted; the explanation of WHY it mattered stopped being true at some point nobody recorded. That is the same shape as fact:a-findings-name-can-claim-more-than-its-data, arriving from the other direction: not a name overclaiming its body, but a body whose reasoning went stale while its conclusion stayed correct."
+  },
+  "to_id": "fact:defect-the-served-instructions-put-their-standing-rules-where-a-client-cap-deletes-them"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dcab41129e698d932ce2a66ebe5936afa1e7b0c067ee3b8cb39f88243b1e278d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:flow",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:nodes"
+}

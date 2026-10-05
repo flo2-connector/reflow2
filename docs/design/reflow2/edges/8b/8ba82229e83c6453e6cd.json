@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b64492c985d29a47b157411c953ff3239feb6f0fce374db4decda196c1e28402",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-instruction-layer-runs-ahead-of-the-typed-tool-layer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Instance ③ : node prose is governed by warnings, reconcilers and detectors; edge prose has none of the three, so the repair is by hand and by memory.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:edge-prose-is-as-perishable-as-node-prose-and-nothing-reads-it"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2795af9039e7b9b73c174bf90ed61faf65683103c483f9fce6d14799c407e009",
+  "edge_type": "REALIZES",
+  "from_id": "art:seam-coverage-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-contract-answers-at-the-altitude-you-asked"
+}

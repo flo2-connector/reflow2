@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:185eb19692b33239be275b756bcef3dbcb60f3b70cb81bb1f97eafbb2efbe8b2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-question-arrives-with-a-reading",
+  "properties": {
+    "evidence": "It is that decision's 'the LLM speaks' half made explicit at the gap boundary; the human still decides and the graph still counts.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:three-party-checks"
+}

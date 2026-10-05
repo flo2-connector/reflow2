@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4b60de8c1424037961a8aafe4cfc11545d4d2407d88228be64d078fb23ec68d",
+  "node_id": "ver:wall-check-is-served-and-findable",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/wall_check_is_served_and_findable.rs (4) and the unit tests in crates/reflow2-mcp/src/wall_check.rs (3).\n\nTHE INSTANCE PIN: the question a consumer's agent asked, in a user's words — \"does my declared decomposition match the real coupling — walk the imports across the boundaries I declared\" — returns `wall_check` in find_tools' top five. OBSERVED FAILING with the #[tool] attribute removed (the function present, the tool unserved), passing with it restored.\n\nA REAL RUN: two components, two registered Python files, one import the design never declared, one package file deliberately left unregistered — the report names the root it ran from, reads the one import, reports the pair as \"the SOURCE has and the design does not\", and counts and names the unregistered file rather than scoring it clean.\n\nHONESTY: a design with nothing registered gets the script's own coverage sentence, not an empty report and not an error. `budget_chars` is honoured and the cut is announced.\n\nUNIT: a missing interpreter is refused with what to do (and names tools/wall_check.py so the agent can run it by hand); the project root is the directory the store sits under, with an explicit `root` winning; bounding never grows a report and says when it cut.",
+    "kind": "verification",
+    "name": "The wall check is a served tool a consumer can find and run — four integration tests and three unit tests, the find pin observed failing with the tool unserved",
+    "status": "passing"
+  }
+}

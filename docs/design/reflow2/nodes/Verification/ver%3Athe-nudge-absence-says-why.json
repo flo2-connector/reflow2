@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:18bab4d8907bc7e24774ee922df114fcfa4437195f19392171d4ec365e7c5e84",
+  "node_id": "ver:the-nudge-absence-says-why",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The two absences are told apart, and neither is invented: an OpenCode project reports no_hook_for_this_harness with an advisory that asks for nothing to be installed; a Claude project with no hook still reports absent; a project that never named a harness reports absent rather than impossible; and a hook the user wired themselves wins over the recorded harness, so a working nudge is never called unreachable. 7 cases in crates/reflow2-mcp/src/nudge.rs (19 in the module, 190 in the crate, all passing).",
+    "findings": "ALSO DEMONSTRATED LIVE against real projects with the rebuilt binary — loop_status returned {\"no_hook_for_this_harness\":{\"harnesses\":\"opencode\"}} for an OpenCode project and \"absent\" for one that never said. THAT LIVE RUN EARNED ITS KEEP: the unit tests passed while target/debug/reflow2-mcp was still the previous build, so `cargo test --lib` was proving the library and not the binary a user runs — rule:success-is-read-from-the-authoritative-object, caught on the day it was enforced.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "integration",
+    "method": "test",
+    "name": "The two kinds of absent nudge are told apart, and neither is invented",
+    "status": "passing"
+  }
+}

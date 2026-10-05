@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a254012488371d456193b8e30e67cdac19a5a2a0207b3f6df334193d930af751",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-stale-daemon-was-stopped-and-the-work-is-now-served-2026-08-20",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current"
+}

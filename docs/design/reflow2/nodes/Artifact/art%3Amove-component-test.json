@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bc72f41325d335b0e102250bffb1f9523561a6f6f7b5b8a8fb02985c14ea8a00",
+  "node_id": "art:move-component-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/move_component.rs",
+    "name": "move_component.rs",
+    "status": "realized"
+  }
+}

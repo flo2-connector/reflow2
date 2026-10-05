@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f73b75f95cb5392377d2d3757b9086fd4a77e629d1b3b7a3ea3deed972e1aa52",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-v3",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

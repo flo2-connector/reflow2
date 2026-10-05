@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:edf5000e7910d9574649b861f420bbd84b66e028632f8ee00838b70f775c4f0e",
+  "node_id": "cmp:graph-algorithms",
+  "node_type": "Component",
+  "properties": {
+    "level": "component",
+    "name": "graph-algorithms",
+    "provenance": "authored",
+    "purpose": "Domain-neutral graph theory over a dense in-memory graph: `GraphBuilder`, Leiden community detection, Tarjan strongly-connected components, connected components, directed cycle detection, articulation points and bridges, and Brandes betweenness centrality. Exact rather than approximate — design graphs are 10^2–10^3 nodes.\n\nAbsorbed from `dynograph-graph` at v0.12.0 on 2026-08-24 (increment 3 of `dec:absorb-the-foundation-subset-and-end-the-dependency`). 2,219 of the crate's 3,832 lines; 1,613 left behind in nine files reflow2 never calls.\n\n⭐ THE NAME IS ANTHONY'S, AND THE COLLISION IT AVOIDS IS REAL IN BOTH THE MODEL AND THE CODE. reflow2 already has `cmp:graph` for its own graph module, and dynograph-foundation's design has a `cmp:graph` of its own — one of three id collisions found while scoping a mirror that was then dropped. In the code the same clash bites harder: every absorbed file said `crate::graph` meaning ITS graph module, which in reflow2 resolves to `DesignGraph`. The imports were rewritten to `crate::graphalg::` for that reason.\n\nWHO USES IT: `cmp:structure` and `cmp:allocate` (both in `sys:coherence-loop`) and `cmp:flow` (in `sys:vocabulary`) — which is why it sits in `sys:foundation` rather than inside any one of them. It undergirds more than one subsystem, which is exactly the placement `dec:absorbed-code-is-distributed-by-function` calls for.\n\n⚖️ IT CARRIES `#![allow(dead_code)]`, deliberately. Eight items are unused from reflow2's point of view — two error variants, three policy variants, two accessors, a helper. They stay because the files are kept VERBATIM so they remain diffable against upstream, which is what the provenance requirement actually rests on. Anthony, 2026-08-24: *\"don't trim now - if we decide it isn't necessary, then we can trim in the future.\"*",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:995368c8f9cb29907d0db9a96d5ec343148583ebbcf3f276dc574d38be465cac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-projection-is-named-and-the-battery-runs-over-it",
+  "properties": {
+    "approved_at": "2026-08-10",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

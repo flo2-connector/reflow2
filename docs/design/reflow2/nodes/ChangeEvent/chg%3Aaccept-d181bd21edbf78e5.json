@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b36f937903c4e9d4edec44c8b7c1d986e291c402ecc4e2bead09e2c3e7d2b3c6",
+  "node_id": "chg:accept-d181bd21edbf78e5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Call sites updated for the new add_verification/set_verification_status parameters; assertions unchanged.",
+    "subject": "system"
+  }
+}

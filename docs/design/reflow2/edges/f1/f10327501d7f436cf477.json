@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce14bb9af813e03f070e5942b17aeac236f5217088ff0a9b4b0b952845c78ddc",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:branch-facts-are-held-in-a-per-branch-overlay",
+  "properties": {
+    "note": "Which option this capability builds (server-side overlay vs worktree store vs tag) is that decision's."
+  },
+  "to_id": "dec:how-a-branchs-implementation-facts-are-held"
+}

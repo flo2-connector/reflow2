@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:466cd329cc4457e39178a9e02e5cc626d8b9d326ab95305297d559abe8c36f40",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-claimed-blast-radius-is-an-island-no-other-session-writes-in",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "authored_at": "2026-09-29",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

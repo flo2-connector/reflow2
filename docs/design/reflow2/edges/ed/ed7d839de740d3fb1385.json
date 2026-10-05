@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a53968f63e4642e843a9e04febcf27681d335c4e0539f86a67aa54657e883a4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0110",
+  "properties": {
+    "as_checksum": "sha256:bd4282a6b99d8308"
+  },
+  "to_id": "art:readme"
+}

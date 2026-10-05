@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad7664c4e9c09fa1323dbc6ba6ed7ea5cd8dd20758ede457b2d574f2da87e7cd",
+  "edge_type": "CAUSES",
+  "from_id": "fact:a-skill-is-loaded-only-when-something-already-in-hand-demands-it",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "THE CLASS TEST (step ⑥): does the cause explain the EARLIER occurrence, not just today's? Yes, and from a different fleet and model. That agent used search_design, get_node, create_node, loop_status and get_skill constantly — everything already in its hand — and used detect_gaps, gap_to_prompt, impact-check, detect_defects, reconcile_artifacts, coverage_report and evidence_report exactly zero times. Nothing it was already calling required any of them. Its own reason (3) states the same mechanism independently: 'skills are PULL, and the thing that would tell you to load one is itself a lookup you must remember to make.' Its measured discriminator — three blocking gates each produced an immediate fix, zero passive hints did — is the same shape and was reproduced a third time today.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:an-agent-stopped-reaching-for-reflow2-and-a-second-one-reproduced-it-the-same-day"
+}

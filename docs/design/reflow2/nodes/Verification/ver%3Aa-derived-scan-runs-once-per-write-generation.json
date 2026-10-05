@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3625763106306b7ca390beba1a9728c0b48742552a7887f660d87feb4bc5fe73",
+  "node_id": "ver:a-derived-scan-runs-once-per-write-generation",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_derived_scan_is_computed_once_per_write.rs. Asserts STRUCTURE, not duration, per the optimize skill's rule that a duration in a shared suite measures contention: three rollups with no write between them share ONE defect scan and ONE gap scan (derived_recomputes moves by <=2, was >=4 before the memo); a write forces a fresh scan whose result reflects the write (the counterweight that makes the cache safe); and a memoised detect_defects reports the same sweep scope as a fresh one, so nothing is silently dropped. This is the guarantee behind con:loop-status-warm-latency-ms and con:a-full-orientation-pass-costs-at-most-8-seconds; the wall-clock is measured separately by tools/agent_surface_profile.py and recorded on fact:the-three-perf-changes-killed-the-multiplier-and-two-budgets-hold-one-misses-on-my-own-derivation, because a wall-clock assertion here would flap under load.",
+    "findings": "3 passed, 0 failed (reflow2-core, 2026-09-05). three_rollups_with_no_write_run_the_defect_scan_once, a_write_invalidates_the_memo_and_the_next_scan_is_fresh, a_memoised_sweep_reports_the_same_scope_as_a_fresh_one. Full crate suites green afterwards: reflow2-core 1578/0 (144 suites), reflow2-mcp 343/0 (44 suites). fmt and clippy clean on both crates.",
+    "kind": "verification",
+    "last_run_at": "2026-09-05",
+    "level": "integration",
+    "method": "test",
+    "name": "A derived scan runs once per write generation, and a write invalidates the memo",
+    "status": "passing"
+  }
+}

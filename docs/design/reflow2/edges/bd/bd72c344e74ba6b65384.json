@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0362ee066638518e2ca68172f6835b5d5632875c9c4c7ac9740dd9473c93a26d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:skill-loads-are-counted",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:nudge"
+}

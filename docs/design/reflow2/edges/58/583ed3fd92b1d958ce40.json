@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5855776430aab8badaf75796c1edd5aba79aa294a81605750749fe47fd9989f4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-graph-claim-cannot-be-published-before-its-pr",
+  "properties": {
+    "authored_at": "2026-08-04",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

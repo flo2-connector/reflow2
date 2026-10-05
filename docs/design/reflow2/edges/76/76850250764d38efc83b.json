@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0dedb26e1f7e16de8678d3480d2a6277df667ea10ca820f1417e91d2f2fbcc1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-shared-client-outside-the-project-attaches-to-the-running-server",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:shared-attach-by-absolute-path-missed-the-running-server-and-spawned-a-rival-2026-09-22"
+}

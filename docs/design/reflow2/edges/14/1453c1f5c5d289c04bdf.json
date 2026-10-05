@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0606d2b751091f329a1483f044c56a270526199e975c543efd15d3f0129973d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-required-parameter-and-every-thin-description-says-what-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-claims"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce6acf378c9d8c1b1f3c55e6221fed4bba7eeed3eceea113c7e221eaf4a573d3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-server-says-when-it-is-stale-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-server-is-the-authority-on-its-own-currency"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae3ad2ddbed674e7e91af83d182d28169990ed46e661ff0182a53cacd215d133",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-budget-says-how-it-composes",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes"
+}

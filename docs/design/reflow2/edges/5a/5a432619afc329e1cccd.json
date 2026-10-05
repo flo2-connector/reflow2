@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ab85cb44dec440478e170254645055270bf1c5f12aafabc0a65f80a87d7bff8",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-call-holding-the-only-copy-keeps-it",
+  "properties": {
+    "at": "2026-09-01",
+    "note": "The warning no longer holds the only copy: a revising write now PRESERVES a replaced value that nothing else holds, before computing the note, so the note is a receipt in that case rather than a regret.\n\n⚠️ ITS LAST PARAGRAPH IS NOT RETIRED AND SHOULD NOT BE READ AS SUCH. bhome's separate complaint — a refused bulk write discarding a ~4 KB body, and \"no way to say 'change this one thing' on a large node\" — is a different gap and remains open under `dec:idea-should-a-large-node-be-changeable-one-field-at-a-time`, which Anthony accepted the same day with only the snapshot half built.\n\n📌 The fact's own sequencing argument is what decided the design: a rule resting on call ORDER can be broken by an agent host without either party choosing to, so the guarantee moved inside the write."
+  },
+  "to_id": "fact:the-revision-warning-holds-the-only-copy-of-what-it-warns-was-lost"
+}

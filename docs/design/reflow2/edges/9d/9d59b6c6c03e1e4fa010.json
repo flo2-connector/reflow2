@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce3db714415a12b6e48d38c3d314e9c1647b9135676a872545141822a8cbc020",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "rule:fix-it-properly-while-it-is-still-cheap",
+  "properties": {
+    "evidence": "He named that brainstorm as the reason for the rule: it is harder to fix things later. The cost-of-change instrument would put a number on the claim this rule asks people to take on faith, which is what would move it from philosophy to measurement."
+  },
+  "to_id": "dec:idea-cost-to-change-is-read-from-lifecycle-phase-the-rule-of-tens-in-the-graph"
+}

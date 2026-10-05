@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eab5a1ff9f111c1ca311b661e6c7acb8f1e3f8064b2c5981303503acde14f2c2",
+  "node_id": "snap:epoch:the-ask-elicits-a-lens-not-a-name:art:where-am-i-skill",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:the-agent-asks-who-it-is-talking-to\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}}]",
+    "state": "{\"artifact_type\":\"document\",\"checksum\":\"sha256:50abfe643fb3c94799ffe756bed8a7dc5269e6536763da83553b4a0578204dde\",\"location\":\"getting-started/skills/where-am-i/SKILL.md\",\"name\":\"where-am-i/SKILL.md — orientation, and the step that asks who the reader is\",\"status\":\"realized\"}",
+    "target_id": "art:where-am-i-skill",
+    "target_type": "Artifact"
+  }
+}

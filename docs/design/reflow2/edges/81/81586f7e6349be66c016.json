@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ad5bbad6ddaa509b3f75e1831884a002e75dcfdedebc276c134481895543f83",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "lift_repair_notes sends each repair_is_a_judgement paragraph once per category and handles both reply shapes (coherence.rs:1203, called at :736), which is the silent no-op the record described."
+  },
+  "to_id": "fact:the-same-paragraph-fifty-times"
+}

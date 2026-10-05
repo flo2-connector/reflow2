@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:862bf58b0fa5ee7a0ebf7a0c760e351139a66c4db866a1cad528357e1179c8a7",
+  "node_id": "chg:baseline-334f9b26de0c09a5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:wall-check-served' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: edited for the item layout, per-item lineage, checksums on the change, and CHANGELOG fragments (fix program item 13)",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f479a88b7d2408a5961049ebd33a297af47881eed7645649260be5bffe505975",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-channels-for-making-a-skill-reachable-are-under-test",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

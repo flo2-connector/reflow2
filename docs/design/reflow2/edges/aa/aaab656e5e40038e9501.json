@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:302b963c841a5fc6fcf5d11400d13267486230667dcffe2e5cb70e2611ca5af9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-hub-flags-an-identical-file-in-two-projects-when-a-project-changes",
+  "properties": {
+    "approved_at": "2026-09-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

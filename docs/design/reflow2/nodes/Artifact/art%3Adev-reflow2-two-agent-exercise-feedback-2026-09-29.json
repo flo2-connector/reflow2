@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5301f4477413bf4023fd08e92edc8f0544218724f3256a1dbe3a06c342d41974",
+  "node_id": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "A field report from the dev_reflow2 hub (Anthony's hub over reflow2 and flo2), copied verbatim from its docs/TRIAL-LOG.md \"Session 5\". The hub file is the living copy.\n\nWHAT HAPPENED: Anthony started the flo2 design \"ideal knowledge graph\" (50f966697d6c5024) and delegated every decision in it. On his instruction (\"One that interfaces with reflow2 and one that acts as the human user\"), a DESIGNER agent worked the design through the claude.ai flo2 connector's generic use_design_tool, on reflow2 0.74.0. A separate OWNER agent, with no design tools, decided. The hub session relayed between them. The run stopped after 3 rounds so reflow2 and flo2 can be fixed first; it resumes later as a before-and-after test.\n\nBASELINE: the designer took about 610 tool calls and about 50 minutes, and about 290 KB was echoed for about 40 KB of edits. The designer's 35-entry friction log is the primary source for most items.\n\nThe report's own conclusions are claims to test, not facts. Registered and PARKED under dec:a-dated-field-report-is-registered-and-parked. Triaged under rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed on Anthony's word, 2026-09-29: \"let's do the traditional /root-cause on issues and /brainstorm on ideas ... Then update the corresponding design with those inputs.\" Items that land on flo2's side (the gateway's approval binding, the claude.ai connector) are recorded in flo2's design and linked from here.",
+    "location": "docs/feedback/2026-09-29-dev-reflow2-two-agent-exercise-feedback.md",
+    "name": "dev_reflow2 hub, Session 5 (2026-09-28 to 29): a designer agent and a separate owner agent design a new product on flo2 through the claude.ai connector (reflow2 0.74.0). 29 issues (I1–I29), 16 ideas (D1–D16), 4 things that worked (W1–W4), measured baselines",
+    "status": "realized"
+  }
+}

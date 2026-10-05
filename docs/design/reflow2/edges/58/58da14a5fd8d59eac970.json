@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0021290e0fa57eaabd4d6c46b385d767ef583ecf2c467830bd0649b069d7a4e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

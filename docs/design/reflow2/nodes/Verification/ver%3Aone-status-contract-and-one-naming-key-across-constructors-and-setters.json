@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d5088aecb0e9a9bd5757d4f80150702535321839edec403efdeb26c4697c803f",
+  "node_id": "ver:one-status-contract-and-one-naming-key-across-constructors-and-setters",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/one_status_contract_across_sibling_constructors.rs (4 tests: the constructor set is derived from the schema's status defaults + Artifact and pinned; approver set == {add_decision, add_design_rule, add_requirement} each with acted_at; a passed status is stored and an omitted one lands as named on Component/Release/Project/DesignEpoch, a revise leaves it alone; an undeclared value is refused by name). crates/reflow2-mcp/tests/a_node_is_named_by_the_key_the_last_tool_used.rs (4 tests: 25 structs × 2 aliases deserialize on the wire path; properties→props on 4 writers; the published schema carries the typed key only; node_id moves a capability end to end).",
+    "findings": "pr run: 8 tests passing; full workspace suite green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "Every constructor of a status-carrying type takes status and names the landing; approver is on exactly the three intent constructors; 25 typed keys accept id and node_id; props accepts properties; the schema teaches the typed key only",
+    "status": "passing"
+  }
+}

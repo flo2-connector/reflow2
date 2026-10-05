@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b5def2ced9cf5a7f6fb9c018b18aa761029b096e1bce6197cfd32cb92ac74b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-first-session-leaves-the-adapter-in-place",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:test-served-skills"
+}

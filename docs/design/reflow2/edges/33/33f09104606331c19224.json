@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43b5f4a5dc820c35b9c622e4f75eb32880c01e6da8ddaf095e68826566e8a93b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:surprises",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:surprises"
+}

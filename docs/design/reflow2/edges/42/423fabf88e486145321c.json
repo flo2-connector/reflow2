@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ed9a4e6ccde1bd579fc15685a59c804e0adb70dc76ea4041a84f1e94b225c76d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-fact-carries-its-date-and-the-date-is-read",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:search"
+}

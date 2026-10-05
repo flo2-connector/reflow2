@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1cf5def7d4134f75dff6b7cb8b28eacf72c0e987b4377575cbd20eaa70bca2b1",
+  "edge_type": "REALIZES",
+  "from_id": "art:reflow2-mcp-launch",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-session-serves-a-release-binary"
+}

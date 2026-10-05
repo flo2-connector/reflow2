@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6390a8c177b70889c95fbb64c4e1c1f949be1d5346b8c466b0fbd66e9a78406f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-black-box-mechanism-is-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:a-black-box-needs-three-edges-not-one"
+}

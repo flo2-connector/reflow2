@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:09cfa7dbd3aca0e91583928a76758ae126da72b0843ea22d11ccb6bc63679fa2",
+  "node_id": "ver:two-branches-with-disjoint-design-changes-merge-with-plain-git",
+  "node_type": "Verification",
+  "properties": {
+    "description": "In a temporary repository with a saved design: branch A adds a requirement and edits capability X, and branch B adds a decision and edits capability Y, each exporting once or several times. Merge A, then merge B with `git merge` and NO merge driver configured (as GitHub does). PASS: no conflict, and the merged design holds every change from both sides. A control where both branches edit the SAME property of the same node must produce a conflict on exactly that one item file. Reproduces #571's second and third CI failures, which today conflict on the whole file every time. Must fail on the current single-file export before it is trusted.",
+    "findings": "2026-10-03 (chg:the-design-is-saved-one-file-per-item-2026-10-03): tools/test_item_layout_merges.py on the real binary, real git branches, no merge driver configured. test_two_prs_with_records_and_fragments_merge_in_either_order_with_no_conflict: two PRs, each with a design record (2 and 3 exports) and a CHANGELOG fragment, land in both orders by merge commit and by squash with zero conflicts and one identical tree; `--diff` (compare_designs) reads the merge identical to a sequential replay of both records, same content hash; the merge imports cleanly. test_the_same_property_changed_on_both_sides_conflicts_on_that_one_item: exactly one unmerged path, that capability's item file. test_the_single_file_export_conflicts_where_the_layout_does_not: the same disjoint changes on a single-file export conflict on it (the control the check asked to fail first).",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "method": "test",
+    "name": "Two branches that change disjoint parts of the design merge with plain git, no custom driver, no conflict",
+    "status": "passing"
+  }
+}

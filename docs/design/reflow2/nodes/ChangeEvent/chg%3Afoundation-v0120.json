@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d46aea2a4b7248599b215c26f44b31c90dbe0b9b2766d138d43a6ed8307b6abf",
+  "node_id": "chg:foundation-v0120",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The dynograph-foundation pin moves v0.11.0 to v0.12.0, closing a type leak reflow2 was structurally exposed to and making the forwarded feature names a committed contract upstream"
+  }
+}

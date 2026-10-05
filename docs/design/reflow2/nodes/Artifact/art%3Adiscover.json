@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2bfbf7537a6abdd50b9e2ea9f5a282b23c715e8f63b15ff3abfba8e26e84c672",
+  "node_id": "art:discover",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/discover.rs",
+    "name": "discover.rs — what design lives at a path, read from sidecars and never by opening",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

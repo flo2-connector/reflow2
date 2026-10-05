@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f09f95da4ae12d7aff69ebf3ea10a991c0dde48b98eee551691e542234d094bc",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 2026-09-25 report (F-29, add_capability allocated_to answered nothing moved): the edge was drawn; the revision note is computed from properties only, so three constructors measured say nothing moved when only an edge moved.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-nothing-moved-is-computed-from-properties-while-the-call-drew-an-edge-2026-09-28"
+}

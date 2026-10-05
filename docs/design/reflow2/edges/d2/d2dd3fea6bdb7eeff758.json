@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ca32f75cc476fe5accec350997151615496d8b5874ce3783d4a10356c94cbb20",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:ingest",
+  "properties": {},
+  "to_id": "dec:sanitize-spof-accepted"
+}

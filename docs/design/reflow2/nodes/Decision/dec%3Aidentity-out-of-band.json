@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:46a8f01924ffba87d8d88e2ddad6a5153cbb7d20a8e6103a1d818573fb1d1682",
+  "node_id": "dec:identity-out-of-band",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "A design's identity is a UUID minted at genesis and stored in the graph; the friendly name is a label on top of it. A seat's identity is the harness session id it was already given. Rejected: deriving from the project name or path (two designs can share both, and the id must survive being copied), and a registry that hands out ids (that is the coordination this avoids, and there is no service to host it).",
+    "name": "Names are assigned with zero coordination, never derived from shared state",
+    "rationale": "Neither identifier is negotiated with anybody, so neither can race — unique by construction at one seat or fifteen. The fleet reached this by DELETING a whole mint-race guard: the race was an artifact of deriving the handle by reading a shared roster, so removing the derivation removed the race rather than patching it. reflow2 has the derived-identity bug twice today — every in-memory graph answered DEFAULT_GRAPH_ID until mirroring needed open_in_memory_as, and claims record a label rather than an owner.",
+    "status": "accepted"
+  }
+}

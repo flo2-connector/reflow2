@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79190ec6a8ac2f85c234eb2a934787857ad040e871341fabd34d05d1a3a76928",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:graph-export"
+}

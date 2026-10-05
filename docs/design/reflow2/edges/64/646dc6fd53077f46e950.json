@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfe63819e5c28d42d8d0c4b2af2c5b2480c3765bd4bd8d6af2d17b8f32ec2908",
+  "edge_type": "CHANGED",
+  "from_id": "chg:corpus-trial-finds-silent-merge-loss",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:auto-merge-at-90-destroys-sibling-names"
+}

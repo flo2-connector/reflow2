@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eb23e1e27aa10a1a22ca5a5716fe602688caea1e8c6d0e492b09f0f73e510b26",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:correction-stranded-server-is-recoverable-without-a-reconnect",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 1.0,
+    "evidence": "Corrects one clause only: the stranded session IS recoverable without an MCP reconnect, by starting a replacement daemon by hand from the on-disk path. Proven by execution on 2026-08-08. The rest of that node -- the spawn failure, its cause in current_exe() resolving a deleted inode, and the misleading log advice -- stands unchanged."
+  },
+  "to_id": "fact:defect-rebuild-strands-the-shared-server"
+}

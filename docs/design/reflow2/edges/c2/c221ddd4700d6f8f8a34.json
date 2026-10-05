@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8022dae9c2405ed26b662aee3f753b03677b66d8e33c767c4573f20fb304855b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:report",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:surprises"
+}

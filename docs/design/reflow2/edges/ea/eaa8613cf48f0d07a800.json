@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3f9e80f1966b173919123f4f4a6d53187f7c126ffbbe1157a1ff6b94b1725b06",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:parallel-work-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:parallel-work-skill"
+}

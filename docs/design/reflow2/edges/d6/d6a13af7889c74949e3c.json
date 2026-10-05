@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:64387dfaf800a5a5158fb67067b4730be3a5b0f8f9a70c97331a5d3659f20df0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:one-tool-declares-its-output-contract",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:mcp-surface"
+}

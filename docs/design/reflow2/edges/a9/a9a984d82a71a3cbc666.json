@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:31f8d2fca439fc2921d16b0354794ec742f737e22938befc00ec441a1019068c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:install-once-per-machine",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-nudge-path"
+}

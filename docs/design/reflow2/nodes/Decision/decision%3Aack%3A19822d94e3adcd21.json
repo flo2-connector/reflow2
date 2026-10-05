@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:04d2cf88af8b300e1e24071ce721c40814d246866ec991713bf9f8998c5fe52f",
+  "node_id": "decision:ack:19822d94e3adcd21",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:19822d94e3adcd21.",
+    "name": "Reviewed: gap:19822d94e3adcd21",
+    "rationale": "Standing acknowledgement, re-stated because the rollup's id moves whenever the capability set does — it is now 62. Validation for this project is the trials programme: reflow2 used on real designs, which in the last two days meant an adopt pass over dynograph-foundation and a live two-session seam exercise that found four defects nobody had reviewed their way to, including two in reflow2 itself. It is not a validation-kind Verification per capability. Recording 62 near-identical validation nodes would turn the number green without anyone having checked anything, which is the dishonesty `dec:passing-is-verified` exists to prevent.",
+    "status": "accepted"
+  }
+}

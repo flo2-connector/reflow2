@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4beaf797ba1a774e3c7dc4b728979280a18352620cab0791772cd1e69b612d86",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:sanitize",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:sanitize"
+}

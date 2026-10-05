@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ad6b3e7d1322b3f9dbf4a67ad00358e786fae7e840861c0a0cc7784e1354c916",
+  "edge_type": "CHANGED",
+  "from_id": "chg:linked-repos-trial-run",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:composed-analysis"
+}

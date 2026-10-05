@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:11b49a9214dabfef2cc6b71ed69a32bab35fe9226790583f929c8d1215fada89",
+  "node_id": "epoch:mode-chosen",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The governance mode becomes a choice, and reflow2 makes one",
+    "sequence": 234,
+    "status": "arrived"
+  }
+}

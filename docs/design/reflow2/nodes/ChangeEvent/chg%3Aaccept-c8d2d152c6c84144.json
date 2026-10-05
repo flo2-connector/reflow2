@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4786a1d956e833b5429567a18c082fe0497f11a2aaa79f7b18d44987c7be9b8c",
+  "node_id": "chg:accept-c8d2d152c6c84144",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-09-12",
+    "name": "CORRECTING A BASELINE THAT WAS INVENTED RATHER THAN COMPUTED. The first link carried a hand-typed hash that had never been read off the file — a plausible-looking string in the one field whose entire job is to be unforgeable. Nothing about the file or the design changed between the two values; only the recorded hash became true. Worth keeping on the record: a checksum nobody computed is worse than none, because reconcile_artifacts would have reported drift forever against a baseline that never described anything.",
+    "subject": "system"
+  }
+}

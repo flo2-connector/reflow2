@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53afdce4020a612244fd733ff23fc612da8d424f1a9e138f2c48471a889c9d1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-dangling-reference-is-detected-on-its-own-terms",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

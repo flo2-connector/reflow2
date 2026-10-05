@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9d3a9e7689ebee2150e0a3736382a6ca468ad8a500b4df6b4c3fe6e573abf58b",
+  "node_id": "cap:dimensions",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Assess nodes on dimensions and detect decline.",
+    "name": "Track quality over time",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f63b551cece63fa8f5a74a94001fcd26324416bbd2e23d337fdb3c6b6967776c",
+  "node_id": "art:detect",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/detect.rs",
+    "name": "detect.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

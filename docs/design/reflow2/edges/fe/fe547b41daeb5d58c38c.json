@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bb7f7e6cc043eea9b5e66cededc5333c9b56f124f0b21b61ee052ae642186786",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-question-names-whom-it-was-put-to-and-who-answered",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-ask"
+}

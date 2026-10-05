@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:17ac20a3f903e64c0660f5bfa036b60af253be561d468fbb11db9f5585a69186",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-rule-states-its-scope-and-a-conflict-is-surfaced",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-storybug-boss"
+}

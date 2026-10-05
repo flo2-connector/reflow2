@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f62a32359000201e05052783c4438c2eb7baa9bd8c2fb7c167315455be678cda",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-recorded-risk-reaches-someone",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-storybug-boss"
+}

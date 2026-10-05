@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d271dcdc122f8de3616dced06c84662480133ba8b99b8c352c5c38afe728bf04",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl179-maturity-profile",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:trajectory-position-is-computed"
+}

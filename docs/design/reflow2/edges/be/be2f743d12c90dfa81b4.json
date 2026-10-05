@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8b4fc38b963806c518ea8d01481f3aba762998d2dd1bcf6f44c42912b5fb4a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-that-could-not-run-lands-as-blocked-and-never-reads-as-failed-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

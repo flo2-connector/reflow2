@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b542296d35d8e6d8d35d5890252314b5ea2643424b64d74fe22462aba0c189ee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:v050-as-released",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:af48c6f93432203442ac2948e52f596ab52903c4c33c6dbec81b75aa21006c7c",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:defect-merge-survivor-ignores-priority-and-status",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 0.9,
+    "evidence": "The decision settles the survivor by provenance with id breaking ties. Measured in the field 2026-08-08: that rule would delete a critical/proposed requirement in favour of an unrelated medium/accepted one. Neither priority nor status is consulted anywhere in the rule, so the destructive half lands on the more load-bearing node."
+  },
+  "to_id": "dec:merge-survivor-provenance"
+}

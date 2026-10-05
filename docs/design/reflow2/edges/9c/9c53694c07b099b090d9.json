@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b51a38fa15891797b50d02f095da3a68ea67ae41c2f007c1c9771a92b0f52f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:instructions-served",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skills"
+}

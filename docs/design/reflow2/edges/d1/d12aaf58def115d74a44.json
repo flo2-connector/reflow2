@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0dacb45bd56b76cde53e942ad8850e1e6aa084ad0c23a1ea6c3b2ca6462cd3a",
+  "edge_type": "ANNOTATES",
+  "from_id": "frag:usgov-2026-08-15-item-3",
+  "properties": {
+    "note_kind": "reviewer",
+    "resolved": false
+  },
+  "to_id": "art:usgov-genesis-feedback-2026-08-15"
+}

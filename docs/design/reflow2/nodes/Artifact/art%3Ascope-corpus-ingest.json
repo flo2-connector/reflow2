@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:57be4db44bc06714e72b37ef418efc9ce1d9205e1ed625975a66ca3349280d4c",
+  "node_id": "art:scope-corpus-ingest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/scope-corpus-ingest.md",
+    "name": "scope-corpus-ingest.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

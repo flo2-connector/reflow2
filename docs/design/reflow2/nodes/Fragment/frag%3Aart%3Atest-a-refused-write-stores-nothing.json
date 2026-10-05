@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e18c7429a315e01ac38abc583275d7654aaa24a89080c6748be80bd02d89eb41",
+  "node_id": "frag:art:test-a-refused-write-stores-nothing",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_refused_write_stores_nothing.rs — every served write tool refuses with the store untouched, and the measured classes pinned"
+  }
+}

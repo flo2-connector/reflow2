@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9f3ea0f29916466caae58bf6d74749f2b632aaa9554b05d278d5ddbec0e0928b",
+  "node_id": "decision:ack:c510544d78bf4fef",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:c510544d78bf4fef.",
+    "name": "Reviewed: gap:c510544d78bf4fef",
+    "rationale": "Deferred on Anthony's word, 2026-07-28. Accepted and not dropped: reflow2 regression-gates its DETECTORS (phase_trial 13/13, the erosion trial) and has nothing measuring whether a person or agent can still get through the process, so it could become materially harder to use across a release with every gate green — a consequence report-friction's own text concedes (\"ordinary use produces better evidence and currently loses all of it\"). Deferred behind req:friction-has-a-severity-bar, which is a genuine precondition rather than sequencing: a baseline needs classified countable findings to be a baseline of something. Also open and not decided: whether the blind-execution structure that makes this work (one agent drives without seeing expected outputs, another evaluates the transcript) is something reflow2 runs against ITSELF, or a harness offered to any project reflow2 is installed in — those are different products, and the second inherits the redaction problem in full.",
+    "status": "accepted"
+  }
+}

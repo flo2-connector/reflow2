@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47f4bb1e4aea4d36f8f5c81fe7cd90cafa711112409ad86ab72b2eb9cae5ab92",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:llm"
+}

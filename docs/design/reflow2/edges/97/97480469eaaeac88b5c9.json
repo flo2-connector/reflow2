@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b5d99bc4a5489193d626287b758410ef492d48bbea80e9e62066369589143b9e",
+  "edge_type": "CAUSES",
+  "from_id": "fact:seven-open-questions-had-already-shipped-their-answers-2026-09-14",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This requirement exists BECAUSE of that sweep: it found seven ideas whose answers had already shipped and were still being offered as open work, and diagnosed the cause as the project's own three-leg rule (typed tool + instruction + detector) missing its third leg.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "req:an-idea-the-design-already-built-stops-reading-as-an-open-question"
+}

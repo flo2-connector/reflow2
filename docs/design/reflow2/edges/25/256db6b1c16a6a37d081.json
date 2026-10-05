@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91e85f67ff4fe476b7ccd8139b2c847088a8ebbc3f85d3aa6b62bdd901415d78",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:export",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:export"
+}

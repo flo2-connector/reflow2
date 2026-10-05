@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a811db7c4a5b1eecd775fbebc2b78033935a05923553cedb9c36c6338d34a5cb",
+  "node_id": "art:a-settled-decisions-name-stops-asking-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "set_decision_status takes name; the settle reply names a stale OPEN name; the settled_decision_named_open sweep names exactly the accepted decisions still so named; the governed-prose check reads names; counterweights for proposed, deferred and a decision about opening something.",
+    "location": "crates/reflow2-mcp/tests/a_settled_decisions_name_stops_asking.rs",
+    "name": "Test: a settled decision's name stops asking",
+    "status": "realized"
+  }
+}

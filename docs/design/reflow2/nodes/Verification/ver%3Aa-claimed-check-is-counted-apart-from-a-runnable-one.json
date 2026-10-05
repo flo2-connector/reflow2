@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:ac6c89305d927a4e66e8df76180bfa8f4ef2e47f7878c70a35b0d220c2ff0cbf",
+  "node_id": "ver:a-claimed-check-is-counted-apart-from-a-runnable-one",
+  "node_type": "Verification",
+  "properties": {
+    "description": "THREE RUST TESTS on the count (`crates/reflow2-core/tests/a_claimed_check_is_counted_apart_from_a_runnable_one.rs`): a passing check nothing implements counts as verified and NOT as runnable; implementing it makes it runnable; an implemented-but-failing check counts as neither, so the narrowing cannot become a second way to be verified. They assert against the SERIALIZED coverage so they compiled before the field existed and were observed failing on the ASSERTION rather than on the compiler.\n\nTWELVE PYTHON TESTS on the ratchet (`tools/test_check_verification_ratchet.py`), hermetic — they build their own designs and read nothing from the repo. Five exist only to pin that it cannot pass quietly. One of them caught a real bug on its first run: two paths in the gate returned a bare int where the caller unpacked a tuple, so a clean sweep crashed with exit 1 while printing \"OK\".\n\nRE-RUN: `cargo test -p reflow2-core --no-default-features --test a_claimed_check_is_counted_apart_from_a_runnable_one` and `python3 tools/test_check_verification_ratchet.py`. Both are CI steps.",
+    "findings": "3/3 Rust and 12/12 Python green on 2026-09-22, after each was observed red first. Measured against the committed export in the same session: 291 capabilities, 241 verified, 21 by a runnable check, 220 by a claim.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-22",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_claimed_check_is_counted_apart_from_a_runnable_one.rs",
+    "method": "test",
+    "name": "The split is pinned in Rust and the ratchet in Python, both observed failing first",
+    "status": "passing"
+  }
+}

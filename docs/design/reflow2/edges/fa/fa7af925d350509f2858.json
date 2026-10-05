@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1d20af206e1d70aa374c6170de5386a5e661e797f4c7af9f31aa86f0ad422c18",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

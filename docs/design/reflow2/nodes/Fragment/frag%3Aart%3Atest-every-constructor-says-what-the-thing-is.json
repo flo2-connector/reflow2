@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a2becc7d25ced4e0a6da6639004a65ac976d43a91ed97344e9c94c8a15d32d29",
+  "node_id": "frag:art:test-every-constructor-says-what-the-thing-is",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered every_constructor_can_say_what_the_thing_is.rs"
+  }
+}

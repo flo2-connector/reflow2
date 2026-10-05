@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:08c11498a21189de8f11257ddb6b924d2cb3b36d4649230c734bb7955cfa17f1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-finding-says-when-the-state-it-reports-is-normal-for-the-phase",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

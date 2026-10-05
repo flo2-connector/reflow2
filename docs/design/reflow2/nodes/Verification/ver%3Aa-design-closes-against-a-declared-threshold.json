@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:ead00f41da6d3930735f1992305edc606a5c445fb1d0957e80acc46e3bb41ab3",
+  "node_id": "ver:a-design-closes-against-a-declared-threshold",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_design_closes_against_a_declared_threshold.rs — nine cases over closure_report, set_closure_criterion, set_constraint_margin and release_report.closure.",
+    "findings": "closure3 run: 9 passed, 0 failed (after the epoch fixture moved to plan_epoch; add_epoch records an arrived point, and the report reads an absent status as arrived).",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "level": "unit",
+    "method": "test",
+    "name": "No declared criterion reads as no criterion stated, never a default; an unknown leg is refused by name; traceability at 100 closes on a delivered thread and opens when the check fails; a counted leg with nothing to run on cannot read as closed; 50% is a legal declaration; a budget inside its limit but not its margin is a hole; the first hole follows the declared order; scheduled work governed by an open decision is the decisions hole; closure is a report and the release report carries it",
+    "status": "passing"
+  }
+}

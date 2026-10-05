@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:444ba0433b2d917e664abdee52813b9540fc59c53ab12087d31ba1f269d5f806",
+  "node_id": "chg:governance-capability-gets-its-requirement",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "cap:governance-proposal finally satisfies something. It shipped, was served and was realized while satisfying no requirement at all (gap:3f04e352bc497c5b, unmotivated_capability 0.55). Anthony chose the shape 2026-08-11 — a new requirement mirroring req:inviolable-intent one layer along, since cap:kpp-proposal already satisfies that one. req:defaults-do-not-assert was considered and declined: it names DesignRule.enforced explicitly and predates the skill by six weeks, but covers ten defaulted properties of which this addresses one, so the edge would make a tenth read as the whole. The requirement stays `proposed` — he chose the shape, the wording is an agent's draft."
+  }
+}

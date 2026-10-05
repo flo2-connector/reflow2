@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f5989e666df3ba54731780fd198b32f9ad0c8d91ae5ad30705cdf470007a61a5",
+  "node_id": "ver:the-pointer-is-served-as-a-section-and-the-first-session-skills-say-to-leave-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/served_skills.rs::the_pointer_a_project_holds_is_served_as_a_section_and_the_first_session_skills_say_to_leave_it",
+    "findings": "pr run: passing.",
+    "kind": "verification",
+    "last_run_at": "2026-09-19",
+    "level": "integration",
+    "method": "test",
+    "name": "The pointer section is served and equals the kit's POINTER.md; genesis and adopt name the section, the init, and the sidecar",
+    "status": "passing"
+  }
+}

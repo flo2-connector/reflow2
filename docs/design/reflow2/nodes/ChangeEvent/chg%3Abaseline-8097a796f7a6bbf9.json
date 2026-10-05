@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:803ae3ad7fce7a54cd51393415c35d2b307002cf1cafcbb0461a07885f8101ae",
+  "node_id": "chg:baseline-8097a796f7a6bbf9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-16",
+    "name": "First baseline. 11 cases, three mutation-checked, and the two counterweights that keep `conformance` from collapsing into `completeness` or into the checksum.",
+    "subject": "record"
+  }
+}

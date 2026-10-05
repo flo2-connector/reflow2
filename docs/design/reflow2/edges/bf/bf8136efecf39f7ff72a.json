@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a22563f1616b2580f2907e0e169690c9b177d73e660550b25dfc41646ef2963e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:changelog-view",
+  "properties": {},
+  "to_id": "snap:epoch:v0200-scoped:cap:changelog-view"
+}

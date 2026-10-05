@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a5f49f1a3fa81afba07d43c28ef876c4710a41eb150b398ea31dfeaffc72ed1b",
+  "node_id": "art:a-levied-requirement-is-recordable-in-one-call-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two tests pinning that a levied requirement records in one call, and that omitting the new fields leaves the schema default untouched.",
+    "location": "crates/reflow2-mcp/tests/a_levied_requirement_is_recordable_in_one_call.rs",
+    "name": "crates/reflow2-mcp/tests/a_levied_requirement_is_recordable_in_one_call.rs",
+    "status": "realized"
+  }
+}

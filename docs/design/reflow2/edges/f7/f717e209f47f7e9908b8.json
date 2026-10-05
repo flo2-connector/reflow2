@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f32840521b650212da0721167a6adb6b7068be2cbf6c493028fa5561fd8dad3a",
+  "edge_type": "REALIZES",
+  "from_id": "art:docker-smoke-script",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

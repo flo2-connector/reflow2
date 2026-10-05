@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5cfcc619e1fbd40f14bb8fc7e1f80b387694bb6fad111f16d5d08f3757c8f731",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-duplicate-findings-hide-a-hub-so-five-are-two"
+}

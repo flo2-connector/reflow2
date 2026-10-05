@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a9c3640171df212883d71dffd779478d56c0d8407dc1d036f9a13b89c09b84b",
+  "edge_type": "REALIZES",
+  "from_id": "art:relate",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:relate"
+}

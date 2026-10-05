@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f2e09904b85c9c656b9551b808cfc06a479cb2798b6d4cb8162cd14a231d9c39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:26468c9ec33852420ebc834e42b37a37e6fdef1b10e268855f373c8fedf93438",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

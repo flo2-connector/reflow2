@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:1df5fbdc2246f457941b6e3dd54d43242ba8da1511b688df5dcd78f9d064fa86",
+  "node_id": "ifc:llm-backend",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "none",
+    "designation": "internal",
+    "error_model": "The core is deterministic and must stay so, so a backend failure is returned to the caller rather than retried or defaulted — a fabricated answer would put LLM output inside a deterministic result (`req:deterministic-core`, `req:no-silent-fallback`).",
+    "medium": "library",
+    "name": "LlmBackend — the one seam between the deterministic core and any LLM",
+    "operations": "complete(prompt) -> answer",
+    "paradigm": "synchronous",
+    "payload_format": "text",
+    "payload_schema": "crates/reflow2-core/src/llm.rs — the `LlmBackend` trait. The deterministic core never names a provider; it holds a `&dyn LlmBackend`.",
+    "provenance": "authored",
+    "transport_security": "none"
+  }
+}

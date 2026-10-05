@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e27e1b25531312a33f265eeb647ad4d8ee26997b6d02c9832e8e63f7435a442a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-scope-and-reachability",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-scoped-answer-actually-narrows"
+}

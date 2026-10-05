@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1359d2c177c503045df14c4fa4f0033cb2f03dea3892c8a83c9f3175706fc352",
+  "node_id": "epoch:v0560-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The increment that fixed a defect this project shipped the same week and had itself predicted-then-shelved, and that gave a user's private translator a home in the design.\n\nPinned here because a release needs a position on the time axis: without AT_EPOCH a release resolves to a point with no sequence, so any window computed from it loses its lower bound.",
+    "epoch_type": "release_cut",
+    "name": "v0.56.0 cut — the guard asks the store, and a node records the user's own word",
+    "sequence": 405,
+    "status": "arrived"
+  }
+}

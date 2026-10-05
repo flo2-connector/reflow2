@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b36635363ad6ed01bcb8a3254d556d0e3995a2acf8429b3f212d7c1f01b2f3de",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl163-propagate-discriminator",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

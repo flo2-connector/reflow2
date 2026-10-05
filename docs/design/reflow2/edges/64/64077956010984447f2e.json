@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25d496e767424154afd40b9ef1fa52ab45329ab674d2ebfe961614e2fc380120",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-package-versus-shared-server",
+  "properties": {
+    "evidence": "The Aug-5 tension between the self-contained package and collaboration, grown into a proposal to keep the design apart from the implementation."
+  },
+  "to_id": "dec:idea-the-design-lives-apart-from-the-implementation"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13f90f156596351f2c8b06600f21d33d98e2824d63edd84c0321ba82c48010a6",
+  "edge_type": "REALIZES",
+  "from_id": "art:init",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:install-reaches-the-agent"
+}

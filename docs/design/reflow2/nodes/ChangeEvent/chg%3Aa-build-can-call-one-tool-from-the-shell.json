@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4069fbd9e273ae059a4c6fbafcdcfcc069f95337d2e2c9d99dd7c43b730986d5",
+  "node_id": "chg:a-build-can-call-one-tool-from-the-shell",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "A build can call one tool from the shell: `--call <tool> --args <json>` runs a served tool through the server path and prints its reply as JSON",
+    "rationale": "bhome S3 (2026-09-18): the plan sheet's budget was a hand transcription because no door existed for a script. Anthony 2026-09-19: 'work your way through them one by one'. The one-shot call was the cheapest of the idea's three options and reuses two things that already existed — the server's own call path and the snapshot read — so nothing here paraphrases a tool.",
+    "summary": "main.rs: --call and --args flags, call_one_tool (argument and tool-name checks before the graph opens; read-only tools fall back to the snapshot copy while the graph is held; exit codes 0/1/2), call_over_pipe (in-process rmcp client over tokio duplex), OneShotClient naming the door; Cargo.toml: rmcp `client` feature; SETUP.md and AGENTS.md; one test file; CHANGELOG."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4a83a9fa45c8cdeaa634e5e0dbd732c7e83ec8f2c2e5a35f9509ee29c71948ab",
+  "node_id": "frag:art:detect-and-ask-skill",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered detect-and-ask/SKILL.md — the ask half of the loop, and now the rule for when NOT to ask"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:858a079a2c84076a21bd465d09b4f5bd1ae3aaeca4ade402ce9ad3fbe008dc80",
+  "node_id": "chg:decision-status-gains-deferred",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Decision.status gains `deferred` — set aside, not debt, and the owner's word like accepted",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b1c6f3ae5d190638fadf18faae1f10f9e6d83186c5583f1545fae4bf4bee635c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-quantity-says-how-it-was-obtained-and-a-check-can-be-rerun",
+  "properties": {
+    "approved_at": "2026-09-16",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

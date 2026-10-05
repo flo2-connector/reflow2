@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:304763fdd9180ef955a5c44d0334344062f6aa481d7de7a517ab96db2955e38f",
+  "edge_type": "REALIZES",
+  "from_id": "art:repair-notes-lifted-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:bounded-reads"
+}

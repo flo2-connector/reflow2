@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f331ff12024c4ab259a81701367782d8b4376ca5475be2980850cf430761490e",
+  "node_id": "chg:who-edges-name-their-fix",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "authored_by and owned_by distinguish a wrong TYPE from a missing node, and name add_contributor"
+  }
+}

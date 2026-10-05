@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d62b105105e84a005612305d6d1060388a9f0ee8f54fc75bd5f4557d291a35da",
+  "edge_type": "VALID_FROM",
+  "from_id": "fact:defect-main-rs-realizes-the-wrong-capability",
+  "properties": {},
+  "to_id": "epoch:defects-in-the-graph"
+}

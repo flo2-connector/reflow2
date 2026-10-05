@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cbfbdabc649fc7b5c4a8f5e983477d028b66f8ce469d7c4485b7d3e363d7cd2a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:evidence-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:evidence-fidelity"
+}

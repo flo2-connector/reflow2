@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6e19db997259893ad12e2925cede62ed2d846501c0048cefef15a2f854a550db",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "ifc:req-dyno-storage-api",
+  "properties": {},
+  "to_id": "snap:epoch:the-absorption:ifc:req-dyno-storage-api"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7f6c60db7e44348ff0e8e9f974358562d071ca4132b5bea3ef2e34230cdabb2e",
+  "node_id": "chg:accept-d54a5039c335f14f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-29",
+    "name": "The test constructs SetDecisionStatusReq as a struct literal and now passes name: None for the new field (chg:a-settled-decisions-name-stops-asking). What it checks is unchanged.",
+    "subject": "system"
+  }
+}

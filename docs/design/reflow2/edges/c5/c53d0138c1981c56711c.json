@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:163de1c0f28fff259bb98fbc4e4e0199832b3c8c324a6501097760be30295745",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planned-epochs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:planned-epochs"
+}

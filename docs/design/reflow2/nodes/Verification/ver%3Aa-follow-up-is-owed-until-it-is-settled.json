@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1ee25dffd0ef26b4ad7f160e28a0277cf1a965fe1e5d41d612192252a38386cd",
+  "node_id": "ver:a-follow-up-is-owed-until-it-is-settled",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_follow_up_is_owed_until_it_is_settled.rs, five cases over an in-memory design with one deployed service: a TemporalFact with fact_type follow_up and no valid_to is counted, listed with its subject and capture date, named in loop_status.next, and makes clean false; an INVALIDATES edge from a ChangeEvent clears it; a valid_to clears it; a finding of any other fact_type is not counted; two open ones come back oldest first. The door itself (the skill) is checked by check_command_surface.py and skill_lint.py in CI: the three skill copies are byte-identical, the command copy matches its source, and every tool and field the skill names exists on the served surface.",
+    "findings": "5 passed, 0 failed; the existing report suite (20) still green alongside it. skill_lint and check_command_surface green after registering five field terms the new skill names.",
+    "kind": "verification",
+    "last_run_at": "2026-09-16",
+    "level": "unit",
+    "method": "test",
+    "name": "An open follow-up is listed by the loop until a record answers it or it lapses",
+    "status": "passing"
+  }
+}

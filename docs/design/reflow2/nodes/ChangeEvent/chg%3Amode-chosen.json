@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:652c7258ed96f39e354d7568876a895cce125b4892a556c7a1ef8be60528ad3e",
+  "node_id": "chg:mode-chosen",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "constraint_change",
+    "name": "proj:reflow2 mode: flexible (defaulted, never chosen) → rigid (chosen)"
+  }
+}

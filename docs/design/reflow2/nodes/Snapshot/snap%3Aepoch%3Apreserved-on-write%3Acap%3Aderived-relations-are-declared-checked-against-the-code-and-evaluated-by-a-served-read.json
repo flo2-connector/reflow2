@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:927170811231937f0bdb0fc5bd2fa6ab91c2fabf04be60ac35e879bacec2a599",
+  "node_id": "snap:epoch:preserved-on-write:cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:schema\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"A declared list of every relation reflow2 derives: its rule, primitive reading, deduced or induced, and computing code. A test fails on drift in either direction. A served read evaluates the list over the open design. Planned by the 2026-09-29 fix program; it builds on the edge readings of PR #621.\",\"name\":\"reflow2's derived relations are declared as data, a check holds them to the code, and a served read evaluates them with counts and the derived-to-asserted ratio\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:derived-relations-are-declared-checked-against-the-code-and-evaluated-by-a-served-read",
+    "target_type": "Capability"
+  }
+}

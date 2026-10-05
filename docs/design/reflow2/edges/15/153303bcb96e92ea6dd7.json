@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:474529c41c6e10ea01d7442c8ec0c32a7b5836d993135a61c83fc6cd389ae0dc",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:bulk",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:bulk"
+}

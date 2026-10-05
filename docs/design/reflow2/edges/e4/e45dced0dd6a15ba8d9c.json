@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:03e292075d6ddec4df1eea492407a036447e52f56a879008194f144c8014539f",
+  "edge_type": "REALIZES",
+  "from_id": "art:github-mcp-study",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

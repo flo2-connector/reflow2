@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c8cc4ead3a7496c767a9d65ddcd4f7b6bda7e6013932142ffeaf4c2e32dbe2b5",
+  "edge_type": "CAUSES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The capture skill routes what a model CAN place and says nothing about what it cannot, so the residue has no named destination and no tool carries the word a searcher would use.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-sentence-the-extraction-could-not-place-has-no-home-and-is-lost-after-one-render"
+}

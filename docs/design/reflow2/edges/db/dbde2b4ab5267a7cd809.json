@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:71784035884305fddc10385c8a05907ebdc84210bcf8094dc7ed6ae112b691aa",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-session-with-no-seed-can-find-one",
+  "properties": {
+    "covers": "whole",
+    "note": "conformance stated at registration: verified | migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-session-with-no-seed-can-find-one"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea445ab74ca7f328f133a6718bc00a0d1d157c766b4b5489c2ce3936046169e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-without-manifest-detector",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

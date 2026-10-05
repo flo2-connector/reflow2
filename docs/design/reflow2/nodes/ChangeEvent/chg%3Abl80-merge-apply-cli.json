@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dad8fc1cfc27ed3b8e8a0f38ddbbd97061911f818405639f33b8f7223369481b",
+  "node_id": "chg:bl80-merge-apply-cli",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-80: file-pure --merge-apply document CLI"
+  }
+}

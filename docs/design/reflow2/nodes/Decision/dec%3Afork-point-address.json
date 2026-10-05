@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4188d38ad6750942cb069872edb99caac567733d82f596a6c1c78f791b2e29e8",
+  "node_id": "dec:fork-point-address",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "\"The design as it stood at decision D\" resolves by a three-step address: the Decision is pinned AT_EPOCH to a DesignEpoch, that epoch's existing `checksum` property carries the content_hash of the export cut there, and the document itself lives where it already lives — a git-committed reflow2.json. reflow2 supplies the coordinate; git supplies the bytes. No new node type, no mutable pointers, no reflow2-native DAG. Re-taking a road home is then the three-way merge already built (dec:merge-three-way), with the fork point as the base — which is precisely the merge-base reflow2 currently borrows from git, now derivable from its own epoch chain.",
+    "name": "A fork point is a coordinate (decision → epoch → export hash), not a stored copy or a native ref layer",
+    "rationale": "User decided 2026-07-24, choosing the coordinate over a native ref/branch layer. THE REJECTED ALTERNATIVE: branch names as graph nodes — mutable pointers to epochs, a real DAG, so reflow2 finds its own merge-base without git. Rejected on two grounds. (1) It duplicates machinery git already provides, and dec:repo-file-embedded already put the design in the repo as a file precisely so the repo's tooling carries the file-shaped concerns; dec:merge-three-way already chose explicit inputs over git's DAG for the same reason. (2) A mutable pointer is a foreign object in this graph: the whole doctrine of axis Z is that history is never overwritten (req:intent-preserved, req:roads-not-taken), and a ref that moves is by construction a thing whose past value is lost unless separately recorded — reintroducing the erosion the epoch chain exists to prevent. The coordinate has the further virtue of costing nothing: DesignEpoch.checksum already existed in the schema, described as \"a hash over the anchored spec set at this epoch\", which is exactly this use. Honest limit: only exports from v0.9.0 on carry an embedded content_hash (dec:export-hash-chain shipped then), so epochs before it are addressed by git tag alone and claim no checksum rather than inventing one.",
+    "status": "accepted"
+  }
+}

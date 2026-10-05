@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d63c3beb98c5e8dc1bde166f765b6a8bc4f46a8437f0fd2585954c1480093b5a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:select-graph-by-id",
+  "properties": {},
+  "to_id": "dec:one-process-many-stores"
+}

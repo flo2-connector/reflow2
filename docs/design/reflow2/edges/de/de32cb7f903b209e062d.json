@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94bb834a18ca99f7081989671dc8ece6f0091dee987d92af27ce194fa6baa401",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-tools-ranks-what-the-query-means-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:tool-search"
+}

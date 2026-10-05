@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5cc390adfdece6345e0b7f267b8f821b470323a259916d5b098c8c08a6ac2b37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-authority-check-and-planned-exemption",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:check-intent-authority-test"
+}

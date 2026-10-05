@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:621f2c1a91e40490c3e7542710aab43753fe7fc00d2924e2f56512ed429e5071",
+  "edge_type": "REALIZES",
+  "from_id": "art:supersede",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f5eece9626bd92e1ef451a38365929d5208069cd6bf11b2067ecdca284f2b6e8",
+  "node_id": "chg:a-missing-argument-names-the-tool-and-what-it-wants",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "call_tool intercepts a missing-argument refusal and names the tool, the field and its purpose — and starts matching the Ok(is_error) shape rmcp actually returns, which the unknown-field branch beside it never did",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40f6a2b291481b83a8009819f6f623f94ba49e224abb0af3957c98065298d9e7",
+  "node_id": "chg:accept-4472bae83340667d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-04",
+    "name": "The v0.47.1 cut moved the version string in `reflow2.toml` from 0.47.0 to 0.47.1. Nothing this manifest DESCRIBES behaves differently — the dependency set is byte-for-byte what it was, and the design meaning of a cut lives in the Release and its epoch rather than in a version string. Accepted BEFORE `release_includes_all` deliberately: the manifest freezes each artifact's current checksum, so freezing first would record that v0.47.1 shipped the pre-bump file.",
+    "subject": "system"
+  }
+}

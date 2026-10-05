@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee7d0cdfabfef969d978bc6ae32b53d7ae8b0c2ca15a45f723e4581008244a47",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:repair-notes-lifted-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:repair-notes-lifted-test"
+}

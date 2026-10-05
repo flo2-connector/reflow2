@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dd1a8a4d5620ea77aa8743736b359b2475ac8df07df4ffb52ca4d11a59b5201c",
+  "node_id": "ver:the-image-starts",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`docker/smoke.sh`, run by release.yml against the candidate image BEFORE the push. Starts the container on a uid-1000 volume, refuses immediately if the process exited (the failure this exists for is an instant exit, and waiting on a health probe would report it as a timeout instead of naming the cause), then waits on the image's OWN HEALTHCHECK, then makes one request from OUTSIDE the container — because an in-container probe cannot catch a bind to loopback. DEMONSTRATED 2026-08-15 both ways on a locally built image: PASSES in ~8s on the fixed Dockerfile, and FAILS in ~3s on a Dockerfile with the pre-v0.27.0 `--content-path` restored, printing `error: unexpected argument '--content-path' found` and exit 2. SCOPE, stated so this is not read as more than it is: it has not yet run in CI, and it proves the image SERVES, not that any tool behaves correctly.",
+    "kind": "verification",
+    "last_run_at": "2026-08-15",
+    "level": "system",
+    "method": "demonstration",
+    "name": "The published image starts, reports healthy, and answers on its port",
+    "status": "passing"
+  }
+}

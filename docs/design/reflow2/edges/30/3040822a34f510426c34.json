@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:481e9f38777494a8512e21995606196a7456e20f5d02797ea4418a1c3cbb6f4b",
+  "edge_type": "CAUSES",
+  "from_id": "fact:defect-verification-evidence-is-prose-so-passing-can-contradict-itself",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "The structured-result-fields half of the question, reported a day earlier. Both edges land on one Decision deliberately: settling either alone would give the same node type two competing homes for a check's qualifications.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-finding-carries-its-bounds"
+}

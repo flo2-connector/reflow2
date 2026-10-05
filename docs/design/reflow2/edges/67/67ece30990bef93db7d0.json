@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76dd8f9e1c62d9d8a2a73bc3b0c5ad5e9e03961ae0e170c9a61bc01fb637aede",
+  "edge_type": "CAUSES",
+  "from_id": "rule:an-identified-issue-is-enduring-never-dropped",
+  "properties": {
+    "basis": "correlational",
+    "note": "the rule is why this was surfaced and built rather than left in a list of 89",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-a-gap-can-be-scheduled-into-an-increment-like-any-other-work"
+}

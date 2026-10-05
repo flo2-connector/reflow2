@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e63335d489c7f0d6901b6f8c53585c63f619a129e2075a58809a6c1a2ef9ce7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-closes-and-the-design-says-when",
+  "properties": {
+    "evidence": "Whether a design has CLOSED is a threshold judgement exactly as readiness is; that decision already rules that reflow2 states the observation and the owner states the threshold, so a closure verdict can only ever be computed against a threshold the project declared.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:readiness-is-an-observation-the-threshold-is-the-judgement"
+}

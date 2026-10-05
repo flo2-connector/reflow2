@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a8fe11635cf2f660abad645ce77a54915e847261a7d52478152ebfa6603239d",
+  "edge_type": "CAUSES",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The per-source bodies were written one at a time as each detector was added, so the routing and the is-this-even-a-defect framing that two of them carry were never made an obligation of the third.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:one-gap-body-is-a-single-line-where-its-neighbours-carry-the-routing-and-it-fires-once-per-capability-on-a-young-design"
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:43ac579c4ee22c723d5e7ad4a171bd496ffe1d3a10e4608256ed4f24ebccef0f",
+  "node_id": "ver:handed-out-seat-liveness",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A seat the server HANDED OUT but never leased reads `unknown` on a shared server, not `live` — proven over the served tool surface (mint_seat → claim_region → claim_report), not by calling register_seat by hand. Six cases in two dedicated binaries: crates/reflow2-core/tests/seat_liveness_shared.rs (the predicate, plus that a leased seat still answers Live/Gone and that unknown ≠ gone) and crates/reflow2-mcp/tests/mint_seat_liveness.rs (end to end through claim_report, that an unobservable seat is not reported as a ghost, and that mint_seat's advisory says it cannot observe the session and names release_claim). SPLIT FROM ver:claim-liveness deliberately, on the 2026-08-07 precedent: that check is passing and its own name states its scope as \"proven end to end over stdio\", which is the single transport where #100's registry applies — so it stood for a transport it never touched. Own test binaries because declare_serving_many_sessions is a process-global one-way latch and tests/claims.rs asserts the stdio reading of the same call.",
+    "findings": "Both defect-bearing cases were run as positive controls with the fix disabled and both FAIL, so neither is vacuous.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-08-08",
+    "level": "integration",
+    "method": "test",
+    "name": "A seat handed out but never leased reads unknown, not live",
+    "status": "passing"
+  }
+}

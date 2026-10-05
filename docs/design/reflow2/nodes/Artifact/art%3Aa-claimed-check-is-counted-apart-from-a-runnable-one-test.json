@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:082af9cf601c507bb4cd4551aa3fa53530ed654af374f7e31e50b829af0c0d5d",
+  "node_id": "art:a-claimed-check-is-counted-apart-from-a-runnable-one-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three tests pinning the count: claimed is not runnable, implementing makes it runnable, and implemented-but-failing is neither. Observed failing on the assertion before the field existed.",
+    "location": "crates/reflow2-core/tests/a_claimed_check_is_counted_apart_from_a_runnable_one.rs",
+    "name": "crates/reflow2-core/tests/a_claimed_check_is_counted_apart_from_a_runnable_one.rs",
+    "status": "realized"
+  }
+}

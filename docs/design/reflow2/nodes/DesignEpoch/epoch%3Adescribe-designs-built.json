@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:164f978fa9c9b3071e816cf32140996ff4bdabdf24c11832f24c6f2db2abe28a",
+  "node_id": "epoch:describe-designs-built",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "cap:describe-design-at-path built — a design at a path can be named without opening it, and start_design now tells you to look first (2026-08-05)",
+    "sequence": 283,
+    "status": "arrived"
+  }
+}

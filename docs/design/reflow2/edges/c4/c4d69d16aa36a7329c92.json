@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:490a92e65dace53b5a4ec2fec661510b2fcb97f9932e1126ab31f3c005d370ca",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:record-to-record-relations-test",
+  "properties": {
+    "covers": "whole",
+    "note": "The first IMPLEMENTS edge in this design, drawn on the check that proves the edge works - dogfooded rather than declared. All seven cases live in this file, so `covers: whole` is exact."
+  },
+  "to_id": "ver:record-to-record-relations-are-modelled"
+}

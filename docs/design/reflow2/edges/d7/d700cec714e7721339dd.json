@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12f9e96a87df7a445b9adcf7e7f2c886624390817dbda6eb86603a6a9c3e6719",
+  "edge_type": "REALIZES",
+  "from_id": "art:genesis-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-interview-precedes-the-capture"
+}

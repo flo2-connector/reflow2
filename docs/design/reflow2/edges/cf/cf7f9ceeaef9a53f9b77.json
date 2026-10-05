@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a5ba42f9fa198d1e8280d2e113dee1d5fbf972664bb0ea1d0eb3a96421ee618",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-an-edge-says-only-what-it-was-told",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:an-edge-says-only-what-it-was-told"
+}

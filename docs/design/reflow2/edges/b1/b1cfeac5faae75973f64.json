@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4bae9c2473f57a940831f425cfb95987de73895a9c0825e9c9512c339e99edf7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-contributors-roles-toward-a-node-are-a-set-that-a-write-adds-to",
+  "properties": {},
+  "to_id": "req:approving-a-node-never-erases-that-someone-authored-it"
+}

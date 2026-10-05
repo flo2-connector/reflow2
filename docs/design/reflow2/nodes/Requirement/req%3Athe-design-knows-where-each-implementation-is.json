@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4750d801fcf2822843afe06cb07211e58e42298917e2de1edd60ef938aa89245",
+  "node_id": "req:the-design-knows-where-each-implementation-is",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2 keeps the link between a design and wherever it is being implemented, in both directions",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-25 (dev_reflow2 hub session)",
+    "statement": "The design records each implementation of it — which repository or storage, which branch, which part of the design it realizes — and where each of its artifacts is kept, so an agent starting from the design finds the implementation and an agent working in the code finds its design. Where a checkout sits on a particular machine stays in that machine's configuration, never in the design. From Anthony, 2026-09-25: \"the design object still needs to know if and where is anything that is being implemented ... the linkage between design and implementation must be maintained by reflow2.\"",
+    "status": "proposed"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7595172ae953ad1166e165cf23f6cc5d1c8f1c3ca6ed6cf7d2e9cfdf39d2805e",
+  "edge_type": "REALIZES",
+  "from_id": "art:store-backend",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:rocksdb-backend"
+}

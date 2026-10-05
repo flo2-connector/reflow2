@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a424f2f3db960b0ca47db35b8d9ffa4faa2d2d2ef19d4c8ef17e189f458b94d6",
+  "node_id": "cap:a-repair-says-which-kind-it-was",
+  "node_type": "Capability",
+  "properties": {
+    "description": "record_change takes a `repair` disposition (corrected_cause / contained_symptom) with, for a containment, the sentence naming what the proper fix would be; repair_report reads it back as three counts and the standing patches.\n\nTHE UNSTATED COUNT IS A FIELD, NOT A FOOTNOTE, and that is the design rather than a nicety: a report listing the contained symptoms and stopping would have answered 'nothing rests on a patch' on a design where every historical repair said nothing. reflow2's own graph is exactly that design today.\n\nCLAUSE (b) IS ENFORCED BY THE TYPE: `Repair::ContainedSymptom` carries `stands_in_for` inside the variant, so a workaround that names nothing cannot be constructed. The JSON boundary checks the pairing both ways, since there the two arrive as separate optional fields.\n\n⚠️ IT RECORDS WHAT THE AUTHOR SAYS and cannot detect a patch reported as a correction — the same class of instrument as `provenance` and the drift dispositions. And it does not judge: a workaround is often the correct call under a deadline.",
+    "name": "A repair records whether it corrected the cause or contained a symptom, and the design can say what still rests on a patch",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

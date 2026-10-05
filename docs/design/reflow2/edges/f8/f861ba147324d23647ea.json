@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:80e04a0119058b88845e4959c798cea5b05f69e129c615e0f2915354f0865bc6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-builds-toolchain-is-pinned",
+  "properties": {
+    "approved_at": "2026-09-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

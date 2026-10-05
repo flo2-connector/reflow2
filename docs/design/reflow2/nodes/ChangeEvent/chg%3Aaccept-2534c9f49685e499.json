@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:70cb65b30e6643a97eda849ca302504748189dca0f498c4babcb98edac72d1a8",
+  "node_id": "chg:accept-2534c9f49685e499",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "observed_by_file and record_events allowlisted as field terms the root-cause Choice bone names.",
+    "subject": "system"
+  }
+}

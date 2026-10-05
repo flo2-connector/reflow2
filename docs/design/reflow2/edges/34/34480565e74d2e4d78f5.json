@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:903c7b559e0bef4bafe44d6951e4ee5719dd90eb537c5f51f2ae16d0529176d1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-five-project-census-2026-08-09",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

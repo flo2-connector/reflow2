@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9dc6a0f7ccc18080ae4b1515e8eb35c381ca4cd534624cbb6a88a6c31f8df33c",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-read-of-a-held-design-is-as-true-as-the-live-one",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Verified false on the fix by ver:a-held-designs-read-is-as-true-as-the-live-one: a held design finds by search and topic_report what it holds, and every probe-able read-only tool answers the same held as free, the stamp refusal included. Observed failing on main d9e2a8f first."
+  },
+  "to_id": "fact:a-held-reads-copy-also-lacked-the-designs-location-and-its-version-stamp-2026-10-02"
+}

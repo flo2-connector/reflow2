@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41617c70b6fb5d4fff97964c82ae00507107e11302694074cd4afa5da544fab4",
+  "edge_type": "REALIZES",
+  "from_id": "art:feedback-is-a-computed-tally-report-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:feedback-is-a-computed-tally"
+}

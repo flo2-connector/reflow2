@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a0071ece0f47a80ad6e66ab4779376e1e2cb1b6d767c9dbd3c8e32e91c6efea",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-served-read-evaluates-every-derived-relation-reflow2-computes",
+  "properties": {
+    "evidence": "A declared list of the derived relations, with a served evaluation, is the input that planned rule engine will need. This idea is the step that precedes it."
+  },
+  "to_id": "cap:declared-rules-run-by-an-embedded-datalog-engine-and-updated-by-delta"
+}

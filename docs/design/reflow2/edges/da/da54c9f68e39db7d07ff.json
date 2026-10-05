@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f3c49efc7a759ac35938e1d8db636c3729c85aa7c3d072dcea0fe1fed9d43ef3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0612",
+  "properties": {
+    "as_checksum": "sha256:37af03042f7e864c482c266f03dbd4924384f3224593a73fe6cbbabd6b7462b4"
+  },
+  "to_id": "art:topic-skill"
+}

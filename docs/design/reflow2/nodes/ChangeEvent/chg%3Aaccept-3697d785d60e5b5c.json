@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:981edfaf1526f2875c19f5a1093e7bc7d6def54cacfcf0d33d6514c3c35bbc01",
+  "node_id": "chg:accept-3697d785d60e5b5c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-03",
+    "name": "v0.23.0 cut: the version string moved from 0.22.1 to 0.23.0. The design meaning of a cut lives in the Release node and its epoch, not in a version string, so the design holds. Accepted BEFORE release_includes_all so the manifest freezes the post-bump checksum — the v0.20.0 cut got this order wrong and paid for it with a retry."
+  }
+}

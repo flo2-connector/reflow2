@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56cbe38f603735296d8a207f3c090a614c7b9ead3e10c446aa7079e88c4f0deb",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-ask",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:tools-ask"
+}

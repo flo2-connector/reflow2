@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:be69ee437c0abf1606c859e83f52c2cda52b9568ab16b5b38610b23799f11b4a",
+  "node_id": "fact:a-spawned-shared-daemon-keeps-every-file-descriptor-its-parent-left-open-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: a --serve-shared daemon spawned by a --shared session keeps every file descriptor its parent left open (spawn_daemon sets only stdin/stdout/stderr) — two daemons from a failed test run held a flock(1) lock for 15 minutes and stopped every guarded build on the machine",
+    "source": "art:shared",
+    "statement": "OBSERVED on the shared build box: tests run as `flock <lock> cargo test …` spawned --shared clients whose daemons (target/debug/reflow2-mcp --graph-path .reflow2/graph --serve-shared) outlived their failed tests; lsof showed both holding the lock file on fd 3, inherited from flock through cargo and the test binary, so every other `flock <lock>` waited until they were killed by hand. A daemon is meant to be detached: shared.rs gives it its own process group and null/log stdio, but Command does not close inherited descriptors above 2, and a daemon lives for --idle-timeout (120 minutes by default). Any descriptor a launcher leaves open — a lock, a pipe whose reader waits for EOF, a socket — is held that long. WORKAROUND used: `flock -o` (closes the lock before running the command). NOT FIXED (outside item 1b): closing descriptors above 2 in the child before exec, or opening with CLOEXEC where reflow2 owns them, would make detachment complete.",
+    "subject_id": "art:shared",
+    "valid_from": "2026-10-03"
+  }
+}

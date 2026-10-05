@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6f094675a6918c325534c2c17cadacccc7db5b2bbb7b187fa72cd87b50be2092",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:98a0715f222ac505af7771441535356ccbb0bc3ed621570ee9d210802841f75c"
+  },
+  "to_id": "art:caller"
+}

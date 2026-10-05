@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d8ba66c20010497852867cd4f59f33e02cd3bced617e5658106f54163533833a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-token-ledger-and-release-build-latency-against-written-budgets",
+  "properties": {},
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

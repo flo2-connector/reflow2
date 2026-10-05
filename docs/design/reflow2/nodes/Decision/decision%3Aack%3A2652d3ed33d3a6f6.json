@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6bad4eff4329f5cf21a2dd063bc1cb8dd9c2397d0db1e5b32a4740f014b42668",
+  "node_id": "decision:ack:2652d3ed33d3a6f6",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2652d3ed33d3a6f6.",
+    "name": "Reviewed: gap:2652d3ed33d3a6f6",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: chg:a-read-of-a-held-design-is-as-true-as-the-live-one touched the sync check only so a copy of a held store writes no observation beside the real store; a measurement written as prose in a Decision still cannot be retired.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f4176e6e624cc4543cf1e53133ccfe27d6caad6a25c9bd2d1123655e827f2dcd",
+  "node_id": "art:skills",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/skills.rs",
+    "name": "skills.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

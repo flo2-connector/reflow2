@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b3f58b9d5441fe63ddecc4fd28f1af5b7628a515c09f8d5f3d4731d0182e2d6",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-local-client-reaches-a-remote-server",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-v0720-the-remote-client-is-released"
+}

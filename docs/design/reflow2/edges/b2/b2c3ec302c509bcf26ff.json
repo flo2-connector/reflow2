@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c29f193264a3d17300067deb70b21acc5382dfdd794943e95a90feb92d2b0347",
+  "edge_type": "REALIZES",
+  "from_id": "art:shared-attach-from-another-folder-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:shared-sessions"
+}

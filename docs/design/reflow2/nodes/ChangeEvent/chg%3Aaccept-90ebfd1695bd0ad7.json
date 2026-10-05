@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69fc56b9662a19080ec5ef838a2cf7e65762ace5bed000dd8aba94b729f16890",
+  "node_id": "chg:accept-90ebfd1695bd0ad7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "b9688c3b1d22c7206a3aee51a36c649e38302225",
+    "detected_at": "2026-10-02",
+    "name": "Follows rmcp 3.5.0 with no change on the wire: initialize is answered with LATEST_WITH_INITIALIZE, and the override returns rmcp's own refusal. See chg:rmcp-3-5-0-base64-0-23-and-the-lock-refreshed-2026-10-02 and chg:the-handshake-record-names-the-version-rmcp-sent-2026-10-02.",
+    "subject": "system"
+  }
+}

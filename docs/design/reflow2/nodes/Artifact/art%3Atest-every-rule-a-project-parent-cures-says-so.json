@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:59a957bd006bab62dc32d0c436616abf7132a1c4edf99d35680b508ea4f14abe",
+  "node_id": "art:test-every-rule-a-project-parent-cures-says-so",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/every_rule_a_project_parent_cures_says_so.rs",
+    "name": "every_rule_a_project_parent_cures_says_so.rs",
+    "status": "realized"
+  }
+}

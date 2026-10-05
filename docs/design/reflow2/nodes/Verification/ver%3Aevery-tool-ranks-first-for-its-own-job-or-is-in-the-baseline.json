@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:45788c63f54916142b92f7d8c7c0dbb1251ea32f656ca0e802c1f3bd63e6eaa5",
+  "node_id": "ver:every-tool-ranks-first-for-its-own-job-or-is-in-the-baseline",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/every_tool_is_found_by_a_query_in_the_users_words.rs — the two ratchet tests, beside the corpus test.",
+    "findings": "pr run: the ratchet tests pass on the regenerated baseline.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-18",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served tool is ranked first for its own corpus query or listed in the baseline, and no listed tool has quietly become first; no new mutually confusable pair, and no listed pair has come apart",
+    "status": "passing"
+  }
+}

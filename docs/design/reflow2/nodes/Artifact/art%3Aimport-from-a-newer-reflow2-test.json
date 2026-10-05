@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8fbf9a055f012a6f75c256c560ec680136c677f62f88c60e3f75ff42e07cfe0b",
+  "node_id": "art:import-from-a-newer-reflow2-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four in-process tests on the served surface: the import_graph tool refuses a document from a newer reflow2 and names the way through; accepted on purpose, the report names what was materialised by Type.property; this-or-older versions import as before; behind_record is absent when current and names the newer writer, this version and the hazard when behind.",
+    "location": "crates/reflow2-mcp/tests/an_import_from_a_newer_reflow2_is_refused.rs",
+    "name": "an_import_from_a_newer_reflow2_is_refused.rs",
+    "status": "realized"
+  }
+}

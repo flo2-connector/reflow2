@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f7a5ddb7f183e46eb0db03e9cc2db1e5d419f45842d0cc3090719372d7957283",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:corpus-ingest",
+  "properties": {},
+  "to_id": "snap:epoch:bl186-folder-driver:cap:corpus-ingest"
+}

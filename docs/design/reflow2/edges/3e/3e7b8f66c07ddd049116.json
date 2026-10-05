@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2f8c8619655ae046926867a821d4d26e577d2b014e2852755314fe9d67b4774",
+  "edge_type": "CHANGED",
+  "from_id": "chg:coverage-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:coverage"
+}

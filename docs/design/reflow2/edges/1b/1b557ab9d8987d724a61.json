@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:09ffee1cb13d9faa0854ed35b407f3d3c00937ca9f88d7af0c898edc38733ed8",
+  "edge_type": "REALIZES",
+  "from_id": "art:intent",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:intent-authority-is-checked"
+}

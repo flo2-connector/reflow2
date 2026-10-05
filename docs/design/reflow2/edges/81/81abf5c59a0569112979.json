@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5528f4163a1a3f03dcde94436775fa065c68d4a79caca52874af258329f04819",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:serving",
+  "properties": {},
+  "to_id": "cmp:mcp-http"
+}

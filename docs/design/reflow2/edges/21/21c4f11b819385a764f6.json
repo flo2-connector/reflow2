@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19e3a1ebe5794ebfe3d0079057668439b3c243aeb7326d9e9343b53a8747f686",
+  "edge_type": "CHANGED",
+  "from_id": "chg:gitattributes-widening-ruled-on",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-design-record-merges-per-node-in-every-clone"
+}

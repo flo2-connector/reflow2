@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e071d83b5da4d108d43b4a9b6121704b717aa4a57d1583a4f017319a552d7a6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-user-carries-a-persona-that-shapes-every-reply",
+  "properties": {
+    "evidence": "@ajs settled the persona question on 2026-09-28 (\"Yes, keep as intent\"): the persona leaves the design, and this requirement is what the idea became on reflow2's side."
+  },
+  "to_id": "req:a-design-holds-who-contributed-never-a-readers-persona"
+}

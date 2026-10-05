@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:cf7d5e5023e81702bd6f2bdaccb4242269c214b1348099d8c3c48ca42b399eb6",
+  "node_id": "fact:a-store-keeps-an-edge-a-newer-schema-refuses-and-its-export-cannot-be-imported-2026-10-01",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-01: a store minted under an older reflow2 kept an edge that 0.75.0's schema refuses (Artifact REALIZES Decision); 0.75.0 exported it without comment, and 0.75.0's all-or-nothing import refused the whole document — the design could not move until the edge was repaired by hand",
+    "statement": "OBSERVED while moving musicjug's design (a65a8602a2aff9d3, minted by reflow2 0.45.0) to flo2.io on @ajs's word.\n- The 0.75.0 binary exported the local store: 307 nodes and 832 edges, no warning.\n- The same binary's --import into an empty scratch store refused it, with nothing written: \"edges[722] REALIZES art:palettes-js -> dec:styles-are-palettes: Invalid edge: REALIZES cannot connect Artifact to Decision — a file realizes only a Capability, a Component or an Interface; a file that describes a Decision DOCUMENTS it\".\n- The rehearsal caught it before the droplet. Repaired on the record in the local store: snapshot, delete, then GOVERNED_BY. The move then imported 310 nodes and 836 edges cleanly.\n\nTHE CLASS: write-time validation tightened after the edge was written. Opening a store does not re-validate what it holds, export does not either, and import does. So a store that works every day can be one that cannot be moved, backed up to another server, or forked. Nobody finds out until the one moment the move is attempted.\n\nNOT ESTABLISHED:\n- whether detect_defects or check-health reports stored edges the current schema refuses;\n- how many other long-lived stores hold such edges. The other local designs on this machine (qbench, wordplay, dynograph-foundation, hxm_program) were not checked; cure, StoryFlow and flo2 already imported fine.\n\nCANDIDATE CURES, unranked: export (or loop_status) names every stored item the current schema would refuse; or check-health proposes the repair (here, REALIZES→GOVERNED_BY for a file and a Decision).",
+    "steps": [
+      "export_graph",
+      "import_graph"
+    ],
+    "subject_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once",
+    "valid_from": "2026-10-01"
+  }
+}

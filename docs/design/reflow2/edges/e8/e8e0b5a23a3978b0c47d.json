@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bfc110e32d28f9bd71368274cb4fde9a0621ff08866f5466f634c01d153da46",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-file-realizes-only-what-it-implements",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-file-realizes-only-what-it-implements"
+}

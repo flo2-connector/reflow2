@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:171877757fa140767a817f616fc2b2ff3baf4d8ef9e5da8a538faf05bcf3d8dc",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:design-and-implementation-stay-coherent-both-ways",
+  "properties": {
+    "evidence": "The coherence principle's feedback direction relies on a person being able to report results, including for physical builds.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-person-feeds-results-back-by-upload-chat-or-folder"
+}

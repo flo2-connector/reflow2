@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20f451865ff1806a04a6edcde167e25a9d02febf8bb0a2418bca34857bffeff3",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:external-dependency-replies-with-a-receipt-and-a-re-declare-keeps-what-it-was-not-passed-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "A removed property is now listed in revision.replaced and revision.removed and preserved (a_write_that_removes_a_property_says_what_left_and_keeps_it)."
+  },
+  "to_id": "fact:a-write-that-removes-a-property-reported-nothing-moved-2026-10-03"
+}

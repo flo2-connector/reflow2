@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b4128ec64c28dbe516e43c67dc93d18555145663bc6893a64e9645362cdb5458",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:feedback-is-a-computed-tally",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

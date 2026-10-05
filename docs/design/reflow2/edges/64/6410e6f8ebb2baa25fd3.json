@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f168abe5096155d0e4fa49665be7a98a7b42b913c030ed2ecc7b7d760b9c2404",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:git-merge-driver",
+  "properties": {},
+  "to_id": "req:concurrent-planning"
+}

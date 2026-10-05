@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a3d8c21eb55b532637d45ff8d14715dcb5b4458c0b25784cde6105f7c1e9bd6c",
+  "node_id": "cap:a-repair-can-say-what-it-invalidated",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The record that did the work names the finding it answered (`INVALIDATES`, `* -> *`, carrying `note` and `at`), and every surface that quotes a verdict reads it back.\n\nWRITE: `invalidates`. READ: `invalidated_findings`, plus `loop_status.verifications` (per-row `invalidated_by` / `rerun_owed` / a sentence, and a top-level `rerun_owed` summary) and `graph_report` from the same code. The `where-am-i` skill now gathers `Constraint` — where repairs are commonly written up — and calls `invalidated_findings` before quoting any failing verdict.\n\n⭐ THE READER SHIPPED WITH THE EDGE, deliberately. A marker nothing consults is a comment, a failure this project has now found in `enforced`, in `SUPERSEDES` and in `OBSOLETES` itself.\n\n⭐ IT REPORTS AND NEVER JUDGES. The claim says the last RESULT is stale; it never says the check now passes, never touches the target's `status`, and never removes the check from `attention`. `rerun_owed` is three-valued and null means one side is undated so nobody can say.\n\nWHAT IT DOES NOT DO: nothing infers staleness. A finding with no claim against it is reported as having none, which is a real answer rather than a silence.",
+    "name": "A repair can say what it invalidated, and the reader says whether a re-run is owed",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

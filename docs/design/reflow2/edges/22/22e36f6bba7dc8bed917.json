@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bce8b16c0c25e7e2f1204730a4b4a0fa363ba6457021af1f6ece1c15749cf21",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-repair-can-say-what-it-invalidated"
+}

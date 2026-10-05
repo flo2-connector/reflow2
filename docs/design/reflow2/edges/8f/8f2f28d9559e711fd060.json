@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1818973fdf48623e813588c62c5c1f35dcc35f87bf6d1eaeef98e6a4fe0276c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1433ea2a93040f56bdf2a555dbb14ec66dd8a5b997a363811c33da8b5d765f4e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-quantity-says-how-it-was-obtained",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-quantity-says-how-it-was-obtained"
+}

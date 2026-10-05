@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0a6505f22a7b0400d692ea0f8cad10210b74df8cb376b2db01c346ecdd4961a",
+  "edge_type": "REALIZES",
+  "from_id": "art:nodes",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:satisfaction-schedule"
+}

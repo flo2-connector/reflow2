@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:99f7c3367ae246801c5133a20f8e714eb8a3f6f22274ab267331fe86cc75ebb6",
+  "node_id": "fact:follow-up-build-jot",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "follow_up",
+    "name": "Build /jot, with /log-issue and /note as tagging shortcuts, then release and hand it to flo2",
+    "statement": "Build the settled shape:\n- /jot is one skill, and /log-issue (tags ISSUE) and /note (tags IDEA) are shortcuts into it, in COMMAND_ALIASES;\n- loop_status follow_ups show each note's tag;\n- settling routes by the tag;\n- /log-issue keeps working exactly as today.\nThen cut a release (minor: a new skill). Then flo2 regenerates engine-skills.ts from it, and the droplet moves to that version, which also picks up 0.69.0's get_skill change.",
+    "subject_id": "req:a-jot-captures-an-idea-in-one-breath-and-sorts-it-later",
+    "valid_from": "2026-09-24"
+  }
+}

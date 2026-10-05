@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e92caa6fc26cecc0a1861ca4b8451be8fc9ed2098f0c63e4be4dd6897884116c",
+  "node_id": "fact:the-staleness-question-returned-zero-because-nobody-said-what-the-changes-touched",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "statement": "`unclaimed_findings` RETURNED ZERO ON A SESSION THAT RETIRED FOUR FINDINGS. Measured 2026-09-01 at the close of the session that shipped v0.46.0.\n\nCalled with the eight ChangeEvents this session wrote:\n\n    candidates: 0 · subjects_examined: 20 · unknown_events: []\n\nAnd four open TemporalFacts had in fact been made false by that same work — `fact:the-near-match-filter-has-no-node-type-term`, `fact:the-commonest-structural-edge-has-no-typed-helper-and-its-name-is-taken`, `fact:edge-prose-is-as-perishable-as-node-prose-and-nothing-reads-it`, `fact:the-revision-warning-holds-the-only-copy-of-what-it-warns-was-lost`. All four were closed by hand, from memory of writing them.\n\n🛑 THE CAUSE IS THE DOCUMENTED LIMIT, HIT IN PRACTICE ON 8 OF 8 EVENTS. `add_change_event` takes an `affected` list and draws a CHANGED edge per entry; NONE of this session's eight passed one. The capture-session skill states the limit exactly — \"it still cannot reach work that recorded no ChangeEvent, or one with no CHANGED edges to what it touched\" — and \"Record the change and name what it touched, or nothing can ask on your behalf.\"\n\n⭐ SO THE FAILURE WAS NOT IN THE COMPUTATION. It was in every write that fed it, and the writes were made by an agent that had read the skill saying so, in the same session. The instruction exists, is correct, is served, and did not survive contact with eight consecutive calls that each had somewhere else to be.\n\n⚠️ AND A ZERO HERE IS THE MOST REASSURING ANSWER THE TOOL CAN GIVE. `subjects_examined: 20` reads like diligence; the skill anticipates precisely this and says never to read a quiet answer as \"nothing went stale\" — which is the only reason the four were looked for at all. Without that sentence this session would have closed reporting a clean sweep.\n\n📌 WHAT WOULD FIX IT, unresolved: `affected` is optional and nothing notices its absence, so the shape is the project's own recurring one — a typed field that exists, an instruction that asks for it, and no detector that reads the silence. A ChangeEvent with no CHANGED edges is invisible to the one computation built to ask what a session made false.",
+    "subject_id": "cap:the-graph-asks-what-a-session-made-false",
+    "valid_from": "2026-09-01"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:79252e2715f374ff93d7ca147b7f30cb9971240e4dfd649ba4531c989fc3c6a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:flow"
+}

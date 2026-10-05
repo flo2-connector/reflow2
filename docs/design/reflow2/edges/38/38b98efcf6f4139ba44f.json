@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c4305cc8e7007e9b1a0844e14c25338a834b76b0023d2700932f303c32ad2e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-stops-recomputing-itself-on-every-read",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:sync-debt"
+}

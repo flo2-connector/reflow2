@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a7dff4234d9dc17abea322c69e49612635c2cde705e0ac24fc636169b6547dce",
+  "node_id": "art:storyflow-resolution-study",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/storyflow-resolution-nuggets.md",
+    "name": "storyflow-resolution-nuggets.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

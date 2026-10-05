@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c290f11c8676736ba5d561f183c34ef59353785220c5f5d4d3fb684835c6baaf",
+  "node_id": "frag:art:test-orientation-needs-nothing-to-start",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-mcp/tests/orientation_needs_nothing_to_start.rs"
+  }
+}

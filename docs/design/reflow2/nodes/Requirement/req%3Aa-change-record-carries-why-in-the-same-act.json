@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:14d59e352db59c86637cf6a08625da0036509510d2e4372a315582404a1ad47e",
+  "node_id": "req:a-change-record-carries-why-in-the-same-act",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A change record carries WHY it happened, written in the same act that records it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When the design records that something changed, the reasoning — what changed, why, and what guards against it recurring — is writable in the SAME call. It must not require a second write against the same node.\n\nWHY THIS IS A REQUIREMENT AND NOT AN ERGONOMIC PREFERENCE. A second write is not merely inconvenient; it is optional, and optional reasoning does not get written. Worse, when the natural field is unavailable the caller reaches for one that is not declared, and the resulting \"undeclared property\" flag then fires on EVERY legitimate write — which trains the caller to ignore the flag that exists to catch typos. A signal that fires on correct behaviour is worse than no signal.\n\nEVIDENCE, and it is field evidence rather than self-observation: reported independently by two projects on the same day, 2026-08-19 — `art:ophyd-service-feedback-2026-08-19` (friction #3) and `art:hxm-program-feedback-2026-08-19`. Both had reached for a `description` that does not exist, both had fallen back to a second write, and hxm's framing named the consequence above.\n\nSCOPE. This is about the WRITE PATH, not the schema. `ChangeEvent` has declared `summary` (indexed, full-text, the embedding field) and `rationale` (\"why the change was made\") since the schema was written; the constructor took neither. So the requirement is satisfied by making the declared fields reachable, not by adding vocabulary.\n\nNOT ESTABLISHED, and deliberately not claimed here: whether the same hole exists on other record types. Only ChangeEvent was reported and only ChangeEvent was checked.",
+    "status": "proposed"
+  }
+}

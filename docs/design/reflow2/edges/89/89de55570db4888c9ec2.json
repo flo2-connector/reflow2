@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7e21835efa06cec6c4ab09222e088b544c836bef488041ec08b04cb5303bd64f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

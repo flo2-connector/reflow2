@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce3a9be1c5c23f20135eece60101c55123a287cdccb3a53114693861b007c8ff",
+  "edge_type": "REALIZES",
+  "from_id": "art:genesis-skill",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked",
+    "note": "the instruction leg: genesis points at the skill after seeding"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

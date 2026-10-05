@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4200929dca07bfdd2186a40e522e78b57eaf6f0d60f62bc44b56c306b3bb3bbb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl199-reattachment",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:scope-read-while-held"
+}

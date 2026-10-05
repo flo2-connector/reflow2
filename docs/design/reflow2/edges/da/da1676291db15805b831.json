@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2bf4b377890e552437b9df94a95fdef7d8a857ceeecc38ce0d336053955997c",
+  "edge_type": "REALIZES",
+  "from_id": "art:read-only-surface-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

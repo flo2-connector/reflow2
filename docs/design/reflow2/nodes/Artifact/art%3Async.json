@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6513afff678443dfae91c0a546dfac6c5cbf29b9b3a8910ed5aadc5dde0707d3",
+  "node_id": "art:sync",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/sync.rs",
+    "name": "sync.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

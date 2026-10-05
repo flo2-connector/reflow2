@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9518a11ff23cca38a3486c834e9315d6ceef53c54a713f24e5c59b4cc084ab21",
+  "edge_type": "REALIZES",
+  "from_id": "art:attribution",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

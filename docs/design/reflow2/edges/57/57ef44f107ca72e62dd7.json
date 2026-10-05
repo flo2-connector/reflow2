@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fb48a4e7f6ac7eb35922ab0f544a8bab2d19148f59d88093a6decf8332797045",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-27",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass this rule requires on this document's outside_root report (09-23, 09-24 twice): measured on 0.72.0 in a two-sibling layout, a sibling repo's file gets no baseline because the one root is derived from the store's folder.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-one-root-derived-from-the-stores-folder-leaves-a-sibling-repo-unmeasured-2026-09-28"
+}

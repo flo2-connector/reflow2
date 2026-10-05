@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43756333cdafffd86c186005522046da4d03d33ee3f4ff567723d08e7c008da3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-server-drains-before-it-stops",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-server-drains-before-it-stops"
+}

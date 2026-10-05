@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00aaf0e1c598e6c4a150b5d6c1539840ed51038efb2bdde3d7350bcccad452e7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-gets-its-transport",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:docker-smoke-script"
+}

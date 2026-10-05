@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:91e710f76cba5e3facdcd9847d4a810f9e0300eb1b5e36877a40c8c7ff7af655",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone",
+  "properties": {
+    "approved_at": "2026-09-22T00:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

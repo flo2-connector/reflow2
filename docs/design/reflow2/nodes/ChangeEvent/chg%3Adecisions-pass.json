@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8d2562be47db9f7fb5c4230f0612592ddb3648d73ed5d0f156d73c9b6645440",
+  "node_id": "chg:decisions-pass",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Ingest recovers the rationale layer: why it was built that way"
+  }
+}

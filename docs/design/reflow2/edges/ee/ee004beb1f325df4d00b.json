@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1c021de241bf0f558a6192e45b3a430d78a7edb27046d5f444e11d45109b5e5b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "ctr:claude-fable"
+}

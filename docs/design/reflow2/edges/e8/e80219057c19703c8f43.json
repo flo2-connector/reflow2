@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa9a7c93b8131d5d119af4d2667787f4e481e33e5c21b46c21ca3d067ad0a1dd",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:acknowledgement-approver-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:acknowledgement-approver-test"
+}

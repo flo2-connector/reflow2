@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b5f65ecfadb1dee7ed7e42b91d5f6243ade4d788b93082fed4c4181aafd88804",
+  "node_id": "fact:the-hub-address-book-idea-stays-open-and-the-hub-skill-wording-is-to-be-fixed-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "2026-10-02: on Anthony's word, the hub address-book idea is left OPEN, and the served hub skill's wrong sentence is to be fixed now (it names the MCP config as a local hub's member list; the declared dependencies are the list)",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "Anthony, 2026-10-02: \"I accept all your recommendations.\"\n\nThe recommendation for this idea was to LEAVE IT OPEN. It only matters for a local hub driven through the `--call` door, and his work use is one design.\n\nThe wording fix was accepted with it. The served hub skill says a local hub's member list IS the session's MCP configuration. Measured the same day (fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02), the list is the hub's declared dependencies, readable under the door.\n\nIt is scheduled as the last item of the 2026-10-02 triage order, with external_dependency's receipt and a collection error landing as blocked.",
+    "subject_id": "dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door",
+    "valid_from": "2026-10-02"
+  }
+}

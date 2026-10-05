@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d09ac601acd6b2750d987e180f0661c07bf12acb1eb4fd3dbde40e7568a68549",
+  "node_id": "ver:merge",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "merge suite (tests/merge.rs) — 25 cases",
+    "status": "passing"
+  }
+}

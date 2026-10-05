@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:18725df04a0c390ca22f0c7fa2c8f270ce54d0ebb0eda31b10e7986792e3cffb",
+  "node_id": "cap:a-real-run-is-fed-back-by-file",
+  "node_type": "Capability",
+  "properties": {
+    "description": "DesignGraph::resolve_observed_files maps each (location, outcome) to the Verifications whose own `location` is that file or that an Artifact at that location IMPLEMENTS; a check covered by two files takes the worst outcome; unmapped files come back in `unmapped_locations`. reconcile_verification's new `observed_by_file` feeds them through the ordinary reconcile, so with record_events every covered check is stamped. The converter strips CI colour codes, places each cargo target in its own crate without searching build output, counts a target that never printed a result as failed, groups JUnit by testcase `file`, and treats a python test script's exit code as its result. LIMIT: cargo reports a crate's in-source unit tests as one `src/lib.rs` target, so a check located at an individual source module cannot be resolved from cargo output. Measured on PR #572's real CI run: 280 test files, 68 of them mapped, covering 65 checks.",
+    "name": "reconcile_verification takes a run by test file and resolves each file to its checks; tools/test_run_to_files.py turns cargo output, JUnit XML or script exit codes into that list",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

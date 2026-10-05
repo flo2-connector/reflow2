@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d308e061851a037f28b4b3592d2b490165a14533840d5b87f489c1854de4209",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:proxy",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:proxy"
+}

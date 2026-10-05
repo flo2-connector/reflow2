@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ab6b3fa7b9cb960abae5e5e4b55d5d0dc8e70feab199381e9e1f05202db459a",
+  "node_id": "epoch:v0780-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships the fix program after the VS Code --call field report (triage accepted by Anthony 2026-10-02), and the dependency-currency work, so flo2.io can move onto it before the three-agent trial. Cut on Anthony's word, 2026-10-03: \"Release first\". Contents, by PR: #649 (workflow Actions on current majors), #650 (rmcp 3.5.0, base64 0.23, lock refresh), #651 (dependencies workflow, holds file, rust-version 1.98), #652 (rocksdb 0.25 / RocksDB 11.8.1), #653 (fold of the 2026-10-01/02 live records), #654 (every one-shot mode resolves its design first; every flag honoured or refused), #655 (a refused write stores nothing), #656 (every argument refusal names the tool and the field path), #657 (a read of a held design is as true as the live one), #658 (--read-only honoured by every client), #659 (get_node include_edges), #660 (refused_by_schema and the narrowing gate), #661 (a writing --call keeps the committed export current), #664 (held-design test waits for its holder), #667 (--describe, --list-tools, describe_schema with tool), #668 (the overtaken-defect question names the likeliest fix), and the merge train #669: #662 (the small ones from the triage), #663 (a spawned shared daemon inherits nothing), #665 (a read-only server with no store serves the latent surface), #666 (reflow2 read / reflow2 write). THE SCHEMA STAMP MOVES by one enum value: Verification.last_reconciled_outcome gains `blocked` (#662); 28 node types and 66 edge types are unchanged. An upgrade note is owed (docs/upgrading-to-v0.78.0.md): a v0.77.0 binary refuses, by name, a design that stores the value. Sequence 664 places it directly after epoch:v0770-cut (663), the last epoch that has arrived; 670-710 are planned milestones that have not arrived and pin nothing, as 656-660 and 662 were when v0.77.0 took 663.",
+    "epoch_type": "release_cut",
+    "name": "v0.78.0 release cut (2026-10-03)",
+    "sequence": 664,
+    "status": "arrived"
+  }
+}

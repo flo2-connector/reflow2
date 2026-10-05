@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ff9777380c770ddfd9cf57f42785a89de5746d1a26b81babaf8334e2bdb12766",
+  "node_id": "art:skills-catalog",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "SKILLS.md",
+    "name": "SKILLS.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

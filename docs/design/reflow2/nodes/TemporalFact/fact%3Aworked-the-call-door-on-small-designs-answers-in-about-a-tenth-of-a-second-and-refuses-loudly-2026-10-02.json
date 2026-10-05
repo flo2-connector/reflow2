@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a8e3547e50c21b5cde3606f000bf1017377c40cb7b5b9162c919875e79a144df",
+  "node_id": "fact:worked-the-call-door-on-small-designs-answers-in-about-a-tenth-of-a-second-and-refuses-loudly-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKS (re-measured 2026-10-02, 0.77.0), the report's \"Measured\" rows in the door, sessions and export slice. A call costs a median 0.13 s (max 0.23 s, 50 calls) on small scratch stores. A held design refuses a write and writes nothing, and --stop-shared releases it. export_graph refuses an existing path until overwrite. upstream_status works from a hub. Do not regress these",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "Triage agent A, art:vscode-call-door-field-report-2026-10-02, \"What works today\" and \"Measured\" rows that fall in the door, sessions and export slice. Each was re-measured on scratch stores with an isolated HOME. Log: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-A/measure.log.\n\nHELD:\n- \"about 0.2 s per call, including opening the store\": median 0.129 s, max 0.234 s over 50 small-store calls. Larger designs cost more: graph_report on main's 6,312-node design took 10.5 s, and export_graph 5.2 s.\n- \"a write on that held graph — refused, nothing written; --stop-shared releases it\": exit 1, the lock explanation and \"writes, so it needs the graph itself\"; get_node after release shows nothing written. `--stop-shared` → \"asked the shared server (pid …) to stop\", and the rendezvous file was removed.\n- \"`--call export_graph` to an existing path — refused until overwrite\": exit 1, \"already exists — refusing to overwrite it. Pass overwrite=true\".\n- \"`--call upstream_status` from a hub — watches the hub's pinned designs, as under MCP\": two declared children, one by export and one by address, each reported moved or unchanged.\n- Exit codes 0 (reply), 1 (refusal on stderr), 2 (a reply the tool marked an error, e.g. missing arguments): all seen.\n\nNOT HELD AS STATED: \"a read on a graph held by another session — answered from a best-effort snapshot\". This is right for get_node and graph_report, and wrong for keyword search: fact:root-cause-a-held-design-answers-search-through-the-door-with-a-false-nothing-matched-2026-10-02.",
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-02"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8a9853127c809183d403b9367026e547869efa1141c43f99c7d10615cbe0b83",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0750",
+  "properties": {
+    "as_checksum": "sha256:30dc1d47ef57ea8a78ec10c6cd76a4d2127f3d5f53f3655c1bf413fecf2a566d"
+  },
+  "to_id": "art:test-a-jot-carries-the-tag-its-word-gave-it"
+}

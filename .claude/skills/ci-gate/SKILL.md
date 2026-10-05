@@ -53,7 +53,7 @@ not run (no export, no binary) — also loud, never a silent pass.
      steps:
        - uses: actions/checkout@v4
        - name: Install reflow2
-         run: curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+         run: curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
        - name: Design coherence gate
          run: python3 ~/.local/share/reflow2/kit/tools/reflow2_check.py --export design.json
    ```
@@ -75,11 +75,19 @@ not run (no export, no binary) — also loud, never a silent pass.
 
 ## When the build goes red
 
-- **LINEAGE** — the export chain is severed. Almost always one of three things: the export was
+- **LINEAGE** — the design's history is broken. For the ITEM LAYOUT (a directory, one file per
+  node and per edge) the gate names each item whose recorded predecessor is not its hash where the
+  branch left the default branch: almost always a file copied in from another tree or edited by
+  hand. Re-export from your graph with a current reflow2, which writes every changed item's
+  lineage itself. For a single `.json` export the whole-file chain is severed — the export was
   written somewhere else and copied in, the branch wrote it twice, or it was written from a graph
-  that had not imported the latest record. The fix is the same in each case: restore the export
-  from the base branch, export **once** on top of that, and commit. Do not hand-edit the hash —
-  it is the design's own history, not a checksum to satisfy.
+  that had not imported the latest record: restore the export from the base branch, export
+  **once** on top of that, and commit. Never hand-edit a hash — it is the design's own history,
+  not a checksum to satisfy.
+- **DRIFT on the item layout** is judged per change: every registered file the pull request
+  changed must have its new checksum accepted (`set_artifact_checksums`) in the same pull request,
+  matching the file at its head. A mismatch on a file the change did NOT touch is a note — the
+  merge of two accepted edits to one file — which you clear by accepting the merged content.
 - **IDENTITY** — the design's name changed. Either you meant it (record why, and expect the chain
   to break here on purpose) or a fresh store minted a new id because nothing was imported before
   writing, which is the far more common cause and is a genuine mistake to fix rather than accept.

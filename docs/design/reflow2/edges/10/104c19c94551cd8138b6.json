@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1ab8b702b968d24deda85810bbda078b360e137d851a44a19c830792b216aa6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl163-propagate-discriminator",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skill-triggers"
+}

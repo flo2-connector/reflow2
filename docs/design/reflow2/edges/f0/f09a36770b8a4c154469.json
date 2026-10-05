@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74f947cca5dec8faeedbcf3c154d94b5af73d3ff16780d0cad86813ccaa27e33",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:budget"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e272ab790e1179ad10ce5069f3f579f8f5918a0dbb43485cc71b92b8341826d",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-instruction-layer-runs-ahead-of-the-typed-tool-layer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Instance ④ : the message prescribes an order the caller cannot reliably honour, from the one place that could have preserved the value instead.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-revision-warning-holds-the-only-copy-of-what-it-warns-was-lost"
+}

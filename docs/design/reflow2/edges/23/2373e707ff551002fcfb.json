@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2b8855deb7d9c75741939b7e01852f7192a44c4bda5c655acb754fb8a75755d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-three-real-internal-seams-are-declared",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ifc:provenance-sidecar"
+}

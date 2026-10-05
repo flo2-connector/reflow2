@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca7e4a20fc1a9e7b5766e05a1c50f32c4ef073fea463134a8b08a0783f9df729",
+  "node_id": "chg:install-once-per-machine",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The startup path collapses to one machine-wide install; the hook and the server both go silent where there is no design"
+  }
+}

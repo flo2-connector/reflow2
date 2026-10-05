@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86b880479cca67bfc4b40a4754155f80af56b2424132036e5393df153ff74db7",
+  "node_id": "chg:baseline-eff858c52555561f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-02",
+    "name": "First baseline. The file was never registered, so nothing moved — it is the text build.rs embeds as INSTRUCTIONS and get_instructions serves to every consumer project, and it was the one file in getting-started/ that the design could not see (POINTER.md and SETUP.md beside it were both registered). BL-165's shape a fourth time."
+  }
+}

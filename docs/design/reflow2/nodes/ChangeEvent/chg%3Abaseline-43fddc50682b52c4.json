@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c8f9ed930f76f1b453bb3dc2e8129780d993af25a1da0ccf603a7c1151e83c8",
+  "node_id": "chg:baseline-43fddc50682b52c4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline, taken at the v0.37.0 cut so the release manifest can say WHAT it shipped. These are frozen field reports — parked by ruling, correctly attaching to nothing — and a baseline records that nothing moved rather than a change that never happened.",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0cf6921fc8229081d29bbf3021ecf5bc70be2268b47c580a097cecea403f0928",
+  "node_id": "cap:bl-102",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The README does not explain what this is or how it runs on your machine\n\n*Idea file, line 13: \"Needs a simple explanation of the architecture in the main README.md. How it runs on your computer. Very simple how to put the AGENT.md. Need some simple use cases. Probably need to create some cool images.\"* Fair and checkable: the README currently runs Vision → What this is → the hallucination question → the design vocabulary → Layout → three structural axes → phases → status → heritage → license, with the entire \"how do I run this\" reduced to one line at the top pointing at getting-started/SETUP.md. A reader who lands on the repo cold learns the philosophy before they learn that it is an MCP server that keeps a graph in a file in their repo. Wants: a one-paragraph plain-language architecture (\"a binary you run locally, a graph in a file in your repo, your coding agent talks to it over MCP\"), the AGENTS.md placement in two lines, two or three concrete use cases (greenfield capture, brownfield adopt, \"what breaks if I change this\"), and diagrams. Adoption-critical and cheap — it is the same req:frictionless-update family as BL-51, and the first thing a new user or Anthony's brother's colleagues actually hit. The images are the only expensive part; do the prose first and do not let it block on them. Size S (prose) + M (diagrams)\n\nMigrated from docs/backlog.md BL-102 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S+M.",
+    "name": "[BL-102] The README does not explain what this is or how it runs on your machine",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

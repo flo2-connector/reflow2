@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b65cc9788c1f23312d292b107b8b3c6b7471cdf8ec92deee969e0febe05b83bb",
+  "node_id": "chg:toml-fallback-reader",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The shipped gate reads Cargo pins without tomllib, so the dependency check is not inert on Python 3.10 — which is what reflow2's own CI runner carries, and where the check reported \"could not read any build file\" on its very first run."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0df8e093ebea3270f91fcc49eebe5ed9888b42d5e65a88cbcaa39234c3983f42",
+  "node_id": "epoch:v0280",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.28.0 cut — 21 PRs since v0.27.0 and no schema move. Three new served tools (what_next, consumption_report, sync_status) and three behaviour changes a consumer will feel: search-before-you-add now REFUSES a near-duplicate create across five capture tools, HEAL stopped offering fabricated repairs, and a refused enum names its legal values.",
+    "sequence": 324,
+    "status": "arrived"
+  }
+}

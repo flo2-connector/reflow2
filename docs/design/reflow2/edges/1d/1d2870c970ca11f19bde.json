@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:402e6e7997cdd046ba0affb162be1ced2b7bde5ca745ff545a7d4b15ddfc6208",
+  "edge_type": "CHANGED",
+  "from_id": "chg:publishable-promise",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:publishable-promise"
+}

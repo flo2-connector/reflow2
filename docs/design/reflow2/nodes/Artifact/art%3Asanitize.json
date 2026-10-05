@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:820e971f39c0ff2264cdc1552731a01bcafa8322deaad1c3494403296bf51767",
+  "node_id": "art:sanitize",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/sanitize.rs",
+    "name": "sanitize.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

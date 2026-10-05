@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:657ee060324f4566481e67e37aeecabdf4a42cf786c3d6ff71edf76948b5ef7b",
+  "node_id": "epoch:v0602-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The second patch for the same CI script, and a different cause from the first.\n\nv0.60.0 and v0.60.1 both shipped binaries, kit and checksums and NEITHER shipped a container image. The gate that refused runs before publication, so nothing unverified went out — the gate behaved correctly both times and the test behind it did not.\n\n⭐ THE LESSON WORTH KEEPING: both fixes passed locally and failed on the runner, and the second failure existed ONLY because of how the first was fixed. `mktemp -d` is mode 700 owned by the caller; chowning it to the container's uid takes it away from that caller wherever they are not also uid 1000. The author IS uid 1000, so the chown was a no-op locally — the test was verified in the one environment where its bug could not appear.",
+    "epoch_type": "release_cut",
+    "name": "v0.60.2 release cut (2026-09-14)",
+    "sequence": 480,
+    "status": "arrived"
+  }
+}

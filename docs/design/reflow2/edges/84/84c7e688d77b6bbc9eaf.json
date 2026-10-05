@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b02849276adbbc1201d381d3f17c7d02671b5769aa4c46ccd10940a47c8f711",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:what-lives-where",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

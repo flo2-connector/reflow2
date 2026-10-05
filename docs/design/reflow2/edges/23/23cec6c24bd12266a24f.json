@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0ef37e128a138917787cd8f53474b45d740770151b5df8a1779a4c035d06fea0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:serde-yaml-is-replaced-by-serde-yaml-ng-and-the-lock-is-refreshed",
+  "properties": {
+    "approved_at": "2026-09-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

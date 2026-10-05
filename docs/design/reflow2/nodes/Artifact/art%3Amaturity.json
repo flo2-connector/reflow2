@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cf5c9314c41f209dd94c70840808aa49d5d4a177692247e41f9f8967cde2297f",
+  "node_id": "art:maturity",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/maturity.rs",
+    "name": "maturity.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

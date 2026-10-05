@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12253787f7d4af6dfff02eeef65a0e5fe40ca17b90e25263b7d0090a755921af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:search-first-at-the-tool"
+}

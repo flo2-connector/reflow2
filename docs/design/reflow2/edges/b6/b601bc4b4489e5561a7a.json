@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a91023d8d16e2f00c35509030f1fb1dbd2e307ac4997c9c11c82f9bd6ddf0e9",
+  "edge_type": "TRIGGERS",
+  "from_id": "dec:the-export-becomes-the-durable-copy-and-rocksdb-goes-later",
+  "properties": {
+    "evidence": "Making the export the durable copy is what forces the carriage question: an index that cannot be exported is machine-local state that dies with the graph directory, which is precisely what that decision moves away from. Before it, 'the index is rebuilt per machine' was an unremarkable answer."
+  },
+  "to_id": "dec:idea-is-the-embeddings-option-really-embeddings-plus-hnsw"
+}

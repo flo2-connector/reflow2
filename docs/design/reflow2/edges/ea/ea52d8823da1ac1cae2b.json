@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a1b992d36219579125d955334abe5dbbc7e6be73cd622068375d54e6ab8521f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-read-side-becomes-a-contract",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:graph"
+}

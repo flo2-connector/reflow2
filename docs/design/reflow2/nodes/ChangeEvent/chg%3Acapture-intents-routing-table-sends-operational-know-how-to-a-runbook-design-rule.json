@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fa2376966007711be06c7e2267f94c3aea2778291b523b55f9a7f694dc54e6fa",
+  "node_id": "chg:capture-intents-routing-table-sends-operational-know-how-to-a-runbook-design-rule",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-19",
+    "name": "capture-intent's routing table sends operational know-how to a DesignRule with category runbook, governed by its Environment or Component",
+    "rationale": "flo2 F5, root-caused: the vocabulary fit (free-text category; GOVERNED_BY from any node to a DesignRule) and the row said 'nothing fits cleanly'. Option (a) of the idea; a Runbook node type rejected as vocabulary nothing computes over.",
+    "subject": "record",
+    "summary": "getting-started/skills/capture-intent/SKILL.md row rewritten (+ mirrors); skill_lint NON_TOOL_TERMS gains runbook."
+  }
+}

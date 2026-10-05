@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6521afcc16e041aa89edaa899b1689f2c90f85d825e9c6e9ea1455a66921b107",
+  "edge_type": "CAUSES",
+  "from_id": "art:github-issue-616-oauth-resource-server",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this issue's attribution point (a signature cannot be checked on a shared graph): measured, an exposed server accepts an approval signed as anyone, because the boundary where write rules attach was named in 2026-08 and no rule was ever chosen.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-an-exposed-server-accepts-any-callers-signature-because-the-boundary-where-write-rules-attach-was-named-and-no-rule-was-chosen-2026-09-28"
+}

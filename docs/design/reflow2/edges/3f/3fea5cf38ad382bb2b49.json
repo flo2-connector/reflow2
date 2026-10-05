@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61b6e2afa7241099de25ae38ea2810c51cd0e82e5b79b6d73a46440e956919eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-driver-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:git-merge-driver"
+}

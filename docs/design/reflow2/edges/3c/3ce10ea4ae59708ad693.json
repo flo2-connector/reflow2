@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8460fd3c38374f43662dd76305e82071ab84788095c2b650db515f124f6dfca2",
+  "edge_type": "DUPLICATES",
+  "from_id": "dec:idea-a-location-names-its-repository-or-an-archived-repo-is-relocated",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "Its option (a), \"every artifact names its repository\", is this report's repository qualifier. It was said on 2026-09-25 for separating design from code and here for an archived repository, so the two are linked rather than merged."
+  },
+  "to_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is"
+}

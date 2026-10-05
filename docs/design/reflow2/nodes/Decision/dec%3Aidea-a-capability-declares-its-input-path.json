@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1ecea18bc95a9cc20ce6688c89ef5005600a39a26fe741c7fad06ee92a6dea1e",
+  "node_id": "dec:idea-a-capability-declares-its-input-path",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "UNSETTLED. dev_storyflow's most-wanted ask, 2026-08-08: express \"this capability needs a surface where a person (or an upstream system) actually writes the data it consumes\", so a capability that is realized, built and rendering — but dead because nothing ever writes its input — is caught by a detector rather than by three people producing three wrong root causes. Shapes worth weighing rather than a recommendation: (a) a new edge — cap FED_BY ifc/Actor — with an unrealized_input_path gap when a capability that consumes a field has no writer; (b) a property on the Capability (`needs_input_path: true`) with the detector reading it, which is cheaper and weaker because nothing forces the flag; (c) generalise the existing INTERACTS_WITH by adding a `required` property, so \"an actor interacts with this\" can become \"this does not function unless an actor does\"; (d) decline it as out of scope, on the ground that reflow2 models the design and not the operational data path. NOTE WHAT ALREADY EXISTS AND WHY IT IS NOT ENOUGH: req:the-store-is-reachable-from-a-session says \"a capability nothing can call is not delivered — the content store needs a surface\", which is exactly this insight scoped to ONE capability and written by hand; nothing generalises it and nothing detects it.",
+    "name": "OPEN — should a capability be able to declare that it needs a human INPUT path, so that the absence of one is DETECTABLE rather than diagnosable only by three people failing?",
+    "rationale": "Recorded because it is the one thing the fleet said would have saved the most time, and because it is a VOCABULARY question rather than a detector bug — detect_gaps structurally cannot ask about a surface the design has no way to say is required, which is req:the-tool-finds-its-own-blind-spots in its sharpest instance to date. Left `proposed` deliberately: every shape above changes the schema or the detector set, and which one is right is Anthony's call, not a field report's. The evidence is fact:defect-a-realized-capability-can-be-dead-for-want-of-an-input-path.",
+    "status": "proposed"
+  }
+}

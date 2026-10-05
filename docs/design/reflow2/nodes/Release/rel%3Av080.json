@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ea2464ea53cabd878e1f43d778810c857ad386c5f520f53fb00790314e32eff2",
+  "node_id": "rel:v080",
+  "node_type": "Release",
+  "properties": {
+    "description": "Minor: compare_designs, the design-vs-design diff (BL-71 rung c) — the reconcile family's sibling for two as-designed records, as a core op + MCP tool + --diff CLI. No schema change. First release whose manifest carries compare.rs. Superseded in place by v0.9.0.",
+    "name": "v0.8.0",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.8.0"
+  }
+}

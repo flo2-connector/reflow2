@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d21ed5200e837b54af0c520b399927f58094a3f374e213dc0071f6554e913cb9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-store-becomes-a-session-cache-and-the-export-becomes-the-truth",
+  "properties": {
+    "evidence": "The inversion is only worth taking if this lands first. Making reflow2.json the enduring artifact turns an unexported session from an annoyance into loss of the design itself, so the durability mechanism is a precondition of the storage model rather than a follow-on to it. Direction is deliberate: the inversion depends on the guarantee, not the other way round — the guarantee is worth building on its own, because the export is already the only copy that survives losing the graph directory.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-guarantees-the-export-if-the-export-is-the-only-durable-copy"
+}

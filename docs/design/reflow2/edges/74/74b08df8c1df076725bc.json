@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6f4e456c919335d698f92e633cd7602991189a6f2ab7a88c1bcb7b8fe257e40c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:shared-sessions",
+  "properties": {},
+  "to_id": "snap:epoch:spawn-survives-a-replaced-binary:cap:shared-sessions"
+}

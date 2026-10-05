@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:263e55f807dd738c4fe84f085d92682deaeb68c1c3a9be487387cc197dce76dd",
+  "node_id": "chg:accept-43ae772560f9ccca",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "BL-141(a): the circular_dependency message now names the contracts it walked, whether any hop is a real DEPENDS_ON, and whether every contract is a foundation medium. Detection semantics unchanged — same cycles, same severity."
+  }
+}

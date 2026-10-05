@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2bd6aa53fb640f7491b78bbd4015e74ead2f0bf15249404d9c9b4d9b5f46b8fc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "approved_at": "2026-09-18",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef20f2a294d6a3ce9723d6dd020e475a12a0caed7a25e16727728424ad800182",
+  "node_id": "chg:accept-f8ae68321843205f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "cargo fmt and clippy::collapsible_if (a let-chain) on the requested_as insert; no behaviour change",
+    "subject": "system"
+  }
+}

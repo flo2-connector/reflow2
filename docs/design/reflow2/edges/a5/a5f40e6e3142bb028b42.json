@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:38e2cfbe4ac49645ea04e7b3d9b1ceedbbcf9fb021284cefa9fad60056c58c99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1ef022b7cc39b9a498590f36f6c2b33e5b77497e0cdc89df7e403dc08e69a3f8"
+  },
+  "to_id": "art:test-a-choice-is-not-a-musing"
+}

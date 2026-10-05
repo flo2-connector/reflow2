@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3cfafeb717749d62137195ed0b8d78ef06632d27f9276df347bc84979a4ce6b5",
+  "node_id": "chg:the-build-order-decision-is-retitled-to-say-it-is-settled-2026-09-30",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "commits": "653d4a4e4d033c7ac6e0ac4387389ace9ca4028c",
+    "detected_at": "2026-09-30",
+    "name": "The build-order decision's title now says it is settled, and names the order that was accepted",
+    "rationale": "The decision was accepted on @ajs's word on 2026-09-30, but its title still read \"PROPOSED\" and named the pre-acceptance order. The accepted order (in `chose`) moved the published vocabulary to step 0 and put algebra before the reader. A later reader trusts a title over a status field, so the stale title could have been taken as an open question or the wrong order. Found during a brainstorm over graph-primitives' ideas, and retitled on @ajs's word (\"Yes, retitle it\"). The revise-design skill was loaded only after the edit: the revision guard kept the old text, but this record of why was owed and is written now.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Retitled dec:priority-order-for-the-knowledge-graph-requirements-2026-09-28. It was \"PROPOSED — … finish the edge readings on the one shared vocabulary first, then give the readings a reader, then extend them to every relationship\". It is now \"SETTLED 2026-09-30 — … one published, versioned vocabulary shared with StoryFlow first, then algebra on each reading, then a reader that runs rules from the declarations, then readings for every relationship\". Status (accepted) and body unchanged. The prior title is kept in snap:epoch:preserved-on-write:dec:priority-order-for-the-knowledge-graph-requirements-2026-09-28."
+  }
+}

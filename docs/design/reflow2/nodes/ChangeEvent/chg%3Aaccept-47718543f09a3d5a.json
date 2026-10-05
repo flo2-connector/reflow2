@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0632b1cb24f1373b3ca4e08cb5f024ee2d82e3913ed48e02cdd384bf88e87854",
+  "node_id": "chg:accept-47718543f09a3d5a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-28",
+    "name": "`composes` moved into `metadata` for harness portability. No design meaning changed.",
+    "subject": "system"
+  }
+}

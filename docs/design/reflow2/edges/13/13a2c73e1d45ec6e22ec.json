@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:edf9a3f8d5ce4eabd14b44a4368f3bd582b7dfcb6bc02d047f5ffabdc98d3489",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:07b5f3986a86e161fe7e1bc317c1c9c13021c4db1520a7f352e8fe79af431651",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:genesis-skill"
+}

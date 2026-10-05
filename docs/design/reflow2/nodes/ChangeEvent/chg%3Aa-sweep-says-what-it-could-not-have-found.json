@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9da683fe0a4aadbde2eebc88ebcd50cace8dec2a8a2a07ca7d9c516b01b8c179",
+  "node_id": "chg:a-sweep-says-what-it-could-not-have-found",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A defect sweep says what it could not have found — per-rule populations and coupling at each declared level",
+    "subject": "system"
+  }
+}

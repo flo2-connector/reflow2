@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:36536bd2cbae505426c429ff79b7820318a839549bd0ce2435a688a3091229fd",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-node-can-say-who-may-change-it",
+  "properties": {
+    "note": "Captured under the decision that governance is integrated here rather than split out"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

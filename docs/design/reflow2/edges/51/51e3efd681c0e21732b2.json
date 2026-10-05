@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93c13111e518e1f131d9492bb0b8e204931afc6f4909b6065ee505a8dc87358e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:drift-scalar-reassessed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:drift-rolls-up-to-a-score"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:687fa184df8e30bc23e3b964b5186cd97a1d748fa428a13035d7ba04fbd10ded",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4d0783bbb657970305906ae38eb8a51badd40b1229881929e81026149478dd80"
+  },
+  "to_id": "art:migrate-backlog"
+}

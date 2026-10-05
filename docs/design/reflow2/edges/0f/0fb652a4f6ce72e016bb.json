@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a2aa20f6250cdf2df3e71eaecbaeb748e7308a6a797c28cce8096d8f7251819e",
+  "edge_type": "REALIZES",
+  "from_id": "art:plan-increments-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:plan-increments"
+}

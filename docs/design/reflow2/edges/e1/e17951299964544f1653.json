@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a8fe0a928fe4d59291c869363387ff0969551fdef625b2769851ec0ae365bd44",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-change-justification-skill-walks-the-commit-history-and-asks-why",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "authored_at": "2026-09-23",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

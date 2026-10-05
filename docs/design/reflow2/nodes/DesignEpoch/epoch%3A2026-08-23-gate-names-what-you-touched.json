@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2e08cd2dcbd05d66a5aa13e95eba1051d953e97bc86c73a52b36a74a6b1702f8",
+  "node_id": "epoch:2026-08-23-gate-names-what-you-touched",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The coherence gate leads with the unmodelled files THIS change touched, instead of the whole tree",
+    "sequence": 380,
+    "status": "arrived"
+  }
+}

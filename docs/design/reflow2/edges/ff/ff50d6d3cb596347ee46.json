@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e6bff42cc437d9c7895186431f7e8286c61094da40ba642f038ec67f240021d",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-reply-is-sent-once-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

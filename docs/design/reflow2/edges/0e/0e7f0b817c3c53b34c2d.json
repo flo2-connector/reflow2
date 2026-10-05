@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8f959b97fc070776796aba56f637691d4eb7c083de3cce035d708b6301fd3e8c",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-skill-may-assert-the-defaults-it-relies-on",
+  "properties": {
+    "evidence": "That open idea's option (a) makes skill_lint fail when a skill's claim about a tool's behaviour goes stale. It is the same guard one field deeper than the name-plus-parameter check this finding's pinning test proposes, so taking it would reduce this class."
+  },
+  "to_id": "fact:root-cause-instructions-route-records-to-paths-that-cannot-take-them-and-the-lint-checks-names-only-2026-09-28"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4f3c94173dedcf0d84f84f2bf5f3977e227c6a9c29c1af29a37bac65058dae5c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-component-can-be-moved-not-just-given-another-parent",
+  "properties": {},
+  "to_id": "req:a-part-can-be-moved-not-only-given-a-second-parent"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:46393f4cf041e3b05b50eae1d718f3fc91eec965821801c6a2081d9c177d30dc",
+  "node_id": "chg:a-git-diff-is-read-as-a-design-change",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-16",
+    "name": "A git diff is read as a design change — tools/impact_of_diff.py, and an unmapped file is reported loudly",
+    "rationale": "Anthony asked (2026-09-16) whether his brother's idea about seeing across projects and linking git commits had been followed up; it had not — three brainstorm nodes sat at proposed. Of the three, this was the one whose machinery already existed (reconcile_artifacts returns seeds; propagate_from walks them) and whose only design question — what to do with a changed file the design cannot see — had a clear honest answer: name it first, never fold it in, and make failure opt-in so the read does not punish a project mid-registration. The first real run found the artifact-side hole the idea predicted: an integration test and three tool snapshots change in a real PR and no Artifact points at them. Whether to register those is a separate judgement; the driver's job is to say so. Anthony's recommendation order stands: export-stamp branch and commit next, the where-does-the-graph-live question left open until a second project of his is paired with this one.",
+    "subject": "system",
+    "summary": "New tools/impact_of_diff.py: given a git range (default merge-base with main to HEAD, --working-tree adds uncommitted work), it lists changed files, maps each to a registered Artifact by exact location or parent-directory artifact, hashes the mapped ones, imports the committed export into a throwaway graph, calls reconcile_artifacts for propagation seeds and propagate_from for the radius, and prints capabilities and requirements reached, distance bands, risk crossings and boundaries crossed; --full prints every impacted node with its hops; --json for machines. Unmapped files are reported FIRST and counted; --fail-on-unmapped turns them into exit 1 for a gate that opts in; the export itself is set aside as record. Exit codes as reflow2_check.py. Six-case hermetic suite tools/test_impact_of_diff.py added to CI's workspace job and to AGENTS.md's gate sentence (skill_lint green). No core change."
+  }
+}

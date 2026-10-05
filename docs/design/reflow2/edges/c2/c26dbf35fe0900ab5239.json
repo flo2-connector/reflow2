@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b90e8cd956e512d281068321b70c8a2fbef8d80104c1b920f8131275a51600b",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-question-names-whom-it-was-put-to-and-who-answered",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

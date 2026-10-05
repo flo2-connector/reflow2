@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43e600d870df64ad165a627fad6e7f34d54569faf209a8a022ace42ed37f715b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-understated-status-is-reported",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

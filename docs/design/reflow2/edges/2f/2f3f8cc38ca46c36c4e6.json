@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b1cd37dc59b55f3217cac90f4f5caf935a32b8e0307268a9fbb741a71d2b59cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-f263ee42edd9fc43",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-mirror-refresh"
+}

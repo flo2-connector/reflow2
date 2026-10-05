@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:589beaf3fb0d80a1c264a03a4eee826b34d82567aabd9ce578fd8909669624f8",
+  "node_id": "cmp:preserve",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "preserve",
+    "provenance": "authored",
+    "purpose": "Function preservation — the certificate a restructuring can earn. A restructuring is safe exactly when function is provably preserved.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

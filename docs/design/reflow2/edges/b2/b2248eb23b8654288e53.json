@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:843e81acc9641891ab66fa561a4da83b2fb224b69e84406fe19034b1d3bcbe7d",
+  "edge_type": "REALIZES",
+  "from_id": "art:readiness",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:readiness-gating"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ba21369ed9f8b574241a0b7a7b559b0a4b9e3f977cd48c896537fd6185860ed",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:design-authorship-identity",
+  "properties": {
+    "evidence": "The accepted authorship decision named ACTS_FOR (agent-acts-for-person) as a deferred later rung on 2026-07-22. It saw this case coming."
+  },
+  "to_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both"
+}

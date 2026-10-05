@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3e4a37011a1c3e8c37534b7b40542e3beda77e40d6b7824f56c59dc17ac46577",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-agents-reasoning-is-recorded-as-an-open-decision-before-any-new-mechanism",
+  "properties": {
+    "approved_at": "2026-09-01",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

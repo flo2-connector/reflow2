@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8dc3bbb6a7a72ea32d42850071e8c52c3d75c33174579f28dd977aac0892a2d8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-outward-docs-are-rendered-from-the-graph",
+  "properties": {
+    "evidence": "Docs rendered from the graph are projections; whether the server writes them itself (write-through, one writer, cannot go stale) or hands the agent text to save is decided by where this question puts the I/O boundary. Anthony widened the question to exactly this on 2026-09-17.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-reflow2-measure-files-itself-and-what-the-no-file-io-rule-actually-protects"
+}

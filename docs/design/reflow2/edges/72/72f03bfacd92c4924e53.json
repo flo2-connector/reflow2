@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f15b4d1ef5395eb86eca0f1003b297571e436f942a0a472aff7cb0ab0602d180",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-governance-rides-the-tool-that-does-the-thing",
+  "properties": {
+    "evidence": "Same conversation, 2026-08-30, and the two answers interact: if the governance layer's six unused vocabulary items are removed rather than made real, then delivering obligations at the tool becomes the WHOLE mechanism rather than one half of it. Deciding how governance is delivered before deciding what governance vocabulary survives would be the wrong order.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-governance-layer-is-declared-and-mostly-unused"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:68619812d5508ff31e25ad6aa88e6b8fbf5b98a4e1788dda310b73f77659f1bb",
+  "node_id": "req:every-edge-type-declares-what-it-means",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every edge type declares what it means — its primitive relation, sign, possibility and which of its properties are modifiers — and code that needs an edge's meaning can read that declaration instead of keeping its own list",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-28, in a dev_reflow2 session: \"promote it to intent. then let's implement your suggestion in reflow2\" — promoting option (a) of dec:idea-the-schema-declares-what-each-relation-means-in-primitive-terms after asking which finding of the three-graph primitives analysis mattered most for reflow2. Options (b)–(e) of that idea stay ideas.",
+    "statement": "Every edge type in reflow2's schema carries a declared READING: the primitive relation it is one instance of (part-of, causes, about, norm, source-of …) or the composition of primitives it stands for; its sign and its possibility where it has them; whether its declared direction runs against the primitive's canonical one; which of its own properties are modifiers, and of what kind; and who says so — a model's classification until the owner has reviewed it. The reading is served wherever the vocabulary is served (describe_schema). A check fails when an edge type has no reading, names a primitive or modifier kind outside the declared set, or calls something a modifier that the edge does not declare. And a computation that needs to know what an edge MEANS for its purpose can select edges by reading, rather than by a private list of names that nothing keeps in agreement with the others.",
+    "status": "accepted"
+  }
+}

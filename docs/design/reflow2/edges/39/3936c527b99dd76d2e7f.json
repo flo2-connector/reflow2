@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:452041ebe1544ceff532532a60bc63e61dc17a0a140f4791f27060b1dc3e9f97",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "The bit already satisfied the requirement; this makes the answer reachable from the call sessions actually make. Partial because only loop_status and graph_report were examined."
+  },
+  "to_id": "req:the-server-is-the-authority-on-its-own-currency"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6894c2d323b9f6316d26d6aa6d155eab70dfc4266a9e61ff001533b3236f2fa7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:claims-carry-their-age",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:dates"
+}

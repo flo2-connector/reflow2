@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9473c82d8a6240e60752eac58787aef654a4a8b6dbcb9f42304dfaa48fe2368",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

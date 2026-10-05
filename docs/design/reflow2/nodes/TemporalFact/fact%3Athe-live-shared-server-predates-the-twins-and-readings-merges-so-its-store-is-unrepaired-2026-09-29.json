@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5e7ca502e02fc5d4dd151b762bfc987be0c423260b662f27f5286d179f98d168",
+  "node_id": "fact:the-live-shared-server-predates-the-twins-and-readings-merges-so-its-store-is-unrepaired-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "The live shared reflow2 server runs a binary built 2026-09-28 22:01 UTC, before #621 (readings) and #622 (stored twins) merged on 09-29. So the live store has NOT had its one-time twin repair, 148 of its 6,035 nodes still carry retired Flow/Capability entry/exit properties, and every auto-export from it carries them. The main checkout is on another session's branch that lacks #622, so rebuilding target/release there would not bring the fix either",
+    "source": "who:claude-code",
+    "statement": "MEASURED 2026-09-29, capture-session in the dev_reflow2 hub.\n\nWHAT WAS MEASURED:\n- /home/ajs7/project/reflow2/target/release/reflow2-mcp has mtime 2026-09-28 22:01:48 UTC.\n- #621 (686b955) merged at 2026-09-29 11:52 UTC, and #622 (cc3dbd0) at 12:48 UTC.\n- The checkout is on fix/a-degraded-server-recovers-when-its-cause-clears, and `git merge-base --is-ancestor cc3dbd0 HEAD` fails: that branch does not contain #622.\n- The working-tree export the live server writes (docs/design/reflow2.json) has 148 of 6,035 nodes carrying is_entry_point/is_exit_point/entry_point/exit_point. Seen live, for example, on cap:cluster-claims and cap:parallel-work.\n- loop_status reports served_by.stale=false. That only compares the binary with itself, not with what has merged.\n\nWHAT IT MEANS:\n- The first open by a post-#622 binary will make the repair #622's PR measured on the committed design: about 661 repairs (356 derived HAS_TEMPORAL_FACT edges, 9 moved to ABOUT_ENTITY, 296 retired values). Until then, the live design is in the pre-fix shape.\n- Any export from the live server onto a branch based on post-#622 main carries the un-repaired shape, and reflow2_check's STORED TWINS gate should flag it. This is inferred, not run.\n- The readings #621 added are not served live either.\n\nTHE CATCH: getting the fix live needs a release binary built from a tree that contains #622. The main checkout holds another session's branch, so rebuilding target/release there would not do it, and that session's servers run from target/release. This is a coordination step for Anthony, not something to do from a side session.\n\nThis does not show the fix is wrong. #622's own tests and its measured repair on the committed design stand. It shows the running server has not received it.",
+    "subject_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+    "valid_from": "2026-09-29"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:12d930ca9f88058e1114ac6e4cb3454de5274ae0cb0360610e4126fac7e00458",
+  "node_id": "ver:import-document-usability",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The bulk import door describes itself, reports every fault at once, and stops demanding the receiver's own identity (crates/reflow2-core/tests/export.rs, 6 new cases of 18). BL-138: a document of nodes and edges and nothing else — which is literally what the adopt skill instructs — imports, and the edge list may be omitted entirely; `graph_id` was demanded from hand authors and then NEVER READ by the operation demanding it, which is what made it worth removing rather than documenting. COUNTERWEIGHT, and the reason this is not just deleting a requirement: `mirror_surface` still REFUSES an unidentified document by name, because mirroring records where a surface came from and guards against mirroring a design into itself, and neither question is answerable without the id — the same shape as BL-119, where one requirement was right for a round-tripped export and wrong for a hand-authored one. BL-118: four faults in one document now cost ONE round trip instead of four, each reported with its position (`nodes[1]`, `edges[0]`) so a 9,000-line document can be navigated; ATOMICITY IS PINNED SEPARATELY — a rejected import writes nothing at all, including the items that were valid, which is the half the reporting session named as working notably well and the row said must not be touched. The shape is `dec:bulk-is-all-or-nothing-with-per-item-findings` reused rather than reinvented, and it still returns an ERROR rather than an ok-with-failures report, so a rejected import can never read as success. BL-117: the document shape now rides `import_graph`'s own description — the envelope, the optionality of every metadata field, that endpoint types are recovered rather than stored, and that each node must be COMPLETE (BL-139's honest half, delivered whichever way the merge question goes).",
+    "kind": "verification",
+    "last_run_at": "2026-08-02",
+    "level": "integration",
+    "method": "test",
+    "name": "The bulk import door describes itself and reports every fault at once",
+    "status": "passing"
+  }
+}

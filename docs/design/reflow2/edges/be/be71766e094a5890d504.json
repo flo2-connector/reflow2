@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20ebc2859517cecf3f449101a2ae6067b969ee41050cc769189e31f959209c1c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:aac33ba9263e6dac48454b686a8682a45a1e43a3affad5f5c9272ce6f51dcf0d"
+  },
+  "to_id": "art:test-the-command-surface-answers-for-itself"
+}

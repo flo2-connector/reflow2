@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6120bdda2dfa301d8e016a00d4b5afbb52ed0eb30314a9e2670a739a534b95fa",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:correction-stranded-server-is-recoverable-without-a-reconnect",
+  "properties": {},
+  "to_id": "decision:ack:heal:4bd7c50f777fe56e"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:260e79cb0c400ca8c1bfbc05271df54635d87b8f7851d395e81ebbba2931c5fe",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:report-roll-withheld-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:report-roll-withheld-test"
+}

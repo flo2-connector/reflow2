@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2942d90169dcc194587142b5fcbd7b43e9140c2ad766c870d0bbcf99721c0114",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:dto",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:dto"
+}

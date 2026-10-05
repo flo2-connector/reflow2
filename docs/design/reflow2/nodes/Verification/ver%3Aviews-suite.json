@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:06115f7761ab9048af961ae9034294d2511a388babe235c096a6efbd226946f1",
+  "node_id": "ver:views-suite",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "unit",
+    "method": "test",
+    "name": "test_render_views.py",
+    "status": "passing"
+  }
+}

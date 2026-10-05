@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:983e93552985162255c17f5ef9054fa29377b5448f61a8e116ab18469b305f21",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-a-rebased-commit-keeps-a-green-that-belongs-to-another-commit",
+  "properties": {},
+  "to_id": "req:the-tool-finds-its-own-blind-spots"
+}

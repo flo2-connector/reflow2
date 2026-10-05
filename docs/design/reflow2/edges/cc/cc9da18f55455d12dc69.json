@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4af4cdaef19bf462632bf07081bf2c59c63088dc1281d0bcd08deffceea3a22a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-composed-prompt-serves-its-pieces-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-composed-prompt-serves-its-pieces-test"
+}

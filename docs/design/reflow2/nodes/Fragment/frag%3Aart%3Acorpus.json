@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9c4e28acef0a47177230fd9775dc72de9c9162d199161ca379d280f17088d74e",
+  "node_id": "frag:art:corpus",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered corpus.rs — the corpus run: one epoch, one Fragment per document, the ambiguous band asked once"
+  }
+}

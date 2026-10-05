@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad4afdad0ea0bf40b719b04ca4121be4c14e9fd41e372666d87eaead17880dac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:defect-re-linking-a-registered-file-to-a-second-target-moves-its-drift-baseline-with-no-disposition-2026-09-30",
+  "properties": {
+    "authored_at": "2026-09-30",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

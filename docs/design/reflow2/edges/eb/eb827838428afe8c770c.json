@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e9be589d21c850de54d9e16576d480b2f851f4445c4e1cf55553141a8a0645a6",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:some-edge-types-are-several-relations-split-by-a-property-value-so-a-per-type-reading-is-wrong-for-part-of-them-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:some-edge-types-are-several-relations-split-by-a-property-value-so-a-per-type-reading-is-wrong-for-part-of-them-2026-09-28"
+}

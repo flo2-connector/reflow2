@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41f13d3c97af8b9c9eb9b95398d1da8a125f38277580c20f6928098b3f8efeeb",
+  "edge_type": "REALIZES",
+  "from_id": "art:fork",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:fork-alternatives"
+}

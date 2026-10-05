@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc9f27cc3bba4960227ab89a6c20b366169cd147ea7047506c760de9317362a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-argument-refusal-names-the-tool-and-the-field-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:usage-ledger"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f8bb1cc520b4945d0ef504b97e4dc34d73f5730da323b52a727b3ec997d24e41",
+  "edge_type": "CHANGED",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis"
+}

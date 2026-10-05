@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2f310ac57ca39f40dba327ca8984d6d75365b3ed9d93c409846ad44eff125fec",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d16abc28ea59e3f9"
+  },
+  "to_id": "art:upgrading-v0210"
+}

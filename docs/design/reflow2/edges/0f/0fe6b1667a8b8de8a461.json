@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9091170f5c67663fd10a520695c1ac3febda14a395a243cb7e9a5ca356b9082",
+  "edge_type": "REALIZES",
+  "from_id": "art:artifact",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:nothing-moved"
+}

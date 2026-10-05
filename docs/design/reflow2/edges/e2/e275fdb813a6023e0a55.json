@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b0ee1b755fe47899cdc25b751d7ffb6a4ff8409e43306d3608b7fb370feabeb0",
+  "edge_type": "REALIZES",
+  "from_id": "art:prose-currency",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-status-advance-says-whether-its-prose-predates-it"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7b6c5582ddec16ca744bcbd462507bac3e2243c2a8ae85fb1eeaf9acef071ea3",
+  "node_id": "ver:an-acknowledgement-says-whose-judgement-it-was",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/an_acknowledgement_says_whose.rs, 5 cases.\n\nTHE CASE THAT EARNED ITS KEEP IS `an_approver_who_does_not_exist_is_refused_and_nothing_is_written`, AND IT FAILED ON THE FIRST ATTEMPT. The Decision is minted before the approver can be checked, so the obvious implementation left an ACCEPTED Decision with no name behind on every refusal — the exact state the parameter exists to prevent, produced by the code meant to prevent it. The check now runs before anything is written.\n\nThe rest: a named approver lands as `AUTHORED_BY role=approver` (author or reviewer would not satisfy the intent-authority rule, so the role is asserted rather than the edge alone); an absent approver is ALLOWED and invents nobody, because refusing would leave a design that has modelled no Contributor unable to accept a gap; the gap is acknowledged and reaches `reviewed_gaps` either way, since attribution is not about whether the judgement took effect; and the old `acknowledge_gap` signature still compiles and still records nobody, which is what makes this additive.",
+    "findings": "5 cases passing, alongside `cargo test --workspace` (45 suites, 0 failures), fmt, core and mcp clippy, skill_lint, smoke_mcp and all 156 toolsnaps. Driven against a scratch design over real stdio, all three paths behave: no approver records the Decision and returns `approved_by: null` with the `unattributed` sentence; `approver: who:ghost` is refused naming the id and pointing at add_contributor; a real approver lands `AUTHORED_BY {role: approver, acted_at}`. THE REFUSAL CASE FAILED ON ITS FIRST RUN and that is the finding: the Decision is minted before the approver can be checked, so the obvious implementation left an accepted Decision with no name behind on every refusal — the exact state the parameter exists to prevent. The check now runs before anything is written.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "An approver is recorded, an absent one is reported, and a name nobody can check leaves nothing behind",
+    "status": "passing"
+  }
+}

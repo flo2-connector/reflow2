@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11eb827ef5c6c6a7a6c570cd9c79ae26ea670f9cb0ef60010f9242b88460cca6",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sub:across-designs"
+}

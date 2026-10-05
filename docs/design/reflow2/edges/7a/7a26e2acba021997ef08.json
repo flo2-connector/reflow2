@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79287d50b6742d40d1069d879ca744175dbcc7080387875f270679027df7583f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-deliberate-state-is-not-a-defect",
+  "properties": {
+    "approved_at": "2026-08-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

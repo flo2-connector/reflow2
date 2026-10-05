@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1ee0a6df16ac163a17e47db94c4c0cc8c4e8a0d231963edc59277589d833d882",
+  "edge_type": "CONTAINS",
+  "from_id": "sub:session-posture",
+  "properties": {},
+  "to_id": "cmp:latent"
+}

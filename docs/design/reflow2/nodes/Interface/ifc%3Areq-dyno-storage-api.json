@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c90de3dba698f4c1e02ab7f316b55ca18f1e3db13014e9e7f0d75805284a9b6a",
+  "node_id": "ifc:req-dyno-storage-api",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "library",
+    "name": "StorageEngine Rust API",
+    "paradigm": "synchronous",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-storage` (default-features off), pinned at v0.12.0. This is the RocksDB-backed store beneath every DesignGraph write, and it is what makes ifc:exclusive-local-store a real requirement rather than a preference — the single-writer guarantee is that engine's exclusive lock.",
+    "transport_security": "unspecified"
+  }
+}

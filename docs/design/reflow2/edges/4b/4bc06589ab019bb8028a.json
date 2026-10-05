@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f0234d432069f46a883c5ec9665c5a9627540079c2e59d3ffc1a13e811b734d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6f43fe8421f71dfd843545d7855603e69107eba5891d7e3c077cfc583e320c29"
+  },
+  "to_id": "art:changelog-test"
+}

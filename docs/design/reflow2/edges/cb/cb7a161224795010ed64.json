@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e5ca083719d4a82a732fefaba50ec9cb3e0a108315c16f0d1afc73235c38ce5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:07512b3c6c62c66e95749f7fb26e0ff6b82201f22d04fc2a9560e6f14404fa04"
+  },
+  "to_id": "art:grok-shell-feedback-2026-08-29"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b856266e6053ae4fc722efecaf44ab4f376cf05a1f2e0cd890e4266ab730c349",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-can-say-what-it-does-not-know",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:sync-debt"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b93b19c0be3e47e165fce3a2cce827fb2c282e938090610b4c35dda1a241e3e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0480",
+  "properties": {
+    "as_checksum": "sha256:24ffc5f4793657f57f13cbe252e02eee5c03b410c3aa4ff3f70b28b2e8986dbb"
+  },
+  "to_id": "art:governance-proposal-skill"
+}

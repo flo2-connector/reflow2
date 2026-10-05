@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9f5f83ea0e2b8d51b910173f8777c89cd30a4c557d243c06542d9e7d2c14c357",
+  "node_id": "sub:install",
+  "node_type": "Component",
+  "properties": {
+    "level": "subsystem",
+    "name": "Install",
+    "provenance": "authored",
+    "purpose": "Getting reflow2 INTO somebody else's project: asking which harness, writing only that harness's files, and leaving a committable record.\n\n⚠️ A SUBSYSTEM OF ONE, AND KEPT THAT WAY DELIBERATELY. It is the only part of this system that WRITES INTO A REPOSITORY THAT IS NOT REFLOW2'S OWN — every other part reads a design or answers a call. Folding it into a larger box to avoid a group of one would hide the single place where the blast radius leaves this project, which is exactly the boundary `rule:reflow2-is-built-for-other-projects-not-for-itself` cares about.\n\nGroup size is a check on whether a grouping is doing work, not a quota to fill.",
+    "status": "planned"
+  }
+}

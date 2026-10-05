@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8c81f9df6f0eda3b1764a7252c2efb6a865c643710fb7b59fe0bf0b665e6e4f4",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-item-layout-merges",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-live-stores-record-folds-into-main-with-plain-git-after-a-squash-merge"
+}

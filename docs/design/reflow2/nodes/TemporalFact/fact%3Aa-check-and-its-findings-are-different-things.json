@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0f69bc42bda22d241b1496fd7a1ad0b8be8123fe5041e7b5725a4ec6af10689c",
+  "node_id": "fact:a-check-and-its-findings-are-different-things",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "statement": "THE 87 PRESERVED VERIFICATION TEXTS ARE NOW SPLIT: what the check IS stays in `description`, what a RUN FOUND moved to `findings`. 65 of the 87 gained findings; 22 did not, and that is the right answer for them — they are `planned` checks or single-statement ones with no run to report, so an empty `findings` there says 'nothing has run' rather than 'nobody sorted it'. || THE METHOD IS THE TRANSFERABLE PART AND IT IS THE SAME ONE THE RENAME USED: the halves were SLICED FROM THE STORED TEXT BY SEGMENT INDEX, never retyped. The text was cut into 472 sentence-level segments across the 87 nodes (median 5), the segmentation was proven lossless by re-joining it, and each segment was assigned to one side or the other. So the only thing authored was a list of integers. Corruption in transit was impossible BY CONSTRUCTION, and every split was asserted lossless before any write and re-verified afterwards on the live graph: no character lost or duplicated across the two halves, no name disturbed, findings present exactly where intended and absent everywhere else. ⇒ WHEN A BULK EDIT MUST PRESERVE TEXT, MAKE THE MODEL CHOOSE BOUNDARIES AND LET A SCRIPT MOVE THE BYTES. || THE CLASSIFICATION RULE, applied consistently rather than case by case: FINDINGS are reported outcomes of runs that happened — `MUTATION-CHECKED N WAYS`, `WRITTEN BEFORE THE FIX: n failed`, `MEASURED ON THE REAL DESIGN`, `PROVEN ON THE REAL SURFACE`, `VERIFIED END-TO-END`, `FOUND BY RUNNING IT`, field observations with numbers. DESCRIPTION is what the check is, its cases, its counterweights, why it exists, and — deliberately — its stated limits, because `NOT COVERED:` is a fact about the check's SCOPE and not about any run. || SEGMENT 0 WAS NEVER MOVED. It carries the claim, and on most of these it also carries `— N cases, all passing DATE`, which is a finding welded to a description in one sentence. Splitting mid-sentence would have meant retyping, which would have given up the only property making an 87-node edit safe. The date is on `last_run_at` anyway. ⇒ A MIXED SENTENCE STAYS WHERE ITS FIRST HALF BELONGS; the safety of the method outranks a tidier field. || SOURCE: 2026-08-23, reflow2 0.38.0, on top of `fact:a-name-is-not-a-report` (#308) which put the text into `description` in the first place.",
+    "subject_id": "cmp:verify",
+    "valid_from": "2026-08-23"
+  }
+}

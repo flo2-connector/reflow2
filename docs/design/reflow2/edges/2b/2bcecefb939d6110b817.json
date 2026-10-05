@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6d14a50f32b1eb9ff795cbda58fce6453fbaa80fe5c6ba9276757fb16cacc42",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

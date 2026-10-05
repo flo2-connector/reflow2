@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:04794c12f55bbc2203de9e2c461e00bc1b4629d77dd3bb7e60a2bbc3280ac6cb",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-instruction-layer-runs-ahead-of-the-typed-tool-layer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Instance ① of the candidate pattern: the gap text names both moves and only acknowledge_gap has a tool.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-gap-can-be-answered-in-prose-but-only-closed-with-a-signature"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ae4d57b5fa75752ff8259e99cf29d36ca9c87bb36faeef8424143b815ec2608e",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-client-refuses-a-server-of-a-different-build",
+  "properties": {},
+  "to_id": "cap:a-client-elects-a-server-of-its-own-build"
+}

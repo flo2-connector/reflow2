@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9e82bed75b30869730ac627ff354fef79793b61fd11b32cf7af3c5390b48c82",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:the-content-store-is-discontinued",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "The first real discontinuation, and the case that raised the question. Built, shipped, correct, used zero times in every project that had it; four served tools, the core module, the --content-path flag and both test files were removed for v0.27.0. Until this edge, the graph still said the capability was `realized`, its check `passing` and its requirements `accepted` — two days after the code was deleted. The Decision is the source because a discontinued thing has no successor to put there, which is exactly what made this look like it needed new vocabulary."
+  },
+  "to_id": "cap:content-store"
+}

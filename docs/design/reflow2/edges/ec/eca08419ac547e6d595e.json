@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:59ba6cfb2411839626f1929873b3d60151ce065d9f51a534a8a8e50203bde1f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:89fd5412c5dd733c52dfd4dbedf927bc5de451fb660759115ddd879c292e7ff7",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:brainstorm-skill"
+}

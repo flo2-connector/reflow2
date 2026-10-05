@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e4d849b9efdc40202af9842386708373b4dfb73626eae3bdb444cd5e35e47c28",
+  "node_id": "snap:epoch:preserved-on-write:epoch:planned-flo2-then-reflow2-move-and-the-photocopy-retires",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-photocopy-says-it-is-one\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-27\"}}]",
+    "state": "{\"description\":\"COMBINED PLAN POSITION 11 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 10 of 10 until two flo2.io increments were added the same night). After positions 9 and 10.\\n\\nStep 8, the last of the tracked-export retirement plan (2026-09-27). flo2's design moves to a server first, then reflow2's (the order set by dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once), each by import, each repo's folder then naming its design (step 3). Then the machinery kept \\\"in service, not in purpose\\\" by chg:sharing-a-design-through-git-is-retired-2026-09-27 retires: req:stale-seat-knows, dec:export-once-per-pr, req:the-saved-design-merges-correctly-under-gits-ordinary-merge, the file lineage of dec:export-hash-chain, req:the-server-keeps-the-working-tree-export-current (made optional), and the committed-export gate. Delivers req:a-photocopy-says-it-is-one. The hub then watches reflow2 and flo2 by address too. Needs steps 6 and 7.\",\"epoch_type\":\"milestone\",\"name\":\"[Combined 11] Retiring the tracked export, step 8 — flo2's design moves to a server, then reflow2's; the tracked-export machinery retires and every export says it is a copy\",\"sequence\":660,\"status\":\"planned\"}",
+    "target_id": "epoch:planned-flo2-then-reflow2-move-and-the-photocopy-retires",
+    "target_type": "DesignEpoch"
+  }
+}

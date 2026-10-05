@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8d8b22cedf6f8a3ba1357285cefc68db1fdfca6de57869dc90012ac76db997e4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:alternatives-unranked-forkable",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

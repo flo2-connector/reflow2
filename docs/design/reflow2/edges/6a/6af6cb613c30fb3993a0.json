@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfcdf07f1e0f8d31ebf3f6066de0fcc2bbdaed89ff8c9dee6068c8c4aec862a4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl179-maturity-profile",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:maturity-profile"
+}

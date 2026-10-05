@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3e4c63ccdfe9a7f61d5f08be5a5cd9f02be12e0144b0e28dec9d0f5ddec44e7e",
+  "node_id": "fact:prose-currency-caught-three-stale-descriptions-in-one-field-session",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "field_confirmation",
+    "name": "FIELD CONFIRMATION: prose_currency fired on every status move in one dev_storyflow session (2026-09-06, 0.48.0) and was right three times — three capability descriptions still described a sketch after the build, each rewritten on the spot",
+    "statement": "dev_storyflow, 2026-09-06 on 0.48.0, in their words: 'When set_verification_status and set_capability_status moved a node planned → passing/verified, the reply carried a prose_currency block quoting the description written under status: planned and asking whether it still read true. It caught a real one: the item-4 capability's description still described a sketch (`y_level: 2`, a coherence rule that flags…) while the build had used axis/level and a validate_edge rule. I revised the description on the spot. That is exactly the kind of check that makes the graph trustworthy rather than merely populated — please keep it.' Later the same day: 'fired again on every status move and was right every time I checked it' — the item-5 and item-6 capability descriptions were still sketches after the build and were rewritten; and on two planned capabilities the root-cause pass found the design's claim wrong ('engine validates no edge' was already true one layer down), which prose_currency surfaced when the status moved. THREE stale descriptions caught in one day by the check, in the field, on a build two versions old.\n\nTHE ONE ASK, recorded as an idea: the excerpt is cut at 240 characters, and in the item-4 case the stale words sat past the cut, so the reader fetched the node anyway. Proposed: quote the whole description when under ~1 KB, otherwise the first sentence and a diff-worthy tail. dec:idea-prose-currency-quotes-enough-to-judge-without-a-second-read.",
+    "subject_id": "cap:a-status-advance-says-whether-its-prose-predates-it",
+    "valid_from": "2026-09-06",
+    "value": "{\"reporter\":\"dev_storyflow\",\"build\":\"0.48.0\",\"date\":\"2026-09-06\",\"stale_descriptions_caught\":3,\"false_positives_reported\":0,\"ask\":\"excerpt sizing\"}"
+  }
+}

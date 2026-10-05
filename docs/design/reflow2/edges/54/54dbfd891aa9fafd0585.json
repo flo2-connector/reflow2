@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6f128a66935c52f7c29f639ce12f9b927a2702b1efbfb52f9798bcf3a9a615fd",
+  "edge_type": "YIELDED",
+  "from_id": "frag:usgov-2026-08-15-item-5",
+  "properties": {
+    "action": "updated"
+  },
+  "to_id": "fact:field-confirmations-from-two-external-sessions"
+}

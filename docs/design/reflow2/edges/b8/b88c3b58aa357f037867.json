@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79e0e6131fe48f98fb8c97181d02fc4a13292054073ce4ff7b658b9e44e6d12f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:provenance"
+}

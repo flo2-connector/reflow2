@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:08fb24d9557a5c88b6503ebf3f948d0bb98b61d2f184770440b0594e7f11ef70",
+  "edge_type": "CHANGED",
+  "from_id": "chg:evidence-fidelity",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:design-the-simulator"
+}

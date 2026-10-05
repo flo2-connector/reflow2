@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a31a701055b1a7540668f56e049d869070577e9d2bbe045624d7cf5d6b351bc9",
+  "node_id": "chg:the-registry-closes-idle-designs-2026-09-27",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-27",
+    "name": "The registry closes designs nobody is using, reuses the least recently used slot when full, and says busy (503) instead of not found",
+    "rationale": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full, on @ajs's word (\"Yes, let's build the now items in reflow2\"). Before this, an opened design stayed open until the process ended, so the open-design limit was a budget for the process lifetime. flo2.io met it on 2026-09-27 (fact:flo2-io-met-the-open-design-cap-with-no-idle-eviction-2026-09-27).\n\nTHE GUARD THAT MATTERED MOST WAS MEASURED, NOT ASSUMED. With the release wait removed, the reopen test failed with RocksDB's own error: \"IO error: lock hold by current process\". A request still streaming an answer can hold the old copy after the router lets go, and a naive reopen then collides with its own process.\n\nThe other guards were also observed failing:\n- With LRU reuse replaced by refusal, the full-server test fails.\n- The first version of the --registry-idle flag panicked the binary on every launch. clap reads an Option<T> field as \"optional T\", and the parser returned Option<Duration>. The existing transport test caught it, and the flag now parses to a plain Duration with 0 as never.\n\nNOT IN IT: a shared memory budget across open stores, and draining on shutdown. Both are on epoch:planned-the-hosted-engine-closes-idle-designs-and-drains.",
+    "subject": "system",
+    "summary": "registry_http.rs gives each design a slot that tracks its last use and its requests in progress.\n- A background sweep closes designs idle past --registry-idle (default 15m; 0 never). So does any request that finds the table full.\n- At --registry-max-open, the least recently used design with nothing in flight is closed to make room.\n- Refusals map to statuses: an unknown id is 404; every slot busy, or a store that would not open, is 503 with Retry-After. It used to be 404 for everything.\n- Closing ends every session on the design.\n- A reopen waits on a Weak to the old copy's store until nothing holds it, so the same process never opens one store twice.\n- A failed open is remembered for 30 s, not forever.\n- An id that names no design is resolved before it takes a place, so it can never push a real design out.\nNew flag: --registry-idle."
+  }
+}

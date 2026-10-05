@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5661854527ef91e039a3b1b95aca2df4e220b893d3d958f78044049437ef3c87",
+  "edge_type": "REALIZES",
+  "from_id": "art:registering-the-file-that-is-a-check-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-verified-capability-names-something-that-can-re-run-its-check"
+}

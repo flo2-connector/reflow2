@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2833ff90c583c0fb89ed2b916ebf83a65132c8cf6c5d6867ec797150c2b5c8cf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:change-type-splits-its-axis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

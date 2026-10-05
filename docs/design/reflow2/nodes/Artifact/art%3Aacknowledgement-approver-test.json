@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:67fe27a37cfa1ef3abbcadeda159a23795cb18cfb0e0af7b7a438779be8c0b9c",
+  "node_id": "art:acknowledgement-approver-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/an_acknowledgement_says_whose.rs",
+    "name": "an_acknowledgement_says_whose.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a239bf0befae1595bb1f22260ed365b67dabe3c244ba8c13e9e363d4956a26a9",
+  "node_id": "chg:accept-042ef55b26adc527",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-12",
+    "name": "Adds the materialization guard: the tool now diffs what it wrote against its source and names every (node_type, property) the round trip invented, because it CANNOT undo the injection - after the round trip nothing tells an injected value from a chosen one. THE DESIGN ALREADY SAID THIS (fact:bl-198); only the tool was wrong, hence design_holds. See chg:the-export-round-trip-injected-defaults."
+  }
+}

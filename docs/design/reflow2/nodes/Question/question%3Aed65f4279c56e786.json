@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2f9eecaeaa00db1e7613b0b674761a52e54bd089a3253acd9458a89a34c7bd36",
+  "node_id": "question:ed65f4279c56e786",
+  "node_type": "Question",
+  "properties": {
+    "answer": "BUILD IT SECOND. Anthony, 2026-09-11: \"go with your suggested order\". The server-guaranteed export follows the release binary because it removes a whole class of loss (the forgotten export) and makes the one-export-per-PR rule automatic instead of remembered. The four details the rulings left open — debounce interval, the git query that finds main's version, the hand-edited working-tree export, and the no-git fallback — are settled inside the increment, not before it.",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “The server keeps the working-tree export current, and its lineage chains from what is committed”",
+    "gap_id": "gap:ed65f4279c56e786",
+    "question": "You accepted that the server itself must keep the exported design file current and chain its lineage from what is committed on main — but nothing is yet allocated to build it, and four details were left for the increment to decide. Build it next, hold it, or drop it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

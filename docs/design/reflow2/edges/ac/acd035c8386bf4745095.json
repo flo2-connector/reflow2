@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d1d911bd277112637908d33573fa4382fd250806014dfbcdd2f648054040092",
+  "edge_type": "REALIZES",
+  "from_id": "art:acting",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-is-credited-to-who-it-was-for"
+}

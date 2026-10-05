@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6abf968d8ffc7cb5d2a6efa03190c2dae3e0c72bce6345bc5a2c361263ce6a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

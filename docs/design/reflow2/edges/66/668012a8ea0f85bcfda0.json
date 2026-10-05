@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2011ecb23cdfa5a45b6968e9920cf5895571c7e3469a0fa402a17638b7475bd2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

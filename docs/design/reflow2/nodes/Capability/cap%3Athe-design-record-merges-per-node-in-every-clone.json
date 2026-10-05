@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:02f20f4bc5287162731b8332fcfeb7457d58d9b8eceaac5f550b5c972b774cbd",
+  "node_id": "cap:the-design-record-merges-per-node-in-every-clone",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Option B, and it needs BOTH halves because git splits them deliberately.\n\n  · `ensure_gitattributes` writes the repo-side rule naming `docs/design/<project>.json merge=reflow2`. This TRAVELS, so every collaborator's clone agrees on which file needs the driver.\n  · `ensure_merge_driver` sets `merge.reflow2.name` and `.driver` with `git config --local`. This CANNOT travel: git refuses to let a repository configure an executable, which is why the rule alone was never enough.\n\n🛑 THE GAP IT CLOSES WAS SILENT AND OLD. reflow2's own `.gitattributes` has carried `merge=reflow2` for months, and nothing ever set the driver — so a fresh clone fell back to git's LINE merge on a multi-megabyte JSON graph, where two people who edited entirely different parts of the design still collide. `.gitattributes`' own comment calls that *\"safe — it just means you resolve the JSON by hand\"*, which is true and is not a thing anyone will do.\n\n📌 IT LEAVES ALONE A DRIVER SOMEBODY ELSE SET, and reports that it did — the same rule `write_mcp_config` and `ensure_hooks` follow, because a merge driver is exactly the kind of thing a person customises and an installer that silently repoints one is not trusted near a config again. Silent when the repo does not ask for the driver, and silent outside a git checkout: configuring one there would answer a question nobody asked.",
+    "name": "The installer registers reflow2's merge driver, so a collaborator's clone merges the design per node rather than by lines",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

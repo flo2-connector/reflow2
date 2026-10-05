@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7f2652fe5b786013370fa91180a6c82781f727d08a7c6aecf4d3addd3caceeb8",
+  "node_id": "epoch:planned-a-design-is-watched-at-its-address",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Step 2 of the tracked-export retirement plan (2026-09-27). Delivers req:a-design-watches-another-design-at-the-server-that-holds-it: a declared dependency names an address, the watch asks that server for the design's fingerprint, and an unreachable server is reported as unreachable, never \"unchanged\". First case: the dev_reflow2 hub watching cure on flo2.io, which reads not_watched until this lands. Stands alone in the order (needs only step 1's HTTPS client). NOT IN IT: retiring the file watch for designs still served locally (reflow2, flo2); they move in step 8.\n\nARRIVED 2026-09-27: the address watch was built (#602) and shipped in the v0.72.0 cut (#603, rel:v0720). Its stated first case, the hub watching cure, has not happened because @ajs set cure aside the same day. That is a use deferred with cure, not a delivery missing. Marked arrived when the two plans were combined (epoch:planned-combined-plan-reflow2-and-flo2), on @ajs's word.",
+    "epoch_type": "milestone",
+    "name": "Retiring the tracked export, step 2 — a design watches another at the server that holds it (shipped in v0.72.0)",
+    "sequence": 641,
+    "status": "arrived"
+  }
+}

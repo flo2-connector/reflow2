@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c237a704b34ed394ad7fb6e7b89c82f23d496134831c80f23e88075c6de7cb0b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "properties": {},
+  "to_id": "rule:a-cut-ends-by-rebuilding-the-served-release-binary"
+}

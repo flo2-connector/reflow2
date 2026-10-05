@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:40ac9ec556776bc2e9e25fbae28679c99f138bbcc0e290c22260b9c353aadc15",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:arrival-delta:cap:content-store",
+  "properties": {},
+  "to_id": "epoch:arrival-delta"
+}

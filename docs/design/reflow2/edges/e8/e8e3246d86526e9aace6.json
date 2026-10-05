@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7d87e9e993cd4a2715862b471c38aa9cbce56c628d619abe7824a192aeac1231",
+  "edge_type": "CHANGED",
+  "from_id": "chg:interface-medium-reachable",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:interface-spec-test"
+}

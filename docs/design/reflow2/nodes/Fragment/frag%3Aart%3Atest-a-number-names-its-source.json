@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fdad7bf20e3a38cdd88aca035d50fa1f69078a17c01c3318173feec7bdefbaf",
+  "node_id": "frag:art:test-a-number-names-its-source",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_number_names_its_source.rs — the served surface can say where a number came from on add_constraint, constrains and record_finding"
+  }
+}

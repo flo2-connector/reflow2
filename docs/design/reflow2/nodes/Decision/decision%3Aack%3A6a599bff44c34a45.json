@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:500605b9c75a8a60cd6088d3fd13cce4c9f5defbdf38bbae50b4d614d1a12b82",
+  "node_id": "decision:ack:6a599bff44c34a45",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:6a599bff44c34a45.",
+    "name": "Reviewed: gap:6a599bff44c34a45",
+    "rationale": "Checked 2026-09-07: still open. Prompt ids are still content hashes over the prompt text and the answer pool is still keyed on them; none of the four fix shapes landed, and the served description still says to call again with the same documents without the byte-identical warning.",
+    "status": "accepted"
+  }
+}

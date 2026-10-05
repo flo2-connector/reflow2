@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3faa9b39b14e800d58fd5ddfcebf54407688534c61db85615d93f56f5fbbadd8",
+  "node_id": "fact:manual-work-bc0cc1bd0bedb1f4",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script against the committed export to answer \"which capabilities claim they are built but have no passing check?\" — walking capability status against VERIFIES edges to a passing check, because the loop reported the COUNT and named nothing. The count said 1; my derivation said 10. I could not reconcile the two, so I could not tell whether the tool and I were answering different questions or whether one of us was wrong, and I shipped the release leaving the item open on that basis. The report that holds the underlying detail was reachable but returned ~65,000 characters and overflowed the reply, so it could not be read in the session that needed it. THE COST IS THE UNRECONCILED NUMBER, not the script: a count with no reachable members cannot be checked, and an agent that cannot check it either trusts it or rebuilds it by hand — I did both and got two answers.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":\"loop_status\"}"
+  }
+}

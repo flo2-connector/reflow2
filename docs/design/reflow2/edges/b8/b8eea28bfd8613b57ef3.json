@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0e189aacbb36c27fe19ed9dc72fb0ac883a4dca3b67099aba86e91750d389020",
+  "edge_type": "REALIZES",
+  "from_id": "art:sibling-merge-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:ingest"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b1d1e59c7d97ea37bb8a7f2361b19394ff7028fa7767cf7a86956f6f59a9cd0d",
+  "node_id": "decision:ack:94d6436f52168f32",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:94d6436f52168f32.",
+    "name": "Reviewed: gap:94d6436f52168f32",
+    "rationale": "Deferred on Anthony's established disposition for this review, 2026-07-28. Accepted and not dropped: reflow asked \"is this a system-of-systems?\" once, at setup, and recorded the answer, while reflow2 settles the same boundary implicitly by wherever someone ran init. Deferred because the SHAPE is constrained by work already accepted and getting it wrong would undo that work: req:no-setup-per-project and cap:latent-surface deliberately removed setup steps and made a directory with no design cost nothing, so this must not become a question asked at genesis. The likely form is therefore a detector — notice when one graph is carrying what look like several systems, or several graphs describing one, and ask THEN — which is report-and-ask per dec:report-dont-judge rather than a prompt. Designing that detector is the work, and it is not started.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b44e11c51006a5ee9494b9c8f09ae401578651bc152bd1d80834060280506f57",
+  "node_id": "frag:art:call-export",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-mcp/src/call_export.rs — which export a writing --call keeps current, and the line it prints"
+  }
+}

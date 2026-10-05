@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a7cf734b2dd58ce17127716dbd807b8dac70ee23b9cf875ff2c98271b30a7f16",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-why-skill-records-why-an-existing-system-is-the-way-it-is",
+  "properties": {
+    "authored_at": "2026-09-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

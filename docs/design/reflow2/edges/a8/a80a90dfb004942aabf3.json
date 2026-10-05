@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10d23f638f62a52f1957cd4780b35e4c8d54d419669adfe01aa4eb289f82d201",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-resolution-of-a-gap-becomes-schedulable",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

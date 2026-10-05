@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e25cf2dda346d83739643550b210f2c84d2b9862f078e05b23985bcac6a7dadd",
+  "node_id": "art:a-build-can-call-one-tool-from-the-shell-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_build_can_call_one_tool_from_the_shell.rs",
+    "name": "a_build_can_call_one_tool_from_the_shell.rs",
+    "status": "realized"
+  }
+}

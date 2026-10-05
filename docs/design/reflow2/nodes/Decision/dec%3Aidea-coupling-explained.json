@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:52e173e4ec802ab397e5d8b1add5f3ae7868085f2e348daaf2c4c647620b7113",
+  "node_id": "dec:idea-coupling-explained",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL — from the 2026-08-01 dynograph-foundation review. Nothing here is settled.\n\nTHE IDEA: dynograph_graph::shortest_path (unused) returns the actual Path between two nodes. Two readings on a design graph:\n(a) surprising_connections reports that two things bridge separate communities. It does not say through what. The path is the explanation a human needs before acting.\n(b) \"Why is this node in my blast radius?\" propagate reports hop distance and impact direction; a named path is the artifact a person can read and check.\n\nCHEAP: exact, already a dependency, and both call sites already hold the network.\n\nWHERE IT LANDS: this is the BL-114 family again from a third direction — a finding that states a conclusion without stating the evidence it walked. BL-141(a) has just done exactly this for circular_dependency (name the contracts the cycle ran through), and that change was small and immediately useful on real data. The same argument applies here.\n\nTHE HONEST COUNTER-ARGUMENT: a shortest path is not necessarily the RESPONSIBLE path — several may exist, and showing one implies a causal story that may not be the operative one. BL-141(a) sidestepped this by naming the SET of contracts involved rather than a single route; the equivalent here might be \"the edge types this coupling runs through\" rather than one path. Worth deciding which before building.",
+    "name": "OPEN — should a finding say HOW two nodes are coupled, not only that they are?",
+    "rationale": "Grouped with the explain-what-you-walked family (BL-114, BL-141a) rather than presented as a new idea, because that is what it is — the third instance of the same shape.",
+    "status": "proposed"
+  }
+}

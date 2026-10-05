@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a3d5ee38e7d8d197eec2fe66aa90470663bb5ac57d740b9f165ab0fd2b6554da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:shared-by-default",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

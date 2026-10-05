@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a246398916208ffb9eb2d7b99464c1bfda43805eb08544aa388869389ae0487",
+  "node_id": "art:store-engine",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/foundation/store/engine/mod.rs",
+    "name": "engine/mod.rs",
+    "status": "realized"
+  }
+}

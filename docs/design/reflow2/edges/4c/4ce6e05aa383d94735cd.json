@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f1eaac4ce9859d25f183fdc29b594ea065bf79d4b04764cee6628c2fd009de9b",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:sync-debt",
+  "properties": {},
+  "to_id": "snap:epoch:a-record-that-moved-once-is-read-once:art:sync-debt"
+}

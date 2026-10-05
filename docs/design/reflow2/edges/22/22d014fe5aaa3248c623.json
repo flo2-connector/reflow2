@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cbbec14998d7b859980f2004461a38ea2126ecb81498cf9fcb7e05ab8c63fb4c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-black-box-needs-three-edges-not-one",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

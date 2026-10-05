@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:610eb33754f95c3e47ddcc7982983037d78edf05014f77c34d783706b41b0e8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owners-word-rides-the-same-call-as-the-status-it-signs",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

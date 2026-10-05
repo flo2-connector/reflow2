@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c52bcc72165e6d9d851145bf5f4e2680ff99b7657e93e895467b1d0fc8ac546",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:three-additive-surface-fixes-from-field-feedback",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE CONSTRUCTOR HALF IS CLOSED: add_design_rule now exists (name, statement, optional category, optional enforced), so a DesignRule is no longer writable only through generic create_node with guessed field names. Both reporting projects (dev_storyflow 2026-08-23, qs 2026-09-04) hit exactly this. NOT CLOSED, and deliberately kept: the same fact's refutation stands — enforced was NEVER defaulted to true (schema/core.yaml, confirmed by probe), so the reporter's 'a rule claims to gate merges' impression had another cause, most likely the unstated_rule_enforcement gap wording, which is untouched. And find_tools still did not surface a design-rule constructor for the reporter's query; the discoverability leg is only half-built."
+  },
+  "to_id": "fact:defect-designrule-has-no-constructor-reported-by-two-independent-projects"
+}

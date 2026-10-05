@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:14e80dcbfcb7bd5ee39ddca06c86f23ec45165b1c6296693e48854189b9ece57",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:content-manifest",
+  "properties": {},
+  "to_id": "req:export-says-what-it-cannot-carry"
+}

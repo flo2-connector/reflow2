@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c78bf984443cfab67cff9b1bd45ef06d4246508c27198c802b23e411b68a821b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-one-nodes-edges-are-read-back-as-edges",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:one-nodes-edges-are-read-back-as-edges"
+}

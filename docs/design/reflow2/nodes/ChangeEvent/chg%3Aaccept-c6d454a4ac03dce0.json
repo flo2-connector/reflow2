@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8aeb995217b6df4c1890b8136f4d0507b8b329644f255a5b38fe1870a074b7b0",
+  "node_id": "chg:accept-c6d454a4ac03dce0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-23",
+    "name": "User-phrased queries for fork_point and reopen_choice.",
+    "subject": "system"
+  }
+}

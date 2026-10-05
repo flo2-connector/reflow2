@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3a590e57c4840dbc08bb21294c06f4264aaad615e7b69d6d7a7e47d20b2e5773",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:where-content-lives",
+  "properties": {
+    "evidence": "It is the second pressure on that decision's no-service choice, after dec:central-host, and cannot be settled without reference to it.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:repo-file-embedded"
+}

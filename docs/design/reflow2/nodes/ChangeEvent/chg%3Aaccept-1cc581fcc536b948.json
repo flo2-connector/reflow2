@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6097086199eb2ff636469374c6d1876be69c89897317b4f7ddbe3b7274e34422",
+  "node_id": "chg:accept-1cc581fcc536b948",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-19",
+    "name": "The add_change_event tool passes summary and rationale through, and its served prose now says there is no `description` field. Surface change is captured in tools/toolsnaps/add_change_event.json — 1 of 152 goldens moved.",
+    "subject": "system"
+  }
+}

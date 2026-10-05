@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:99ebd9a5b8287fa2a3f88e3123f6b7b10d7264a3b87002e3b223277d8bb10591",
+  "node_id": "dec:idea-a-skill-is-found-by-describing-it-the-way-a-tool-is",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F8, and the owner's own words on record ('I continually forget which skills are available'). OPTIONS, none chosen: (a) `find_skills` — a sibling of find_tools over name + summary + description, with a corpus of one query per skill and the ratchet extended (each skill first for its own job; no new mutual pair among skills); (b) find_tools scores tools AND skills in one list with a `kind` on each hit — one door, but the name then lies and a mixed top-5 muddies both ratchets; (c) the help skill's list, unchanged — the owner forgets anyway. COUNTER: 30 skills fit in one list_skills reply today, so the cost is reading, not finding — and until a summary field exists a skills search scores trigger prose, which the tool instrument already showed measures shared words rather than shared job.",
+    "kind": "exploratory",
+    "name": "OPEN — should skills be findable by words the way tools are (a find_skills, or find_tools scoring both), with one corpus query per skill in a user's words and the same rank-first ratchet?",
+    "rationale": "Recorded from the field report; depends on the summary field for the corpus to have a person's words to match.",
+    "status": "accepted"
+  }
+}

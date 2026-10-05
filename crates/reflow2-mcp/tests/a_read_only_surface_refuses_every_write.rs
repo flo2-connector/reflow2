@@ -114,3 +114,76 @@ async fn a_session_on_a_read_only_server_is_read_only_too() {
         "a client session on a read-only server must refuse writes too"
     );
 }
+
+/// ⭐ READ-ONLY WRITES NO FILE EITHER. `export_graph` and `export_surface` are
+/// annotated read-only — they do not write the GRAPH — so `write_lock` never
+/// saw them, and a read-only server wrote a file at whatever path a caller
+/// named, overwrite included
+/// (fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02).
+/// `--read-only` now means "changes nothing, in the design or on disk", on the
+/// server and on every client session it mints — and only there: an ordinary
+/// service and a snapshot copy (read-only only because it is a copy) still
+/// write the file they are asked for.
+#[tokio::test]
+async fn a_read_only_service_writes_no_file_a_tool_is_asked_to_write() {
+    use serde_json::json;
+    let dir = tempfile::tempdir().expect("tempdir");
+    let server = ReflowService::in_memory()
+        .expect("service")
+        .into_read_only();
+    let session = server.share();
+
+    for (who, s) in [("server", &server), ("session", &session)] {
+        let graph_out = dir.path().join(format!("{who}-graph.json"));
+        let out = s
+            .export_graph(Parameters(
+                serde_json::from_value(json!({ "path": graph_out })).unwrap(),
+            ))
+            .await;
+        let why = format!("{:?}", out.as_ref().err());
+        assert!(out.is_err(), "the {who} wrote export_graph's file");
+        assert!(why.contains("READ-ONLY"), "the {who}'s refusal: {why}");
+        assert!(
+            !graph_out.exists(),
+            "the {who} left {}",
+            graph_out.display()
+        );
+
+        let surface_out = dir.path().join(format!("{who}-surface.json"));
+        let out = s
+            .export_surface(Parameters(
+                serde_json::from_value(json!({ "path": surface_out })).unwrap(),
+            ))
+            .await;
+        assert!(out.is_err(), "the {who} wrote export_surface's file");
+        assert!(!surface_out.exists());
+
+        // Without a path the document is a READ, and still answers.
+        let out = s
+            .export_graph(Parameters(serde_json::from_value(json!({})).unwrap()))
+            .await;
+        assert!(
+            out.is_ok(),
+            "the {who} must still export into the reply: {out:?}"
+        );
+    }
+
+    for (who, s) in [
+        ("ordinary", ReflowService::in_memory().expect("service")),
+        (
+            "snapshot",
+            ReflowService::in_memory()
+                .expect("service")
+                .into_snapshot_copy(),
+        ),
+    ] {
+        let p = dir.path().join(format!("{who}.json"));
+        let out = s
+            .export_graph(Parameters(
+                serde_json::from_value(json!({ "path": p })).unwrap(),
+            ))
+            .await;
+        assert!(out.is_ok(), "an {who} service must write the file: {out:?}");
+        assert!(p.exists(), "an {who} service wrote nothing");
+    }
+}

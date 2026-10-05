@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:085f2e5c63473cf316657684b9d6fa30490cf278f389d993c73825695b1c459c",
+  "node_id": "frag:art:detect",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered detect.rs"
+  }
+}

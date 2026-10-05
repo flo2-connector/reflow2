@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:89ed2f41159ba69dcbf02084f50872a0ee8e58c6c9bf68d419db4464b2c223ef",
+  "node_id": "ver:the-rebuild-rule-rides-on-release-report",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/list against the real store after the rule is written: release_report's description ends with the lesson; every other tool's does not.",
+    "findings": "tools/list on the real store 2026-09-18: the lesson is appended to ['release_report'] and to no other tool.",
+    "kind": "verification",
+    "last_run_at": "2026-09-18",
+    "level": "integration",
+    "method": "demonstration",
+    "name": "The rebuild rule is delivered on release_report: the served tool list carries it in that tool's description on a design holding the rule",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8f179ff1c86ffb7dbbc11f2ef8a58b0418b35ce544783979aab46c418f9c2bd3",
+  "node_id": "cap:a-decision-can-be-created-already-settled",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`add_decision` takes an OPTIONAL `status`, defaulting to `proposed` exactly as today. Nothing changes for a caller who omits it, and `dec:certainty-derived`'s guarantee is untouched: recording a choice is still not the same as settling it, and the default still refuses to assert the user's word. WHAT IT FIXES, and it is not convenience: Alex's fleet reported `set_decision_status` failing with `Node not found` immediately after a successful `add_decision`, and asked for read-after-write. Read-after-write already holds (fact:the-decision-race-is-caller-ordering-not-read-after-write). The real cause is that a parallel tool batch imposes NO ORDER on create-then-modify, so the modify can win the lock first. An optional status removes the pair entirely — one call cannot be misordered against itself. THE GUARD THAT MUST COME WITH IT: a status passed here is still the USER'S word, not the agent's. The same forgery rule that governs set_requirement_status applies, and the parameter description has to say so, or this becomes a convenient way for an agent to accept its own proposal in a single call. Sibling ask, cheaper and possibly sufficient on its own: say in the tool descriptions that parallel batches carry no ordering and a create-then-modify pair must be sequenced — no tool currently says it.",
+    "name": "A decision can be created with its status, so a settled choice is one call rather than two that can be misordered",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

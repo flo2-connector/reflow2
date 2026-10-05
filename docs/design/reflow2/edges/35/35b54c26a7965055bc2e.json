@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c2c27ce60c643d87fcfb7facc23b9e3bbb815e7e77230f6aea5f9516ccd6486",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-near-match-report-is-not-cut-at-three",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

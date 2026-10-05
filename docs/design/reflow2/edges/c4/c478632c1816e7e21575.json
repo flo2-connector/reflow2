@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3751b2f8b0eedf2e55e2f01320df26ca874a4d5deafa683bab0ab536055a92a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-write-unit-is-all-or-nothing"
+}

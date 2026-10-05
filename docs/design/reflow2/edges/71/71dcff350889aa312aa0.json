@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:32730079cf77d20f64c94eb5339543a5c665507d60fe82304677ecb6b2afbe37",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:the-enum-drift-guard-caught-a-brand-new-tool-family-hand-listing-its-values",
+  "properties": {
+    "evidence": "The observation concerns this change specifically: the guard fired during its own gate run, against the six tools it had just added, and the correction was made inside it. The fact's subject_id names the requirement the guard serves; this edge names the change it was measured on, which is the part a later reader needs to reproduce it."
+  },
+  "to_id": "chg:the-environment-compliance-layer-is-built-as-a-whole-leg"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a0fc146e5bd861f6ab0fcfb696b9e6fb7a28da0c700315eff5372076c6d4e736",
+  "edge_type": "REALIZES",
+  "from_id": "art:discover",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:describe-design-at-path"
+}

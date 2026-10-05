@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e39ea6de473e888c3ae3738245f3bb8ba50219f6e6a6af98076ce9ffbc00ee3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unexported-claim-is-answered-once-for-the-seat",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

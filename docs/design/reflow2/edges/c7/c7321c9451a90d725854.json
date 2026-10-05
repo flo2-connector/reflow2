@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5894c1fe1431cb6780781645d70831c1d3023f8645631d64be3f78e5b0bc075",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:change-type-gains-decision-settled",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The fix this change records answers the finding; the finding stays as the measurement that led to it."
+  },
+  "to_id": "fact:field-report-flo2-2026-09-18-change-type-is-required-while-subject-is-optional-so-a-record-only-event-picks-a-system-shaped-why"
+}

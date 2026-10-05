@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d3785f7f16ca550e0298b58a6f89daa320e9b48a0d7bd1031bb7c25cdd5fbb31",
+  "edge_type": "REALIZES",
+  "from_id": "art:service-unit",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

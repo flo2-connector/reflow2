@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b3a36c4fa1d9fc81b22b75ef82d8e562a62e2e409ced929dee016601468f76bb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:e7aee83b8b11ace2c81c10362bdb2609d443b8a5611ab903a3dc8f0c8f91e90d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:every-argument-refusal-names-the-tool-and-the-field-path-test"
+}

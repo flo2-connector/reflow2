@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c69cb1dd40b4ca9f8e20ffe849e2caeec47aa19d945a9c29f3974fa6d0be288b",
+  "edge_type": "INTERACTS_WITH",
+  "from_id": "act:driving-agent",
+  "properties": {
+    "interaction": "receives — the nudge that names the skill the situation calls for"
+  },
+  "to_id": "cap:skill-loads-are-counted"
+}

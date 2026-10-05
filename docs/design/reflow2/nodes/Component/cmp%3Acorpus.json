@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:49b085876f9739b705891e112112e3379c3f30fe69e8990f8687e96dd5d855f4",
+  "node_id": "cmp:corpus",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "corpus",
+    "provenance": "authored",
+    "purpose": "CORPUS — a folder of documents becomes one design in a single batched handshake. The scale sibling of capture-intent.\n\nDISTINCT FROM cap:corpus-ingest, chg:bl186-folder-driver, epoch:bl186-folder-driver — read and judged different in KIND. Those are the capability or requirement this module serves; this is the module itself. A part and the thing it is for are not the same node, and collapsing them would leave the design unable to say which of the two moved.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

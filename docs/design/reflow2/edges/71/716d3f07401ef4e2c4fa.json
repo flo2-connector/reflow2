@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4bdddc292fc607fff0d304f30ace0afea57eaa1bf928f2f7336d2717e468b547",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:establish-taxonomy-before-bulk-capture",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

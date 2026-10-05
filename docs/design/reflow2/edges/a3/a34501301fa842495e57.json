@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1fbb7deb05839f60312f91d3501454f90f5a97f9c00a83b9a6bbd7d92e7daad1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-code-folder-attaches-to-the-design-it-names",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-code-folder-attaches-to-the-design-it-names"
+}

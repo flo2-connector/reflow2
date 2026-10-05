@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dfc32795050f2b611c5a69fd2f7b09b04bad0c3fba7650c7e72b1fa53329cfa3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-reasons-behind-an-existing-system-are-recorded-from-the-person-who-designed-it",
+  "properties": {
+    "approved_at": "2026-09-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

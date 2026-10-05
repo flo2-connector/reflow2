@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4e5cdd7e106f64be6ac0a53deb4f8661642801edb767eaa80969022ba27f8e95",
+  "node_id": "ver:undeclared-seam-is-named",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-13",
+    "level": "unit",
+    "method": "test",
+    "name": "A coupling with no contract is named as one aggregate question, asks rather than drafts, and stays silent where there is nothing to declare (crates/reflow2-core/tests/detect.rs)",
+    "status": "passing"
+  }
+}

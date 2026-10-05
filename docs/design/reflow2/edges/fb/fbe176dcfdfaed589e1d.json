@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b88eba50f9baaf84cd4c517cb55232456aa29e9b3d149d492d08b9eb16eedd31",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): this idea's option to build the deferred ACTS_FOR rung became the accepted requirement."
+  },
+  "to_id": "req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for"
+}

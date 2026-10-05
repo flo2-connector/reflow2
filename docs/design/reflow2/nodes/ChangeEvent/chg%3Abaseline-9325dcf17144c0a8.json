@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7041f4e3409265700b096f0f468b49e7074baf2a7080e5f19acaaa5e5302b6c2",
+  "node_id": "chg:baseline-9325dcf17144c0a8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-19",
+    "name": "First baseline. detect-and-ask had NO Artifact node until 2026-08-19 — the second such hole found this week after art:where-am-i-skill, in a repo where every other skill has carried one since the kit was modelled. A hole in the self-model, not a change to accept.",
+    "subject": "record"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:915a3eda7694b562416a968e3d0d76edab9ab226867af6a233b0c5318419ece2",
+  "node_id": "fact:bl-147",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-147] The shared server exited during continuous use, and the restart failed naming the symptom rather than the cause",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by an /adopt pass over music_graph, a ~11k-LOC Python research repo taken from an empty graph to 134 nodes / 379 edges. Reported in that project's own reflow2_feedback.txt.* After about two hours of active use the shared server exited on its idle timer, and the next tool call returned could not spawn the shared reflow2 server: No such file or directory (os error 2). Two distinct problems, and the reporter separated them correctly. (1) The message's reassurance is well judged and should be kept \\u2014 *\\\"The design is not lost \\u2014 this session cannot currently talk to it\\\"* was true, and having just exported 184 nodes meant they could say so with certainty. That framing is right. (2) No such file or directory names the symptom, not the cause. The cause is that reflow2-mcp is not on PATH: that install runs a dev build at target/debug/reflow2-mcp via a wrapper at ~/.local/bin/reflow2, and the restart path looks the binary up by name. The error should name the path it tried. Diagnosing it took reading the server log, the wrapper script, and pgrep. Straight [BL-135]. AND THE SEPARATE, POSSIBLY WORSE BUG: the log says *\\\"idle for 120 minutes\\\"* while the session was continuously active for that whole window, doing graph writes throughout. Either the idle timer is not counting tool calls as activity, or it reports wall-clock since start rather than since last use. A server that exits under active use is a different bug from one that exits when genuinely idle, and only the second is the intended behaviour. Check that first. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-147 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

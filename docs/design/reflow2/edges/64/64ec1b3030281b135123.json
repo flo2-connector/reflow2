@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:838c8c42f3db8892c41d3c36a700af8807f8b8123a5102828805bee0e542c190",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reachability-is-asked-without-asking-adoption-and-the-instrument-runs-in-ci",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary-reach"
+}

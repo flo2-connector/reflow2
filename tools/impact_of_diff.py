@@ -46,6 +46,7 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from reflow2_check import Server, default_bin, hash_file  # noqa: E402
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 _REPO_ROOT = str(pathlib.Path(__file__).resolve().parent.parent)
 
@@ -166,7 +167,10 @@ def map_files(files: dict[str, bool], index: dict[str, dict], export_rel: str | 
     unmapped: list[str] = []
     record: list[str] = []
     for path, present in sorted(files.items()):
-        if export_rel and os.path.normpath(path) == os.path.normpath(export_rel):
+        # The item layout is a directory of records: everything under it is
+        # the record too.
+        if export_rel and (os.path.normpath(path) == os.path.normpath(export_rel)
+                           or os.path.normpath(path).startswith(os.path.normpath(export_rel) + os.sep)):
             record.append(path)
             continue
         hit = index.get(path)
@@ -191,8 +195,8 @@ def map_files(files: dict[str, bool], index: dict[str, dict], export_rel: str | 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n", 1)[0])
-    ap.add_argument("--export", default="docs/design/reflow2.json",
-                    help="the committed design export (default docs/design/reflow2.json)")
+    ap.add_argument("--export", default=None,
+                    help="the committed design (default docs/design/reflow2/, else docs/design/reflow2.json)")
     ap.add_argument("--root", default=".", help="repo root the export's locations are relative to")
     ap.add_argument("--range", dest="rng", default=None,
                     help="git range A..B to analyse (default: merge-base with main .. HEAD)")
@@ -208,11 +212,12 @@ def main() -> int:
     opts = ap.parse_args()
 
     root = os.path.abspath(opts.root)
+    if opts.export is None:
+        opts.export = design_io.default_export(root)
     export_path = opts.export if os.path.isabs(opts.export) else os.path.join(root, opts.export)
     if not os.path.exists(export_path):
         die(2, f"no export at {export_path}")
-    with open(export_path, encoding="utf-8") as fh:
-        doc = json.load(fh)
+    doc = design_io.load_design(export_path)
 
     files, compared = changed_files(root, opts.rng, opts.working_tree)
     try:

@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": false
   },
-  "description": "Compare what a real test run REPORTED against what each Verification records — the P4 reconcile, last of the three feedback loops (BL-30): reconcile_artifacts asks about the code, this about the outcomes, reconcile_deployment about what runs. Supply one entry per check the run executed ('passed'/'failed'/'skipped'). A recorded 'passing' that the run failed is the dangerous direction and sorts first — the design believed proven what is actually broken. With record_events each divergence is a persistent DriftEvent (and unresolved_drift gap), auto-resolved when a later run agrees; the design-side answer is set_verification_status with what the run actually said. Ask for this when you have fresh test results and want the design's checks updated to match them.",
+  "description": "Compare what a real test run REPORTED against what each Verification records — the P4 reconcile, last of the three feedback loops (BL-30): reconcile_artifacts asks about the code, this about the outcomes, reconcile_deployment about what runs. Supply one entry per check the run reached ('passed'/'failed'/'skipped', or 'blocked' when it could not run the check at all). A recorded 'passing' that the run failed is the dangerous direction and sorts first — the design believed proven what is actually broken. With record_events each divergence is a persistent DriftEvent (and unresolved_drift gap), auto-resolved when a later run agrees; the design-side answer is set_verification_status with what the run actually said. Ask for this when you have fresh test results and want the design's checks updated to match them.",
   "inputSchema": {
     "$defs": {
       "ObservedFileReq": {
@@ -13,11 +13,12 @@
             "type": "string"
           },
           "outcome": {
-            "description": "What the run reported for the whole file: `passed` / `failed` /\n`skipped`.",
+            "description": "What the run reported for the whole file: `passed` / `failed` /\n`skipped`, or `blocked` when none of it could run.",
             "enum": [
               "passed",
               "failed",
-              "skipped"
+              "skipped",
+              "blocked"
             ],
             "type": "string"
           }
@@ -32,15 +33,17 @@
         "additionalProperties": false,
         "properties": {
           "outcome": {
-            "description": "What the run reported: `passed` / `failed` / `skipped`. Anything else\nis rejected by name; the rest of the batch still processes.",
+            "description": "What the run reported: `passed` / `failed` / `skipped`, or `blocked`\nwhen the run could not run the check at all (a collection error, a test\nfile that did not compile), which says nothing about what it checks.\nAnything else refuses the whole call before anything is recorded,\nnaming the item.",
             "enum": [
               "passed",
               "failed",
-              "skipped"
+              "skipped",
+              "blocked"
             ],
             "type": "string"
           },
           "verification_id": {
+            "description": "The Verification (`ver:…`) whose check this run executed.",
             "type": "string"
           }
         },

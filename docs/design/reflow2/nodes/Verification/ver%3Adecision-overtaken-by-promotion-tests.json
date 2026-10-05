@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:75d863e1475eb790910333bf51dc71dc8e5062a262838c34b3aeaf447a6664b7",
+  "node_id": "ver:decision-overtaken-by-promotion-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/decision_overtaken_by_promotion.rs — 10 tests.\n\nPOSITIVES (all 5 fail when the sweep call is disabled): an idea promoted into an accepted Requirement raises one finding anchored to BOTH the question and what answered it, with its denominator in the evidence; closing the decision clears it; an idea that shipped as a recorded ChangeEvent is asked about (the class the hand sweep missed); an idea that became a DesignRule in force is asked about; a second promotion moves the gap id so an acknowledgement of the first does not silence it.\n\nEXCLUSIONS (all 3 fail when the settled rule is widened to accept any target): a promotion still at `proposed` is intent, not settlement; a `dropped` promotion reopens the question rather than settling it; a TemporalFact target is evidence toward an answer, not the answer.\n\nTWO SILENCE TESTS that cannot fail by construction, and are honest about it: a parked question goes quiet; an answer nobody linked back is out of reach — the second exists to DOCUMENT the blind spot the detector's own evidence line states, not to prove anything.",
+    "kind": "verification",
+    "name": "The promotion detector's ten tests, falsified in both directions",
+    "status": "passing"
+  }
+}

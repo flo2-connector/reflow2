@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d7e511aa9d17265e48ff089707ae78e04c244fc5d248358b59a347aa57e07a4e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-architecture-is-graph-centric-and-the-question-is-which-decoupling",
+  "properties": {
+    "evidence": "The crate-split option rests entirely on compile cost being worth reducing, and that node is where compile time was already felt as a problem without being quantified. Neither can be judged until somebody times a rebuild, which is the same missing measurement for both.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d8de84ec7ebe4a56c1e578fcf843107deb60a9e235658874f3bb80d3d1b7bd48",
+  "node_id": "frag:art:test-a-writing-call-keeps-the-committed-export-current",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-mcp/tests/a_writing_call_keeps_the_committed_export_current.rs — eleven real-binary tests of the door's export"
+  }
+}

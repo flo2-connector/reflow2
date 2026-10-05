@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8aa0089cc69b77af373645e53ea209f8ec1c9318f29c227650ea3a357df38e1",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:reachability-is-asked-without-asking-adoption-and-the-instrument-runs-in-ci",
+  "properties": {
+    "evidence": "Splits the fused filter this record named as the cause, and adds the per-type parameter view without which the second reported property was still missed."
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

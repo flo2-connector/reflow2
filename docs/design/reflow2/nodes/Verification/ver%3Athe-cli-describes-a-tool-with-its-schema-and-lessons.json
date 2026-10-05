@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:14b6dfb878e553d441b62df862619c9e0d917d95fe49a1578ee552842bb04035",
+  "node_id": "ver:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Ten tests in crates/reflow2-mcp/tests/the_cli_describes_a_tool_with_its_schema_and_lessons.rs. Seven drive the real binary with an isolated HOME and a deadline: --describe add_decision shows RelationLinkReq and the 13-value relation enum within the budget; a lesson a scratch design hangs on get_node (a finding and a rule) arrives through --describe, --describe --full, --list-tools and --call describe_schema, and a design holding none says so; --describe --full and --list-tools --full equal a live stdio session's tools/list on the same design WHILE that session holds the store (read from the snapshot copy); no design (described, nothing created; refused with --only-if-present); a pointer folder (refused, the design named); an unknown name (the nearest names and find_tools); --full alone refused. Three in process: every served tool's brief schema differs from the served one only in prose and fits the budget, and its full form IS the served entry; forty long lessons on one tool stay within the budget with every id kept; a mixed request, full alone and an unknown tool are refused.",
+    "findings": "OBSERVED FAILING FIRST on main 293f957: 10 of 10 failed (--describe and --full unknown to clap, exit 2; describe_schema refused `tool` as an unknown field). Item 1's flag x mode walk, widened with the two modes, failed there too (78 combinations). On the branch: 10 of 10 pass, and item 1's 9 of 9.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/the_cli_describes_a_tool_with_its_schema_and_lessons.rs",
+    "method": "test",
+    "name": "The CLI describes a tool with its full schema and its lessons, and describe_schema serves the same",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57dd4b59d4fa2f912cbddf93b6556666d0723dbec8229cc63aace248b05b9da2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-441a432f5b17bb9e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-unit-crosses-a-seam-and-the-two-sides-are-compared"
+}

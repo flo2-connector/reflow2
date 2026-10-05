@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9d6f5eaaf5966377132ad9b9c14c5735c077808fb5a8d4e786189ca3d0acf10b",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-served-prose-is-mostly-true-and-nothing-checks-any-of-it",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "The measurement the decision itself named as what would settle it has now been run, so the question 'is this one defect or three' is no longer open on the evidence it asked for. It answered YES to the grouping (80% of marker-carrying sentences make checkable behavioural claims, ~270 across the surface, nothing checks any) and NO to the implied urgency (five of five sampled claims verified TRUE; the known-false rate is ~2%). Both halves are needed: either alone would mislead."
+  },
+  "to_id": "dec:idea-the-load-bearing-prose-is-unchecked-against-the-code-it-describes"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9244e2df693f694ac65e10c550baf4748c915465be6cd6082d8fa52646f6bad5",
+  "node_id": "chg:accept-96bbdd56ab16969d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "Verification.last_reconciled_outcome exempted: a stamp written by reconcile_verification, never a caller parameter (dec:a-reconcile-stamps-every-check-it-compared).",
+    "subject": "system"
+  }
+}

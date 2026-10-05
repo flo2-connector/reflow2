@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad1b27ad439eedfccf7826d63ecc89950d8b569ec0d5ba856128e4e90e2663d5",
+  "node_id": "dec:idea-a-bulk-write-can-be-checked-before-it-is-written",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — Alex's observation (v0.47.0, 2026-09-05), in his words: 'Bulk writes are all or nothing, which is correct but costly at scale. One bad enum value is a 21-item batch rejects all 21, so you re-send the whole payload. Fine by design; just expensive when iterating.' He accepts the design; the idea is about the iteration cost. OPTIONS: (a) DRY-RUN / VALIDATE-ONLY — a `check_only: true` flag runs every item through validation and returns the full per-item finding list WITHOUT writing, so a 21-item batch is corrected once and sent once: two sends worst case instead of N. (b) APPLY-VALID-ON-REQUEST — an explicit `apply_valid: true` writes the items that pass and returns the failures, so the resend is 1 item not 21.\n\nCORRECTED the same hour: a first draft of this node offered a third option, 'nothing new — resend only the failed item, the per-item index already lets you.' THAT WAS WRONG. All-or-nothing means the VALID items were discarded too, so the whole payload MUST be resent after any failure — Alex's 'you re-send the whole payload' is forced by the design, not a client habit. The per-item index tells you what to FIX, not what to omit. Option (c) is withdrawn; (a) is the cheapest correct answer.",
+    "kind": "exploratory",
+    "name": "OPEN — a bulk write is all-or-nothing by design, so one bad enum in 21 items means re-sending 21. Should a batch be checkable before it is written, or partially applicable on request?",
+    "rationale": "THE STANDING DECISION AND WHY IT STANDS: dec:bulk-is-all-or-nothing-with-per-item-findings — 'a partial bulk write leaves a design in a state nobody chose', and the store's atomic batch makes all-or-nothing free. That argues directly AGAINST (b) as a default and is why (b) here is opt-in only: an explicit request is a chosen state. (a) contradicts nothing — it writes nothing — and is the cheapest honest answer to the iteration cost; its cost is one flag on the bulk tools, ideally in the one shared helper they all pass through. Ranking is a finding; Anthony rules — and on 2026-09-05 he ruled: build the fixes.",
+    "status": "proposed"
+  }
+}

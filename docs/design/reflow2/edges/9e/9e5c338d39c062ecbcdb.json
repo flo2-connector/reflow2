@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a378634abba02c6283d635f8a767788fb28663e00a4016b404160765c15583e6",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-would-a-graph-database-serve-reflow2-better-than-a-kv-store-at-its-scale",
+  "properties": {
+    "evidence": "The pasted analysis counts 'schema flexibility — attach completely different property keys without breaking a strict schema' as a benefit. reflow2's store is a SCHEMA-VALIDATED graph store by design (schema-first is rule 1 of the project; defaults-do-not-assert, typed vocabulary, 29 node and 65 edge types with validated properties). A schemaless graph database as the store would let exactly the writes the validator exists to refuse; the option endangers the capability rather than serving it."
+  },
+  "to_id": "cap:store"
+}

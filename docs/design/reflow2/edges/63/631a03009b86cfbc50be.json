@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2df46793d44be31b777e7d6546996bbdd2f32e13a7cb06a82b83de96b93b037d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:documentation-has-no-operational-coupling",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

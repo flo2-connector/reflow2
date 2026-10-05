@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5574cf228a5e2a94dab94ae0815f35128c8caaea7ed938a474fd14192dd0ac2b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:central-host-status-corrected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:central-host"
+}

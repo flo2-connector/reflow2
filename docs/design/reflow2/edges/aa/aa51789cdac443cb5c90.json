@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f88fcfd650ffb283c63f969d9869330d3aaff1d0ae157f360da3e7ad04faaa98",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:detect",
+  "properties": {},
+  "to_id": "fact:bl-95"
+}

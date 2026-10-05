@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:349c02e5fa3e7472925118ecc6c8f364ba6726282a6b6de1a23e8dc6493c4f75",
+  "edge_type": "REALIZES",
+  "from_id": "art:llm",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:llm"
+}

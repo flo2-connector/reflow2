@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:16fb8d4e28c6556fe289019dcac4e3949368d484017bb31650a3a6dbda927222",
+  "node_id": "fact:defect-seven-temporal-facts-name-a-subject-id-that-does-not-exist",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "property",
+    "statement": "SURFACED 2026-08-16 BY THE WIDENED DEGREE-ZERO RULE, on its first run over reflow2's own graph — a finding nothing could previously report.\n\nSEVEN TemporalFacts carry a `subject_id` naming a node THAT DOES NOT EXIST, and two of the seven are plainly typos for a live node:\n  fact:dev-storyflow-fleet-log-triaged-2026-08-16          -> prj:reflow2      (the Project is proj:reflow2)\n  fact:defect-kit-manifest-drift-is-invisible-to-ci        -> cap:thin-install (the node is req:thin-install)\n  fact:defect-append-only-volatility-exempts-a-structural-rewrite\n  fact:defect-link-artifact-has-no-type-for-a-test-source\n  fact:dev-storyflow-fleet-log-full-triage-6203-lines-2026-08-16\n  fact:reflow2s-black-boxes-hold-no-functions-allocation-went-straight-to-the-modules\n  fact:the-music-graph-feedback-file-is-four-sessions-and-its-first-batch-was-fixed-long-ago\n\nWHY IT WAS INVISIBLE. `subject_id` is a required INDEXED property, so a fact names its subject without an edge — which means a fact is reachable by index lookup and never by a graph walk. Nothing validated that the id resolves. `orphan_node` ran on Decision only; `disconnected_community` reports clusters of >=2 and a node joined to nothing is never a cluster. So the pointer could be wrong for as long as it liked.\n\nWHAT IT COSTS: the observation is stranded. It cannot be found from the thing it is about, it never enters an impact analysis, and a reader searching the live node's history sees nothing.\n\nNOT REPAIRED HERE, and deliberately so: correcting a `subject_id` is a judgement about what the fact was about, not a mechanical fix, and the two obvious typos are the only two anybody could assert without reading each statement. RELATED, UNANSWERED: whether the schema should validate that a pointer property resolves at WRITE time — which would have stopped all seven at the door — or whether that couples the schema layer to graph contents in a way this design does not want.",
+    "subject_id": "cap:a-node-attached-to-nothing-is-reported-whatever-its-type",
+    "valid_from": "2026-08-16"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d14b90dc243165fc4eb5963ed1ab021130106e0c34f915d9e920b8e0d1d59630",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0601",
+  "properties": {
+    "as_checksum": "sha256:f97070598dd6f9bc2fb480185c70ac34513a6df45b3acf1249641a3a18546ce3"
+  },
+  "to_id": "art:usage-ledger"
+}

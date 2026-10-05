@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6fdb7637e78be004e990107e548869e0dd50d01cf643974f4223a0aaa8baa4e4",
+  "node_id": "fact:the-change-event-escaping-report-did-not-reproduce",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "measurement",
+    "statement": "REPORTED AND REFUTED THE SAME DAY. Recorded so the next reader does not re-investigate it.\n\nproj:chama reported that `add_change_event` double-escapes embedded quotes where `create_nodes` does not — 'via create_nodes → stored Anthony first answered \"not sure\" ✅; via add_change_event → stored Anthony answered \\\"not sure\\\" ❌' — and said they had confirmed it with get_node rather than trusting the write echo.\n\nREPRODUCTION ATTEMPTED 2026-09-02 on this graph. `add_change_event{rationale: \"Probe: Anthony answered \\\"not sure\\\" about the substrate.\"}`, read back with get_node, then the probe node deleted. STORED VALUE IS CLEAN: the reply renders `\\\"`, which is JSON transport encoding of a string containing plain double quotes — identical to what create_nodes produces for the same content. No double-escaping in either path.\n\nMECHANISM AGREES WITH THE MEASUREMENT: temporal_tools.rs:435 passes `req.rationale.as_deref()` straight to the core with no transformation, and both tool paths decode through the same JSON parser. To store a literal backslash-quote the caller must send a doubled backslash.\n\n⭐ THE CANDIDATE THAT WAS RIGHT IS THE ONE THE ROOT-CAUSE SKILL SAYS TO ADD DELIBERATELY: 'the observation itself is wrong — I measured the wrong thing.' The likely cause is comparing a JSON-escaped read against a differently-rendered one. The reporter hedged it honestly in their own text ('I cannot fully rule out my own input differing between the two calls'), and that hedge was the true reading.\n\n⚠️ BOUND: one reproduction, on this graph, with one quote pattern in `rationale` and `summary`. It does not establish that no top-level-string tool anywhere escapes badly — only that this specific reported pair does not.",
+    "subject_id": "cmp:tools-capture",
+    "valid_from": "2026-09-02"
+  }
+}

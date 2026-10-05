@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f66d18c2a21fbfe27543844cb10fb3e18271cf673ffb3ae58f39d0a633708cdb",
+  "node_id": "epoch:nudge-expands-tilde",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The nudge self-check stops reporting a working hook as broken (2026-08-09)",
+    "sequence": 296,
+    "status": "arrived"
+  }
+}

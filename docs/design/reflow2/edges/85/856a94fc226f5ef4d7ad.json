@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d5e41cab35c8c09eeec1614497d6371fc81f4271a0016d697c01ace3bde09c58",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:orientation-is-computed-not-written",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

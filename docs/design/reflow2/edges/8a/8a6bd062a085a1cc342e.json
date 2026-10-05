@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8f27297d721f7602bd3cdf67c1644c8db66984ff67e81d3f8eb0ceb314fe9606",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:de3f93b517c6b9df25113e078cd55aa5c63fe14b63b7b1cec7625365253e5c24"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}

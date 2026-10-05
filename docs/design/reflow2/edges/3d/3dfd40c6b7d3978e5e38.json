@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bd8e365026fde5edd307c3f1197821bfad4538bcf66a90081ea5200802f98a54",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:an-agent-stopped-reaching-for-reflow2-and-a-second-one-reproduced-it-the-same-day",
+  "properties": {
+    "authored_at": "2026-08-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c36f1b5be3c8bd3400e8d912a09e1ab72ca07193063cf49ed81139e2afcea53d",
+  "node_id": "art:a-prose-field-that-swallowed-a-parameter-says-so",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_prose_field_that_swallowed_a_parameter_says_so.rs",
+    "name": "a_prose_field_that_swallowed_a_parameter_says_so.rs",
+    "status": "realized"
+  }
+}

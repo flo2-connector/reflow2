@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a58976b11908fbe70cf2af59a16155446e6c600dab2b9a67fb812a5d76d2599d",
+  "node_id": "ver:a-refusal-names-its-own-fix",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-08",
+    "level": "unit",
+    "method": "test",
+    "name": "A claim for an unknown Contributor names add_contributor and still refuses; add_contributor accepts claim_region's field name without loosening deny_unknown_fields",
+    "status": "passing"
+  }
+}

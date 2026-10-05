@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1e45e99a887e6e1c14d0275dde50b6ef03fb6718b584cbbf3907797358231122",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-taxonomy-skill-is-served-and-the-finding-reaches-the-surface",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-taxonomy-skill-is-served-and-the-finding-reaches-the-surface"
+}

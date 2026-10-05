@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:19575abfbceff4acae548bbe2f3c85e46154d9bd6234846430b98f44cbbbc781",
+  "node_id": "ver:store",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-20",
+    "level": "unit",
+    "method": "test",
+    "name": "Schema validation and graph-store round-trip suite (cargo test --no-default-features: schema, nodes, graph, storage tests)",
+    "status": "passing"
+  }
+}

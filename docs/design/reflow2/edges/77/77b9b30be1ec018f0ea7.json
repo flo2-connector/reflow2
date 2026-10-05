@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b21184d77c7a445790dcfcaee2ee652d96f12a82cd7a8e99c9a20e0589bd2e1f",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:one-setup-command-chooses-local-or-remote-once",
+  "properties": {},
+  "to_id": "fact:setup-advice-names-a-command-a-checkout-install-lacks-and-browser-sign-in-is-unbuilt-2026-09-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:83ed58b5ae5566f56a0864c75302ef2efbe620579297bf32372e46802856c427",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:hierarchy"
+}

@@ -27,7 +27,14 @@ schema:
         # `skipped` (which means a run was deliberately not made) and must not go
         # on reporting `passing`. Read by `loop_status.verifications.by_status`
         # and by graph_report, so a retired check stops counting as live coverage.
-        status: { type: enum, values: [planned, passing, failing, skipped, blocked, superseded], default: planned, indexed: true }
+        # `blocked` described 2026-10-03: a check that COULD NOT RUN (a collection
+        # error, a test file that did not compile, a setup that failed before the
+        # body ran). It was in the enum and meant nothing anywhere, so a check
+        # that never executed was fed back as `failing` and read "did not work as
+        # designed" (fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02).
+        # Now reconcile_verification takes the outcome `blocked` and detect_gaps
+        # raises `blocked_verification`, which never claims the part failed.
+        status: { type: enum, values: [planned, passing, failing, skipped, blocked, superseded], default: planned, indexed: true, description: "The last result the design records. `passing` and `failing` say the check RAN and what it found; `skipped` that a run deliberately left it out; `blocked` that the check COULD NOT RUN (a collection or import error, a test file that did not compile, a setup that failed before the body ran, an environment it needs that was missing), which says nothing either way about whether the thing it checks works; `superseded` that a broader check replaced it; `planned` that it has not run yet." }
         last_run_at: { type: string }
         # Added 2026-09-22 on Anthony's word (step 3 of his approved ordering).
         #
@@ -43,7 +50,7 @@ schema:
         # the reconcile still never edits it. These say only that a real run was
         # compared against the claim, when, and what the run said.
         last_reconciled_at: { type: string, description: "When a real run was last compared against this check by reconcile_verification with recording on — its `detected_at`. Absent when the run was fed in undated, or never." }
-        last_reconciled_outcome: { type: enum, values: [passed, failed, skipped], description: "What the last real run compared against this check REPORTED. Never the design's claim — that stays in `status`, which a reconcile does not edit. Present means a result has come back into the design at least once." }
+        last_reconciled_outcome: { type: enum, values: [passed, failed, skipped, blocked], description: "What the last real run compared against this check REPORTED (`blocked`: the run could not run it). Never the design's claim — that stays in `status`, which a reconcile does not edit. Present means a result has come back into the design at least once." }
         last_failed_run_at: { type: string, description: "When a real run last reported this check FAILED — kept when later runs pass, so a failure that was fed back and then fixed is still visible as the loop having fired. Written only when the run was dated." }
         # Added 2026-08-17 for req:a-finding-has-somewhere-to-put-its-evidence.
         #

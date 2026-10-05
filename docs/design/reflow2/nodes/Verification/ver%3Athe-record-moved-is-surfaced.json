@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:502ef115c9d2a061f6a1f38638505b93ab908eb12954ea8d36ef96c43287c57f",
+  "node_id": "ver:the-record-moved-is-surfaced",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A record that moved ahead of this seat is reported, and one that has not is silent. COVERS: the three consumption-free states (in_step / moved_but_current / behind) and the two fault states (missing / unreadable); that ordinary unexported work is NEVER reported, which is the property the whole design rests on; that two targets are independent and neither hides the other; that every known target is listed so an empty answer cannot read as all-clear; that the finding names both `import_graph` and the path and never reads as a refusal (no \"refused\"/\"error\"/\"cannot\"/\"blocked\"); that the expensive export is NOT built on the in-step path and is built exactly once when needed; and THE REGRESSION THAT MATTERS MOST — a record edited without restamping is still caught, because the check computes the content hash instead of believing the one the document states about itself. NOT COVERED: the live MCP surface end-to-end (the served tool was exercised against a scratch graph via the CLI, not against a running server), and any behaviour of `import_graph` itself.",
+    "findings": "That last case was found end-to-end rather than by any unit test, after the first cut shipped believing the stamp and reported \"in step\" while somebody else's work sat in the file.",
+    "kind": "verification",
+    "last_run_at": "2026-08-11",
+    "level": "integration",
+    "method": "test",
+    "name": "A record that moved ahead of this seat is reported, and one that has not is silent",
+    "status": "passing"
+  }
+}

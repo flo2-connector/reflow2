@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:72b77c525e89bb5ac5ebacde9ee4598074c86fc54b684c3ff9c8036bfa01fcb4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-systems-interface-and-functionality-views-are-rendered",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

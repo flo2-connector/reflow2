@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4aaa92e96891cf5b2a0208cd910a646df71a637ccf1f95aa8a94f3f0ac38c060",
+  "node_id": "drift:24e036aae5bd488d",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-22",
+    "drift_type": "checksum_change",
+    "name": "art:report drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:report' has changed since it was registered against the design"
+  }
+}

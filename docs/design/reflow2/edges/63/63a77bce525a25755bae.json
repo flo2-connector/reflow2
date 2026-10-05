@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d41fa3089fbfbb7f86867f292ef6f2426c3e03f17107a0c56ffbe76d28e4dee1",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:unreachable-decision-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:heal"
+}

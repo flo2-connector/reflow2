@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e88de6347e42b879cfa9605f1e77da680744565dc95c2acda919046a032a240",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "dec:build-reflow2s-oauth-client-on-rmcps-auth-feature",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-signs-in-as-an-oauth-client"
+}

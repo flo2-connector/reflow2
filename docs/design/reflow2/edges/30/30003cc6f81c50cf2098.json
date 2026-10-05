@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1bebbb9cbc1706fca06ab7b4ec514c3cb5dcef65bc61f585c7f4b273f50b888a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0760",
+  "properties": {
+    "as_checksum": "sha256:95e09af27feb9bc70ceb36fec70351eac9f0c2a8a12809836324b2a62918b856"
+  },
+  "to_id": "art:check-verification-ratchet"
+}

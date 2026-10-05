@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ae2f9561246bd197fbc4a123d48541a4e21a45d2aca01dd4edc18c15049f6166",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scaling-to-many-tenants-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "rule:per-design-state-is-never-a-process-global"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3ee9d6e3622660ba7a7e8047372621e846e46b2b21dba1519df87cf15f01d85b",
+  "node_id": "epoch:preserved-on-write",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+  }
+}

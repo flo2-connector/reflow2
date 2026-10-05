@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fac6ced935add0ecc4f6b671a794efed8784ea807c008089e54e580428f29dea",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-an-export-says-where-it-was-taken",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-export-says-which-tree-it-was-taken-in"
+}

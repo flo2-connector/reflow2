@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4230126b956aa9d2c75cad7fceb9044d4bf22ada4b49a62cd9ea446c8708927b",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-add-artifact-takes-the-first-checksum",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mcp-surface"
+}

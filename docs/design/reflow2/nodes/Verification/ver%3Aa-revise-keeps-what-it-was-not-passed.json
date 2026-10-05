@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b46c3548e4d7a80d6d5b7ef1106e11722d94fd03ad067fc16d69baa67c312fb2",
+  "node_id": "ver:a-revise-keeps-what-it-was-not-passed",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_revise_keeps_what_it_was_not_passed.rs. The membership is read off the SERVED tool list: every tool whose description says \"optional to revise\" (20 on 0.74.0). Each is created over the transport with every scalar property at a non-default value, TWICE with different values (a default equal to one synthesised value would hide a reset; it cannot equal both), revised by one field, and checked property by property and reply note by reply note against its create. A second case holds the REQUIRED-TO-CREATE half: an id-only create is refused or stores no empty placeholder. Counterweights: a first create still lands the documented defaults; a passed value still overwrites. A fourth pins add_verification refusing findings-without-status while naming the verdict the check already holds.",
+    "findings": "2026-09-29, under the shared-target build protocol (clean rebuild of both workspace crates under one lock). FAILING FIRST on origin/main (329a074) plus the test alone: 9 breaches across 3 tools — record_finding fact_type (both passes) and basis (pass 0), plan_epoch description and checksum (both passes), add_change_event a false `undated` note (both passes) — and 7 tools (add_artifact, add_contributor, add_environment, add_flow, add_release, add_resource, add_verification) storing name: \"\" on an id-only create; the add_verification refusal named no verdict. After the fix, and again after merging main (cc3dbd0): 5/5 green, with the neighbouring mcp suites and reflow2-core --no-default-features green.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "method": "test",
+    "name": "A revise keeps what it was not passed, in every tool that promises it",
+    "status": "passing"
+  }
+}

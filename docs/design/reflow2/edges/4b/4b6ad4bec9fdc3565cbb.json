@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:589845a632b1b0dca15a96618c3023f43595af83591c935e89fce47ce9fe3149",
+  "edge_type": "REALIZES",
+  "from_id": "art:coverage",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:coverage"
+}

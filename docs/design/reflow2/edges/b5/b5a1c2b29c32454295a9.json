@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2c62fa150be8c13225f4506a47e480ed0758d6c3046df6cce3b56ab454455e8",
+  "edge_type": "REALIZES",
+  "from_id": "art:smoke-mcp",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:handshake"
+}

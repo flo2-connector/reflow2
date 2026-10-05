@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9dfb419ec4b5254ebf8ecfe86699e66a540f2fdf327fa4fa4fdbea8b7bfdaa3a",
+  "node_id": "epoch:2026-09-10-every-declared-enum-is-wired-or-exempt",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The class behind hxm_program F-19, taken on Anthony's word after three wrong counts were put to him. F-19 fixed one field (`Requirement.concern`) and recorded `contained_symptom`, standing in for \"a check that every declared enum reachable through a request field publishes its values, so the next one cannot ship unwired\". This epoch is that check, plus the 31 fields it found.",
+    "epoch_type": "revision",
+    "name": "The enum-publishing class is closed: 31 fields wired and a guard that keeps the count at zero",
+    "sequence": 413,
+    "status": "arrived"
+  }
+}

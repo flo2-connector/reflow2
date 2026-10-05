@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:13c9bff6978039d9527beb56b0dbf380a147da73c676d38b4252a513f5423569",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:165aa3a49543a23668fcb50fdf421fa58c9e02c7ed413e23b67c60e8a864594d"
+  },
+  "to_id": "art:test-every-constructor-says-what-the-thing-is"
+}

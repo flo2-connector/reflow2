@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29606262728df81021763d5263d1f092f9751b453713a6234627ec9d37920141",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-manifest-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:content-manifest"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8b5dc16836938002c8b42622b8ad7673c23b42bd9ca3f0eeabfc41141db73d7",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That accepted decision requires a claim-family call without a seat argument to be REFUSED rather than served from remembered state, and calls the refusal the load-bearing half; this idea proposes serving from remembered session state, so the design has to pick."
+  },
+  "to_id": "dec:stateless-seat-handle"
+}

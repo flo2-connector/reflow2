@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:388b6f497748b5d1cec87a7b5831203c07f95e91185c611f36392a08e4ca1c4f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:content-policy",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:art:content-policy"
+}

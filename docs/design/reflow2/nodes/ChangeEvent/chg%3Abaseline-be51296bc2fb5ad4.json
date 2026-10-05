@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4188c74cb53653e408138c140001ea3dc2495be19237b186c2caf992c0960fd9",
+  "node_id": "chg:baseline-be51296bc2fb5ad4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-20",
+    "name": "First baseline for the new test.",
+    "subject": "record"
+  }
+}

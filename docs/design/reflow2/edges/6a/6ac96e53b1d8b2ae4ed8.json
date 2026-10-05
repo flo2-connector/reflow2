@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5dfcea3b1af83688b5b42a76a02f52bf5a84c08cef3d414fe5a02ec921c138c7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:b66625a527eb60fb",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:temporal"
+}

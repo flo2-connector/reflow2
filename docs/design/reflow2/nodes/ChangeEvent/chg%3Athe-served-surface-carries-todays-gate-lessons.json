@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebab9303ee4f9dfc0fad2da4884da6e2ad60d5a650467d86d403f0592888ec8e",
+  "node_id": "chg:the-served-surface-carries-todays-gate-lessons",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "ci-gate documents all four of its failure modes and warns about ordering and piping; parallel-work stops telling users to export on every commit"
+  }
+}

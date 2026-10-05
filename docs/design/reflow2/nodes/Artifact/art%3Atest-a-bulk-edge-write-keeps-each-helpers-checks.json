@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19d67a3e3f72b565dc23fe8d005de8ea3e3378a8e0b936cbc75c064d66bb80c3",
+  "node_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_bulk_edge_write_keeps_each_helpers_checks.rs",
+    "name": "a_bulk_edge_write_keeps_each_helpers_checks.rs — the typed helpers and their bulk form, held equal as a class",
+    "status": "realized"
+  }
+}

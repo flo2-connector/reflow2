@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89cf3bfdab2b5b247a825156fb7d457f738007ba49a9fe9a764920c96e5efef0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-manifest-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bf8586e1dd41aeec150632897195dd277c07db44913edef27a08d8646e56dbbe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-more-modules-behind-the-read-contract",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coverage"
+}

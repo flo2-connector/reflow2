@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bfced8a591d345bcec1121c6b2d704400f773a804e98141db2ff5fb3f16c1620",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:graph",
+  "properties": {},
+  "to_id": "snap:epoch:a-write-can-be-conditional-on-what-was-read:art:graph"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d10b2df7c5a8103e8acb439a892078212a1cfeb9e97275b49a01d45d2b07c29",
+  "node_id": "ver:loop-status",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "report.rs",
+    "status": "passing"
+  }
+}

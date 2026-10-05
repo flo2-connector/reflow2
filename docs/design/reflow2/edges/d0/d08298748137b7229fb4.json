@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b9412f44b5e53ecba4552e41a82c6626bd1f42047d6be7e468ffa4c194a4c26",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:the-rust-floor-is-stable-minus-one-and-a-ci-build-checks-it",
+  "properties": {
+    "evidence": "That finding measured the floor declared and never built at; this decision makes a CI job build the workspace at whatever floor is declared, so the gap it names closes by construction."
+  },
+  "to_id": "fact:rust-version-1-94-was-set-once-and-nothing-checks-it-2026-10-02"
+}

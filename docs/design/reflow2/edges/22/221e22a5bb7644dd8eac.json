@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c292b26d1d061ae4ab85eeb7960bb40416e0de5560ea006b299f5443e2d03876",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:flo2-watches-the-reflow2-export-and-inherits-its-stale-facts-2026-09-13",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 0.9,
+    "evidence": "Escalation, recorded the same day. The second-sighting record treated the retired-subject hazard as an internal reading problem — readers of this graph reaching a wrong conclusion about this repo. flo2 declaring reflow2's committed export a watched dependency on 2026-09-13 makes it an EXPORTED hazard: a fact whose subject reflow2 has retired now travels out to a design that reads it on a schedule. Same class, larger blast radius, and the two were established hours apart."
+  },
+  "to_id": "fact:the-retired-dependency-fact-misled-a-second-reader-2026-09-13"
+}

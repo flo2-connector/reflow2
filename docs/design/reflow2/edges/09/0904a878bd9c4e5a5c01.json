@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0aaf4082c8adebcf290fc5c0282667cfd942eb489a47b80be3f58f1d59d770fa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-quality-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:missing-sibling"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c58d3d18d6dac6b2f1cf1109dfa5af4808b310a1c3f76c0df91c425968922a0",
+  "node_id": "epoch:reflow2-declares-what-it-requires",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "reflow2 declares its required interfaces, and the seam pairs for the first time (2026-08-09)",
+    "sequence": 300,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20198429998fc50af5634fa84b35b1e750fc7c3b440cf9805ec9df8b4b5073a1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:propagate",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:propagate"
+}

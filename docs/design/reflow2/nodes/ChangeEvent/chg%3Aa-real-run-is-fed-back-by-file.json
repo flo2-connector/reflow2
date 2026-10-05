@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c4369aa972273cc6d6122a9c4af91cbb94e140aa6538a4577c49094de4de5344",
+  "node_id": "chg:a-real-run-is-fed-back-by-file",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-22",
+    "name": "A real test run can be fed back by file, and a converter turns runner output into that form",
+    "rationale": "Step 4 part one on Anthony's ruling: real failures must flow before a doubt layer is worth building. A runner knows files, the design knows check ids, and nothing joined them — so on reflow2's own design no run had ever been fed back.",
+    "subject": "system",
+    "summary": "reconcile_verification gains `observed_by_file` (resolved by DesignGraph::resolve_observed_files through a check's `location` or an IMPLEMENTS artifact's location; worst outcome per check; `unmapped_locations` in the reply). New tools/test_run_to_files.py converts cargo-test text (CI colour codes stripped), JUnit XML and python script exit codes; its own net is a new CI gate."
+  }
+}

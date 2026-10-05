@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:26766301dcccaeb2c3b7743ca44d881afb915f3887beb4b3f29056eea7739f93",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:github-mcp-tandem",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:central-host"
+}

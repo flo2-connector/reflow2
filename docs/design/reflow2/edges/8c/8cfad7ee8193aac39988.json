@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5ffde70fd4c6ebde09d5e97cc1b5dfc540111037cd43b156d772be704094ddb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:d09de48b9a307e1c9103219e06fed65379f94be9e235db724e3dcd17fb85aadd"
+  },
+  "to_id": "art:where-am-i-skill"
+}

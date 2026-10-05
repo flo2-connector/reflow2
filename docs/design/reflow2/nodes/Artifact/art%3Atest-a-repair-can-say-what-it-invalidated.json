@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5c363f66028b7b5a36b52f01506b9f45f460afcedcf8273945b7be6437d45151",
+  "node_id": "art:test-a-repair-can-say-what-it-invalidated",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_repair_can_say_what_it_invalidated.rs",
+    "name": "a_repair_can_say_what_it_invalidated.rs",
+    "status": "realized"
+  }
+}

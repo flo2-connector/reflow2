@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d6965b75427736105f385f9eef02dc6b117351cfddbd730aec36750093007081",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

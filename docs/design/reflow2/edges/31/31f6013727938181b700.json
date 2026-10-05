@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e3ff10a838a5225b71a732ba6916c95dad2282b5bf976b88557e26f4b0d48372",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:agent-navigates-content",
+  "properties": {
+    "evidence": "Ruled on 2026-07-31 that reflow2 builds no search into content and that finding the relevant passage is the agent's job. It saw a request like option (c) coming and set the division of labour that options (a) and (b) follow."
+  },
+  "to_id": "dec:idea-root-cause-precedent-reaches-the-projects-own-file-archive"
+}

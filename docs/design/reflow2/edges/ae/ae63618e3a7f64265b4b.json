@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:77bbc205ae16a6e3de033e3d048b7f291c0663731fdf61b482f3d6c0e110161e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:quality-target-is-stated-or-asked-for",
+  "properties": {},
+  "to_id": "req:a-design-says-what-it-is-for"
+}

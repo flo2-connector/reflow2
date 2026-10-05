@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ae7eb0d2e40c275af7b7ce6e478d1b21b754f47653da5cb2d970a40df0de39f",
+  "node_id": "ctr:claude-fable",
+  "node_type": "Contributor",
+  "properties": {
+    "handle": "claude-code",
+    "kind": "automated_agent",
+    "name": "Claude (Fable 5)"
+  }
+}

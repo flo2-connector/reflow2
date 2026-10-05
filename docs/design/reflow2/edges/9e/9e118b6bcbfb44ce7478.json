@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2dfcd1c73d5c4b3961f43b9212e3db7908996f224bb14a3752f325e668acd603",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:ci-runs-the-primitives-conformance-kit-with-a-ratchet",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

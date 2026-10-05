@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:5243fb696bcaef6143c857af22973c23b07a8043cfa04a1ef8a17fc71364b436",
+  "node_id": "ver:a-write-is-credited-to-who-it-was-for",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Core, on the in-memory backend: nodes written while recording are credited once each in write order; nothing is recorded unless a caller asked; taking the log stops recording; Snapshots and Contributors are never credited; a node gone by the end of the call is skipped; an unknown contributor is refused with nothing credited; crediting never makes someone an approver; an existing approval is kept when the same person is also credited as author.",
+    "findings": "8 of 8 pass (cargo test -p reflow2-core --no-default-features).",
+    "kind": "verification",
+    "last_run_at": "2026-09-25",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_write_is_credited_to_who_it_was_for.rs",
+    "method": "test",
+    "name": "Every node written while recording is credited once as author, and nothing else is",
+    "status": "passing"
+  }
+}

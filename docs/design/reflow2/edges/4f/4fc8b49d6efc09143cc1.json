@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4703eab13c8fa582589186406290309bd8b3007bda7b1c2e00ded3314721b779",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:what-next",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

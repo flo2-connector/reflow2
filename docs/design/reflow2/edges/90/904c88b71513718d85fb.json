@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23d74c7add67f4ad309df3ae11e6c6086a3491b812ec98a8178a6e0dfa3f9495",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary",
+  "properties": {
+    "evidence": "Drawn FROM the 2026-08-26 node INTO this one: the same question, from the same user, grown up. That node had the routing analysis and the four-defensible-types example but was written before the routing table shipped. This one adds what Alex says in his OWN words about WHY he needs the layer — three reasons, not one — and the measurement of what the shipped table actually keys on."
+  },
+  "to_id": "dec:idea-the-routing-table-routes-grammar-not-domain-nouns"
+}

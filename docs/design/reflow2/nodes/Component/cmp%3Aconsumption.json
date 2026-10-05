@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d3fcdfc244a8356653797a3e4df8ac474b90a215202df5148248ae275aa3b899",
+  "node_id": "cmp:consumption",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "consumption",
+    "provenance": "authored",
+    "purpose": "What the design built and nothing in the design consumes. Refuses to say 'unused' where recording a consumer is not the design's habit — the ratio is the finding, not the count.\n\nDISTINCT FROM epoch:built-and-consumed-by-nothing, chg:consumption-detector-built — read and judged different in KIND. Those are the capability or requirement this module serves; this is the module itself. A part and the thing it is for are not the same node, and collapsing them would leave the design unable to say which of the two moved.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:82d07b137e38cc002f74fd03b037a818ffcd3f233ea17266d648d8469b400e0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-lesson-is-served-at-the-step-it-concerns"
+}

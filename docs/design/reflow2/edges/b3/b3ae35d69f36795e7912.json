@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22f9e670c22e237b2b00ab189da2c77999797e17b2d4814991d75ea83d2b5b24",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seam-lift-finds-a-container-by-level-not-by-id-prefix",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:seam-roll-up-found-a-container-by-id-prefix-and-answered-a-false-zero"
+}

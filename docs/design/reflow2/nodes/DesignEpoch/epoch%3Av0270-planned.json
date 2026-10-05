@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:99f709b48184d18209440c33161e2d074eaa90c0fbcdee0684163216cdf624e0",
+  "node_id": "epoch:v0270-planned",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "RETIRED 2026-08-08 — superseded by epoch:planned-seams. Id names a version it never delivered; kept for its snapshot history.",
+    "sequence": 266,
+    "status": "arrived"
+  }
+}

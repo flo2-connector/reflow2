@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:09bfee96bde1141375d5a622e2ae844733979a26442c8eaa4b1d6ed7a87e29de",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed",
+  "properties": {
+    "note": "Settles which of a Flow's three order copies is authoritative, and that the other two are computed or retired rather than kept in step."
+  },
+  "to_id": "dec:a-flows-order-is-its-step-order-and-entry-and-exit-are-computed"
+}

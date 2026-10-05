@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd56eabf88e9caef9952f4da006d5c461a0fb03d75c59191be22f3a5f9cf80e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-empty-answer-says-which-empty-it-is",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

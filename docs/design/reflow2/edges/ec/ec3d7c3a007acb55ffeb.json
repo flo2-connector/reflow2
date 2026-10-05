@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:abb949daed77725094dd8540a6d680a607357fa4e5852262150e257fa7854814",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:built-and-consumed-by-nothing",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:consumption"
+}

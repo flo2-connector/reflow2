@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4308829814cc6d7e3870467bef03742d09d66f4dc750d17521d841e5589f42c7",
+  "node_id": "ver:a-tracked-graph-store-is-reported",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-08-08",
+    "level": "integration",
+    "method": "test",
+    "name": "A committed .reflow2/ is reported by both install and --check with a remedy that works on a directory, and an untracked one stays quiet",
+    "status": "passing"
+  }
+}

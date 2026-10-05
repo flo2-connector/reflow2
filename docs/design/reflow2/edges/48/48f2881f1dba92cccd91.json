@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3d40fd56fc57d19c30b324a0220c7bcedc31902460d965d2c2f916c9a834ff0f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:where-one-fact-is-held-in-several-places-how-far-the-copies-disagree-is-measured-and-located",
+  "properties": {
+    "evidence": "Written earlier the same evening, the measuring requirement left 'which copy is authoritative' to 'the declared authority's business' — it saw this requirement coming; this is that declared authority."
+  },
+  "to_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed"
+}

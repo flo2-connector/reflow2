@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:363e0abf8de8590517ad60eded25d617a80b7874ee59105bda14ec429c9e7768",
+  "edge_type": "CHANGED",
+  "from_id": "chg:register-gap-to-prompt-description",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ask"
+}

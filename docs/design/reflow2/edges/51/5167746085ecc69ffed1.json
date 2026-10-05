@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c53155c572776f9bf16aeb5a03966e93bb2bf4413891759c3469e252b8868ca9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-surface",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

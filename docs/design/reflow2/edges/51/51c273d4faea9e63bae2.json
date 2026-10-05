@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd4e0ab9c84d6896f973e65bff2f3341ffe29080a77713c35546eb704c1747d8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:establish-taxonomy-before-bulk-capture",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

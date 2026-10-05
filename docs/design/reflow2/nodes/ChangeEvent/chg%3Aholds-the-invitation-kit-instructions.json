@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24945d02c01d7d2132ca5e37e7f874d82732480ba6ea8a63c883dacebb14ceca",
+  "node_id": "chg:holds-the-invitation-kit-instructions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "The served loop statement separates detecting from asking and names the boundary that releases the question"
+  }
+}

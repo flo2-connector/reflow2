@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7765d423144aa16c132a1b4015a0d57a730e9a78cb6f0f4a995b8c79a9d4877d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:check-reconciles-dependencies"
+}

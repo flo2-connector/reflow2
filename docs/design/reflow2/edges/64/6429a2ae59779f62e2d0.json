@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a08f88ddb7c953cc289877b7a349f6b4a22f07df71b9e8e6be9d41f7cae3c83b",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-served-report-is-reachable",
+  "properties": {},
+  "to_id": "cap:every-served-report-is-reachable-from-an-instruction"
+}

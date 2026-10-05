@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dd379ef91e140d62d889e88fb1ddfa8d6084be9667f0f41e7dce0f4ade780c24",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "fact:feedback-triage-status-across-three-sources-2026-08-16",
+  "properties": {
+    "note": "The findings this fact records are the ones that decision is about making plannable — and it is the reason they cannot be scheduled today: every one is a TemporalFact, and schedule_for takes only a Requirement or Capability."
+  },
+  "to_id": "dec:idea-how-do-triage-findings-become-plannable-work"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6526db70ecd11529b55b43733d3d2fc13725fff4ea5a5b489fe97347065dafa0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:vocabulary-covers-information",
+  "properties": {
+    "authored_at": "2026-08-07",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

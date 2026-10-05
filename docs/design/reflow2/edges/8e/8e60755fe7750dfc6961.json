@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4bf53948cedfb86c9f4c72f87896125a45dbbcc55a825295573808714376ff88",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-last-two-unallocated-capabilities-get-owners",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

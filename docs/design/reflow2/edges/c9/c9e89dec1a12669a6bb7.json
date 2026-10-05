@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fad54b45977938c418ed3ebf0ad07a7eb14aacb79c379493919eca42b0f7fac1",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-direction-flag-on-a-relation-exists-and-no-skill-names-it-so-two-edges-landed-reversed",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The two reversed edges are what put the echo question on the table; the flag answers the other half.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-a-drawn-relation-be-echoed-back-as-a-sentence"
+}

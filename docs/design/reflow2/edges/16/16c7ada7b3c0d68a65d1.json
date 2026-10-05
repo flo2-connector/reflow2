@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c8ffe483c113c6c00380d66311a78c8e5b86476c53e4f47bc0b9750d013f2b61",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-is-session-context-already-in-the-graph",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

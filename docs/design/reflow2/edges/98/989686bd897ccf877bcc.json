@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90c3a7fd1ab5b6054e48f9227feaa4324ac8b3dc7ab40db9fc80e8cf1d6e2fe8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-stale-lock-reclaim-is-serialized",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-loop-nudge"
+}

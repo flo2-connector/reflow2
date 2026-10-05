@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a42f0826faed162fb8ad1fbe04a404c3480534fee44b972c775be12dd9d084f",
+  "node_id": "chg:bl48-bl49-tool-surface",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-48 + BL-49: result contract hardened at the tool boundary — graph_report_markdown returns prose as text (never a bare string in structuredContent; ok_json wraps any scalar), propagate answers with a bounded summary by default (full dump behind full=true), export_graph writes to a file on request"
+  }
+}

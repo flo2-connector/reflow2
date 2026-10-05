@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6e237d96614e160e28e7d21dd1fe6f76604b6137ac56dab3bbfd3aed6734f7a7",
+  "node_id": "cmp:scope",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "scope",
+    "provenance": "authored",
+    "purpose": "Scoped analysis: the region a part of the design covers (containment closure, then traceability radius) and the detectors narrowed to it, with the four buckets that keep a narrowed answer honest. Separate from cmp:detect because the question is different — detect decides what a finding IS, this decides whose it is.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

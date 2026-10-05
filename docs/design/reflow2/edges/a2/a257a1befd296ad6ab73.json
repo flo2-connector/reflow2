@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f5e013df2699e4761f5d76b7f03102ac0b68133e7ad7653c7c0ebdc50a97447a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refusal-names-its-own-fix-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:cluster-claims"
+}

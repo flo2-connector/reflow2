@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2070f0f75555c4022a8f031aa3415b8d1469c6f3d381b893c196d44a8f76b712",
+  "node_id": "req:read-surfaces-debt",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A read reminds the agent of loop debt at the moment of attention",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The agent should be reminded of outstanding coherence-loop debt while it is looking at the graph mid-session — not only at SessionStart (fires once) and Stop (fires at the very end). Reads (scan_nodes, get_node, search_design, graph_report, …) are the agent's first and most frequent action, so a read that returns while the loop is owed something is a well-timed place to surface it, closing the gap between the two existing triggers. This is the read-side sibling of the write tools' loop_hint and a member of the BL-74 \"fire on a trigger, not on virtue\" family: the reminder must ride a call the agent already makes, so remembering reflow2 does not depend on the agent's discipline under operational load.",
+    "status": "accepted"
+  }
+}

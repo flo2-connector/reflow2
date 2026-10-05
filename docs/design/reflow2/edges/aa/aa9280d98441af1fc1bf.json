@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0f683830847c9012564aa507725b7ba43993e7561b71e68fa089c44f3da18374",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:readme",
+  "properties": {
+    "doc_kind": "readme"
+  },
+  "to_id": "proj:reflow2"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9d854cb34cd20cf9860ad134c938983e2da69d38b46dcc2a8f875a74613fe39b",
+  "node_id": "req:an-edges-prose-does-not-outlive-the-node-it-points-at",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A reader following an edge is not misled by prose that outlived the node under it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "An edge's `evidence` and `note` are claims about the world, written at a moment in time, and the design says when one still uses language the node it points at has since dropped — rather than leaving a reader to follow an edge whose reasoning reads as current and is not.\n\nRecorded from bhome's field report, 2026-08-31: narrowing a climate requirement left five RISKS edges still arguing about the arctic, and four were repaired only because the propagation happened to list them and the agent happened to remember what they said. Accepted on Anthony's word the same day.\n\n⚠️ THE OBLIGATION IS TO SAY, NOT TO REPAIR. Whether stale-reading evidence is now WRONG is a judgement about meaning, and this requirement deliberately does not claim the design can make it. It also does not oblige the check to be able to answer everywhere: where no prior state was recorded, saying so is satisfying this requirement, not failing it.",
+    "status": "accepted"
+  }
+}

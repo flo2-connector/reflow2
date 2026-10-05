@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da49ffa77deca49026adc47a650aab6902ae095ff7813eac5e3cf7948f4f171b",
+  "node_id": "art:tools-ask",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/ask.rs",
+    "name": "tools/ask.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c61ccf7963889b8c6eb4835ef03e76c381997d02e5730109da62193240f4703c",
+  "node_id": "chg:baseline-f263ee42edd9fc43",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-12",
+    "name": "First baseline — new in this change."
+  }
+}

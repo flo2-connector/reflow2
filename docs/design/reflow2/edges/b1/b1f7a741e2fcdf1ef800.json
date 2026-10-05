@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c97cf8a6b6dfc13849f0a37052460d14dff6def174305e8997ffa27f292bff6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-person-feeds-results-back-by-upload-chat-or-folder",
+  "properties": {
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

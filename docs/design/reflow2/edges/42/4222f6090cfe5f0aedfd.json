@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:05a82a8e088d4052f9fdb5ac3d025a467ac453b506d3626921f24fbb753f12e9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:readiness-gating",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:readiness"
+}

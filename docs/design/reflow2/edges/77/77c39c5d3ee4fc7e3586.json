@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c39f21781be0212b6f6aba9696fe62a05f9462ddb4845c8cf3bb143dee6d89f7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:anthony-rules-on-five",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:increment-plan"
+}

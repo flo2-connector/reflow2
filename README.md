@@ -38,7 +38,7 @@ flowchart LR
 One command, once per machine — **not once per project**:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 That installs the binary, registers the MCP server for **every** project on the machine, and

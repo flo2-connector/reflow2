@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c54b7f2ee72450a9e199e685b2f8b314e37d0c6e483ba2aa27fb3f67fabc75d0",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs",
+  "properties": {},
+  "to_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e6427b677807dfecbd0e41b21b3b0775f47babf944fb945ee3202661ac9abbcf",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-rule-says-whether-it-can-be-checked-at-all",
+  "properties": {},
+  "to_id": "decision:ack:87ba139e4fafd736"
+}

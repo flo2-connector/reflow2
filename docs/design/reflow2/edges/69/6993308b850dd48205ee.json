@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7df598e7f0c8773417c4ef0909a1d48883da1992b1bd6ef7c4893a43532dac0d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-watches-another-design-at-the-server-that-holds-it",
+  "properties": {
+    "approved_at": "2026-09-27",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -46,10 +46,6 @@
     ],
     [
       "acknowledge_gaps",
-      "create_nodes"
-    ],
-    [
-      "acknowledge_gaps",
       "reviewed_gaps"
     ],
     [
@@ -115,10 +111,6 @@
     [
       "add_verification",
       "performed_in"
-    ],
-    [
-      "add_verification",
-      "verifies"
     ],
     [
       "alternatives_for",

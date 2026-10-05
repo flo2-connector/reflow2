@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:966219a65f5b9b19e44b8c88517672343ce83fe0b2a9cd589ca6bfaa144da85d",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "rule:a-cut-ends-by-rebuilding-the-served-release-binary"
+}

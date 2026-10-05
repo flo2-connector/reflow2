@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f748bd24a2a2f0e73cd20e88b34a8b17f49dd0a9b6056f1a45b90b3c9e9cfea1",
+  "node_id": "art:status-question-finds-the-read-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two catalogue tests: a status question in the asker's words (\"put together a progress deck for management on what this project has achieved so far\"; \"where does this project stand, what has been achieved and what is still open\") finds topic_report in find_tools' top five. Written first and observed failing (0 passed, 2 failed) with the same six non-reading tools measured by hand, from the 2026-09-14 hxm_program field report.",
+    "location": "crates/reflow2-mcp/tests/a_status_question_in_the_askers_words_finds_the_read.rs",
+    "name": "a_status_question_in_the_askers_words_finds_the_read.rs",
+    "status": "realized"
+  }
+}

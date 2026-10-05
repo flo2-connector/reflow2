@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8471c24a3e754d476318fd35b7d73b6a4d4a81609a94a8816b4e62f6431c8700",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-opencode-plugin",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-opencode-plugin"
+}

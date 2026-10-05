@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c1cbca5e762cd0b5f4b1dc9cb93f994757dfeb7392dc80ce9ce6f3803f2e1630",
+  "node_id": "rel:v0250",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.25.0 — HEAL stops certifying a deletion as safe: a proposal says what it would destroy, a finding names its hub, and a refusal names the call that fixes it",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.25.0"
+  }
+}

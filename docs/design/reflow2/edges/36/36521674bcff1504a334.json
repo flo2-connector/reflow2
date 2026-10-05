@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a53b4d86b6094240a6faa5af93672d7ed0102e77af7e03727bfaa0551b7942c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b7771ed71667e12351805136c7aea827d35a9a3a1464fd702306f47431ba85c9",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:heal",
+  "properties": {},
+  "to_id": "snap:epoch:a-node-with-no-edges-is-not-clean:art:heal"
+}

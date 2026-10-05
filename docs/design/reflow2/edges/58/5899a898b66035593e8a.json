@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8917f3a394fd6208475b7d41f1aae8056b644fe300d539b4ef78193169171b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-to-record-relations-are-modelled",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ef0654a24fb5a7b3710834c67125953ff5662227033dd704744243cb29b982e",
+  "edge_type": "REALIZES",
+  "from_id": "art:provenance",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:provenance"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:06982bb9b3c3ec8f48e9664861e593be68823fd69cb67ef5c6730bcaf9007eee",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-branch-overlay-folds-into-main-when-its-code-merges",
+  "properties": {
+    "note": "The fold and retire lifecycle is part of that decision's recommended option."
+  },
+  "to_id": "dec:how-a-branchs-implementation-facts-are-held"
+}

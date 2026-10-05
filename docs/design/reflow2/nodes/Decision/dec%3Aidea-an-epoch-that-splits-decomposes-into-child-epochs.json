@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c924f6a1d6f654d06d191ee2d825d865bad0ea91cd715b0e392c705b103c715a",
+  "node_id": "dec:idea-an-epoch-that-splits-decomposes-into-child-epochs",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as BRAINSTORMING, not as a proposal — dev_storyflow field report 2026-09-05, wish #29. The reporter's sequencing decision split an epoch — Y0-Y2 before increment 2, Y3+X+Z after increment 3 — and 'a DesignEpoch carries one position. There is no honest way to draw it: precedes on the epoch would assert something false about half of it.' They recorded the split in decision text and noted on the governed_by edge that the epoch must eventually be divided. The idea: a DECOMPOSES edge between epochs (parent increment -> two child increments) so the plan can SAY it rather than narrate it. WHAT IS CHEAP: DECOMPOSES already exists; the change is endpoint enumeration (DesignEpoch -> DesignEpoch), the same one-line shape as the SCHEDULED_FOR finding.",
+    "kind": "exploratory",
+    "name": "OPEN — a sequencing decision that SPLITS an increment cannot be drawn: a DesignEpoch has one position. Should DECOMPOSES between DesignEpochs let a plan say 'this increment becomes two'?",
+    "rationale": "THE COUNTER-ARGUMENT: dec:arrival-delta computes an epoch's delta against its FIRST snapshot and refuses a lossy schedule edit — and splitting an epoch IS a schedule edit. The arrival semantics of a parent whose children arrive separately must be defined before the edge is allowed, or arrival_delta computes against a whole that no longer exists. A real design question, not a schema line. Same family as wish #7 (a Decision cannot be scheduled) and fact:defect-a-planned-verification-cannot-be-scheduled...: the plan vocabulary is thinner than the plans people actually make.",
+    "status": "proposed"
+  }
+}

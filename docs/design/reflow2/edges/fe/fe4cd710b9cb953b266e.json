@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ee8a8b70a9627ba9fead461043f611a921b1c3b38c392203d31ebe123f39a18d",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-should-a-node-carry-its-git-coordinate",
+  "properties": {
+    "evidence": "A branch coordinate is what would make the worktree fork self-describing: today the only thing saying which design you are editing is the graph path in an MCP config, and that node records mis-pointing it as the route's most dangerous unpaid cost. Option ② or ③ would let a session say which branch its design came from rather than inferring it from a path."
+  },
+  "to_id": "dec:idea-what-is-the-minimum-path-to-fork-ophyd-service-today"
+}

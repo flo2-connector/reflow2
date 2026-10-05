@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9283f1fdb0f32b07110d114331a8504564713fa599b3f9037d843cba7ff2b505",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-surface",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:content-store"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1e63301c6a4d965fb3038527c2918ac68ab5662a41febe565eee1b9064e8f94f",
+  "node_id": "chg:an-understated-status-is-reported",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "1869f4deea67fa35e783aeb1986e16a14f742a81",
+    "detected_at": "2026-09-30",
+    "name": "A status still at planned behind a built thing is reported — understated_status, the other direction of status_contradiction",
+    "rationale": "Anthony asked on 2026-09-30 why requirement-to-capability links looked outdated; the root-cause found that reflow2 reports only a status claiming MORE than the design shows, so a status that falls behind reality is silent (fact:root-cause-a-status-that-falls-behind-reality-is-silent-and-a-superseding-capability-leaves-no-trace-2026-09-30). He approved the fix the same day: \"Yes, fixes for 1-3 should go ahead\". The flood was measured before the rule was written, as dec:idea-should-an-understated-status-be-detected's sizing caveat required: per capability 5 on reflow2, 4 on a field design, 0 elsewhere; per component 79 / 11 / 6 on the designs that never move Component.status and 0 on the three that keep it — so the components are one finding keyed on the set, and the capabilities one each. Failing first: the 15 tests were written against origin/main and 9 failed there; flo2's export raised no finding on origin/main and raises one naming 11 components, cmp:edge-gateway first, on this change.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "New gap source `understated_status` in detect.rs (`detect_understated_statuses`, `direct_build_evidence`), beside `detect_status_contradictions`: a Capability still `planned` that a realized Artifact realizes or a passing check verifies (per capability); the Components still `planned` that host a realized/verified capability or are realized/checked directly (ONE finding keyed on the set); a Release still `planned` with a DEPLOYED_TO not marked planned (per release). Severity 0.40. detect-and-ask's resolution table gains the row (three mirrors), skill_lint allows the key, edge_readers.yaml lists the two new edge-reading functions as not_derived, and the two \"complete thread\" fixtures (tests/detect.rs, tests/coherence_loop.rs) now carry `verified`/`realized` statuses — they claimed less than they showed and the rule said so. PR #640."
+  }
+}

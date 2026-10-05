@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aba305c8fe29742d215d2adef269f2ffa5e9b7afe9ea16bb794a678fc90361f8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-refused-host-is-told-which-flag-admits-it",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-refused-host-is-told-which-flag-admits-it"
+}

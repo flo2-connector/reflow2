@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3646128ea5b0bcf6b934d372c531585ea883b3a2733d8b331f7b0082b692c771",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive",
+  "properties": {
+    "evidence": "Storing symmetric relations once and computing inverses needs each relationship's algebra declared first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it"
+}

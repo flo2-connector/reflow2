@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:02537ec067385b60cafeb486c7bfc451e1736914b104c167bf1f5fd3c47fe9bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d595559e8a0206549bdcc918de6a9a096141942a0af19e8de45d5e29471ad5e8",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:governance-proposal-skill"
+}

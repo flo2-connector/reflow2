@@ -38,6 +38,7 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smoke_mcp import Server  # noqa: E402  (path set above)
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 SNAP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "toolsnaps")
 
@@ -360,11 +361,12 @@ def check(live: dict[str, dict]) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp",
+    ap.add_argument("--bin", default=None,
                     help="path to the reflow2-mcp binary (default: %(default)s)")
     ap.add_argument("--update", "--bless", action="store_true", dest="update",
                     help="regenerate the golden toolsnaps (review the diff before committing)")
     args = ap.parse_args()
+    args.bin = args.bin or default_bin()
 
     binary = os.path.abspath(args.bin)
     if not os.path.exists(binary):

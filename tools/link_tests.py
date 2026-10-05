@@ -65,7 +65,10 @@ import re
 import sys
 from collections import defaultdict
 
-DEFAULT_EXPORT = "docs/design/reflow2.json"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
+
+DEFAULT_EXPORT = design_io.default_export()
 
 # Source extensions whose call structure this tool can read. A file it cannot
 # parse is NOT a file with no calls, and is reported rather than skipped.
@@ -113,8 +116,7 @@ def strip_comments(text: str, ext: str) -> str:
 def load(export_path):
     if not os.path.exists(export_path):
         return None
-    with open(export_path, encoding="utf-8") as fh:
-        return json.load(fh)
+    return design_io.load_design(export_path)
 
 
 def component_sources(doc):

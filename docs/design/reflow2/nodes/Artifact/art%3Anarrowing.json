@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:01cfec197446f81e95683c6745015b39e3f13c3d9de1bbe053e619c7d1d93153",
+  "node_id": "art:narrowing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "EDGE_REWRITES (the one table the import, every open and the recheck read), named_replacement and modelled_fits (what a refusal names), NARROWINGS with entry_problems (the gate's table and its checks), Acceptance and narrowings_to (the snapshot and its diff), retired_node_types / retired_edge_types (read by the provenance guard), and DesignGraph::recheck_stored_items (the refused_by_schema recheck).",
+    "location": "crates/reflow2-core/src/narrowing.rs",
+    "name": "narrowing.rs — what a schema change took away, the migration each shipped, and the recheck of stored data",
+    "status": "realized"
+  }
+}

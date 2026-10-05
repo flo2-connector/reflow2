@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4604d2832d934ca34f9ffa8dcca9fd3c4477dca4219dff43851bf2486990fb84",
+  "node_id": "chg:merge-integrity-bl47-bl46",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "BL-47 + BL-46: merge survivor ranks unset provenance below explicit authored; a colliding edge keeps the survivor's properties; create_node on an existing id merges instead of replacing (the revise-design contract, now real)"
+  }
+}

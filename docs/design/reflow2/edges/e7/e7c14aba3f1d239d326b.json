@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5a5e8498c3351e4a9235faad30151f271191c4a468706854cc93bcd0b0d308d3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:39189b65f1195f749b95e6ab8014e5632d396c07d8f7db4cda200fe4f0e13847",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:establish-taxonomy-skill"
+}

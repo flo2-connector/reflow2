@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:930b01bc141fce5e49c2e053c341bd47895ec2f80b3be3b497d3faf2aa1feea4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:maturity-profile",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

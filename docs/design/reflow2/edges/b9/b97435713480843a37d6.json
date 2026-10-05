@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90eb7d95cebd2d627bcead10806679e2747b592fa800136be66fe15676f6268e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:8c9a07b406e80110",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:adopt-skill"
+}

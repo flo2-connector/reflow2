@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f649035ee4dbd5c3cb9430852c70f17794ebc414ffb53de9883fcc21c4515ec4",
+  "node_id": "chg:a-contract-can-carry-evidence",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "VERIFIES' target enumeration admits Interface — all 18 contracts carried zero checks because the edge was illegal, while the check for one of them already existed and had to hang off a Capability"
+  }
+}

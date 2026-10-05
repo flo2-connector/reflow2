@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c2dd00fc0c68106995752d59025cdfe05dff72ca57cb6694e79f2b6177146dd1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:roads-not-taken",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b1c8b72248e12b0828a20a14184d9025a428c114e84654009cd05c719c893598",
+  "node_id": "cap:latent-surface",
+  "node_type": "Capability",
+  "properties": {
+    "description": "REVISED 2026-09-14 — THE LATENT SERVER PROMOTES ITSELF IN PLACE, ON ANY MCP CLIENT. Alex's first project on Grok Build stopped at opt-in: reflow2_start_design created the directory and said \"run /mcp\", Claude Code's reconnect, which Grok Build does not have; the latent process was never replaced and the store never created (fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface). Now LatentService re-probes on every tools/list and tools/call; when the design directory exists it opens the store once (ReflowService::new_reporting) and delegates every call except reflow2_start_design to the full service in this same process; reflow2_start_design promotes in the same call and sends notifications/tools/list_changed, with the capability declared at the handshake; its next step says the surface is SERVED NOW and names a client restart only as the fallback, with per-product hints as additions — what rule:mcp-and-the-graph-are-the-only-common-ground allows. This is option (a) of fact:defect-the-latent-surface-never-re-probes-after-a-cli-restore, built. Four tests over the real binary (tools/test_latent_promotion.py), three observed failing first, run by CI. What is unchanged: NOTHING is created until somebody opts in; the filesystem test on the graph's own directory is still the whole of \"opted in\"; the degraded surface is still a different thing.\n\nORIGINAL (2026-07-28): With `--only-if-present`, a session opened where no design has been started is served the LATENT surface: the handshake says reflow2 is installed and available and that this directory has no design, exactly one tool is served (`reflow2_start_design`), and NOTHING is created — no store, no state, no files. The check is a filesystem test on the graph's own directory, because opening is the thing that would create. Distinct from the degraded surface on purpose: degraded means a graph exists and could not be opened, which is an outage; latent means nobody ever made one, which is ordinary. The loop-nudge hook is gated by the same test, so a machine-wide hook registration is silent everywhere reflow2 is not being used.",
+    "name": "A directory with no design costs nothing",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:620b2c985d0a5280394b06e1fc9876bdc3d8cde1b8c6bf338179a23a73c05f12",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

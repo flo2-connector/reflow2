@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cfdbae39aca76b84f5e597b5f7a45d1f60f7579f7cb15275da899170af980d5b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:depends-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:design-dependencies-declared"
+}

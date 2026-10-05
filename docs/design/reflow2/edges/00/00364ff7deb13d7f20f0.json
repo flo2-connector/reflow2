@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45f2813ce866fb02851dd1170801a64ffb95e3d1ba718ac42b26b022e7a8cb84",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-takes-a-contributor",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

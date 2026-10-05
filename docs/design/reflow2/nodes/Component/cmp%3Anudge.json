@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bb3b11e1ab235e450c2a4db1223d8f892d20f8c88c52b71c4a5b45c30c65ccb6",
+  "node_id": "cmp:nudge",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "nudge",
+    "provenance": "authored",
+    "purpose": "Whether this project's session-end nudge exists, and saying so when it does not.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

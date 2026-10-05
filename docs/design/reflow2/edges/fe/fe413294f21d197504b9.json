@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe1004538cf6243e9ab6bb64a2906e722ee78fa6c0c4b6b0a3a0235b00fe8f3c",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+  "properties": {
+    "evidence": "The article's 'one way to do things' is the standardization argument the prune idea made from the other side (two doors for one job); the article adds granularity as a criterion for which door stays."
+  },
+  "to_id": "dec:idea-does-mcp-is-unnecessary-change-where-the-llm-graph-human-line-is-drawn"
+}

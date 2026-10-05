@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b6e7d0b4354f12cba35bdf673d52e25bdba253585c932f7d3972301a2c03f81",
+  "node_id": "chg:accept-03a23acf45b3fec0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-26",
+    "name": "Same doc restructure, second pass: the three new failure modes went into the existing Troubleshooting table rather than only into the step-by-step prose — a table people already scan when something is wrong beats an instruction they read once during setup. Rows added: the server refusing to start because a session still launches its own reflow2, a remote 403 naming the unlisted host, and connect-failure pointed at the network rather than at reflow2."
+  }
+}

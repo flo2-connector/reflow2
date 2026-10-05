@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45e282e516d07194fe629fc4b363fbb6e13415a0dee559efb00ec6585330ea73",
+  "edge_type": "CHANGED",
+  "from_id": "chg:planning-axis-intent",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:plans-move-honestly"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:52a5d506ef15e3f47687d3e36c1d00d30bb921011f096b46ad1ddbfb6d5e70b7",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-degraded-server-recovers-when-its-cause-clears",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:degraded-surface"
+}

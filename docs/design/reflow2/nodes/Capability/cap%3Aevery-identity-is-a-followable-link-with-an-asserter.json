@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:747bbf61ec86d7cd7bfd8b54229cedb70a31e21a3e07cf6cb6f723a6f08c2afd",
+  "node_id": "cap:every-identity-is-a-followable-link-with-an-asserter",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Turns every identity held as a string or prose into a link; records the asserter and basis on each identity link; lets a composed analysis follow it into the other design or graph; and a check over every identity-bearing field and edge.",
+    "name": "Every identity reflow2 records — across designs, to the codebase, to StoryFlow — is a followable link that names who asserts it",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

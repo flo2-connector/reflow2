@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7506ad9f0245c25bfa8ebd313713a0a96766689447fad04de7a0b71fce0bae44",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them",
+  "properties": {
+    "evidence": "This is the same shape that fact measures, now at eight instances: a typed distinction declared and indexed, an instruction able to set it, and no computation reading it. Whether the tiers are worth anything turns on that pattern's diagnosis — if reach is the problem rather than vocabulary, building more readers before populating anything repeats it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:five-capabilities-were-built-reachable-and-unreached-and-one-query-shape-found-them-all"
+}

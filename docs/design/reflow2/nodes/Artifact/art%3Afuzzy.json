@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:98d1091435256226b2e08afebb4ad6b21b79a5a3cdee30b131efda3ff2f793a0",
+  "node_id": "art:fuzzy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/fuzzy.rs",
+    "name": "fuzzy.rs",
+    "status": "realized"
+  }
+}

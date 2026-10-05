@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f24dd85970002f919e7c5b738f1375e791db2496573400a33cae14f9dfc27980",
+  "edge_type": "CHANGED",
+  "from_id": "ce:quality-target-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-design-says-what-it-is-for"
+}

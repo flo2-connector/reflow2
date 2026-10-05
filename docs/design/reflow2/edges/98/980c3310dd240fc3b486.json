@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f98f33e26581f8bd6f418b207ef832ca4b75928f9b4df51a3d133a71dce1ff94",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary",
+  "properties": {
+    "authored_at": "2026-08-26",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

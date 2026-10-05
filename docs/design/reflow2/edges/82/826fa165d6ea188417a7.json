@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:30c99b212c697754264fea7d513ed67e5f5ee8c89c87c37f0ef854e4bb79126a",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:release-pinned-to-time",
+  "properties": {
+    "step_order": 5,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

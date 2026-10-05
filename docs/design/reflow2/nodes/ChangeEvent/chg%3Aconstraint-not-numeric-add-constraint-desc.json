@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fbe93dd53162ddb3a82436cfedd879e1c84d08ba2bb96e605833e9d103713a67",
+  "node_id": "chg:constraint-not-numeric-add-constraint-desc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "add_constraint's served description leads with the non-numeric case and names the cost of the budgets-only reading"
+  }
+}

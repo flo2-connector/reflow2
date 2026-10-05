@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9ee942664ca1ded85571ec95111f023a74351e09bf414b39034c422295051735",
+  "node_id": "decision:ack:378cbdafd1fa41fb",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:378cbdafd1fa41fb.",
+    "name": "Reviewed: gap:378cbdafd1fa41fb",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, with the rest of the reflow workflow review. Accepted and not dropped. Deferred for a hard reason rather than scheduling: the per-event input is not yet trustworthy. DriftEvent.severity is one of the WRITTEN-and-never-consulted properties the 2026-07-28 sweep recorded — written from kind.severity() at three call sites while ranking re-derives it via severity_rank(kind) — so a rollup would compute a confident scalar from a base the code already disagrees with. Fix the single-source question first, then build the score. Also genuinely open: reflow's retreat targets were P3/P2/P1 because it had phases, and reflow2's equivalent is which LAYER of the golden thread a score sends you back to (realization, allocation, intent). The scalar is portable; the destinations are not, and choosing them is design work not yet done.",
+    "status": "accepted"
+  }
+}

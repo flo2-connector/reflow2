@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7737a5e81e7562682b1934271df79e2670390b5cd186ee4ce6669c7a4a85de6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0540",
+  "properties": {
+    "as_checksum": "sha256:fcb7d9ba57613eafad8495fd471befeeaec9150be502c35e443f55cce207935a"
+  },
+  "to_id": "art:proposed-asserts-nothing-test"
+}

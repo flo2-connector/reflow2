@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bbec4e307104a5c6c401db9c05393df54e6d422f82b55692dbc68580e4135e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-catalogue-weights-rare-words",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

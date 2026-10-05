@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:52b34a342743fec567c71e78d482a5f885023bc5a1f833f8857efd7bf1c60d83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:a05e9bd0c3ea78fba20787533dadf9d7ee9f3d06874d77b5060d2fead02a25e7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:empty-speaks-gate"
+}

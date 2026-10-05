@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2454f5078d1dae6267c4c911ae612229174a24648e46e751ba343559a568f493",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:confirmation-vocabulary-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:confirmation-vocabulary-test"
+}

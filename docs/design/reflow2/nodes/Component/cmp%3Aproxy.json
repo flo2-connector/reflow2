@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8639626d1c34db669fb098ea6905e75b8dd36feab494a1bba5c3e548a990f872",
+  "node_id": "cmp:proxy",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "proxy",
+    "provenance": "authored",
+    "purpose": "The session half of shared mode: speak stdio to the client and HTTP to the shared server, so every session on one design reaches the same store without any of them owning it.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

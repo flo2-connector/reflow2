@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:116bf02d46ff3372a4eef852224c633b98422eb2fdaea5a26e82cd47b2f01089",
+  "node_id": "chg:accept-a89f2286daa7bfd3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-28",
+    "name": "Reads the nested `metadata: {composes: [...]}` form, with the portability reason recorded in the code beside it.",
+    "subject": "system"
+  }
+}

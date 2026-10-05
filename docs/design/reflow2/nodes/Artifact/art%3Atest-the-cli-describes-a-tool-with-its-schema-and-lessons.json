@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:54430c0bf0da3e190850ce7080861a837fc24736847e89052dc9fbc313b74bc2",
+  "node_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Ten tests, seven through the real binary and three in process, pinning that a described tool shows its nested shapes and enums, that the opened design's lessons arrive and a design holding none says so, that --full IS the tools/list entry of that design even while a session holds it, and the no-design, pointer, unknown-name and budget cases.",
+    "location": "crates/reflow2-mcp/tests/the_cli_describes_a_tool_with_its_schema_and_lessons.rs",
+    "name": "the_cli_describes_a_tool_with_its_schema_and_lessons.rs",
+    "status": "realized"
+  }
+}

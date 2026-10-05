@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d0b6618548143c80bf5e9a2eacfbde8f3a96f4741b4ee773fa171ecd13f58a68",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:every-one-shot-mode-resolves-its-design-first",
+  "properties": {},
+  "to_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server"
+}

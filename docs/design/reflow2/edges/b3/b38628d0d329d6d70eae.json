@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91bd3b63bf877c52ec36118fd28dd78dd74f68ddeb1fedaae097fdfc89182e57",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-c6d454a4ac03dce0",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

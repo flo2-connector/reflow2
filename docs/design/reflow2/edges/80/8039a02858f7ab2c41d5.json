@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8eb85d95bee984830b2cbf72d8f1b4175e83349802da8de4ac68b5aa785f6393",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:checksum-dialect"
+}

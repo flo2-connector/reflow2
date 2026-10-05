@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7d009f03ba6300f59db1d27575df4fe87b3e3daeb73699bf8302c186e52067a6",
+  "node_id": "chg:reflow2-owns-the-host-refusal-and-says-which-flag-2026-09-28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-28",
+    "name": "reflow2 owns the Host refusal on every HTTP surface: the 403 names the host it saw, the hosts allowed, and --http-allow-host",
+    "rationale": "Fixes the cause in fact:root-cause-the-host-refusal-is-the-librarys-opaque-403-and-the-fix-is-named-only-at-startup-2026-09-28. \"Say what would have worked\" was applied where the operator configured (a startup line), never where the failure is met (the reply and the per-request log), because the refusal came from a dependency whose words reflow2 never replaced. The fix moves the rule into reflow2 rather than wrapping rmcp's reply. Two owners of one rule can disagree (a normalisation change upstream would bring back the opaque 403 on some requests), and a gate in front of the router is also the only place the registry's own answers (the design listing, the open of a design) can be checked before they happen. Reported by Alex in GitHub issue #616.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "A request whose Host is not allowlisted was refused by the rmcp library with its own \"403 Forbidden: Host header is not allowed\", logged as \"possible DNS rebinding attempt\", and nothing at the failure named reflow2's --http-allow-host. reflow2 now owns the check in one place, a gate in front of every HTTP surface serve_http starts: single-design --http, the --serve-shared daemon, the --registry-root router (before routing, so a refused Host no longer reaches the design listing or opens a design) and the degraded surface. rmcp's copy of the check is disabled, so there is one owner. The 403 body names the Host it saw, the hosts that are allowed, and the exact flag that would admit it, and stderr logs the same fix once per distinct refused host, bounded. Loopback defaults, extend-never-replace, port matching and the off-box startup warning are unchanged."
+  }
+}

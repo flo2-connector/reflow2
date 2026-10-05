@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e8d100ad417b2a39cbda64a71aca6d7a30fc152dde48d15d901fd74c0f50c3f6",
+  "node_id": "ver:preserve",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The function-preservation check refuses what it cannot classify (crates/reflow2-core/tests/preserve.rs) — 15 cases. The suite defends the REFUSAL half, because a classifier that recognises ALLOCATED_TO and calls everything else benign hands out green certificates for changes it never looked at (BL-170's fourth quadrant). So: an unknown node type blocks certification, an unresolvable edge endpoint blocks it, a reworded capability blocks it (a rename and a scope change are the same bytes), and a known function change OUTRANKS an unknown, because more information cannot un-move a capability. `every_schema_node_type_has_a_class` walks the live schema — all 29 types — and fails the build when a new one lands with no class, so the omission is caught before a release rather than by a false green; it also asserts three known types are present, so it cannot pass by iterating an empty set. The load-bearing case is `depends_on_is_read_from_its_endpoints_not_its_type`: DEPENDS_ON is the functional DAG between Capabilities and packaging between Components, and classifying by edge type alone would file all 51 of this design's cross-system dependencies as function changes.",
+    "findings": "MUTATION-CHECKED against four seeded regressions (unknown types falling back to structure, the verdict order inverted, one function endpoint sufficing for a function edge, a reworded function node waved through) — each was caught, none silently.",
+    "kind": "verification",
+    "last_run_at": "2026-08-02",
+    "level": "unit",
+    "method": "test",
+    "name": "The function-preservation check refuses what it cannot classify",
+    "status": "passing"
+  }
+}

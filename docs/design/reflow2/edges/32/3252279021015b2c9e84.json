@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5ae46bb5554ce724af934fb62d3c662a28007ca5f0680b46fd1c6a55604e365",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0130",
+  "properties": {
+    "as_checksum": "sha256:34701500af93dbcf"
+  },
+  "to_id": "art:github-mcp-study"
+}

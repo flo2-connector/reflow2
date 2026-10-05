@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5675bc618f26cbe8a8a610c3adf22dfe055a2179b7aed6392756ea990c8fcd22",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:surfacing-a-known-cause-is-cheap-and-reaches-the-wrong-half",
+  "properties": {
+    "evidence": "The 2026-08-28 costing of a hook that surfaces a known cause at the moment of the symptom is the measurement this question turns on: infrastructure exists, latency 0.08 s, threshold on n=4, 65% coverage, ONE harness, and it triggers on failing tool calls — which the overconfident-fix case never produces. Every mechanism option here is bounded by it."
+  },
+  "to_id": "dec:idea-how-does-root-cause-become-automatic-rule-hook-detector-or-composition"
+}

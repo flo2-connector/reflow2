@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a052666480e66f04ccdcdb29759bd13f51939c8c86b0baa0e9356c1082117140",
+  "node_id": "ver:design-identity",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A new design mints a name of its own, it survives reopening, two designs are told apart, an unreadable identity is refused rather than defaulted, the label changes while the id cannot — and the migration case: a store already holding a design under the shared id KEEPS it and stays readable. Closes with the payoff: two independently created ON-DISK designs mirroring each other's published surface, which was impossible while every graph shared one constant (tests/design_identity.rs, 7 cases)",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "level": "unit",
+    "method": "test",
+    "name": "A design mints a name of its own, and two designs are told apart",
+    "status": "passing"
+  }
+}

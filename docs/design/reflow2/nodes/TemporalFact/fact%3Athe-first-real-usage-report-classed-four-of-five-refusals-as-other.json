@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fd4fcb0b353607d62a7ab6bd6d67e152945b76c04634791cdc30c54b3099bf0b",
+  "node_id": "fact:the-first-real-usage-report-classed-four-of-five-refusals-as-other",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "The first real usage report on reflow2's own graph: 113 calls over 31 tools in 3¼ hours, and 4 of 5 refusals landed in `other` — an argument-shape refusal has no class yet",
+    "statement": "Read 2026-09-12 18:07Z with `usage_report(peek)` on the window since the ledger began (14:52Z, when #490's binary went live): 113 calls, 31 distinct tools, 150 of 181 never called; loop_status ×26 (the Stop hook's nudge plus deliberate checks), record_finding ×13, pin_at_epoch ×10 (the release cut), export_graph ×8. Refusals: 5 — one `refused` (export_graph on a stale binary, correct) and FOUR `other`: three record_finding and one add_design_rule, all the same phrasing — rmcp's deserialiser saying \"invalid type: string … expected a sequence\", when the harness serialised a new list parameter (`steps`) as a string because its cached tool schema predated it. So the very first report did what the skill says a large `other` does: it named a refusal class the table lacks. An `invalid_argument` class (a parameter present but of the wrong shape) is owed, beside missing_argument and unknown_argument. Two more limits seen: 22 of 113 calls carry the client name `rmcp 3.3.0` — a proxy that re-initialises after a daemon respawn declares rmcp's default client info, not the harness's — and 37 seats were minted in one afternoon, one per respawn or probe, so `seats` counts connections rather than people. Anthony's prompt for the read: an unofficial observation that tool calls per step had gone up (they had — independent calls are batched, up to ~20 in one step); the ledger has no baseline before today, so the per-session rate is the next report's comparison, not this one's.",
+    "subject_id": "cap:feedback-is-a-computed-tally",
+    "valid_from": "2026-09-12",
+    "value": "{\"window_from\":\"2026-09-12T14:52Z\",\"window_to\":\"2026-09-12T18:07Z\",\"calls\":113,\"distinct_tools\":31,\"never_called\":150,\"served\":181,\"refusals\":{\"other\":4,\"refused\":1},\"other_phrasing\":\"invalid type: string, expected a sequence\",\"clients\":{\"claude-code 2.1.269\":86,\"rmcp 3.3.0\":22,\"steps-setter 0\":5},\"seats\":37}"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4cfe4a58a265117cb87d134253afd6216ca97ab73fb945059565311a238516bc",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "note": "It decides whether --remote ever opens a browser or only tells the person to run setup, and what a headless machine gets."
+  },
+  "to_id": "dec:where-reflow2-runs-the-browser-sign-in"
+}

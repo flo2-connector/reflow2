@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9df0ef2255dbf453054ba54100c5ec874ab8b7238cf716a6a13812214d17681b",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-absence-means-nobody-said-and-a-plan-holds-a-check",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-check-records-what-it-found-separately-from-what-it-is"
+}

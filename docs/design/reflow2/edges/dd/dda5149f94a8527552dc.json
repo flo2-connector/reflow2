@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:50297fcb7021da666fa5350f20acae34fe20f5978bcc6c136db7091b65d7b377",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:design-intent-moves-only-on-the-owners-word",
+  "properties": {},
+  "to_id": "snap:epoch:detector-spec-cannot-name-a-forked-identity:rule:design-intent-moves-only-on-the-owners-word"
+}

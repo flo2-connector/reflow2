@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:489243d6232027b2cf5b8e1d151aaea22a849dd9dec7cf39140cb862fde98c4d",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-each-writer-draws-the-second-copy-by-hand-and-three-writers-never-did-2026-09-28"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:44049ca1e4359469d9bb3ba1df72a07b0e86187a641c074985b4998e663422dd",
+  "node_id": "chg:stop-hook-asks-the-graph",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The Stop hook stops guessing from a tool tally and asks the graph — asynchronously, because the answer costs 22.6 seconds",
+    "rationale": "The lesson is in the two numbers. The blocker on option C of dec:idea-a-capture-session-skill-the-user-types was read for months as a capability limit — the hook cannot reach the graph — and it was actually a latency limit: the hook reaches the graph fine, and `loop_status` takes 22.6 seconds. Those need opposite fixes, and the stale comment in the file pointed at the wrong one. What guards against a repeat: the comment now names the measurement rather than the mechanism, so the next session that reads it is told what would have to change (the cost) rather than what cannot be done.",
+    "subject": "system",
+    "summary": "Adds a detached graph probe to the loop nudge: `tools/graph_probe.py` calls `loop_status` over the shared server's stateless MCP HTTP surface and writes its answer to a per-session file; `tools/loop_nudge.py` spawns it without waiting and reports the answer at a LATER Stop, or at the next SessionStart when the session ended first. Fires on a DELTA against a session-start baseline, never on a level. Also corrects the file's standing comment that the hook \"cannot read the graph — the session's own server holds the single-writer lock\", which was true before the shared server and is now false."
+  }
+}

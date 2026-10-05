@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:16ae49fdb9de9efea41ed00bfd81abc3efeab08f79e21168883f56ad76dd5ea2",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-gate-runs-the-binary-it-is-told-2026-10-03",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Every gate ci.yml runs takes its binary from tools/reflow2_bin.py, and test_run_ci_gates.py fails on one that does not."
+  },
+  "to_id": "fact:every-gate-chose-its-own-binary-so-reflow2-bin-reached-one-of-them-2026-10-03"
+}

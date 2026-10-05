@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:615320e7e6149e6550ce7ddd403af73653863e9cc2805b384550a36a736a64e9",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-revision-warning-holds-the-only-copy-of-what-it-warns-was-lost",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured defect is the evidence for the snapshot half of this question; the dry-run and partial-update halves come from bhome's cost complaint recorded in the same fact.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-a-large-node-be-changeable-one-field-at-a-time"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca85ee2617ae4f9c91eac5cedd3867a67c4442ddf31ffd87df259c6eae7c0092",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:temporal"
+}

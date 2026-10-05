@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9720f91c1ac5f16f8e850dfb7d8e69ed07856d6f5cd444efb6dd886947ed6f24",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-pasted-design-reference-is-resolved-before-the-agent-asks",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

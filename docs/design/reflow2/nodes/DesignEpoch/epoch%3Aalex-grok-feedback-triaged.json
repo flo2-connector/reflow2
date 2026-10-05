@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3ebfb6d83668a712629f122c1f273f111866ee36b597db0a1b5b04f64f6bc50c",
+  "node_id": "epoch:alex-grok-feedback-triaged",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "Alex's Grok 4.6 session report is measured against the running 0.31.0 rather than accepted: three findings land as new defects, one is corroborated for the third time, one is re-attributed (the truncation was his client, the ordering is ours), one is refuted (export never needed the server stopped), and the deepest becomes a question for Anthony (2026-08-15)",
+    "sequence": 336,
+    "status": "arrived"
+  }
+}

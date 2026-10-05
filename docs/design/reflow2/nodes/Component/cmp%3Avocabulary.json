@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:53e082fb36bea39de4fdbb78a45e868cb796ef8c56957e6f14045242f76a68a4",
+  "node_id": "cmp:vocabulary",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "vocabulary",
+    "provenance": "authored",
+    "purpose": "The vocabulary module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

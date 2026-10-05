@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf3af298f2dad387d0e78daaaed895cde17c39830e89866906ba81b2bbaf9309",
+  "node_id": "epoch:v0320",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.32.0 cut — a restored design stops gaining properties nobody chose, the gate checks an export can be read back, and two loop signals learn to say what they do not know",
+    "sequence": 335,
+    "status": "arrived"
+  }
+}

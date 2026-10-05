@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:73ca35731db129ea9b447b4a37a4c7030ba5caa2edf1ec098a78211469025a69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:who-edges-name-their-fix",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

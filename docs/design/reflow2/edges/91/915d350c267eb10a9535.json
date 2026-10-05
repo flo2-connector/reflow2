@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:78c0cb871fb399bff2c3c14b28f6a1a8b264230b7ee6591f32cad4d80dbc2a4f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:epochs-can-be-planned",
+  "properties": {
+    "note": "How the schedule runs FORWARD rather than only recording what happened: readiness projections are TemporalFacts marked as forecast, so the epoch by which a technology clears its threshold is derivable. Answers this requirement's EXPECTED modality with evidence a reader can tell from measurement."
+  },
+  "to_id": "dec:readiness-forecast-is-a-temporal-fact"
+}

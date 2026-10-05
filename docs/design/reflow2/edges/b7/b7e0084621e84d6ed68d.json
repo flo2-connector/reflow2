@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4755c7c5bb6d52eb88a4e8636debdac214dc363ee5a3a5ace4d781f576466ea1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-must-a-check-be-before-the-design-counts-it",
+  "properties": {
+    "authored_at": "2026-09-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

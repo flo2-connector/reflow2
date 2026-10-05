@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:112162fa5bac5a5e7c349e95840055082f6703a20e83446264bc3c8d73b41c4e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-owns-the-host-refusal-and-says-which-flag-2026-09-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-refused-host-is-told-which-flag-admits-it"
+}

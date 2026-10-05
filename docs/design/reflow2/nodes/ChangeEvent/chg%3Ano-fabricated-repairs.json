@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:12655577859ea2c5636f3c4d29c378fe34c5d944204214dde3c586b3d4068bc0",
+  "node_id": "chg:no-fabricated-repairs",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "HEAL stops proposing fabrication. disconnected_community and dead_end no longer offer generate_bridge, orphan_node no longer offers generate_owner; each carries repair_is_a_judgement instead. Honest repairs (break_cycle, merge, generate_decision) keep their suggestions and a test pins that, because the narrow rule becoming a general refusal to help would be worse. Mutation-checked: restoring generate_bridge on the island fails exactly the filed case and no other."
+  }
+}

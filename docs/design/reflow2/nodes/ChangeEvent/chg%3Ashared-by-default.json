@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4c83de2f480c73f77457700cbab553ecc6a6f92943578502754c6c2f2b998cd5",
+  "node_id": "chg:shared-by-default",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Sharing a design between sessions becomes the default: a session finds the server holding its graph, starts a detached one if there is none, and proxies to it — no session owns the server"
+  }
+}

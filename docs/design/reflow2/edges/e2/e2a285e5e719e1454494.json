@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2e5da2c45f4e45ec4fd79aee51ffd30112b1ae496b8bc6d08d5cc986477bb08c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:promotion-overtakes-the-question",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

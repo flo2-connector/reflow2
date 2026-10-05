@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fb7fff018ac4a1603e2c2a8e2ecf6c32f4de94bb4ad930150361404a4332aa6",
+  "node_id": "art:find-skills-corpus",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "location": "crates/reflow2-mcp/tests/fixtures/find_skills_corpus.json",
+    "name": "find_skills_corpus.json",
+    "status": "realized"
+  }
+}

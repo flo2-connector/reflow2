@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1481ffc613ba2d866e1328702de76755a33985264951cc16095d9b36a8eef19a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

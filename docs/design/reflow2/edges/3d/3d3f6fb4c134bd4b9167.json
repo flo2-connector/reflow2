@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d68ad2bec43d099c3d3f143f24eef474a649de7b03babf3e4a12ed7c536697b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deliberately-open-edge-declares-what-it-is-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

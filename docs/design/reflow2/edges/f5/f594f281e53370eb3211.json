@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b25283df75f67542daaed8cd8f0cb2c27560c09f1cd1b5a99c29b0a045604ea",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:reflow2s-code-reasons-from-the-declared-meanings-and-every-derived-relationship-is-a-declared-rule",
+  "properties": {
+    "evidence": "Test 3's requirement (still proposed) asks that every relationship reflow2 derives is a declared rule. This requirement accepts that half, plus a served read, on Anthony's 2026-09-29 word. The select-through-readings half stays with the broader node. It is not drawn as DECOMPOSES because delivery would falsely roll up."
+  },
+  "to_id": "req:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them"
+}

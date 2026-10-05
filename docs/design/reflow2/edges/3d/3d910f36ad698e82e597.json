@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e22718e3bf29be35627f82f5856d353ba6a659e82ebdb20ac6bf0fa1a08dca9c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-skill-files-each-fact-where-it-belongs-2026-09-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs"
+}

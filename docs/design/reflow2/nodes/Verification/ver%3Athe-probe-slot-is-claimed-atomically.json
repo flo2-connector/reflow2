@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:dc66cd6b6b58bdb2fe913200836b8e259aee56ab231304ca3d5504f66ace4f81",
+  "node_id": "ver:the-probe-slot-is-claimed-atomically",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`ProbeSlotIsClaimedAtomically` in tools/test_loop_nudge.py — four cases, stdlib-only and hermetic, run by CI alongside the other 91 in that file.\n\nWHAT IT PINS AND WHY IT IS SHAPED THIS WAY. It asserts STRUCTURE, never duration: N processes released together through a Barrier must produce EXACTLY ONE winner of the probe claim. The optimize skill's rule is that a duration assertion in a parallel suite measures machine contention, and the standing response is to raise the threshold until it stops complaining — which retires a gate without anybody deciding to. A winner count cannot be retired that way.\n\nTHE CLASS, NOT THE INSTANCE. The instance was a duplicated `hooks` block in .claude/settings.local.json that made every hook fire twice. Deleting it stops today's pairs and leaves the defect standing, because PostToolUse and Stop can legitimately arrive together with a single registration. The class is that the guard READ the lock and then WROTE it, which is two steps with room between them.\n\nThe other three cases hold the edges the atomic claim must not break: a young lock turns every later claim away; a stale lock (a probe killed before cleanup) is cleared and exactly one successor wins, so a stuck lock cannot silence the feature permanently; and an unwritable state directory makes the hook DECLINE rather than raise, because a hook that breaks a session is worse than no hook.\n\nWHAT IT DOES NOT COVER: it says nothing about how LONG loop_status takes. The latency budgets (con:loop-status-warm-latency-ms, con:loop-status-after-a-write-answers-under-one-second) still carry NO passing check of their own — the after-write budget is measured at 4,096 ms against a 1,000 ms limit and is not met.",
+    "findings": "Run 2026-09-12 on this machine: 4 tests, all passing, 0.26 s. OBSERVED TO FAIL FIRST, which is the evidence that it pins anything — the guard was reverted to its pre-fix check-then-write shape and the same committed test went red with `AssertionError: 4 != 1`, twelve concurrent invocations spawning four probes. Restored, green. The full tools/test_loop_nudge.py suite is 95 tests, all passing, 24.0 s.",
+    "kind": "verification",
+    "last_run_at": "2026-09-12",
+    "level": "unit",
+    "method": "test",
+    "name": "Concurrent hook invocations spawn exactly one graph probe",
+    "status": "passing"
+  }
+}

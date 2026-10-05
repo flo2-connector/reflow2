@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7389930fcd09245509a125b7345e2ab995ae20442d71361a39ede57af3affc2b",
+  "node_id": "chg:composed-analysis",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Two designs analysed together without either being written to: the dependency's ids are namespaced into an in-memory graph and reflow2's ordinary detectors run over the whole, every finding attributed ours/theirs/seam"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:41d8b21b2984546db6ed77c05bac907fc9f0e682ec06b845bdd99b060ac0ad28",
+  "edge_type": "CONTAINS",
+  "from_id": "proj:reflow2",
+  "properties": {},
+  "to_id": "req:one-sentence-of-a-nodes-text-can-change-without-resending-the-field"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5ed72f2ca1ae09915d9b02a6418ba22f75e7f8eaecf1b1fe12381754876a5387",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type",
+  "properties": {},
+  "to_id": "req:the-gate-that-says-every-property-can-be-written-reads-tools-not-names"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89c38849eed0e52442e354e600b8f1b63690a51c5f6c01876877a6dadf61f03d",
+  "edge_type": "REALIZES",
+  "from_id": "art:receipt",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-argument-refusal-names-the-tool-and-the-field-path"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68542dea525b3202d833375c0dc4e15a3b441d00aacf4f2a9e147dc53bc07b6e",
+  "edge_type": "CAUSES",
+  "from_id": "art:hxm-program-feedback-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The root-cause pass on this document's 09-28 report (F-35, a rule matched command text): the block was hxm_program's own PreToolUse hook, textual by design; reflow2's part is that a DesignRule cannot say what action it guards or where it is enforced.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-conduct-rule-was-enforced-by-the-projects-own-text-matching-hook-and-reflow2-cannot-say-what-a-rule-guards-2026-09-28"
+}

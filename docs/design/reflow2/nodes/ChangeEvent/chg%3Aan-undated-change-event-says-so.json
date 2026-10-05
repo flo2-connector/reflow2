@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:66e939e20ad25d74d940cad97f5cce3b701b0665f38f5ef6d5b89ffa3cbdb1ca",
+  "node_id": "chg:an-undated-change-event-says-so",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-10",
+    "name": "A ChangeEvent written with no date says so, and names what cannot be computed without one",
+    "rationale": "hxm_program F-06: \"Nine events written in one day, none dated in the field (dates are in the prose). The verification digest then cannot order changes against `last_run_at`. Suggest: report an undated ChangeEvent the way an undated sweep is reported — as undated, not silently.\"\n\nTHE ASYMMETRY IS THE DEFECT, not the missing field. This project's standing posture is that an absent property means NOBODY SAID and is REPORTED rather than defaulted — `invalidates` answers `rerun_owed: null` rather than false, `repair_report` counts `unstated` as a first-class number, `detect_defects` says what it could not have found. The ChangeEvent was the one place a date went missing in silence, which is why the field went from 8% coverage on hand-written events to being reported here.\n\nREPAIR: `contained_symptom`. STANDS IN FOR: nothing tells a caller the date is missing until AFTER the event is written, and `record_change` — the path the root-cause discipline actually sends you to — still cannot be dated at all. The proper fix is a surface where a repair can carry both its date and its disposition; see `fact:record-change-places-an-event-by-epoch-and-212-of-214-epochs-carry-no-date`, which measures the assumption that path rests on (212 of 214 epochs carry no calendar date, so pinning to an epoch places an event ordinally and not temporally).\n\nMEASURED ON THIS GRAPH THE SAME DAY: 519 of 907 ChangeEvents carry no `detected_at`.",
+    "subject": "system",
+    "summary": "`add_change_event` now returns an `undated` note when `detected_at` is absent, naming the two readings that go quiet without it — `changelog_view`'s epoch windows and the verification digest's ordering against `last_run_at`. Warns, never refuses: the event is already written and a change nobody dated is a true record."
+  }
+}

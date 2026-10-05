@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f21fa719824b4728ae7790484ca1dcadff78c9bd572135d65a8fd1c3c226a98c",
+  "node_id": "cap:unallocated-component-detector",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The `unallocated_component` gap: leaf Components carrying zero incoming ALLOCATED_TO, reported as ONE aggregate rollup rather than one alarm per box.\n\nExcludes any component holding a child Component — a parent is allocated through its children. Silent when the design has no capabilities, because there is then no allocation to have performed and that phase belongs to `concept_without_design`. Distinguishes NEVER STARTED (nothing allocated anywhere — the deferred allocation step never picked back up) from PARTIAL, because those are acted on differently. Aggregate-keyed so the standing judgement \"our boxes are namespaces, not functional parts\" survives somebody adding a component.\n\nThe mirror of `unallocated_capability`, and the visible half of the answer to `dec:idea-does-the-deferred-structuring-step-need-a-skill-of-its-own`.",
+    "name": "Report leaf components no capability is allocated to",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

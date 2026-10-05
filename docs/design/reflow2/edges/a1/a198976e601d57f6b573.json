@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0727aa6a22b3eddc67d3458ed5176274038de08adb33de831ccb3c7dd79ab3dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-e1aa7514ebda2b48",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check-intent-authority-test"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ceb27c1bf9f88bb8dffb06976fe66947e230b310e5e94db5a3c9126467a5f3c4",
+  "node_id": "ver:the-release-cut-reads-back-whole",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`flow_report(flow:release-cut)`, read back after the Flow was written.\n\nWHAT IT CHECKS: that the RECORD is complete and legible to the next session. Eight steps come back in stated order 1–8; nine TRIGGERS transitions come back, every one carrying a `role`; `confessions` is empty, meaning `flow_report` found nothing left unstated — no unmatched entry or exit point, no step without a `step_order`, no transition without a role. The two backward edges are reported as a cycle, which is correct and is why cycles in a Flow are reported rather than judged: a process's loops are its design.\n\nWHAT IT DOES NOT CHECK, said plainly rather than left to be assumed: that a human or agent actually FOLLOWS the procedure. Nothing here observes a cut. The step that closes that hole is step 8's own detector (`ver:a-release-that-shipped-nothing-is-reported`), which turns the gate red when a release goes out with an empty manifest whether or not anyone read the Flow.\n\nWHY IT IS AN INSPECTION AND NOT A TEST: the subject is a design record, not code. Calling it a test would claim an automated check that does not exist, and `dec:certainty-derived` makes a status a claim about evidence.",
+    "findings": "2026-08-21, first run, immediately after the Flow was written: 8 steps returned in order 1–8, 9 transitions returned, every one carrying a `role`, and `confessions: []` — flow_report found nothing left unstated. One cycle reported, over all 8 members, which is the two deliberate \"forces resync\" edges: step 8 → step 4 (an empty release_report sends the cut back to re-run the derivation with apply: true) and step 4 → step 1 (a manifest frozen on a pre-bump checksum sends it back to accept the version drift first).\n\nCONTEXT WORTH RECORDING: this is the FIRST Flow node in reflow2's own design. The count was zero before today — `cap:model-process` shipped, was never used on this project, and so the vocabulary had never been tested against a real process by its own authors. It held: nothing about the release cut needed a node type that did not exist, and the one thing worth saying that the model does not carry — which steps are destructive of the session's own tooling — went into the Flow description rather than into a new property.",
+    "kind": "verification",
+    "last_run_at": "2026-08-21",
+    "level": "system",
+    "method": "inspection",
+    "name": "flow_report returns the cut as eight ordered steps with every transition's role stated",
+    "status": "passing"
+  }
+}

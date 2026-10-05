@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cba836916b195a6cbb7c4b82ab66ded9be16255c5a8e6f8beac33aab192981b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-acknowledgement-says-whose-judgement-it-was",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

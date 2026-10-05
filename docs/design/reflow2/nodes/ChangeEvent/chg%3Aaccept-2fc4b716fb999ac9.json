@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab8510c5545b92e0ea6657b482ca16a9d425c681d3d150cdcbc5ff1bb7100f84",
+  "node_id": "chg:accept-2fc4b716fb999ac9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-12",
+    "name": "Wording change on Alex's report, 2026-08-12. THE DESIGN HOLDS: the installer announced \"Installing reflow2 for every project on this machine\", which reads as though it is about to reach into every project directory and change it. It never did — nothing outside ~/.local and ~/.claude is written, and a project only gains reflow2 when someone points it there. It now says \"Making reflow2 globally available to projects on this machine\". The text was made to match what the code already does; no behaviour changed and no design claim moved. Worth noting who found it: a first-time reader of the output. The wording had been there since the machine-wide install shipped, and nobody who already knew what it did had reason to notice."
+  }
+}

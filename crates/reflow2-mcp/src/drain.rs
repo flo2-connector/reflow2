@@ -251,6 +251,13 @@ pub enum Holds {
         sessions: Arc<LocalSessionManager>,
         recovery: Arc<crate::degraded::Recovery>,
     },
+    /// The latent surface (`crate::latent`), which may have opened a design
+    /// that appeared under it since it started. A stop closes that design
+    /// exactly as it closes a healthy server's.
+    Latent {
+        sessions: Arc<LocalSessionManager>,
+        latent: Box<crate::latent::LatentService>,
+    },
 }
 
 impl Holds {
@@ -258,7 +265,7 @@ impl Holds {
     pub fn one(service: &ReflowService, sessions: Arc<LocalSessionManager>) -> Self {
         Holds::One {
             sessions,
-            store: Arc::downgrade(&service.graph),
+            store: service.graph.downgrade(),
             auto_export: service.auto_export_handle(),
             graph_path: service.graph_path.clone(),
         }
@@ -282,12 +289,28 @@ impl Holds {
         Holds::Recovering { sessions, recovery }
     }
 
+    /// The latent surface, which may serve a design by the time it stops.
+    pub fn latent(
+        sessions: Arc<LocalSessionManager>,
+        latent: crate::latent::LatentService,
+    ) -> Self {
+        Holds::Latent {
+            sessions,
+            latent: Box::new(latent),
+        }
+    }
+
     async fn close(self, work: &Work, deadline: Instant) -> Closed {
-        // Whatever a recovering surface opened is closed as ONE design would be.
-        // `take` first, so the surface itself no longer holds the store while
-        // the release is awaited; the sessions' own shares end with them.
+        // Whatever a recovering or latent surface opened is closed as ONE
+        // design would be. `take` first, so the surface itself no longer holds
+        // the store while the release is awaited; the sessions' own shares end
+        // with them.
         let this = match self {
             Holds::Recovering { sessions, recovery } => match recovery.take() {
+                Some(service) => Holds::one(&service, sessions),
+                None => Holds::Nothing { sessions },
+            },
+            Holds::Latent { sessions, latent } => match latent.take().await {
                 Some(service) => Holds::one(&service, sessions),
                 None => Holds::Nothing { sessions },
             },
@@ -337,7 +360,7 @@ impl Holds {
             Holds::Nothing { sessions } => {
                 closed.sessions = end_sessions(&sessions).await;
             }
-            Holds::Recovering { sessions, .. } => {
+            Holds::Recovering { sessions, .. } | Holds::Latent { sessions, .. } => {
                 // Settled above; kept total so a new variant cannot be missed.
                 closed.sessions = end_sessions(&sessions).await;
             }

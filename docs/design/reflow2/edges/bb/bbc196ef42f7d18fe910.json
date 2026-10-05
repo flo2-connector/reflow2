@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5927d88b7d9e66cfa4dc16241f0592e3d3937d71499ed1c335f7eef7afca6423",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-concern-enum-publishes-its-values",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-an-enum-field-publishes-its-legal-values"
+}

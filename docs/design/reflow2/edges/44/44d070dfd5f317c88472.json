@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd1ddb3ca560fafe309bb0c12cadd2f010c64ecb214bba2d2d6cb30e2529b252",
+  "edge_type": "CHANGED",
+  "from_id": "chg:two-answers-2026-07-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:concurrent-planning"
+}

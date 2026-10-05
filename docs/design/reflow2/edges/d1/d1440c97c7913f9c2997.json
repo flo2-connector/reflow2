@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:46df80e65a1df4285d633c805474086e0624f0d5cf42a6bf59efd8572f036e59",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:maturity-profile",
+  "properties": {},
+  "to_id": "req:trajectory-position-is-computed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3477d75ba06d4f46b8a61323265d8ea9afc5e40c922488ef7550f5a7262ac03b",
+  "node_id": "chg:accept-980140987a1dab8d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "The v0.21.0 version bump. The design meaning of a cut lives in the Release and the epoch, not in a version string — the declaration itself (what this design depends on, and at which version of it) is unchanged: dynograph-foundation stays pinned at v0.12.0. Expected on every cut; the release manifest's frozen as_checksum for this artifact is updated in the same pass, since the INCLUDES edge was written from the pre-bump value."
+  }
+}

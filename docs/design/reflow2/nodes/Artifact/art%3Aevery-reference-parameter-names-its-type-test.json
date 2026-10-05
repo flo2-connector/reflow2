@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9b245f3b1c18d93f8fdf637ec7f38a9b17f11bd16340f240a1e3226defe42ff0",
+  "node_id": "art:every-reference-parameter-names-its-type-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The per-class contract for required reference parameters: every required `*_id` whose NAME does not resolve to exactly one declared node type must say its type in its description or name the sibling `*_type` parameter that supplies it — or be EXEMPT with a reason. Membership is DERIVED from the schema (strip `_id`, match declared node types), so a 181st tool joins the class the moment it is served. Failed on 66 parameters across 49 tools when first run; caught its own author copying `element_type` onto a request that has no such field. The generalisation of the shape `every_declared_enum_is_wired_or_exempt` proved on one class.",
+    "location": "crates/reflow2-mcp/tests/every_reference_parameter_names_its_type.rs",
+    "name": "every_reference_parameter_names_its_type.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:de375948f625adf552355d162eb63ec6695c6868f9dad27a9dac9537d2ba5b7e",
+  "node_id": "fact:a-revising-write-that-shrinks-a-field-reports-nothing-and-two-load-bearing-paragraphs-were-lost",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "A full-field rewrite that drops a paragraph is reported by nothing — measured at two losses in thirteen rewrites in one session",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "FLO2 F4 SHARPENED, and the reporter calls it the compounding one: 'Every other entry in this file costs a retry or a confusing message. This one degrades the record permanently.' THEIR MEASUREMENT, one session, 2026-09-19: thirteen full-field rewrites of Decision, Requirement, Component and DesignRule nodes; TWO silently dropped a load-bearing paragraph. One lost a clause bounding when a rule binds; one lost the paragraph explaining that a requirement pulls against another, and had to be restored in a second pass. Both were caught by the author re-reading their own call. NEITHER was caught by anything reflow2 said. The `revision.replaced` reply does return the prior value, which is what makes the loss recoverable, but it arrives AFTER the write and nothing compares old to new. ⭐ AND THE PRESSURE IS CREATED BY THE API, which is why it is not simply carelessness: with no append, adding a dated note to a long node meant resending the whole thing, so the safest possible edit was the one most likely to lose an unrelated paragraph in the middle. `replace_text` (v0.65.0) removes that pressure. It does not guard the rewrite that still happens. THEIR THREE REMEDIES, cheapest first, none built: a length delta in the reply ('replaced statement: 4,102 → 3,741 chars (−361)'); an append mode (now built); refuse a shrink without an explicit flag.",
+    "steps": [
+      "revise-design",
+      "capture-intent"
+    ],
+    "subject_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard",
+    "valid_from": "2026-09-19"
+  }
+}

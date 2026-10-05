@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:023986e7bd6a1896fb25d0e4e920038224beb7b536e4691247ab8bfe3b6868a6",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:loop-status-warm-latency-ms",
+  "properties": {
+    "basis": "measured",
+    "contribution": 1291.0,
+    "measured_at": "2026-09-12",
+    "note": "CORRECTS THE STALE CONTRIBUTION FOUND 2026-09-11 (fact:the-budget-edges-still-carry-the-pre-fix-numbers-so-budget-report-says-exceeded-for-a-budget-that-holds). This edge carried 12,502 ms — the PRE-fix figure from 2026-09-05 — so budget_report reported `exceeded` on a budget that actually held, and a tool sweep told Anthony both performance constraints were breached five days after they were not. The previous session deliberately left the number alone because which figure belonged in a budget named \"warm\" was a judgement: 1,912 ms warm or 6,354 ms after a write. That ambiguity is now gone — con:loop-status-after-a-write-answers-under-one-second carries the after-write case, so this budget takes the warm number and nothing else. 1,291 ms measured this date on a physical copy of the live store, 0.59.0 release, shared transport with --export-to, load 0.1-0.4, median of 4 calls with no write between them. This budget HOLDS at 65% of its 2,000 ms limit."
+  },
+  "to_id": "cap:loop-status"
+}

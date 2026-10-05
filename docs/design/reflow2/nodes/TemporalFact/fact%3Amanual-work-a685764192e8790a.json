@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0fadbc0102e7de838922af5327064dcf33e8ec820932423d9e9bac64ae1dbc9d",
+  "node_id": "fact:manual-work-a685764192e8790a",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python model of a served analysis (the containment roll-up) and ran it against the COMMITTED EXPORT FILE, to check the running tool's answer against an independent computation of the same thing. It reproduced the served numbers exactly, which is what made a silent wrong answer diagnosable — and then, with one condition changed, produced the corrected numbers before any code was touched. Also re-ran it over a synthetic design named the way an ordinary user would name things, which is what showed the defect was total for a user and only partial for this project. The general shape: run a served analysis against an export document rather than the live graph, so its answer can be checked against a model.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-08-30",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

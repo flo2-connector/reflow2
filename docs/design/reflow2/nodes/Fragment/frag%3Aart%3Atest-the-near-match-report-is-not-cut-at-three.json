@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d844e66add2961f8d9f2e05ceb04dd5c8dd266ca72a2e6dac4b2c2bb780687e4",
+  "node_id": "frag:art:test-the-near-match-report-is-not-cut-at-three",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered the_near_match_report_is_not_cut_at_three.rs — a crowded band is not reported as three, and the report stays bounded"
+  }
+}

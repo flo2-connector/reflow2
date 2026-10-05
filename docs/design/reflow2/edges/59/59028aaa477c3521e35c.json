@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:619db9992948c9046a121356b6c3f5dd5bceba3a64fbf8ee59d80c0c7ce759c5",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:closure-report",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:closure-report"
+}

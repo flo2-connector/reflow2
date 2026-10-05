@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5a86c09bce9e00e08a8a62a93a572d7ca365bca5282353d6db2e68374a084a29",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-measured-observation-is-evidence-a-budget-or-decision-reads",
+  "properties": {
+    "evidence": "That root cause's part (c) holds: a measured observation can be written but nothing reads it beside the limit. Every option here but (e) gives it a reader."
+  },
+  "to_id": "fact:root-cause-describe-schema-never-names-the-typed-tool-that-writes-a-type-and-the-map-lives-in-a-repo-script-2026-09-29"
+}

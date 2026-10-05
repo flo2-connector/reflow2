@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ae38c05752489c0560b9cd02192adb99ae895147fdeef77af849390fd07b3705",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:76fd03eaab1983e4adafa8a3d51a7f3832e90861df83b52c9771624741603db2"
+  },
+  "to_id": "art:hxm-program-feedback-2026-08-26"
+}

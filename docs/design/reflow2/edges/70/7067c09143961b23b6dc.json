@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:baa16c513e14967b64691a27916aecf17f53539cd16b5b68044291f4b46f4afe",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:ingest",
+  "properties": {},
+  "to_id": "fact:bl-210"
+}

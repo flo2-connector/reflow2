@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0e6a4245c81acf4a05e3ac384eec58426b482f9e914ec27e73585b3c1008078b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl184-ility-signals",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

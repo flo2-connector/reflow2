@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:98154c09e76c97455cef82e7505febf283e2321ee563bba229742f2c17041fa3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4329e5563666ab6708edfe68c0d0188818571b39ea408c70ef71663bc2f98f36"
+  },
+  "to_id": "art:kit-pointer"
+}

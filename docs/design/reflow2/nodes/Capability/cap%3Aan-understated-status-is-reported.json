@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bbbfcc862dfc7b3bac4e9d7d59d9c894822ef3ad0b7ee8deb105b82074b88927",
+  "node_id": "cap:an-understated-status-is-reported",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Gap source `understated_status` in crates/reflow2-core/src/detect.rs (`detect_understated_statuses`, with `direct_build_evidence`), run beside `detect_status_contradictions` — its mirror, which only reads overstatement.\n\nTHE RULE, three shapes, each reading a status still at `planned` (or unset) — never `in_progress`:\n· a CAPABILITY that an Artifact whose OWN status is realized/verified REALIZES, or that a passing Verification VERIFIES — one finding per capability;\n· the COMPONENTS that host a live Capability at realized/verified, or are realized/checked directly — ONE finding for the design, keyed on the set of components, naming each with its built capabilities, and saying when no component in the design carries any status but `planned`;\n· a RELEASE with a DEPLOYED_TO edge not itself marked planned — one finding per release.\nDirect evidence only: an Artifact at planned or with no status is not a build, and a file or check on the component a capability is allocated to is not read for the capability. Discontinued nodes, artifacts, checks and capabilities are skipped.\n\nSeverity 0.40, beside decision_overtaken_by_promotion and below status_contradiction's 0.70: a record fallen behind evidence that exists. Each finding says \"built but still says planned — move its status, or say why not\", names the call (`set_capability_status`; `add_component` / `add_release` with the id and `status`), and is closed by it or by acknowledge_gap.",
+    "name": "A status still at planned behind a built thing is reported as understated",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

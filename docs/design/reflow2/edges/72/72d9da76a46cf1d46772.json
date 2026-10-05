@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9f335bd86ad1e010c1c6a5613462551bc9386107f41f8034be3a430f5ffdb093",
+  "edge_type": "CAUSES",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "This is the server's only \"is this text already here?\" computation whose score means something across items, because it is normalised to the text's own self-score. It was built as a guard that runs after a write, at 7 single add_* constructors, and needs the node already in the index for its baseline. So it has no read-only or batch form. create_nodes check_only does not run it (measured), and search_design exposes only raw BM25 scores that do not separate present items from absent ones.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-population-check-has-no-served-form-2026-09-28"
+}

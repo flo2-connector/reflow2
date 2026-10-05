@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef294f91ec0aa2defd9c030283fb741dbbd06826cb6d58ee983fb66766de1fe7",
+  "node_id": "decision:ack:e2f901aa220997b4",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e2f901aa220997b4.",
+    "name": "Reviewed: gap:e2f901aa220997b4",
+    "rationale": "Not a defect: cmp:claims was built after the last release cut, so \"ships in nothing\" is simply true and expected of anything newly built. It resolves at the next release, which must list it. Distinct from the cmp:docs case that raised the same gap earlier today — that one was a pre-existing deliverable the design had never modelled, which is why it needed a decision (start from the next release, do not backfill nine releases). This one needs no decision, only a release. The AGENTS.md rule has been generalised accordingly so the next cut lists everything it actually ships rather than a hand-maintained roll-call that would raise this gap afresh for every new component.",
+    "status": "accepted"
+  }
+}

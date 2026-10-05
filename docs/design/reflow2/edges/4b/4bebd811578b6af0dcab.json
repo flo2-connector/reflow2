@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f8679874140a841886ff8748c5118c88c34521dc3eb0dabc059ec954df9dd71",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-replayed-gap-is-an-echo",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ask"
+}

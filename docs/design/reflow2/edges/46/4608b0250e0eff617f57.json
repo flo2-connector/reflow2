@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c762352825805b68cfeb85d6bbd4d021ea99045dc94ea7ead0bcc7f6bf64d1a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-session-can-report-what-it-did-by-hand",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

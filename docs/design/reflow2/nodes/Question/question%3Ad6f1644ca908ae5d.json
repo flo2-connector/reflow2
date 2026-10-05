@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:aa2caf11b70c47fb98ef6cf9de421d3c5b76a8f83eca0d4ffd9e5cc97c1f6626",
+  "node_id": "question:d6f1644ca908ae5d",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: build it, derived from build files rather than hand-authored. BUILT. `reflow2.toml` is generated from declarations held in the graph and carries which reflow2 wrote it (his earlier ask). Two facts are kept apart deliberately: what you MEAN to depend on (the declaration, durable and committed) and what your build ACTUALLY resolves (the observation, read fresh each time) — storing only the first gives a document that drifts, storing only the second gives a fact nothing can contradict. `reconcile_dependencies` compares them and catches both opposite failures. Core does not parse Cargo.toml: the caller supplies the observation, as `reconcile_artifacts` and `coverage_report` already do, because storyflow pins one dependency across a Cargo.toml, a docker-compose.yml and a versions.env, and a Cargo-only core would model a third of that seam and report the rest as absent.",
+    "asked_at": "2026-07-27",
+    "context_setter": "Nothing satisfies requirement “Declare which version of another design you depend on, not just record what you took”",
+    "gap_id": "gap:d6f1644ca908ae5d",
+    "question": "reflow2 already notes which version of another project's design you actually copied, and when. What it has no place for is you SAYING which version you mean to depend on — a checked-in file like Cargo.toml. With both, it could tell you whether you are using the version you intended, and whether the other project has moved on since. Do you want that file, and should it come before or after the interface work?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

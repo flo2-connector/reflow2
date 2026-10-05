@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:957a17d1477e0351ad122c50ccd26d24926a4591c1f0d64fe3fc41538b025911",
+  "node_id": "art:vision",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "reflow2's founding vision, in the repository since the first commit (2026-07-17). It states the scope: \"Capture the entire lifecycle — concept → operations — in one graph\". It names the transitions where programs break (concept → design, design → build, build → operate, and late change reaching every phase) and the phases \"concept, design, build, test, production, O&M\". It defines good as \"Someone with only an idea is guided — by questions — from concept to operations without needing to know systems engineering.\" README.md and AGENTS.md point to it as \"the north star for everything below\".\n\nRegistered 2026-09-28 because it had never been in the design. The graph held its scope only as the one line of req:coherence, and a triage that read the graph and not this file framed \"should reflow2 serve a design in operations?\" as an open question (fact:root-cause-the-lifecycle-scope-lives-in-the-vision-and-the-graph-holds-one-line-so-a-brainstorm-reopened-it-2026-09-28).",
+    "location": "docs/vision.md",
+    "name": "docs/vision.md — the north star: one coherent graph from concept to operations",
+    "status": "realized"
+  }
+}

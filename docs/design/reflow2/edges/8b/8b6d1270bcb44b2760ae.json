@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:15812e9f92a804f212db4fddbfe5650f8818ff85a37a369d2a91c60d60bc6503",
+  "edge_type": "REALIZES",
+  "from_id": "art:why-command",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:why-an-existing-system-is-the-way-it-is-is-recorded-by-interview"
+}

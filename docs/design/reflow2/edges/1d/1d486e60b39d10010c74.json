@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e13be61ee8c8ee185b556eeabede514c7dd232cc4928e03d050ac5c7e68a843",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl89",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:vocabulary"
+}

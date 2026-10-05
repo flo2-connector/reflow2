@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a319062c85bf31e67c4287b340c92a8b0f7d066552e1ccce65f4a7c13787fb48",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-declared-upstream-is-read-where-it-lies",
+  "properties": {},
+  "to_id": "req:design-dependencies-declared"
+}

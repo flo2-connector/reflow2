@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8312de5fd8e7dffc3f5d1a16b340c211e2a8e280ed934b567129b1ab7a5f6a2f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:promotion-overtakes-the-question",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

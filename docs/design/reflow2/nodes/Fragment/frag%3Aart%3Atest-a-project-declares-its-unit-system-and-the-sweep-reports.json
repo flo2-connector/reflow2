@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:21309a34e9d0d02b5531821bbda49b177cf4e197783d11666cbc112bff3e52b6",
+  "node_id": "frag:art:test-a-project-declares-its-unit-system-and-the-sweep-reports",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_project_declares_its_unit_system_and_the_sweep_reports.rs — the three sweep findings pinned, including that nothing to run on raises nothing rather than reading clean"
+  }
+}

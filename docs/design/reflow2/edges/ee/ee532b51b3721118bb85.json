@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2972cff508eb410d30737ec887bbb2e043913156813e0819aabe08b2d4bc696b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stop-hook-asks-the-graph",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:stop-nudge-asks-the-graph"
+}

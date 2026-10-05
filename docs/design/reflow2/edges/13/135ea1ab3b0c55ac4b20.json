@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:53c0183c5baa5ae8266c0d3f576057df9869635fd8073e1b45ab9294e449c5ab",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:review-expires-on-content",
+  "properties": {},
+  "to_id": "req:review-expires-when-what-it-judged-changes"
+}

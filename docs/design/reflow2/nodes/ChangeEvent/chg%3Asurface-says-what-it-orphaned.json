@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5445b8760dd5f2526d2558042006cbba1b473aa3d9e294cf40d8d210d811d546",
+  "node_id": "chg:surface-says-what-it-orphaned",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "export_surface now reports which KEPT nodes lost their container to the filtering (severed_containment + a note clause). FOUND BY RUNNING IT: mirroring flo2 into a host graph took hierarchy_issues 0 -> 4, every one orphan_level, and every one FALSE about the source design - cmp:flo2-platform contains those four. The detector was innocent (it already counts Project containment, by an earlier fix); the DOCUMENT lied by omission. proj:flo2 CONTAINS 46 things in the full design and 5 in the surface, Interfaces only, so the components arrived with both anchors gone. REPORTS RATHER THAN REPAIRS, and the two content-changing fixes were rejected for stated reasons: carrying the ancestry discloses internals the surface exists to withhold, and re-parenting the orphan to the Project asserts a CONTAINS nobody drew (req:a-repair-suggestion-never-proposes-fabrication). On flo2 it finds five, not four - cmp:design-pipeline-svc is severed too and escaped orphan_level only by containing something below it. 6 tests written first, 4 mutations killed. IRONY WORTH KEEPING: toolsnap reports the served surface UNCHANGED, because this altered a RESULT shape and toolsnaps record inputSchema only - the very blind spot the backtest found, reproduced on its own fix within the hour."
+  }
+}

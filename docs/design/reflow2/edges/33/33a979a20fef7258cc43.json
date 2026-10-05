@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd8d905a37c2550ee3ffc81ceaaf8b6ba44d4e3b124b47986070f34e77911829",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-budget-says-how-it-composes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

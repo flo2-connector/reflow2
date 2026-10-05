@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dd1d0749811421072e2a7a632aef697a163e67431d0faa8ead78332f0c1f71b5",
+  "edge_type": "REALIZES",
+  "from_id": "art:graphalg",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:graph-algorithms"
+}

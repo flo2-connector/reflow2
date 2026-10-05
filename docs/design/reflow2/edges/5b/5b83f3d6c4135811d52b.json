@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d55ed4a09d0bef0f2f8cb67d118cfa249ba5aafdb0f090aa6d2d78d182f778ee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:nested-graphs",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

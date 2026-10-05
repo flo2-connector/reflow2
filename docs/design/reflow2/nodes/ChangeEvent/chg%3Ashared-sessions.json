@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c003e6dfe550b389d20ca0e1dbb06c5d4b5fefd5c5b9e1f286e3b5ffb54ac190",
+  "node_id": "chg:shared-sessions",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "One server, many sessions: several seats work the same design at once"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64081f9da16ea4a8d05a00529bfeb3c4bf6583ab077a7de0aba7169c0e227f76",
+  "node_id": "art:design-io",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "tools/design_io.py",
+    "name": "tools/design_io.py",
+    "status": "realized"
+  }
+}

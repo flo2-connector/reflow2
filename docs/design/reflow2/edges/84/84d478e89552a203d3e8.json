@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff31d553051b413a4e1ae758767c7963fa104b0bad57df3c2e2670d1f5935b2e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-structure"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:04842d5d7f45795420e0c70f7fbd63e42118f0c6259771f3c5e521f3ff1b3f5a",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:merge-designs",
+  "properties": {},
+  "to_id": "fact:the-merge-driver-output-names-itself-as-its-own-parent-and-drops-taken-at-2026-09-26"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63a203df78df6919999354f718dd2b118bf1ee4476ed8ef63d31cb0f1b4e2c03",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-real-run-is-fed-back-by-file",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:verify"
+}

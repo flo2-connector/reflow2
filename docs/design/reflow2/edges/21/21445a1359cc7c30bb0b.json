@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:35fd2b8b71de2f3ed9426b1190ae960b36a30bc23a1cfc7723261a2d3f644918",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:stop-nudge-asks-the-graph",
+  "properties": {},
+  "to_id": "req:skill-use-survives-a-long-session"
+}

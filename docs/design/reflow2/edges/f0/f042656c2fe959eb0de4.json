@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5707349ff9b4117069facf12c652e514bf04900c36e9417fa39be7d139f1e80a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-nl-defect",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:search-natural-language"
+}

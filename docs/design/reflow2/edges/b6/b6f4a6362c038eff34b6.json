@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ceaac86fb70372e33347fb7774d5b293c5429a45f90166604f2a62bc7fa9950e",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
+  "properties": {
+    "evidence": "The measuring-instrument idea here — a Verification whose method is measurement and whose executor is a named external tool — is the provenance requirement's 'measured (by which instrument or artifact, when)' seen from the tool's side; whichever lands first supplies the other's vocabulary."
+  },
+  "to_id": "dec:idea-the-tool-partnership-needs-a-named-contract-basis-measured-subject-record-and-a-word-for-apparatus"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2cd052125f5c55d41f2b97c88f89ff5cbe1567a237fb9c8fd48567275a64c7b5",
+  "node_id": "chg:review-expiry-reproduced",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reproduced live: a standing review survived a substantial rewrite of the thing it judged"
+  }
+}

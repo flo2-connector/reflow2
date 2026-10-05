@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dcfe3854109c2724017d6e374f11a3eaf435791b629f43035d4bfb7abdc007a8",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-is-there-a-lightweight-task-capture-below-the-increment-grain",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Opposing on scope, not on intent. That capability's own description claims exactly this case — 'use when you catch yourself keeping a to-do list in the conversation' — so on paper the ground is taken. In practice the skill is 106 lines, 12 steps, and reaches add_epoch / add_release / gate_on / arrival_delta / detect_gaps / loop_status plus TRL thresholds. Either the claim in its description is too wide, or a fast path is owed; both cannot stand as they are, and the design will have to pick."
+  },
+  "to_id": "cap:plan-increments"
+}

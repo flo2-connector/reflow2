@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:10bde8577a7b61435514b616cb08e2e9dedffbf1dff3a0bfdd097b3064b075bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-taxonomy-is-decided-once-before-bulk-capture-and-every-instance-cites-it",
+  "properties": {
+    "approved_at": "2026-09-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

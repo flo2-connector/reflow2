@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b48f725641c711a3e9b1b80b34f20088c821c899b4059052a283be7a66f26252",
+  "node_id": "chg:every-gate-runs-the-binary-it-is-told-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2da7e72502bf431c7f54f51aa6cd4aa89d793185,c43538875f18954bec7c6d59dc10b32ddf76df60,d9ba2ad2fb9782ad09dccfa27ce12aba397ea368,6359527049b8f695a304ffbd03298a3249182a63,24ba00b0417ea018879c988ea3ce86ed0fc148ad",
+    "detected_at": "2026-10-03",
+    "name": "Every gate runs the binary it is told: one resolver, $REFLOW2_BIN first",
+    "rationale": "fact:every-gate-chose-its-own-binary-so-reflow2-bin-reached-one-of-them-2026-10-03. THE CLASS: each gate chose its binary by itself, so pointing the run at one build reached only the gates that happened to read the same variable. reflow2_check.py keeps its own copy of the order (plus PATH) because it is installed into consumer projects alone; the test checks it reads $REFLOW2_BIN first. Scripts outside ci.yml (bl124_instrument, erosion_trial, render_views and others) were left: they are instruments run by hand. The new test observed failing against main's three gate scripts.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "tools/reflow2_bin.py resolves the binary for every gate ci.yml runs ($REFLOW2_BIN, else the debug build, else the release build said on stderr); about twenty gates that hard-coded target/debug and two that read their own variables use it; run_ci_gates.py says which binary up front; test_run_ci_gates.py fails on any gate that names a binary path in code."
+  }
+}

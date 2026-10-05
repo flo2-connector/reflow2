@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:42c0574d70abf72aa31baa77f8aae71249ca847264f498af1d2f8f4a018f5249",
+  "node_id": "req:publishable-promise",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A published surface must be able to carry a behavioural promise, not only structure",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "FOUND BY A REAL TRIAL, 2026-07-28, and it is reflow2's defect rather than either project's: the dynograph-foundation session, publishing its offer to the reflow2 session, could not express the one commitment its consumer most needed.\n\nTHE MECHANISM, exactly. `export_surface` emits published Interfaces, the Components either side of them, and the contract artifacts. It withholds everything else as internal — including every Requirement, deliberately, because a consumer has no business reading its dependency's internal intent. But BEHAVIOURAL COMMITMENTS LIVE IN REQUIREMENTS. So the document reflow2 offers as \"the published surface\" carries structure and no promises, and there is no way to publish one.\n\nTHE CONCRETE CASE. reflow2's own Cargo.toml asserts, in a comment, that dynograph's `open_rocksdb` \"fails loud (foundation contract), rather than silently falling back to memory\". That is a real, load-bearing promise — a silent fallback to an in-memory store would lose a consumer's data with no error. dynograph's graph HAS it, as an accepted Requirement (\"A build without RocksDB must work, and must fail loud rather than fall back\"). The provider holds the promise, the consumer depends on the promise, and the surface export cannot carry it between them. So it lives where it is useless: a prose comment in the consumer's build file, on the wrong side of the seam, where the provider will never see it change.\n\nWHY THIS IS WORSE THAN A MISSING FEATURE. A published surface that structurally cannot contain half of what a published surface is for will be *believed* — it says \"published surface\" on the tin, it counts what it withheld, and it looks complete. A consumer reading it concludes the provider promises nothing behavioural, when in fact the provider promises plenty and simply cannot say so.\n\nTWO WAYS OUT, and they are not equal. (1) A prose companion document alongside the export — cheap, and it sits outside every check reflow2 has, so it drifts exactly like `docs/endpoints.md` did in the provider's own repo. (2) A `designation` on Requirement, the way Interface already carries one, so a behavioural promise can be marked publishable and travel with the surface — the export machinery, the withholding count, and the drift checks all then apply to it unchanged. Option 2 is the recommendation: it reuses the mechanism whose semantics are already settled (`internal` by default, because publishing is a commitment nobody should make by accident) rather than inventing a second, unchecked channel.\n\nNOT A LICENCE TO PUBLISH REQUIREMENTS WHOLESALE. Most requirements are internal intent and must stay withheld. The designation is opt-in per requirement, exactly as it is per interface, and the default stays `internal`.",
+    "status": "accepted"
+  }
+}

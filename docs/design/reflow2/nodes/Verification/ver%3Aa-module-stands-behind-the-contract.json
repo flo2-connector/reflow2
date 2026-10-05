@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fd88f099aee5c53c64e6e658f0361c895586f1852131ee92b9fd3307b7460681",
+  "node_id": "ver:a-module-stands-behind-the-contract",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-core/tests/granularity.rs` — 12 cases, of which 3 are new and exist to prove the boundary is real rather than decorative.\n\n`the_reading_runs_against_a_design_that_is_only_two_vectors` — the granularity report computed over a design held in two `Vec`s. No RocksDB, no schema, no disk, no lock. Before `ifc:graph-read` no module in this crate could be exercised without standing up a store.\n\n`the_same_module_cannot_tell_which_implementation_it_is_reading` — SUBSTITUTABILITY, demonstrated. The same function over a real `DesignGraph` and over a fake sharing no code with it, asserted equal on population, mean and the flagged artifact ids. If the module had reached past the contract for anything — the engine, the graph id, a derived view — this could not compile, let alone agree.\n\n`an_unknown_node_type_reaches_the_caller_as_an_error` — the obligation the signatures cannot carry. It runs a CONTROL first: an empty-but-valid design returns `Ok` with population 0. Then the same emptiness with a store that cannot answer, which must be `Err`. One thing changes and the outcome flips, so the assertion is not vacuous — without the control it would have passed even if the module treated every failure as an empty design.\n\nWHAT IS NOT CLAIMED: nothing here measures performance, so the third of the three goals — optimise a module against a budget — is enabled by this boundary and not yet exercised across it. The `optimize` skill wants a budget written down first, and none has been.",
+    "findings": "2026-08-21, first run: `cargo test -p reflow2-core --no-default-features --test granularity` — 12 passed, 0 failed. Whole core suite green, clippy and fmt clean.\n\nTHE SUBSTITUTABILITY CASE AGREED ON EVERY FIELD IT COMPARED — population 10, identical mean, and `[\"art:fat\"]` flagged by both — between a real RocksDB-less DesignGraph and a design made of two Vec's that shares no code with it.\n\nTHE CONTROL IS WHAT MAKES THE THIRD TEST WORTH HAVING. Written first without it, `an_unknown_node_type_reaches_the_caller_as_an_error` asserted only that a store which cannot answer produces `Err` — which would have passed even if the module treated every failure as an empty design. Adding the empty-but-valid case (Ok, population 0) means one thing changes and the outcome flips.",
+    "kind": "verification",
+    "last_run_at": "2026-08-21",
+    "level": "integration",
+    "method": "test",
+    "name": "The same module reads a real store and a two-vector fake and cannot tell them apart",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8eb23a4f71228313409460d438dd36c5c01df543810995226017f8e9c4ce1b8f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl58-silent-failure-batch",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

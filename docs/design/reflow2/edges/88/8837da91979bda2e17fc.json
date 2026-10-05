@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:960164b13007f2d398c00094487d6b4683e8606acc430a2fb688168d8282e4d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-reply-carries-its-payload-once-on-every-tool",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-skills"
+}

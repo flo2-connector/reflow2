@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da382883168d090a57872b4018ddcc44985d1bfdda80458ee941e31bf51abb97",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test"
+}

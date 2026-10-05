@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8016295461dd5417a9f47b4ba40f2dc1cb3653821b482cc91e1018ee02c44fdc",
+  "edge_type": "REALIZES",
+  "from_id": "art:flow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:flow"
+}

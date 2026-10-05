@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39b4c825f7a550dcd578505d71ccb0a79916eed52b2147e82159f967d9e869ae",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:how-should-reflow2-log-its-own-usage",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "The question grew into this requirement and shipped in v0.59.0. It asked WHERE the log should live and recommended option (1), beside the store rather than in the graph; the built ledger is at `<graph-path>.usage.jsonl`, beside the store, with a test literally named `a_torn_line_is_skipped_and_the_ledger_sits_beside_the_store`. It also argued a TOOL is the wrong shape because a tool must be called and the population worth measuring is the one least likely to call it — the server records every call without the agent's cooperation, which is what shipped. Drawn 2026-09-14 during a sweep for open questions whose answers already shipped: nobody drew it at promotion time, which is why the question still reads open."
+  },
+  "to_id": "req:feedback-on-reflow2-is-computed-from-a-record-the-server-kept"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6e7a48d1f1532b817f32ed18d38ac86587f0d892d39fa34dd64131d7c87899f4",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-choice-is-not-a-musing",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-choice-is-not-a-musing"
+}

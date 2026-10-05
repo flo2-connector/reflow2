@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6ef5865b5f8a3fcff0d94777e3b35e51bf173a89fc82c46cce699817f349f786",
+  "node_id": "art:describe-tool",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Renders one served tool, or every one, from a ToolListing built from the opened design: the brief form (schema with prose cut to first sentences, lessons as records, held to the reply budget) or the tools/list entry unaltered; the find_tools route sentence.",
+    "location": "crates/reflow2-mcp/src/describe_tool.rs",
+    "name": "describe_tool.rs",
+    "status": "realized"
+  }
+}

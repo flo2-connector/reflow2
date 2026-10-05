@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbd8f6d78005a90b8150d957d123aff53141983a2289df36019ee82d04e23937",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-kernel-stops-being-bisected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "sys:foundation"
+}

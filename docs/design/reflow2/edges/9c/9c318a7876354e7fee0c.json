@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4cb7c09f0b05ff0d67b5fc06d739ffd7931bfc97e198ac0c904cf7fe7c45e076",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-composed-prompt-serves-its-pieces",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-composed-prompt-serves-its-pieces-test"
+}

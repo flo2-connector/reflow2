@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f8a30f276536575b43808d76c2249b66f80c922cffa84f8c131de3e9982f9d28",
+  "node_id": "epoch:a-refusal-arrives-before-the-client-gives-up",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Unreleased work after v0.56.0. Two halves of one field report: the CONNECT_TIMEOUT issue (a deliberate refusal reaching an MCP client as a transport timeout, because reflow2 waits exactly as long as the client does) and the third leg the triage rule was owed (a reporting-only detector for a registered report that produced no finding). Named descriptively rather than by version: the version is chosen at cut time, and this epoch existed before the cut did.",
+    "epoch_type": "revision",
+    "name": "A refusal arrives before the client gives up — a startup refusal no peer can resolve stops the wait instead of timing out, and a report nobody recorded reading is reported",
+    "sequence": 406,
+    "status": "arrived"
+  }
+}

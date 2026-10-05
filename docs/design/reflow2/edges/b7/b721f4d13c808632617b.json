@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:36ffed47db0b9016cade5985833d5b79689926de792e9b21a334fec1c0a29455",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d81fec00efcfa0da0d89a879a3da40704d8c59ec7515d3954a60979987edbd01",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:root-cause-skill"
+}

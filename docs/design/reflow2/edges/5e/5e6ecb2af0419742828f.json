@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28c38cd2aebf9391c4fde55d8784d72169b430bd7388e95f6efc5bb79bf392aa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

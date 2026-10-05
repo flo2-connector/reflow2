@@ -30,6 +30,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 
 
 def _unwrap(value):
@@ -860,15 +861,27 @@ def run(binary: str, graph_path: str) -> int:
         "observed": [{"verification_id": "ver:flight", "outcome": "failed"}]})
     c.ok("a run agreeing with the record is not drift",
          vr["findings"] == [] and vr["agreements"] == 1, vr)
-    vr = s.call("reconcile_verification", {
+    # A nonsense outcome is outside the published enum, so since 2026-10-02 the
+    # argument check refuses the WHOLE call before anything is recorded, naming
+    # the item and the three values (dec:idea-every-argument-refusal-names-the-
+    # tool-and-the-field-path). It used to drop that item into `rejected` and
+    # record the rest — a contract the published enum already contradicted.
+    bad = s.rpc("tools/call", {"name": "reconcile_verification", "arguments": {
         "observed": [{"verification_id": "ver:flight", "outcome": "passed"},
                      {"verification_id": "ver:flight2", "outcome": "gr33n"}],
+        "record_events": True, "detected_at": "2026-07-19T00:00:00Z"}})["result"]
+    bad_text = (bad.get("content") or [{}])[0].get("text", "")
+    c.ok("a nonsense outcome refuses the call by name, naming the item and the values",
+         bad.get("isError") and "`observed[1].outcome`" in bad_text
+         and "`reconcile_verification`" in bad_text
+         and all(f"`{v}`" in bad_text for v in ("passed", "failed", "skipped")), bad_text)
+    vr = s.call("reconcile_verification", {
+        "observed": [{"verification_id": "ver:flight", "outcome": "passed"}],
         "record_events": True, "detected_at": "2026-07-19T00:00:00Z"})
     c.ok("a run disagreeing with the record is a named divergence",
          [f["declared"] for f in vr["findings"]] == ["failing"]
-         and vr["findings"][0]["observed"] == "passed", vr["findings"])
-    c.ok("a nonsense outcome is rejected by name, the batch survives",
-         len(vr["rejected"]) == 1 and "gr33n" in vr["rejected"][0], vr["rejected"])
+         and vr["findings"][0]["observed"] == "passed"
+         and vr["rejected"] == [], vr)
     c.ok("and it nags as a persistent gap with P4 advice",
          any(g["gap_source"] == "unresolved_drift"
              and "ver:flight" in g["affected_ids"]
@@ -1396,7 +1409,7 @@ def run(binary: str, graph_path: str) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--bin", default="target/debug/reflow2-mcp",
+    ap.add_argument("--bin", default=None,
                     help="path to the reflow2-mcp binary (default: %(default)s)")
     ap.add_argument("--graph-path", default=None,
                     help="graph directory (default: a fresh temp dir, removed afterwards)")
@@ -1405,6 +1418,7 @@ def main() -> int:
     ap.add_argument("--wipe", action="store_true",
                     help="allow --graph-path to delete an EXISTING directory")
     args = ap.parse_args()
+    args.bin = args.bin or default_bin()
 
     binary = os.path.abspath(args.bin)
     if not os.path.exists(binary):

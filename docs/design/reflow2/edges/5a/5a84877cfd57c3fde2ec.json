@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:23655f04037fb4e97c7251373fed217d9ecfc19d996e60fb23129baf7d2e6429",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-is-one-toolchain-on-one-os-a-wide-enough-gate",
+  "properties": {
+    "evidence": "That incident was a floating compiler making local green and CI red on identical flags; pinning the toolchain is the direct answer to the axis the gate-list cross-check cannot see."
+  },
+  "to_id": "fact:a-gate-is-only-as-wide-as-the-toolchain-that-runs-it"
+}

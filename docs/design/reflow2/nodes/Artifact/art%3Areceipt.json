@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a13247b38d61f2d4c4025fffbec473fee78857b3854012371b1701208bac2d88",
+  "node_id": "art:receipt",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "take_echo (the echo argument, taken before the handler runs), declare_echo (declares it on every write tool), receipt (the shaping: elided long values, prior_chars / after_chars / prior_in, the only-copy rule for fields_at_risk).",
+    "location": "crates/reflow2-mcp/src/receipt.rs",
+    "name": "receipt.rs — every write replies with a receipt, cut at call_tool",
+    "status": "realized"
+  }
+}

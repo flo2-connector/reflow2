@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c7b9aff9eb5a11c0058030ab6e9e5d88f9def7f7d4b748477f382ecb391b421f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d3dfd1d6632113637217922963b1d0b26ebc05413eac58a6e6d1612a278d9d1d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-command-surface-answers-for-itself"
+}

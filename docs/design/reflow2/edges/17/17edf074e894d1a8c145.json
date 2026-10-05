@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f9d2a6d38dd1ceafa875876d9c818a8aa0685e96444faf98943a78b4286af198",
+  "edge_type": "CAUSES",
+  "from_id": "dec:the-decomposition-ladder-is-open-not-a-fixed-enum",
+  "properties": {
+    "basis": "causal",
+    "confidence": 0.85,
+    "evidence": "MECHANISM, not resemblance: that rule quantifies over levels — a contract is declared at 'the LOWEST level that actually defines it' — and this decision changes what levels exist. Today 'lowest' has a hard floor at `component`, rank 0. With an open ladder 'lowest' becomes whatever the design's own ladder bottoms out at, so the same rule ranges over a different, per-design set. Nothing about the rule's text changes and its meaning does. Marked `hypothesis` because nothing is implemented: no ladder is open yet, so the consequence is stated so it CAN be tested rather than claimed as observed. ⭐ Tonight already shows the rule working under the closed ladder: ifc:kv-backend was declared on cmp:byte-store and the two backends — all at `component` — and NOT on sys:foundation above them, which is why `fact:the-eight-subsystems-are-groupings-not-black-boxes` reading '0 of 8 subsystems provide an interface' as a defect was a misreading of this rule.",
+    "validation_status": "hypothesis"
+  },
+  "to_id": "dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up"
+}

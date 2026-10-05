@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f56fa7d0464a87c77b32d5039c376b04dde70c15a1b9ecf2919a79c3be030176",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:four-root-causes-from-two-field-reports-are-fixed-at-the-cause",
+  "properties": {
+    "evidence": "Artifact.status undefaulted; add_artifact takes status; link_artifact sets realized only on first registration. Pinned by a_registered_artifact_asserts_nothing_it_was_not_told.rs."
+  },
+  "to_id": "fact:root-cause-add-artifact-materialises-realized-because-the-affirmative-default-was-outside-the-2026-07-28-sweep-and-the-constructor-has-no-status"
+}

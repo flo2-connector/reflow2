@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:93f62394a436a04abc521dc72c57ec3a50b026ee49f511b4dd96572506179cb6",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-photocopy-says-it-is-one",
+  "properties": {
+    "note": "Rules 3 to 5 make every export perishable and a fork once taken elsewhere; this requirement makes that visible in the document itself (the decision's open question d)."
+  },
+  "to_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy"
+}

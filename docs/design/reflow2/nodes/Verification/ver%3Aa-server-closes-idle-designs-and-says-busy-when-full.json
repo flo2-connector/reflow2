@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:352f61a59a3393fd8ecc69fdc5d61aa92a0084d3eb715ab64b7b4d5b13fd4440",
+  "node_id": "ver:a-server-closes-idle-designs-and-says-busy-when-full",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Nine tests.\n\nRouter level, six in registry_http.rs, against real stores:\n- a full router closes its least recently used design instead of refusing, and the closed one reopens;\n- busy (503, Retry-After 5) only while every open design has a request in flight;\n- a design is not reopened until its previous copy lets go of the store;\n- an idle design is closed and a busy one is not;\n- no idle timeout closes nothing;\n- an unknown id is 404 and takes no place.\n\nOver the real binary and HTTP, three in a_server_closes_designs_nobody_is_using.rs:\n- three designs behind a limit of two all answer; a write survives the close; the old session is 404; re-initializing works;\n- the idle sweep closes a design with no request to prompt it;\n- an unknown id is still 404.\n\nTwo guards were observed failing under mutation: removing the release wait (RocksDB: \"lock hold by current process\"), and replacing LRU with refusal.",
+    "findings": "All nine pass. The full reflow2-mcp suite passes too: 107 suites, 0 failures. The first full run failed only because the machine's disk was full (ENOSPC). After freeing space it passed unchanged.",
+    "kind": "verification",
+    "last_run_at": "2026-09-27",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_server_closes_designs_nobody_is_using.rs; crates/reflow2-mcp/src/registry_http.rs (tests)",
+    "method": "test",
+    "name": "A registry server closes idle designs, reuses the least recently used slot, says busy (503) only when every slot is serving, and never reopens over its own lock",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0bf9c029eef76ef74ad1743fba5e44780cfc8b7d4bce64dd2cd6bc9d726ffd33",
+  "node_id": "chg:a-contract-answers-at-the-altitude-you-asked",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "seam coverage answers at a chosen altitude — both couplings and contracts are lifted, so the two vocabularies meet for the first time",
+    "subject": "system"
+  }
+}

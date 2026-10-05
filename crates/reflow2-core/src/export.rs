@@ -309,9 +309,10 @@ pub struct ImportReport {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub adopted_identity: Option<String>,
     /// Edges written as something other than they arrived, each named with
-    /// what it became. Today one rule: a legacy `Artifact REALIZES
-    /// Verification` becomes IMPLEMENTS (2026-09-23, when REALIZES stopped
-    /// accepting any target). Reported, never done in silence.
+    /// what it became — every row of `narrowing::EDGE_REWRITES`. Today one: a
+    /// legacy `Artifact REALIZES Verification` becomes IMPLEMENTS (2026-09-23,
+    /// when REALIZES stopped accepting any target). Reported, never done in
+    /// silence.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub migrated_edges: Vec<String>,
     /// Node-reference properties whose value names a node that is neither in
@@ -401,6 +402,33 @@ impl DesignGraph {
                 .then(a.from_id.cmp(&b.from_id))
                 .then(a.to_id.cmp(&b.to_id))
         });
+
+        // A CHECKSUM THE RECORD ALREADY HOLDS ON ITS ACCEPTING CHANGE IS NOT
+        // WRITTEN TWICE. Since 2026-10-03 an accept puts the checksum on the
+        // accepting change's CHANGED edge (`checksum_after`), and the Artifact's
+        // own `checksum` is the current one of those — derived, not a second
+        // record. Kept on the node it would be ONE value every pull request that
+        // edits the file rewrites, which is exactly the conflict decision 3 of
+        // dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr
+        // removes. Elided only while it EQUALS what the edges derive; a node
+        // value that disagrees (a direct write) is kept, so nothing is lost, and
+        // the import puts the derived value back.
+        let current = current_acceptances(&edges);
+        for n in nodes.iter_mut().filter(|n| n.node_type == node::ARTIFACT) {
+            let Some((checksum, basis)) = current.get(&n.node_id) else {
+                continue;
+            };
+            let stated = n.properties.get("checksum").and_then(Value::as_str);
+            if stated != Some(checksum.as_str()) {
+                continue;
+            }
+            n.properties.remove("checksum");
+            if basis.is_some()
+                && n.properties.get("checksum_basis").and_then(Value::as_str) == basis.as_deref()
+            {
+                n.properties.remove("checksum_basis");
+            }
+        }
 
         let mut export = GraphExport {
             taken_at: None,
@@ -531,9 +559,16 @@ impl DesignGraph {
             let mut faults: Vec<String> = Vec::new();
             let mut materialized: BTreeMap<String, usize> = BTreeMap::new();
             let mut pending_refs: Vec<(usize, &str, &str, String, String)> = Vec::new();
+            // The checksum `export_graph` left off an Artifact because its
+            // accepting change already carries it comes back here — derived
+            // from the document's own edges, so it is not "materialised": the
+            // document stated it, once, where it belongs.
+            let accepted = current_acceptances(&doc.edges);
             for (index, n) in doc.nodes.iter().enumerate() {
+                let mut stated = n.properties.clone();
+                fill_accepted_checksum(&n.node_type, &n.node_id, &mut stated, &accepted);
                 let props: std::collections::HashMap<String, Value> =
-                    n.properties.clone().into_iter().collect();
+                    stated.clone().into_iter().collect();
                 for (prop, target) in self.declared_node_refs(&n.node_type, &props) {
                     pending_refs.push((
                         index,
@@ -546,7 +581,7 @@ impl DesignGraph {
                 match self.create_node_refs_checked_later(&n.node_type, &n.node_id, props) {
                     Ok(stored) => {
                         for key in stored.properties.keys() {
-                            if !n.properties.contains_key(key) {
+                            if !stated.contains_key(key) {
                                 *materialized
                                     .entry(format!("{}.{key}", n.node_type))
                                     .or_insert(0) += 1;
@@ -615,22 +650,21 @@ impl DesignGraph {
                         if e.edge_type == edge::AUTHORED_BY {
                             crate::graph::normalize_authored_by_props(&mut props);
                         }
-                        // A legacy `Artifact REALIZES Verification` arrives as
-                        // the IMPLEMENTS it always meant (see
-                        // `migrate_realizes_onto_checks`) and is REPORTED, so a
-                        // design written before 2026-09-23 still restores. Its
-                        // REALIZES properties have no home on IMPLEMENTS.
+                        // An edge a narrowing gave a single right answer
+                        // arrives as that answer and is REPORTED, so a design
+                        // written before the narrowing still restores — today
+                        // a legacy `Artifact REALIZES Verification` as the
+                        // IMPLEMENTS it always meant. One table
+                        // (`narrowing::EDGE_REWRITES`), read here, on every
+                        // open, and by the recheck. Its old properties have
+                        // no home on the new edge.
                         let mut edge_type = e.edge_type.as_str();
-                        if edge_type == edge::REALIZES
-                            && ft == node::ARTIFACT
-                            && tt == node::VERIFICATION
-                        {
-                            edge_type = edge::IMPLEMENTS;
+                        if let Some(r) = crate::narrowing::edge_rewrite_for(edge_type, ft, tt) {
+                            edge_type = r.becomes;
                             props.clear();
                             migrated_edges.push(format!(
-                                "REALIZES {} -> {} became IMPLEMENTS (a file that is a check \
-                                 implements it)",
-                                e.from_id, e.to_id
+                                "{} {} -> {} became {} ({})",
+                                e.edge_type, e.from_id, e.to_id, r.becomes, r.why
                             ));
                         }
                         match self.create_edge(edge_type, ft, &e.from_id, tt, &e.to_id, props) {
@@ -645,11 +679,12 @@ impl DesignGraph {
                                 }
                             }
                             Err(err) => {
-                                let hint = (e.edge_type == edge::REALIZES)
-                                    .then(|| crate::artifact::realizes_target_hint(tt))
-                                    .flatten()
-                                    .map(|h| format!(" — {h}"))
-                                    .unwrap_or_default();
+                                // The same replacement `detect_defects`
+                                // names for this edge on a store that holds it.
+                                let hint =
+                                    crate::narrowing::named_replacement(&e.edge_type, ft, tt)
+                                        .map(|h| format!(" — {h}"))
+                                        .unwrap_or_default();
                                 faults.push(format!(
                                     "edges[{index}] {} {} -> {}: {err}{hint}",
                                     e.edge_type, e.from_id, e.to_id
@@ -716,6 +751,71 @@ impl DesignGraph {
             }
         }
     }
+}
+
+/// Put back the `checksum` (and its `checksum_basis`) an export left off an
+/// Artifact because its current acceptance carries it — the IMPORT'S rule,
+/// written once so every reader of a document applies the same one: the
+/// import, and `compare_designs`, which must read a record written before the
+/// checksum moved (on the node) and one written after (on the change) as the
+/// same design. A value the node states is never overridden. `accepted` is
+/// [`current_acceptances`] of the same document. Returns whether it filled.
+pub fn fill_accepted_checksum(
+    node_type: &str,
+    node_id: &str,
+    props: &mut Props,
+    accepted: &BTreeMap<String, (String, Option<String>)>,
+) -> bool {
+    if node_type != node::ARTIFACT || props.contains_key("checksum") {
+        return false;
+    }
+    let Some((checksum, basis)) = accepted.get(node_id) else {
+        return false;
+    };
+    props.insert("checksum".into(), Value::String(checksum.clone()));
+    if let Some(basis) = basis
+        && !props.contains_key("checksum_basis")
+    {
+        props.insert("checksum_basis".into(), Value::String(basis.clone()));
+    }
+    true
+}
+
+/// For each artifact, the checksum its CURRENT acceptance carries, and that
+/// acceptance's basis: among the `CHANGED` edges into it with `checksum_after`,
+/// the highest `accepted_seq`, ties to the smaller change id. The one rule
+/// [`DesignGraph::current_acceptance`] applies to a store, applied to a
+/// document, so an export's elision and an import's derivation cannot disagree.
+pub fn current_acceptances(edges: &[ExportedEdge]) -> BTreeMap<String, (String, Option<String>)> {
+    let mut best: BTreeMap<String, (i64, &str, String, Option<String>)> = BTreeMap::new();
+    for e in edges.iter().filter(|e| e.edge_type == edge::CHANGED) {
+        let Some(checksum) = e.properties.get("checksum_after").and_then(Value::as_str) else {
+            continue;
+        };
+        let seq = e
+            .properties
+            .get("accepted_seq")
+            .and_then(Value::as_i64)
+            .unwrap_or(0);
+        let basis = e
+            .properties
+            .get("checksum_basis")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        let better = match best.get(&e.to_id) {
+            None => true,
+            Some((s, from, _, _)) => seq > *s || (seq == *s && e.from_id.as_str() < *from),
+        };
+        if better {
+            best.insert(
+                e.to_id.clone(),
+                (seq, e.from_id.as_str(), checksum.to_string(), basis),
+            );
+        }
+    }
+    best.into_iter()
+        .map(|(id, (_, _, checksum, basis))| (id, (checksum, basis)))
+        .collect()
 }
 
 /// What a published-surface export contains, and what it deliberately does not.

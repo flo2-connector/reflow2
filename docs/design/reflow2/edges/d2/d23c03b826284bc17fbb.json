@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:260c3fc6de26d68ed6b7a8d03ba2e08cc8af1beb90e3984b9ba3e8807084b8a9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-eight-requirements",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:explains-itself"
+}

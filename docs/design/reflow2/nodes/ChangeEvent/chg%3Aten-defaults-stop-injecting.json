@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2027397e9b43924cc89514becb469cf5e3454d53b778a06ef72a94e030a3a54f",
+  "node_id": "chg:ten-defaults-stop-injecting",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-198 step 1 landed by REMOVING `default:` from ten properties, not by changing code. The route changed on a measurement: `default:` in the schema YAML is not documentation — dynograph-core applies it at WRITE time (schema.rs:507 inserts any missing property that declares one), which is where 3,207 stored values across 59% of the design came from. So export-side suppression could never have worked — the store cannot tell a chosen value from an injected one — and the real fix is one YAML token per property. FORWARD-ONLY: nodes already written keep what they hold, so the export does not churn and compare_designs sees nothing; the phantom-diff cost this epoch was scoped around does not arise on this route at all. TEN of 81 removed, 71 kept, and the RATIO is the finding: three mechanically-obvious candidates turned out to be meaningful and were kept on evidence."
+  }
+}

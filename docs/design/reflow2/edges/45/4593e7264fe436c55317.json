@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d705d5edddf6fed84a2ff251a2c7241d5ba86743f360f0d9ba70ec72de68ca8",
+  "edge_type": "REALIZES",
+  "from_id": "art:graph",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:requirement-lineage"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:840b4b1230d706c6eb132c0b1e8922e8110c584035e2eb7152c7d79ce5f9ee13",
+  "edge_type": "REALIZES",
+  "from_id": "art:drift",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:nothing-moved"
+}

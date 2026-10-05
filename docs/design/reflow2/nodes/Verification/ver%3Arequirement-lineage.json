@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6cb653203eb75c0a4436bda7ef4a04a96932a97df6276b08067f252e177e5b69",
+  "node_id": "ver:requirement-lineage",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "Decomposition rolls delivery up, and only when every child is delivered",
+    "status": "passing"
+  }
+}

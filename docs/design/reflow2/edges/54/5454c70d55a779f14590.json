@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9bc9f074638a702a0ffbb04cf9d9ff3c4f33e95aea13214eee6e3a0b1761bcb8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:graphalg",
+  "properties": {
+    "covers": "partial",
+    "note": "The tests are INLINE in the module, so the artifact that implements the check is the same one that implements the capability — unusual, and worth stating rather than hiding. `partial` because the 47 cases verify the algorithms in isolation: they do not test that the absorption preserved behaviour, they contribute nothing from paths.rs or error.rs, and they never enter through the eight entry points reflow2 actually consumes."
+  },
+  "to_id": "ver:graph-algorithms-unit-suite"
+}

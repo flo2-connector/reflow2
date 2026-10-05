@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:405403b106b87ad761103223f7953571c5436c9008c1a84b8eb737b084ac6b07",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write",
+  "properties": {
+    "note": "Step 3 of making the door a supported route."
+  },
+  "to_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp"
+}

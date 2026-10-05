@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4ae8a57c53255434a7ca0965459e3d01467c5a08ea1baf0f1cbfd6fdf5f4596",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-server-says-when-it-is-stale"
+}

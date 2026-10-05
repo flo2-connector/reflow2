@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:92ef1a6433d80690679c4d17fef1e40e1d9a82f28df95044d15f8ecc8867a9dc",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:read-surfaces-debt",
+  "properties": {},
+  "to_id": "dec:read-hint-shape"
+}

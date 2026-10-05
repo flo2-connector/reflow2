@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:59654981374988a9abb39f839caf2129f1223c49270d9670a52795659f3d645f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:one-nodes-edges-are-read-back-as-edges",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked"
+}

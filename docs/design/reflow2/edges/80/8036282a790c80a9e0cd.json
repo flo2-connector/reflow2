@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4855b62de07aa9769806fadd3da253fbed633bef5259e78ce190f40cdbfb08d0",
+  "edge_type": "REALIZES",
+  "from_id": "art:hierarchy",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:hierarchy"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e3ba68662c3b4cdb0e9c5d195dfb52b717ae095d05e590c3534980fc072a0d89",
+  "node_id": "fact:defect-open-questions-zero-reads-as-an-all-clear",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "`open_questions` RETURNING `count: 0` READS AS AN ALL-CLEAR AND IS NOT ONE — AND THE PROOF IS THAT A DOWNSTREAM DOC HAD TO GROW A HAND-WRITTEN WARNING. Reported by api-boss `5d608b85` (dev_storyflow, 2026-08-07), and previously by api-boss `07426210` on 2026-08-03, so it has now bitten twice. open_questions answers a narrow and correct question: what did we already PUT TO THE USER that is still waiting. In the SAME session that read `count: 0`, loop_status owed 69 gaps never asked, 26 structural defects, 20 capabilities claiming built with no check, and 20 built-but-never-checked. BOTH NUMBERS ARE CORRECT. They are answers to different questions, and nothing in either output says so. EVIDENCE IT IS NOT HYPOTHETICAL: the fleet's own boss cold-start card had to grow the line '⚠ count: 0 is NOT an all-clear' because arriving seats were reading it as one — and the reporter's own framing is the sharp part: a caveat maintained in a downstream document is a defect that was routed around rather than fixed. FIX SHAPE: when count == 0, have open_questions say what it does NOT cover and point at loop_status. One clause in the payload retires the caveat everywhere it was copied to. THE REPORTER GROUPED THIS with two others from the same day as one actionable class — three cases where a reflow2 surface returned a REAL, CORRECT number that answered a different question than the reader's: merge scores that silently feed deletions, open_questions vs the loop's debt, and per-session vs fleet-wide totals. In all three the fix is the same shape: LET THE OUTPUT STATE ITS OWN SCOPE.",
+    "subject_id": "cap:loop-status",
+    "valid_from": "2026-08-07",
+    "value": "{\"reported\":\"2026-08-07 dev_storyflow api-boss 5d608b85; also 2026-08-03 by api-boss 07426210\",\"same_session_contrast\":\"open_questions count 0 while loop_status owed 69 gaps / 26 defects / 20 unproven / 20 unexamined\",\"proof_of_harm\":\"the fleet's boss cold-start card carries a hand-written 'count: 0 is NOT an all-clear' warning\",\"reporter_framing\":\"a caveat maintained in a downstream doc is a defect routed around rather than fixed\",\"fix_shape\":\"on count==0, state what the answer does not cover and point at loop_status\",\"class\":\"one of three same-day cases of a correct number answering a different question than the reader's\"}"
+  }
+}

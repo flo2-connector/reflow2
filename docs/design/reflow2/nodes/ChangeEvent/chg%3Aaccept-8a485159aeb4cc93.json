@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7d5e0f012f4c1cae28268eb44dafdbac943f4445bf78b0712dbd3b199293648d",
+  "node_id": "chg:accept-8a485159aeb4cc93",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-16",
+    "name": "A call-site update only: constrains() gained a sixth argument and this test passes None. The case it pins — that a CONSTRAINS edge to a missing node is refused — is untouched, so the design holds.",
+    "subject": "system"
+  }
+}

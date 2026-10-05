@@ -31,6 +31,643 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.78.0] — 2026-10-03
+
+**Minor. This release ships the fix program after the VS Code `--call` field report, and keeps
+dependencies current.** It contains #649–#668 and the merge train #669 (#662, #663, #665, #666).
+**The schema stamp moves by one enum value:** `Verification.last_reconciled_outcome` gains
+`blocked` (#662). The type counts do not change (28 node types, 66 edge types). **An upgrade note
+is owed:** [docs/upgrading-to-v0.78.0.md](docs/upgrading-to-v0.78.0.md). Some arguments that used
+to be ignored are now refused, and two reply shapes changed. What a consumer or operator should
+know:
+
+- 🛑 **Upgrade every seat that opens a design, all together.** A v0.77.0 binary does NOT refuse a
+  design that stores the new value, so v0.65.0's note does not describe this release. Measured at
+  this cut, v0.77.0 does three things with such a design:
+  - it opens the design with no warning;
+  - it re-stamps the design as 0.77.0;
+  - it writes an export that v0.77.0 itself then refuses to import.
+
+  The value is written only when `reconcile_verification` records the outcome `blocked`. A seat
+  that is not yet upgraded keeps working until that happens once. The note says why the guard
+  missed it and what to do if you cannot upgrade a seat yet.
+- **Arguments that were ignored are now refused, and the refusal names the tool and the field**
+  (#654, #656, #658). Nothing is written when a call is refused. Drop what the refusal names.
+  - A wrong-typed, unknown or out-of-set argument is refused before the tool runs.
+  - Twelve tools that take no arguments now refuse one.
+  - A one-shot mode (`--call`, `--export`, `--import` and the rest) refuses a flag it does not
+    read.
+  - `--read-only` is now honoured by `--call` and by every client that forwards calls.
+- **Two reply shapes changed.**
+  - `external_dependency` now replies with a receipt, not the whole manifest. Read the manifest
+    with `reconcile_dependencies` (#662).
+  - `detect_defects` has a new category, `refused_by_schema` (#660).
+
+  Two replies gain a field: `search_design` and `topic_report` add `searched`, and `find_tools`
+  adds `describe`.
+- **Scripts that drive `--call`:**
+  - A call that writes now updates the committed export before it exits (#661). Exit code 3 means
+    the write landed but the export was not written. Pass `--no-export` when making many writes to
+    a large design.
+  - In a folder whose `.reflow2.toml` names a design on a server, `--call` and `--export` now
+    refuse instead of creating a local design (#654).
+  - A read where there is no design now refuses instead of creating one (#654).
+- **New for an agent that cannot use MCP:** `reflow2 read <tool>` and `reflow2 write <tool>`
+  (#666), `--describe <tool>` and `--list-tools` (#667), and `get_node` with `include_edges`
+  (#659).
+- **For operators:**
+  - **RocksDB moves from 10.4.2 to 11.8.1** (#652). Existing stores open unchanged. v0.77.0 reads
+    what v0.78.0 writes, measured on 20 real stores, with the exception in the first item above.
+  - **A `--read-only` server started where there is no store now creates nothing.** It answers
+    `/readyz` with 503 until a design appears (#665).
+  - **A shared server no longer keeps its launcher's locks and terminal** (#663). After upgrading,
+    stop any old one with `--stop-shared`.
+- **Building from source now needs Rust 1.98** (`rust-version`, #651). Prebuilt binaries are not
+  affected. The first build rebuilds `librocksdb-sys`, about ten minutes.
+
+**Shipped, by PR:**
+- #649: the workflows' Actions move to their current majors.
+- #650: rmcp 3.5.0, base64 0.23 and a lock refresh.
+- #651: the `dependencies` workflow, `dependency-holds.toml` and the Rust floor.
+- #652: rocksdb 0.25.
+- #653: the 2026-10-01/02 design-record fold.
+- #654: every one-shot mode resolves its design first.
+- #655: a refused write stores nothing.
+- #656: argument refusals name the tool and the field path.
+- #657: a read of a held design is as true as the live one.
+- #658: `--read-only` in every client.
+- #659: `get_node` with `include_edges`.
+- #660: `refused_by_schema` and the narrowing gate.
+- #661: a writing `--call` keeps the export current.
+- #664: the held-design test waits for its holder.
+- #667: `--describe` and `--list-tools`.
+- #668: the overtaken-defect question names the likeliest fix.
+- The train #669:
+  - #662: the small fixes from the `--call` triage;
+  - #663: a spawned shared daemon inherits nothing;
+  - #665: a read-only server with no store serves the latent surface;
+  - #666: `reflow2 read` and `reflow2 write`.
+
+### Added
+
+- **The shell door can now read how to call a tool: `reflow2-mcp --describe <tool>`,
+  `--list-tools`, and `describe_schema` with `tool`.** Before this, an agent using `--call` worked
+  out argument shapes by trial and error, one refused call at a time. The door had every tool's
+  input schema and printed none of it. `find_tools` gave only the top-level parameter names. The
+  lessons a design hangs on a tool (`steps`) arrived only through tools/list, which the door never
+  reads. On reflow2's own design that is 269 lessons on 91 tools, and none of them reached the
+  door. This is step 4 of the door plan (`dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons`).
+  - **`--describe <tool>`** prints how to call the tool: its input schema, with every nested shape
+    (`$defs`), allowed value and required field, and the lessons the design at `--graph-path` holds
+    for it.
+    - It is built from that design, by the same function that builds tools/list, so it cannot
+      disagree with what an MCP session on that design is given.
+    - The default is brief and stays within the 30,000-character reply budget. Each field
+      description is cut to its first sentence, and nothing structural is dropped.
+    - `--full` prints the tools/list entry unchanged.
+  - **`--list-tools`** lists every tool with whether it only reads, its required arguments and its
+    lesson count. `--list-tools --full` prints the whole tools/list array, for a generator that
+    renders a reference.
+  - **`describe_schema` takes `tool`** (and `full`), so the same answer is served to every door: a
+    session, a gateway, or `--call describe_schema --args '{"tool":"add_decision"}'`.
+  - **`find_tools` replies now say how to get the full description**, in a new `describe` field.
+  - **Both new modes only read.** While a server holds the design, they read a snapshot copy. In a
+    folder whose `.reflow2.toml` names a design on a server, they refuse and name that design.
+    Where there is no design, they create nothing: they describe the surface with no lessons and
+    say so.
+  - **What to do:** before calling a tool through `--call` for the first time, run
+    `reflow2-mcp --describe <tool>` (or `--call describe_schema` with `tool`) and read its shape and
+    lessons. An instructions generator can render its reference from `--list-tools --full`.
+
+- **`detect_defects` now names every stored node or edge the current schema refuses — the items
+  that would make this design's export fail to import — and a test makes each future schema
+  narrowing ship its migration.** Anthony accepted
+  `dec:idea-stored-data-is-rechecked-against-the-current-schema` on 2026-10-02. The cause: the
+  schema was checked only when something was written, so an edge written under an older reflow2
+  stayed in the store and in every export until an import refused the whole document. That
+  happened to musicjug's design on 2026-10-01 (`Artifact REALIZES Decision`, minted by 0.45.0).
+  - **New category `refused_by_schema`**, severity `critical`, one finding per stored item. Each
+    finding carries a `refusal` field:
+    - the item (node, or edge with its endpoint types);
+    - every rule that refuses it (`endpoint_pair`, `edge_type` or `property`), worded as the
+      import words it;
+    - `replacement`, the edge the import names, where it knows one;
+    - `modelled_fits`, the edge types the schema models for the pair.
+  - **It uses the write rule itself.** It applies the same checks the store applies on every
+    write, after the same preparation the import gives each item. A test holds it to the import:
+    the same items, no more and no fewer. On reflow2's own design it examined 48,266 nodes and
+    edges and found none, in about 120 ms of a 4.4 s sweep.
+  - **The replacement is only a suggestion.** `propose_heal` drafts it for a person and nothing
+    applies it. The field repair chose GOVERNED_BY where the import names DOCUMENTS.
+  - **A refused VERIFIES now says what fits**, both on import and in the finding: GOVERNED_BY for
+    a check on a Decision, and the Requirement or Capability for a check on a Project. The gate's
+    first run found eight dropped VERIFIES targets that were refused naming nothing.
+    dynograph-foundation's export holds five such checks.
+  - **The gate.** `schema/accepted-at-last-release.json` records what the last release's schema
+    accepted. `tests/a_schema_narrowing_ships_its_migration.rs` fails on any narrowing since then
+    that `narrowing::NARROWINGS` does not name with its migration: `Rewritten`, `RefusedByName` or
+    `Retired`. A narrowing is an endpoint dropped, an enum value removed, a type retired, a
+    property newly required with no default, or a type or range tightened. The edge rewrites that
+    the import and every open apply now come from one table (`narrowing::EDGE_REWRITES`). So do
+    the provenance guard's retired types, so retiring a type is one entry rather than two edits.
+  - **What to do.** Before moving, backing up or forking a long-lived design, run
+    `detect_defects`. For each `refused_by_schema` finding, read the two nodes, draw the edge that
+    says what was meant, then delete the refused item. If you parse `category`, expect a new
+    value. **At a release cut**, after the version bump, re-bless the snapshot with
+    `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
+    a_schema_narrowing_ships_its_migration`. Until then that test fails on purpose, and the bless
+    refuses while any narrowing is unaccounted for.
+- **`reflow2 read <tool>` and `reflow2 write <tool>`: a terminal can approve every read once and
+  still ask before each write.** Where an organisation blocks MCP, a VS Code agent reaches reflow2
+  through `--call`, and VS Code asked about every call. One approval rule could not tell a read
+  from a write: the command named a tool and nothing else, and nothing listed which of the 195
+  tools only read (78). This is step 3 of the plan for the `--call` door
+  (`req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`).
+  - **`reflow2 read <tool> [JSON]`** runs a tool only if it changes nothing: its served annotation
+    says it only reads, and `export_graph` and `export_surface` are given no `path` (with one they
+    write a file). Every other tool is refused by name before anything is opened, exit 1, and the
+    refusal names `reflow2 write`. What it accepts runs as `--read-only --call` runs it, and it
+    never creates a design.
+  - **`reflow2 write <tool> [JSON]`** runs any tool, exactly as `--call` does, so a write keeps
+    the committed export current: `--export-to FILE` or `--no-export` go before the verb
+    (`reflow2 --no-export write …`).
+  - **Arguments:** a JSON object after the tool, or `--args JSON`, or `-` to read it from stdin
+    (use a quoted heredoc, `<<'EOF'`). Only the tool, its arguments and `--graph-path` may follow
+    the verb; any other flag there is refused.
+  - **Quiet:** neither verb prints routine log lines. stderr carries a refusal or a warning only
+    (`RUST_LOG` still overrides).
+  - **`reflow2 read --list`** prints which tools `read` runs and which need `write`, from the
+    served annotations.
+  - The verbs are the binary's own (`reflow2-mcp read …`). The `reflow2` command the installer
+    puts on your PATH hands them over unchanged, and its help now names them.
+  - **What to do:** in VS Code, add `"chat.tools.terminal.autoApprove": { "/^reflow2 read /": true
+    }` to your settings and leave `reflow2 write` out, so each write still asks. The snippet and
+    its limits are in getting-started/SETUP.md. In short: a shell redirection on the same line
+    (`> file`) is the shell writing, which reflow2 cannot see, and VS Code calls auto-approval a
+    best-effort convenience, not a security boundary. `--call` is unchanged. Re-run the installer
+    to get the new help text; the verbs already work through an older `reflow2` command.
+
+- **`get_node` reads a node's edges when you ask: pass `include_edges`.** Until now no read
+  returned one node's edges as edges. `get_node` gave the properties only, and the nearest reader,
+  `propagate_from` at depth 1, left out authorship and every edge's evidence. To see what a node is
+  connected to you had to read the whole export. Anthony accepted this on 2026-10-02
+  (`dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it`).
+  - **`"include_edges": true`** lists every edge in and out. Each one carries its type, its
+    direction, the stored `from_id` and `to_id`, the node at the other end (id, type and name) and
+    the edge's own properties, evidence and note included.
+  - **An object narrows it:** `direction` (`in`, `out`, `both`), `edge_types`,
+    `exclude_edge_types`, `limit` (default 50), `offset` and `budget_chars`.
+  - **Nothing is left out without saying so.** `total` and `by_type` count every edge and are never
+    filtered. `capped_by` and `next_offset` say why a list stopped and where to read on. An edge is
+    listed whole, evidence included, or not at all. A type that crowds out the rest, such as a
+    Release's `INCLUDES` or a contributor's `AUTHORED_BY`, is listed last, and `dominant` names the
+    filter that drops it. An empty list says which empty it is.
+  - **Stored twins** (`HAS_TEMPORAL_FACT` and the rest) are listed and marked `twin_of`.
+  - **Off by default:** without `include_edges`, `get_node` replies exactly as before, so nothing
+    that reads `{node}` changes. An edge type the schema does not have is refused with the nearest
+    name.
+  - **`find_tools` now ranks `get_node` first** for "read one node by id with its properties and
+    edges" (it was 8th) and for paraphrases such as "show a node's edges" and "what is this node
+    connected to". The text explaining `node_type` moved from the tool's description to the
+    parameter's own.
+  - **What to do:** when you need to know what links to a node, or why it is shaped as it is, call
+    `get_node` with `"include_edges": true` instead of reading the export. Narrow with
+    `exclude_edge_types` when one type crowds out the rest.
+
+- **A `dependencies` workflow, run monthly and before every release cut, that holds reflow2 to
+  `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`.** Anthony accepted the
+  requirement on 2026-10-02 and said how it runs: "both before release cuts and monthly, CI job,
+  include actions too".
+  - **`currency` job** (`tools/dependency_currency.py`). It reads every Cargo.toml dependency, every
+    GitHub Action and the Rust floor against their latest releases, and writes a dated report to
+    the run summary and an artifact.
+    - It **fails** on anything behind a new major or 0.x series that has no entry in the new
+      `dependency-holds.toml` (a reason and a look-again date), on a hold past its date, and on a
+      lookup it could not make.
+    - It **reports**, without failing, a newer release inside a declared range (a lock refresh
+      owed) and a hold whose bump has landed (remove it).
+  - **`floor` job.** It builds the whole workspace at the declared `rust-version`, so that number
+    is checked, not claimed. Until now nothing compiled at it.
+  - **Before every cut:** a cut's first step changes `Cargo.toml`, and any PR that touches a
+    manifest, the lockfile, a workflow or the holds file runs both jobs.
+  - Its checker is pinned on every push by `tools/test_dependency_currency.py` (12 hermetic cases,
+    mutation-checked).
+  - Its first live run found exactly the bumps then in flight: #649 and #650 (both since merged)
+    and the rocksdb 0.25 PR, held on the record until it landed in this same release (below).
+- **A `--call` that writes now keeps your committed design export current before it exits.**
+  Step 2 of the plan for the `--call` door (`req:a-writing-call-keeps-the-committed-export-current`).
+  Until now only a running MCP server kept the export current. After a write through `--call` the
+  export stayed behind until somebody remembered `export_graph` with the right path. Measured on
+  the previous build: in a project whose `.mcp.json` names `--export-to`, `--call add_requirement`
+  exited 0 and left the export unchanged.
+  - **What happens now:** when a call to a tool that writes succeeds, the export is written before
+    the command exits. It is the same write-through a running server uses, so the same rules hold:
+    it never overwrites a file changed since reflow2 last wrote it, and its lineage chains from the
+    committed export, not from the last file written.
+  - **Which file:** `--export-to FILE` if you pass one (it is now accepted with `--call`; it was
+    refused before). Otherwise the `--export-to` your project's MCP configuration names for this
+    design: `.mcp.json`, `opencode.json`, `.vscode/mcp.json` or `.grok/config.toml`, the files
+    `reflow2 init` writes. If two of them name different files, the call is refused before anything
+    is opened. If none names one, nothing is exported and stderr says so.
+  - **What you see:** one line on stderr saying where the export was written. stdout is still only
+    the tool's reply. A read, a refused write and a reply the tool marked an error write no export.
+  - **Exit 3 is new.** It means the write landed in the design but the export could not be written,
+    for example because the file was hand-edited, holds conflict markers, or its folder does not
+    exist. stderr says why. Fix the file and do not repeat the write; the next writing call (or
+    `--call export_graph`) brings the export current.
+  - **It costs an export per write.** On a small design that is milliseconds. On reflow2's own
+    design (6,478 nodes, a 28 MB export, release build) a write took 1.6 s alone and 6.0 s with its
+    export. For a script making many writes to a large design, pass **`--no-export`** on each call:
+    stderr then says the export is behind. Finish with one writing call without it, or with
+    `--call export_graph`.
+  - **What to do:** nothing, if your project was set up with `reflow2 init`. If a script followed
+    each writing `--call` with `--call export_graph`, you can drop that step. If a script treats any
+    non-zero exit as "the write failed", handle 3 as "written, export not".
+
+### Changed
+
+- **Every argument refusal names the tool and the field path, at any depth.** A tool's arguments
+  are now checked against its published input schema before anything reads them. A wrong type, a
+  missing or unknown field, or a value outside its published set is refused before the tool runs,
+  so nothing is written. The refusal names the tool, the path (`related_to[0].evidence`), what the
+  schema expects there (its type or its allowed values), and the field's own description. Every
+  problem in the call is listed at once. Until now a wrong-typed argument came back as serde's bare
+  `failed to deserialize parameters: invalid type: …`, naming neither the tool nor the field, and a
+  field missing inside an item was said to have no description when its schema had one
+  (`dec:idea-every-argument-refusal-names-the-tool-and-the-field-path`). What changes for you:
+  - **Calls that worked still work, aliases included.** `id` and `node_id` for a typed key, and
+    `properties` for `props`, are still accepted, and the published schema still teaches only the
+    typed spelling.
+  - **Twelve tools that take no arguments now refuse one** instead of ignoring it silently
+    (`mirrors`, `claim_report`, `mint_seat`, `repair_report` and eight others). Drop the argument.
+  - **`reconcile_artifacts`, `coverage_report`, `frontier`, `ingest_step` and
+    `ingest_corpus_step` now publish the shape of their list items**, and an item with a key that
+    shape does not name is refused, naming the item. Send only the keys their descriptions list.
+  - **`reconcile_verification` refuses the whole call when an `outcome` is not `passed`, `failed`
+    or `skipped`**, naming the item, and records nothing. It used to drop that item into
+    `rejected` and record the rest, which the published enum already ruled out. Map your runner's
+    results onto the three values before sending (`tools/run_to_files.py` already does).
+  - **`draw_edges` checks each item's arguments as its helper would**, and refuses a bad item in
+    the helper's own words.
+  - **Through `--call`, an argument refusal still exits 2** (a reply the tool marked as an error,
+    as MCP specifies for input validation). Exit 1 stays a tool's own rule refusing, such as a
+    field a constructor needs only to create. Scripts that read the exit code need no change. The
+    door is no longer told to "reconnect": it reads the schema from its own binary on every call.
+  - **The usage ledger counts these refusals by kind**: `missing_argument`, `unknown_argument`,
+    and a new `invalid_argument` for a wrong type, a value outside its set or a field given twice.
+  - **The 13 required fields inside list items that had no description now have one.**
+    `tools/refusal_speaks.py` now generates its probes from every served schema: a wrong type,
+    an unknown key, a value outside each enum and an empty item, at every depth on every tool.
+
+- **`rmcp` 3.4.0 → 3.5.0, `base64` 0.22 → 0.23, and the lock refreshed** (23 crates within their
+  declared ranges). `rmcp` is now declared `"3.5"`, not `"3"`. rmcp 3.5 moved
+  `ProtocolVersion::LATEST` to 2026-07-28, the revision that removed the `initialize` handshake,
+  and this was followed deliberately rather than inherited:
+  - **`initialize` is answered with 2025-11-25** (rmcp's new `LATEST_WITH_INITIALIZE`), as before.
+    A server cannot answer `initialize` with a revision that has no handshake, and rmcp's docs say
+    to use this constant for exactly that.
+  - **2026-07-28 is still served.** `server/discover` lists every supported revision, as it did on
+    3.4.0.
+  - **Nothing changes for a client.** One that opens with `initialize` keeps a session, even if it
+    asks for 2026-07-28, so claims still need no seat. One that opens with `server/discover` and
+    sends 2026-07-28 per request is sessionless, as on 3.4.0. `base64` 0.23 is the version rmcp 3.5
+    already uses; the bearer-token code now uses it too.
+- **The workflows' GitHub Actions are on their current majors:** `actions/checkout` v5 → v7,
+  `actions/upload-artifact` v4 → v7, `actions/download-artifact` v4 → v8, `docker/login-action`
+  v3 → v4, `docker/setup-buildx-action` v3 → v4. All five run on Node 24 now, which GitHub-hosted
+  runners already carry. Read against how this repository calls them, none of the breaking notes
+  applies:
+  - artifacts are downloaded by name or pattern, never by ID, so download-artifact v5's path
+    change is moot;
+  - `setup-buildx` is given no inputs, so v4's removed ones are moot;
+  - no step pushes or reads git credentials, so checkout v6 keeping them in a separate file is
+    moot.
+
+  One thing is stricter and wanted: download-artifact v8 FAILS on a digest mismatch, where v4
+  logged a warning, so a binary corrupted between jobs can no longer reach a release. Proved by
+  a `dry_run` dispatch of `release.yml` on the branch before merge (run 36965158231, green): it
+  ran checkout v7, upload-artifact v7, download-artifact v8 by name and setup-buildx v4, and the
+  image smoke gate passed on both architectures. What a dry run gates off runs first at the next
+  real tag: `docker/login-action` v4, the digest upload, and the pattern downloads in
+  `container image` and `publish release`.
+
+- **`rust-version` 1.94 → 1.98.** The floor is now stable minus one, on Anthony's word of
+  2026-10-02. No dependency needed more than 1.90, and the workspace's tests already ran on 1.98.
+  The new `floor` job keeps the number true. Release binaries are built on current stable, as
+  before. Only a source build on a toolchain older than 1.98 is affected, and it is now told so.
+- **AGENTS.md's "do not bump the `rocksdb` pin as housekeeping" is replaced** by the requirement's
+  rule:
+  - patch and minor releases are taken promptly;
+  - a new series gets its own PR that adapts the code;
+  - every hold is recorded with a reason and a date;
+  - a bump touching stored data proves that existing stores open AND that the previous release
+    reads what the new one wrote.
+
+- **`rocksdb` 0.24 → 0.25: the same crate, and the storage engine moves from RocksDB 10.4.2 to
+  11.8.1.** No reflow2 source changed. This is the first bump under
+  `req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases`, which Anthony accepted on
+  2026-10-02. That requirement's rule, in AGENTS.md and the `dependencies` workflow, landed
+  first (#651); this bump also removes the hold #651 recorded for it. What an operator should know:
+  - **The first pull rebuilds `librocksdb-sys`** (~10 minutes of C++, once per machine).
+  - **Existing designs open unchanged.** Measured on 20 real stores, including reflow2's own
+    (6,170 nodes, 39,177 edges): each export is byte-identical to v0.77.0's.
+  - **Rolling back to v0.77.0 works.** The new engine writes table `format_version` 7, where
+    10.4.2 wrote 6, and it does so even on a read-only open. v0.77.0 opens every one of those 20
+    stores after the new engine has written to them, and reads the same content.
+  - **0.25 fixes memory leaks** in `set_info_log`, in column-family metadata and creation, and
+    in compaction filters. reflow2 calls none of those, so nothing here changes because of them.
+
+### Fixed
+
+- **The "did this repair fix it?" question (`defect_overtaken_by_change`) now names the change
+  that most likely fixed the defect, and asks about half as often.** A sweep of the 77 such
+  questions on reflow2's own design found that the change each one named was the real fix once.
+  Of the 20 defects that really were fixed, the question could see the fixing change for one: it
+  read only repairs dated strictly after the defect, so it missed fixes made the same day (7) and
+  undated ones (10), and it never read a change the record already joins to the defect. It also
+  asked about every defect on a file shared by many capabilities whenever a broad repair touched
+  that file. Now:
+  - **A change joined to the defect is named first**: the defect `CAUSES` it, it `MITIGATES` the
+    defect, or it is a repair that lists the defect among what it `CHANGED`. Any change type, with
+    or without a date, because the join places it after the defect.
+  - **A repair made the day the defect was recorded counts.** One dated earlier still does not.
+  - **Nearness counts only where it says something.** A repair that `CHANGED` the defect's subject,
+    or a file that realizes that subject alone, is offered. A repair on a file shared with other
+    capabilities is offered only where it `CHANGED` the subject itself. A repair already recorded
+    as the fix of another finding is not offered for this one, and an undated repair that is only
+    near cannot be ordered. Each of these is named in the evidence instead of dropped.
+  - **An answer is remembered per change.** Acknowledging the question records that each change it
+    named did not fix the defect. That change is not asked about again for that defect, even when
+    the question's id changes. Only a change nobody has judged asks again.
+
+  On reflow2's own design this asks 35 questions instead of 62, and names the real fix first for
+  9 of the 20 fixed defects (it named 1). **What to do:** read a question's first change first. If
+  it fixed the defect, draw `invalidates` from that change to the defect. A `CAUSES` or `MITIGATES`
+  edge records that a change answered a defect; it never closes one. When you acknowledge, pass
+  the gap's `affected_ids`, as `acknowledge_gap` already asks, so the changes you judged are
+  remembered. Some questions you answered before get new ids. Where your answer named its changes,
+  they stay answered.
+
+- **The held-design tests no longer fail CI at random with "the --serve-shared server never took
+  the store".** For contributors; nothing changes for users. The tests started a shared server and
+  then waited for it by reading the design through `--call`, once every 100 ms. On a design
+  nobody holds yet, that read opens the store itself. When the read got there first, the server
+  found the store taken and exited (a shared server that loses that race always exits, because
+  normally the session that started it attaches to the winner). Every later read then opened the
+  store itself, and after about 80 s the test gave up. This failed CI on main once and on two pull
+  requests, and failed 2 of 30 times when reproduced on a busy machine. The tests now wait for the
+  server's own record that it holds the store, which opens nothing. A new test starts the server
+  late on purpose to keep it that way. `a_build_can_call_one_tool_from_the_shell.rs` had the same
+  kind of wait, a write through `--call`, and now waits for its server's handshake instead.
+  **What to do:** nothing. If a pull request failed on this message, re-run it.
+- **Seven small fixes from the VS Code `--call` field report** (fix program item 8). Each one
+  made reflow2 say something untrue or less than it knew.
+  - **`external_dependency` replies with a receipt, and re-declaring keeps what you leave out.**
+    It used to reply with every dependency the design declares, as TOML, growing about 150 bytes
+    per declaration and naming no node. Re-declaring (to move a pin) also cleared `components`,
+    `features`, the watch and the Resource's description, which hub sessions had to retype eight
+    times. Now the reply is the declared Resource, a `revision` block saying what changed or was
+    removed (the prior state is kept in a snapshot), and `address_baseline` for an address watch.
+    Leave a field out to keep it; pass `[]` to clear a list, or `""` to stop a watch. **What to
+    do:** read the whole manifest with `reconcile_dependencies` (it writes nothing) if you used to
+    read it from this reply. Every write's reply shape is now listed in a test, so a write that
+    joins the surface replying with something other than a receipt fails the build.
+  - **A check that could not run can say so.** `reconcile_verification` takes the outcome
+    `blocked` (a collection error, a test file that did not compile, a setup that failed before
+    the body ran). `tools/run_to_files.py` writes `blocked` for pytest's "collection failure" and
+    "failed on setup" errors and for a cargo test target that never started; any other JUnit
+    `<error>` is still `failed`. A check whose status is `blocked` now raises the gap
+    `blocked_verification` (severity 0.65), which says nothing is known about the part, never
+    that it failed. **What to do:** feed a collection error back as `blocked`, not `failed`; a
+    `failed` still raises `failing_verification`, "did not work as designed".
+  - **The served hub skill named the wrong list.** It said a local hub's designs are the
+    session's MCP configuration. They are the hub's declared dependencies, which `upstream_status`
+    reads back, through MCP and through `--call` alike.
+  - **`get_node` with a `node_type` says why an id is absent.** It answered a bare
+    `{"node": null}`; now `empty_because` says so, and names the type that does hold the id when
+    one does. `tools/empty_speaks.py` now probes each optional id- or type-shaped parameter too,
+    which is how this one was missed.
+  - **One binary for every gate.** About twenty gates hard-coded `target/debug/reflow2-mcp`, and
+    two read their own variables. They all take it from `tools/reflow2_bin.py` now: `$REFLOW2_BIN`,
+    else the debug build, else the release build (said on stderr). **What to do:** run
+    `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/run_ci_gates.py` to check the whole set
+    against a release build; `$REFLOW2_MCP` and `$REFLOW2_MCP_BIN` are no longer read.
+  - **The `find_tools` replica ranks as `find_tools` does.** `tools/tool_confusability.py` scored
+    text that `tools/list` adds and `find_tools` never sees (the `draw_edges` sentence on 32 edge
+    helpers, the `echo` parameter), so it agreed with the live ranker on 186 of 193 queries. It
+    now strips them (193 of 193), `--validate` checks against the real binary and runs in CI, and
+    `--baseline` refuses to rewrite the rank ratchet from rankings the live ranker does not give.
+  - **reflow2's own design** now records the dependency-currency check (#651) as realized, with
+    the workflow and checker that realize it and the test that verifies it.
+
+- **A shared server started by a session no longer keeps that session's open files, locks or
+  terminal.** On Unix, a `--shared` client that starts the `--serve-shared` server used to pass on
+  every descriptor its own launcher had left open: a `flock` lock, a pipe, a terminal. The server
+  kept them for its whole life, two hours idle by default. On 2026-10-03 two such servers held a
+  build lock for about fifteen minutes and stopped every build on the machine. The server now
+  starts in a session of its own, with no controlling terminal, and keeps nothing of its launcher's
+  but the log and `/dev/null` it is given. The client that started it now also collects its exit
+  status when it stops. Before, each server that stopped while its client was still running stayed
+  in the process table as a zombie; one client up for a week had 42. **What to do:** nothing beyond
+  updating. A server already running keeps what it inherited until it stops, so run
+  `reflow2-mcp --graph-path <path> --stop-shared` if one is holding a lock. Windows is unchanged:
+  reflow2 ships no Windows build.
+- **A read through `--call` on a design another session holds is now as true as a read of the
+  design itself.** While a `--serve-shared` server (another session) holds a design, `--call`
+  answers a read-only tool from a copy of the store. That copy left out things the reads depend
+  on, and each one produced a confident wrong answer with exit 0:
+  - **The search index.** `search_design` answered `{"hits": []}` and `topic_report` "NOTHING
+    MATCHED" for words the design holds. The copy now rebuilds its index from the copied nodes.
+  - **Where the design lives.** The copy was opened in the temporary directory, and reads that
+    find things from the design's path looked there. `loop_status` measured registered files
+    under `/tmp`, reported them MISSING, and told the agent to record a disposition for them.
+    `sync_status` said there was no export to check, and `wall_check` read `/tmp` as the project.
+    The copy now reads the project tree, the sync record and the harness settings where the
+    design lives. It still writes nothing beside the held store: those records are the holder's.
+  - **The version stamp.** A binary older than the holder read the copy without the refusal it
+    meets on the real store. The copy now carries the stamp, and its open checks it.
+  - **A copy that failed part-way** was left in the temp dir as a partial second copy of the
+    design. It is now removed, and a file the holder deletes while the copy is being made is
+    skipped rather than failing the read.
+  - **Any store whose search index does not hold what the store holds** — copied or restored
+    without its `fulltext/` subdirectory, or written by a build without search — now rebuilds
+    the index when it is opened, and `loop_status` reports that once as
+    `search_index_rebuilt_on_open`. Before, it opened onto an empty index and every search said
+    "nothing matched". As a floor under that, a search that would answer "nothing matched" from
+    an index that does not cover the store now refuses, naming both counts.
+  - **`search_design` and `topic_report` now say how many nodes they searched** (`searched`, a
+    new field), so an empty answer says which empty it is. `topic_report`'s `not_found` line
+    names that number; it used to name the design's size as if all of it had been searched.
+    `tools/empty_speaks.py` gains a pass that asks every query-taking read for words nothing
+    matches. It had never asked one anything, which is why it missed this.
+
+  A new test asks every read-only tool `--call` can probe the same question with the design free
+  and with it held, and requires the same answer. **What to do:** if you drove reflow2 through
+  `--call` while a session held the design, and acted on "nothing matched" (for example, you
+  created a node because search found no duplicate) or on "registered file missing", run that
+  search or check again.
+- **A refused write stores nothing.** Until now a typed write such as `add_requirement`,
+  `add_decision` or `add_verification` could store the node and then refuse the call over a later
+  argument: a bad `priority` or `kind`, a `related_to` naming nothing, an edge the schema does not
+  allow. The node stayed behind. That had three consequences:
+  - On an existing id, `add_capability` replied "nothing was written" after it had already
+    overwritten the description.
+  - The corrected retry was treated as a revise, so the duplicate check never ran on it.
+  - The leftover node could block your next, different capture as a near-duplicate.
+
+  Now every call to a write tool is one unit. Everything it writes, including the node, its fields,
+  its edges and the snapshot of what it replaced, lands together when the call succeeds and is
+  dropped when it is refused. The store's other paths join that unit rather than committing it
+  early: a bulk form, an import or a HEAL inside the call, and reads, searches and derived reports
+  made during it. A refused call also no longer sets off the write-through export. The same holds
+  through the `--call` door. **What to do:** nothing. If you worked around this by checking with
+  `get_node` before retrying a refused write, you can stop. A node such a refusal left in your
+  design before this release is still there, so delete it or keep it on purpose.
+  (`dec:idea-a-refused-typed-write-stores-nothing`)
+- **Every one-shot command now finds its design before it opens one, and refuses a flag it does not
+  read instead of ignoring it.** The one-shot commands are `--call`, `--export`, `--export-snapshot`,
+  `--import`, `--diff`, `--merge`, `--merge-apply`, `--merge-driver`, `--stop-shared` and `setup`.
+  Until now, which rules a run obeyed depended on where its branch sat in `main()`, and the store
+  opener created a missing store. Measured on 0.77.0:
+  - In a folder whose `.reflow2.toml` names a design on a server, `--call` and `--export` made a
+    new, empty local design, with exit 0 and nothing on stderr. The next `--call loop_status` there
+    reported it `clean: true`. Even `find_tools` and `get_skill` did this, and they read no design.
+  - `--read-only --call add_requirement` wrote the requirement.
+  - `--export-to FILE --call <writer>` never wrote FILE.
+  - `--remote URL --call X` ran nothing and exited 0.
+
+  What happens now, and what to do:
+  - **In a folder that names its design on a server**, `--call`, `--export`, `--export-snapshot`,
+    `--import` and `--diff BASE` refuse with exit 1 and create nothing. The refusal names the
+    design's id and its address. Reach that design through an MCP client: a session started in the
+    folder attaches to it, or use `reflow2-mcp --remote <address>`. The file-only modes
+    (`--diff BASE OTHER`, `--merge*`) still work there.
+  - **Where there is no design, a read refuses** ("no design at …", exit 1) and creates nothing.
+    This covers `--export`, `--export-snapshot`, `--diff BASE` and any `--call` of a tool marked
+    read-only. A tool that writes, and `--import`, still create the design where you point them.
+    A folder that has opted in (`.reflow2/` is there but empty) is read as the empty design it is,
+    so the installer's first export still names the design.
+  - **`--read-only` means "change nothing, in the design or on disk"**, and `--call` honours it.
+    A tool that writes is refused by name, and so are `export_graph` and `export_surface` with a
+    `path`. Without a `path` they still answer in the reply. Opening an existing store still does
+    the store's own housekeeping (RocksDB's files, and the version stamp, handshake record and usage
+    ledger beside it); no node, edge or property changes. A read-only server (`--http`,
+    `--registry-root`, `--serve-shared`) also no longer writes those files. Before this, a caller
+    could write any file the server process could write, and replace one with `overwrite: true`.
+  - **`--only-if-present` is honoured by the one-shot modes:** where no design has been started,
+    they refuse and create nothing.
+  - **A flag a one-shot mode does not read is refused** by name, with the mode, exit 1. The table
+    is in `crates/reflow2-mcp/src/one_shot.rs`. `--export-to` with `--call` is honoured by step 2
+    of the `--call` door plan (under Added: a writing call keeps the committed export current).
+    `--remote` and
+    `--shared` with `--call` wait for the open question of whether a one-shot call should reach
+    a served design. Two modes on one command line are refused together, which includes `--call`
+    and `--stop-shared` combined with anything. Flags set in the environment
+    (`REFLOW2_CONTENT_POLICY`, `REFLOW2_OIDC_*`) are not refused.
+  - **If a script now fails:** drop the flag the refusal names. If the script reads a folder that
+    has no design yet, either point it at the design, or create the design first with a write or
+    `--import`.
+
+  This is a **minor** change: arguments that were silently ignored are now refused.
+
+- **`--read-only` is honoured by every client, not only by a server.** Until now a client that
+  forwards your agent's calls to a server accepted `--read-only` and ignored it, so a write landed.
+  Measured on main:
+  - `--remote URL --read-only` wrote the requirement to the server.
+  - `--shared --read-only` wrote it through the shared server.
+  - A session started in a folder whose `.reflow2.toml` names a design wrote to that design.
+  - With `--only-if-present` and no design started, `reflow2_start_design` created the design, and
+    the surface it opened accepted writes.
+  - `--shared --read-only`, in a folder with `.reflow2/` but no store, started a server that
+    created the store.
+
+  What happens now:
+  - **Each of those clients refuses every write itself, before the call is sent.** The agent gets
+    a tool error that names `--read-only` and says nothing was sent. A call is sent only when three
+    checks agree that it only reads: this reflow2's own tool list, the server's tool list, and the
+    file rule (`export_graph` and `export_surface` with a `path` are refused, and without one they
+    answer in the reply).
+  - **A tool the client cannot classify is refused as a write.** That covers a server that cannot
+    be asked, a tool the server does not list, and a tool this reflow2 does not serve (a newer
+    server's, say).
+  - **Reads, searches and reports pass through unchanged.**
+  - **With `--only-if-present` and no design**, `reflow2_start_design` is refused and nothing is
+    created. A design that appears later is served read-only.
+  - **`--shared --read-only` where there is no store** starts nothing and creates nothing. The
+    session is told why.
+  - `--read-only --help` now lists the modes that honour the flag, and how each one does it.
+
+  Separately, and with or without `--read-only`: a `--shared` or `--remote` call whose arguments
+  contained the word `initialize` was mistaken for a handshake. It got no reply, and every later
+  call in the session failed. It is now an ordinary call.
+
+  **What to do:** nothing, unless you relied on writing through a client you started with
+  `--read-only`. Drop the flag to write. A read-only client now also refuses `design_identity`,
+  which is marked as a write, just as `--read-only --call design_identity` already does.
+  (`fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02`)
+
+- **A server started with `--read-only` where there is no design store now creates nothing.**
+  Until now a stdio, `--http` or `--serve-shared` server started that way opened the path, which
+  created an empty store with its version stamp and identity beside it, and then served that empty
+  design read-only. `--serve-shared` also published its rendezvous file. The flag's help said "no
+  design store is created where there is none", and that was false for these servers from the day
+  it was written.
+
+  What happens now (Anthony's choice, 2026-10-03, over refusing to start and over keeping the old
+  behaviour):
+  - **The server starts and serves the latent surface**, the one `--only-if-present` serves where
+    no design has been started. Its handshake says there is no design store, and that `--read-only`
+    creates none. `describe_designs` answers. `reflow2_start_design` is refused.
+  - **Nothing is created:** no store, no version stamp, nothing beside it. A `--serve-shared` server
+    publishes no rendezvous.
+  - **Over `--http` and `--serve-shared` the latent surface is served over HTTP**, and `GET
+    /readyz` answers 503 until a design is served.
+  - **A store that appears there later**, from an import, a restore or a session that writes, is
+    served read-only by the same server with no restart. `/readyz` then answers 200.
+  - `--registry-root` already opened only the stores it found, and still does.
+
+  Two fixes to the latent surface came with this, for `--only-if-present` with or without
+  `--read-only`:
+  - **It is served on the transport you asked for.** With `--http ADDR`, it used to be served on
+    stdio instead. A server started with its stdin closed exited at once, and nothing listened at
+    ADDR.
+  - **A design it starts, or that appears under it, is readied the way the server would have
+    readied it at start.** That includes your `--export-to`, which was never started for that
+    design, and over HTTP the rule for who is calling.
+
+  **What to do:** nothing, unless something relied on a read-only server making an empty store.
+  To start a design, use a session without `--read-only`, or import one with `--import`. A
+  read-only server already running picks it up on its next call.
+  (`fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03`)
+
+- **The handshake record (`<graph>.client.json`) names the revision rmcp actually sent.** reflow2
+  keeps a copy of rmcp's negotiation rule, because rmcp does not export it, and the copy was out of
+  date from rmcp 3.4.0 on. A client asking `initialize` for a revision with no handshake was
+  recorded as getting it, while the wire carried 2025-11-25. The copy is now rmcp 3.5.0's rule, and
+  a new test over the real binary compares the record with the wire for every revision rmcp knows.
+  The answer on the wire was always right.
+
+## [0.77.0] — 2026-10-01
+
+**Minor. GitHub issue #617 (#646): one linux/amd64 + linux/arm64 image under one digest, and a
+linux-arm64 binary.** A new release asset and a second image platform are additive. The schema
+stamp does not move (28 node types, 66 edge types), and no Rust source changed except the version,
+so a caller who changes nothing sees nothing break and no upgrade note is owed. What a consumer
+or operator should know:
+
+- **An arm64 host now pulls a native image, from the same tag.** `:0.77.0` and `:latest` are one
+  index, and `docker pull` picks the host's platform. Nothing changes in how you pull or run it.
+- **Pin by the digest in the release notes** wherever a tag moving under you would matter. A tag
+  can be re-pushed; a digest names one image forever.
+- **Linux arm64 gets a prebuilt binary.** `tools/install.sh` installs
+  `reflow2-mcp-linux-arm64.tar.gz` on `aarch64` and `arm64`, where it used to stop with "no
+  prebuilt binary".
+- **If you run the image for others, read its text again.** It said reflow2 had no
+  authentication, which v0.76.0 made false. It now says that `--http-oidc-issuer` makes the
+  server verify bearer tokens itself, and what a server without it may do (under Fixed).
+- **Maintainers can rehearse a release.** A manual dispatch of `release.yml` with `dry_run` builds
+  every binary and smoke-tests both images, and pushes and publishes nothing.
+
 ### Added
 
 - **The container image is linux/amd64 AND linux/arm64, and the release notes carry its digest**

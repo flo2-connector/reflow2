@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b57b91612633fdafb11c078221cfd7c81aa52e0b848d2d2c93e208a12a1f0993",
+  "edge_type": "CHANGED",
+  "from_id": "chg:degraded-follows-transport",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:degraded-surface"
+}

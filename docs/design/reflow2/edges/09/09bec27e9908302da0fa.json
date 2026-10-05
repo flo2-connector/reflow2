@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6049c9392becf28615d88ee4a567094d228f0ef37e49b00a36dd70bc347fbc0d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f11dca3fb6aa4ea3ded7f0dc0ba4bf5137ddcf54893645e851b439840194ed14"
+  },
+  "to_id": "art:planning-at-scale"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8eee6e480c2513873510c1c47251e51ff7f796848b14028beef9040cc3ffe8b1",
+  "node_id": "cap:every-served-skill-conforms-to-agent-skills-and-the-lint-checks-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-01 on Anthony's word (\"plan the plugin after the dependency PRs\"), as the plugin plan's first step. A strict plugin host skips a non-conforming skill (Agent Plugins §7.1), and every reflow2 skill carries `metadata: {composes: [..]}`, a list where Agent Skills allows only string values (fact:reflow2s-skill-metadata-carries-a-list-where-agent-skills-allows-only-strings-2026-10-01).\n\nThe fix:\n- Encode reflow2's own metadata as strings (e.g. composes \"STANDING,REPORTS\"), after checking how build.rs and the composer read it.\n- tools/skill_lint.py gains an Agent Skills check: name rules, description length, and metadata string-to-string. Its test is watched failing first on today's skills.\n- The served text, the .claude/.grok mirrors and the plugin's skills all stay conforming.",
+    "distinct_from": [
+      "fact:reflow2s-skill-metadata-carries-a-list-where-agent-skills-allows-only-strings-2026-10-01"
+    ],
+    "name": "Every served skill's frontmatter conforms to the Agent Skills specification, and skill_lint fails the build when one does not",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "tactical"
+  }
+}

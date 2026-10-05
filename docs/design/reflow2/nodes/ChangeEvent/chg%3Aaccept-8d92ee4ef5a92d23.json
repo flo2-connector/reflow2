@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:83272729fa7f645309a47d22b6194478c20e1b5f7cea9c74b96986562031c31c",
+  "node_id": "chg:accept-8d92ee4ef5a92d23",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Struct literal gains `priority: None`; the assertion is unchanged.",
+    "subject": "system"
+  }
+}

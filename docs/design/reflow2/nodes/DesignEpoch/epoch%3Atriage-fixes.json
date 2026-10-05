@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28535e0c8774f4b29f99dc503eacc8af291ddea573637e7d5a77bdd47e364af0",
+  "node_id": "epoch:triage-fixes",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "milestone",
+    "name": "Triage fixes — what four projects' field reports asked for, grouped by what they have in common rather than by who reported them",
+    "sequence": 344,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a20a652fe56b8e70257da09db4167e96204abb295b81918f85b03dfd6f24aa3b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-provenance",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-provenance"
+}

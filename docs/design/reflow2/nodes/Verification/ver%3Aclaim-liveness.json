@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e3057a3cb250290ed79670c51511d2303abb9f08ac71b25a25a5a5b468c290f3",
+  "node_id": "ver:claim-liveness",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A claim records the session that made it; a claim from a session that exited is a ghost with its note kept; a ghost is not a collision; two live sessions on the same ground still collide; another machine is unknown rather than dead and still counts; a pre-seat claim is unknown rather than assumed live (tests/claims.rs, 6 new cases of 15).",
+    "findings": "Proven end to end over stdio with a genuinely exited server process: gone vs live, zero false overlaps, the ghost named in `stale`.",
+    "kind": "verification",
+    "level": "unit",
+    "method": "test",
+    "name": "A claim records its session, and a ghost is not a collision",
+    "status": "passing"
+  }
+}

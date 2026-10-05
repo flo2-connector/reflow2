@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:481db32907fa3d9bb04f98e273299d1581e1569ecc915740fffdcb9b4f10bcf5",
+  "node_id": "chg:get-node-reads-a-nodes-edges-2026-10-03",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "859a8ecc4aa2388361597e1f967debce12c7b47c,293f957703bd1885f6ad693476d6d025611de6ab",
+    "detected_at": "2026-10-02",
+    "name": "get_node reads a node's edges when asked: include_edges, bounded, with each edge's own evidence, and find_tools ranks get_node first for a node with its edges (fix program item 5)",
+    "rationale": "THE CAUSE (fact:root-cause-no-served-read-returns-one-nodes-edges-and-the-nearest-is-an-impact-walk-2026-10-02, VS Code --call field report limitation 19): the graph's edges had no per-node read. Each partial reader was built for another job, so none was complete for this one and find_tools could not map 'a node with its edges' to any of them. CONFIRMED ON MAIN c4e1cbd before the change, on a scratch import of main's export: --call get_node with include_edges was refused as an unknown field; propagate_from at depth 1 on req:a-lesson-is-served-at-the-step-it-concerns listed 6 of its 7 stored edges (no AUTHORED_BY), with impact directions and no evidence; find_tools ranked get_node 8th for 'read one node by id with its properties and edges'. Built as Anthony accepted on 2026-10-02 (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it): include_edges on get_node, bounded, not a new tool.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "reflow2-core node_edges.rs reads every edge on a node, in and out, each with its type, direction, from/to, the other end (id, type, name), its own properties and twin_of; filters (direction, edge_types, exclude_edge_types), limit/offset and a size bound from the shared reply budget; total and by_type never filtered; capped_by, next_offset, dominant and empty_because say what a short or empty list left out; an unknown edge type refused with the nearest name. reflow2-mcp get_node takes include_edges, true or a filter object, published as type [boolean, object, null] inside the checked keyword subset; off by default, so the reply is byte-identical unless asked. get_node's description says it reads edges in the asker's words (the node_type explanation moved to the parameter), so find_tools ranks it first for the report's phrase and four paraphrases, top 5 for two more beaten on a name match; one rank-baseline pair (acknowledge_gaps, create_nodes) came apart and was removed. Re-measured on the branch binary on reflow2's own design: req:a-lesson-is-served-at-the-step-it-concerns returns 7 of 7 edges with AUTHORED_BY and evidence; who:ajs returns 50 of 950 with AUTHORED_BY named dominant and the two twins marked, in 26,424 characters; rel:v0770 drops its 641 INCLUDES with exclude_edge_types and keeps the counts."
+  }
+}

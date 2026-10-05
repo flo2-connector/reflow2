@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f1310ba4a2cd9fee1452cab89b696570de443d5cc9c099245e2e3cba5668370",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-outside-part-is-marked-as-outside-and-an-outside-party-is-a-consumer",
+  "properties": {
+    "evidence": "Options (a) and (c) remove the misfiling that finding measured: an outside caller of a published contract with no way to be counted."
+  },
+  "to_id": "fact:root-cause-a-published-interface-with-outside-consumers-raises-unconsumed-interface-2026-09-29"
+}

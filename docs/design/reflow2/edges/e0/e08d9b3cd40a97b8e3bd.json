@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6883c76a702b1a3b8bb6338f0736a67f41cde786a8b0673a42de55c538345230",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-change-upstream-reaches-the-sibling-that-never-asked",
+  "properties": {
+    "evidence": "\"How does the other dependent find out?\" cannot be designed until both dependents are visible in one place at once. Today they are not: storyflow's arm declares no `required` interfaces so it pairs with nothing, and its export carries graph_id `reflow2`, the same as reflow2's. The stress test is what would establish whether the sibling is even reachable — so the notification question waits on it rather than the other way round.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-compose-both-chains-as-one-stress-test"
+}

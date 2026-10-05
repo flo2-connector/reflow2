@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5459615228ff74bfdaf7162e45c01c25b754a24dcbea5fe18680ab9131a3f3f9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-write-records-the-agent-beside-the-principal-it-acts-for",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:provenance"
+}

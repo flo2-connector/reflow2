@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:beb25d4289576805bb2feaf6985f0eab9155872421809fbdd1e88728aa0668f4",
+  "node_id": "chg:accept-872460f004b4ddc9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Struct literal gains `description: None` so it keeps compiling after the constructor gained the parameter. No design meaning: the test asserts the same thing about the same behaviour.",
+    "subject": "system"
+  }
+}

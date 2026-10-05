@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c153e7bb0ea1b35df33ea777468ad7b27001e6aa7251c8ec38f183665dc1ba40",
+  "edge_type": "CHANGED",
+  "from_id": "chg:decision-status-gains-deferred",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-vocabulary-change-is-never-silent-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4caf3f85c7df89b5e56add5c01dc809f456204c732cfaf170e0a342a61367d2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0551",
+  "properties": {
+    "as_checksum": "sha256:201c2d26ef93416b356efa438304ad6241de0fbce74d39fbc1a4bbbc13f478d7"
+  },
+  "to_id": "art:test-constructors-preserve"
+}

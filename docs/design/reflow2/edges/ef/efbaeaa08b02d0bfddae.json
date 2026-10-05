@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6c6d89e08fd13290a49ecb90202155defc09b2ea12d7081b0d371eae358f796e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-does-the-graph-write-itself-through-to-the-repo-on-every-change",
+  "properties": {
+    "approved_at": "2026-09-11",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

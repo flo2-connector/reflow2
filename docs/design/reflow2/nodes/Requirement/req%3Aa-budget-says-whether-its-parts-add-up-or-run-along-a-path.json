@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f6372dfe1cae17b1026723bb2c840f71afec7490a3180d0d2cbd2af66f4e79c1",
+  "node_id": "req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A budget says whether its contributions add up or run along a path, and its verdict follows what it says; one read reports every budget",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, in the dev_reflow2 hub session, relayed by the hub agent: \"Fix all the root causes and go with the 7 ideas you'd promote\". This is idea 7, dec:idea-a-constraint-says-how-its-quantity-composes.",
+    "statement": "A Constraint declares how its quantity composes: summed over every contributor (mass, cost), or along the heaviest dependency path (latency, where parallel branches overlap). budget_report's verdict follows the declaration. It no longer judges on the plain sum when the path total, which is already computed, is the quantity. One read reports every budget with its verdict. The constrains description says that drawing dependencies is what makes the path total computable.\n\nCounter-argument kept: inferring the composition from the unit would silently change verdicts, because the same unit adds up in one budget and runs along a path in another. So the author declares it, and an undeclared budget keeps today's sum.\n\nFound by the two-agent exercise (I18, I17): the owner's 33 ms write path was reported as \"46 ms, exceeded\" against 40 ms, and checking 14 budgets took 14 calls.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d2df26ccbb47384138247d542d614f91de5acd6c4361032cc359ff805997d03d",
+  "node_id": "art:nudge-detect",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/nudge.rs",
+    "name": "nudge.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

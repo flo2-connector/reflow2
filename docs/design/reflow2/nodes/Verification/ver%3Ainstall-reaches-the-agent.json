@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:c83214b345e066c387bf1a4e63d01fd0a747cdbe28e73f653297b8b0569fb012",
+  "node_id": "ver:install-reaches-the-agent",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A project with NO instruction file still gets one the primary harness reads; the created file is a pointer, not a second home for instructions (size-bounded); an existing instruction file is appended to, not replaced; a project that already owns a convention gets NOTHING invented; the eight slash commands ship and match the kit source exactly; and SKILLS ARE STILL NOT COPIED, so the exception stays an exception (tools/test_init.py, 6 cases). Plus the guards that make shipping commands safe: a command naming a skill that does not exist FAILS the lint, and the .claude/commands mirror is byte-checked against the kit (tools/skill_lint.py).",
+    "findings": "MUTATION-CHECKED three ways: restoring the only-append behaviour, emptying TREES, and pointing a command at a non-existent skill each fail exactly the check that names them.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-28",
+    "level": "integration",
+    "method": "test",
+    "name": "The install reaches the agent without inventing a convention the project already owns",
+    "status": "passing"
+  }
+}

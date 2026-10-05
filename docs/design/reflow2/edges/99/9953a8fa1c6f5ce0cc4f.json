@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6af308115e7af835a5c280e3a4b65a500e12cab8009e31de30a3ade53260c204",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-the-repository-root-holds-only-what-a-build-or-a-harness-needs",
+  "properties": {
+    "evidence": "Removing or ignoring CLAUDE.md risks the defect that requirement was written after: an instruction pointer the harness does not read, leaving a session with no instructions."
+  },
+  "to_id": "req:kit-reaches-the-agent"
+}

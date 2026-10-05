@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8cd345f5d99f675c1c8c70ca6e8ca8d590d3c12ec28345cf03f7227eda046103",
+  "node_id": "ver:every-skill-has-a-command",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Every served skill is named by at least one shipped slash command, and a skill that loses its command turns the lint red naming the skill (tools/skill_lint.py, `== commands ==`). The counterweight to `every command names a skill that exists`, which had guarded only the opposite direction since 2026-07-28 — a command rotting into a dangling reference — while a skill nobody fronted was checked by nothing and nothing pinned the count. Coverage is NAMED BY a command, not SAME NAME AS one, so the short aliases (/gaps → detect-and-ask, /where → where-am-i) still count.",
+    "findings": "MUTATION-CHECKED: removing getting-started/commands/capture-session.md turns exactly this check red and names `capture-session` in the failure.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "integration",
+    "method": "test",
+    "name": "Every served skill is named by at least one shipped slash command",
+    "status": "passing"
+  }
+}

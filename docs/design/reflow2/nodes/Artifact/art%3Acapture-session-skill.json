@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:520a0184eb58fc8f8e917ab48bfeb5b8aa1ec289f4c79caf1eb1833d86b82374",
+  "node_id": "art:capture-session-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/capture-session/SKILL.md",
+    "name": "getting-started/skills/capture-session/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

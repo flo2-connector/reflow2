@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bac089f437a779debd26c75ca6e040037674f86abba9baaab677786452f56b5e",
+  "node_id": "art:plan-increments-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/plan-increments/SKILL.md",
+    "name": "plan-increments/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

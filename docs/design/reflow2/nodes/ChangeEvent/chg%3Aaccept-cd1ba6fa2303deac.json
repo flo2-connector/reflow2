@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:779061c48f6387983663da111fad996b4354334e4ed78fe7f226debf6efdb8b8",
+  "node_id": "chg:accept-cd1ba6fa2303deac",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Reads both the new {swept, defects} shape and the old {count, items}, deliberately: it is an instrument that may be pointed at an older server.",
+    "subject": "system"
+  }
+}

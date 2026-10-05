@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec1da0ccb43a397d5c5a01fe8035262e23c545b8a61b6439bd55cbf983c7d634",
+  "node_id": "dec:views-are-projections",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Renderers may only emit what the graph states; everything else is confessed as a finding.",
+    "name": "A view is a projection of the graph; renderer fill-ins are defects",
+    "rationale": "UAF/DoDAF doctrine from the author: the graph stores all design detail, the agent only renders viewpoints. If rendering requires extrapolation, something is missing inside reflow2 — almost always. Decided 2026-07-19 (https://claude.ai/code/session_013aumVdHrRHu24cLirn6Cam); render_views.py, BL-40.",
+    "status": "accepted"
+  }
+}

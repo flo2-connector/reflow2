@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba0f862ae0a72dfa2c87a7136aceb26898e1bab66f181ed176dae06e9e75561e",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-contributors-roles-toward-a-node-are-a-set-that-a-write-adds-to",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph"
+}

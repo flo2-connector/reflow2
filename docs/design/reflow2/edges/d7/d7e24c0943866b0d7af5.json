@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e56da64dde386b3e776be481e98a2568b60afbae1558d860ae4c10c2fdc0a90b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:import-from-a-newer-reflow2-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:import-from-a-newer-reflow2-test"
+}

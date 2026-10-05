@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:019026910cce9e1bbb73f49d4bd4d316dac9b0669698cab2dbbb8f547dfef0a6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-drives-a-capability-up-the-ladder-instead-of-somebody-typing-it",
+  "properties": {
+    "evidence": "Readiness gating already computes which epoch an increment can deliver on from TRL/MRL against a stated threshold; any mechanism that drives a capability toward `fielded` has to agree with that gate rather than invent a second notion of readiness.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:readiness-gating"
+}

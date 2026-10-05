@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da01ab07717b4216ac18812d9e225068856e559422dbff9d70e383a44de1f152",
+  "edge_type": "REALIZES",
+  "from_id": "art:docker-build-script",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:release-publishes-a-container"
+}

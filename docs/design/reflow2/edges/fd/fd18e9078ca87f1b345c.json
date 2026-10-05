@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6fad2dce27fda99e10925ed33263c2a111afb2f21366b6d551bb7faaad8aeb08",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:stamp",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:provenance"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f7604e47f764cd2f836d529e167e052e1fa1f909092567dd90a0fdaca348f887",
+  "edge_type": "CAUSES",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "It is the only SATISFIES on the accepted req:what-changed-since-i-looked-and-by-whom and stands `verified`, so the design reads \"what changed since time T\" as delivered and no recency read was ever built. Measured on 0.72.0, it answers from the last deployed release in epoch order and reads only the CHANGED edges of AT_EPOCH-pinned ChangeEvents. It saw 9 of 14 events dated since 09-26, no Decisions, Verifications or facts, and 0 entries for a replayed same-day re-walk.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-no-served-read-answers-since-last-time-2026-09-28"
+}

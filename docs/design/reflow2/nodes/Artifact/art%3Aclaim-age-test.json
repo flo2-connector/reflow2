@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:80900749d63844e7bbcc5e188320bae76cfd97b0d34703c0cbc975907e41e613",
+  "node_id": "art:claim-age-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_claim_carries_its_age.rs",
+    "name": "a_claim_carries_its_age.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4ed17ea890a09ab687248cfd0203e85d8273e50b6116777548a10dce85628b3b",
+  "node_id": "req:hosted-state-outlives-the-image",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design survives replacing the container it was served from — state lives on a volume, and a store is never separated from its identity sidecar",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Raised by @ajs from flo2, 2026-08-05, and flagged in the proposal as THE PART TO GET RIGHT. A reflow2 design is not configuration that can be rebuilt. It is the product. Baking any of the following into an image means losing every design on the next deploy.\n\nTHE GRAPH DIRECTORIES. .reflow2/graph is a RocksDB directory — live database files, not a snapshot. Under multi-graph hosting there will be many, so the volume wants a graphs root with one directory per design beneath it, and the registry maps graph_id to a path under that root.\n\nTHE SIDECAR FILES, ON THE SAME VOLUME AS THE STORE THEY DESCRIBE. graph.id.json (identity), graph.meta.json (version and schema stamp), the sync marker and the rendezvous file all live BESIDE the store, not inside it. Separating a store from its identity sidecar is the silent failure identity.rs warns about: a design opened under an id it was not created with finds nothing and PRESENTS AS AN EMPTY DESIGN rather than erroring. In a container, where paths are easy to get subtly wrong, this is the failure to design against — the design is still on disk and reflow2 opens an empty one beside it reporting nothing wrong.\n\nTHE CONTENT STORE, WHICH NEEDS A DECISION RATHER THAN A DEFAULT. --content-path defaults to ./reflow2-content and its doc comment says to point it at a directory inside the repo, because blobs are committed so they travel with the design. A HOSTED SERVER HAS NO REPO, so that assumption does not hold and the hosted case needs its own answer — most likely a second volume, or object storage. This is deliberately left open rather than guessed.\n\nTHE VOLUME TYPE IS NOT A DETAIL. RocksDB's exclusive lock is a filesystem lock, and network filesystems honour those unreliably — NFS especially. The volume must be a real block device or a local volume. A lock that silently fails to exclude is how two processes end up writing one store, which is the corruption case the entire single-writer design exists to prevent, and it fails with no error saying so.\n\nTHE ACCEPTANCE TEST IS A CONTAINER REPLACEMENT: stop the container, start the new image against the same volume, and every design is still there and still ITSELF — the graph_id is unchanged and no design opens empty.",
+    "status": "proposed"
+  }
+}

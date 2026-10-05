@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:713d41153c631cb2bbcdcc4caa66002119e872c4040013c81f3ac3219fff9e3c",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:a-findings-name-can-claim-more-than-its-data-and-the-name-is-what-search-returns",
+  "properties": {
+    "note": "That decision binds detectors and tools to never misrepresent what they know. This is the same rule unapplied to the records the design writes about itself."
+  },
+  "to_id": "dec:reflow2-is-built-for-observability"
+}

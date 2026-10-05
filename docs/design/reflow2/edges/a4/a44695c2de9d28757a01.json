@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0801a86777eaf20b88d6325fad9878879f8fcf409bfe72a5fb5caa04346f31bf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-undated-change-event-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-temporal"
+}

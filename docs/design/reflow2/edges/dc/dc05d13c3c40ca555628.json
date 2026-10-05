@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f1f247b0a82e39ce47db1e16461e3f7328d2b6516e4fd6585dc77913ca0a1941",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:92ca1c0d429ecf3f1b4d8fe67cf894a79b4cdbbbf09d65d2be4d821d6fd226f4"
+  },
+  "to_id": "art:opencode-loop-nudge-plugin"
+}

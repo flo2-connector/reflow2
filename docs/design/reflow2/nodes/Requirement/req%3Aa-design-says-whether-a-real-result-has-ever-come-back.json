@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:eec39bc09e0ce1daa038c5b2b163d154c227b90a8e9d94feb65fbe0cd27da9f7",
+  "node_id": "req:a-design-says-whether-a-real-result-has-ever-come-back",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design says whether a real test result has ever come back into it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Wherever a session reads the design's status, the design shall state whether any real run has ever been compared against its recorded checks, how many were compared, when last, and whether a failure has ever come back — so a design whose every pass was typed reads differently from one whose passes were confirmed by a run. It states the fact and never counts it against the owner: feeding results back is their choice.",
+    "status": "accepted"
+  }
+}

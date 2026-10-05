@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ab3d1f1f232ac38bbe1e10b91237fdf78bb7477ab0acb625d1f87895619b96c0",
+  "node_id": "chg:accept-90d8baec7c63fba7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-23",
+    "name": "rustfmt reordered two `use` lines after the COMPLEMENTS guard added an import. Formatting only; no design meaning and no behaviour change. Caught by CI's `cargo fmt --check`, which is a gate this session had not run locally.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e17249f5fd8c094632f70ad4d841d6a397b4fad038acd0cb89283f2d25ab93b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-client-elects-a-server-of-its-own-build",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:shared"
+}

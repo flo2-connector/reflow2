@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59bd6379f281a2a818a8f1bffcb34092ade036c28dc1a0025b20b083db1e4d8d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:realizes-is-restricted-to-three-target-types",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-file-realizes-only-what-it-implements"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:115afa1d4002bb159a22f6c1f51b196133dd93c6282243377882da1e38ed8b34",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-design-interview-precedes-the-capture"
+}

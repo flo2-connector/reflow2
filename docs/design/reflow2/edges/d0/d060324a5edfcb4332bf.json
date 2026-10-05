@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12a41567bdd5615b735917f18a3e6cfe956922d02935dcddcc9152a23adb04fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-a33cc338380ccc70",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

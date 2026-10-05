@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7c122d221a10f9717f39053b80f85657292243a0ec9d446e5ee6aa3027797d57",
+  "node_id": "chg:a-shared-client-outside-the-project-attaches-to-the-running-server",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-22",
+    "name": "A --shared client outside the project attaches to the server already holding it",
+    "rationale": "Root-caused before fixing: a record other processes read held a path whose meaning depended on the WRITER's cwd. Corrected at the cause (the writer records what it means), with the reader hardened for daemons still on the old build. Pinned by a unit test and a new CI end-to-end test (tools/test_shared_attach_from_another_folder.py), each observed failing first; 612 tests across 98 binaries green; clippy clean. Built from the dev_reflow2 hub in a separate worktree while the owner's session worked in the main checkout.",
+    "subject": "system",
+    "summary": "The shared daemon now records its store in the rendezvous as an absolute, canonical path (shared::resolved_graph_path) instead of as typed, and a relative record left by an older daemon is resolved against that daemon's own cwd (/proc/<pid>/cwd on Linux) rather than the reader's. A client started outside the project (a hub over several designs, a script) now attaches to the running server in ~0.1 s instead of spawning a rival that loses the store lock and serving reflow2_unavailable after 30 s."
+  }
+}

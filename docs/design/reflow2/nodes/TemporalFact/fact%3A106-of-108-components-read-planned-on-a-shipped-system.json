@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3213b07a3ae68f4939d88e581f90b1c8c0d27a1434fefc839607a628b1c3ff70",
+  "node_id": "fact:106-of-108-components-read-planned-on-a-shipped-system",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "status",
+    "name": "106 of 108 Components read `planned` on a system that ships — the status a Component is born with was never moved, so \"born planned\" is also \"never promoted\"",
+    "statement": "Found sideways on 2026-09-13 while measuring how much of the concept-stage vocabulary reflow2's own design reaches (the pseudo-design brainstorm): jq over docs/design/reflow2.json at 4,380 nodes — Components with status `planned`: 106 of 108. Capabilities by contrast read realized/verified in the majority (247 total; delivery computed along the thread), and 342 Artifacts are registered with checksums, so the BUILD is recorded — it is the Component tier whose status field nobody moves. The design's own doctrine is that a status is a measurement at an instant and that delivery is computed from the thread rather than read from a status field, so this is not a delivery error; it is a record that reads confident and wrong at the Component tier (the class epoch:a-record-that-still-reads-confident names), and it is the same shape the reflow review found in reflow (\"PASS - production-ready\" beside \"unusable\"). CAUSE NOT ASSERTED: whether nothing on the surface moves Component.status, or whether the guided paths never say to, is not measured here — the root-cause skill is the step before anyone writes one. Reported as an observation; it may also be a candidate for the \"a settled node with nobody's name on it\" and \"prose predates its status\" family of checks, which look at the other tiers.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-13",
+    "value": "{\"components_total\":108,\"status_planned\":106,\"measured_at\":\"2026-09-13\",\"measured_over\":\"docs/design/reflow2.json, 4380 nodes\"}"
+  }
+}

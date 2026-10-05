@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:72fa7e2a47f5b00a979508371f5650534d8d84ba704fd5ba94350ceac8a3b64a",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:backup-belongs-to-the-consumer",
+  "properties": {},
+  "to_id": "rule:reflow2-is-built-for-other-projects-not-for-itself"
+}

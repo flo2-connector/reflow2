@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1abc0296da284602cfcdb95b76d883fbf2d8b8af8c4c74d884b99dc5a4ccf6d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b5e16d3fe45283006a2f78911420d80d248784dca913a6b6528358eda49a0cb4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:refusal-speaks-gate"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e7e59cfb6e18e3e3b8f1ee98f3ce5e2111f7a9b611e1491b213cf59e0d066cae",
+  "edge_type": "REALIZES",
+  "from_id": "art:store-engine",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:byte-store"
+}

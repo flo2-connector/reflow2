@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f365909b487ba6ac451c1de6bc00cdbfe81c68138100cc4416d096eafe33c87",
+  "edge_type": "CHANGED",
+  "from_id": "chg:discontinued-reaches-the-reader",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-discontinued-is-a-first-class-state"
+}

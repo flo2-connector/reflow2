@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92d3be144fde256e449b79f238273c8cb9a0104591f3887996bcef5c7b4e6e83",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-watches-for-the-last-responsible-moment-to-arrive",
+  "properties": {
+    "note": "the accepted principle whose open counter-argument this is",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-allocation-waits-for-the-last-responsible-moment"
+}

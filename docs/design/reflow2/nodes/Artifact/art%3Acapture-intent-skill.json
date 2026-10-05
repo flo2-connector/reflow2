@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4a231d460e1f57a8ab5c61d7d3cae64a78f734965b6505a7ad637cb889812bfa",
+  "node_id": "art:capture-intent-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/capture-intent/SKILL.md",
+    "name": "capture-intent SKILL.md — the conversational capture path, now registering the document it captured from",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

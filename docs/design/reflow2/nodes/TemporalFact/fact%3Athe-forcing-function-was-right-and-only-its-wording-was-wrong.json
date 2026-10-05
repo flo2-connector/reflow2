@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3c535ff8387f9a839e5dc4cbedf6db584637e94beb8838b45e9f83a48aeda7ad",
+  "node_id": "fact:the-forcing-function-was-right-and-only-its-wording-was-wrong",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "observation",
+    "statement": "A FIELD REPORT RETRACTS ITS OWN COMPLAINT, AND THE RETRACTION IS THE MORE USEFUL FINDING. bhome, 2026-08-31 (art:bhome-genesis-feedback-2026-08-31, part 9), under the heading \"I was wrong about `register_alternative`, and the reason is worth recording\".\n\nTHE ORIGINAL COMPLAINT, filed earlier in the same file: `register_alternative` demands a `location` naming a per-branch design export, and the session declined to use it for a composting-toilet-versus-digester fork \"on the grounds that neither branch had been designed and inventing a path would put a file location in the graph that resolves for nobody.\"\n\nTHE RETRACTION: \"That complaint stands as written but the conclusion was too quick. The correct move was to actually write the branch documents.\" Three short memos, one per permitting option, a page each, took a single Bash call — and then the tool worked as designed: three Artifacts, each GOVERNED_BY the Decision, each CONTRADICTS its siblings, all pointing at files that genuinely exist and the owner can read. The design gained its first three artifacts as a side effect.\n\n⭐ THE REQUIREMENT IT CALLED FRICTION IS DOING REAL WORK: \"it refuses to let a 'fork' exist as three bullet points in a prose field. If the options are not worth writing down separately, they are not yet alternatives — they are a sentence. Forcing the document into existence is the point.\"\n\n📌 SO THE ASK COLLAPSES FROM A BEHAVIOUR CHANGE TO ONE SENTENCE OF DOCUMENTATION — and the session names the sentence: \"'If no branch document exists yet, write one — that is the work this call is asking for' would have got me there two hours earlier. The current wording reads as a schema requirement rather than as a deliberate forcing function.\"\n\n⚠️ WORTH KEEPING AS A GENERAL CAUTION ABOUT FIELD REPORTS: the first-pass complaint was CORRECT ABOUT THE FACTS and wrong about the conclusion, and only a second encounter hours later surfaced that. A friction item acted on immediately would have removed a forcing function that was earning its keep.",
+    "subject_id": "cap:decision-point",
+    "valid_from": "2026-08-31"
+  }
+}

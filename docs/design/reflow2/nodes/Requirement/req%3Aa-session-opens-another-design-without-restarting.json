@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:afb2148518059c72669ec263212e9893719c91a435794c122c7ce1033ec3b1d0",
+  "node_id": "req:a-session-opens-another-design-without-restarting",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "From one session, a person can open another of their designs, including one just created, and work in it without restarting the session",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "A session working in one design (a hub, or any project) can open a second design the same person works on, whether an existing child or one it has just created by genesis in a new folder or by adopt at a path, and read and write it in that same session, with no restart and no hand-edited client config. Each write still lands in exactly one named design.\n\n@ajs, 2026-09-23, choosing option (c) of dec:idea-a-hub-starts-a-new-child-design: \"we need to do: the real fix (largest): one session that can open a second design without restarting.\" The hub trial named this as its missing half; every hub task today ends in a restart.\n\nSCOPE, so it is not read wider than it is: this is COMPOSITION within one person's own designs. It does not weaken req:a-session-cannot-address-another-design, which is isolation between tenants on a hosted server. How the second design is named and held (a flat list or roles per design, config or opened at runtime, one write lock or two) stays open in dec:idea-a-session-holds-several-graphs.",
+    "status": "accepted"
+  }
+}

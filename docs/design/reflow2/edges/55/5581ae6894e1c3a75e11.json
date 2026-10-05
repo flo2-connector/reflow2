@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d7d4874b0fd988e805b62c95c46fd3cbc7c5bb20983f794e9d37508f0da5e121",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:tools-coherence",
+  "properties": {
+    "note": "A tool-surface slice exposes functions its core modules implement; holding none of its own is correct.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:the-tool-surface-slices-hold-no-function-of-their-own"
+}

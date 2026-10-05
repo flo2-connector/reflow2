@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6527e9883f215fd8baab7c7ae152cea1116938c08d1fceac4557cf10b0b39d13",
+  "node_id": "chg:change-type-splits-its-axis",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "`change_type` stops answering two questions at once: `ChangeSubject {system, record}` added as an optional axis, and `ChangeType::DefectFix` fills the system-axis gap. NOTE: this event carries NO `subject` of its own, because the server that wrote it is the pre-change binary — the field exists in the built code and is unreachable until a full client restart. Five sessions across three projects each picked a different least-wrong value before this existed."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fd9fffb0a0559af6d917eb6bdc20952a9448dcfbb95132b7b4986e37747c9ee9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:alternatives",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

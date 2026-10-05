@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12a40d8d0276c15869ff64e15357d2103a4720c675bc5b1caf85ceb6322d7a39",
+  "edge_type": "CHANGED",
+  "from_id": "chg:undefer-skill-adherence-measurement",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:skill-adherence-is-measured"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7ee8223db228d2c358030c8c4117785065f1ebf8ba27b5cbf867a7936e88fe62",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-happens-to-work-built-on-a-fork-of-reflow2",
+  "properties": {
+    "evidence": "What a fork may do with reflow2 is set by the license chosen; the fork question's strongest practical answer (no competing or commercial derivatives) is that license's terms.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-which-license-keeps-reflow2-public-and-stops-competitors-to-flo2"
+}

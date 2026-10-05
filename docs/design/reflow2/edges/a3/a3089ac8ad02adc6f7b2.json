@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f35dc4f7dd5c9e5eca43419027f6c582a47ac9b7a12510e1712f8c885c7adad3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:change-type-gap-corroborated-by-a-second-project",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-change-event-has-no-type-for-a-field-reported-defect"
+}

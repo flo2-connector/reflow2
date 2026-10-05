@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:abc3225e65835fd1d92ba7a2aadd58c8f43daa8b30e549f72755c8beae2c8cba",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:capture-session-skill",
+  "properties": {},
+  "to_id": "req:the-user-can-trigger-capture-of-what-only-the-session-holds"
+}

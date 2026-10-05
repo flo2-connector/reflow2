@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a32f7c7dbc82ad2b9eadba783cfcced4ae0721979a2c13753001b61e4ced24d6",
+  "node_id": "chg:accept-0db1a1a6fa82c0d5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-23",
+    "name": "rustfmt re-wrapped two `add_verification` calls onto multiple lines. Formatting only; the seven cases and their assertions are unchanged.",
+    "subject": "system"
+  }
+}

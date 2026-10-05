@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:22a713321fc3ea2bbeef7ff652519c3f34ce568007e781ad0028a48593832c31",
+  "node_id": "drift:b8574fc9888de79d",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:compare drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:compare' has changed since it was registered against the design"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85beb25ba18c7212663d3caabe2d18f94bbe9a56ad6b5c6166bc4f564a4a09a7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:design-authorship-identity",
+  "properties": {
+    "authored_at": "2026-07-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c8e922cb5d430e6af49479284c5a49e67fb163031bd6570ac1ec279acedb5fd",
+  "node_id": "art:test-the-commonest-edge-has-a-typed-helper",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/the_commonest_edge_has_a_typed_helper.rs",
+    "name": "the_commonest_edge_has_a_typed_helper.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae18abedd7f9b448a002fe0ef68123fc7afee3c0499997e63e5551337b795bec",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-finding-carries-its-bounds",
+  "properties": {
+    "evidence": "That open idea proposed a `grade` and structured result fields (observed/expected, exit_code) on a Verification. That is a second possible home for the same qualification, so it foresaw this need, and the two should be settled together."
+  },
+  "to_id": "dec:idea-a-run-can-pass-with-its-exceptions-stated"
+}

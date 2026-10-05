@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c529e63ad92b38e0ad302e6fd91fa270e494f1d180e6d0ac7e16937bc8e179c3",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-reflow2-ship-a-companion-for-the-file-side-work-it-refuses-to-do",
+  "properties": {
+    "evidence": "A companion that walks the registered artifacts is only worth building if the artifact surface can be asked what it holds — which is the accepted intent the DesignRule and note-parameter findings say is half-built. A helper standing outside a surface that cannot enumerate itself has nothing to walk. Drawn on the second attempt: the first was lost when the parameter block landed in prose instead of being interpreted.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:declared-vocabulary-is-reachable-from-the-surface"
+}

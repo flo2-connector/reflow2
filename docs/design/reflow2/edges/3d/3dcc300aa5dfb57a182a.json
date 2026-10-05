@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac629316e13f708034ea2531767cd5870919fd4f82734557b208cc182653bfd5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:gap-carries-a-reading"
+}

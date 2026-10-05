@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:689cf2f39049e942176329eedc2b665a3f884cc6a57d7f4a6b82a801c6b4aaae",
+  "node_id": "chg:capture-intent-registers-its-source",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "capture-intent/SKILL.md gains step 3: register the document you captured from. Measured 2026-08-11, 1 of 154 requirements carried any backward provenance edge — the accepted req:no-idea-goes-quiet was satisfied only on the corpus-ingest path, and 153 requirements arrived by conversation, which recorded no source at all. Narrow by design: capture FROM A DOCUMENT only; intent arriving in conversation with no file behind it records nothing rather than inventing a location."
+  }
+}

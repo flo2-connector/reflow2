@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b9203a0476289162d27b13b8c904e18adc857498d8eead99e657d47568e71b5c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:nudge-covers-bypass",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

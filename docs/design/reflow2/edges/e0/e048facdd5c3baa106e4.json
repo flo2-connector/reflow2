@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e965baedee465e37f6b098cedcbb5f5ccb3c05d1fee5eb8a9e10c22594b19b1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-reachability-gate-reads-which-tool-writes-which-type",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:53afd546badccd26849199f9f8526d75bea923debf1b7de511600b484ffa10e4",
+  "edge_type": "REALIZES",
+  "from_id": "art:consumption",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:built-and-consumed-by-nothing"
+}

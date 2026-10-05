@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2bc6155284fad47a5028f5cb37a62b2fcf81f96982bc4705f2bf41d653bf58da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:edges-need-both-ends-audited",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:edges-need-both-ends"
+}

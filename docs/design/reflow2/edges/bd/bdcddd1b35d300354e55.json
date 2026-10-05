@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5aa54ca80a43471a41100499835d4497f43670bf291cc5cd6f1b1ce5fcfa8d12",
+  "edge_type": "CHANGED",
+  "from_id": "chg:prune-proposed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+  },
+  "to_id": "req:friction-has-a-severity-bar"
+}

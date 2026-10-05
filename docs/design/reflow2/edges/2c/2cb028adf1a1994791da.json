@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e746e82b6cc83b4d57eb9ccc6446fa138498e385a9e97c1a3b6afd513462c0b2",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs",
+  "properties": {
+    "evidence": "Not duplicates — the earlier fact predicted the later one and named the mechanism six days early. On 2026-08-23 it recorded that a reporter running a pre-#303 binary filed an already-fixed defect, and then wrote 'THE SAME TRAP IS LIVE ON THIS SIDE', naming the stale shared server explicitly. On 2026-08-29 Alex hit exactly that: an upgraded disk binary at 0.42.0 with a daemon from 14:58 still serving 0.39.0. The 2026-08-23 fact is about an agent that cannot NAME its version and so misreports; the 2026-08-29 fact is about the upgrade path that LEAVES it on the old one. Distinct claims, and the first anticipates the second."
+  },
+  "to_id": "fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary"
+}

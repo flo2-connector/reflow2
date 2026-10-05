@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:14369578c6aa664b6700df7494d9e996cce7b50773bad6371f879ccdb4959f4d",
+  "edge_type": "CLAIMS",
+  "from_id": "who:ajs",
+  "properties": {
+    "claimed_at": "2026-09-28",
+    "depth": 1,
+    "note": "Building search_design's tracked_designs parameter, the hub skill's search step and the absence-claim rule, on branch feat/one-search-reaches-every-tracked-design (dev_reflow2 hub session). #620 stays where it is.",
+    "seat": "asligar-bitecool:4532:7b7bbf26"
+  },
+  "to_id": "cap:search-design-reaches-the-designs-a-hub-tracks"
+}

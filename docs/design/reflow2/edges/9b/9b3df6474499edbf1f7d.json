@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b3a76d6e0d2d7789642f56522c66ee02431a79317c18cb7f5ca9646745ec92d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-fix-says-whether-it-corrected-the-cause",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

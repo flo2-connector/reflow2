@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c525d5beecad4f5cfe52033d9fba6a3512e76dd0abb0bf9fc7f2f1dc25ed78d",
+  "node_id": "cap:every-oversized-reply-offers-a-bound",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One shared helper bounds any tool reply to a caller-supplied `budget_chars`: prose is cut progressively (4000/2000/800/240/120/0 characters) while numbers, counts and ids are never touched, and every trimmed reply carries a `budget` block naming what went and how to get it back. Shortening a LIST is opt-in and forbidden by default, so a vocabulary or catalogue comes back complete-and-terse rather than complete-and-empty; an 80-character floor keeps names, ids and enum values intact at every rung. Document-shaped payloads (the design export, the instruction set, a published surface) are excluded and instead WITHHOLD WHOLE over budget, naming the narrower call that works. A CI gate seeds a real design from the committed export, calls every no-argument read tool, and fails on any reply that exceeds the budget without declaring a bound — and fails equally when NOTHING overflowed, because a detector with nothing to run on must not read as one that ran clean.",
+    "name": "Every oversized reply offers a bound, trims prose before length, and a CI gate fails when it had nothing to run on",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

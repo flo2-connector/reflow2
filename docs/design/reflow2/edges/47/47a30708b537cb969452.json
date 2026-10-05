@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d93f8c957d7c70854bf2cf619290af946dce8c0f0f6e688de0c79c1d47bbec82",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:upgrading-v0400",
+  "properties": {
+    "doc_kind": "upgrade_note"
+  },
+  "to_id": "proj:reflow2"
+}

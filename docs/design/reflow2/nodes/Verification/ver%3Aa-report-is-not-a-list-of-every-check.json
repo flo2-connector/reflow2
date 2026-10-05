@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d2d985cad9c39c35aae6b733bbe95cf5be29ab4aaa162897e3eb851e85cb93c9",
+  "node_id": "ver:a-report-is-not-a-list-of-every-check",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_report_is_not_a_list_of_every_check.rs, 4 cases. THE ONE THAT MATTERS MOST IS THE POINTER: withholding a list is only honest while the instruction for getting it back is true, and `loop_status`'s digest sends readers to `graph_report` for the roll — so a rename of the flag here silently breaks a route over there. Both pointers are asserted to name `include_verifications`. The others pin that the default is the digest rather than the list; that the roll comes back whole when asked; that the digest is FLAT in the passing remainder while the roll is linear (40 more passing checks, growth compared); and that no other section of the report moved between the two forms — `loop_hint` excluded, because dec:read-hint-shape throttles it deliberately and comparing it would pin the throttle rather than the report. Proven non-inert: reverting to the always-full roll fails three of the four.",
+    "findings": "4 cases passing, alongside `cargo test --workspace` (50 suites, 0 failures), fmt, mcp clippy, skill_lint, smoke_mcp and all 155 toolsnaps. MEASURED: graph_report 166,934 → 15,480 bytes on the wire, the roll still reachable at 165,207, and both `full_list` pointers (its own digest and loop_status's) naming the flag. PROVEN NON-INERT: reverting to the always-full roll fails three of the four. TWO THINGS THE TESTS TAUGHT RATHER THAN CONFIRMED. (1) On a THREE-check design the digest is BIGGER than the roll it replaces (4,456 vs 4,050), because it carries a fixed sentence saying how to get the roll back — so the property worth pinning is not \"smaller\" but FLAT IN THE PASSING REMAINDER while the roll is linear, which is what turns 166,934 into 15,480 at 197 checks. (2) The first version of the flatness case padded with `planned` checks and failed, because the digest keeps every not-passing check IN FULL — which is correct, and is exactly the limit now recorded in `fact:a-report-is-not-a-list-of-every-check`.",
+    "kind": "verification",
+    "last_run_at": "2026-08-23",
+    "level": "integration",
+    "method": "test",
+    "name": "graph_report withholds the verification roll, and the pointer back to it resolves",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3eef4df2aee9ddfdf071d3445ec9b385f7be5dd36d66470c3351c527634d84dd",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:link-artifact-demands-a-name-and-location-for-an-artifact-that-already-exists"
+}

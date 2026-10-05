@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aac16ff0d7c9671eee060bee72f411468d5ed030ccab86a349e8b5371f371e25",
+  "edge_type": "CHANGED",
+  "from_id": "chg:mcp-surface-split-by-transport",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ifc:mcp-tools"
+}

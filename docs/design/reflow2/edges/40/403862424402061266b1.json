@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f31d0b7a186a4f4a4afa4cd0b8d12abb12486c80561e9e69e305b6070257be5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coverage"
+}

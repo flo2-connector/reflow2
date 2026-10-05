@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:38dc3b896796ce6f6e5ae7507daf992369e4f632c3e20dfa202935c8bd95ec81",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0730",
+  "properties": {
+    "as_checksum": "sha256:d65cab06ee2918cb57dde80235b25c2577b7feeed32b1662d1f9f33f20cd9d04"
+  },
+  "to_id": "art:test-an-export-says-where-it-was-taken"
+}

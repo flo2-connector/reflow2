@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fd53314c2a545d779c848025c6bb8c0a711b63fcacb028409484d598fb2689de",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-where-do-lessons-learned-live-and-can-a-user-state-a-precondition",
+  "properties": {
+    "evidence": "Both came from one remark of Anthony's on 2026-08-30 that the governance layer is immature, and he named them as two facets. This one proposes making a PRECONDITION expressible; whether that is worth doing turns on the measured question that one holds — six pieces of governance vocabulary at zero instances. Adding a seventh before deciding the fate of the six would be the wrong order.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-governance-layer-is-declared-and-mostly-unused"
+}

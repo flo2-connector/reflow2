@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43ab27489092bee311b63a65d0b408e08a7397a1fb0a140132d1d5b965ef64c3",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:registry-http",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:registry-http"
+}

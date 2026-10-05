@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:563705a7858954e218ee05cf0c97f4a9169bd63d68ae262c2fbd8664d539d1d1",
+  "node_id": "req:a-dated-observation-does-not-read-as-standing-doctrine",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim about what the system IS carries when it was true, and is read back with its age",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A statement about the system's CURRENT state must be recorded as a time-bounded assertion and surfaced with its age wherever it is read back, so it can go false. Prose written into a Requirement's `statement` has no expiry: it reads present-tense forever, no report flags it, and it is unfalsifiable by construction. The design already draws this line once — `dec:verification-freshness-not-a-gap` ruled that a check older than its code is a freshness FACT rather than a gap — and this is the same distinction one node type along: a claim about what the design SHOULD BE belongs in Requirement prose; a claim about what the system IS RIGHT NOW belongs in a TemporalFact, which keeps both states instead of overwriting. Reading a dated observation back to a person as settled doctrine upgrades it into a standing property that nobody chose.",
+    "status": "proposed"
+  }
+}

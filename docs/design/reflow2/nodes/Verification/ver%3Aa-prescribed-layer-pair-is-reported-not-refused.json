@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b782f1bafd4bf02d6c111fcf40207e7ecbe787dee8c40194521072d52e0bab94",
+  "node_id": "ver:a-prescribed-layer-pair-is-reported-not-refused",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/a_prescribed_layer_pair_no_longer_refuses.rs`, five cases, plus the two updated files that carried the old behaviour (`a_near_match_of_another_type_is_named_as_a_layer.rs`, `search_first_fires_at_the_tool.rs`).\n\n⭐ THE LOAD-BEARING ASSERTION IS NOT THAT THE WRITE SUCCEEDS — it is that the near-match is STILL REPORTED in `search_first` when the refusal is dropped. Without it, narrowing this guard and deleting it are indistinguishable from outside, and every other test in the file would pass either way.\n\nTwo counterweights hold the other side: a same-type duplicate still refuses and still offers SHARPEN, and an UNMEASURED cross-type pair still refuses with the 2026-08-29 layer wording — so the conservative repair survives underneath the behavioural one rather than being replaced by it.",
+    "findings": "5 passed, 0 failed, in the full workspace run of 1925 tests (0 failed) on 2026-08-31.\n\n⭐ OBSERVED FAILING FIRST, IN THE SPLIT THAT SHOWS THEY DISCRIMINATE. Against the unfixed code: 3 failed and 2 passed. The three that failed were exactly the ones the change had to alter (Requirement→Capability, exploratory-Decision→Decision, TemporalFact→Decision); the two that passed were the counterweights (a same-type duplicate still refused, an unmeasured cross-type pair still refused with the layer wording). A suite that only went green afterwards would not have told those apart.\n\n📌 TWO PRE-EXISTING TESTS ALSO HAD TO CHANGE, and their old assertions are the honest record of the reversal rather than casualties of it: `a_near_match_of_another_type_is_named_as_a_layer` moved to ChangeEvent→Component, because Alex's own ChangeEvent→Requirement case no longer refuses at all; and `a_capability_restating_a_requirement_is_caught_across_types` became `..._is_reported_but_not_refused`, which is now the clearest statement in the suite of what this change does and does not do.",
+    "kind": "verification",
+    "last_run_at": "2026-08-31",
+    "level": "unit",
+    "method": "test",
+    "name": "A prescribed layer pair is reported and not refused, and everything else still refuses",
+    "status": "passing"
+  }
+}

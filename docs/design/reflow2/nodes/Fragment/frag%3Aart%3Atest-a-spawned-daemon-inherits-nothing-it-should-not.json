@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3cbd1fc2f2e60b080ba8ca22dfdc78ed836f5d196eb89360e64953453f1458b2",
+  "node_id": "frag:art:test-a-spawned-daemon-inherits-nothing-it-should-not",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_spawned_daemon_inherits_nothing_it_should_not.rs — what a spawned shared daemon keeps of its launcher, read from /proc"
+  }
+}

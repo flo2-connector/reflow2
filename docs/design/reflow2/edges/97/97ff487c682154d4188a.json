@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5eb4499823ff01c45f14cb0824341fa36ce027775ce1bbee5cb9ef0e96d07245",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-latent-server-promotes-itself-in-place-and-announces-the-changed-tool-list",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:latent-surface"
+}

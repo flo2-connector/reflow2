@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:028ca53d135f7388ba414863899bf6abd652197383600eeb9d60db675ea8115a",
+  "node_id": "chg:plan-movement-question-answered",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "cap:plan-movement-recorded's open design question is answered: filing in the arrived epoch is sufficient, no revision chain needed"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5fdf812638f2ad10a7850290fe40f420f6558873ac414f589ce20a36f95a72ab",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:the-hub-skill-writes-each-fact-where-it-belongs",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:the-hub-skill-writes-each-fact-where-it-belongs"
+}

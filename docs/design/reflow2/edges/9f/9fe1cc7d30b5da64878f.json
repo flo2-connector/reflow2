@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d0c9a10261d56d1fef19db7af763037889b5cb57a74f4e84dca6a749632016d7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-reflow2-serve-a-root-cause-analysis-method",
+  "properties": {
+    "evidence": "Any RCA method reflow2 serves would be the executable form of this rule, which already carries the ordered steps in Anthony's own words (2026-08-26). A skill that diverged from it would put two different methods in front of the same agent. The rule is `enforced: false` by his own decision, so the question this Decision asks — whether a served method changes anything — only makes sense with the rule standing behind it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "rule:an-issue-is-root-caused-then-pinned-by-a-test-then-fixed"
+}

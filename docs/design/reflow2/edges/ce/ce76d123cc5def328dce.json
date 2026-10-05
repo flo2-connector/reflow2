@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0eacb2da384e3ff96880806c4d3bbf912d1d2b1f1d34398a0884822d425db876",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-declares-its-derived-relations-and-serves-a-read-that-runs-them",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

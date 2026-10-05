@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:84fb26ef659b9b48dc9a22f6089ffffa04e6fa431b13011e4422cf3302381945",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-server-says-when-it-is-stale",
+  "properties": {},
+  "to_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current"
+}

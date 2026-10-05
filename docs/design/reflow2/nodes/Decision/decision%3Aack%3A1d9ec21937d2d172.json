@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:de7d8fc6dcfe277101647da1a37e7577f1734454e11b75b3646a710b7cebb626",
+  "node_id": "decision:ack:1d9ec21937d2d172",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1d9ec21937d2d172.",
+    "name": "Reviewed: gap:1d9ec21937d2d172",
+    "rationale": "Approved for build by Anthony on 2026-07-30 but not yet built, so there is nothing to verify. The capability is `planned` and its verification will be written with it. There is an irony worth recording rather than smoothing over: this is the acknowledgement most likely to go stale in exactly the way the capability it defers exists to prevent, because its expiry is keyed on the affected node SET and not on content. Until this one is built, every acknowledgement in the design — including this one — can outlive the wording it judged. That is the argument for building it, not a reason to leave it unrecorded.",
+    "status": "accepted"
+  }
+}

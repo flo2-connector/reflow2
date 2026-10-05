@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb84e573f9993a06cb34aa36f1ceb0acb4df07f1aa7fee1dbccdd12ea8192bcd",
+  "edge_type": "REALIZES",
+  "from_id": "art:address-watch-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-declared-dependency-is-watched-not-imported"
+}

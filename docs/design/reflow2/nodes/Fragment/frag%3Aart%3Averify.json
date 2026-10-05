@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:696d83bf27862525117170f196cbb349cb954c1351f389fef26c634c93074d6f",
+  "node_id": "frag:art:verify",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered verify.rs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d6b903955a5254abe2723052dea6c5fd6a5e3271b6454f87ee46cfe2e4c1e2a0",
+  "node_id": "cap:a-tool-description-predicts-what-the-tool-does",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A consumer reading a tool's served text can predict the tool's behaviour, its reply shape, and what a zero or empty result means, before spending a call on it. The method is the test: predict from the description blind, then call, and score the prediction.\n\n⭐ BUILT 2026-09-12 (epoch:planned-the-tool-surface-predicts-itself), from the measurement. All 76 required parameters that published no description now carry one, as doc comments on their request-struct fields; the toolsnaps moved by exactly 76 insertions across 68 files. All 24 descriptions under 220 characters were rewritten from purpose, inside the 1,500-character budget, each saying what the tool computes, when to ask, and — where it applies — what an empty answer means. docs/skills-and-tools.md is now generated for real, by tools/render_skills_and_tools.py from the committed toolsnaps, and its --check is a gate.\n\nTHE CLASS IS HELD BY A GATE: every_required_parameter_is_described, with membership DERIVED from the served schema like its sibling every_reference_parameter_names_its_type, so a 181st tool cannot ship an undescribed required parameter. Shown to fail on one stripped description before it was trusted.\n\nTHE THIRTEEN THE BLIND TEST FAILED ON 2026-09-11: eleven were closed by #477 and #478; sync_status was never a defect (the prediction was wrong). Of the three one-offs the tracker still carried, two were ALREADY CLOSED by that same work and the tracker was stale. The third — compose_and_analyse returning an empty seam on a seam built for it — is a root cause (the namespacing that prevents id collisions keeps the halves from touching), so its description now states that limit honestly and points at pair_designs; the cause stays open as its own item.\n\nWHAT THIS DOES NOT CLAIM: that the descriptions are GOOD. The gates pin presence and consistency. Quality is the blind prediction test, a judgement, and the next sweep is what measures whether this pass moved it.",
+    "name": "A tool's served description lets a caller predict what it returns before calling it, including what an empty answer means",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

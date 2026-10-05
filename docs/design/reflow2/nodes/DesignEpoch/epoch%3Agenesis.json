@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:08447c2e220af47dd5c71c3e434856217e8f638852f0f188280149c63d11fd42",
+  "node_id": "epoch:genesis",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+  }
+}

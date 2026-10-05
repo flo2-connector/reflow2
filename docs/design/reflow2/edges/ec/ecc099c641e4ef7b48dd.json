@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b600999273d6bdeb19916a8c1421c1c3664dbbec04c91a80189c8fce22e58853",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-graph-asks-what-a-session-made-false",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-session-skill"
+}

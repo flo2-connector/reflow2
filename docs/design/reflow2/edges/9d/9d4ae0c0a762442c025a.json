@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6b0c458e4cd379ceb011ebc8fd6d516153187be095f9841a3cdfff559a9b0886",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f70590a55164e4a405d9abb5349f6d0e48957f264090f3884b04ea2b5e304d2d"
+  },
+  "to_id": "art:reply-budget"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:685bf8a0e450bbb7794bcd48fe238fbda4457320d92264b968748225a18c7a91",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "note": "A single-tenant telemetry design would be a new foreclosure of exactly the kind that rule names"
+  },
+  "to_id": "rule:no-foreclosure"
+}

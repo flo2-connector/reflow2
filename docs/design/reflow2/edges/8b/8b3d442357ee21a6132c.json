@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:38311dfcc087305f2e3b0c116b9cd5fcad6cedbe07efe89945310de4f6292ab1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-ef9c822be3f2979c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

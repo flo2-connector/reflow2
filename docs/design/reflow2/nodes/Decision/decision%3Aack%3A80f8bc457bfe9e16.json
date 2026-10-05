@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d998b15577c1226e54d2d225500be8479f8b1e0a9380df84359bb4363a3411be",
+  "node_id": "decision:ack:80f8bc457bfe9e16",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:80f8bc457bfe9e16.",
+    "name": "Reviewed: gap:80f8bc457bfe9e16",
+    "rationale": "Standing policy, not a fresh judgement: Anthony's word from 2026-07-23, re-applied at 33, 34, 35, 36, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 67 capabilities and now 68. Validation for this project is the trials programme — reflow2 used on real designs, logged in docs/trials/ and docs/trials-private/ (the brownfield ophyd-service pass, the greenfield aidrone pass) plus sustained real use of the StoryFlow fleet. Formal validation-kind Verification nodes are not this project's tracking mechanism, and recording 68 near-identical ones would turn the number green without anyone having checked anything — the dishonesty `dec:passing-is-verified` exists to prevent.\n\nApt for the newcomer, `cap:seat-handle`, in a way worth naming. Its verification is unusually strong for a spec-level check: `tools/stateless_seat_probe.py` drives three real transports against the real binary and measures the thing the requirement is about, and seven Rust cases pin both answers of the transport question including the refusal's wording. What none of that establishes is the operational intent — whether an AGENT, mid-session, actually calls `mint_seat` and keeps the handle rather than re-minting per call or omitting it and hitting the refusal. The refusal exists precisely because that failure is expected, and whether the message it prints is enough to change an agent's behaviour is answered by watching a session go wrong, not by a fixture. First real use over a sessionless transport is the trial.\n\nTHE CHURN IS STILL A FINDING, and it now has about twenty instances: this rollup's acknowledgement expires whenever the capability set changes, so it can never stay accepted and is re-recorded every time the design grows. Captured as `req:set-scoped-acknowledgement-keys-on-its-rule` rather than noted in prose for a twenty-first time.",
+    "status": "accepted"
+  }
+}

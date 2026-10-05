@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2cb212e3dcbfe132880cec0a6c911f6e9de346cf25243e4707255c3ab3011347",
+  "node_id": "fact:bl-214",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-214] Cross-graph references are PROSE, so the loop cannot see them — a parent design naming a child's node ids in free text is invisible to detect_gaps and propagate_change",
+    "subject_id": "sys:coherence-loop",
+    "value": "{\"evidence\": \"*hxm_program field report, 2026-08-05, item 3.* The program-level graph references sim-graph node ids as plain strings (\\\"req:guided-tutorial\\\", \\\"dec:panda-configurations in the sim graph\\\") because there is no cross-graph edge. Consequence, in the reporter's words: \\\"if the sim graph renames or drops a node, nothing here notices; blast-radius computations stop at the graph boundary even though the real design doesn't.\\\" AND THE EXISTING TOOLS ADDRESS THE WRONG SHAPE: pair_designs / mirror_surface / compare_designs / merge_designs handle PEER designs; the field need is a PARENT that CONTAINS children. dec:nested-graphs prescribed peer federation via published surfaces and never modelled hierarchy. Three suggestions from the reporter, none chosen: (a) graph-qualified refs (8a9ce30fedd213e5:req:guided-tutorial) usable as edge endpoints, with a dangling-cross-ref detector; (b) first-class subdesign containment, so loop_status at the parent can say \\\"3 sub-designs, last checked when, N open items\\\"; (c) failing both, a lint flagging id-shaped strings (req:, dec:, cap:) in node prose that resolve in a sibling graph \\u2014 cheap, and it finds the informal links people actually make. Related and open: dec:idea-one-owner-many-projects, dec:idea-intent-crosses-designs.\", \"origin\": \"Migrated from docs/backlog.md BL-214 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: L.\"}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bb6013737b34592f544d4f987d6f2998bbb64f5c34f5c6cea77dacc5061b3253",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:enum-fields-publish-their-legal-values-from-the-schema",
+  "properties": {
+    "at": "2026-09-06",
+    "note": "THE ENUM HALF IS FIXED AT THE CAUSE the fact named: the published schema now carries the legal values for 38 fields, read at listing time from the one schema the validator enforces (34) or from the handler's own const (4), so the first call can be right and published-vs-enforced cannot drift by construction. A toolsnap guard fails the build when a hand-listed value set publishes no enum or lists a value the enum lacks — it reported 41 fields on the pre-change snapshots and caught a mis-sourcing inside this very change. NOT CLOSED: the fact's OTHER HALF — sibling shape inconsistency (how a tool names a node, whether a constructor takes a status, relation-tool shapes) — is untouched here; convention (i), type optional resolved from the id, is Anthony's ruling and the next PR (fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in, fact:defect-typed-tool-parameter-names-are-inconsistent). Also unmeasured, as the fact said: how many harnesses show the schema enum to the agent before a call."
+  },
+  "to_id": "fact:defect-the-schema-discovery-tax-enum-fields-are-strings-so-the-published-schema-cannot-name-their-values"
+}

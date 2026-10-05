@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ab267acef84b265d43a492333e4e97864cf87c68610d592a50106c6991f23c96",
+  "node_id": "fact:field-report-flo2-2026-09-18-skills-are-not-findable-by-words-find-tools-scores-tools-only",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (flo2 F8, 2026-09-18): there is no way to find a skill by describing it — find_tools scores tools only, the corpus and rank ratchet cover tools only, and the owner's own words are on record: 'I continually forget which skills are available'",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 F8/F9 (triaged 2026-09-19 through the triage-feedback skill, which delivered both feedback rules)",
+    "statement": "Observation: find_tools located collapse_decision and add_environment_rule by description twice in one session; nothing equivalent exists for 30 skills, so a skill you cannot name is found by reading every description. MEASURED: tools/query.rs find_tools iterates the tool router only; fixtures/find_tools_corpus.json holds one query per TOOL; the ratchet covers tools only; help/SKILL.md sends 'which skills' to list_skills, never to words. PRECEDENT: dec:skills-served moved skills into the binary after find_tools existed. CAUSE: skills joined the served surface without joining the findability discipline the tools already had.",
+    "subject_id": "cap:skills-served",
+    "valid_from": "2026-09-19"
+  }
+}

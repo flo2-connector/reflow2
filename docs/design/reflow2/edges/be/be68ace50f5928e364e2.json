@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:76a0edda399c41bc4767fcdb02e68b330c5548137f371e6b5c21304794059c91",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "The contradiction rule now skips endpoints whose status is rejected or superseded (heal.rs:1796-1845), citing this reporter's case, so a correctly recorded refutation no longer raises a warning. Banding it as its own category is deliberately not done."
+  },
+  "to_id": "fact:defect-recording-a-refutation-correctly-adds-a-structural-defect"
+}

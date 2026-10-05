@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:340e4b7d29d317c4b6734faa9f6a7da4c8a0d1600521c86a8f34039d2914d001",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48d2fa7ca4a3a73ebe6072b87c3173e898d75343a4454307a3bd69b254a92390",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0580",
+  "properties": {
+    "as_checksum": "sha256:ebbd178bf54b7f1841cf4e4c3f36cf410f12c7b9ff5278e3dbb33de93628eed0"
+  },
+  "to_id": "art:enum-schema"
+}

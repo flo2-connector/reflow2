@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:56bffda51b52176d6ae13c16e81eac2df767e136a42c8cd4a07d2cb691a0b091",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-session-that-reads-and-never-writes-is-seen-test"
+}

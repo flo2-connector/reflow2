@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85258c8f35e53d1fceb87d45576f262f91285420028e27bc86307ceae496dfda",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran",
+  "properties": {
+    "approved_at": "2026-09-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

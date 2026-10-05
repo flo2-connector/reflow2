@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75bb174b6ecc7080e5a4f9860afa9e59aa8a03c30c60cd396fcb6fc1368e1d0f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "Fixed at the cause (candidate b): set_artifact_checksum reads a design_holds / design_updated on a checksum-less artifact as the first baseline it can only be, says so in the baseline event's name, and draws no CHANGED edge; the batch keeps all-or-nothing for every other refusal. Pinned in a_first_baseline_is_read_as_one.rs and by the two moved pins."
+  },
+  "to_id": "fact:defect-a-batch-accept-refuses-whole-for-an-artifact-whose-only-legal-disposition-is-the-first-baseline"
+}

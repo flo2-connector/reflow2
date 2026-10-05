@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cf305dc63dc07780c7dbb1a115721fa377f4c0b0d9f84a2f83269a42790fd121",
+  "node_id": "art:test-the-fourteen-holes-are-writable",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/the_fourteen_holes_are_writable.rs",
+    "name": "the_fourteen_holes_are_writable.rs",
+    "status": "realized"
+  }
+}

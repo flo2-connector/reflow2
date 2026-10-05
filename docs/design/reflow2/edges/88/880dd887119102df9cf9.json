@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4cb201a544cdb24b985f6fd4dbfd8d18cd0c469b2669e40eba97c9fa710b77d5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:41f6cb9eab74640d772259d16e402564708d4f529f04de6bce693745be279131",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-published-promise-carries-its-evidence-test"
+}

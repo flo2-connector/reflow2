@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:553a3389ac755b5f1a4299a9a2e6a3ef14ec605c7153ffae30d7c00f28604b50",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:compare",
+  "properties": {
+    "dependency_type": "function_call",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "cmp:export"
+}

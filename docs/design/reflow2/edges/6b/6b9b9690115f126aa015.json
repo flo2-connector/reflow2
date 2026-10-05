@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:275d3d271f637adcd3e61e25cd8ae8ff54a629a31b2d878f6e2daa42ae872208",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-levied-requirement-is-recordable-in-one-call-test",
+  "properties": {
+    "covers": "whole",
+    "note": "Drawn by hand: the running binary predates today's fix that makes link_artifact draw this itself for a Verification target."
+  },
+  "to_id": "ver:a-levied-requirement-is-recordable-in-one-call"
+}

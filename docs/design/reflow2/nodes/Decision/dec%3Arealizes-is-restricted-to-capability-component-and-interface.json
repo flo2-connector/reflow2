@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c4a87e49886e356739ed8625b84d7ee5d890a0d07f4246f980f64a640b224894",
+  "node_id": "dec:realizes-is-restricted-to-capability-component-and-interface",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-23, settling dec:idea-should-realizes-stop-being-a-wildcard on its own stated test. MEASURED FIRST (fact:37-of-the-38-non-obvious-realizes-edges-are-the-wrong-edge): of 38 REALIZES edges not on a Capability or Component, 37 were the wrong edge and 1 (an Interface) was right. (1) SCHEMA — option B: `REALIZES` goes from `to: \"*\"` to `to: [Capability, Component, Interface]`; any other target is refused at write time, naming the edge that fits. (2) REPAIR, each to the edge it should have been, recorded as a repair and never silently deleted: the 6 on Verifications are dropped (IMPLEMENTS already stands beside each); the 29 on ChangeEvents are dropped, and the 12 changes with no CHANGED record of those files gain one; the 2 on field-report findings become DOCUMENTS; the 7 on Requirements — 6 test files each gain a Verification they IMPLEMENT that VERIFIES the requirement, and the one data file (the vocabulary-reach baseline) is re-pointed at the capability it serves.\n\nCORRECTION, same day: 44 wrong of 45, not 37 of 38 (see the corrected fact). And the 7 Requirement-class edges are repaired this way: 2 test files are tied to checks that already existed for them (IMPLEMENTS), which gain VERIFIES to the requirement; 4 test files gain new checks; the data file is re-pointed at its capability.",
+    "kind": "choice",
+    "name": "REALIZES may point only at a Capability, a Component or an Interface; the 37 edges that pointed elsewhere are repaired to the edge each should have been",
+    "rationale": "Rejected: leaving it open (the next wrong pair stays as writable as the 37 were), and excluding only claimed pairs (needs a schema feature that does not exist). Rejected for the repair: dropping the edges only, which would cut 6 tests off from the requirements they test and leave 12 changes not knowing the files they touched. The counter-argument recorded on the idea — narrowing a schema against a class nobody else hit is over-engineering — was answered by the measurement: the class had been hit 37 times, 6 of them by this very session.",
+    "status": "accepted"
+  }
+}

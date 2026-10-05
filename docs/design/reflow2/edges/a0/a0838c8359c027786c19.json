@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce972b31baee99173a481e580f9b0b82a04a226e21e60070d50ba80d02335dec",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-finding-that-reads-parking-names-it",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

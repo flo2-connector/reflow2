@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:09ab1ceff01d4b7b800185bf89cb80ffc63e1ea7a0131ae98c03feea8f97d72a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-run-converter-is-not-named-like-a-test-and-refuses-an-empty-log",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:test-test-run-to-files"
+}

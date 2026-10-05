@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a7e9835d2f5ac96f70ccd0fda6d05f47e7680d96a184c9d3aed4882edb28f901",
+  "node_id": "ifc:authenticating-gateway",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "REST",
+    "name": "An authenticating gateway in front — reflow2 has no authentication and is not getting any",
+    "paradigm": "synchronous",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "REQUIRED, declared 2026-08-09 on Anthony's word. reflow2 performs NO authentication and NO authorization, by design, and this node makes that a declared dependency rather than a caveat somebody has to find.\n\nTHE PUBLISHED IMAGE SAYS IT VERBATIM in its org.opencontainers.image.description label: \"NO AUTHENTICATION — deploy on a private network behind a gateway that authenticates.\" `--http-allow-host` is Host-header allowlisting — DNS-rebinding protection, NOT auth, and reading it as auth is the mistake this node exists to prevent.\n\nWHY IT IS reflow2'S DEPENDENCY RATHER THAN ITS OMISSION, and rule:no-foreclosure states the principle: reflow2 must never become the thing that decides who may read what. It delegates to an authority that already exists, on the stated principle that a server must not let anyone reach more than they could reach without it. Building an account system would foreclose that by making reflow2 the authority. So the absence is a POSITION, and the gateway is a contract the deployer owes.\n\nflo2's reflow2_updates.md lists this among the two things reflow2 will NEVER do, stated once so nothing waits on them. Declaring it `required` is what turns that sentence into something the seam machinery can compute against — an unmet need on any deployment that has not supplied one, rather than a paragraph in a tracker.\n\nSCOPE, stated so it is not over-read: this says an authenticating layer must exist in front. It says nothing about WHICH — flo2 uses Clerk (dec:stack-clerk); anyone else may use anything.",
+    "transport_security": "unspecified"
+  }
+}

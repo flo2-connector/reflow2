@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8778cb13851ed376c38a2e6e06bb847f9b36bbc8ade05e6e80c6838c6161a155",
+  "node_id": "cap:a-jot-carries-the-tag-its-word-gave-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The generalisation of cap:something-to-come-back-to-is-captured-with-one-word. THE DOOR: the served `jot` skill, reached by /jot, /note and /log-issue (COMMAND_ALIASES, with jot's own name kept as its shortcut). It records the person's sentence verbatim on the thing it names, asks nothing, and writes the tag the WORD carried: fact_type `follow_up` (untagged), `follow_up:idea`, or `follow_up:issue`. In chat, get_skill's `requested_as` tells the skill which word was typed. THE BOUNDARY: `loop_status.follow_ups` lists every open note, one list, each with `tag` (absent when nobody said) and `settle_toward` (issue toward root-cause; idea toward brainstorm or capture-intent; untagged sorted with the person), and the `next` line counts them by tag. Notes written before tags existed read as untagged.",
+    "name": "A thought is jotted in one breath, the word typed is its tag, and it settles by that tag",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

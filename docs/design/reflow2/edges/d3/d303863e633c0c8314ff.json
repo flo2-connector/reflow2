@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c00d221657dfbe75bd50870e8fa2ac25a4ba426b11e7c911052f8d9d43365e02",
+  "edge_type": "CHANGED",
+  "from_id": "chg:realizes-is-restricted-to-three-target-types",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-build"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e7e65f536c27d287478955f1bb0d9dbb811e8c8d0b0890dd5fb86e671af0e8be",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-causes-validation-status-hint-names-the-wrong-enum",
+  "properties": {},
+  "to_id": "cap:vocabulary"
+}

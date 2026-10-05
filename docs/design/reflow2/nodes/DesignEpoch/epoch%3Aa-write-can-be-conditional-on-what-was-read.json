@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4a7cf96f1a30fc706dfb6543e0242ba3bb405dac2003c48ba5f6ca6961035fc",
+  "node_id": "epoch:a-write-can-be-conditional-on-what-was-read",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A write can be made conditional on what the caller read — compare-and-swap, so a lost update is prevented rather than reported afterwards",
+    "sequence": 351,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2481ec687fa52ed7bd965b6cf2c4574456fd69313ede6cb3544dc534da2081a2",
+  "node_id": "fact:defect-the-read-surface-cannot-answer-a-set-question",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "defect",
+    "statement": "A LANE WHOSE DELIVERABLE WAS A DENOMINATOR HAD TO HAND-DERIVE IT TWICE, BECAUSE THE READ SURFACE CANNOT ANSWER A SET QUESTION. Reported 2026-08-08 by w-4d05e937 (dev_storyflow, LANE UNSUSPECTED-VALIDATION-WALK), items 1 and 3. TWO INDEPENDENT MISSES, ONE SHAPE. (1) `get_node` RETURNS PROPERTIES BUT NO EDGES. Their brief required excluding capabilities that already carry a walk-type Verification — a VERIFIES edge query. get_node on a Verification returns kind/status/method/level/name and nothing about what it verifies; evidence_report gives per-capability check COUNTS but never WHICH check. The only routes they could see to the actual edges were a full unscoped detect_gaps dump or an export, which workers are told not to take. THEY FELL BACK TO MATCHING VERIFICATION NAMES AGAINST CAPABILITY IDS AND HAD TO PUBLISH THAT AS A STATED WEAKNESS IN THEIR OWN METHOD. (2) `scan_nodes` HAS NO STATUS FILTER. Their population was 'every Capability with status realized or verified'; they pulled all 95 and tallied by hand. It happened to agree with the boss's independent count — and their own comment is the right one: HAND-TALLYING IS EXACTLY WHERE A DENOMINATOR QUIETLY DRIFTS, AND THE DENOMINATOR WAS THE DELIVERABLE. NOTE THE INTERACTION WITH cap:bounded-reads, which is working correctly and makes this worse: scan_nodes honestly reports `omitted` and `capped_by` when a payload fills, so a hand-tally over a large type is not merely tedious, it is a paging loop the reader must get right. FIX SHAPE, theirs: `get_node(..., with_edges: true)`, or a `verifies_report` mirroring evidence_report but NAMING the target; and `scan_nodes(node_type, status: [...])` or a `count_by_status`. Both are cheap, and both turn a guessable answer into a checkable one.",
+    "subject_id": "cap:bounded-reads",
+    "valid_from": "2026-08-08",
+    "value": "{\"reported\":\"2026-08-08 dev_storyflow, w-4d05e937, LANE UNSUSPECTED-VALIDATION-WALK, items 1 and 3\",\"miss_a\":\"get_node returns properties but no edges; evidence_report counts checks but never names them\",\"miss_a_cost\":\"fell back to matching verification NAMES against capability ids, published as a weakness in their own method\",\"miss_b\":\"scan_nodes has no status filter; pulled all 95 capabilities and tallied by hand\",\"miss_b_cost\":\"the denominator was the deliverable, and hand-tallying is where a denominator drifts\",\"interaction\":\"cap:bounded-reads is correct and makes the hand-tally a paging loop the reader must get right\",\"fix_shape\":\"get_node(with_edges: true) or a verifies_report naming targets; scan_nodes(status: [...]) or count_by_status\"}"
+  }
+}

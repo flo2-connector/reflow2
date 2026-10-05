@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de71de9d9f22d26ac756a8bece112a5e00100c010288ee7716079708ae383fa7",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:questions",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

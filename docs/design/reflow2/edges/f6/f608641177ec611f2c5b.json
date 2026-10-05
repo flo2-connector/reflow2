@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e2b002d204088649e87152e216820cbc22619cc550ea29ed439b1eb6bf468bff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refusal-names-what-would-have-worked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-refusal-names-what-would-have-worked"
+}

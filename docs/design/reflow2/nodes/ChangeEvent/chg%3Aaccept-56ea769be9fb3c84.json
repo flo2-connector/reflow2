@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66d9c1afddaf12952b796c3c23140ff7c6d47c96adf92314b71208ebe4744ad0",
+  "node_id": "chg:accept-56ea769be9fb3c84",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "capture-session added to the catalogue and the opening count corrected 15 -> 19, 2026-08-12. The design HOLDS: SKILLS.md now matches cap:capture-session-skill (realized) and the 19 skills the binary actually serves. The stale count was pre-existing and nothing checks prose counts."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:117ef6891ba298e241c3f699e41f8a9d51a3520f5241db7a45dc4b0795031174",
+  "node_id": "cap:todays-binary-reads-exports-taken-at-past-releases",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Three design exports taken at past releases are kept as fixtures. A gate imports each with today's binary, re-exports it, and compares: a field the document did not carry must not appear, a field it did carry must not vanish, and the binary must report the document's age rather than silently accommodating it.\n\nDistinct from the existing round-trip check, which proves a committed export survives export, import and re-export AT ONE VERSION. That gate cannot see version skew because both sides are the same build; this one exists precisely to put two versions on opposite sides of the comparison.\n\nRetirement rule is part of the capability, not an afterthought: a fixture is dropped when the release it was taken at is older than the oldest version the upgrade notes still support, so the corpus stays at three rather than growing to one per release.",
+    "name": "A corpus of past-release exports is imported and round-tripped by every build",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

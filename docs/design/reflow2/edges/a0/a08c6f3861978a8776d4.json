@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b316902272d7deef817a1023b56b0943cdfcf722283aca0c204e7f4948b36dfa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:item-layout-lineage-holds-through-a-conflict-resolved-mid-merge-2026-10-04",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:2464f44a602a4e1d142b8415fe3ca480bbf80ebe63a89fe0611ea1abb2615da5",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:agent-instructions"
+}

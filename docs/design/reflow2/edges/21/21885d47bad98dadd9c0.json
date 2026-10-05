@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:36db36ebd10561a9d3978faf16347ed61d3449b55400dcaa76d196a5db0ecd46",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-designer-and-an-owner-work-a-design-as-two-parties",
+  "properties": {
+    "evidence": "An owner that is an agent settles only under a delegation, and whether that counts as the owner's word is that idea's open question.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-standing-delegation-to-an-agent-is-a-record-with-an-escalation-boundary"
+}

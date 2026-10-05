@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b1be5cd74b916a938269a73cc24dd868bef07a5344221c8fd2a3d42351a7825",
+  "edge_type": "REALIZES",
+  "from_id": "art:sanitize",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:sanitize"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:657e38db338800f596bcd6cff60ed716eae879e33bed8541141bc425ccd7509d",
+  "node_id": "ver:governance-mode",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-30",
+    "level": "integration",
+    "method": "test",
+    "name": "A mode can be chosen after genesis, preserves the project, and refuses an unknown value",
+    "status": "passing"
+  }
+}

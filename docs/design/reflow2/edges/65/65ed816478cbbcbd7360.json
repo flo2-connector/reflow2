@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ed70d774fc5c60918f6704734e4fda83414afa0017f489d12637f7af0964b98",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it",
+  "properties": {
+    "evidence": "That question asks how a problem stated in the user's words retrieves the TOOL that answers it. This asks how a thing named in the user's words retrieves the right NODE TYPE. Same gap on two surfaces, and the earlier one framed the retrieval problem first."
+  },
+  "to_id": "dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary"
+}

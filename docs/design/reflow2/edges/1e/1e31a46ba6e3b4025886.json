@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b61eff9ef6a9d72dbfb859183cedd0690cbe058974962dd0b7ae209267f1e9f7",
+  "edge_type": "REALIZES",
+  "from_id": "art:discover",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:discover"
+}

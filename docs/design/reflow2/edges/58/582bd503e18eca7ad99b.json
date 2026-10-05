@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:869896ccc28abd9cd2387ee09fadc3c94f690aa7dca7a48ff653cfadfaff330a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:claims-carry-their-age",
+  "properties": {
+    "authored_at": "2026-08-08",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

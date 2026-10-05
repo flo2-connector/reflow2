@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4463e36e3ae650cc7a271fed5d86e2851397ffe363c0e42a8e035e43b047cbfb",
+  "node_id": "ver:every-one-shot-mode-resolves-its-design-first",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Nine real-binary tests (isolated HOME, a deadline per run): a pointer folder × every store-opening mode × read/write/no-design/design-making tools (exit 1, the design's id and address named, the folder unchanged); a store left beside a pointer; an empty folder, read versus write; an opted-in folder; --only-if-present; --read-only with a graph write, a file write (new, and existing with overwrite) and reads; --export-to and --remote with --call; and every flag --help lists × all thirteen one-shot modes (--describe and --list-tools added 2026-10-03, item 7c), each honoured or refused by name with the folder left empty.",
+    "findings": "OBSERVED FAILING FIRST on main 9ecb405 (the fold d9e2a8f changed no code): 8 of 9 failed, each on exit 0 where a refusal was expected; the walk reported 529 failing flag × mode combinations. The ninth (an opted-in folder reads as its empty design) passes on main by design: it guards the installer's minting export against this fix. On the branch: 9 of 9 pass. RE-RUN 2026-10-03 on feat/the-cli-describes-a-tool with the two describe modes' rows added: it failed on main 293f957 (78 combinations, --describe unknown to clap) and passes, 9 of 9.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/every_one_shot_mode_resolves_its_design_first.rs",
+    "method": "test",
+    "name": "Every one-shot mode resolves its design first, and every flag is honoured or refused",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:751705ba3e5c6df835334fcec4b2755ffb87a437e9ba6a0910efe512362444f0",
+  "node_id": "chg:accept-c34747b1ae344744",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Tolerate the additive loop_hint key on {count,items} read envelopes (BL-91) — presence-match, not exact-set. A robustness fix to the gate's list unwrap; reflow2's product behaviour and design are unchanged by it."
+  }
+}

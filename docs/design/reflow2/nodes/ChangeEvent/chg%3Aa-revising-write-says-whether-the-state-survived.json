@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ee39fa1ac40405ba16dc02f69db730fc797251c8aa4856ddb1f00634da8707a",
+  "node_id": "chg:a-revising-write-says-whether-the-state-survived",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "A revising write computes whether the replaced state survived, instead of restating the rule unconditionally",
+    "subject": "system"
+  }
+}

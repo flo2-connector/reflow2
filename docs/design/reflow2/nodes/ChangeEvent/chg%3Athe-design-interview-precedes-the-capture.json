@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c58a0ca625ebdbf441e499647c2ac3a64c0a6515ff057d966a2ad23d4c4addb",
+  "node_id": "chg:the-design-interview-precedes-the-capture",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "capture-intent and genesis establish what KIND of thing is being designed before naming its parts, and never ask the user to pick a node type — with a routing table that names where it runs out"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:618f72cedea74bb6cb07efdfffd5cb7985f3fb6fd9b8dff21c07d13639b83ec7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-governance-rides-the-tool-that-does-the-thing",
+  "properties": {
+    "evidence": "That requirement holds the general principle and the proven carrier (loop_hint / with_loop_hint). Today's idea is the compositional and user-supplied extension of it, so it is only worth building once that one is settled — which it is not: it has sat at `proposed` since 2026-08-19 and is Anthony's own words.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-reminder-rides-the-response"
+}

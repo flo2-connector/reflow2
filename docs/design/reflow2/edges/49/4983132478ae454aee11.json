@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86e8ddd8924cee4ea4cea5b40545bd69c5949e4527a351294b416eda855bdfab",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {
+    "at": "2026-10-03",
+    "note": "Verified false after this change with the real binary: a descriptor the launcher left open (sh exec 7>>file) is held by the client and not by the daemon it spawns, and a flock(1) lock is free once the client and flock have exited while the daemon still runs (a_spawned_daemon_inherits_nothing_it_should_not.rs; both failed on main 293f957)."
+  },
+  "to_id": "fact:a-spawned-shared-daemon-keeps-every-file-descriptor-its-parent-left-open-2026-10-03"
+}

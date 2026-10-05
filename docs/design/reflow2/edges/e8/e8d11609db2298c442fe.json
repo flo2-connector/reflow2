@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7b0fe6d4c8170dc2ab84464f65452f5479c3cc30e74b481951cc30d33013712",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-every-constructor-says-what-the-thing-is",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-every-constructor-says-what-the-thing-is"
+}

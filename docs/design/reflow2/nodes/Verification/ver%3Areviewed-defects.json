@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3d2504231b5cffcaceae5072da0091c87ceea78e6490edaa3d5305b0b130120d",
+  "node_id": "ver:reviewed-defects",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "An accepted defect leaves the open list keeping its reason as a Decision, the acceptance EXPIRES when the shape changes (re-routed cycle), withdrawal supersedes rather than deletes, and a defect review is never mistaken for a gap review (tests/reviewed_defects.rs, 6 cases)",
+    "status": "passing"
+  }
+}

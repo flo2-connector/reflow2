@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9e71890f1f3dd2f7951beafcb1024b6ca13bcc9ceeeea471a10b5e7511d2d024",
+  "node_id": "cap:distribution-debt-is-reported",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Distribution debt — the live graph and the committed export having diverged — is computed from state and surfaced by the read-side hint chosen in dec:read-hint-shape: on orientation-shaped reads, only when true, firing when the owed set changes rather than on every read. Rides the existing mechanism rather than adding one.",
+    "name": "The loop reports that the record and the graph disagree",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

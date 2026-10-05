@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:080a36a51a98700d9b9d9bb0480c6d73e94f8c8bcfc1d6ba2b135f61e5d6c353",
+  "node_id": "req:a-composed-prompt-serves-the-pieces-it-was-composed-from",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A composed prompt serves the pieces it was composed from, and a replayed finding that has gone is refused distinguishably",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word, under his black-box rule: a consumer must never have to read reflow2's prose to work. The prompt builder holds a finding's title and its why as separate values, joins them in one statement and returns only the joined string, so flo2 splits that string on a literal marker — the only place it breaches the rule. The pieces ride back beside the prompt. AND the second half, which the reporter found while complaining: their redundant re-computation of every finding per click is also how they refuse a stale one, so a VANISHED finding must refuse distinguishably — that removes the recomputation instead of making it cheaper to avoid, which taking a bare id would not.",
+    "status": "accepted"
+  }
+}

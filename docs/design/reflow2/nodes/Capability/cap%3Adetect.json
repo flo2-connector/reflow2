@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88dba54400bb34d7c25b880e324191041c2d046b34cfa0556c12a2124dbb56b7",
+  "node_id": "cap:detect",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Find what the design has not decided yet, ranked.",
+    "name": "Detect gaps",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

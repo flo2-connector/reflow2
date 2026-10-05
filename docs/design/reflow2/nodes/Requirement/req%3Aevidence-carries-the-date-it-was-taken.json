@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:823bd8aa2aa3243d6d6b6273177361fb7d0ab1579c119d20b177aea9f97a7c06",
+  "node_id": "req:evidence-carries-the-date-it-was-taken",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Evidence carries the date it was taken, so a measurement can be aged rather than believed forever",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where the design records that something was MEASURED, it must also record WHEN — so a report can say \"measured, but a long time ago\" instead of presenting a stale number as current.\n\nTHE OBSERVATION IS `fact:defect-a-measured-contribution-carries-no-date-so-it-is-believed-forever` (music_graph F22); this is the intent behind fixing it.\n\nTHE ASYMMETRY IS THE ARGUMENT, and it is reflow2's own doctrine applied unevenly. `ver:evidence-quality` has a whole TIME axis — an accept dated after the check reports STALE, a re-run after the accept is current, and an undated side is UNKNOWN and counted rather than silently passed. `Artifact.last_confirmed_at` exists for exactly this, and its description says a confirmation \"says nothing changed\" so it is stored as a dated property. ⇒ Dating evidence is settled practice for Verification and for Artifact, and absent from the one number a KPP verdict rests on: the CONSTRAINS edge declares `note`, `contribution` and `basis` and NO DATE.\n\nMEASURED THEIR SIDE: a contribution recorded as 6.9 fps with `basis: measured` against a 40 fps minimum, while the true measured value was 55.06. The number was right when taken and had been wrong for days. Their framing is the one to keep — \"an estimate stays an estimate, but a measurement is a statement about a system at a moment.\"\n\n⚠️ `basis: measured` IS THE STRONGEST EVIDENCE CLAIM THE SCHEMA OFFERS AND THE ONLY ONE THAT DECAYS. An estimate does not go stale; a measurement does.\n\nNOT DECIDED, and both are real: whether the date belongs on the edge or on a separate observation node — the same question `Artifact.last_confirmed_at` answered by choosing the property, on the grounds that confirmations are high-frequency non-events; and whether ageing against the contributors' artifact checksums is sound, since a contribution can go stale with no file changing.\n\nA SECOND, SMALLER ITEM IN THE SAME REPORT, kept because it cost them real time: a MINIMUM budget returns `within` while a contributor is `unstated`. That is defensible — a missing number can only improve a minimum — but the asymmetry is unexplained in the payload and read as a bug. The verdict is right and does not say why it is right.",
+    "status": "proposed"
+  }
+}

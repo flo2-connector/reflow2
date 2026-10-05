@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:31dfd5c575f1fdc8c7d5d7273717627f06d57171576c243d927b089057d73400",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0471",
+  "properties": {
+    "as_checksum": "sha256:d9d6ebd56417c9b086e9656349c1c6c3ff0af4d13d4e17eaf03fcc422d1d2b27"
+  },
+  "to_id": "art:tools-claims"
+}

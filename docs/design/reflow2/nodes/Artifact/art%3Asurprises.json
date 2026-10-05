@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d0493df0bd8b75b4ae2d1658b0192a6ee342dfb69eb290b7efb80462a20e3e98",
+  "node_id": "art:surprises",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/surprises.rs",
+    "name": "surprises.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

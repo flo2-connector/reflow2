@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4f4d96a6f25b84d5169db092b8543cfb1f2dea42b81a912abfe1863e647661a4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:constraint-is-not-only-numeric",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

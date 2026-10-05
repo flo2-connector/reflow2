@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1de3e53b99c88809e6bad84d4a7bba558ad9f5a62d10e3b8095f646eb5a994a0",
+  "node_id": "ver:tool-search",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "integration",
+    "method": "test",
+    "name": "find_tools answers a described job with the right tool, ranks an exact name first, and reports a miss as a miss (tools.rs)",
+    "status": "passing"
+  }
+}

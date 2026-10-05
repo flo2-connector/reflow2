@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6626a4ba1f06a183d0936e949ee4c319bb161e5d514f2c32316eda4e880aa169",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:check-reconciles-dependencies"
+}

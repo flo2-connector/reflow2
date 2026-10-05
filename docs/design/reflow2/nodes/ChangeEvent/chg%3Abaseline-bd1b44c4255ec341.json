@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:518997d595d7a8da2074c58dc7fce3a38167229b150e4149fee9f668364ab19b",
+  "node_id": "chg:baseline-bd1b44c4255ec341",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "new; measured in the feat/client-setup worktree",
+    "subject": "record"
+  }
+}

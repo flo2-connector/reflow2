@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b14197779a614868fba9f7d5abb71b71318cd15f533b8117e5aa8f2a45b84129",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:reflow2-read-and-reflow2-write-split-the-door-by-what-a-call-does-2026-10-03",
+  "properties": {
+    "note": "Step 3 of the settled decision: the read/write verbs, with a check that every read-only annotation is true. Step 6, the batch door, is item 7e."
+  },
+  "to_id": "dec:idea-a-shell-driven-agent-approves-reads-once-and-confirms-each-write"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9004a0ce11ebdd1aa1f67ca75c961649b2fc01c783b9505464fe1347d876faba",
+  "edge_type": "CAUSES",
+  "from_id": "req:edge-defaults-do-not-assert",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That requirement's own text measured 19 defaulted edge properties over 3,226 edges on 2026-07-28, named the exact shape (\"a default that describes a value which does not exist … weight_basis on 225 edges and ZERO carry a weight\"), and its status is `dropped`. CONSTRAINS.basis defaults to `estimated` in schema/core.yaml (read 2026-09-16) — the same shape one edge over: a provenance stated for a contribution that is absent. SatisfiesReq in service.rs declares from_id and to_id only, while schema SATISFIES carries `coverage` and report.rs reads it — the reach hole the requirement's dropping left unswept on edges.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-two-field-holes-a-rejected-coverage-and-a-basis-asserted-for-a-number-that-is-not-there-share-one-cause-the-edge-sweep-was-dropped"
+}

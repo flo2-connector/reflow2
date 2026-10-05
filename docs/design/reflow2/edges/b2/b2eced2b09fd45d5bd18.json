@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc8a11e053a7b000c698c97cbc11f6d2ff10b9fefbf566f4f9e13af2fea90b63",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-git-exchange-path-is-defended",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:the-git-exchange-path-is-defended-not-only-documented"
+}

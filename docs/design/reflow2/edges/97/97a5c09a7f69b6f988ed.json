@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3eb4d0c2648d80a2cbbac72f262c33c750fd25472f9f9f0e34e7379746a03d85",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d3d10d0bda367fa3",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:a-parked-report-that-produced-nothing-test"
+}

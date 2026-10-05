@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3702d3bf9f92a1b491a9ffa07a7dc3aad6035b58b9748164e737f44fd1b05be9",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-capability-carries-its-thread-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-owners-word-rides-the-same-call-as-the-status-it-signs"
+}

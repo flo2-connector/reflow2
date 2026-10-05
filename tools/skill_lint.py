@@ -461,6 +461,7 @@ NON_TOOL_TERMS = {
     "duplicate",
     "event",
     "failing_verification",
+    "blocked_verification",
     "flexible",
     "gap",
     "generated_content",
@@ -979,6 +980,41 @@ ANSWER_FIRST_CONTRACT: dict[str, str] = {
     "rules that an answered question is not a brainstorm": "it is not a brainstorm",
     "never offers a settled road as a live option": "Never offer an option that contradicts accepted intent",
     "routes a wish to revisit through the settled node": "record it as reopening that node",
+}
+
+# ---------------------------------------------------------------------------
+# The DECISION-MATH contract — the skills where a decision is recorded or
+# settled, added 2026-10-05.
+#
+# Measured that day on a hosted design: three chats given decisions resting on
+# numbers (a ring's fit and its gold cost, a battery sized for a 12-hour outage)
+# did the arithmetic in their heads, kept no computation and named no input's
+# source, even with a calculator helper connected. Sent to the calculator, the
+# kept record exposed a wrong hidden assumption (a seat taken as 7.5 mm that is
+# 7.6 mm). So each skill that records or settles a decision says, in a few lines
+# of its own: name where each input came from, never the agent's memory; compute
+# in a calculator helper when one is connected and link its kept record to the
+# decision with `documents`; otherwise show the arithmetic. The wording names
+# no helper as required: reflow2 stands alone.
+#
+# Matched CASE-INSENSITIVELY and with WHITESPACE COLLAPSED, unlike the
+# contracts above: the same clause opens a sentence in one skill and sits
+# mid-sentence in the next, and wraps at a different word in each. A pin that
+# fires on casing or on a line wrap teaches people to weaken it.
+DECISION_MATH_SKILLS = (
+    "capture-intent",
+    "brainstorm",
+    "detect-and-ask",
+    "revise-design",
+    "capture-session",
+)
+DECISION_MATH_CONTRACT: dict[str, str] = {
+    "names where each input came from": "each input",
+    "never takes an input from the agent's memory": "never your memory",
+    "computes in a calculator helper when one is connected": "calculator helper",
+    "links the helper's kept record to the decision": "kept record",
+    "with the documents edge": "`documents`",
+    "shows the arithmetic when no helper is connected": "the arithmetic",
 }
 
 # ---------------------------------------------------------------------------
@@ -1586,6 +1622,19 @@ def main() -> int:
             phrase in link_text,
             f"missing {phrase!r}",
         )
+
+    print("== the decision-math contract ==")
+    for skill_name in DECISION_MATH_SKILLS:
+        dm_md = SKILLS / skill_name / "SKILL.md"
+        dm_raw = dm_md.read_text(encoding="utf-8") if dm_md.exists() else ""
+        dm_text = " ".join(dm_raw.lower().split())
+        check(f"{skill_name}/SKILL.md present", bool(dm_text))
+        for label, phrase in DECISION_MATH_CONTRACT.items():
+            check(
+                f"{skill_name} keeps a decision's math: {label}",
+                " ".join(phrase.lower().split()) in dm_text,
+                f"missing {phrase!r}",
+            )
 
     print("== the optimisation contract ==")
     opt_md = SKILLS / "optimize" / "SKILL.md"

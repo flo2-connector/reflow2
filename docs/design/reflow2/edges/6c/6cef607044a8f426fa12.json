@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:574a4d555585a7bdc2fa01719f6f841270b64a247773d6df3f747bcd7948373d",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-outside-part-is-marked-as-outside-and-an-outside-party-is-a-consumer",
+  "properties": {
+    "evidence": "That finding's residual (\"being under the Project still does not say this part is not ours\") is exactly what option (a) or (b) would state."
+  },
+  "to_id": "fact:root-cause-an-external-part-trips-level-spine-disagreement-and-the-cure-is-named-only-on-its-sibling-rule-2026-09-29"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c2abba5180574f1bff48f9aa930ffeeb6b1bd3913f0c977f520a2390e7698497",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

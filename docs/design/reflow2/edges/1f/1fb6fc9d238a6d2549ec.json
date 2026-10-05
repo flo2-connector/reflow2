@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:19138df2c82d5893fa77281d8da3df093ec8a920776e98f6ee86d057b761514b",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-ask",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:bulk-forms"
+}

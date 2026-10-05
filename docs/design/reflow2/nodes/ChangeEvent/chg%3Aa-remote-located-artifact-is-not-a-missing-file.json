@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f70a13a78af7e34bb998ee70b0a2df72aad835c055624223d43c9deecf709b11",
+  "node_id": "chg:a-remote-located-artifact-is-not-a-missing-file",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The design gate stops calling a URI-located artifact a missing file — and says out loud that it could not judge it",
+    "rationale": "Found by registering one: the StoryFlow principles document has a durable URL and no working-tree path, so recording its provenance turned the build red for a design that had done nothing wrong. The note is the load-bearing half rather than a nicety — reflow2 performs no network I/O and cannot say whether a remote artifact still matches, so omitting it silently would make \"0 drift findings\" read as \"everything was checked\". That is exactly the failure StoryFlow's principle #6 is written against, met in the same session that read it. MUTATION-CHECKED: disabling the new branch turned exactly the two behavioural tests red and left both counterweights green; restoring it turned all four green.",
+    "subject": "system",
+    "summary": "`reflow2_check.py` joined every Artifact's `location` to the project root and asked the filesystem, so a location of `https://...` became `./https:/...`, resolved to nothing, and was reported as `missing_artifact` — as-built drift and a RED BUILD. `add_artifact`'s own served description says location is \"Path / URI / content-hash\", so registering a published OpenAPI document, a vendor datasheet or a standard at its URL is correct modelling that the tool surface explicitly invites. Remote locations are now a fourth state alongside missing, present-and-hashable, and the existing directory case: present, unhashable, not judged — and each one is named in a note."
+  }
+}

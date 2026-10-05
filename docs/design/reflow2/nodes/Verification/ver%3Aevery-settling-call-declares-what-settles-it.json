@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:70b44964a3cb40d4e90f8dbbde331db7c02776b30f5626ffc2f2010609bb0c65",
+  "node_id": "ver:every-settling-call-declares-what-settles-it",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_settling_call_declares_what_settles_it.rs",
+    "method": "test",
+    "name": "Every served tool that takes an approver declares what settles it on the tool, and every declaration is what the tool does (refused / recorded with a note unsigned, silent signed, silent when not settling)",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ef241be5fec4e89d1f10d415792fe6e818f5a490f8fe231ef6149a1ffbfd930b",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:loop-status",
+  "properties": {},
+  "to_id": "fact:the-agent-surface-profiled-orientation-is-35-of-40-seconds-and-two-causes-are-located"
+}

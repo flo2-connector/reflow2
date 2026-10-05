@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c9cefafeeb194b4210836e9dd79a19fad4a11c055167ad18b15f3fcd6a9d8e16",
+  "node_id": "art:tools-claims",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/src/tools/claims_tools.rs",
+    "name": "tools/claims_tools.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

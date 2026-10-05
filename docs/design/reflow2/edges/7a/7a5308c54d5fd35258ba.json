@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5106c59f2c4fbb9330a13319136337d89fac2aacd8d4cf7a6286c343237a4f63",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:move-component-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:move-component-test"
+}

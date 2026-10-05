@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:44e83473177f34a4235facdf118e8562099b9fcaca011ba1046f3b235c0b70b9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-reply-takes-the-shape-its-client-can-read",
+  "properties": {},
+  "to_id": "req:never-silently-absent"
+}

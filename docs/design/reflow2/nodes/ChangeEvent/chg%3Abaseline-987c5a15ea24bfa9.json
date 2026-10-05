@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5d45db389104adcadb001e39329c57bdac1b8f0b274fb7f988af445974582cad",
+  "node_id": "chg:baseline-987c5a15ea24bfa9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-09-07",
+    "name": "First baseline of the 2026-09-07 extract (peer file lines 7185–7285). Untracked in git (dec:field-reports-are-untracked-because-the-repository-is-public).",
+    "subject": "record"
+  }
+}

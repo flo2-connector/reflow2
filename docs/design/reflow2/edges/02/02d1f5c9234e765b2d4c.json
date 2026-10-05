@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2fbc2cd06ab09fbb0b54cb12347f2f706f0f433e0e1b823978066544121d95b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0470",
+  "properties": {
+    "as_checksum": "sha256:806145d1b3d8099957f3a1cc24fc96443266b98a102344b7e9bdb93dacd52d2d"
+  },
+  "to_id": "art:report-friction-skill"
+}

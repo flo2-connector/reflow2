@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbb0ed774c76bc0353dbba2244d0b1cf02db2b43305a16ffecd5c2cc20ce24ee",
+  "node_id": "chg:an-acknowledgement-says-whose-judgement-it-was",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "acknowledge_gap records whose judgement it was — the one write whose purpose is to record that somebody decided could not say who",
+    "subject": "system"
+  }
+}

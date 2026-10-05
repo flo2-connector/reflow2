@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bf1c424de45caef7e68ad8dc75bc60aa9e49421c77c1527e47362afcd5c472d6",
+  "node_id": "epoch:a-reply-takes-the-shape-its-client-can-read",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Revision after the third content-only report from the Grok population and the first from Anthony's own hands: on 2026-09-15 his Grok Build 1.0.30 session on this repo received the signpost sentence and nothing else for maturity_report, what_next, scan_nodes and open_questions, and its session store held no copy of structuredContent. The 2026-08-23 signpost shape was chosen against \"a client nobody could name\"; three reports named one, and OpenCode (2026-09-14) was a second. This epoch records the mechanism that answers both without reopening the 2× wire cost for the clients that read structuredContent: the content block is keyed on the handshake name in call_tool, with an operator override. MUST NOT: reintroduce the unbounded duplicate for every client (the reply budget bounds it, the per-client key limits who pays); guess at a client's behaviour that was not measured (Grok's empty-text fallback is unmeasured and Grok therefore gets `duplicate`, the shape measured to reach its model). The decision dec:idea-how-does-a-content-only-client-get-an-answer stays the owner's; the merge of the PR carrying this epoch is his word on the mechanism, and switching any client — or every client — to strictly structured is a one-line change once the empty-text probe (scratchpad grokprobe/, waiting on Grok quota) has run.",
+    "epoch_type": "revision",
+    "name": "The content block is chosen per client (2026-09-15)",
+    "sequence": 498,
+    "status": "arrived"
+  }
+}

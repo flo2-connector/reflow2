@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c34b68907fa40efc594c5e0b1046040ef73e79b4173109515e905beb7f1d0680",
+  "node_id": "chg:the-probe-slot-is-claimed-atomically",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The graph probe's guard becomes one atomic claim, and the duplicated hook registration that guaranteed two racers every time is removed",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

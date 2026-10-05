@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:020b3c2341f43abf50a7fd0464d348234654fc8438eb84f96cdc34c4446399b3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0740",
+  "properties": {
+    "as_checksum": "sha256:7f6cf82db40049b3e659d609132e2adca025e56653e8f5751da694790407a885"
+  },
+  "to_id": "art:test-a-follow-up-is-owed-until-it-is-settled"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:370fddc9db04a294dea23144a6987faf7f0e2a4d4aaf0b6fe7e0b1fd67e78906",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

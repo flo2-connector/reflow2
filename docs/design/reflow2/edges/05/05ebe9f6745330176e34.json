@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f7bf344b7f8e658efafc9a81f3e471cd19bcebd8619ccac892351987d953e8f7",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:interface-spec",
+  "properties": {},
+  "to_id": "req:interface-spec-complete"
+}

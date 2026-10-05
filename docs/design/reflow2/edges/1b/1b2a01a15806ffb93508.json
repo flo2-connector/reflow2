@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:92fc5c428b9c9ca78dddc441312599941ca57e75ce9c394ea0073e538c885a2e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-budget-adds-only-numbers-in-its-own-unit"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74db8ae658e944f78e9c4bcb14ee8d8c1920f8e6c9dd68bebed8d63e1d0fb9c6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0480",
+  "properties": {
+    "as_checksum": "sha256:82db721a91d72a4e6dd454ce65e24e37e107b01e47d9de7a41a8c929e08979d4"
+  },
+  "to_id": "art:fuzzy"
+}

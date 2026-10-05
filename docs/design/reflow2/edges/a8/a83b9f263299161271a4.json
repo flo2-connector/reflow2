@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d1ad5a4f37b52270890e767bbf26f9023f5a2a292e48023e940a51991cdeffa6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:taxonomy-command",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:taxonomy-command"
+}

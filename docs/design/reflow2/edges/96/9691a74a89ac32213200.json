@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c4400e11cdbc9090e9ba6edf37197452b42e7690b162e867f7eae76cb6bb7be",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0620",
+  "properties": {
+    "as_checksum": "sha256:78b994c3da2476c2560bcd53dd776eb2232a1c4856a8427c63e9a08235cc628d"
+  },
+  "to_id": "art:test-stale-seat"
+}

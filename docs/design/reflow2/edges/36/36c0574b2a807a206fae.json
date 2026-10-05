@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3fbbd1549c3e3ffff4f51980b4abe5fbcaf0c273526b341c1a7a64c1a97d91e7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:artifact-intent-properties",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

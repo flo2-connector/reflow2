@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:49c6a6f407cb1cc866b832197c955744d40dfea6381e75b7c3c492693c0b6727",
+  "edge_type": "CHANGED",
+  "from_id": "chg:tool-minted-seat-liveness-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:defect-a-tool-minted-seat-is-never-registered-so-gone-is-still-unreachable"
+}

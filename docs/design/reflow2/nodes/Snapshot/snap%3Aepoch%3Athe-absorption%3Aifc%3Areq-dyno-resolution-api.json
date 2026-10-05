@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9f34da1b3d15c22a2b4fe5e5532a045f3b4ab1cec196c5f02e375a3533bb62e3",
+  "node_id": "snap:epoch:the-absorption:ifc:req-dyno-resolution-api",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONSUMES\",\"other_type\":\"Component\",\"other_id\":\"cmp:ingest\",\"properties\":{\"dependency_type\":\"function_call\",\"weight\":0.7,\"weight_basis\":\"evidence\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"acted_at\":\"2026-08-09\",\"role\":\"author\"}}]",
+    "state": "{\"auth\":\"unspecified\",\"designation\":\"required\",\"medium\":\"library\",\"name\":\"EntityResolver API\",\"paradigm\":\"synchronous\",\"payload_format\":\"unspecified\",\"provenance\":\"authored\",\"spec\":\"REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-resolution`, pinned at v0.12.0. Entity resolution is what the duplicate detector and the corpus-ingest identity work sit on — the same machinery dec:auto-merge-at-90-destroys-sibling-names constrained, and the same path dev_storyflow's merge-survivor findings landed in.\",\"transport_security\":\"unspecified\"}",
+    "target_id": "ifc:req-dyno-resolution-api",
+    "target_type": "Interface"
+  }
+}

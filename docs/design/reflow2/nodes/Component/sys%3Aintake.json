@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:35542dd1cbb0ca0f61f10607aa3ff74ecc045af3728464fccc0cdc98d913d428",
+  "node_id": "sys:intake",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Intake",
+    "provenance": "authored",
+    "purpose": "The front door: bring intent into the graph, greenfield (genesis from a brief) or brownfield (adopt/ingest from an existing system).",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

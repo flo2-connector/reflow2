@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8fea6d0fb1d5c87680d2d7cebc68b1eb3534866ab83f150953b46b2008a2632b",
+  "node_id": "epoch:v0260-planned",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "RETIRED 2026-08-08 — superseded by epoch:planned-status-accounting. Id names a version it never delivered; kept for its snapshot history.",
+    "sequence": 265,
+    "status": "arrived"
+  }
+}

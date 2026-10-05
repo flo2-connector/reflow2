@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6af088c2ddfdf33caa6f0f81650fa452e1fecd796a3c2122ad6940ec50a3cef0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:degraded-follows-transport",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:degraded-follows-transport"
+}

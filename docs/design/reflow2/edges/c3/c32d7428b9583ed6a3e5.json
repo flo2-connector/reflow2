@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4dbc147252fa6471491412159871161c89b3f65c93106abab7dbfbc603b38d7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-real-run-is-fed-back-by-file",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff95bc3c531a360265ec7cae0290e7760f6f1275b2d574067fecb2f34b1702c8",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:scope-read-while-held",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "dec:read-while-held-mechanism"
+}

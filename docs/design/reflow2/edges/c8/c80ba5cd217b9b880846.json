@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0d3ed6a72a724a8eccb8df9637711bbea94f588203258e9746b3d40826485b5",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:the-export-can-be-ordered-before-its-writes",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e02e8282f1c8c059677bd58bb2607c2ee872c099c0e1b48c6bb9c1c74efa0f2",
+  "edge_type": "REALIZES",
+  "from_id": "art:operate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:operate"
+}

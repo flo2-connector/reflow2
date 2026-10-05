@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e4b9ec2425091c822d14d7cdd945fddc1259fed99c2ca36bc718d2b6ece7781",
+  "node_id": "chg:degraded-follows-transport",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The degraded surface follows the transport that was asked for"
+  }
+}

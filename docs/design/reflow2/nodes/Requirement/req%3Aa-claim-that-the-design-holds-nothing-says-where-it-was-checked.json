@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9f3a6f12da239df8e0d1ba527ced611cbd9d4acc19464b21de8fe9c86418b18e",
+  "node_id": "req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "A claim that the design holds nothing about something says where it was checked",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "When an agent tells a person that a design, or a family of designs, does not hold something (no requirement says X, it was never discussed, nothing records Y), the claim shall name where it was checked: which designs, which kinds of record, and how (the searches run, the records opened). \"No flo2 requirement says a hub can sit inside a hub\" is a claim; \"that wasn't stated anywhere\" is not, unless everywhere was searched. Served to every project as a standing rule in the instructions reflow2 serves, and in the hub skill.\n\nAnthony, 2026-09-28, choosing \"Search at the hub\" (dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub), which carried this rule. The measured failure: fact:root-cause-a-sibling-designs-precedent-was-surfaced-three-times-and-never-read-2026-09-28, where \"wasn't stated anywhere\" was a check of one design's requirements; the same class as fact:three-searches-that-did-not-happen-and-what-each-one-cost (2026-08-17).",
+    "status": "accepted"
+  }
+}

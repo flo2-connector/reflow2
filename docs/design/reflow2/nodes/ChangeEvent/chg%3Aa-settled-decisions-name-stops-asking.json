@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:73596165717ff79b2f99b50b6d6bc0d8368e584015192bd637fdf1c3201486d5",
+  "node_id": "chg:a-settled-decisions-name-stops-asking",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "db84580",
+    "detected_at": "2026-09-29",
+    "name": "A settled decision's name stops asking the question, or the design says it has not",
+    "rationale": "Root cause: fact:root-cause-a-settled-decisions-name-still-reads-open-because-the-09-19-fix-reached-the-body-and-no-check-reads-names-2026-09-29 (recorded in the live design; not yet in this branch's export, so named here rather than linked), a recurrence of flo2 F12 (2026-09-19). Class: status copied into a prose field at creation, with no act that moves both and no check that reads the copy — so all three legs are fixed: the act (`name`), the reply at the moment of divergence, and the sweep for the ones already standing. One definition of 'leads with OPEN' lives in the core (name_leads_with_open) and is shared by the reply and the sweep. Pinned by crates/reflow2-mcp/tests/a_settled_decisions_name_stops_asking.rs, OBSERVED RED on a clean origin/main build (4 of 6 failed; the other two are counterweights), green on the fix. Measured with the new sweep itself (settled_decision_named_open, the fix's own binary) over this branch's committed export: 45 of 463 live accepted decisions are still named open.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "set_decision_status takes `name` so a settle can retitle 'OPEN — does X…?' in one call; its reply (and add_decision's) carries `name_still_reads_open` when an accepted decision's name still leads with OPEN in capitals or 'open question'; a new gap, settled_decision_named_open, sweeps the accepted decisions already so named (one rollup keyed on the set); settled_question_prose reads a governed node's name as well as its body; the brainstorm skill says the OPEN is a copy of the status."
+  }
+}

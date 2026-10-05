@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a9fce3a37e67d491c5366a5ae0d5cce0b4b7838add3b2ab9b68ce6756378cbe3",
+  "node_id": "chg:link-projects-skill-served",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The linking process became a served skill, and fixing its lint exposed that four source files serving #[tool] methods were invisible to skill_lint"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:52e3f575975fcfbd455c65a93440869bcbe6988ee08fe280809bb254f36be72c",
+  "node_id": "fact:defect-re-linking-a-registered-file-to-a-second-target-moves-its-drift-baseline-with-no-disposition-2026-09-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "Re-linking a registered file to a second target re-measures it and MOVES its drift baseline, with no disposition and nothing in the reply saying a baseline moved",
+    "source": "who:claude-code",
+    "statement": "OBSERVED 2026-09-30 (reflow2 0.75.0, `--call` door, a worktree-private copy of reflow2's own design). A registered Artifact whose file had changed since its baseline (baseline sha256:45d30218…, file now sha256:4f296a3f…) was linked to a SECOND target with `link_artifact` — artifact_id, target_id and completeness only, no checksum. The reply's `measurement` block reported `basis: measured` and the new digest; `get_node` afterwards showed the stored `checksum` replaced by the new digest. No ChangeEvent, no disposition, no CHANGED edge.\n\nEXPECTED: a re-link to another target leaves the drift baseline where it was — the tool description says re-linking is SAFE and never renames or drops prose, and says nothing about the baseline — so the drift stays reported until it is accepted two-sided with `set_artifact_checksum`, whose own description says \"Silent accept does not exist\". As observed, attaching a changed file to a new capability IS a silent accept of whatever changed since the last baseline, and `reconcile_artifacts` then reports the file clean.\n\nWORKAROUND USED: accepted the new content explicitly anyway with `set_artifact_checksums` (disposition `design_updated`, naming the ChangeEvent) so the record carries the disposition; for a file whose drift you have not reviewed, run `reconcile_artifacts` BEFORE re-linking it. Not root-caused; recorded as a to-do under rule 11.",
+    "steps": [
+      "link_artifact"
+    ],
+    "subject_id": "cap:a-registered-file-is-measured-under-the-project-root-and-the-record-says-measured-or-asserted",
+    "valid_from": "2026-09-30"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:435c1d8a92a3b5905d8d995a8aeb6bc16352fe74ad962c2204aeac9b73c09403",
+  "node_id": "drift:1ed00db9d4f9e604",
+  "node_type": "DriftEvent",
+  "properties": {
+    "detected_at": "2026-07-21",
+    "drift_type": "checksum_change",
+    "name": "art:export drift",
+    "resolved": true,
+    "severity": "medium",
+    "summary": "'art:export' has changed since it was registered against the design"
+  }
+}

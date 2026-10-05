@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e76c190717e351f98d4bb4fbeb2e05b127d508ffc5cd2c97f50c4e4f6db40c42",
+  "edge_type": "REALIZES",
+  "from_id": "art:sync-debt",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

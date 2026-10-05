@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:47ed3f890591d994a66e098e7cecef5372dc1b137ef9e3f14d60d4b008c5ba1c",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:select-graph-by-id",
+  "properties": {},
+  "to_id": "snap:epoch:linking-two-designs:cap:select-graph-by-id"
+}

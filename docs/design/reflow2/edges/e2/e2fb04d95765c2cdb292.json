@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:38354a6f9b17e111dd92d7ac5509ccfcad2432033c834fe74d8c93a32f04a8d5",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:changelog-entries-are-fragments-assembled-at-the-cut",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}

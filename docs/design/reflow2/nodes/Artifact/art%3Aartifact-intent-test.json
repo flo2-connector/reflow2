@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:795f6b4ac19c6ae90db252ea458359d39a6e9d17098d7e2c1c012dfff238aa0e",
+  "node_id": "art:artifact-intent-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/tests/artifact_intent.rs",
+    "name": "artifact_intent.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee41cf2ae55b4e8312b0b5c4142e93faddc47696bbc98c6838f474988e61d508",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-topic-view-is-served-as-one-call-with-a-mandatory-not-found-line",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63720f803ab41287cba95d29ba545133a13e26a03b5e217f15658a6548113ee0",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-design-says-what-fraction-of-a-kind-carries-a-relation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

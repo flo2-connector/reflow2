@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cbaef15cb8c0d995869d4f8854883828ab60498e3fd00226cab003cfaa14d2ea",
+  "node_id": "art:schema-temporal",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/temporal.yaml",
+    "name": "temporal.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

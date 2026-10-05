@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b4da27702e6f439126a38a894350041d29d9c1d525ced411b72451f99c92281",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

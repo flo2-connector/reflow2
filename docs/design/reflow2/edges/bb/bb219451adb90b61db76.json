@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:972d7898b35b7648f9172be5ba5a1606ecb99e1720a4083d436d3735195d17a1",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-stored-twin-has-one-authority",
+  "properties": {},
+  "to_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1eb56ae10456622694a498b95431f97c632b750798345ff578458eaf18cf4e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:adopt-recovers-the-hierarchy-it-was-never-told-to-look-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

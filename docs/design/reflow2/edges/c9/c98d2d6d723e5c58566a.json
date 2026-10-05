@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b2348792c8d83d85d0b55e8e2c8d6852209abc4bd00b0e02153d67e950fc91ba",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:store",
+  "properties": {},
+  "to_id": "req:persistence"
+}

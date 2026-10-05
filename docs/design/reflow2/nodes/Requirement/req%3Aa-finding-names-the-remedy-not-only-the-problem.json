@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b600e3d393addae3aa9a0abde0951d1a2dedf245ee6c96db684074151d3449da",
+  "node_id": "req:a-finding-names-the-remedy-not-only-the-problem",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A finding names the remedy, not only the problem — including when the honest remedy is to declare the state deliberate",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "When reflow2 reports that something is wrong, the report names what the reader can honestly DO about it. A finding that describes a problem and stops leaves the reader to invent a repair, and the repair they invent is often worse than the state being reported.\n\nTHE CASE THAT FORCED IT, measured 2026-08-19. `orphan_node` reported two registered documents as attached to nothing, and its repair note said \"No mechanical repair. Linking this node to something would assert a relationship nobody drew.\" True — and it reads as THERE IS NOTHING YOU CAN HONESTLY DO. There was: `governed_by(..., ruling: \"parks\")` declares the unattached state deliberate and is purpose-built for exactly that genre. It is documented on the TOOL. The reader is looking at the FINDING. The documents were deleted instead.\n\nTWO PROJECTS, SAME DAY, OPPOSITE DIRECTIONS. ophyd-service asked in writing whether `parks` covered their case and said \"neither the tool docs nor the skills say... I wasn't confident enough to try\", and backed off. Hours later an agent in this repo did not find it at all and deleted the evidence. One under-used the mechanism; one destroyed data for want of it.\n\nWHAT THIS DEMANDS, AND ITS LIMIT. The finding names the remedy AND the remedy's SCOPE — \"read by these detectors and not those\" — because a mechanism named without its boundary produces the first failure above rather than the second. It does NOT demand that reflow2 apply the remedy: `dec:ask-not-repair` and `repair_is_a_judgement` stand, and naming an option is not taking it.\n\nDISTINCT FROM `req:a-refusal-names-what-would-have-worked`, which is accepted and covers REFUSALS — a rejected argument returning its legal values. `orphan_node` refused nothing: it succeeded, reported accurately, and described a dead end that was not one. A report is not a refusal, and the gap between them is where this sits.\n\nPROMOTED FROM `dec:idea-parks-shipped-and-was-still-not-reached-the-instruction-is-missing-where-the-person-is-stuck`, which records the observation and stays open as the finding. The dedup guard named that Decision twice and was answered twice — the node was read (this session wrote it) and judged different in kind: the Decision says what happened, this says what must be true.",
+    "status": "proposed"
+  }
+}

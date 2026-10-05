@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d40e3b01d1df6137a9bc66b7b9a825f65ecac728218367aaf38db0f36dacbc38",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-exposed-server-verifies-bearer-tokens-itself",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

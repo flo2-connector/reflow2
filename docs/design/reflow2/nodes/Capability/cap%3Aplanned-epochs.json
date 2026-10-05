@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:41861cfc22bed47313c3561196d66a490e5861dde2c903fab516f351c8a5ef0e",
+  "node_id": "cap:planned-epochs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "DesignEpoch.status carries `planned` (a claim about a point that has not happened) or `arrived` (a record of one that has), with plan_epoch to create the forward kind and set_epoch_status to move between them. Status is a property in its own right rather than a value in epoch_type, because kind and tense are orthogonal — a planned MILESTONE and a planned RELEASE CUT are both sayable, and those are the two a roadmap is made of. It mirrors Release.status, which already carries `planned` for the capability view. The default is `arrived`, which is a record rather than a choice (req:defaults-do-not-assert): add_epoch's 27 call sites have only ever meant recording the point you are at, so every epoch written before the property existed did arrive. THE LOAD-BEARING HALF IS THE REFUSAL — record_change rejects a planned epoch, because a snapshot captures the present and cannot belong to a point that has not happened. Without it, status would be a declared-and-unconsulted field: stored, never read, true only by politeness. Delivered 2026-07-30 in 56a8388; both guards mutation-tested rather than merely covered, since a test that still passes with the check deleted is not evidence the check works.",
+    "name": "An epoch can be planned, and arrival is the event that makes it history",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

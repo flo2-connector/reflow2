@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:78435d6fffa9329a83098a803f7756d876c0947744740cf6334b73e9f97c501b",
+  "node_id": "cap:allocate",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Score function-to-structure allocation; cluster coupling.",
+    "name": "Analyse and propose allocation",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

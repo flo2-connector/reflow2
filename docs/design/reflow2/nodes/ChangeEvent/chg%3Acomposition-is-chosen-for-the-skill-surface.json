@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:33761b39aaf40eb076968fe640acd5e7e14acaf20b9fe2c1b0078c02d147c595",
+  "node_id": "chg:composition-is-chosen-for-the-skill-surface",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "detected_at": "2026-08-28",
+    "name": "Snapshot the factory decision before the composition ruling replaces its framing",
+    "rationale": "Snapshotted before the merge. The prior text is the record of what the node argued when it still assumed a single factory, and the whole value of the ruling is the comparison with what it now says.",
+    "subject": "record",
+    "summary": "Anthony rules that skills are built from composable attribute classes rather than stamped by one factory or swept by one exhaustive check. Settles `dec:idea-a-factory-builds-the-mechanics-in-so-a-class-fix-is-one-edit` on option (f), the composition option that the node's original (a)-(d) did not contain."
+  }
+}

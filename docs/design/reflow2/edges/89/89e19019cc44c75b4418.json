@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74135fbed76e4e59ecd24c3575e718f8bcb40de048b29187cb49261641ce9b70",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-finding-or-refusal-names-the-route-that-works",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29e2abb0292e1eb5a7b2d8472588cdef01bbbb23faba352c963c27198972019f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:derived-edge-readers"
+}

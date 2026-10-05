@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fc8bc9e84e5bdc4a13f7b34a513b0a393b9cde3f687f36a6226c9fd748d479ac",
+  "edge_type": "REALIZES",
+  "from_id": "art:degraded",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:degraded"
+}

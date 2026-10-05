@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:240690faf48994e68a664bddf612255e9aa558790468cb9b797dec17df22ba03",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-drawn-relation-is-read-back-as-a-sentence",
+  "properties": {
+    "at": "2026-09-20",
+    "note": "Both legs closed: the skill names the flag at the step where direction is decided, and the reply echoes the edge as a sentence so a reversal shows itself. The finding stands as the measurement."
+  },
+  "to_id": "fact:the-direction-flag-on-a-relation-exists-and-no-skill-names-it-so-two-edges-landed-reversed"
+}

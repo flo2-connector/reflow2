@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16f66899d0577e459371504818d0756b67737bbdd0c1c34ce4b750bbe7509518",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-should-ci-write-its-run-results-back-into-the-design",
+  "properties": {
+    "evidence": "Write-back needs the field it writes: that change surfaced Verification.last_run_at and explicitly left it 'written by verify.rs and read by nothing', which is the half this idea would supply.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "chg:accept-0c6cd76f71527326"
+}

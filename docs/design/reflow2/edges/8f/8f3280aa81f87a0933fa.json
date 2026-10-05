@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:95d3f3da8cdb52e710f6f759f0c8e61c30a459b0e83f96dc42ad966d0416600d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:latent-surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:latent"
+}

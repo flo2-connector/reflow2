@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c99fda0cfec2c685b09423adff53087f583dd49654ce933f9e6439aede6d94f4",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:the-export-becomes-the-durable-copy-and-rocksdb-goes-later",
+  "properties": {
+    "evidence": "That park unparks only when the store question settles either way, and this settles STAGE 1 only — explicitly not whether RocksDB goes. So the migration stays parked and this decision is what holds it there now, replacing the vaguer 'the store question' with a named stage 2 that has to happen first."
+  },
+  "to_id": "dec:the-rust-rocksdb-switch-is-parked-until-the-store-question-settles"
+}

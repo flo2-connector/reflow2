@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4889d29387dcb296eb7d27053471e2407397b18a8aba9836b2bdfd9de80ad411",
+  "edge_type": "CAUSES",
+  "from_id": "fact:the-gap-list-refills-with-no-visible-frontier-and-it-reads-as-a-treadmill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The measured observation is the symptom; this is the open question about whether and how to answer it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-detect-gaps-say-how-long-the-road-is"
+}

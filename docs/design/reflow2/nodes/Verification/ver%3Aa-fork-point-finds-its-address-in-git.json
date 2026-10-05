@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c20d99400cb70c65350e658e16c1d79b5229c8647f0423ec1dec6c16fd5f7fe5",
+  "node_id": "ver:a-fork-point-finds-its-address-in-git",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Four tests on a throwaway git repo of six committed exports: the first commit holding the id is found with its content_hash and git location in at most 5 reads; an id present from the start resolves to the first commit; a never-committed id is refused by name; an id that is a prefix of another does not match it.",
+    "findings": "4/4 pass. Also run against reflow2's real history: dec:a-reconcile-stamps-every-check-it-compared resolved to 3302c3f (#572's merge) with that export's exact hash, in 11 reads.",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_fork_point_finds_its_address_in_git.rs",
+    "method": "test",
+    "name": "An unpinned decision's fork point is found in git — first containing export, its hash, bisected — and a never-committed one says so",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef900b51456f10f6fe458d395f76e99a643889a8a65e8b6adfce0655453ef143",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-server-drains-before-it-stops",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-the-hosted-engine-closes-idle-designs-and-drains"
+}

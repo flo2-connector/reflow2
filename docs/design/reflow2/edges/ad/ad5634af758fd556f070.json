@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1f49ede6e4da66e7257de0082c24f5eb2eb0bc8d3d54a1a2696f36b3bea5f3b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "Fixed at the cause: create_node splits null-valued props out as UNSET requests, core remove_properties removes the keys (a required one refuses by name), and the reply lists them under `unset`. Pinned by a_null_unsets_the_property_and_the_reply_says_so. The bulk create_nodes path is not changed and still stores a null; noted, not hidden."
+  },
+  "to_id": "fact:defect-a-null-sent-to-create-node-is-stored-as-a-third-state-between-stated-and-unstated"
+}

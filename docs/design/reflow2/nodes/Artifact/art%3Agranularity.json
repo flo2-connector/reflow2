@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7c93784a1b5c17e4cfe776cb1958302c1dc3a7ec3e19b46237bff8b57d980300",
+  "node_id": "art:granularity",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/granularity.rs",
+    "name": "granularity.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

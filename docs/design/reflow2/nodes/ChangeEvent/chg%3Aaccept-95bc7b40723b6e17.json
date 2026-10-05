@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3ec768ff70c6d7f51bd6b17b355d1b46aa4982dd4ef468324743d042963dee3d",
+  "node_id": "chg:accept-95bc7b40723b6e17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-26",
+    "name": "`cargo fmt` reflowed two `if let` chains after the earlier baseline was taken. Not one character of behaviour or intent moved — caught because the fmt gate ran AFTER the checksums were recorded, which is the wrong order and is why the baseline is being retaken rather than left stale.",
+    "subject": "system"
+  }
+}

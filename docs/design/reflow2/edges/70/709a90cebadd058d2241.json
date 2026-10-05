@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5f6a2ba3390a0d23cfae5c20ac2926d498c02afaf17a18aec4e946ea425930c8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-lesson-is-served-at-the-step-it-concerns",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

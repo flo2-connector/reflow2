@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adaac9cf70bc7e1be4efe5785c9ec87c5a038b920f9063c43972284a7d63e0b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

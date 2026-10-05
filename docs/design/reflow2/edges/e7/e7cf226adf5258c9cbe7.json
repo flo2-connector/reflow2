@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6d5623253dd55e8393a638c6afb0b6ca0e4e429c907bd61b1338065a634a251b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-init-asks-which-harness-and-installs-only-that",
+  "properties": {
+    "approved_at": "2026-08-14",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

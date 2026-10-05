@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbbe5bafa6bfabdd8b9c50b568e29ade855723311495c00696f6a357954076f7",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:change-event-text-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:a-change-event-carries-its-own-text"
+}

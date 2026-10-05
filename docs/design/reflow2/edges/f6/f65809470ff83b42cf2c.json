@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e1b19bcafb58d41825247fc851fa17f2031efe49ceb0e291c4903df22c7d29d1",
+  "edge_type": "VALID_FROM",
+  "from_id": "fact:defect-lineage-message-omits-its-own-decision",
+  "properties": {},
+  "to_id": "epoch:defects-in-the-graph"
+}

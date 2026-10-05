@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c8aaef064798ce9c67cce6c6a7bdb8633057f29a1e6a89413b6c198e475ff7d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-replaced-value-is-kept",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-replaced-value-is-kept"
+}

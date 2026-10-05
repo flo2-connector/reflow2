@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:31551c758866eaf442989cf828bde81c900a184a1e5affabb7e0a0a6e02dca22",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:session-graph-selector",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

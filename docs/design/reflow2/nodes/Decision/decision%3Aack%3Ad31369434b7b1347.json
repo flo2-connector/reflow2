@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f0fb60d0f063516ea96366f9634fc0a81f9024ab8a5822dec0ceb7dd4fbcf633",
+  "node_id": "decision:ack:d31369434b7b1347",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:d31369434b7b1347.",
+    "name": "Reviewed: gap:d31369434b7b1347",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:cluster-claims joined the set (36 → 37). Sharply apt here: the unit tests prove a claim never blocks and overlaps are reported, but whether an ADVISORY claim actually reduces collisions among real people who can ignore it is not a property any test can establish. It is a social question about a tool, and the only honest answer comes from two people using it on one design and reporting whether they collided less.",
+    "status": "accepted"
+  }
+}

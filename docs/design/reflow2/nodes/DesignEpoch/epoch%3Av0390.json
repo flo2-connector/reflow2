@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9d51268a254b358c64a69355f8bbf6d7349ac355b41774c0e8a51b2e92811e6a",
+  "node_id": "epoch:v0390",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.39.0 cut — every orientation read fits in a reply, and two findings stop being aggregates",
+    "sequence": 381,
+    "status": "arrived"
+  }
+}

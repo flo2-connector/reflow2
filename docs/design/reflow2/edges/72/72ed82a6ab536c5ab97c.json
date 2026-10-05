@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bb7caee9cad7a12c5f69660f3a824225fd6407dc969e24158e7018f40f190585",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

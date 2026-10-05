@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:11c15be83600c9092138019beb3b05a94ce730b7ab1d1cdec4b2f847883bdef6",
+  "node_id": "chg:impact-propagation-is-rendered-not-written",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "docs/impact-propagation.md is rewritten as a RENDERED VIEW — three blocks projected from propagate_from and nodes.rs::structural_rule, plus a confessions section. It replaces eight impact kinds that were presented as design and are not implemented (IP-6, deferred), and a reference to ENABLES, an edge type retired 2026-07-22 by dec:edge-orthogonality five days after the doc was written. Rendered by an agent rather than by render_views.py, so re-rendering churns the wording — the page states that caveat about itself. First evidence for dec:idea-outward-docs-are-rendered-from-the-graph, not its conclusion."
+  }
+}

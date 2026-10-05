@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f58ad13d4b32e998e4af97ad1a0d2eeeca19e79cf3b72e109879828f7676c063",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:defect-change-event-has-no-type-for-a-field-reported-defect",
+  "properties": {},
+  "to_id": "snap:epoch:alex-grok-feedback-triaged:fact:defect-change-event-has-no-type-for-a-field-reported-defect"
+}

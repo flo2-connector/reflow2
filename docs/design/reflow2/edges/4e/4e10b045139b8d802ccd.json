@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41860770b4f86d929890d1e5a2a7aade6b5f7d07074fe73dff3b7ab8f73f8d09",
+  "edge_type": "INVALIDATES",
+  "from_id": "fact:the-early-export-is-measured-and-a-property-only-write-is-invisible-to-the-net",
+  "properties": {
+    "at": "2026-08-31",
+    "note": "ITS CLOSING CAVEAT IS ANSWERED AND ITS CENTRAL CLAIM IS CONFIRMED, NOT OVERTURNED. That note ends \"NOT VERIFIED BY EXECUTION HERE: the mechanism was read from the code rather than reproduced with a concurrent client... A reproduction would be two overlapping tool calls against one server asserting the failure disappears when they are sequenced.\" Both halves have now been run — `sequenced_the_same_pair_always_succeeds` and the two spawn-based arms measured here — and its diagnosis holds exactly: the hazard is ORDER, not visibility, and read-after-write was never the problem.\n\n⭐ ITS OTHER PREDICTION ALSO CAME TRUE, twenty-two days later and at cost. It said \"THE GENERAL FIX IS A DESCRIPTION, NOT A FEATURE\" and warned that collapsing one pair would not close an open set. The instance fix was built, the description was not, and the same user hit the same class through a different pair — which is the whole of fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed. This node was right and was under-acted-on, which is worth more than being right.\n\n🛑 WHAT IS NOT CLAIMED: the reproduction stays deliberately short of asserting that a concurrent batch FAILS. That is a scheduler outcome and pinning it would flap. The arms COUNT the outcome instead and are ignored by default."
+  },
+  "to_id": "fact:the-decision-race-is-caller-ordering-not-read-after-write"
+}

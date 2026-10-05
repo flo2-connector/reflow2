@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61b127da609f80b4179180a104eba033e10ed308d282cfa0a199dbcd57eb6af5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-cheap-tranche-from-bhomes-report",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:structure"
+}

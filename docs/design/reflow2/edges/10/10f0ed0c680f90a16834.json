@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0befbf30943884fb2d5f4a95c6ba736afddf77557a3d02442cd0fc2c5eb7e932",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:impact-check-skill"
+}

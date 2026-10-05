@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:19579e940ff5708bc7ac94cabb690e8efcfeb2bbf22eb871b18d4d2d2a7f4cc6",
+  "node_id": "fact:field-feedback-was-triaged-by-reading-a-fourth-time-after-the-rule-and-the-rule-is-delivered-at-no-step",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "A fourth triage after the rule was set read the feedback and wrote causes without the root-cause skill; the rule names no step, no served step exists for triaging a field report, and the design's own gap detector already lists the rule among five conventions delivered nowhere",
+    "source": "flo2 reflow2_feedback.md, session 2026-09-18 (Anthony's own project; the agent triaging was this session, root-cause skill run at Anthony's prompt)",
+    "statement": "OBSERVED 2026-09-18: asked 'please review flo2's reflow2_feedback.md', this agent read the file, verified two claims by measurement and wrote seven causes in prose; the root-cause skill was not invoked and the brainstorm skill was not invoked; Anthony asked afterwards whether the skill had been run. The rule (set 2026-09-05 after three reminders, 'then I don't have to remind this every time') was therefore reminded a fourth time. SEARCHED (step 2): the root-cause skill's own text records its author skipping it an hour after writing it; rule:an-issue-is-root-caused… records the fix that prompted it skipped the step. CANDIDATES from the design and what distinguished them: (A) the rule has steps: None, so the 0.64.0 lesson delivery cannot carry it — MEASURED: detect_gaps on this design reports '5 of 10 conventions the project follows are delivered at no step' and this rule is one; (B) there is NO served step to deliver it AT — MEASURED: the only skill whose description mentions a feedback file is `feedback`, the consumer-side usage-tally renderer; no served skill covers a maintainer triaging a field report, so 'please review this file' matched nothing and no get_skill happened; (C) the agent's trigger — it formed causes while reading, the quiet moment the skill warns about — true, and it is the symptom the rule exists to catch, not a cause to fix. A rule remembered failed 4 of 4 times; a rule delivered at a step cannot fail this way. The cause is B: the moment 'an agent reads a field report' is not a reflow2 step, so nothing can put the rule in front of the agent, and req:skill-use-survives-a-long-session says the user must never be the trigger — which is exactly who was.",
+    "subject_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+    "valid_from": "2026-09-18"
+  }
+}

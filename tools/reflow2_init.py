@@ -263,7 +263,7 @@ def kit_version() -> dict:
     }
 
 
-REMOTE = "https://github.com/sligara7/reflow2.git"
+REMOTE = "https://github.com/flo2-connector/reflow2.git"
 
 
 def upstream_head() -> str | None:
@@ -1285,6 +1285,15 @@ def ensure_design_record(project: Path, binary: Path) -> str | None:
     # installer's own test suite relies on.
     if binary is None or not Path(binary).exists():
         return manually
+    # OPT IN FIRST, HERE. Since 2026-10-02 a read never creates a design
+    # (req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server):
+    # `--export` makes the store only in a folder that has opted in — its
+    # `.reflow2/` is there — and refuses with "no design" anywhere else. This
+    # is the moment the project opts in, so say so in the filesystem rather
+    # than rely on the export to create what it no longer creates by asking.
+    # `install()` has made the directory already; this keeps the function
+    # true on its own, whoever calls it.
+    graph.parent.mkdir(parents=True, exist_ok=True)
     try:
         out = subprocess.run(
             [str(binary), "--graph-path", str(graph), "--export"],

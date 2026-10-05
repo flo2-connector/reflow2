@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5754ea6bc69087fc93ed3f1af8d36e8210f803baba2bfdcd151d7843cd06bff8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:lineage-check",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:check"
+}

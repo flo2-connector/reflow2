@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f5e1d401966628fe22fe8b3280e4ee87dd628a5dce5e789ec24cc2f64d9c3b27",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-notices-a-fix-with-no-cause-and-a-defect-its-subject-outran",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-fix-without-a-cause-and-an-overtaken-defect-raise-gaps"
+}

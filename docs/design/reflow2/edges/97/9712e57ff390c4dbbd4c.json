@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14c92e4271ff7e5acfb90d42003817d58c05904129e86817aaf4b08d96639b16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl68-readiness-gating",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0733d922ccda74d708562ad6612d272273c34734fd21f4e04aabb84674d3d106",
+  "node_id": "rel:v0220",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.22.0 — the delivery epoch becomes COMPUTED rather than declared (BL-68, the board's most ambitious item: TRL/MRL readiness as an observation, the gating threshold as the user's judgement, a forecast that marks itself a projection), the impact-check trigger stops measuring bookkeeping where it means precedence (BL-163), and the bulk import door finally describes itself (BL-117/118/138). SCHEMA CHANGE: both halves of the stamp move, 28->29 node types and 58->60 edge types, the first since v0.4.0 — an upgrade doc is owed and written.",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.22.0"
+  }
+}

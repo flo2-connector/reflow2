@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97bf3b7075164fa3d7db98f51059b5f32c57ec4ac2ebb319f72d7c5b3cf7971f",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-team-runs-one-reflow2-on-its-own-cloud-server-and-nobody-installs-it",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "central-host settled that a hosted surface publishes while WRITES STAY LOCAL (option c); this idea puts a team's writes on the hosted server (option b). Both cannot be the team shape at once."
+  },
+  "to_id": "dec:central-host"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7672bb9eafc665698141bf8bd28488cd91074d02ecdd3f5ddee7d3588d9906ea",
+  "edge_type": "INTERACTS_WITH",
+  "from_id": "act:driving-agent",
+  "properties": {
+    "interaction": "drives — every graph read and write reaches the design through this surface"
+  },
+  "to_id": "ifc:mcp-tools"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9e6bdd3f02697bda077097caf8426d8d6cd4492800a48daba0f70bdcad0b4c17",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:derived-scans-are-memoised-per-write-generation",
+  "properties": {
+    "approved_at": "2026-09-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

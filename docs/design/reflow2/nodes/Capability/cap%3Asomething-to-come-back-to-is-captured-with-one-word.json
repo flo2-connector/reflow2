@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:60cc15af300345cce102cff785fd8cb3b9816f5936da5a39e2a306253240d55e",
+  "node_id": "cap:something-to-come-back-to-is-captured-with-one-word",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Two halves, deliberately tiny. THE DOOR: the served `log-issue` skill and its `/log-issue` command take the person's sentence, find the subject from their noun (search_design; the Project when nothing matches), and call record_finding with fact_type `follow_up`, the sentence verbatim, dated — no cause, no node type, no id asked. THE BOUNDARY READ: DesignGraph::open_follow_ups (report.rs) lists every TemporalFact with fact_type `follow_up` that carries no `valid_to` and no incoming INVALIDATES, oldest first; loop_status carries them as `follow_ups` / `follow_ups_open`, names them in `next`, counts them under `not_attributable` when scoped, and capture-session's closing step reads them out to the user. Settling is the person's judgement at the boundary — a finding with a cause, a planned check, an idea, a change record (each closes the follow-up with `invalidates`), or lapsed with a `valid_to`. `follow_up` is a convention on a free-text field made real by the one thing that reads it.",
+    "name": "A follow-up is captured with one word and listed at every boundary until settled",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c76b0f15ff5e37607301af05f595f9ad82e688f147a0a15cbdc880211bd14e3b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-agent-does-the-file-work-so-a-remote-design-loses-only-what-runs-over-files",
+  "properties": {
+    "evidence": "The idea that the file work happens on the person's machine and the server gets content became, on @ajs's word (\"yes, record all three\"), the requirement that the local client opens the named file there and sends its content for the eight tools that name one."
+  },
+  "to_id": "req:the-local-client-opens-the-persons-files-for-the-tools-that-name-one"
+}

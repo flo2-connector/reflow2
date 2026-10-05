@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8debb8ced4cd8b36f996b3c06175d0379e4129ae9194286eaee3542b499eb51f",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:results-from-the-code-flow-back-into-a-design-that-lives-elsewhere",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-27"
+  },
+  "to_id": "epoch:planned-ci-asks-the-blueprint"
+}

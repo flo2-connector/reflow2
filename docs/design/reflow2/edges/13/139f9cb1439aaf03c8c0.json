@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a48e32938ece3f233006c8c6f1435d8f97c944ff3c513952df24ba500d575a5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-overtaken-defect-records-were-triaged-against-the-v0510-build",
+  "properties": {
+    "evidence": "Artifact.granularity and .volatility no longer declare defaults (schema/build.yaml:24-25, marked deliberately undefaulted), so import can no longer inject them and a restored graph re-exports unchanged. The general default-injection mechanism stays open as its own record."
+  },
+  "to_id": "fact:defect-import-materialises-defaults-so-a-restored-graph-reads-as-changed"
+}

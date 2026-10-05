@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b185049b32b8d5da47471aaeea02161da17069647a3ccf4eb2977470398b569a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-lesson-names-its-step-and-get-skill-and-the-tool-list-deliver-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:lessons"
+}

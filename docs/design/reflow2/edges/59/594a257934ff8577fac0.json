@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a376e1323143e22b1208153319e4f2e424452ea9610ce77815bfa49a15f8476",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:compare-designs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compare"
+}

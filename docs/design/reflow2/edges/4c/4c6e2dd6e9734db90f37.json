@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4151106eb770467f952b5eb1ce00a24bfd0cf286f12a5fbed78dc4423dd72cc8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

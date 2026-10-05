@@ -6,7 +6,7 @@
 //! the LLM (no external provider — IS-6).
 
 use anyhow::Context;
-use clap::Parser;
+use clap::{CommandFactory, FromArgMatches, Parser};
 use reflow2_mcp::degraded::DegradedService;
 use reflow2_mcp::service::ReflowService;
 use rmcp::{ServiceExt, transport::stdio};
@@ -23,6 +23,48 @@ enum Command {
         #[command(subcommand)]
         action: Option<SetupAction>,
     },
+    /// Run ONE tool that CHANGES NOTHING and print its reply as JSON — safe to
+    /// approve once: a terminal rule `^reflow2 read ` cannot approve a write.
+    ///
+    /// `reflow2 read get_node '{"id":"req:x"}'`, `reflow2 read loop_status`.
+    /// It is `--read-only --call TOOL`: it runs a tool whose served annotation
+    /// says it only reads, and refuses every other tool BY NAME before anything
+    /// is opened (exit 1, naming `reflow2 write`). `export_graph` and
+    /// `export_surface` run without `path` — the document is the reply — and
+    /// are refused with one, because then they write a file. Nothing it runs
+    /// can change the design or write a file, and it never creates a design.
+    /// Only the tool, its arguments and `--graph-path` may follow it.
+    /// `--list` prints which tools it runs. Logging is quiet: stderr carries a
+    /// refusal or a warning, never routine lines (RUST_LOG still overrides).
+    Read(VerbArgs),
+    /// Run ONE tool, any tool, and print its reply as JSON — the verb a
+    /// terminal keeps asking about.
+    ///
+    /// `reflow2 write add_requirement --args - <<'EOF' … EOF`. Exactly
+    /// `--call TOOL`, with quiet logging: the same exits (0 a reply, 1 a
+    /// refusal on stderr, 2 a reply the tool marked an error), and it may
+    /// create the design where there is none.
+    Write(VerbArgs),
+}
+
+/// What follows `read` or `write`: the tool and its arguments, nothing that
+/// could change what the verb is allowed to do (`reflow2_mcp::verbs`).
+#[derive(Debug, clap::Args)]
+struct VerbArgs {
+    /// The served tool to run (`--list` names them).
+    #[arg(value_name = "TOOL", required_unless_present = "list")]
+    tool: Option<String>,
+    /// The tool's arguments, as one JSON object (default `{}`). `-` reads the
+    /// object from stdin, so it can come from a quoted heredoc (`<<'EOF'`).
+    #[arg(value_name = "JSON", conflicts_with = "args")]
+    json: Option<String>,
+    /// The same object as a flag, as `--call` takes it.
+    #[arg(long = "args", value_name = "JSON")]
+    args: Option<String>,
+    /// Print which served tools `read` runs and which need `write`, as JSON,
+    /// and exit. Opens nothing.
+    #[arg(long, conflicts_with_all = ["tool", "json", "args"])]
+    list: bool,
 }
 
 #[derive(Debug, clap::Subcommand)]
@@ -57,7 +99,10 @@ enum SetupAction {
 #[command(name = "reflow2-mcp", version, about)]
 struct Cli {
     /// Directory for the on-disk (RocksDB) design graph. Created if absent.
-    #[arg(long, default_value = "./.reflow2/graph")]
+    ///
+    /// The one flag that may also follow `read` or `write`, so a design
+    /// elsewhere is reached without leaving a `^reflow2 read ` approval rule.
+    #[arg(long, default_value = "./.reflow2/graph", global = true)]
     graph_path: String,
 
     /// What the `content` block of a JSON reply carries, for EVERY client:
@@ -87,8 +132,26 @@ struct Cli {
     /// It NEVER overwrites a file that has changed since reflow2 last wrote it
     /// — a hand edit, a half-resolved merge — it declines and says so in
     /// `loop_status`. Refused together with `--read-only`.
+    ///
+    /// WITH `--call`: a call that writes and succeeds writes this file before
+    /// the process exits, through the same write-through and its rules
+    /// (`req:a-writing-call-keeps-the-committed-export-current`). Without the
+    /// flag, `--call` keeps the file the project's MCP configuration names for
+    /// this design. Every other one-shot mode does not serve, so it refuses
+    /// this flag rather than ignore it.
     #[arg(long = "export-to", value_name = "FILE")]
     export_to: Option<String>,
+
+    /// With `--call`: a writing call does NOT write the export afterwards, and
+    /// says the export is now behind. For a script making many writes to a
+    /// LARGE design, where each export costs seconds — measured on reflow2's
+    /// own design (6,478 nodes, a 28 MB export), a write took 1.6 s alone and
+    /// 6.0 s with its export. Finish with one writing call without it, or with
+    /// `--call export_graph`. Without this flag a writing call keeps the export
+    /// current, which is the default because a forgotten export is the loss
+    /// the write-through exists to end.
+    #[arg(long = "no-export", conflicts_with = "export_to")]
+    no_export: bool,
 
     /// Measure registered files under this directory instead of the one the
     /// store sits in (`<root>/.reflow2/graph` → `<root>`).
@@ -195,8 +258,50 @@ struct Cli {
     #[arg(long, value_name = "MB", default_value_t = 128)]
     store_memory: usize,
 
-    /// Refuse every write. Reads, searches and reports still work; nothing can
-    /// be created, changed or deleted.
+    /// Refuse every write — CHANGE NOTHING, IN THE DESIGN OR ON DISK. Reads,
+    /// searches and reports still work. Nothing in the design can be created,
+    /// changed or deleted; no tool writes a file (`export_graph` and
+    /// `export_surface` with a `path` are refused — without one they answer in
+    /// the reply); and no design store is created where there is none, in any
+    /// mode.
+    ///
+    /// What it does NOT stop is the store's own housekeeping when an existing
+    /// store is opened: RocksDB's log, manifest and table files, and the
+    /// records beside the store (its version stamp, handshake record and usage
+    /// ledger). Those change no node, edge or property of the design.
+    ///
+    /// WHERE IT IS HONOURED — every mode honours it, or refuses it by name:
+    ///
+    /// · CLIENTS — `--remote URL`, `--shared`, and a session started in a folder
+    ///   whose `.reflow2.toml` names its design. This process screens every call
+    ///   before it is sent: a write is refused HERE, as a tool error naming
+    ///   --read-only, and nothing reaches the server. A call is sent only when
+    ///   this reflow2's own tool list, the server's tool list and the file rule
+    ///   all say it only reads; a tool it cannot classify (the server cannot be
+    ///   asked, or one side does not serve it) counts as a write. `--shared`
+    ///   where there is no store starts no server, since one would create it.
+    ///
+    /// · `--only-if-present` WHERE NO DESIGN HAS BEEN STARTED — the latent
+    ///   surface: `reflow2_start_design` is refused, and a design that appears
+    ///   later is served read-only.
+    ///
+    /// · ONE-SHOT MODES — `--call` refuses a tool that writes by name before
+    ///   anything is opened. The modes that only read (`--export`,
+    ///   `--export-snapshot`, `--diff`, `--merge`, `--merge-apply`,
+    ///   `--describe`, `--list-tools`) accept it; the ones that write
+    ///   (`--import`, `--merge-driver`) refuse it. The `read` verb IS
+    ///   `--read-only --call`, and the `write` verb refuses it.
+    ///
+    /// · SERVERS — stdio, `--http`, `--serve-shared`, `--registry-root`,
+    ///   `--ephemeral`: refused at the write guard (below). Where there is no
+    ///   store at `--graph-path`, a stdio, `--http` or `--serve-shared` server
+    ///   opens nothing and serves the LATENT surface instead, on the transport
+    ///   it was given: it says there is no design store and why,
+    ///   `reflow2_start_design` is refused, and nothing is created — no store,
+    ///   no version stamp, nothing beside it (a `--serve-shared` server
+    ///   publishes no rendezvous). A store that appears there later is served
+    ///   read-only. `--registry-root` opens only a store it finds, and
+    ///   `--ephemeral` has none.
     ///
     /// ⭐ THIS IS WHAT MAKES A REACHABLE SURFACE SURVIVABLE BEFORE
     /// AUTHENTICATION EXISTS (`req:the-hosted-surface-is-read-only-...`).
@@ -209,7 +314,10 @@ struct Cli {
     ///
     /// Enforced at the single point a write cannot avoid — the graph's write
     /// guard — so it covers every tool that exists and every tool added later,
-    /// and a session minted for a new client inherits it.
+    /// and a session minted for a new client inherits it. A FILE a tool would
+    /// write is refused at the one guard every file-writing tool passes
+    /// (`ReflowService::file_write_permitted`), because those tools are marked
+    /// read-only — they do not write the graph — and wrote a file at any path.
     #[arg(long)]
     read_only: bool,
 
@@ -229,9 +337,10 @@ struct Cli {
     /// there is always something able to say what happened
     /// (`req:never-silently-absent`).
     ///
-    /// **No session owns the server.** It runs in its own process group, so the
-    /// session that happened to start it can end — or be Ctrl-C'd — without
-    /// taking anybody else's design brain with it.
+    /// **No session owns the server.** It runs in a session of its own, with no
+    /// terminal and none of its launcher's open files or locks, so the session
+    /// that happened to start it can end — or be Ctrl-C'd — without taking
+    /// anybody else's design brain with it.
     #[arg(long)]
     shared: bool,
 
@@ -281,7 +390,12 @@ struct Cli {
     /// flag, a directory whose graph (or the directory that would contain it)
     /// does not exist gets the LATENT surface instead: a server that starts,
     /// says no design has been started here, and offers the one tool that starts
-    /// one. Nothing is created until somebody asks for it.
+    /// one. Nothing is created until somebody asks for it. It is served on the
+    /// transport asked for — stdio, `--http` or `--serve-shared` — and a design
+    /// started under it is served as this command line would have served it.
+    ///
+    /// A one-shot mode (`--call`, `--export`, `--import`, …) honours it the same
+    /// way: where no design has been started, it refuses and creates nothing.
     #[arg(long = "only-if-present")]
     only_if_present: bool,
 
@@ -639,6 +753,30 @@ struct Cli {
     /// If another process holds the graph, a READ-ONLY tool still answers,
     /// from the best-effort snapshot copy `--export-snapshot` uses, and stderr
     /// says so; a tool that WRITES refuses, because a copy is not the design.
+    ///
+    /// It works on a design ON THIS MACHINE and never creates one by asking.
+    /// In a folder whose `.reflow2.toml` names a design on a server it refuses
+    /// and names that design and its address. Where there is no design, a tool
+    /// that only reads refuses ("no design at …"); only a tool that writes
+    /// creates the store. `--read-only` and `--only-if-present` are honoured;
+    /// any other flag `--call` does not read is refused by name, never ignored.
+    ///
+    /// A CALL THAT WRITES KEEPS THE COMMITTED EXPORT CURRENT: when it succeeds,
+    /// the design export is written before the process exits, by the same
+    /// write-through a long-lived server runs (its hand-edit guard, its lineage
+    /// from the committed record). The file is `--export-to`, else the one the
+    /// project's MCP configuration (`.mcp.json`, `opencode.json`,
+    /// `.vscode/mcp.json`, `.grok/config.toml`) names for this design. One line
+    /// on stderr says where it was written; with no file named anywhere it says
+    /// that instead. A read writes no export, and neither does a refused call;
+    /// `--no-export` asks a writing call for none. Exit 3 when the write LANDED
+    /// but the export could not be written (stderr says why) — do not repeat
+    /// that write.
+    ///
+    /// For a terminal that asks before each command, `reflow2 read TOOL` and
+    /// `reflow2 write TOOL` are this door with the read/write split in the
+    /// command text, so one rule (`^reflow2 read `) can approve every read and
+    /// no write (`reflow2-mcp read --help`).
     #[arg(long, value_name = "TOOL")]
     call: Option<String>,
 
@@ -646,6 +784,44 @@ struct Cli {
     /// reads the object from stdin, so a script can build it with a heredoc.
     #[arg(long = "args", value_name = "JSON", default_value = "{}")]
     call_args: String,
+
+    /// Describe ONE served tool and exit: how to call it — its input schema,
+    /// with every nested shape (`$defs`) and allowed value — and the lessons
+    /// the design at `--graph-path` holds for it. That is the tools/list entry
+    /// an MCP session on that design is given, which the `--call` door never
+    /// reads: without it, argument shapes are learned one refusal at a time
+    /// and the design's lessons for the tool never arrive
+    /// (req:the-cli-describes-any-tool-with-its-full-schema-and-lessons).
+    ///
+    /// BRIEF by default, held to the 30,000-character reply budget: every
+    /// property, type, required list and allowed value is kept, each field's
+    /// description is cut to its first sentence, and the lessons are listed
+    /// as records. `--full` prints the tools/list entry unaltered, under
+    /// `served`. The same answer is served as `describe_schema` with `tool`.
+    ///
+    /// It reads the design and changes nothing. While another process holds
+    /// the design it reads a best-effort snapshot copy, as `--call` does; in a
+    /// folder whose `.reflow2.toml` names a design on a server it refuses and
+    /// names that design. Where there is NO design it opens and creates
+    /// nothing, describes the surface every design serves before it holds a
+    /// lesson, and says so. An unknown name exits 1 with the nearest names.
+    #[arg(long, value_name = "TOOL")]
+    describe: Option<String>,
+
+    /// List EVERY served tool and exit, as `--describe` describes one: by
+    /// default an index (each tool's name, whether it only reads, its required
+    /// arguments and its lesson count) held to the reply budget; with
+    /// `--full`, the tools/list array of the design at `--graph-path`
+    /// unaltered, under `tools` — for a generator rendering a reference from
+    /// the binary. It reads the design and changes nothing.
+    #[arg(long = "list-tools")]
+    list_tools: bool,
+
+    /// With `--describe` or `--list-tools`: the tools/list entries unaltered —
+    /// each whole description, this design's lessons appended as tools/list
+    /// appends them, and the whole input schema — instead of the brief form.
+    #[arg(long)]
+    full: bool,
 }
 
 /// A throwaway copy of a graph directory, opened without disturbing its holder.
@@ -719,16 +895,30 @@ struct OneShotClient;
 impl rmcp::ClientHandler for OneShotClient {
     fn get_info(&self) -> rmcp::model::ClientConfig {
         let mut cfg = rmcp::model::ClientConfig::default();
-        cfg.client_info.name = "reflow2-mcp --call".to_string();
+        cfg.client_info.name = reflow2_mcp::service::CALL_DOOR_CLIENT.to_string();
         cfg.client_info.version = env!("CARGO_PKG_VERSION").to_string();
         cfg
     }
 }
 
-/// Run one served tool against the graph at `--graph-path` and print its
-/// reply. Returns the process exit code: 0 for a reply, 1 for a refusal (on
-/// stderr), 2 when the tool marked its own reply an error.
-async fn call_one_tool(cli: &Cli, tool: &str) -> anyhow::Result<i32> {
+/// What `--call` was asked, checked before anything is opened.
+struct PreparedCall {
+    arguments: rmcp::model::JsonObject,
+    /// The tool only reads: its served `read_only_hint`. The one read/write
+    /// split the door makes, used both for "may this create the store?"
+    /// (`one_shot::resolve_design`) and for "may a held graph answer from a
+    /// snapshot?" — never a second, hand-kept list.
+    reads: bool,
+    /// For a call that writes: which file it keeps current, found before
+    /// anything is opened (`reflow2_mcp::call_export`). `None` for a read.
+    export: Option<reflow2_mcp::call_export::Found>,
+}
+
+/// Parse `--args`, find the tool on the served list and read whether it only
+/// reads — all before any store is opened, so a typo or a bad object never
+/// mints a graph directory and the "where is this design?" step knows whether
+/// it is being asked for a read or a write.
+async fn prepare_call(cli: &Cli, tool: &str) -> anyhow::Result<PreparedCall> {
     // Arguments first: a bad object should not touch the graph.
     let raw = if cli.call_args == "-" {
         std::io::read_to_string(std::io::stdin()).context("failed to read --args from stdin")?
@@ -745,10 +935,15 @@ async fn call_one_tool(cli: &Cli, tool: &str) -> anyhow::Result<i32> {
         );
     };
 
-    // Is the tool served, and does it only read? Decided from the served list
-    // itself, so this verb can never disagree with what a session is offered.
-    let probe = ReflowService::in_memory().context("could not build the tool list")?;
-    let tools = probe.tools_with_lessons().await;
+    // Is the tool served, and does it only read? Decided from the served
+    // surface itself, so this verb can never disagree with what a session is
+    // offered. Names and annotations depend on no design, so nothing is opened
+    // or built for them: until 2026-10-03 this built the whole served list on
+    // an empty in-memory design, which holds every schema and no lesson
+    // (fact:the-call-doors-tool-list-is-built-on-an-empty-design-so-it-holds-no-lessons-2026-10-02).
+    // Every listing the door PRINTS is built from the OPENED design
+    // (`--describe`, `--list-tools`, `describe_schema` with `tool`).
+    let tools = ReflowService::served_tools();
     let Some(served) = tools.iter().find(|t| t.name == tool) else {
         anyhow::bail!(
             "no tool named `{tool}` is served. --call takes a served tool name; `--call \
@@ -756,46 +951,59 @@ async fn call_one_tool(cli: &Cli, tool: &str) -> anyhow::Result<i32> {
              and `--call list_skills` names the skills."
         );
     };
-    let read_only = served
+    let reads = served
         .annotations
         .as_ref()
         .and_then(|a| a.read_only_hint)
         .unwrap_or(false);
+    Ok(PreparedCall {
+        arguments,
+        reads,
+        export: None,
+    })
+}
 
-    let (service, snapshot) = match ReflowService::new(&cli.graph_path) {
-        Ok(s) => (s, None),
-        Err(e) if read_only && is_lock_contention(&format!("{e:#}")) => {
-            let snapshot = snapshot_dir(&cli.graph_path)?;
-            eprintln!(
-                "reflow2: WARNING — BEST-EFFORT SNAPSHOT. The graph at {} is held by another \
-                 process, so `{tool}` reads a COPY: the design as of about now, which can lack \
-                 the newest unflushed writes. A read-only tool is answered this way rather than \
-                 refused; nothing was written.",
-                cli.graph_path
-            );
-            let s = ReflowService::new(snapshot.path())
-                .map_err(|e| anyhow::anyhow!("{e}"))
-                .with_context(|| {
-                    format!(
-                        "the snapshot at {} could not be opened: the copy caught the store \
-                         mid-write. Try again, or ask the holder to release the graph.",
-                        snapshot.path()
-                    )
-                })?;
-            (s.into_read_only(), Some(snapshot))
-        }
-        Err(e) => {
-            let why = explain_open_failure(&e.into(), &cli.graph_path);
-            if read_only {
-                return Err(why);
-            }
-            return Err(why.context(format!(
-                "`{tool}` writes, so it needs the graph itself and not a snapshot copy"
-            )));
-        }
+/// Run one served tool against the graph at `--graph-path` and print its
+/// reply. Returns the process exit code: 0 for a reply, 1 for a refusal (on
+/// stderr), 2 when the tool marked its own reply an error.
+///
+/// Called only after `one_shot::resolve_design` has said this design may be
+/// opened here — so in a folder that names its design on a server, or where a
+/// read would find no design, nothing below ever runs.
+async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow::Result<i32> {
+    let PreparedCall {
+        arguments,
+        reads: read_only,
+        export,
+    } = prepared;
+
+    let (service, snapshot) = open_the_design(cli, &format!("`{tool}`"), read_only)?;
+
+    // --read-only, HONOURED. A tool that writes the graph was refused by name
+    // before the store was opened (`one_shot::resolve_design`); this is the
+    // second wall, and the one a read-only tool that would write a FILE meets
+    // (export_graph / export_surface with a `path`). The same service mode a
+    // read-only server uses, so the door and a session refuse alike.
+    let service = if cli.read_only {
+        service.into_read_only()
+    } else {
+        service
     };
-
-    let service = with_cli_tree_root(service, cli);
+    let mut service = with_cli_tree_root(service, cli);
+    // A WRITING CALL KEEPS THE COMMITTED EXPORT CURRENT
+    // (req:a-writing-call-keeps-the-committed-export-current). The server's own
+    // write-through, installed with no background task — the exit would kill
+    // one — and run once below, after the reply. A handle is kept because the
+    // in-process server consumes the service.
+    let keeps = match &export {
+        Some(reflow2_mcp::call_export::Found::Target(target)) => {
+            service
+                .keep_export_current_at_exit(target.path.clone())
+                .map_err(anyhow::Error::msg)?;
+            Some((service.clone(), target.clone()))
+        }
+        _ => None,
+    };
     let outcome = call_over_pipe(service, tool, arguments).await;
     if let Some(snapshot) = snapshot {
         snapshot.cleanup();
@@ -828,11 +1036,156 @@ async fn call_one_tool(cli: &Cli, tool: &str) -> anyhow::Result<i32> {
         }
     };
     println!("{}", serde_json::to_string_pretty(&body)?);
-    Ok(if result.is_error.unwrap_or(false) {
-        2
-    } else {
-        0
+    if result.is_error.unwrap_or(false) {
+        return Ok(2);
+    }
+    // The call succeeded. A write is in the store, so the export it owes is
+    // written now, before the process exits — and a run that could not write
+    // it says so and ends 3, because the design DID change.
+    let mut code = 0;
+    if !read_only {
+        match (keeps, &export) {
+            (Some((service, target)), _) => {
+                if let Some(flushed) = service.export_now().await {
+                    let (line, c) = reflow2_mcp::call_export::report(tool, &target, &flushed);
+                    eprintln!("{line}");
+                    code = c;
+                }
+            }
+            (None, Some(reflow2_mcp::call_export::Found::Unconfigured { root, notes })) => {
+                eprintln!("{}", reflow2_mcp::call_export::unconfigured(root, notes));
+            }
+            (None, Some(reflow2_mcp::call_export::Found::NotAsked)) => {
+                eprintln!("{}", reflow2_mcp::call_export::NOT_ASKED);
+            }
+            _ => {}
+        }
+    }
+    Ok(code)
+}
+
+/// Open the store at `--graph-path` for `what` (how the run is named, e.g.
+/// "`loop_status`"). A READ that finds the store held by another process is
+/// answered from a best-effort snapshot copy, returned so the caller removes
+/// it when done; a write needs the store itself. The one opener the `--call`
+/// door and `--describe` / `--list-tools` share, so a held design is read
+/// alike by both.
+fn open_the_design(
+    cli: &Cli,
+    what: &str,
+    read_only: bool,
+) -> anyhow::Result<(ReflowService, Option<GraphSnapshot>)> {
+    Ok(match ReflowService::new(&cli.graph_path) {
+        Ok(s) => (s, None),
+        Err(e) if read_only && is_lock_contention(&format!("{e:#}")) => {
+            let snapshot = snapshot_dir(&cli.graph_path)?;
+            eprintln!(
+                "reflow2: WARNING — BEST-EFFORT SNAPSHOT. The graph at {} is held by another \
+                 process, so {what} reads a COPY of its store: the design as of about now, \
+                 which can lack the newest unflushed writes. Its search index is rebuilt from \
+                 the copied nodes, and the project tree and the records beside the store are \
+                 read where the design lives. A read is answered this way rather than refused; \
+                 nothing was written.",
+                cli.graph_path
+            );
+            // THE COPY IS ONLY WHERE THE STORE IS OPENED. Everything else a
+            // read uses — the project tree, the sync record, the harness
+            // settings — is found from the design's REAL path, and nothing is
+            // written beside it (`ReflowService::reading_a_copy`). Like any
+            // snapshot copy it refuses graph writes, because they would land in
+            // a copy that is thrown away, and still writes a file the caller
+            // asks for (export_graph with a path).
+            // The copy carries the design's version stamp, so a binary behind
+            // the holder is refused here exactly as it is on the real store —
+            // which is why this context no longer asserts that a failure is
+            // the copy catching the store mid-write. It may be; the reason
+            // underneath says which.
+            let s = match ReflowService::reading_a_copy(snapshot.path(), &cli.graph_path) {
+                Ok(s) => s,
+                Err(e) => {
+                    snapshot.cleanup();
+                    return Err(anyhow::anyhow!("{e}").context(format!(
+                        "the copy of the held graph at {} could not be opened. If the reason \
+                         below is a storage error, the copy caught the store mid-write: try \
+                         again, or ask the holder to release the graph.",
+                        cli.graph_path
+                    )));
+                }
+            };
+            (s, Some(snapshot))
+        }
+        Err(e) => {
+            let why = explain_open_failure(&e.into(), &cli.graph_path);
+            if read_only {
+                return Err(why);
+            }
+            return Err(why.context(format!(
+                "{what} writes, so it needs the graph itself and not a snapshot copy"
+            )));
+        }
     })
+}
+
+/// `--describe <TOOL>` and `--list-tools`: the tools/list entries of the
+/// design at `--graph-path`, built from that design so its lessons ride on
+/// them (`reflow2_mcp::describe_tool`). Returns the exit code: 0 with the JSON
+/// on stdout, 1 with the refusal on stderr.
+///
+/// Called only after `one_shot::resolve_design` has said where the design is:
+/// a folder that names its design on a server never reaches this. Where there
+/// is no store at all, nothing is opened or created — an in-memory design
+/// stands in, and the reply says there was no design to hold a lesson.
+async fn describe_tools(cli: &Cli, mode: reflow2_mcp::one_shot::Mode) -> anyhow::Result<i32> {
+    use reflow2_mcp::describe_tool::{Door, Source, describe_all, describe_one};
+    let what = match mode {
+        reflow2_mcp::one_shot::Mode::Describe => {
+            format!(
+                "`--describe {}`",
+                cli.describe.as_deref().unwrap_or_default()
+            )
+        }
+        _ => "`--list-tools`".to_string(),
+    };
+    // "Is there a store here?" is the one rule every mode asks
+    // (`reflow2_mcp::opening`), never a copy of it.
+    let (listing, source) = if reflow2_mcp::opening::store_exists(&cli.graph_path) {
+        let (service, snapshot) = open_the_design(cli, &what, true)?;
+        let listing = service.tool_listing().await;
+        drop(service);
+        if let Some(snapshot) = snapshot {
+            snapshot.cleanup();
+        }
+        (
+            listing,
+            Source::Design(format!("the design at {}", cli.graph_path)),
+        )
+    } else {
+        let found = reflow2_core::describe_at(&cli.graph_path);
+        let service = ReflowService::in_memory().context("could not build the tool list")?;
+        (
+            service.tool_listing().await,
+            Source::NoDesign(format!(
+                "there is no design at {} ({}), and nothing was opened or created there",
+                cli.graph_path,
+                found.reading.trim_end_matches('.')
+            )),
+        )
+    };
+    let budget = reflow2_mcp::reply_budget::DEFAULT_REPLY_BUDGET_CHARS;
+    let reply = match &cli.describe {
+        Some(tool) => describe_one(&listing, tool, cli.full, Door::Cli, &source, budget),
+        None => Ok(describe_all(&listing, cli.full, &source, budget)),
+    };
+    match reply {
+        Ok(v) => {
+            println!("{}", serde_json::to_string_pretty(&v)?);
+            Ok(0)
+        }
+        Err(refusal) => {
+            eprintln!("reflow2: {what} refused — {refusal}");
+            Ok(1)
+        }
+    }
 }
 
 /// Serve `service` to an in-process client over an in-memory pipe, make one
@@ -883,6 +1236,27 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir)
         .with_context(|| format!("could not create the snapshot directory {}", dir.display()))?;
+    // FROM HERE ON THE COPY EXISTS, so a failure must take it away again. The
+    // first version returned at the first file it could not copy and left a
+    // partial second copy of the design in the temp dir — found by the
+    // degraded-server suite on 2026-10-03, after the held-read tests had made
+    // reads while a holder was starting and deleting superseded files.
+    let snapshot = GraphSnapshot { dir };
+    match fill_snapshot(source, &snapshot.dir, graph_path) {
+        Ok(()) => Ok(snapshot),
+        Err(e) => {
+            snapshot.cleanup();
+            Err(e)
+        }
+    }
+}
+
+/// Copy the store's flat files, its identity and its version stamp into `dir`.
+fn fill_snapshot(
+    source: &std::path::Path,
+    dir: &std::path::Path,
+    graph_path: &str,
+) -> anyhow::Result<()> {
     for entry in std::fs::read_dir(source)
         .with_context(|| format!("could not read the graph directory {graph_path}"))?
     {
@@ -895,17 +1269,32 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
         let target = dir.join(&name);
         if entry.file_type()?.is_dir() {
             // RocksDB keeps its own files flat, so the only nested directory is
-            // the full-text index — which a snapshot does not need, because
-            // export reads the store rather than the index. It is rebuilt empty
-            // in the copy, so do not use a snapshot for `search_design`.
+            // the full-text index. It is NOT copied — a copy taken while the
+            // holder commits can catch a segment half-written — and it does not
+            // need to be: opening the copy finds an index that does not hold
+            // what the store holds and REBUILDS it from the copied nodes
+            // (`DesignGraph::open_rocksdb`), so the copy searches exactly the
+            // nodes it holds. Until 2026-10-02 this comment said "do not use a
+            // snapshot for `search_design`", and `--call` did: the copy answered
+            // "nothing matched" from an index that held nothing.
             continue;
         }
-        std::fs::copy(entry.path(), &target).with_context(|| {
-            format!(
-                "could not copy {} into the snapshot",
-                entry.path().display()
-            )
-        })?;
+        match std::fs::copy(entry.path(), &target) {
+            Ok(_) => {}
+            // GONE BETWEEN THE LISTING AND THE COPY: the holder deleted a file
+            // it no longer uses — a flushed WAL, a superseded MANIFEST or
+            // OPTIONS file — which an opening or compacting RocksDB does. The
+            // copy does not need it. If it did, the copy's open fails and says
+            // so, which is the crash-consistency caveat this read already
+            // carries.
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => {
+                return Err(anyhow::Error::new(e).context(format!(
+                    "could not copy {} into the snapshot",
+                    entry.path().display()
+                )));
+            }
+        }
     }
 
     // THE COPY IS THE SAME DESIGN, so it must carry the same name
@@ -925,7 +1314,23 @@ fn snapshot_dir(graph_path: &str) -> anyhow::Result<GraphSnapshot> {
             )
         })?;
     }
-    Ok(GraphSnapshot { dir })
+    // AND THE SAME VERSION GUARD. The stamp of which reflow2 last wrote the
+    // store also lives beside it, and opening a store with no stamp reads it as
+    // unstamped — so a copy without it skipped the refusal a binary OLDER than
+    // the holder meets when it opens the real store ("written by a reflow2
+    // that knows more of the schema"), and read a design it cannot fully
+    // understand. The copy carries the stamp, and its open checks it.
+    let source_stamp = reflow2_core::provenance::stamp_path(graph_path);
+    if source_stamp.exists() {
+        let target_stamp = reflow2_core::provenance::stamp_path(&dir.display().to_string());
+        std::fs::copy(&source_stamp, &target_stamp).with_context(|| {
+            format!(
+                "could not copy the version stamp {} into the snapshot",
+                source_stamp.display()
+            )
+        })?;
+    }
+    Ok(())
 }
 
 /// Turn the RocksDB lock error into the sentence the operator needs.
@@ -1051,6 +1456,15 @@ fn read_resolutions(
 /// thing to restore by accident while debugging.
 const DEFAULT_LOG_FILTER: &str = "warn,reflow2_mcp=info,reflow2_core=info";
 
+/// The tracing filter for the `read` and `write` verbs: errors only. A verb is
+/// typed by an agent in a terminal, which reads stderr as the answer; the
+/// door's own refusals and warnings are printed there directly, so a routine
+/// INFO line on every call ("opening reflow2 design graph") and an rmcp WARN
+/// line repeating each refusal were measured noise (main 293f957, 2026-10-03;
+/// `req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`:
+/// "keep logging quiet"). RUST_LOG still overrides it.
+const VERB_LOG_FILTER: &str = "error";
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     // FIRST, before anything can replace the binary under us: remember what
@@ -1075,18 +1489,146 @@ async fn main() -> anyhow::Result<()> {
     // dependency's only when something is wrong.
     //
     // RUST_LOG overrides all of it, including back to `info` for everything.
+    // The command line is parsed first, because the `read` and `write` verbs
+    // are quieter still (VERB_LOG_FILTER); parsing logs nothing.
+    let command = Cli::command();
+    let matches = command.clone().get_matches();
+    let default_filter = match matches.subcommand_name() {
+        Some("read" | "write") => VERB_LOG_FILTER,
+        _ => DEFAULT_LOG_FILTER,
+    };
     tracing_subscriber::fmt()
         .with_env_filter(
-            EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| EnvFilter::new(DEFAULT_LOG_FILTER)),
+            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(default_filter)),
         )
         .with_writer(std::io::stderr)
         .with_ansi(false)
         .init();
 
-    let cli = Cli::parse();
+    // ⭐ THE TABLE FIRST (`reflow2_mcp::one_shot::gate`): which one-shot mode
+    // this run is, and every flag given on the command line that the mode does
+    // not read — refused here, by name, before any branch below can return
+    // early past the code that would have read it. The POSITION is the fix: a
+    // guard placed among the branches protects only the branches below it
+    // (fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02).
+    let mut cli = Cli::from_arg_matches(&matches).unwrap_or_else(|e| e.exit());
+    let one_shot = reflow2_mcp::one_shot::gate(&command, &matches).map_err(anyhow::Error::msg)?;
+
+    // ⭐ THE VERBS ARE `--call`, NOT A SECOND DOOR
+    // (`req:a-terminal-agent-can-auto-approve-reads-and-confirm-each-write`).
+    // `read` and `write` fill in the same fields `--call TOOL --args JSON`
+    // does, and `read` also asks for `--read-only`, so everything below — the
+    // "where is this design?" step, the held-graph snapshot, the read-only
+    // service, the exit codes — is the door's own. What `read` adds is the
+    // refusal of a tool that is not a read, before anything is opened
+    // (`reflow2_mcp::verbs::read_may_run`, below).
+    use reflow2_mcp::one_shot::Mode;
+    if let Some(Command::Read(verb) | Command::Write(verb)) = &cli.command {
+        if verb.list {
+            let tools = ReflowService::served_tools();
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&reflow2_mcp::verbs::listing(&tools))?
+            );
+            return Ok(());
+        }
+        cli.call = verb.tool.clone();
+        cli.call_args = verb
+            .json
+            .clone()
+            .or_else(|| verb.args.clone())
+            .unwrap_or_else(|| "{}".to_string());
+    }
+    let read_only_asked_by = if one_shot == Some(Mode::Read) {
+        cli.read_only = true;
+        Some("the `read` verb")
+    } else if cli.read_only {
+        Some("--read-only")
+    } else {
+        None
+    };
     // Before anything can open a store: the budget is fixed once one does.
     reflow2_core::set_store_memory_budget(cli.store_memory.max(8) * 1024 * 1024);
+
+    // ⭐ "WHERE IS THIS DESIGN?" — answered once, for EVERY one-shot mode that
+    // opens the store at --graph-path, before any of them can and without
+    // opening anything: a folder that names its design on a server is refused
+    // with that design's address, --read-only and --only-if-present are
+    // honoured, and a read never creates a design
+    // (req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server).
+    // The modes it governs: --export, --export-snapshot, --diff BASE, --import,
+    // --call, the `read` and `write` verbs, --describe and --list-tools; the
+    // file-pure ones (--diff BASE OTHER, --merge, --merge-apply,
+    // --merge-driver) and --stop-shared never open the store.
+    let mut prepared_call = None;
+    if let Some(mode) = one_shot
+        && mode.opens_the_store()
+    {
+        use reflow2_mcp::one_shot::{Access, Asked, resolve_design};
+        let (what, access) = match mode {
+            Mode::Call | Mode::Read | Mode::Write => {
+                let tool = cli.call.clone().unwrap_or_default();
+                let prepared = prepare_call(&cli, &tool).await?;
+                // `read` runs only what changes nothing — the served
+                // annotation and the file rule — and refuses the rest by
+                // name, here, before anything is opened.
+                if mode == Mode::Read {
+                    reflow2_mcp::verbs::read_may_run(
+                        &tool,
+                        prepared.reads,
+                        &serde_json::Value::Object(prepared.arguments.clone()),
+                    )
+                    .map_err(anyhow::Error::msg)?;
+                }
+                let access = if prepared.reads {
+                    Access::Reads
+                } else {
+                    Access::Writes
+                };
+                prepared_call = Some(prepared);
+                let what = match mode {
+                    Mode::Read => format!("`reflow2 read {tool}`"),
+                    Mode::Write => format!("`reflow2 write {tool}`"),
+                    _ => format!("`--call {tool}`"),
+                };
+                (what, access)
+            }
+            Mode::Import => (format!("`{}`", mode.named()), Access::Writes),
+            Mode::Describe => (
+                format!(
+                    "`--describe {}`",
+                    cli.describe.as_deref().unwrap_or_default()
+                ),
+                Access::Describes,
+            ),
+            Mode::ListTools => (format!("`{}`", mode.named()), Access::Describes),
+            _ => (format!("`{}`", mode.named()), Access::Reads),
+        };
+        resolve_design(&Asked {
+            what: &what,
+            graph_path: &cli.graph_path,
+            access,
+            only_if_present: cli.only_if_present,
+            read_only: read_only_asked_by,
+        })
+        .map_err(anyhow::Error::msg)?;
+        // WHICH EXPORT A WRITING CALL KEEPS CURRENT, found here — after the
+        // design has been resolved, before anything is opened — so a project
+        // whose configurations disagree is refused with nothing written
+        // (reflow2_mcp::call_export).
+        if let Some(prepared) = prepared_call.as_mut()
+            && access == Access::Writes
+        {
+            prepared.export = Some(
+                reflow2_mcp::call_export::find(
+                    &cli.graph_path,
+                    cli.export_to.as_deref(),
+                    cli.no_export,
+                )
+                .map_err(|why| anyhow::anyhow!("{what} was refused: {why}"))?,
+            );
+        }
+    }
     if let Some(raw) = cli.content_policy.as_deref() {
         match reflow2_mcp::content_policy::ContentPolicy::parse(raw) {
             Some(p) => reflow2_mcp::content_policy::set_override(p),
@@ -1120,24 +1662,16 @@ async fn main() -> anyhow::Result<()> {
         };
         reflow2_mcp::proxy::check_remote_url(&url, bearer.is_some())?;
         tracing::info!(remote = %url, credential = bearer.is_some(), "working against a remote reflow2 server");
-        return reflow2_mcp::proxy::run_remote(&url, bearer).await;
+        return reflow2_mcp::proxy::run_remote(&url, bearer, cli.read_only).await;
     }
 
     // THE OAUTH RESOURCE SERVER (`reflow2_mcp::bearer`), when the operator
     // declared an issuer — refused here, before anything opens, wherever a
     // token could not arrive or a second way of naming the caller competes.
-    // A one-shot mode (export, import, a single --call, ...) serves nobody,
-    // so the flags mean nothing there and are left alone.
-    let one_shot = cli.export
-        || cli.import.is_some()
-        || !cli.diff.is_empty()
-        || !cli.merge.is_empty()
-        || !cli.merge_apply.is_empty()
-        || cli.export_snapshot
-        || !cli.merge_driver.is_empty()
-        || cli.call.is_some()
-        || cli.stop_shared;
-    let bearer = if one_shot {
+    // A one-shot mode (export, import, a single --call, ...) serves nobody:
+    // given on its command line these flags were refused by the table above,
+    // and set in the environment they are ambient configuration, left alone.
+    let bearer = if one_shot.is_some() {
         None
     } else {
         bearer_verifier(&cli)?
@@ -1174,40 +1708,20 @@ async fn main() -> anyhow::Result<()> {
         tracing::info!(graph_path = %cli.graph_path, "opening reflow2 design graph");
     }
 
-    if cli.export && cli.import.is_some() {
-        anyhow::bail!("--export and --import do the opposite things; pass one, not both");
-    }
-    if !cli.diff.is_empty() && (cli.export || cli.import.is_some()) {
-        anyhow::bail!("--diff is its own mode; pass it without --export/--import");
-    }
-    if !cli.merge.is_empty() && (cli.export || cli.import.is_some() || !cli.diff.is_empty()) {
-        anyhow::bail!("--merge is its own mode; pass it without --export/--import/--diff");
-    }
-    if !cli.merge_apply.is_empty()
-        && (cli.export || cli.import.is_some() || !cli.diff.is_empty() || !cli.merge.is_empty())
-    {
-        anyhow::bail!(
-            "--merge-apply is its own mode; pass it without --export/--import/--diff/--merge"
-        );
-    }
-    if cli.export_snapshot && (cli.export || cli.import.is_some() || !cli.diff.is_empty()) {
-        anyhow::bail!(
-            "--export-snapshot is its own mode; pass it without --export/--import/--diff"
-        );
-    }
-    if !cli.merge_driver.is_empty()
-        && (cli.export
-            || cli.import.is_some()
-            || !cli.diff.is_empty()
-            || !cli.merge.is_empty()
-            || !cli.merge_apply.is_empty())
-    {
-        anyhow::bail!(
-            "--merge-driver is its own mode; pass it without --export/--import/--diff/--merge/--merge-apply"
-        );
-    }
+    // Two one-shot modes on one command line were refused by the table above
+    // (`one_shot::gate`), which knows every mode — the pairwise checks that
+    // stood here knew six of them, and let --call and --stop-shared combine
+    // with anything.
     if cli.resolutions.is_some() && cli.merge_apply.is_empty() {
         anyhow::bail!("--resolutions only means something with --merge-apply");
+    }
+    // Every other one-shot mode refused it by name in the table above; a
+    // server has no tool to describe in full, so it is not silently dropped.
+    if cli.full && one_shot.is_none() {
+        anyhow::bail!(
+            "--full only means something with --describe <TOOL> or --list-tools: it asks for the \
+             tools/list entries unaltered. Nothing was opened."
+        );
     }
 
     // ---- serve a design that will NOT survive this process -------------------
@@ -1418,11 +1932,10 @@ async fn main() -> anyhow::Result<()> {
     // Diff-and-exit. Two files never touch the graph; one file compares
     // against the live graph, which needs the (single-writer) store.
     if !cli.diff.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let base_path = &cli.diff[0];
         let base = read_doc(base_path)?;
@@ -1446,11 +1959,10 @@ async fn main() -> anyhow::Result<()> {
     // Merge-and-exit. Three files, never the graph — so it runs while a server
     // holds the lock. It proposes; it writes nothing.
     if !cli.merge.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (&cli.merge[0], &cli.merge[1], &cli.merge[2]);
         let base = read_doc(base_path)?;
@@ -1466,11 +1978,10 @@ async fn main() -> anyhow::Result<()> {
     // decisions in, the merged document out, never the graph. resolve_merge
     // refuses (no document, non-zero exit) unless every conflict is decided.
     if !cli.merge_apply.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (
             &cli.merge_apply[0],
@@ -1501,11 +2012,10 @@ async fn main() -> anyhow::Result<()> {
     // Merge-driver-and-exit. Git's side of the same file-pure merge: it hands us
     // three temporary files and reads the result back out of the middle one.
     if !cli.merge_driver.is_empty() {
+        // Either saved form — the single file or the item layout — through
+        // the one reader every caller shares (`saved_design`).
         let read_doc = |path: &str| -> anyhow::Result<reflow2_core::GraphExport> {
-            let raw = std::fs::read_to_string(path)
-                .with_context(|| format!("failed to read the design from {path}"))?;
-            serde_json::from_str(&raw)
-                .with_context(|| format!("{path} is not a reflow2 export document"))
+            reflow2_mcp::saved_design::read_export(path).map_err(anyhow::Error::msg)
         };
         let (base_path, ours_path, theirs_path) = (
             &cli.merge_driver[0],
@@ -1626,10 +2136,24 @@ async fn main() -> anyhow::Result<()> {
         return Ok(());
     }
 
+    // One tool described, or every tool listed, and exit: the tools/list
+    // entries of THIS design for a door that never lists.
+    if let Some(
+        mode @ (reflow2_mcp::one_shot::Mode::Describe | reflow2_mcp::one_shot::Mode::ListTools),
+    ) = one_shot
+    {
+        let code = describe_tools(&cli, mode).await?;
+        std::process::exit(code);
+    }
+
     // One tool, one reply, and exit: the door a build uses. Before the server
     // is built for the same reason --export is.
     if let Some(tool) = cli.call.clone() {
-        let code = call_one_tool(&cli, &tool).await?;
+        let prepared = match prepared_call.take() {
+            Some(p) => p,
+            None => prepare_call(&cli, &tool).await?,
+        };
+        let code = call_one_tool(&cli, &tool, prepared).await?;
         std::process::exit(code);
     }
 
@@ -1638,21 +2162,22 @@ async fn main() -> anyhow::Result<()> {
     // committed export, a backup, or a design built on another machine could
     // only be restored by passing the whole document through the tool boundary.
     if let Some(source) = cli.import {
-        let raw = if source == "-" {
-            std::io::read_to_string(std::io::stdin())
-                .context("failed to read the design from stdin")?
+        // Stdin carries the single-file form; a path may name either form.
+        let read = if source == "-" {
+            let raw = std::io::read_to_string(std::io::stdin())
+                .context("failed to read the design from stdin")?;
+            let export: reflow2_core::GraphExport =
+                serde_json::from_str(&raw).context("stdin is not a reflow2 export document")?;
+            reflow2_mcp::saved_design::ReadDesign {
+                export,
+                items: None,
+            }
         } else {
-            std::fs::read_to_string(&source)
-                .with_context(|| format!("failed to read the design from {source}"))?
+            reflow2_mcp::saved_design::read_design(&source).map_err(anyhow::Error::msg)?
         };
-        let doc: reflow2_core::GraphExport = serde_json::from_str(&raw).with_context(|| {
-            let where_from = if source == "-" {
-                "stdin"
-            } else {
-                source.as_str()
-            };
-            format!("{where_from} is not a reflow2 export document")
-        })?;
+        reflow2_mcp::saved_design::refuse_newer_schema(&read, cli.accept_newer)
+            .map_err(anyhow::Error::msg)?;
+        let doc = &read.export;
 
         let mut graph = reflow2_core::DesignGraph::open_rocksdb(&cli.graph_path)
             .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
@@ -1667,14 +2192,15 @@ async fn main() -> anyhow::Result<()> {
         // tool silently renamed a design, and it was committed and pushed with
         // every gate green. It now lives in `import_graph` itself, so every
         // caller gets it and this one only has to REPORT what happened.
-        let report = graph
+        let mut report = graph
             .import_graph_with(
-                &doc,
+                doc,
                 reflow2_core::export::ImportOptions {
                     accept_newer: cli.accept_newer,
                 },
             )
             .context("failed to import the design")?;
+        reflow2_mcp::saved_design::annotate_import(&read, &mut report);
         // Absorbing a file puts this store in step with it, the record the
         // `import_graph` tool already makes. Without it, an import that
         // REPAIRED relations stored twice left the store looking unsynced, and
@@ -1683,7 +2209,11 @@ async fn main() -> anyhow::Result<()> {
         if source != "-"
             && let Some(hash) = &doc.content_hash
         {
-            reflow2_core::provenance::record_sync(&cli.graph_path, &source, hash);
+            reflow2_core::provenance::record_sync(
+                &cli.graph_path,
+                &reflow2_mcp::saved_design::sync_key(&source),
+                hash,
+            );
         }
         if let Some(adopted) = &report.adopted_identity {
             eprintln!(
@@ -1830,7 +2360,10 @@ async fn main() -> anyhow::Result<()> {
     // that design's place
     // (fact:an-agent-opened-in-a-moved-designs-folder-is-served-the-frozen-store-2026-09-27).
     // Servers (--http, --serve-shared) serve what they are pointed at; the pointer
-    // is the business of a CLIENT started in the folder.
+    // is the business of a CLIENT started in the folder. A ONE-SHOT mode never
+    // gets this far: `one_shot::resolve_design` read the pointer for it at the
+    // top of main, because this check sits below every one-shot branch and so
+    // protected none of them.
     if cli.http.is_none() && !cli.serve_shared {
         match reflow2_mcp::pointer::read(&reflow2_mcp::pointer::location_for(&cli.graph_path)) {
             Ok(None) => {}
@@ -1842,27 +2375,45 @@ async fn main() -> anyhow::Result<()> {
         }
     }
 
-    // Latent mode: reflow2 is installed on this machine, this directory has not
-    // opted into a design, and NOTHING should be created for it.
+    // Latent mode: the surface that says there is NO DESIGN HERE, served for
+    // either of two reasons. Checked here — before --serve-shared and --shared —
+    // because both of those open or spawn something that creates the store, and
+    // deliberately a filesystem test rather than a graph open: opening is the
+    // thing that would create. The one-shot modes, which return above this,
+    // honour both through `one_shot::resolve_design` instead.
     //
-    // The check happens here — before --serve-shared and --shared, and after
-    // every CLI-only mode — because both of those open or spawn something that
-    // creates the store. It is deliberately a filesystem test rather than a
-    // graph open: opening is the thing that would create.
-    if cli.only_if_present && !reflow2_mcp::latent::design_present(&cli.graph_path) {
-        eprintln!(
-            "reflow2: no design has been started in this directory ({} does not exist), so the \
-             design surface is not served here. This is normal on a machine-wide install; the \
-             session is told so in band and offered `reflow2_start_design`.",
-            cli.graph_path
-        );
-        let latent = reflow2_mcp::latent::LatentService::new(cli.graph_path.clone());
-        let running = latent
-            .serve(stdio())
-            .await
-            .context("failed to start the latent MCP server")?;
-        running.waiting().await.context("latent MCP server error")?;
-        return Ok(());
+    // · `--only-if-present` where this directory has not opted into a design:
+    //   reflow2 is installed on this machine, and NOTHING should be created.
+    // · ⭐ `--read-only` where there is no store, in every SERVING mode — stdio,
+    //   `--http`, `--serve-shared`: opening the path creates the store, and
+    //   `--read-only` creates nothing (`reflow2_mcp::opening`, the rule every
+    //   mode asks). Until 2026-10-03 these opened it anyway and served an empty
+    //   design (fact:a-read-only-server-creates-an-empty-store-where-there-is-none-2026-10-03).
+    //   Anthony chose this surface over refusing to start and over creating the
+    //   store (dec:a-read-only-server-with-no-store-serves-the-latent-surface).
+    //   A `--shared` CLIENT is not a server, and keeps its own answer below: it
+    //   starts no server where there is no store, and says why.
+    let not_started = cli.only_if_present && !reflow2_mcp::latent::design_present(&cli.graph_path);
+    let read_only_with_no_store =
+        !cli.shared && !reflow2_mcp::opening::may_open(&cli.graph_path, cli.read_only);
+    if not_started || read_only_with_no_store {
+        if not_started {
+            eprintln!(
+                "reflow2: no design has been started in this directory ({} does not exist), so \
+                 the design surface is not served here. This is normal on a machine-wide \
+                 install; the session is told so in band and offered `reflow2_start_design`.",
+                cli.graph_path
+            );
+        } else {
+            eprintln!(
+                "reflow2: there is no design store at {} and this server was started with \
+                 --read-only, which creates nothing, so none was created and the design surface \
+                 is not served. Sessions are told so in band; a store that appears there later \
+                 is served read-only, with no restart.",
+                cli.graph_path
+            );
+        }
+        return serve_latent(&cli, bearer).await;
     }
 
     // Be-the-shared-server-and-serve. Started for a session by --shared; it is
@@ -1958,6 +2509,7 @@ async fn main() -> anyhow::Result<()> {
             Some(SharedServer {
                 graph_path: cli.graph_path.clone(),
                 idle_timeout_minutes: cli.idle_timeout,
+                publishes: true,
             }),
             false,
             cli.shutdown_grace,
@@ -1970,6 +2522,20 @@ async fn main() -> anyhow::Result<()> {
     // Shared-session mode: attach to the server for this design (starting one if
     // there is none) and be this session's end of it.
     if cli.shared {
+        // --read-only CREATES NOTHING. With no store at the path there is no
+        // server holding one, and the server this session would start creates
+        // the store as it opens it. So start nothing, and say why in band.
+        if !reflow2_mcp::opening::may_open(&cli.graph_path, cli.read_only) {
+            let why = format!(
+                "there is no design store at {} and this session was started with --read-only, \
+                 which creates nothing: a shared server started here would create the store as \
+                 it opened it, so none was started. Point --graph-path at an existing design, \
+                 or start one with a session that is not read-only.",
+                cli.graph_path
+            );
+            eprintln!("reflow2: {why}");
+            return serve_degraded_stdio(why, &cli.graph_path).await;
+        }
         let log = cli.server_log.clone().map(std::path::PathBuf::from);
         match reflow2_mcp::shared::ensure_server_async(
             &cli.graph_path,
@@ -1985,8 +2551,13 @@ async fn main() -> anyhow::Result<()> {
                      immediately.",
                     cli.graph_path
                 );
-                return reflow2_mcp::proxy::run(&url, &cli.graph_path, cli.export_to.as_deref())
-                    .await;
+                return reflow2_mcp::proxy::run(
+                    &url,
+                    &cli.graph_path,
+                    cli.export_to.as_deref(),
+                    cli.read_only,
+                )
+                .await;
             }
             Err(e) => {
                 // The whole point of staying on stdio: this session can still be
@@ -2007,6 +2578,7 @@ async fn main() -> anyhow::Result<()> {
                         &cli.graph_path,
                         cli.export_to.as_deref(),
                         reason,
+                        cli.read_only,
                     )
                     .await;
                 }
@@ -2156,6 +2728,12 @@ enum HttpSurface {
         /// (`DegradedService::recovering`).
         recovers: bool,
     },
+    /// No design here yet (`reflow2_mcp::latent`): not an outage, and not a
+    /// design either. `/readyz` says 503 until one is served.
+    Latent {
+        /// What `/readyz` answers; turned ready when a design is served here.
+        readiness: std::sync::Arc<reflow2_mcp::readiness::Readiness>,
+    },
 }
 
 /// The extra duties of a server that sessions are meant to FIND: publish where
@@ -2164,6 +2742,11 @@ enum HttpSurface {
 struct SharedServer {
     graph_path: String,
     idle_timeout_minutes: u64,
+    /// Whether to publish the rendezvous. A rendezvous says "a server got all
+    /// the way up holding this store", so a shared server serving the latent
+    /// surface — no store, `--read-only` — publishes none: it creates nothing
+    /// beside the store either. It still stops when nobody uses it.
+    publishes: bool,
 }
 
 /// Serve one design to many client sessions over HTTP.
@@ -2250,7 +2833,10 @@ impl ServeAs {
             read_only: cli.read_only,
             tree_root: cli.tree_root.clone(),
             export_to: cli.export_to.clone(),
-            caller: cli.http.as_ref().map(|_| caller_rule(cli, false, bearer)),
+            // Over HTTP — `--http`, or the loopback a `--serve-shared` server
+            // binds — exactly as that server's own start installs it.
+            caller: (cli.http.is_some() || cli.serve_shared)
+                .then(|| caller_rule(cli, false, bearer)),
         }
     }
 
@@ -2329,6 +2915,91 @@ fn degraded_design(
         };
         (
             http_service_of(move || Ok(degraded.clone()), sessions, cfg),
+            holds,
+        )
+    }
+}
+
+/// Serve the latent surface (`reflow2_mcp::latent`) — there is no design here
+/// — on the transport this command line asked for, and ready a design that
+/// appears under it the way the healthy start would have readied it at once
+/// (`ServeAs`: read-only, the tree root, the write-through export, the caller
+/// rule over HTTP).
+///
+/// ⚠️ BEFORE 2026-10-03 IT WAS SERVED ON STDIO WHATEVER WAS ASKED, and opened
+/// its design bare: `--only-if-present --http ADDR` where no design was started
+/// answered on stdin/stdout, so a server started with its stdin closed exited
+/// at once and nothing ever listened at ADDR; and a design it started went
+/// without the operator's `--export-to`. Serving it for `--read-only` over
+/// `--http` and `--serve-shared` made both visible, so both doors are this one.
+async fn serve_latent(
+    cli: &Cli,
+    bearer: Option<std::sync::Arc<reflow2_mcp::bearer::Verifier>>,
+) -> anyhow::Result<()> {
+    let serve_as = ServeAs::of(cli, bearer.as_deref());
+    let latent = reflow2_mcp::latent::LatentService::new(cli.graph_path.clone()).prepared_by(
+        std::sync::Arc::new(move |service, provenance| serve_as.prepare(service, provenance)),
+    );
+    let latent = if cli.read_only {
+        latent.into_read_only()
+    } else {
+        latent
+    };
+    if cli.http.is_none() && !cli.serve_shared {
+        let running = latent
+            .serve(stdio())
+            .await
+            .context("failed to start the latent MCP server")?;
+        running.waiting().await.context("latent MCP server error")?;
+        return Ok(());
+    }
+    if cli.serve_shared {
+        // As the shared server's own start declares it: a seat handed out here
+        // is one of many sessions', never this process's own.
+        reflow2_core::identity::declare_serving_many_sessions();
+    }
+    let readiness =
+        reflow2_mcp::readiness::Readiness::not_ready(reflow2_mcp::readiness::NO_DESIGN_HERE);
+    let latent = latent.over_http(std::sync::Arc::clone(&readiness));
+    serve_http(
+        latent_design(latent),
+        cli.http.as_deref().unwrap_or("127.0.0.1:0"),
+        &cli.http_allow_host,
+        HttpSurface::Latent { readiness },
+        // A shared server's other duty — stop when nobody uses it, releasing a
+        // store it may have opened since — without the rendezvous
+        // (`SharedServer::publishes`).
+        cli.serve_shared.then(|| SharedServer {
+            graph_path: cli.graph_path.clone(),
+            idle_timeout_minutes: cli.idle_timeout,
+            publishes: false,
+        }),
+        false,
+        cli.shutdown_grace,
+        bearer,
+    )
+    .await
+}
+
+/// The latent surface over HTTP: sessions, and the design it may have opened
+/// by the time a stop comes, for the stop to close.
+fn latent_design(
+    latent: reflow2_mcp::latent::LatentService,
+) -> impl FnOnce(
+    HttpConfig,
+) -> (
+    rmcp::transport::streamable_http_server::StreamableHttpService<
+        reflow2_mcp::latent::LatentService,
+        Sessions,
+    >,
+    reflow2_mcp::drain::Holds,
+) {
+    move |cfg| {
+        let sessions = std::sync::Arc::new(Sessions::default());
+        let holds =
+            reflow2_mcp::drain::Holds::latent(std::sync::Arc::clone(&sessions), latent.clone());
+        (
+            http_service_of(move || Ok(latent.clone()), sessions, cfg),
             holds,
         )
     }
@@ -2579,7 +3250,9 @@ where
     // answer is a status and one path-free sentence, never the design.
     let readiness = match &surface {
         HttpSurface::Design => reflow2_mcp::readiness::Readiness::ready(),
-        HttpSurface::Degraded { readiness, .. } => std::sync::Arc::clone(readiness),
+        HttpSurface::Degraded { readiness, .. } | HttpSurface::Latent { readiness } => {
+            std::sync::Arc::clone(readiness)
+        }
     };
     let http = reflow2_mcp::readiness::Probes::new(http, readiness);
 
@@ -2592,7 +3265,7 @@ where
     // claim a waiting session can act on. Publishing on intent would send peers
     // at a port that may never answer.
     let activity = std::sync::Arc::new(reflow2_mcp::shared::Activity::new());
-    if let Some(cfg) = &shared {
+    if let Some(cfg) = shared.as_ref().filter(|cfg| cfg.publishes) {
         reflow2_mcp::shared::publish_rendezvous(
             &cfg.graph_path,
             &reflow2_mcp::shared::Rendezvous {
@@ -2621,7 +3294,8 @@ where
         // server on its way out. Best-effort by nature — SIGKILL cannot run it —
         // which is why a stale record is designed to be survivable: a session
         // probes before trusting one.
-
+    }
+    if let Some(cfg) = &shared {
         // Expire when nobody is using it, so the store's write lock is not held
         // against the CLI forever. Sessions recover from this on their own.
         // Expiring is a STOP like any other: it drains and closes the store
@@ -2677,6 +3351,12 @@ where
              design as soon as that process lets go, with no restart; GET /readyz says 503 until \
              then."
         ),
+        HttpSurface::Latent { .. } => eprintln!(
+            "reflow2: serving the LATENT surface over HTTP at http://{bound}/ — there is no design \
+             here to serve yet (said above), so sessions that connect are told so in band and \
+             offered `describe_designs` and `reflow2_start_design`. A design that appears here is \
+             served from then on, with no restart; GET /readyz says 503 until it is."
+        ),
         HttpSurface::Degraded {
             recovers: false, ..
         } => eprintln!(
@@ -2696,7 +3376,12 @@ where
             Some(why) = expired.recv() => why,
         }
     };
-    let rendezvous = shared.as_ref().map(|cfg| cfg.graph_path.clone());
+    // Only a rendezvous this server published is taken down: one it never
+    // published belongs to another server.
+    let rendezvous = shared
+        .as_ref()
+        .filter(|cfg| cfg.publishes)
+        .map(|cfg| cfg.graph_path.clone());
     let hooks = reflow2_mcp::drain::Hooks {
         on_accept: Box::new(move || activity.touch()),
         on_stop: Box::new(move |why: &str| {
@@ -2776,7 +3461,7 @@ async fn attach_to_named_design(
     );
     eprintln!("reflow2: {told}");
     tracing::info!(remote = %address, design = %pointer.design.id, "attached to the design this folder names");
-    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told)).await
+    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told), cli.read_only).await
 }
 
 /// Serve the degraded surface on stdio: one tool, and `reason` in the handshake,
@@ -3002,6 +3687,43 @@ mod tests {
         assert!(msg.contains("merge:dead"), "message: {msg}");
         assert!(msg.contains("mine"), "message: {msg}");
         assert!(msg.contains("base/ours/theirs"), "message: {msg}");
+    }
+
+    /// THE ONE-SHOT TABLE NAMES ONLY ARGUMENTS THAT EXIST. Its rows are clap ids,
+    /// i.e. `Cli`'s field names; a renamed field would otherwise leave a row
+    /// that honours nothing, and the flag it meant would start being refused —
+    /// or a mode id that selects nothing would never be detected at all.
+    #[test]
+    fn every_id_the_one_shot_table_names_is_an_argument_of_this_command() {
+        use clap::CommandFactory;
+        use reflow2_mcp::one_shot::Mode;
+        let cmd = super::Cli::command();
+        cmd.clone().debug_assert();
+        let ids: Vec<String> = cmd
+            .get_arguments()
+            .map(|a| a.get_id().to_string())
+            .collect();
+        for mode in Mode::ALL {
+            if mode.is_subcommand() {
+                assert!(
+                    cmd.find_subcommand(mode.id()).is_some(),
+                    "no `{}` subcommand",
+                    mode.id()
+                );
+            } else {
+                assert!(
+                    ids.iter().any(|i| i == mode.id()),
+                    "{mode:?}: no argument `{}`",
+                    mode.id()
+                );
+            }
+            for id in mode.honours() {
+                assert!(
+                    ids.iter().any(|i| i == id),
+                    "{mode:?} honours `{id}`, which is not an argument of reflow2-mcp"
+                );
+            }
+        }
     }
 
     #[test]

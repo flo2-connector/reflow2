@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d7c5de99a8a619f1c5d250ef2a43d35731b696336a4bfa55b582cfeb7bef9824",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23:r5",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

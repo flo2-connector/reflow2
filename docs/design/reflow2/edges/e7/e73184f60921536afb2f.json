@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:327fc01d7d6fc31fce5fe2c4e512b276a1a98200be0811debc696015f2b9eed7",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it",
+  "properties": {
+    "evidence": "That node's counterweight is 'a hub holding N copies is a second source of truth, N times over'. This idea answers the hazard by making a copy impossible or loudly declared: the hub references, the child holds."
+  },
+  "to_id": "dec:idea-the-hub-holds-a-copy-per-sub-repo-and-copies-go-stale"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:243fef2bfb083a17c87039e5f5e37807436d561f9001bb68452fca3dc3c8ba0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-store-an-older-reflow2-wrote-is-rechecked"
+}

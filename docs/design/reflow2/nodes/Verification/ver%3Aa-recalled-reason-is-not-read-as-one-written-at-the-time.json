@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:43a205a686659b4381b8a5fe03953d936749e2a243fd0cb9fe5be06fa77bed51",
+  "node_id": "ver:a-recalled-reason-is-not-read-as-one-written-at-the-time",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_recalled_reason_is_not_read_as_one_written_at_the_time.rs — six core cases.",
+    "findings": "6 of 6 passed; the ledger case was observed to FAIL with the recalled split switched off, then pass with it restored.",
+    "kind": "verification",
+    "last_run_at": "2026-09-23",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_recalled_reason_is_not_read_as_one_written_at_the_time.rs",
+    "method": "test",
+    "name": "A recalled reason is not read as one written at the time",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e3a9a00cf80b426f6c70e1679227b1ccaa70d39cb42c9efef4277b0be264b6b4",
+  "node_id": "decision:ack:046d5d7e84c91989",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:046d5d7e84c91989.",
+    "name": "Reviewed: gap:046d5d7e84c91989",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired because cap:git-merge-driver joined the set (42 → 43). Unusually well fitted this time, and worth naming why: the driver's tests are run BY GIT on real branches, which is as close to validation as a test gets — and still not validation. What they cannot show is the thing the feature exists for: whether two people on opposite coasts, working different clusters of one design over a week, actually stop losing each other's work. That is a two-person field trial with the parallel-work skill in hand, and it is the first trial this project has had a genuine second participant for.",
+    "status": "accepted"
+  }
+}

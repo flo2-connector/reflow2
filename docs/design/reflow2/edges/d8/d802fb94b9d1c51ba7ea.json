@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:52d53decc5b84e90919113b423e3f48a73baaa743b689e255661f72ee4cce30f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0612",
+  "properties": {
+    "as_checksum": "sha256:d096230f4c9b28747c2ec676526332ecf66aebe7487bb7bbc25faea165955e67"
+  },
+  "to_id": "art:move-component-test"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:28274bac88111da2772ecd4015a0c50926c9608731a2a7ce53e5187373b55cdc",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-the-instruction-layer-runs-ahead-of-the-typed-tool-layer",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Instance ② : the loop asks for component dependencies and the typed surface omits the edge, so the agent falls back to raw create_edge.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-commonest-structural-edge-has-no-typed-helper-and-its-name-is-taken"
+}

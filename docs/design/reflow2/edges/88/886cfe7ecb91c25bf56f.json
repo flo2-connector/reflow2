@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:782529896f832240c4978da4ae1d5e55bd338f444ea33021566d0649c648eea4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-design-record-merges-per-node-in-every-clone",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

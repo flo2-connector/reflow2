@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:895e6aaead7aea4d31ebc2d8a25f5de9e4ed16b876f1fc00b693be473a02f07f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:storyflow-second-field-report-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:defect-orientation-needs-a-seed-and-a-new-session-has-none"
+}

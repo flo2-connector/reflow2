@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:79f90014c71d26147323fd121af2b6c8e1ac2e06ecefaeaef9c3e4ecacf8db78",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:v0520-takes-the-field-feedback-triage-first-then-the-cement-measure",
+  "properties": {
+    "approved_at": "2026-09-07T13:00:00Z",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

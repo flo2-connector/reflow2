@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47aa74c62a35095b75959a34c1e1314994cccd0bef9e56c85d1a8146ece05a50",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-should-the-spine-be-re-derived-from-the-actual-structure",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Both cannot hold. That accepted decision carves the spine from PURPOSE and states explicitly that a functional carving comes from the product's purpose and NOT the code; this question proposes deriving it from the code instead. If this were taken, that decision would have to be superseded rather than amended."
+  },
+  "to_id": "dec:bl83a-functional-decomposition"
+}

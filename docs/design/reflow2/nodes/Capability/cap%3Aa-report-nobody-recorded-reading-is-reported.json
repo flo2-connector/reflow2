@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:31bfb6b7daf8c929050c959024a78398b8e22fd1e7083caed3ec2cbde8203baf",
+  "node_id": "cap:a-report-nobody-recorded-reading-is-reported",
+  "node_type": "Capability",
+  "properties": {
+    "description": "An Artifact GOVERNED_BY a methodology DesignRule with no outgoing CAUSES edge is reported by detect_defects as `untriaged_report`, at info severity. It answers the question a triage rule cannot answer about itself: was this document actually read, or merely filed?\n\nTHE PREDICATE IS TYPED, NOT TEXTUAL — no id substring, no path prefix — so it works on any project rather than on one whose folders happen to be named `feedback`. Measured on reflow2 2026-09-09: the typed predicate selects four Artifacts, all field reports; dropping the category term selects thirty-one nodes of eight types.\n\nPARKING DOES NOT SUPPRESS IT, deliberately: registering a dated report is what parks it, so a detector honouring parking would report zero on every graph that has any reports at all — and a detector reporting zero because it had nothing to run on reads exactly like one that ran clean. The rule population is reported for the same reason.",
+    "name": "A registered report that produced no finding is reported, and never blocks",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

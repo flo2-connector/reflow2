@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5b0a242d5215f0f819ff187067c985ac57508b1655854fdb782d4e1bde84141",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl213-discriminator",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:auto-merge-at-90-destroys-sibling-names"
+}

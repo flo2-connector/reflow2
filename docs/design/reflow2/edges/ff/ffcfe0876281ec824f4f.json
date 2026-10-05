@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fadc111931b910bcd7230a7a269899bf7c685337525449b37e787b564a9fe679",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-lens-rides-loop-status-and-the-nudge-says-its-words-are-for-the-agent",
+  "properties": {
+    "at": "2026-09-14",
+    "note": "The field report asked WHY the lens did not filter the words; the walk answered it (fact:root-cause-the-lens-rode-the-skill-rail-and-the-closing-words-are-chosen-on-the-loop-rail) and this change put the lens on the reply the words came from and the register line on the nudge. The observation stays true as history; the open question it carried is answered. Whether an agent now ACTS on the lens is still unmeasured."
+  },
+  "to_id": "fact:reflow2-jargon-reaches-the-user-unfiltered-by-the-lens-a-work-session-said-structural-findings-and-undispositioned-drift-to-a-person"
+}

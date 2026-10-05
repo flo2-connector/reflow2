@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8d22ca13e78d0b240d5925994f36a9faae160c0ac42a6382ac9dd0d808df5180",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-finding-carries-the-name-a-person-uses-and-the-audience-rule-is-stated",
+  "properties": {
+    "approved_at": "2026-09-20",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

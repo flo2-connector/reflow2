@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:161a0a83a12e52ce2a2839f91e01c7bc84128b3fd8a1bf283111111fd1f39a97",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:a-check-that-could-not-run-is-blocked-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:a-check-that-could-not-run-is-blocked-test"
+}

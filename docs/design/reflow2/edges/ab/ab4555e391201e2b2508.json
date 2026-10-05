@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db5753ef489979e7e3d2379f209e673c13fe88a29f5cbee5ed087b77a958d493",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-rank-ratchet-and-the-confusability-instrument",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:tools-query"
+}

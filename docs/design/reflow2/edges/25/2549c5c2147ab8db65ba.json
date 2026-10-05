@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ae9b91fbb143b6813d7e35409d672c91a04297d857a76cdb755f7452895e29b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-spof-sweep-stops-rebuilding-its-graph",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

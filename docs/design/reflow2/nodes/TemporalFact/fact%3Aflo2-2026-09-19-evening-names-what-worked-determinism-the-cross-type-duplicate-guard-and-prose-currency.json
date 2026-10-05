@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0bb8efbc7521bcabd70fd5a84e0d5ad97f74a7208a762639db3ba9aed1e5ab63",
+  "node_id": "fact:flo2-2026-09-19-evening-names-what-worked-determinism-the-cross-type-duplicate-guard-and-prose-currency",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "status",
+    "name": "What flo2 said must not regress, 2026-09-19 evening: deterministic prompt composition, the cross-type duplicate guard, prose_currency, and the two-sided accept",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "Recorded as evidence a regression check can read later. ① gap_to_prompt BEING DETERMINISTIC (needs_llm plus text, no model run) 'turned an idea whose standing objection was \"every click is a model call\" into one where that is simply false'. The ask in F18 is to expose more of what it already builds, NOT to change what it does — so anything that makes this tool run a model by default would break the feature it enabled. ② THE DUPLICATE GUARD REACHING ACROSS NODE TYPES: creating a capability was refused because a TemporalFact recorded minutes earlier said something close, with the framing 'Recording what shipped and recording what must stay true are different acts on the same work, and they are supposed to read alike'; distinct_from then carried on. 'That is a hard thing to get right and it was right.' ③ set_capability_status returning prose_currency, naming that the description was written while the status was `planned`, quoting it, and saying only a person can judge: 'Nothing else in any tool I use does this.' ④ set_artifact_checksum requiring a disposition and then refusing design_holds without a change_type, with its reason — six artifacts drifted on three files and the tool made them judge each separately.",
+    "subject_id": "cap:gap-carries-a-reading",
+    "valid_from": "2026-09-19"
+  }
+}

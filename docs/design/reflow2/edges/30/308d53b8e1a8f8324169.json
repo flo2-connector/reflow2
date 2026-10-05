@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cf82e6c7ada54236d31a32919d78865f6ccc7be1073003e867744f16d39745f2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:owed-to-a-contributor",
+  "properties": {
+    "authored_at": "2026-08-05T23:10:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

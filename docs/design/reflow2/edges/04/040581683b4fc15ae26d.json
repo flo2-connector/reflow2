@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:da4010db5295132c00b4da64d2ee6c49c0181a216b31aa7c9e31203374d9c843",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:key-interfaces",
+  "properties": {},
+  "to_id": "req:modularity-computed"
+}

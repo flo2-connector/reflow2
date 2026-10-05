@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:36f1db0c757a6f099366b2c1048938d563eea5164397c36522f6f155343d490d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:gate-suite"
+}

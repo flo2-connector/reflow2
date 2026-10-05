@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5af985b901d570deeab3c2f41089895309b2a3159aa55ea08c94d5be24130455",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:storyflow-engineering-principles",
+  "properties": {
+    "doc_kind": "design_doc"
+  },
+  "to_id": "dec:idea-a-capability-checked-only-at-unit-level-is-a-finding"
+}

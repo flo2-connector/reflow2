@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ea61c37f5d62f50fa7929853d2a9075a0ecb127a973d10dcba8c4ccf4ae42dff",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-release-that-shipped-nothing-is-reported",
+  "properties": {},
+  "to_id": "req:a-release-that-shipped-says-what-it-shipped"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:652d3b4134b6b17b980773bf15c2c9689e0440d18918045b57f197c80a815086",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do"
+}

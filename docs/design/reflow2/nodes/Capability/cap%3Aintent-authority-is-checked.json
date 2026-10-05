@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d874444a0a9e291e406545aeab53e9e3d2ae09ceee4a0d18e8638bc713e39239",
+  "node_id": "cap:intent-authority-is-checked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`tools/check_intent_authority.py`, run in CI against the committed export. It enforces `rule:design-intent-moves-only-on-the-owners-word`, which Anthony marked ENFORCED on 2026-08-09 — \"if a session recorded a decision as accepted without you saying so, should that stop the build, or is it advice?\" → stop the build — and which nothing checked for twelve days.\n\nWHAT COUNTS AS SETTLING INTENT, from the rule's own text: a Requirement off `proposed`, a Decision `accepted`, a DesignRule's `enforced` recorded. What counts as the owner's word: an `AUTHORED_BY role=approver` edge, structure rather than prose. A `reviewer` edge is not a signature and does not satisfy it.\n\nGRANDFATHERED, ON HIS INSTRUCTION, and the boundary is now materialised on `dec:the-authority-check-guards-forward-not-backward` — which recorded his ruling on 2026-08-11 and deliberately deferred the mechanism to build time. 356 settled nodes exempt, 63 already carrying an approver.\n\nTHE SET IS IN THE GRAPH, NOT IN THE SCRIPT. Which nodes were already settled is a fact about the design; a list inside `tools/` could be edited to silence a finding without that edit ever surfacing in a design review.\n\nA SET, NOT A COUNT. Failing when unapproved settled nodes exceed a baseline is smaller and wrong: add an approver to one old node while introducing one new violation and the count is unchanged, so the check passes while the thing it guards has happened. That is the same two-states-look-identical failure the rule itself exists against, and its check must not reproduce it.\n\nIT CANNOT PASS QUIETLY. Missing rule, missing ruling, a ruling still only `proposed`, an unreadable export — every way of not knowing exits 2, never 0. Four of its ten tests exist only to pin that.",
+    "name": "A settled node with nobody's name on it stops the build, from a recorded boundary forward",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

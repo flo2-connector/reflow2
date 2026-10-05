@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2ccf7de3dce3eccabf708d7c4046f2e09d0fe22e3945d1769cd656e8fabcfebc",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {},
+  "to_id": "req:closure-reads-design-done-separately-from-build-done"
+}

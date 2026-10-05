@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b6f18ff126ade69ca8e3ffa100b2de745a2adb4148b8313bb8903037e878c421",
+  "node_id": "epoch:the-near-match-cut-stops-being-a-lottery",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony's word, 2026-09-21: raise NEAR_MATCH_LIMIT and pin it with a test. Follows the measurement in fact:the-near-match-guard-shows-three-of-a-nine-way-tie-so-relevance-is-decided-by-score-noise, where nine non-self hits cleared the floor, three were shown, and the genuinely duplicated node sat at rank 4 — six thousandths of a point behind rank 5.\n\nWHAT LANDS: the constant moves from 3 to 6, and crates/reflow2-mcp/tests/the_near_match_report_is_not_cut_at_three.rs pins the CLASS — a band of eight close nodes is not reported as three, and the report stays bounded by the query window, so removing the cap is not a way to make it green.\n\nWHAT THIS EPOCH DOES NOT CLAIM: it does not claim the cut is now in the right place. The floor is relative to a self-score that sits structurally far above every other hit, so it lands inside a dense band whatever the limit is; raising the limit buys margin and does not change that shape. Whether the SCORE is the right instrument for this question at all is untouched and open.\n\n⚠️ AND IT WIDENS THE REFUSAL SURFACE, which is the part a later reader should not have to rediscover: NEAR_MATCH_LIMIT governs both what is SHOWN and what is REFUSED, because refuse_unless_deliberate reads the already-truncated list. Doubling it doubles how many unacknowledged near-matches can block a write.",
+    "epoch_type": "revision",
+    "name": "The near-match report stops being cut at three (2026-09-21)",
+    "sequence": 510,
+    "status": "arrived"
+  }
+}

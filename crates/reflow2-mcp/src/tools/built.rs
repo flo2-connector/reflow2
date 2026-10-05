@@ -68,7 +68,7 @@ fn artifact_has_baseline(g: &DesignGraph, artifact_id: &str) -> Result<bool, Mcp
 #[tool_router(router = built_router, vis = "pub")]
 impl ReflowService {
     #[tool(
-        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME, because a renamed feature is a downstream build break that no API diff or surface export would mention. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves. A declaration without a version is refused: the version is the whole point. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise, because absent means 'nobody has said', never 'there is no design'.",
+        description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves, and returns the manifest. A declaration without a version is refused. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise: absent means 'nobody has said'. Re-declaring keeps whatever you leave out, and replies with a receipt.",
         annotations(read_only_hint = false)
     )]
     pub async fn external_dependency(
@@ -93,6 +93,40 @@ impl ReflowService {
         // a network call. A server that cannot answer does not block the
         // declaration — the watch is recorded without a baseline and the reply
         // says why, exactly as an export path nobody has written yet is.
+        // ⭐ A RE-DECLARE REVISES (fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23,
+        // eight field occurrences 0.66 to 0.77). What the call leaves out keeps
+        // what is stored: the lists, and the watch target, whose baseline is
+        // then re-taken here, because declaring is the acknowledgement. Naming
+        // one target drops a stored target of the other kind (a design is
+        // watched in ONE place), and `""` stops a watch. Read before the
+        // network call and the write lock, like the address baseline below.
+        let before = {
+            let g = self.graph.read().await;
+            g.declared_dependencies()
+                .map_err(dyno_err)?
+                .into_iter()
+                .find(|d| d.id == req.id)
+        };
+        let mut req = req;
+        if let Some(before) = &before {
+            if req.components.is_none() {
+                req.components = Some(before.components.clone());
+            }
+            if req.features.is_none() {
+                req.features = Some(before.features.clone());
+            }
+            if req.graph_id.is_none() {
+                req.graph_id = before.graph_id.clone();
+            }
+            if !stated(&req.design_export) && !stated(&req.design_address) {
+                if req.design_export.is_none() {
+                    req.design_export = before.design_export.clone();
+                }
+                if req.design_address.is_none() {
+                    req.design_address = before.design_address.clone();
+                }
+            }
+        }
         let mut address_baseline: Option<serde_json::Value> = None;
         let design_address_hash = match req.design_address.as_deref() {
             Some(address) if !address.trim().is_empty() => {
@@ -146,13 +180,52 @@ impl ReflowService {
             }
             _ => None,
         };
+        let design_export_hash = req
+            .design_export
+            .as_deref()
+            .and_then(crate::upstream::baseline_hash);
+        // A baseline date describes the baseline it was taken with. Carried
+        // forward only when the call gives none AND the re-taken baseline is
+        // the stored one, against the same target: then "this is what it
+        // looked like on that date" is still true. Otherwise the date the call
+        // gives, or none, which reads as undated rather than as fresh.
+        let carried = |target: &Option<String>,
+                       hash: &Option<String>,
+                       stored_target: Option<&Option<String>>,
+                       stored_hash: Option<&Option<String>>,
+                       stored_at: Option<&Option<String>>| {
+            (stated(target)
+                && hash.is_some()
+                && stored_target == Some(target)
+                && stored_hash == Some(hash))
+            .then(|| stored_at.cloned().flatten())
+            .flatten()
+        };
+        if req.design_export_seen_at.is_none() {
+            req.design_export_seen_at = carried(
+                &req.design_export,
+                &design_export_hash,
+                before.as_ref().map(|b| &b.design_export),
+                before.as_ref().map(|b| &b.design_export_hash),
+                before.as_ref().map(|b| &b.design_export_seen_at),
+            );
+        }
+        if req.design_address_seen_at.is_none() {
+            req.design_address_seen_at = carried(
+                &req.design_address,
+                &design_address_hash,
+                before.as_ref().map(|b| &b.design_address),
+                before.as_ref().map(|b| &b.design_address_hash),
+                before.as_ref().map(|b| &b.design_address_seen_at),
+            );
+        }
         let decl = reflow2_core::DependencyDeclaration {
             id: req.id,
             name: req.name,
             source: req.source,
             version: req.version,
-            components: req.components,
-            features: req.features,
+            components: req.components.unwrap_or_default(),
+            features: req.features.unwrap_or_default(),
             declared_in: req.declared_in,
             graph_id: req.graph_id,
             // THE BASELINE IS TAKEN HERE, AT THE MOMENT OF DECLARING, and that
@@ -167,10 +240,7 @@ impl ReflowService {
             // hxm_program report measured (zero of seven siblings had an export).
             // It comes back as `missing` on the next read, which is a finding
             // rather than a wall.
-            design_export_hash: req
-                .design_export
-                .as_deref()
-                .and_then(crate::upstream::baseline_hash),
+            design_export_hash,
             design_export: req.design_export,
             design_export_seen_at: req.design_export_seen_at,
             design_address: req.design_address,
@@ -179,14 +249,44 @@ impl ReflowService {
             note: req.note,
         };
         let mut g = self.write_lock().await?;
+        let prior = g
+            .get_node(reflow2_core::nodes::node::RESOURCE, &decl.id)
+            .map_err(dyno_err)?;
         g.declare_external_dependency(&decl).map_err(dyno_err)?;
-        let manifest = g.dependency_manifest().map_err(dyno_err)?;
-        // An export declaration's reply is exactly what it was; an address one
-        // also says whether its baseline was taken and, if not, why.
-        match address_baseline {
-            None => ok_json(manifest),
-            Some(b) => ok_json(serde_json::json!({ "value": manifest, "address_baseline": b })),
+        // ⭐ A RECEIPT, NOT THE MANIFEST
+        // (fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02).
+        // Until 2026-10-03 this replied with every declaration in the design as
+        // TOML, about 150 bytes more per declared dependency, naming no node and
+        // saying nothing about what a re-declare had changed or dropped. Now it
+        // is the stored Resource (a record, so the receipt layer shapes it like
+        // every other write), what this call changed and removed (`revision`,
+        // with the prior state preserved), and for an address watch whether its
+        // baseline was taken.
+        let stored = g
+            .get_node(reflow2_core::nodes::node::RESOURCE, &decl.id)
+            .map_err(dyno_err)?
+            .ok_or_else(|| {
+                McpError::internal_error(
+                    format!("{} was declared and cannot be read back", decl.id),
+                    None,
+                )
+            })?;
+        let node = NodeDto::from(stored);
+        crate::tools::capture::preserve_prior(&mut g, prior.as_ref(), &node);
+        let revision = crate::tools::capture::revision_of(&g, prior.as_ref(), &node);
+        let mut v = serde_json::to_value(&node).map_err(ser_err)?;
+        if let Some(obj) = v.as_object_mut() {
+            if let Some(rev) = revision {
+                obj.insert(
+                    "revision".into(),
+                    serde_json::to_value(rev).map_err(ser_err)?,
+                );
+            }
+            if let Some(b) = address_baseline {
+                obj.insert("address_baseline".into(), b);
+            }
         }
+        ok_json(v)
     }
 
     #[tool(
@@ -314,9 +414,8 @@ impl ReflowService {
         let asserted: Vec<ObservedArtifact> = req
             .observed
             .into_iter()
-            .map(|o| serde_json::from_value(JsonValue::Object(o)))
-            .collect::<Result<_, _>>()
-            .map_err(|e| McpError::invalid_params(format!("invalid observation: {e}"), None))?;
+            .map(ObservedArtifact::from)
+            .collect();
         let opts = ReconcileOptions {
             record_events: req.record_events,
             exhaustive: req.exhaustive,

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4236680a00d4b3419bc1e84779109709871b60d189986bf2f8475f9e0cf96aa0",
+  "node_id": "fact:manual-work-a55fd32f6b649a64",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Carried a design's open questions by hand between two agents. A designer agent worked the design, and a separate owner agent with no design tools decided. Each round, the hub session copied the designer's numbered question batch into a message to the owner, then copied the owner's numbered answers back. The designer kept its own question-number → node map in a scratch file so the answers could be recorded against the right nodes. Three rounds and about 20 questions.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7d65f92ac4a94c6a0e24a17a7a2978d70a92f8aa4589b9c646e1fffad557dde6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-else-should-cast-doubt-on-a-settled-decision-and-what-should-strengthen-one",
+  "properties": {
+    "evidence": "Ask (1) is precisely a wire between readiness gating, which already computes a TRL/MRL threshold miss, and the doubt mechanism, which today cannot hear about it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:readiness-gating"
+}

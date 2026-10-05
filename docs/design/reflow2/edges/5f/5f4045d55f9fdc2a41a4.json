@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f6bd5f3f6eefe9ab9a6e1bf85b062b3ce7946e67179b17d26d389ca0f47a29dd",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-graph-asks-what-a-session-made-false",
+  "properties": {},
+  "to_id": "req:the-graph-can-say-what-has-already-been-done"
+}

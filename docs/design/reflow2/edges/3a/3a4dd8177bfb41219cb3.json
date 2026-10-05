@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de43914ca82e9310983c5d885679a659c5e2b058835ff0572cf50830a15dfb1d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-loop-holds-the-invitation",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:agent"
+}

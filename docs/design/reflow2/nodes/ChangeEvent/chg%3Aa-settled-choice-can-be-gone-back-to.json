@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c043af95c94bcc7f6650453fe727af09da3396121533cc3772dd7ee8187959e",
+  "node_id": "chg:a-settled-choice-can-be-gone-back-to",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-23",
+    "name": "fork_point and reopen_choice: a settled decision can be returned to, and re-opened without being un-accepted",
+    "rationale": "Finishes step 4 on Anthony's rulings of 2026-09-23. Measured before building: only 37 of 454 accepted decisions were pinned to an epoch, so the fork-point coordinate had no address for 92% of them without the git fallback.",
+    "subject": "system",
+    "summary": "New core module fork.rs (fork_point, reopen_decision), git.rs earliest_export_containing (bisected), read tool fork_point and write tool reopen_choice. cap:fork-alternatives planned → realized. The revise-design skill routes a change of mind about a settled decision through them. find_tools corpus gains two user-phrased queries; two long-standing confusable pairs came apart and were removed from the rank baseline; vocabulary_reach places reopen_choice as a Decision writer; skill_lint allowlists road_taken_location."
+  }
+}

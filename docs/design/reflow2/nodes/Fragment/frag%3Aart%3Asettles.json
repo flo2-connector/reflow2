@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9beebe492b392d73c665adbf8d2af94d196322d32f91c75eb0b6171a05b70007",
+  "node_id": "frag:art:settles",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered settles.rs — which calls settle intent, declared once, served on the tool and read by every signature check"
+  }
+}

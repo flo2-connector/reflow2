@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8827fd358b3bc46c18e1b1f07501a24f52d5f7ee949518b468e09a7d22bc8b96",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "dec:where-the-reflow2-plugin-marketplace-lives",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-ships-as-a-plugin"
+}

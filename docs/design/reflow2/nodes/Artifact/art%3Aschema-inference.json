@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bd1a5865c58c95df9dd754f4db9ae8ab0c565fc49ac35eab15a0aaba4768dc2b",
+  "node_id": "art:schema-inference",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/inference.yaml",
+    "name": "inference.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

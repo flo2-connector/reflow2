@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c7f99953c99228801dcad236f5b4a6ef38416a260c66e7dd4a11dba6997506bd",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-write-replies-with-a-receipt",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:dto"
+}

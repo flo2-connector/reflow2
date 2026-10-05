@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:707ef551cd548d13cf2a3f4f2cc48ed039fd1eab3ef28a8b641fb7ac7cc40e4c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-loop-nudge",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:stop-nudge-asks-the-graph"
+}

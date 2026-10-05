@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3bec7091fd596654e4508e502bdb9383610dec4b96956fc54351b97d6f8231b0",
+  "node_id": "req:a-sweep-says-what-it-could-not-have-covered",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "A clean sweep says what it could not have covered, so a zero is never read wider than the ground it walked",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Any detector reporting no findings must also report what it examined. A clean result over a population of zero is indistinguishable from a clean result over everything, and the two mean opposite things.\n\nTHE NEED, from the measurement: `circular_dependency` walked 182 dependency pairs on this design and found nothing — while ZERO of those pairs joined two subsystems. The result was SILENT about the subsystems rather than clean about them, and nothing in the reply said so. Measured 2026-08-20.\n\nThis is the general form and it binds every detector, present and future — including ones written after the capability that prompted it, which is precisely what a requirement derived from that capability's description could never do.",
+    "status": "accepted"
+  }
+}

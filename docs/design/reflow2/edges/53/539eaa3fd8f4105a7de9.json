@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:90de75a00d66d3f11219135e4adaf608808962929e017536e91ed02fbd5fd2d3",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:release-without-epoch",
+  "properties": {},
+  "to_id": "cap:release-pinned-to-time"
+}

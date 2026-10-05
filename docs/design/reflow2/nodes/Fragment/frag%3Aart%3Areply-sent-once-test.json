@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:661d71ddb9baa40a020dbdcfc9ec82666bf445422c67065082a154e13ac0da27",
+  "node_id": "frag:art:reply-sent-once-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered reply_is_sent_once.rs"
+  }
+}

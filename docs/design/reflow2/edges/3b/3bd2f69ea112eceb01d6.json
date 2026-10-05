@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:63eb24d2004597b9a0e6e6c5749cef8cd2774dc1aa89a4a27b96436c29361237",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:requirement-quality",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:612f134b80850323406021f50e77a3632e19ec439b7438c43d756e315210d7ec",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:drain",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:drain"
+}

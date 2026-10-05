@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:d51f7ebe861db34b64d448cc33139f6381f318e0e75f634db9e602b53e530073",
+  "node_id": "ver:every-argument-refusal-names-the-tool-and-the-field-path",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/every_argument_refusal_names_the_tool_and_the_field_path.rs over an in-process MCP session, and tools/refusal_speaks.py over the real binary in CI. 12 tests: one per class plus a generated walk of 1,537 probes across 195 tools. Observed FAILING on the unfixed dispatch first (10 of 11 tests; 1,488 of 1,537 probes), then passing.",
+    "findings": "12 passed. refusal_speaks.py: 1,575 probes across 195 tools, all refused naming the tool and the path.",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_argument_refusal_names_the_tool_and_the_field_path.rs",
+    "method": "test",
+    "name": "Every kind of argument failure on every served tool is refused naming the tool and the field path",
+    "status": "passing"
+  }
+}

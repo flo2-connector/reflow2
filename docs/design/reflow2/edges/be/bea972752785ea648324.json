@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1b3821ef532eddb083a97635a5704106051a8640c46666bfe0c1b537937f3d47",
+  "edge_type": "REALIZES",
+  "from_id": "art:by-hand-signal-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

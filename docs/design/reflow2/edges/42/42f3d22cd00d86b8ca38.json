@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7d59b058c99c2153df00fd20fdd9374db482524958a02062ff9b08aa1d4d0019",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1c743b8cd133851aec0caf1c869acf8e85ab517f5c727b9ea7c48cfb62be6731"
+  },
+  "to_id": "art:jot-skill"
+}

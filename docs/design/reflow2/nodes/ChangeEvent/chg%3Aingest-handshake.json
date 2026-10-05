@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d891303207448be69a1df8a95360ee95b5bbbf3886daab792e7dfc978366dcd2",
+  "node_id": "chg:ingest-handshake",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "SP-3b: the agent drives INGEST, with no provider"
+  }
+}

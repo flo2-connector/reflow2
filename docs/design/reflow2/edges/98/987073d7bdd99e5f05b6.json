@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bc581f13c446616ebe8b5f7ea2c1d822f0604f2506d44a4cde0c54178376e7d7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-decision-states-what-it-binds",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:storyflow-api-boss"
+}

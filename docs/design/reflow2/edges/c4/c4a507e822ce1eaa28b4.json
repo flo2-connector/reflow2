@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2f174abd8744d7ccb490ae52c5db91dedbccbe81f318e68287cfa0856f7c1565",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

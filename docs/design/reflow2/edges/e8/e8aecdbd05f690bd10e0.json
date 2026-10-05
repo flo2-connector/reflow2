@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d8f778ef1a3025352c84fec110071b5b0f93a6cbaf2aabdaf12b777b876dd4b3",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-live-graph-does-not-branch-so-two-open-prs-collide",
+  "properties": {
+    "evidence": "The earlier observation saw the same shape one layer down. It found that one RocksDB store serves every git branch, so two branches share a live graph — and its sharpest note is that `parallel-work`'s trigger conditions are framed by PEOPLE, so the solo maintainer with two branches, who hits the identical collision, is the reader the skill excludes. Same failure family: the machinery for keeping two lines of work apart exists, and what neither the store nor the skill carries is whether a line of work is FINISHED."
+  },
+  "to_id": "req:the-graph-can-say-what-has-already-been-done"
+}

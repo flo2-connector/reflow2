@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b17258a0d05eeaa8a211ac47091724d93adc089f3eaa276c203162a3315a1966",
+  "node_id": "chg:nudge-resolves-home-relative-hooks",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The nudge self-check resolves ~ and $HOME, and reports what it cannot resolve as unknowable rather than missing"
+  }
+}

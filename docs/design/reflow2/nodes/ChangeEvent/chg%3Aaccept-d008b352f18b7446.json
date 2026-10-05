@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:73199ba0c324c118daaf35cd7a207ff36587f1d92babae89730931203d92ad81",
+  "node_id": "chg:accept-d008b352f18b7446",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Callers moved to open_defects(); behaviour unchanged.",
+    "subject": "system"
+  }
+}

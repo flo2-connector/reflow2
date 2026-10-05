@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8a6d79b4c7bc0bc6488cf6c963fc0a2cdbcd133ae60a102777e3c48da1c0a5b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:complementary-pairing",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

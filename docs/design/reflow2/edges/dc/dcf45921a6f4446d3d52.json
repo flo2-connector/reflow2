@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58a2417a2714ba22f21cf36ec052195a9b9b48932dac3978e19e35f0d99b5c3d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-degraded-server-recovers-when-its-cause-clears",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-degraded-server-recovers-when-its-cause-clears"
+}

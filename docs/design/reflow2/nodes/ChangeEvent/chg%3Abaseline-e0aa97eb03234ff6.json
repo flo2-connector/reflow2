@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2d359960ebb3322b5f910724d55f2dc6a7f5fae4e870aa823208b0cb625c3afe",
+  "node_id": "chg:baseline-e0aa97eb03234ff6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-24",
+    "name": "First baseline — a new file, so nothing moved. Ten cases on the computation.",
+    "subject": "record"
+  }
+}

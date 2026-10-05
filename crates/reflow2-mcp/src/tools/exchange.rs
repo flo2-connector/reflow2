@@ -111,28 +111,26 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "The whole design as one portable document — every node and edge, sorted so \
-                       two exports of an unchanged graph are byte-identical. Use it to back the \
-                       design up, move it between machines, or migrate it across a reflow2 upgrade. \
-                       It carries a stamp saying \
-                       which reflow2 wrote it, and `taken_at` — the branch and commit the working tree \
-                       was at, and whether it was dirty — because an export is a property of a tree. \
-                       Pass `path` to write the document to a file instead of returning it — a large \
-                       design overflows a session. LINEAGE ANCHORS AT THE \
-                       COMMITTED RECORD: in a git repository the document chains from this path \
-                       at the merge-base with the default branch, so every export on a branch \
-                       chains from the same ancestor and a squash-merge lands ONE hop — \
-                       `dec:export-once-per-pr` holds by construction. Outside git it chains from \
-                       the file already there; `chained_from` says which anchor was used and \
-                       `chain_note` why, because a hash cannot say where it came from. \
-                       \u{1F6D1} NEVER ISSUE THIS IN THE SAME PARALLEL BATCH AS WRITES YOU EXPECT \
-                       IT TO CONTAIN: calls a harness emits together are unordered and this takes \
-                       the same lock, so it can run BEFORE them. THE FAILURE \
+        description = "The whole design as one portable document — every node and edge, sorted so two \
+                       exports of an unchanged graph are byte-identical. Use it to back the design \
+                       up, move it between machines, or migrate it across a reflow2 upgrade. It \
+                       carries a stamp saying which reflow2 wrote it, and `taken_at` — the branch and \
+                       commit the working tree was at, and whether it was dirty. Pass `path` to write \
+                       the document to a file instead of returning it — a large design overflows a \
+                       session. A path ending in `/` writes the ITEM LAYOUT: one file per node and \
+                       per edge, so git's ordinary merge merges disjoint changes. LINEAGE ANCHORS AT \
+                       THE COMMITTED RECORD: each changed item records its hash at the merge-base \
+                       with the default branch, so a squash-merge lands ONE hop however often you \
+                       export, not once per PR. Outside git it chains from the file already there; \
+                       `chained_from` says which anchor was used and `chain_note` why, because a hash \
+                       cannot say where it came from. \u{1F6D1} NEVER ISSUE THIS IN THE SAME PARALLEL \
+                       BATCH AS WRITES YOU EXPECT IT TO CONTAIN: calls a harness emits together are \
+                       unordered and this takes the same lock, so it can run BEFORE them. THE FAILURE \
                        IS SILENT: the export succeeds, it is simply early, and the document you \
-                       commit carries artifact hashes that will not match disk. Sequence it after \
-                       the writes return. \u{26A0} The unexported-work nudge will NOT catch it — \
-                       it compares NODE COUNTS, so a missed PROPERTY change is invisible. \
-                       Ask for this to save the design to a file you can commit.",
+                       commit carries artifact hashes that will not match disk. Sequence it after the \
+                       writes return. \u{26A0} The unexported-work nudge will NOT catch it — it \
+                       compares NODE COUNTS, so a missed PROPERTY change is invisible. Ask for this \
+                       to save the design to a file you can commit.",
         annotations(read_only_hint = true)
     )]
     pub async fn export_graph(
@@ -150,6 +148,9 @@ impl ReflowService {
         let Some(path) = req.path else {
             return ok_json(export);
         };
+        // A read-only server writes no file, whatever this tool's annotation
+        // says about the graph.
+        self.file_write_permitted("export_graph", &path)?;
         // Refuse to clobber an existing file unless the caller opts in. Graph
         // text is untrusted (the server's own instructions say so), so a stray
         // or injected `path` pointing at a real file must not silently destroy
@@ -174,6 +175,7 @@ impl ReflowService {
             &mut export,
             &path,
             self.graph_path.as_deref(),
+            self.sidecar_path_for_writes(),
             req.accept_divergence.unwrap_or(false),
         ) {
             Ok(w) => w,
@@ -211,6 +213,7 @@ impl ReflowService {
             // produce different lineages.
             "chained_from": chained_from,
             "wrote": wrote,
+            "layout": if written.items.is_some() { "items" } else { "file" },
             "taken_at": serde_json::to_value(&export.taken_at).map_err(ser_err)?,
             "stamp": serde_json::to_value(&export.stamp).map_err(ser_err)?,
         });
@@ -225,6 +228,9 @@ impl ReflowService {
                  there was nothing left for yours to add. `content_hash` and `prev_content_hash` \
                  look identical to a successful write and cannot tell you this."
             );
+        }
+        if let Some(items) = written.items {
+            receipt["items"] = serde_json::to_value(items).map_err(ser_err)?;
         }
         if let Some(note) = chain_note {
             receipt["chain_note"] = json!(note);
@@ -299,6 +305,9 @@ impl ReflowService {
                 ok_json(surface)
             }
             Some(path) => {
+                // A read-only server writes no file, whatever this tool's
+                // annotation says about the graph.
+                self.file_write_permitted("export_surface", path)?;
                 let rendered = serde_json::to_string_pretty(&surface.document).map_err(ser_err)?;
                 if !req.overwrite.unwrap_or(false) && std::path::Path::new(path).exists() {
                     return Err(McpError::invalid_params(
@@ -411,9 +420,13 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ImportGraphReq>,
     ) -> Result<CallToolResult, McpError> {
-        let doc: reflow2_core::GraphExport = match (req.document, &req.path) {
-            (Some(document), None) => parse_struct_param(document, "reflow2 export")?,
-            (None, Some(path)) => read_export_document(path)?,
+        let read: crate::saved_design::ReadDesign = match (req.document, &req.path) {
+            (Some(document), None) => crate::saved_design::ReadDesign {
+                export: parse_struct_param(document, "reflow2 export")?,
+                items: None,
+            },
+            (None, Some(path)) => crate::saved_design::read_design(path)
+                .map_err(|e| McpError::invalid_params(e, None))?,
             (Some(_), Some(_)) => {
                 return Err(McpError::invalid_params(
                     "pass document OR path, not both — with two sources there is no way to say                      which one was imported."
@@ -429,6 +442,9 @@ impl ReflowService {
                 ));
             }
         };
+        crate::saved_design::refuse_newer_schema(&read, req.accept_newer.unwrap_or(false))
+            .map_err(|e| McpError::invalid_params(e, None))?;
+        let doc = &read.export;
         let mut g = self.write_lock().await?;
         let watch = crate::settles::SettleWatch::before(
             &g,
@@ -436,21 +452,26 @@ impl ReflowService {
                 .iter()
                 .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
         );
-        let report = g
+        let mut report = g
             .import_graph_with(
-                &doc,
+                doc,
                 reflow2_core::export::ImportOptions {
                     accept_newer: req.accept_newer.unwrap_or(false),
                 },
             )
             .map_err(dyno_err)?;
+        crate::saved_design::annotate_import(&read, &mut report);
         // Absorbing a file puts this seat in step with it, which is exactly
         // what the stale-seat refusal tells people to do — so record it, or the
         // remedy would not clear the condition it names (req:stale-seat-knows).
         if let (Some(graph_path), Some(path), Some(hash)) =
             (self.graph_path.as_deref(), &req.path, &doc.content_hash)
         {
-            reflow2_core::provenance::record_sync(graph_path, path, hash);
+            reflow2_core::provenance::record_sync(
+                graph_path,
+                &crate::saved_design::sync_key(path),
+                hash,
+            );
         }
         let mut reply = serde_json::to_value(report).map_err(ser_err)?;
         crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));

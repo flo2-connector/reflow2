@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:28270d2e84a07aed438c5926083525d270a14eb2bcaa82e407b6331c4a207ec4",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-an-idle-session-expires-and-the-proxy-silently-takes-a-new-seat-so-live-claims-read-gone",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

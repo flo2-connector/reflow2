@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:474bbf2233e573b89de55fff36e7528da95046cc3c4b9b7672039b636e86cd77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl73-component-verified",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:verify"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:75c3e01a3420de1bd397ba3b8f63a526c80596e8c85b45cdfb035325307e61e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:concurrent-planning",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

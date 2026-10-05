@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:5aedfd73b6889140ea1e0ae1a87543cc87db0c5d98cc52493c9ce59387a08c11",
+  "node_id": "ifc:req-dyno-resolution-api",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "library",
+    "name": "EntityResolver API",
+    "paradigm": "synchronous",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-resolution`, pinned at v0.12.0. Entity resolution is what the duplicate detector and the corpus-ingest identity work sit on — the same machinery dec:auto-merge-at-90-destroys-sibling-names constrained, and the same path dev_storyflow's merge-survivor findings landed in.",
+    "transport_security": "unspecified"
+  }
+}

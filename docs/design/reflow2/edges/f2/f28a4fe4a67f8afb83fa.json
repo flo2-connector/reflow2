@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee91ddd1b0b53b96fc60cffc6da11140faae2193c3a6948db684b2500c3f1d0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seedless-orientation-ships",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:regions-rs"
+}

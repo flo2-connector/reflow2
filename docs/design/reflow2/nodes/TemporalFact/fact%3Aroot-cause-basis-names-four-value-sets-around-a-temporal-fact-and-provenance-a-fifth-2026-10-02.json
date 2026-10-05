@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:76a614fd2a4771111d9336c16c4e4bced6dd3fa4373857c59b245afbef682bd4",
+  "node_id": "fact:root-cause-basis-names-four-value-sets-around-a-temporal-fact-and-provenance-a-fifth-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED on 0.77.0: TemporalFact.basis takes measured | forecast, and record_finding's published schema, describe_schema (served through `--call`) and the one-round-trip refusal all name those values. So this friction is not the door's. The confusion it reports is structural: the word `basis` carries four different value sets on TemporalFact and the edges around it, and the provenance words the reporter tried (`inferred`, …) belong to a fifth property, `provenance`",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "FROM THE 2026-10-02 TRIAGE (agent B), root-cause skill fetched fresh. Tool friction \"TemporalFact.basis is `measured | forecast`; the provenance words (`inferred`, …) are refused\" in art:vscode-call-door-field-report-2026-10-02.\n\n⑤ MEASURED through `--call` on scratch stores:\n- record_finding with basis \"inferred\" exits 1: \"Validation error on TemporalFact.basis: invalid enum value 'inferred', expected one of [\\\"measured\\\", \\\"forecast\\\"]\". So one round trip, values named.\n- stdio tools/list: record_finding.basis is enum [measured, forecast, null] with a description.\n- `--call describe_schema {\"node_type\":\"TemporalFact\",\"budget_chars\":200000}` gives the node property basis = [measured, forecast]. It also shows, on the edges a TemporalFact carries:\n  - CONSTRAINS.basis = [estimated, evidence, measured];\n  - CAUSES.basis = [observed, correlational, causal, spurious];\n  - DUPLICATES.basis = [asserted, suspected].\n- Requirement.provenance = [authored, planned, inferred, healed, reconciled, imported].\n\nCAUSE: one property name carries four value sets within one hop of a TemporalFact, and the everyday sense of \"basis\" (how do you know?) matches `provenance` better than the stored meaning (measured or forecast, i.e. tense). The door is not a cause: the values are reachable under `--call` in two ways before the call and in the refusal after it.\n\nNOT ESTABLISHED: whether a rename or an alias is warranted. That is vocabulary and is Anthony's call (rule:design-intent-moves-only-on-the-owners-word). This records the overload only. `steps` puts the lesson on record_finding for MCP clients; a door agent will meet it only once I5/req:the-cli-describes-any-tool-with-its-full-schema-and-lessons lands.",
+    "steps": [
+      "record_finding"
+    ],
+    "subject_id": "chg:bl68-readiness-gating",
+    "valid_from": "2026-10-02"
+  }
+}

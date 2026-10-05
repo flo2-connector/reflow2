@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0459d978194854257e6bb78f184674a10a005bd31859a07c3f90c903781909b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-reports-assigned-decisions",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b9d1c7f3bbdf475370297acef836eea0ea8ceeca6cdbc8fd905fb8c7f11a41ce",
+  "node_id": "decision:ack:d610aa40cddc6c70",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:d610aa40cddc6c70.",
+    "name": "Reviewed: gap:d610aa40cddc6c70",
+    "rationale": "User (who:ajs, standing policy from 2026-07-23, applied again 2026-07-25): validation happens through the trials programme — docs/trials/ is where \"built the right thing\" is exercised against operational intent; formal validation-kind Verification nodes are not this project's tracking mechanism. Re-fired only because cap:kpp-proposal joined the set (38 → 39), and it is one of the clearest fits the policy has had. The three unit tests prove that a confirmed KPP is recordable, that an objective is never invented, and that the objective is never read as the threshold — every one of them a property of the WRITE PATH. What cannot be tested is the part that matters: whether the consequence question (\"if it came in at 450 instead of 500, would that sink the project?\") lets someone who has never heard the term recognise their own inviolable intent, and whether the agent asks about the right one candidate in a session instead of the loudest four. Both are answered by watching a real person answer a real question about their own project — the trials programme, and specifically the fleet-feedback trial — not by any fixture. The guard that IS testable is deliberately not claimed as verification either: nothing in Rust can stop an agent from setting category kpp on its own, because the tool cannot tell an agent's reading of the wording from the user's word. That guard lives in the skill's prose and in add_constraint's own description, and its failure would be visible as a KPP nobody remembers agreeing to.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ad8440f8e250ef1838edd7c7708773009be048e111349888c080423547a29f7d",
+  "node_id": "snap:epoch:v0250:epoch:v0270-planned",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"epoch_type\":\"release_cut\",\"name\":\"PLANNED v0.27.0 — seams, the frontier the instruments already name. maturity_report puts seams at 0% (0 of 73 couplings declared through a contract) across 23 releases, and Interface has 3 instances with the 5 spec properties set on none. BL-193 a CONSUMED interface with no spec fires no gap; BL-190 the stewardship edge joins it because a new edge type is a schema change and pairing keeps it to one bump.\",\"sequence\":266,\"status\":\"planned\"}",
+    "target_id": "epoch:v0270-planned",
+    "target_type": "DesignEpoch"
+  }
+}

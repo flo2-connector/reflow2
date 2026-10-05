@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c90c1480641b5185156829122f85ae1042819979198f5c6f9f51410cc369afb",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:three-additive-surface-fixes-from-field-feedback",
+  "properties": {
+    "at": "2026-09-05",
+    "note": "THE INSTRUCTION LEG IS NOW BUILT: link-projects and adopt (Phase 2) both point at external_dependency for 'a repository we depend on but do not own', naming source+version+parts and reconcile_dependencies. This was the fact's own diagnosis — a typed tool with the other two legs but no instruction, per fact:vocabulary-needs-three-legs. NOT CLOSED: the fact's smaller half stands — external_dependency records a pinned ref but still carries no bring-up recipe and no place for fixes pushed upstream. And find_tools still did not surface it for the reporter's query, so the discoverability gap the fact also names is only partly addressed by a skill pointer."
+  },
+  "to_id": "fact:the-external-dependency-node-exists-and-no-skill-points-at-it"
+}

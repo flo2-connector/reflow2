@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:13ed5a741722c877d54005dcac74a79afc92626721a74ccc3a6298b4029d4c63",
+  "node_id": "ver:decomposition-coverage-is-asked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A decomposition is asked what it dropped: the question fires per decomposed parent and names the parent; a requirement nobody split is silent; only DECOMPOSES counts, so satisfaction and derivation never raise it; the recorded answer stops the question and survives in reviewed_gaps; CHANGING THE SPLIT RE-ASKS with a new id, because the earlier answer was about those children; a parent already reporting delivered outranks one still open AND says so; and the finding NEVER names what is missing (crates/reflow2-core/tests/detect.rs, 7 cases).",
+    "findings": "MUTATION-CHECKED FIVE WAYS, each killed by exactly the test that names it: dropping the detector registration (5 dead), flipping is_aggregate to true so a stale answer silences a changed split (1), anchoring only the parent (2), removing the delivered severity bump (1), and making the finding suggest what to add (1).",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "unit",
+    "method": "test",
+    "name": "A decomposition is asked what it dropped",
+    "status": "passing"
+  }
+}

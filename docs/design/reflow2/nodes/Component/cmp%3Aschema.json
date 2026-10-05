@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ccb528c6ea549ecef212b45c86ea3bfb8ff3d2550ac96428e0c22948e99bf228",
+  "node_id": "cmp:schema",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "schema",
+    "provenance": "authored",
+    "purpose": "The schema module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

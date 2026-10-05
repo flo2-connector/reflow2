@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1f37823571ecbef23ed29c82f9f58c920768ca1e6bed0a2db5019b7826dcc96a",
+  "edge_type": "REALIZES",
+  "from_id": "art:optimize-command",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:optimize-skill"
+}

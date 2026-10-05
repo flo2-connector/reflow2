@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cae4fe04f37ec3f867cbd6236920acd67963e85bcac26ddf0780496c6e9aa454",
+  "node_id": "decision:ack:808f3b7285069e44",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:808f3b7285069e44.",
+    "name": "Reviewed: gap:808f3b7285069e44",
+    "rationale": "RULED 2026-09-15 (Anthony): STILL TRUE AND DELIBERATELY SO. The zero-degree rule in heal.rs still counts ANY edge — a Decision whose only edge is AUTHORED_BY still reads clean while being exactly as unreachable to propagation and as unable to expire as one with no edges. The finding's own counter-argument holds: excluding AUTHORED_BY from the degree would fire on the whole brainstorm population at once, the BL-42 explosion the degree-zero rule exists to prevent. What the nine later repairs did instead was rename the cluster rule to `unthreaded` and make its message say what it actually walks, which answers the MISREADING and not the computation. The accepted-only case the finding singled out was one node then and has not been re-counted. Acknowledged as a deliberate state; if a narrower, lower-severity reading is ever wanted it is a new decision, not this rule.",
+    "status": "accepted"
+  }
+}

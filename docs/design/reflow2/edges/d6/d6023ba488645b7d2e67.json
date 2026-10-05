@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b2a107ac69e8def9c5bf4a0ceae1ddf83f9f8a93e02f7bc7dd177b6a82432070",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-store-hand-rolled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:content-store"
+}

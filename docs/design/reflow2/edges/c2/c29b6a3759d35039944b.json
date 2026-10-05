@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:635c6eaa48b514f44a40f34e894e416629a12362b625c7fa4f803a7e97a1c0a8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:scoped-analysis",
+  "properties": {},
+  "to_id": "req:a-surface-states-its-own-scope"
+}

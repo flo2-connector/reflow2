@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:272bf3bf1842e21ff43e134813e739467a98fc23f64a5a3d86c4813eeb29c681",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-genesis-and-adopt-write-the-served-pointer-into-a-project-with-no-instruction-file",
+  "properties": {
+    "evidence": "Promoted 2026-09-19: option (c) — served pointer + skill instruction, with the init preferred when the kit is present; (d), the server writing into a repo, rejected."
+  },
+  "to_id": "req:a-projects-first-session-leaves-the-adapter-in-place-whichever-route-reached-reflow2"
+}

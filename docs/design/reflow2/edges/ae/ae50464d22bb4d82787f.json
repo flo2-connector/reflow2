@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:caae4d4fdfa71d2ae711e10554eee7870f0e762e08d44d5701239d8d0adabaca",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:replace-text-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:replace-text-replaces-a-unique-sentence-refuses-absent-or-repeated-appends-and-preserves-the-prior-state"
+}

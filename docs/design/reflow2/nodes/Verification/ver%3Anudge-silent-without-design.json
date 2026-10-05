@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c5a08f3f227534228b5fd271f0af486757f5bfc1dd0ae9158f1513f86aa26eb5",
+  "node_id": "ver:nudge-silent-without-design",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-28",
+    "level": "integration",
+    "method": "test",
+    "name": "test_loop_nudge.py — the hook is silent and stateless where no design was started",
+    "status": "passing"
+  }
+}

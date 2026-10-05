@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:40750f39c71342ed746b9a1a0d7318b3b21672b50cc0da6b83d3891bca8ca5a8",
+  "node_id": "cmp:provenance",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "provenance",
+    "provenance": "authored",
+    "purpose": "The provenance module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

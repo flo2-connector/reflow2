@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7b11d52a6106ab81232352fd7b14b2ba3f01a13bdd9e7227267fc982f7090cb2",
+  "node_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-25",
+    "name": "A session names who it writes for, and every node it writes is credited to them",
+    "rationale": "Built on Anthony's word (\"Let's do reflow2's first half\"), 2026-09-25, from the dev_reflow2 hub: clause 1 of flo2's levied attribution ask. Two things shaped it beyond the requirement's text. FIRST, flo2's gateway keeps ONE reflow2 connection per design and carries every person's calls over it, so a once-per-session declaration alone would credit a sister's change to whoever declared first — hence the per-request `_meta` name, which also is the only channel on the sessionless transport. SECOND, crediting at `create_node` via the write guard, rather than per constructor, means all 115 write sites are covered without any of them changing, and a tool added later is covered too; crediting on the guard's DROP means each hold of the lock credits only its own writes, never another session's interleaved between two holds. Attribution only: the approver path and rule:design-intent-moves-only-on-the-owners-word are untouched.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "New tool `writes_for` (per session) and request `_meta` key `reflow2/writes_for` (per request, wins). `DesignGraph` gains a touch log recorded at `create_node`; `write_lock` now returns `GraphWrite`, which starts the log when the call writes for someone and, on release, credits every written node (except Snapshot and Contributor) with AUTHORED_BY role author (`reflow2_core::attribution`). `call_tool` resolves who a call writes for and refuses a write for a name the design does not hold before the handler runs. The sessionless transport refuses a session declaration."
+  }
+}

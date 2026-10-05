@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ab7d9673ee6f24713ddd653c931d173c50edb13673a2a1dcbc75e7739e6d79d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0690",
+  "properties": {
+    "as_checksum": "sha256:9c0a71755dc245ef99271bfbc9d5fe33204e54e2d16c7d5128ea0c028f981304"
+  },
+  "to_id": "art:test-bad-news-reaches-the-decision-behind-it"
+}

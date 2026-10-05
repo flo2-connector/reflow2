@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:78f09b8456f9edd7509deb6779a251e83ecd9928c0f4067d6ac9600971debb94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b05e3ece61ae694ec9899040fa68d76bfaac5513e95d057284d65ce395286e7a",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-signature-is-the-callers-own-through-every-writer"
+}

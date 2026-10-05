@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ed25f9043fe2761b9da1c52fc4df6232b380bb5430414ff98f0605754e370068",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:composed-analysis",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compose"
+}

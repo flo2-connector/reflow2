@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0953f35c2cdd9fd3ea6e35d49b20b66460f95af4ed9900590ce5d9577ba5b836",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-schema-serves-the-rules-that-tell-the-types-apart",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:capture-intent-skill"
+}

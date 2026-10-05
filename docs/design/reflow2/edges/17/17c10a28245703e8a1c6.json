@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c52b80cf936c569f3f6621bf2fe19ad56f3ae346606d91aba0aba9335f9d24c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-and-its-findings-are-different-things",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:toml-fallback-reader"
+}

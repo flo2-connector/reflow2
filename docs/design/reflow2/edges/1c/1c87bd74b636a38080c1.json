@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1c0dfc5cbaabc064005d25a22eb1eef35c005a094e38faf8c2fda08cfb078cd3",
+  "edge_type": "SPECIFIES",
+  "from_id": "art:schema-environment",
+  "properties": {
+    "format": "json_schema"
+  },
+  "to_id": "ifc:core-api"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5c0dd4e4adf3b6a1c8c5901d6574d09fc9c14e345fa46da154abe6f6bd58061b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:dependencies-stay-near-latest-checked-monthly-and-before-cuts-2026-10-02",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:agent-instructions"
+}

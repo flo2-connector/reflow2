@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:44540b67d68aab994f0d1af248fd0feab74c350786d7ba647c555f87cb28ecd9",
+  "node_id": "art:test-a-fork-point-finds-its-address-in-git",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The four git-history tests behind an unpinned decision's fork point.",
+    "location": "crates/reflow2-mcp/tests/a_fork_point_finds_its_address_in_git.rs",
+    "name": "a_fork_point_finds_its_address_in_git.rs",
+    "status": "realized"
+  }
+}

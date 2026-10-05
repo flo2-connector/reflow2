@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e096c44419aa21568696a98c4599f759758bc59acedd33bbe36e980df1463f2e",
+  "edge_type": "REALIZES",
+  "from_id": "art:seam",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:seam"
+}

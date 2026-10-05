@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a026bcbf0d4d260f330e7fc4b988a72df6c0ef7e29d0ba74e131f3f2e6e81c4",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-refused-write-stores-nothing",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refused-write-stores-nothing"
+}

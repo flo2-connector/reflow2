@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:33bfc22ddfdec1abfd677d2f73bc24452c1f3ec31911000e258dd69d86a513fe",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89debb841c0023e103c23a7d1f2bfa065bbd4e85ff6e677a45866d243eb68a52",
+  "node_id": "chg:accept-d0793106d6402b8a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-07-28T18:30:00-04:00",
+    "name": "v0.18.0 cut: the [reflow2] version field rolled 0.17.0 -> 0.18.0; the dependency pin itself did not move."
+  }
+}

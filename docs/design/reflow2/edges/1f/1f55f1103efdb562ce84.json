@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:43cdebd8d590ada604450b095ecebc4c21c94910e4fcd076865fc8eb43ced8e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-ship",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-init"
+}

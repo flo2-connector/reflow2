@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:024266a4e05283b364fb70ee9669e445a4bdc24a64e5f086d5577333ce5fe40a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:duplicate-merge-needs-a-human-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:ask-not-repair"
+}

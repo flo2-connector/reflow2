@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2fb88f4d2dd808a866c419ab8b34efcbf57e635dd125c39b6146bfc4eaa44f0e",
+  "node_id": "dec:idea-a-skill-carries-a-line-for-a-person-and-says-who-it-is-for",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F8+F9. The typed half is settled (shortcut, gate-compared); this is the read half. OPTIONS, none chosen: (a) two optional frontmatter fields, `summary` (one sentence addressed to a person, never opening 'Use') and `audience` (three-valued, the reporter's split: anyone / operator / agent — expertise, not human-versus-model), parsed by build.rs, served by list_skills and get_skill, the lint refusing a summary that opens 'Use' or runs past ~120 characters; (b) summary only — audience is a per-skill judgement the owner makes and can wait for a second consumer; (c) derive a summary upstream from the description's first sentence, as flo2 does — moves the workaround, keeps its weakness; (d) nothing: flo2 keeps its copy, which dec:open-user-wields-reflow2-skills refused. COUNTER: a third register in every frontmatter is 30 more sentences to keep true; the lint's exhaustive check and the render gate are what would keep them honest. The reporter's own line: 'if both land together it is one schema change and one list_skills change'.",
+    "kind": "exploratory",
+    "name": "OPEN — should a served skill carry, beside the trigger condition an agent matches on, a short line a person reads and a marker of who it is for (anyone / operator / agent), served by list_skills and get_skill — so no consumer writes its own 30 summaries?",
+    "rationale": "Recorded from the field report; the same shape three times in one day on flo2's side of the seam (tool subset, MCP roster, skill menu).",
+    "status": "accepted"
+  }
+}

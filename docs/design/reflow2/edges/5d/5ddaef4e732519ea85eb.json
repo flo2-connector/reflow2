@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:96d0d98aa1a4b7d3c8107ab3b39a7483d8a2ce4dc9047f5f11a1ed91a67c07ec",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0710",
+  "properties": {
+    "as_checksum": "sha256:66ac2fa5e29087d6d1e4dad6145243a6a54e7a7eb2508e9ab0ccfbd894321bc3"
+  },
+  "to_id": "art:a-parked-report-that-produced-nothing-test"
+}

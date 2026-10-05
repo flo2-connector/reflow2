@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:782e1f9de28aaadca8b177d0d93adcc6c9a4e4772c95f59e81fc91d74e722bc1",
+  "node_id": "chg:accept-28ee674052533218",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-17",
+    "name": "Call sites updated for the new parameters; assertions unchanged.",
+    "subject": "system"
+  }
+}

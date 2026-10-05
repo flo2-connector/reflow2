@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fed30761bf297b74f353570af70543775b448f665a4b4ad2f9c1a5ac60d681bd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0780",
+  "properties": {
+    "as_checksum": "sha256:53c91e013e1f7dcbf643a0148b95c4a692508b8ef0a40a7f6742441aac4df5a0"
+  },
+  "to_id": "art:test-an-edge-says-only-what-it-was-told"
+}

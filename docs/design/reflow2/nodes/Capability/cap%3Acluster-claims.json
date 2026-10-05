@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:363485cafbef0fce664b45dec81d5125eef5a357b93b7aa16ff3dbe939cfa2cc",
+  "node_id": "cap:cluster-claims",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Claim a region of the design so two people do not collide in it (BL-44). BUILT 2026-07-25 as claims.rs, exposed as claim_region / release_claim / claim_report (96 tools). A new CLAIMS edge, Contributor → any node, carrying depth / claimed_at / note. THE SHAPE IS SET BY dec:multi-writer-architecture, and every part of it follows from having no server. A CLAIM IS NOT A LOCK. Nothing in the module refuses a write and nothing anywhere consults a claim before allowing one; a second writer who ignores a claim gets a correct three-way merge exactly as if it did not exist. That is pinned by a test rather than promised in a comment, because a claims layer that READS like locking is worse than none — it invites reliance on a guarantee it cannot make. THE REGION IS COMPUTED, never stored: a claim holds a seed and a depth, and the membership is derived through the same traversal propagate_from uses, so it follows the design as the design changes instead of freezing a list that silently goes wrong the moment someone adds an edge (pinned: new work inside a claimed area is covered without re-claiming). OVERLAP IS REPORTED, NEVER PREVENTED. Two people may claim the same ground and both claims stand; claim_report names the shared nodes and ranks collisions by size, because a two-node brush and a forty-node collision should not read alike. Two claims by the SAME person are not a collision — reporting them would train people to ignore the list, which is how a signal dies. The advisory limit ships IN the payload, not only in the docs, since whoever reads it over the wire never sees the docs. CLAIMS is deliberately NOT a traceability edge, like AUTHORED_BY: who is working on something is coordination, not design structure, and propagating it would drag people into every blast radius (pinned by a test). 9 tests. Schema change: edge types 54 → 55.",
+    "name": "Claim a region of the design so two people do not collide in it",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

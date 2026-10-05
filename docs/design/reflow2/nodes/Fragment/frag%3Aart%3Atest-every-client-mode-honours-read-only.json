@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4c7d37212468f4a2b6bf247744f0b5f151e1054de07db388c73e2370c06abae",
+  "node_id": "frag:art:test-every-client-mode-honours-read-only",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered every_client_mode_honours_read_only.rs — --read-only against every client mode, over real servers and a recording stand-in"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9b83219f98f5346fd7c622254cc3b1c19e58810821b570c9b878836dbee986b3",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:prune-proposed:req:adopt-says-how-much-it-got",
+  "properties": {},
+  "to_id": "epoch:prune-proposed"
+}

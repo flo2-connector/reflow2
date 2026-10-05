@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:11d047ff63215a9c9fd8fc63712d1bd3cbcd4da89e985f623fd63d15a4d96c4f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dccfaf23ecae26729bfff2673b75432f2b13d766053f8b5fe2f2447e44cab6ed"
+  },
+  "to_id": "art:claim-age-test"
+}

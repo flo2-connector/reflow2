@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39dd177630dcba0d958ed307dd74b70a86ec656572a68909f4dfaa4c4708ad32",
+  "node_id": "rel:v0410",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.41.0 — a parked idea stops reading as a defect, a surface can refuse every write, and a session can say what it did by hand",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.41.0"
+  }
+}

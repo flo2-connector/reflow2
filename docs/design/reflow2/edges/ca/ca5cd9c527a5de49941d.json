@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b35c213ecb1d67798c415016cf8e8d8534fa8104882e921ed1254720c2296bc4",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-tools-rank-baseline",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-rank-ratchet-and-the-confusability-instrument"
+}

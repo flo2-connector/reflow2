@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a0814c9351d6a44f388e8ab03edaf21f435e94c2fbe9ffad44a2ebf1faf2140f",
+  "node_id": "cmp:tools-operate",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "operate_tools",
+    "provenance": "authored",
+    "purpose": "The OPERATE slice of the served surface (13 tools): the world the design runs in — releases, environments, resources, deployment. add_release, add_environment, add_resource, deploy_to.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

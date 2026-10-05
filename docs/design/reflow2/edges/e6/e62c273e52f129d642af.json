@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc43a89a2de0b324ae9de31e71db5e0eaad9a3933a8b582b53b1de1eaa3d5859",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-two-designs-over-the-transport",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-two-designs-over-the-transport"
+}

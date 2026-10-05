@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e0cfec3d09d1ed5beda02c608c76d2a2c9880a4ccbf9e0ffc7ac57ab5bd8b149",
+  "edge_type": "CAUSES",
+  "from_id": "dec:absorb-the-foundation-subset-and-end-the-dependency",
+  "properties": {
+    "basis": "causal",
+    "confidence": 0.9,
+    "evidence": "The lint fired on crates/reflow2-core/src/foundation/store/engine/mod.rs:605 — a file that was in another repository until this decision, and is now reflow2's to lint. The decision also requires the absorbed files to stay byte-diffable against v0.12.0, so the finding had to be ALLOWED rather than fixed. Mechanism, not correlation: absorbing 7,913 lines under a verbatim-preservation requirement converts every future compiler lint over that code from a cleanup into a provenance decision. That standing cost was not named when the absorption was scoped.",
+    "validation_status": "validated"
+  },
+  "to_id": "fact:a-gate-is-only-as-wide-as-the-toolchain-that-runs-it"
+}

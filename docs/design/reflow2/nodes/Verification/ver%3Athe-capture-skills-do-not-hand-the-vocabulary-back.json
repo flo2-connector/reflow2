@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:defb1f2d6d1c5a62680612202665dc41f471c90a473f9919f0fe7a2e420227e0",
+  "node_id": "ver:the-capture-skills-do-not-hand-the-vocabulary-back",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The conduct rule is pinned where an edit that drops it turns red: both capture-intent and genesis must forbid asking the user which node type to use AND name describe_schema as the alternative (forbidding a question without naming the alternative is half a rule), and capture-intent must carry the routing table as a lookup table that names where it runs out. 2 cases in crates/reflow2-mcp/tests/served_skills.rs, 8 in the file, all passing. THE POINT OF PINNING IT HERE: this is a rule about how an agent behaves in conversation, and conversation leaves no node — loop_status reads perfectly clean through a session that breaks it, so a test on the served text is the only place it can be observed at all.",
+    "findings": "MUTATION-CHECKED: replacing \"Never ask the user which node type\" with its opposite across all three skill trees turned exactly the conduct test red and left the routing-table test green; reverting restored both.",
+    "kind": "verification",
+    "last_run_at": "2026-08-14",
+    "level": "integration",
+    "method": "test",
+    "name": "The capture skills never ask the user which node type to use",
+    "status": "passing"
+  }
+}

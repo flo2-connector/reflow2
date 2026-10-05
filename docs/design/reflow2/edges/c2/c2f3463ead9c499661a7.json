@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:014c113074989350d9d8dcb908560dab6dfb835a09750692e7d1e847f44c5240",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:corpus-ingest",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:corpus"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4b1066e8c50d0ead99be3479dcc0569d8b878e1aa2720984db688374447d8fd",
+  "node_id": "chg:accept-4728dff33e9b970b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-23",
+    "name": "Allowlist entries only: `count`, `by_source` and `budget` are GapReport FIELDS the skill now names, not tools. The lint rule itself is unchanged.",
+    "subject": "system"
+  }
+}

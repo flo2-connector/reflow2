@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:915c46439aaef4d297d734ae5278ad6991c8efb045c0f9168c53742a453e0e0f",
+  "node_id": "chg:the-http-readiness-module-gets-its-own-artifact-and-the-core-readiness-record-is-restored",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "d20043fc315ed5259e0a5db4caa6f7ba0e776759",
+    "detected_at": "2026-09-30",
+    "name": "The /readyz module is registered as its own artifact, and the core readiness artifact it had been written over is restored",
+    "rationale": "FOUND WHILE MERGING origin/main into #620 on 2026-09-30, by reading the export diff against main: #620's records registered the new /readyz module with add_artifact under id art:readiness, which already stood for crates/reflow2-core/src/readiness.rs (registered 2026-08-02; REALIZES cmp:readiness and cap:readiness-gating; INCLUDES from rel:v0220 to rel:v0750). add_artifact on an existing id revises it, so the core file's record was moved to the mcp file: its name, location, checksum and description changed, its release history now claimed releases shipped a file that did not exist then, and the core file was left unmodelled. The merge driver carried it through cleanly (main had not touched those properties), and reflow2_check stayed green because the moved record's checksum matched the file it now pointed at. Fixed in the RECORD only: the class is open (fact:add-artifact-on-an-existing-id-moves-that-artifact-to-another-file-and-says-nothing-2026-09-30).",
+    "rationale_basis": "contemporaneous",
+    "repair": "contained_symptom",
+    "stands_in_for": "add_artifact says so, or refuses, when the id it is given already names an artifact at a different location, instead of moving that artifact to the new file in silence",
+    "subject": "record",
+    "summary": "art:readiness is crates/reflow2-core/src/readiness.rs again, exactly as main records it, with no REALIZES cap:degraded-surface, and the Fragment its registration yielded has its title back. The #620 module crates/reflow2-mcp/src/readiness.rs is art:http-readiness, baselined, and REALIZES cap:degraded-surface."
+  }
+}

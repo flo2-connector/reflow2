@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fed00d03e20f30f9fda59397dba960c3895ee7bd738ce322e1044c1411e97fed",
+  "node_id": "snap:epoch:decomposition-count-corrected:dec:bl83a-functional-decomposition",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:agent-surface\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:coherence-loop\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:human-channel\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:intake\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:store\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:time-history\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Component\",\"other_id\":\"sys:vocabulary\",\"properties\":{}}]",
+    "state": "{\"decision\":\"reflow2's own decomposition is the seven functional systems a design-graph tool IS — vocabulary, store, coherence-loop, human-channel, time-history, intake, agent-surface — with the 38 Rust modules re-parented under them as implementation. The as-built crate grouping (reflow2-core / -mcp / kit) is retired from the as-designed view.\",\"name\":\"reflow2's systems are functional, not its file tree\",\"rationale\":\"The self-model had been recovered backwards from the file tree, so its 38 Components were the Rust module list and the domain primitives a design-graph product fundamentally is — node and edge types — appeared nowhere (BL-83). A functional carving comes from the product's purpose (a genesis input), not the code, and cuts across crate boundaries, so adopt on the code can only re-derive the module view. Derived with the user, 2026-07-23. The retired crate view is recovered by adopt-on-a-copy (BL-83b) and the divergence measured by compare_designs (BL-83c).\",\"status\":\"accepted\"}",
+    "target_id": "dec:bl83a-functional-decomposition",
+    "target_type": "Decision"
+  }
+}

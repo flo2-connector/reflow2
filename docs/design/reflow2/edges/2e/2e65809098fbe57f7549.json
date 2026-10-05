@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:95e50c9dab35bdfb43f54bf3893682ea7631fb42be93c610526969529e0b0057",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:graph-registry",
+  "properties": {},
+  "to_id": "req:a-session-cannot-reach-another-designs-graph"
+}

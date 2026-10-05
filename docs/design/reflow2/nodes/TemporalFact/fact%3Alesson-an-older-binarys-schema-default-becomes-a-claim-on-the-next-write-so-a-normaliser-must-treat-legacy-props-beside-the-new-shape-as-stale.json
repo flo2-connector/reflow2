@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:725e27b55fb629c49d03cebb5d80837ad3a31b43fa4b9aa3b14a572fbc464c5a",
+  "node_id": "fact:lesson-an-older-binarys-schema-default-becomes-a-claim-on-the-next-write-so-a-normaliser-must-treat-legacy-props-beside-the-new-shape-as-stale",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "finding",
+    "name": "LESSON: when a property's shape changes, an OLDER binary still running its old schema injects the old default on every write — so a normaliser that merges a legacy value found BESIDE the new shape mints phantom facts; legacy props beside the new shape are stale, never claims",
+    "statement": "CONTEXT: AUTHORED_BY moved from single `role` (schema default `author`) to the set `roles`. `validate_edge_properties` inserts a declared default for any missing property on WRITE — measured in code. reflow2's own launch wrapper was, at the time, serving `target/release` at 0.59.0 while the working tree was 0.60.2 — measured off the daemon's `served_by` — so an older binary writing to the same store is not hypothetical here; it was the state of this machine for most of the day.\n\nTHE HAZARD (reasoned from those two measurements, not yet reproduced end to end): an old binary touching an AUTHORED_BY edge puts `role: author` back beside `roles: [approver]`. A normaliser that reads `role` as a legacy CLAIM merges it: `roles: [author, approver]`. A phantom author, minted by a schema default, on every edge the old binary touched — the mirror image of the defect being fixed.\n\nTHE RULE, now in `normalize_authored_by_props` and pinned by a test: when the NEW shape is present, a legacy property beside it is stale and is DROPPED, not merged. Only an edge with no new shape at all is a legacy edge. Stated generally: on any shape migration, \"old prop AND new prop both present\" means an old writer has been here since the migration — the new shape is the record.\n\nBOUND: this drops a legacy `role=approver` that an old binary might have MERGED (not replaced) beside a set. No code path in reflow2 merges AUTHORED_BY props — `create_edge` replaces — so that case does not arise today; if a merge-write path is ever added for this edge, this rule needs revisiting.\n\nWHAT WOULD ADDRESS IT IN THE DESIGN: schema defaults injected at write are the root of both this and BL-198 (fact:the-schema-declares-81-defaults-and-nothing-reads-them). A default the WRITER applies is a claim nobody made. A default the READER applies is a fallback nobody stores. Only the second is safe across versions.",
+    "steps": [
+      "describe_schema"
+    ],
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-14"
+  }
+}

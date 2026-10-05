@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8df115b3ff92ca611d4bc48b70ad527284a6306e42cc2383a24638f26c51e095",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:cycles-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:cycles-test"
+}

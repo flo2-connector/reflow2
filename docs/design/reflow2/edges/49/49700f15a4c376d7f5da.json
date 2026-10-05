@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1e60ede7dc01c7c8958b5c682fc492f82bdb96b577fb8be59ac5efd87e21b191",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:delivery-kind-is-declared-not-inferred",
+  "properties": {},
+  "to_id": "cap:a-capability-declares-what-kind-of-thing-delivers-it"
+}

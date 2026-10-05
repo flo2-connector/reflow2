@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2bf1538d055b2dcf4d24a44dfbdccd56deb3306c26756424e01bdc30a285e725",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:feedback-is-a-computed-tally",
+  "properties": {},
+  "to_id": "fact:the-first-real-usage-report-classed-four-of-five-refusals-as-other"
+}

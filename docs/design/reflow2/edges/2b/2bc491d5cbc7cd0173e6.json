@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a13f071924f5614bfd29fca373ded204fb639f233b63f592514913dd465ea2c6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-graph-can-say-what-has-already-been-done",
+  "properties": {
+    "evidence": "The requirement says WHAT must be true; that decision holds the six candidate HOWs with their costs and settles none of them. Recorded as a dependency rather than merged because the split is load-bearing: a requirement that named a mechanism would settle by stating, and Anthony has chosen none of the six. Drawn from the requirement TO the decision — this need cannot be met until that question is answered.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-how-does-the-graph-learn-what-a-session-invalidated"
+}

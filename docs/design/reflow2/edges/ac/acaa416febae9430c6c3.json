@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fce37c872bde05cf27ff05bc8aafbc07fbf1dc06189b4ab9838eefd472d6611c",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-repair-suggestion-never-proposes-fabrication",
+  "properties": {
+    "note": "Option C of that decision, settled by Anthony as the half that ships first and independently"
+  },
+  "to_id": "dec:legitimate-islands-need-the-detector-fix"
+}

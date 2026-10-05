@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d60dab048d25766b68bbf7b3f977162b7b1f94abd5c92fb33320331825775925",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0160",
+  "properties": {
+    "as_checksum": "sha256:ddfa7e13d3b56156a9b463f434cd691718e1af489f27aaba169395c226d14b9a"
+  },
+  "to_id": "art:ingest-handshake-test"
+}

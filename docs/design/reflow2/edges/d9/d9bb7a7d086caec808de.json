@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba6f63ab86861f7448c2b6fdc945010fb8559cd0a1f9fa48c0ee9d0ad20efd29",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-writing-call-keeps-the-committed-export-current-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

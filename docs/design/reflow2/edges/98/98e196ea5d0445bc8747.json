@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2409d3a63f43173480940b6c25c89b39192652d52f359a83bdb21a0883ea3b64",
+  "edge_type": "DUPLICATES",
+  "from_id": "dec:idea-a-measurement-cannot-state-what-it-could-not-establish",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "The same question, asked twice a month apart by the same field project. dec:idea-a-finding-carries-its-bounds (2026-08-07/08) asks whether a Verification gains structured BOUNDS and FINDINGS fields; wish #42 (2026-09-07) asks for a not_established field and wish #46 for a not_exercised one. Linked rather than merged because the two were said for different reasons — the older one arrived from loop_status's rollup being unreadable, this one from a bounded finding being quoted later as settled — and both reasons bear on the answer."
+  },
+  "to_id": "dec:idea-a-finding-carries-its-bounds"
+}

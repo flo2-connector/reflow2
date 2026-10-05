@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65bc0fe5c9541478a24e86e6509ec2c6cf3b951689a0ac15c5129b07ca82d2c8",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-taxonomy-is-decided-once-before-bulk-capture",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-taxonomy-is-decided-once-before-bulk-capture"
+}

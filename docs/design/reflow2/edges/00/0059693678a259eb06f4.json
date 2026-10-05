@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b71c031ce53381bfe8c2df84e83907eab5fb496e830aef2591576341d483c24",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-hub-hand-rolled-its-own-graph-tooling-per-repo-rather-than-waiting",
+  "properties": {
+    "evidence": "It asked what happens after adoption to inherited tooling: which parts reflow2 displaced, duplicated or never reached. This is that question asked by the owner, about the codegraphs."
+  },
+  "to_id": "dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design"
+}

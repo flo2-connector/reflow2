@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:253934cac33514142c129c66f6dbece63f667d21f2b46dd777343db581b7cf9f",
+  "edge_type": "REALIZES",
+  "from_id": "art:help-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "reviewed"
+  },
+  "to_id": "cap:a-newcomer-can-ask-the-agent-what-this-is"
+}

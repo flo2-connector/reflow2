@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:792a150114bea6ae51602b663e3cfdbfeeb71dce338e133dbeb2c37f73f8eee5",
+  "node_id": "fact:manual-work-741722ff68a3b262",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a throwaway Python script over the committed export to ask how a Verification's executable form was actually DRAWN: for each check with an IMPLEMENTS edge, whether the same artifact also has a REALIZES to it (so link_artifact was used and an edge added by hand) or only IMPLEMENTS (so create_edge was used alone) — and, in the other direction, how many checks carry a REALIZES from a registered file and no IMPLEMENTS at all. The answers (30 of 31, and 40) are what turned a mechanism I had just hit by hand into a measured cause. Nothing served answers \"which tool wrote this edge\", or even \"which edges does this pair of nodes have between them\" as a single question; the closest served reads are per-node.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-22",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

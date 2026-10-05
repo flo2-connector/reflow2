@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:41907bb4ff76e03793fa5f67b9cd8b15744588591224c6bae9097beaa717bb01",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:scoped-analysis",
+  "properties": {},
+  "to_id": "req:analyse-at-any-level"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5db6060801ad6216360678e5b9b246bfe8f28f2c27c01b5b7651d7c73ca6eb36",
+  "node_id": "snap:epoch:kpp-capture:req:reviewed-defects",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:heal\",\"properties\":{}}]",
+    "state": "{\"concern\":\"core\",\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"The open structural-defect list means still-needs-attention\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"A structural defect that has been reviewed and consciously accepted must move out of the open list into a reviewed one — not deleted, not hidden — the way an acknowledged gap already does. Found as friction 2026-07-25: detect_defects reports the same six findings every run, all six carrying recorded Decisions explaining why they stand, so a genuine seventh would arrive into a list nobody reads carefully and the count is the only signal. reviewed_gaps already keeps this promise for gaps on the stated grounds that \\\"a list that can never reach zero gets skimmed\\\"; the defect side makes the same promise in its docs and does not keep it. Two properties carried over from the gap side: the acceptance records WHY, as a real node that outlives the session, and it expires when the affected nodes change, so an accepted defect comes back for a fresh look rather than staying quietly accepted forever.\",\"status\":\"accepted\"}",
+    "target_id": "req:reviewed-defects",
+    "target_type": "Requirement"
+  }
+}

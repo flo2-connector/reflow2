@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d81bc7cd1f303a1e6ad586c19013f092631a3362fcb1f3e008ef11c34e1ef872",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:todays-binary-reads-exports-taken-at-past-releases",
+  "properties": {
+    "approved_at": "2026-09-21",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

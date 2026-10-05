@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c5bb1b43518ebcac70b18bdabb008666657e3ece10262add7fe4e245fed89c71",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:the-record-moved-reaches-an-ordinary-read",
+  "properties": {},
+  "to_id": "fact:root-cause-the-record-moved-hint-recommended-an-import-that-reverted-three-newer-live-edits-2026-09-23"
+}

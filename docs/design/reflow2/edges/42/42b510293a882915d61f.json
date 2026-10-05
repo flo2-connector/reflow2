@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1dc0eaef3d029313e22af46201cf918367693362b21c1d95e3280b8bdad196de",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-loop-notices-a-fix-with-no-cause-and-a-defect-its-subject-outran",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

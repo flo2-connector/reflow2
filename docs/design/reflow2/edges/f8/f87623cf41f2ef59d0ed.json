@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:454cc369c9807ef0327089896b7722a82bfdb58f12bf3aaa0ff813f0515bc8bb",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-do-we-know-the-tests-catch-anything",
+  "properties": {
+    "evidence": "Option (c) is that idea, raised the day before and unchanged; this node references it rather than restating it so the two do not drift into competing versions of the same question.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-does-the-build-prove-each-gate-can-go-red"
+}

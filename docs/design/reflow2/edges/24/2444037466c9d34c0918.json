@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2f8e2ffa49e49f8619e1f257714f8a8834e19d6fa26014d42cc83c6b76d6d439",
+  "edge_type": "REALIZES",
+  "from_id": "art:empty-speaks-gate",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-sweep-says-what-it-could-not-have-found"
+}

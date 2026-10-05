@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b3fee71671d6863ef0712d650999289eb771e921cc9658582f4283cb33a00388",
+  "node_id": "art:genesis-skill",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "getting-started/skills/genesis/SKILL.md",
+    "name": "genesis/SKILL.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

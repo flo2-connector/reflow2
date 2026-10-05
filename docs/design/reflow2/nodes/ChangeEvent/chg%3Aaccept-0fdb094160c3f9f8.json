@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e94b26a5d37e310128d26578f2adf6848765993d993ebd25b51ee2e7b1b79708",
+  "node_id": "chg:accept-0fdb094160c3f9f8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-03",
+    "name": "DESIGN HOLDS — the version string moved 0.46.0 -> 0.47.0 for the cut and nothing this file declares about DEPENDENCIES changed. Accepted BEFORE `release_includes_all` freezes the manifest, deliberately: freezing first would record that v0.47.0 shipped the PRE-BUMP file, which `flow:release-cut` carries as a resync transition costing a gate failure and a second export.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0b61f83b5489c61b9d43d7b071813d8731598c6ef7f2de04da1953099dd22db2",
+  "node_id": "ver:evidence-quality",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The evidence-quality family, all three axes with their counterweights (crates/reflow2-core/tests/evidence_quality.rs) — 18 cases. TIME: an accept dated after the check reports stale, a re-run after the accept is current, an undated side is UNKNOWN and counted rather than silently passed, and a failing check cannot refresh a claim. INPUT: a parameter every passing check pins is reported narrow, ONE check that sweeps it ends the narrowness however many others pinned it, one suite is broad about one claim and narrow about another through the SAME node (the case a per-node property would have to average away), a check stating no scope is unscoped and never read as broad, a comma in a parameter name is refused, and scoping a pair with no VERIFIES edge is refused. INDEPENDENCE: a check the target was calibrated against is CONSUMED, a check that produced the anchor is consumed, a calibration on the realizing artifact counts, correcting the anchor reaches what was fitted to it through the impact table — and the two counterweights, that an independent check beside the fit restores the claim and that a calibration against evidence no check rests on is not circular.",
+    "findings": "MUTATION-CHECKED ON ALL THREE AXES: force freshness never-stale and exactly the two stale tests fail while both counterweights stay green; drop the swept-beats-pinned filter and exactly one test fails; mark every check consumed and BOTH independence counterweights fail — which is what proves the rule does not simply condemn every calibrated design. FOUND BY DOGFOODING BEFORE IT SHIPPED: comparing dates as whole strings called 2026-07-28 stale against 2026-07-28T14:52:00-04:00, an ordering nobody recorded, asserted by the very report that exists to stop that — now same-day is Unknown, pinned by a test, with the counterweight that an earlier DAY is still stale.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "The evidence-quality family: time, input and independence, each with its counterweight",
+    "status": "passing"
+  }
+}

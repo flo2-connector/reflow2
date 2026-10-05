@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3173263d52570e13a827d65e4c1b67c04dfa8de24a792c31c3e51dff564cf5cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-key-is-renamed-and-the-sweep-says-what-it-swept",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:a-misnaming-is-fixed-in-the-message-not-the-key"
+}

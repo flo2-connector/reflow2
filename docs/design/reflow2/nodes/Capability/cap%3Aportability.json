@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9002c1410fbd34496a4911e5f70b0baab21bbac8648c7697097681af6f1f28df",
+  "node_id": "cap:portability",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Move a design across machines and versions.",
+    "name": "Export and import a design",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

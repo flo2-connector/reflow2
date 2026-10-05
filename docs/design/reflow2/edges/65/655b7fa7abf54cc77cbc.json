@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a261ca00b12c43906088e3fe438cc313795ffa500771d6ae711c93ec8013fa33",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-detect-vocabulary-that-nothing-reaches",
+  "properties": {
+    "confidence": 0.85,
+    "evidence": "Anthony asked the general form of this question on 2026-08-09: 'are there other orphan developments (actually implemented design) that nothing detects or surfaces?' An idea connected to nothing is another member of that class, found twelve days later by a different route. The earlier node asked for the class; this one is an instance of it."
+  },
+  "to_id": "dec:idea-what-notices-an-idea-that-connects-to-nothing"
+}

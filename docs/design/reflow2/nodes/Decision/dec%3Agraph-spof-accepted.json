@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16cc8438fff5cd0bdb9236c712e67c0796dc0d2695215ea8983cee261192045e",
+  "node_id": "dec:graph-spof-accepted",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "cmp:graph is the single store handle everything else hangs off, and it stays that way. The single_point_of_failure warning on it is accepted as intentional, not resolved by adding redundancy.",
+    "name": "The graph handle is an accepted single point of failure",
+    "rationale": "The architecture is explicit (AGENTS.md): DesignGraph is 'the single handle everything else hangs off' — one schema-validated CRUD surface so every coherence-loop module speaks to one store one way. Removing it strands schema, search and vocabulary (each with its file) plus the export chain, which is the BL-69 detector telling the truth about the spine. Redundancy is incoherent here twice over: these are modules compiled into one binary (they cannot fail independently of cmp:graph at run time — the same reasoning as the F6 library filter, which cannot see cmp:graph only because it provides no Interface node), and a second graph handle would mean two write paths to one store, exactly the incoherence the single handle exists to prevent. Accepted 2026-07-21 while dispositioning BL-69's corrected findings; sibling of dec:service-spof-accepted.",
+    "status": "accepted"
+  }
+}

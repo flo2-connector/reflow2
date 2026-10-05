@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e096d9d45d8255c93bc5907d3158a918fc8e052a61254d7533905f973995b41f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:defaults-are-not-serialized",
+  "properties": {},
+  "to_id": "snap:epoch:a-default-is-not-a-difference:cap:defaults-are-not-serialized"
+}

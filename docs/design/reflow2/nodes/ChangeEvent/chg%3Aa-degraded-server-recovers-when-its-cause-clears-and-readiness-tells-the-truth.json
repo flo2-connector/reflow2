@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e90eb871e448cdcc61b77984e73f2ee6404e4701bc41a3f2ca02714b3033852b",
+  "node_id": "chg:a-degraded-server-recovers-when-its-cause-clears-and-readiness-tells-the-truth",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "d20043fc315ed5259e0a5db4caa6f7ba0e776759",
+    "detected_at": "2026-09-28",
+    "name": "A server degraded by a held lock serves the design in place when the lock frees, and an HTTP server's readiness says whether the design is served",
+    "rationale": "Fixes fact:root-cause-a-server-degraded-by-a-held-lock-never-retries-and-looks-alive-2026-09-28 at the class: a stand-in surface treated a transient cause as terminal and never re-probed, and the only health signal an orchestrator reads by default could not tell a served design from a degraded one. On a rolling update the new pod looked healthy while the design stayed unavailable. The 2026-09-14 latent-surface fix built the same re-probe for the no-design-yet case (fact:root-cause-the-opt-in-was-finished-by-a-client-command-and-the-latent-process-never-grew-the-surface), and this extends it to every degraded surface whose cause can clear. GitHub issue #616, on Anthony's word: \"Go with the solution that is most right. I don't like quick or patch efforts that don't fix at root.\"",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Two halves, one class. (1) IN-PLACE RECOVERY. A plain server (stdio or --http) that cannot open its store because another process holds the lock keeps retrying with bounded backoff. When it takes the lock it opens the design, serves the full surface from the same process and port, clears the handshake reason, and sends notifications/tools/list_changed to every connected session. The --shared client that timed out waiting for a server (the lock held by a non-shared process) keeps re-electing in the background and switches to forwarding in place. Causes that cannot clear by themselves are not polled: a version or schema refusal, a corrupt or unreadable store, a published daemon refusal, a bad pointer, an identity mismatch. (2) READINESS THAT TELLS THE TRUTH. Every HTTP server answers GET /readyz (200 only when the design is served; 503 with a one-line, path-free reason otherwise) and GET /healthz (200 while the process serves). Both sit in front of the Host gate. The image's HEALTHCHECK probes /readyz instead of a bare TCP connect."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:914d3feb5f264997d44598644e12e9811083c8fa5650b7b5e7984dc8b98b75db",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-dangling-reference-is-reported-whatever-the-nodes-degree",
+  "properties": {},
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

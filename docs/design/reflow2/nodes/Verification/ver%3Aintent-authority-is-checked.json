@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:354073309657b4f53b3e2c6bd4bf81132c5b0d7dcc3fe1b1ced8b0f5fc648064",
+  "node_id": "ver:intent-authority-is-checked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`tools/check_intent_authority.py`, gated in CI against the committed export, with `tools/test_check_intent_authority.py` as its hermetic regression net — 10 cases, stdlib only, building their own minimal designs.\n\nBOTH DIRECTIONS: a Decision `accepted` with no approver fails; the same Decision with an `AUTHORED_BY role=approver` edge passes; a grandfathered node is exempt; a `proposed` Requirement is not a settling at all, because an agent may propose anything. All three settling acts are covered — a Requirement off `proposed`, a Decision `accepted`, a DesignRule's `enforced` — since an early draft that checked only Decisions would have passed on the other two. A `reviewer` edge does NOT satisfy it: a review is not a signature.\n\n⭐ FOUR OF THE TEN EXIST ONLY TO PIN THAT IT CANNOT PASS QUIETLY. Missing rule, missing ruling, a ruling still only `proposed`, an unreadable export — each exits 2, never 0. That is the property that matters most here: the rule guards against an agent writing in the owner's voice, and a check that reports success when it could not run would be that failure wearing a green badge.\n\nTHE FIXTURE FOUND ITS OWN BUG. The first draft's minimal design tripped the check on its own scaffolding — the rule node and the ruling node are themselves settled intent, and the fixture had not signed them. That is the check working, and the fixture now signs them explicitly.",
+    "findings": "2026-08-21, first run. `tools/test_check_intent_authority.py` — 10 of 10 passed. `tools/check_intent_authority.py docs/design/reflow2.json` — exit 0: \"419 node(s) assert settled intent; 63 carry an approver; 356 are grandfathered.\"\n\nPROVED IT CATCHES THE THING, not just that it runs. A Decision with `status: accepted` and no approver edge was injected into a copy of the real 2837-node design; the check went red naming that node and exited 1. Clean before, red after, on real data — because a check that has only ever been seen passing is indistinguishable from one that cannot fail.\n\nTHE RED RUN THAT MATTERED WAS ITS OWN FIXTURE. The first draft of the test suite failed on its own scaffolding: the rule node and the grandfathering decision are themselves settled intent, and the fixture had not signed them. The check was right and the fixture was wrong — which is the strongest evidence available that the rule's three settling acts are actually being read.",
+    "kind": "verification",
+    "last_run_at": "2026-08-21",
+    "level": "system",
+    "method": "test",
+    "name": "A settled node with no approver fails the build, and every way of not knowing exits 2",
+    "status": "passing"
+  }
+}

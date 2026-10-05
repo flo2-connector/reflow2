@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:271a2306902552e0801c5c1b93b890e52ff87d1eed85ef1c7acb620b63d3bec3",
+  "node_id": "question:896e6b1107e0b6b4",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: park as deferred. Ownership of the changelog view is deliberately not assigned yet; the capability is captured intent awaiting a later increment.",
+    "context_setter": "Capability “A changelog is a derivable view of the graph's own delta” isn't assigned to any part",
+    "gap_id": "gap:896e6b1107e0b6b4",
+    "question": "You've described wanting the system to write a human-readable changelog automatically from the history it already keeps — but you haven't said which part of the system would actually do that job. Which piece should own it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:56cc515f36c83e2a8348aa75e35fa3ddb2ebd112094ff0f397f4f09967ef94a7",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed",
+  "properties": {
+    "evidence": "The rule states the obligation and its own text records that memory-based delivery had already failed three times; this asks where a delivery that is not memory could live."
+  },
+  "to_id": "dec:idea-how-does-a-standing-rule-reach-a-moment-that-is-not-a-reflow2-step"
+}

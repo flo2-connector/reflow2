@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:21dee2a28d820d2f7e1130d3e56dc7e9a7abca8bcc022f7d697dc0238c856ea5",
+  "node_id": "dec:derived-scans-are-memoised-per-write-generation",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-09-05: yes. The derived scans that every orientation rollup recomputes - open_defects (~5.2-5.8 s, ten call sites) and detect_gaps (~1.5 s) - are memoised, keyed on a write generation counter that core gains. CORRECTED BEFORE BUILDING: the first draft of this decision said the counter is bumped at the ONE place every mutation passes through, engine/batch.rs:44 commit_batch. That was asserted from an incomplete grep and is false - edges.rs:46-77 and embeddings.rs:54,86 call the engine's put and delete DIRECTLY, bypassing the batch. A memo invalidated only in commit_batch would have served a stale defect count after every edge write, which is exactly the failure a cache must never produce. So the counter is bumped in the engine's own write primitives - put, delete, prefix_delete - and in commit_batch, the four places the backend is ever written; over-bumping costs an extra recompute, under-bumping costs a wrong answer, and the bump sits on the side that can only be over. The optimize skill warns a cache is a global; the case for this one: (1) the pattern is already accepted here - service.rs read_loop_hint is a write_gen-keyed cache, and the engine already carries a read_cache invalidated on write; (2) the memo holds a DERIVED result over a graph state, never a source of truth, so a stale entry could only ever be a stale count - and the bump placement above is what makes even that impossible; (3) invalidation is at the write primitives, so no future write path can miss it without also bypassing storage. NOT decided: whether other derived rollups (SPOF analysis, granularity) join the memo. One thing at a time, re-measured against con:loop-status-warm-latency-ms and con:a-full-orientation-pass-costs-at-most-8-seconds.",
+    "kind": "choice",
+    "name": "DECIDED - open_defects and detect_gaps are memoised per write generation, invalidated at the single commit choke point",
+    "rationale": "The alternative - making each scan faster - was rejected because the measurement shows the cost is repetition, not the scan: the same result is derived three times per orientation pass and once more on every read after a write. Removing repetition is the change that removes work; speeding the scan would do the same work faster and leave the multiplier standing.",
+    "status": "accepted"
+  }
+}

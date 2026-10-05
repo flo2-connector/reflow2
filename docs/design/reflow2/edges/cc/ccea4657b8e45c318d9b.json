@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c561f216a337d0744adee2971c0dc15257661be883027873200c861e007e9f92",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-04bc37e6893636ad",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:merge"
+}

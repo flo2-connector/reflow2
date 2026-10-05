@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1f4f8bf0e675dec79e82f859c93cdc2efd06443045926b00c0cca1bf1fb6965c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:machine-wide-install",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

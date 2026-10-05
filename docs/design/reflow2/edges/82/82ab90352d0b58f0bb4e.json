@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af4856e4121f715c33224a77e9123a6e3054ccc84b50db21a8d6ab22317e5f86",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stored-data-is-rechecked-against-the-current-schema",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-schema-narrowing-ships-its-migration"
+}

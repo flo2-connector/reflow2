@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2d666c7e7ae910624faf1babcdd8bcf48b248acdb262447c831ea3a0e3cf73e6",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:scoped-analysis",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:scope"
+}

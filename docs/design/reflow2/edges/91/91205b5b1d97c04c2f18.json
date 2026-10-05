@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0a14f8350491816e642c0438940a5f0e68b69df5e6f4114b1765eff6531a519",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:revise-trigger",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

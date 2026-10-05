@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8eba2b1ce0d630b6da79f73c9c5cfc868b679bc008bfcca256b8514ebc97f668",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c852c31a363ef2a0263bb634898a1c8b0f6f72bb058cb784f27b87b1b125e761",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

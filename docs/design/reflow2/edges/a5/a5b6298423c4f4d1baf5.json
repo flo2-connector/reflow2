@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebb658c6c42975f47058b1e6c37c54dea1b81c324371c5ce23782511c8907412",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-search-first-fires-without-being-remembered",
+  "properties": {
+    "evidence": "The sibling saw this coming from the other side, on 2026-08-12. It measured six saves in one session and found FOUR OF SIX PREVENTED WORK RATHER THAN NODES, calling that \"the more expensive thing\" and noting the value sits on the unguarded READ path. That is exactly the cost this node measures: an agent proposes work already done. Searching-before-proposing and closing-what-you-invalidated are two different fixes for one symptom, so the earlier node anticipated this one without naming it. Drawn from the older node TO this one."
+  },
+  "to_id": "dec:idea-how-does-the-graph-learn-what-a-session-invalidated"
+}

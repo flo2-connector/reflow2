@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1eb882bb8f2815168ab42483a6942311a238fed1f11d457915af0bcbdfda5d33",
+  "node_id": "chg:alex-fleet-review-20260809",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Alex's Grok Build report reviewed: the top-priority ask is misdiagnosed and should be dropped, its sibling fixes the real cause, and a third consumer is running two minors behind"
+  }
+}

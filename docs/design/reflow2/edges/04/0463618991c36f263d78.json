@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:baf74503c935c20b2b48f1841c2b0567104119ac1e44c5cbaff02827bdf1834b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-gate-checks-the-item-layout-and-per-item-lineage",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:export"
+}

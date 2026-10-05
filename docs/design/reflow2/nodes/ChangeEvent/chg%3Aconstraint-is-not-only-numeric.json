@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ae9e6ec3b9ccccf70f034e0ce207612150868a10ca006b18d4f8c9cfca772d4",
+  "node_id": "chg:constraint-is-not-only-numeric",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Constraint's non-numeric scope stated on all three surfaces, and the routing table gains rows for a value set, a prohibition and a schema file"
+  }
+}

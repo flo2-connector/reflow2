@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4e4b65f128aa95111c0c29f7f99cf79962f607070745d3558dc7d45f2b567709",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "art:scope-read-while-held",
+  "properties": {},
+  "to_id": "snap:epoch:bl199-reattachment:art:scope-read-while-held"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92b25d1ba2e120b3bae92f95be9171b1d32fc349181f024ea93309bb5e06b65b",
+  "node_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_near_match_of_another_type_is_named_as_a_layer.rs",
+    "name": "a_near_match_of_another_type_is_named_as_a_layer.rs",
+    "status": "realized"
+  }
+}

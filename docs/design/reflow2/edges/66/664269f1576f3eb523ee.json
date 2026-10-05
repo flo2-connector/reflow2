@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5e75bd46555102f96a3f40945e35afea4fc86a1bd3ca6e2f1db66f9d1cd44b0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-handle",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

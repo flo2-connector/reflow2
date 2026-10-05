@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ec96204a9dfe5bee0c60e854dadce831672399a87f566c6059d833a70418bae6",
+  "edge_type": "CAUSES",
+  "from_id": "art:schema-verify",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "schema/verify.yaml gives a Verification one `status` enum (planned/passing/failing/skipped/blocked/superseded) as its only machine-read outcome. Every rollup (loop_status by_status and attention, coverage_report, the unproven-capability gap) keys on it, and `findings` is free text nothing parses. So a qualified run can only be recorded as a plain pass or a plain fail (measured on 0.72.0).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-run-has-one-status-and-its-qualification-reaches-no-rollup-2026-09-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bed3baee21fa820b7bcf388c9a2c15d8139918eefb450778a0e8c5df12328733",
+  "edge_type": "REALIZES",
+  "from_id": "art:preserve",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:preserve"
+}

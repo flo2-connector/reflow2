@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ab16d7ceb5185389a0c6781f40675b4c347ccaaa31b4ae31b4e2b921ac96fbc",
+  "node_id": "decision:ack:2f3df5d33ca52425",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:2f3df5d33ca52425.",
+    "name": "Reviewed: gap:2f3df5d33ca52425",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: chg:a-read-of-a-held-design-is-as-true-as-the-live-one touched search.rs to add `searched`; running a SUBSET of the gate set and reading it as the whole is a session habit, not code in that file.",
+    "status": "accepted"
+  }
+}

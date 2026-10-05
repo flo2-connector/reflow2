@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8626145cd1e0ac5c4032c204884ceeca6682237719e52d8e3422eeb98ba2ba3b",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

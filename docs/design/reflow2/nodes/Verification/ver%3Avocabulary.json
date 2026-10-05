@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3e7be7350d6147755647dda8ea1c9faa0c2ae48621c040d0fb99b1ade98eaa1f",
+  "node_id": "ver:vocabulary",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "write_side.rs",
+    "status": "passing"
+  }
+}

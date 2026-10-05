@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7abdc14e11fae8fee0830dbe0f8163eb9c8d1b67132ac9d5f65d0c1b6ebd4bc",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-decision-can-be-created-already-settled",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

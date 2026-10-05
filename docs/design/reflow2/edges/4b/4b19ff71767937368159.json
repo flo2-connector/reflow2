@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad61e500d0dc46a3b4fa6a71188a67e76b92b03d187d7a8f97e39b213f1d67af",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:plans-move-honestly",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

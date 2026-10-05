@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1d8d89f35b8e050256729dd8472cf5782cc1697e9157ce0832402436806d6017",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the served frontier tool"
+  },
+  "to_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker"
+}

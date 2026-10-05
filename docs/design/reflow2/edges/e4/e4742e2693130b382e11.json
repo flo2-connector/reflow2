@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0680c46dc0faf4cb537e574180e1ac98d19a3bd76abf5b188e10be3e017491c4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0500",
+  "properties": {
+    "as_checksum": "sha256:ce30365401d775a82585729349538efe1a0fa43625783b2a39a6dc30f7d9ce83"
+  },
+  "to_id": "art:storyflow-resolution-study"
+}

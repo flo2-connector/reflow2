@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:13e14310ceb1474529422a564db4563821e51fde2c0140407900f2ad6b072e16",
+  "node_id": "dec:how-skills-ride-in-the-reflow2-plugin",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Raised 2026-10-01 while planning cap:reflow2-installs-as-one-plugin-for-claude-code-and-grok. Plugin hosts load skills only as files (skills/<name>/SKILL.md). reflow2 serves its skills from the binary (req:thin-install, dec:skills-served), so what goes in the plugin's skills/ is a real choice.\n\nOPTIONS:\n(a) POINTER STUBS. Each SKILL.md carries the served skill's name and description plus one line: fetch it with get_skill and follow it. The host routes by description, and the body stays served, so it can never drift from the running binary. The door plan's VS Code skill stubs (req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current) are the same shape.\n(b) FULL COPIES generated at release time from the binary, pinned to the release version. They read without a server round trip, but drift whenever the plugin and the installed binary are at different versions.\n(c) BOTH: full copies, with a version check that says \"fetch the served one\" when they differ.\n\nLEAN: (a). It keeps one source of truth (the binary), matches how reflow2 already ships skills, and reuses the stub generator the door plan needs anyway. The stub's description must equal the served one, so it is generated from the binary at release and checked in CI.",
+    "kind": "choice",
+    "name": "OPEN — how reflow2's skills ride in its plugin: pointer stubs that fetch the served skill, full copies pinned to the release, or both",
+    "status": "proposed"
+  }
+}

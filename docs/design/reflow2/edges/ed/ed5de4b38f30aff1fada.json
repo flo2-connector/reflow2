@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fb8f61164c4131f16017d37da7350343ae2cf3fcb839ae68b39c1a4f66a9fc41",
+  "edge_type": "REALIZES",
+  "from_id": "art:dependencies-workflow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut"
+}

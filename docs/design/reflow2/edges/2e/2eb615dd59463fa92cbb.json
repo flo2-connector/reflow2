@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c8b995f0a3e68770f2d5e27e4e6ec2e763c0847f360bb0db6655b0c5a91d31c0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:external-blob-store-pressure",
+  "properties": {
+    "evidence": "It is a recorded pressure ON that decision, and the condition under which it would be reopened; meaningless read apart from it.",
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:where-content-lives"
+}

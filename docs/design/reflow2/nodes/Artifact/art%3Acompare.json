@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ed687d4c0d70548faa65ba3c3f80ab913c07ca7cbaad0e9a158a99f23222832a",
+  "node_id": "art:compare",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/compare.rs",
+    "name": "compare.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

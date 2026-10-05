@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:24afd90ca359734879acfee3be63e0a23458285008fd01f2beea43aa2261370a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-declared-dependency-can-be-watched-without-being-imported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:design-dependencies-declared"
+}

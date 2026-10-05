@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16d54f4b9204d3a7ecd5e4dc541b59b54918546174f757b9d5a0cc44598ee433",
+  "node_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/tests/a_missing_argument_names_the_tool_and_what_it_wants.rs",
+    "name": "a_missing_argument_names_the_tool_and_what_it_wants.rs",
+    "status": "realized"
+  }
+}

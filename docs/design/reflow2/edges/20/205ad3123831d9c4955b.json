@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5ede85fe78221c6df54c25e1b52172708a74a2e3176be2a6542683ec03d7c84a",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-why-history",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-why-history"
+}

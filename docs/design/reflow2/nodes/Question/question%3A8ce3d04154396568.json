@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:93e101b2f30af9eb10bb535287719f4b2f75616e1ab6360549d9424a16b880f2",
+  "node_id": "question:8ce3d04154396568",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Approved (Anthony, 2026-07-25). Prove the nudge path end to end in a real session and give it a backstop for when it is absent. The fleet's rule stands behind this: a mechanism you rely on to interrupt you is worthless until you have observed it interrupt you — they banned two plausible implementations by name after measuring zero wakes.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “The path the coherence loop relies on to interrupt an agent is proven to interrupt one”",
+    "gap_id": "gap:8ce3d04154396568",
+    "question": "reflow2 relies on a reminder that taps the assistant on the shoulder when design work has gone unchecked — but nothing has ever proved that tap actually lands in a real session, and there is no fallback if it does not. Is proving it worth the work, given that everything reflow2 does to keep itself honest depends on it arriving?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ef79cb8c14be81cb69e09b3c9ddcae23361cc470034f47ee805a0526e718d24",
+  "node_id": "chg:bl89",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "BL-89: adopt-doctrine tweaks — granularity guidance (B.1), describe_schema required_only (B.3), unreleased_component through CONTAINS (E.1)"
+  }
+}

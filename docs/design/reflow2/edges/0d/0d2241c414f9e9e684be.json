@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4d1cf937ffa4b470d93afe898c9a67b876c142b2077aa732488491e2f79f29d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-run-to-files",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-real-run-is-fed-back-by-file"
+}

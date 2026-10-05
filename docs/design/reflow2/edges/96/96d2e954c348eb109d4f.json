@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a388271d7aea6bccc057547d0898ad4f1224a5f7208665b26ce334d0e629ec8a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-relation-tool-accepts-the-other-familys-names",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:every-relation-tool-accepts-both-families-and-refuses-a-typo"
+}

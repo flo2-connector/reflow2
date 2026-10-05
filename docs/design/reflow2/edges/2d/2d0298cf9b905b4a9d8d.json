@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a02b4c604f5f6f62f0d375aeb07b7d2d97e8bcf3d3fcfe67da5b896dedf92165",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-a6e9d880f9a177c6",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-constructors-preserve"
+}

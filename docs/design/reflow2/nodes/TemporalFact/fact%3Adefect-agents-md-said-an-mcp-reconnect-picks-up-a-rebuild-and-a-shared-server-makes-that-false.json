@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e31c1fab5fc983523f5013cce45252355587de71b15b48313bd35f7b4e5fc641",
+  "node_id": "fact:defect-agents-md-said-an-mcp-reconnect-picks-up-a-rebuild-and-a-shared-server-makes-that-false",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "property",
+    "statement": "MEASURED 2026-08-17, AND IT COST THE OWNER A DELIBERATE ACTION THAT DID NOTHING. AGENTS.md said: \"every new session and every `/mcp` reconnect serves a fresh binary automatically\", and \"you must `/mcp` reconnect reflow2 (or restart the session) for the live tools to pick it up\". THAT IS FALSE WHENEVER A SHARED SERVER IS RUNNING, WHICH IS THE NORMAL CASE IN THIS REPO. `--shared` re-attaches to the long-lived `--serve-shared` daemon, and the daemon goes on executing the image it started from; the reconnect spawns a fresh CLIENT against a stale SERVER, so it looks like it worked and changes nothing.\n\nTHE NUMBERS. heal.rs was widened and the binary rebuilt at 22:13:23. Anthony ran `/mcp` at 22:16:28 SPECIFICALLY to make the change live, which spawned pid 2334559 (`--shared`). The `--serve-shared` daemon pid 2227071 had been up since 18:18:47 and kept serving. `detect_defects` answered `total: 20` — the pre-change number — from code no longer on disk. After `--stop-shared` and a respawn the same call answered `total: 34`.\n\n⭐ THE PART THAT MAKES THIS THIS REQUIREMENT'S BUSINESS RATHER THAN A DOC TYPO: THE SERVER KNEW. `req:the-server-is-the-authority-on-its-own-currency` is built, and `STALE_NOTE` in service.rs has said the right thing since 2026-08-11 — \"A SESSION RESTART ALONE, WITHOUT `--stop-shared`, CHANGES NOTHING\". But `served_by.stale` rides on `graph_report` ALONE. `loop_status` and `detect_defects` — the calls a session actually makes to read debt and defects — carry no such block, so every number they returned came from a replaced binary with nothing saying so. A report that cannot say whether its own code is current is the same failure as one that cannot say whether its checks ran.\n\nFIXED HERE: AGENTS.md now names `--stop-shared` and records that the old wording was wrong, and points at `served_by.stale` as the authority.\n\nSTILL OWED: carrying the staleness block on `loop_status` and `detect_defects`, or a reason it belongs only on the rollup. NOT DONE ON A GUESS — whether every read should pay for the `/proc/self/exe` check is a cost question nobody has answered.",
+    "subject_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran",
+    "valid_from": "2026-08-17"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41e7ddbf140bfebea841a1d4564fd83381f641e312a6932ea716c88abb69df26",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-remote-located-artifact-is-not-a-missing-file",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:coherence-gate-test"
+}

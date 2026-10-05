@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:59ad0510a5a0811a4d89c153fc027b21a7e9a6b64e00fd503e47b93a2529bb7b",
+  "node_id": "ifc:provenance-sidecar",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "none",
+    "designation": "internal",
+    "error_model": "Refusing on ANY mismatch would be worse than the problem, so schema growth is tolerated and only a real incompatibility refuses. A file it cannot read is reported as unreadable, never assumed compatible.",
+    "medium": "data",
+    "name": "Provenance sidecar — which reflow2 wrote this graph, and what this seat last synced with, written beside the store",
+    "operations": "read on open; write on export and on import (record_sync)",
+    "paradigm": "synchronous",
+    "payload_format": "json",
+    "payload_schema": "Files beside the store, written and read by `crates/reflow2-core/src/provenance.rs`: which reflow2 vintage wrote this graph, and `last_synced` — the path-to-content-hash record a seat believes is at each target.",
+    "provenance": "authored",
+    "transport_security": "none"
+  }
+}

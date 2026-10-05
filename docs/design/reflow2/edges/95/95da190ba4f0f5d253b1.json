@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2e34283ab954b6cc5e6bdc466bf9a99413812f6dffb8147af131e68a3330a861",
+  "edge_type": "CHANGED",
+  "from_id": "chg:confirmation-vocabulary",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:reconcile-built"
+}

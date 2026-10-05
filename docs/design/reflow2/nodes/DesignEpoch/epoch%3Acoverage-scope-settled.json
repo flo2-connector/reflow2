@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2fdaa9c018a87c92a72e5cb7a3b93f25d00acbee1701bb0e984604248b9eaa5c",
+  "node_id": "epoch:coverage-scope-settled",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "Coverage scope settled and carried into the kit: derived from version control, on Anthony's word (2026-08-02)",
+    "sequence": 257,
+    "status": "arrived"
+  }
+}

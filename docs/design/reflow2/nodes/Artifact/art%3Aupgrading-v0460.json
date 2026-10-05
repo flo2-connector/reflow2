@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b6a47fe87a315e080814e66e2ee68d0df0d4ad8a4031ac4e5198fa3bac0cc18",
+  "node_id": "art:upgrading-v0460",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "docs/upgrading-to-v0.46.0.md",
+    "name": "docs/upgrading-to-v0.46.0.md — the declare_dependency rename, and why a note was owed though the stamp did not move",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:007468fc85c36aae8318cf6cd82820c5981b1155084231785de43d04c421d544",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deliberately-open-edge-declares-what-it-is-for",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:foundation-vocabulary"
+}

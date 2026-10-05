@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c259f99f486d91ea73f8b6b0ad6e94bc1535c731ec6ce0ed2e2962fffc4aaa80",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-band-carries-what-it-was-computed-over",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-derived-number-carries-what-it-was-computed-over"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:19a1020d39af6f632e33d950fcf509c6543129ccaafe161259e1fb178e6e8c50",
+  "node_id": "art:test-a-follow-up-is-owed-until-it-is-settled",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins the boundary read from both sides: an open follow-up is owed, named in next, and makes the loop not clean; a record that answered it (INVALIDATES) settles it; a valid_to settles it; an ordinary finding is never mistaken for one; follow-ups come back oldest first.",
+    "location": "crates/reflow2-core/tests/a_follow_up_is_owed_until_it_is_settled.rs",
+    "name": "a_follow_up_is_owed_until_it_is_settled.rs",
+    "status": "realized"
+  }
+}

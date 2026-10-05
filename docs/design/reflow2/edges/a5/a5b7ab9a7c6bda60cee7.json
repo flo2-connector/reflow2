@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d99925aaace3964e71eca67e7621770235daa575eb9d299768af8be5e31269fa",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served",
+  "properties": {
+    "coverage": "partial",
+    "evidence": "One instance of an accepted requirement — get_skill's refusal. No new requirement was written for it, deliberately."
+  },
+  "to_id": "req:a-refusal-names-what-would-have-worked"
+}

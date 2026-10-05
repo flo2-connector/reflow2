@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:76c95457675e983a8d324c128a8c7b9658a78d8128b8192007a5e8de742d4e02",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0390",
+  "properties": {
+    "as_checksum": "sha256:5104c18c33113d5f0f62a4a70d19d31c0cfd4ef380b4d3d6948fd5c039fe5405"
+  },
+  "to_id": "art:tools-operate"
+}

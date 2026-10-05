@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f90ff74f14a054514ff08497e01419fef356dec4fcc9330c353781a64377351e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:dependency-names-its-design"
+}

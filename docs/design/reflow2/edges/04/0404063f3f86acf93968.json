@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:779df026a56bf428e5236dbc00484add8dd15c7949f27d0f98835ca666ac01f0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:content-manifest",
+  "properties": {
+    "authored_at": "2026-07-31",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

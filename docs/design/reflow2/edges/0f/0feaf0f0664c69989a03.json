@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9dae893c57529cbbb1b7d6225186b90da6f7da448f69aaf35c636134d0e79a3d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:build-loop-is-bounded",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:drift-has-direction"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b74d4ae88cbd5911b2e5248efca1a9838b47220613b1b23ac291d618c601d815",
+  "node_id": "ver:the-command-surface-answers-for-itself",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two halves.\n\n`crates/reflow2-mcp/tests/the_command_surface_answers_for_itself.rs`, four cases: every skill carries a shortcut; the eight aliased ones carry the word a person actually types; an UNALIASED skill still states one rather than being left blank; and asking by the typed name says where it is served.\n\n`tools/check_command_surface.py`, run in CI and VERIFIED TO FAIL BEFORE IT WAS WIRED — on all three drift shapes, each of which has really happened: an alias removed, a user-scope copy deleted, a command removed. A gate that only passes on a clean tree is evidence of nothing.\n\n⚠️ ONE ASSERTION IN THIS FILE PASSED BEFORE THE FIX AND WAS WRONG. `asking_by_the_typed_name_says_where_it_is_served` originally checked that the refusal CONTAINED the served skill's name — which it did, because the refusal lists all 25 names and \"help\" is one of them. It now requires the hint sentence itself. A test that passes for the wrong reason is worse than a missing one, and this one was caught only by running it against unfixed code.",
+    "findings": "4 passed, 0 failed, in the full workspace run of 1936 tests (0 failed) on 2026-09-01. The surface gate reports OK — 25 skills, 28 commands, 8 aliases, 0 findings, 0 notes.\n\n⭐ OBSERVED FAILING FIRST, and the sequence is the evidence. Written against the unfixed code, 3 of 4 failed and 1 passed — and THAT PASS WAS THE BUG. The refusal test asserted only that the message contained the served skill's name, which it did by accident because the refusal lists all 25. Tightened to require the hint sentence, all 4 failed. Only then was the fix applied.\n\n🛑 AND THE GATE WAS PROVEN TO DISCRIMINATE SEPARATELY, by reintroducing each drift that has really happened and confirming the failure text: removing the `what-is-this` alias (caught, naming the 2026-08-19 failure by name), deleting a user-scope copy (reported as a NOTE, never a failure — user scope is outside the repo and CI cannot see it), and removing a command (caught TWICE, as source-vs-copy drift and as a skill nobody can type). The tree was restored and re-verified clean after each.",
+    "kind": "verification",
+    "last_run_at": "2026-09-01",
+    "level": "integration",
+    "method": "test",
+    "name": "Every skill states its shortcut, and the surface gate fails on each drift that has actually happened",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7c44cacd39d655dbab60cc2a8b0cea187ca05e91e187ba6ecb3559200838a9f5",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-check-on-a-ruling-is-modelled-as-governed-by-and-the-verifies-refusal-never-says-so-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The same refusal text and the same missing pointer to GOVERNED_BY, measured on 0.74.0 in a scratch store the day after that root cause was written; nothing between the two versions changed the typed helper's refusal.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:sighting-2-the-verifies-refusal-for-a-decision-is-still-the-bare-sentence-on-0-74-0-2026-09-29"
+}

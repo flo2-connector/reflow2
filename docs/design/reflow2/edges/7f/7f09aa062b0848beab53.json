@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cc397aaab6fcdfff91a2335145165bfa0e8944b5e05f24c75db7830856af40a8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-parked-idea-asserts-nothing-and-three-detectors-now-read-that",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

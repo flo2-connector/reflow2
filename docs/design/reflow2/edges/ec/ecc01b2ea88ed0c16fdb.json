@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d9518e32e3714226b70d0f0b470cc8608dd86973e74d0461592c267073e8fc35",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consumption-detector-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

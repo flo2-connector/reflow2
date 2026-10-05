@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f1c1c7f94b87e6d1fec32ed08a695b94f3989ba3a759ed21c59e9bc5edfc5e3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-cli-describes-a-tool-with-its-schema-and-lessons-2026-10-03",
+  "properties": {
+    "note": "This change builds the accepted step 4: --describe and a whole-list form print the full input schema and the lessons the OPENED design holds, brief by default with the whole entry on request; find_tools names the route."
+  },
+  "to_id": "dec:idea-the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

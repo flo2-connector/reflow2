@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9bebfc011d14d32c05f056e9acdd34a26373b35629ca140432ddad4acde80444",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-key-is-renamed-and-the-sweep-says-what-it-swept",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3fd29ab9352d0cce327d01575642169bd9e8cd2bd6241b8a668fdf2c180cced5",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:read-loop-hint",
+  "properties": {},
+  "to_id": "cap:read-loop-hint"
+}

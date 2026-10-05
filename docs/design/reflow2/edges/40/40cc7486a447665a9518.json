@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b6ee8ba67c39ccbc6c91a7209d0f275e8b1923751625f40de284f63c77549cd5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7f6cf82db40049b3e659d609132e2adca025e56653e8f5751da694790407a885"
+  },
+  "to_id": "art:test-a-follow-up-is-owed-until-it-is-settled"
+}

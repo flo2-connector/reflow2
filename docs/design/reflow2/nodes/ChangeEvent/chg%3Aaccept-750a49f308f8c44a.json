@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3dd3a849b38b01557ee27d8b597eeb1e7d1c3e26d920caac950a48a2a1d04d29",
+  "node_id": "chg:accept-750a49f308f8c44a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-01",
+    "name": "CALIBRATED_AGAINST joins the edge constants and the structural direction table, per dec:calibration-propagates — the impact-table question asked before the code was written rather than after a detector complained."
+  }
+}

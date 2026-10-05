@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9892be8357b4b1efd99d30eccdde5c13af9e8a4b449992bea54848740813cf6f",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:wall-check-reads-the-mapping-instead-of-guessing-it",
+  "properties": {},
+  "to_id": "epoch:wall-check-works-on-any-project"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:893ccf82ccc12567d4b84782e589bef9136d90e5f1d9ec2b9e33e845cad5c155",
+  "edge_type": "YIELDED",
+  "from_id": "frag:usgov-2026-08-15-item-3",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-nothing-detects-a-violation-though-the-edge-is-stored-and-propagated"
+}

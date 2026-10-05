@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57bcd57009900cb9f86a8610f76b87dd11e3e4e79e14977404a1154aef0e1323",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-version-guard-refuses-on-a-population-not-a-declaration",
+  "properties": {
+    "evidence": "This change does not decide anything new — it applies an ACCEPTED decision to the sibling sidecar it had never reached. Recording it as governed by that decision rather than by a fresh one is the honest shape."
+  },
+  "to_id": "dec:sidecar-loss-guarded-by-store-evidence"
+}

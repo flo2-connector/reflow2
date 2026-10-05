@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bf7fdbd00c3a8a2e2c60a6112cb6e968812ac6382bfba4239bdbae9d651cf3b5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "authored_at": "2026-09-22",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

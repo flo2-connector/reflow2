@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:28f504bfb66d72af0024978dd2f18a911f9cc2bb32c6417ce2e454800fa8d692",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-component-says-how-many-copies-run-and-where",
+  "properties": {
+    "evidence": "Options (b), (c) and (e) are the structured home that finding measured as missing."
+  },
+  "to_id": "fact:root-cause-a-deployment-topology-has-no-structured-home-in-the-operate-layer-2026-09-29"
+}

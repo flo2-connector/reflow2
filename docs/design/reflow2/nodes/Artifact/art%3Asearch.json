@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a7ea0fac1bdbf921d043587ba2e2d32196c3dd0b12610cbc9691d8c4d283c3f5",
+  "node_id": "art:search",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/search.rs",
+    "name": "search.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

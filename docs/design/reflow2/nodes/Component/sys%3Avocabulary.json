@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4aed4b51aad3c005019998150340b4418f7777f669f0b1087f8be04f2d4afe23",
+  "node_id": "sys:vocabulary",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Vocabulary",
+    "provenance": "authored",
+    "purpose": "The neutral type system — the node and edge types that ARE a design. What any design is made of, before any of it is stored or checked.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

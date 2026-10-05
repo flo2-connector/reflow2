@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:92f33892c39a6871c46c11b7ce53590f0bc92134d97f53094e6104fee9514a2d",
+  "node_id": "cap:brainstorm",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-07-25 as the brainstorm skill + the /brainstorm command. Anthony's brother's original ask (\"work through planning and idea realization before committing concepts to graph... an agent-assisted thinking process\"), reframed by Anthony into what it actually is: not a staging gate but a KIND of record. Ideas enter the graph immediately as `proposed` Decisions named as open questions, with the options in the decision text and the honest counter-argument beside each; nothing waits outside in a buffer where it could be forgotten, and nothing is claimed as intent. THE MECHANISM THAT MAKES IT WORK WAS ALREADY THERE, found while building: detect_gaps raises undecided_decision_point ONLY on a proposed Decision with two or more REGISTERED alternatives, so a Decision whose options live in prose is silent by construction — and the nudge to choose arrives exactly when register_alternative turns an option into a fork with a design behind it. The loop stays quiet while someone thinks, and speaks the moment the ideas stop being ideas. No label, no schema change, no upgrade doc. THE GUARDS, all prose because none is machine-checkable: never create Requirements or Capabilities from a brainstorm (promotion is a separate step needing the user's word); never argue an idea down in conversation — record the objection beside it, because an idea killed in dialogue loses its reasoning; never run detect-and-ask over brainstormed nodes, which would ask the user to firm up exactly what they left soft; and never promote the last idea standing, since one remaining idea nobody chose is still an idea nobody chose. set_decision_status to `proposed` is mandatory, because add_decision defaults to `accepted` and would assert a settlement that never happened. Ends as a PROMOTION step, not a commit step: chosen ideas go through capture-intent, the rest stay recorded as considered rather than deleted (req:roads-not-taken). The one honest weakness is readability — a person scanning the decision list cannot tell a musing from a choice without reading the prose, which is what the open vocabulary question in dec:exploratory-staging is now reduced to.",
+    "name": "Work an idea through without committing to it, on the record",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

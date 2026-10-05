@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:60e9da2a604022a786e80cbdec1f608a1bb006b4b6704c2b9ad5aa638e116b4b",
+  "node_id": "cap:comparison-discloses-build-skew",
+  "node_type": "Capability",
+  "properties": {
+    "description": "compare_designs reads the `reflow2_version` each side's stamp already carries and, when they differ, says so in its result alongside the finding counts — naming build skew as a possible cause of property-only differences without suppressing, reweighting or hiding any of them. The reader is told what could confound the reading; nothing decides on their behalf.",
+    "name": "A comparison discloses that its two sides came from different builds",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

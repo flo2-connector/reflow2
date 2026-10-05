@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2544db4d6d4c6e0b705bc7a29008bd9691efab03cc1a5a031a3b7ca938687bdd",
+  "node_id": "ver:two-designs-stay-apart-in-the-published-image",
+  "node_type": "Verification",
+  "properties": {
+    "description": "docker/smoke.sh phase 2. Mints two designs at the registry shape (<root>/<name>/.reflow2/graph) under one root, starts the IMAGE with REFLOW2_REGISTRY_ROOT, opens a session against each over /g/<graph_id>/, writes a Requirement into the first, reads it back there, and asserts it is ABSENT from the second.\n\nWHAT IT ADDS OVER WHAT EXISTS: ver:sessions-cannot-cross-designs and ver:a-session-cannot-name-another-design prove the mechanism against the CRATE, and two_designs_stay_apart_over_the_transport proves it against the built binary. This proves it against the ARTEFACT a consumer pulls — its own entrypoint, its own env, its own unprivileged user, its own libc. Isolation regressions are silent and severe: a handler reaching the wrong design corrupts it rather than erroring.\n\n⚠️ THE ASSERTION IS WRITE-THEN-ABSENT, NOT \"BOTH ANSWER\". Two empty designs would satisfy the weaker check forever, and a check that cannot fail is worse than none.",
+    "findings": "PASSING 2026-09-13, against the built image `reflow2-mcp:dev`, not against the crate. docker/smoke.sh grew a phase 2: it mints two designs at the registry shape under one root, starts the image with REFLOW2_REGISTRY_ROOT, writes a Requirement into design A over /g/<A>/, reads it back from A, and asserts it is ABSENT from B over /g/<B>/. Output: \"smoke: registry serving 8d196405bdfbf31b and ba765b203788ecad\" then \"smoke: OK — two designs in reflow2-mcp:dev stay apart, and a write into one is absent from the other.\"\n\n⭐ IT CAUGHT A REAL DEFECT ON ITS FIRST RUN, which is the evidence that it is not a check that cannot fail. The ENTRYPOINT used ${REFLOW2_REGISTRY_ROOT:---graph-path \"$REFLOW2_GRAPH_PATH\"} to mean \"registry root, else graph path\" — and `:-` substitutes the VALUE when the variable is SET, so registry mode passed /data as a bare argument and clap exited 2. A container that never starts, which is the exact failure class the ENTRYPOINT's own warning is about and which five releases once shipped. Fixed to an explicit `if`, rebuilt, re-run green.\n\n⚠️ THE ASSERTION IS A WRITE-THEN-ABSENT, deliberately, not \"both designs answer\". Two empty designs would pass the weaker check forever.",
+    "kind": "verification",
+    "last_run_at": "2026-09-13",
+    "level": "acceptance",
+    "method": "test",
+    "name": "Two designs under one registry root stay apart inside the published image",
+    "status": "passing"
+  }
+}

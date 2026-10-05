@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:097408a6ea63d2441f41df51234e77f27de203ca5fcb6fed786c862f9ea8dd64",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-a-hub-starts-a-new-child-design",
+  "properties": {
+    "evidence": "Making adopt a one-step act from a hub makes the duplicated-region problem that requirement guards against more likely."
+  },
+  "to_id": "req:adopt-asks-sibling-designs-who-else-has-this-before-writing-a-region"
+}

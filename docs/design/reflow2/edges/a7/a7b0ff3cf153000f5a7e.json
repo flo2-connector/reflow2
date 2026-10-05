@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eda662292bd9d780eb7600e372851b4bc13c3384bfecb5cba11de4a13a1e973b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-cut-is-read-from-the-design",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

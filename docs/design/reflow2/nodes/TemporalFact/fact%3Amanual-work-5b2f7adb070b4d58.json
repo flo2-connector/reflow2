@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8dedb96fc49a5bbdbfeb485126cf9b22fc2faa62800f209200afa4dc9a1e4560",
+  "node_id": "fact:manual-work-5b2f7adb070b4d58",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote an offline replica of the blast-radius traversal and ran it over every node of a committed export. The goal was the distribution of region sizes (median, p90, max) at depth 1 and 2 for a population of nodes, plus how often two random regions overlap and how often one agent's edit target falls inside another's region. propagate_from answers one seed at a time, so this took a replica, checked against the live server on a handful of seeds, rather than thousands of calls.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-29",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

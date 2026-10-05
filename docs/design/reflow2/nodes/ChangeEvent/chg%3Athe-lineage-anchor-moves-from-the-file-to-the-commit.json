@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8e2c4e0a47e358905124d1dd1b59602d0980273552a83b14af50d6be9ae33307",
+  "node_id": "chg:the-lineage-anchor-moves-from-the-file-to-the-commit",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The export's lineage anchor moves off the working-tree file and onto the merge-base with the default branch",
+    "subject": "system"
+  }
+}

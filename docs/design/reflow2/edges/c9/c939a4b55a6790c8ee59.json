@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:247c932c0f432b37c80a58f165a1c96a84f620cd68a99be1afcecb29cdf8af6c",
+  "edge_type": "TRIGGERS",
+  "from_id": "cap:derived-release-manifest",
+  "properties": {
+    "role": "forces resync — a manifest that froze a PRE-BUMP checksum sends the cut back to accept the version drift first, then re-freeze. Budget one gate failure and a second export every time this order is got wrong"
+  },
+  "to_id": "cap:a-cut-moves-every-version-claim-together"
+}

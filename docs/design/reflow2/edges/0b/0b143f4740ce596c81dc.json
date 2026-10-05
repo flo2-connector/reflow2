@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:168bb622008cc98dde685ad4597b455cc34c0b734cadd65bfd42a67c134318c9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-claim-may-need-a-list-rather-than-a-radius",
+  "properties": {
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

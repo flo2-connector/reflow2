@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:355bd313b8c6d93594a2d960984028dfb2071b376e44f3373fd739e96cce3a44",
+  "node_id": "chg:content-test-file-removed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "The core content test is removed with the module it tested"
+  }
+}

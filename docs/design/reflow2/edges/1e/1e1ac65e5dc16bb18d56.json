@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:412ac4d38f11530742e98f2a6afa80258a927ddb7fb35926bf910bdac3bde3cb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "rule:design-intent-moves-only-on-the-owners-word",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

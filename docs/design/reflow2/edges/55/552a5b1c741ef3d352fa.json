@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:65ea9e1fd9ccbe53c794672458877144fc8a318c6846fcb747ae133d8bbf5d48",
+  "edge_type": "CHANGED",
+  "from_id": "chg:verifies-reaches-a-constraint",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-verify"
+}

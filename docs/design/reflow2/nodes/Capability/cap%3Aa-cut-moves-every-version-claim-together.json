@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce4f862a520ec3a12b6ae828b5e71387b7935aaf96e940f4d86e61607270f58c",
+  "node_id": "cap:a-cut-moves-every-version-claim-together",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Step 1 of `flow:release-cut`. The version is claimed in more places than one: `Cargo.toml`, `reflow2.toml`, `Cargo.lock` (via `cargo update -p reflow2-core -p reflow2-mcp --offline`), the upgrade-note list in `docs/overview.md`, and two spots in `AGENTS.md`. `tools/check_doc_versions.py` verifies the documentation half.\n\nTHE TRAP, AND IT COSTS A RETRY EVERY TIME IT IS MISSED: `reflow2.toml` IS a registered artifact (`art:dependency-manifest`), so bumping it drifts the coherence gate with a `checksum_change`. Accept that drift two-sided as `design_holds` with a note — the design meaning of a cut lives in the Release and its epoch, never in a version string — and accept it BEFORE the manifest is frozen. `release_includes_all` freezes each artifact's CURRENT checksum, so accepting afterwards records that the release shipped the pre-bump file. Accepting first is one step; accepting after is two plus a second export.\n\nALSO REBUILD THE BINARY AFTER THIS STEP. A schema stamp carries the version of the binary that wrote it, so exporting later with a pre-bump build stamps the OLD version. That is why v0.20.0's committed export said 0.19.0.",
+    "name": "A cut moves every version claim together, and accepts the drift it causes before freezing the manifest",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

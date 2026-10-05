@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a12212bbaadcda8ca8b1b4ea8a3052c63bd5c9f86e98828e3293af085c2dae0a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-resolve-dependencies",
+  "properties": {
+    "approved_at": "2026-08-17",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

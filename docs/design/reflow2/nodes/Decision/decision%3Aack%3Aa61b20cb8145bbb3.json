@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:048befb1bde99f579269de763d06c126cce3c4829218467ff91da7648a36cb13",
+  "node_id": "decision:ack:a61b20cb8145bbb3",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:a61b20cb8145bbb3.",
+    "name": "Reviewed: gap:a61b20cb8145bbb3",
+    "rationale": "Checked 2026-09-07: still open by design. One tool now declares an output contract and a test asserts it stays the only one, because that is the experiment's single arm pending Alex's result. The asymmetry the record describes is intact.",
+    "status": "accepted"
+  }
+}

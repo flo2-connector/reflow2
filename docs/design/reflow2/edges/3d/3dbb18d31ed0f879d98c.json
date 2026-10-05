@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2baf6770244e867fc58436bac1b61adb81287a69bd21370204e3f4aa877d539",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-a28e15cd008d0088",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:repair"
+}

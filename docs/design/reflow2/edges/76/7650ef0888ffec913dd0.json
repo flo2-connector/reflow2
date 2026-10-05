@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:020241b34dc24fdf15d1a48f663f7c955600344462322be5111510756e925a0f",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:absorb-core-storage-text",
+  "properties": {
+    "at": "2026-08-24T21:45:00Z",
+    "note": "The question this observation answered no longer has a subject. It rested on \"reflow2 pins v0.12.0 by git tag across all six crates, so nothing changes until somebody moves the pin\", and left the bump PARKED awaiting Anthony's word. Increment 4 removed the last pin: cargo tree, Cargo.lock, the manifests and the source all name dynograph zero times, so no tag of that repository — v0.13.0 or any later one — can affect reflow2, and there is no pin left to move. The parked decision is retired rather than declined.\n\nWHAT THIS DOES NOT RETIRE, kept deliberately: the measurement itself was sound and its two method lessons outlive it — a linker \"Bus error\" that was really a 100% full disk, and `grep -c` on a binary silently finding nothing without `-a`. Both are instances of rule:success-is-read-from-the-authoritative-object and are recorded there and in fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries. The disk warning still stands: no gate watches free space and the design graph lives on the same disk."
+  },
+  "to_id": "fact:dynograph-v0130-measured-clean-and-the-pin-is-parked"
+}

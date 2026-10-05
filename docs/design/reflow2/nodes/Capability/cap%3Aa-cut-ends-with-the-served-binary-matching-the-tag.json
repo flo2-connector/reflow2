@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:405398413e53f13ca812b9f032e3e67fc7be735860be3ddff6b03738971179d7",
+  "node_id": "cap:a-cut-ends-with-the-served-binary-matching-the-tag",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Step 9 of flow:release-cut, added 2026-09-18. After the tag's assets are verified published, tools/reflow2-rebuild.sh rebuilds target/release/reflow2-mcp (and writes the stamp the launcher compares; a bare cargo build --release does not), then every shared daemon is stopped so the next call respawns on the new build, confirmed by /proc/<pid>/exe not reading (deleted).\n\nWHY IT IS A STEP OF THE CUT AND NOT A REMINDER: the launcher's staleness banner fires only inside this repo. Every other project on the builder's box reaches reflow2 through the user-scope registration in ~/.claude.json, which names target/release/reflow2-mcp directly, so no guard is in that path. Measured 2026-09-18: the adopt of a real 24-unit building design (proj:sedu-wetmore, 186 nodes) ran for a whole session on 0.62.0 while 0.64.0 was tagged and published; the two cuts between rebuilt the debug binary for the export and never touched release. Eleven questions 0.64.0 raises on that design (units, sources, encoding, closure criterion) were never put to its owner.\n\nREALIZED BY what already exists (tools/reflow2-rebuild.sh, the AGENTS.md launcher section) plus the flow step and a DesignRule delivered on release_report, the step before it. What it does not do: rebuild for you. The 34-minute cold build stays a deliberate act; the cut is the moment it is deliberately owed.",
+    "name": "A cut ends with the binary this box serves matching the tag: rebuild release, then stop every shared daemon",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

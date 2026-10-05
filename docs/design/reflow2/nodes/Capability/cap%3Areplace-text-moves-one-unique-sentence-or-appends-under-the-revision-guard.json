@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9cf6ed14679e7cd6fe85ee60f65837a4f05c0189758c657e33c409ce0a51dfa9",
+  "node_id": "cap:replace-text-moves-one-unique-sentence-or-appends-under-the-revision-guard",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-19: replace_text {node_id, node_type?, field, old?, new} in tools/capture.rs. Resolves the type from the id; refuses a missing node, a non-text field (naming the node's text fields), an empty `old`, and an `old` that occurs 0 or ≥2 times (naming the count) — nothing written in every refusal. `old` omitted appends after a blank line. Unchanged text replies changed:false without a write. Writes through upsert_node, then preserve_prior and revision_of, so the reply carries `revision` with the replaced field and prior_state_preserved_in. Named in brainstorm step 5 and revise-design step 3. Corpus query ranks it first.",
+    "name": "replace_text: a unique `old` in one text field becomes `new`, or `new` is appended, under the same revision guard as every write",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

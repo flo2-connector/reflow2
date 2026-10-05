@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:855787c0c81b5a94ddc537403dd34dcd9d274a9de6bce0b6ac7a6515d0b0d3c5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:read-hint-shape",
+  "properties": {
+    "authored_at": "2026-07-23",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

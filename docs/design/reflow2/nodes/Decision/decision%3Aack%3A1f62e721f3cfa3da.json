@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:db29d2f81a7a085cd5afc27f81fdd013212bd5aca6db5bda9a06545d5f079cbc",
+  "node_id": "decision:ack:1f62e721f3cfa3da",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1f62e721f3cfa3da.",
+    "name": "Reviewed: gap:1f62e721f3cfa3da",
+    "rationale": "Standing disposition: validation evidence lives in docs/trials/ and in field reports from real use, not as validation-kind Verifications, so the detector correctly reports what the graph cannot see. Re-acknowledged at 52 capabilities — the gap id derives from the affected SET, so every new capability mints a new id and the previous acknowledgement cannot carry. That churn is a finding about the acknowledgement mechanism, not about validation.",
+    "status": "accepted"
+  }
+}

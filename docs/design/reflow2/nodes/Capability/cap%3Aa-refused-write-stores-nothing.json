@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0a1ccd3fdc5292780d886f064d0c189185de533ef9b89afe247be02be403ea4c",
+  "node_id": "cap:a-refused-write-stores-nothing",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Every tool the served catalogue marks as a write (read_only_hint false) runs inside ONE write unit, the store's own atomic batch (DesignGraph::begin_unit / commit_unit / discard_unit). ReflowService::call_tool opens it, the handler's first write_lock takes the graph's write lock and opens the batch, and every later hold and read in the call is served from that hold. When the handler answers, the unit is committed if the call succeeded and discarded if it refused, errored or never completed. So everything the call writes lands together or not at all: the node, its optional fields, its links and edges, the twin edges the store draws, the snapshot of what it replaced, and the credit to whoever it wrote for. Batches nest: a bulk form, an import or HEAL inside the call joins its unit rather than committing it. Reads inside the unit see its writes, derived scans and search included. A refused call announces nothing, so it moves no loop signal and rings no write-through export. SharedGraph is the only way a handler reaches the design, so a write outside the unit does not compile.",
+    "name": "A refused write stores nothing: every served write call is one atomic unit, committed when it succeeds and discarded when it refuses",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

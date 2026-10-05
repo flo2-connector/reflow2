@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b987a53174943898e6f141e67b5b6a3a9073f7ba61f6d47961bad9f19a0f461",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-incremental-resumable-region-scoped-adopt-with-a-frontier-and-a-deferral-marker",
+  "properties": {
+    "evidence": "An adopt that captures structure first and intent later is a design where most intent is legitimately absent for a while; how the gap reporter behaves in that state is exactly what that open question asks.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:gap-reporting-when-most-intent-is-unbuilt"
+}

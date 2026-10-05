@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1eab7360642c2a1765d9f0064b05963b77441bf8c34f9084d5c33be28c6035e5",
+  "node_id": "chg:accept-923c35e9e4120314",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Accepted 2026-09-09 for the refusal fix and the untriaged_report detector: the daemon records a refusal no peer can resolve, the spawning session stops waiting on it, and an Artifact governed by a methodology rule with no CAUSES edge is reported at info.",
+    "subject": "system"
+  }
+}

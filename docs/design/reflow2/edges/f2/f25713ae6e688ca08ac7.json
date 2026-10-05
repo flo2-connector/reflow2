@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a281a96fc0f5c27a734e45c361f75d172928117c6383764bf21c5be80182533a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:re-decomposition-becomes-an-operation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:move-component-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3396e106a06cbf1ec98d48d004353eab65f887164eb6adfe28bd19fdfee2ff52",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs",
+  "properties": {
+    "evidence": "That idea asks 'what does the parent hold that the children do not?'. This idea gives a precise answer: exactly the facts whose lowest owning level spans several children, and nothing a child could hold. It was raised while running that parent (dev_reflow2) as a live trial."
+  },
+  "to_id": "dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:38473ca60773cc9ea70fd702f42c5486aef22d121eafe051165eea3f4960bf85",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:detecting-is-not-asking",
+  "properties": {
+    "authored_at": "2026-08-19",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

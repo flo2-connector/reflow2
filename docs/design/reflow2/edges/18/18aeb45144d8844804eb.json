@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ab8217d23152e6810e78e61c0fb4510f62aa2837dda5bee178c4325150bbb61",
+  "edge_type": "CAUSES",
+  "from_id": "dec:an-unplanned-cut-slips-every-later-increment-by-one",
+  "properties": {
+    "basis": "observed",
+    "confidence": 1.0,
+    "evidence": "Making slips routine makes version-numbered epoch ids routinely wrong. Applying the rule once left four ids whose numbers are a version behind their content, and an id cannot be renamed.",
+    "validation_status": "validated"
+  },
+  "to_id": "dec:idea-a-planned-increment-is-named-by-content-not-by-number"
+}

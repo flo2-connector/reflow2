@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ea4c188feddc8d6853afccd6604596c50fb01486434d6f014135d0e944d51a0d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": false
+  },
+  "to_id": "art:upgrading-v0550"
+}

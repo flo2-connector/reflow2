@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d4ea0c7eabce8db1c1eba8fa3e817ae225971e5004270f932f235bed384610e9",
+  "node_id": "question:48648a70e7adca25",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Build it on the existing hook — extend it from counting writes to recognising shapes (a file edit with no recorded change means impact-check; a checksum drift means link-artifacts). No new mechanism; the hook already watches file edits and is the one reminder that demonstrably held. (Anthony, 2026-07-31.)",
+    "asked_at": "2026-07-31",
+    "context_setter": "Nothing satisfies requirement “Skill use is triggered by the situation, not remembered — the rungs cover loop debt, and skills fire on things the graph cannot see”",
+    "gap_id": "gap:48648a70e7adca25",
+    "question": "You've said reflow2 should nudge an agent to use the right skill at the moment it's needed, rather than relying on the agent to remember. Nothing is currently being built to do that — do you want it built now, parked for later, or dropped?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

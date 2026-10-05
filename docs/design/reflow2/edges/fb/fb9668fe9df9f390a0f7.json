@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff4cab1310a97e8b889f19bbdf8aed885de72167b27b706e922ee31a5ef62d1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:change-type-splits-its-axis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

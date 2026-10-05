@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4bd3403b8fd6a0e95f6301d71eb191c4d7837ecc5a772f4148740ae819785aa0",
+  "node_id": "art:test-a-budget-adds-only-numbers-in-its-own-unit",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four cases over budget_report with set_constraint_unit and constrains_in. The 6.9 lb against 100 kg case from the brainstorm is the first test.",
+    "location": "crates/reflow2-core/tests/a_budget_adds_only_numbers_in_its_own_unit.rs",
+    "name": "a_budget_adds_only_numbers_in_its_own_unit.rs — the rollup adds only matching units, reports a mismatch beside the total and leaves the verdict open, names a silent unit but still totals it",
+    "status": "realized"
+  }
+}

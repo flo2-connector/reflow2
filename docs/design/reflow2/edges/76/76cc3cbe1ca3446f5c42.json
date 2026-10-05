@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f1527228e79818589c34e8a64482464b2d6a424c38c01191c9b42e654ae5aa91",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:fact:root-cause-a-latency-budget-with-parallel-branches-is-judged-on-the-sum-while-its-worst-path-is-computed-beside-it-2026-09-29",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:68dd3ea85f21e823d885eb31803fe0159666a21b9f9a69f19a19db04c1a501b0",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:verification-freshness",
+  "properties": {},
+  "to_id": "dec:verification-freshness-not-a-gap"
+}

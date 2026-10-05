@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5f379b4cd564196d0285a7fbda745f119d096640865cad5cf49266f3fa5545b2",
+  "node_id": "chg:nudge-fires-once",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-111: the nudge's \"fires once\" promise is computed rather than merely stated — an atomic claim, so a duplicate hook registration is harmless instead of doubling the message"
+  }
+}

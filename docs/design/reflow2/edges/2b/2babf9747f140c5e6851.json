@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e031e2eafab8ee3deebc43d244d36171cc5f746709fb4e0e76c9cefced79493",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:artifact"
+}

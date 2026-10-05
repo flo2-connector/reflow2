@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:573c2ed2f9457668195585466e1a3df266278b6e754499c46c9bef9369ab996c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:option-d-was-built-as-a-tool-and-a-scoring-heuristic-was-abandoned",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-can-exhaustive-per-subsystem-tests-be-derived-rather-than-imagined"
+}

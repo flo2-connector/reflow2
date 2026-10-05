@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:07bcf75ea9c2311e6e14e1efc47da020031faf662f4f32abc9e1e2d5bfabd69d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-the-compliance-layer-is-whole",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-the-compliance-layer-is-whole"
+}

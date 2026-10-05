@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3bffd0416e703fbcf87cb0f06bec3889c04570afea03f8989448c7459b4eef85",
+  "edge_type": "CAUSES",
+  "from_id": "art:machine-install",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "reflow2_install.py honours REFLOW2_BIN_DIR only for its `reflow2` wrapper; the MCP registration, the slash commands and the loop-nudge hooks are written under Path.home(), and the hook command is built from the kit it runs from (nudge_script() = REPO/tools/loop_nudge.py). install.sh runs it unconditionally (lines 162-176) even when REFLOW2_BIN_DIR and REFLOW2_KIT_DIR point into a scratch folder, so a redirected install writes $HOME config that points into that folder. Read in the code at main a0d6b49 and matched against the 2026-09-22 transcript of the run that did it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-redirected-install-still-registers-machine-wide-into-the-real-home-2026-09-26"
+}

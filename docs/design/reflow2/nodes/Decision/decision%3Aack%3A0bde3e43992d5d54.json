@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6c594f7b88cfe8b266fa597b3d87669e36b8aa4a6bce72d6728f64464216b8d4",
+  "node_id": "decision:ack:0bde3e43992d5d54",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:0bde3e43992d5d54.",
+    "name": "Reviewed: gap:0bde3e43992d5d54",
+    "rationale": "Anthony, 2026-10-03, in chat: \"All six: not fixed\". The change touched this defect's subject but did not fix it, and the defect stays open. Measured reason: the usage ledger names a caller only from the initialize handshake, so a stateless call is recorded as `rmcp`. #656 adds a refusal class to the ledger; it does not change how a caller is named.",
+    "status": "accepted"
+  }
+}

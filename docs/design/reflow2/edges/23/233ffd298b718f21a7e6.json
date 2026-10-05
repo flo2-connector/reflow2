@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a7d37c6aed2967a78dbef91315079390409d3aebc57b611d37f0229d02b2ee5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:surface-export",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

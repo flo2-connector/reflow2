@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ddf015bef592276a74821aa719b471392372124a8330ee7a1b71354c7b6a0f8",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:vocabulary-covers-materiel",
+  "properties": {
+    "evidence": "The deferred materiel requirement (2026-08-07) named the same absence (quantities that operating needs) and the same Resource trap, for physical systems."
+  },
+  "to_id": "dec:idea-a-component-says-how-many-copies-run-and-where"
+}

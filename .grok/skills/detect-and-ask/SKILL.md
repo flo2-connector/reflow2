@@ -34,8 +34,9 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    moved or only the record of it did, and nothing can tell them apart afterwards), **fixes that
    recorded no cause** (`fix_without_recorded_cause` — a repair joined to no finding and no cause,
    indistinguishable from a symptom fix; the root-cause skill is the door) and **defects the
-   record never closed** (`defect_overtaken_by_change` — a later repair touched the subject after the defect was
-   recorded and nothing says whether that was the fix; a stale open defect sent a session down a
+   record never closed** (`defect_overtaken_by_change` — a change joined to the defect, or a repair on its
+   subject since the day it was recorded, and nothing says whether that was the fix; it names the
+   likeliest first, and only INVALIDATES closes it; a stale open defect sent a session down a
    wrong re-fix), **open questions the design already answered by building them**
    (`decision_overtaken_by_promotion` — an idea still reading `proposed` that EVOLVES_INTO an
    accepted requirement, a realized capability or a recorded change; the promotion landed and
@@ -129,6 +130,7 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    | `unrealized_capability` | `link_artifact` (see **link-artifacts**) |
    | `build_without_verification`, `unverified_capability` | `add_verification` with `verifies` (its targets) and, if you have just run it, `status` / `findings` / `last_run_at` in the same call; otherwise `set_verification_status` later with the real outcome — a check left at `planned` does not count as confirmation |
    | `failing_verification` | fix the build (then `set_verification_status` → `passing`), or — if the *design* is what's wrong — update it on the record with `snapshot_before_change`. Never resolve this by deleting the verification or hand-flipping the status without running the check: the gap is reality contradicting the design, and both honest answers change something real |
+   | `blocked_verification` | the check COULD NOT RUN, so it says nothing about the part. Find what stopped it (its `findings`, or the run's own error), make it runnable, run it, and record what the run found with `set_verification_status`. Never resolve this by setting it `failing` (that claims the part is broken) or `passing` (that claims a run that never happened) |
    | `status_contradiction` | a status claiming MORE than the design shows. Run and record the missing check (`add_verification` + `verifies` + `set_verification_status`), link what satisfies the requirement — or lower the status to what is actually known. Never resolve it by just re-asserting the status |
    | `understated_status` | the other direction: a status still at `planned` while the design shows the thing built — a realized file or a passing check on a capability, built capabilities on a component, a deployment on a release. Move the status to what the evidence shows (`set_capability_status`; `add_component` or `add_release` again with the id and `status`), or, if `planned` is deliberate, `acknowledge_gap` with why. Never resolve it by removing the file, the check or the deployment: the evidence is true, and the status is what fell behind |
    | `no_deploy_operate` | `add_release`, `add_environment`, `deploy_to`, `add_resource`, `require_resource` |
@@ -139,6 +141,13 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    for the generic pair, call `describe_schema` — `{"from": "X", "to": "Y"}` names the edge types
    that may join two types and flags whether any actually models that pair or merely accepts it
    through a `*` wildcard. Do not settle for the first edge type that validates; several will.
+
+   ⭐ **AN ANSWER THAT RESTS ON NUMBERS IS WRITTEN BACK WITH ITS MATH.** When what settles a gap
+   is a cost, a fit, a size or a yes or no that turns on conditions, the decision's rationale names
+   where each input came from — the person, a cited document, a measured or reported value, never
+   your memory. If a calculator helper is connected (flo2-calc is one), compute the numbers there,
+   register its kept record (`add_artifact`) and draw `documents` from it to the decision; if none
+   is, show the arithmetic in the rationale. The reading you offer in step 2 is held to the same.
 4. **The question is recorded for you.** The serve pass of `gap_to_prompt` writes it into the
    graph, so a later session can see it was asked and in what words. When the user replies, call
    `answer_question` with the gap id and their answer *as well as* doing something about it — the

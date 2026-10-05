@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83618a55f8368ae3d21691c6241e68a98da853b2a898effd778d5190d5c764f0",
+  "node_id": "art:test-a-floating-root-part-is-told-the-cure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two cases, the first observed failing against the unfixed message. The fixture mirrors xrt-demo's shape: a system containing a subsystem, and one indivisible top-level part left uncontained.",
+    "location": "crates/reflow2-core/tests/a_floating_root_part_is_told_the_cure.rs",
+    "name": "a_floating_root_part_is_told_the_cure.rs — orphan_level's message names the Project as the thing that can contain the part; contained by the Project it is a legal top-level part",
+    "status": "realized"
+  }
+}

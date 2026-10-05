@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33c119d1b37b80b4a2e05bc7762ec168d6109cba6bc92666f2eb5508d6ef2e0d",
+  "node_id": "dec:idea-a-session-that-reads-and-never-writes-is-the-one-the-loop-cannot-see",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F0 (2026-09-18) and this session's own lapse the same day, the same class from both sides. OPTIONS, none chosen: (a) a line in capture-intent / where-am-i / brainstorm: a finding is the agent's observation, write it before answering, no permission owed — cheapest and closest to the cause the flo2 agent named; (b) loop_status reports, per seat, reads and writes this session from the usage ledger the server already keeps, and `next` says 'N reads, 0 writes' past a threshold; (c) the stop hook's inverse: a long session with few or no graph writes blocks once with that reason; (d) build cap:session-memory as accepted in July — the requirement is already the owner's word. COUNTER: a session that reads and rightly writes nothing (a pure question) must not be nagged; the threshold is a judgement, and req:detecting-is-not-asking says the count is computed always and put to the user at a boundary, never mid-thought.",
+    "kind": "exploratory",
+    "name": "OPEN — a session that reads the design for an hour and writes nothing is invisible to every loop signal; should the loop report reads-without-writes per seat, should the stop hook fire on the inverse, and should the capture skills say 'write a finding before answering'?",
+    "rationale": "Recorded from the field report; the requirement exists, the capability does not.",
+    "status": "accepted"
+  }
+}

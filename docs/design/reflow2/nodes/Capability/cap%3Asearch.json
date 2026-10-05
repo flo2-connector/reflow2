@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:512a80c5c4d32f2c97d84c72d90ea9a96744fd99e9103bdf1e98be7733946c70",
+  "node_id": "cap:search",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BM25 keyword search over every fulltext property, ranked, type-scopable.",
+    "name": "Find design nodes by what they say",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:041afefc50bfbc86686b6d93a1c3464bb523b901628841ab91be46de5a11251d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:derived-edge-readers",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:derived-edge-readers"
+}

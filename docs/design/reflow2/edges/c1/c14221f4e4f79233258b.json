@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:37fd6fc095259918aa69ef970d93378bcac87124a0e6aff6b4fc601cb5db0e47",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:relationship-algebra-is-declared-respected-and-checked-against-the-data",
+  "properties": {},
+  "to_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it"
+}

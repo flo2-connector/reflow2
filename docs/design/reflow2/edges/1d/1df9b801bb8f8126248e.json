@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:324666982010e0987d8aa746d115702e3f9c1ff1a3cab2d6cc96dd1a5e7f6c96",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-project-declares-its-unit-system-and-the-sweep-reports",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-project-declares-its-unit-system-and-the-sweep-reports"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0b540c43f64cc38ba7031ce91e2e35981a7bd13956e3c76be6ced48637ee871",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-closure-has-a-design-phase-reading-and-a-build-phase-reading",
+  "properties": {
+    "evidence": "Promoted on Anthony's word, 2026-09-29 (\"go with the 7 ideas you'd promote\"): a design-done reading in the done check, separate from build done."
+  },
+  "to_id": "req:closure-reads-design-done-separately-from-build-done"
+}

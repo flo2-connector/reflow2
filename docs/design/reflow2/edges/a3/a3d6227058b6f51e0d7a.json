@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:233344729eb6241fec0b1832b945ced026c209f26e1be76d44e8683ed5e01dc5",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:plan-movement-recorded",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bcbb000b7ae2dd0de05ffd57fbb1f30582ccead261f77c13158ed4acf59d6d15",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "drift:458ddb78ed6f12c9",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "art:hierarchy"
+}

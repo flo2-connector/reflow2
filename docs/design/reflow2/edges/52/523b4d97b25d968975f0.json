@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:80cd9957004a9367dce9504513e7f27a1c35a9578a9add78f44f5545f98f7812",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-doubt-trace-lands",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:revise-trigger"
+}

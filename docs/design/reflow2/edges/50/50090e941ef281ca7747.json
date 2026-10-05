@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8eaffda47f7e8a5a961e635f543fc659b0c15a1fc930eba817af5ed98305d5b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:closure-reads-a-design-phase-and-a-build-phase",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:where-am-i-skill"
+}

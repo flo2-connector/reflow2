@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bfb93886e8b28dd984be7e0a16f53649fb2cd6a2f60f1220697cb475bb3a01c3",
+  "node_id": "ver:a-design-is-watched-at-the-server-that-holds-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Twenty-six tests across three files.\n- crates/reflow2-mcp/tests/a_design_is_watched_at_the_server_that_holds_it.rs (8) is the network half. Its first test is the real path: a real `reflow2-mcp --registry-root … --http 127.0.0.1:0` serves a minted design. `external_dependency` with `design_address` takes the baseline. `upstream_status` reads `unchanged`, then `moved` after a real add_component through the server's own transport (twice, so a read never refreshes the baseline). The watcher holds no Component (nothing imported). After the server is killed, the watch reads `unreachable` with \"UNKNOWN, not unchanged\", and the note does not claim that nothing moved.\n- Stand-ins cover: a 401 (refused, in its words, key absent from the reply, present as a bearer header); no key set up (the refusal names `reflow2-mcp setup remote`); a reply that is not a design (unreadable); a key over plain http to another host (refused before sending); a `without_reaching_out` server (baseline not taken, finding refused, the named address contacted ZERO times); loop_status (zero calls, no `next` line, and the sync reader returns no observation for an address); and a two-place declaration (refused, zero calls).\n- crates/reflow2-core/tests/an_upstream_design_is_watched_not_imported.rs gains 10 judgement tests, and crates/reflow2-mcp/tests/an_upstream_export_is_read_without_being_imported.rs gains the file regression for a document naming no design.",
+    "findings": "GREEN on f35d4a4, read from cargo's own exit code: the three watch test files at exit 0 (8 + 8 network/file, 34 core judgement). The full workspace run on 7a326ca exited 101: 297 suites, 2,582 passed, 1 failed (no_new_mutually_confusable_pair). The failure was attributed by putting back main's two descriptions with all code kept (it then passed) and fixed in f35d4a4 with a length-neutral description. After that, every_tool_is_found_by_a_query_in_the_users_words passed 5/5. Also green on f35d4a4: clippy -D warnings (both crates), fmt, smoke_mcp, toolsnap (two intended changes, regenerated), skill_lint, render_skills_and_tools --check, replies_are_bounded, refusal_speaks, empty_speaks, a_reply_is_sent_once, vocabulary_reach, validate_schema. Both regression tests for the identified-design fix were OBSERVED FAILING without the check. NOT RUN LOCALLY: the full workspace again after f35d4a4, which is text only and left to CI.",
+    "kind": "verification",
+    "last_run_at": "2026-09-27",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_design_is_watched_at_the_server_that_holds_it.rs",
+    "method": "test",
+    "name": "A design is watched at the server that holds it, and an outage never reads as unchanged",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd66ba68075c7405fc50c0c8403b3c288f5a82c1890fb8b4f791380b89553585",
+  "node_id": "fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03: get_node GIVEN a node_type answers an absent id with a bare {\"node\": null}; without node_type the same id carries empty_because. The empty-answer gate never sees it, because its probe fills required parameters only and node_type is optional",
+    "source": "art:empty-speaks-gate",
+    "statement": "FOUND while adding include_edges to get_node (fix program item 5). On a scratch import of reflow2's own design, `--call get_node {\"id\":\"req:nope\",\"node_type\":\"Requirement\"}` returned exactly {\"node\": null}. `{\"id\":\"req:nope\"}` returned the node null WITH empty_because (\"no node with id ... exists under ANY declared type\"). Same fact, two shapes, and one of them is the bare null the rule \"an empty answer says which empty it is\" forbids.\n\nWHY NO GATE CAUGHT IT: tools/empty_speaks.py pass 2 builds its probe from each tool's REQUIRED parameters (probe_args), so get_node is probed by id alone and the typed path is never asked.\n\nThis change leaves that path as it was when include_edges is not passed, so as not to change get_node's default reply outside its item. With include_edges it now says empty_because. The fix: give the typed absent path the same empty_because, and let the probe also try each optional id-shaped or type-shaped parameter.",
+    "subject_id": "art:tools-query",
+    "valid_from": "2026-10-03"
+  }
+}

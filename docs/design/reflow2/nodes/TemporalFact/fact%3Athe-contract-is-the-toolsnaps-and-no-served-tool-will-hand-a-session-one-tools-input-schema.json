@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:8c7fb47c4402bf00716ba6bcdfe1419e0a801f875b15f055c03e4680d3741884",
+  "node_id": "fact:the-contract-is-the-toolsnaps-and-no-served-tool-will-hand-a-session-one-tools-input-schema",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "The tool schemas are the seam contract and nothing served will hand a session one tool's input schema — leaving roughly 19 rejected calls that were within-version shapes, not drift",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19 (evening)",
+    "statement": "FLO2 F21, and its author's own addendum says v0.65.0 MOSTLY CLOSED IT unprompted: the id aliases on 25 typed-key tools, `props` accepting `properties`, and the refusal that names the fields missing from THIS call 'would have prevented most of the ~19 rejections tabled above'.\n\nTHE RESIDUE IS ONE THING AND IT IS MEASURED 2026-09-19: there is still no served way to read a single tool's `inputSchema`. `describe_schema` answers for NODE types (it will say a Verification has a `verifies` edge; it will not say add_verification wants `[{target_type, target_id}]`, because that is an argument shape, not a node property). `find_tools` returns `parameters` as a list of NAMES without shapes. `tools/list` carries the real schema and is a protocol call an in-session agent cannot reach. No served tool returns an inputSchema.\n\nWHY IT IS NOW LOAD-BEARING rather than a convenience: flo2 accepted that reflow2's committed tool schemas ARE the seam contract, so 'read the contract' has to mean something a consumer can do from inside a session.\n\n⚠️ AND A CORRECTION FLO2 VOLUNTEERED, which sharpens how this project should read their reports: v0.65.0's changelog noted an earlier flo2 report had filed eight guessed names as schema drift when five of six had never existed in any release. They accept that hit, and they label the rejections in this entry as within-version shapes with no served way to look them up, explicitly NOT as drift. That distinction is the whole of this entry, and it is a fair one.",
+    "steps": [
+      "find_tools",
+      "describe_schema"
+    ],
+    "subject_id": "cap:every-tool-carries-the-users-phrasing-and-the-corpus-is-the-test",
+    "valid_from": "2026-09-19"
+  }
+}

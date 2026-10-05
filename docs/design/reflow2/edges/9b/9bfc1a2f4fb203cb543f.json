@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e6022c42a4424e91d754d664febda26c2acc0e9b7162bd8cd85833a42549e62",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0560",
+  "properties": {
+    "as_checksum": "sha256:a8ea60ec60130ff3e563724bf43a50491849b18ece1d24fd4dfe6b1fe09f06c4"
+  },
+  "to_id": "art:self-host-documents-guard"
+}

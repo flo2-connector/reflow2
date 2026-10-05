@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:54f518849be651ba3b6ad606efa695f773c48695a8705e974fa07cfbfd7faf47",
+  "node_id": "fact:bl-123",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-123] The /mcp reconnect is the one step of an autonomous adopt that an agent cannot take",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Found 2026-07-31 by the same external adopt pass, and already known here as a recurring trap.* After reflow2_start_design, the design tools appear only once the USER manually reconnects \\u2014 documented and explained well, and still the single point where an otherwise autonomous flow stalls on a human. Worth recording precisely because it may not be reflow2's to fix: whether a stdio server can signal a harness to refresh its tool list is a property of the harness, not of this codebase, and the honest answer may be that the start tool should hot-serve the surface in-process instead. Related to [BL-113], which is the same stale-server problem in its silent form. Do not close this by documenting it better \\u2014 it is already documented well, and the session that hit it said so. Size M, mostly unknown\", \"origin\": \"Migrated from docs/backlog.md BL-123 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

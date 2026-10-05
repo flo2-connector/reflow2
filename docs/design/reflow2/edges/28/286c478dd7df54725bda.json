@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7043ec25be7201395c99f1777109db4e23d59d090a047fb80d197edb0aa45ca6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-read-only-surface-refuses-at-the-write-guard",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-built"
+}

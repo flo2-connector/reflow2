@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1a4865887c1451ad69eb1d2df20d257cb6d6f291f112e0145951891390b6ed75",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:caller",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:caller"
+}

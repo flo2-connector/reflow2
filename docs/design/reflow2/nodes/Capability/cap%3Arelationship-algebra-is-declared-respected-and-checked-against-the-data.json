@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f692d92e1e7d38160be364ca587cb073bd4cacadef5722381a508de478ce34e",
+  "node_id": "cap:relationship-algebra-is-declared-respected-and-checked-against-the-data",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Carries symmetric / antisymmetric, transitive, functional, inverse-of and compositions in each relationship's declared reading (backfilled from the three-graph classification); routes every meaning-selecting computation through that algebra so a method that cannot represent it refuses and says why; and mines the regularities the instance data follows, reporting declared rules the data breaks and undeclared regularities it follows, each with its instances.",
+    "name": "Each relationship's algebra is declared in its reading, a method refuses a relationship whose algebra it cannot represent, and the declared algebra is checked against the design's own data",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

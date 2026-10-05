@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb2a83427076fe21f3242c688cf42195ee57a3c6d55dd7768a6826ac703169bd",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:main"
+}

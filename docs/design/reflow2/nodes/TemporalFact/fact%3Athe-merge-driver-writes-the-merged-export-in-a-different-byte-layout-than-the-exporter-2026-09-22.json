@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:27dca6247c9d5ce7d46d0c355a1bb4872ffaf379c1fb3bdada81a2a8baf4b006",
+  "node_id": "fact:the-merge-driver-writes-the-merged-export-in-a-different-byte-layout-than-the-exporter-2026-09-22",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.85,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-22: the design merge driver resolved a merge correctly but wrote the merged export in a different byte layout from export_graph (unsorted keys, `stamp` first), so a ~115-line design change showed as a ~380,000-line rewrite against main",
+    "source": "PR #571, merge of origin/main (#570) into fix/shared-attach-by-any-path-spelling via `reflow2-mcp --merge-driver` (worktree debug build of 0.66.0 + the path fix)",
+    "statement": "OBSERVED merging main (#570) into a fix branch whose only overlap was docs/design/reflow2.json. `git merge` invoked the configured driver (`merge.reflow2.driver = target/debug/reflow2-mcp --merge-driver %O %A %B`) and it resolved the merge CORRECTLY. Verified: all 4 nodes the branch added and all 35 main added were present, every edge from both sides, and nothing from the base lost. But the file it wrote began `{ \"stamp\": { \"reflow2_version\": …` with keys unsorted, while export_graph writes sorted keys (`{ \"content_hash\": …, \"edges\": [ …`). `git diff --stat origin/main` on the merge commit read \"383890 +++++++-----\" for the export, a whole-file rewrite, although the real design delta was ~115 lines. Re-importing that file and running export_graph produced the canonical layout, and the diff against main fell to 115 lines; export_graph reported `wrote: unchanged` because the CONTENT was identical, although every byte moved. CONSEQUENCES: (1) a reviewer of the PR cannot see the design change; (2) the next export rewrites the whole file again; (3) `wrote: unchanged` is misleading when bytes change, which is exactly when a committer needs to know. Workaround used: re-import and re-export after every driver merge. Not root-caused; the likely reading is that the driver serialises through a different path from export_graph's canonical writer. A SECOND, SEPARATE observation from the next merge (main at #572): the driver correctly raised exactly 2 conflicts, both on one ChangeEvent written twice under one id (once in the live shared design, once in a branch-private store; see fact:a-worktree-fix-recorded-its-design-changes-in-the-live-store-and-the-branch-gate-failed-2026-09-22), and `--merge-apply` with per-id resolutions worked as documented.",
+    "subject_id": "cap:merge-designs",
+    "valid_from": "2026-09-22"
+  }
+}

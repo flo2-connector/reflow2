@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dce1adb127daf62edaf8861c35106777a6e6500e7d3106a924f6b809b487d655",
+  "edge_type": "CHANGED",
+  "from_id": "ce:subsystem-split-2026-08-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "sys:coherence-loop"
+}

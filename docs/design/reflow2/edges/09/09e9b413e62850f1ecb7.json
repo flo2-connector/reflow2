@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9a71339b1e1df25b6b617bb0f2cbfebdf4b852702df9acffaa9f5a1a03d66ef3",
+  "edge_type": "CAUSES",
+  "from_id": "art:latent",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "latent.rs:396 returns ListToolsResult::with_all_items(...), which sets ttl_ms and cache_scope to None; rmcp's own documentation says both are \"Required by spec version 2026-07-28\". Replayed with Claude Code's exact server/discover + tools/list (2026-07-28), the latent surface's reply omitted both fields while the full surface (service.rs, which sets them by hand for >= 2026-07-28) and the degraded surface (rmcp's generated listing) carried ttlMs 0 and cacheScope \"public\".",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26"
+}

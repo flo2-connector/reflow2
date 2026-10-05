@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aa28e22c7a041fffe5a3b83653ef2bfa76f3070516b039d712a6d97e7428453a",
+  "node_id": "chg:accept-9d03ab6c044e6ae6",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-26",
+    "name": "`#[serde(deny_unknown_fields)]` added to `ReportManualWorkReq`, which was missing the convention its 148 siblings in this file all follow. THE DESIGN HOLDS: the intended behaviour was always that a tool schema forbids unknown params (BL-57) — this restores it rather than changing what reflow2 means to do, so nothing in the design moved.\n\n`test_failure_fix` rather than `defect_fix` because a CHECK ACTUALLY CAUGHT IT: `smoke_mcp.py` in CI, on the assertion \"every tool schema forbids unknown params\". That distinction is provenance, and it is the one five sessions each guessed differently before these change types existed.\n\n📌 WHY IT REACHED CI. The local run covered a SUBSET of the `full` job's gates and not `smoke_mcp.py`, which is the gate that checks this — the same error class recorded an hour earlier on `ver:a-session-can-report-and-read-back-hand-rolled-work`, where a split cargo run looked equivalent to `--workspace` and was 46 tests short. A subset of a gate set is not the gate set.",
+    "subject": "system"
+  }
+}

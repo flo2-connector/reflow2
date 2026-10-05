@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:41d86961bea39aa983b237bab0618801536b69d8969d913d51b16679ce754095",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-owner-reads-what-they-are-asked-to-approve-in-one-addressed-digest",
+  "properties": {
+    "evidence": "An addressed digest is the fix shape for an owner with nothing addressed to it and no read of what it approves."
+  },
+  "to_id": "fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29"
+}

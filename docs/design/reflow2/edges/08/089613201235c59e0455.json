@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ff266cf9eeb07874070b98c2fa84df5bfa8b2e228ed040368b2bdf76c092be11",
+  "edge_type": "CHANGED",
+  "from_id": "chg:certification-requirement-widened",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:restructuring-is-certified"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4b58dd7b96b41fb88aaae924ad39dbeb8a6b3a8707bc5e78486052af930cc9e5",
+  "node_id": "chg:a-cut-ends-by-rebuilding-the-served-release-binary",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-18",
+    "name": "A cut ends by rebuilding the served release binary: step 9 of the release-cut flow, a rule delivered on release_report, AGENTS.md",
+    "rationale": "Anthony 2026-09-18 ('Do the ninth release-cut step') after his assumption that the dev box serves the latest reflow2 was proven wrong by the Seattle adopt running on 0.62.0. The root is the procedure, not the person: nothing in the eight steps rebuilt the binary other projects are served, and the only guard that would have warned is bypassed by the user-scope registration.",
+    "summary": "flow:release-cut gains step 9 (cap realized by tools/reflow2-rebuild.sh and the AGENTS.md launcher section); the flow's description now says nine steps and why step 9 sits after step 8; rule:a-cut-ends-by-rebuilding-the-served-release-binary with steps [release_report] so it is appended to that tool's description at the moment of the cut; AGENTS.md paragraph in the launcher section; CHANGELOG entry. No Rust change."
+  }
+}

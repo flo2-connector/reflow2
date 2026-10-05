@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:230b71d9d8b9a4c93f60abb8b596f24018ccfdfca5a4b3b4db75039649840682",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revising-write-says-whether-the-state-survived",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-query"
+}

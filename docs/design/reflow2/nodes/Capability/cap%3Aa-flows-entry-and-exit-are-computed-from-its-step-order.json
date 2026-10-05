@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cd3bde0d83de09840854957c54314b0554d9c9df35cf330e8c2c61d1025443f9",
+  "node_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order",
+  "node_type": "Capability",
+  "properties": {
+    "description": "flow_report returns entry_points and exit_points: the steps at the lowest and at the highest step_order, several when steps share a position, none when no step states an order. A step added later moves the exit with it. Flow.entry_point / exit_point and Capability.is_entry_point / is_exit_point are retired from the schema and the tools. A caller still sending one is refused by name, and a stored value is removed by the open or import repair and reported.",
+    "name": "A flow's entry and exit are computed from its step order and never stored",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

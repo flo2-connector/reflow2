@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9041730e19dcec35e8e2a264b7a0c6c04d546433f99bac2413bd4432b3c05f03",
+  "node_id": "chg:accept-56b15513502fb8cb",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-20",
+    "name": "The tool half moved to tools/skills_tools.rs, where every other tool module already lives; skills.rs keeps the compiled-in skill DATA and no longer imports ReflowService. That import was the cycle edge — service called skills::catalogue() for its own instructions while skills implemented tools on the service. `Self::skills_router()` was ALREADY summed in ReflowService::new alongside the rest, so only the file placement disagreed with the intended shape. All 152 toolsnaps match: the served surface is unchanged.",
+    "subject": "system"
+  }
+}

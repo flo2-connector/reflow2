@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b04971d38ca75a0cfeeb089804ac4ab5c29037696d264925440922f538716576",
+  "edge_type": "DEPLOYED_TO",
+  "from_id": "rel:v0370",
+  "properties": {
+    "status": "planned"
+  },
+  "to_id": "env:ci"
+}

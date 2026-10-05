@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:72821b41af4a7e64451f76e93f8095f7ac6f15fa80f73594d511b0b006a58a64",
+  "node_id": "frag:art:writers",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered writers.rs — the served reader of writers.json and the one invalid-pair renderer"
+  }
+}

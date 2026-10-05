@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b64c52b4a46d473acc38314de3eef3806432f0c75e92423de6b869c49e9f822f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:graph-registry",
+  "properties": {},
+  "to_id": "rule:per-design-state-is-never-a-process-global"
+}

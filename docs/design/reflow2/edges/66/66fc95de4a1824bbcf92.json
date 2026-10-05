@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a94a048c00ecf4f69a79c61a2611ede7af7110281d1477b0a719562953361e29",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b6646ed3243c65d6680e8584667b79bde54309349e454cb82f216bc4bf33f59d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-prose-field-that-swallowed-a-parameter-says-so"
+}

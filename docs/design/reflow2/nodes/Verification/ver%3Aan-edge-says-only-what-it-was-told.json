@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:06c76f2839ac8fc9d46f7eeb265748f5d7e0da1f7aa8908fac7fc7c491ede71c",
+  "node_id": "ver:an-edge-says-only-what-it-was-told",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/an_edge_says_only_what_it_was_told.rs — four cases. Could not be run against the unfixed core because the setter it pins did not exist (the reach hole itself).",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-16",
+    "name": "satisfies stores coverage where delivery reads it and a partial satisfier is counted as partial, not as satisfaction; a contribution that is not there has no basis; the rollup still reads an absent basis on a stated number as estimated",
+    "status": "passing"
+  }
+}

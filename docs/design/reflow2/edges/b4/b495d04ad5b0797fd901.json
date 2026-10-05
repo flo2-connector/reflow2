@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:74124553741979c113b02f5fea982e5344b41e21481a62457a6c851439c4a3fa",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:a-question-arrives-with-a-reading",
+  "properties": {},
+  "to_id": "snap:epoch:reading-carries-options:req:a-question-arrives-with-a-reading"
+}

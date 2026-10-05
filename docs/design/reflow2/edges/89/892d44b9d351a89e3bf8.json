@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9d287fc370776a474c47abb2b094bca9482d6c614b9229fd8ea8bc2033bec6b1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-session-says-what-it-did-by-hand-that-reflow2-already-serves",
+  "properties": {
+    "approved_at": "2026-08-26",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

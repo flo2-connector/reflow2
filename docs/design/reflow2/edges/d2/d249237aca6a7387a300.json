@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c7451e81229d2ac796609151ee5518d3b880aee26aaf1aed02a28f75c4bbb34c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d785b80eed7fd4a7b13d256305d538b622a19fdfc74ae94fae9710622c219112",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:one-status-contract-across-sibling-constructors-test"
+}

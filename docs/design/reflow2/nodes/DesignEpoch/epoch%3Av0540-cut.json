@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5fbe167057fc84cbb00310c7674f68ba8d063f22728b873ecd0bb31370469998",
+  "node_id": "epoch:v0540-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The end of a class that took three increments to see clearly. A user reported two fields their tools would not take; the instrument built to find that class could not see them; once it could, the count was 43 and conflated a hole with a property an operation writes; split by intent it was 14; and this increment closes all 14. Eight constructors gained parameters and Actor gained the constructor it never had. The reachability report reads 0 HOLE, and the 28 that remain are unreachable on purpose.",
+    "epoch_type": "release_cut",
+    "name": "v0.54.0 cut — every declared hole in the vocabulary is closed",
+    "sequence": 402,
+    "status": "arrived"
+  }
+}

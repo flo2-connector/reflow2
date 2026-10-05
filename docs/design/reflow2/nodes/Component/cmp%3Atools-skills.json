@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:30a1d1d69de4e18c49bd685765747780f9e81dc350acd47193ecdc77ecafbfbc",
+  "node_id": "cmp:tools-skills",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "skills_tools",
+    "provenance": "authored",
+    "purpose": "The served-skill slice of the surface (5 tools): read one skill, list them all, read the working instructions, name the design. Split from skills.rs by #262 to break a module cycle. MISSED when its eleven siblings were modelled in #270, and found by the wall check reporting files the design does not model as parts.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

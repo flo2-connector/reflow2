@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:29f615e05b86196e244b33efb47854cb5a70dc10d5d8016f9d9e32d6e1f65007",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-design-apart-from-its-code-knows-where-its-implementation-is",
+  "properties": {
+    "evidence": "Kept as intent 2026-09-25: the link itself."
+  },
+  "to_id": "req:the-design-knows-where-each-implementation-is"
+}

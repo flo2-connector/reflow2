@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c7e967249e0403e64e16a076ce50db9d52fededcfed089c8e7ce615bf634ba4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-git-exchange-path-is-defended",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-record-moved-reaches-an-ordinary-read"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:578fb5c05c5ae2755291c231fe20e38b7bbaa895492cb133e698ebaf15d4ffdf",
+  "node_id": "fact:call-ignores-read-only-and-the-write-lands-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02 (0.77.0), a live hazard: `--read-only` beside `--call` is accepted and ignored. `reflow2-mcp --read-only --call add_requirement ...` wrote the node and exited 0. A user who writes the obvious safe-looking auto-approve rule (`^reflow2-mcp --read-only `) auto-approves writes",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "FOUND by triage agent D while root-causing limitation 2 of art:vscode-call-door-field-report-2026-10-02 (fact:root-cause-one-regex-cannot-separate-door-reads-because-the-read-set-is-not-in-the-command-and-not-served-2026-10-02).\n\nOBSERVED: `HOME=<scratch> RUST_LOG=error reflow2-mcp --graph-path g110 --read-only --call add_requirement --args '{\"id\":\"req:ro-probe\",\"name\":\"RO probe\",\"statement\":\"written under --read-only?\"}'` → exit 0, a write receipt on stdout, stderr empty. `--call get_node req:ro-probe` afterwards returns the node. Outputs: /home/ajs7/.claude/jobs/fa666a94/tmp/triage-D/out/ro_probe.*.\nEXPECTED: --help says of --read-only: \"Refuse every write. Reads, searches and reports still work; nothing can be created, changed or deleted.\" So either the write is refused, or the combination is refused by name.\n\nWHY (code on origin/main 66620f7): call_one_tool (main.rs:731) builds ReflowService::new(graph_path) and calls into_read_only() only on the held-graph snapshot path. The flag is applied in the serving branches (main.rs ~1253, ~1391, ~1881), and main() dispatches --call (main.rs:1631) before any of them. clap declares no conflict between the two flags.\n\nCLASS: the same as fact:root-cause-call-accepts-export-to-and-never-reads-it-2026-10-02 (triage agent A, today): the one-shot branches return before serve-time flags are read and declare no conflicts, so a flag is a silent no-op. --read-only is the instance where the no-op is a safety failure, not a convenience one: it is the flag a person would reach for to make door reads auto-approvable (limitation 2).\n\nWHAT WOULD FIX IT, for the owner to choose: honour it (`--read-only --call <writer>` refuses before opening the store, which also gives limitation 2 a safe prefix rule today), or refuse the combination by name. A test would assert a writer under --read-only --call exits non-zero and the store is unchanged; it would fail today.\n\nNOT ESTABLISHED: whether any user or instructions file uses --read-only with --call today. The reporter's instructions file (as the report describes it) does not mention it.",
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-02"
+  }
+}

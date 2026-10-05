@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a2e8e22679580322fb2f927c2f19342e3541e9d8228d70ce90fbca7e94bc037f",
+  "node_id": "epoch:a-finding-has-somewhere-to-put-its-evidence",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A check has somewhere to put what it FOUND — and the field that already existed turns out to have been unreachable, not ignored",
+    "sequence": 352,
+    "status": "arrived"
+  }
+}

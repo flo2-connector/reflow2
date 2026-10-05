@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1def44951fb22b271450bb47d627f6f4108b35f996efd088cc9e0961200f7407",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "properties": {},
+  "to_id": "req:a-report-says-what-it-swept-and-whether-its-checks-ran"
+}

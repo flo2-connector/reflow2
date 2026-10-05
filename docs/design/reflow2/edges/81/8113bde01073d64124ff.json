@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:389e5295bc97cfe170b91ba65f75b1432ee36f4bf3a6304a5e70c6e0e9bccae2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-axis-has-a-detector",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:detect"
+}

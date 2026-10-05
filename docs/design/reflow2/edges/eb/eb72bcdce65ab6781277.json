@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4307c85bf436a4d2bb4b18058d8407433cdfaf65a892f58462140922be8e23de",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-spine-is-checked-for-two-parents-and-for-level-disagreement",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

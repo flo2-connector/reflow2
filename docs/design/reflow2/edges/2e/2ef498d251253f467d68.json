@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d005224969de0d9001d00581d203f7470891d64eb9af79c9fb35ced55922766e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:derived-results-are-written-back-as-marked-recomputed-facts",
+  "properties": {},
+  "to_id": "req:reflow2-keeps-the-knowledge-it-derives"
+}

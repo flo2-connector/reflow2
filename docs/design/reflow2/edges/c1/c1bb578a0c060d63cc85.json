@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19465efe56faa386d30b4125fab9ebcebf3ec2a8db6602f1a0ac02492b21da41",
+  "edge_type": "CAUSES",
+  "from_id": "chg:a-missing-argument-names-the-tool-and-what-it-wants",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_tool rewrites a deserialisation refusal only when its text contains \"missing field\" or \"unknown field\" (service.rs, the Ok(Complete{is_error}) arm), and its wire gate tools/refusal_speaks.py probes only `{}` and one unknown field. Every other serde failure (invalid type, invalid value, invalid length) passes through untouched, and nothing asks about it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-wrong-type-argument-is-refused-in-the-bare-serde-string-because-the-interception-matches-two-phrasings-2026-10-02"
+}

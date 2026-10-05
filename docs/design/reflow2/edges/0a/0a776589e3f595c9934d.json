@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f06015b75508f9c600cc00dbe42de77e2d71609afb46177e9c468bded911c51",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-lineage-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:missing-sibling"
+}

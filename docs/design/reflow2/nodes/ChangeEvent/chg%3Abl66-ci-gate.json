@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65a646b5ed03df50851c5df715ec8ad394e8bad07315afe9239ba33be562247d",
+  "node_id": "chg:bl66-ci-gate",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-66: the consumer CI coherence gate — reflow2_check.py reads the committed export, rehashes registered artifacts, runs detect_gaps, and exits non-zero on unaccepted drift or an open anchored gap at/above threshold; ci-gate skill + CI snippet ship in the kit; the tarball carries the script."
+  }
+}

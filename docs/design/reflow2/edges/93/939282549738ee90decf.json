@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:50555219076854781bdf58eea74e655b07b304ee6f72c61105864002161903fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation",
+  "properties": {
+    "approved_at": "2026-08-24",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

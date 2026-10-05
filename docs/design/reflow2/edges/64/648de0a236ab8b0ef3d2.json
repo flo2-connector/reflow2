@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:aa1c3dfce62d19281332d27f7db99f7d18a63721d61358ada63b855108716bb8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-diff-driven-impact",
+  "properties": {
+    "authored_at": "2026-08-05",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:alex"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:527de37c429bab8b98bd44dec99971437ffa57ecbdf6b4d8aae496e5d1b78ab9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-dangling-reference-is-reported-whatever-the-nodes-degree",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:heal"
+}

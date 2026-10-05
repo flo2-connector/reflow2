@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:091bb3313b382b4b3ed72d4bd3c0d9db01acce1de59b247912db040ce12a8030",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-question-names-whom-it-was-put-to-and-who-answered",
+  "properties": {},
+  "to_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered"
+}

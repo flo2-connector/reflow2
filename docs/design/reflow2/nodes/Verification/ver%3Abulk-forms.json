@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e8f4a625cbbf19839d6ff044f3e0e5fb54b49c410dd013878e28364dd70ca446",
+  "node_id": "ver:bulk-forms",
+  "node_type": "Verification",
+  "properties": {
+    "description": "All of it or none of it, and every failure in one round trip (crates/reflow2-core/tests/bulk.rs + crates/reflow2-mcp/tests/tools.rs) — 14 cases. ATOMICITY: one bad item rejects the whole batch and the good items BEFORE and AFTER it are both absent; an edge into a missing node rolls back the good edge beside it; one unknown artifact leaves every other baseline unmoved. EVERY FAILURE: two bad items in a batch of four come back as two failures with their indices, and a failure carries its POSITION so two entries sharing an id are still distinguishable. PER-ITEM JUDGEMENT: two accepts with two DIFFERENT dispositions produce two different change-event records and design_holds never borrows design_updated's event; two acknowledged gaps keep two different rationales. COVERAGE: one bulk edge form produces byte-identical properties to the typed helper it replaces, defaults included, so nothing is silently dropped. SURFACE: a rejected batch is an ERROR carrying every failure in its data rather than a payload that reads as success; two gaps whose prompts share an id are each replayed against ONLY their own answers; a half-answered ask batch is refused naming which half and writes nothing; an empty ask batch is refused rather than treated as a no-op.",
+    "findings": "MUTATION-CHECKED THREE WAYS, each failing exactly the tests that name it and nothing else: commit instead of discarding on failure and the three atomicity cases fail; break at the first failure and exactly the two collect-every-failure cases fail; hoist item 0's disposition onto every item and ONLY the per-disposition case fails while the other eight stay green, which is what proves that test is not passing for free. PROVEN ON THE REAL SURFACE: driven over stdio JSON-RPC against the built binary on a copy of reflow2's own 1205-node design — 138 tools served, 20 nodes and 20 edges each in one call, a rejected batch returning BOTH failures with the good item before them unwritten, and two accepts carrying two different change types.",
+    "kind": "verification",
+    "last_run_at": "2026-08-01",
+    "level": "integration",
+    "method": "test",
+    "name": "A bulk write is all of it or none of it, and reports every failure at once",
+    "status": "passing"
+  }
+}

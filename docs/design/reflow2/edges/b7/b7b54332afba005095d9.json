@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c143973a0a14eb4a9b6b7667daf0af1e813d6409583fffee2d7eeb9c7465d26",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:backlog-is-retired",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:idea-backlog-belongs-in-the-graph"
+}

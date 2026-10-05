@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef47c58e4530c8a3205fcb5a9d33da005cb63a670bc2222828addc575b04a5d2",
+  "edge_type": "REALIZES",
+  "from_id": "art:mcp-http",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-local-client-reaches-a-remote-server"
+}

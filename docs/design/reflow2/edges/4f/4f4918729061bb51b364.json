@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:32452a78f4aee50c283b90099e7ffc974100d45d7c229eaac3e4ed02ffcfa247",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "revision_of and preserve_prior iterated only the properties present AFTER the write, so a key present only before it was never compared.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-write-that-removes-a-property-reported-nothing-moved-2026-10-03"
+}

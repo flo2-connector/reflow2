@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9a015181f61bc94919cfe28ae00f43102e25e6e6eff8030441348c47168c9db3",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:release-pinned-to-time",
+  "properties": {},
+  "to_id": "req:graph-indexes-snapshots"
+}

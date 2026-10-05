@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b3a5fc7f1583f9e1a96259a254b79b3d6110dfe757a464b7016149ed8ca23e3c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:governance-mode",
+  "properties": {},
+  "to_id": "req:mode-is-chosen-and-changeable"
+}

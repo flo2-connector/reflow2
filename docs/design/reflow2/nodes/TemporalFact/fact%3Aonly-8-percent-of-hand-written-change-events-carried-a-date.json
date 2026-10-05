@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cbabb915c3365a8ad22ea216f8bece4e7bcd128806a3f672c89e111f33af62af",
+  "node_id": "fact:only-8-percent-of-hand-written-change-events-carried-a-date",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "property",
+    "statement": "MEASURED 2026-08-24 on the committed export, and it is what decided claim-over-computation.\n\n    ChangeEvents                                    631\n      written by the RECONCILE paths                192   carrying detected_at: 161  (84%)\n      written by hand via add_change_event          439   carrying detected_at:  37  (8%)\n\nTHE DIFFERENCE WAS NOT CARE. `detected_at` was declared on ChangeEvent and written internally by fielded.rs, drift.rs, verify.rs and artifact.rs — which pass it through their own options structs — while `AddChangeEventReq` had no parameter for it at all. Authors could not date a change through the constructor every skill points at. This is INSTANCE 7 of the pattern in `req:declared-vocabulary-is-reachable-from-the-surface`, and unlike instances 1-6 it was load-bearing rather than merely lossy: ordering a change against a Verification's `last_run_at` is the whole of a computed staleness detector, so the missing parameter is why that detector could not be built honestly and why the design chose a CLAIM instead.\n\nFIXED THE SAME DAY — `add_change_event` now takes `detected_at`. The percentage above is therefore a measurement of the PAST and should be re-taken before anyone argues from it: it will drift upward as dated events accumulate, and the computed bucket becomes buildable at some coverage nobody has yet named. Naming that threshold is open.\n\nBOUND, stated rather than hidden: the 8% figure counts events whose id does not start with `chg:accept-` or `chg:drift`, which is a proxy for hand-written and will misclassify any hand-written event that happens to use those prefixes.",
+    "subject_id": "dec:a-stale-finding-is-closed-by-a-claim-not-a-computation",
+    "valid_from": "2026-08-24"
+  }
+}

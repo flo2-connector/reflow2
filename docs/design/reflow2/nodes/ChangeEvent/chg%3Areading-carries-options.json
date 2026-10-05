@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:574ebb005b65b9228e43fbb839b827fdf6f1a058640610995d0ae3acdac4dffb",
+  "node_id": "chg:reading-carries-options",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "requirement_creep",
+    "name": "The reading gains a SHAPE (selectable options, recommendation first) and a LANGUAGE rule — Anthony 2026-07-31"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e05f0fe8ab40842b6acf2fc45acbf8b921c457499bca31ac781dea452fb996a8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-served-skill-carries-a-line-a-person-reads-and-says-who-it-is-for",
+  "properties": {
+    "approved_at": "2026-09-19",
+    "roles": [
+      "approver",
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

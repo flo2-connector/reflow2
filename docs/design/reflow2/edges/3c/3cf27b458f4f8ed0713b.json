@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:736241f09ac8d489851d676e8e4d9716ec9c61ab62855420b4ae346dae72b123",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:fbe0fadfdcf435aea7b370f2eda6db69260dbf929868783e23fb2ffccf5d6af6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:merge-driver-test"
+}

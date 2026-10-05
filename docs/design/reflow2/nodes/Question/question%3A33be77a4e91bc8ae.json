@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0f236a221ac0dd1b2b8f1daff1a4ff10213a35ea610cfd24394c198e4cf0432b",
+  "node_id": "question:33be77a4e91bc8ae",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"Go with your recommendation on all points\" (Anthony, 2026-07-25), against the recommendation put to him: YES this is real intent — he has reflow2 and storyflow, his brother has several projects — and NO it is not built now. It waits on dec:central-host, because one server process per project answers most of it with no graph_id plumbing at all, and building multi-tenancy before that choice is made would be building for the road not taken. Recorded as accepted-and-blocked rather than deferred: deferred reads as \"parked, nobody act\", and this is real intent with exactly one thing in front of it.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “One reflow2 can hold several designs, and a session says which one it is working on”",
+    "gap_id": "gap:33be77a4e91bc8ae",
+    "question": "You have reflow2 and storyflow, and your brother has several projects of his own — today one reflow2 holds exactly one design, and it never asks which project you mean. Do you want one reflow2 to hold several designs, with each session naming the project it is working on before it can touch anything? And is that worth building now, or only once you have decided whether there is a shared server at all?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

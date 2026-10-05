@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb56311323320297a2f9f825af303c83d55ce77503d491ed9a765f881f3d987f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-can-cite-the-version-that-answered-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

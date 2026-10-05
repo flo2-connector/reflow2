@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d831c869db2a13a0b2821f0b135c9b7f99d8c2b5e60cc14194875e91789f101f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:alex-fleet-review-20260809",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:the-decision-race-is-caller-ordering-not-read-after-write"
+}

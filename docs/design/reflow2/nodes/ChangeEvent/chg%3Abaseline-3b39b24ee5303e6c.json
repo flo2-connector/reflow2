@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8362be8abbb4c40ce1beb70e43f7f485eca3d3b1815c37958893bb0a926862ac",
+  "node_id": "chg:baseline-3b39b24ee5303e6c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-08-06T15:00:00Z",
+    "name": "First baseline for the update runbook that ships in the consumer kit. Nothing moved — the file is new."
+  }
+}

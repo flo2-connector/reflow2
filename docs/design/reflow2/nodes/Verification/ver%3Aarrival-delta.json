@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:89defe4fad2668d17ebdbda4bf65874e331c93ed6cda1ecd56394f63d8393427",
+  "node_id": "ver:arrival-delta",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Arrival-delta and schedule-movement tests (crates/reflow2-core/tests/temporal.rs) — 13 cases: the commitment survives a snapshot of the item while AT_EPOCH stays excluded; un-scheduling, a modality rewrite and deleting a scheduled item are all refused while the plan is unrecorded, and recording the change first unblocks them; adding to a plan is free; the baseline is the FIRST snapshot across two replans; an untouched item is outstanding, not discontinued; a required miss is a violation and a required delivery is not; late work is reported apart from the baseline; a planned epoch says it is a forecast; a non-moment is refused.",
+    "findings": "MUTATION-CHECKED on all three of Anthony's calls.",
+    "kind": "verification",
+    "last_run_at": "2026-07-31",
+    "level": "unit",
+    "method": "test",
+    "name": "Arrival delta and schedule movement across replans",
+    "status": "passing"
+  }
+}

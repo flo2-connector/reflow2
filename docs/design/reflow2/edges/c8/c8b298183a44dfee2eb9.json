@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0903a6966b61936984b89062447eb412e3d47cc066b4e53fa9c84389a051f8db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-absent-referent-gets-an-answer-and-three-replies-stop-overclaiming",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:discover"
+}

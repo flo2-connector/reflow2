@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:94f4f6eeadb52c3979f6562ef33921c27de9f830c062cfb1e8e7509d35a85026",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:a-broken-export-lineage-is-invisible-to-git-and-the-merge-driver-repaired-it",
+  "properties": {
+    "note": "First observation of the driver REPAIRING prev_content_hash on a rebase — 53 divergences resolved, lineage restored to main's hash. The standing release-cut note says it merges content and cannot repair lineage; that note is now wrong, though one observation does not establish it holds in every case."
+  },
+  "to_id": "cap:git-merge-driver"
+}

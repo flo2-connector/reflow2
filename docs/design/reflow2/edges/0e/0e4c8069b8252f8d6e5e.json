@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adee9f25001eb0e4ca21da8c4bea576dc1c3e5a039f22e6899af2237bac7f571",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stop-hook-asks-the-graph",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skill-triggers"
+}

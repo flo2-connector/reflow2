@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3698e498ecfc21460eb8f49e4b6e53e5bac54eb2e6f45bb2e3d3687ba67e164d",
+  "node_id": "chg:accept-1d36cbf786e9e880",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-09-07",
+    "name": "v0.51.0 cut, step 1: the version claim in reflow2.toml moved 0.50.0 → 0.51.0. Accepted before the manifest is frozen; the design meaning of a cut lives in the Release and its epoch.",
+    "subject": "system"
+  }
+}

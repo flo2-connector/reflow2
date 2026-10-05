@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8458124a9c25af1a199b6dcaf1a39f7357425092630a6f18794df286d7611be6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:eight-field-feedback-fixes-land-for-v0510",
+  "properties": {
+    "at": "2026-09-07",
+    "note": "The stronger option was taken: export_graph REFUSES when the server's executable has been replaced since it started, naming the stamp it would have written and how to refresh. Pinned by an_export_from_a_replaced_executable_is_refused_and_names_the_stamp on the guard function; the live path is one call to it."
+  },
+  "to_id": "fact:defect-export-graph-stamps-confidently-while-the-server-reports-itself-stale"
+}

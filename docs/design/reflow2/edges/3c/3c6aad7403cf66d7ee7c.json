@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a50bfbf46988d2a90055c845c514ae2c09c879acb2128669827456a4d29af616",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:a-release-that-shipped-nothing-is-reported",
+  "properties": {
+    "step_order": 8,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

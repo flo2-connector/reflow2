@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f741c45fb1306cfc58482e441c7498ab5e167b586abaa641c45f938a40a58856",
+  "node_id": "chg:accept-0bbd99a16b805b80",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-08-05",
+    "name": "Allowlist gains distinguished_by and drops token_sort_ratio, which the reworded skill no longer backticks. What skill_lint DOES is unchanged; only its data moved to stay in agreement with a skill that changed elsewhere. The stale-entry check catching the now-unused term is the guard working."
+  }
+}

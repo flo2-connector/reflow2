@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:67c5975b7af20d7c79422cfbb24e5940cefa69c1ad416b882c13d86abb0b404a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-moved-record-is-diffed-by-membership-against-the-store",
+  "properties": {
+    "approved_at": "2026-09-12",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:309b33b96540b58ac39966df78e3e9a50410e34f09c87a8e53b5a6cef0600451",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-reflow2-takes-from-uaf-1-3",
+  "properties": {
+    "evidence": "@ajs kept option (g) as intent on 2026-09-28 (\"Questions only (g)\"): the idea's candidates (a), (b) and (e), asked as plain questions with no new vocabulary, became this requirement."
+  },
+  "to_id": "req:a-design-is-asked-why-what-could-go-wrong-and-how-youll-know-in-plain-words"
+}

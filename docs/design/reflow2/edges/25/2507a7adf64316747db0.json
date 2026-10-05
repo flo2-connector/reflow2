@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd3536866ae90f362c8800465de7288a083905a671e42428f6bbc97caffee054",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-rejected-field-says-whether-it-moved-or-was-never-there",
+  "properties": {
+    "evidence": "The same reporter met both in one session: the unreachable fields were the failure, and this refusal message is what would have told them the fields were never offered rather than lost, which is the false belief the defect record has to correct."
+  },
+  "to_id": "fact:defect-a-declared-property-can-be-unreachable-and-invisible-to-the-reach-instrument-when-a-default-populates-it"
+}

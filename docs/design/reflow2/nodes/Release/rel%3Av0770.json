@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9be3d0f38a75e84c65e3861be6a51c101995d44bd5b4103b9262bff2542ffc1b",
+  "node_id": "rel:v0770",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-01 on Anthony's word in the dev_reflow2 hub session (\"yes, go with option 1\": merge #646, then cut the next release so Alex can pull the two-architecture image). Ships GitHub issue #617 (#646).\n\nMINOR: a new release asset and a second image platform are additive. The schema stamp does NOT move (28 node types, 66 edge types), and no Rust source changed apart from the version. No upgrade note is owed: a caller who changes nothing sees nothing break.\n\nWHAT A CONSUMER OR OPERATOR SHOULD KNOW:\n- ghcr.io/sligara7/reflow2/reflow2-mcp:<version> and :latest are one index for linux/amd64 and linux/arm64, so an arm64 host pulls a native image from the same tag.\n- Each release's notes name the index digest. Pin ghcr.io/sligara7/reflow2/reflow2-mcp@sha256:<digest> wherever a tag moving under you would matter.\n- reflow2-mcp-linux-arm64.tar.gz, built natively on ubuntu-22.04-arm against the same glibc as the x86_64 binary, and tools/install.sh installs it on Linux aarch64/arm64.\n- The image's description label, Dockerfile and docker/build.sh no longer say reflow2 has no authentication. They say what v0.76.0 made true: with --http-oidc-issuer the server verifies bearer tokens itself; with neither that nor --http-trusted-gateway, a server set up for others serves reads and proposals only, and any other must keep its port private.\n- release.yml takes dry_run on a manual dispatch: it builds every binary, smoke-tests both images, and pushes and publishes nothing. A dry run of #646's workflow (run 36956513495) passed before this cut.",
+    "name": "v0.77.0 — #617: one linux/amd64 + linux/arm64 image under one digest, and a linux-arm64 binary",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.77.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2f79fa2c163910abd824e5b84bf5077cfaf637a2482e7d46c0634c62960758c7",
+  "node_id": "who:storyflow-storybug-boss",
+  "node_type": "Contributor",
+  "properties": {
+    "description": "A boss seat of the dragon.rocks StoryFlow agent fleet (47accf78), Anthony's own deployment. Found gaps A, C and D of the 2026-08-09 peer set — the write-only RISKS edge, the two export rules in tension, and disconnected_community's generate_bridge remedy — which api-boss (who:storyflow-api-boss) then characterised and filed. Recorded separately so the findings attribute to the seat that made them rather than to the one that relayed them, the same reason who:alex exists. Carries the same caveat as its peer: this is a SEAT rather than a person, and reflow2 has no vocabulary for that distinction — a gap the fleet itself filed.",
+    "handle": "storybug-boss",
+    "kind": "automated_agent",
+    "name": "storybug Boss (storyflow fleet)"
+  }
+}

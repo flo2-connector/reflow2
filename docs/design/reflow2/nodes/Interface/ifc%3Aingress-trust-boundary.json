@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:85f554920b7ae1e73e83d898893cb21e51f9180d07e81b1101caa09264781f6e",
+  "node_id": "ifc:ingress-trust-boundary",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "none",
+    "designation": "internal",
+    "error_model": "Never silent. The contract is that stripping is SAID OUT LOUD — a caller must be told what was removed, because a boundary that cleans text without reporting it leaves the reader believing they saw the original.",
+    "medium": "library",
+    "name": "Ingress trust boundary — foreign text is stripped of hidden instructions, and the stripping is said out loud",
+    "operations": "sanitize(foreign_text) -> cleaned text + what was removed",
+    "paradigm": "synchronous",
+    "payload_format": "text",
+    "payload_schema": "crates/reflow2-core/src/sanitize.rs — three documented smuggling channels: Unicode tag characters (U+E0001, U+E0020–U+E007F), and the other classes the module enumerates. Technique imported from github-mcp-server's pkg/sanitize.",
+    "provenance": "authored",
+    "transport_security": "none"
+  }
+}

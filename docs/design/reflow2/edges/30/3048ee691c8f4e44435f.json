@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5fbc2476d31f50c319750b70c706c03375a1c8c6aa094e402d3c904762a18b16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-two-reported-fields-get-their-parameters",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

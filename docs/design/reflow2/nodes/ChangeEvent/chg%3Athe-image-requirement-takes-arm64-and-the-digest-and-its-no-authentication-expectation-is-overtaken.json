@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d2a7232aa761384d870c74f05c3511bcf3a68573bd7d8a2c71ee3690a8616c0c",
+  "node_id": "chg:the-image-requirement-takes-arm64-and-the-digest-and-its-no-authentication-expectation-is-overtaken",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "commits": "64b145ad3ea7699c7f63deb9c979028263045f26",
+    "detected_at": "2026-10-01",
+    "name": "The image requirement takes linux/arm64 as IN and the published digest, and its no-authentication, behind-a-gateway expectation is overtaken by v0.76.0",
+    "rationale": "Alex asked in #617 for a linux/amd64 + linux/arm64 image on each release and for the image digest in the release notes so a consumer can pin immutably. Anthony said to continue with #617 on 2026-10-01. Separately, v0.76.0 shipped --http-oidc-issuer: an exposed --http server verifies OAuth bearer tokens itself, so a gateway in front is one way to establish the caller and no longer the only one. The requirement's text is kept as written and the note is appended, so what it said before stays readable beside what is true now.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "req:reflow2-consumable-as-an-image said \"linux/arm64 too if flo2 may land on arm hosts\" and that the image \"must be deployed on a private network behind flo2's gateway\" because it has no authentication. #617 makes arm64 a requirement and adds the published index digest; v0.76.0 (#616 fix 4) made the no-authentication premise false. The requirement carries a dated note saying so; its status does not move."
+  }
+}

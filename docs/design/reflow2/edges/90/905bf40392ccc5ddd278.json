@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb34aadfbfe14471cf456458f43a09bbb41304c653ab9e16e5ad1163fe70dfab",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-do-we-call-the-thing-that-runs-the-agent",
+  "properties": {
+    "evidence": "That requirement makes `init` ASK the user which one they use, so whatever word is chosen is spoken aloud to a stranger installing reflow2 — which is what makes this a product question rather than an internal style one. It also defeats the most promising option: 'which MCP client do you use?' is a worse question than 'which editor?' for someone who has never heard of MCP.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:init-installs-only-the-harness-you-name"
+}

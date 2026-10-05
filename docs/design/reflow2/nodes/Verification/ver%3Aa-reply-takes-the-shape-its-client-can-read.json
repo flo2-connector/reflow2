@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3f06b6cbb241dc494b4ad8e0706972832f872a6045da1edc562d49b384cf8eae",
+  "node_id": "ver:a-reply-takes-the-shape-its-client-can-read",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_content_policy.py drives the real reflow2-mcp binary over stdio under four client names and the operator flag: claude-code gets the signpost and structuredContent; grok-shell-reflow2 gets the payload as JSON in the text block equal to structuredContent, with no flag; opencode gets an empty text block with structuredContent kept; an unknown client under --content-policy duplicate gets the payload, and grok under --content-policy signpost is overridden back; a prose tool and a refusal reach grok untouched. Unit tests in content_policy.rs cover the reshaping itself (duplicate, empty, only-the-signpost-shape, flag parsing, name keying). Wired into CI's full job.",
+    "findings": "9 of 9 wire checks pass against the 2026-09-15 debug build; 5 of 5 unit tests pass.",
+    "kind": "verification",
+    "last_run_at": "2026-09-15",
+    "level": "integration",
+    "method": "test",
+    "name": "The content block is keyed on the handshake name, on the wire",
+    "status": "passing"
+  }
+}

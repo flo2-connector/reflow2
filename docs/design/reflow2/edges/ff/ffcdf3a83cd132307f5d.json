@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e1bcc893520838378d3a9a58cf40ed45d557cfd2a9d2d3432cbc34f335ed1b09",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:authorship-survives-approval",
+  "properties": {
+    "at": "2026-09-14",
+    "note": "Fixed at the cause: roles are a set the write adds to, so approving cannot displace authoring. The already-displaced authors are not recovered — that record is gone — which is why the fact stays readable as history rather than being deleted."
+  },
+  "to_id": "fact:defect-approving-a-node-you-authored-silently-erases-that-you-authored-it"
+}

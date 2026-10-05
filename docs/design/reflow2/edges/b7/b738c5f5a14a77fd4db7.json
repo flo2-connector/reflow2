@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4f300f80e43aeb4df386d9b9c9e1930860af5a26a36bbdf47197368891f0dc5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-62541d2bbec20b75",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:consumption"
+}

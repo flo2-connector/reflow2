@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0fae478101ef52f7938fb145ff54bedb1d7cf9ca00e1bea23028a9bd562cd189",
+  "node_id": "chg:bl84",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "BL-84 detector selectivity: community skips decomposition scaffolds; SPOF skips library/data foundations"
+  }
+}

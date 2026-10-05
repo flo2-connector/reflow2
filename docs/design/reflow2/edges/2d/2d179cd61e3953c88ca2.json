@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:79db6252848e7a3d782a6b0f5c1982433071399464bbe447761c7135c3f88050",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-edge-says-whether-anyone-checked-it",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:enforced-rule-detector-test"
+}

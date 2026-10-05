@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:45b430f5a7d7e3922db9c52d84dc8f0faa80b0698cb963d37df410c54579bdb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:336b331a9aac0b1f71b1904775132cafd95e8461ac65070358e4b0417c7f8111",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

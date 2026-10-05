@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:03ba6ba5c35db7e1a367e2271d9b684674bf57b3803bfb64cd8c6ae663b2cbf8",
+  "node_id": "chg:wall-check-reads-the-mapping-instead-of-guessing-it",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "cap:a-declared-wall..., snapshotted while it still describes the reflow2-only version",
+    "subject": "system"
+  }
+}

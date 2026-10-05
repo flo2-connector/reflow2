@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f56605d5f5026c098fa391028ef470ff3520566c8d97d8aba3edc23732a8791e",
+  "node_id": "chg:the-stale-lock-reclaim-is-serialized",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The stale probe-lock reclaim is serialized behind a guard with the staleness re-checked inside it — the second check-then-act, left behind when the first was fixed",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

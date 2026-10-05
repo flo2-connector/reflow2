@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8261d3b730f7287c0517a3c076e63df5f316c8fb8e6c7f2ee905601f8c2bda3f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:a-skill-is-found-by-describing-the-job-and-the-corpus-is-the-test",
+  "properties": {
+    "evidence": "The summary is what the person's words match against and what the match shows them; without it the corpus had only trigger conditions to hit.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:every-skill-serves-a-summary-and-an-audience-and-the-shortcut-count-is-computed"
+}

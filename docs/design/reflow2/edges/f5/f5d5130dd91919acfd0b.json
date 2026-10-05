@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eec95ea00081805ffc7e7daf1a3ff68b38a1d94d9b282b8ad8dd5052f7d6047f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:review-expires-when-what-it-judged-changes",
+  "properties": {
+    "optional": false,
+    "weight_basis": "evidence"
+  },
+  "to_id": "req:set-scoped-acknowledgement-keys-on-its-rule"
+}

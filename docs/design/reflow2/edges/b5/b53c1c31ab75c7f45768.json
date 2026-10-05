@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e56de380434e8b9f4220a0e27a3bbb337ef2e74959819b6438f19953c5cb4f6f",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-bulk-edge-write-keeps-each-typed-helpers-checks",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a9d979623cc347aebb55a230d44f9dde35da833916f1cd6b4b4f320176fbea1",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-linking-half-ideas-needs-a-task-that-can-be-run",
+  "properties": {
+    "evidence": "That node states outright that half-idea linking 'has all three legs and still leaves 110 unlinked'. It is the second independent measurement of three-legs-present-and-nothing-happens, and it proposed the missing fourth thing (a runnable task) before this question generalised it."
+  },
+  "to_id": "dec:idea-have-the-three-legs-been-applied-uniformly-and-are-three-legs-enough"
+}

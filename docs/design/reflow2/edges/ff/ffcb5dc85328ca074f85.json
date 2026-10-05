@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:07a2bca32c71b78fd644839f8225c7fbbc06584c66b2ff18c006ce9b03894d05",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-superseded-finding-does-not-read-as-current",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-superseded-finding-does-not-read-as-current"
+}

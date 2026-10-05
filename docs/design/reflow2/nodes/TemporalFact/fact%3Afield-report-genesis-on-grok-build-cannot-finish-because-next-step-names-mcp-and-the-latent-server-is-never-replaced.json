@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:efea32391a6d89b36583f1c4f56a7c137ccbe122aadfc764f6f451c0cb435a67",
+  "node_id": "fact:field-report-genesis-on-grok-build-cannot-finish-because-next-step-names-mcp-and-the-latent-server-is-never-replaced",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "FIELD REPORT (Alex, Grok Build, 2026-09-14, v0.60.2): genesis opt-in cannot finish — reflow2_start_design created an empty .reflow2/ and its next_step said \"run /mcp\", a Claude Code command; Grok Build has /mcps and no reconnect; the latent two-tool stdio server was never replaced, .reflow2/graph was never created, and the brief stayed in chat",
+    "statement": "RELAYED by Anthony, 2026-09-14, from Alex's first attempt to start a project on Grok Build TUI (Grok 4.6, macOS, reflow2-mcp 0.60.2 from PATH, installed machine-wide with `--only-if-present`). His report, in his words, condensed:\n\nWHAT HE EXPECTED: reflow2_start_design would opt the directory in and return one next step this client and this user could actually do; after it, the full surface would be served and genesis could capture the brief.\n\nWHAT HAPPENED: (1) nearby-design check: no .reflow2 here or upward. (2) reflow2_start_design created an empty .reflow2/ and returned started: true. (3) next_step: \"Ask the user to run /mcp (reconnect the reflow2 server), then continue\"; do_not forbade writing the brief into files as a substitute. (4) The client is Grok Build; its MCP modal is /mcps; there is no /mcp reconnect command. SETUP.md documents /mcps for Grok; the tool payload does not. (5) The user replied \"continue\"; the tool list still held only reflow2_start_design and describe_designs. (6) A second reflow2_start_design returned started: false (directory already exists) and the same /mcp next_step — no indication the process had not been replaced, no client-specific instruction. (7) describe_designs on .reflow2/graph: state opted_in. (8) ~/.grok/logs/mcp/reflow2.stderr.log still shows the original latent process, started 2026-09-14T20:23:08Z: \"no design has been started in this directory (.reflow2/graph does not exist)\". (9) .reflow2/ is empty; no graph.client.json — the full-surface handshake never ran. (10) The user did not know how to complete the reconnect and asked for a report for the maintainer instead of continuing genesis. report-friction itself could not search_design or loop_status: those tools are on the surface that never attached.\n\nMINIMAL REPRODUCTION: an empty directory; machine-wide `reflow2-mcp --graph-path .reflow2/graph --only-if-present`; a client that is not Claude Code; call reflow2_start_design and attempt the returned next_step. Observe: directory created; instruction names /mcp; the session remains on the latent two-tool surface until the stdio process is actually replaced. No store was opened; no nodes invented.\n\nWHY IT MATTERS, his words: \"Genesis cannot finish in the session that starts it. The only instruction that completes opt-in is written for Claude Code (/mcp). On Grok, refresh in /mcps is documented as reloading the server list after config edits, not as replacing a running stdio process. The agent cannot reconnect, cannot verify reconnect, and is told not to capture the brief anywhere else.\" He labels it a client-handshake / documentation gap, not a store defect, and says he is unsure whether Grok's /mcps disable/enable would replace the process — that path was never reached because the instruction was not followable as written.\n\nANTHONY: \"very critical and something we need to address immediately\" — his brother tried to start a project today and immediately got an error on. The root-cause walk follows on this record.",
+    "steps": [
+      "genesis",
+      "report-friction",
+      "describe_designs"
+    ],
+    "subject_id": "cap:latent-surface",
+    "valid_from": "2026-09-14"
+  }
+}

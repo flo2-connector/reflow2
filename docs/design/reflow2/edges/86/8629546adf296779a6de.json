@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c80d5785e111b8b29309dd6b1e9b21bc0bbe8e91d558fb0672c5db2b2cd95406",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art-readme",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:readme"
+}

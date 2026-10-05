@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0853e72f07dca49f89d2331d01a728a2bedf67d6ecf4d4a90b6a74189c1337a6",
+  "node_id": "cap:the-design-holds-about-one-subject-is-read-back-in-one-call",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Item 5 of v0.50.0 (dec:idea-a-topic-view-shows-what-the-design-holds-about-one-subject-read-only, ruled 2026-09-06). `topic_report(query, limit, budget_chars)`, computed server-side in crates/reflow2-core/src/topic.rs: keyword search over the design (default 20 hits), hits grouped by node type with groups ordered by their best score; per hit the node's own status (or enforced / fact_type), whether an accepted Decision discontinued it, its claim age, its connections counted by edge type and direction (capped at 8, the rest counted), and the LATEST DATED change that touched it (a ChangeEvent with detected_at) or measurement about it (a TemporalFact with valid_from) — undated ones are never offered. `not_found` is mandatory: what was searched, which populated node types matched nothing, whether the list was cut at its limit, and whether the index has drifted; a zero-hit reply says the design may hold the subject in other words rather than reading the miss as absence. Bounded like detect_gaps: full detail, then titles only, then the best-scored prefix per group, with `count` and `by_type` never trimmed and `budget` naming the tier. Writes nothing. The `topic` skill is the thin instruction leg: one call, render in the reader's domain, always read out the not-found line, name the door if the look turns into work.",
+    "name": "What the design holds about one subject is read back in one call, grouped by type, with status, connections, the latest dated change, and a mandatory not-found line",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

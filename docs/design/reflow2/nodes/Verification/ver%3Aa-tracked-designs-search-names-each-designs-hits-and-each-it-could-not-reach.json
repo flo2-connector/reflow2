@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:32b1c4dbccd1f46c46c2d8a8d3878b1ff020b9f05794ea7c2093f086d7c310b0",
+  "node_id": "ver:a-tracked-designs-search-names-each-designs-hits-and-each-it-could-not-reach",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Drives search_design through the MCP surface on a design that declares tracked designs. Asserts: (1) a node held ONLY in a tracked design's export is returned under that design, and the design's own hits are unchanged; (2) a design watched at an address is searched on a stand-in server with the key sent; (3) a missing export, a design declared with nowhere to read it, and an address on a server that does not reach out each come back with their state and a sentence, never as an empty hit list alone; (4) without `tracked_designs` the reply carries no `tracked_designs` key (regression); (5) a design that tracks nothing says so. Written to fail before the parameter exists.",
+    "kind": "verification",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/one_search_reaches_every_design_a_hub_tracks.rs",
+    "method": "test",
+    "name": "A tracked-designs search finds a node that only a tracked design holds, and names each tracked design it could not search",
+    "status": "planned"
+  }
+}

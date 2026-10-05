@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8cd68f6a96ea775e2a31356f402f3e4d232324f207fefd94efc53731d9a6065c",
+  "node_id": "epoch:v0660-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that takes a real person's identity out of everything reflow2 serves. Four increments: settling a Decision can record which option won without rewriting the deliberation; a reply carries its payload once on every tool, not only on the one the old test asked; the build's gate list becomes runnable rather than only cross-checked; and reflow2 stops naming a real person in its served surface while Grok finally gets the config file Grok actually reads. The privacy fix is the reason this cut follows v0.65.0 by two days: the identity was in the published binary, so it only leaves the field on a release. The schema stamp did NOT move — node types, edge types and all 66 enum vocabularies diffed field by field against v0.65.0 — so no upgrade note is owed.",
+    "epoch_type": "release_cut",
+    "name": "v0.66.0 release cut (2026-09-21)",
+    "sequence": 506,
+    "status": "arrived"
+  }
+}

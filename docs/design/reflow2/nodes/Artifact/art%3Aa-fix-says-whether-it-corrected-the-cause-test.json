@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cde89754c0b2e53daef2579c059f12b564675f2a7fffd42cb760ffcfe22d6e4c",
+  "node_id": "art:a-fix-says-whether-it-corrected-the-cause-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-core/tests/a_fix_says_whether_it_corrected_the_cause.rs",
+    "name": "a_fix_says_whether_it_corrected_the_cause.rs — the three clauses, and the silent-ledger case",
+    "status": "realized"
+  }
+}

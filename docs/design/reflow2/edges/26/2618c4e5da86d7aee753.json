@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33f82a2db692f14379323e8d0744273783e1237b2b1182c3919463d37cfde68b",
+  "edge_type": "REALIZES",
+  "from_id": "art:verify",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-check-records-what-it-found-separately-from-what-it-is"
+}

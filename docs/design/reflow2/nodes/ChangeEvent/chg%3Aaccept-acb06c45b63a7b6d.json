@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5561d6d126cafb5e014a13cf0fe5b7b9e00ec889d0957e090a8fceb74819549f",
+  "node_id": "chg:accept-acb06c45b63a7b6d",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-08-11",
+    "name": "A DEFECT FIX, recorded under test_failure_fix because the enum has no value meaning \"the code was wrong\" — the same gap noted for `correction` on add_change_event. assess_overwrite now COMPUTES the target's content hash instead of reading effective_content_hash, which trusts the content_hash a document states about itself. A record edited by anything but export_graph kept its old stamp, both fast paths returned Clear, and the stale-seat refusal went quiet in exactly the case req:stale-seat-knows exists to catch — silent data loss on the next export, deleting the other person's work. THE DESIGN ALREADY SAID THIS; only the code was wrong, hence design_holds. Mutation-checked: restoring effective_content_hash fails exactly the one test that names the case."
+  }
+}

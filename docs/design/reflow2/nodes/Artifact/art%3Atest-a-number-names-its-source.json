@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8872793fc6cada7fc559c38917ab8a6335bb706a21fed779d4f65d01a88b8082",
+  "node_id": "art:test-a-number-names-its-source",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three cases driven through the tool handlers with JSON request shapes, so a renamed or unreachable field fails here rather than in front of somebody.",
+    "location": "crates/reflow2-mcp/tests/a_number_names_its_source.rs",
+    "name": "a_number_names_its_source.rs — the served surface can say where a number came from on add_constraint, constrains and record_finding",
+    "status": "realized"
+  }
+}

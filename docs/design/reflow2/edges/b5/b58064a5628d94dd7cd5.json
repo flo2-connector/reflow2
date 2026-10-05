@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f494258a79754fc589d16742c415bd8da0697e1c12ccda55daf58419eeca212a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:coverage"
+}

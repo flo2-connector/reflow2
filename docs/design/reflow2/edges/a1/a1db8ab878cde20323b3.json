@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eefb53ac881654b41a7f54bd6fe1be61bc6d2c59c81c589b41234997be377503",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bulk-edge-write-runs-each-typed-helpers-own-checks",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

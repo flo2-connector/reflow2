@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d30b8a8fb4b5e70fa3dba5eb4a00dc72f53569f88ab108d405e616a86e1fecb3",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "modality": "required",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0200"
+}

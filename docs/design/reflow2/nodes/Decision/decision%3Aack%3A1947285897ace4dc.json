@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cc3414f6e04c747b7175e84cac77dfb011d697cbc26ef6910f117ab1b0ec8d35",
+  "node_id": "decision:ack:1947285897ace4dc",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:1947285897ace4dc.",
+    "name": "Reviewed: gap:1947285897ace4dc",
+    "rationale": "Deferred on Anthony's word, 2026-07-28, closing the reflow workflow review. Accepted and not dropped, and better evidenced than most parked items: the risk was identified analytically the same day (report.rs:566 rolls delivery up a decomposition without ever asking whether the children cover the parent) and then observed in the field (reflow's own 01 monolith split into 01a-01f, losing context_management and self_improvement from every child, unnoticed for months). Deferred because the honest form is a QUESTION AT DECOMPOSITION TIME with the answer recorded, not a computed refusal — nothing can mechanically decide whether two children amount to a parent, and a detector that guessed would either block correct narrowing or bless real loss. That makes it a handshake to design (which question, asked when, recorded where) rather than a check to write. Must apply to decomposition alone: req:requirement-lineage distinguishes decomposed from derived, and a derived requirement adds new technical necessity nobody asked for, so it is not expected to cover anything.",
+    "status": "superseded"
+  }
+}

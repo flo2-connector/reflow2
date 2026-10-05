@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1145be519edb07055ca99dcdd994424a9eb920701cf0b709cacf45a126a551d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-kernel-stops-being-bisected",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:identity"
+}

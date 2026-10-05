@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8de4529317ff859a30c9c21a54bcc13bdfc4f03d9e1f8de1cbfb2c0c9919fe4d",
+  "node_id": "frag:art:content-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/content.rs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:161e4c43ca089c25724a021dafaf37b1d2fb864e7fb2bba5c73c35da44004641",
+  "edge_type": "REALIZES",
+  "from_id": "art:one-shot",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-code-folder-names-its-design"
+}

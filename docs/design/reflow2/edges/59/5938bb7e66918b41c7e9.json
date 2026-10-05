@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4cab4465199656993ed8109a304f283b7e989edcf0b15c4a0f5eeee6cabdd331",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:aa161eb699c50661abf83d0d7aa8ed7d7f8ce9fed11af4963d91326d70abcfdf",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-composed-prompt-serves-its-pieces-test"
+}

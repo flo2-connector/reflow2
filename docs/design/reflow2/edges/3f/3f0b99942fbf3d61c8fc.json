@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1eda02218e589e5d0ff0de66238ca93575e88229276100a9e3de62cbc556142e",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-a-repo-that-holds-its-design-moves-it-to-a-remote-server-once",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The decision settles that after a move \"the repo's docs/design/*.json becomes a copy the local client writes back into the working tree\", so path-based watching was expected to keep working. That write-back is point 3 of req:a-local-client-works-against-a-remote-reflow2-server-by-url, recorded NOT YET on cap:a-local-client-reaches-a-remote-server; `--remote` opens nothing locally and run_remote takes no export path. cure moved 2026-09-26 under this decision before the copy existed; the decision held flo2 and reflow2 for their file-facing workflows (CI gate, PR re-export, artifacts, release cut) and never names a watcher of the moved design.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-moved-design-cannot-be-watched-and-its-frozen-export-reads-as-live-2026-09-27"
+}

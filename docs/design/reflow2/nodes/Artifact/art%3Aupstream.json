@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:eddf095a7a0f9280646a794afac7a41a1dbfd830e22902436b35425e75d70e92",
+  "node_id": "art:upstream",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-mcp/src/upstream.rs",
+    "name": "upstream.rs",
+    "status": "realized"
+  }
+}

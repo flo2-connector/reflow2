@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92dc9e24d1088eea853d9cae0b4e1e6062caf10224dfd93abebffd7b4e6535db",
+  "node_id": "frag:art:test-release-workflow",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_release_workflow.py — the release workflow's shape, and the scripts it calls driven against stand-ins, failing first"
+  }
+}

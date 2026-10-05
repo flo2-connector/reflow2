@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:af2790ead18b0666ad546d71bf549e0d250410adea377211df4597a704eb7623",
+  "edge_type": "CHANGED",
+  "from_id": "chg:kit-manifest-check-passes-after-reinstall",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:kit-manifest-agrees"
+}

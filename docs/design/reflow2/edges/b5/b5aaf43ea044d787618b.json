@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3f7a2c5d11edd85958eb21cbd7a5c5928524477d9166b2600a0ec3aed854fe58",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-served-surface-names-no-real-person",
+  "properties": {
+    "at": "2026-09-21",
+    "note": "Fixed and shipped in v0.66.0: every real identifier is out of the served surface and a gate now refuses their return. NOT surfaced by unclaimed_findings — its subject is who:ajs, a Contributor, and no CHANGED edge of the fix touched that node, which is the stated limit of the computation and is why this edge was drawn by hand. NO valid_to: the two open candidates it names for the brother's graph, an agent copying the example versus an import carrying Anthony's nodes, are still unmeasured at his site."
+  },
+  "to_id": "fact:the-served-surface-offers-a-real-persons-contributor-id-as-the-worked-example-on-the-field-that-creates-contributors"
+}

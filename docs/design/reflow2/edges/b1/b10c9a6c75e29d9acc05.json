@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:96048652c0123a312ff13711261afb7f16659c72a33eca373622f8cf3440a97a",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:the-merge-driver-output-names-itself-as-its-own-parent-and-drops-taken-at-2026-09-26",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:the-merge-driver-output-names-itself-as-its-own-parent-and-drops-taken-at-2026-09-26:r2"
+}

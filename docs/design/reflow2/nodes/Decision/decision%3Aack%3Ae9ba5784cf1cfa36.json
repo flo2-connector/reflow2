@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5d7c2abc351c8e209da0698fc007f7101cc485f40c841477a7f34a8af7ca2e4c",
+  "node_id": "decision:ack:e9ba5784cf1cfa36",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:e9ba5784cf1cfa36.",
+    "name": "Reviewed: gap:e9ba5784cf1cfa36",
+    "rationale": "Standing disposition for planned-but-unbuilt capabilities: this is a skill over existing operations (search, propagate, the Decision layer) and no artifact exists yet. It arrives with the build, alongside cap:onboarding, which it shares a component and most of its machinery with.",
+    "status": "accepted"
+  }
+}

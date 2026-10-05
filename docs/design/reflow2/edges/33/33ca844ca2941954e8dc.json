@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e07580105b06b5fcc640482a908d99e2b1e84c757a11e07903e72bc3eb487b3",
+  "edge_type": "CAUSES",
+  "from_id": "chg:required-to-create-optional-to-revise",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "It stated the revise contract in every constructor's description but built only RequiredFields, which resolves required fields from the stored node and then drops that node. Handlers were given no merged view, and no test enumerates the tools that carry the sentence. Every later default (#447), guard (#440) and note (#472) was therefore written against the call, and the sweep on 0.72.0 found four such breaks.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-revise-contract-is-implemented-per-handler-and-guarded-by-instances-2026-09-28"
+}

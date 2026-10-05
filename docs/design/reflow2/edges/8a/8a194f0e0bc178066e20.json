@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:253c1ecfb5816d48f5bb4273c5504b29780104ad457e11b632ac791d5ce8dcf7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0630",
+  "properties": {
+    "as_checksum": "sha256:c6b836d74cf80defe412d3f729468a593d410d2efd92ca7af90cd7d007bfa891"
+  },
+  "to_id": "art:by-hand-names-a-real-tool-test"
+}

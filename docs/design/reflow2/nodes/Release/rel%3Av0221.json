@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:984348c1df55d5daacaeba4243c2b55e1beadf2a10dfa2543d20f8aa8bb8e8c2",
+  "node_id": "rel:v0221",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.22.1 — a restore stops renaming the design, and re-registering a file stops erasing what the design knew",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.22.1"
+  }
+}

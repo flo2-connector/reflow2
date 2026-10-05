@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:31346c988cc0be1afc60e06fd57cf7cc8cad5b4a907ab499033d148a26b469c7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0610",
+  "properties": {
+    "as_checksum": "sha256:de0871a98e6007aa5ee9e202d5396f014b3799efd72600f2a1a94de6d58ff182"
+  },
+  "to_id": "art:scope-corpus-ingest"
+}

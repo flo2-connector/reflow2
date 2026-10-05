@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:975bc1077c1a472a7b270ba1f07ad8616913a5ab1331c447a25f5bfa3b160c92",
+  "node_id": "fact:worked-find-tools-through-the-door-ranks-tools-with-parameter-names-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (2026-10-02, 0.77.0): `--call find_tools` is the door agent's only catalogue, and it works. It returns ranked tools with a one-sentence summary and parameter names, deterministically, in about 0.2 s. Do not regress it",
+    "source": "art:vscode-call-door-field-report-2026-10-02",
+    "statement": "From art:vscode-call-door-field-report-2026-10-02, measured table row \"`--call find_tools` | ranked tools with parameter names and summaries\". Re-measured by triage agent B on 0.77.0 against a scratch import of main's export.\n- Each item is {tool, score, summary, parameters}, and the reply also carries {count, matched, omitted, searched (193), query}.\n- It ranks get_node 1st for \"read one node by id\", \"fetch a node by id\" and \"pull up the full record for a requirement\".\n- Ties break by name, so the same query answers the same way twice.\nA future change that adds schemas or lessons to this reply, or a describe door beside it (req:the-cli-describes-any-tool-with-its-full-schema-and-lessons), must keep the reply small and the ranking stable, because this is the call the instructions file sends every door agent to first.",
+    "subject_id": "cap:tool-search",
+    "valid_from": "2026-10-02"
+  }
+}

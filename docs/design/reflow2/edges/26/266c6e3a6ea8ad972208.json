@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5262d9587bb49fc1f6500ac5536bad37f1e7a4eeaa71e792df6326e5e2350d5a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-5b82d6e1059cff20",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-status-lens-test"
+}

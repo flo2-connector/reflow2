@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b82b20304111e3b452aeabc5b997a892677f5c5ea458b407b18ece983bb94e01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b1afef0e05ee4f0b",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-ask"
+}

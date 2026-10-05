@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0721c7f4d53b64cffc3d5d408eb68980a2dbaa3823be61d367afc7d9222f150d",
+  "node_id": "fact:bl-167",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-167] 1,057 lines of shipped product have no Artifact — proxy.rs and shared.rs are invisible to the design",
+    "subject_id": "cmp:service",
+    "value": "{\"evidence\": \"*Found 2026-08-02 by the report line added in [BL-165], on its FIRST run.* crates/reflow2-mcp/src/proxy.rs (513 lines) and crates/reflow2-mcp/src/shared.rs (544 lines) arrived in 280397c \\u2014 the shared-mode feature delivering req:sessions-share-a-graph and req:never-silently-absent \\u2014 and neither was ever registered. They were inside the sweep's scope the whole time and reported as undocumented_addition, but that phrasing reads as a nit; the explicit \\\"swept file(s) with NO Artifact\\\" line is what made them legible. The consequence is the one [BL-165] names: they are in no release manifest, reconcile_artifacts cannot see them drift, and a ChangeEvent touching shared mode has nowhere correct to point. Fix shape: they need Components first (ARTIFACTS is keyed component \\u2192 path), which makes this [BL-168]'s 14-module problem in miniature \\u2014 do them together. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-167 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

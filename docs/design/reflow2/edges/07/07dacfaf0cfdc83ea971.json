@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:958fa6c775c22f70d19043b2b7e92b83e9d38923afa7917610c22a00f5f887e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:non-goal-reflow2-does-not-validate-that-your-intent-is-sound",
+  "properties": {
+    "authored_at": "2026-08-17",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

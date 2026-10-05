@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:baa9142e3a97560ab9a9e5541d15adfe1063da8b33ddcb6d05a957fb2d59d39d",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-node-can-be-re-keyed-and-keep-its-edges-lineage-and-old-name",
+  "properties": {
+    "evidence": "Option (a) is the route that finding measured as absent: a move that keeps edges, lineage and the old name."
+  },
+  "to_id": "fact:root-cause-a-node-id-carries-meaning-and-cannot-move-so-a-rename-severs-edges-and-lineage-2026-09-29"
+}

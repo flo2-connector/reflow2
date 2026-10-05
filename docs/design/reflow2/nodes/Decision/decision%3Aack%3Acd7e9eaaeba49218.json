@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f3613082768d935148792760f8272211bae6d9d4862293b2242caec81c281413",
+  "node_id": "decision:ack:cd7e9eaaeba49218",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:cd7e9eaaeba49218.",
+    "name": "Reviewed: gap:cd7e9eaaeba49218",
+    "rationale": "Built after v0.12.0 was cut, so it ships in the next release (dec:intent-preserved — a post-cut component is answered by the next manifest, never backfilled into a shipped one). Same disposition as cmp:degraded, cmp:skills, cmp:sync and cmp:identity.",
+    "status": "accepted"
+  }
+}

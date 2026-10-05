@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:82caed697c0a6ea7db8d8cd39340976fee992c9bc0ddd5598386a8923a052b17",
+  "node_id": "fact:manual-work-0ff3df331b773b9e",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Hashed changed source files by hand (sha256sum per file, then a script mapping paths to artifact ids from the export) to feed set_artifact_checksums — roughly six times across the day, once per PR, and once WRONGLY: the root AGENTS.md's hash was stamped onto the kit copy's artifact because the location was read off the artifact's name rather than its `location` property. The qs project reported the identical shape on 2026-09-04 ('hashes by hand, about forty times'). reflow2 does no file I/O by design; the hand-rolled part is the path-to-artifact mapping plus the hashing plus the accept call, and the mistake it produced is exactly the kind a tool that reads the artifact's own location would not make.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-06",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

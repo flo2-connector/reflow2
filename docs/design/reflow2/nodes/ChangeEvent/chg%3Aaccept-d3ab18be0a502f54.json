@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ebf753781baaca5dc52f5df539e74f1f31ee9c38dd2fe9fa17de964a3ec8cd0b",
+  "node_id": "chg:accept-d3ab18be0a502f54",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-09",
+    "name": "Clippy collapsible_if: the contributor-existence guard became a let-chain. Behaviour identical, 1055 tests unchanged. NO DESIGN MEANING. Fifth instance of hashing before the last edit in one session — and the third distinct mechanism: fmt after the work (twice), and now a REQUIRED CLIPPY FIX after the work. The pattern is not carelessness about hashing; it is that every mandatory gate runs AFTER the code looks finished, so 'finished' is never the moment to hash. Hash immediately before the export, after every gate has run."
+  }
+}

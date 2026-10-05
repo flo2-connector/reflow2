@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:68ac05b2c2c4ef56f6037b9a2bedac4977a1482e4bd8fff85f4942f4ad8fec11",
+  "node_id": "dec:idea-the-audience-is-not-the-trigger-orientation-fires-when-the-agent-is-about-to-assert-status",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Recorded as brainstorming, not as a proposal. From the hxm_program session's first-ranked cause, relayed by Anthony on 2026-09-14: the where-am-i skill \"triggers on the user asking where things stand, or picking a design back up after a break. You asked me to build a deck for management. I never mapped 'produce a progress deck' onto 'read the design first'. A clause saying the audience is not the trigger would have caught it outright, and that is the cheapest fix on the list.\" Options as they stand: (a) the cheap one — add the clause to the skill's trigger text and to the nudge string, so the trigger names the ACT of asserting status whoever the audience is; (b) the structural one — find or add a tool call that marks \"about to assert status\" the way record_finding marks \"about to write a cause\", and demand the skill from that tool; (c) accept that this trigger is internal state, like root-cause's, and rely on (a) plus the measured load rate.",
+    "kind": "exploratory",
+    "name": "OPEN — should the orientation skill trigger on the agent being about to ASSERT status for anyone (a deck, a report, a summary, a claim of what was achieved), not only on the user asking where things stand — and can any served tool mark that moment?",
+    "rationale": "Why it is not simply (a): the design already measured that a trigger keyed on the agent's own internal state, with no tool call to hang a demand on, loads only by luck (19 to 24 percent). \"About to assert status\" is a second member of that class. Option (a) is cheap and was judged by the reporting session to have caught this instance; whether it would have caught the earlier occurrences is the test step 6 of the root-cause skill asks, and it has not been run. Produced by fact:field-report-hxm-a-progress-deck-was-written-from-a-checklist-and-recency-and-the-design-was-read-only-after-a-challenge.",
+    "status": "proposed"
+  }
+}

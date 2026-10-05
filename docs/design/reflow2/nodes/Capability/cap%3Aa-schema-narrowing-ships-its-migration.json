@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3ec694b39eb8e373750538e33b020ba33a83a15b97dc2cd8ff352897aec30b34",
+  "node_id": "cap:a-schema-narrowing-ships-its-migration",
+  "node_type": "Capability",
+  "properties": {
+    "description": "schema/accepted-at-last-release.json records what the last release's schema ACCEPTED (narrowing::Acceptance: node types and their properties, edge types with endpoints and properties, only the facets a narrowing can move). tests/a_schema_narrowing_ships_its_migration.rs diffs today's schema against it and fails on every narrowing narrowing::NARROWINGS does not name with its migration: an endpoint dropped, an enum value removed, a node or edge type retired, a property newly required with no default, a type or range tightened. Each entry is checked against today's schema: in effect, and its migration doing what it says. `Rewritten` needs an EDGE_REWRITES row (the one table the import, every open and the recheck read) onto an edge the schema accepts; `RefusedByName` needs a named replacement or a modelled fit for EVERY pair it dropped; `Retired` is for a removed type, and the provenance guard reads retired types from the same table. The snapshot moves at a cut: the version bump fails the test until it is re-blessed (REFLOW2_BLESS_ACCEPTANCE=1), and the bless refuses while any narrowing is unaccounted for. Bound, stated in narrowing.rs: a newly declared OPTIONAL property is not treated as a narrowing, and a change of meaning under an unchanged name is beyond any structural diff.",
+    "name": "A schema change that takes something away ships its migration, or the build fails",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

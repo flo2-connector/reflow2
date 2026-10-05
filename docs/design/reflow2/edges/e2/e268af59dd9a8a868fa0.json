@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b4da4c6b75a9e3202ccb75b338a503f813961ee4baf0af662ea0e87eab9f8d5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:revision-block-on-constructors",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

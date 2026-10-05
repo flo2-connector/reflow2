@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fc449ecbafcb7cf0c8c2bf17b910c306a31963e38e330a5994ac534df4fb91cf",
+  "node_id": "chg:recover-from-tests",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Recovering intent from test evidence captured as an expansion of adopt; Alex recorded as a Contributor"
+  }
+}

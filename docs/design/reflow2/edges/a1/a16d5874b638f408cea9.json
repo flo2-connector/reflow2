@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c4de82dcc9707654962db674d33ad64b36042ba91a66076f3589587445cfea50",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:skills-are-composed-of-attribute-classes",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9322dd96c57b0f2426d24b0f88ac008bca16229d8d2ba4ac7d8134ff40781c8d",
+  "edge_type": "BLOCKS",
+  "from_id": "dec:idea-does-reflow2-need-a-byte-store-at-all-or-only-durability",
+  "properties": {
+    "evidence": "One standing makes the other unanswerable in its own terms. 'Which embedded engine compiles fastest' presumes an embedded engine is needed; if the measured answer here is that a store buys only durability and crash-safety, the redb-vs-rocksdb comparison is being run on the wrong axis. Blocks rather than obsoletes: the engine question becomes live again the moment this one settles in favour of keeping a store."
+  },
+  "to_id": "dec:idea-a-byte-backend-that-compiles-in-seconds"
+}

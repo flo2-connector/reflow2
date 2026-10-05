@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1cca1a41acba0dcbf1464091d510c0e922e2e571e56bd83d4e642bda7b479ab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:who-edges-name-their-fix",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:adopt-skill"
+}

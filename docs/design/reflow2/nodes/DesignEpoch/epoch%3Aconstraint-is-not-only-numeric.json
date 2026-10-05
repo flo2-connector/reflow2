@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6d949384d6c43a95e29f1ddb841d0ff6f3b7ba65c472c75f071cc9fd33c67a2e",
+  "node_id": "epoch:constraint-is-not-only-numeric",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "A Constraint need not be numeric, and a data model has a home — the routing table stops being narrower than the schema",
+    "sequence": 361,
+    "status": "arrived"
+  }
+}

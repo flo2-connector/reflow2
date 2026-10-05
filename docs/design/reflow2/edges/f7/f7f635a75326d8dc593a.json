@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0847f66bf1bc64758798b3b981e149a09b49b27b1deabb8973bac4478a950f25",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:one-status-contract-across-sibling-constructors-and-a-node-is-named-by-the-key-the-last-tool-used",
+  "properties": {
+    "at": "2026-09-19",
+    "note": "The naming half was fixed on the relation surface 2026-09-06 and on the setters here (id/node_id accepted where a typed key names the node); the status half here (every constructor takes status and names the landing). Their remaining wish — echo the status assigned in a sentence — is the open idea dec:idea-four-sibling-constructors-four-status-contracts."
+  },
+  "to_id": "fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in"
+}

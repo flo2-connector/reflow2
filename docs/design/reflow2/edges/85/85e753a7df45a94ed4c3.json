@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b08e9532b58075c6b1b8344b4dd7934c1f7f2c3de4b454d6905b790d6c48fa97",
+  "edge_type": "AT_EPOCH",
+  "from_id": "chg:content-growth-guard",
+  "properties": {},
+  "to_id": "epoch:arrival-delta"
+}

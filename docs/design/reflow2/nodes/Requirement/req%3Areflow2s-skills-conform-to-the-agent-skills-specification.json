@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6ee14997ee43db26aea5d6948503434c7f64cbd2e2a85cc674525efe4a669bfd",
+  "node_id": "req:reflow2s-skills-conform-to-the-agent-skills-specification",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "reflow2's skills, served and installed, conform to the Agent Skills specification (agentskills.io), and the skill lint checks it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "Anthony, 2026-09-28: \"For skills, we should consider: https://agentskills.io/specification.\" Kept as intent the same day.\n\nEvery reflow2 skill conforms to the Agent Skills specification:\n· the source in getting-started/skills;\n· the copies the kit installs (.claude/skills, .grok/skills);\n· the text served by get_skill.\nreflow2's own additions (metadata such as composes, audience, summary and the shortcut) are carried in the way the specification allows for extensions, never in a way that breaks a conforming reader. tools/skill_lint.py, which already enforces reflow2's own skill contracts, also checks conformance to the specification, so a skill that drifts from it fails the build.\n\nA NEW REVISION of the specification is adopted deliberately, as for MCP: read it, list what changed, check the skills against it, and record the result. How revisions are watched is req:the-hub-tracks-the-standards-reflow2-and-flo2-follow-and-reviews-each-new-revision in the hub's design.",
+    "status": "accepted"
+  }
+}

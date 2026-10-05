@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:47f793447745e72a473c959774c6d0122d678cb7680859bfd9ad48d4b4e4f4ac",
+  "node_id": "chg:accept-4b224d0acae5cf7e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-06",
+    "name": "Request-struct literals gained the new optional fields (status/approver/acted_at, verifies/findings/last_run_at) as `None` when the constructors learned the one-call form (chg:the-owners-word-rides-the-same-call-as-the-status-it-signs). The test's claim is unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64ea4a8db62997b129bfcbb4c819a84aede9f4ffe73d30102d9560293b7a8554",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-budget-declares-sum-or-path-and-its-verdict-follows:r2",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:budget\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:fix-what-the-two-agent-exercise-found-2026-09-29\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-09-29\"}}]",
+    "state": "{\"description\":\"A composition property on Constraint: sum (the default, today's behaviour) or path. The verdict reads the declared total. An all-budgets form of budget_report is added, and constrains says that drawing DEPENDS_ON is what enables the path total. Planned by the 2026-09-29 fix program.\\n\\nSHIPPED 2026-09-29 in reflow2 PR #627 (squash 72917f6). Its change record, chg:a-budget-says-how-it-composes, and its passing check, ver:a-budget-says-how-it-composes (a_budget_says_how_it_composes.rs in core and mcp; MCP 7/7 observed failing first, then passing), are in main's committed export, NOT in this live store. The all-budgets form of budget_report shipped in the same PR.\\n\\nThe status here stays `planned` on purpose. Setting it to realized with no passing check in THIS store would be an unproven claim. The live store will reflect the delivery when main's records are folded in (ver:an-overlay-folds-after-a-squash-merge). The live server also still runs 0.74.0.\",\"name\":\"A Constraint declares sum or path composition; budget_report's verdict follows it; one read reports every budget\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+    "target_type": "Capability"
+  }
+}

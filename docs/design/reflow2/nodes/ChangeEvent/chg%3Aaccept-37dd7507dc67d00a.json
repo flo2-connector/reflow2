@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f67d26f9ebe2cb6f7628de7e03bca8fe42896c1f52e19c8cef2ebcd1dfd28d17",
+  "node_id": "chg:accept-37dd7507dc67d00a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-09-29",
+    "name": "Merge of origin/main 8588b7a (#624) into fix/decision-tools-draw-echo-and-name: both sides changed this file, and each side's change is recorded by its own ChangeEvent. The merged content carries both and no third change.",
+    "subject": "system"
+  }
+}

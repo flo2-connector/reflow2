@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c3eeafe885c5815b8f08b8ab9f33c73634a2069350491cdeaf7670bd23daed8",
+  "node_id": "fact:gh-pr-edit-fails-on-a-projects-classic-error-and-changes-nothing",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 1.0,
+    "fact_type": "finding",
+    "name": "gh pr edit fails with a \"Projects (classic) is being deprecated\" GraphQL error and changes NOTHING; the REST PATCH works",
+    "statement": "Measured 2026-09-12, twice: `gh pr edit <n> --body-file …` on this repo dies with a fatal GraphQL error about Projects (classic) and leaves the PR body untouched (body length verified unchanged after both attempts) — so a PR body \"updated\" this way is silently the old one. What works: `gh api -X PATCH repos/sligara7/reflow2/pulls/<n> --input -` with `{\"body\": \"...\"}` on stdin, then read the body back and check for a sentence you know is in the new text. Also on 2026-09-12: a `gh pr create --body-file /dev/stdin <<'X'` heredoc nested inside another heredoc swallowed the PR body into the COMMIT MESSAGE; write the body to a file first and pass the path. Moved here from an agent's machine-local memory file (rule:a-rule-the-project-follows-lives-in-the-graph-not-in-an-agents-memory).",
+    "subject_id": "rule:nothing-lands-on-main-directly",
+    "valid_from": "2026-09-12"
+  }
+}

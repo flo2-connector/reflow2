@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:afae14be1f9eb09177ab663cb458af0e20123defa3a7efc45e32f4947ae6d313",
+  "node_id": "art:find-skills-rank-baseline",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "location": "crates/reflow2-mcp/tests/fixtures/find_skills_rank_baseline.json",
+    "name": "find_skills_rank_baseline.json",
+    "status": "realized"
+  }
+}

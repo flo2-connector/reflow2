@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d374b1d1279e762a83d91f201e74d0e9d363efedb0b59b2022b3a6373f36fde8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-designs-lineage-is-kept-per-item",
+  "properties": {
+    "approved_at": "2026-10-03",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

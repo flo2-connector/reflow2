@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5697a958e3e629319e3d586a13a8321730456bb08460132dce50309eeac947f9",
+  "node_id": "chg:accept-d3de572b623e0a5a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "One query added for the new hub skill (cap:the-hub-skill-writes-each-fact-where-it-belongs), in a person's words; hub ranks first for it, so the rank baseline is unchanged.",
+    "subject": "system"
+  }
+}

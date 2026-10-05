@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43317021c58137ca05d96150c17507593e2fdb19fe8335ca9c277e3634d064aa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:seam-coverage-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:seam-coverage-test"
+}

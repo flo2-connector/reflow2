@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76942c17e133141df700aa7bdd05d752c174ce9356843219e6ffae3e1f790702",
+  "node_id": "epoch:scaling-to-many-tenants-captured",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "revision",
+    "name": "The hosted-tier scaling question is captured as its own operating context, and the rule that keeps the door open is recorded with its power deliberately unstated (2026-08-09)",
+    "sequence": 294,
+    "status": "arrived"
+  }
+}

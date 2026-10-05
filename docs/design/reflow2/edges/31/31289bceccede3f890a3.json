@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9e62f5db0b3de053d4418384b3b75ce208790001b64ab6bd477675660ba18a01",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-is-there-a-lightweight-task-capture-below-the-increment-grain",
+  "properties": {
+    "evidence": "That idea found 'the things I need to do next' have no cheap home and that a Task node type would turn the design brain into a tracker; pushing the open items to an external tracker is one answer that keeps tasks out of the graph."
+  },
+  "to_id": "dec:idea-open-design-items-become-jira-tasks"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4ac35210e8de1b3e1e426d5f029036db6fc58d2bf149b34bb93af65755975d59",
+  "node_id": "cmp:temporal",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "temporal",
+    "provenance": "authored",
+    "purpose": "The temporal module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

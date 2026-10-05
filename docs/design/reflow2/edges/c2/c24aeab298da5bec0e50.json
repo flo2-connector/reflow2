@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d151e269cca0b462e670da60b6bc027c3ccbf6e3fbc71e42749fd1c18028a1a3",
+  "edge_type": "REALIZES",
+  "from_id": "art:relate",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-unconnected-idea-is-visible-as-one"
+}

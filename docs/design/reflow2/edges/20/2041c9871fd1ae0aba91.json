@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dfc19bb01d4facb3e17031bb9a41f44f88bd94ae8d58d1f27ae08b3935439366",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-cli-describes-any-tool-with-its-full-schema-and-lessons",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp"
+}

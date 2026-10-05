@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a8e4e013afd57c324d45c614dab4c53c51bef0a2fe36ddd40ed50ef3a471e598",
+  "node_id": "chg:baseline-4cf11336de05700f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "FIRST baseline. The doc was registered without a checksum, so nothing moved — there was no prior value to move from. Refused as design_updated, correctly: accepting a change against a baseline nobody recorded would claim an observation nobody made.",
+    "subject": "record"
+  }
+}

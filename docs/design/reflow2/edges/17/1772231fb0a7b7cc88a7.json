@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3aae5afbed229ef874022220b2f5fe9feefc15ed10aae2f55954d8e361cddfe5",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:the-retired-dependency-fact-misled-a-second-reader-2026-09-13",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Corroboration, not conflict. The 2026-08-28 record wrote up the first time fact:the-storage-seam-is-published-in-design-and-private-in-code misled a reader into reporting a live design-vs-code defect in this repo, and closed by saying it was not known whether this is a class. This is the same fact catching a second reader 16 days later, by the identical route. It confirms that record's central claim and answers half of its open question: the particular node reliably misleads, while whether OTHER retired-dependency facts do the same is still unestablished. It also shows the write-up itself did not prevent the recurrence."
+  },
+  "to_id": "fact:a-retired-dependencys-facts-keep-describing-this-project"
+}

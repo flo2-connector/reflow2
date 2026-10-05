@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:860126079901910239a00900707a5a0bcc2c7d2d75884b4b88372467922b94d2",
+  "node_id": "art:drift",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/drift.rs",
+    "name": "drift.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

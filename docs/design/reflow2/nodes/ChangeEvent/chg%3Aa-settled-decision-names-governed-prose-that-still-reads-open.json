@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:73af5c36895039f84e8ca8a762f32f923e0eca8a943a8c352fdf0b6d4f18bdfa",
+  "node_id": "chg:a-settled-decision-names-governed-prose-that-still-reads-open",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Prose that outlives the Decision governing it says so, in the reply that settled it",
+    "subject": "system"
+  }
+}

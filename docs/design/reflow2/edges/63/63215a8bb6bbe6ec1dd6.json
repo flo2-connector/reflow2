@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef1f22f8b4aa5f0970246a6ed2fd236bb9478d226b2d81141af11bd369dc57f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-ruling-parks-a-node",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:heal"
+}

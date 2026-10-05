@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:abc641fe4c16ba400a4f88a5d4a5b4838d6e9f6689c72a0f27d0151719924d9f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:revising-an-epoch-without-its-description-clears-the-description-2026-09-27",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:revising-an-epoch-without-its-description-clears-the-description-2026-09-27"
+}

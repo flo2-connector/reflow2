@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1f50ed5fcebab10298a327e1e9857a50bb9c994b6a9835677cc101f1a9c4f4bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:evidence-fidelity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:vocabulary"
+}

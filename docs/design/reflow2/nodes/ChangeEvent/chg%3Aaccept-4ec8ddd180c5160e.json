@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:25bcdaa8e87a674f8cfc24efa4da4be6a5244e138fc91d64f285db88a5a06740",
+  "node_id": "chg:accept-4ec8ddd180c5160e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-09-05",
+    "name": "Test literal gained `description: None` because AddChangeEventReq gained a `description` field (the change-event redirect). Mechanical follow-through of chg:three-additive-surface-fixes-from-field-feedback; what this test asserts is unchanged.",
+    "subject": "system"
+  }
+}

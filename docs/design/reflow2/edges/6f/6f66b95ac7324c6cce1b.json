@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96d7fd1a596a9954e8fef1694e16d8bdb4e0e49f0335a6d3117cd35db4c5a416",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy",
+  "properties": {
+    "evidence": "Anthony, 2026-09-27: \"Let's reverse the 07-25 rule - let's retire sharing design through git.\" Rule 2 (sharing is shared access to the blueprint's server) replaces merge-on-pull as how many people work one design.",
+    "note": "Sharing a design through git is retired for all designs."
+  },
+  "to_id": "dec:multi-writer-architecture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92cf8d1e042473c11d6010d520b89866a45546366081203539b418e12005c55a",
+  "edge_type": "CAUSES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The instructions were written to teach the loop and grew by adding to that account; nothing in them was ever the place where 'ask whether it exists first' belonged, so the catalogue reached the tool list and never reached the instructions.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-served-instructions-name-no-way-to-ask-whether-a-thing-already-exists-and-one-consumer-rebuilt-four-that-did"
+}

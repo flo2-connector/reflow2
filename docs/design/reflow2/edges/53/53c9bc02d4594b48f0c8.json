@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbb2fe77633b8f2be83afbe8236e2ed58f7e3b49bde1799308743127884664b0",
+  "edge_type": "CONSUMES",
+  "from_id": "sys:store",
+  "properties": {
+    "weight": 0.9,
+    "weight_basis": "evidence"
+  },
+  "to_id": "ifc:req-dyno-storage-api"
+}

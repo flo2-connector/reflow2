@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:deb68fdb74098644398c7bf15a02025a5478e7fd977c9ad26a73f49d08e9b30c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-moved-record-is-diffed-against-the-live-store",
+  "properties": {},
+  "to_id": "cap:the-record-moved-is-surfaced"
+}

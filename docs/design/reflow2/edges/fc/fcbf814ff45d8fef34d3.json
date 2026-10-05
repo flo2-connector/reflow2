@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:86ecd050bf18757b29554487484e00ef69cc83acbc25c07411a3dc45c7ea97d9",
+  "edge_type": "DOCUMENTS",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "doc_kind": "agent_instructions"
+  },
+  "to_id": "cap:skills-served"
+}

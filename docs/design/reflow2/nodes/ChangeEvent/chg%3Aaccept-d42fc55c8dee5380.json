@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c1d9dfa89ffe95036c105f2a7a04208c0e83571308e1ec9c9d6224ad87cdb7a",
+  "node_id": "chg:accept-d42fc55c8dee5380",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-18T10:45:00Z",
+    "name": "Re-attaching #[allow(clippy::too_many_arguments)] to set_interface_spec, which lost it when set_capability_signature was inserted between the attribute and the function. The allow silently transferred to the new 5-argument function and clippy flagged the old 11-argument one. No design meaning: the same code, with the lint suppression back on the function it was written for.",
+    "subject": "system"
+  }
+}

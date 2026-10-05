@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5aff0671683b9471af19c71f26966399d126b4df956432ca9a25e7c6ce2a442d",
+  "node_id": "ver:merge-driver",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "last_run_at": "2026-07-25",
+    "level": "system",
+    "method": "test",
+    "name": "Real git branches: disjoint edits merge with no human, a both-sides conflict leaves the path unmerged and names itself, both additions survive, an unconfigured clone degrades (tools/test_merge_driver.py, 4 cases)",
+    "status": "passing"
+  }
+}

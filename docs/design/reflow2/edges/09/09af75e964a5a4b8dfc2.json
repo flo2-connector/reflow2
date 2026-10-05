@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9e81f83b520973a676b5e76faf631f079f6fbe7949274830d5dda9e03f30a51",
+  "edge_type": "REALIZES",
+  "from_id": "art:drift",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:drift"
+}

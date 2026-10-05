@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a4fe91870bad12299d41d0b238d29ccac5ff17101338956e4549dca5bc9b8ef",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0550",
+  "properties": {
+    "as_checksum": "sha256:dcf79ca95ec1dae48c5ee69284cdd0edcf79e61acd798d59244762d1807cc4cb"
+  },
+  "to_id": "art:delivery-kind-test"
+}

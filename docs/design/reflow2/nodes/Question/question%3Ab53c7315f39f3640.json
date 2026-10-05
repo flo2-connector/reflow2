@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:af8b1ca10d0fc62eeb0f2927213bcd9aea67637cd58df52f5cfcbdca41ba8113",
+  "node_id": "question:b53c7315f39f3640",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Approved (Anthony, 2026-07-25). Take on the upstream change: expose RocksDB's secondary/read-only open in dynograph-storage so a session without the write lock can still read the design. The fleet's real blocker, and the only item on the list that cannot be fixed inside this repo.",
+    "asked_at": "2026-07-25",
+    "context_setter": "Nothing satisfies requirement “Reading the design does not require owning it”",
+    "gap_id": "gap:b53c7315f39f3640",
+    "question": "Should a session that cannot get the write lock still be able to READ the design — orientation, reports, gap checks — instead of having no design brain at all? This is the fleet's real blocker: five of your six sessions get nothing today. The catch is that it cannot be fixed here; it needs a change to the storage library reflow2 depends on, which you own but which is pinned by version. Do you want that upstream change taken on?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

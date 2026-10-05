@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f71c3ce706d1cb6a2926e6ce3dce2b326c43a55f5354fa74764cad27866c6bb6",
+  "node_id": "cap:supporting-is-not-conflict",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The contradiction detector reads `alignment`: a CONTRADICTS edge marked `supporting` reinforces and is not reported as a defect, while an `opposing` edge and an edge that says nothing both stay contradictions — so existing designs keep their meaning and real conflicts still surface.",
+    "name": "Corroboration reads as corroboration",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

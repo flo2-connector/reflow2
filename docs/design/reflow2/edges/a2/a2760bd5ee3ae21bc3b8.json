@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93e231bfade7303f0f94c1bb979bf8deb44c934073db54d17587fa4de9c96479",
+  "edge_type": "CHANGED",
+  "from_id": "chg:documentation-subsystem",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:explains-itself"
+}

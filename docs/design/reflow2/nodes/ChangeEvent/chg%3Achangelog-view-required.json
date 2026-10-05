@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e62e1bef7a5151b896254e8b0947345d1508c8b5fe5f2bc4babf48cfc9fd61ad",
+  "node_id": "chg:changelog-view-required",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "The changelog view is raised from expected to required for v0.20.0 — Anthony's call 2026-07-31"
+  }
+}

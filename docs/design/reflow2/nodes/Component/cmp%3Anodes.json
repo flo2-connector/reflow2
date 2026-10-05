@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cec77f5bbc5904b2660ba97aa6affec0cab95d47a3bec99aa94366c8f770276d",
+  "node_id": "cmp:nodes",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "nodes",
+    "provenance": "authored",
+    "purpose": "The nodes module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

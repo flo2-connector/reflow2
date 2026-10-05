@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0e2dca17f99d3b75301d14d03955286bbefa7095f1620bd022570b7652c369f6",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-the-undated-note-reads-the-call-not-the-stored-node-2026-09-28"
+}

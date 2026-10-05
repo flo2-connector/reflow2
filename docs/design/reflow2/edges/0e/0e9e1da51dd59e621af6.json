@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bbe28cd4902eca712cb033369cb0c6d04ec1998d2d28bbe39bbb54c50c79c471",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened",
+  "properties": {
+    "authored_at": "2026-09-22T00:00:00Z",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:flo2"
+}

@@ -84,3 +84,65 @@ async fn a_query_in_a_users_words_finds_the_tool_that_answers_it() {
         missed.join("\n  ")
     );
 }
+
+/// THE READER OF ONE NODE AND ITS EDGES ranks FIRST, not merely top 5
+/// (`dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it`).
+///
+/// Measured on 0.77.0 before `include_edges` existed
+/// (`fact:find-tools-ranks-get-node-eighth-for-a-node-with-its-edges-because-nothing-served-returns-both-2026-10-02`):
+/// for the field report's own words, "read one node by id with its properties
+/// and edges", get_node ranked 8th, below five edge WRITERS, and so left the
+/// default five. The ranking was honest — nothing served returned both — so
+/// the fix is the reader, and its description saying so in the asker's words.
+/// OBSERVED FAILING before the description changed, 2026-10-03: 7 of the 11
+/// queries first written here did not put get_node first.
+///
+/// The first query is the report's; the rest are paraphrases written from
+/// other angles (connections, neighbours), plus the plain reads get_node
+/// already led, which must not slip.
+const GET_NODE_FIRST: &[&str] = &[
+    "read one node by id with its properties and edges",
+    "get a node and its edges",
+    "show a node's edges",
+    "what is this node connected to",
+    "show a node's neighbours",
+    "read one node by id",
+    "fetch a node by id",
+    "pull up the full record for a requirement",
+];
+
+/// Paraphrases where get_node is FOUND (top 5, the default a caller sees) but
+/// cannot rank first: another tool's NAME carries the query's word, which
+/// scores five times a description hit and which no wording can outweigh (the
+/// rank ratchet's own finding). `create_edges` owns "edges" in "a node and its
+/// edges"; `list_skills` and `create_edges` own "list" and "edges" in "list
+/// the edges of a node". Two more were measured at rank 5 and are left out as
+/// too close to call: "which nodes link to this one" (`create_nodes`,
+/// `link_artifact`, `scan_nodes` and `linking_report` carry "nodes" or "link")
+/// and "what links to this item and what does it link to".
+const GET_NODE_FOUND: &[&str] = &["a node and its edges", "list the edges of a node"];
+
+#[tokio::test]
+async fn reading_one_node_with_its_edges_finds_get_node_first() {
+    let s = ReflowService::in_memory().expect("service");
+    let mut wrong = Vec::new();
+    for query in GET_NODE_FIRST {
+        let got = top5(&s, query).await;
+        if got.first().map(String::as_str) != Some("get_node") {
+            wrong.push(format!("first  {query:?}\n      top5: {got:?}"));
+        }
+    }
+    for query in GET_NODE_FOUND {
+        let got = top5(&s, query).await;
+        if !got.iter().any(|t| t == "get_node") {
+            wrong.push(format!("top 5  {query:?}\n      top5: {got:?}"));
+        }
+    }
+    assert!(
+        wrong.is_empty(),
+        "get_node is not where it must be for {} of {} queries:\n  {}",
+        wrong.len(),
+        GET_NODE_FIRST.len() + GET_NODE_FOUND.len(),
+        wrong.join("\n  ")
+    );
+}

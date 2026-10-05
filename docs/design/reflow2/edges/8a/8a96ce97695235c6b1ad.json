@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45046ac7b04d97be05edf73caf599657134c17aeea9cf649ed886e5c13fddb06",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-why-skill-records-why-an-existing-system-is-the-way-it-is",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:temporal"
+}

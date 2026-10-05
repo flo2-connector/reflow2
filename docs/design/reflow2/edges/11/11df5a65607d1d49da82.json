@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c6fb4e17ea11c29f8419c1edbf2533bf62b778f02d39fe342fc721af8629e33",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seams-detector-built",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:an-undeclared-coupling-is-named-not-just-counted"
+}

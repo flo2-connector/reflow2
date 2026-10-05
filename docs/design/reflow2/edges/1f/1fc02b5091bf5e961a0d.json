@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:188a2e3ed2f4ffbcc0747fe74daa71547d53ba0d98bcaeac3ebdf59085a75343",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+  "properties": {},
+  "to_id": "req:a-relation-stored-in-more-than-one-place-has-one-authoritative-copy-and-no-copy-drifts-unnoticed"
+}

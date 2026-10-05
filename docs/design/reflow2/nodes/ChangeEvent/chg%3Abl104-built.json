@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:727b4a42fabfd03cea9d09007687fde7ebc081b536452318630de9f543bb0359",
+  "node_id": "chg:bl104-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-104 built: delivery_coverage derives what is delivered from the golden thread"
+  }
+}

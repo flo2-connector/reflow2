@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2cde2f5537cf5e7323a91af7909e829bd320c4eade90f5f803a2ffccfe74457",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:review-expires-on-content",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

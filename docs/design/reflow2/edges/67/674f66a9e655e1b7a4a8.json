@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a671d02dc7b08544b451e198f191486a5e7ff5a14e723b9e753d45a71e69f927",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:analyse-at-any-level",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

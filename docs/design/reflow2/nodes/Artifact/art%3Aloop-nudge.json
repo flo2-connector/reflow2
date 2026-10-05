@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7fd73e70816a67f911cd77816b972ca6a98f1a3f948e641ccf985423c4bc66f2",
+  "node_id": "art:loop-nudge",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/loop_nudge.py",
+    "name": "loop_nudge.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

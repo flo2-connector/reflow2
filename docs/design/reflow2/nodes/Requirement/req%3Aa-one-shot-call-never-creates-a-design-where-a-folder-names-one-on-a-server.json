@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7745cd5a19e84af465ec71df09cf272b18f6f4cbe76ea436999192ddbda653f8",
+  "node_id": "req:a-one-shot-call-never-creates-a-design-where-a-folder-names-one-on-a-server",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-cli-call-in-a-pointer-folder-mints-a-fresh-local-store-2026-10-01"
+    ],
+    "lineage": "original",
+    "name": "A one-shot `--call` in a folder that names its design on a server never creates a local store; it refuses and names that server",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Step 1 of the plan to make the `--call` door work for an agent that cannot use MCP (Anthony, 2026-10-01).\n\nToday `--call` ignores a `.reflow2.toml` pointer and `--only-if-present`, because both checks run after every one-shot mode has returned. In a folder whose design lives on a server, it therefore creates a fresh empty local design with a new id, and the agent works that, with no error (fact:a-cli-call-in-a-pointer-folder-mints-a-fresh-local-store-2026-10-01).\n\nMUST:\n- A one-shot call in such a folder opens nothing and creates nothing.\n- It exits non-zero, naming the server address the pointer gives and the route that works there.\n- `--only-if-present` is honoured by one-shot modes too.\n\nNOT HERE: forwarding the call to that server, or to a running shared daemon. Those stay open in dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served.",
+    "status": "proposed"
+  }
+}

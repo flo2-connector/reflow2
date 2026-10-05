@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:23360746ef67eb0007b79fc4c7a3614a505f6af3511d5d15ca28d6b385aa86f4",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-measurement-says-when-it-was-taken",
+  "properties": {},
+  "to_id": "req:evidence-carries-the-date-it-was-taken"
+}

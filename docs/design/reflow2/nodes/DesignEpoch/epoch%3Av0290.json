@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6080364b5385a55137689c6ab7bfe17ada507e65fbf14218b1214ceedc1f9286",
+  "node_id": "epoch:v0290",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.29.0 cut — two projects pointed at each other for the first time, and RUNNING that found every defect in the increment. mirror_surface could not refresh (12 of 13 ids collided with its own previous mirror, live since v0.12.0, and the staleness pin read FRESH after the failure); export_surface silently orphaned the nodes it kept; export_via_binary.py materialised 182 property values nobody chose and shipped them in v0.28.0. Stamp UNMOVED 29/61, schema_version 1 — but schema/core.yaml gained an optional property (Project.mirror_nodes) the stamp cannot see, the fourth instance of that blind spot. Also ships the capture-session skill (served set 19).",
+    "sequence": 326,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9bb897c20b9b8339d4dfb2633ebb8882190fdb4d66d2ef5bab4f3cf1e6bd86fb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-repository-root-holds-only-what-a-build-or-a-harness-needs",
+  "properties": {
+    "evidence": "Kept as intent by Anthony, 2026-09-28."
+  },
+  "to_id": "req:the-repository-root-holds-only-what-a-build-a-contributor-or-a-harness-needs"
+}

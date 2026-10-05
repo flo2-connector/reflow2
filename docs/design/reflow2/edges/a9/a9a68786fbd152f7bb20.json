@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f132c23935e71868859cd551646ca0ac03ea0f12666ed1017919e207f8e11ef8",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:github-mcp-tandem",
+  "properties": {
+    "evidence": "The GitHub tandem idea (2026-07-25) settled the architectural point this one rests on: MCP composes AT THE AGENT, so a pairing lives in a served skill that knows both surfaces, costs the core nothing, and must be additive and never required. The same ruling decides how expensive a Blender pairing is before any of its merits are weighed."
+  },
+  "to_id": "dec:idea-pair-with-mcp-for-blender-as-the-hands-that-make-and-show-the-cad-artifact"
+}

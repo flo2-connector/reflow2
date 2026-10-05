@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b25d0abf662b9f2a431d13bd89db0474ce9aeaa25578c0cc14aadba611e2cf79",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-write-is-credited-to-who-it-was-for-2026-09-25",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e470ec35b7cc5117a37f62bbc924bf93a4f050d269ef0d52540ff276949ef47f",
+  "node_id": "art:test-run-to-files",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Turns cargo-test output, JUnit XML or python test-script exit codes into per-file outcomes for reconcile_verification's observed_by_file.",
+    "location": "tools/run_to_files.py",
+    "name": "run_to_files.py",
+    "status": "realized"
+  }
+}

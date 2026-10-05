@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9ac8ce9d5a446ec95385c1c41cbd686271f0d60298eed1deba4bd8b8809e4836",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-cannot-silently-lose-someone-elses-work",
+  "properties": {
+    "approved_at": "2026-08-16",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

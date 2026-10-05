@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f863525e89a9e1489dd1a5bbfadb922371efbbc82a28a27fb383717b07880b58",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-node-can-say-who-may-change-it",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-09"
+  },
+  "to_id": "epoch:governance-becomes-expressible"
+}

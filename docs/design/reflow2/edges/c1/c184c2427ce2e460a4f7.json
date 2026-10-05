@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:34fa16f40d0bc67b87990e8ea393ce5c48631e7b9a438e1e87dd688038dc48b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-sweep-says-what-it-could-not-have-found",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-coherence"
+}

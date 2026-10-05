@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5413ee6e12222cc0e759ab6f87f7e0dfe44bdda1372db249448d3dc813d70d66",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-remote-client-signs-in-to-its-server-with-oauth-2-1",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
+}

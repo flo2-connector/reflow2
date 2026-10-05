@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f393a953d7919fd1df1e92de22f049c407881745008554eed4cfccbb7d0d0d0c",
+  "node_id": "art:corpus",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/corpus.rs",
+    "name": "corpus.rs — the corpus run: one epoch, one Fragment per document, the ambiguous band asked once",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

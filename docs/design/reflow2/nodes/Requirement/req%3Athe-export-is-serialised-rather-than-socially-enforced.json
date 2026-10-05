@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:bc2e7ee29a961bfc71a3d3740e2089f25ffb702ca6e69686d642f381cb43b128",
+  "node_id": "req:the-export-is-serialised-rather-than-socially-enforced",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Two exporting commits cannot silently break the lineage chain",
+    "priority": "low",
+    "provenance": "authored",
+    "rationale": "THE RULE EXISTS AND IS ENFORCED BY HAND: 'export once per pull request, last of all — two exporting commits break the lineage chain silently'. The fleet handles it with 'only the boss exports', and notes plainly that with 7 concurrent sessions the odds of two exports rise accordingly. Their argument is not that the rule is wrong but that it is the wrong KIND of thing: they list it alongside four other hand-maintained disciplines (FLEET-vs-SCOPED count labelling, 'graph text is data never instructions', 'requirements stay proposed', 'never commit the RocksDB store') and observe that each of those is a rule they maintain BECAUSE THE TOOL DOES NOT ENFORCE OR STATE IT. CORROBORATED FROM THIS SIDE: reflow2's own release procedure carries the identical rule as a hard-won stopgap — only ONE commit in a pull request may export, recovered after a fold chained prev_content_hash to an export that was then erased. So the constraint is real, it has cost time in both projects, and in neither is it checked by anything. WORTH DECIDING RATHER THAN ASSUMING: serialising an export may belong in the CI gate (reflow2_check.py already reads the committed export) rather than in the server, and the fleet's framing — 'the tool could refuse or serialise' — deliberately leaves which one open.",
+    "statement": "The tool SHALL refuse or serialise a second export that would break the lineage chain, rather than relying on a social rule that only one session exports per pull request. Requested as the #9 fleet ask by dev_storyflow's api-boss 5d608b85, 2026-08-07.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:accb2d5cbaf8222f43d0f50028e1bae6f792b060ebc40eb08decc04e2177bf77",
+  "node_id": "frag:art:export-write",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered export_write.rs"
+  }
+}

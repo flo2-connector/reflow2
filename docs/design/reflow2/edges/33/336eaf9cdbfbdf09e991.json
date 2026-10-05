@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9c87d3d3dac7df4448079fbeaacb78fcc249025780db4b0b18e977053a45f82",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "sys:agent-surface",
+  "properties": {
+    "note": "One of the two branches that genuinely decomposes twice — it contains five subsystems, which is why it carries level `system` while seven similarly-named peers correctly carry `subsystem`."
+  },
+  "to_id": "dec:the-top-tier-is-uneven-because-depth-follows-structure-not-symmetry"
+}

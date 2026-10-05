@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5a69f867089e75afbfcbbf492ace44c746a0b513aa3f1e81e7325c590106d8e2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0480",
+  "properties": {
+    "as_checksum": "sha256:5edb3b20b6d030dfe73c12a99d561e0316456bfb3da485696d4b06300768f990"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

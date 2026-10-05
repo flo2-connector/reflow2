@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0bc89b0005067dd9de680c6f907b7fd5038165797d8ba6035d53d3a2e23ac5af",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-answered-question-line-says-only-what-it-knows",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:tools-coherence"
+}

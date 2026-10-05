@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57226ba227561301b62976e2f5beea35fb1d315095022064941bd2a3936d00e7",
+  "node_id": "chg:snapshot-per-revision-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "Snapshot identity becomes per-revision; the requirement is accepted and delivered"
+  }
+}

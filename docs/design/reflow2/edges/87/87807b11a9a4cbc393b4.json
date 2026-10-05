@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd85a305f05875d511a88897cca75c113e0bf98b3aa1048735714391f36a96fd",
+  "edge_type": "REALIZES",
+  "from_id": "art:http-readiness",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:degraded-surface"
+}

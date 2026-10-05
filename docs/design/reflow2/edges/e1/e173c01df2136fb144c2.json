@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:475141f001f423815fc4a8e03de67c267bb448de78d7d03034901b529076e0ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stale-seat",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:provenance"
+}

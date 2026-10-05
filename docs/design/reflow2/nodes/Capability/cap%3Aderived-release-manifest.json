@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:695c93e9393798dc8064e1b8c54e5c9e08f8aef9508d29c84feb2c92bddf936f",
+  "node_id": "cap:derived-release-manifest",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One call packages a release: every Artifact and every Component the design holds becomes an INCLUDES edge, with each artifact's current checksum frozen as shipped. It is the bulk form of release_includes, which was the single largest line item in reflow2's entire recorded usage (BL-153: 1008 calls across 7 sessions, 988 of them consecutive, ~144 per release cut) — all of it typing out something the graph already knew, and the rule AGENTS.md already states: a release \"must list every component that goes out, not a hand-maintained roll-call\". Nothing is written unless applied, re-running never rewrites a frozen checksum, an exclusion that names nothing is refused, and the artifacts whose entry cannot say WHAT shipped are reported by name. Measured on reflow2's own design: 160 edges in one call.",
+    "name": "A release's manifest is derived from the design, not typed out",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

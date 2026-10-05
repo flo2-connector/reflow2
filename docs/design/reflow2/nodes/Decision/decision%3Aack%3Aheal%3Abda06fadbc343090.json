@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:51e2510abc6b0555c84ab55ca3f5302a2f849ebb201c2032bc9032309374ea3c",
+  "node_id": "decision:ack:heal:bda06fadbc343090",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:bda06fadbc343090 (single point of failure: ifc:graph-export).",
+    "name": "Reviewed: heal:bda06fadbc343090",
+    "rationale": "The contract side of dec:export-door-spof-accepted (2026-07-24): the export document IS the interchange format, so a redundant one would mean two records that must agree — the erosion this design exists to prevent.",
+    "status": "accepted"
+  }
+}

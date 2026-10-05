@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b5abe1fddc44ee80255c2ab63c46659bd2e8eaf236c1cc9c54aebded7c5f8833",
+  "node_id": "req:human-decides",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Gaps become questions, not guesses",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Where the design is underspecified, the system must ask the human in plain language and record the answer, rather than silently choosing a default.",
+    "status": "accepted"
+  }
+}

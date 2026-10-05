@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cab81bd2cdec6348913f39fccce3e195ae90f475bf9c5670552320a79b27554f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:drift-rolls-up-to-a-score",
+  "properties": {},
+  "to_id": "snap:epoch:prune-proposed:req:drift-rolls-up-to-a-score"
+}

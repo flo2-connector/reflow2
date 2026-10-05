@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cce9a3224e890d59b6f0c050b4d56cd91172b2ba6d17411d85d3ff0eead69182",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-call-door-becomes-a-supported-harness-for-an-agent-that-cannot-use-mcp",
+  "properties": {
+    "evidence": "Ideas 1, 7, 8 and 11 (served instructions file, skill stubs, harness name, CI probe) became step 5 of the door plan agreed 2026-10-01."
+  },
+  "to_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current"
+}

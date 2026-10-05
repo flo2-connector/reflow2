@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:423d018867338b49292d9821a093b013d317008cb9d49e113b2a6d539eac6ac0",
+  "node_id": "chg:an-import-knows-its-own-age-and-a-server-behind-its-record-says-so",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "import_graph refuses a document from a newer reflow2 unless accept_newer, the import report names every materialised Type.property, and the provenance's new NewerWriter verdict reaches served_by.behind_record with a next line",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

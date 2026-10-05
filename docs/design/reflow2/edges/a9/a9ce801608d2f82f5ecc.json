@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2066c0c6071754fa506593c5d7cdb561aabace6d323b18809da1b9a1307ea0f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:serde-yaml-ng-replaces-serde-yaml-and-the-lock-is-refreshed",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:foundation"
+}

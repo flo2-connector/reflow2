@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5e368117f2678dd7d631144ba239d25d5eb5d3305dfe047b996c964397d3f218",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirement-quality-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:requirement-quality"
+}

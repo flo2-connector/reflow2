@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de1f5f6d488becdc27cef6fa13b4cfa022be40094a8ea75182fb2a776bdd968d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0510",
+  "properties": {
+    "as_checksum": "sha256:02c32ab9b4c8a4efbeeb1e82f5529baa3a9653fbe1e8ba172f6ed5f5aab7e5f2"
+  },
+  "to_id": "art:ophyd-service-fork-feedback-2026-08-31"
+}

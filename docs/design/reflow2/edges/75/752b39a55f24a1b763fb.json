@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:69d571fe92e4b9c595b42f4da5d39613973b51c53f19269e65d8109540bb9c25",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-declared-dependency-is-watched-not-imported",
+  "properties": {},
+  "to_id": "fact:the-upstream-moved-nag-withholds-the-path-it-is-already-carrying"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bc7bb0b1ea48a365141215acac72968f0d9b242111021a17c66612451a05f823",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-that-belongs-to-several-domains-at-once",
+  "properties": {
+    "evidence": "Both of Anthony's physical cases — the biodome and his brother's garage — are gated on regulatory context rather than on engineering: septic and greywater rules bind 'recycles waste' harder than any pump does, and a garage needs a permit. That node already states the Environment/EnvironmentRule layer 'is what makes design a house concrete', and it is designed and unbuilt. The artifact list here stays hypothetical until it exists.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-the-environment-compliance-layer-was-designed-and-never-built"
+}

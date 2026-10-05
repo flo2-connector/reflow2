@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7abb50c15952f18df8308af98bb77e665ab401fecb77e18aab0bcbc85ff1c652",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:design-dependencies-declared",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:depends"
+}

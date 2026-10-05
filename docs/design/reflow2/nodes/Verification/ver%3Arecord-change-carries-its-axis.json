@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5835426a114d639f9f44aba9de4c0b6036f3c35f415524d19e5b62511c782dc6",
+  "node_id": "ver:record-change-carries-its-axis",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Seven cases across two files. CORE (crates/reflow2-core/tests/record_change_can_state_its_axis.rs, 3): a subject stated on ChangeRecord reaches the stored event, on BOTH values so the check cannot pass against a hardcoded one, and an omitted subject stays absent. SERVED SURFACE (crates/reflow2-mcp/tests/record_change_carries_the_axis.rs, 4): the same three through the tool, plus a value outside the enum refused with the parameter named and NOTHING written — a partial event would be worse than the refusal. THE SPLIT IS THE POINT, NOT DUPLICATION: the original defect was a field that existed in Rust and could not be reached by the caller who needed it, so a core-only check would re-create exactly the condition being fixed. WHAT IS DELIBERATELY ASSERTED AS ABSENCE: the third case in each file pins that `resync` — the change type whose axis genuinely cannot be derived — still stores no subject when none was given. Inference is the failure this field exists to avoid, and a default value would reintroduce it silently.",
+    "findings": "7 of 7 passing. Run against the built binary as well as the library: the served cases go through ReflowService, and toolsnap confirms `subject` is on the published record_change schema (one golden changed, nine lines, nothing else moved). The refusal case was checked to reject `sistem` by naming \"change subject\" and to leave no ChangeEvent behind.",
+    "kind": "verification",
+    "last_run_at": "2026-08-22T10:30:00Z",
+    "level": "integration",
+    "method": "test",
+    "name": "record_change carries the caller's axis, at the core and at the served tool",
+    "status": "passing"
+  }
+}

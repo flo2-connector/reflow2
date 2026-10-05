@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:278f59636692adc9fad7683fe6bd2ee496e842bfd2561ad033a3595c44d6404b",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:search-first-at-the-tool",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

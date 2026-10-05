@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ef66d6ea58b8e13880ae6993beff5a5a6fa33a4d5838b2868b1e2f0cc1244183",
+  "node_id": "ver:every-writer-settles-through-one-rule",
+  "node_type": "Verification",
+  "properties": {
+    "findings": "Observed FAILING on a clean origin/main 6329079 build under the shared build lock (create_node/create_nodes recorded unsigned settles and refused `approver`; import_graph and apply_merge named nothing; mirror_surface found as an undriven writer; add_decision refused an unsigned `rejected`). Passing on the fix.",
+    "kind": "verification",
+    "last_run_at": "2026-09-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_writer_settles_through_one_rule.rs",
+    "method": "test",
+    "name": "Every served node writer holds a settle to the owner's word: create_node/create_nodes refuse it unsigned, import_graph/apply_merge/mirror_surface write and name it, replace_text refuses to settle, a signed one draws the signature, and a typed door settles exactly what the core table says",
+    "status": "passing"
+  }
+}

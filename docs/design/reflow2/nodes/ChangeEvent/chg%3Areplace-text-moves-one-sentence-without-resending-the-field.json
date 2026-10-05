@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:56d170224e1c4e8be2a6135d868ae6251d307c034450dd6a168b5d11c15d4923",
+  "node_id": "chg:replace-text-moves-one-sentence-without-resending-the-field",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-19",
+    "name": "replace_text: one sentence of a node's text moves, or a note is appended, without re-sending the field",
+    "rationale": "Anthony 2026-09-18 ('let's start addressing these and implementing fixes'), increment B of the flo2 triage: option (a) of the idea — a unique-string replace with an append mode — chosen over a Decision-level `chosen` property because it serves every long field, not one type.",
+    "summary": "New tool replace_text (capture.rs) + ReplaceTextReq (service.rs); corpus entry; brainstorm and revise-design skill lines (+ mirrors); four integration tests; CHANGELOG."
+  }
+}

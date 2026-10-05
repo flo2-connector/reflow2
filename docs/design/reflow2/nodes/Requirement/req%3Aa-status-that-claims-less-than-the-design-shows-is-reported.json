@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:adfbe3d5207b5768aca80a155cc9f164fb2b615dd21604d3d724a937e55a0978",
+  "node_id": "req:a-status-that-claims-less-than-the-design-shows-is-reported",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A status that claims LESS than the design shows is reported, the way one that claims more already is",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "who:ajs",
+    "statement": "When a Capability, Component or Release still reads `planned` — not started, and the schema's default — while the design's own structure shows it built, the loop says so and names the call that moves the status, as it already does for a status that claims MORE than the structure shows (`status_contradiction`). \"Built\" is read from direct evidence the design records: an Artifact whose own status is realized or verified that realizes it, a passing check that verifies it, built capabilities allocated to a component, a deployment of a release. An Artifact that is itself planned, or has no status, is not evidence of a build. The finding says what it means — built, but still says planned: move the status, or say why not — and an acknowledgement answers it like any other gap.\n\nTwo conditions on the answer, both from the idea this came from. It must rank as a record fallen behind the evidence, below a status claiming something false. And it must not flood a design whose statuses were simply never moved: that is measured before the rule is written, and the scope follows the measurement.",
+    "status": "accepted"
+  }
+}

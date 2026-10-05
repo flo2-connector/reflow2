@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9759fe3fa1693c5bad300443216aa1ad8008d6c0dbbcacc4e225710182915df9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-top-level-graph-holds-what-the-component-graphs-share",
+  "properties": {
+    "approved_at": "2026-09-30",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

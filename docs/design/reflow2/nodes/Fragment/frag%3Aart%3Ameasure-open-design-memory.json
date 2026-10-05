@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d1fc7ee7d37df3c0a39921380066d812a4dd67d112bb02c549230c1ca5aea0d9",
+  "node_id": "frag:art:measure-open-design-memory",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tools/measure_open_design_memory.py — what one open design costs in memory, and what writing to it costs in time"
+  }
+}

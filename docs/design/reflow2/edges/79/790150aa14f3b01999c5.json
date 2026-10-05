@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bf80cc35a39652aab9c0d143493a10fc35ffb714ccce9ad5203960cfe0a03018",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-bd1b44c4255ec341",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-setup-command-chooses-local-or-remote-once"
+}

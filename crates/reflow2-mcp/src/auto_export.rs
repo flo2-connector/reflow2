@@ -290,11 +290,13 @@ async fn write_through(
     // too and never looks like tampering. A file that does not match is left
     // alone, whatever is in it.
     let path = auto.path.clone();
-    if let Ok(raw) = std::fs::read_to_string(&path) {
-        match serde_json::from_str::<reflow2_core::GraphExport>(&raw) {
+    let present = std::path::Path::new(&path).exists();
+    if present {
+        match crate::saved_design::read_export(&path) {
             Ok(on_disk) => {
-                let recorded =
-                    graph_path.and_then(|g| reflow2_core::provenance::last_synced(g, &path));
+                let recorded = graph_path.and_then(|g| {
+                    reflow2_core::provenance::last_synced(g, &crate::saved_design::sync_key(&path))
+                });
                 if !auto.is_ours(&on_disk.effective_content_hash(), recorded.as_deref()) {
                     auto.record(Err((
                         Some(format!(
@@ -339,7 +341,7 @@ async fn write_through(
     // NEVER `accept_divergence`. An automatic write that discards somebody's
     // work is the one outcome that cannot be undone from the thing that caused
     // it, so a lossy write is a skip here and stays a deliberate act elsewhere.
-    match crate::export_write::chain_and_write(&mut export, &path, graph_path, false) {
+    match crate::export_write::chain_and_write(&mut export, &path, graph_path, graph_path, false) {
         Ok(w) => {
             tracing::debug!(path = %path, wrote = w.wrote, "write-through exported the design");
             auto.remember_written(export.content_hash.clone());

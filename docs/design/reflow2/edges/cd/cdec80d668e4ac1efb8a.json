@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:17736749cb3ee154ee0e727dd8d176387bda0054e93d52d0b4a5f028ade11054",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-settled-decisions-name-stops-asking",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:settling-a-decision-records-which-option-won-without-rewriting-the-deliberation"
+}

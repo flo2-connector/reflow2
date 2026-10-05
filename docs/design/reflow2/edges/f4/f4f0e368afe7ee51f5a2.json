@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:39cc5e616abe4da2cecd0b0165bb6a459fb0c1a65e99e530cb6e8bcd3e07bbb1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl96-kpp-capture",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:kpp"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7bb4b0702b979dc8b4b91a470764ad65ae66ce0d7c20cb6aad3b35467ec246fa",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-sessions-cannot-cross-designs",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-sessions-cannot-cross-designs"
+}

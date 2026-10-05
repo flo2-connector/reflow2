@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a8aecc155655cb1e3ce759726ba3be0d598adf79bc2ec259d305f7551f364d1b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-edge-type-declares-what-it-means",
+  "properties": {
+    "approved_at": "2026-09-29",
+    "authored_at": "2026-09-28",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

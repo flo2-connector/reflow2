@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1eaa81563ce064cbdca000746880ae98839563c1b3aece24318214015e1d933f",
+  "edge_type": "REALIZES",
+  "from_id": "art:registry",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:registry"
+}

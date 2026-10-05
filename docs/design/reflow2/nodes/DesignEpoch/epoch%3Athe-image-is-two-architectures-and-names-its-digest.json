@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7a2fb43800c3e32acc2af4158e1a590f28ed71641f2cb6b242a78e79702d67bc",
+  "node_id": "epoch:the-image-is-two-architectures-and-names-its-digest",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "GitHub issue #617 (Alex, alexsligar-pnnl), taken up on Anthony's word on 2026-10-01 (\"Let's continue on with #617\"), reflow2 PR #646. The release publishes the container image as ONE multi-platform index for linux/amd64 and linux/arm64, each architecture built and smoke-tested on its own native runner before anything is pushed, and the release notes name the index digest so a consumer can pin it immutably. The image's own documentation stops saying reflow2 has no authentication, which v0.76.0 made false. Must not include: cross-compiling RocksDB, QEMU, or any change to what the binary does.",
+    "epoch_type": "revision",
+    "name": "The image is one linux/amd64 + linux/arm64 index, and the release names its digest (#617)",
+    "sequence": 661,
+    "status": "arrived"
+  }
+}

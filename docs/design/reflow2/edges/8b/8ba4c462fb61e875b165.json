@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57a0d7a7268205964191ea0899e021ddf814dd5c3a25567d4ad27b05919b1b4f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:frontier",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:frontier"
+}

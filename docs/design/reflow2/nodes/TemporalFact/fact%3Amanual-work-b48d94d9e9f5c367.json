@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7fdf0733f1f6a988b7bd3a8410b90920de84b4ff7fde02b75d5486bf327f7067",
+  "node_id": "fact:manual-work-b48d94d9e9f5c367",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote scripts over the 26 MB committed export to answer \"what satisfies and verifies this requirement, and what are their statuses?\". The script listed one node's incoming and outgoing edges by type, with the status of each node at the other end, because get_node shows no edges and propagate output carries no statuses.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-01",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

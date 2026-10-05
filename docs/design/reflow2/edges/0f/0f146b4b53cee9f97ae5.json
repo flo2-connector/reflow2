@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f45b8b10d0ba96e4492e1a0a01f4569509b984edc197746dcd7efb09f35eb89d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:owned-by-the-third-who-axis",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:ownership-is-durable"
+}

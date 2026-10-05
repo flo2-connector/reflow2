@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac4797a03c06053cdc0b38d8f595ba30d1b603e0fe38aa54ed6caf0099248171",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:dev-storyflow-feedback-2026-09-04",
+  "properties": {
+    "evidence": "The dev_storyflow append-only feedback log, 2026-09-04 excerpt, is the other governed field report; its 2026-09-05 appendix was the triage whose skipped root-cause steps prompted this rule being written down."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

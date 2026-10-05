@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da61788bca90e6c7a0110b62d112513309539eb9b127ba4c9c6291b6c16ee770",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:d73824d0deda62cd093bf3a5f937da4fd4cc70419f49c43b577668ece25e3d70",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:host-gate"
+}

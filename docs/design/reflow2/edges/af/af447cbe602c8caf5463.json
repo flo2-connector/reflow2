@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4c79f262efd4492624fd9cd68572e3befcd4f2746ca11c55a416b0fcf2106083",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:session-memory",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}

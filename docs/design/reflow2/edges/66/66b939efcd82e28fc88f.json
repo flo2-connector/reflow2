@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf61f7d2157ab57521376ecdf6c4695c336e65ea846694a54c6f7f729a4f925b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-schema-says-which-id-properties-are-node-references-and-why-the-others-are-not",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-temporal"
+}

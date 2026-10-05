@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2fb9002a95c5dac4424c4d97b3a07ec0fceeb0e328c299ae5816b7a3472377e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:manual-work-ledger-offers-a-bound",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

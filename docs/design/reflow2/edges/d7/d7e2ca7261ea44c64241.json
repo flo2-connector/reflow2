@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e05de82bda931df1766bd3c7867027f2604f07e3f26d47d5935b664ba0942c04",
+  "edge_type": "CHANGED",
+  "from_id": "chg:merge-integrity-bl47-bl46",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:graph"
+}

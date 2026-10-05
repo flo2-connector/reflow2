@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97618dafdf98a3b80d72043e278185056f97aa9c0abbe613039009ad79adf064",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:granularity-reads-scale-with-artifacts-not-edges",
+  "properties": {
+    "basis": "measured",
+    "contribution": 220.0,
+    "measured_at": "2026-08-21"
+  },
+  "to_id": "cap:granularity-observation"
+}

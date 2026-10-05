@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a113c183287e47f138ff0f50cb742caa60c14125f24cbe6db351ff6033e611d0",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-replaced-value-is-kept-only-when-it-would-be-lost",
+  "properties": {},
+  "to_id": "cap:a-revising-write-keeps-what-it-would-have-lost"
+}

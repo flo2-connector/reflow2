@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ba103c3458e17e2b57ebedd6daa72a7b8b79844aab21cd44da1e69084f9823d8",
+  "node_id": "epoch:planned-branch-facts-live-in-the-store",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "COMBINED PLAN POSITION 8 (epoch:planned-combined-plan-reflow2-and-flo2, agreed 2026-09-27; it was 7 of 10 until two flo2.io increments were added the same night).\n\nStep 5 of the tracked-export retirement plan (2026-09-27). Delivers req:implementation-facts-travel-with-the-branch-that-produced-them (accepted 2026-09-22), which already answers the design-and-export decision's open question (c): one design, many code branches, with each branch's facts held in the store against that branch and reaching main only when its code merges. It replaces per-branch exports as the carrier of branch facts, and with them the two-open-PRs collision (fact:the-live-graph-does-not-branch-so-two-open-prs-collide). Independent of steps 3 and 4; precedes step 6.",
+    "epoch_type": "milestone",
+    "name": "[Combined 8] Retiring the tracked export, step 5 — a branch's implementation facts live in the store with that branch, not in the branch's export",
+    "sequence": 657,
+    "status": "planned"
+  }
+}

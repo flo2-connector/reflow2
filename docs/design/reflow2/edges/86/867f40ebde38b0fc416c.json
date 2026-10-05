@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:209261405176296af5568ba0bb45e05bfdbd70f2bea1830601f122c69e100ac8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:install-once-per-machine",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

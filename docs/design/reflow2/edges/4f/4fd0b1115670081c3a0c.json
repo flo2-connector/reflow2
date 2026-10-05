@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87df923e8f10d2e3ec4325205dc995dd6cbf5d714ae930759ed49ce37536f9e7",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-core",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-projects-unit-system-is-a-governed-rule-and-a-sweep-reports-unitless-and-off-system-quantities"
+}

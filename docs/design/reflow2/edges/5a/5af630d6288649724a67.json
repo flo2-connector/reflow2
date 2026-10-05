@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:58ab91958f0bdaf8642a23752bd4e2be568a52f75b40e39763e802d7d48eaf19",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-standards-at-every-interface",
+  "properties": {
+    "authored_at": "2026-08-03",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

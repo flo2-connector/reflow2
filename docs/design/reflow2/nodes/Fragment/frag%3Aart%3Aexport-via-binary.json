@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5f07a542b9634d85335b4dbb2391069a82e2c9a4d78a259dbe2d2ed6077d3111",
+  "node_id": "frag:art:export-via-binary",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered export_via_binary.py — export through a chosen binary, so the stamp says what shipped"
+  }
+}

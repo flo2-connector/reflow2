@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:671954940d9669f89a84dd97a12b8d58afd31bfaca7156b649ff317f72baac06",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the detector leg: encoding_undecided"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f451bda71ef7ffc9de3b183f28112e2834aa7b8481ea8ce45671a933e4238742",
+  "node_id": "epoch:v0430",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "epoch_type": "release_cut",
+    "name": "v0.43.0 release cut (2026-08-29) — a newcomer is met, the evaluative half is routed, and a client stops attaching to the wrong build",
+    "sequence": 390,
+    "status": "arrived"
+  }
+}

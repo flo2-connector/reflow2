@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a9a5b28fcb9659fa846f9b5554fa56f6e1846ca20ecf7b3b07c4a7d633404872",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "dec:the-cause-discipline-binds-forward-not-backward",
+  "properties": {
+    "note": "The parent ruling. It settled the retro question for the whole requirement on 2026-08-17 (forward only, no backfill); this node narrows ONE boundary under it — the cause-edge limb binds from its detector's landing on 2026-09-06, because ~90 fixes fall between the two dates and had no such instrument to comply with. It does not re-decide, contradict or supersede the parent, and a reader who has only this node should read that one first."
+  },
+  "to_id": "dec:the-patch-record-binds-forward-not-backward"
+}

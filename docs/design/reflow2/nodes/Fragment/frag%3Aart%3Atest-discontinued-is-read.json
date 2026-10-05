@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8620a36e6719ebc6ffa28ae4c1b7aede1eeb7b31cb08c6a45edb10cc6f1a27a9",
+  "node_id": "frag:art:test-discontinued-is-read",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered discontinued_is_read.rs — six cases: the defect, the authority check, the cascade, the visible count, and two counterweights"
+  }
+}

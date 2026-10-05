@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:39e2513745230f0d82cceb02126b861d07bd905445cc6446175bd067bd00b839",
+  "node_id": "art:upgrading-v0210",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/upgrading-to-v0.21.0.md",
+    "name": "Upgrading to v0.21.0 — the stamp moves, and your evidence can say what it covers",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

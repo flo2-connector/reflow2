@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a59fa1d2c0232bf3d0c1644fea3fa584c1e4dc8927b848a4b24196e7ca6a854c",
+  "node_id": "frag:art:upstream-judgement-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/an_upstream_design_is_watched_not_imported.rs"
+  }
+}

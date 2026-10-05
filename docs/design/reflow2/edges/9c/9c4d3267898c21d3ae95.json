@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:32a4156a676ae1378b60d2c63318eb4de1d5b7c5bbcfc1aa36f866123a88154f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "properties": {
+    "approved_at": "2026-10-03",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

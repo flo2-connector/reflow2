@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69fc72893f48d69e2e857862dc76c81c8ed4a708a5f287fe95d4fbed64e9991f",
+  "node_id": "art:test-every-open-store-shares-one-memory-budget",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "One test in its own binary, because the budget is process-wide:\n- set the budget;\n- write to store A and see the shared write-buffer usage rise;\n- write to store B and see the SAME usage rise again;\n- a late setter is told the budget already in force.\nObserved failing with the write-buffer manager unset on the stores.",
+    "location": "crates/reflow2-core/tests/every_open_store_shares_one_memory_budget.rs",
+    "name": "every_open_store_shares_one_memory_budget.rs — two stores' memtables are charged to one write-buffer budget, fixed once set",
+    "status": "realized"
+  }
+}

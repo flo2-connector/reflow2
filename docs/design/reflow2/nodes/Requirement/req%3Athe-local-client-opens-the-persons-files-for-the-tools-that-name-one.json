@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:664b3306dabe224bc9526d234f21e8b9ca2722b46845011927c7a805be17ae77",
+  "node_id": "req:the-local-client-opens-the-persons-files-for-the-tools-that-name-one",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Against a design on a server, reflow2's local client serves the tools that name a file or folder by opening it on the person's machine and sending its content",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, dev_reflow2 hub session, 2026-09-27: \"basically, I want the full reflow2 set of tools/skills to be available\", then \"yes, record all three\"",
+    "statement": "When reflow2's local client (`reflow2-mcp --remote <address>`) works a design held on a server, it shall serve every tool that names a file or folder: wall_check (its root), and compare_designs, merge_designs, apply_merge, certify_preservation, describe_designs, analyze_alternatives and import_graph (the export paths they read). The client opens the named file or folder on the person's machine and sends its content in the tool's content form; the server is never handed a path to open. Each of those eight tools therefore gains a content form in reflow2 itself, and wall_check runs over the person's own files.\n\nWHY: flo2's req:a-persons-own-agent-gets-reflow2s-full-tool-and-skill-set-on-api-flo2-io, accepted the same night. A server can never see the person's files, so the part that opens them has to run where they are. Together with flo2 admitting the content forms (flo2's req:a-hosted-design-is-compared-merged-and-replaced-without-a-path-on-the-host), this takes a person's own agent on api.flo2.io from 185 tools to all 193.\n\nDISTINCT FROM combined position 7 (epoch:planned-local-files-are-measured-for-a-remote-design; req:a-local-client-works-against-a-remote-reflow2-server-by-url, point 3): that is the client MEASURING the folder's registered files; this is the client OPENING a file a tool names, for eight named tools. It extends the same client and comes after it. It is scheduled at epoch:planned-the-local-client-opens-files-for-the-tools-that-name-one, which says when; this says what must be true. NOT IN IT: the nine withheld tools that open no file, which need only flo2's gateway (position 2).",
+    "status": "accepted"
+  }
+}

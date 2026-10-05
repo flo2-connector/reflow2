@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:932d25e0f2e9f228c4c03c69f1b0208ced09fd9413c9a06cb9da2d6dcb17ebfe",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0560",
+  "properties": {
+    "as_checksum": "sha256:be6196c6181454d6249970f6273f7ba13272e5c4b025a73be5267009855e9db2"
+  },
+  "to_id": "art:test-orientation-needs-nothing-to-start"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:129f7a6829677353ea35a8a0573670d218401e884aa46c80740fca2f1d9cddfd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:defaults-are-declared-and-injected-deliberately"
+}

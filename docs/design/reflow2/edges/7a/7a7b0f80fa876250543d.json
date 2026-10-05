@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e1abf66102f0bb2dc9d58b0884fa4ca96c9315d547cbde8c24b97c9a0b39cb0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:owned-by-the-third-who-axis",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

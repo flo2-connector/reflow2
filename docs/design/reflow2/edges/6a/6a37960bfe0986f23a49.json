@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:db3aed06002dad20b765c0e39005fa28eb4218c0272de7ddc12b26260c45be21",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-run-2026-09-28",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:root-cause-add-verification-guard-reads-the-call-not-the-stored-run-2026-09-28"
+}

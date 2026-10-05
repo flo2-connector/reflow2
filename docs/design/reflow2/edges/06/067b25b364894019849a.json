@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02209aa0042d7f4b525c55a5906d937ea826a171383f6a75906a3eec245d7c93",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:describe-tool",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:describe-tool"
+}

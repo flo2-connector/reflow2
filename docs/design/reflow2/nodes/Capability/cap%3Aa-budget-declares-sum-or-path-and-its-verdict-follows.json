@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:26ff886c165350fb781f588355b8518feb07b48fc173ed0d68b6517e6f3cdeef",
+  "node_id": "cap:a-budget-declares-sum-or-path-and-its-verdict-follows",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A composition property on Constraint: sum or path. As shipped in #627 it has NO default: absent means nobody said. An undeclared budget is still judged on the sum, today's behaviour, and the report names any path total the verdict did not read. The verdict reads the declared total. An all-budgets form of budget_report is added, and constrains says that drawing DEPENDS_ON is what enables the path total. Planned by the 2026-09-29 fix program.\n\nSHIPPED 2026-09-29 in reflow2 PR #627 (squash 72917f6). Its change record, chg:a-budget-says-how-it-composes, and its passing check, ver:a-budget-says-how-it-composes (a_budget_says_how_it_composes.rs in core and mcp; MCP 7/7 observed failing first, then passing), are in main's committed export, NOT in this live store. The all-budgets form of budget_report shipped in the same PR.\n\nThe status here stays `planned` on purpose. Setting it to realized with no passing check in THIS store would be an unproven claim. The live store will reflect the delivery when main's records are folded in (ver:an-overlay-folds-after-a-squash-merge). The live server also still runs 0.74.0.",
+    "name": "A Constraint declares sum or path composition; budget_report's verdict follows it; one read reports every budget",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8a717384bcdd09bbb5da2576d16e805198210b38a296795c7879486118f651a",
+  "node_id": "chg:framework-registry-reassessed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Reassess req:framework-is-chosen-not-defaulted: terminology mapping is cosmetic and label-gated analyses are a smell"
+  }
+}

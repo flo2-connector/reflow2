@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aae7d5e7a53e9b9c25410f016ec858aa6e9c69540997edc6692d4d0efd7e7beb",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-release-that-shipped-nothing-is-reported",
+  "properties": {},
+  "to_id": "dec:an-empty-manifest-on-a-shipped-release-stops-the-build"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0e4ac6361ec23e969867525cbe4339fa9774f0f6c6df840bc232e5b3b5bb4889",
+  "edge_type": "CHANGED",
+  "from_id": "chg:add-artifact-takes-the-first-checksum",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

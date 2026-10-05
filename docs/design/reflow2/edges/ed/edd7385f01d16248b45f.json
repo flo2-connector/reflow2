@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba5c38ef77728fd72f1a003b43c88b0a4636ae29d5cb8847219f4fc434945e90",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:heal",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:heal"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a5e3177863a1bdfef0d5f2f841fdaeda8828671c12702d07bacb25452a15b8be",
+  "edge_type": "CAUSES",
+  "from_id": "fact:gap-to-prompt-takes-the-gap-as-an-object-and-reads-only-its-id-so-a-consumer-recomputes-every-gap-per-click",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The object-shaped parameter is what makes the key question live.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "dec:idea-should-gap-to-prompt-serve-the-pieces-it-assembles-and-take-a-key-instead-of-an-echo"
+}

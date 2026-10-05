@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc0d292b54d7b5f586734c907399e3eac74ac3e19b0f5cb917362f465d863f1c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-spawned-daemon-inherits-nothing-it-should-not",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:shared-sessions"
+}

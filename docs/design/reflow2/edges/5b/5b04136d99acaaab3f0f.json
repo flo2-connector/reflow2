@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9cb4c51fe9a0a9f91320ea750c40e6d29f9155fe60662727637c8d9f6afdb135",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:vocabulary-needs-three-legs-and-a-users-project-gets-none-of-it",
+  "properties": {
+    "evidence": "That measurement NAMED the three legs and tested exactly three pieces of vocabulary against them. This is the same measurement grown to all 93 declared types. Its three cases still stand unaltered — nothing here retires them — but the frame it introduced now has a population behind it instead of a sample."
+  },
+  "to_id": "fact:the-three-legs-audit-run-at-last-54-of-93-and-five-types-exist-only-in-the-schema"
+}

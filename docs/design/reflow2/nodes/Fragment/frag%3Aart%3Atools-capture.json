@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:370b7cd3fde514afdc2f0c9d4ca66238798c5ec2a70a1d0e80c507c0d72fb00a",
+  "node_id": "frag:art:tools-capture",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-mcp/src/tools/capture.rs"
+  }
+}

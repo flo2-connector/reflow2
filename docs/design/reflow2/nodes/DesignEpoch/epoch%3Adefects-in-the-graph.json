@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85b982f7f7be2978f9f691bb71a03e752666d20ccc6ff8d061ed18d87ad508a4",
+  "node_id": "epoch:defects-in-the-graph",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "created_at": "2026-08-06",
+    "description": "Anthony, 2026-08-06: \"first priority - fix the backlog issue. this is a bit embarrassing that reflow2 doesn't even use its graph to capture design decisions... this is a core reflow2 item that we still do not have right after 88 PRs and 218 BL items.\" The trigger was immediate and self-inflicted: this session violated dec:export-once-per-pr (accepted 2026-08-01), was caught by the gate, and then filed a backlog row blaming the gate — the third rediscovery of that decision, exactly as dec:idea-backlog-belongs-in-the-graph predicted.",
+    "epoch_type": "revision",
+    "name": "Defects found by USING reflow2 stop living only in markdown: they become TemporalFacts the graph can query (2026-08-06)",
+    "status": "arrived"
+  }
+}

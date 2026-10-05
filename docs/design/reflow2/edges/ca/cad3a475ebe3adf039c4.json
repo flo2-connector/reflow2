@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cf2c3b6ec5bf56f194610324a1c60b3031fe26531d8a096e446e62935190b048",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-refused-write-stores-nothing",
+  "properties": {
+    "at": "2026-10-02",
+    "note": "Both halves fixed in the same change and pinned by tests that failed on main: a_batch_inside_a_batch_does_not_commit_the_outer_one, an_inner_commit_belongs_to_the_outer_batch and a_derived_scan_inside_a_batch_sees_the_batchs_own_writes."
+  },
+  "to_id": "fact:a-derived-scan-inside-a-batch-answered-from-before-the-batchs-own-writes-2026-10-02"
+}

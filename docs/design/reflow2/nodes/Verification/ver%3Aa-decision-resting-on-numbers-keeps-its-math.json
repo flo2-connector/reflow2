@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4c1daa5302337e08367aa55fc64481e42ff8d704f98eefdcdef0fb816afef9b0",
+  "node_id": "ver:a-decision-resting-on-numbers-keeps-its-math",
+  "node_type": "Verification",
+  "properties": {
+    "description": "skill_lint's DECISION_MATH_CONTRACT (tools/skill_lint.py, run in CI on every push, with its own tests in tools/test_skill_lint.py) pins six clauses in each of five served skills: capture-intent, brainstorm, detect-and-ask, revise-design and capture-session.\n- name where each input came from;\n- never your memory;\n- compute in a calculator helper when one is connected;\n- its kept record;\n- linked with `documents`;\n- otherwise show the arithmetic.\nMatched case-insensitively with whitespace collapsed, so a line wrap or a sentence start cannot fail it. The same lint holds the .claude and .grok mirrors byte-identical to the source. What it cannot check is whether an agent actually keeps the math. That is judgement, and it stays evidenced by real use, as the file header says for every contract.",
+    "findings": "OBSERVED FAILING FIRST: with the contract added and the five skills unchanged (commit ed95442b5), skill_lint exited 1 with exactly 28 checks FAILED, the new decision-math clauses, and nothing else (capture-intent and detect-and-ask already named `documents`). After the skill text and both mirrors were written (b6902afc8) it exited 0 (\"All skill-lint checks passed\"), and test_skill_lint.py ran 18 tests OK. The served text was also read back through get_skill on a binary built from this branch.",
+    "kind": "verification",
+    "last_run_at": "2026-10-05",
+    "level": "unit",
+    "location": "tools/skill_lint.py",
+    "method": "test",
+    "name": "The skills that record or settle a decision say it keeps its math",
+    "status": "passing"
+  }
+}

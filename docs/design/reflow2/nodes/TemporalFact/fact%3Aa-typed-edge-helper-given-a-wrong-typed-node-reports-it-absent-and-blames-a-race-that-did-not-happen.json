@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:c0c945ed3a0d2c2fde6574d922da60e6d1e3439b6c9c2a1badb4d5973cc5dc1b",
+  "node_id": "fact:a-typed-edge-helper-given-a-wrong-typed-node-reports-it-absent-and-blames-a-race-that-did-not-happen",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "defect",
+    "name": "A typed edge helper handed a node of the wrong type reports the node as MISSING, then spends a paragraph on a parallel-batch race that did not happen — while create_edge draws the same edge without complaint",
+    "source": "flo2 reflow2_feedback.md, session of 2026-09-19",
+    "statement": "FLO2 F11, twice in one session (`depends_on` on two Decisions, `operates_in` on a Component), and REPRODUCED on the current binary 0.65.0 on 2026-09-19: `depends_on {from_id: dec:a, to_id: dec:b}` against a scratch design holding both answers `Node not found: Component dec:a`, followed by the parallel-batch paragraph. `create_edge {edge_type: DEPENDS_ON, from_id: dec:a, to_id: dec:b}` on the SAME pair, the same second, succeeds — DEPENDS_ON between two Decisions is a legal edge. So the helper reports as ABSENT a node that exists, names a type the caller never mentioned, and offers a cause (an unordered batch) that was not what happened. The reporter nearly re-created a node that was already there. ⭐ AND THE CONTRAST IS THE USEFUL PART, in their words: falling back to the generic tool produced an excellent refusal — 'Invalid edge: OPERATES_IN cannot connect Component to Environment' plus every edge type that WOULD accept the pair — which taught them the model and stopped them forcing a wrong edge. THE GENERIC TOOL GIVES A BETTER ERROR THAN THE TYPED HELPER IT IS A FALLBACK FOR, which is backwards from what a caller expects, and this is the second entry in that file to say so.",
+    "steps": [
+      "depends_on",
+      "operates_in",
+      "create_edge"
+    ],
+    "subject_id": "ver:edges-need-both-ends",
+    "valid_from": "2026-09-19"
+  }
+}

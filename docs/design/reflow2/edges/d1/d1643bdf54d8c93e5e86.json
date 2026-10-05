@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:668ad39d2c25520da5d80b825844f6c3daf3c2c350bdc21e8033e38bea3c2512",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:siblings-are-not-merged-away"
+}

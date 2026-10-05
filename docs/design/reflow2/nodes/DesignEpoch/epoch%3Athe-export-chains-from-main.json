@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9c0557393ce327838dd457f489e045cad22f344412b9e51b60d545f82dc086b2",
+  "node_id": "epoch:the-export-chains-from-main",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "ARRIVED 2026-09-12. The first half of increment 431 (epoch:planned-the-server-guarantees-the-export): the lineage anchor moved off the working-tree file and onto the committed record.\n\nWHAT CHANGED: inside a git repository, a written export now chains from that same path as it stands at the MERGE-BASE with the default branch. Any number of exports on a branch each chain from the same committed ancestor, so a squash-merge lands exactly one hop and dec:export-once-per-pr holds by construction rather than by the author remembering to export last. Outside git — no repository, no commits, the path not yet committed, no git on PATH — the previous on-disk chaining stands unchanged and the receipt says which anchor was used and why.\n\nWHY MERGE-BASE AND NOT THE TIP: on a long-lived branch origin/main moves underneath you, and anchoring at the tip would make the export claim descent from work the branch never contained. The merge-base is the commit both actually share.\n\nTHE RECEIPT GREW A FIELD, `chained_from`, because prev_content_hash is a hash and says nothing about where it came from — an export anchored at the committed record and one anchored at whatever was last written to disk are indistinguishable in the old receipt and produce different lineages.\n\nSPLIT FROM THE INCREMENT DELIBERATELY: the second half — the server keeping the working-tree export current, debounced, without being asked — is still planned and still carries its own open questions. The lineage half is a prerequisite for it (continuous writing collides with export-once-per-pr only while the chain is built from disk), it is useful on its own, and it is reviewable on its own.\n\nREFLOW2'S FIRST USE OF GIT. Until now nothing in either crate shelled out to git or depended on a git library. The new module is in the MCP crate rather than the core, keeping the core the pure graph library and the file-write seam where file concerns already live.",
+    "epoch_type": "revision",
+    "name": "The export chains from main, not from the file on disk",
+    "sequence": 435,
+    "status": "arrived"
+  }
+}

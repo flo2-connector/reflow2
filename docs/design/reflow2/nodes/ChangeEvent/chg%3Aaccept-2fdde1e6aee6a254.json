@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85623a49af4003825ecab0600d94597aeb0fdf8e364a72f00046de7414f25db9",
+  "node_id": "chg:accept-2fdde1e6aee6a254",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "bddc3e8c84906a83ad739871f9400cd2dab9d75e",
+    "detected_at": "2026-10-02",
+    "name": "Action majors moved with no change to what the workflow does; proved by dry run 36965158231. See chg:the-workflows-github-actions-move-to-current-majors-2026-10-02.",
+    "subject": "system"
+  }
+}

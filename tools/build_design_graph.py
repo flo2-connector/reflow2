@@ -35,9 +35,11 @@ import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402
+import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-EXPORT = REPO / "docs/design/reflow2.json"
+# The item layout when it is there, else the single file it replaced.
+EXPORT = pathlib.Path(design_io.default_export(str(REPO)))
 
 # ---- P0 · Intent ----------------------------------------------------------
 REQUIREMENTS = {
@@ -1139,16 +1141,16 @@ def main() -> int:
     s = Server(str(REPO / "target/debug/reflow2-mcp"), str(pathlib.Path(tmp) / "graph"))
     try:
         if args.analyse_only:
-            s.call("import_graph", {"document": json.loads(EXPORT.read_text())})
+            s.call("import_graph", {"path": str(EXPORT)})
         else:
             # BL-71: the committed export is the ACCUMULATED design record —
             # the curated pass layers onto it (import first, then upsert), so
             # the session-written layer (decisions, freshness claims, change
             # events) survives a rebuild. Replacing the file with the curated
             # model alone silently discarded that layer once (2026-07-21).
-            prior = json.loads(EXPORT.read_text()) if EXPORT.exists() else None
+            prior = design_io.load_design(str(EXPORT)) if EXPORT.exists() else None
             if prior is not None:
-                s.call("import_graph", {"document": prior})
+                s.call("import_graph", {"path": str(EXPORT)})
             build(s, fresh=prior is None)
             doc = s.call("export_graph")
             if prior is not None and len(doc["nodes"]) < len(prior["nodes"]):

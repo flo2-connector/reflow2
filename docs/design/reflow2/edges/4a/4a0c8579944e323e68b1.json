@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e0601f6d5aa16495ff90eff7470528fa955120294f3aab59bb4e506e46f97c16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:62d3ed4536d8da95b4f0213f777e7b87f3597f3153753e864d10f3cdfdbc4c7b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:a-constructor-names-every-edge-it-drew-test"
+}

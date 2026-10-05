@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fcc7e9d760208a78d508d4ba28aabf3ba191c91fcc1814a31de72b9eb30925db",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-boundary-quantity-carries-its-unit-and-the-seam-compares-them"
+}

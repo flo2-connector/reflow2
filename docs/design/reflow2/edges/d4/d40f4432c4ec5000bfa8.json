@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c943470cd62854dcdf91251ca205f7e3006de3ba0fc995acf78402de89b5bf2f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0300",
+  "properties": {
+    "as_checksum": "sha256:421fce94c82f958100d1ad9140ca53b5eff1e0ba30593c25dc79d37095d7a0e1"
+  },
+  "to_id": "art:check-health-skill"
+}

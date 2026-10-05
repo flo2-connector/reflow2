@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c4a582d76ab6f6db1ab66b51e29ac02c316dd3f268d471d46c61b976276faa1",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-remainder",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:field-confirmations-from-two-external-sessions"
+}

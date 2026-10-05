@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:995fae8de30f95879db94e2f34d5d210ade7a66c1e8de0b9abba424b99019ef9",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-write-in-another-agents-claim-lands-and-names-who-holds-it",
+  "properties": {
+    "evidence": "A warning that names who holds a claim is only worth anything once each agent is its own claimant. Without that, 137 of 150 simulated warnings fell on a session's own subagents, and on flo2.io every caller shares one seat.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-agent-working-a-design-is-its-own-claimant-subagents-included"
+}

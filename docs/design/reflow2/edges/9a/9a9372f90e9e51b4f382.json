@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81bee8d2d7f015e1cabb5c02ef003973cb9e8d04534870136b921a20fff4a245",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:surface",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:detect"
+}

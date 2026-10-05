@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c69be5344a91f28d249e0920a6bb026de2c88c2a7a1c9e1e1f6e6e9b86eb531d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:changelog-view-required",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:compare"
+}

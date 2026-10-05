@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:715f296bb7ae0f121725c3d0899524380db772467061be7cf3ab5ab15fe2ab7c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:artifact-declares-its-own-shape",
+  "properties": {},
+  "to_id": "req:an-artifact-declares-what-only-its-author-knows"
+}

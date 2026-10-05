@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3e0e25648176827ffddf760434004fb553cc11c7f592eadb0d003c7874095de6",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-choice-is-not-a-musing",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:heal"
+}

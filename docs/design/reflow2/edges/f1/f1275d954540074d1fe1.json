@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aca369d6f66fc296eb823a76ab22d779d0137100adc7d950c88358eedc9c2d01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-name-is-not-a-report",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:constructors-preserve"
+}

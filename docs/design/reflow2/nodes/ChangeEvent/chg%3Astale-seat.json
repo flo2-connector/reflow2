@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9bc391962d49ff46510b55457813fe5a4b58f9876f9ed014c134fcfa9922c28",
+  "node_id": "chg:stale-seat",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "A seat is refused when its export would delete the other seat's work"
+  }
+}

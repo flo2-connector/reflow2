@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c70f604269d8cfccfb21a1c2313a9a75b5aea8fb94cbace9386fe070fd5bd07f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-58ccb64673403d1e",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:genesis-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a068f225208c457fefba6d4d17f53075b8134cc4313e652f4c82c071d5c6e710",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:telemetry-carries-usage-never-design-content",
+  "properties": {
+    "evidence": "That requirement already draws the line for what a usage payload may carry (verbs, outcome classes, durations — never content); a /feedback tally is that payload delivered by hand, so the line it drew applies unchanged."
+  },
+  "to_id": "dec:idea-slash-feedback-emits-a-computed-tally-not-an-agents-recollection"
+}

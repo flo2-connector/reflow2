@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7194b45dc01748e4cf4e9e7ed778d413a2592cc671c6375fb7ec890a25fd3d22",
+  "node_id": "question:9d265ef455a2e245",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Grandfather it: the check should ignore everything settled up to now and only guard what gets settled from here. Do not backfill the 121, and do not put the rule back to advice.",
+    "context_setter": "Nothing detects a violation of “Design intent moves only on the owner's word — an agent may propose anything and settle nothing”",
+    "gap_id": "gap:9d265ef455a2e245",
+    "question": "You said a session recording something as settled without your say-so should stop the build — but nothing checks that today, and a check that looked for your name on everything already settled would flag 121 of the 214 settled items, none of which are actually violations: you did approve them, your name just never got written down. Should the check ignore everything settled up to now and only guard what gets settled from here, should we go back and put your name on the 121, or should the rule go back to being advice?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

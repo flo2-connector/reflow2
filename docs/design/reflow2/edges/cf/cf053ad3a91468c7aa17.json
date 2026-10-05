@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bdd02033a034687b57de57cb10ddf6ff30e2cd7f0ea926f6ffeb6770912f912f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:design-and-implementation-stay-coherent-both-ways",
+  "properties": {
+    "approved_at": "2026-09-25",
+    "authored_at": "2026-09-25",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

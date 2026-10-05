@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:963b3e0c61bfaa667b8085fd036ae8ef6ca7345ce5bed18429f50a8d2f1ba240",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-deliberately-open-edge-declares-what-it-is-for",
+  "properties": {
+    "at": "2026-09-02",
+    "note": "'CAN NEVER RANK IT' is now false: an edge may declare which pairs it is for, and GOVERNED_BY outranks the wildcard pile for `Constraint -> Decision`. Closed for that claim alone. What stays true and is preserved: the diagnosis that the ranking measured DECLARED NARROWNESS and presented it as MODELLED FIT, and the observation that the enumerate-an-endpoint repair which closed VERIFIES and CONSTRAINS was unavailable here — that reasoning is what produced the advisory declaration rather than a fourth enumeration."
+  },
+  "to_id": "fact:governed-by-is-the-governance-edge-and-describe-schema-can-never-rank-it"
+}

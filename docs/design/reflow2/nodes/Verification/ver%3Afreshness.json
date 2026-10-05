@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0652015b4be8e36b4f0e2bc7827ad98ad1b60cafe1699dba315a2ce41c7f4ef3",
+  "node_id": "ver:freshness",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "confirm.rs",
+    "status": "passing"
+  }
+}

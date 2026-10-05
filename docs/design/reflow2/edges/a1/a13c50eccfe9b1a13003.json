@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:927bd53017535f0bbfb82531f1a7da2f443036a9bb9383274023e1fbb4742f44",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:a-session-with-no-seed-can-find-one",
+  "properties": {
+    "evidence": "design_regions already carves a design into the parts it names, with what is open in each and a seed to scope to, which is the region this idea asks to focus work on. It stops short of counting undecided items per region."
+  },
+  "to_id": "dec:idea-the-unit-of-focus-is-a-region-of-the-design-not-a-thread"
+}

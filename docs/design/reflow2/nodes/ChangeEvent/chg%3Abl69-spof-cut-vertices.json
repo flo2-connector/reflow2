@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5b106f7f8ca8b8176fcc165f1148b837c8ef2d4014435284c4dce515fb41ffc",
+  "node_id": "chg:bl69-spof-cut-vertices",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-69: SPOF measured on the as-built operational network"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:53e08742523c09dacae5eb0a66aa16e39a85f87035340a56be533aa3b866567b",
+  "node_id": "question:65b894fcc73c3961",
+  "node_type": "Question",
+  "properties": {
+    "answer": "\"Concurrent planning waits on the multi-writer decision.\" — Anthony, 2026-07-25. The requirement stays ACCEPTED: it is confirmed intent, not a parked idea, and marking it deferred would lose that distinction. It is blocked, not shelved — the difference matters because a deferred requirement invites nobody to act, whereas a blocked one names the single thing that would unblock it. The block is already on the record as req:concurrent-planning GOVERNED_BY dec:multi-writer-architecture, which is a proposed decision point holding the repo-file / hosted-service / hybrid choice. Nothing should be built toward this requirement until that decision collapses, because every shape of the answer implies different machinery.",
+    "asked_at": "2026-07-24",
+    "context_setter": "Nothing satisfies requirement “Several people can plan against one design without colliding”",
+    "gap_id": "gap:65b894fcc73c3961",
+    "question": "You've said a team should be able to work on one design at the same time without stepping on each other. Right now nothing in reflow2 actually does that, and it can't be built until you settle whether the design stays a file in the repo or becomes something people connect to. Do you want to leave this waiting on that decision, or drop it for now?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

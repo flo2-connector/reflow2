@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b61331c5cf5fdb6aa3b1259c8b36f936809a275b0ac0abd7e4ddf316dcbbb276",
+  "edge_type": "CHANGED",
+  "from_id": "chg:scheduled-for",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:readme"
+}

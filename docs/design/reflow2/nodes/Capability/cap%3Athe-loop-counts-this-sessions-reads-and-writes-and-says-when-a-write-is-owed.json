@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2a3cbeecfba16c1a55bf8a3f2799d6e0533e51cb619ded164bc231010f245443",
+  "node_id": "cap:the-loop-counts-this-sessions-reads-and-writes-and-says-when-a-write-is-owed",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built 2026-09-18. ReflowService gains session_reads / session_writes (fresh per session, like the seat), counted in record_usage for every call by the tool's own read_only_hint (is_write_tool, computed once from the served surface). loop_status adds a `session` block (seat, reads, writes, read_only, threshold 25) and inserts a `next` line when !read_only && writes == 0 && reads >= 25. tools/loop_nudge.py tallies `reads` (cumulative, never cleared) and at Stop blocks once with the same message when wrote == 0 and reads >= REFLOW2_READS_WITHOUT_WRITES_THRESHOLD (25). capture-intent gains the 'a finding is yours to write; intent is theirs to give' paragraph; rule:a-finding-is-written-before-the-answer-and-needs-no-permission is delivered on capture-intent, where-am-i, brainstorm, root-cause, triage-feedback.",
+    "name": "loop_status counts this session's reads and writes and says in next when a session that could write has read past a threshold and written nothing; the stop hook nudges once on the same inverse",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

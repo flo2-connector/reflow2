@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b7e03c523b19007425c45603f91f6fe9386c0171161dba670e1386457b1b4497",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:readiness-forecast-is-a-temporal-fact",
+  "properties": {
+    "dependency_type": "data_flow",
+    "note": "A forecast is a projection OF the readiness level this decision defines, against the threshold it says must be stated. Its own rationale records the coupling: neither is useful alone.",
+    "optional": false,
+    "weight": 0.9,
+    "weight_basis": "evidence"
+  },
+  "to_id": "dec:readiness-is-an-observation-the-threshold-is-the-judgement"
+}

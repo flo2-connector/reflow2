@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:73268c990ed3b26665b7cf61574bb8bdb2e1f28ba670e1a547d3a97320a13bf0",
+  "node_id": "chg:serde-yaml-ng-replaces-serde-yaml-and-the-lock-is-refreshed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-09-15",
+    "name": "serde_yaml → serde_yaml_ng 0.10; Cargo.lock refreshed within declared ranges (82 crates; rmcp 3.3.0 and rocksdb unchanged)",
+    "rationale": "dec:serde-yaml-is-replaced-by-serde-yaml-ng-and-the-lock-is-refreshed, Anthony's word 2026-09-14. A build never upgrades anything (Cargo.lock pins), so the deprecated crate would have stayed forever; a rename-not-rewrite fork keeps the change to three lines. Verified on the new lock: core suite in-memory, server suite, clippy both crates, format, wire instruments.",
+    "subject": "system",
+    "summary": "The YAML reader that parses reflow2's schema moved from the archived serde_yaml 0.9.34+deprecated to its maintained same-API fork serde_yaml_ng 0.10 (workspace Cargo.toml, reflow2-core Cargo.toml, two use sites in foundation/core/schema.rs and foundation/mod.rs), and cargo update moved 82 crates to the newest versions their declared ranges already allowed. No behaviour change; rocksdb/librocksdb-sys deliberately untouched."
+  }
+}

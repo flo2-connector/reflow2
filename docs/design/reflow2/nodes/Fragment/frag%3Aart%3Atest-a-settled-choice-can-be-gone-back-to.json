@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:826189cf32457f9a98fb76899ee872efde0346958fa72fd5c26eae393cbf6abe",
+  "node_id": "frag:art:test-a-settled-choice-can-be-gone-back-to",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_settled_choice_can_be_gone_back_to.rs"
+  }
+}

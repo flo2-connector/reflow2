@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:170e735a5f4fb51f7a4c00ab152618009549e14e2a10dab91ad49300d1ea33a6",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:a-sweep-builds-its-network-a-fixed-number-of-times",
+  "properties": {
+    "basis": "measured",
+    "contribution": 3.0,
+    "measured_at": "2026-08-21"
+  },
+  "to_id": "cap:heal"
+}

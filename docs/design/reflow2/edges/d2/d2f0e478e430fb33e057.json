@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b44a507986375db342f2f537e0b12f69614426c6db6b8a1d06fc3e0458d2f29e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reinjection-trigger-answered",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:intent-is-reinjected"
+}

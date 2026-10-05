@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:b74283617c82a3681a776584f9f4e3bc036749f18a3c91a0d93640ad5177a78a",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:init-asks-which-harness",
+  "properties": {},
+  "to_id": "req:init-installs-only-the-harness-you-name"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b8bf523d4f1ccb15e2a783c8d6c4ac8720ee25c25b365a841032b7cd1a479e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:seat-liveness-is-the-session-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:claims"
+}

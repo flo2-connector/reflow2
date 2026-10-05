@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67a6d4e215aeaaf54f6b94a1500c61e169a7c1486710128026e0d7fd26d4818b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-f64b7bd8793a1b7c",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

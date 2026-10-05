@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc37d895c11ddc77f9ebdc8f473d399cdd1c1d704c61f6849e955fb3e1ebc9ef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:next-names-the-safe-tool-20260808",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:report"
+}

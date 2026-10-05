@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2b432a92597be138d17b68aca03804a09ef5366b28d28ef52b9c607c99aba17c",
+  "node_id": "chg:the-idea-cycle-was-a-mistyped-distinction",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "The `do-ideas-form-a-graph` → `exploratory-staging` dependency is retracted — it asserted DISTINCTNESS, not dependency, and made a real dependency unreadable",
+    "subject": "record"
+  }
+}

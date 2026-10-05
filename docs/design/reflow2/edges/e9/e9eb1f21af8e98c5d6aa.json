@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:00f8084185dd67386c50faa043fb9fa9a0e3098984b132529ea50f10fc9b2be6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it",
+  "properties": {
+    "approved_at": "2026-10-02",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

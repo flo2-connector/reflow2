@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04d7cc038261b90ddfaaeab44699ca8c24150645e44b3519c371ffacd50f57e6",
+  "edge_type": "TRIGGERS",
+  "from_id": "fact:the-first-phrasings-passed-the-corpus-and-failed-the-held-out-paraphrases-19-of-42-were-tuned-not-written",
+  "properties": {
+    "evidence": "The held-out check firing on the first pass is what forced the rewrite inside this change: 19 sentences that echoed the corpus were rewritten from purpose in more than one register, and the held-out set went 16 to 36 without touching the corpus. Without that finding this change would have shipped tuned sentences."
+  },
+  "to_id": "chg:every-tool-carries-the-job-in-the-users-words-and-the-corpus-is-the-acceptance-test"
+}

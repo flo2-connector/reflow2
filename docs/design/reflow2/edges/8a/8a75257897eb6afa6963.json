@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c845f91c972cfa3f8199e28cdbcd20ef029112a7eaff3ca348a82a68ab0af5f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-refusal-maps-a-command-alias-to-what-is-served",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

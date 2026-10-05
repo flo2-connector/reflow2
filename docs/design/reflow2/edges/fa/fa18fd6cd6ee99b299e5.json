@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef5c904856fdf049f3bd21f5250dc888e437d91df2ec31a193160408c54cc923",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-measures-registered-files-and-never-reads-them-for-meaning",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:skill-lint"
+}

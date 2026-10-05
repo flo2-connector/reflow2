@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c7127baa8da0db1f4dff20f18b2357eb17d9f9b3127235c3effa58684be11146",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:every-finding-kind-states-what-it-does-with-a-parked-idea",
+  "properties": {
+    "note": "This check IS option (d) of that decision — the gate that no finding kind ships without stating what it does with a deliberate state."
+  },
+  "to_id": "dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it"
+}

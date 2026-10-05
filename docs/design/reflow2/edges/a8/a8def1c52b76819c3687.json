@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1e07372802b8fe51276ab89f1e8324949daa4f0d7e6b9a6d50630f244f41a066",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revising-write-says-what-it-removed",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:tools-capture"
+}

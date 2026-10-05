@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cd2edfdf93f96e66d6e178c655f1ac405e7c5caecd3e1324be0e859779aa9dc0",
+  "node_id": "question:b0ef8ce1e452f881",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-07-28: park with the others. The rule stands — it is not dropped — but enforcement (including the schema sweep of the ten defaults that assert an unchosen value) is deferred to a later increment.",
+    "context_setter": "Nothing satisfies requirement “A default must not assert what nobody chose”",
+    "gap_id": "gap:b0ef8ce1e452f881",
+    "question": "You wrote down a rule that the system should never quietly fill in an answer on someone's behalf and then treat it as if they'd chosen it — but nothing has been built to enforce that rule yet. Do you want to build it now, park it for later, or drop the rule?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

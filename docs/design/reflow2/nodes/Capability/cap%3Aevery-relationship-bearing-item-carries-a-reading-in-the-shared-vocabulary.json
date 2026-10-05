@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9fb75e138da93265603cdf115cc5561ca0b047a5fb69f2deab75469061fd6d91",
+  "node_id": "cap:every-relationship-bearing-item-carries-a-reading-in-the-shared-vocabulary",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Extends the edge-type readings to all 213 relationship-bearing items, backfilled from the three-graph classification; one vocabulary of primitives and operator kinds shared with StoryFlow; a schema check that fails on a missing reading, an out-of-vocabulary primitive or operator, or a name whose reading collides with StoryFlow's.",
+    "name": "Every relationship-bearing item — edge, pointer, type, status, time and ordering field, relation-node — carries a declared reading in the vocabulary shared with StoryFlow, and a check fails on a missing reading or a cross-system collision",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

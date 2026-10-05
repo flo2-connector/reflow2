@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74703b2c869f7a24a67b5ae14eeed9dee64668d185c8896599f068130d8f1907",
+  "node_id": "decision:ack:fab1c2d1b2a80925",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:fab1c2d1b2a80925.",
+    "name": "Reviewed: gap:fab1c2d1b2a80925",
+    "rationale": "Checked 2026-09-07: still open and growing. The degree-zero rule still silences on any edge with no type filter, and the cluster walk still drops authorship edges. Decisions whose only edge is their author are now 78, against 32 when the record was written, 16 of them accepted.",
+    "status": "accepted"
+  }
+}

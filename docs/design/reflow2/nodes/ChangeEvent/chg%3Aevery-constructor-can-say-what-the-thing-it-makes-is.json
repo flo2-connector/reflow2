@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9c0714f729faaf5d8cd1e6fb4797d58c52d2f140d4fe00a578df9b1b32b65112",
+  "node_id": "chg:every-constructor-can-say-what-the-thing-it-makes-is",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-07",
+    "name": "Every constructor can say what the thing it makes IS — six of them could not (PR #449, recorded late)",
+    "rationale": "RECORDED 2026-09-15, EIGHT DAYS LATE, because the ruling pass on overtaken defects found the fix in the code and the test and NO ChangeEvent for it — so the finding it answered (fact:six-constructors-cannot-write-any-prose-because-the-class-was-fixed-one-report-at-a-time-and-never-swept) went on reading as open and the detector listed three unrelated repairs as candidates for having fixed it. That is the same shape the finding itself describes: the class survives every instance because nobody joins the fix to the record. The fix landed on the day the finding was written, in the same session's PR; only the design side was skipped. Cause: the finding's own root-cause walk — a vocabulary hole fixed where it is reported and never swept across siblings — and the repair is the sweep-shaped test, which is why this is a defect_fix rather than a feature.",
+    "subject": "system",
+    "summary": "add_artifact, add_environment, add_interface, add_project, add_release and add_resource each gained a `description` parameter, written through one shared helper (capture::set_description) so the next type is covered where the last one was fixed. Pinned by a SWEEP rather than a list: crates/reflow2-mcp/tests/every_constructor_can_say_what_the_thing_is.rs walks every schema type declaring `description` and asserts the surface can write it, with a one-entry exemption list that has to carry a reason. Merged as dcee6d0 (#449) on 2026-09-07."
+  }
+}

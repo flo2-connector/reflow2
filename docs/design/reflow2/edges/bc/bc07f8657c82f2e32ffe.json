@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9b8a1edfa2d81508300fe86666497038906ba2c5e0c4f5b3f9866fad11376858",
+  "edge_type": "REALIZES",
+  "from_id": "art:temporal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:arrival-delta"
+}

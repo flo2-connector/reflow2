@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7133783738fdfa5bfb7ba1e5bdfeed217905859174cf68ece2af562dc8bb6965",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-session-with-no-seed-can-still-orient",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-08-16"
+  },
+  "to_id": "epoch:instruments-stop-overstating"
+}

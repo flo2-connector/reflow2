@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8044271275b2e13aef99884f822bba45b27a2426f7636342b8d61f5b304baefd",
+  "node_id": "frag:art:sweep-coverage-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered sweep_coverage.rs"
+  }
+}

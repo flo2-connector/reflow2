@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2e2cdd2ffe6ac80531a32a7fa923e2633979da93aed8726bad4b4a66448d995b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-check-that-could-not-run-lands-as-blocked-and-never-reads-as-failed-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:detect"
+}

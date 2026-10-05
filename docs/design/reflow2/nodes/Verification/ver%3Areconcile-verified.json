@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1a4b5a9a567983de8f277e3b4feab240e3231fbf5928406b758aa62919407bfe",
+  "node_id": "ver:reconcile-verified",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "verify_drift.rs",
+    "status": "passing"
+  }
+}

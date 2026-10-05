@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6f363ce2b2ca195f4d7f833df0ca7b483d5221e3b82c1e16b7cff5e0e8636ce9",
+  "node_id": "chg:a-node-attached-to-nothing-is-reported-whatever-its-type",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The degree-zero rule stops being a Decision rule — detect_defects can no longer answer clean over a node with no edges, and a property naming a live node counts as attachment"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:abf836d77ecad8e413087f5972eb397c8f522c66d21a69e64a618737dbd3acee",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:publishable-promise",
+  "properties": {},
+  "to_id": "req:publishable-promise"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:95d069da1674e787866268fdedac1836408da18345ec7259f1da19095d60c9b4",
+  "edge_type": "REALIZES",
+  "from_id": "art:dependency-holds",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:dependency-currency-is-checked-monthly-and-before-every-cut"
+}

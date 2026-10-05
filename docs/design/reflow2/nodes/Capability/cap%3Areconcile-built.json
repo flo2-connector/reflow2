@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d6000d48f6d3ab456a4df6d1e72e9a8b311e460d23d1f0164c3efc3a7482992e",
+  "node_id": "cap:reconcile-built",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Compare registered artifacts against observed files and report divergence.",
+    "name": "Reconcile against what was built",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6d3c71bfced8c3e3c64a3ff93329f3dc96e6081336f54e00d1727b4d1ddd767b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ifc:req-dyno-storage-api",
+  "properties": {
+    "authored_at": "2026-08-09",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

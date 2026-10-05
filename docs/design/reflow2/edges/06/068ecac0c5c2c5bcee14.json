@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:396226cf4d4b6d07bbbe19abf397f57426c60c5a8f550b98a8d4f1844b78cd7c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:merge-rerere",
+  "properties": {
+    "approved_at": "2026-07-22",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

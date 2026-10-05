@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b1e77a2699fc6ccbff3ea8ef3f300d114850c9050acfe3e95e65b762554ee8a7",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-write-records-the-agent-beside-the-principal-it-acts-for",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-09-29"
+  },
+  "to_id": "epoch:fix-what-the-two-agent-exercise-found-2026-09-29"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bcc1b06671d80338d4a42db2cfc083cba6356ba664d7206ad5103b958d36d312",
+  "node_id": "cmp:seam",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "seam",
+    "provenance": "authored",
+    "purpose": "SEAM — say when two linked designs disagree at a boundary.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

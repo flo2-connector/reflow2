@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cee8b8063eeb3983904d77865d896a6f2790c31d8ea50f4c7bac65e5cfd1f480",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-field-report-is-triaged-by-a-served-step-and-a-finding-is-written-before-the-answer",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

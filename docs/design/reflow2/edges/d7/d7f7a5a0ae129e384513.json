@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:67475970f9b12bab18372a01bd9034ff8cd7fe7d5a3961f47fb4c93e48766147",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both",
+  "properties": {
+    "evidence": "Whether a self-declared agent identity may be recorded, and for what (attribution, never authority), has to be answered before the agent half of ACTS_FOR can be filled from a hosted door.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what"
+}

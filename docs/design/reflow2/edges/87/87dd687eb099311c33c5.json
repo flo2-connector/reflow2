@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2e4356ba11e5e26df965f63322224d9f36fed5b4c8dd334a0db774f22318e8d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-334f9b26de0c09a5",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9ff4ca18076aa3a6e63537dea9acfd24fc19be04833642f5baf080b10f654e7b",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:wall-check-served"
+}

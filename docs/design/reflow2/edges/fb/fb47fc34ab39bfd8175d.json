@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8ddc72d69e9a500fe15c2190bc7b080b83aca0e7ba286ba1e9f994a41dc3715c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:container-packaging",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:packaging"
+}

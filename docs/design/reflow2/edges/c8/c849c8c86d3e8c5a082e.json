@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dddc4d64c862b9c70e838d9f091c17a78c37b58a7f28967b87e77662eceb48db",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0360",
+  "properties": {
+    "as_checksum": "sha256:377d332d152038615d31984d530989b283d8ef1a9f7651f706f7f9f12a627f68"
+  },
+  "to_id": "art:orphan-attachment-test"
+}

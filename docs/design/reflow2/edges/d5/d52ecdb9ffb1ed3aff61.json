@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a163483a3fcf4031e14badfe40f3ed7cd497b013490caeea97d61a63de22396a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0602",
+  "properties": {
+    "as_checksum": "sha256:75b5715deb231ec83ac74b3c08f6ba0dc81334d73c6ae484ca7cb8b3689ac854"
+  },
+  "to_id": "art:launch-serves-release-gate"
+}

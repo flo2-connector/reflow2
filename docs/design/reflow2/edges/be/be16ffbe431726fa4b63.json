@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a509ae9674df57ecc83c41c34e0c958d3f919f5585d9921ad583339fb122b9d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-coupling-edge-gets-its-name-back",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:upstream-judgement-test"
+}

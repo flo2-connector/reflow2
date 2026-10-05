@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:91568528eb7e90c2b31029ec0ac0b8aa88e1f6ab34db97d96a12b7dd50abfd78",
+  "node_id": "epoch:planned-v0720-the-remote-client-is-released",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Step 1 of the tracked-export retirement plan Anthony confirmed on 2026-09-27 (dec:idea-one-blueprint-the-store-is-the-design-and-an-export-is-a-perishable-photocopy). Already built on main, unreleased: `reflow2-mcp --remote` (#592), `reflow2-mcp setup` with the key in the OS keychain (#593), and the tool-list cache hints Claude Code 2.1.283 requires (#595; without it the machine-wide entry fails in any folder with no store, e.g. cure's). Everything remote on a person's machine needs this binary. NOT IN IT: anything new; this is a cut of what is merged.\n\nARRIVED 2026-09-27 as the v0.72.0 cut (rel:v0720), on Anthony's word (\"Cut a release\"). The \"unreleased\" above is now released. The cut also carries #602, the address watch built the same day (req:a-design-watches-another-design-at-the-server-that-holds-it), so step 2's capability ships in this binary. Step 2's epoch (epoch:planned-a-design-is-watched-at-its-address) stays planned: its stated first case is the hub watching cure again, and Anthony set cure aside on 2026-09-27.",
+    "epoch_type": "release_cut",
+    "name": "Retiring the tracked export, step 1 — cut v0.72.0: the remote client, its setup command and the tool-list fix reach a release",
+    "sequence": 640,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f431e83f029e2907eaee86d7200a9c0796809872e441a9d1519ee84bdb094c2d",
+  "node_id": "art:a-stored-twin-has-one-authority-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Nine core tests pinning the class: every declared twin, the writers that never drew it, a moved subject, import and open repairs reported, a snapshot outliving its node, the refusal.",
+    "location": "crates/reflow2-core/tests/a_stored_twin_has_one_authority.rs",
+    "name": "crates/reflow2-core/tests/a_stored_twin_has_one_authority.rs",
+    "status": "realized"
+  }
+}

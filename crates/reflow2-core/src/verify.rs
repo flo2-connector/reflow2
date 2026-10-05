@@ -34,7 +34,29 @@ use std::collections::{BTreeMap, BTreeSet};
 /// harness is shown are the values the handler accepts. It is NOT
 /// `PRODUCES.outcome` (pass/fail/partial/error) — the enum guard in
 /// tools/toolsnap.py caught exactly that mis-sourcing on 2026-09-06.
-pub const OBSERVED_OUTCOMES: &[&str] = &["passed", "failed", "skipped"];
+///
+/// `blocked` is the run that COULD NOT RUN the check: a collection error, a
+/// test file that did not compile, a setup that failed before the body. It
+/// agrees with the status `blocked`, and it says nothing about whether the
+/// thing checked works. Added 2026-10-03: until then the only way to feed back
+/// a check that never executed was `failed`, and detect_gaps then said the
+/// part "did not work as designed"
+/// (fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02).
+pub const OBSERVED_OUTCOMES: &[&str] = &["passed", "failed", "skipped", "blocked"];
+
+/// The worst of several outcomes for one check wins: a failure is evidence the
+/// thing is broken, a blocked run is evidence of nothing (so it outranks a pass
+/// and a skip, which say something, but never hides a failure), and an unknown
+/// value survives so the reconcile can name it.
+pub(crate) fn outcome_rank(outcome: &str) -> u8 {
+    match outcome {
+        "passed" => 0,
+        "skipped" => 1,
+        "blocked" => 2,
+        "failed" => 3,
+        _ => 4,
+    }
+}
 
 /// How a capability's claim to work is checked — three-valued on purpose
 /// (BL-73, from the first extensive field trial). A brownfield adopt with a
@@ -879,7 +901,7 @@ pub struct ObservedVerification {
 /// One outcome a real run reported for a whole TEST FILE — the unit a test
 /// runner actually reports in. `location` is the path as the design records
 /// it (a Verification's `location`, or the `location` of an Artifact that
-/// IMPLEMENTS a Verification); `outcome` is `passed` / `failed` / `skipped`.
+/// IMPLEMENTS a Verification); `outcome` is one of [`OBSERVED_OUTCOMES`].
 ///
 /// ⭐ WHY THIS EXISTS: a runner knows files and test names, never
 /// verification ids. Until it, feeding a run back meant hand-mapping every
@@ -896,8 +918,8 @@ pub struct ObservedFile {
 #[derive(Debug, Clone, Default, serde::Serialize)]
 pub struct ResolvedFiles {
     /// One entry per check some observed file covers. A check covered by two
-    /// files takes the WORST outcome (failed over skipped over passed): one
-    /// file failing is the check failing.
+    /// files takes the WORST outcome (failed over blocked over skipped over
+    /// passed): one file failing is the check failing.
     pub observed: Vec<ObservedVerification>,
     /// Files the design names no check for. Not an error — a run exercises
     /// far more than the design records — and reported so the mapping can be
@@ -932,8 +954,8 @@ pub struct VerificationDriftReport {
     pub agreements: usize,
     /// Observed ids the design has never heard of.
     pub unknown_ids: Vec<String>,
-    /// Observations refused by name (an outcome that is not
-    /// passed/failed/skipped) — the rest of the batch still processes.
+    /// Observations refused by name (an outcome that is not one of
+    /// [`OBSERVED_OUTCOMES`]) — the rest of the batch still processes.
     pub rejected: Vec<String>,
     /// Recorded `passing`/`failing` claims the observation did not cover.
     /// Only under `exhaustive` — a partial run is not evidence of absence.
@@ -963,7 +985,10 @@ pub struct VerifyReconcileOptions {
 fn agrees(declared: &str, observed: &str) -> bool {
     matches!(
         (declared, observed),
-        ("passing", "passed") | ("failing", "failed") | ("skipped", "skipped")
+        ("passing", "passed")
+            | ("failing", "failed")
+            | ("skipped", "skipped")
+            | ("blocked", "blocked")
     )
 }
 
@@ -997,8 +1022,10 @@ impl DesignGraph {
         for obs in observed {
             if !OBSERVED_OUTCOMES.contains(&obs.outcome.as_str()) {
                 rejected.push(format!(
-                    "{}: outcome '{}' is not one of passed/failed/skipped",
-                    obs.verification_id, obs.outcome
+                    "{}: outcome '{}' is not one of {}",
+                    obs.verification_id,
+                    obs.outcome,
+                    OBSERVED_OUTCOMES.join("/")
                 ));
                 continue;
             }
@@ -1169,7 +1196,7 @@ impl DesignGraph {
     /// carry: a Verification whose own `location` is the file, or one an
     /// Artifact at that location IMPLEMENTS. See [`ObservedFile`].
     ///
-    /// An outcome outside passed/failed/skipped is passed through untouched,
+    /// An outcome outside [`OBSERVED_OUTCOMES`] is passed through untouched,
     /// so [`reconcile_verification`](Self::reconcile_verification) rejects it
     /// by name exactly as it would a by-id observation.
     pub fn resolve_observed_files(
@@ -1206,12 +1233,9 @@ impl DesignGraph {
                 }
             }
         }
-        let rank = |o: &str| match o {
-            "failed" => 3,
-            "skipped" => 1,
-            "passed" => 0,
-            _ => 4, // unknown outcomes survive so the reconcile names them
-        };
+        // Unknown outcomes rank above everything and survive, so the
+        // reconcile names them.
+        let rank = outcome_rank;
         let mut worst: BTreeMap<String, String> = BTreeMap::new();
         let mut unmapped = BTreeSet::new();
         for f in files {

@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:23b9499b7fdde24a3aece0aea7241cfb838d2623170848caedf223b633063954",
+  "node_id": "ver:design-dependencies-declared",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A declaration round-trips intact; one without a version is REFUSED because the version is what a surface is taken as-of; a build taking something undeclared is reported (the reliance nobody agreed to); a pin the build has moved past is reported; a declaration the build no longer takes is reported; a feature forwarded by name but never declared is reported; agreement says so plainly; declaring nothing reads as \"nobody has said\" rather than \"depends on nothing\"; and the manifest names which reflow2 wrote it, empty or not (crates/reflow2-core/tests/depends.rs, 10 cases).",
+    "findings": "PROVEN ON THE REAL DEPENDENCY: reflow2's actual v0.11.0 pin reconciles with 0 findings, and a simulated undeclared bump to v0.12.0 correctly reports both the version mismatch and the newly-taken crate.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-07-28",
+    "level": "integration",
+    "method": "test",
+    "name": "A declaration round-trips, and reliance nobody agreed to is reported",
+    "status": "passing"
+  }
+}

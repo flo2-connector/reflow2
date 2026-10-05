@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c97bc962d29bb72352f7dcf1b0f75d2a60fb1c8a51e76188324785a8340bc5e7",
+  "node_id": "chg:skills-served",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The skills stop being copied into projects and start being served from the binary"
+  }
+}

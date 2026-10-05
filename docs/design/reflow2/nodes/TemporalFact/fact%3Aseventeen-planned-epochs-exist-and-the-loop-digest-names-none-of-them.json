@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:efafbf1fc5c18f10857ca626cdd2fe11cebac42739620a868b90448b3d0175a0",
+  "node_id": "fact:seventeen-planned-epochs-exist-and-the-loop-digest-names-none-of-them",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "finding",
+    "name": "17 planned epochs and 69 scheduled items exist, and `loop_status` — the call that says what the loop is owed — names none of them; an agent followed four brainstorms past two approved steps and nothing noticed",
+    "statement": "OBSERVED 2026-09-22, and the honest version is not the one this agent first reached for.\n\nWHAT HAPPENED. Anthony approved a four-step ordering at the start of the session. Steps 1 and 2 were delivered across four merged PRs. Then four brainstorms arrived in succession and each was followed immediately; steps 3 and 4 were never started. He named it: \"I feel like there were some previous tasks we were doing before this latest round of brainstorming… let's not get de-railed by going off in tangent after tangent.\" Nothing in the design had said so, over roughly six hours.\n\n🛑 THE FIRST EXPLANATION WAS WRONG AND IS RECORDED BECAUSE IT WAS WRONG. The hypothesis was the familiar three-legs shape: the planning mechanism exists (`plan_epoch`, `schedule_for`) and nobody uses it, so a plan has nowhere to live. MEASURED, and refuted outright: **17 DesignEpochs stand at `planned`, and 69 SCHEDULED_FOR edges reach 31 distinct targets.** The satisfaction schedule is in routine use and has been for weeks. That was the favourite candidate and it is dead.\n\n⭐ WHAT THE MEASUREMENT ACTUALLY SUPPORTS: **the plan is recorded and the LOOP DIGEST DOES NOT READ IT BACK.** `loop_status` is the one cheap call that says what the coherence loop is owed. Read twice this session, it reported artifacts, questions, unsurfaced gaps, structural defects, unproven capabilities, drift, follow-ups and export currency — and **not one word about a planned epoch or a scheduled item**, of which the design holds 17 and 69. `what_next` reads the schedule as a ranking input (+2 for a scheduled decision) and reports no epoch's progress or age either.\n\n⇒ So the design can hold a plan and cannot tell you that you are off it. Everything the loop reports is a property of the GRAPH — what is unlinked, unchecked, undecided. A planned increment is a claim about what somebody said they would do NEXT, and that axis is written to and never read back at the moment it would change behaviour.\n\n⚠️ WHAT IS NOT ESTABLISHED, and it bounds this into a question rather than a defect:\n  · Whether `loop_status` SHOULD report planned epochs. A planned epoch is not \"owed\" in the sense the digest uses — nothing is incoherent about a plan nobody has started — and adding 17 standing lines to a digest is exactly the signal-trained-to-be-ignored failure this project has named elsewhere. A per-session or per-epoch reading is a different design from a standing nag.\n  · Whether the other 16 planned epochs are live, stalled or abandoned. Nobody has looked, and a DesignEpoch carries no timestamp, so \"how old is this plan\" is not answerable from the graph at all.\n  · Whether an agent following a good idea past an agreed plan is a tooling gap or ordinary judgement. Anthony's correction says it cost him something here; one instance is not a pattern.\n\n📌 AND THE PART THAT IS THE AGENT'S AND NOT THE TOOL'S: each of the four brainstorms was individually correct work — searched first, linked, recorded at `proposed`, none promoted. The failure was sequencing, not quality, and no instrument can be expected to know that a user would rather have step 3 than a fourth good idea. What it COULD know is that a plan exists and nothing has moved against it.",
+    "steps": [
+      "loop_status",
+      "plan_epoch",
+      "schedule_for"
+    ],
+    "subject_id": "cap:plan-increments",
+    "valid_from": "2026-09-22"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3cdeec5c1e83e874b6734898db9e0c3e968028127a82eba93756108950bf1d8a",
+  "node_id": "act:designer",
+  "node_type": "Actor",
+  "properties": {
+    "actor_type": "stakeholder",
+    "description": "Reached ONLY through the agent — the other half of req:driving-agent, and dec:idea-human-newcomer-reader is the open question about whether any other human counts. Never expected to know systems engineering (req:no-se-knowledge), so every question reaches them as options with a recommendation first (req:a-question-arrives-with-a-reading). They own the decisions: every move of a Requirement off `proposed` records THEIR word, never the agent's (dec:certainty-derived). `stakeholder` rather than `user` is deliberate and is the design's own claim — they hold the authority and do not operate the tool.",
+    "name": "The person whose design it is"
+  }
+}

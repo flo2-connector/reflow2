@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:864110c6c46b4198cbb11cbccc8a2d4e6d2919a2b178a48fd1170a895f74f7b4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:stub-survivor-reconciliation",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:store"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e7e8ab85b4063015d798d8853217ee361ab309ad94ceb425dc225f34dd4ac215",
+  "edge_type": "CHANGED",
+  "from_id": "chg:grok-gets-the-config-file-grok-actually-reads",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:init"
+}

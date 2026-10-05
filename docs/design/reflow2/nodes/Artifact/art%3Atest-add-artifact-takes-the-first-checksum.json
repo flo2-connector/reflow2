@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:44b0d66ff72107fcee030297ad82b76e7b74da69b5edc08ccfe3439b77f669a5",
+  "node_id": "art:test-add-artifact-takes-the-first-checksum",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "add_artifact stores the checksum it is given (reaches the STORED property, not merely accepted), stores nothing when none is given, and refuses to move an existing baseline, naming set_artifact_checksum as the door that records why.",
+    "location": "crates/reflow2-mcp/tests/add_artifact_takes_the_first_checksum.rs",
+    "name": "add_artifact_takes_the_first_checksum.rs",
+    "status": "realized"
+  }
+}

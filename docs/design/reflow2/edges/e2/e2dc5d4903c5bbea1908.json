@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:05d33a742056ab6c7d2a3004987a9ce4948dadf02e912309e35a38ccfb26a6a1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0370",
+  "properties": {
+    "as_checksum": "sha256:d03decfe05f40310f62a43ac0f6a81993dba777adb056040a1f0564b64d76f2c"
+  },
+  "to_id": "art:drift"
+}

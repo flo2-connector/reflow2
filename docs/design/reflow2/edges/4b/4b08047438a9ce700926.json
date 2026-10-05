@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:699117976dc4dfa772e158e32135890e6db6411e7fbab337e6d0ecf83b3caac6",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:receipt",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:receipt"
+}

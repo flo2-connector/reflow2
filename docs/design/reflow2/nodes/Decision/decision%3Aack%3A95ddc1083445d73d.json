@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bcefd3e2405c0d6b333f4a7b271e0d8af8bf5f7fcc2d1f8e8277170870f57bf4",
+  "node_id": "decision:ack:95ddc1083445d73d",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:95ddc1083445d73d.",
+    "name": "Reviewed: gap:95ddc1083445d73d",
+    "rationale": "APPROVED WORK, NOT YET BUILT (Anthony, 2026-07-25). Depends on the seat identity that dec:identity-out-of-band settles, so it follows req:design-identity rather than racing it.",
+    "status": "accepted"
+  }
+}

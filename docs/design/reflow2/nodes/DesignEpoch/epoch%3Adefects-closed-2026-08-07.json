@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6eac39783120dfc6b43ac86cfce60e2646ca25c05a93e63dba8229f7225b6ec4",
+  "node_id": "epoch:defects-closed-2026-08-07",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "created_at": "2026-08-07",
+    "description": "The lifecycle half of dec:defects-are-temporal-facts, exercised for the first time. #88 fixed the content store inventing a directory; this increment makes the lineage gate name dec:export-once-per-pr. Both facts get VALID_TO set here rather than being edited into past tense, so \"was this ever broken, and when did it stop\" stays answerable.",
+    "epoch_type": "revision",
+    "name": "Two defects found by USE are fixed and CLOSED on the record — the first time VALID_TO retires a defect instead of a prose \"DONE\" annotation (2026-08-07)",
+    "status": "arrived"
+  }
+}

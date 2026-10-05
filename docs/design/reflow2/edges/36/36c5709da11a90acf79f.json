@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8cf3d84ca486d961487b519c3fa5f7cc7fd079b71d271d073a1e158d80b65df0",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:relation-coverage",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:relation-coverage"
+}

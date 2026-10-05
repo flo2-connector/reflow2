@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5df26b0d22acb7973269e119c9aa566e21f240d1a97423dbbd24f9c823762f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-ship",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:install-reaches-the-agent"
+}

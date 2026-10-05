@@ -237,8 +237,37 @@ pub struct DependencyReport {
     pub note: String,
 }
 
+/// The properties a declaration's WATCH owns: the target (an export path or a
+/// server address), the baseline taken against it, and when. Rewritten as a
+/// set on every declaration, because a baseline is only meaningful against the
+/// target it was taken from, and a dependency is watched in ONE place.
+const WATCH_PROPERTIES: [&str; 6] = [
+    "design_export",
+    "design_export_hash",
+    "design_export_seen_at",
+    "design_address",
+    "design_address_hash",
+    "design_address_seen_at",
+];
+
 impl DesignGraph {
     /// Declare a dependency on another design (`req:design-dependencies-declared`).
+    ///
+    /// ⭐ A RE-DECLARE REVISES; IT DOES NOT REPLACE. Every property this call
+    /// does not own survives it (a `description` written with `add_resource`,
+    /// anything else on the Resource), and so does every optional one the
+    /// declaration leaves out (`declared_in`, `graph_id`, `note`). What the
+    /// declaration states is written: name, source, version, components,
+    /// features, and the watch as one set ([`WATCH_PROPERTIES`]), so naming an
+    /// address drops a stored export watch and the other way round.
+    ///
+    /// Until 2026-10-03 this wrote with a REPLACING `create_node`, and every
+    /// re-pin silently dropped the Resource's description, 2 to 5 KB of
+    /// history each time, eight times in the field across 0.66 to 0.77
+    /// (fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23).
+    /// The tool layer additionally carries an omitted `components`, `features`
+    /// and watch target forward from the stored declaration, which a core
+    /// declaration (whose lists are plain `Vec`s) cannot express.
     pub fn declare_external_dependency(
         &mut self,
         decl: &DependencyDeclaration,
@@ -326,7 +355,17 @@ impl DesignGraph {
         if let Some(n) = &decl.note {
             props = props.set("description", n.as_str());
         }
-        self.create_node(node::RESOURCE, &decl.id, props)?;
+        // Start from what the node holds, drop the watch as a set, then lay
+        // the declaration over it.
+        let mut merged: std::collections::HashMap<String, Value> = self
+            .get_node(node::RESOURCE, &decl.id)?
+            .map(|n| n.properties)
+            .unwrap_or_default();
+        for k in WATCH_PROPERTIES {
+            merged.remove(k);
+        }
+        merged.extend(std::collections::HashMap::from(props));
+        self.create_node(node::RESOURCE, &decl.id, merged)?;
         for p in self.scan_nodes(node::PROJECT)? {
             self.create_edge(
                 edge::REQUIRES_RESOURCE,

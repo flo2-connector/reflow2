@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:20da98d29640b2847f1f0383822c6d0671f2b22e49e6639d6545579e36e5818c",
+  "edge_type": "REALIZES",
+  "from_id": "art:record-to-record-relations-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:record-to-record-relations-are-modelled"
+}

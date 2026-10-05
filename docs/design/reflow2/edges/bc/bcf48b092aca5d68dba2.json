@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a6164b3577de8be866214a91376370136bd0df6b5d01ed705492fa33c6e80a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revise-of-an-epoch-keeps-its-status",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:planned-epochs"
+}

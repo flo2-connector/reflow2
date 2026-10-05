@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:69d9e5df458d6a0113cf28989d6572c3ae41e13eb4ced74111217fb979a3ff07",
+  "node_id": "fact:manual-work-8ddeedf9f350f6bd",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a script that proves a storage-engine dependency bump is safe on real stores: copies each local store four times (with its identity sidecars), exports two copies with the released binary as a control, one with the new build (forward), and on the fourth writes a probe record with the new build then reads it back with the released binary (rollback), comparing node and edge counts and the export content hash; then read each table file's footer to confirm the new engine actually wrote its newer format. The accepted dependency-currency rule now asks for exactly this proof on any bump that touches stored data, and nothing in reflow2 runs it.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-02",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ba1e0ebae9a5bd3dd8f61c51a50bae0ef7acd6ab52057e93463b52361dc55530",
+  "node_id": "cap:incremental-adopt-with-a-frontier-and-a-deferred-derivation-marker",
+  "node_type": "Capability",
+  "properties": {
+    "description": "As built (2026-09-17): a deferred_derivation TemporalFact on a part (record_finding fact_type deferred_derivation) is open until valid_to or INVALIDATES; while open, unmotivated_capability and unallocated_component skip that part, and loop_status lists it under deferrals with a next line — quieted on its subject, owed at the boundary, never gone. frontier (served) reports structure_without_intent (the detectors' own rules minus deferred subjects), deferred oldest first, uncaptured (coverage_report's unclaimed regions when a sweep is handed in; absent, not empty, without one) and resume_point (the most recent deferral). The adopt skill's Region mode: model the region, mark what you leave, ask with the region's scope, resume with frontier, settle by closing the marker. The scoped-detector defect this depended on was settled 2026-08-17 (default depth 2).",
+    "name": "Incremental, resumable adopt: a frontier read (structure without intent, deferred parts, uncaptured neighbours) and a deferred-derivation marker that is listed as owed and suppresses the intent gaps on its subject",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

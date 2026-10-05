@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:643901424087e470ce3200247164256a18abd1ffcc0033ca0cee041692dd9c17",
+  "node_id": "fact:the-first-doubt-trace-on-reflow2-found-231-open-defect-findings-behind-126-settled-choices",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "finding",
+    "name": "MEASURED 2026-09-22, the doubt trace's first real run on reflow2's own design: all the bad news is 231 open defect findings, reaching 126 accepted decisions in 1,167 pairings; 48 reach no decision; no failed run, no recorded failure, no unresolved drift",
+    "statement": "Run in memory against the committed export (5,271 nodes) with the step-4b build. evidence_found = {defect_finding: 231}; nothing else, because no real run has ever been fed back (so none could fail), no check is recorded failing, and no drift is unresolved. The 231 reach 126 accepted decisions: median 2 findings per decision, max 97. 48 findings reach no decision at all. Walk lengths: 646 at one hop, 319 at two, 202 at three (via DEPENDS_ON fan-out). WHAT IT MEANS, stated without judging it: every \"doubt\" this design currently holds is a recorded defect nobody has closed — the backlog of reflow2's own triage — not evidence from a run; the founding chain's entry point still has not fired. Two readings for the owner, neither chosen: (a) many of the 231 may be fixed and simply never closed (the invalidated_findings / unclaimed_findings class), in which case the trace is reading a closing backlog; (b) a decision with ~97 findings behind it is either a genuine hotspot or a hub that everything DEPENDS_ON, and the trace cannot tell which. The first real failed run will be the first evidence of the kind the step was built for.\n\nPARTLY SUPERSEDED 2026-09-23, NOT CLOSED: the clause \"no real run has ever been fed back (so none could fail)\" stopped being true the same day — PR #574's real CI run plus local python tests were fed back by file, 78 checks compared and stamped, all agreeing (fact:reflow2s-own-real-run-was-fed-back-for-the-first-time-78-checks-agree-231-test-files-map-to-nothing). So a re-run of the trace would now show `held_up` > 0 under some decisions and still no failed_run. The 231 open defect findings, the 126 decisions they reach and the 48 that reach none were NOT re-measured and stand as recorded.",
+    "subject_id": "cap:revise-trigger",
+    "valid_from": "2026-09-22"
+  }
+}

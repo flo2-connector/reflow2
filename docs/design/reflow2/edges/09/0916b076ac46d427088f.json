@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c7ae04fe660c4bfd8115f63bbb1a8d683eeca2d60b9e0c81be42e2b6f1039c38",
+  "edge_type": "CHANGED",
+  "from_id": "chg:verifies-reaches-a-constraint",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:should-a-verification-be-able-to-verify-a-constraint"
+}

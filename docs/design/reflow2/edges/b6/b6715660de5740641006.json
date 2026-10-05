@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a43166c6aa0b605a983c4e9c7534e1577c4ac795e87e01cf867512f2423b6165",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:graph-algorithms",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:graph-algorithms"
+}

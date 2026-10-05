@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8b79e92109973655e438dbfa537a430840adc73c35ff02dd046b84b369faa4e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-quantity-says-how-it-was-obtained-and-a-check-on-it-has-a-form-a-tool-can-rerun",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:enum-schema"
+}

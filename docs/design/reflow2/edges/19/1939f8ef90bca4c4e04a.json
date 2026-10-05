@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0b486f7f2f0f60a6685c410bd4dab1d1806a537e6772c2a41f0772c45a984702",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-client-forwards-every-line-and-read-only-reached-only-the-service-it-never-builds-2026-10-03",
+  "properties": {
+    "basis": "causal",
+    "evidence": "Walked and measured 2026-10-03 on main c4e1cbd: --read-only reached only ReflowService::into_read_only and the one-shot table; the forwarding loops in proxy.rs took no such argument and LatentService never read it, so every client mode forwarded writes. Candidates (a) position, (c) daemon flags, (e) wrong measurement were each refuted by measurement; the 8 tests that pin it failed on main and pass with the screen.",
+    "validation_status": "validated"
+  },
+  "to_id": "fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02"
+}

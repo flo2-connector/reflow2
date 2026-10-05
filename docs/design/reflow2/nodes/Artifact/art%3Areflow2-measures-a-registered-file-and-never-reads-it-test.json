@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:becbd54d2da2314ea5f77ce4b0e0348ba40a3f25ea8fbf297efd89c7b4368258",
+  "node_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/reflow2_measures_a_registered_file_and_never_reads_it.rs",
+    "name": "reflow2_measures_a_registered_file_and_never_reads_it.rs — the six properties that make measuring admissible",
+    "status": "realized"
+  }
+}

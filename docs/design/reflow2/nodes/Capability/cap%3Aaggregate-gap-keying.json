@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6ce0657312047ed814891e4471f67b5db6e7f30d0d21c6f7a797251fd18622ea",
+  "node_id": "cap:aggregate-gap-keying",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`gap_id` keys an AGGREGATE gap — one per project, whose affected set is the population its rule ranges over — on the rule alone, so its id is stable while the design grows and an acknowledgement of it carries instead of being re-asked on every addition. Every other gap keeps hashing its affected nodes, because there a changed subject genuinely deserves a fresh judgement. The discriminator is an explicit exhaustive `GapSource::is_aggregate()`, so a new aggregate detector must decide rather than inherit. Paired with the `retired` reporting `reviewed_gaps` already had: a stable id is only safe because a review whose rule stops firing is still shown, rather than silently kept.",
+    "name": "A gap about the whole population is keyed on its rule, so a standing judgement carries",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

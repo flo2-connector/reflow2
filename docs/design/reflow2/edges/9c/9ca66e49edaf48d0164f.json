@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ae8b9f08e700844ffec4a8dbc63941ad53743c95b058da6cc4416d76b1c8382",
+  "edge_type": "CHANGED",
+  "from_id": "chg:nudge-path",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

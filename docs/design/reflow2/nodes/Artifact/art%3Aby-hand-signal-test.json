@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9a773729c19058f6400c45c3241b437609f4f7764def248a02b92c1159c21f24",
+  "node_id": "art:by-hand-signal-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/a_session_reports_what_it_did_by_hand.rs",
+    "name": "tests/a_session_reports_what_it_did_by_hand.rs",
+    "status": "realized"
+  }
+}

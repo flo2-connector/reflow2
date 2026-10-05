@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1d5a3750cbcbab13bae40721f22592b687bf9a11ce391e6689a9734563733c92",
+  "node_id": "frag:art:record-to-record-relations-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered record_to_record_relations.rs"
+  }
+}

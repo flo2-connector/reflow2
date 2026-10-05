@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8ff47145f523abd6015623eceeff53956b968246f9bc756f0cc37829fe83b12d",
+  "node_id": "chg:a-loop-hint-says-where-the-node-landed",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "db84580",
+    "detected_at": "2026-09-29",
+    "name": "A constructor's loop hint says where the node landed, not where the common case lands",
+    "rationale": "Root cause: fact:root-cause-add-decisions-lands-proposed-hint-recurred-on-the-one-call-settle-path-2026-09-29 (recorded in the live design; not yet in this branch's export, so named here rather than linked), a recurrence of fact:defect-add-decision-hints-lands-proposed-on-a-write-that-left-it-accepted (2026-08-14). Class: a reply sentence hand-written for the common case and never conditioned on the result it describes. Pinned by crates/reflow2-mcp/tests/a_loop_hint_says_where_the_node_landed.rs, OBSERVED RED on a clean origin/main build (4 of 5 failed; the fifth is regression cover for the case where the claim is true), green on the fix.",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "add_decision's loop hint is read from the status the node stands at, so an accepted or merged-over-accepted decision is no longer told it 'lands proposed'. The same fixed-sentence class is swept: add_design_rule no longer asks for `enforced` when the rule states it, and add_capability no longer tells a caller who passed `satisfies` to wire it."
+  }
+}

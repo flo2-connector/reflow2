@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:aa0b22b9636eee4e5899314629646d07c29d1bf8cf56205245e5afc448e6d410",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:content-store",
+  "properties": {},
+  "to_id": "req:content-store-for-what-the-graph-points-at"
+}

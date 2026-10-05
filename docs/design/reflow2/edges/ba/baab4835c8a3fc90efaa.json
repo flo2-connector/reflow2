@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a13237dda31d46bf559ec86227775a5248483c2361257ae99f6cd91209982536",
+  "edge_type": "CHANGED",
+  "from_id": "chg:evidence-fidelity",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:nodes"
+}

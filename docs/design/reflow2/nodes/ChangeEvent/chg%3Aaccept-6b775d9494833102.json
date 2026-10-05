@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3596d8109e07779d51e49db7eac3c01f1a5b02490c05166c75fe6175e7f46d78",
+  "node_id": "chg:accept-6b775d9494833102",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-09",
+    "name": "loop_status's served description trimmed from 2039 to under the 1500-char budget skill_lint enforces. Behaviour and parameters unchanged; every clause that survived is load-bearing (the approver discriminator, only-assignment-is-attributed, scoped-clean, the refusal on an unknown id). NO DESIGN MEANING. Worth recording as a real constraint rather than a nuisance: a served tool description is a BUDGETED surface, so a change that explains itself well in a commit message still has to earn its space in the description an agent reads at call time — and skill_lint is what enforces that, caught in CI after three local gates had already passed."
+  }
+}

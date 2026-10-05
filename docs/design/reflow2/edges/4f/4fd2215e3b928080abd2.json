@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:650fe5265d1c35470f7cd21fdea49542607e114a6b418f9ee772af652ac48178",
+  "edge_type": "CAUSES",
+  "from_id": "ver:edges-need-both-ends",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The helper resolves the id under its own fixed node type and the not-found path reports that lookup verbatim; nothing looks the id up under any other type, so the message cannot distinguish 'no such node' from 'that node is not a Component'.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-typed-edge-helper-given-a-wrong-typed-node-reports-it-absent-and-blames-a-race-that-did-not-happen"
+}

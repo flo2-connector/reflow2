@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1611e7ec482f47bdedf0216dfadae72c078c270cd5cf9743712b726d34d84606",
+  "node_id": "epoch:2026-09-13-the-design-reference-is-the-black-box-under-work-not-the-whole-design",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Anthony, 2026-09-13, minutes after accepting the design-reference requirement: \"in a large design, I'm not sure [re-injecting the design] is a good idea. Say I was designing an exhaust manifold for an engine of a car and the manifold was taking a long time — I don't think it'd be appropriate to say, here is the whole car design again. It may be more appropriate that the neighbourhood of the design was re-injected. Or in terms of systems engineering, maybe its black box and interface were injected. That may help keep the AI agent focused and not flood context with a lot of non-relevant information.\" The requirement as first written said the reference is sized to hold the design; this revision makes the unit of the reference the black box under work — its function, its constraints, its ports, and the far side of each port — and never the design as a whole.",
+    "epoch_type": "revision",
+    "name": "The agent's design reference is scoped to the black box under work and its interfaces, not the whole design",
+    "sequence": 443,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:433d746593d27453309c973c5fb1a5af9be75a7f7e91c7dc71ffd6c73bd68809",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-rule-says-whether-it-can-be-checked-at-all",
+  "properties": {
+    "note": "Captured under the decision that governance is integrated here rather than split out"
+  },
+  "to_id": "dec:governance-integrates-not-splits"
+}

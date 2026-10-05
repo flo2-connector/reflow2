@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:230ce0d45bc0c98593ae79df5bd2bf2c92468c96c0dbbb345a777af1a52ac34a",
+  "node_id": "chg:instructions-served",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "The working instructions follow the skills into the server; a project keeps only a pointer"
+  }
+}

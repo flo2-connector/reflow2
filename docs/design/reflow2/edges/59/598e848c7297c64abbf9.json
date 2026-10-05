@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59aaab61498eef061578c0f0b9a76fdd208be56778c7a2e6285e5b7502e37b53",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-design-is-watched-at-the-server-that-holds-it-2026-09-27",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:registry-http"
+}

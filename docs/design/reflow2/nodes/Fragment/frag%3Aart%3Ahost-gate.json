@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4556e4884c0625fb199252e109cd08a41018f88c3b17044508ec471d7f60368e",
+  "node_id": "frag:art:host-gate",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered host_gate.rs — the Host allowlist, owned by reflow2 in front of every HTTP surface; a refusal names the host, the allowed hosts and --http-allow-host"
+  }
+}

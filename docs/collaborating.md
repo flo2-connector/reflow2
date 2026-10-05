@@ -51,7 +51,7 @@ everything else is convenience.
 ### 1. Install reflow2
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sligara7/reflow2/main/tools/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh
 ```
 
 Installs the `reflow2-mcp` binary to `~/.local/bin` and the kit to
@@ -70,7 +70,14 @@ cd <project> && git add -A && git commit -m "reflow2 setup" && git push
 The other person just clones it. Then run the init command in the clone too — it writes the MCP
 config with *your* binary path, which is machine-specific and not shared.
 
-### 3. Configure the design merge driver — do not skip this
+### 3. Configure the design merge driver — unless the design is saved as items
+
+> **If your design is saved as the ITEM LAYOUT — a directory, `docs/design/<project>/`, one file
+> per node and one per edge (`export_graph` with a path ending in `/` writes it) — skip this step.**
+> Git's ordinary merge, the one GitHub runs too, merges it: you touch different files when you edit
+> different parts of the design, and a conflict is one item you both changed. Since 2026-10-03
+> (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). What follows is for a design still
+> saved as one `.json` file.
 
 This is the step that makes two people editing one design painless, and git deliberately does not
 let a repository configure it for you (a repo that could run programs on clone would be a security
@@ -112,7 +119,8 @@ So the rhythm is: work in your graph → export → commit → push. And the rev
 
 | File | What happens when you both change it |
 |---|---|
-| `docs/design/reflow2.json` | **reflow2 merges it** per node and per property against the common ancestor. You add a requirement, they add a decision — merges silently. Only both of you editing *the same property* stops for a human. |
+| `docs/design/<project>/` (the item layout) | **Git merges it**, file by file — one file per node and per edge, so you each touch your own files. Only both of you changing *the same item* conflicts, on that item's file. |
+| `docs/design/reflow2.json` (one file) | **reflow2 merges it** per node and per property against the common ancestor. You add a requirement, they add a decision — merges silently. Only both of you editing *the same property* stops for a human. |
 | `COORD.md`, `CHANGELOG.md` | Both sides' lines are kept automatically. A duplicate line is visible and trivial to tidy; a lost claim is not. |
 | `docs/backlog.md`, coverage matrix | **Deliberately manual.** A clash here usually means you both changed the same item's status, which genuinely needs a person. |
 | Source and tests | Ordinary git. A real conflict here means you were both editing the same module — a coordination miss, not a git problem. |
@@ -200,8 +208,10 @@ was the shipped default for a long time and it is worth naming, because the fail
 property of reflow2 rather than of a config line: a fleet of six sessions spent five days taking
 turns, and building a protocol for taking turns, around a limitation their binary had already lost.
 
-**Who owns the server: nobody.** It runs in its own process group, so the session that happened to
-start it can be closed, crash, or be Ctrl-C'd without disturbing the others. When no session has used
+**Who owns the server: nobody.** It runs in a session of its own, with no terminal and none of the
+files, pipes or locks its launcher had open, so the session that happened to start it can be closed,
+crash, or be Ctrl-C'd without disturbing the others, and a lock held by whatever launched that session
+(`flock`, an editor) is released when the launcher ends, not when the server does. When no session has used
 it for a while it exits and releases the store's write lock (`--idle-timeout`, default 120 minutes),
 because holding that lock blocks `--import`, a live `--diff`, and anything else that opens the graph
 directly. Sessions recover from that on their own — the next tool call starts a replacement and is

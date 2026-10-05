@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e9802a638480075df807857a11d2af531da8febeda7df49e0b453dfeb210d16",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:artifact-declares-its-own-shape",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:drift"
+}

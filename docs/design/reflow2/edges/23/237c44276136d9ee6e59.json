@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68ce0d3caf806e6cc8bf4cc1b6fce72f6bc9e1c505c74b107035f7e42ccfdf1a",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-run-converter-is-not-named-like-a-test-and-refuses-an-empty-log",
+  "properties": {
+    "at": "2026-09-23",
+    "note": "Answers traps (1) and (2) of that finding: the empty log is refused, and the converter no longer matches test_*.py. Trap (3), the harness's cached schema, is the client's and closes on restart; the finding's measurements stand."
+  },
+  "to_id": "fact:reflow2s-own-real-run-was-fed-back-for-the-first-time-78-checks-agree-231-test-files-map-to-nothing"
+}

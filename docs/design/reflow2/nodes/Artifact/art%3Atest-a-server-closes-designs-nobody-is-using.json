@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cae7ea44ca37c83ea41728e22ae5abcd9bfcb3682e13e744bba1a3741126de11",
+  "node_id": "art:test-a-server-closes-designs-nobody-is-using",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "End-to-end tests of req:a-hosted-server-closes-idle-designs-and-says-busy-when-full over the real binary and HTTP transport, with designs minted by the binary. They cover what a client meets. The router-level guards are unit tests in registry_http.rs: least recently used at the limit, busy only when every slot is serving, and no reopen until the previous copy releases its store (that last one observed failing with \"lock hold by current process\" when the wait is removed).",
+    "location": "crates/reflow2-mcp/tests/a_server_closes_designs_nobody_is_using.rs",
+    "name": "a_server_closes_designs_nobody_is_using.rs — three designs behind a limit of two all answer; what was written survives a close; a closed design's session is 404 and starting again works; the idle sweep closes a design on its own; an unknown id is still 404",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:96faf9e7796e95f468c923d36c9fa8c43cb7314fc203d1fef488a33b5dca5260",
+  "edge_type": "CHANGED",
+  "from_id": "chg:checksum-canonical-both-sides",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:drift"
+}

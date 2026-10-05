@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6783d4e8b016f451e5259f835fd9b8cb6a822eaf88a4e49f97efe571e4dbbd46",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-6347f28b6c03cbbd",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional"
+}

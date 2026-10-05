@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca2a570106d8d35a6dbfe3d35548fff532940ae2abe038d629b9c4cf6d74dbe8",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:release-publishes-a-container",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

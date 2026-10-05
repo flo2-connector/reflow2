@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:016e80a082a2aaaa2a5bafabfcccd860daf25833b427a0359411de230219b5d0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-node-records-what-the-user-calls-it",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

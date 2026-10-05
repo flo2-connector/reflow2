@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f405cf327e84eae9fe7ee2c49a23ae36ab4f2842ee2cfb1960cd65e3a136d62",
+  "node_id": "chg:accept-57815d3b012cb271",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-24",
+    "name": "Initial baseline of the BL-80 three-way-merge module (merge.rs, authored 2026-07-22; realizes cap:merge-designs + cap:merge-rerere, verified by ver:merge). Previously no_baseline — recording the as-built fingerprint so future edits are caught; no design change."
+  }
+}

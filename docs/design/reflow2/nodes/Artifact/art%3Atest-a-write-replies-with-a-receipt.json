@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:778df615d84d6e43b4aec53ac85541870fb74320ba4d1a5f8f6184cb7b854dbf",
+  "node_id": "art:test-a-write-replies-with-a-receipt",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The check behind ver:a-write-replies-with-a-receipt.",
+    "location": "crates/reflow2-mcp/tests/a_write_replies_with_a_receipt.rs",
+    "name": "a_write_replies_with_a_receipt.rs — every write tool declares echo and is seen by the choke point; the write mix stays under 3,000 characters",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9ebf8540312ccb05bd479bd0a4ed2edb88923065361f51dd294adbba3d5e89f8",
+  "node_id": "epoch:planned-a-write-says-who-it-was-for",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Planned 2026-09-23 on Anthony's word (\"Schedule the small half\"), from the dev_reflow2 hub, after the flo2 → reflow2 relay of 2026-09-22. It is ordered right after epoch:planned-the-composition-blockers-and-the-two-steps-that-were-passed-over (560), which reflow2's own session said does not include this. IN IT: req:a-session-names-the-person-it-writes-for-and-the-server-remembers-it, the small half of flo2's levied ask: a caller-declared contributor per session, used for attribution only, on trust. NOT IN IT, deliberately: the automatic change journal (clause 2 of req:a-write-carries-who-made-it-and-the-server-records-that-it-happened), which waits on dec:idea-should-the-server-journal-every-write-itself and flo2's open \"one timeline or two lists\" question. Also not in it: any use of a caller-declared identity for AUTHORITY, which stays open in dec:idea-may-a-caller-asserted-identity-be-trusted-and-for-what. No date is given; the sequence is the plan.",
+    "epoch_type": "milestone",
+    "name": "PLANNED — a write says who it was for: a session names its contributor once, and every write is attributed to it",
+    "sequence": 570,
+    "status": "planned"
+  }
+}

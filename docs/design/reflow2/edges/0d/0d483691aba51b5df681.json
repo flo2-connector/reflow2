@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61389aa66e13e2fe31415c79c96ba7d699c3ac54cfb206235e1ae4749aa40519",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:writers",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:writers"
+}

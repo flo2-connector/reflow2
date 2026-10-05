@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4745d7ef4adc77e2e6687377aad767fc35543e9578b9b876e43feeddaea2b73b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-write-replies-with-a-receipt",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-write-replies-with-a-receipt"
+}

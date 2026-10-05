@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:abc221aa648b4477168aab322a129c60c09d77979af518019605c8472de13cb8",
+  "node_id": "cap:the-orientation-call-says-whether-its-own-answers-are-current",
+  "node_type": "Capability",
+  "properties": {
+    "description": "`loop_status` carries `served_by` with an explicit `stale` bit, and when that bit is not `false` the remedy LEADS `next` — the list an agent acts on — naming `--stop-shared` and killing the assumption that a session restart is enough.\n\nCHEAP WHEN CURRENT, LOUD WHEN NOT. The ~1 KB remedy note is dropped when the answer is `false`, so the ordinary call pays three fields; `cap:loop-status`'s \"one cheap call\" is not eroded the way the per-check roll eroded it once.\n\nWHAT WAS ALREADY BUILT, so this is reachability and not detection: the bit itself has existed since 2026-08-08 under `req:the-server-is-the-authority-on-its-own-currency` — derived from `/proc/self/exe` rather than a version string, precisely because four sessions once read one true version and drew opposite conclusions. It rode on `graph_report` alone, which nothing points a session at.",
+    "name": "The orientation call says whether the server answering it is the code on disk",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

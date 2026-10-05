@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a55eed85269faad4a1b29ee9b4105e99058eb19044d30256f08dceecbbddd41e",
+  "node_id": "req:vocabulary-covers-materiel",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Physical resources are modellable — supply, sparing, maintenance and consumption, which `Resource` does not mean",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Anthony, 2026-08-07, from the UAF audit, asked as \"what if I said create/render me a logistics view\": there is no logistics vocabulary, and the type whose name promises it means something else entirely.\n\nTHE TRAP, MEASURED: `Resource` exists, and its only instance is `dep:dynograph-foundation` with `resource_type: design-dependency`, carrying a provider URL, a version, a feature list and the file it was declared in. It models a SOFTWARE DEPENDENCY. `REQUIRES_RESOURCE` has one instance and means \"this design depends on that library\". Of the four missing domains this is the one most likely to be assumed covered, because the name is already taken by something else.\n\nWHAT CANNOT BE SAID TODAY: a consumable and its consumption rate; a spare and its provisioning quantity; a maintenance action, interval or turnaround; transport, storage or shelf life; what a system needs to keep operating as opposed to what it needed to be built. A logistics view has no nouns to draw.\n\nWHY IT MATTERS BEYOND reflow2: software has no materiel, so this costs nothing here and is load-bearing for every physical programme — which `reflow2-real-operating-context` and the adopt skill both say are in scope (\"a satellite, a building or a fleet cannot live in a repository — its drawings, specs, models and analyses can\").\n\nNOT SPECIFIED HERE: whether the existing `Resource` type is generalised with a wider `resource_type` vocabulary or a separate type is added beside it. The first is cheaper and risks conflating a build-time dependency with an operational consumable; the second is cleaner and costs a type. That is a decision, and it should be made rather than defaulted.",
+    "status": "deferred"
+  }
+}

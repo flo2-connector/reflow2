@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f05e4700ea9e9b325419843576dec04e6c6c6ca52ba5af2af593fd6aca6e4ce0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-leaf-component-points-at-its-file",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:wall-check"
+}

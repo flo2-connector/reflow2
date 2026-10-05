@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f4c10a39707d68d4312006c5823674d3e1bb29e2d7c8d3b51092c890612c59ce",
+  "node_id": "cmp:compare",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "compare",
+    "provenance": "authored",
+    "purpose": "The compare module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

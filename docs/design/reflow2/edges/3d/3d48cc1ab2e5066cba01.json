@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8e720b5966a1f0712352cf30dd5c2c6f1486253d17715e9f91176a9ca32c5f19",
+  "edge_type": "REALIZES",
+  "from_id": "art:establish-taxonomy-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked",
+    "note": "the skill leg"
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

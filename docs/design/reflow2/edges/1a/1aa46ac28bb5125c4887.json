@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3e4167fe5a70fe6a5e9113365458c647fd78c028da8df825c02b42c47bb9e6f",
+  "edge_type": "MITIGATES",
+  "from_id": "rule:success-is-read-from-the-authoritative-object",
+  "properties": {
+    "evidence": "The rule is the only thing that caught any of the five, and it caught all of them: the PR body read back, the branch checked after creation, the background task's own output read rather than the log it was still writing. Drawn from the RULE to this fact — the rule is what answers the hazard the five instances describe, and this census is the cost of not following it, counted."
+  },
+  "to_id": "fact:five-silent-failures-in-one-session-all-one-shape"
+}

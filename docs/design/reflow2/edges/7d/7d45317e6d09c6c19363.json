@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8f3e294b4128d0e73f2837e3af563eab9affcb891194483fe64892bd9533cb41",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-09bee61653a4e59a",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:hierarchy"
+}

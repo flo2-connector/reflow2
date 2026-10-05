@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:669ea89cad6c97e38fd197b0488fc858725cf9c3f9fe93eb486bce7aa6937c94",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-design-says-whether-a-result-ever-came-back",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-design-says-whether-a-result-ever-came-back"
+}

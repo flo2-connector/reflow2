@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:157eb3f0a36232cb68a22cbbfb17bc5b12c7893ef7daae5f2c89b028c412ddb5",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:gap-carries-a-reading",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-07-31"
+  },
+  "to_id": "rel:v0210"
+}

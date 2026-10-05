@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:52bf799cb953e14138c70d8063dc301d9122f3a42b179cabc03527287b7b61eb",
+  "edge_type": "VIOLATES",
+  "from_id": "cap:corpus-ingest",
+  "properties": {
+    "confidence": 1.0,
+    "evidence": "ingest.rs:1517 suspect_duplicate persists a DUPLICATES edge for any name match in the 70-89 token_sort_ratio ASK band; heal.rs:798 fires `duplicate` on any DUPLICATES edge regardless of who drew it, so the decision's premise -- that merge is safe only because a human asserted the endpoints -- is false in the shipped build. Field-observed 2026-08-07 in dev_storyflow: 10 proposed node deletions from 81-85 scores on unrelated nodes."
+  },
+  "to_id": "dec:ask-not-repair"
+}

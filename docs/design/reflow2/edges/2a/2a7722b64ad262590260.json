@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:32c5379149112478eb3790fa7e9be694eb5e5ad8aff0dcb69be67d82a65eddb9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:key-interfaces",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:propagate"
+}

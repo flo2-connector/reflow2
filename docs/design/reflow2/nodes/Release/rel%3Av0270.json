@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9fbb30be6a3f1fb1ac474f2cee951df50cad71858db2219bfe6f22b815b1d664",
+  "node_id": "rel:v0270",
+  "node_type": "Release",
+  "properties": {
+    "name": "v0.27.0 — ownership arrives, the content store leaves, and governance is integrated rather than split",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.27.0"
+  }
+}

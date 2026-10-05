@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:12a96379d2638c0a5e79556f5f81588849b912e56418c7b1605a67e402e8ea24",
+  "node_id": "rule:a-projects-first-session-leaves-the-adapter-in-place",
+  "node_type": "DesignRule",
+  "properties": {
+    "category": "convention",
+    "name": "A project's first session leaves the adapter in place: no instruction file means run the init when the kit is present, otherwise write the served pointer and register it",
+    "statement": "On genesis or adopt of a project with no instruction file an agent reads first: run `reflow2 init .` when ~/.local/share/reflow2/kit exists (pointer + hooks + MCP config); otherwise get_instructions {section: pointer} and write it as AGENTS.md, or REFLOW2.md when the project owns an AGENTS.md; then register the file as the adapter (add_artifact document, documents doc_kind agent_instructions). Never have the server write it. Why: three of the owner's projects had none on 2026-09-19 — the user-scope route installs nothing, the session hooks then never fire, and agent_instructions_unregistered fires on the design.",
+    "steps": [
+      "genesis",
+      "adopt"
+    ]
+  }
+}

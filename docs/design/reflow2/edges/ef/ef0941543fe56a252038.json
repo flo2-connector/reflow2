@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0739657a327639e5e297fa2523930aa9dc835ba4cd8871a662f6b2ec300dc75c",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-embeddings-adoption",
+  "properties": {
+    "evidence": "CONDITIONAL, and the edge exists mainly so the tension is findable: this decision is still `proposed`, so nothing is risked today. Answering it YES is what would bear on req:deterministic-core, because an ANN index is approximate by construction and embeddings need a model. Recorded 2026-08-04 because the node had NO design edges at all — its only edge was AUTHORED_BY, so propagate_from reported 0 impacted and no detector could see it (the BL-162 shape: a Decision that governs nothing is invisible). The scope is narrower than the blanket reading: the risk is real for search_design and anything feeding a gate, and materially weaker for ingest resolution, whose output under dec:ask-not-repair is a merge_candidate a human rules on rather than a verdict.",
+    "severity": "medium"
+  },
+  "to_id": "req:deterministic-core"
+}

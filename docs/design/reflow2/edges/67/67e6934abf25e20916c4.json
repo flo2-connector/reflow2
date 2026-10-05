@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:37c376046e400bd1d1f63ad2c2c1fdb0100d59cda638ceb6290ff26c48a16af7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deliverable-declares-who-it-reaches",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:artifact"
+}

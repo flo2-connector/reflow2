@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a2bffa9685c93644554892c52613433ca35b34a8d9b0572e7286edccd5547b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reachability-gate-reads-tools-not-names",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:the-server-keeps-the-export-current-test"
+}

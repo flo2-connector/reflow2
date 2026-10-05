@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:db079dd189db37030edc3c1f4f759fbdec7f45f705af73324edb23a48de2d65c",
+  "node_id": "art:test-served-skills",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-mcp/tests/served_skills.rs",
+    "name": "served_skills.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b0702246c460955ac024a7f0b8ce1f262ad0a5dd4d76b70b49ba064d31b7e519",
+  "node_id": "fact:bl-149",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-149] A blast radius ranks by GLOBAL importance while claiming to rank by relevance to the change",
+    "subject_id": "cmp:propagate",
+    "value": "{\"evidence\": \"*Found 2026-08-01 by a review of what dynograph-foundation v0.12.0 offers that reflow2 does not use, at Anthony's request. The headline number: reflow2 consumes 8 of 17 dynograph-graph exports, 2 of ~35 dynograph-vector functions, and none of dynograph-game \\u2014 there is more unused foundation than used. The full option set, including the ideas NOT filed, is recorded as proposed Decisions (dec:idea-*) so the roads not taken stay in the design's memory.* propagate.rs:389 ranks impacted nodes by betweenness centrality over the whole design network \\u2014 design_network()?.betweenness(). Betweenness answers *\\\"how much of the golden thread routes through this node?\\\"*, which is a claim about the node's standing in the design as a whole. IP-9's question is different: given the change I just made, what should I look at first? dynograph_graph::personalized_pagerank answers exactly that and is already a pinned dependency, unused. It is random-walk-with-restart: the teleport mass returns to a SEED SET rather than spreading uniformly, so every score is relevance *to those seeds*. Seed it on the change's own seeds and the ranking becomes what the field's doc comment says it is for. Small: the crate is pinned, the function is exact at this graph size, and propagate already builds the network it needs. THE OPEN PART, and it is why dec:idea-relevance-ranking stays proposed: betweenness is not WRONG, it answers a second real question \\u2014 the existing doc comment defends it as predicting a wider *secondary* blast radius, i.e. onward propagation rather than relevance. So this is plausibly an ADDITION, and two ranking columns may serve a reader worse than one. Decide whether the output is both, one, or a blend before building. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-149 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

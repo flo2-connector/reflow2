@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8cd932282effedd2efbd5ecd0b37b5d545d796f2037030ae233829365610338c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:decomposition-covers-its-parent",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:requirement-lineage"
+}

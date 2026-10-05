@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1d1d8eb8cfbe987e0616770127720058e9e9080e6bb34d348c22f55fbf88f76",
+  "edge_type": "REALIZES",
+  "from_id": "art:shared",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:shared"
+}

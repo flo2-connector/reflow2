@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9a6267b2ba663ccbcb2d5b5a5024266048cded8d513c3c049bc5e9da37d485ef",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries",
+  "properties": {
+    "evidence": "The earlier one saw this coming and said so in as many words: its closing note records that the Cargo.toml comment 'says WHAT happened without naming the command that does it safely', and that 'that gap is what cost this session a failed test run'. It named the missing leg a week before the disk filled again."
+  },
+  "to_id": "dec:idea-where-does-a-disk-space-rule-live-when-the-gate-runs-on-the-wrong-machine"
+}

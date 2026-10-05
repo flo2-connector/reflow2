@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3b5660e3e1dc76ad6ff43bba683bc8004039fccc5ef64ed1673c4fb804cf6c39",
+  "node_id": "ver:an-approval-does-not-erase-authorship-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/an_approval_does_not_erase_authorship.rs — 11 tests, plus the updated an_acknowledgement_says_whose.rs, the MCP a_constructor_accepts_the_owners_word_in_one_call.rs helper, and two new cases in tools/test_check_intent_authority.py.\n\nMERGE (fail when authored_by is reverted to replace): author then approve keeps both roles and both dates and drops the single-valued slot; the set is in canonical order whatever the write order; a legacy author edge survives a new approval.\n\nSHAPE: the same role twice is one role with the latest date; no role means author; an unknown role is refused and nothing is written; normalising the set shape changes nothing; a stray legacy `role` beside a set is dropped, not merged.\n\nMIGRATION: migrate_authored_by_roles rewrites legacy edges once and is idempotent; a legacy export is normalised on import.\n\nREADERS: an approver who also authored still counts as the approver in loop_status's assigned decisions; the intent-authority tool reads the set and still refuses a set with no approver.\n\nTHE ONE THAT EARNED ITS KEEP: \"the same role twice is one role\" failed on the first draft and exposed that the normaliser's legacy default was being applied to an empty map — a bug two sibling tests had passed over.",
+    "kind": "verification",
+    "name": "Approving what you authored keeps both roles — eleven tests, falsified by reverting the merge to a replace",
+    "status": "passing"
+  }
+}

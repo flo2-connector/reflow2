@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:285005fd86e1ddf647de18fc2c916e4de3c8630f1cca043ec305ecfc9a4c392a",
+  "node_id": "epoch:planned-a-session-serves-a-release-binary",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "ARRIVED 2026-09-12. The launch path stopped serving target/debug and now serves a release-profile binary, rebuilt on the builder's word rather than on every launch. First of the four Anthony ordered on 2026-09-11 (\"go with your suggested order\").\n\nWHY IT WAS FIRST: no design work stood in front of it, and it was the largest measured user-visible win on the board — a propagate walk 5,851 ms → 62 ms warm (93x), design_regions 12.5 s → 2.0 s warm, same bytes and same path with only the profile changed. Every performance number in the 2026-09-10/11 sweep was taken on the debug binary, so nothing else in that backlog could be judged until this landed.\n\nTHE INCREMENT'S OWN QUESTION — how the wrapper decides \"deliberately\" — WAS ANSWERED: it does not decide. The launcher never builds in release mode. A missing binary is a refusal that names `tools/reflow2-rebuild.sh`; a binary older than the source is served behind an unconditional banner naming both hashes; and `REFLOW2_PROFILE=debug` restores the previous content-hash auto-rebuild for the edit-compile loop, unchanged.\n\nTHE HAZARD THE TRADE REINTRODUCED, AND WHAT ANSWERS IT: the auto-rebuild existed because a stale binary served stale VOCABULARY in silence (2026-08-16, the pre-#199 change_type enum). Not rebuilding brings that back, so the banner is unconditional and `tools/launch_serves_release.py` fails the build if the staleness comparison is ever removed. That gate was SHOWN TO FAIL on two injected regressions before it was trusted.\n\nWHAT IT DID NOT INCLUDE, as planned: the adjacency memo work. 142 edge-read call sites still go to the store against 1 using the index built in #479, unattributed as a share of the seconds. Keeping it out is what leaves the profile's contribution measurable.\n\nMEASURED ON THE WAY OUT: the deliberate rebuild took 7m28s warm, RocksDB already compiled. The ~34-minute figure in the plan is the cold case and remains the reason this is not automatic.\n\nNO VERSION NUMBER BY DESIGN (dec:idea-a-planned-increment-is-named-by-content-not-by-number).",
+    "epoch_type": "revision",
+    "name": "A session serves a release binary",
+    "sequence": 430,
+    "status": "arrived"
+  }
+}

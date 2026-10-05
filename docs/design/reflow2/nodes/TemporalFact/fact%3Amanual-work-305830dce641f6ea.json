@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d030d06816f9cebc7c37f5b8d79030663ad2bcbc9390514b257f586ec1579be1",
+  "node_id": "fact:manual-work-305830dce641f6ea",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Wrote a Python script, three times in one day (v0.61.0, v0.61.1, v0.61.2 cuts), that diffs the ChangeEvent ids in the previous tag's committed export against the current one to find the increment's events and which of them carry no AT_EPOCH edge yet — the \"pin every ChangeEvent of the increment\" step of the release cut. Nothing served computes \"events since release X, and which are unpinned\"; changelog_view reads a window only after the pins exist.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-09-15",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

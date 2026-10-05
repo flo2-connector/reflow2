@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1681459bdea81cba19236f5a64b36a6cbc4ff8fd4c80b15ecd2eab16b0468358",
+  "node_id": "dec:repo-file-embedded",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RocksDB directory beside the repo, exports as the durable, diffable record.",
+    "name": "The graph lives as a repo file, embedded — not a service",
+    "rationale": "The service's strongest argument (concurrency) is hypothetical while there is one writer; it would put the user's design on a machine they do not control and is permanent operational cost. Reopening conditions are written down. Decided 2026-07-18 (surface-plan.md); BL-12/BL-15 carry the consequences.",
+    "status": "superseded"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88694ca3cd6bc6c857b1c3cf50348ed214d58ef3197da0e92cd40ed71c9582b3",
+  "node_id": "fact:bl-177",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-177] --check promises a change the real run refuses, and the two give different advice",
+    "subject_id": "cmp:init",
+    "value": "{\"evidence\": \"*Found 2026-08-02 doing [BL-175].* reflow2_init.py . --check listed update REFLOW2.md; the run then printed REFLOW2.md LEFT ALONE \\u2014 differs from what the kit installed (your edits); delete the file to accept the kit copy and changed nothing. Both are individually correct and they disagree, because planned_changes() tests only filecmp.cmp(src, side) \\u2014 does the file differ from what the kit ships \\u2014 while place_kit_file() additionally tests the manifest hash (*\\\"the file is ours to refresh only when its current content matches what the kit last installed\\\"*). A dry run exists to say what a run will do; this one over-promises, and a user who reads --check, runs it, and does not read the full output concludes the update landed. It is worse than a plain mismatch because the remedies differ: --check implies \\\"run it\\\", the run says \\\"delete the file\\\". Fix shape: planned_changes() applies the same manifest test and reports LEFT ALONE (delete to accept) where the run would \\u2014 one predicate, shared, rather than two that drift. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-177 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

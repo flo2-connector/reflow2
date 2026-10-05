@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d22252a6d4a0fadfc28d06c5f87cb6342ef422deef25dfd1a3598a76a7f88eab",
+  "node_id": "frag:art:temporal",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/temporal.rs"
+  }
+}

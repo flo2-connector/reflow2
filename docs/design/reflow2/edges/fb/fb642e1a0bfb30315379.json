@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7cd18f0f8d0ea39d3820cd37bf04459f25e825423d5a1a452ab5792fb639e79a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl184-ility-signals",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:ility-signals"
+}

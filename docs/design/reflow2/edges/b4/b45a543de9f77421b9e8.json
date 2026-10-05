@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fccac7657e44d8b1f82cd0eef1e39cfccd8b44f56ff6cce6340c6357fa52b943",
+  "edge_type": "CHANGED",
+  "from_id": "chg:get-node-reads-a-nodes-edges-2026-10-03",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-get-node-reads-its-edges"
+}

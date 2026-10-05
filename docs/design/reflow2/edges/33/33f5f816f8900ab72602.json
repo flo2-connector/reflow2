@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c905b49f04519dc3be38370fd4e36d8a3d40f736e7e8bd0d95e8d66f8eced92f",
+  "edge_type": "REALIZES",
+  "from_id": "art:git-anchor",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-server-writes-the-export-through-and-chains-it-from-main"
+}

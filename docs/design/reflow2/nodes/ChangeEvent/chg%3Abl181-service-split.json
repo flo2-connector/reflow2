@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:89e00bbe57445409a05a9541c5d3effc3feeb69d3e9122de8101bf794471a24a",
+  "node_id": "chg:bl181-service-split",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Snapshot before the split: art:service realized ten capabilities and the component, all from one 6,356-line file"
+  }
+}

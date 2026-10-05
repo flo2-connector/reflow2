@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8821166c0a6b6af7bd9c14e0ca03d99c898bf13022a68162036903e2109ae456",
+  "node_id": "req:the-repository-root-holds-only-what-a-build-a-contributor-or-a-harness-needs",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The repository root holds only what a build, a contributor or a harness needs; nothing is removed without a home for what it still says, and an instruction pointer is removed only after the harness is measured to read its replacement",
+    "priority": "low",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), dev_reflow2 hub session, 2026-09-28",
+    "statement": "reflow2's repository root is kept clean. Field reports, generated catalogues and duplicate pointers do not live there: reflow2-friction-2026-07-25.md (a field report, already untracked by dec:field-reports-are-untracked-because-the-repository-is-public), SKILLS.md (a catalogue of skills the binary serves), and REFLOW2.md (a pointer repeating AGENTS.md). COORD.md goes once what it still says to people without reflow2 (the handles, the conflict doctrine, the conventions) has a new home, and the schema's Contributor.handle description stops naming it. CLAUDE.md is removed only after a session in this repository is measured to read AGENTS.md without it, because req:kit-reaches-the-agent exists for exactly that failure. Registered Artifacts retire on the record, and the gates that read these files are re-pointed.\n\nAnthony, 2026-09-28: \"I believe we can also remove: reflow2-friction-2026-07-25.md, SKILLS.md, COORD.md, and CLAUDE.md (maybe .gitignore if you need). In essence, I'd like to really clean up the git repo.\" Kept as intent from dec:idea-the-repository-root-holds-only-what-a-build-or-a-harness-needs. Ignoring a file in .gitignore was weighed and is not the route: an ignored file exists only on one machine, so a fresh clone, CI or another contributor's agent never sees it.",
+    "status": "accepted"
+  }
+}

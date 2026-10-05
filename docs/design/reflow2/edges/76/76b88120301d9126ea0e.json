@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ada11d79f92b38991df3044b864564fdefacede23f484b4b966314547faa1da7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-unit-of-focus-is-a-region-of-the-design-not-a-thread",
+  "properties": {
+    "evidence": "A neighbourhood of open questions is only worth anything if open questions are linked to each other. That node measured 145 ideas with 12 edges between them, so an edge neighbourhood of the undecided pile would be mostly singletons until linking improves.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

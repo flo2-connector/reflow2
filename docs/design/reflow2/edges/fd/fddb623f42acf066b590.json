@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0752b25366d9591dea5c9fb1c108db24e935f8286a4e2f6ad9e78c0ad8873c34",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-scope-actually-narrows",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:scope"
+}

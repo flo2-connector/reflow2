@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6b6d2b8b3e1d25d5394363c566661642bfdb7562916484567c6c10738c72d71f",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled",
+  "properties": {},
+  "to_id": "req:every-oauth-role-reflow2-plays-meets-oauth-2-1-at-a-minimum"
+}

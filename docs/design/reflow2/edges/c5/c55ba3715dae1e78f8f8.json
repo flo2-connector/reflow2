@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b41cafc1c875b2d3f56ec1a2983773e9d8f12581c8b698c0b82532cbc6d7314",
+  "edge_type": "RISKS",
+  "from_id": "dec:idea-a-nested-part-has-an-address-not-only-a-parent",
+  "properties": {
+    "evidence": "Option (b), a STORED dotted id, encodes a part's position into its identity — and that capability exists precisely so parts can be moved. Every use of it would make a stored address wrong. The idea as written threatens a capability shipped three days earlier."
+  },
+  "to_id": "cap:a-component-can-be-moved-not-just-given-another-parent"
+}

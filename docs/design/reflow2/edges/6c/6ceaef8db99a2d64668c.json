@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:12a8056524b05b12aa1a62bf5b54906ce824e7aaa67cdcb00f13982bbaeb8264",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2-states-its-own-rules-20260808",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:bl-212"
+}

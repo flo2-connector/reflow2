@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e8b8610d8246d4719f84f530c8fe669c5d03b4670ce06498017f63ecabdd3716",
+  "node_id": "question:be9376ce5a6bc63b",
+  "node_type": "Question",
+  "properties": {
+    "answer": "FIX THE REMAINDER AND MAKE THE PREDICTION TEST STANDING — run together with the findability work as one pass. Anthony, 2026-09-11: \"go with your suggested order\". ⚠️ CORRECTION ON THE WAY IN: the recommendation was put to him as \"thirteen tools failed\"; reading the remediation tracker afterwards, ELEVEN of the thirteen are already closed by merged PRs #477 and #478. What is genuinely open is compose_and_analyse's empty seam (D-10), the undocumented fields on evidence_report/confirmation_ledger (D-04), and two measured classes that are larger than the thirteen: 26 descriptions under 220 characters (C-03) and 76 of 230 required parameters across 68 tools publishing no description at all (NEW-02).",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “Every served tool's description is accurate about what the tool actually does — its behaviour, its reply shape, and what an empty answer means”",
+    "gap_id": "gap:be9376ce5a6bc63b",
+    "question": "You set the success criterion that every tool's served description lets a caller predict what it returns, including what an empty answer means — thirteen tools already failed that test. Do you want the thirteen fixed and the prediction test made a standing check now, held, or dropped?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

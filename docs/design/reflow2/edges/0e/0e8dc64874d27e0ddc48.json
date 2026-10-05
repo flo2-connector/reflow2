@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2a79b3747cf7bc36858ed121948bf43d56083ad462e984f136c7d890dc89b751",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-unmeasured-client-gets-the-payload-not-a-signpost",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:test-content-policy"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:11566ce643cfcb6089f6709de5693a4282ccb26adb0f623b9eb6ef9025a7f12e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:comparison-discloses-build-skew",
+  "properties": {},
+  "to_id": "req:a-comparison-discloses-build-skew"
+}

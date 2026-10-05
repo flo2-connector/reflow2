@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8d52686e57def2969912746d0d87eb4e9348e030271a829a58bf859ff14c72d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-042ef55b26adc527",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:export-via-binary"
+}

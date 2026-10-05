@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b2a117015f781bd677074af75f304a4378c5547d7b9608824a695a15f33bffd7",
+  "node_id": "art:design-holds-says-why-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five tests on the acceptance surface: a baselined artifact accepted as design_holds with no change_type is refused and the refusal names the repair labels and the reconcile labels; a stated reason is recorded as given; a repair may still be accepted as a repair; a first baseline needs no reason; the bulk form refuses the silent item and names it. The two refusal cases observed failing before the default was removed.",
+    "location": "crates/reflow2-mcp/tests/a_design_holds_acceptance_says_why_the_code_moved.rs",
+    "name": "a_design_holds_acceptance_says_why_the_code_moved.rs",
+    "status": "realized"
+  }
+}

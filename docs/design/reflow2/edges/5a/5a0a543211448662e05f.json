@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:56babf435f329207f558fa517ab7390e60067ac2647b34acba519a044dbc742b",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:ownership-is-an-edge-so-debt-has-an-addressee",
+  "properties": {
+    "note": "The decision fixes the BUILD ORDER for this requirement: consume the CLAIMS edges claim_region already writes before introducing an OWNED_BY edge type. It constrains how the requirement may be satisfied, not whether."
+  },
+  "to_id": "dec:ownership-reads-claims-before-adding-an-edge"
+}

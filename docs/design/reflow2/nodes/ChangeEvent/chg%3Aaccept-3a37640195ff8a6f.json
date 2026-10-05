@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c975451f723c8180f196110e634f2650a3131216d58754866df467a9ddc7ef75",
+  "node_id": "chg:accept-3a37640195ff8a6f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-15",
+    "name": "A call-site update only: add_change_event gained a fourth argument and this test passes None. No design meaning — the test asserts exactly what it did before."
+  }
+}

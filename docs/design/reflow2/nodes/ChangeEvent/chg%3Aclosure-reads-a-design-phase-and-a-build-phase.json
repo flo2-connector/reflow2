@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8c5345c473bc0e0974341d6de6ffa2f58d4596247e24dca0f81f8ec61782a78b",
+  "node_id": "chg:closure-reads-a-design-phase-and-a-build-phase",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-09-29",
+    "name": "closure_report reads the DESIGN phase beside the BUILD phase, every reading naming its phase; closure now reads parking, and the build phase needs measured budgets",
+    "rationale": "Requirement req:closure-reads-design-done-separately-from-build-done (accepted by Anthony, 2026-09-29, 'go with the 7 ideas you'd promote', idea 5) and its capability cap:closure-reads-a-design-phase-and-a-build-phase, both recorded in the LIVE design and not yet in this branch's export, so named here in text. The root cause it removes is fact:root-cause-closure-cannot-read-design-done-because-traceability-was-bound-to-the-delivery-line-2026-09-29 (live design, from the dev_reflow2 two-agent exercise, item I15): a finished design with nothing built read traceability 0/7 because the leg was the delivery predicate, its first hole was a requirement it had parked, and the budgets leg never read basis. Option (c) of dec:idea-closure-has-a-design-phase-reading-and-a-build-phase-reading: two readings always, one criterion. (a) a phase knob shows one answer, quotable as done; (b) five knobs; (d) weakens 'passing'; (e) splits the answer. The idea decision stays the owner's. Pinned by crates/reflow2-core/tests/closure_reads_a_design_phase_and_a_build_phase.rs: all six tests observed FAILING on origin/main 42259ba (core-only build, private target dir), each for the reported reason, then passing on the fix; the existing closure suite (9), the parking-readers test (3) and the full core suite (1,885 tests, 197 binaries) pass.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "closure_report's top level is labelled `phase: build` and keeps its meaning (the delivery line), but a budget there now also needs every numbered contribution `measured`. A new `design` reading, against the same declared criterion: a requirement is traced when a capability satisfying it is allocated to a part with a check planned (any status), and a budget closes on an estimate that carries its basis. Every leg carries `phase`; release_report's closure summary carries `design_verdict`. Both phases leave PARKED requirements (a `parks` ruling on an accepted decision) out of the population and count them in the leg's `parked`, never as the first hole."
+  }
+}

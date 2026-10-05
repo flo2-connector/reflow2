@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dfcf6715c4107bf0c713e2c1fca1740f8444a2d09506ab03e3134b8b85992c9d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:portability",
+  "properties": {},
+  "to_id": "req:survives-upgrade"
+}

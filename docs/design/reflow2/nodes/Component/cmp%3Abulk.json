@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1c7e7f417ce270ea25dff5e12e456f51e51c931b95f52bdff8d2b1de961595d5",
+  "node_id": "cmp:bulk",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "bulk",
+    "provenance": "authored",
+    "purpose": "Bulk forms — one call where the served surface measured N. The batched half of the write path, so a caller doing 144 consecutive things does one.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

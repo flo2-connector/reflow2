@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9ab4e27652e2088154c419db8e6a2a6132de8b4ce12c8587478b3c11a340251b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cmp:scope",
+  "properties": {
+    "dependency_type": "function_call",
+    "note": "scope.rs calls propagate_from for the traceability half of a region — the bounded part. The containment half is walked here, because propagation deliberately excludes CONTAINS.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:propagate"
+}

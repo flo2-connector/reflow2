@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f3399325eade716e5def74b90de8b2c9908995fdf10fdbd5785d4a1d9f80a382",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-b1fafb5f84628d53",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-inference"
+}

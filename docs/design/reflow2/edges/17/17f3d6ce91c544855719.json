@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3c9e0e07c8a5749964bfeed19acde45bc479a2d8ed41169854bc6c4e0d9e56f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:content-store-discontinued",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:main"
+}

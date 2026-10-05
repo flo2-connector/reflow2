@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d80d2ad78c2ff73f87dbc1c0fd5c3ab972292486ccf7071f96951b04a05d0118",
+  "node_id": "chg:bulk-forms",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "BL-153 fix shapes (1) and (3): the bulk forms, and the tool surface that carries them"
+  }
+}

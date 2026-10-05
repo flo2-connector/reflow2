@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c1427ccdb2faa681ad7b5f5f9d084f13d81bff5d5d9e39a5877a2607862a9995",
+  "node_id": "chg:accept-6add78897ab99fe3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Two `None`s added to a RequirementReq literal. No design meaning.",
+    "subject": "system"
+  }
+}

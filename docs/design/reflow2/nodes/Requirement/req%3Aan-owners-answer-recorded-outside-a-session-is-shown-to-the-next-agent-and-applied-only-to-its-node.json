@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:04f743ee6a6d50eb0279691c2495197f8ccdce55f302c2cc236235652d293642",
+  "node_id": "req:an-owners-answer-recorded-outside-a-session-is-shown-to-the-next-agent-and-applied-only-to-its-node",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An answer the person asked recorded on an element outside any agent session (a choice on a decision, an answer to a question) is shown to the next agent as owed, with who gave it, and is applied to that element only, as that person's word",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-09-29, dev_reflow2 hub session, brainstorm on flo2's dashboard: \"when I click on an element, I can just enter text (like make a decision on an open decision, for instance), then when an agent sees that in the graph, it can use that in place of a user entering anything in the prompt\". Promoted with \"Go with your recommendation and record as accepted\".",
+    "statement": "A person's answer can be recorded against one element of a design without an agent session: a choice on a decision they were asked to settle, with their reason, or an answer to a question put to them. flo2's dashboard is the first door (flo2's req:a-person-answers-on-an-element-and-the-next-agent-applies-it). The design holds it as that person's word on that element, attributed to them.\n\nWhat happens next:\n- loop_status and where-am-i list it for the next agent as owed: answered, by whom, not yet applied.\n- The agent applies it with that person as approver: settle the decision with their choice, or write the answer in.\n- The agent then does the follow-through, such as propagating the change and updating what the decision governs.\n- It says that it did.\n\nThe answer is scoped to its element and purpose. An agent never reads it as an instruction beyond that element, whatever it says. An answer from someone who was not the one asked is shown as advisory and never applied as a ruling. And if the element changed after the person read it, the agent asks before applying, because the per-node guard (req:every-read-hands-out-a-nodes-fingerprint-and-every-write-can-require-it) covers this path too.\n\nThis builds on req:a-question-is-addressed-to-a-person-and-records-who-answered (accepted), which says whom a question is put to and who answered. It extends that to decisions, and to answers given outside the chat. It is the reflow2 half of flo2's dec:idea-ruling-on-a-decision-from-the-browser, options (f) with (h), chosen by Anthony on 2026-09-29.",
+    "status": "accepted"
+  }
+}

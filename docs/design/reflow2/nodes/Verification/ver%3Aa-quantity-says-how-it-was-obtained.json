@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:140df67cb8ef90bfbe5eba82bc96434dfd1512b0ff8ad7dc87d6d5e6a3ba78a1",
+  "node_id": "ver:a-quantity-says-how-it-was-obtained",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_quantity_says_how_it_was_obtained.rs — five cases over the two detectors, set_constraint_provenance, constrains_in's source and budget_report's unsourced.",
+    "kind": "verification",
+    "last_reconciled_at": "2026-09-23",
+    "last_reconciled_outcome": "passed",
+    "last_run_at": "2026-09-17",
+    "name": "A design with no numeric limit raises nothing; a limit nobody sourced is named and the agent's own word is an answer; a contribution with a number and no source is named and the rollup lists it; a source on an edge with no number is not stored; a check on a limit with no executable form is named until the file that is the check is linked",
+    "status": "passing"
+  }
+}

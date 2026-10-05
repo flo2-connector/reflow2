@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ddbdec00db55a37f578390da905ea5d5a259e0f2161507c5d3fd29ad6b1f160",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:closure",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:closure"
+}

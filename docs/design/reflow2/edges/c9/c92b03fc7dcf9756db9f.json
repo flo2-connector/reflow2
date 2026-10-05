@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e91e84ebb721b79ff4824135e09a31f7d89467c0b3d970ff0711d8c9b6c20f22",
+  "edge_type": "CHANGED",
+  "from_id": "chg:skill-loads-are-counted",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:loop-nudge"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:df964e7b92a89657e8882ae213fa7c1187a5f8eafc50c33c5346a49fedf4d49c",
+  "node_id": "cmp:skills",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "skills",
+    "provenance": "authored",
+    "purpose": "The served skill catalogue: embedded bodies, the instruction catalogue, and the two tools that read them.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

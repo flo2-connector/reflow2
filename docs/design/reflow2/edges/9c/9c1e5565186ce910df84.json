@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ff5a0d3ca4dc34344df9158516217499e27e8f6a9bb02d80d5f4e8f2b4efbb15",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:scoped-analysis",
+  "properties": {
+    "authored_at": "2026-07-25",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

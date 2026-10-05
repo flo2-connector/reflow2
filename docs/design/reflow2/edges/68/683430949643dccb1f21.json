@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6db0cb0f43d018078501064c29c864bd2c4f3cf18c2980c46c74d683e93456e0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:coord-board-settled",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:coord-board-in-graph"
+}

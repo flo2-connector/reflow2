@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e65f73d214cf87511631d361cdf7830ec249fc301958b0887687fa95daeb3b4f",
+  "node_id": "art:ingest",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "crates/reflow2-core/src/ingest.rs",
+    "name": "ingest.rs",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

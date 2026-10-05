@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f75cf386b89852ca472e7f34a4cfc7f94faac97c8815e0601ecbf9fc40940baa",
+  "node_id": "cap:bl-13",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Advanced testing tiers\n\nComprehension (partly answered by the blind trial), scale (all fixtures are 3–10 nodes), messy input, longitudinal.\n\nMigrated from docs/backlog.md BL-13 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.",
+    "name": "[BL-13] Advanced testing tiers",
+    "provenance": "imported",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

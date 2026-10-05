@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3cc1206c9184ce2f852d92ce3f32ca0f76a569ff1394ed4591a9065994b9dffb",
+  "node_id": "art:lens-names-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four served-reply tests: two recorded readers are named beside their ids on the skill lens; the askable people in the silent case are named too; a person with no name is still listed by id with no empty parenthesis; loop_status carries the names as well. Three observed failing before ReaderLens carried names.",
+    "location": "crates/reflow2-mcp/tests/the_lens_names_the_person_beside_the_id.rs",
+    "name": "the_lens_names_the_person_beside_the_id.rs",
+    "status": "realized"
+  }
+}

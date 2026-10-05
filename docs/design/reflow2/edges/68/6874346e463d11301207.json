@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9a8d76f1642a394859a3abae4bca5bb242843d1bce28210ee06ef83c92072d7e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:skill-lint",
+  "properties": {
+    "covers": "partial",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:install-reaches-the-agent"
+}

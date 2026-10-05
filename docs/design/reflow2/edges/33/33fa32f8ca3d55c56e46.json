@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0320303e0965ba8235e89fe7e47bef34fb8ca0127ec71f0a5e8387b39891fff",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:hierarchy",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:hierarchy"
+}

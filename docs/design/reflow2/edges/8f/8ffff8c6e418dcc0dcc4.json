@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3bb8ef68e77938a9148bf61e0b9dd4121197ad6ec8f7dce0bbdd6ae5a664531a",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-gh-merge-failure-is-snap-confinement-and-nobody-was-counting",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "fact:the-root-cause-was-on-the-record-and-a-session-re-derived-it-anyway"
+}

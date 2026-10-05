@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55253f225e6a0ba478f7b1f8f664aaf1938946e0fe4f3b1c4b6dd60eea51f426",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "fact:skill-mechanics-track-enforcement-exactly-and-they-split-into-three-kinds",
+  "properties": {
+    "evidence": "The third mechanic kind — tool-side preconditions — is identified only because that observation counted HOW each of five skills came to be invoked, and found the one self-invoked without the user was the one a tool demanded. Without that count this measurement would have concluded the factory should edit SKILL.md files, which is the wrong artifact for the mechanic that has evidence behind it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "fact:the-author-of-a-skill-did-not-use-it-an-hour-later"
+}

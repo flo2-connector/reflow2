@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac2c4efabdad8912eab5a50624a0372c16093482cab9536e7dc9649dfb9a80b2",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:every-served-skill-conforms-to-agent-skills-and-the-lint-checks-it",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-01"
+  },
+  "to_id": "epoch:planned-reflow2-ships-as-a-plugin"
+}

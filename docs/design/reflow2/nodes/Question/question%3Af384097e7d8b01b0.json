@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1b936de6b227b48f3552aceefdb2256b71106e8edaf48cedcd9b4225e97e3bf0",
+  "node_id": "question:f384097e7d8b01b0",
+  "node_type": "Question",
+  "properties": {
+    "answer": "Anthony, 2026-08-23. Coupling internal to one binary is NOT something he wants contracts written for — the 64 pairs are not to be modelled as interfaces.\n\nTHE SUBSTANCE OF HIS ANSWER WAS ALREADY ON THE RECORD, in his own words, captured the same day as brainstorming at `dec:idea-a-contract-is-declared-at-the-lowest-level-and-rolled-up`: an interface \"should be defined at the lowest level that actually defines the interface and the rest is rolled up so that if somebody asked at a high level, 'is there an interface between subsystem_A and subsystem_B?' the 'view' capturing at subsystem to subsystem level would say 'yes', but the graph would actually show it is actually subsystem_A.component_2 <--> subsystem_B.component_5 that the interface contract is actually defined.\" Asked to settle it, he chose to PROMOTE that position rather than restate it — it is now `accepted`.\n\nWHAT HE DECLINED, AND WHY IT MATTERS: offered the option of defaulting the undeclared-seam finding to subsystem altitude, he declined it. The detector goes on answering at module level for every project. His own counter-argument, recorded beside the idea before he was asked, is the reason it would have been wrong: a roll-up that answers \"covered\" at subsystem level says nothing about coupling covered by NO contract at any level, and `seam_coverage`'s `scope_note` says the same thing in the tool. So the finding is accepted ONCE, on this design, with his name on it — not silenced everywhere by a changed default.\n\nMEASUREMENTS THIS RESTS ON, both 2026-08-23: module altitude reads 72 couplings / 8 covered / 64 uncovered, subsystem altitude reads 11 / 11 / 0; and all 64 pairs are inside ONE crate with zero crossing a crate boundary, 44 of the 55 files in reflow2-core carrying `impl DesignGraph` — most of the pairs are impl blocks of the same struct.\n\nSTILL NOT SETTLED by this answer, and named so it is not mistaken for closed: whether DEPENDS_ON between two impl blocks of one struct is a dependency worth recording at all. He was offered that as the root fix and did not take it in this pass.",
+    "asked_at": "2026-08-23",
+    "context_setter": "64 pair(s) of parts depend on each other with no contract written down",
+    "gap_id": "gap:f384097e7d8b01b0",
+    "question": "Sixty-four pairs of components depend on each other with no interface recorded between them. Model those seams as interfaces, or is coupling internal to one binary not something you want contracts written for?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

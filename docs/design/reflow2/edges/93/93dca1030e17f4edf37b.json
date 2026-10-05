@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b5b87413b64fdc235d69e9b3bf14ce32c4fc929092341837c4d1fdf382d153be",
+  "edge_type": "CHANGED",
+  "from_id": "chg:hosted-collaboration-raised",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:many-designs-one-service"
+}

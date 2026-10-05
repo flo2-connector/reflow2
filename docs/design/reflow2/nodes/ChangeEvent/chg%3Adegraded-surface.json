@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b0e505ecb760e1ee7eb9eff04d91d58512178aa2c9e46f85ee2c33e72e3c139c",
+  "node_id": "chg:degraded-surface",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "Field fix from the six-session fleet: reflow2 never exits silently, and a graph somebody else holds can still be exported"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b135ecac2cb6399d572dd1dffe1f9b00b641845de6f2229c0fcaa325c121c1a9",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-assure",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-graph-asks-what-a-session-made-false"
+}

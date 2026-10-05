@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4b5560fb275ae559b27684cb21763cf64511812bebf33964f7acd8e802826e49",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:arrival-delta",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

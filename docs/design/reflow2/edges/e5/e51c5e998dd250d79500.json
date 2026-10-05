@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a34bb0b48bac33e027db2663eddab18ae42c03ce8a87acd2900e4cc4ddf54528",
+  "edge_type": "CHANGED",
+  "from_id": "chg:qualitygate-leaves-the-schema",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema"
+}

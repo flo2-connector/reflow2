@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:947277764d0aa57f2f9795d7f6dd5fb871eaf856de3e6e61a26230debe4d3606",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons"
+}

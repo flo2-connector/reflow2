@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ecbd6586704524eed9a7e71870acbf3c15c9c995342adfe17fa500804843d1c3",
+  "node_id": "cap:decomposition-coverage-is-asked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "When a requirement is decomposed, reflow2 raises the coverage question rather than answering it: what did the parent hold that no child holds? The answer is recorded, so a later reader can tell a DELIBERATE NARROWING from an ACCIDENTAL DROP — today both look identical, and both report DELIVERED once the children close.\n\nReports and asks, never judges (`dec:report-dont-judge`). It does not refuse a decomposition, and it does not put an LLM in charge of sufficiency — the honest form named on the requirement is a question put to the user with their answer written back, the same shape every other gap uses.\n\nAPPLIES TO DECOMPOSITION ONLY, not to derivation: a DERIVED requirement adds new technical necessity and is not expected to cover anything, and `cap:requirement-lineage` already holds that distinction (original / decomposed / derived).\n\nDistinct from `cap:derived-completion`, which computes delivery UPWARD from the golden thread and is verified. That computation is the one with the hole: `report.rs` treats a parent as delivered exactly when every child is, and never asks whether the children amount to the parent. This capability supplies the missing question; it does not change the arithmetic.",
+    "name": "A decomposition is asked what it dropped, and the answer is on the record",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

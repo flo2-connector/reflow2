@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36742adddbd234cfad9b75399e60c08983c4ed35d911f0544cc717a54fd9c7c6",
+  "node_id": "fact:bl-116",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-116] kpp_contradicted arrives as one uncheckable blob",
+    "subject_id": "cmp:detect",
+    "value": "{\"evidence\": \"*Found 2026-07-31 by the same external adopt pass.* A single KPP's check listed 12 accepted decisions in one gap \\u2014 *\\\"confirm each still leaves it intact\\\"* \\u2014 with no way to work through them or to record *\\\"checked, intact\\\"* per decision. As one item it cannot be ticked off, so the only available actions are accept-the-whole-thing or leave it open forever. Same root as [BL-115] one level down: the unit the detector REPORTS in is not the unit a human ACTS in. The KPP machinery is right \\u2014 an inviolable requirement genuinely is threatened by any of twelve decisions and saying so is the point \\u2014 but a finding a human cannot discharge incrementally is a finding they discharge wholesale, which is the opposite of what a KPP deserves. Fix shape: per-decision sub-items, or a recorded per-decision disposition so the gap shrinks as it is worked. Note the tension with dec:aggregate-gap-keyed-on-rule, which moved in the other direction for a different reason \\u2014 aggregates whose affected set IS the population want one key; this one wants twelve. Size S\", \"origin\": \"Migrated from docs/backlog.md BL-116 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: S.\"}"
+  }
+}

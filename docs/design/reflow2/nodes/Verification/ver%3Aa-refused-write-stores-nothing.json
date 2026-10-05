@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7fab2f4596a6122bf77f8ba0e53f462aaa3eac5f562eca5002e5dd05a8549956",
+  "node_id": "ver:a-refused-write-stores-nothing",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_refused_write_stores_nothing.rs, over call_tool through an in-process client. One case per measured class (a bad enum after the node write: add_requirement priority; a bad link item: add_decision related_to naming nothing; a bad edge: add_verification VERIFIES a Decision); a refused revise of add_capability keeps the old description; the retry after a refused near-duplicate is a create, so the duplicate guard refuses it; a success commits and its receipt names the node; a refused call sets off no write-through export. THE WALK reads the served catalogue (read_only_hint false), synthesises argument sets per tool and per optional field from each input schema (including a value outside each declared enum), and asserts every refusal left the export unchanged. Observed FAILING against main's source before the fix: 7 of 8 cases, and the walk named 6 refused calls that left a node (add_decision related_to, add_design_rule steps, add_requirement provenance, add_verification twice, snapshot_before_change leaving a ChangeEvent).",
+    "kind": "verification",
+    "last_run_at": "2026-10-02",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_refused_write_stores_nothing.rs",
+    "method": "test",
+    "name": "Every served write tool, made to refuse with arguments generated from its own schema, leaves the store node-for-node and edge-for-edge identical; the measured classes, a refused revise, the retry and the export each pinned",
+    "status": "passing"
+  }
+}

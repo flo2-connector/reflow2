@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:225a5737cdcfb98fb8d1cea9c5b221767d501668b4196948fb4e303ca69cf93f",
+  "edge_type": "REALIZES",
+  "from_id": "art:by-hand-names-a-real-tool-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

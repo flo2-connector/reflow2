@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8d7ea375e5f3c9955c1276a4c7a60948e0ede667b4e35cf9e32c1d7e979c7154",
+  "node_id": "chg:a-proposal-describes-its-own-sweep",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "propose_heal says what it swept and whether its scorer ran — the first theme of the triage-fixes increment"
+  }
+}

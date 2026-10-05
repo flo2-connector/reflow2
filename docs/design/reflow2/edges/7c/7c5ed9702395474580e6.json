@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dee9c07d3818a377c930c802bdaa855573b09028dfab431d3f73b8caa90da90b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-number-names-its-source",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-number-names-its-source"
+}

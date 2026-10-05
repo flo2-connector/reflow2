@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:094832058927fe0623f183775199dfc5bd6543a76f77783b1c2f4d1971fc7499",
+  "node_id": "art:schema-core",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "granularity": "atomic",
+    "last_confirmed_at": "2026-08-02",
+    "location": "schema/core.yaml",
+    "name": "core.yaml",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

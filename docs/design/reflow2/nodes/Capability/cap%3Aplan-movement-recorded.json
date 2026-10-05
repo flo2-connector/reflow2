@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a6b85817d94c13e458c29525952ad1e27e3cbedcc6487479d78852eb34f47324",
+  "node_id": "cap:plan-movement-recorded",
+  "node_type": "Capability",
+  "properties": {
+    "description": "When a planned epoch's content changes — a requirement moves out of epoch 5, a date slips — the movement itself is recorded and dated, rather than the plan being silently rewritten to look as though it always said the new thing. The forward-looking sibling of the snapshot machinery the backward axis already has.\n\nTHE OPEN DESIGN QUESTION IS ANSWERED (2026-07-31, by measurement rather than choice): filing in the arrived epoch IS sufficient, and planned epochs need no revision chain of their own. `record_change`'s planned-epoch refusal keys on the epoch you FILE INTO, not the node you snapshot, so a replan is recorded in the current arrived epoch with the planned epoch as its SUBJECT — and because a snapshot captures incoming edges, snapshotting that epoch captures the entire plan pointed at it in one call.\n\nBUILT as the `SCHEDULED_FOR` guard: removing, re-pointing or rewriting the modality of a schedule edge is REFUSED while the plan is unrecorded, so the movement cannot fail to be dated. Adding to a plan stays free — it destroys nothing. `cap:arrival-delta` is what then reads the trail (`dec:arrival-delta`).",
+    "name": "A plan's movement is dated, so what we believed back then stays answerable",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

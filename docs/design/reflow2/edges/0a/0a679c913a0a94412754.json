@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0d9932f344b75a4fc66935c44a0b00c604b95b44e6e379747c0d78ebb806f0ca",
+  "edge_type": "DUPLICATES",
+  "from_id": "fact:field-confirmation-flo2-853-authored-by-edges-gained-roles-on-import-the-roles-migration-seen-from-the-consumer-side",
+  "properties": {
+    "basis": "suspected",
+    "evidence": "The same complaint from a third project in nearly the same words — a restore tells an agent the design changed when nobody designed anything — said for a different reason (a migration, not a schema default) and worth keeping both."
+  },
+  "to_id": "fact:defect-import-materialises-defaults-so-a-restored-graph-reads-as-changed"
+}

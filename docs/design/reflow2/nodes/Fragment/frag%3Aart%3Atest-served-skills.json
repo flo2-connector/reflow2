@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9585ff6e16bbf8d01397c37c2be8b7205e5a8704c3d503063c25140d24c50a2f",
+  "node_id": "frag:art:test-served-skills",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered served_skills.rs"
+  }
+}

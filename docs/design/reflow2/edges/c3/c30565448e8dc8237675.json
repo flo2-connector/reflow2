@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:13df1bc2c50b305412305dc0f0980fc8b490b5e79a50991e48851a4e5d7b4d69",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-degraded-server-recovers-when-its-cause-clears",
+  "properties": {},
+  "to_id": "cap:release-publishes-a-container"
+}

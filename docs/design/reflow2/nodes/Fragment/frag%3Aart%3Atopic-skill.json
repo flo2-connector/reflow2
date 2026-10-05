@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce7be96ffadd55259b2bb678202f246ef47e8c7ae3fb918a5addd821e946eb91",
+  "node_id": "frag:art:topic-skill",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered topic/SKILL.md — the thin instruction leg of the /topic view: one call, render in the reader's domain, always read out not_found, write nothing"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:873303873f8a6b1b6546937f0a7d113b1cf2cdfea83f318638a7877a88f05f33",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran",
+  "properties": {},
+  "to_id": "req:a-ci-run-leaves-a-machine-readable-record-of-what-it-ran"
+}

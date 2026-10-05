@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d3896de1602100f2e265705c7a67b966ed7d236ab4ec836c14c960b620426d9b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-hub-waits-for-somebody-to-ask-for-it",
+  "properties": {
+    "approved_at": "2026-08-29",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93567c5973c5bc473f8bc3eaf34005e6d578d6af2ccaf1c32ea0b99b23b35f64",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-export-says-which-tree-it-was-taken-in"
+}

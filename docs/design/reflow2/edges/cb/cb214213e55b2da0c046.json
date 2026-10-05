@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9317c1c3ee90f23b0e84eec6850b4387ca6c3777814012abc6403804a56b70cc",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-item-layout-write-reads-back-whole-and-anchors-each-item",
+  "properties": {},
+  "to_id": "cap:lineage-is-kept-per-item"
+}

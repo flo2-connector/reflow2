@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ceb7fb55916209fdd600f2bbb3ec58a25000f18402e4cd7f3b344d9e4419fcfa",
+  "node_id": "chg:accept-975fcb51ce6ec113",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-07-28T14:52:00-04:00",
+    "name": "BL-28: seam_report.design was serde_json::Value, which schemars renders type-less; retyped as Map<String,JsonValue> (house idiom, cf. MirrorSurfaceReq.document). Tool contract unchanged."
+  }
+}

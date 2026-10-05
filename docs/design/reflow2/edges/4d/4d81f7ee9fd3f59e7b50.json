@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bcbb71f044de40672f9a5bf003b58099b24edfd362258862579f5c5b6fc2eef2",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:a-record-that-moved-once-is-read-once:art:sync-debt:r2",
+  "properties": {},
+  "to_id": "epoch:a-record-that-moved-once-is-read-once"
+}

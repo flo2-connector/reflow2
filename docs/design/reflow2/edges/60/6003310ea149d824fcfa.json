@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5423a1ee186e4665d5675dabeb5fe1f4e890970e3605e59754a716a5e19870e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-34e886f1de000078",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:schema-accepted-at-last-release"
+}

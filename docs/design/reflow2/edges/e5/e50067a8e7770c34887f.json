@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:032437aad7cc1a68371aceef158d854cb1f86bb98444f0126aae16066434b4e2",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design",
+  "properties": {
+    "evidence": "Option (c) promoted on Anthony's word, 2026-09-23, and applied first in hxm_program as D-0019 (commit 5d6f623)."
+  },
+  "to_id": "req:a-generated-code-map-is-linked-from-the-design-never-merged-into-it"
+}

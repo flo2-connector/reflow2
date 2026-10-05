@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:30da27cecfdf05bae1518ad964fda5829fd03587c4a64bc3d2e8cd3e2caf9a3c",
+  "node_id": "sys:foundation",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "subsystem",
+    "name": "Foundation",
+    "provenance": "authored",
+    "purpose": "The layer everything else stands on: the typed node and edge vocabulary, the schema that validates it, the graph the store is reached through, the provenance stamped on every write, and the identity that says which design this is. Five modules that cannot be separated from one another — graph reads nodes and schema, and the vocabulary reads graph — which is exactly why they are one system and not two halves of two.\n\nDISTINCT FROM the three nodes that surround it, and the distinction is the point: the FACT measured the bisection, the DECISION chose this remedy over two others, the CAPABILITY is the work of moving the boxes. This is the box itself — the part of the system that exists once the work is done.\n\nCREATED 2026-08-20 under dec:the-kernel-is-its-own-system. Before that, nodes and schema sat in sys:vocabulary while graph and provenance sat in sys:store, and identity sat in no system at all. That bisection was the whole cause of the sys:store to sys:vocabulary cycle: traffic crossed the boundary both ways, so neither box was a wall a change could be handed to and stop at.\n\nMEASURED WEIGHT: 46 of the 52 other core modules transitively depend on nodes, 44 on provenance, 44 on identity, 43 on schema, 42 on graph. Nothing else in reflow2 carries anything like this reach, and a change here is the one change that genuinely does go everywhere.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

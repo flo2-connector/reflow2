@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4fc2832eed93dffc85ea1044a27f20f71fb44458d58e520c8adfd53ef315919d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:changelog-view",
+  "properties": {
+    "authored_at": "2026-07-28",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:033beb8bbc3fbb50ff2ae50ed6136385076b71c6c33c3c77de899742c8b2b645",
+  "node_id": "chg:get-skill-serves-a-slash-command-2026-09-24",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-09-24",
+    "name": "get_skill serves the skill a slash command names, instead of refusing with the mapping",
+    "rationale": "Measured on flo2's connector, 2026-09-24 (flo2 fact:first-skill-runs-through-the-doors-2026-09-24): a chat model asked get_skill for \"gaps\", was refused, read the mapping in the refusal, and asked again for \"detect-and-ask\".\n\nThe refusal (chg:accept-e5fb205599c26447, 2026-08-19) was the right fix for its time, when a caller got a bare list. But a slash command that names a skill has exactly one answer. Refusing it and naming that answer costs every caller a round trip and teaches nothing the reply's `requested_as` cannot.\n\nflo2 resolves shortcuts in its own gateway meanwhile. This makes every client right, including Claude Code users who type a command's word.",
+    "subject": "system",
+    "summary": "get_skill now accepts the word a person types, and serves that skill. \"gaps\", \"/gaps\", \"/where\" and \"/impact-check\" each work, and a skill's own name works with or without a slash (skills::resolve).\n- The reply carries `requested_as` when what was asked for is not the skill's name.\n- A command that is a TOOL rather than a skill (/debt, /decisions, /next) still refuses and names the tool.\n- The tool description, the `name` argument's description, the get_skill toolsnap and docs/skills-and-tools.md are updated to match.\n- Tests: `asking_by_the_typed_name_serves_the_skill` replaces the refusal test, plus `a_command_that_is_a_tool_refuses_and_names_the_tool`, `a_skill_by_its_own_name_says_nothing_extra`, and a unit test `a_slash_command_resolves_to_the_skill_it_names`."
+  }
+}

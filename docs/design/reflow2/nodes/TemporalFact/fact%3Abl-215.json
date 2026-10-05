@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5cfa901824c7c5d8833522a283126339fc39a242266a4d3f2406621900606774",
+  "node_id": "fact:bl-215",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "statement": "[BL-215] The graph is machine-local and git-ignores itself, so every captured decision was ALSO hand-copied into markdown for teammates — double bookkeeping, and only the prose copy is shared",
+    "subject_id": "cmp:export",
+    "value": "{\"evidence\": \"*hxm_program field report, 2026-08-05, item 5.* .reflow2 is git-ignored, so the design a session captures is invisible to the team; the reporter propagated it into HXM-1288.F1.md by hand. This is dec:the-transition-is-two-halves-and-reads-are-the-unscheduled-one from the other side: that node argues documents \\u2192 graph \\u2192 DERIVED documents, and here the derived half does not exist, so the graph became the private copy and markdown stayed the real one. Reporter's suggestions: a supported \\\"commit this graph\\\" story (deterministic, mergeable on-disk format), or a cheap tracked export (graph_report_markdown into a committed file) kept fresh by a session-end hook. Note the tension to resolve rather than ignore: reflow2 already HAS a committed deterministic export (docs/design/reflow2.json) and req:persistence says the design persists in-repo \\u2014 so the gap is not the mechanism, it is that nothing tells a new project to commit its export or renders a READABLE one.\", \"origin\": \"Migrated from docs/backlog.md BL-215 on 2026-08-07 (epoch:backlog-retired). Size estimate carried from the row: M.\"}"
+  }
+}

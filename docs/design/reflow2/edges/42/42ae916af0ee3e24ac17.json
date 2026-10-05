@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e940fc5a78f2d8e854d8e79f999da190abc9ca84f6d4f994c1c1f4b1294e2c6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:explains-itself",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bad1584e20d8d1f281e9d3f1b8932bf6f0a230bd62111b93848adf645be343d7",
+  "node_id": "rel:v0590",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-09-12 on Anthony's word, after increments 430–439 and the lessons-to-graph PR (#472–#493, 22 merges since v0.58.0). The first release whose schema stamp moves by an ENUM VALUE — Decision.status gains `deferred` — which an older binary cannot see; the upgrade note says so. Ships: a session serves the release binary; the server keeps the export current (--export-to); the version guard refuses by name; every required parameter described and every tool findable by a user's words; /feedback (server-kept usage ledger, usage_report, the feedback skill); lessons served at the step (steps on rules and facts; get_skill and the tool list deliver them); plan_epoch no longer resets an arrived epoch; rmcp 3.3.0.",
+    "name": "v0.59.0",
+    "status": "retired",
+    "unit_type": "package",
+    "version": "0.59.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2c185b81f5ba9f668e15c29e3cbdc9400a4c812ddf0f5a3a2ffb1e10228c3710",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-asserted-number-is-checked-against-data-already-within-reach",
+  "properties": {
+    "evidence": "A check that an asserted number contradicts reachable data needs the number to be marked asserted in the first place. That accepted requirement is the precondition, and it is realized.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported"
+}

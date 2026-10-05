@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e1610e8334b4a9737cf82899ee16ad2a32c2ca7a4acc51a68817a8d4624ef86d",
+  "node_id": "art:self-host-documents-guard",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "granularity": "atomic",
+    "location": "tools/self_host_uses_documents.py",
+    "name": "self_host_uses_documents.py",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

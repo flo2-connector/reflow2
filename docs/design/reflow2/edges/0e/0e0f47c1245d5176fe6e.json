@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bb0a3663703bdb78a68c2c1909f6e55854effa9c3626d6f2c651cf621209f0e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-decomposition-ladder-is-open",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:rocksdb-backend"
+}

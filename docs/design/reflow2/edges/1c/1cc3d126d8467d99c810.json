@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f95e4ff7de53c329697e11b68913fea536874ab7ff9c13353e85cad4c2e3b972",
+  "edge_type": "CONTRADICTS",
+  "from_id": "fact:apply-heal-would-have-destroyed-the-wrong-contributor",
+  "properties": {
+    "alignment": "opposing",
+    "confidence": 1.0,
+    "evidence": "The accepted rule's alphabetical tie-break selected an 8-edge node over a 161-edge node on a real, authorised merge"
+  },
+  "to_id": "dec:merge-survivor-provenance"
+}

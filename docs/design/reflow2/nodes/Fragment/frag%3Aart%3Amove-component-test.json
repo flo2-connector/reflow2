@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4ef5f716ac69ea82fe2403000692742a6be0bb268b2714fa3b9df8834412082f",
+  "node_id": "frag:art:move-component-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered move_component.rs"
+  }
+}

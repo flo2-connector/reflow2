@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5138f92af1e08cde2542d87ec48205e65195ff16749ef3c466756e106ddafa2d",
+  "node_id": "chg:update-is-one-word",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "reflow2 update ships as its own subcommand, refusing a project with no install receipt and stating that it never downloads"
+  }
+}

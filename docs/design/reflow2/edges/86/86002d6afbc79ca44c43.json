@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86b05d54b7e8338d22625d3451e0475331f429713bf893d592647038600ba55c",
+  "edge_type": "REALIZES",
+  "from_id": "art:degraded",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:degraded-surface"
+}

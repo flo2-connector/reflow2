@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:04c2bc27ceb85098bf06f3f8869e224a4b7646c23d63926a804de24c4a79ef3c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-registry-names-every-store-it-found-and-cannot-serve",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:updating-doc"
+}

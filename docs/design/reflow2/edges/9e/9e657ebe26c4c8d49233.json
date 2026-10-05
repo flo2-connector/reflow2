@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41ed460ab210b61dfa360cb998f1cd53cba88bcb2cb88209195dbcbf11fe6074",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-set-aside-decision-is-not-debt-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-set-aside-decision-is-recorded-where-the-loop-can-read-it"
+}

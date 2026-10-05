@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:16a7fb66a2d1c44e3e619828a9adca440f58dac05767c86ed23f882efbcf2f29",
+  "node_id": "chg:accept-46f20004007565f3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-20",
+    "name": "The coupling axis reports NOT MEASURABLE rather than a value when there is no partition — consistent with ility's existing doctrine that an uninformed axis says so instead of reading clean. An absence of evidence is not evidence of modularity.",
+    "subject": "system"
+  }
+}

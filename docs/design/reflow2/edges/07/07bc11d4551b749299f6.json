@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:90748e17346877f2a47c832fbfc937690d4677959f9614ff551b9d03848c8c72",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:establish-taxonomy-skill",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:establish-taxonomy-skill"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33dcfac2f20f2280ea472ee1d2e5ac1dfdfd6dd1d47059e975e597c46d276071",
+  "node_id": "rel:v0540",
+  "node_type": "Release",
+  "properties": {
+    "description": "add_actor is new; add_capability takes tier and the two flow-endpoint flags; add_component and add_flow take tier; add_constraint takes concern and priority; add_requirement takes concern; add_interface takes spec; add_project takes decomposition_levels, which hierarchy.rs reads on every level check and nothing could write; link_artifact takes content_ref and note_kind onto the provenance fragment it mints. Omitting any of them changes nothing. The reachability report reads 0 HOLE, and the 28 properties still unreachable are so on purpose: 15 written by an operation, where a caller parameter would let somebody forge a computed fact, and 13 carried by nothing at all.",
+    "name": "v0.54.0 — every declared hole in the vocabulary is closed",
+    "status": "retired",
+    "unit_type": "binary",
+    "version": "0.54.0"
+  }
+}

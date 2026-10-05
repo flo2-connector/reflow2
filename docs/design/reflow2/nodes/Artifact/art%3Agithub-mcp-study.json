@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1abb6485bb2809b450bb851e33acf31fd183bf413e600f2c968968b66b018bb0",
+  "node_id": "art:github-mcp-study",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/github-mcp-nuggets.md",
+    "name": "github-mcp-nuggets.md",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

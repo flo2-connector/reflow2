@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9f6ee4a12a974e591a83fdb937c230cc79bf61643e1143c1d70cf5cef95ab6a",
+  "node_id": "chg:accept-16280a243dc9b8ee",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical: four call sites take the new trailing argument. What the test asserts is unchanged.",
+    "subject": "system"
+  }
+}

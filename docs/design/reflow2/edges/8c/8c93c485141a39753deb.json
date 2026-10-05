@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:05d799c0b64dc00cf2342664b418408efff6bef27777e02eb766a8d015c7f6fd",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:implement-first-cost-an-edge-case-2026-08-11",
+  "properties": {
+    "evidence": "The instance. Its suite is the one scored against the nine criteria, and its missing edge case is the one CI found rather than a test."
+  },
+  "to_id": "cap:search-first-at-the-tool"
+}

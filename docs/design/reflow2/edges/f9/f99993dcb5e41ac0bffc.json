@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f2e712d3bfe9f9dd04fba2e0c9552db7eb61de834b5c992379c4a9242f4c2f5f",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:procedural-joins-the-interface-media",
+  "properties": {
+    "note": "One value rather than a family, and a closed enum rather than an open string, are this decision's choices."
+  },
+  "to_id": "dec:procedural-is-the-medium-for-a-boundary-between-institutions"
+}

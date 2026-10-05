@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:94d31af1f1df73c63b8060bbf2d358f9df2bb04f22dfffc35175183c716ec9ac",
+  "node_id": "art:usgov-genesis-feedback-2026-08-15",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "granularity": "atomic",
+    "location": "docs/feedback/2026-08-15-usgov-genesis-session.md",
+    "name": "US federal government genesis session feedback, 2026-08-15 — a governance-domain stress test of the vocabulary: ~93 requirements from the Constitution, 38 capabilities, 17 inter-branch interfaces, no software in the subject at all",
+    "status": "realized",
+    "volatility": "stable"
+  }
+}

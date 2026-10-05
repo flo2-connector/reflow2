@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:89d7957e862bc403b1bf2ab3d9430cf2ce773f78f6f47206f07e9ba5b96b0564",
+  "node_id": "ifc:req-dyno-core-api",
+  "node_type": "Interface",
+  "properties": {
+    "auth": "unspecified",
+    "designation": "required",
+    "medium": "library",
+    "name": "Core model types (Schema, Value, DynoError)",
+    "paradigm": "synchronous",
+    "payload_format": "unspecified",
+    "provenance": "authored",
+    "spec": "REQUIRED FROM dynograph-foundation. reflow2 links `dynograph-core`, pinned by git tag v0.12.0.\n\nNAMED TO MATCH THE PUBLISHER DELIBERATELY, and that is a finding rather than a convenience. The first attempt declared ONE umbrella interface for the whole dynograph dependency; pairing returned NINE candidates and ZERO pairs, because a pair needs a name match at or above 85/100 and an umbrella scores 62-78 against nine crisp names. Two causes, and the first was ours: THEY DECOMPOSED AND WE LUMPED. reflow2 links five named crates that map 1:1 onto five of their published interfaces, so the honest model is five requirements at their granularity.\n\nTHE SECOND CAUSE IS WORTH REPORTING UPSTREAM: pairing matches on NAME similarity, so a long explanatory name systematically undershoots the bar while a short parallel one clears it. That rewards naming an interface for the contract rather than describing it — defensible — but it means the seam is only as good as two teams independently choosing similar words, and nothing says so.",
+    "transport_security": "unspecified"
+  }
+}

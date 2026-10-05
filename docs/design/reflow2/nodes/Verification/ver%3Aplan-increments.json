@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:eecd972736d65e3d29e39a8cb8f031d14f28f808fedbf6c202c38935f05e1a90",
+  "node_id": "ver:plan-increments",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The skill is served and its first exercise found reflow2's own plan was decorative (2026-08-06, 4 checks).",
+    "findings": "SERVED: list_skills returns 17 (was 16) with plan-increments present, and get_skill returns the full body — build.rs embeds it, so it cannot drift from the running binary (dec:skills-served). EXERCISED ON A REAL STALE PLAN, which is what it was written for: reflow2's temporal axis held 24 Releases and 72 DesignEpochs against ELEVEN SCHEDULED_FOR edges, every one pointing at v0.19.0/v0.20.0/v0.21.0 — all retired. NOTHING was scheduled into any of the five planned future increments. ARRIVAL CLOSED: epoch:v0240-planned was still `planned` while rel:v0240 was `deployed`, the exact both-directions staleness the skill's step 4 says to check for; set_epoch_status moved it to arrived. AND THE DELTA REFUSED TO FLATTER: arrival_delta on it answered `items: []`, `required_count: 0` and `ready_to_cut: false` FOR AN INCREMENT THAT HAD ALREADY SHIPPED, with the note \"an increment that promises nothing has not been scoped\". The v0.24.0 plan lived in the epoch node's NAME as prose and never as structure, so the planned-versus-delivered delta the whole axis exists to compute had nothing to compute against. That is the finding the skill is meant to prevent, demonstrated on the design that ships it.",
+    "kind": "verification",
+    "last_run_at": "2026-08-06T12:55:00Z",
+    "level": "integration",
+    "method": "demonstration",
+    "name": "The plan-increments skill is served, and its first exercise found a decorative plan",
+    "status": "passing"
+  }
+}

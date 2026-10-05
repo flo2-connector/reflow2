@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7398d5f0bd5137b10803e800a774c9e023a473287dd499ac7b7cb5a529248dd1",
+  "node_id": "frag:art:propagate",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered propagate.rs"
+  }
+}

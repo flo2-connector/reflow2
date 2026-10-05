@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f7d1f1b322bb432fe7117ea702bce045dd9a095eb4d0801f33fd0bf6e3863e91",
+  "edge_type": "CONSUMES",
+  "from_id": "cmp:ingest",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:ingress-trust-boundary"
+}

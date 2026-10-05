@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c533d70cc1cbce1fb2762f90dd431afe2779442c62d8858c848e6a41e83c5ccc",
+  "edge_type": "CAUSES",
+  "from_id": "art:sync-debt",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "LOCATED BY THREE DISCRIMINATING MEASUREMENTS ON 2026-09-12, file untouched throughout. (1) Remove the sync sidecar: first read after a write drops from 1,117 ms to 40 ms; restore it and the tax returns — so the cost is the read path's record_moved check in sync_debt.rs, not the store. (2) With the sidecar present, set last_synced := observed.hash: 40 ms; set last_synced := garbage: 1,750-1,960 ms — so the failing clause is `observed.hash == last_synced` in the stat gate (sync_debt.rs ~line 414), which makes \"unchanged since observed\" require \"in step\" as well; a record that moved ONCE and then sits still fails it on every check, because `observed` is refreshed by the check path (record_sync_observation) while `last_synced` is refreshed only by export/import (record_sync). (3) A tiny moved target costs ~530 ms against ~1,150 ms for the 16 MB one: ~620 ms is the redundant re-parse of an unchanged file, ~490 ms is rebuilding the live export (`mine`) to answer a membership question. Why the live server is untaxed at this moment: it exported nine times today, so its hashes agree; every `git pull` that brings a colleague's export re-opens the gap until the next export — which is also why the 2026-09-05 measurement (taken right after an export) read 1.41x and was not wrong, only state-dependent.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-first-store-read-after-any-write-pays-a-fixed-1-1s-tax-whichever-tool-it-is"
+}

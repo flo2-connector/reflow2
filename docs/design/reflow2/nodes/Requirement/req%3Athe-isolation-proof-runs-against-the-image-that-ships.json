@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a35b4ce141f50e067d5276fd21d085a33627909b019943f8888d27cfec096535",
+  "node_id": "req:the-isolation-proof-runs-against-the-image-that-ships",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "security",
+    "lineage": "original",
+    "name": "Design isolation is proven against the published image, not only against the crate",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "The proof that a session bound to one design cannot reach another runs against the artifact consumers actually pull — the published container image — and not only against the crate's own test binaries. Concretely: the image smoke run holds two design directories under one registry root and shows a session attached to one cannot address the other.\n\nRaised by @ajs from flo2's 2026-09-13 session. The existing crate-level checks prove the mechanism; the image smoke run today proves only that the image starts, reports healthy and answers on its port. Nothing joins the two, and the image is what flo2 pulls.\n\nThis is the shipped-artifact half of req:a-session-cannot-address-another-design, whose own statement already requires the property be proven before multi-graph hosting ships.",
+    "status": "proposed"
+  }
+}

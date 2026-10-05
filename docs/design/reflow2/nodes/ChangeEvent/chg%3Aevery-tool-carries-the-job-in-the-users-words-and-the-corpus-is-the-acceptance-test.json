@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ed8f89d8f89859cabeefcd06a50996fdc89b8afdc977a824725ed63bac66bf24",
+  "node_id": "chg:every-tool-carries-the-job-in-the-users-words-and-the-corpus-is-the-acceptance-test",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "name": "Every served tool carries the job in a user's words — 68 sentences written from purpose, 8 descriptions trimmed to budget — and the 180-query corpus is a committed acceptance test: 177 of 180 in the top 5, held-out paraphrases 36 of 42",
+    "repair": "corrected_cause",
+    "subject": "system"
+  }
+}

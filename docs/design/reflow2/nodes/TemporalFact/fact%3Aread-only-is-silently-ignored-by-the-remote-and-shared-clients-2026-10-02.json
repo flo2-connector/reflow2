@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:66058d4fd27da52cfa4324255a093141100363ebe97db62ab523741a3d8261af",
+  "node_id": "fact:read-only-is-silently-ignored-by-the-remote-and-shared-clients-2026-10-02",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-02: `--read-only` is silently ignored by the --remote and --shared clients — a write over either lands, exit 0 — while a plain stdio --read-only client refuses it",
+    "statement": "Found while fixing the one-shot class (chg:every-one-shot-mode-resolves-its-design-first-and-every-flag-is-honoured-or-refused-2026-10-02), whose flag table covers the ONE-SHOT modes only. Measured with the branch's debug binary on scratch stores and an isolated HOME (script and log: /home/ajs7/.claude/jobs/fa666a94/tmp/door-safety/measure_serving_read_only.{py,log}).\nOBSERVED: (1) a plain --http server on a scratch store; a client `reflow2-mcp --remote http://127.0.0.1:<port>/ --read-only` over stdio, tools/call add_requirement → a write receipt; after the server stopped, --call get_node found the requirement. (2) `reflow2-mcp --graph-path <g> --shared --read-only` over stdio, tools/call add_requirement → a write receipt; after --stop-shared, get_node found it. CONTROL: `--graph-path <g> --read-only` over plain stdio refused (\"this reflow2 server is READ-ONLY …\") and get_node found nothing.\nWHERE IT IS LOST, read from the code and NOT walked as a root cause: the --remote branch returns at the top of main() before --read-only is read, and forwards every request; --shared starts its daemon (shared::ensure_server_async → spawn) with --graph-path, --serve-shared, --export-to, --content-policy and --server-log but never --read-only, and attaches to any daemon already running. A client attached through a folder's .reflow2.toml goes through the same remote proxy (proxy::run_remote_with_notice) and is expected to behave like (1) — inferred, NOT measured.\nWHY IT MATTERS: the same hazard as fact:call-ignores-read-only-and-the-write-lands-2026-10-02 on the serving side — an operator who adds --read-only to a --shared or --remote MCP entry believes the session cannot write. A refusal at server start would leave the MCP client with no server and no reason, so the fix needs its own design (honour it in the proxy, or serve a degraded surface naming the flag).",
+    "subject_id": "cap:a-surface-can-refuse-every-write",
+    "valid_from": "2026-10-02"
+  }
+}

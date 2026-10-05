@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ee70a17817dc6af6f6976a0484083061b719a816a7a396a194c91781c3350c4",
+  "node_id": "chg:a-refusal-names-its-own-fix-20260808",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "A refusal names the call that fixes it, add_contributor forgives the sibling field name, and a schema hint stops offering values its enum rejects"
+  }
+}

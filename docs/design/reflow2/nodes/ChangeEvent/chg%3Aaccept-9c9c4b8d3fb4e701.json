@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c1282495deabaedaf968bec900b4733792ed60af506fad3bd77ba1851721ad75",
+  "node_id": "chg:accept-9c9c4b8d3fb4e701",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "rustfmt only — CI's Format gate caught that the 437 edits were never formatted. No behaviour moved.",
+    "subject": "system"
+  }
+}

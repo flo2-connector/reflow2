@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:144bf1afd176b9dd59bd78a126d78f34e639226d51eb452221918a0510f9ddb5",
+  "node_id": "chg:accept-d2f5b38b15c6fc0e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "commits": "293f957703bd1885f6ad693476d6d025611de6ab",
+    "detected_at": "2026-10-03",
+    "name": "Only `..Default::default()` added to a GetNodeReq literal because the struct gained a field; nothing the test asserts moved.",
+    "subject": "system"
+  }
+}

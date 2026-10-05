@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8f21303cadbbf4a8764cbf16bf982adbe107c3c776fe4226412f4c4bd2229a9",
+  "edge_type": "REALIZES",
+  "from_id": "art:sweep-harness",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
+}

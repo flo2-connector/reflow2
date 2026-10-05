@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a6a978826664f3b38b65319b9bc46eff10f4ae616bd956f4743b150afc581755",
+  "node_id": "ver:a-read-only-server-with-no-store-serves-the-latent-surface",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three real-binary tests with an isolated HOME (see art:test-a-read-only-server-with-no-store-serves-the-latent-surface), plus opening.rs's unit tests: read_only_may_open_only_a_store_that_exists, and no_other_code_tests_a_graph_path_for_a_store (a scan of src/).",
+    "findings": "OBSERVED FAILING FIRST on main 293f957 (failfirst-main-2.log, failfirst-main.log, failfirst-main-unit.log): the walk recorded 34 failures across all six mode x folder cases — each server created .reflow2/graph with graph.id.json, graph.meta.json, graph.client.json and graph.usage.jsonl beside it (--serve-shared also graph.server.json while running), served the full 195-tool surface, said nothing about --read-only, answered reflow2_start_design 'tool not found', /readyz 200, and held the store so another process could not create the design. The transport test failed twice (--only-if-present --http exited without listening: 'failed to start the latent MCP server … connection closed: initialize request'; the stdio latent surface never wrote --export-to). The scan found 4 copies of the store test (latent.rs, main.rs, one_shot.rs x2). The registry pin passed on main, by construction. ON THE BRANCH: 3/3 integration tests and both opening unit tests pass; latent_mode, every_client_mode_honours_read_only, every_one_shot_mode_resolves_its_design_first, a_server_drains_before_it_stops, a_degraded_server_recovers_when_its_cause_clears and a_registry_names_every_store_it_cannot_serve pass; the measurement script re-run on the branch binary (measure-fix.log) shows every folder byte-identical, the two latent tools listed and the read-only handshake, and --only-if-present --http still listening after 10 s.",
+    "kind": "verification",
+    "last_run_at": "2026-10-03",
+    "level": "system",
+    "location": "crates/reflow2-mcp/tests/a_read_only_server_with_no_store_serves_the_latent_surface.rs",
+    "method": "test",
+    "name": "A read-only server with no store serves the latent surface and creates nothing, in every serving mode; a store that appears later is served read-only",
+    "status": "passing"
+  }
+}

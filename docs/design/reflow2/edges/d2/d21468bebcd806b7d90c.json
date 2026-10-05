@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0be93a2f05b6acca5bf2184ad66cdfba8301e297697de9e4fea9dd9d0f380e66",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:toml-fallback-reader",
+  "properties": {},
+  "to_id": "rule:reflow2-is-built-for-other-projects-not-for-itself"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:988b814178dae06e053aff7a3c26a5282b7f39baeff2ed6e09a7f61d3ddc9a46",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-read-only-surface-refuses-every-write",
+  "properties": {},
+  "to_id": "cap:a-surface-can-refuse-every-write"
+}

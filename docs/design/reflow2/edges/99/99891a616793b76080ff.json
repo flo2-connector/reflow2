@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c2026b86e63bc38956e1b80aaf189fcd2f3c37fad293214012c238f882684644",
+  "edge_type": "ABOUT_ENTITY",
+  "from_id": "fact:defect-evidence-scope-is-stored-and-not-read-by-unverified-enforced-rule",
+  "properties": {},
+  "to_id": "cap:governance-proposal"
+}

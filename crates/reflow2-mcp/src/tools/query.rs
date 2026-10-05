@@ -97,12 +97,18 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                 "description": "The limit that bounded this result. hits.len() == limit means \
                                 there may be more; this is the no-silent-caps rule made visible."
             },
+            "searched": {
+                "type": "integer",
+                "description": "How many of the design's nodes the search ran over (the \
+                                search index's own count). It says WHICH empty an empty \
+                                `hits` is: nothing matched among this many."
+            },
             "loop_hint": {
                 "type": "string",
                 "description": "Present only when the coherence loop is owed something."
             }
         },
-        "required": ["hits", "stale", "limit"]
+        "required": ["hits", "stale", "limit", "searched"]
     });
     Arc::new(
         schema
@@ -419,13 +425,32 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let indexed: Vec<(usize, crate::bulk_edges::DrawEdgeItem)> =
             req.edges.into_iter().enumerate().collect();
+        // EACH ITEM GETS THE ARGUMENT CHECK ITS HELPER WOULD (`crate::arguments`):
+        // checked against the helper's own input schema before its body
+        // deserialises anything, refused in the very words the helper's own call
+        // would receive — the bulk form's whole promise is "its checks, its
+        // refusal words".
+        let transport = crate::arguments::current_transport();
+        let unfit: Vec<Option<String>> = indexed
+            .iter()
+            .map(|(_, item)| {
+                let t = self.tool_router.get(&item.tool)?;
+                let args = item.arguments.as_object()?;
+                let violations = crate::arguments::check(&t.input_schema, args);
+                (!violations.is_empty())
+                    .then(|| crate::arguments::refusal(&item.tool, &violations, transport))
+            })
+            .collect();
         let mut g = self.write_lock().await?;
         let report = g
             .atomically(
                 &indexed,
                 |(_, item)| item.tool.clone(),
-                |g, (index, item)| {
-                    crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                |g, (index, item)| match &unfit[*index] {
+                    Some(refusal) => Err(refusal.clone()),
+                    None => {
+                        crate::bulk_edges::draw_one(g, item).map(|r| (*index, item.tool.clone(), r))
+                    }
                 },
                 req.check_only,
             )
@@ -480,7 +505,10 @@ impl ReflowService {
                        given types. Call this instead of guessing at create_node / create_edge. \
                        No arguments returns everything; `node_type` focuses one type and the \
                        edges it can carry; `from` + `to` together answer 'what may connect an X \
-                       to a Y?'. \
+                       to a Y?'; `tool` alone answers 'how do I call this TOOL?' \u{2014} its \
+                       input schema, every nested shape and allowed value, and the lessons this \
+                       design holds for it, as tools/list gives them (brief by default, `full` \
+                       for the entry unaltered). \
                        THE RANKING HAS FOUR TIERS, and the third is the one that used to be \
                        missing: edges naming BOTH types; then edges that DECLARE they are for \
                        this pair (their endpoint is open by design, not by oversight \u{2014} \
@@ -500,6 +528,44 @@ impl ReflowService {
         Parameters(req): Parameters<DescribeSchemaReq>,
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
+        // HOW TO CALL ONE TOOL (`crate::describe_tool`): the served list of
+        // THIS design, built from the lessons read under this same lock by the
+        // function tools/list uses, so the answer is what a session on this
+        // design is given — through every door a served tool reaches, the
+        // `--call` door included, none of which reads tools/list
+        // (req:the-cli-describes-any-tool-with-its-full-schema-and-lessons).
+        if let Some(tool) = req.tool.as_deref() {
+            if req.node_type.is_some() || req.from.is_some() || req.to.is_some() {
+                return Err(McpError::invalid_params(
+                    "describe_schema takes `tool` alone (how to call one served tool), or the \
+                     vocabulary arguments (`node_type`, or `from` and `to`) \u{2014} not a mix."
+                        .to_string(),
+                    None,
+                ));
+            }
+            let listing = self.listing_from(crate::lessons::lessons_by_step(&g));
+            drop(g);
+            return crate::describe_tool::describe_one(
+                &listing,
+                tool,
+                req.full,
+                crate::describe_tool::Door::Served,
+                &crate::describe_tool::Source::Design("this design".to_string()),
+                req.budget_chars
+                    .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            )
+            .map_err(|why| McpError::invalid_params(why, None))
+            .and_then(ok_json);
+        }
+        if req.full {
+            return Err(McpError::invalid_params(
+                "`full` only means something with `tool`: it asks for one tool's tools/list \
+                 entry unaltered. The vocabulary is narrowed with `node_type`, or `from` and \
+                 `to` together."
+                    .to_string(),
+                None,
+            ));
+        }
         // The vocabulary's bytes are in its `hint` and `description` prose, and
         // the part a caller acts on is the type and edge NAMES — so trimming
         // prose leaves this tool answering the question it is asked.
@@ -548,18 +614,17 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Fetch a node by id — `{node: {...}}` when present, `{node: null}` when \
-                       absent. `node_type` is OPTIONAL: the id prefix names the type by \
-                       convention and it is resolved for you; if the id is held by more than \
-                       one type the read REFUSES and names them rather than guess. When you \
-                       do pass `node_type`, an unknown one is REFUSED rather \
-                       than answered `null`, because \"no such type\" and \"no such node\" are \
-                       different facts and must not share one reply. Carries `discontinued`: \
-                       true when an ACCEPTED Decision has withdrawn this node (OBSOLETES). \
-                       READ IT — the stored `status` still records what was BUILT, so a \
-                       withdrawn capability goes on saying `realized` and only this field \
-                       tells you the thing is gone. \
-                       Ask for this when you want everything recorded about one item — pull up the full record for a requirement, a component, any single node. \
+        description = "Fetch one node by id and read everything recorded about it: its \
+                       properties and, with `include_edges`, its edges — every link to and from \
+                       it, each with its type, direction, the node at the other end (id, type, \
+                       name) and the edge's own properties, evidence included. `{node: {...}}` \
+                       when present, `{node: null}` when absent; `node_type` is optional. \
+                       Carries `discontinued`: true when an ACCEPTED Decision has withdrawn this \
+                       node (OBSOLETES). READ IT — the stored `status` still records what was \
+                       BUILT, so a withdrawn capability goes on saying `realized`. \
+                       Ask for this when you want everything recorded about one item — pull up \
+                       the full record for a requirement or any single node — or a node and its \
+                       edges: what it is connected to, its neighbours, which nodes link to it. \
                        Ask for this to show me everything recorded about one item.",
         annotations(read_only_hint = true)
     )]
@@ -584,7 +649,7 @@ impl ReflowService {
                         // the server HAS and declines to give. An absent id
                         // reads identically to a node that exists and is
                         // empty, so it says which.
-                        return ok_json(json!({
+                        let mut reply = json!({
                             "node": JsonValue::Null,
                             "empty_because": format!(
                                 "no node with id {:?} exists under ANY declared type, so this is \
@@ -592,7 +657,14 @@ impl ReflowService {
                                  the id, or find it by its words with search_design.",
                                 req.id
                             ),
-                        }));
+                        });
+                        // Asked for edges: say there is no edges block
+                        // because there is no node, rather than leave the key
+                        // out and let its absence read as "no edges".
+                        if req.include_edges.query().is_some() {
+                            reply["edges"] = JsonValue::Null;
+                        }
+                        return ok_json(reply);
                     }
                     1 => holders.into_iter().next().unwrap_or_default(),
                     _ => {
@@ -666,7 +738,64 @@ impl ReflowService {
             Some(stored) => decorate(&g, stored_to_value(stored.clone())?, &stored.node_id)?,
             None => JsonValue::Null,
         };
-        self.ok_read(&g, json!({ "node": node }))
+        // `include_edges` (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it):
+        // off by default, so every caller that does not ask gets the reply it
+        // always got, byte for byte.
+        //
+        // AN ABSENT NODE SAYS WHICH EMPTY IT IS ON EVERY PATH. Until
+        // 2026-10-03 the typed path answered a bare `{"node": null}` while the
+        // untyped path, for the same absent id, said why
+        // (fact:get-node-given-a-node-type-answers-an-absent-id-with-a-bare-null-2026-10-03).
+        // The typed path can say one thing more: whether the id is held under
+        // a DIFFERENT type, the commonest reason a typed read of a real id
+        // comes back empty.
+        let query = req.include_edges.query();
+        if node.is_null() {
+            let elsewhere: Vec<String> = g
+                .node_types_holding(&req.id)
+                .map_err(dyno_err)?
+                .into_iter()
+                .filter(|t| *t != node_type)
+                .collect();
+            let because = if elsewhere.is_empty() {
+                format!(
+                    "no {node_type} with id {:?} exists, and no node of any other type holds that \
+                     id, so this is \"not in this design\" rather than \"present and blank\"{}. \
+                     Check the id, or find it by its words with search_design.",
+                    req.id,
+                    if query.is_some() {
+                        ", and there are no edges to read"
+                    } else {
+                        ""
+                    }
+                )
+            } else {
+                format!(
+                    "no {node_type} with id {:?} exists, but that id IS held as {}. Read it \
+                     without `node_type`, or with that type.",
+                    req.id,
+                    elsewhere.join(" and ")
+                )
+            };
+            let mut reply = json!({ "node": JsonValue::Null, "empty_because": because });
+            // Asked for edges: say there is no edges block because there is
+            // no node, rather than leave the key out and let its absence read
+            // as "no edges".
+            if query.is_some() {
+                reply["edges"] = JsonValue::Null;
+            }
+            return self.ok_read(&g, reply);
+        }
+        let Some((query, budget_chars)) = query else {
+            return self.ok_read(&g, json!({ "node": node }));
+        };
+        // The node is sent whole, as it always is; the edges get what is left
+        // of the budget.
+        let spent_chars = node.to_string().len();
+        let edges = g
+            .node_edges(&node_type, &req.id, &query, budget_chars, spent_chars)
+            .map_err(dyno_err)?;
+        self.ok_read(&g, json!({ "node": node, "edges": edges }))
     }
 
     #[tool(
@@ -810,8 +939,10 @@ impl ReflowService {
                        the blast radius?'. Ranked over the served surface itself (name, \
                        description and parameter names), so it can never drift from the tools \
                        that actually exist. The whole surface is too large to hold in context at \
-                       once; this is its catalogue. Descriptions come back trimmed — call the \
-                       tool you picked, or read its full schema, once you know its name.",
+                       once; this is its catalogue. Descriptions come back trimmed; once you \
+                       know the name, `describe_schema` with `tool` reads its whole input schema \
+                       and the lessons this design holds for it (the reply's `describe` says \
+                       how, through any door).",
         annotations(read_only_hint = true)
     )]
     pub async fn find_tools(
@@ -889,6 +1020,13 @@ impl ReflowService {
             "omitted": matched.saturating_sub(items.len()),
             "searched": searched,
             "query": req.query,
+            // A summary and parameter NAMES are not enough to call a tool:
+            // the shapes, allowed values and lessons were learned one refusal
+            // at a time through the door
+            // (fact:root-cause-argument-shapes-are-learned-by-refusal-because-the-door-holds-the-full-schema-and-prints-none-of-it-2026-10-02).
+            // So the reply names the route to the rest, in the words every
+            // door can act on.
+            "describe": crate::describe_tool::ROUTE_FROM_FIND_TOOLS,
         }))
     }
 

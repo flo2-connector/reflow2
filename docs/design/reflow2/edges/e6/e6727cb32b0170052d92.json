@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9fb5278c3fac0e0947e1138da927e8f3ef102b6efbdb68d8467646f3382dda83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:snapshot-per-revision-built",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:temporal"
+}

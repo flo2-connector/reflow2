@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:870a31d7ed7462918d3fdb39f79b43418c6d56621c695dd3f371784018394bdd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stored-twin-has-one-authority",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-flows-entry-and-exit-are-computed-from-its-step-order"
+}

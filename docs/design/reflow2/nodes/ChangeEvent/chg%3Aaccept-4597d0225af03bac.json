@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:308ee33a80d1688638fa5728b4ec534fe8d27151c5f4a85196dc0bd265db19d3",
+  "node_id": "chg:accept-4597d0225af03bac",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-30",
+    "name": "The v0.44.0 version bump. `reflow2.toml` moved because the cut moves every version claim together (Cargo.toml, Cargo.lock, reflow2.toml, AGENTS.md ×2); nothing it declares about the design changed. Accepted BEFORE the release manifest is frozen, which is the ordering the release flow warns about: freezing first captures the PRE-BUMP checksum and sends the cut back to accept the drift and re-freeze, at the cost of a gate failure and a second export.",
+    "subject": "system"
+  }
+}

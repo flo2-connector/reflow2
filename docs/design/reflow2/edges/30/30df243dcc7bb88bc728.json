@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5172d232647ae029b0458268b3da1eb6fd39199010791e2b3151dc62999cbcbf",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0660",
+  "properties": {
+    "as_checksum": "sha256:d5c48632ca2356c9037e744d6a7e81c22be14897e5ef7b7a4ba150740f908cf4"
+  },
+  "to_id": "art:genesis-skill"
+}

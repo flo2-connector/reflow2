@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cae799e5d89589b2428f74fe95f9145cadd2bff78ccca0041d18ec57f92b759f",
+  "node_id": "decision:ack:41e84391c187d118",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:41e84391c187d118.",
+    "name": "Reviewed: gap:41e84391c187d118",
+    "rationale": "Same disposition as its sibling cap:fork-alternatives (the user's standing 2026-07-23 call, extended 2026-07-24 to the rung-3 capability captured in this session): cap:revise-trigger is `planned` and deliberately unbuilt — its threshold question (\"how much evidence counts as enough to re-open a road\") is explicitly left open until the detector can be run against real history, because fixing a number before there is anything to calibrate it on would be a guess wearing a decision's clothes. A Verification node now would verify nothing. It arrives with the build.",
+    "status": "accepted"
+  }
+}

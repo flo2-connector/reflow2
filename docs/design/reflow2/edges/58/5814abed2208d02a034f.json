@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ec2e9e70f1b1508b4d867ce800522831b8f6236aafb5561db2829d280fbc2d4c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gate-list-is-run-not-only-cross-checked",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:run-ci-gates"
+}

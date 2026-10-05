@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:194af596e668c2d2158ce4a301465c90ba2b91960c1ec21141a0de2ec973d123",
+  "node_id": "question:502e1e2cfa17b79a",
+  "node_type": "Question",
+  "properties": {
+    "answer": "RUN IT WITH THE DESCRIPTION-ACCURACY WORK AS ONE MEASUREMENT-THEN-FIX PASS. Anthony, 2026-09-11: \"go with your suggested order\" — reachability and description accuracy are the same underlying problem (the served sentence), so they are one increment. ⚠️ CORRECTION ON THE WAY IN: the recommendation put to him was \"build the measurement, not the fix\", and the measurement HAS ALREADY LANDED. PR #476 merged: 180-query corpus committed as tests/fixtures/find_tools_corpus.json with an acceptance test, 177 of 180 in find_tools' top 5 (from a 114 baseline), three tools exempt at rank 6 with the measured reason, held-out paraphrase corpus at 36 of 42, and a second test that refuses any newly served tool absent from the corpus. What remains is the standing obligation, not the first measurement.",
+    "asked_at": "2026-09-11",
+    "context_setter": "Nothing satisfies requirement “Every served tool is reachable through find_tools from a description of the job in the user's own words”",
+    "gap_id": "gap:502e1e2cfa17b79a",
+    "question": "You set the success criterion that every one of the 180 served tools can be found from a plain description of the job — but only one tool has actually been tested that way, and nothing is yet allocated to do the rest. Do you want that measurement built and run now, held, or dropped?",
+    "rephrase_degraded": false,
+    "status": "answered"
+  }
+}

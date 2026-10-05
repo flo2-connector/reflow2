@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:84c4647a571108a7aba7b7e4302a72cc21004ea178291234348d58bf462d0ccf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-graph-can-say-what-has-already-been-done",
+  "properties": {
+    "approved_at": "2026-08-23",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

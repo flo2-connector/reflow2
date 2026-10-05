@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:840390cb4360fb2ae6da92e0c1bb8357317d3151233b7a95ffdfdeb95b74d5a2",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:budget",
+  "properties": {},
+  "to_id": "req:evidence-carries-the-date-it-was-taken"
+}

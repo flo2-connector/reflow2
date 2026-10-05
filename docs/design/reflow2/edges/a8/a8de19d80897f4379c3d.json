@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e997da4c8e278ab086498a5b4dc02c5f1e369204a14f3490a6f6d0e95f1e570e",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-adopt-can-be-an-intent-interview-that-records-the-why-and-where-and-skips-the-structure",
+  "properties": {
+    "evidence": "Alex's intent interview asks why each feature exists; this was proposed the same day as its historical counterpart, asking why each change was made, with the commit history as the index rather than the source."
+  },
+  "to_id": "dec:idea-a-change-justification-skill-walks-the-commit-history-and-asks-why"
+}

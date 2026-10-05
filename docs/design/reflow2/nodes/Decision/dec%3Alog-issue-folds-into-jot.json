@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1dd90b6c8725c0437d41b47404b54ab56297fceaae7f6ade7a0014bc56e5c1c7",
+  "node_id": "dec:log-issue-folds-into-jot",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "The log-issue skill is replaced by one skill, jot, reached by three words: /jot (untagged), /note (tags an IDEA) and /log-issue (tags an ISSUE). /log-issue keeps working exactly as before, as a word into jot. The tag rides on fact_type (follow_up, follow_up:idea, follow_up:issue); loop_status lists every open note in one list with its tag and where it settles.",
+    "kind": "choice",
+    "name": "/log-issue folds into /jot: one skill, three words, and the word is the tag",
+    "rationale": "Anthony settled this shape on 2026-09-24 (\"go with your recommendation for /jot, /log-issue, /note\"), recorded in req:a-jot-captures-an-idea-in-one-breath-and-sorts-it-later, and asked for it to be built the same day (\"Let's build /jot in reflow2\"). His reasoning: \"/log-issue really is about seeing issues when you're actively developing something, but similar in concept that it is something to come back to later when you can sort through an issue. /jot would just be the more generalized version of that.\" The word carries the kind so nothing is asked at capture, which answers the objection recorded against a general door that asks \"which kind is this?\" (dec:idea-a-one-word-capture-for-something-to-come-back-to). One list, not two, so there is never a second pile to check. The log-issue skill FILE is withdrawn by this decision, because a slash command that names a skill cannot also be a skill (no_alias_is_itself_a_skill_name); its absence is expected, not drift.",
+    "status": "accepted"
+  }
+}

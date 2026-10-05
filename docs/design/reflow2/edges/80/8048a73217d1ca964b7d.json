@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:227264f0438a2668244864fc276204e546edf2d20bcb2624d0c48a5a5b6b4c62",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-three-real-internal-seams-are-declared",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:provenance"
+}

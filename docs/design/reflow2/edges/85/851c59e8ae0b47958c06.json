@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6978e66c8820421cbbfca885bb4132e354121effdea9fd196a9fd4e4e0e59550",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-matches-whole-words-zero-weights-universal-terms-and-normalises-for-length",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:tool-search"
+}

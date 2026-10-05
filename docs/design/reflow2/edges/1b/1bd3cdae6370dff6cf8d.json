@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5f293fd2c1f392a8a62f7f402cd7011c5a44f9f4e2a1dd65dc95d88314619f1",
+  "edge_type": "PROVIDES",
+  "from_id": "sys:store",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "ifc:graph-export"
+}

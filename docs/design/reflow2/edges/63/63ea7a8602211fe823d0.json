@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0aeab690788c78326bcf290c5415553bd3217722df4b3fa091bfbc37ec35066c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0220",
+  "properties": {
+    "as_checksum": "sha256:c09cc6f310635d1b2fb9a888f38c323fbd2ae2fb9e816586a32f2c00c87a46fb"
+  },
+  "to_id": "art:skills-catalog"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f12bfb72f850e8ce0ee915a42fb5ee8a0f644aecca19b191fcce3f6ca5779b81",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:schema"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1731dbda2cb48e746d0d48bd02cb15a27601cf01e1c7b65d7c6c28b815c91933",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:onboard-newcomer",
+  "properties": {
+    "authored_at": "2026-07-24",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

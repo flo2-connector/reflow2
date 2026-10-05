@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bd72f3aa79e260a5769c49dbf90f3e3d094dd902734da4f64589a8acef8c4c3b",
+  "node_id": "chg:accept-0500fc47eb120e13",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-08-25",
+    "name": "`design_holds` and NOT `design_updated`, deliberately — this file changed for a reason the other four did not share, and folding it in would have written a fiction into the ledger.\n\nTHE DESIGN WAS RIGHT AND THE CODE WAS WRONG, which is the definition of `defect_fix`. `structure.yaml` has always said a Component stores its descriptive text as `purpose`. `add_component`'s required-field resolver asked for a stored property called `description`, so the lookup missed on every existing Component and EVERY REVISE WAS REFUSED with \"no such node exists yet to take it from\" — about a node that `get_node` returned a moment later. Nothing in the design moved; the code now reads the property the schema always declared.\n\nThe other four artifacts in this same drift batch ARE `design_updated` against `chg:the-decomposition-ladder-is-open`, because there the design genuinely moved: a new `Project.decomposition_levels` property, `Component.level` changing from enum to string, a new `unknown_level` finding, and `Level` becoming `Ladder`.\n\nAlso added here: a regression test that asserts the PREMISE rather than the symptom — a Component has `purpose` and has no `description`. `Capability` is unaffected because it really does store `description`, which is why this survived and why a test covering only Capability would have stayed green.",
+    "subject": "system"
+  }
+}

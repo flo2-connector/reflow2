@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ebba862959f2bef8070ff432fdbb2a544363ab1f6f5d0b6b9043c4989ea65846",
+  "node_id": "ver:a-replaced-value-is-kept-only-when-it-would-be-lost",
+  "node_type": "Verification",
+  "properties": {
+    "description": "`crates/reflow2-mcp/tests/a_replaced_value_is_kept_when_it_would_be_lost.rs`, three cases, plus the updated `a_constructor_says_what_it_replaced.rs`.\n\n⭐ THE TWO COUNTERWEIGHTS CARRY MORE WEIGHT THAN THE POSITIVE CASE, because they are what makes \"scoped\" mean anything: a write that replaces nothing preserves nothing, and a field already preserved is not preserved twice. Without them this would be indistinguishable from snapshotting every revising write — the cost the scope exists to avoid.\n\n📌 AND ONE PRE-EXISTING TEST CHANGED ITS PREMISE rather than being deleted. `the_note_names_the_record_change_ordering` asserted the note NAMES THE REMEDY (record_change BEFORE the merge); it is now `the_note_reports_the_replaced_state_was_kept`, because there is no longer a remedy to name in that case. Asserting the old warning would be asserting the fix did not happen. The warning path itself is unchanged and still fires when a preserve cannot be taken.",
+    "findings": "3 passed, 0 failed, in the full workspace run of 1932 tests (0 failed) on 2026-09-01.\n\n⭐ OBSERVED FAILING IN THE RIGHT SPLIT: 1 failed, 2 passed against the unfixed code. The one that failed was the reported case; BOTH counterweights passed before the change, which is what shows they constrain the scope rather than merely describing the new behaviour.\n\n🛑 FOUR PRE-EXISTING TESTS CHANGED THEIR PREMISE, and that is the honest cost of this change rather than a detail. `a_constructor_says_what_it_replaced.rs` had one, and `a_revising_write_says_whether_the_state_survived.rs` had three — a whole file built to pin that the tool tells the truth about LOSS, in a world where the loss now mostly does not happen. Each was rewritten to assert the new truth and RENAMED where the old name would have lied about what it checks.\n\n⚠️ THE ONE THAT NEEDED CARE was `a_snapshot_of_a_different_state_does_not_count_as_preservation` — the invariant that a stale snapshot must not be credited as the current prior state. The automatic preserve makes that condition true at the tool boundary, so the test could no longer distinguish. Rather than delete the protection: it now asserts the preserved snapshot holds the INTERMEDIATE text and NOT the original, which tests the same property from the other side; and the unmaskable form is already held in core by `prior_state_coverage.rs::a_different_value_in_the_snapshot_is_not_preservation`, which the preserve cannot reach. Checked, not assumed.",
+    "kind": "verification",
+    "last_run_at": "2026-09-01",
+    "level": "unit",
+    "method": "test",
+    "name": "A replaced value nothing else holds is kept, and a write with nothing at risk keeps nothing",
+    "status": "passing"
+  }
+}

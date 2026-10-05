@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e6364a9fd8d8684e83bade0ef904d2deef71dcfe779a5dae6fdd1ee51d8c11d",
+  "node_id": "cap:facts-are-held-once-status-and-time-declare-their-kind-judgements-name-their-asserter",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Declared authority plus a drift check for each relation stored more than once; a status vocabulary that tags each value as stance, verdict, lifecycle, modality or tense; a declared clock on every time anchor and ordering; who-asserts on every judgement-carrying edge; and a coverage report of which fact kinds have a re-confirmation path and when each was last confirmed.",
+    "name": "Stored twins declare their authority and are held to it, status values and time anchors declare what kind of state or clock they are, judgement edges name their asserter, and every stale-able kind of fact has a re-confirmation path",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

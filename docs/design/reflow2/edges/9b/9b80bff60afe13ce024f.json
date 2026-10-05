@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bdbef4aad7baf297e2218bd95c2ca1a3fd5559b09427125f10c63b12b3bda4f6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:seat-handle",
+  "properties": {},
+  "to_id": "req:seat-per-client"
+}

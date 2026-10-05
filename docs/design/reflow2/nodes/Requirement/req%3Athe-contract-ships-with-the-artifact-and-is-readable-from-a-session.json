@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e4f88b0458040dbcda87eb793827e1345f1adb690dcfd7995ae747512339632e",
+  "node_id": "req:the-contract-ships-with-the-artifact-and-is-readable-from-a-session",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "The tool schemas that ARE the seam contract ship with the artifact a consumer runs, and are readable from inside a session",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Promoted 2026-09-20 on Anthony's word, both halves, packaging first. flo2 consumes the published container and has no source tree, so answering 'did this release break me' was impossible for it and took four commands and a checkout for the maintainer. MEASURED: the schemas appear in neither the Dockerfile nor the release workflow, and none of v0.65.0's five assets carries them. The in-session half is a way to read ONE tool's input shape, which nothing serves today: the node-schema tool answers about node types, and the catalogue returns parameter names without shapes. WHAT IT UNLOCKS, and why the halves are one requirement: 'what changed between these two versions for THESE twelve tools' needs both.",
+    "status": "accepted"
+  }
+}

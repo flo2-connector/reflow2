@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e4e100e123b6c23a86d5eb3927acc170b3a1312d3d55f30339986207535e4bd1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:reconcile-built",
+  "properties": {},
+  "to_id": "req:released-eq-designed"
+}

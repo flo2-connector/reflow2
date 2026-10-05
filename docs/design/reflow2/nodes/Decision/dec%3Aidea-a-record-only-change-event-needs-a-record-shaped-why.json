@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c97b756e9aaf3f70e3cef713063fbbbdf6d963b5b55d7f77f3372409f90d444e",
+  "node_id": "dec:idea-a-record-only-change-event-needs-a-record-shaped-why",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL (the field-feedback rule: every idea gets the brainstorm skill). From flo2 F2. OPTIONS, none chosen: (a) add `decision_settled` — one enum line, nothing computes over it, the reporter's suggestion; (b) make change_type optional when subject=record — closer to the axis decision's intent, but 'absent means nobody said' then hides the why; (c) no event for a settlement at all, and say so in the capture skills — the status move, approver edge and snapshot already are the record. COUNTER: 49 record-axis events already wear the nearest code label on this design; an added value cleans the future, not the past.",
+    "kind": "exploratory",
+    "name": "OPEN — should `change_type` gain `decision_settled` (and other record-shaped whys), or become optional when `subject: record`, so a record-only event is not forced to wear a code-shaped label?",
+    "rationale": "Recorded from the field report.",
+    "status": "accepted"
+  }
+}

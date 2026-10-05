@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a76c20056bce86fe34685a6585f703c844a8f9cbb96f5441db85ca302da79ce7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-capture-that-replaces-a-node-says-so",
+  "properties": {
+    "accepted_baseline": true,
+    "action": "modified"
+  },
+  "to_id": "art:service"
+}

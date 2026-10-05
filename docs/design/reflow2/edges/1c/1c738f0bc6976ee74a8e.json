@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0354752e0e03d9c0e6acc8c37e4970004b4cf1517b3683f9f997e4253863bfc9",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:as-of-epoch",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:temporal"
+}

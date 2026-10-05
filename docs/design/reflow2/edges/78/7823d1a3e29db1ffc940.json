@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab3201f66390e00f91f3127c1c42e5ff0c3989d6aea5a8d8618bf510e2110e15",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words",
+  "properties": {},
+  "to_id": "fact:after-the-scorer-fix-120-of-180-tools-reach-the-top-five-and-42-still-miss"
+}

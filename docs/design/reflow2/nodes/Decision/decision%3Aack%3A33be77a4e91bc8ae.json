@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0f7d64a486507a70e7c7bb9706f32abf6addb280af635330e3b1de91d0ca1ff3",
+  "node_id": "decision:ack:33be77a4e91bc8ae",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:33be77a4e91bc8ae.",
+    "name": "Reviewed: gap:33be77a4e91bc8ae",
+    "rationale": "User (who:ajs, 2026-07-25): accepted intent, BLOCKED rather than shelved — the same disposition req:concurrent-planning carries, and for the same reason. Deliberately left `accepted` rather than moved to `deferred`, because deferred reads as \"parked, nobody act\", whereas this is real intent with exactly one thing standing in front of it: dec:central-host, recorded as GOVERNED_BY so the link is queryable rather than only written here. Nothing should be built toward it until that decision collapses, because the cheapest hosted shape — one server process per project, with project selection becoming which URL the agent points at — satisfies most of this requirement with NO graph_id plumbing at all, while a multi-tenant single process needs graph_id threaded through every read and write. Building the second before the choice is made is building for the road not taken. What is owed meanwhile is only the non-foreclosure half (rule:no-foreclosure item 5): code must not ASSUME the graph_id constant where it could read the field. This acknowledgement expires if the affected node changes, which is correct — when the decision is made this should come back for a fresh look rather than stay quietly accepted.",
+    "status": "accepted"
+  }
+}

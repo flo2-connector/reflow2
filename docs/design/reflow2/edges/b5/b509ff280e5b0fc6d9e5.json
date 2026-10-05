@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b18a20cdadb033f22a58b94eb0b314cb1321bd91b4f1e667e5a9f0125e3f9db4",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-oversized-reply-offers-a-bound",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

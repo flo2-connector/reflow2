@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8863c00a514ff5a8bfa55a1730982a07322fd692e989f8822cd814995c0a31ab",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-does-a-session-open-by-comparing-the-record",
+  "properties": {
+    "authored_at": "2026-08-10",
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:claude-code"
+}

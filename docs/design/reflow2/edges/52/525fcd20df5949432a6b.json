@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4baa7a6acfe96208841cd944ebc4ef809375f13b4a3ce41d015afd49838184a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:token-subset-pass",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:ingest"
+}

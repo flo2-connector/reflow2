@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:21fe3ce2eea018aa86cd1d1ad89569b345e8d61996b61525b05a628696d3add2",
+  "node_id": "ver:hierarchy",
+  "node_type": "Verification",
+  "properties": {
+    "kind": "verification",
+    "level": "integration",
+    "method": "test",
+    "name": "hierarchy.rs",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a7826840703b882abaaa44b8fdc76ad21a33644dce415cc2f9e2d756ea173d3",
+  "node_id": "chg:accept-68d61743ee449f31",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-08-19",
+    "name": "Call-site only: one add_change_event call gained `None, None`. The test asserts the same thing it did before.",
+    "subject": "system"
+  }
+}

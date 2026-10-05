@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:85b219e5569256a6d309b9d76c684d0f3ccd91c696945c0416a5f6659f1988b4",
+  "node_id": "art:test-graph-construction-is-setup",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/tests/graph_construction_is_setup.rs",
+    "name": "graph_construction_is_setup.rs",
+    "status": "realized"
+  }
+}

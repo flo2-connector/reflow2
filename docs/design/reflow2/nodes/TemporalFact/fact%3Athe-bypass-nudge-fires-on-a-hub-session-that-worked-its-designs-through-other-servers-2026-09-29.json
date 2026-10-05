@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8bd0dd682b3024dcc44bf0b7181e77cc64b5e8bae0d804a4ea99b75196720e2c",
+  "node_id": "fact:the-bypass-nudge-fires-on-a-hub-session-that-worked-its-designs-through-other-servers-2026-09-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "MEASURED 2026-09-29: in the dev_reflow2 hub the bypass nudge told a session \"the design graph was never consulted\" after it had recorded its change before editing and re-baselined after — because its design calls went through servers the hook's matcher does not name",
+    "source": "dev_reflow2 hub session 2026-09-28/29; dev_reflow2/.claude/settings.local.json and ~/.claude/settings.json hooks; reflow2 tools/loop_nudge.py PostToolUse branch",
+    "statement": "OBSERVED: the Stop hook said \"reflow2: 4 file(s) edited this session and the design graph was never consulted\". The session had made dozens of design calls: in flo2's hosted design (server `flo2`) it recorded snapshot_before_change BEFORE editing flo2's gateway client and set_artifact_checksum after, plus a root-cause finding; in reflow2's design (server `child-reflow2`) it searched, read and revised findings. The other two edited files were the agent's own memory notes, not design artifacts.\nWHY, READ FROM THE CONFIG: both settings files wire PostToolUse to loop_nudge.py with matcher `mcp__reflow2__.*` (plus Edit|Write). The script itself accepts any tool name containing \"reflow2\" and \"__\", so `mcp__child-reflow2__*` WOULD count if the hook ran — the matcher stops it running. Hosted designs are named after the design (`flo2`, `graph-primitives`), so no name-based test can recognise them.\nCLASS: the nudge identifies \"a reflow2 server\" by its NAME, but a hub reaches its designs through servers named after those designs, local or hosted. In a hub the bypass nudge therefore fires on exactly the sessions that did the work in the right place, and cannot tell them from a real bypass — the false-positive the requirement's edit-count threshold was meant to bound, arriving by a route the threshold does not see.\nNOT ESTABLISHED: whether the Stop-side graph probe (cap:stop-nudge-asks-the-graph) would have answered differently; it asks only this project's own server.",
+    "subject_id": "req:nudge-covers-bypass",
+    "valid_from": "2026-09-29"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c84444a9fb9b8eb6ba91c06da99dd18e77b260deff83788eab56a2eced482ef4",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-command-surface-answers-for-itself",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-command-surface-answers-for-itself"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:378f3a52f0d8aaa3c820db5989f001d990388680232db34608fd8995d794535f",
+  "node_id": "art:agent-instructions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "location": "AGENTS.md",
+    "name": "AGENTS.md — the primary instruction file every agent reads before it knows reflow2 exists: commands, architecture, the rules for changing the project",
+    "status": "realized"
+  }
+}

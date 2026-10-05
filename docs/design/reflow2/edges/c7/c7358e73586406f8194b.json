@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a6097ba72b8afc272cda2e69c87559a4398eab5c9231a59206c4f08a38429adc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-capture-that-replaces-a-node-says-so-and-the-choice-at-the-near-match-check-is-kept",
+  "properties": {
+    "approved_at": "2026-09-30",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

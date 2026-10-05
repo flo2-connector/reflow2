@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cb2a2631d153808a6f27bcb24a8efb14b2b54f400384c44669ed8b2e7dceaeba",
+  "edge_type": "CHANGED",
+  "from_id": "chg:bl74-loop-status",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cmp:skills"
+}

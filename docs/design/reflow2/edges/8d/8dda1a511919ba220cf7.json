@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:be341aacac89a2d5bd5d3c3c19f59443c3cc20d0d9bbafee99f28db4634e77f4",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "dec:where-content-lives",
+  "properties": {},
+  "to_id": "snap:epoch:arrival-delta:dec:where-content-lives"
+}

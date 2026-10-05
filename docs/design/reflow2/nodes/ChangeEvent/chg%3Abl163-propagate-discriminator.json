@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b8cd443d76cb10698eb86a4d2466763bc90f7cd09581eb296a8eb14fcf56ce4",
+  "node_id": "chg:bl163-propagate-discriminator",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "BL-163: the impact-check trigger keys on a ChangeEvent's PRESENCE where it means its PRECEDENCE — no op set counts propagate_change at all, so recording the change AFTER the edit satisfies the trigger that exists to catch recording the change after the edit"
+  }
+}

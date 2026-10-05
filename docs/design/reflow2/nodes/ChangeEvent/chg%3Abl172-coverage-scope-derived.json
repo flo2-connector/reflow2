@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:740b66e3b5704f0a37b197dbe5d6e78bc7a8878f58ef791922b15cf2e54adf0d",
+  "node_id": "chg:bl172-coverage-scope-derived",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "Anthony sharpens what lives in the repo: the design GRAPH is a third thing alongside the artifacts, and the implemented code is what only a code project adds"
+  }
+}

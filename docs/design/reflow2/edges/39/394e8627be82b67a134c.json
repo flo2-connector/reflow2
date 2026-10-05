@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d31d40e43caa3884dd90bcd2fab7ef900664fa2d434ae5bcd0ecd1024e7068e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1933d5ceb0f94b7141088b62b6e8e7ab44fc1a8d7f1e1fd4839d7bc34f4adcd9",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-the-fourteen-holes-are-writable"
+}

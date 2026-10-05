@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8bdabead9453a694c58ad151896a1ee1a886d890eb2e022121c9b3e3bc6120c8",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:the-content-store-is-discontinued",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:where-content-lives"
+}

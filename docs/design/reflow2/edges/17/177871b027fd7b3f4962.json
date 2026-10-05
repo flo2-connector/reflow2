@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c1995d5daada6399672fe2f22655f3aea8c1831881a0860c704b5ad39d06b3c",
+  "edge_type": "REALIZES",
+  "from_id": "art:enum-schema",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mcp-surface"
+}

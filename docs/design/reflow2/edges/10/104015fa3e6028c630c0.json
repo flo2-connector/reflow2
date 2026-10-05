@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d1007bc80e962551d7da465776dcbbc487325d452f026bdd7fe2a68d44b6487a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-is-asked-what-standard-its-artifacts-must-be-in-from-the-beginning",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

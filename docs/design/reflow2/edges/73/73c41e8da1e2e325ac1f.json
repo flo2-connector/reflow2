@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55eb95e13eccdc233d49380c1a04b8d791a940622acd0228bd9782f2bf8dcb5d",
+  "edge_type": "CONTRADICTS",
+  "from_id": "rule:the-self-host-always-trails-what-it-teaches",
+  "properties": {
+    "alignment": "supporting",
+    "confidence": 1.0,
+    "evidence": "Two halves of one arrangement, recorded as SUPPORTING so it reinforces rather than conflicts (req:supporting-is-not-conflict). The third-party rule says a fix is judged by what it does for somebody else's project; this says the self-host is what GENERATES the finding, because reflow2's own design is the first place a missing detector shows up as pain. Neither replaces the other, and this one explicitly does not weaken the third-party rule's named failure: patch it here, mark it met, leave every consumer with the hole."
+  },
+  "to_id": "rule:fixes-are-judged-by-the-third-party"
+}

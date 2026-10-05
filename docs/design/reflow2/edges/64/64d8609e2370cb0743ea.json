@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4d1df45b7b56c851682ca0de77b562398a660390d48a8c80da46e7380a6c813",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-how-does-the-graph-learn-what-a-session-invalidated",
+  "properties": {
+    "evidence": "Options C, D and E are all instances of this proposed-and-unbuilt requirement: a discipline that applies mid-task belongs at the TOOL that triggers it, not in a catalogue read once. If it is never accepted, only options A (a detector), B (a skill edit) and F (nothing) remain reachable — so what this question can be answered WITH depends on that one landing first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

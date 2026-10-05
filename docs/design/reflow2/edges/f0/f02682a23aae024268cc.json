@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1ba8488fdbd7cb6c39a03b79cf1aa0b524f590d5d2f346143274c6dc03341c38",
+  "edge_type": "YIELDED",
+  "from_id": "frag:alex-2026-08-14-item-11",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "fact:defect-link-artifact-does-not-validate-its-realizes-target"
+}

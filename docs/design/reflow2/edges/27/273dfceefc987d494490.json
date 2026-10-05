@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:371f9f901bd1fac25587b1913ae884f83b27a634d7c779621b654cc875725c25",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-version-guard-sees-enum-values",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-reader-that-cannot-read-the-vocabulary-is-told-what-it-lacks"
+}

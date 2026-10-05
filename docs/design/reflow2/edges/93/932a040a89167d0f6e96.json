@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a5dd7d5ebf89cab6a558b4bca83026d488c1be9f81713ba8348dfd7f46769b4",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:owned-by-is-the-third-who-axis",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "dec:ownership-reads-claims-before-adding-an-edge"
+}

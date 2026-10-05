@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:77b92b40029c929ffbcc83846fe97db753c0a2c48f5c50a227ceb8436a2a7db7",
+  "node_id": "frag:art:one-meaning-for-a-location-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered test_one_meaning_for_an_artifact_location.py — the server and the CI gate give one verdict per location shape"
+  }
+}

@@ -21,9 +21,11 @@ impl StorageEngine {
         to_id: &str,
         mut properties: HashMap<String, Value>,
     ) -> Result<StoredEdge, DynoError> {
-        self.schema.validate_edge(edge_type, from_type, to_type)?;
+        // The endpoint pair, then the properties — ONE call, because the
+        // recheck of stored data (`Schema::edge_refusals`) asks the same
+        // function, and two sequences of the same checks could drift apart.
         self.schema
-            .validate_edge_properties(edge_type, &mut properties)?;
+            .validate_edge_write(edge_type, from_type, to_type, &mut properties)?;
         // Reject NUL-bearing key segments before any put. `edge_type`
         // is already constrained by `validate_edge`; `graph_id` and the
         // endpoint ids are the unguarded segments. (create_edge does

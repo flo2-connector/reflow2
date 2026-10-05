@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7ebb9e2dc804069cc03b3c98341729c2df6b316a75519d0d0416611d3c449934",
+  "node_id": "frag:art:measure",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered measure.rs — a registered location measured under the project root: sha256 streamed, size, presence; refused by name outside the root; never content"
+  }
+}

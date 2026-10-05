@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:05de717e8323aae8529d3f75026f482dabcad34497b47b1acb1361017640da93",
+  "edge_type": "REALIZES",
+  "from_id": "art:regions-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-session-with-no-seed-can-find-one"
+}

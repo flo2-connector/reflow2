@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:867319282008edc6f2a53dc4287788bf5014adc5f67eb50cc70ae6c8fdf77532",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "decision:vocab:environment",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:decision:vocab:environment"
+}

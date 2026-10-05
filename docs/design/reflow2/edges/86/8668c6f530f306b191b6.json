@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:13cdca4eff00f350f0afcf2c780fdbce39f1dd762091f6914de7c5e7ec9ae812",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:compose-test",
+  "properties": {
+    "covers": "whole",
+    "note": "migrated 2026-09-22 from a REALIZES link_artifact drew in error"
+  },
+  "to_id": "ver:composed-analysis"
+}

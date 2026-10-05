@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5aeda053fe41c5d7602c68f63600414b3bb0eb9f110b51668c63b4d19db2ef27",
+  "node_id": "cmp:propagate",
+  "node_type": "Component",
+  "properties": {
+    "kind": "module",
+    "level": "component",
+    "name": "propagate",
+    "provenance": "authored",
+    "purpose": "The propagate module.",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:062066af5d19cf0d732a76c1234f543fbb516efa7f409709d1a0fa45d8a942f5",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:requirement-lineage",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:vocabulary"
+}

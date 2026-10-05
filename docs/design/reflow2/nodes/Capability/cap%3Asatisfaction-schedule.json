@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b88b09bdebece0af9e3b083b6a478d230f0660e4e535a95f2bf5ba24cf6270ff",
+  "node_id": "cap:satisfaction-schedule",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The SCHEDULED_FOR edge: from a Requirement or Capability to a DesignEpoch (time axis) or a Release (capability-increment axis), carrying a `modality` of `expected` (a plan) or `required` (an obligation whose miss at arrival is a computed violation — the scheduling face of a KPP). One edge type serves both paired views because they are two views of one architecture, not two mechanisms. This is THE ATOM the roadmap is made of: a mapping of requirements and capabilities to the moment they are satisfied, which is what makes \"which capabilities are due in epoch 5\" answerable at all. KEPT SEPARATE FROM AT_EPOCH DELIBERATELY (dec:schedule-is-an-edge-with-modality): that edge means `belongs to` and is declared over a wildcard source, so one type carrying both meanings would be indistinguishable to every detector — the same shape as the wrong-direction edge found on 2026-07-30, which read correctly and was still undetectably wrong. THERE IS NO `achieved` MODALITY AND THE ABSENCE IS LOAD-BEARING: delivery is computed from the golden thread and never asserted (req:completion-computed, dec:arrival-delta), so recording it here would create a second source of truth able to disagree with the first. Prerequisite for dec:arrival-delta, which refers throughout to \"its schedule edge\" — a thing that did not exist until now. Delivered 2026-07-30; both guards mutation-tested.",
+    "name": "A requirement or capability can be scheduled against the moment it is due",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

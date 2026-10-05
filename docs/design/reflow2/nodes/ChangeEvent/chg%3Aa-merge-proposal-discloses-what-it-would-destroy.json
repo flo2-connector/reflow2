@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce25bccdd2174e74f677291a7e97925cabfae4c79cf2dd252f0e3bcd58dd73df",
+  "node_id": "chg:a-merge-proposal-discloses-what-it-would-destroy",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "scope_change",
+    "name": "A merge proposal says what it would destroy BEFORE the act, and a proposal that deletes nodes stops reporting itself as needing no human review"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:82569d831919ca0412137b6b0176b2d1952b1626ac1d2e18a082e2d4fa8e0cf6",
+  "node_id": "req:seat-per-client",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "designation": "internal",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Who is working is a property of the session, not of the server process",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Seat identity is currently minted once per process, which is correct while one session owns one server and wrong the moment several sessions share one. A hosted server would report the same seat for every client, so every claim would carry the same owner and claim_report's liveness would answer a question nobody asked — the mechanism would look like it worked while telling all six sessions they are each other. The seat must come from the client: the transport already assigns a session id with zero coordination, which is exactly what dec:identity-out-of-band says a name should be. The read-side loop_hint's fire-on-change throttle has the same shape of bug — it is per-service state, so a hint earned by one session lands on whichever session reads next.",
+    "status": "accepted"
+  }
+}

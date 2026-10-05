@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:229340be2f0eee37fc97de1accc1c1aa00af1e28da02ef9944a01ca01b953ead",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-constructors-preserve",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-constructors-preserve"
+}

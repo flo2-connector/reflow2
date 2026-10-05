@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:324f183be6dee531f19ca5dca7c794622246c403f1b3d62a2a3a494adf5cd642",
+  "node_id": "art:topic",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/topic.rs",
+    "name": "topic.rs — the /topic view computed server-side: grouped hits, status, connections, latest dated change, mandatory not-found line, bounded reply",
+    "status": "realized"
+  }
+}

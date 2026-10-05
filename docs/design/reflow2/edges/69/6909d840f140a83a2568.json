@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e359c30bbb1d00deda2f08e31b1020b74bc379af8bf8fb9030610cd3f6df55e7",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-recording-a-finding-demands-the-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:mcp-surface"
+}

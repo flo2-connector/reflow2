@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7503c00728e3cea341865938f5deb49f7ae0292b87e49336ea4e8f7b7a50e30d",
+  "node_id": "decision:ack:ce1f3c04a0ee8c4f",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the gap gap:ce1f3c04a0ee8c4f.",
+    "name": "Reviewed: gap:ce1f3c04a0ee8c4f",
+    "rationale": "NOT duplicates, and read rather than skimmed. The name overlap is real ('version', 'binary') and the finding underneath is not: fact:the-upgrade-path-leaves-the-shared-server-on-the-old-binary is the MECHANISM (upgrading does not replace the running process, and every signal looks current), and fact:an-agent-that-cannot-name-its-version-reports-fixed-bugs is the CONSEQUENCE (a bug filed eighteen hours after it was fixed, by an agent on that stale surface). A CAUSES edge from the mechanism to the consequence has been drawn with that reasoning as its evidence, so the pair is now joined by what is actually true of it. Merging would have lost whichever half the merged text did not keep.",
+    "status": "accepted"
+  }
+}

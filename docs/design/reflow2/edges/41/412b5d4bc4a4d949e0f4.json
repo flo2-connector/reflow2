@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0469cd35d40c9923ae66aa036c870d62e41a3db4143d9f8b98db1245b5ce0525",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-branch-overlay-folds-into-main-when-its-code-merges",
+  "properties": {},
+  "to_id": "req:implementation-facts-travel-with-the-branch-that-produced-them"
+}

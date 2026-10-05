@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9719afabbc56ec4b99891c0d21a2194ad5b66ac11d49ff66fc8d78cada233328",
+  "node_id": "fact:a-held-design-test-flakes-waiting-30s-for-the-holder-to-take-the-store-2026-10-03",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-03 on CI: crates/reflow2-mcp/tests/a_held_designs_read_is_as_true_as_the_live_one.rs (from #657) failed on main 72bf252 (run 37110378324, 1 case) and on PR #660 at 568739f (run 37113790872, 2 cases) with \"the --serve-shared server never took the store\" — its hold() waits 300 x 100 ms for a --call read to report SNAPSHOT — and passed on main 293f957 and on #660 at 8147105",
+    "statement": "OBSERVED: the panic at a_held_designs_read_is_as_true_as_the_live_one.rs:202, \"the --serve-shared server never took the store\", in different cases on different runs (a_copy_that_fails_part_way_leaves_nothing_behind on main 72bf252; a_held_read_answers_a_held_write_refuses_and_nothing_is_written_beside_the_store and a_held_design_written_by_a_newer_reflow2_is_refused_as_the_live_one_is on #660 568739f), while the same file passed on main 293f957 and 230008c and on #660 8147105. EXPECTED: the holder takes the store well inside the 30 s the probe allows, every run. PRECEDENT, not established as this cause: fact:the-first-open-after-an-upgrade-outran-the-30s-respawn-wait-and-the-error-blamed-a-lock-holder-2026-09-30 measured a store open outrunning a 30 s wait. NOT ESTABLISHED: why the holder is slow or absent on those runs — it was not root-caused here, because it is outside item 6 and the test's own code is #657's.",
+    "subject_id": "ver:a-held-designs-read-is-as-true-as-the-live-one",
+    "valid_from": "2026-10-03"
+  }
+}

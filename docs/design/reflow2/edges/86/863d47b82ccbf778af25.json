@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:076af69a2dcf7b8f2155cc106aac36def3769522caac43cb7074c8728818e3e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reads-are-the-unscheduled-half",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:the-transition-is-two-halves-and-reads-are-the-unscheduled-one"
+}
