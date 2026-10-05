@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:16b0096ae4f9595ad7b3a031528628fa08757cf740d0f3389278240964723ae7",
+  "edge_type": "CLAIMS",
+  "from_id": "who:claude-code",
+  "properties": {
+    "claimed_at": "2026-10-05",
+    "depth": 1,
+    "note": "Fixing the store-identity defect (priority 1, item 2 of the work-door plan): the identity file is placed beside the store's real path, older placements are still read, and a refused open writes nothing. Branch fix/a-stores-identity-follows-its-real-path.",
+    "seat": "asligar-bitecool:2466910:705e67c6"
+  },
+  "to_id": "fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05"
+}

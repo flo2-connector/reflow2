@@ -6408,6 +6408,18 @@ pub struct GapsToPromptsReq {
     pub batch: Option<String>,
 }
 
+/// Say on stderr what opening a store found or did about its identity file —
+/// an identity found only where an older reflow2 put it and copied beside the
+/// store, or two identity files naming different designs. Once: the open that
+/// copies the file is the last to find it only there. stderr, because stdout
+/// is the JSON-RPC channel; `loop_status` says it too, for a session that
+/// never sees stderr.
+fn say_identity_on_open(graph: &DesignGraph) {
+    if let Some(note) = graph.identity_on_open() {
+        eprintln!("reflow2: {}", note.summary);
+    }
+}
+
 // ---- tools ------------------------------------------------------------------
 
 // EMPTY BY DESIGN, and rmcp 3.3.0 refuses an empty router unless told so. This
@@ -6430,6 +6442,7 @@ impl ReflowService {
     /// would only partly understand.
     pub fn new_reporting(path: &str) -> Result<(Self, Option<String>), DynoError> {
         let (graph, provenance) = DesignGraph::open_rocksdb_with_provenance(path)?;
+        say_identity_on_open(&graph);
         // The full-text index is a derived sidecar; a graph written by a
         // binary built before the `fulltext` feature has nodes the index never
         // saw, and a silently-partial search reads as "the design says
@@ -6444,10 +6457,9 @@ impl ReflowService {
     }
 
     pub fn new(path: &str) -> Result<Self, DynoError> {
-        Ok(Self::wrap_at(
-            DesignGraph::open_rocksdb(path)?,
-            Some(path.to_string()),
-        ))
+        let graph = DesignGraph::open_rocksdb(path)?;
+        say_identity_on_open(&graph);
+        Ok(Self::wrap_at(graph, Some(path.to_string())))
     }
 
     /// Serve, READ-ONLY, a copy of the store whose design lives at

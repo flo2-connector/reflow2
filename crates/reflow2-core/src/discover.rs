@@ -44,7 +44,7 @@
 
 use std::path::Path;
 
-use crate::identity::{DesignIdentity, identity_path};
+use crate::identity::{DesignIdentity, locate};
 use crate::provenance::{GraphStamp, stamp_path};
 
 /// What is at a path, as far as can be told without opening anything.
@@ -190,16 +190,15 @@ pub fn describe_at(graph_path: &str) -> DesignAtPath {
     }
 }
 
-/// `Some(Ok)` when the identity file parses, `Some(Err)` when it is there and
-/// broken, `None` when it is absent. The three cases are deliberately distinct:
-/// absent and unreadable must never collapse into one answer.
+/// `Some(Ok)` when the identity an open would use parses, `Some(Err)` when it
+/// is there and broken, `None` when it is absent. The three cases are
+/// deliberately distinct: absent and unreadable must never collapse into one
+/// answer. Read through `identity::locate`, so a store whose identity file an
+/// older reflow2 put beside a symlink or inside the store is described as the
+/// design an open would find — and nothing is written, not even the copy an
+/// open would make.
 fn read_identity(graph_path: &str) -> Option<Result<DesignIdentity, String>> {
-    let path = identity_path(graph_path);
-    match std::fs::read_to_string(&path) {
-        Ok(text) => Some(serde_json::from_str::<DesignIdentity>(&text).map_err(|e| e.to_string())),
-        Err(e) if e.kind() == std::io::ErrorKind::NotFound => None,
-        Err(e) => Some(Err(e.to_string())),
-    }
+    locate(graph_path).read()
 }
 
 /// The schema stamp, when one is there and readable. Absent is ordinary — a

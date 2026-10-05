@@ -350,6 +350,53 @@ impl StorageEngine {
         ))
     }
 
+    /// Open an EXISTING RocksDB store READ-ONLY, writing nothing in or beside
+    /// it — for a question an open must answer before it decides to open the
+    /// store at all (`RocksBackend::open_read_only` says what a read-write open
+    /// would change).
+    ///
+    /// No full-text index is opened: opening one writes its own files, and a
+    /// question asked before an open needs only the column families. Writes
+    /// through the returned engine fail, as RocksDB refuses them.
+    #[cfg(feature = "rocksdb")]
+    pub fn open_rocksdb_read_only(schema: Schema, path: &str) -> Result<Self, DynoError> {
+        let backend = RocksBackend::open_read_only(path)?;
+        Ok(Self {
+            schema: Arc::new(schema),
+            backend: Box::new(backend),
+            read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
+            write_buffer: None,
+            savepoints: Vec::new(),
+            #[cfg(feature = "fulltext")]
+            text_index: None,
+            #[cfg(feature = "fulltext")]
+            text_batch: Mutex::new(TextBatch::default()),
+        })
+    }
+
+    /// The fail-loud twin of [`Self::new_rocksdb`]'s stub, for the same reason.
+    #[cfg(not(feature = "rocksdb"))]
+    pub fn open_rocksdb_read_only(_schema: Schema, _path: &str) -> Result<Self, DynoError> {
+        Self::new_rocksdb(_schema, _path)
+    }
+
+    /// Every design id this store holds nodes under, with how many nodes each.
+    ///
+    /// Node keys are `{graph_id}\x00{node_type}\x00{node_id}`, so the id is the
+    /// key's first segment and can be read without knowing it in advance. That
+    /// is what lets a store that has lost its identity file say which design it
+    /// holds — the id the file has to name to open it again. One scan of the
+    /// node family; asked only on the refusal path, never on an ordinary open.
+    pub fn graph_ids_with_node_counts(&self) -> Result<BTreeMap<String, usize>, DynoError> {
+        let mut ids = BTreeMap::new();
+        for (key, _) in self.prefix_scan(CF_NODES, &[])? {
+            let end = key.iter().position(|b| *b == 0).unwrap_or(key.len());
+            *ids.entry(String::from_utf8_lossy(&key[..end]).into_owned())
+                .or_insert(0usize) += 1;
+        }
+        Ok(ids)
+    }
+
     /// Get the schema.
     pub fn schema(&self) -> &Schema {
         &self.schema

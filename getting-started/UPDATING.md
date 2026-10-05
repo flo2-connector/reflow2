@@ -133,6 +133,29 @@ on disk. What you will see:
 
 Mount the parent.
 
+### A store opened through a symlink, or as `--graph-path .`
+
+Up to v0.79.0 the identity file was written beside the path **as typed**. A store first opened
+through a symlink kept `<link-name>.id.json` beside the LINK. A store opened as `--graph-path .`
+kept `..id.json` INSIDE itself. In both cases, opening it later by its real path was refused as
+"lost its identity file". Releases after v0.79.0 always write it beside the store's **real**
+directory, however the path was typed.
+
+They still read those older places, so every store that opened before still opens. When reflow2
+finds the identity only in an older place, it writes a copy beside the store and says so once, on
+stderr and in `loop_status`. It never moves or deletes the old file.
+
+If a store is refused as having lost its identity file:
+
+1. **Put the design's id file beside the store**, at `<store>.id.json` (for example
+   `.reflow2/graph.id.json`).
+2. If the store was ever opened through a symlink, the file is beside that link, as
+   `<link-name>.id.json`. `find ~ -name '*.id.json'` finds it; copy it beside the store.
+3. If there is no copy anywhere, the refusal prints the design id the store's own data carries and
+   an id file that names it. Write that file beside the store.
+
+A refused open writes nothing, so trying again after each step is safe.
+
 **Use a real block device or local volume, not NFS.** RocksDB's exclusive lock is a filesystem
 lock, and network filesystems honour those unreliably. A lock that silently fails to exclude is
 how two processes end up writing one store.
