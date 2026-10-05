@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:063acba83abe3ca06e9a0a4a66b6df0ee25f7e66358292fa514a24a6abdfd90b",
+  "node_id": "chg:baseline-c1e5983e09857b6c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-05",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:test-a-stores-identity-follows-its-real-path' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: New test file: the check behind ver:a-stores-identity-follows-its-real-path.",
+    "subject": "record"
+  }
+}

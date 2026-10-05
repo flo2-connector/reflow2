@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5d976c715964be22e2d9af6e08734b5960c7621e2877b95359b1ebab9f7b49ee",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-stores-identity-follows-its-real-path",
+  "properties": {
+    "covers": "whole",
+    "evidence": "This test file is the check. CI's workspace job runs it (cargo test --workspace); 9 of its 10 cases failed against main's code before the fix."
+  },
+  "to_id": "ver:a-stores-identity-follows-its-real-path"
+}

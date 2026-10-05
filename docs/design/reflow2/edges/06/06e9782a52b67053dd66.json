@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9e9c4934c4bb871409da5b713db2dcc9c00e7f08e11f96a20a39699a154d79e5",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "The cause is corrected: identity_path resolves the store's real directory, so a new identity file never lands beside a symlink or inside the store; identity::locate still reads those older places and copies an identity found only there beside the store; and the open settles identity before any write (a read-only RocksDB probe on the refusal path), so a refused open leaves the folder byte-identical. Pinned by ver:a-stores-identity-follows-its-real-path, including stores the released 0.76.0 binary made through a symlink and as `.`. NOT corrected by this change, and still true: the version stamp, client record and usage ledger follow the spelling (the class in step 6), and the work machine's own store needs its id file put back by hand."
+  },
+  "to_id": "fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05"
+}

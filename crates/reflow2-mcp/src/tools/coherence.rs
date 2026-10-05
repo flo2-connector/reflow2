@@ -332,6 +332,35 @@ impl ReflowService {
                 );
             }
         }
+        // WHAT OPENING THIS STORE FOUND ABOUT ITS IDENTITY FILE, when it is
+        // news: an identity found only where an older reflow2 put it (beside a
+        // symlink, or inside the store for `--graph-path .`) and copied beside
+        // the store, or two identity files naming different designs. Absent on
+        // every ordinary open. The second needs a person, so it goes in `next`
+        // as well, for the reason the write-through's skip does below.
+        if let Some(note) = g.identity_on_open() {
+            if note.needs_attention
+                && let Some(arr) = payload.get_mut("next").and_then(|v| v.as_array_mut())
+            {
+                arr.insert(0, json!(note.summary));
+            }
+            if let Some(obj) = payload.as_object_mut() {
+                obj.insert(
+                    "identity_on_open".into(),
+                    json!({
+                        "summary": note.summary,
+                        "read_from": note.read_from.display().to_string(),
+                        "copied_to": note.copied_to.as_ref().map(|p| p.display().to_string()),
+                        "disagreeing": note
+                            .disagreeing
+                            .iter()
+                            .map(|(p, id)| json!({"file": p.display().to_string(), "graph_id": id}))
+                            .collect::<Vec<_>>(),
+                        "needs_attention": note.needs_attention,
+                    }),
+                );
+            }
+        }
         // THE SEARCH INDEX OPENING THIS STORE REBUILT, when the index it found
         // did not hold what the store holds (a store copied or restored
         // without its `fulltext/` directory, or written by a build without

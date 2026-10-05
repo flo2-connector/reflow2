@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9fd77c32cd5d2e4d7f2f89a241d009b8a631745183bb3e9bcc4d286606066072",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:design-identity"
+}

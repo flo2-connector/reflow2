@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0d718cad47b51ccbcb8491a9257d6939b34c0d22dc4aec2d23fc8a650f86e63b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:67eb7e1b7cd8efd4c197bb17b742cb48df3239cec3e2bb325a505bad03f23cf5",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:discover"
+}

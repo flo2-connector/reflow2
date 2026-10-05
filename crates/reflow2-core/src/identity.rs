@@ -37,7 +37,7 @@
 //! hash, so adoption is also what keeps every existing export, chain link and
 //! committed record valid across this change.
 
-use std::path::{Path, PathBuf};
+use std::path::{Component, Path, PathBuf};
 
 use crate::foundation::core::DynoError;
 use serde::{Deserialize, Serialize};
@@ -70,26 +70,501 @@ pub struct DesignIdentity {
     pub minted_by: String,
 }
 
-/// `<graph-path>.id.json` — a sibling of the store, like the version stamp.
-/// The design id recorded beside a graph, or `None` when there is no readable
-/// identity sidecar.
+// ---------------------------------------------------------------------------
+// Where the identity file is: beside the store's REAL directory.
+// ---------------------------------------------------------------------------
+
+/// The store directory as the filesystem means it — every symlink followed,
+/// `.` and `..` resolved — however the caller spelled the path.
+///
+/// **Why the identity file is placed by this and not by the spelling.** Until
+/// 0.79.0 it was placed beside the path AS TYPED, so one store got a different
+/// identity location for each way of reaching it: opened through a symlink,
+/// the file went beside the LINK; opened as `--graph-path .` from inside the
+/// store, it went INSIDE the store as `..id.json`. Either way the next open by
+/// the store's real path found nothing and was refused as "lost its identity
+/// file" (fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05,
+/// measured on 0.76.0, 0.78.0 and main).
+///
+/// A store that does not exist yet — every first open — cannot be
+/// canonicalized, so the deepest part of the path that exists is, and the rest
+/// is appended with `.` dropped and `..` taken lexically. Following a symlink
+/// moves the file only when the LAST component is the link (or the spelling is
+/// `.`): a symlink higher up the path leaves the store's parent directory, and
+/// so the file, physically where it was.
+pub fn store_real_path(graph_path: &str) -> PathBuf {
+    let p = Path::new(graph_path);
+    if let Ok(real) = std::fs::canonicalize(p) {
+        return real;
+    }
+    let absolute = if p.is_absolute() {
+        p.to_path_buf()
+    } else {
+        match std::env::current_dir() {
+            Ok(cwd) => cwd.join(p),
+            Err(_) => return p.to_path_buf(),
+        }
+    };
+    let mut out = PathBuf::new();
+    for component in absolute.components() {
+        match component {
+            Component::CurDir => {}
+            Component::ParentDir => {
+                out.pop();
+            }
+            Component::Normal(name) => {
+                out.push(name);
+                if let Ok(real) = std::fs::canonicalize(&out) {
+                    out = real;
+                }
+            }
+            other => out.push(other.as_os_str()),
+        }
+    }
+    out
+}
+
+/// `<store>.<suffix>`, a sibling of `store`.
+fn beside(store: &Path, suffix: &str) -> PathBuf {
+    match store.file_name() {
+        Some(name) => {
+            let mut sibling = name.to_os_string();
+            sibling.push(".");
+            sibling.push(suffix);
+            store.with_file_name(sibling)
+        }
+        None => PathBuf::from(format!("{}.{suffix}", store.display())),
+    }
+}
+
+/// `<real store>.id.json` — where this design's identity file belongs, and
+/// where every identity is written: a sibling of the store's REAL directory
+/// ([`store_real_path`]), like the version stamp. For a store reached by its
+/// plain path this is exactly the file every earlier version used.
+///
+/// Reading goes through [`locate`], which also looks where an older reflow2
+/// may have put the file.
+pub fn identity_path(graph_path: &str) -> PathBuf {
+    beside(&store_real_path(graph_path), "id.json")
+}
+
+/// Where reflow2 0.79.0 and earlier put the identity for THIS spelling of the
+/// path: beside the path as typed, unresolved. Kept verbatim, because finding
+/// what an older version wrote is the whole use.
+fn identity_path_as_typed(graph_path: &str) -> PathBuf {
+    let p = Path::new(graph_path);
+    match p.file_name().map(|n| n.to_string_lossy().to_string()) {
+        Some(n) => p.with_file_name(format!("{n}.id.json")),
+        None => PathBuf::from(format!("{graph_path}.id.json")),
+    }
+}
+
+/// One file, however it is spelled: its directory resolved, its name kept.
+fn physical(file: &Path) -> PathBuf {
+    let name = file.file_name().map(|n| n.to_os_string());
+    let parent = file.parent().filter(|p| !p.as_os_str().is_empty());
+    let dir = match parent {
+        Some(dir) => store_real_path(&dir.to_string_lossy()),
+        None => store_real_path("."),
+    };
+    match name {
+        Some(n) => dir.join(n),
+        None => dir,
+    }
+}
+
+/// Where an identity file was found, or looked for.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Placement {
+    /// Beside the store's real directory: where every identity is written.
+    BesideTheStore,
+    /// Beside the path as it was typed, when that is not the store's real
+    /// path — a symlink to the store. Where reflow2 0.79.0 and earlier put it.
+    BesideTheTypedPath,
+    /// Inside the store directory: where reflow2 0.79.0 and earlier put it for
+    /// `--graph-path .` (`..id.json`) or `--graph-path ./` (`.id.json`).
+    InsideTheStore,
+}
+
+impl Placement {
+    fn explained(self) -> &'static str {
+        match self {
+            Placement::BesideTheStore => "beside the store, where reflow2 keeps it",
+            Placement::BesideTheTypedPath => {
+                "beside the path as typed, where reflow2 0.79.0 and earlier put it when a store \
+                 was opened through a symlink"
+            }
+            Placement::InsideTheStore => {
+                "inside the store directory, where reflow2 0.79.0 and earlier put it when a store \
+                 was opened as `--graph-path .` (`..id.json`) or `./` (`.id.json`)"
+            }
+        }
+    }
+}
+
+/// What one candidate location held.
+#[derive(Debug, Clone)]
+pub enum Reading {
+    Absent,
+    Identity(DesignIdentity),
+    /// There, and not an identity reflow2 can read — never treated as absent.
+    Unreadable(String),
+}
+
+/// One place an identity file may be.
+#[derive(Debug, Clone)]
+pub struct Candidate {
+    pub path: PathBuf,
+    pub placement: Placement,
+    /// The file a reflow2 0.79.0 or earlier read for this exact spelling.
+    pub this_spelling: bool,
+    pub reading: Reading,
+}
+
+/// Every place a store's identity file may be, for one spelling of its path,
+/// in the order they are consulted, each with what it held.
+#[derive(Debug, Clone)]
+pub struct IdentityLookup {
+    /// The path as the caller typed it.
+    pub graph_path: String,
+    /// The store's real directory.
+    pub real_store: PathBuf,
+    /// Beside the store first, then the older placements; each file once.
+    pub candidates: Vec<Candidate>,
+}
+
+/// Something an open did or found about the identity file that a person
+/// should be told: said on stderr by the door that opened the store, and in
+/// `loop_status` for the session.
+#[derive(Debug, Clone, Serialize)]
+pub struct IdentityNote {
+    /// What happened, in sentences.
+    pub summary: String,
+    /// The file the identity was read from.
+    pub read_from: PathBuf,
+    /// Where this open wrote a copy beside the store, when it did.
+    pub copied_to: Option<PathBuf>,
+    /// Other identity files for this store naming a DIFFERENT design.
+    pub disagreeing: Vec<(PathBuf, String)>,
+    /// True when a person has something to decide; `loop_status` then puts it
+    /// in `next`.
+    pub needs_attention: bool,
+}
+
+/// The identity an open will use, and where it came from.
+#[derive(Debug, Clone)]
+pub struct FoundIdentity {
+    pub identity: DesignIdentity,
+    pub file: PathBuf,
+    pub placement: Placement,
+    /// Found only where an older reflow2 put it, and nothing disagrees: the
+    /// open writes a copy beside the store once it has succeeded.
+    pub copy_beside_store: bool,
+    pub note: Option<IdentityNote>,
+}
+
+/// What [`IdentityLookup::decide`] concluded.
+#[derive(Debug)]
+pub enum Located {
+    Found(FoundIdentity),
+    /// No identity file in any place looked.
+    Absent,
+    /// A file is there and cannot be used. Nothing has been written.
+    Refused(DynoError),
+}
+
+fn read_candidate(path: &Path) -> Reading {
+    match std::fs::read_to_string(path) {
+        Ok(text) => match serde_json::from_str::<DesignIdentity>(&text) {
+            Ok(identity) => Reading::Identity(identity),
+            Err(e) => Reading::Unreadable(e.to_string()),
+        },
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Reading::Absent,
+        Err(e) => Reading::Unreadable(e.to_string()),
+    }
+}
+
+/// Look for a store's identity file everywhere it may be, writing nothing.
+///
+/// In order: beside the store's real directory; beside the path as typed (a
+/// symlink); inside the store (`..id.json` for `.`, `.id.json` for `./`). The
+/// inside places are looked at whatever the spelling, so a store first opened
+/// as `.` opens by its real path too. Beside a symlink can only be looked at
+/// when the store is reached THROUGH that symlink — nothing on the real path
+/// says a link to it exists — which is why a refusal says where to look.
+pub fn locate(graph_path: &str) -> IdentityLookup {
+    let real_store = store_real_path(graph_path);
+    let typed = identity_path_as_typed(graph_path);
+    let typed_physical = physical(&typed);
+    let typed_placement = if typed_physical.parent() == Some(real_store.as_path()) {
+        Placement::InsideTheStore
+    } else {
+        Placement::BesideTheTypedPath
+    };
+    let mut seen: Vec<PathBuf> = Vec::new();
+    let mut candidates = Vec::new();
+    for (path, placement) in [
+        (beside(&real_store, "id.json"), Placement::BesideTheStore),
+        (typed, typed_placement),
+        (real_store.join("..id.json"), Placement::InsideTheStore),
+        (real_store.join(".id.json"), Placement::InsideTheStore),
+    ] {
+        let key = physical(&path);
+        if seen.contains(&key) {
+            continue;
+        }
+        seen.push(key.clone());
+        let reading = read_candidate(&path);
+        candidates.push(Candidate {
+            this_spelling: key == typed_physical,
+            path: if path.is_absolute() { path } else { key },
+            placement,
+            reading,
+        });
+    }
+    IdentityLookup {
+        graph_path: graph_path.to_string(),
+        real_store,
+        candidates,
+    }
+}
+
+impl IdentityLookup {
+    /// The file beside the store's real directory, where an identity is written.
+    pub fn beside_the_store(&self) -> &Path {
+        &self.candidates[0].path
+    }
+
+    /// Is any identity file there at all, readable or not?
+    pub fn any_present(&self) -> bool {
+        self.candidates
+            .iter()
+            .any(|c| !matches!(c.reading, Reading::Absent))
+    }
+
+    /// Which identity an open of this spelling uses, without writing anything.
+    ///
+    /// **The rule.** The file beside the store's real directory comes first,
+    /// always — one store, one identity, however it is reached. Only when it is
+    /// absent are the places an older reflow2 used consulted: this spelling's
+    /// own first (the file a 0.79.0 or earlier open of this exact path read),
+    /// then the inside-the-store files. An identity found only there is used,
+    /// and the open writes a COPY beside the store once it has succeeded, so
+    /// the next open by the real path finds it. The old file is never moved or
+    /// deleted: an older reflow2 opening by the same spelling still needs it.
+    ///
+    /// **Every store that opened before still opens.** A spelling that read a
+    /// file before reads the same identity now, with one exception, made loud:
+    /// when the file beside the store and an older file name DIFFERENT designs,
+    /// the one beside the store wins and the other is reported. That takes two
+    /// identity files for one store, which only a reflow2 older than the
+    /// lost-identity refusal (2026-08-07) or a hand edit could leave.
+    ///
+    /// A file that is there and cannot be read is refused rather than skipped,
+    /// as it always was for the spelling's own file: it may be the only record
+    /// of the design's name.
+    pub fn decide(&self) -> Located {
+        let store = &self.candidates[0];
+        let older = &self.candidates[1..];
+        match &store.reading {
+            Reading::Identity(identity) => {
+                let disagreeing = disagreeing_with(identity, older);
+                let note = (!disagreeing.is_empty()).then(|| IdentityNote {
+                    summary: format!(
+                        "{} The file beside the store comes first, so this open uses design `{}` \
+                         from {}. Nothing was changed. Ask whoever owns this store which design it \
+                         is, compare each id with the design's export (`graph_id` in its \
+                         design.json or single-file export), and move the wrong file aside.",
+                        two_names_sentence(&self.real_store, &store.path, identity, &disagreeing),
+                        identity.graph_id,
+                        store.path.display()
+                    ),
+                    read_from: store.path.clone(),
+                    copied_to: None,
+                    disagreeing,
+                    needs_attention: true,
+                });
+                Located::Found(FoundIdentity {
+                    identity: identity.clone(),
+                    file: store.path.clone(),
+                    placement: Placement::BesideTheStore,
+                    copy_beside_store: false,
+                    note,
+                })
+            }
+            Reading::Unreadable(why) => Located::Refused(unreadable(&store.path, why)),
+            Reading::Absent => self.decide_among_older(older),
+        }
+    }
+
+    fn decide_among_older(&self, older: &[Candidate]) -> Located {
+        if let Some(own) = older.iter().find(|c| c.this_spelling)
+            && let Reading::Unreadable(why) = &own.reading
+        {
+            return Located::Refused(unreadable(&own.path, why));
+        }
+        let readable: Vec<(&Candidate, &DesignIdentity)> = older
+            .iter()
+            .filter_map(|c| match &c.reading {
+                Reading::Identity(i) => Some((c, i)),
+                _ => None,
+            })
+            .collect();
+        if readable.is_empty() {
+            return match older
+                .iter()
+                .find(|c| matches!(c.reading, Reading::Unreadable(_)))
+            {
+                Some(c) => match &c.reading {
+                    Reading::Unreadable(why) => Located::Refused(unreadable(&c.path, why)),
+                    _ => Located::Absent,
+                },
+                None => Located::Absent,
+            };
+        }
+        let all_agree = readable
+            .iter()
+            .all(|(_, i)| i.graph_id == readable[0].1.graph_id);
+        let chosen = readable
+            .iter()
+            .find(|(c, _)| c.this_spelling)
+            .or_else(|| all_agree.then(|| &readable[0]));
+        let Some((chosen, identity)) = chosen else {
+            return Located::Refused(DynoError::Storage(format!(
+                "the design at {} has no identity file beside the store, and the files an older \
+                 reflow2 left name DIFFERENT designs: {}. reflow2 will not guess which design \
+                 this store is. Compare each id with the design's export (`graph_id` in its \
+                 design.json or single-file export) and put the right file beside the store, at \
+                 {}. Nothing was written.",
+                self.graph_path,
+                readable
+                    .iter()
+                    .map(|(c, i)| format!("{} names `{}`", c.path.display(), i.graph_id))
+                    .collect::<Vec<_>>()
+                    .join(", "),
+                self.beside_the_store().display()
+            )));
+        };
+        let others: Vec<Candidate> = older
+            .iter()
+            .filter(|c| c.path != chosen.path)
+            .cloned()
+            .collect();
+        let disagreeing = disagreeing_with(identity, &others);
+        let copy = disagreeing.is_empty();
+        let summary = if copy {
+            format!(
+                "The identity file of the design at {} (`{}`) was found only at {} — {}. A copy \
+                 was written beside the store, at {}, so the store now opens by its real path \
+                 too, however it is reached. The old file was left where it is, because an older \
+                 reflow2 opening by the same path still reads it; nothing needs doing.",
+                self.graph_path,
+                identity.graph_id,
+                chosen.path.display(),
+                chosen.placement.explained(),
+                self.beside_the_store().display()
+            )
+        } else {
+            format!(
+                "{} This open uses design `{}` from {}, the file this path has always opened, \
+                 and wrote NO copy beside the store, because which design the store is is not \
+                 settled. Ask whoever owns this store, compare each id with the design's export, \
+                 and put the right file beside the store, at {}.",
+                two_names_sentence(&self.real_store, &chosen.path, identity, &disagreeing),
+                identity.graph_id,
+                chosen.path.display(),
+                self.beside_the_store().display()
+            )
+        };
+        Located::Found(FoundIdentity {
+            identity: (*identity).clone(),
+            file: chosen.path.clone(),
+            placement: chosen.placement,
+            copy_beside_store: copy,
+            note: Some(IdentityNote {
+                summary,
+                read_from: chosen.path.clone(),
+                copied_to: copy.then(|| self.beside_the_store().to_path_buf()),
+                disagreeing,
+                needs_attention: !copy,
+            }),
+        })
+    }
+
+    /// The identity this spelling would open with, read without writing
+    /// anything — for a describe, a registry sweep, a version guard.
+    /// `Some(Ok)`, `Some(Err)` for a file that cannot be used, `None` when
+    /// there is none.
+    pub fn read(&self) -> Option<Result<DesignIdentity, String>> {
+        match self.decide() {
+            Located::Found(found) => Some(Ok(found.identity)),
+            Located::Absent => None,
+            Located::Refused(e) => Some(Err(e.to_string())),
+        }
+    }
+
+    /// The file this spelling reads its identity from, if any.
+    pub fn file_in_use(&self) -> Option<PathBuf> {
+        match self.decide() {
+            Located::Found(found) => Some(found.file),
+            _ => None,
+        }
+    }
+}
+
+fn disagreeing_with(identity: &DesignIdentity, others: &[Candidate]) -> Vec<(PathBuf, String)> {
+    others
+        .iter()
+        .filter_map(|c| match &c.reading {
+            Reading::Identity(o) if o.graph_id != identity.graph_id => {
+                Some((c.path.clone(), o.graph_id.clone()))
+            }
+            _ => None,
+        })
+        .collect()
+}
+
+fn two_names_sentence(
+    real_store: &Path,
+    used: &Path,
+    identity: &DesignIdentity,
+    disagreeing: &[(PathBuf, String)],
+) -> String {
+    format!(
+        "The store at {} has more than one identity file, and they name different designs: {} \
+         names `{}`, and {}. A store with two names may hold two designs.",
+        real_store.display(),
+        used.display(),
+        identity.graph_id,
+        disagreeing
+            .iter()
+            .map(|(p, id)| format!("{} names `{id}`", p.display()))
+            .collect::<Vec<_>>()
+            .join(", ")
+    )
+}
+
+fn unreadable(path: &Path, why: &str) -> DynoError {
+    DynoError::Serialization(format!(
+        "the design identity at {} is not readable ({why}). It records which design this store \
+         holds, and reflow2 will not guess: fix the file, or move it aside to have a new identity \
+         established. Nothing was written.",
+        path.display()
+    ))
+}
+
+/// The design id recorded for a graph, or `None` when there is no usable
+/// identity file in any place [`locate`] looks.
 ///
 /// Deliberately quiet: this is used by the version guard to decide WHICH id to
 /// count retired-type instances under, and a missing or unparseable sidecar
 /// must not be an error there — it simply means the count falls back to the
 /// default id, which is the only id a pre-identity graph could be under.
 pub fn read_graph_id(graph_path: &str) -> Option<String> {
-    let text = std::fs::read_to_string(identity_path(graph_path)).ok()?;
-    serde_json::from_str::<DesignIdentity>(&text)
-        .ok()
-        .map(|i| i.graph_id)
-}
-
-pub fn identity_path(graph_path: &str) -> PathBuf {
-    let p = Path::new(graph_path);
-    match p.file_name().map(|n| n.to_string_lossy().to_string()) {
-        Some(n) => p.with_file_name(format!("{n}.id.json")),
-        None => PathBuf::from(format!("{graph_path}.id.json")),
+    match locate(graph_path).decide() {
+        Located::Found(found) => Some(found.identity.graph_id),
+        _ => None,
     }
 }
 
@@ -131,43 +606,12 @@ fn default_label(graph_path: &str) -> String {
     "design".to_string()
 }
 
-/// Read this design's identity, establishing it on first open.
-///
-/// `holds_default_design` is asked only when there is no identity file yet, and
-/// answers the migration question: does this store already contain a design
-/// under the old shared id? If it does, that id is adopted rather than
-/// replaced — see the module docs for why the alternative is silent data loss.
-pub fn resolve(
-    graph_path: &str,
-    default_id: &str,
-    holds_default_design: impl FnOnce() -> bool,
-) -> Result<DesignIdentity, DynoError> {
-    let path = identity_path(graph_path);
-    match std::fs::read_to_string(&path) {
-        Ok(text) => {
-            // Refused rather than defaulted: an unreadable identity file is the
-            // one thing we must not paper over, because "default it" means
-            // opening a different design under the same path and finding it
-            // empty (req:design-identity).
-            return serde_json::from_str(&text).map_err(|e| {
-                DynoError::Serialization(format!(
-                    "the design identity at {} is not readable ({e}). It records which design \
-                     this store holds, and reflow2 will not guess: fix the file, or move it aside \
-                     to have a new identity established.",
-                    path.display()
-                ))
-            });
-        }
-        Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
-        Err(e) => {
-            return Err(DynoError::Storage(format!(
-                "cannot read the design identity at {}: {e}",
-                path.display()
-            )));
-        }
-    }
-
-    let identity = if holds_default_design() {
+/// A new identity for a store that has none, WITHOUT writing it: adopted
+/// when the store already holds the pre-identity design under the shared id
+/// (`holds_default_design`), minted otherwise. The caller writes it, with
+/// [`write`], once the open that needs it has succeeded.
+pub fn establish(graph_path: &str, default_id: &str, holds_default_design: bool) -> DesignIdentity {
+    if holds_default_design {
         DesignIdentity {
             graph_id: default_id.to_string(),
             label: default_label(graph_path),
@@ -181,9 +625,36 @@ pub fn resolve(
             origin: Origin::Minted,
             minted_by: env!("CARGO_PKG_VERSION").to_string(),
         }
-    };
-    write(graph_path, &identity)?;
-    Ok(identity)
+    }
+}
+
+/// Read this design's identity, establishing it on first open.
+///
+/// `holds_default_design` is asked only when there is no identity file in any
+/// place [`locate`] looks, and answers the migration question: does this store
+/// already contain a design under the old shared id? If it does, that id is
+/// adopted rather than replaced — see the module docs for why the alternative
+/// is silent data loss. An identity found only where an older reflow2 put it is
+/// copied beside the store, as an open does.
+pub fn resolve(
+    graph_path: &str,
+    default_id: &str,
+    holds_default_design: impl FnOnce() -> bool,
+) -> Result<DesignIdentity, DynoError> {
+    match locate(graph_path).decide() {
+        Located::Found(found) => {
+            if found.copy_beside_store {
+                copy_beside_store(graph_path, &found.file)?;
+            }
+            Ok(found.identity)
+        }
+        Located::Refused(e) => Err(e),
+        Located::Absent => {
+            let identity = establish(graph_path, default_id, holds_default_design());
+            write(graph_path, &identity)?;
+            Ok(identity)
+        }
+    }
 }
 
 /// Has a RocksDB store ever held data at this path?
@@ -213,117 +684,178 @@ pub fn store_has_content(graph_path: &str) -> bool {
     })
 }
 
-/// Read this design's identity on a durable open, refusing the one case
-/// [`resolve`] cannot tell apart from a new design.
+/// What a store with data and no identity file was found to hold, read
+/// without opening it for writing: every design id its node keys carry, with
+/// how many nodes each.
+#[derive(Debug, Clone, Default)]
+pub struct StoreReading {
+    pub ids: std::collections::BTreeMap<String, usize>,
+}
+
+/// The refusal for a store that holds data, has no identity file in any place
+/// [`locate`] looks, and is not the pre-identity design.
 ///
 /// **The case.** The identity sidecar sits BESIDE the store, so the two can be
-/// parted — a partial restore, a snapshot taken mid-write, a sync tool that skips
-/// dotfiles, or (the one the Dockerfile warns about in capitals at its `/data`
-/// layout) a container started with `-v` scoped to `.../graph` instead of its
-/// parent. When they are parted, `resolve` finds no file and asks
-/// `holds_default_design`, which probes only for a design under the OLD SHARED
-/// id. That probe is the legacy migration path and **cannot see a minted design
-/// by construction** — every design created since identity landed is under a
-/// minted id. So it answers false, a new id is minted, and the mint is written
-/// over the missing sidecar. The design is still on disk, now unreachable because
-/// the id namespaces every stored key, and the id needed to reach it is gone.
-/// Nothing errors; the design presents as empty and healthy.
+/// parted — a partial restore, a sync tool that skips dotfiles, a container
+/// volume mounted at the store instead of its parent, or (measured, and fixed
+/// for new files by [`identity_path`]) a store first opened through a symlink,
+/// whose file an older reflow2 put beside the LINK. Opening anyway would mint a
+/// new name, write it over the missing one, and present the design as empty
+/// while it is still on disk (fact:defect-lost-identity-sidecar-opens-empty).
 ///
-/// `cap:hosted-state-on-a-volume` states the required behaviour directly — "a
-/// store without its identity sidecar is refused rather than opened empty" — and
-/// the same rule already holds one case over: an UNREADABLE sidecar is refused
-/// with "reflow2 will not guess". Corrupt was refused and ABSENT was not, which
-/// is the wrong way round, because absent is the likelier of the two on a volume.
-///
-/// **Why the guard is `store_has_content` and not a scan.** The honest check
-/// would be "does this store hold a design under ANY id" — but ids namespace
-/// every key and the storage engine offers no enumeration of them
-/// (`count_nodes` needs the id you are trying to discover), so that question
-/// cannot be asked without a change to the pinned foundation. "The store already
-/// held data, and it is not the legacy design" answers the same question from the
-/// outside, using only what a filesystem can see.
-///
-/// The three outcomes, and why each is what it is:
-///
-/// - **sidecar present** — nothing to guard; `resolve` reads it, corrupt included.
-/// - **no sidecar, no prior content** — a genuinely new store. Mint, as before.
-/// - **no sidecar, prior content, holds the legacy design** — the migration case.
-///   Adopt, as before, or every pre-identity graph would be refused.
-/// - **no sidecar, prior content, no legacy design** — REFUSE. Something was here
-///   and we cannot name it.
-///
-/// Refusing costs an operator one error naming the file to put back. Opening
-/// costs them the design, silently — and `dec:two-sided-accept` ("silent
-/// drift-accept does not exist") is the same principle one layer up.
-pub fn resolve_on_open(
-    graph_path: &str,
-    default_id: &str,
-    store_had_content: bool,
-    holds_default_design: impl FnOnce() -> bool,
-) -> Result<DesignIdentity, DynoError> {
-    // A sidecar that exists is `resolve`'s business either way — it reads it, and
-    // refuses it if it is unreadable. The closure is never reached on that path.
-    if identity_path(graph_path).exists() {
-        return resolve(graph_path, default_id, || false);
-    }
-
-    if !store_had_content {
-        // Nothing was ever stored here, so there is no design to lose. This is
-        // every first open, and it must stay cheap and silent.
-        return resolve(graph_path, default_id, holds_default_design);
-    }
-
-    if holds_default_design() {
-        // A pre-identity graph: its data really is under the shared id, and
-        // adopting it is what keeps it readable. Refusing here would lock every
-        // graph that predates identity out of its own design.
-        return resolve(graph_path, default_id, || true);
-    }
-
-    Err(DynoError::Storage(format!(
-        "the design at {graph_path} has lost its identity file ({}), and reflow2 will not guess.\n\
+/// **What it says, because the person reading it has to act on it:** every
+/// place it looked; the design id(s) the store's own keys carry, read without
+/// writing (`reading`), which is the id the file has to name; the file to put
+/// back and where; and that nothing was written — an open that refuses leaves
+/// the store and every file beside it as it found them. When the store could
+/// not be read without opening it for writing (`reading` is `Err`), it says
+/// that instead, because then the open did touch the store's own files.
+pub fn lost_identity(lookup: &IdentityLookup, reading: Result<&StoreReading, String>) -> DynoError {
+    let looked = lookup
+        .candidates
+        .iter()
+        .map(|c| format!("  - {} ({})", c.path.display(), c.placement.explained()))
+        .collect::<Vec<_>>()
+        .join("\n");
+    let target = lookup.beside_the_store().display().to_string();
+    let label = default_label(&lookup.real_store.to_string_lossy());
+    let holds = match &reading {
+        Ok(r) if r.ids.len() == 1 => {
+            let (id, n) = r.ids.iter().next().expect("one id");
+            format!(
+                "WHAT THE STORE HOLDS: {n} node(s), all under the design id `{id}`. That is the id \
+                 its identity file has to name. If you have no copy of the file, writing this one \
+                 at {target} recovers it (`label` is only a name, and `origin` only a note):\n  \
+                 {{\"graph_id\": \"{id}\", \"label\": \"{label}\", \"origin\": \"minted\", \
+                 \"minted_by\": \"{}\"}}\n\
+                 To check before trusting it: open read-only (`reflow2 read loop_status`) and \
+                 compare_designs against the design's export, if one exists.",
+                env!("CARGO_PKG_VERSION")
+            )
+        }
+        Ok(r) if r.ids.is_empty() => "WHAT THE STORE HOLDS: no node under any design id that can \
+                                      be read — its data may be edges or index entries only. \
+                                      Restore the identity file from a backup."
+            .to_string(),
+        Ok(r) => format!(
+            "WHAT THE STORE HOLDS: nodes under {} design ids — {}. Only one is the design the \
+             missing file named; compare each with the design's export (`graph_id` in its \
+             design.json or single-file export) before writing an identity file at {target}.",
+            r.ids.len(),
+            r.ids
+                .iter()
+                .map(|(id, n)| format!("`{id}` ({n} node(s))"))
+                .collect::<Vec<_>>()
+                .join(", ")
+        ),
+        Err(why) => format!(
+            "WHAT THE STORE HOLDS could not be read without opening it for writing ({why}), so \
+             this open DID touch the store's own files, though it wrote nothing beside it."
+        ),
+    };
+    let nothing_written = if reading.is_ok() {
+        "\nNothing was written: this refused open left the store and every file beside it as it \
+         found them."
+    } else {
+        ""
+    };
+    DynoError::Storage(format!(
+        "the design at {} has lost its identity file, and reflow2 will not guess.\n\
+         It looked in these places and found none:\n{looked}\n\
          This store already holds data, but not under the shared id every pre-identity design \
          used — so it belongs to a design whose name lived only in that file. Opening anyway \
          would mint a NEW name, write it over the missing one, and present the design as empty \
          while it is still on disk and no longer reachable.\n\
-         The identity file is a SIBLING of the store, not inside it. If this is a container, the \
-         usual cause is a volume mounted at the store directory instead of its parent — mount the \
-         parent. Otherwise restore {} from a backup, alongside the store it belongs to.",
-        identity_path(graph_path).display(),
-        identity_path(graph_path).display(),
-    )))
+         TO RECOVER: put the design's id file beside the store, at {target}. The identity file \
+         is a SIBLING of the store, not inside it. If an older reflow2 ever opened this store \
+         through a symlink, it put the file beside that LINK, named `<link-name>.id.json` — find \
+         it (`find ~ -name '*.id.json'`) and copy it here. If this is a container, the usual \
+         cause is a volume mounted at the store directory instead of its parent — mount the \
+         parent. Otherwise restore it from a backup.\n\
+         {holds}{nothing_written}",
+        lookup.graph_path
+    ))
 }
 
-/// Persist an identity beside the store.
-pub fn write(graph_path: &str, identity: &DesignIdentity) -> Result<(), DynoError> {
-    let path = identity_path(graph_path);
+/// Write `bytes` to `path` so a reader never sees half of it: a temporary file
+/// in the same directory, then a rename over the target. A plain write
+/// truncates first, and a process killed between the truncate and the write
+/// left an EMPTY identity file — refused as unreadable on the next open.
+fn write_atomically(path: &Path, bytes: &[u8]) -> Result<(), DynoError> {
     if let Some(parent) = path.parent() {
         let _ = std::fs::create_dir_all(parent);
     }
-    let json = serde_json::to_string_pretty(identity).map_err(|e| {
-        DynoError::Serialization(format!("cannot serialize the design identity: {e}"))
-    })?;
-    std::fs::write(&path, json + "\n").map_err(|e| {
+    let mut tmp_name = path
+        .file_name()
+        .map(|n| n.to_os_string())
+        .unwrap_or_default();
+    tmp_name.push(format!(".tmp{}", std::process::id()));
+    let tmp = path.with_file_name(tmp_name);
+    let fail = |e: std::io::Error| {
         DynoError::Storage(format!(
             "cannot write the design identity at {}: {e}",
             path.display()
         ))
+    };
+    std::fs::write(&tmp, bytes).map_err(fail)?;
+    std::fs::rename(&tmp, path).map_err(|e| {
+        let _ = std::fs::remove_file(&tmp);
+        fail(e)
     })
+}
+
+/// Persist an identity: to the file this spelling reads it from, or — for a
+/// store that has none yet — beside the store's REAL directory
+/// ([`identity_path`]), never beside a symlink or inside the store.
+///
+/// Writing back to the file in use is what keeps a rename or an adoption from
+/// creating a second, disagreeing file.
+pub fn write(graph_path: &str, identity: &DesignIdentity) -> Result<(), DynoError> {
+    // A file that is there and cannot be read is never written over: it may be
+    // the only record of the design's name.
+    let path = match locate(graph_path).decide() {
+        Located::Found(found) => found.file,
+        Located::Absent => identity_path(graph_path),
+        Located::Refused(e) => return Err(e),
+    };
+    let json = serde_json::to_string_pretty(identity).map_err(|e| {
+        DynoError::Serialization(format!("cannot serialize the design identity: {e}"))
+    })?;
+    write_atomically(&path, (json + "\n").as_bytes())
+}
+
+/// Copy an identity file found where an older reflow2 put it to beside the
+/// store, byte for byte, leaving the original where it is. A file already
+/// beside the store is left as it is: that one is read first, so finding it
+/// means there is nothing to copy.
+pub fn copy_beside_store(graph_path: &str, from: &Path) -> Result<PathBuf, DynoError> {
+    let to = identity_path(graph_path);
+    if to.exists() {
+        return Ok(to);
+    }
+    let bytes = std::fs::read(from).map_err(|e| {
+        DynoError::Storage(format!(
+            "cannot read the design identity at {} to copy it beside the store: {e}",
+            from.display()
+        ))
+    })?;
+    write_atomically(&to, &bytes)?;
+    Ok(to)
 }
 
 /// Rename the design. The label is a label: the id never moves, because
 /// everything stored is keyed by it and every export ever written names it.
 pub fn set_label(graph_path: &str, label: &str) -> Result<DesignIdentity, DynoError> {
-    let path = identity_path(graph_path);
-    let text = std::fs::read_to_string(&path).map_err(|e| {
-        DynoError::Storage(format!(
-            "no design identity at {} to rename ({e}) — open the graph once to establish it.",
-            path.display()
-        ))
-    })?;
-    let mut identity: DesignIdentity = serde_json::from_str(&text).map_err(|e| {
-        DynoError::Serialization(format!("the design identity is not readable: {e}"))
-    })?;
+    let mut identity = match locate(graph_path).decide() {
+        Located::Found(found) => found.identity,
+        Located::Refused(e) => return Err(e),
+        Located::Absent => {
+            return Err(DynoError::Storage(format!(
+                "no design identity at {} to rename — open the graph once to establish it.",
+                identity_path(graph_path).display()
+            )));
+        }
+    };
     identity.label = label.to_string();
     write(graph_path, &identity)?;
     Ok(identity)
@@ -349,6 +881,159 @@ mod tests {
         assert_ne!(a, b);
         assert_eq!(a.len(), 16, "a readable, fixed-width id: {a}");
         assert!(a.chars().all(|c| c.is_ascii_hexdigit()));
+    }
+
+    #[test]
+    fn a_path_that_does_not_exist_yet_resolves_lexically_past_what_does() {
+        let dir = tempfile::tempdir().unwrap();
+        let root = std::fs::canonicalize(dir.path()).unwrap();
+        let spelled = format!("{}/proj/./.reflow2/x/../graph", root.display());
+        assert_eq!(
+            store_real_path(&spelled),
+            root.join("proj/.reflow2/graph"),
+            "`.` dropped and `..` taken, for a store a first open has not created"
+        );
+        assert_eq!(
+            identity_path(&spelled),
+            root.join("proj/.reflow2/graph.id.json")
+        );
+    }
+
+    #[test]
+    fn a_symlink_to_the_store_resolves_to_the_store_and_its_old_place_is_still_looked_at() {
+        let dir = tempfile::tempdir().unwrap();
+        let root = std::fs::canonicalize(dir.path()).unwrap();
+        let store = root.join("proj/.reflow2/graph");
+        std::fs::create_dir_all(&store).unwrap();
+        std::fs::create_dir_all(root.join("stores")).unwrap();
+        std::os::unix::fs::symlink(&store, root.join("stores/bq")).unwrap();
+        let link = root.join("stores/bq");
+        let link = link.to_str().unwrap();
+
+        assert_eq!(store_real_path(link), store);
+        assert_eq!(
+            identity_path(link),
+            root.join("proj/.reflow2/graph.id.json")
+        );
+
+        let lookup = locate(link);
+        let looked: Vec<(PathBuf, Placement, bool)> = lookup
+            .candidates
+            .iter()
+            .map(|c| (c.path.clone(), c.placement, c.this_spelling))
+            .collect();
+        assert_eq!(
+            looked,
+            vec![
+                (
+                    root.join("proj/.reflow2/graph.id.json"),
+                    Placement::BesideTheStore,
+                    false
+                ),
+                (
+                    root.join("stores/bq.id.json"),
+                    Placement::BesideTheTypedPath,
+                    true
+                ),
+                (store.join("..id.json"), Placement::InsideTheStore, false),
+                (store.join(".id.json"), Placement::InsideTheStore, false),
+            ],
+            "beside the store first, then where 0.79.0 and earlier put it"
+        );
+        assert!(matches!(lookup.decide(), Located::Absent));
+    }
+
+    #[test]
+    fn a_plain_path_looks_beside_the_store_and_inside_it_and_nowhere_else() {
+        let dir = tempfile::tempdir().unwrap();
+        let root = std::fs::canonicalize(dir.path()).unwrap();
+        let store = root.join("graph");
+        std::fs::create_dir_all(&store).unwrap();
+        let lookup = locate(store.to_str().unwrap());
+        assert_eq!(lookup.candidates.len(), 3, "{:?}", lookup.candidates);
+        assert!(lookup.candidates[0].this_spelling);
+        assert_eq!(lookup.candidates[0].path, root.join("graph.id.json"));
+    }
+
+    fn identity_named(graph_id: &str) -> String {
+        serde_json::to_string(&DesignIdentity {
+            graph_id: graph_id.to_string(),
+            label: "proj".to_string(),
+            origin: Origin::Minted,
+            minted_by: "0.76.0".to_string(),
+        })
+        .unwrap()
+    }
+
+    #[test]
+    fn an_identity_found_only_inside_the_store_is_used_and_copied_beside_it() {
+        let dir = tempfile::tempdir().unwrap();
+        let store = dir.path().join("graph");
+        std::fs::create_dir_all(&store).unwrap();
+        std::fs::write(store.join("..id.json"), identity_named("aaaaaaaaaaaaaaaa")).unwrap();
+        let path = store.to_str().unwrap();
+
+        let Located::Found(found) = locate(path).decide() else {
+            panic!("an identity inside the store is found from the real path");
+        };
+        assert_eq!(found.identity.graph_id, "aaaaaaaaaaaaaaaa");
+        assert_eq!(found.placement, Placement::InsideTheStore);
+        assert!(found.copy_beside_store);
+        let note = found.note.expect("said");
+        assert!(!note.needs_attention, "nothing to decide: {}", note.summary);
+        assert!(
+            !dir.path().join("graph.id.json").exists(),
+            "deciding writes nothing"
+        );
+
+        // `resolve` makes the copy an open makes, and leaves the original.
+        assert_eq!(
+            resolve(path, "unused", || unreachable!()).unwrap().graph_id,
+            "aaaaaaaaaaaaaaaa"
+        );
+        assert_eq!(
+            std::fs::read_to_string(dir.path().join("graph.id.json")).unwrap(),
+            identity_named("aaaaaaaaaaaaaaaa")
+        );
+        assert!(store.join("..id.json").exists());
+    }
+
+    #[test]
+    fn older_files_that_disagree_with_no_file_of_this_spellings_own_are_refused() {
+        let dir = tempfile::tempdir().unwrap();
+        let store = dir.path().join("graph");
+        std::fs::create_dir_all(&store).unwrap();
+        std::fs::write(store.join("..id.json"), identity_named("aaaaaaaaaaaaaaaa")).unwrap();
+        std::fs::write(store.join(".id.json"), identity_named("bbbbbbbbbbbbbbbb")).unwrap();
+        match locate(store.to_str().unwrap()).decide() {
+            Located::Refused(e) => {
+                let m = e.to_string();
+                assert!(
+                    m.contains("aaaaaaaaaaaaaaaa") && m.contains("bbbbbbbbbbbbbbbb"),
+                    "{m}"
+                );
+                assert!(m.contains("will not guess"), "{m}");
+            }
+            other => {
+                panic!("two older files naming two designs must not be guessed between: {other:?}")
+            }
+        }
+    }
+
+    #[test]
+    fn an_unreadable_identity_beside_the_store_is_refused_and_never_written_over() {
+        let dir = tempfile::tempdir().unwrap();
+        let store = dir.path().join("graph");
+        std::fs::create_dir_all(&store).unwrap();
+        std::fs::write(dir.path().join("graph.id.json"), "{ not json").unwrap();
+        let path = store.to_str().unwrap();
+        assert!(matches!(locate(path).decide(), Located::Refused(_)));
+        let identity = establish(path, "unused", false);
+        assert!(write(path, &identity).is_err());
+        assert_eq!(
+            std::fs::read_to_string(dir.path().join("graph.id.json")).unwrap(),
+            "{ not json"
+        );
     }
 }
 

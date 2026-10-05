@@ -265,7 +265,7 @@ impl Registry {
                         UnservedKind::StoreMissing { graph_id: id }
                     }
                     (reflow2_core::DesignPathState::Unnamed, _) => {
-                        if reflow2_core::identity::identity_path(store).exists() {
+                        if reflow2_core::identity::locate(store).any_present() {
                             UnservedKind::IdentityUnreadable
                         } else {
                             UnservedKind::IdentityMissing

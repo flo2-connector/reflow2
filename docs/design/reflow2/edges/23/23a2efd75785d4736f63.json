@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1ac3d9c40c2191f191e462f04a432aae9116ed53c9e8eea828552b44681f4d4c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:790ace98f9fa0e09beb3d3dbd0746aba2b1f4039bfe05897b78fbe818a48d60e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:updating-doc"
+}
