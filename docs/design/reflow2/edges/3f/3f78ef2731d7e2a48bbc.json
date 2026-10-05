@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cb30cd0932caf69bf6f0eb7d6e9b7624fd8e434dfe1693ecd7566ef3fcedd987",
+  "edge_type": "CAUSES",
+  "from_id": "art:updating-doc",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The documented local update path is 'Replace the binary. That is the whole procedure' (install.sh). Its rollback advice needs a backup taken before the upgrade, and no step takes one. Measured: install.sh keeps no copy of the binary it replaces, and on the one-shot doors the new binary's first open repairs and restamps the store without a word.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-update-path-has-no-step-before-the-binary-is-replaced-2026-10-05"
+}

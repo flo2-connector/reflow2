@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8fa476bc12dec7e462e80b5eb8fe06e9168a6e82c27b44b2e2c88b8007cd0b70",
+  "edge_type": "CAUSES",
+  "from_id": "art:machine-install",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "install_wrapper reads `~/.local/bin/reflow2` with read_text() before comparing. That follows a symlink onto the 61 MB binary and raises UnicodeDecodeError (measured with v0.79.0, under check and apply), and main() does not catch it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05"
+}

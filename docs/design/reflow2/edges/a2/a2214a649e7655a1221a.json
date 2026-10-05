@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:855cb770aad3a162a469ad4f2bbfd4491119b9126c4a803c9ac13d75e1a77bb2",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cmp:packaging",
+  "properties": {},
+  "to_id": "fact:worked-the-release-checksums-verified-a-hand-downloaded-0-79-0-tarball-2026-10-05"
+}

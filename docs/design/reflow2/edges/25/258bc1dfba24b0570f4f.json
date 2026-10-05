@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a32c4bb8a1256ccae3463e41c5480c92ef8006635285a0eb57c30f13ee8db7db",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The recorded cause, re-measured on 0.79.0. The only cheap line about unexported work is computed from the store's own export records. A store whose export was written by `reflow2-mcp --export > file` gets clean: true and next: [] from loop_status. The same store with its export written by a writing call gets the 'N node(s) here are in no record' line.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:recurrence-a-store-ahead-of-its-export-is-not-said-where-an-upgrade-check-reads-on-0-79-0-2026-10-05"
+}
