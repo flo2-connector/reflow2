@@ -747,6 +747,9 @@ fn the_mcp_surface_only_grows_since_the_last_release() {
     }
 }
 
+/// One way of taking something away from a recorded surface.
+type Breaks = Box<dyn Fn(&mut Value)>;
+
 /// The comparison itself, on hand-made surfaces: a removal, a narrowed type,
 /// a dropped value, a newly required field and a lost reply field are each
 /// caught; an addition is not.
@@ -776,7 +779,7 @@ fn the_comparison_catches_each_way_of_taking_away() {
     let (p, _) = compare(&record, &grown);
     assert!(p.is_empty(), "additions are allowed: {p:?}");
 
-    let cases: Vec<(&str, Box<dyn Fn(&mut Value)>)> = vec![
+    let cases: Vec<(&str, Breaks)> = vec![
         (
             "no longer served",
             Box::new(|v| {
