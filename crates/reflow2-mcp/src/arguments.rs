@@ -65,6 +65,14 @@ use serde_json::{Map, Value};
 /// stripped from the published listing.
 pub const ALIASES: &str = "x-reflow2-aliases";
 
+/// The schema extension marking a field that is NOT A FIELD: a name accepted
+/// only so a mistake can be answered with a redirect, whose value is that
+/// redirect. Read by the check, which refuses the name with it beside every
+/// other problem in the call; stripped from the published listing WITH the
+/// property, so no catalogue offers it
+/// (fact:the-changeevent-description-decoy-is-listed-by-find-tools-and-passes-the-argument-check-2026-10-05).
+pub const NOT_A_FIELD: &str = "x-reflow2-not-a-field";
+
 /// Keywords this validator CHECKS.
 pub const CHECKED: &[&str] = &[
     "type",
@@ -78,6 +86,7 @@ pub const CHECKED: &[&str] = &[
     "minItems",
     "format",
     ALIASES,
+    NOT_A_FIELD,
 ];
 
 /// Keywords that carry no constraint and are read only for the refusal's words
@@ -174,6 +183,8 @@ pub enum Problem {
     TooFew { got: usize, min: u64 },
     /// One field given under two of its spellings.
     Duplicate { names: Vec<String> },
+    /// A name the schema keeps only to redirect a mistake (`NOT_A_FIELD`).
+    NotAField { redirect: String },
 }
 
 /// One place where the arguments do not fit the published schema.
@@ -367,7 +378,17 @@ impl<'a> Checker<'a> {
             match spelling.get(key.as_str()) {
                 Some(field) => {
                     given_as.entry(*field).or_default().push(key.as_str());
-                    self.value(&props[*field], v, path, out);
+                    match props[*field].get(NOT_A_FIELD).and_then(Value::as_str) {
+                        Some(redirect) => out.push(Violation {
+                            path: render(path),
+                            problem: Problem::NotAField {
+                                redirect: redirect.to_string(),
+                            },
+                            expects: "no such parameter".into(),
+                            description: None,
+                        }),
+                        None => self.value(&props[*field], v, path, out),
+                    }
                 }
                 None => match schema.get("additionalProperties") {
                     Some(Value::Bool(false)) => {
@@ -723,6 +744,7 @@ pub fn refusal(tool: &str, violations: &[Violation], transport: Transport) -> St
                 "`{p}`: expected at least {min} {}; got {got}.",
                 if *min == 1 { "item" } else { "items" }
             ),
+            Problem::NotAField { redirect } => format!("`{p}`: {redirect}"),
             Problem::Duplicate { names } => format!(
                 "`{p}` was given twice, as {} — they are one field; pass it once.",
                 names
@@ -735,7 +757,7 @@ pub fn refusal(tool: &str, violations: &[Violation], transport: Transport) -> St
         out.push_str("  · ");
         out.push_str(&line);
         match (&v.problem, &v.description) {
-            (Problem::Unknown { .. }, _) => {}
+            (Problem::Unknown { .. } | Problem::NotAField { .. }, _) => {}
             (_, Some(d)) => {
                 out.push_str(" — ");
                 out.push_str(d);
@@ -814,10 +836,12 @@ fn parent_of(path: &str) -> Option<String> {
 /// found, never from the refusal's wording.
 pub fn usage_class(violations: &[Violation]) -> crate::usage::RefusalClass {
     use crate::usage::RefusalClass;
-    if violations
-        .iter()
-        .any(|v| !matches!(v.problem, Problem::Missing { .. } | Problem::Unknown { .. }))
-    {
+    if violations.iter().any(|v| {
+        !matches!(
+            v.problem,
+            Problem::Missing { .. } | Problem::Unknown { .. } | Problem::NotAField { .. }
+        )
+    }) {
         RefusalClass::InvalidArgument
     } else if violations
         .iter()
@@ -915,12 +939,16 @@ fn edit_distance(a: &str, b: &str) -> usize {
 }
 
 /// A schema with the server-internal extensions taken out — what a client is
-/// shown. Only [`ALIASES`] today.
+/// shown: every [`ALIASES`] declaration, and every property marked
+/// [`NOT_A_FIELD`], whole.
 pub fn strip_internal(schema: &Map<String, Value>) -> Map<String, Value> {
     fn strip(v: &mut Value) {
         match v {
             Value::Object(m) => {
                 m.remove(ALIASES);
+                if let Some(Value::Object(props)) = m.get_mut("properties") {
+                    props.retain(|_, p| p.get(NOT_A_FIELD).is_none());
+                }
                 for sub in m.values_mut() {
                     strip(sub);
                 }
@@ -942,7 +970,9 @@ pub fn strip_internal(schema: &Map<String, Value>) -> Map<String, Value> {
 pub fn has_internal(schema: &Map<String, Value>) -> bool {
     fn any(v: &Value) -> bool {
         match v {
-            Value::Object(m) => m.contains_key(ALIASES) || m.values().any(any),
+            Value::Object(m) => {
+                m.contains_key(ALIASES) || m.contains_key(NOT_A_FIELD) || m.values().any(any)
+            }
             Value::Array(items) => items.iter().any(any),
             _ => false,
         }
@@ -957,6 +987,15 @@ pub fn published(mut tool: rmcp::model::Tool) -> rmcp::model::Tool {
         tool.input_schema = std::sync::Arc::new(strip_internal(&tool.input_schema));
     }
     tool
+}
+
+/// `add_change_event`'s `description`: accepted, never advertised, and
+/// answered with the redirect to `summary` / `rationale`.
+pub fn change_event_description_not_a_field(_: &mut schemars::SchemaGenerator) -> schemars::Schema {
+    schemars::json_schema!({
+        "type": ["string", "null"],
+        "x-reflow2-not-a-field": crate::service::CHANGE_EVENT_HAS_NO_DESCRIPTION,
+    })
 }
 
 /// Close every no-argument schema on an assembled router — see

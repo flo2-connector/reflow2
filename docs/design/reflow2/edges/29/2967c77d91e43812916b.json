@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5afca4aef2b7f4107f516dbc8482658cdf27f303d3e98a77d4b79f434f58f8b0",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-tool-surface-tells-the-truth-and-only-grows",
+  "properties": {},
+  "to_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json"
+}

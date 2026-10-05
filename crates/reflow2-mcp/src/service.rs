@@ -773,6 +773,13 @@ impl RequiredFields {
     }
 }
 
+/// What a ChangeEvent's `description` is answered with, wherever it is met:
+/// by the argument check (`crate::arguments`, `x-reflow2-not-a-field`) and by
+/// the handler, for a caller that reaches it directly.
+pub const CHANGE_EVENT_HAS_NO_DESCRIPTION: &str = "a ChangeEvent has no `description`. The prose \
+     goes in `summary` (WHAT changed — indexed and searchable) or `rationale` (WHY, and the \
+     lesson). Re-send with one of those instead of `description`.";
+
 pub(crate) fn dyno_err(e: DynoError) -> McpError {
     match e {
         // Caused by what the caller supplied — a bad id, type, edge, value, or
@@ -1857,6 +1864,7 @@ pub struct RequirementReq {
     /// leaves the default exactly as it was — it adds a way to SAY, never an
     /// obligation to.
     #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::requirement_provenance_opt")]
     pub provenance: Option<String>,
 }
 
@@ -3418,6 +3426,7 @@ pub struct ChecksumAcceptReq {
     /// `baseline_established` (no checksum yet — a FIRST baseline, so nothing
     /// moved). Per item, never per call: the round trip collapses, the
     /// judgement does not.
+    #[schemars(schema_with = "crate::enum_schema::drift_disposition_req")]
     pub disposition: String,
     /// For `design_holds`: why the code moved — REQUIRED on an artifact that
     /// already has a baseline; a fix label (`defect_fix` / `test_failure_fix`)
@@ -5473,6 +5482,7 @@ pub struct SetChecksumReq {
     /// refused: an accept needs an existing baseline to accept a change
     /// *against*, and a first baseline cannot be established over one that
     /// already exists (that would be a real change, laundered).
+    #[schemars(schema_with = "crate::enum_schema::drift_disposition_req")]
     pub disposition: String,
     /// For `design_holds`: why the code moved — REQUIRED on an artifact that
     /// already has a baseline. A repair says `defect_fix` or `test_failure_fix`
@@ -5698,9 +5708,18 @@ pub struct AddChangeEventReq {
     /// ChangeEvent has no `description`; two projects (three, counting a repeat
     /// after it was documented) sent one and met a bare serde refusal that
     /// listed the legal fields without saying which to use. Accepting it here
-    /// lets the handler say, at the moment of the mistake, that the prose goes
+    /// lets the refusal say, at the moment of the mistake, that the prose goes
     /// in `summary` (what changed) or `rationale` (why).
+    ///
+    /// NOT ADVERTISED since 2026-10-05: published, it was the one name
+    /// `find_tools` listed that the tool refuses, so the catalogue invited the
+    /// mistake it exists to catch, and the argument check passed it as valid
+    /// (fact:the-changeevent-description-decoy-is-listed-by-find-tools-and-passes-the-argument-check-2026-10-05).
+    /// The schema marks it `x-reflow2-not-a-field` with the redirect; the
+    /// published listing strips it, and the argument check refuses it with
+    /// that same redirect, beside every other problem in the call.
     #[serde(default)]
+    #[schemars(schema_with = "crate::arguments::change_event_description_not_a_field")]
     pub description: Option<String>,
     #[serde(default)]
     pub name: Option<String>,
@@ -7735,6 +7754,19 @@ impl ServerHandler for ReflowService {
         };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
+            // A NAME NOTHING SERVES is refused as rmcp refuses it — the same
+            // code, and the same "tool not found" words first, so a client
+            // that matched on them still does — and then says what would have
+            // worked: the nearest served names, and, for a guessed setter
+            // (`update_node`, `set_node`), the revise route
+            // (`crate::revise_route`).
+            _ if self.tool_router.get(&tool_name).is_none() => Err(McpError::invalid_params(
+                format!(
+                    "tool not found: {} find_tools finds a tool from a sentence in your own words.",
+                    crate::revise_route::unknown_tool(&tool_name, &self.tool_router.list_all())
+                ),
+                None,
+            )),
             // An argument refusal answers BEFORE anything runs — handler,
             // write unit, signer — and is an `isError` result, the shape MCP
             // gives an input-validation failure (SEP-1303), so the `--call`

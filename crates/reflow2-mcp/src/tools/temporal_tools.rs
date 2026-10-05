@@ -447,8 +447,8 @@ impl ReflowService {
     // ---- Temporal / CHANGE (deterministic, mutating) ----
 
     #[tool(
-        description = "Create a `DesignEpoch` that HAS HAPPENED — a point on the time axis you \
-                       are recording, which is what an epoch has always meant here. NOTE THE \
+        description = "Create or revise a `DesignEpoch` that HAS HAPPENED — a point on the time axis you are \
+                       recording, which is what an epoch has always meant here. NOTE THE \
                        STORED TYPE NAME is `DesignEpoch`, not `Epoch`: that is the string \
                        `get_node` and `scan_nodes` want. Lands `status: arrived` unless you \
                        pass `status: planned` — for a point that has NOT happened yet, \
@@ -500,8 +500,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create an Epoch that has NOT happened yet — a claim about the future \
-                       rather than a record of the past, and the forward half of the time axis \
+        description = "Create or revise an Epoch that has NOT happened yet — a claim about the future rather \
+                       than a record of the past, and the forward half of the time axis \
                        (req:epochs-can-be-planned). `epoch_type` still applies: KIND and TENSE are \
                        orthogonal, so a planned MILESTONE and a planned RELEASE CUT are both \
                        sayable — which is why `planned` is its own property rather than a value \
@@ -574,7 +574,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record a dated finding or defect as a TemporalFact — what was observed, \
+        description = "Create or revise a dated finding or defect as a TemporalFact — what was observed, \
                        about which node, on what date. Use it the moment you have something to \
                        write down about how the system actually behaved: a defect met, a \
                        measurement taken, an observation that dates. \
@@ -790,7 +790,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create a ChangeEvent (seed for propagate_change). Pass `affected` to say in the same \
+        description = "Create or revise a ChangeEvent (seed for propagate_change). Pass `affected` to say in the same \
                        call what it changed — a CHANGED edge is drawn to each entry, which is what makes the \
                        event propagatable. TWO QUESTIONS, NOT ONE: `change_type` says WHY, and `subject` says \
                        WHICH AXIS — `system` (the thing changed) or `record` (the thing did not change and only \
@@ -802,7 +802,7 @@ impl ReflowService {
                        behavioural, not file-shaped, so a normative document that changes what somebody DOES \
                        takes a real label instead. TEXT GOES IN `summary` (what changed — indexed and \
                        searchable) and `rationale` (why, and the lesson). THERE IS NO `description` FIELD: \
-                       reaching for one is the commonest mistake here, and it is refused rather than stored. \
+                       reaching for one is the commonest mistake, and it is answered with a redirect. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: \
                        call it again with the same id and only what you are changing \u{2014} omitted fields \
                        keep their stored value, so correcting one never means re-sending a 2 KB field you did \
@@ -823,7 +823,7 @@ impl ReflowService {
         // of failure and a 2 KB description is not.
         if req.description.is_some() {
             return Err(McpError::invalid_params(
-                "a ChangeEvent has no `description`. The prose goes in `summary` (WHAT changed —                  indexed and searchable) or `rationale` (WHY, and the lesson). Re-send with one                  of those instead of `description`.",
+                crate::service::CHANGE_EVENT_HAS_NO_DESCRIPTION,
                 None,
             ));
         }

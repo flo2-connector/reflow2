@@ -100,6 +100,9 @@ python3 tools/test_init.py
 ./target/release/reflow2-mcp write add_requirement --args - <<'EOF'
 {"id": "req:x", "name": "…", "statement": "…"}
 EOF
+# `--args @path` (or `read TOOL @path`) reads the object from a file instead, so
+# prose never passes through the command text.
+./target/release/reflow2-mcp write add_requirement --args @req.json
 
 # Read how to call a tool before calling it through that door: its input schema
 # (nested $defs shapes, allowed values) and the lessons THIS design holds for it
@@ -737,6 +740,16 @@ joined by *traceability* edges) for HEAL's topology detectors.
   a_schema_narrowing_ships_its_migration` — it refuses while anything is unaccounted for. Stored
   data is now re-judged by the same write rule on demand: `detect_defects` reports every stored
   item the current schema refuses, before the import that would fail.
+- **The MCP surface only grows** (Anthony, 2026-10-05: *"don't break it for how it was
+  originally used/designed as an mcp server"*). `tests/the_mcp_surface_only_grows.rs`
+  compares the build with the LAST RELEASE's tools, argument schemas and the reply shapes of
+  a fixed scenario (`tests/fixtures/mcp_surface_at_last_release.json`), and fails on anything
+  taken away: a tool, an argument, an allowed value or type, a reply field, or a call the
+  release answered. An argument un-advertised but still accepted, or a value set newly
+  published where the release refused other values anyway, is listed there with its proof.
+  **At a cut, after the tag, re-bless it from the release binary**:
+  `REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp cargo test -p reflow2-mcp --test
+  the_mcp_surface_only_grows`.
 - **Deterministic ids.** Gap/heal issue ids are a stable FNV-1a hash of
   `source + sorted affected ids` (not `std` `DefaultHasher`) so they're reproducible for
   dedup/caching.

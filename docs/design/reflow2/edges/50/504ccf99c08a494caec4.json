@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6a0c3eef916095df21d0ff863b34e9b80f5d423bee3093414d1fb12a42d4665",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-tool-surface-tells-the-truth-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-the-door-reads-its-arguments-from-a-named-file"
+}

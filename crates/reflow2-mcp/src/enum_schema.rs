@@ -251,6 +251,13 @@ pub const DOC_KINDS: &[&str] = &[
 ];
 list_enum!(doc_kind_opt, DOC_KINDS, opt);
 pub const HEAL_STRATEGIES: &[&str] = &["conservative", "balanced", "aggressive"];
+/// The two-sided accept's answers (`crate::service::parse_disposition`, which
+/// refuses any other). Published since 2026-10-05: the set was prose only, so
+/// the argument check could not list a wrong one beside the call's other
+/// problems
+/// (fact:a-value-set-published-without-an-enum-escapes-the-argument-check-so-every-one-is-listed-is-false-2026-10-05).
+pub const DRIFT_DISPOSITIONS: &[&str] = &["design_holds", "design_updated", "baseline_established"];
+list_enum!(drift_disposition_req, DRIFT_DISPOSITIONS, req);
 
 /// `set_closure_criterion.legs`: an array whose items are the five closure
 /// legs — the one list-valued enum on the surface, published so a client can
