@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:009d84de0e6115b03abee5ba26420daf5a78274da6f07d54cead04b3a35eb360",
+  "node_id": "fact:worked-upstream-status-watches-a-hubs-pins-through-the-door-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-01 on 0.76.0, re-measured 2026-10-05 on 0.76.0, 0.78.0 and main): upstream_status works under --call. It walks a hub's declared pins and says `unchanged` or `moved` per member, and with external_dependency and compare_designs it was enough to pin a second member with no MCP. Do not regress it. Its limit (an export watch cannot see a member's unexported work) is recorded beside it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log [works], 2026-10-01 (art:vscode-call-field-log-2026-10-05): \"upstream_status works under --call: watched both hub pins and reported 'unchanged'\", and \"external_dependency + upstream_status + compare_designs were enough to pin a second member (nsls2.ioc_deploy) from the hub with no MCP.\"\n\nRE-MEASURED, --call, scratch hub and child: external_dependency dep:child (design_export) exited 0. upstream_status gave `[dep:child unchanged]` on all three binaries. After a child write that re-exported (0.78.0 and main, with --export-to), it gave `moved`. The limit the same log reports, an export watch over unexported work, is fact:recurrence-an-export-watch-reads-unchanged-over-a-members-unexported-work-2026-10-05.",
+    "subject_id": "cap:a-declared-dependency-is-watched-not-imported",
+    "valid_from": "2026-10-05"
+  }
+}

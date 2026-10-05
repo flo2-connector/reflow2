@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:207eeb5845f059cd77de064cb6aba2cd8791f5f8b1b193041342d5a388d346ec",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-hub-skill-teaches-how-a-member-design-is-kept-under-the-door",
+  "properties": {
+    "evidence": "That open question is the reporter's idea for exactly the gap this finding measured: the served hub skill has no step for adding a member (store placement, keeping it out of an upstream repo's git, pin shape, naming the member's export on each --call write). Either answer it takes would close or bound this finding."
+  },
+  "to_id": "fact:root-cause-the-served-hub-skill-has-no-step-for-adding-a-member-design-2026-10-05"
+}

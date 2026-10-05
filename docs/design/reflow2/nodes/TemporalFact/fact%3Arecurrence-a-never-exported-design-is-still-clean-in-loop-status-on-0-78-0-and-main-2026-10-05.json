@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:af695a9212364e14ac41f670d513b170cd75f832da61949929df55e39863fc29",
+  "node_id": "fact:recurrence-a-never-exported-design-is-still-clean-in-loop-status-on-0-78-0-and-main-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "RECURRENCE (re-measured 2026-10-05 on 0.76.0, 0.78.0 and main): a design that exists only in its store still gets `clean: true`, `next: []` and no word about exports from loop_status (field: a 195-node member, never exported, \"one disk away from loss\"). Since 0.78.0 each door write with no export named prints one stderr line, \"no export was kept current\". loop_status, which the reporter asked to say it, does not",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry [gap] of 2026-10-01 (art:vscode-call-field-log-2026-10-05): \"nsls2.ioc_deploy held a 195-node design only in its machine-local store: no export anywhere, no --export-to configured … One disk away from loss. Idea: loop_status / where-am-i should say 'this design has never been exported'.\" It is limitation 15 and idea 14 of art:vscode-call-door-field-report-2026-10-02, counted then as fact:a-never-exported-local-design-is-still-silent-in-loop-status-through-the-door-on-0-77-0-2026-10-02. The idea is this decision's general option, so it is linked here, not minted again.\n\nRE-MEASURED, `--call`, one requirement written into a fresh store with no export named, then loop_status:\n- 0.76.0: the write prints nothing on stderr. loop_status gives clean: true, next: [], and \"export\" appears 0 times in the reply.\n- 0.78.0 and main: the write prints \"reflow2: no export was kept current — no --export-to was given, and no MCP configuration in <folder> (.mcp.json, opencode.json, .vscode/mcp.json, .grok/config.toml) names one for this design …\". loop_status is unchanged: clean: true, next: [], 0 mentions.\n\nCLASSIFICATION: still present. 0.78.0 added a warning at the moment of each door write (#661), which a person scripting many writes, or an agent reading only stdout, does not keep. The state the reporter asked to be told about, \"this design has never been exported\", is still not reported by the read meant to say what is owed. The decision's tension stands, unresolved here: under the accepted blueprint a store is the design and an export is a copy, so the honest warning may be about durability (one disk) rather than about an export being owed.",
+    "steps": [
+      "loop_status"
+    ],
+    "subject_id": "dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design",
+    "valid_from": "2026-10-05"
+  }
+}

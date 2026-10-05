@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd2fcff59f4e53c8b95282bd5d60b3ff68f20e201a11e9e9edf6fd5f9cc147b0",
+  "node_id": "fact:worked-compare-designs-against-the-committed-export-shows-what-a-live-store-has-not-exported-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-01 on 0.76.0, re-measured 2026-10-05 on main): compare_designs with base_path set to the committed export shows exactly what the live store holds that the export does not (field: 20 added and 20 changed, then 49, which stopped an export that would have swept in another session's work). An import then re-export compares identical. Do not regress it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log [works] (art:vscode-call-field-log-2026-10-05, entries of 2026-10-01 and 2026-10-02): \"compare_designs with base_path showed exactly how the live hub store diverged from its export (20 added / 20 changed — another session's uncommitted work)\" and \"compare_designs with base_path = the committed export showed exactly which unexported nodes the live store held (49), which is what stopped an export that would have bundled someone's in-progress work.\" 2026-10-02: \"compare_designs live vs export read identical: true straight after the export.\"\n\nRE-MEASURED on main, through --call: a store with 2 nodes and 1 edge was exported, one requirement was added and not exported, and compare_designs with base_path at that export gave `design_added: 1, identical: false, nodes_unchanged: 2, edges_unchanged: 1`. An import of the export into a fresh store, compared against the same file, gave `identical: true`.\n\nIt is the reporter's instrument against fact:recurrence-one-store-holds-every-sessions-writes-so-an-export-sweeps-in-anothers-work-2026-10-05. It tells a person what is unexported, though not whose.",
+    "subject_id": "cap:compare-designs",
+    "valid_from": "2026-10-05"
+  }
+}
