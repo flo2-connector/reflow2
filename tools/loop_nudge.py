@@ -45,6 +45,14 @@ One script, three events, read from the hook's stdin JSON:
   after editing the code satisfies "a ChangeEvent exists" while being exactly
   the bookkeeping-after the hook's own message says is not the loop.
 
+**VS Code, on the terminal route** (`--harness vscode`, which is what
+`reflow2 hook vscode` runs from the `.github/hooks/reflow2.json` that
+`reflow2 init --harness vscode-cli` installs): SessionStart puts a loop_status
+reading into the model's context; Stop counts the session's door calls from
+reflow2's usage ledger (never from command text), writes the committed record
+if nothing else keeps it current, and nudges once, in VS Code's output shape.
+See the block above `vscode_main`.
+
 🛑 THE GRAPH IS NOW READ, AND THIS PARAGRAPH USED TO SAY IT COULD NOT BE. The
 old text — "the session's own MCP server holds the single-writer lock" — was
 true before the shared server and is false now: the shared server answers
@@ -1236,13 +1244,630 @@ def ride_along(session_id: str, reason: str) -> str:
     return f"{body} {REGISTER_LINE}"
 
 
+def count_call(state: dict, op: str, change_id: str = "") -> None:
+    """Count one reflow2 call into a session's tally: the PostToolUse half of
+    the nudge, shared by every harness. Claude Code names the call in its
+    hook event; VS Code's terminal route has no tool name to read, so its
+    calls come from reflow2's own usage ledger (`catch_up_from_ledger`) and
+    are counted HERE, by the same rules, so the two cannot drift."""
+    state["touched"] = True
+    if op in LOOP_OPS:
+        state["writes"] = 0
+    elif is_write(op):
+        state["writes"] += 1
+    # Cumulative and never cleared — see `blank_state`. A loop check
+    # settles the DEBT, it does not un-write what was written.
+    if is_graph_write(op):
+        state["wrote"] += 1
+    elif op not in LOOP_OPS:
+        state["reads"] = int(state.get("reads", 0)) + 1
+    # Shape tallies are cumulative and are NOT cleared by a loop
+    # check: detect_gaps does not un-edit a file or un-capture
+    # intent.
+    if op in CHANGE_OPS:
+        state["changes"] += 1
+        # THE ID, not just the count. `unclaimed_findings` can only
+        # answer against the specific events, and this hook is the
+        # one place that sees them written.
+        if change_id:
+            ids = state.setdefault("change_ids", [])
+            if change_id not in ids:
+                ids.append(change_id)
+                del ids[:-CHANGE_ID_CAP]
+    if op in PROPAGATE_OPS:
+        state["propagates"] += 1
+    if op in ARTIFACT_OPS:
+        state["artifacts"] += 1
+    if op in CAPTURE_OPS:
+        state["captures"] += 1
+    if op in GAP_PASS_OPS:
+        state["gap_pass"] += 1
+    if op in SKILL_OPS:
+        state["skills"] += 1
+
+
+def stop_reason(session: str) -> str | None:
+    """Why this session should not stop yet, or None. The Stop backstop's
+    judgement, shared by every harness: Claude Code takes it as
+    `{"decision": "block", "reason": ...}`, VS Code inside `hookSpecificOutput`.
+    Once per session (`claim_nudge`): a reason returned here has been claimed."""
+    state = read_state(session)
+
+    # ASK FIRST, READ LATER, and ask BEFORE any branch below can return.
+    # The question takes ~23 seconds to answer and nothing here waits for
+    # it; putting the spawn above the branches means a session that trips a
+    # counting nudge still has its graph answer in flight for the stop after
+    # it. Only sessions that DID something are asked about — a read-only
+    # session has left nothing for the graph to report.
+    if state.get("wrote", 0) > 0 or state.get("edits", 0) > 0:
+        spawn_probe(session, "stop")
+
+    # Graph writes finished without a loop check (the original nudge).
+    n = state["writes"]
+    if n >= env_threshold("REFLOW2_LOOP_NUDGE_THRESHOLD", 1):
+        # cap:skill-triggers — same trigger, better sentence. If the shape
+        # is recognisable, name the skill the situation calls for instead of
+        # pointing at loop_status and leaving the agent to work it out.
+        shape = match_shape(state)
+        # The shape REPLACES the generic advice but never the cheap entry
+        # point: `loop_status` stays in every message because it is the one
+        # call that says what is actually owed, and naming a skill is a
+        # refinement of that answer rather than a substitute for it. An
+        # existing test asserted this and caught its removal — the contract
+        # was real and was nearly dropped silently.
+        detail = (
+            f"The shape says: {shape}. Confirm with loop_status."
+            if shape
+            else "Call loop_status — if its `next` list names debt, run "
+                 "detect-and-ask / check-health before finishing."
+        )
+        # BL-111 — the promise is now computed, not merely stated. First
+        # claimant prints; anyone else (a later stop, or a second hook
+        # process from a duplicate registration) stays silent.
+        if not claim_nudge(session):
+            return None
+        return (
+            ride_along(
+                session,
+                f"reflow2: {n} graph write(s) this session and no loop check. "
+                f"{detail} Bookkeeping is not the loop. (This nudge fires "
+                f"once; stopping again proceeds.)"
+            )
+        )
+
+    # READS WITHOUT WRITES — the inverse of the nudge above, and the one
+    # session the graph itself cannot see: it consulted the design at
+    # length, produced findings in chat, and recorded none of them. A
+    # positive count, so it survives the negative-claim rule below.
+    reads = int(state.get("reads", 0))
+    if state.get("wrote", 0) == 0 and reads >= env_threshold(
+        "REFLOW2_READS_WITHOUT_WRITES_THRESHOLD", 25
+    ):
+        if not claim_nudge(session):
+            return None
+        return (
+            ride_along(
+                session,
+                f"reflow2: {reads} graph read(s) this session and no write. A finding "
+                f"is the agent's own observation and needs no permission — if this "
+                f"session noticed anything (a contradiction, a number, a cause), "
+                f"record_finding writes it now. If it genuinely produced nothing to "
+                f"record, stopping again proceeds. (This nudge fires once.)"
+            )
+        )
+
+    # EVERY BRANCH BELOW HERE MAKES A NEGATIVE CLAIM, and a tally rebuilt
+    # from nothing cannot support one. "The graph was never consulted" and
+    # "propagate_change was never called" are both assertions that something
+    # did NOT happen, and the calls that would refute them are exactly what
+    # an unreadable tally lost (BL-161). The write nudge above is positive
+    # ("N writes went unchecked") and survives a restart honestly, which is
+    # why it sits on the other side of this line.
+    if state.get("reset"):
+        return None
+
+    # BL-163 — the recorded-but-never-propagated session. This is the branch
+    # the row is actually about, and the reason the shape matcher alone was
+    # not enough: `record_change` is a graph WRITE, so a session that
+    # recorded its changes and then ran `loop_status` has `writes == 0` and
+    # `touched == True`, and sails past both of the older branches. Neither
+    # one can see a loop that ran in the wrong ORDER.
+    #
+    # THE CONJUNCTION IS THE COUNTERWEIGHT, all three clauses load-bearing:
+    #   - `edits > 0`     — something on disk actually moved; a pure design
+    #                       session that captures intent and never touches
+    #                       code has no blast radius to compute.
+    #   - `changes > 0`   — this session engaged the design brain and put a
+    #                       ChangeEvent on the record. That is what makes it
+    #                       a design-relevant session rather than any old
+    #                       edit, and it is what keeps this from becoming a
+    #                       second bypass nudge with no threshold.
+    #   - `propagates==0` — and then never asked what the change reaches.
+    # Drop any one of them and this fires on correct work, which BL-23 and
+    # BL-42 both name as the failure this family exists to avoid.
+    #
+    # THE ADMITTED COST, stated because it is a real change in kind: this is
+    # a NEW interruption. `cap:skill-triggers` deliberately added none — a
+    # shape only refined a nudge that was already firing. This branch arms
+    # one, and it does so on the argument the row makes: reflow2 fails the
+    # build on undeclared drift, on a broken export chain, on unchecked
+    # writes, and nothing whatsoever fails when an agent designs without
+    # consulting the design. The read side had no forcing function at all.
+    if (state["edits"] > 0
+            and state.get("changes", 0) > 0
+            and state.get("propagates", 0)
+            < env_threshold("REFLOW2_LOOP_NUDGE_PROPAGATE_THRESHOLD", 1)):
+        if not claim_nudge(session):
+            return None
+        return (
+            ride_along(
+                session,
+                f"reflow2: {state['edits']} file(s) edited and "
+                f"{state['changes']} change(s) recorded this session, and "
+                f"propagate_change was never called — so the ChangeEvent is "
+                f"bookkeeping and nothing computed what the change reaches. "
+                f"Run impact-check (record the change, THEN propagate) "
+                f"before further edits; confirm with loop_status. "
+                f"Bookkeeping is not the loop. (This nudge fires once; "
+                f"stopping again proceeds.)"
+            )
+        )
+
+    # The upstream bypass (BL-90): code edited, the graph never consulted at
+    # all. Blunt by design — the hook cannot know which files are design-
+    # relevant, so a count threshold and the once-only rule bound the noise.
+    if not state["touched"]:
+        e = state["edits"]
+        if e >= env_threshold("REFLOW2_LOOP_NUDGE_EDIT_THRESHOLD", 3):
+            # Both blocking branches make the same promise on the same
+            # footing, so both have to keep it (BL-111).
+            if not claim_nudge(session):
+                return None
+            return (
+                (
+                    f"reflow2: {e} file(s) edited this session and the design "
+                    f"graph was never consulted. Start with loop_status; run "
+                    f"impact-check before further edits and link-artifacts "
+                    f"after, so as-built stays honest. (This nudge fires once; "
+                    f"stopping again proceeds.)"
+                )
+            )
+
+    # cap:skill-loads-are-counted — LAST, and last on purpose.
+    #
+    # The hole this closes is the one `cap:skill-triggers` structurally
+    # cannot reach. Every shape that capability recognises is a shape in the
+    # graph-write stream, and "no skill has been loaded" is not a graph
+    # write, so nothing counted it. Twice the decay was found by a human
+    # asking an agent — which `req:skill-adherence-is-measured` calls, in
+    # its own words, "not a mechanism".
+    #
+    # THIS ARMS A NUDGE, which `cap:skill-triggers` deliberately never did,
+    # so the conjunction carries the whole counterweight — all three clauses
+    # load-bearing, and `ver:skill-triggers` says why: a trigger that fires
+    # on correct work is the failure BL-23 and BL-42 both name.
+    #   - reached here at all — every other branch declined, so the session
+    #     is otherwise clean. This never adds a second interruption to a
+    #     session already being interrupted; it can only speak where there
+    #     would have been silence.
+    #   - `wrote > 0`        — the session did DESIGN work, not merely a
+    #                          read. This is the clause that keeps an
+    #                          existing contract intact: "a single read
+    #                          means the agent DID consult the graph — no
+    #                          bypass", and one `scan_nodes` must stay
+    #                          silent. It has to be the cumulative counter,
+    #                          because `writes` is cleared by a loop check
+    #                          and a session that wrote and then checked
+    #                          would look read-only here.
+    #   - `edits >= N`       — real work landed on disk. Shares the bypass
+    #                          threshold, so a read-only or trivial session
+    #                          is silent, which is most sessions.
+    #   - `skills == 0`      — and not one skill was ever opened.
+    #
+    # A NEGATIVE CLAIM, so it sits below the `reset` guard above: a tally
+    # rebuilt from nothing lost exactly the `get_skill` calls that would
+    # refute it, and "you loaded no skills" is not something to assert from
+    # an amnesiac count.
+    skill_edit_floor = env_threshold("REFLOW2_LOOP_NUDGE_EDIT_THRESHOLD", 3)
+    if (state.get("wrote", 0) > 0
+            and state["edits"] >= skill_edit_floor
+            and state.get("skills", 0) == 0):
+        if not claim_nudge(session):
+            return None
+        return (
+            ride_along(
+                session,
+                f"reflow2: {state['edits']} file(s) edited this session and "
+                f"no skill was ever loaded. The skills carry this project's "
+                f"conventions, and they are SERVED, not installed — "
+                f"list_skills names them, get_skill reads one in full. Load "
+                f"the one that covers what you just did (link-artifacts "
+                f"after writing a file, impact-check before changing a "
+                f"design, revise-design when editing what the graph already "
+                f"says) and check the work against it. Reading it afterwards "
+                f"still catches what it would have prevented. (This nudge "
+                f"fires once; stopping again proceeds.)"
+            )
+        )
+
+    # cap:stop-nudge-asks-the-graph — LAST, and it speaks only where every
+    # counting branch stayed silent.
+    #
+    # THAT PLACEMENT IS THE POINT, not an ordering convenience. The session
+    # this reaches is the one that did the loop's motions correctly and so
+    # tripped nothing above: wrote, then checked; edited, then propagated.
+    # The tally has nothing left to say about it. The graph does.
+    #
+    # IT ADDS NO SECOND INTERRUPTION. `claim_nudge` is one flag for the
+    # whole session across every branch, so a session already being
+    # interrupted is not interrupted twice — this can only speak into what
+    # would otherwise have been silence, which is the same counterweight
+    # `cap:skill-loads-are-counted` carries and for the same reason.
+    #
+    # It sits below the `reset` guard with the other negative claims by
+    # position, though it does not need to: its claim is positive and comes
+    # from the probe file rather than from the tally, so a rebuilt tally
+    # cannot make it lie. It stays here because the branch it must not
+    # pre-empt is above it.
+    verdict = graph_verdict(session)
+    if verdict:
+        if not claim_nudge(session):
+            return None
+        return (
+            ride_along(
+                session,
+                f"reflow2: this session ADDED design debt and left it — "
+                f"{verdict} CONFIRM WITH loop_status before acting: that "
+                f"reading is as old as it says, and a session still in "
+                f"flight settles some of what it raises. Then settle it or "
+                f"say why it stands; bookkeeping is not the loop. (This "
+                f"nudge fires once; stopping again proceeds.)"
+            )
+        )
+    return None
+
+
+# ---------------------------------------------------------------------------
+# VS Code, terminal route: `reflow2 hook vscode` (loop_nudge.py --harness vscode)
+# ---------------------------------------------------------------------------
+#
+# `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code`
+# (accepted 2026-10-02): an agent reaching reflow2 through the `--call` door in
+# VS Code gets the loop through hooks `reflow2 init --harness vscode-cli`
+# installs: SessionStart runs loop_status, Stop exports and nudges, the nudge
+# counts door writes, and no shipped hook matches words in a command.
+#
+# HOW A DOOR WRITE IS COUNTED, which is the part the Claude hook cannot do. That
+# hook counts by MCP tool name, and a door write is a terminal command with none
+# (fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02).
+# Parsing the command text would need the terminal tool's input shape, which
+# VS Code does not document, and it is exactly the word-matching limitation 20
+# warns about. So nothing here reads a command. The door already records every
+# call in reflow2's usage ledger beside the store (the verb and its outcome,
+# never the object), and the Stop hook reads the calls this session made from
+# there, counting each through `count_call`: the same rules as an MCP call.
+#
+# WHAT IS DELIBERATELY NOT COUNTED: file edits. VS Code's edit tools are not
+# documented by name either, so the branches that need an edit count (the
+# bypass nudge, BL-163, skill loads) stay silent here, and the ones built on
+# design calls (unchecked writes, reads without writes, the graph's verdict) run.
+
+VSCODE_SESSION_START_TEXT = (
+    "reflow2: this project keeps its design in reflow2, reached here through the "
+    "terminal, not as an MCP server. `reflow2 read <tool> '<json>'` runs a tool that "
+    "changes nothing, and `reflow2 write <tool> --args - <<'EOF'` runs one that does "
+    "(`reflow2 read --list` says which). Wherever reflow2's instructions, a skill or "
+    "a reply says to call X, run X one of those two ways. Read "
+    ".github/instructions/reflow2.instructions.md before the first design action. "
+    "Skills are served: `reflow2 read get_skill '{\"name\": \"where-am-i\"}'` reads one "
+    "and `reflow2 read list_skills` names them all. loop_status says what the "
+    "coherence loop is owed; this project's Stop hook nudges once if design writes "
+    "finish without one, and writes the committed record if nothing else did."
+)
+
+# The door's terms, appended to a Stop reason written in MCP's.
+VSCODE_DOOR_NOTE = (
+    "Through the terminal here: `reflow2 read loop_status`, and each tool named "
+    "above as `reflow2 read <tool>` (or `reflow2 write <tool>` if it changes the design)."
+)
+
+GRAPH_PATH = ".reflow2/graph"
+LEDGER = Path(".reflow2") / "graph.usage.jsonl"
+STAMP = Path(".reflow2") / "kit-version.json"
+# The MCP configurations `reflow2_init.py` writes. One naming `--export-to` means
+# the door's own write-through (and any server) keeps the record current, so the
+# Stop hook leaves it to them (crates/reflow2-mcp/src/call_export.rs).
+MCP_CONFIG_FILES = (".mcp.json", "opencode.json", ".vscode/mcp.json", ".grok/config.toml")
+# Below VS Code's own timeouts in the hook file (30 s and 120 s), so the hook
+# says what happened instead of being killed with nothing said.
+LOOP_STATUS_TIMEOUT_S = 20
+EXPORT_TIMEOUT_S = 90
+# additionalContext is read by the model at every session start. A cut is said.
+CONTEXT_CAP = 4000
+
+
+def door_binary() -> str | None:
+    """The reflow2-mcp the `reflow2` command runs (it passes REFLOW2_BIN), or
+    one on PATH."""
+    named = os.environ.get("REFLOW2_BIN")
+    if named:
+        return named
+    import shutil
+    return shutil.which("reflow2-mcp")
+
+
+def run_door(args: list[str], timeout: int):
+    """One door call. Returns (exit code, stdout, stderr); a call that could not
+    run at all comes back as exit None with the reason in stderr."""
+    import subprocess
+    binary = door_binary()
+    if not binary:
+        return None, "", ("no reflow2-mcp binary: REFLOW2_BIN is unset and none is on "
+                          "PATH (the `reflow2` command `reflow2 install` writes sets it)")
+    env = dict(os.environ, RUST_LOG=os.environ.get("RUST_LOG", "error"))
+    try:
+        r = subprocess.run([binary, "--graph-path", GRAPH_PATH, *args], capture_output=True,
+                           text=True, timeout=timeout, env=env)
+    except subprocess.TimeoutExpired:
+        return None, "", f"it did not answer within {timeout} s"
+    except OSError as e:
+        return None, "", f"{binary} could not be run ({e})"
+    return r.returncode, r.stdout, r.stderr
+
+
+def first_line(text: str) -> str:
+    lines = [ln for ln in (text or "").strip().splitlines() if ln.strip()]
+    return lines[0] if lines else "no message"
+
+
+def loop_status_reading() -> str:
+    """loop_status, read through the door, as text for the model. A failure is
+    said, with the command that gets the reading."""
+    code, out, err = run_door(["read", "loop_status"], LOOP_STATUS_TIMEOUT_S)
+    if code != 0:
+        why = err.strip() if code is None else f"exit {code}: {first_line(err)}"
+        return (f"reflow2 could not read loop_status at session start ({why}). Run "
+                f"`reflow2 read loop_status` yourself before changing the design.")
+    try:
+        reply = json.loads(out)
+    except ValueError:
+        reply = None
+    if isinstance(reply, dict) and isinstance(reply.get("next"), list):
+        items = [str(i) for i in reply["next"]]
+        body = ("loop_status at session start, what the loop is owed (`next`):\n"
+                + ("\n".join(f"- {i}" for i in items) if items else "- nothing"))
+    else:
+        body = "loop_status at session start:\n" + out.strip()
+    if len(body) > CONTEXT_CAP:
+        body = (body[:CONTEXT_CAP] + f"\n[cut at {CONTEXT_CAP} characters; "
+                f"`reflow2 read loop_status` has the whole reply]")
+    return body
+
+
+def door_state_file(session_id: str) -> Path:
+    return state_file(session_id).with_suffix(".door.json")
+
+
+def read_door_state(session_id: str) -> dict:
+    try:
+        data = json.loads(door_state_file(session_id).read_text())
+        return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def write_door_state(session_id: str, data: dict) -> None:
+    path = door_state_file(session_id)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name(path.name + ".tmp")
+        tmp.write_text(json.dumps(data))
+        os.replace(tmp, path)
+    except OSError as exc:
+        warn(f"could not write {path}: {exc}")
+
+
+def ledger_end() -> int:
+    try:
+        return LEDGER.stat().st_size
+    except OSError:
+        return 0
+
+
+def mark_ledger_read(session_id: str) -> None:
+    """Start (or move) this session's place in the ledger at its current end:
+    calls before it are not this session's."""
+    with _lock(state_dir() / ".door.lock"):
+        data = read_door_state(session_id)
+        data["offset"] = ledger_end()
+        data.setdefault("writes_since_export", 0)
+        write_door_state(session_id, data)
+
+
+def catch_up_from_ledger(session_id: str) -> None:
+    """Count the calls the ledger holds since this session's place in it, each
+    through `count_call`, and move the place on. A session whose start was never
+    recorded starts here and counts nothing: the nudge UNDER-reports rather than
+    over-reports, the direction this file always takes."""
+    try:
+        state_dir().mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        warn(f"could not create {state_dir()}: {exc}")
+        return
+    ops: list[str] = []
+    with _lock(state_dir() / ".door.lock"):
+        data = read_door_state(session_id)
+        offset = data.get("offset")
+        end = ledger_end()
+        if not isinstance(offset, int) or offset > end:
+            data["offset"] = end
+            data.setdefault("writes_since_export", 0)
+            write_door_state(session_id, data)
+            return
+        try:
+            with LEDGER.open("rb") as f:
+                f.seek(offset)
+                chunk = f.read(end - offset)
+        except OSError:
+            chunk = b""
+        # Only whole lines: a call being appended right now is read next time.
+        whole = chunk[: chunk.rfind(b"\n") + 1]
+        for raw in whole.decode("utf-8", "replace").splitlines():
+            try:
+                line = json.loads(raw)
+            except ValueError:
+                continue
+            # A refused call wrote nothing, and an error is not the agent's work.
+            if (isinstance(line, dict) and line.get("kind") == "call"
+                    and line.get("outcome") == "ok" and isinstance(line.get("tool"), str)):
+                ops.append(line["tool"])
+        data["offset"] = offset + len(whole)
+        data["writes_since_export"] = int(data.get("writes_since_export", 0)) + sum(
+            1 for op in ops if is_graph_write(op))
+        write_door_state(session_id, data)
+    if ops:
+        def counted(state: dict) -> None:
+            for op in ops:
+                count_call(state, op)
+        update_state(session_id, counted)
+
+
+def design_record() -> str | None:
+    """The committed record, as `reflow2 init` recorded it in the receipt."""
+    try:
+        got = json.loads(STAMP.read_text()).get("design_record")
+    except (OSError, ValueError, AttributeError):
+        return None
+    return got if isinstance(got, str) and got else None
+
+
+def export_is_configured() -> bool:
+    for name in MCP_CONFIG_FILES:
+        try:
+            if "--export-to" in Path(name).read_text():
+                return True
+        except OSError:
+            continue
+    return False
+
+
+def export_if_owed(session_id: str) -> str | None:
+    """Write the committed record if this session wrote to the design since the
+    last export and nothing else keeps it current. Returns what went wrong, or
+    None. Never writes over a file that is not a reflow2 export, and goes
+    through `export_graph`, which refuses to drop design a record holds."""
+    data = read_door_state(session_id)
+    owed = int(data.get("writes_since_export", 0))
+    if owed <= 0:
+        return None
+
+    def settled() -> None:
+        with _lock(state_dir() / ".door.lock"):
+            now = read_door_state(session_id)
+            now["writes_since_export"] = 0
+            # Past this hook's own export call, which is not the agent's.
+            now["offset"] = ledger_end()
+            write_door_state(session_id, now)
+
+    if export_is_configured():
+        settled()
+        return None
+    record = design_record()
+    if not record:
+        return (f"reflow2: {owed} design write(s) this turn, and no committed record is "
+                f"named for the Stop hook to export (the install receipt names none). Run "
+                f"`reflow2 update`, then export the design with `reflow2 write export_graph`.")
+    command = f"reflow2 write export_graph '{{\"path\": \"{record}\", \"overwrite\": true}}'"
+    target = Path(record)
+    if target.is_file():
+        try:
+            json.loads(target.read_text())
+        except (OSError, ValueError):
+            return (f"reflow2: {owed} design write(s) this turn landed, and {record} is not a "
+                    f"reflow2 export (a merge may have left conflict markers in it), so the "
+                    f"Stop hook did not write over it. Resolve it, then export: `{command}`.")
+    arg = record.rstrip("/") + "/" if target.is_dir() else record
+    code, _out, err = run_door(
+        ["write", "export_graph", json.dumps({"path": arg, "overwrite": True})],
+        EXPORT_TIMEOUT_S)
+    if code == 0:
+        settled()
+        return None
+    why = err.strip() if code is None else f"exit {code}: {first_line(err)}"
+    return (f"reflow2: {owed} design write(s) this turn landed, and the Stop hook could not "
+            f"export them to {record} ({why}). The writes are in the design; resolve "
+            f"that, then export: `{command}`.")
+
+
+def vscode_main(event: dict) -> int:
+    """VS Code's SessionStart and Stop, in VS Code's output shape."""
+    cwd = event.get("cwd")
+    if isinstance(cwd, str) and cwd and Path(cwd).is_dir():
+        os.chdir(cwd)
+    if not design_present():
+        return 0
+    kind = event.get("hook_event_name", "")
+    session = str(event.get("session_id") or "unknown")
+
+    if kind == "SessionStart":
+        context = f"{VSCODE_SESSION_START_TEXT}\n\n{loop_status_reading()}"
+        # After loop_status, so the hook's own call is not the session's.
+        mark_ledger_read(session)
+        spawn_probe(session, "session-start baseline")
+        stale_verdict = last_unreported_verdict(session)
+        if stale_verdict:
+            context += (f"\n\nreflow2: the session before this one left debt behind — "
+                        f"{stale_verdict}")
+        print(json.dumps({"hookSpecificOutput": {
+            "hookEventName": "SessionStart", "additionalContext": context}}))
+        return 0
+
+    if kind == "Stop":
+        if event.get("stop_hook_active"):
+            return 0  # already nudged once — never hold the session hostage
+        catch_up_from_ledger(session)
+        problem = export_if_owed(session)
+        reason = stop_reason(session)
+        if reason:
+            reason = f"{reason} {VSCODE_DOOR_NOTE}"
+            if problem:
+                reason = f"{reason} {problem}"
+        elif problem and claim_nudge(session):
+            reason = ride_along(session, f"{problem} (This nudge fires once; stopping "
+                                         f"again proceeds.)")
+        out: dict = {}
+        if reason:
+            # VS Code's Local reference puts a Stop decision inside
+            # hookSpecificOutput; the top-level pair is the Claude-format shape
+            # it also maps. Both say the same, so neither can win wrongly.
+            out = {"decision": "block", "reason": reason,
+                   "hookSpecificOutput": {"hookEventName": "Stop", "decision": "block",
+                                          "reason": reason}}
+        if problem:
+            out["systemMessage"] = problem
+        if out:
+            print(json.dumps(out))
+        return 0
+    return 0
+
+
 def main() -> int:
+    harness = None
+    if "--harness" in sys.argv:
+        at = sys.argv.index("--harness")
+        harness = sys.argv[at + 1] if at + 1 < len(sys.argv) else ""
+        if harness != "vscode":
+            print(f"loop_nudge: no hook for harness {harness!r} (known: vscode); "
+                  f"nothing was run", file=sys.stderr)
+            return 1
     try:
         event = json.load(sys.stdin)
     except (ValueError, OSError):
         return 0
     if not isinstance(event, dict):
         return 0
+    if harness == "vscode":
+        return vscode_main(event)
     # Silent everywhere reflow2 is not being used. Checked before anything is
     # read or counted, so a non-reflow2 project costs one stat call and leaves
     # no state behind.
@@ -1288,43 +1913,7 @@ def main() -> int:
             if isinstance(ti, dict) and isinstance(ti.get("id"), str):
                 change_id = ti["id"]
 
-            def touch(state: dict, op: str = op, change_id: str = change_id) -> None:
-                state["touched"] = True
-                if op in LOOP_OPS:
-                    state["writes"] = 0
-                elif is_write(op):
-                    state["writes"] += 1
-                # Cumulative and never cleared — see `blank_state`. A loop check
-                # settles the DEBT, it does not un-write what was written.
-                if is_graph_write(op):
-                    state["wrote"] += 1
-                elif op not in LOOP_OPS:
-                    state["reads"] = int(state.get("reads", 0)) + 1
-                # Shape tallies are cumulative and are NOT cleared by a loop
-                # check: detect_gaps does not un-edit a file or un-capture
-                # intent.
-                if op in CHANGE_OPS:
-                    state["changes"] += 1
-                    # THE ID, not just the count. `unclaimed_findings` can only
-                    # answer against the specific events, and this hook is the
-                    # one place that sees them written.
-                    if change_id:
-                        ids = state.setdefault("change_ids", [])
-                        if change_id not in ids:
-                            ids.append(change_id)
-                            del ids[:-CHANGE_ID_CAP]
-                if op in PROPAGATE_OPS:
-                    state["propagates"] += 1
-                if op in ARTIFACT_OPS:
-                    state["artifacts"] += 1
-                if op in CAPTURE_OPS:
-                    state["captures"] += 1
-                if op in GAP_PASS_OPS:
-                    state["gap_pass"] += 1
-                if op in SKILL_OPS:
-                    state["skills"] += 1
-
-            update_state(session, touch)
+            update_state(session, lambda state: count_call(state, op, change_id))
             return 0
         # A harness file-write, tallied only for the total-bypass backstop.
         if tool in EDIT_TOOLS:
@@ -1348,250 +1937,9 @@ def main() -> int:
     if kind == "Stop":
         if event.get("stop_hook_active"):
             return 0  # already nudged once — never hold the session hostage
-        state = read_state(session)
-
-        # ASK FIRST, READ LATER, and ask BEFORE any branch below can return.
-        # The question takes ~23 seconds to answer and nothing here waits for
-        # it; putting the spawn above the branches means a session that trips a
-        # counting nudge still has its graph answer in flight for the stop after
-        # it. Only sessions that DID something are asked about — a read-only
-        # session has left nothing for the graph to report.
-        if state.get("wrote", 0) > 0 or state.get("edits", 0) > 0:
-            spawn_probe(session, "stop")
-
-        # Graph writes finished without a loop check (the original nudge).
-        n = state["writes"]
-        if n >= env_threshold("REFLOW2_LOOP_NUDGE_THRESHOLD", 1):
-            # cap:skill-triggers — same trigger, better sentence. If the shape
-            # is recognisable, name the skill the situation calls for instead of
-            # pointing at loop_status and leaving the agent to work it out.
-            shape = match_shape(state)
-            # The shape REPLACES the generic advice but never the cheap entry
-            # point: `loop_status` stays in every message because it is the one
-            # call that says what is actually owed, and naming a skill is a
-            # refinement of that answer rather than a substitute for it. An
-            # existing test asserted this and caught its removal — the contract
-            # was real and was nearly dropped silently.
-            detail = (
-                f"The shape says: {shape}. Confirm with loop_status."
-                if shape
-                else "Call loop_status — if its `next` list names debt, run "
-                     "detect-and-ask / check-health before finishing."
-            )
-            # BL-111 — the promise is now computed, not merely stated. First
-            # claimant prints; anyone else (a later stop, or a second hook
-            # process from a duplicate registration) stays silent.
-            if not claim_nudge(session):
-                return 0
-            print(json.dumps({
-                "decision": "block",
-                "reason": ride_along(
-                    session,
-                    f"reflow2: {n} graph write(s) this session and no loop check. "
-                    f"{detail} Bookkeeping is not the loop. (This nudge fires "
-                    f"once; stopping again proceeds.)"
-                ),
-            }))
-            return 0
-
-        # READS WITHOUT WRITES — the inverse of the nudge above, and the one
-        # session the graph itself cannot see: it consulted the design at
-        # length, produced findings in chat, and recorded none of them. A
-        # positive count, so it survives the negative-claim rule below.
-        reads = int(state.get("reads", 0))
-        if state.get("wrote", 0) == 0 and reads >= env_threshold(
-            "REFLOW2_READS_WITHOUT_WRITES_THRESHOLD", 25
-        ):
-            if not claim_nudge(session):
-                return 0
-            print(json.dumps({
-                "decision": "block",
-                "reason": ride_along(
-                    session,
-                    f"reflow2: {reads} graph read(s) this session and no write. A finding "
-                    f"is the agent's own observation and needs no permission — if this "
-                    f"session noticed anything (a contradiction, a number, a cause), "
-                    f"record_finding writes it now. If it genuinely produced nothing to "
-                    f"record, stopping again proceeds. (This nudge fires once.)"
-                ),
-            }))
-            return 0
-
-        # EVERY BRANCH BELOW HERE MAKES A NEGATIVE CLAIM, and a tally rebuilt
-        # from nothing cannot support one. "The graph was never consulted" and
-        # "propagate_change was never called" are both assertions that something
-        # did NOT happen, and the calls that would refute them are exactly what
-        # an unreadable tally lost (BL-161). The write nudge above is positive
-        # ("N writes went unchecked") and survives a restart honestly, which is
-        # why it sits on the other side of this line.
-        if state.get("reset"):
-            return 0
-
-        # BL-163 — the recorded-but-never-propagated session. This is the branch
-        # the row is actually about, and the reason the shape matcher alone was
-        # not enough: `record_change` is a graph WRITE, so a session that
-        # recorded its changes and then ran `loop_status` has `writes == 0` and
-        # `touched == True`, and sails past both of the older branches. Neither
-        # one can see a loop that ran in the wrong ORDER.
-        #
-        # THE CONJUNCTION IS THE COUNTERWEIGHT, all three clauses load-bearing:
-        #   - `edits > 0`     — something on disk actually moved; a pure design
-        #                       session that captures intent and never touches
-        #                       code has no blast radius to compute.
-        #   - `changes > 0`   — this session engaged the design brain and put a
-        #                       ChangeEvent on the record. That is what makes it
-        #                       a design-relevant session rather than any old
-        #                       edit, and it is what keeps this from becoming a
-        #                       second bypass nudge with no threshold.
-        #   - `propagates==0` — and then never asked what the change reaches.
-        # Drop any one of them and this fires on correct work, which BL-23 and
-        # BL-42 both name as the failure this family exists to avoid.
-        #
-        # THE ADMITTED COST, stated because it is a real change in kind: this is
-        # a NEW interruption. `cap:skill-triggers` deliberately added none — a
-        # shape only refined a nudge that was already firing. This branch arms
-        # one, and it does so on the argument the row makes: reflow2 fails the
-        # build on undeclared drift, on a broken export chain, on unchecked
-        # writes, and nothing whatsoever fails when an agent designs without
-        # consulting the design. The read side had no forcing function at all.
-        if (state["edits"] > 0
-                and state.get("changes", 0) > 0
-                and state.get("propagates", 0)
-                < env_threshold("REFLOW2_LOOP_NUDGE_PROPAGATE_THRESHOLD", 1)):
-            if not claim_nudge(session):
-                return 0
-            print(json.dumps({
-                "decision": "block",
-                "reason": ride_along(
-                    session,
-                    f"reflow2: {state['edits']} file(s) edited and "
-                    f"{state['changes']} change(s) recorded this session, and "
-                    f"propagate_change was never called — so the ChangeEvent is "
-                    f"bookkeeping and nothing computed what the change reaches. "
-                    f"Run impact-check (record the change, THEN propagate) "
-                    f"before further edits; confirm with loop_status. "
-                    f"Bookkeeping is not the loop. (This nudge fires once; "
-                    f"stopping again proceeds.)"
-                ),
-            }))
-            return 0
-
-        # The upstream bypass (BL-90): code edited, the graph never consulted at
-        # all. Blunt by design — the hook cannot know which files are design-
-        # relevant, so a count threshold and the once-only rule bound the noise.
-        if not state["touched"]:
-            e = state["edits"]
-            if e >= env_threshold("REFLOW2_LOOP_NUDGE_EDIT_THRESHOLD", 3):
-                # Both blocking branches make the same promise on the same
-                # footing, so both have to keep it (BL-111).
-                if not claim_nudge(session):
-                    return 0
-                print(json.dumps({
-                    "decision": "block",
-                    "reason": (
-                        f"reflow2: {e} file(s) edited this session and the design "
-                        f"graph was never consulted. Start with loop_status; run "
-                        f"impact-check before further edits and link-artifacts "
-                        f"after, so as-built stays honest. (This nudge fires once; "
-                        f"stopping again proceeds.)"
-                    ),
-                }))
-            return 0
-
-        # cap:skill-loads-are-counted — LAST, and last on purpose.
-        #
-        # The hole this closes is the one `cap:skill-triggers` structurally
-        # cannot reach. Every shape that capability recognises is a shape in the
-        # graph-write stream, and "no skill has been loaded" is not a graph
-        # write, so nothing counted it. Twice the decay was found by a human
-        # asking an agent — which `req:skill-adherence-is-measured` calls, in
-        # its own words, "not a mechanism".
-        #
-        # THIS ARMS A NUDGE, which `cap:skill-triggers` deliberately never did,
-        # so the conjunction carries the whole counterweight — all three clauses
-        # load-bearing, and `ver:skill-triggers` says why: a trigger that fires
-        # on correct work is the failure BL-23 and BL-42 both name.
-        #   - reached here at all — every other branch declined, so the session
-        #     is otherwise clean. This never adds a second interruption to a
-        #     session already being interrupted; it can only speak where there
-        #     would have been silence.
-        #   - `wrote > 0`        — the session did DESIGN work, not merely a
-        #                          read. This is the clause that keeps an
-        #                          existing contract intact: "a single read
-        #                          means the agent DID consult the graph — no
-        #                          bypass", and one `scan_nodes` must stay
-        #                          silent. It has to be the cumulative counter,
-        #                          because `writes` is cleared by a loop check
-        #                          and a session that wrote and then checked
-        #                          would look read-only here.
-        #   - `edits >= N`       — real work landed on disk. Shares the bypass
-        #                          threshold, so a read-only or trivial session
-        #                          is silent, which is most sessions.
-        #   - `skills == 0`      — and not one skill was ever opened.
-        #
-        # A NEGATIVE CLAIM, so it sits below the `reset` guard above: a tally
-        # rebuilt from nothing lost exactly the `get_skill` calls that would
-        # refute it, and "you loaded no skills" is not something to assert from
-        # an amnesiac count.
-        skill_edit_floor = env_threshold("REFLOW2_LOOP_NUDGE_EDIT_THRESHOLD", 3)
-        if (state.get("wrote", 0) > 0
-                and state["edits"] >= skill_edit_floor
-                and state.get("skills", 0) == 0):
-            if not claim_nudge(session):
-                return 0
-            print(json.dumps({
-                "decision": "block",
-                "reason": ride_along(
-                    session,
-                    f"reflow2: {state['edits']} file(s) edited this session and "
-                    f"no skill was ever loaded. The skills carry this project's "
-                    f"conventions, and they are SERVED, not installed — "
-                    f"list_skills names them, get_skill reads one in full. Load "
-                    f"the one that covers what you just did (link-artifacts "
-                    f"after writing a file, impact-check before changing a "
-                    f"design, revise-design when editing what the graph already "
-                    f"says) and check the work against it. Reading it afterwards "
-                    f"still catches what it would have prevented. (This nudge "
-                    f"fires once; stopping again proceeds.)"
-                ),
-            }))
-            return 0
-
-        # cap:stop-nudge-asks-the-graph — LAST, and it speaks only where every
-        # counting branch stayed silent.
-        #
-        # THAT PLACEMENT IS THE POINT, not an ordering convenience. The session
-        # this reaches is the one that did the loop's motions correctly and so
-        # tripped nothing above: wrote, then checked; edited, then propagated.
-        # The tally has nothing left to say about it. The graph does.
-        #
-        # IT ADDS NO SECOND INTERRUPTION. `claim_nudge` is one flag for the
-        # whole session across every branch, so a session already being
-        # interrupted is not interrupted twice — this can only speak into what
-        # would otherwise have been silence, which is the same counterweight
-        # `cap:skill-loads-are-counted` carries and for the same reason.
-        #
-        # It sits below the `reset` guard with the other negative claims by
-        # position, though it does not need to: its claim is positive and comes
-        # from the probe file rather than from the tally, so a rebuilt tally
-        # cannot make it lie. It stays here because the branch it must not
-        # pre-empt is above it.
-        verdict = graph_verdict(session)
-        if verdict:
-            if not claim_nudge(session):
-                return 0
-            print(json.dumps({
-                "decision": "block",
-                "reason": ride_along(
-                    session,
-                    f"reflow2: this session ADDED design debt and left it — "
-                    f"{verdict} CONFIRM WITH loop_status before acting: that "
-                    f"reading is as old as it says, and a session still in "
-                    f"flight settles some of what it raises. Then settle it or "
-                    f"say why it stands; bookkeeping is not the loop. (This "
-                    f"nudge fires once; stopping again proceeds.)"
-                ),
-            }))
+        reason = stop_reason(session)
+        if reason:
+            print(json.dumps({"decision": "block", "reason": reason}))
         return 0
 
     return 0

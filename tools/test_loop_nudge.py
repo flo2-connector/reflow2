@@ -1857,7 +1857,7 @@ class VsCodeHook(unittest.TestCase):
         # the ledger, which holds the verb and never the object, so the prose
         # of a write cannot trip, hide or fake anything here.
         self.start()
-        self.ledger_call("record_finding")
+        self.ledger_call("add_decision")
         spec = json.loads(self.stop().stdout)["hookSpecificOutput"]
         self.assertIn("1 graph write(s)", spec["reason"])
 

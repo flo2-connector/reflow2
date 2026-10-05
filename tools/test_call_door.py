@@ -200,11 +200,24 @@ class Door(unittest.TestCase):
         self.assertIn("reflow2 write add_requirement", r.stderr)
         self.assertIn("Nothing was opened", r.stderr)
 
-    def test_07_a_missing_argument_names_the_tool_and_the_field(self):
-        r = self.sh("""reflow2 write add_requirement '{"id": "req:half"}'""")
+    def test_07_an_argument_that_does_not_fit_names_the_tool_and_the_field(self):
+        # Exit 2: refused against the published schema before the tool ran,
+        # and the reply (on stdout) names the tool and the field.
+        r = self.sh("""reflow2 write add_requirement '{"id": "req:half", "name": "Half", """
+                    """"statement": "s", "priority": "sometimes"}'""")
         self.assertEqual(r.returncode, 2, f"stdout={r.stdout}\nstderr={r.stderr}")
+        self.assertIn("add_requirement", r.stdout)
+        self.assertIn("priority", r.stdout)
+        missing = self.sh("reflow2 read get_node '{}'")
+        self.assertEqual(missing.returncode, 2, missing.stdout)
+        self.assertIn("`id` is required", missing.stdout)
+        # Exit 1: the tool's own rule refusing, on stderr, naming what it lacked.
+        r = self.sh("""reflow2 write add_requirement '{"id": "req:half"}'""")
+        self.assertEqual(r.returncode, 1, f"stdout={r.stdout}\nstderr={r.stderr}")
         self.assertIn("add_requirement", r.stderr)
         self.assertIn("statement", r.stderr)
+        gone = self.ok("""reflow2 read get_node '{"id": "req:half"}'""")
+        self.assertIsNone(gone["node"], "a refused create stored nothing")
 
     def test_08_a_held_design_refuses_writes_and_reads_from_a_snapshot(self):
         holder = subprocess.Popen(
@@ -228,8 +241,8 @@ class Door(unittest.TestCase):
         finally:
             holder.terminate()
             holder.wait(timeout=30)
-        gone = self.sh("""reflow2 read get_node '{"id": "req:while-held"}'""")
-        self.assertNotEqual(gone.returncode, 0, "the refused write wrote nothing")
+        gone = self.ok("""reflow2 read get_node '{"id": "req:while-held"}'""")
+        self.assertIsNone(gone["node"], "the refused write wrote nothing")
 
     # ---- the export kept current --------------------------------------------------
 

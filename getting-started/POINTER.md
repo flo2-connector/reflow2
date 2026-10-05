@@ -6,7 +6,9 @@
 
 **reflow2 is the design brain for this project.** It outlives any context window and holds the
 whole design — requirements, decisions, components, what was built and what it was supposed to do.
-It is reached through the **`reflow2` MCP server**, already configured in this repo.
+It is reached through the **`reflow2` MCP server**, or, where your agent cannot use MCP, through the
+terminal: `reflow2 read <tool>` and `reflow2 write <tool>` (in VS Code,
+`.github/instructions/reflow2.instructions.md` says how).
 
 ## The one rule
 
@@ -25,7 +27,8 @@ they always match the version you are talking to and this file never goes stale:
    adopting an existing codebase, and more), each with the situation it applies to.
 3. **`get_skill`** — one of those in full. Read it *before* the work it covers, not after.
 
-Your harness does **not** auto-load these; ask for them. The server's own handshake instructions
+Your harness does **not** auto-load these; ask for them. Through the terminal, each is
+`reflow2 read <tool>`. The server's own handshake instructions
 carry a one-line summary of each, so you can usually tell which one you need without listing.
 
 ## The record your teammates read

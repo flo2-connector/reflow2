@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "reflow2 hook vscode || exit 1",
+        "timeout": 30
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "reflow2 hook vscode || exit 1",
+        "timeout": 120
+      }
+    ]
+  }
+}

@@ -373,6 +373,7 @@ python3 tools/test_run_to_files.py                      # a real test run become
 python3 tools/test_latent_promotion.py                  # the latent server promotes itself in place, on any client (real binary)
 python3 tools/test_content_policy.py                    # a reply takes the shape its client can read (per-client content policy, on the wire)
 python3 tools/test_opencode_plugin.py                   # the OpenCode loop-nudge plugin, driven as OpenCode drives it (node)
+python3 tools/test_call_door.py                         # the --call door and the VS Code terminal route, driven as an agent drives them (real binary)
 python3 tools/reflow2_check.py --export docs/design/reflow2/   # design vs build per change, and per-item integrity and lineage
 python3 tools/check_intent_authority.py docs/design/reflow2/    # settled intent carries the owner's name
 python3 tools/check_consumer_reach.py docs/design/reflow2/     # a capability claiming reach beyond this repo is realized by something a consumer gets

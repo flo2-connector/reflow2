@@ -116,6 +116,28 @@ fn main() {
         pointer.display().to_string()
     ));
 
+    // THE TERMINAL ROUTE'S INSTRUCTIONS, served the same way: `reflow2 init
+    // --harness vscode-cli` writes this file to `.github/instructions/`, and
+    // the binary serves the same text as the `vscode-terminal-route` section,
+    // so `reflow2 update` refreshes it with the release that describes it and
+    // a project that never ran the init can fetch it
+    // (req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current).
+    let route = kit
+        .parent()
+        .expect("kit has a parent")
+        .join("vscode")
+        .join("reflow2.instructions.md");
+    assert!(
+        route.exists(),
+        "reflow2: {} is missing — the server would serve no terminal-route instructions",
+        route.display()
+    );
+    println!("cargo:rerun-if-changed={}", route.display());
+    out.push_str(&format!(
+        "\npub static VSCODE_TERMINAL_ROUTE: &str = include_str!({:?});\n",
+        route.display().to_string()
+    ));
+
     let dest =
         PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR")).join("skills_generated.rs");
     std::fs::write(&dest, out).expect("write generated skills");
