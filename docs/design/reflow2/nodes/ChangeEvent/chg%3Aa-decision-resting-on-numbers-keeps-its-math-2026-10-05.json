@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5ec8dacf00ad99915452c2f2ef602ef9637201c5cd3090a436fbafef637ff0e6",
+  "node_id": "chg:a-decision-resting-on-numbers-keeps-its-math-2026-10-05",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "ed95442b5,b6902afc8",
+    "detected_at": "2026-10-05",
+    "name": "A decision that rests on numbers is recorded with its math: each input's source named, the computation kept or shown",
+    "rationale": "Measured 2026-10-05 on a hosted design: three chats given decisions resting on numbers (a ring's fit and gold cost, a battery sized for a 12-hour outage) did the arithmetic in their heads, kept no computation and named no input's source, even with a calculator helper connected. Asked to use the calculator, its kept record exposed a wrong hidden assumption: a bezel seat taken as 7.5 mm that is really 7.6 mm. The owner accepted a fix set; this is reflow2's part. It carries the accepted req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported (measured, computed from which quantities by which check, or asserted by whom) from Constraints and contributions to the numbers a Decision's rationale rests on, which no served skill asked for. The wording names one helper only as an example and requires none: reflow2 stands alone. kpp-proposal was looked at and left alone, because every limit and contribution there already carries a basis and a source by id, including the check that computed it, and its threshold is the person's to state.\n\nNot done here, and named so it is not read as done: nothing DETECTS a Decision whose rationale states numbers with no source or computation. The contract checks that the five skills say it; whether an agent does it is judgement, evidenced by real use.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Five served skills where a decision is recorded or settled now say that an answer someone will act on (a cost, a fit, a size, a yes or no that turns on conditions) is a decision with its math. capture-intent: such an answer is a Decision (add_decision) and keeps its math. brainstorm: the settling rationale keeps its math. detect-and-ask: an answer resting on numbers is written back with its math, and the reading offered in step 2 is held to the same. revise-design: a revised number someone will act on keeps its math. capture-session: the 'choice that was made' row carries the math. In each, the rationale names where each input came from (the person, a cited document, a measured or reported value, never the agent's memory); if a calculator helper is connected the numbers are computed there and its kept record is registered (add_artifact) and linked to the decision with documents; if none is, the arithmetic is shown in the rationale. skill_lint pins the wording in all five as the decision-math contract."
+  }
+}

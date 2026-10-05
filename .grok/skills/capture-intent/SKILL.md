@@ -72,6 +72,15 @@ The last row is the important one. **A routing table that pretends to be complet
 mis-file things**; this one names where it runs out, and that boundary is where you tell the user
 "reflow2 has no good home for this yet" instead of inventing one.
 
+⭐ **AN ANSWER THEY WILL ACT ON IS A DECISION, AND IT KEEPS ITS MATH.** When what they ask is
+worked out from numbers — a cost, a fit, a size, a yes or no that turns on conditions — record the
+answer with `add_decision` and name in its rationale where each input came from: the person, a
+cited document, a measured or reported value, never your memory. If a calculator helper is
+connected (flo2-calc is one), compute the numbers there, register its kept record (`add_artifact`)
+and draw `documents` from it to the decision; if none is, show the arithmetic in the rationale.
+*(Measured 2026-10-05: three chats did such sums in their heads and kept nothing; the one sent to
+a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
+
 1. Read the user's message and identify:
    - **Requirements** — what must be true (a constraint, a must-have). → `add_requirement`
    - **Capabilities** — what the system does. → `add_capability`

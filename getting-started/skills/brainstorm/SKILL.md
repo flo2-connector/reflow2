@@ -202,6 +202,11 @@ not said they want it, it is still just an idea nobody chose.
   "recorded as brainstorming" line in the text is what prevents that, so do not skip it.
 - **A brainstorm is not a decision record.** When the user does decide, the decision gets its own
   rationale. Do not let "we talked about it" stand in for "we chose it, and here is why".
+  When the choice rests on numbers, that rationale keeps its math: where each input came from
+  (the person, a cited document, a measured or reported value, never your memory), computed in a
+  calculator helper if one is connected (flo2-calc is one), its kept record registered
+  (`add_artifact`) with `documents` drawn from it to the decision — and if none is, the arithmetic
+  written out.
 
 - **The detector is aggregate, and low-severity, on purpose.** One finding names the practice and
   lists the ideas. Per-idea it would have fired 115 times on reflow2's own graph the day it
