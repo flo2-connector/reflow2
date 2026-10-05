@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bbe69403cfb867c3b700945dd2adbebd2dcc408328f8b36a563caeee28362eff",
+  "edge_type": "MITIGATES",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "evidence": "loop_status with since_export: true now lists the unexported changes grouped by the writer the store credits, the agent and the epoch, so a person can see another session's work before exporting. Mitigated, not resolved: a write made with no writes_for in force (every --call write today) has no recorded writer and is listed under written_by: null, and an export still carries the whole store."
+  },
+  "to_id": "fact:recurrence-one-store-holds-every-sessions-writes-so-an-export-sweeps-in-anothers-work-2026-10-05"
+}

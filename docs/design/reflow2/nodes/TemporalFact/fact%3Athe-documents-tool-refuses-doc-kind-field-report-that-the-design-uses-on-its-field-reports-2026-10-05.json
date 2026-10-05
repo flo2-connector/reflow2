@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0d1e64f357fb1539a3273a5aa3ca8926d3f179835e025dfe13cdf1fe8dd83f03",
+  "node_id": "fact:the-documents-tool-refuses-doc-kind-field-report-that-the-design-uses-on-its-field-reports-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "`documents` refuses doc_kind `field_report`, which reflow2's own design carries on its field reports' DOCUMENTS edges; the schema declares doc_kind a free string",
+    "statement": "Met 2026-10-05 while writing the design record for the never-exported / unexported-by-writer change. To source a ChangeEvent from art:vscode-call-field-log-2026-10-05 the way earlier field reports are linked (their DOCUMENTS edges carry doc_kind: field_report, e.g. art:vscode-call-door-field-report-2026-10-02 to five decisions), `--call documents` with doc_kind \"field_report\" was refused: \"`doc_kind`: expected one of `design_doc`, `adr`, `readme`, `runbook`, `agent_instructions`, `dataflow`, `sequence_diagram`, `arch_diagram`, or null\". schema/build.yaml declares DOCUMENTS.doc_kind as `type: string` with a description listing seven kinds, so the typed tool is narrower than the schema and than the design's own convention. Expected: the convention the design already uses is writable through the typed tool, or the refusal says the value is stored elsewhere and how. Workaround: create_edges with edge_type DOCUMENTS and props doc_kind field_report (accepted). Not root-caused; recorded as a to-do under rule:a-reflow2-tool-failure-met-while-working-is-captured-as-a-to-do.",
+    "steps": [
+      "documents"
+    ],
+    "subject_id": "cap:a-file-realizes-only-what-it-implements",
+    "valid_from": "2026-10-05"
+  }
+}

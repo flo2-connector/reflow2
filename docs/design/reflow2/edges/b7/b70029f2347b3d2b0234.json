@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1a417678f37092562aeeab2dcac454c58f6ac0252db0e92b7ee6f177d59bb57c",
+  "edge_type": "REALIZES",
+  "from_id": "art:export-standing",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:loop-status"
+}

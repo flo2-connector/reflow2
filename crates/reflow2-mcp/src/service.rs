@@ -4871,6 +4871,12 @@ pub struct LoopScopeReq {
     /// OFF BY DEFAULT AND THAT IS A COST DECISION: it reads and parses the
     /// committed export, which the ordinary orientation call has no reason to
     /// pay for. Everything else in the reply stays design-wide either way.
+    ///
+    /// Also returns `unexported`: what the store holds that the export does
+    /// not, grouped by who wrote it (the contributor and agent the store
+    /// credits, and the epoch) with counts, a few ids each and the dates they
+    /// carry — so another session's work in progress can be seen before an
+    /// export. Bounded; `compare_designs` lists every change.
     #[serde(default)]
     pub since_export: bool,
 }
@@ -6715,6 +6721,77 @@ impl ReflowService {
     /// The server's write-through itself, for a stopping server to flush.
     pub(crate) fn auto_export_handle(&self) -> Option<Arc<crate::auto_export::AutoExport>> {
         self.auto_export.clone()
+    }
+
+    /// Has this design a copy anywhere this machine knows of? The one
+    /// computation `loop_status` and `graph_report` share, so every door —
+    /// MCP, `--call`, `read` — answers it the same way
+    /// (`crate::export_standing`). `debts` is the sync roll when the caller
+    /// already made one. `None` for a design with no store on this disk, one
+    /// served without its tree (a host's), or one that has a copy.
+    pub(crate) fn export_standing(
+        &self,
+        g: &DesignGraph,
+        debts: Option<&[crate::sync_debt::SyncDebt]>,
+    ) -> Option<crate::export_standing::ExportStanding> {
+        let graph_path = self.graph_path.as_deref()?;
+        let root = self.tree_root()?.to_path_buf();
+        let live_nodes = g.count_all_nodes().unwrap_or(0);
+        let rolled;
+        let debts = match debts {
+            Some(d) => d,
+            None => {
+                rolled = crate::sync_debt::sync_debt_with(
+                    graph_path,
+                    live_nodes,
+                    &crate::sync_debt::StoreMembership::new(g),
+                    &mut self.fresh_parsed_records(),
+                );
+                &rolled
+            }
+        };
+        let configured = match self.auto_export_status() {
+            Some((path, _)) => crate::export_standing::Configured::Target {
+                path,
+                named_by: "this server's --export-to".to_string(),
+            },
+            None => match crate::call_export::find(graph_path, None, false) {
+                Ok(crate::call_export::Found::Target(t)) => {
+                    crate::export_standing::Configured::Target {
+                        path: t.path,
+                        named_by: match t.named_by {
+                            crate::call_export::NamedBy::Flag => "--export-to".to_string(),
+                            crate::call_export::NamedBy::Config(c) => c,
+                        },
+                    }
+                }
+                Ok(_) => crate::export_standing::Configured::Nothing,
+                Err(e) => crate::export_standing::Configured::Disagree(e),
+            },
+        };
+        let acknowledged = g
+            .gap_acknowledgement(crate::export_standing::NEVER_EXPORTED_GAP_ID)
+            .ok()
+            .flatten()
+            .map(
+                |(decision_id, reason)| crate::export_standing::Acknowledged {
+                    decision_id,
+                    reason,
+                },
+            );
+        crate::export_standing::assess(crate::export_standing::Seen {
+            graph_path,
+            project_root: &root,
+            live_nodes,
+            debts,
+            unopened_records: crate::sync_debt::not_checked(graph_path)
+                .map(|n| n.count)
+                .unwrap_or(0),
+            configured,
+            export_pending: self.auto_export.as_ref().is_some_and(|a| a.is_pending()),
+            door: crate::arguments::current_transport(),
+            acknowledged,
+        })
     }
 
     pub fn auto_export_status(&self) -> Option<(String, crate::auto_export::Status)> {

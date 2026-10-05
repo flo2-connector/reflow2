@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6e71c2cd6eb1d089c8c48260f8e36777db0b48fcbc286496f276abe6c3d56cda",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:bb1b43e97a793367e901230819dc4f7cd68c098daa039d3301160a5ce07ec9f6",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:derived-edge-readers"
+}

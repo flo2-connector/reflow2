@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:28740dd068b80fb5521e4c03b3c72c5a4d8e2662082fb1bca4a9c5e5ed291d6d",
+  "node_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "The MCP server keeps working as it is for the people who use it, and what is improved for the --call door is additive or opt-in",
+    "priority": "critical",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), 2026-10-05, relayed verbatim to this session by the dev_reflow2 hub session",
+    "statement": "A person who uses reflow2 as an MCP server, the way it was originally designed, shall keep getting the server they use today when reflow2 is improved for the `--call` door (an agent such as VS Code's Copilot where MCP is blocked). An improvement made for the door is ADDITIVE (a new tool, a new field or a new line in a reply; never an existing tool, field or reply shape renamed, removed or given a new meaning) or it is OPT-IN, behind a flag or setting the door's user turns on. Where both can be supported, both are.\n\nIN ANTHONY'S WORDS, 2026-10-05: \"I just want to make sure the changes we implement for vscode don't break it for how it was originally used/designed as an mcp server. My brother likes using as is, so I don't want to break it for him by introducing changes to make it work better for vscode --call option. If it can support both, that's great. And when I run it with vscode at work, maybe I configure it with \"reflow2 --use-call\" or some other flags that make it work for vscode call\".\n\nENFORCEMENT, RECOMMENDED AND NOT YET APPROVED: a CI gate that pins the existing tools' schemas and reply shapes. The input schemas are already pinned (tools/toolsnap.py against the goldens in tools/toolsnaps/). Reply shapes are not pinned by anything. Building that half is Anthony's call and has not been made.\n\nSIBLING of req:reflow2-keeps-working-entirely-on-one-machine (accepted 2026-09-25), which keeps the local, sign-in-free setup; this one keeps the MCP surface its current users rely on while the door improves. Searched first: no existing requirement covered backwards compatibility of the served surface.",
+    "status": "accepted"
+  }
+}

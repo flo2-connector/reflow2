@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d1aa34961ab30567bdfb4763046ce6e5d0c2c77cd2efb644cd9081957cda2115",
+  "node_id": "art:export-standing",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Whether a design has a copy anywhere this machine knows of (export record, configured export, pending write-through), as the high-severity never_exported / no_export_survives item with the one command that fixes it, and the `ahead_of_export` headline. One computation for loop_status, graph_report and sync_status on every door.",
+    "location": "crates/reflow2-mcp/src/export_standing.rs",
+    "name": "export_standing.rs",
+    "status": "realized"
+  }
+}

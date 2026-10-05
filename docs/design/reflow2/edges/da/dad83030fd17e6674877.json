@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67ae57d091bfcf94d2e4dc798893ffc123ca72bfefd5c22d0ea4d8cc890ae220",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:distribution-debt-is-reported"
+}

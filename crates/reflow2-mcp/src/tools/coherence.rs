@@ -720,6 +720,92 @@ impl ReflowService {
                     );
                 }
             }
+            // WHAT THE STORE HOLDS THAT THE EXPORT DOES NOT, BY WHO WROTE IT —
+            // asked for, like the rest of `since_export`, because it reads the
+            // export (`reflow2_core::unexported`). Against the fullest record
+            // this seat is in step with: the record `unexported_work` names. A
+            // `behind` record holds somebody else's work and is not used.
+            let mut listed: Option<reflow2_core::unexported::UnexportedChanges> = None;
+            if req.since_export {
+                let best = debts
+                    .iter()
+                    .filter(|d| d.state == "in_step" || d.state == "moved_but_current")
+                    .max_by(|a, b| {
+                        a.export_nodes
+                            .cmp(&b.export_nodes)
+                            .then_with(|| b.path.cmp(&a.path))
+                    });
+                let made = match best {
+                    None => Err("no export this store is in step with is on record, so there is                                  nothing to list changes against: every node is unexported."
+                        .to_string()),
+                    Some(d) => crate::saved_design::read_export(&d.path)
+                        .map_err(|e| format!("the export at {} could not be read: {e}", d.path))
+                        .and_then(|doc| {
+                            g.unexported_changes(&doc, &d.path)
+                                .map_err(|e| format!("could not compare with {}: {e}", d.path))
+                        }),
+                };
+                if let Some(obj) = payload.as_object_mut() {
+                    match made {
+                        Ok(u) => {
+                            // A change the node count cannot see (a property
+                            // or an edge alone) gets its own line in `next`;
+                            // otherwise the count's line above already says
+                            // the work is unexported.
+                            if !u.identical
+                                && crate::sync_debt::unexported_work(&debts, live_nodes).is_none()
+                                && let Some(arr) =
+                                    obj.get_mut("next").and_then(|v| v.as_array_mut())
+                            {
+                                arr.push(json!(format!(
+                                    "{} change(s) since the export at {} are in no export —                                      export before you finish. `unexported` names them; {}",
+                                    u.totals.total(),
+                                    u.base,
+                                    u.full_list
+                                )));
+                            }
+                            obj.insert(
+                                "unexported".into(),
+                                serde_json::to_value(&u).map_err(ser_err)?,
+                            );
+                            listed = Some(u);
+                        }
+                        Err(why) => {
+                            obj.insert("unexported_unavailable".into(), json!(why));
+                        }
+                    }
+                }
+            }
+            // HAS THIS DESIGN A COPY ANYWHERE? Loud and first when it has none
+            // (`crate::export_standing`): a data-loss risk outranks every
+            // other line in `next`. Absent whenever a copy exists, so a design
+            // that has been exported gets exactly the reply it got before.
+            let standing = self.export_standing(&g, Some(&debts));
+            if let Some(obj) = payload.as_object_mut() {
+                if let Some(standing) = &standing {
+                    if standing.owed()
+                        && let Some(arr) = obj.get_mut("next").and_then(|v| v.as_array_mut())
+                    {
+                        arr.insert(0, json!(standing.message.clone()));
+                    }
+                    obj.insert(
+                        "export_standing".into(),
+                        serde_json::to_value(standing).map_err(ser_err)?,
+                    );
+                }
+                // THE HEADLINE: one line answering "does this store hold work
+                // its export lacks?", keyed so the door's sorted printout
+                // shows it first, ahead of the artifact block. Absent when the
+                // store is not ahead, so a current design's reply is unchanged.
+                if let Some(line) = crate::export_standing::ahead_of_export(
+                    standing.as_ref(),
+                    &debts,
+                    live_nodes,
+                    listed.as_ref(),
+                ) {
+                    obj.insert("ahead_of_export".into(), json!(line));
+                }
+            }
         }
         ok_json(payload)
     }
@@ -925,6 +1011,11 @@ impl ReflowService {
             served["behind_record"] = behind;
         }
         report["served_by"] = served;
+        // The same item loop_status raises, from the same computation, so
+        // where-am-i's first read says it too. Absent whenever a copy exists.
+        if let Some(standing) = self.export_standing(&g, None) {
+            report["export_standing"] = serde_json::to_value(&standing).map_err(ser_err)?;
+        }
         self.ok_read(&g, report)
     }
 
@@ -937,6 +1028,20 @@ impl ReflowService {
         let g = self.graph.read().await;
         let report = g.graph_report().map_err(dyno_err)?;
         let mut md = report.to_markdown();
+        // A design with no copy anywhere is told first, in the prose a person
+        // reads (`crate::export_standing`); absent whenever a copy exists.
+        // Right UNDER the title, never above it: the report's first line stays
+        // its `#` heading, which is what a client (and smoke_mcp's BL-48
+        // check) reads the reply as Markdown by.
+        if let Some(standing) = self.export_standing(&g, None)
+            && standing.owed()
+        {
+            let line = format!("> **{}**", standing.message);
+            md = match md.split_once('\n') {
+                Some((title, rest)) => format!("{title}\n\n{line}\n{rest}"),
+                None => format!("{md}\n\n{line}\n"),
+            };
+        }
         // The rendering sibling of graph_report, and an orientation read in its
         // own right — carry the same read-side loop_hint (BL-91), as a trailing
         // blockquote since a Markdown document has no field to hang it on.
@@ -1618,9 +1723,10 @@ impl ReflowService {
                        exported, you already hold it all), `missing`, `unreadable`. AN EMPTY \
                        ANSWER MEANS THIS SEAT HAS NEVER SYNCED WITH ANY FILE — never that all is \
                        well; the quiet targets are listed for exactly that reason. BEING AHEAD OF \
-                       THE RECORD IS NOT REPORTED: unexported work is the normal state of a \
+                       THE RECORD IS NOT A `state`: unexported work is the normal state of a \
                        working session, and the check is gated on the file's content hash so it \
-                       is silent unless somebody ELSE has been there. IT NEVER ACTS — no \
+                       is silent unless somebody ELSE has been there; `ahead_of_export` says it \
+                       apart, in one line. IT NEVER ACTS — no \
                        auto-import, because import is an upsert and an unasked one would silently \
                        overwrite live work (dec:ask-not-repair); it names the remedy and leaves \
                        the choice. `loop_status` carries the same finding as `record_moved` when \
@@ -1657,6 +1763,18 @@ impl ReflowService {
             && let Some(obj) = out.as_object_mut()
         {
             obj.insert("not_checked".into(), json!(skipped));
+        }
+        // AHEAD OF THE RECORD, IN ITS OWN FIELD. No `state` reports it — that
+        // is the gate this tool is built on — so the seat's one line about it
+        // rides beside them, the same line loop_status leads with
+        // (`crate::export_standing::ahead_of_export`). Absent when the store
+        // is not ahead.
+        let standing = self.export_standing(&g, Some(&debts));
+        if let Some(line) =
+            crate::export_standing::ahead_of_export(standing.as_ref(), &debts, live_nodes, None)
+            && let Some(obj) = out.as_object_mut()
+        {
+            obj.insert("ahead_of_export".into(), json!(line));
         }
         ok_json(out)
     }

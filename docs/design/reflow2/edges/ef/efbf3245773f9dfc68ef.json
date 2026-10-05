@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d22740f36f2e55d341e5f8711203d302393893767adfb98dc49fc6910a7b8916",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-existing-tools-schema-and-reply-shape-are-pinned-so-a-door-change-cannot-break-an-mcp-client",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "sub:tool-surface"
+}
