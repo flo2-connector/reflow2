@@ -73,8 +73,8 @@ VS Code can pick a skill by its description. Each stub says to read the skill in
 
 ## After a write
 
-- **A refused write may have stored part of its work.** Read the node back with
-  `reflow2 read get_node '{"id": "<id>"}'` before you retry, and expect the retry to be an update.
+- **A refused write stored nothing.** Fix what the refusal names and send the whole call again.
+  `reflow2 read get_node '{"id": "<id>", "include_edges": true}'` shows what a node holds now.
 - **One process can hold the design.** If another session's server holds it, reads answer from a
   best-effort snapshot (stderr says so) and writes are refused. Do not stop that server without
   the person's word.
