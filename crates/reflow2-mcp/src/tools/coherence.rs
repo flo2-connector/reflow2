@@ -1001,10 +1001,17 @@ impl ReflowService {
         let mut md = report.to_markdown();
         // A design with no copy anywhere is told first, in the prose a person
         // reads (`crate::export_standing`); absent whenever a copy exists.
+        // Right UNDER the title, never above it: the report's first line stays
+        // its `#` heading, which is what a client (and smoke_mcp's BL-48
+        // check) reads the reply as Markdown by.
         if let Some(standing) = self.export_standing(&g, None)
             && standing.owed()
         {
-            md = format!("> **{}**\n\n{md}", standing.message);
+            let line = format!("> **{}**", standing.message);
+            md = match md.split_once('\n') {
+                Some((title, rest)) => format!("{title}\n\n{line}\n{rest}"),
+                None => format!("{md}\n\n{line}\n"),
+            };
         }
         // The rendering sibling of graph_report, and an orientation read in its
         // own right — carry the same read-side loop_hint (BL-91), as a trailing

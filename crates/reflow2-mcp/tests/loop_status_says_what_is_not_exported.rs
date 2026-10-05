@@ -282,6 +282,13 @@ fn a_never_exported_design_is_told_through_the_call_door() {
     );
     let report = f.call("graph_report", "{}");
     assert_eq!(report["export_standing"]["state"], "never_exported");
+    // The Markdown rendering leads with it, under its title: the report's
+    // first line stays its `#` heading (smoke_mcp's BL-48 check).
+    let md = f.call("graph_report_markdown", "{}");
+    let md = md.as_str().unwrap_or_default();
+    assert!(md.starts_with('#'), "{}", &md[..md.len().min(200)]);
+    let head: String = md.lines().take(4).collect::<Vec<_>>().join("\n");
+    assert!(head.contains(NEVER), "{head}");
 }
 
 #[test]
