@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:39e2d6a4501ccd77aad4de46842c9eb82d485e1e8a60e7e0f73a680006469aef",
+  "node_id": "art:vscode-hook-file",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "description": "The VS Code hook file `reflow2 init --harness vscode-cli` writes to .github/hooks/reflow2.json: SessionStart and Stop, both `reflow2 hook vscode || exit 1`. No PreToolUse or PostToolUse hook, so nothing reads a command's text (limitation 20).",
+    "location": "getting-started/vscode/hooks/reflow2.json",
+    "name": "reflow2.json (VS Code hooks)",
+    "status": "realized"
+  }
+}

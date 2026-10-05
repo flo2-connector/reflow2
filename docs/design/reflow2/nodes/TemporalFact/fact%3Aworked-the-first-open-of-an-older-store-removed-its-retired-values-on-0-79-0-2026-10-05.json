@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f163867e30fe13490403b5655265a008d1f30c393117d7951eef7b7fd3260ee0",
+  "node_id": "fact:worked-the-first-open-of-an-older-store-removed-its-retired-values-on-0-79-0-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-05 on 0.79.0, re-measured): the first open of an older store removed its retired stored values (Flow entry_point/exit_point, Capability is_entry_point/is_exit_point). So a member's fresh export differed from its 0.67-era commit by those values alone, and CHANGELOG explained it in one search. Do not regress it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry [works] of 2026-10-05 (art:vscode-call-field-log-2026-10-05, lines 350-354): \"on one member the fresh export differed from its 0.67.0-era committed copy only by retired `Flow.entry_point`/`exit_point` and `Capability.is_entry_point`/`is_exit_point` values, removed by the open/import repair (0.75, #622); found via CHANGELOG in one search.\"\n\nRE-MEASURED: a store written by 0.74.0, with Flow.entry_point and Capability.is_entry_point set, was opened by 0.79.0. Both values were removed (\"2 retired stored value(s) removed\"), and the export carries neither. Every later open repairs nothing. The repair is idempotent, and loses nothing that any reader reads.\n\nWhat did not work, and the reporter's idea for it, are recorded separately: the report reaches only a loop_status served by the process that opened first (fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05, dec:idea-what-the-first-open-after-an-upgrade-found-outlives-the-process-that-opened).",
+    "subject_id": "cap:a-relation-stored-twice-is-kept-in-step-by-the-store",
+    "valid_from": "2026-10-05"
+  }
+}

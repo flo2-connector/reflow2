@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fe6965651b73eae348ce48bab41f89cfe8e70748a85dde423d53e75e9eead34a",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:machine-wide-install",
+  "properties": {},
+  "to_id": "fact:defect-the-installer-cannot-repair-a-reflow2-command-that-is-a-symlink-to-the-binary-2026-10-05"
+}

@@ -302,6 +302,14 @@ jobs:
         # wire shows the lesson landing on exactly one tool's description and
         # the rest of the surface byte-identical, in one process, before/after.
         run: python3 tools/test_a_lesson_is_served_at_the_step.py
+      - name: The --call door, driven the way a VS Code agent drives it (real binary)
+        # req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current:
+        # a scratch project set up with `reflow2_init.py --harness vscode-cli`,
+        # the real `reflow2` command on PATH, then discovery, every runnable
+        # command the installed instructions show, a write, the refusal shapes,
+        # a held design, the export kept current, and the VS Code hooks run as
+        # their file says. Fails, never skips, when the binary is missing.
+        run: python3 tools/test_call_door.py
       - name: Nudge-path suite (the REGISTERED hook, run as registered)
         # req:nudge-path-proven: test_loop_nudge covers the script's logic given
         # its inputs, and passed the whole time nobody had checked the hook was

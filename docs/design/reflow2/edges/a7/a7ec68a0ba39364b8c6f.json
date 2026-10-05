@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:04ffddcba7de17afa220d6147a35828345546a6a47f08a68f3b78d39b329c2fd",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "note": "Implemented, all four pieces: init installs VS Code hook files (SessionStart runs loop_status; Stop exports and nudges); the nudge counts --call writes, from the usage ledger; loop_status no longer tells a VS Code project no nudge is possible; and the only hooks reflow2 ships read no command text at all."
+  },
+  "to_id": "dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code"
+}

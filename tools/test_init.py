@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import pathlib
 import shutil
 import subprocess
@@ -44,12 +45,13 @@ class InstallerTest(unittest.TestCase):
         return p
 
     def install(self, project, force_mcp=False, harnesses=None):
-        # Defaults to every harness, which is what these tests were written
-        # against and what a non-interactive run with no --harness still does.
+        # Defaults to every harness `all` names, which is what these tests were
+        # written against and what a non-interactive run with no --harness
+        # still does. The terminal route is opt-in by name and tested apart.
         # Pass `harnesses` to exercise the narrowing.
         return init.install(
             project, FAKE_BINARY, force_mcp,
-            list(init.HARNESSES) if harnesses is None else harnesses,
+            list(init.IMPLIED_BY_ALL) if harnesses is None else harnesses,
         )
 
     # ---- the full kit lands ------------------------------------------------
@@ -218,7 +220,7 @@ class InstallerTest(unittest.TestCase):
         stamp["installed_files"]["AGENTS.md"] = init.file_sha(doc)
         (p / ".reflow2/kit-version.json").write_text(json.dumps(stamp))
 
-        planned = init.planned_changes(p, list(init.HARNESSES))
+        planned = init.planned_changes(p, list(init.IMPLIED_BY_ALL))
 
         # The pointer file is allowed to be refreshed — it is small and stable —
         # but nothing about the WORKING INSTRUCTIONS or the skills may move,
@@ -383,7 +385,7 @@ class InstallerTest(unittest.TestCase):
         )
         # And --check says it too, before anything moves.
         self.assertTrue(
-            any("git rm --cached" in c for c in init.planned_changes(p, list(init.HARNESSES))),
+            any("git rm --cached" in c for c in init.planned_changes(p, list(init.IMPLIED_BY_ALL))),
             "--check must disclose it as well",
         )
 
@@ -636,7 +638,7 @@ class ManifestTest(InstallerTest):
         (p / ".reflow2/kit-version.json").write_text(json.dumps(stamp))
 
         # --check must say so BEFORE anything moves.
-        planned = init.planned_changes(p, list(init.HARNESSES))
+        planned = init.planned_changes(p, list(init.IMPLIED_BY_ALL))
         self.assertTrue(
             any("remove" in c and "adopt/SKILL.md" in c and "served" in c for c in planned),
             f"--check must disclose the removal: {planned}",
@@ -735,7 +737,7 @@ class ManifestTest(InstallerTest):
 
     def test_check_also_reports_it_because_check_is_what_you_run_first(self):
         p = self.tracked_graph_project()
-        changes = init.planned_changes(p, list(init.HARNESSES))
+        changes = init.planned_changes(p, list(init.IMPLIED_BY_ALL))
 
         self.assertTrue(
             any(".reflow2/" in c and "is committed" in c for c in changes),
@@ -1011,12 +1013,13 @@ class HarnessChoice(unittest.TestCase):
     # ---- the nudge absence is announced, not left silent -------------------
 
     def test_a_harness_with_no_hook_is_told_so_rather_than_left_silent(self):
-        # Only Claude Code has an event model reflow2 can register against. The
-        # user has just NAMED their harness, so silence about what it cannot
-        # have is the failure the asking was meant to remove
+        # reflow2 installs a trigger for Claude Code (a hook), OpenCode (a
+        # plugin) and VS Code's terminal route (hook files). The user has just
+        # NAMED their harness, so silence about what it cannot have is the
+        # failure the asking was meant to remove
         # (`dec:idea-the-loop-nudge-exists-for-one-harness-only`).
         p = self.project()
-        done = self.install(p, ["opencode"])
+        done = self.install(p, ["grok"])
 
         self.assertFalse((p / ".claude" / "settings.local.json").exists(),
                          "no Claude hook file for a project that is not on Claude")
@@ -1031,6 +1034,25 @@ class HarnessChoice(unittest.TestCase):
         p = self.project()
         done = self.install(p, ["claude"])
         self.assertIn("settings.local.json", "\n".join(done))
+
+    def test_opencode_is_not_told_its_nudge_is_missing_when_the_plugin_is_installed(self):
+        # The OpenCode plugin IS its trigger (PR #511). Saying "NOT INSTALLED"
+        # beside the plugin it just wrote was the stale sentence the VS Code
+        # root cause found in the server's advisory, here in the installer.
+        p = self.project()
+        done = self.install(p, ["opencode"])
+        self.assertTrue((p / ".opencode" / "plugins" / "reflow2-loop-nudge.js").exists())
+        self.assertNotIn("NOT INSTALLED", "\n".join(done))
+
+    def test_the_vscode_mcp_route_is_pointed_at_the_hooks_it_can_have(self):
+        # VS Code HAS an event model (fact:vs-code-has-an-agent-hook-event-model-
+        # reflow2-can-register-against-2026-10-02), so "none is possible" is
+        # false for it; reflow2 installs its hooks with the terminal route.
+        p = self.project()
+        said = "\n".join(self.install(p, ["vscode"]))
+        self.assertIn("NOT INSTALLED", said)
+        self.assertIn("vscode-cli", said)
+        self.assertNotIn("only Claude Code", said)
 
     # ---- the answer survives to the next run -------------------------------
 
@@ -1079,7 +1101,7 @@ class HarnessChoice(unittest.TestCase):
     def test_all_is_spelled_out_rather_than_needing_every_name(self):
         p = self.project()
         chosen, _ = init.resolve_harnesses(p, "all", interactive=False)
-        self.assertEqual(sorted(chosen), sorted(init.HARNESSES))
+        self.assertEqual(sorted(chosen), sorted(init.IMPLIED_BY_ALL))
 
     def test_no_tty_and_no_answer_installs_everything_and_says_so(self):
         # Deliberately the OLD behaviour for this case. An install that hangs
@@ -1089,7 +1111,7 @@ class HarnessChoice(unittest.TestCase):
         p = self.project()
         chosen, note = init.resolve_harnesses(p, None, interactive=False)
 
-        self.assertEqual(sorted(chosen), sorted(init.HARNESSES))
+        self.assertEqual(sorted(chosen), sorted(init.IMPLIED_BY_ALL))
         self.assertIn("not asked", note or "")
         self.assertIn("--harness", note or "",
                       "telling someone it guessed is only useful with how to stop it")
@@ -1213,9 +1235,11 @@ class HarnessChoice(unittest.TestCase):
         for spec in init.MCP_CONFIGS:
             self.assertIn(spec["harness"], init.HARNESSES,
                           f"{spec['path']} names a harness nobody can choose")
-        covered = {s["harness"] for s in init.MCP_CONFIGS}
+        # The terminal route is the one harness with no MCP config: what it
+        # writes is its own set of files (`VsCodeTerminalRoute` below).
+        covered = {s["harness"] for s in init.MCP_CONFIGS} | set(init.DOOR_HARNESSES)
         self.assertEqual(covered, set(init.HARNESSES),
-                         "every offerable harness needs a config to write")
+                         "every offerable harness needs a config or files to write")
 
 
 class UpdateIsItsOwnWord(unittest.TestCase):
@@ -1250,7 +1274,7 @@ class UpdateIsItsOwnWord(unittest.TestCase):
 
     def test_a_project_with_an_install_receipt_may_be_updated(self):
         p = self.project()
-        init.install(p, FAKE_BINARY, False, list(init.HARNESSES))
+        init.install(p, FAKE_BINARY, False, list(init.IMPLIED_BY_ALL))
         self.assertTrue((p / init.STAMP).exists(), "precondition: a receipt exists")
         self.assertIsNone(
             init.why_not_an_update(p),
@@ -1332,6 +1356,491 @@ class UpdateIsItsOwnWord(unittest.TestCase):
                                   text=True, check=True).stdout
         for line in ("reflow2 read <tool>", "reflow2 write <tool>", "^reflow2 read "):
             self.assertIn(line, helptext, "the wrapper's help must name the verbs")
+
+    def test_the_wrapper_runs_the_vscode_hook_through_the_kits_nudge(self):
+        # The VS Code hook file is COMMITTED, so it cannot carry this machine's
+        # path to the kit the way `.claude/settings.local.json` does. It runs
+        # `reflow2 hook vscode`, and the wrapper, which knows the kit and the
+        # binary, hands that to loop_nudge.py with the binary named. Driven for
+        # real, with a stub python3 that echoes argv and the binary it was given.
+        import importlib.util as _ilu
+        spec = _ilu.spec_from_file_location("reflow2_install", HERE / "reflow2_install.py")
+        inst = _ilu.module_from_spec(spec)
+        spec.loader.exec_module(inst)
+        sh = shutil.which("sh")
+        if sh is None:
+            self.skipTest("no POSIX sh on this machine")
+        d = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-wrapper-hook-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        (d / "bin").mkdir()
+        fake_python = d / "bin" / "python3"
+        fake_python.write_text(
+            '#!/bin/sh\nprintf "REFLOW2_BIN=%s\\n" "$REFLOW2_BIN"\n'
+            'for a in "$@"; do printf \'[%s]\' "$a"; done\n')
+        fake_python.chmod(0o755)
+        wrapper = d / "reflow2"
+        wrapper.write_text(inst.WRAPPER.format(kit=d / "kit", binary=d / "the-binary"))
+        wrapper.chmod(0o755)
+        env = dict(os.environ, PATH=f"{d / 'bin'}:{os.environ.get('PATH', '')}")
+        out = subprocess.run([sh, str(wrapper), "hook", "vscode"], capture_output=True,
+                             text=True, env=env, check=True).stdout
+        self.assertIn(f"REFLOW2_BIN={d / 'the-binary'}", out,
+                      "the nudge must be told which binary answers the door")
+        self.assertIn(f"[{d / 'kit'}/../tools/loop_nudge.py][--harness][vscode]", out)
+
+
+# ---------------------------------------------------------------------------
+# An MCP install writes exactly what it wrote before the terminal route
+# ---------------------------------------------------------------------------
+
+# Normalised content hashes of every file an install writes, per harness
+# choice, taken from the installer on main BEFORE the terminal route existed
+# (e7e304d). The owner's constraint, 2026-10-05: the VS Code route must not
+# change reflow2 for anyone using it as an MCP server.
+INSTALL_GOLDEN = HERE / "init_goldens" / "mcp-install.json"
+BLESS_ENV = "REFLOW2_BLESS_INIT_GOLDEN"
+GOLDEN_CHOICES = {
+    "claude": ["claude"],
+    "opencode": ["opencode"],
+    "grok": ["grok"],
+    "vscode": ["vscode"],
+    "all": ["claude", "opencode", "grok", "vscode"],
+}
+# The receipt's keys before the terminal route. Its VALUES carry this
+# checkout's version and path, so the keys are what is pinned.
+RECEIPT_KEYS = ["commit", "committed_at", "harnesses", "installed_files",
+                "reflow2_version", "source"]
+
+
+def install_fingerprint(installer, tmp: pathlib.Path, harnesses: list[str]) -> dict:
+    """Every file `installer.install` writes into a fresh project, by path,
+    with this machine's paths normalised out, hashed. The receipt is reduced
+    to its keys, its harness list and its file manifest."""
+    import hashlib
+    project = tmp / "proj"
+    project.mkdir()
+    installer.install(project, FAKE_BINARY, False, list(harnesses))
+    out = {}
+    for f in sorted(p for p in project.rglob("*") if p.is_file()):
+        rel = f.relative_to(project).as_posix()
+        text = f.read_text(encoding="utf-8")
+        if rel == ".reflow2/kit-version.json":
+            stamp = json.loads(text)
+            text = json.dumps({"keys": sorted(stamp), "harnesses": stamp.get("harnesses"),
+                               "installed_files": stamp.get("installed_files")}, sort_keys=True)
+        text = text.replace(str(installer.REPO), "<REPO>").replace(str(project), "<PROJECT>")
+        out[rel] = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    return out
+
+
+class McpInstallIsUnchanged(unittest.TestCase):
+    """`reflow2 init` and `reflow2 update` for an MCP harness write exactly
+    what they wrote before the VS Code terminal route, byte for byte.
+
+    The pin is a golden taken from main's own installer (e7e304d), so a change
+    here is a change to what every MCP project receives. If one is MEANT,
+    regenerate with REFLOW2_BLESS_INIT_GOLDEN=1 and say so in the change.
+    """
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-mcp-golden-"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+
+    def test_an_mcp_install_writes_what_it_wrote_before_byte_for_byte(self):
+        got = {}
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name
+            d.mkdir()
+            got[name] = install_fingerprint(init, d, harnesses)
+        if os.environ.get(BLESS_ENV):
+            INSTALL_GOLDEN.parent.mkdir(exist_ok=True)
+            INSTALL_GOLDEN.write_text(json.dumps(got, indent=2, sort_keys=True) + "\n")
+            self.skipTest(f"blessed {INSTALL_GOLDEN.name}")
+        golden = json.loads(INSTALL_GOLDEN.read_text())
+        for name in GOLDEN_CHOICES:
+            self.assertEqual(sorted(got[name]), sorted(golden[name]),
+                             f"--harness {name}: a different SET of files is written")
+            changed = [rel for rel in golden[name] if got[name][rel] != golden[name][rel]]
+            self.assertEqual(changed, [], f"--harness {name}: these files' bytes changed")
+            self.assertFalse([rel for rel in got[name] if rel.startswith(".github/")],
+                             f"--harness {name}: nothing VS Code-specific is written")
+
+    def test_the_receipt_of_an_mcp_install_keeps_its_keys(self):
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name
+            d.mkdir()
+            (d / "proj").mkdir()
+            init.install(d / "proj", FAKE_BINARY, False, harnesses)
+            stamp = json.loads((d / "proj" / init.STAMP).read_text())
+            self.assertEqual(sorted(stamp), RECEIPT_KEYS, f"--harness {name}")
+
+    def test_an_update_of_an_mcp_project_changes_nothing(self):
+        # `reflow2 update` is `install` on a project with a receipt. On a
+        # project set up for an MCP harness it must find nothing to do.
+        for name, harnesses in GOLDEN_CHOICES.items():
+            d = self.tmp / name / "proj"
+            d.mkdir(parents=True)
+            init.install(d, FAKE_BINARY, False, harnesses)
+            before = {f: f.read_bytes() for f in d.rglob("*") if f.is_file()}
+            init.install(d, FAKE_BINARY, False, harnesses)
+            after = {f: f.read_bytes() for f in d.rglob("*") if f.is_file()}
+            self.assertEqual(sorted(after), sorted(before), f"--harness {name}")
+            moved = [str(f.relative_to(d)) for f in before
+                     if f.name != "kit-version.json" and after[f] != before[f]]
+            self.assertEqual(moved, [], f"--harness {name}: an update rewrote these")
+
+
+# ---------------------------------------------------------------------------
+# VS Code with MCP blocked: the terminal route (`--harness vscode-cli`)
+# ---------------------------------------------------------------------------
+
+# The documented schema of a VS Code hook file, from
+# https://code.visualstudio.com/docs/agents/reference/hooks-reference (read
+# 2026-10-05): a `hooks` object whose keys are event names, each an array of
+# command entries; an entry must have `type: "command"` and at least one
+# command property, and may carry only these properties.
+VSCODE_HOOK_EVENTS = {
+    "SessionStart", "UserPromptSubmit", "PreToolUse", "PostToolUse",
+    "PreCompact", "SubagentStart", "SubagentStop", "Stop",
+}
+VSCODE_COMMAND_PROPS = {"type", "command", "windows", "linux", "osx", "cwd", "env", "timeout"}
+VSCODE_COMMAND_KEYS = {"command", "windows", "linux", "osx"}
+
+
+def vscode_hook_problems(doc) -> list[str]:
+    """Every way `doc` departs from VS Code's documented hook-file schema."""
+    problems = []
+    if not isinstance(doc, dict):
+        return ["the file is not a JSON object"]
+    if set(doc) != {"hooks"}:
+        problems.append(f"top-level keys {sorted(doc)}; the schema has only `hooks`")
+    hooks = doc.get("hooks")
+    if not isinstance(hooks, dict):
+        return problems + ["`hooks` is not an object"]
+    for event, entries in hooks.items():
+        if event not in VSCODE_HOOK_EVENTS:
+            problems.append(f"{event!r} is not a VS Code hook event")
+        if not isinstance(entries, list) or not entries:
+            problems.append(f"{event}: not a non-empty array of command entries")
+            continue
+        for i, entry in enumerate(entries):
+            where = f"{event}[{i}]"
+            if not isinstance(entry, dict):
+                problems.append(f"{where}: not an object")
+                continue
+            if entry.get("type") != "command":
+                problems.append(f"{where}: type must be \"command\"")
+            if extra := set(entry) - VSCODE_COMMAND_PROPS:
+                problems.append(f"{where}: unknown properties {sorted(extra)}")
+            commands = [k for k in VSCODE_COMMAND_KEYS if k in entry]
+            if not commands:
+                problems.append(f"{where}: no command property")
+            for k in commands:
+                if not isinstance(entry[k], str) or not entry[k].strip():
+                    problems.append(f"{where}.{k}: not a non-empty string")
+            if "timeout" in entry and (not isinstance(entry["timeout"], (int, float))
+                                       or isinstance(entry["timeout"], bool)
+                                       or entry["timeout"] <= 0):
+                problems.append(f"{where}.timeout: not a positive number of seconds")
+            if "env" in entry and not isinstance(entry["env"], dict):
+                problems.append(f"{where}.env: not an object")
+    return problems
+
+
+def frontmatter(text: str) -> dict:
+    """The flat `key: value` pairs of a Markdown file's YAML frontmatter."""
+    import re as _re
+    m = _re.match(r"^---\n(.*?)\n---\n", text, _re.S)
+    assert m, f"no frontmatter in: {text[:80]!r}"
+    return dict(_re.findall(r"^([\w-]+):\s*(.*)$", m.group(1), _re.M))
+
+
+SERVED_SKILLS = sorted(p.name for p in (init.KIT / "skills").iterdir() if p.is_dir())
+KIT_COMMANDS = sorted(p.stem for p in (init.KIT / "commands").glob("*.md"))
+
+
+class VsCodeTerminalRoute(unittest.TestCase):
+    """`reflow2 init --harness vscode-cli`: everything VS Code's agent needs to
+    reach reflow2 through the terminal where an organisation blocks MCP.
+
+    The VS Code `--call` field report (art:vscode-call-door-field-report-2026-10-02)
+    found the route resting on one person's hand-written user file that init
+    and update neither installed nor refreshed (limitation 11), no skill VS Code
+    could pick and no slash command (7), and no loop nudge (9). Owner's go,
+    2026-10-05, for ideas 12, 1, 7 and 11 as one increment.
+    """
+
+    ROUTE = ["vscode-cli"]
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-vscode-cli-test-"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+
+    def project(self, name="proj") -> pathlib.Path:
+        p = self.tmp / name
+        p.mkdir()
+        return p
+
+    def install(self, project, harnesses=None):
+        return init.install(project, FAKE_BINARY, False, harnesses or self.ROUTE)
+
+    # ---- what init writes ----------------------------------------------------
+
+    def test_init_writes_the_terminal_route_into_the_project(self):
+        p = self.project()
+        done = self.install(p)
+        said = "\n".join(done)
+
+        instructions = p / ".github" / "instructions" / "reflow2.instructions.md"
+        hooks = p / ".github" / "hooks" / "reflow2.json"
+        self.assertTrue(instructions.exists(), said)
+        self.assertTrue(hooks.exists(), said)
+        for skill in SERVED_SKILLS:
+            self.assertTrue((p / ".github" / "skills" / skill / "SKILL.md").exists(),
+                            f"no stub for the served skill {skill}")
+        for command in KIT_COMMANDS:
+            self.assertTrue((p / ".github" / "prompts" / f"{command}.prompt.md").exists(),
+                            f"no prompt file for /{command}")
+        # MCP is what this organisation blocks, so no MCP config is written
+        # for this route: a config for a server that cannot start is the
+        # "reached through the MCP server" claim the root cause named as false.
+        self.assertFalse((p / ".vscode" / "mcp.json").exists())
+        # The loop nudge is installed, not announced as absent.
+        self.assertNotIn("NOT INSTALLED", said)
+        self.assertIn(".github/hooks/reflow2.json", said)
+
+    def test_the_instructions_are_the_served_text_and_reads_go_through_reflow2_read(self):
+        p = self.project()
+        self.install(p)
+        text = (p / ".github" / "instructions" / "reflow2.instructions.md").read_text()
+        served = (init.KIT / "vscode" / "reflow2.instructions.md").read_text()
+        self.assertEqual(init.strip_owned_marker(text), served,
+                         "the installed file is the kit's served text plus reflow2's mark")
+        fm = frontmatter(text)
+        self.assertEqual(fm.get("applyTo"), "'**'")
+        self.assertTrue(fm.get("description"), "VS Code loads it on demand by description")
+        # One approval rule covers every read only if every read uses the verb.
+        self.assertIn("reflow2 read ", text)
+        self.assertIn("reflow2 write ", text)
+        self.assertIn('"/^reflow2 read /": true', text)
+        self.assertNotIn("--call", text, "the door's verbs, not the raw flag")
+
+    def test_every_file_init_writes_for_vs_code_is_marked_as_reflow2s(self):
+        p = self.project()
+        self.install(p)
+        github = p / ".github"
+        for f in sorted(github.rglob("*.md")):
+            self.assertEqual(init.owned_marker_state(f.read_text()), "intact",
+                             f"{f.relative_to(p)} carries no intact reflow2 mark")
+        stamp = json.loads((p / init.STAMP).read_text())
+        self.assertIn(".github/hooks/reflow2.json", stamp["installed_files"],
+                      "the hook file is reflow2's by the install receipt")
+
+    def test_the_hook_file_is_valid_for_vs_codes_hook_schema(self):
+        p = self.project()
+        self.install(p)
+        doc = json.loads((p / ".github" / "hooks" / "reflow2.json").read_text())
+        self.assertEqual(vscode_hook_problems(doc), [])
+        # What the accepted decision asks for, and nothing more: SessionStart
+        # runs loop_status, Stop exports and nudges. Both run the kit's nudge
+        # through the `reflow2` command, never a path into this machine.
+        self.assertEqual(sorted(doc["hooks"]), ["SessionStart", "Stop"])
+        for event in ("SessionStart", "Stop"):
+            for entry in doc["hooks"][event]:
+                self.assertIn("reflow2 hook vscode", entry["command"])
+                self.assertNotIn(str(init.REPO), entry["command"],
+                                 "a committed hook file must not carry this machine's path")
+                # VS Code reads exit 2 as a BLOCKING error. A missing or older
+                # `reflow2` must warn, never block the agent.
+                self.assertTrue(entry["command"].endswith("|| exit 1"), entry["command"])
+
+    def test_the_schema_check_itself_refuses_what_vs_code_would_not_read(self):
+        # The check above is only worth something if it can fail.
+        self.assertTrue(vscode_hook_problems({"hooks": {"OnStop": []}}))
+        self.assertTrue(vscode_hook_problems(
+            {"hooks": {"Stop": [{"type": "command", "bash": "x"}]}}))
+        self.assertTrue(vscode_hook_problems(
+            {"version": 1, "hooks": {"Stop": [{"type": "command", "command": "x"}]}}))
+        self.assertEqual(vscode_hook_problems(
+            {"hooks": {"Stop": [{"type": "command", "command": "x", "timeout": 5}]}}), [])
+
+    def test_no_shipped_hook_reads_the_command_text(self):
+        # Limitation 20: a PreToolUse guard that matched words in the command
+        # text blocked door writes whose PROSE mentioned ssh. reflow2 ships no
+        # PreToolUse or PostToolUse hook for VS Code at all; the Stop hook
+        # learns what was written from reflow2's own usage ledger.
+        p = self.project()
+        self.install(p)
+        doc = json.loads((p / ".github" / "hooks" / "reflow2.json").read_text())
+        self.assertFalse({"PreToolUse", "PostToolUse"} & set(doc["hooks"]))
+
+    def test_the_skill_stubs_name_every_served_skill_and_route_to_get_skill(self):
+        p = self.project()
+        self.install(p)
+        stubs = sorted(d.name for d in (p / ".github" / "skills").iterdir() if d.is_dir())
+        self.assertEqual(stubs, SERVED_SKILLS)
+        import re as _re
+        for skill in SERVED_SKILLS:
+            text = (p / ".github" / "skills" / skill / "SKILL.md").read_text()
+            fm = frontmatter(text)
+            # VS Code's rules: a bad name makes the skill "silently fail to load".
+            self.assertEqual(fm.get("name"), skill)
+            self.assertTrue(_re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", skill) and len(skill) <= 64)
+            source = frontmatter((init.KIT / "skills" / skill / "SKILL.md").read_text())
+            # Written as a double-quoted scalar, so a STRICT YAML parser reads
+            # it: five served skills' own frontmatter carries ": " inside a
+            # plain scalar, which strict YAML refuses ("mapping values are not
+            # allowed here"), and VS Code drops a skill it cannot read silently.
+            self.assertTrue(fm["description"].startswith('"'), fm["description"])
+            self.assertEqual(json.loads(fm["description"]), source["description"],
+                             "VS Code picks a skill by its description: it must be the served one")
+            self.assertLessEqual(len(json.loads(fm["description"])), 1024)
+            # The slash menu belongs to the prompt files, so the stub is
+            # picked by the agent and does not duplicate a / entry.
+            self.assertEqual(fm.get("user-invocable"), "false")
+            self.assertIn(f"reflow2 read get_skill '{{\"name\": \"{skill}\"}}'", text)
+            body = text.split("\n---\n", 1)[1]
+            self.assertLess(len(body), 1200, f"{skill}: a stub, not a copy of the skill")
+
+    def test_the_prompt_files_carry_every_slash_command_through_the_door(self):
+        p = self.project()
+        self.install(p)
+        prompts = sorted(f.name.removesuffix(".prompt.md")
+                         for f in (p / ".github" / "prompts").glob("*.prompt.md"))
+        self.assertEqual(prompts, KIT_COMMANDS)
+        for command in KIT_COMMANDS:
+            text = (p / ".github" / "prompts" / f"{command}.prompt.md").read_text()
+            fm = frontmatter(text)
+            self.assertTrue(fm.get("description"), command)
+            self.assertNotIn("$ARGUMENTS", text, "Claude Code's placeholder means nothing here")
+            self.assertIn("reflow2 read", text, f"/{command} must say how to reach reflow2")
+
+    def test_the_receipt_names_the_record_the_stop_hook_exports(self):
+        p = self.project()
+        self.install(p)
+        stamp = json.loads((p / init.STAMP).read_text())
+        self.assertEqual(stamp.get("design_record"), "docs/design/proj.json")
+        self.assertEqual(stamp.get("harnesses"), ["vscode-cli"])
+
+    # ---- update refreshes reflow2's files and nobody else's -----------------
+
+    def _older_rendering(self, path: pathlib.Path) -> str:
+        """The file as an older reflow2 would have written it: different
+        content, reflow2's mark intact."""
+        body = init.strip_owned_marker(path.read_text())
+        return init.mark_owned(body.replace("description: ", "description: OLDER ", 1))
+
+    def test_update_refreshes_reflow2s_files_and_leaves_a_persons_edits_alone(self):
+        p = self.project()
+        self.install(p)
+        skills = p / ".github" / "skills"
+        stale = skills / "genesis" / "SKILL.md"
+        edited = skills / "adopt" / "SKILL.md"
+        own_skill = skills / "our-release-checklist" / "SKILL.md"
+        own_prompt = p / ".github" / "prompts" / "ship.prompt.md"
+        own_hooks = p / ".github" / "hooks" / "team.json"
+        stale.write_text(self._older_rendering(stale))
+        edited.write_text(edited.read_text() + "\nOur team always runs this on Mondays.\n")
+        own_skill.parent.mkdir()
+        own_skill.write_text("---\nname: our-release-checklist\ndescription: Ours.\n---\nMine.\n")
+        own_prompt.write_text("---\ndescription: Ship it\n---\nShip.\n")
+        own_hooks.write_text('{"hooks": {"Stop": [{"type": "command", "command": "make lint"}]}}\n')
+        before = {f: f.read_text() for f in (edited, own_skill, own_prompt, own_hooks)}
+
+        done = self.install(p)  # `reflow2 update` is this, on a project with a receipt
+        said = "\n".join(done)
+
+        self.assertNotIn("OLDER", stale.read_text(), "reflow2's own stale stub is refreshed")
+        self.assertEqual(init.owned_marker_state(stale.read_text()), "intact")
+        for f, text in before.items():
+            self.assertEqual(f.read_text(), text, f"{f.relative_to(p)} is the person's")
+        self.assertIn(".github/skills/adopt/SKILL.md  LEFT ALONE", said,
+                      "a kept edit is reported, not silent")
+
+    def test_a_fresh_clone_with_no_receipt_still_keeps_a_persons_edits(self):
+        # The receipt is in `.reflow2/`, which is git-ignored, so a teammate's
+        # clone has the COMMITTED stubs and no record of who wrote them. The
+        # mark carries a hash of the file, so an edit is still told apart.
+        p = self.project()
+        self.install(p)
+        edited = p / ".github" / "skills" / "adopt" / "SKILL.md"
+        edited.write_text(edited.read_text() + "\nWe skim it.\n")
+        mine = edited.read_text()
+        shutil.rmtree(p / ".reflow2")
+
+        done = self.install(p)
+
+        self.assertEqual(edited.read_text(), mine)
+        self.assertIn(".github/skills/adopt/SKILL.md  LEFT ALONE", "\n".join(done))
+
+    def test_a_persons_file_at_reflow2s_path_is_never_overwritten(self):
+        p = self.project()
+        own = p / ".github" / "instructions" / "reflow2.instructions.md"
+        own.parent.mkdir(parents=True)
+        own.write_text("# How we use reflow2 here\n\nOur own words.\n")
+        hooks = p / ".github" / "hooks" / "reflow2.json"
+        hooks.parent.mkdir(parents=True)
+        hooks.write_text('{"hooks": {}}\n')
+
+        done = self.install(p)
+
+        self.assertEqual(own.read_text(), "# How we use reflow2 here\n\nOur own words.\n")
+        self.assertEqual(hooks.read_text(), '{"hooks": {}}\n')
+        said = "\n".join(done)
+        self.assertIn(".github/instructions/reflow2.instructions.md  LEFT ALONE", said)
+        self.assertIn(".github/hooks/reflow2.json  LEFT ALONE", said)
+
+    def test_a_second_run_changes_nothing(self):
+        p = self.project()
+        self.install(p)
+        snapshot = {f: f.read_bytes() for f in (p / ".github").rglob("*") if f.is_file()}
+        done = self.install(p)
+        after = {f: f.read_bytes() for f in (p / ".github").rglob("*") if f.is_file()}
+        self.assertEqual(after, snapshot)
+        self.assertFalse([d for d in done if d.startswith(".github/")],
+                         f"an unchanged file is not reported as written: {done}")
+
+    def test_a_stub_for_a_skill_no_longer_served_is_removed_when_untouched(self):
+        p = self.project()
+        self.install(p)
+        gone = p / ".github" / "skills" / "retired-skill" / "SKILL.md"
+        gone.parent.mkdir()
+        gone.write_text(init.mark_owned(
+            "---\nname: retired-skill\ndescription: Old.\nuser-invocable: false\n---\nOld.\n"))
+        shutil.rmtree(p / ".reflow2")  # even with no receipt: the mark is the proof
+
+        done = self.install(p)
+
+        self.assertFalse(gone.exists())
+        self.assertFalse(gone.parent.exists())
+        self.assertIn(".github/skills/retired-skill/SKILL.md  removed", "\n".join(done))
+
+    # ---- choosing the route --------------------------------------------------
+
+    def test_the_route_is_chosen_by_name_and_not_implied_by_all(self):
+        # Its files are COMMITTED and number seventy-odd, so a project that did
+        # not name it must not receive them: not from `all`, and not from a
+        # pipeline that answered nothing.
+        self.assertIn("vscode-cli", init.HARNESSES)
+        self.assertEqual(init.parse_harness_arg("vscode-cli"), (["vscode-cli"], []))
+        known, _ = init.parse_harness_arg("all")
+        self.assertNotIn("vscode-cli", known)
+        p = self.project()
+        chosen, _ = init.resolve_harnesses(p, None, interactive=False)
+        self.assertNotIn("vscode-cli", chosen)
+
+    def test_the_mcp_route_and_the_terminal_route_can_sit_side_by_side(self):
+        p = self.project()
+        self.install(p, ["vscode", "vscode-cli"])
+        self.assertTrue((p / ".vscode" / "mcp.json").exists())
+        self.assertTrue((p / ".github" / "hooks" / "reflow2.json").exists())
+
+    def test_check_lists_what_the_route_would_write(self):
+        p = self.project()
+        changes = "\n".join(init.planned_changes(p, self.ROUTE))
+        self.assertIn("create  .github/instructions/reflow2.instructions.md", changes)
+        self.assertIn("create  .github/hooks/reflow2.json", changes)
+        self.assertIn("create  .github/skills/genesis/SKILL.md", changes)
 
 
 if __name__ == "__main__":

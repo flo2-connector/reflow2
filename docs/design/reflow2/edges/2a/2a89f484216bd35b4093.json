@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d39ff52ff48cb3dde1e85b0698eaab79049ca6ab2be1ef2fef44521853dee51",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:vs-code-picks-a-served-skill-by-its-description-from-a-stub-init-installs",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

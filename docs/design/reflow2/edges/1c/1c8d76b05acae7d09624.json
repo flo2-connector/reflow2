@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c515eae02b6285114698446ecc5612f8f25412c54c17435bca1645accd1d666",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-loop-nudge",
+  "properties": {
+    "covers": "partial",
+    "evidence": "VsCodeHook; CI's core job runs it"
+  },
+  "to_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it"
+}

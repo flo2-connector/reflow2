@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc929477c74eb3b424332aa241530d0a34898063ad33434574ae7cd16566c277",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "note": "The increment approved 2026-10-05: ideas 1, 7, 11 and 12. Idea 8 is not in it."
+  },
+  "to_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05"
+}

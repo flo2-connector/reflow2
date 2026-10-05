@@ -14,7 +14,10 @@
 use std::collections::BTreeSet;
 use std::path::PathBuf;
 
-use reflow2_mcp::skills::{POINTER, SKILLS, catalogue, find, pointer_section};
+use reflow2_mcp::skills::{
+    POINTER, SKILLS, VSCODE_TERMINAL_ROUTE, catalogue, find, instruction_sections, pointer_section,
+    terminal_route_section,
+};
 
 fn kit() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
@@ -399,6 +402,34 @@ fn the_pointer_a_project_holds_is_served_as_a_section_and_the_first_session_skil
             "{name} names the sidecar for a project that owns an AGENTS.md"
         );
     }
+}
+
+/// The instructions a VS Code agent on the terminal route works from are
+/// served by the binary, beside the pointer: `reflow2 init --harness
+/// vscode-cli` writes the same text to `.github/instructions/`, so `reflow2
+/// update` refreshes it with the binary it describes, and a project that never
+/// ran the init can fetch it (`req:init-installs-the-terminal-route-for-vs-code-
+/// and-update-keeps-it-current`).
+#[test]
+fn the_terminal_route_instructions_are_served_as_a_section_of_their_own() {
+    let route = terminal_route_section();
+    assert_eq!(route.slug, "vscode-terminal-route");
+    assert_eq!(route.body, VSCODE_TERMINAL_ROUTE);
+    assert!(
+        VSCODE_TERMINAL_ROUTE.contains("applyTo: '**'"),
+        "the served text is the kit's VS Code instructions file, frontmatter and all"
+    );
+    for verb in ["reflow2 read ", "reflow2 write "] {
+        assert!(VSCODE_TERMINAL_ROUTE.contains(verb), "it teaches `{verb}`");
+    }
+    // Not part of the document the sections rejoin into: like the pointer, it
+    // is a file a project holds.
+    assert!(
+        instruction_sections()
+            .iter()
+            .all(|s| s.slug != route.slug && s.body != route.body),
+        "the route is served beside the instructions, not inside them"
+    );
 }
 
 /// A local hub's list of designs is its DECLARED DEPENDENCIES, and the served

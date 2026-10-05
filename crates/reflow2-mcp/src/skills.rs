@@ -91,6 +91,21 @@ pub fn pointer_section() -> InstructionSection {
     }
 }
 
+/// The instructions a VS Code agent on the terminal route works from, served as
+/// a section of their own beside the pointer: the text `reflow2 init --harness
+/// vscode-cli` writes to `.github/instructions/reflow2.instructions.md`.
+/// Like the pointer, it is a file a project holds, not part of the document
+/// [`instruction_sections`] rejoins.
+pub fn terminal_route_section() -> InstructionSection {
+    InstructionSection {
+        slug: "vscode-terminal-route".to_string(),
+        title: "VS Code with MCP blocked: the instructions file the terminal route installs \
+                (.github/instructions/reflow2.instructions.md)"
+            .to_string(),
+        body: VSCODE_TERMINAL_ROUTE.to_string(),
+    }
+}
+
 /// Heading text to a stable, typeable slug.
 fn slugify(s: &str) -> String {
     let mut out = String::new();

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5ed77a04897efbc0c598b1774cca8e037af61e160c37cf895d61988eee45de8f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:458d4636f20aba0e276692c8c43194d70877e413f445e778eca19e874a0ad299",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:using-reflow2-in-vscode-without-mcp"
+}

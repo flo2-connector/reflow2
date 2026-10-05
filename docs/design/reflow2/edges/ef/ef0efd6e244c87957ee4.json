@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3aa55c21599157881e9b83aa9505b7c4495c43c6ff3129f1976b3f54fb17dbc7",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Re-measured 2026-10-05 on this branch: `reflow2 init --harness vscode-cli` writes a stub per served skill under .github/skills (served description, routing to `reflow2 read get_skill`) and a prompt per slash command under .github/prompts; test_call_door.py runs every stub's get_skill command through the door and each answers with the skill."
+  },
+  "to_id": "fact:root-cause-vs-code-reads-project-skills-and-slash-prompts-and-init-installs-neither-for-it-2026-10-02"
+}

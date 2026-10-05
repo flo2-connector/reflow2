@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b0e9009c42995b5f4990668a26658852d9a8c07cbda30a18bb5a5b93325244a8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-call-door",
+  "properties": {
+    "covers": "partial",
+    "evidence": "drives the real binary through the installed route; CI's full job runs it"
+  },
+  "to_id": "ver:the-vscode-terminal-route-is-installed-and-driven-the-way-an-agent-drives-it"
+}

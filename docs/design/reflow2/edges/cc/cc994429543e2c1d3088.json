@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9fdda186c611d87f76d81f4575e53d2c944e44bac394845176dd6386eb087906",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-what-the-first-open-after-an-upgrade-found-outlives-the-process-that-opened",
+  "properties": {
+    "evidence": "Each option keeps or says the verdict and the repair report that the finding measured every one-shot open to drop."
+  },
+  "to_id": "fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05"
+}

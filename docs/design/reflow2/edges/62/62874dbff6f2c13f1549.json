@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5835e58dc7ae9ba842debd5affc211f5f1e43fd0bf73b606fbf44e4cec534e1d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a0d940d7d11ec8050c5c3be2effec13b0892ea158fe9074b66510bd296f50f0d",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:nudge-detect"
+}

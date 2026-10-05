@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b90a8e32f93320f97a12725cdc834bb6ed76cac9c3d0f5571734bff464690292",
+  "node_id": "art:test-call-door",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The CI probe for the --call door (idea 11 of the VS Code field report). It sets a scratch project up with the real installer and `--harness vscode-cli`, puts the real `reflow2` command on PATH, and drives the binary as the installed files tell an agent to: discovery, every runnable `reflow2 read` the instructions file shows, a write with prose on stdin, the refusal shapes (exit 1 and 2), a held design, the export kept current, and the VS Code hooks run as their file says. Runs in CI's full job; fails, never skips, without the binary.",
+    "location": "tools/test_call_door.py",
+    "name": "test_call_door.py",
+    "status": "realized"
+  }
+}
