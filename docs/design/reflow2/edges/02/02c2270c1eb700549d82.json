@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dd52f338f0b4c040aba1ebc58fa5a3704c68a0d332dd99a97fae1d0982a0ce3d",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "fact:root-cause-a-check-that-did-not-run-reads-did-not-work-as-designed-because-only-failing-is-loud-2026-10-02",
+  "properties": {},
+  "to_id": "fact:root-cause-the-typed-tools-that-set-a-checks-status-do-not-say-blocked-means-could-not-run-2026-10-05"
+}

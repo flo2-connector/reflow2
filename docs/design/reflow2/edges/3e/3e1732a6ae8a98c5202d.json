@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0c084af34fb72320f32e051983c3caca60b7a36e2b81cbe881e65c9db3986bfa",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current",
+  "properties": {},
+  "to_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current"
+}

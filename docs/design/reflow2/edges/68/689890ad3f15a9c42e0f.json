@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dc57af87d9f5ae92c5f0f0aec664d432fe0ab21ee4697f2ab7e3246ab99147f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-959a9a9c6112b335",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6d47472d4e6023d103a363db2803b31397842927c4e1a6cc01cf8208037c35c9",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-call-door"
+}

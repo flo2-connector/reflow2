@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c304efbdcd00a4af74f80a0a999ceb1282117ca8df258e4880adc0ac3c505140",
+  "edge_type": "CAUSES",
+  "from_id": "art:propagate",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "propagate.rs walks one store, per dec:nested-graphs. Its ImpactedNode row (node_id, node_type, distance, direction, via, crosses_risk_edge, crosses_published_boundary, centrality) has no field saying a node is mirrored from another design. So a radius that reaches a mirrored interface cannot say where it left (measured on 0.79.0 with a mirrored surface).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05"
+}

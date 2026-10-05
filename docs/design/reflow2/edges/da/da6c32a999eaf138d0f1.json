@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a29c87cc221cc7a64ea79a5e0945bd16a1ce664eff2dea44d5dde02be93c607b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "Re-measured 2026-10-05 on this branch: init writes .github/hooks/reflow2.json for `vscode-cli`; the nudge counts a door write from the usage ledger (test_call_door.py: a door write, then the hook file's own Stop command, blocks once naming 1 graph write); loop_status reads the hook file as installed and no longer says none is possible for VS Code."
+  },
+  "to_id": "fact:root-cause-no-loop-nudge-reaches-a-call-door-agent-in-vs-code-2026-10-02"
+}

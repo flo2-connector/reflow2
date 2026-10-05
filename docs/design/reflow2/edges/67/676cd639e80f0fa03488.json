@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:be33e30c0fb7a0fa8fc462758fcc32ba9d1e9712e6da2f829be45dd71c801759",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-f200522629fa1941",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0a8810fd4579f11315637db7f98e919433962d689c97c971eebd71e296b39d3e",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:vscode-hook-file"
+}

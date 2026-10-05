@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dc64d46fb75e1f969c52f365ceb91ce3da5fe4f6ccc076597d825cd22587f8a2",
+  "edge_type": "CAUSES",
+  "from_id": "art:main",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "main.rs's one-shot opener open_the_design calls ReflowService::new (service.rs), and its DesignGraph::open_rocksdb returns open_rocksdb_with_provenance(path)?.0, dropping the verdict. --export, --export-snapshot, --import and --diff call open_rocksdb directly. Measured on a 0.74.0 store opened by 0.79.0 and a 0.79.0 store opened by 0.78.0: no notice, no behind_record, and the stamp rewritten either way.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-every-one-shot-open-drops-the-version-verdict-and-the-repair-report-2026-10-05"
+}

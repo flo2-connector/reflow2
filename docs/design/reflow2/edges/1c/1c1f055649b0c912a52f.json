@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d50ef73bd33b55ca759a10aa46bead65f7bf7d85c0dc8aaabc3409e46153c062",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:vs-code-picks-a-served-skill-by-its-description-from-a-stub-init-installs",
+  "properties": {},
+  "to_id": "req:init-installs-the-terminal-route-for-vs-code-and-update-keeps-it-current"
+}

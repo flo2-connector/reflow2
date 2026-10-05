@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2865f30e4b9e46c10fe9398c2e745507d0c8d2a3bffc8368409fd73af576eefd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:init-installs-the-vscode-terminal-route-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-loop-nudge-reaches-a-call-door-agent-in-vs-code-through-hooks-init-installs"
+}

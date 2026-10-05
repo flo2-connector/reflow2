@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:93622969804b4e8e7069165deb97b849cd462878eee0200cb23dcfafa72dd5ad",
+  "edge_type": "REALIZES",
+  "from_id": "art:skills",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current"
+}

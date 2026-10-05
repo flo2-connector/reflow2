@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e02c9eaeb79c1c9e6b0cc482d3d25332df017e15d72a22c9e983c59d2526d05e",
+  "node_id": "cap:vs-code-picks-a-served-skill-by-its-description-from-a-stub-init-installs",
+  "node_type": "Capability",
+  "properties": {
+    "description": "One .github/skills/<skill>/SKILL.md per served skill: the skill's own name and served description (a double-quoted scalar, so a strict YAML parser reads it), `user-invocable: false`, and a body saying to read the skill in full with `reflow2 read get_skill`. The body stays served (req:thin-install). The 37 slash commands become .github/prompts/<command>.prompt.md, each saying how to reach reflow2 through the door. Answers limitation 7.",
+    "distinct_from": [
+      "fact:root-cause-vs-code-reads-project-skills-and-slash-prompts-and-init-installs-neither-for-it-2026-10-02"
+    ],
+    "name": "VS Code picks a served reflow2 skill by its description, from a stub the terminal route installs, and the slash commands are prompt files",
+    "provenance": "authored",
+    "status": "verified"
+  }
+}

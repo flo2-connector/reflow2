@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f387f0a233b9deabac970c50f9a68b8aef3a57950a652747e8e4fa0e1a9e1cb7",
+  "edge_type": "CAUSES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "getting-started/skills/hub/SKILL.md on main f46bd3065 (served as get_skill hub, 9,347 bytes on 0.78.0 and main): sections 1-8 cover recognising a hub, orienting, routing facts and ideas, private children and closing. external_dependency appears once, as what a local hub's list is made of. No section covers declaring a new member, and a grep of the served text for info/exclude, store placement, `reflow2 init` or --export-to finds nothing.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-served-hub-skill-has-no-step-for-adding-a-member-design-2026-10-05"
+}

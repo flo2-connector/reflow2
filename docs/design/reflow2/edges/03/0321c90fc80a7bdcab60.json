@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:625f9c4d6edfcf27a663d7f8abc457cadfb3c8a070d4826b3263139e38962c55",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on",
+  "properties": {
+    "evidence": "Each option makes a radius say where it leaves its design, or carry on past that point, which is what the finding measured to be missing."
+  },
+  "to_id": "fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:629751762af144ca1c5fa091429ac2fcb574dd47216455118056a9790f9ca1bb",
+  "node_id": "fact:five-served-skills-carry-a-description-strict-yaml-refuses-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "Five served skills' frontmatter is not strict YAML: a `: ` inside a plain-scalar description (check-health, link-ideas, onboarding, plan-increments, where-am-i)",
+    "statement": "Measured 2026-10-05 while building the VS Code skill stubs: PyYAML's safe_load refuses the frontmatter of getting-started/skills/{check-health,link-ideas,onboarding,plan-increments,where-am-i}/SKILL.md with \"mapping values are not allowed here\", because each description is a plain scalar containing `: `. Claude Code and reflow2's own build.rs parse it leniently. A harness with a strict YAML parser would drop those skills, and VS Code says a skill it cannot read \"silently fail[s] to load\". The VS Code stubs quote their descriptions, so they are not affected; the skills themselves, and their .claude and .grok mirrors that VS Code also reads, are unchanged. The fix belongs in skill_lint (a strict-YAML frontmatter check) and in the five descriptions.",
+    "subject_id": "cap:every-served-skill-conforms-to-agent-skills-and-the-lint-checks-it"
+  }
+}

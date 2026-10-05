@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93871d47162f1759a8a56194ef08157a130f84f0702f67db59bb5b14cbdbff20",
+  "node_id": "chg:baseline-959a9a9c6112b335",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "The CI probe for the door, new.",
+    "subject": "record"
+  }
+}

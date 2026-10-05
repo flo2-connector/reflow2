@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:175388b481a7e8e9adb5f54272324bb1a844298884f65de159c82fc552bac1a8",
+  "edge_type": "CAUSES",
+  "from_id": "dec:stateless-seat-handle",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "As walked in fact:root-cause-a-door-call-is-a-session-that-ends-at-exit-and-the-sessionless-backstop-reads-only-the-protocol-revision-2026-10-02: liveness is keyed to the minting process, and the refusals for sessionless callers fire only on the negotiated stateless protocol revision, which the door's in-process client does not negotiate. Re-measured: the same replies on 0.78.0 and main as on 0.76.0.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:recurrence-a-door-call-cannot-hold-a-seat-a-claim-or-a-writes-for-2026-10-05"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d09064bb99d9d1ff0612af2204189a8b9f8fe98a5ff33db9e897dc7b92a1d6c3",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-hosted-session-hears-nothing-about-exports-because-the-only-export-line-rides-a-tracked-export-2026-09-28",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The recorded cause: loop_status's only export line rides a tracked export, so a store with none hears nothing. Re-measured: never-exported stores give clean: true, next: [] and zero mentions of \"export\" in the whole loop_status reply on 0.76.0, 0.78.0 and main.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:recurrence-a-never-exported-design-is-still-clean-in-loop-status-on-0-78-0-and-main-2026-10-05"
+}
