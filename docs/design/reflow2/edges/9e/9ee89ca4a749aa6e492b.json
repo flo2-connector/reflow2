@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a744d967c5c7c123ebc215a723eb6c4f5869a9b6f6ce02cab4c2834238c42c04",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-hub-starts-a-new-child-design",
+  "properties": {
+    "evidence": "Its option (b), a hub tool that does a child design's bookkeeping in one call, is this idea for a NEW design. It was passed over because it still ended in a session restart, a cost a --call agent does not pay."
+  },
+  "to_id": "dec:idea-one-call-adds-a-member-design-to-a-local-hub"
+}

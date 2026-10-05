@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:07a2886e7feb30c92d1fb3f6be18430ce44e26139cf1b4cbcbba32566dea1487",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-export-can-leave-out-another-sessions-unexported-work",
+  "properties": {
+    "evidence": "That finding records the mechanism the reporter met: one store shared by two sessions, so any export carries the other session's uncommitted writes. A scoped export or a scoped list of unexported items is a way to choose what leaves."
+  },
+  "to_id": "fact:the-live-graph-does-not-branch-so-two-open-prs-collide"
+}

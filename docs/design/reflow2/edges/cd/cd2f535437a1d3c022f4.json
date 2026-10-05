@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e3a766961dcc6da35879dfe32c88fde53a092fb27f9bf50b495d0542301d0d77",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-problem-in-the-users-words-should-retrieve-the-tool-that-answers-it",
+  "properties": {
+    "evidence": "It named this mismatch in general: a problem in the user's words does not retrieve the tool named for its operation. 'Update properties of an existing node' missing add_artifact's revise path is one measured instance."
+  },
+  "to_id": "dec:idea-an-agent-that-wants-to-update-a-node-finds-the-revise-path"
+}
