@@ -73,10 +73,6 @@ impl Folder {
         self.dir.path().join(rel)
     }
 
-    fn graph(&self) -> String {
-        self.path(".reflow2/graph").display().to_string()
-    }
-
     fn command(&self) -> Command {
         let mut c = Command::new(bin());
         c.current_dir(self.dir.path())

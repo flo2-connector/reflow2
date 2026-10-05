@@ -173,6 +173,13 @@ impl AutoExport {
         true
     }
 
+    /// Whether a change is waiting for the write-through — so a report made
+    /// in the quiet period before it writes does not call the design
+    /// unexported (`crate::export_standing`).
+    pub fn is_pending(&self) -> bool {
+        self.pending.load(Ordering::SeqCst)
+    }
+
     /// What it has done, for the reports.
     pub fn status(&self) -> Status {
         self.status.lock().expect("auto-export status").clone()

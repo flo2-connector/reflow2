@@ -1794,6 +1794,18 @@ fn asked_question_id(gap_id: &str) -> String {
     format!("question:{}", gap_id.strip_prefix("gap:").unwrap_or(gap_id))
 }
 
+/// The gap `loop_status` and `graph_report` raise for a design whose store has
+/// never been exported anywhere this machine knows of — a data-loss risk, since
+/// the store is then the only copy.
+///
+/// RAISED OUTSIDE [`DesignGraph::detect_gaps`], and on purpose: whether a
+/// design has a copy is a fact about files beside the store (the export record,
+/// the configured export), which the core never reads. It is acknowledged
+/// through the ordinary `acknowledge_gap`, so a design kept local-only on
+/// purpose records that choice once, with its reason and the owner's name, and
+/// is not told again; `withdraw_gap_acknowledgement` brings it back.
+pub const NEVER_EXPORTED_GAP_ID: &str = "gap:the-design-has-never-been-exported";
+
 fn ack_decision_id(gap_id: &str) -> String {
     format!(
         "decision:ack:{}",
@@ -2410,7 +2422,14 @@ impl DesignGraph {
 
     /// The accepted review for a gap, if there is one: `(decision id, reason)`.
     /// A `superseded` or `rejected` Decision does not count — the gap is open again.
-    fn gap_acknowledgement(&self, gap_id: &str) -> Result<Option<(String, String)>, DynoError> {
+    /// The accepted acknowledgement of `gap_id`, as `(decision id, reason)`, or
+    /// `None` when nobody has accepted it (or the acceptance was withdrawn).
+    ///
+    /// Public because one gap is raised outside [`detect_gaps`](Self::detect_gaps):
+    /// [`NEVER_EXPORTED_GAP_ID`], which needs the files beside the store and is
+    /// computed where those are read, and is acknowledged through the same
+    /// `acknowledge_gap` as every other gap.
+    pub fn gap_acknowledgement(&self, gap_id: &str) -> Result<Option<(String, String)>, DynoError> {
         let decision_id = ack_decision_id(gap_id);
         let Some(node) = self.get_node(node::DECISION, &decision_id)? else {
             return Ok(None);
@@ -2516,16 +2535,23 @@ impl DesignGraph {
             let Some((decision_id, reason)) = self.gap_acknowledgement(&gap_id)? else {
                 continue;
             };
+            // The one gap raised outside the detectors says where it is
+            // raised, so its acknowledgement does not read as left over.
+            let retired = if gap_id == NEVER_EXPORTED_GAP_ID {
+                "Raised by loop_status and graph_report, not by detect_gaps: this design has \
+                 never been exported anywhere this machine knows of. Accepted, it records that \
+                 the design is kept local-only on purpose, and those reports stop raising it; \
+                 withdraw_gap_acknowledgement brings it back."
+            } else {
+                "No current detector raises this gap. The decision is kept; nothing is \
+                 being suppressed by it."
+            };
             reviewed.push(ReviewedGap {
                 gap: None,
                 reason,
                 decision_id,
                 gap_id,
-                retired: Some(
-                    "No current detector raises this gap. The decision is kept; nothing is \
-                     being suppressed by it."
-                        .to_string(),
-                ),
+                retired: Some(retired.to_string()),
             });
         }
 
