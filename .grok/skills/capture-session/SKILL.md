@@ -150,7 +150,7 @@ a near neighbour — use it rather than inventing a home:
 
 | What you have | Where it goes |
 |---|---|
-| A choice that was made, with its reasoning | Decision, accepted; the rationale carries *why the alternatives lost* |
+| A choice that was made, with its reasoning | Decision, accepted; the rationale carries *why the alternatives lost* — and, when the choice rests on numbers, where each input came from (the person, a cited document, a measured or reported value, never your memory) and its math: computed in a calculator helper if one is connected (flo2-calc is one), its kept record registered (`add_artifact`) with `documents` drawn from it to the decision, else the arithmetic written out |
 | An option considered and not taken | **The same Decision's text.** Not a node of its own — a road not taken belongs beside the road taken |
 | A question still genuinely open | Decision at `proposed` — use the **brainstorm** skill, which is written for exactly this |
 | Something measured, on a date | TemporalFact — the date is the point |

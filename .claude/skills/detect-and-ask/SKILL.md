@@ -141,6 +141,13 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    for the generic pair, call `describe_schema` — `{"from": "X", "to": "Y"}` names the edge types
    that may join two types and flags whether any actually models that pair or merely accepts it
    through a `*` wildcard. Do not settle for the first edge type that validates; several will.
+
+   ⭐ **AN ANSWER THAT RESTS ON NUMBERS IS WRITTEN BACK WITH ITS MATH.** When what settles a gap
+   is a cost, a fit, a size or a yes or no that turns on conditions, the decision's rationale names
+   where each input came from — the person, a cited document, a measured or reported value, never
+   your memory. If a calculator helper is connected (flo2-calc is one), compute the numbers there,
+   register its kept record (`add_artifact`) and draw `documents` from it to the decision; if none
+   is, show the arithmetic in the rationale. The reading you offer in step 2 is held to the same.
 4. **The question is recorded for you.** The serve pass of `gap_to_prompt` writes it into the
    graph, so a later session can see it was asked and in what words. When the user replies, call
    `answer_question` with the gap id and their answer *as well as* doing something about it — the
