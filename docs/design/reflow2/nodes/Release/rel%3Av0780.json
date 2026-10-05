@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:cc3e7fb39201289c3ea90169298bc22a05e9d727c5fb6b17a7a98948b47e14f9",
+  "content_hash": "sha256:cf1bb67e1255d61f855e2077ecd550f5610eccf50f8ccdf852a366f3a304e7b4",
   "node_id": "rel:v0780",
   "node_type": "Release",
+  "prev_item_hash": "sha256:cc3e7fb39201289c3ea90169298bc22a05e9d727c5fb6b17a7a98948b47e14f9",
   "properties": {
     "description": "Cut 2026-10-03 on Anthony's word (\"Release first\": release today's fixes so flo2.io can move onto them before the three-agent trial). Ships #649-#668 and the merge train #669 (#662, #663, #665, #666): the fix program accepted from the triage of the VS Code --call field report (2026-10-02), and the dependency-currency work.\n\nMINOR, and THE SCHEMA STAMP MOVES by one enum value: Verification.last_reconciled_outcome gains `blocked` (#662). 28 node types and 66 edge types are unchanged. AN UPGRADE NOTE IS OWED: docs/upgrading-to-v0.78.0.md.\n\nWHAT A CONSUMER OR OPERATOR SHOULD KNOW:\n- Upgrade every seat together. Measured at this cut: a v0.77.0 binary does NOT refuse a design storing `blocked`; it opens it with no warning, re-stamps it 0.77.0, and writes an export v0.77.0 cannot import (fact:an-older-binary-opens-a-design-storing-a-non-indexed-enum-value-it-does-not-know-and-restamps-it-2026-10-03). The value is written only when reconcile_verification records the outcome `blocked`.\n- Arguments that were ignored are now refused, naming the tool and the field path (#654, #656, #658): a wrong type, an unknown key, a value outside its set, an argument to one of twelve no-argument tools, a flag a one-shot mode does not read. --read-only is honoured by --call and by every forwarding client.\n- Reply shapes: external_dependency replies with a receipt (read the manifest with reconcile_dependencies); detect_defects has the new category refused_by_schema; search_design and topic_report add `searched`; find_tools adds `describe`.\n- --call: a writing call keeps the committed export current (exit 3 = written, export not; --no-export for bulk writes); in a folder naming a server design, --call and --export refuse; a read where there is no design refuses.\n- New: reflow2 read / reflow2 write, --describe, --list-tools, get_node include_edges.\n- Operators: RocksDB 10.4.2 -> 11.8.1 (stores open unchanged; v0.77.0 reads what 0.78.0 wrote, 20 stores measured); a --read-only server with no store creates nothing and answers /readyz 503; a shared server inherits nothing from its launcher (stop old ones with --stop-shared). Source builds need Rust 1.98.",
     "name": "v0.78.0 — the fix program after the VS Code --call field report, and dependency currency",
-    "status": "deployed",
+    "status": "retired",
     "unit_type": "binary",
     "version": "0.78.0"
   }

@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:63465a1363a513da533657aa44dd832f98c56a6ceb282f3bd57c6b3affa38f9a",
+  "content_hash": "sha256:cdc79526e9019cf1e2698dcbcbfde958209ab84ca4183a08ff8fcaf0c8899f8f",
   "node_id": "chg:the-design-is-saved-one-file-per-item-2026-10-03",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:63465a1363a513da533657aa44dd832f98c56a6ceb282f3bd57c6b3affa38f9a",
   "properties": {
     "change_type": "new_feature",
-    "commits": "722050157859dead283cdf0687000e3d1cab5a2a,ecf866a920631089c1c5e34bb6563371078c4620,504cec3060f013c67f3d63a60f88391de9d87dde,006e2e2e408de1c1bf75a4cdecf5e4471fb2ac20",
+    "commits": "722050157859dead283cdf0687000e3d1cab5a2a,ecf866a920631089c1c5e34bb6563371078c4620,504cec3060f013c67f3d63a60f88391de9d87dde,006e2e2e408de1c1bf75a4cdecf5e4471fb2ac20,5705b3553aaba2f5819d613f8cb127c9e1da9521",
     "detected_at": "2026-10-03",
     "name": "The design is saved one file per node and per edge, with per-item lineage; accepted checksums ride their change; CHANGELOG entries are fragments",
     "rationale": "Root cause, walked and measured in step 1 (hub: trials/vscode-call-door-triage-2026-10-02/fix-program/13-step1-recommendation.md): a value derived from something git already merges was stored as one mutable field in a shared committed record — the export's whole-file header (46 of 46 concurrent PR pairs in #640-#668 conflicted on it, 39 on nothing else) and an artifact's checksum on its node (15 of 46). The measured cost is recorded in the live store as fact:approved-prs-serialised-because-each-rewrites-the-whole-export-and-the-changelog-2026-10-03, not yet folded to main, so it is cited here rather than linked. Measured on this branch: main's design written as the item layout is 49,633 item files plus design.json and reassembles to main's own content hash (sha256:3e1f2f2e...); two PRs' records and CHANGELOG fragments merge in either order with plain git to one tree, and compare_designs reads that merge identical to a sequential replay. NOT built here, and why: reflow2_init's conversion of a consumer (cap:a-project-migrates-to-the-item-layout stays planned — flo2 converts in its own PR); the branch overlay (ver:an-overlay-folds-after-a-squash-merge stays planned: the overlay it verifies is not built; the live-store fold it implies is pinned by a new check instead). The single file keeps the whole-file chain and record-only drift check for the one-release overlap. The item layout's committed stamp carries no reflow2_version (decision 5), so its import guard is schema_version, and `materialized` names what a build filled in.",

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe101c90d965571743f30db6b1038935474878c9959a5556783d0d4cbd058888",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:256c98dda6561d5f807cac46ba57c130a83da3bea97b58954d8cd1b7e27b1081"
+  },
+  "to_id": "art:test-a-file-realizes-only-what-it-implements"
+}

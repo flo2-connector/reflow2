@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2251bec6e2fac09cc1f5ff66ebcae26a018ec7a6d56dd3ddeff8f02a82fe58d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:c99164a5e24c74faa7eb7194ceb71b67a4cc9f8c8cd30a5820325dfd932b88be"
+  },
+  "to_id": "art:test-a-write-records-the-agent-beside-the-principal"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3d796fe4e87f1048a76b7211d75702cb0e04d30b15af33733339de17553d3f9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0790",
+  "properties": {
+    "as_checksum": "sha256:cf4c0cc47646f15612efbc79847ea2c9a72325ccc748e374b4eecfda40043786"
+  },
+  "to_id": "art:reply-budget-test"
+}

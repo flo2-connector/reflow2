@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:59034ef6bff0e5a7f6648f9adc89d21afaab0deffe3a16960a8c4a3b7eca0c31",
+  "content_hash": "sha256:38955c0dab08a712a439bb5f51fe0e15b5ec0fa64b78538982889fdb38db4db8",
   "node_id": "chg:the-saved-design-moves-to-the-item-layout-2026-10-03",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:59034ef6bff0e5a7f6648f9adc89d21afaab0deffe3a16960a8c4a3b7eca0c31",
   "properties": {
     "change_type": "refactor",
-    "commits": "75b89f0d038ac84ebf36948035d6f495692c564f,ddf8de5f204fc0cce82e28a750015c565ce62ef0,4e09e9533551b65f931918d5a029d5e217fce656",
+    "commits": "75b89f0d038ac84ebf36948035d6f495692c564f,ddf8de5f204fc0cce82e28a750015c565ce62ef0,4e09e9533551b65f931918d5a029d5e217fce656,0d8281a55e3e3c0696e34663f4cb8132dd88c439",
     "detected_at": "2026-10-03",
     "name": "reflow2's committed design moves to the item layout, and its accepted checksums onto one baseline change",
     "subject": "record",
