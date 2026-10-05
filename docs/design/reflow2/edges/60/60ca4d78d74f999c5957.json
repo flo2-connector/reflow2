@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:79cebc245b54625e54e8215e252f07813a271d2ffec5dcea56a83377c2221df1",
+  "edge_type": "REALIZES",
+  "from_id": "art:unexported-changes",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:loop-status"
+}

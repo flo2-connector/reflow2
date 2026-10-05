@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6322687cc1b73525783ebae51018a44f0ba4e027241c5205a00730c35fd37854",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "epoch:planned-the-call-door-works-for-an-agent-that-cannot-use-mcp",
+  "properties": {
+    "note": "Every step of the door plan is additive for MCP users or opt-in behind a flag the door's user turns on (Anthony, 2026-10-05)."
+  },
+  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
+}

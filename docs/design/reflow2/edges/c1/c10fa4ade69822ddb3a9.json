@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c92e840100dfae42017c32fa546dd0401edadc56ea60be341ca806dde0092c8f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

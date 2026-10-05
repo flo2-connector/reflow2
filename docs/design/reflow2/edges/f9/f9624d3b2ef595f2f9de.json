@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac9be645db0c38d07c4a5e89fcba98a262bab6afb0b2c0fbdfff5a7a667d72b3",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "ahead_of_export is now the first key loop_status prints, ahead of the artifact block, and sync_status carries it too (the_headline_leads_the_printout_even_behind_a_long_artifact_block). The no-record case it names (a copy written with --export > FILE) is now the never_exported item, whose line says how to make a record. Still a node count by default; since_export makes it exact."
+  },
+  "to_id": "fact:recurrence-a-store-ahead-of-its-export-is-not-said-where-an-upgrade-check-reads-on-0-79-0-2026-10-05"
+}

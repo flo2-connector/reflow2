@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e846afd01d4896e0bd826ca6a307e35701c6986337fb8ae15f571b6286887c87",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:e922328abe3bfe86977d7ac16f3fc62d07bd7cf85f7f61fa6ffcab8708819a2c",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:tools-coherence"
+}

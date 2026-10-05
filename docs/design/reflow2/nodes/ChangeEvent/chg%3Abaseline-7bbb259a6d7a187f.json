@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e573ddc7b18b9dbd42fd6f47ab898c8384f51cf9d100293fee72251c2f944855",
+  "node_id": "chg:baseline-7bbb259a6d7a187f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:test-unexported-changes-say-whose-they-are' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: New in this change: the core grouping tests, written first.",
+    "subject": "record"
+  }
+}

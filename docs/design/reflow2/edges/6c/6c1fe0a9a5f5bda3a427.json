@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f5b6b146317007b04c914c33745065e84dcf88a21400dbca546b9b4b4cc47862",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-6ee874d6604b1ead",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:750d11b33782f36e98452e4afc84e605edf227c8b7eb98d53810aad262ebccf8",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:unexported-changes"
+}

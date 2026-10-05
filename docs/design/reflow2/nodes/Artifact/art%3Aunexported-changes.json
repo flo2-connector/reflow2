@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b73e7b3f44236b5de665ad42bf5248d7a25373a42136664546910bd1e98c4ea3",
+  "node_id": "art:unexported-changes",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "reflow2_core::unexported: what a store holds that a record of it does not, grouped by the writer the store credits (an AUTHORED_BY author edge written since the record, with authored_via), the epoch, and the dates items carry. Reuses compare_designs; bounded at MAX_GROUPS groups and NAMED_PER_GROUP ids, counting the rest. Serves loop_status since_export's `unexported` block.",
+    "location": "crates/reflow2-core/src/unexported.rs",
+    "name": "unexported.rs",
+    "status": "realized"
+  }
+}
