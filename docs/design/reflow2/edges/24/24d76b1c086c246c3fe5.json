@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:799fde1da9e12c877ddb8e21917f1de269456c1e76516b088d5d85fd900e0840",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-export-graph-with-no-path-is-a-documented-default-exempt-from-the-reply-bound-and-the-door-prints-27-mb-2026-10-02",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Re-measured on main e7e304d: export_graph with {} returns the whole document, exit 0, nothing on stderr, as the 2026-10-02 walk found (path is optional and the no-path branch returns the export). No remedy has shipped.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:export-graph-with-no-arguments-still-prints-the-whole-design-on-main-2026-10-05"
+}

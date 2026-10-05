@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:edb64b59f1ee2cff71e787463ed6de54e7c4d784e336599932606f8fd3cb42b9",
+  "node_id": "fact:the-changeevent-description-decoy-is-listed-by-find-tools-and-passes-the-argument-check-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured on main): add_change_event publishes a decoy `description` parameter so the handler can redirect the commonest mistake. find_tools lists it among the tool's parameter names, which is all a door agent sees, so the catalogue invites the mistake. 0.78.0's argument check passes it as valid, so a call with other shape errors is told \"every one is listed\" and is refused for `description` on the next call",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0): \"ChangeEvent discovery included `description`, but submission refused: a ChangeEvent has no `description`. The prose goes in `summary`.\" Expected: discovery names only real fields.\n\n② PRECEDENT: fact:defect-the-commonest-changeevent-mistake-was-fixed-in-the-description-and-a-third-project-hit-it-anyway (2026-09-05). Its fix, chg:three-additive-surface-fixes-from-field-feedback (#429), made `description` an accepted parameter only so the handler could refuse it naming `summary` and `rationale`. Nothing records the decoy's effect on find_tools.\n\n③ CANDIDATES: (a) find_tools lists every schema property, decoy included; (b) the agent read stale docs; (c) the 0.78.0 schema check treats the decoy as valid; (d) the observation is wrong.\n\n⑤ MEASURED.\n- `find_tools {query: \"record a change event\"}` on 0.76.0 and main lists add_change_event's parameters as [affected, change_type, commits, description, detected_at, id, name, rationale, rationale_basis, repair, stands_in_for, subject, summary]. (a) holds; find_tools builds `parameters` from the input schema's property keys (crates/reflow2-mcp/src/tools/query.rs ~983).\n- On main, a call with description plus a bare-string `affected`, subject \"code\" and rationale_basis \"measured\" is refused listing 3 problems, \"every one is listed, so the call can be fixed in one round trip\". `description` is not among them. The corrected call is then refused for `description`. (c) holds: two round trips where the reply promised one.\n- The decoy is the only one: a sweep of main's 195 input schemas for \"NOT A REAL FIELD\" found add_change_event.description alone.\n\n⑥ CLASS: a containment placed in the published schema to teach at refusal time is, to every reader of the schema's names (find_tools, the argument check, a client building a form), indistinguishable from a real field. The redirect works; where it lives makes it a lure. A fix at the class keeps the redirect and takes the decoy out of what the schema advertises (or marks it so find_tools and the argument check treat it as an error with its redirect).\n\n⑨ NOT ESTABLISHED: whether an MCP client that renders schemas also offers `description` to its model. Only find_tools and the door were measured.",
+    "steps": [
+      "add_change_event",
+      "find_tools"
+    ],
+    "subject_id": "cap:tool-search",
+    "valid_from": "2026-10-05"
+  }
+}

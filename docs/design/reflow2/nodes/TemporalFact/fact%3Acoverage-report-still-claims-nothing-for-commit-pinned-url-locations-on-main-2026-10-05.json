@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:130f7594b0888f283a6e8615b318235b4c187cabb10fd4f0c97d36c53d06a187",
+  "node_id": "fact:coverage-report-still-claims-nothing-for-commit-pinned-url-locations-on-main-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "RECURRENCE (measured on main): coverage_report still compares a sweep's paths with Artifact locations as literal strings, so a design that registers commit-pinned URLs claims none of a repo-relative sweep (the field log's 0 of 55). Identical on 0.76.0, 0.78.0 and main. The string-list refusal half is fixed in 0.78.0",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0): \"A kind-2 register using commit-pinned URLs then reported 0 of 55 files claimed against relative paths. Normalizing the same complete tracked-file sweep to the same URLs gave 25 claimed, 30 unclaimed.\"\n\n② PRECEDENT, so this is a RECURRENCE: fact:root-cause-coverage-report-reads-an-artifact-location-as-a-literal-path-a-meaning-the-shared-location-rule-never-reached-2026-10-02 walked it on 0.77.0 (core coverage.rs normalise() strips only \"./\" and backslashes; the shared is_uri meaning never reached coverage).\n\n⑤ RE-MEASURED: one Artifact at src/a.rs and one at https://github.com/org/repo/blob/0123abc/src/b.rs; a sweep of {path: src/a.rs} and {path: src/b.rs} gives claimed 1, unclaimed 1 (src/b.rs) and unobserved_locations [the URL] on 0.76.0, 0.78.0 and main alike. Nothing in the reply says a location was remote and could not be matched.\n\nTHE OTHER HALF IS FIXED: a list of strings for `observed` is now refused naming `observed[0]` and \"expected an object with `path`\" (0.78.0, #656), where 0.76.0 said only \"invalid type: string …, expected a map\".\n\n⑥ CLASS (unchanged from 2026-10-02): what an artifact location means is decided in more than one place by hand.\n\n⑨ NOT ESTABLISHED: which fix is wanted (strip a commit-pinned prefix, or report remote locations as unmatched). Not chosen here.",
+    "steps": [
+      "coverage_report"
+    ],
+    "subject_id": "cap:coverage",
+    "valid_from": "2026-10-05"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6134d9addfc081658ff5c46d905ec00d0511279258126fadffad54c58f26b719",
+  "node_id": "art:vscode-call-field-log-2026-10-05",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:dde0b7f25665c7cbe0ed7965a9a81c29244a07e802c5aa018283c2921ee7f208",
+    "description": "The running field log of Anthony's work laptop driving reflow2 from VS Code through the `--call` door, because the organisation's Copilot policy blocks third-party MCP servers. The reporter ran reflow2 0.76.0 throughout, including the 2026-10-05 entries written after 0.78.0 shipped. It is git-ignored like every field report (dec:field-reports-are-untracked-because-the-repository-is-public), so the location resolves only on this machine.\n\nAPPEND-ONLY: dated sections are added at the bottom and never rewritten, so a later triage reads only the sections after the last one triaged. Registered at 334 lines; the checksum is of that state. Lines 1-325 were filed first, and the 2026-10-05 entry on marking an Artifact realized (lines 326-334) was appended the same day, before registration.\n\nIt SUPERSEDES NOTHING. art:vscode-call-door-field-report-2026-10-02 is a different document: a frozen snapshot of the public guide written from the same sessions, triaged 2026-10-02 and fixed in large part by v0.78.0. Many entries here dated 2026-10-01 and 10-02 are the raw observations behind that guide, so their causes are already recorded under that node's source; this log's triage links to them rather than re-deriving them.\n\nWHAT IT HOLDS: [works], [defect], [friction], [gap] and [idea] entries on the door, hub designs, export, VS Code hooks, and the tool surface (argument shapes, refusals, replies).\n\nThe log's own conclusions are claims to test, not facts. Registered and PARKED under dec:a-dated-field-report-is-registered-and-parked, and triaged under rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed on Anthony's word (\"Let's do the /root-cause on issues and /brainstorm on ideas\", 2026-10-05), split three ways: the tool surface; store, hub and export; ideas. Every finding names this node as its `source`.",
+    "location": "docs/feedback/2026-10-05-vscode-call-field-log.md",
+    "name": "VS Code `--call` field log, work machine, reflow2 0.76.0 (append-only; entries 2026-10-01, 10-02 and 10-05; 334 lines at registration)",
+    "status": "realized"
+  }
+}

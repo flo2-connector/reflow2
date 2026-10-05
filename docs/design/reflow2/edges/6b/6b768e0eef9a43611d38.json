@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b0f8df50969d59044a43e4b23d7ae774f4678411971d35dba8c94ca75a7defe",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:vscode-call-field-log-2026-10-05",
+  "properties": {
+    "note": "Triaged under this rule, 2026-10-05, on Anthony's \"Let's do the /root-cause on issues and /brainstorm on ideas\": root-cause per issue and brainstorm per idea, by three agents (tool surface; store, hub and export; ideas)."
+  },
+  "to_id": "rule:field-feedback-issues-are-root-caused-and-ideas-are-brainstormed"
+}

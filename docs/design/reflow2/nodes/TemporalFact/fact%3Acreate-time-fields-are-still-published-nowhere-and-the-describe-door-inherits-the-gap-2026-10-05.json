@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:b2c409bdd5b42328eaaf4d6a7ff8b509b38290a984adeb3bf9c884c4e1d5a10a",
+  "node_id": "fact:create-time-fields-are-still-published-nowhere-and-the-describe-door-inherits-the-gap-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "RECURRENCE (measured on main): add_epoch still refuses a first epoch for `sequence` and `epoch_type`, in one clear round trip, on 0.76.0, 0.78.0 and main. The 0.78.0 schema door does not remove it: `--describe add_epoch` and `--list-tools` publish required [\"id\"] for add_epoch, add_decision, add_requirement and add_component, so the up-front reader inherits the blind spot recorded 2026-10-02",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "RUN AS THE SKILL (root-cause, fetched fresh), 2026-10-05, triaging art:vscode-call-field-log-2026-10-05 (tool surface). Binaries: 0.76.0 and 0.78.0 release builds, and main at e7e304d (reports 0.78.0); scratch stores under the hub session's scratchpad, isolated HOME.\n\n① OBSERVED, the reporter's words (2026-10-01, 0.76.0): \"`add_epoch` refused for a missing `sequence` (good message: next free integer is 11) — one extra round trip on every first epoch of a session.\"\n\n② PRECEDENT, so this is a RECURRENCE: fact:add-epoch-create-requirements-are-published-nowhere-and-describe-schema-says-only-name-is-required-2026-10-02 measured the same on 0.77.0 and named the cost: no reader can say beforehand what CREATE needs. dec:idea-add-epoch-assigns-the-next-sequence-or-names-it is still proposed (Anthony's call on auto-assigning).\n\n③ CANDIDATES: (a) 0.78.0's --describe closed it (it prints the full schema); (b) the schema itself does not carry create-time requirements, so every reader inherits the gap; (c) the observation is wrong.\n\n⑤ MEASURED. `add_epoch {id, name}` on a fresh store: 0.76.0, 0.78.0 and main all exit 1 with \"`sequence` is required to CREATE DesignEpoch … Also missing: epoch_type.\" `--describe add_epoch` on 0.78.0 and main: required [\"id\"], `sequence` {type integer|null, no description}, and the description never names sequence. `--list-tools` on main gives required [\"id\"] for add_epoch, add_decision, add_requirement and add_component. `describe_schema {node_type: DesignEpoch, required_only: true}` names only `name`. So (a) is refuted and (b) holds.\n\n⑥ CLASS: the create-or-revise constructors enforce \"required to create\" in the handler, and nothing a schema reader can see carries it. Until #667 this was hidden behind the door; now the door prints the schema faithfully, and the schema is the thing that is silent.\n\n⑨ NOT ESTABLISHED: how many of the dual-mode constructors (22 counted on 0.77.0) still publish only [\"id\"]. Only these four were read on main.",
+    "steps": [
+      "add_epoch",
+      "describe_schema"
+    ],
+    "subject_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+    "valid_from": "2026-10-05"
+  }
+}

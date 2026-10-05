@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:633320da83fe2963a4681af9f1aebf64bca366e99f17fc14e591b28db01ac0fb",
+  "edge_type": "CAUSES",
+  "from_id": "chg:three-additive-surface-fixes-from-field-feedback",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "That change (#429, 2026-09-05) added `description` to AddChangeEventReq as a real schema property so the handler could redirect it. find_tools lists schema property keys as parameters (query.rs ~983 on main), and the 0.78.0 argument check accepts any declared property, so the decoy is advertised and passes the check (measured on main).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-changeevent-description-decoy-is-listed-by-find-tools-and-passes-the-argument-check-2026-10-05"
+}

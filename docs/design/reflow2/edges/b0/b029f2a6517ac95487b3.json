@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:69b57d4060bcd3e94ae1e3bc380261fe85bedd8bbdcae911e174af0752037de3",
+  "edge_type": "CAUSES",
+  "from_id": "fact:add-epoch-create-requirements-are-published-nowhere-and-describe-schema-says-only-name-is-required-2026-10-02",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The 2026-10-02 cause re-measured on main e7e304d: create-time requirements live in the handler (the refusal names sequence and epoch_type), while the published input schema says required [\"id\"]. 0.78.0's --describe and --list-tools print that schema unchanged, so the gap now reaches the door's up-front reader too.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:create-time-fields-are-still-published-nowhere-and-the-describe-door-inherits-the-gap-2026-10-05"
+}

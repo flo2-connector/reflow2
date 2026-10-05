@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a6077a0b40eb18f60f944a31fd4c62e0ccceec59a63df24a5612d6eeaa482018",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "art:vscode-call-field-log-2026-10-05",
+  "properties": {
+    "note": "An append-only field log from one work machine (reflow2 0.76.0, 2026-10-01 to 10-05): it records what was observed, and its unattached state is correct. It draws no claim edges; what the design learns from it goes into findings that name it as their source.",
+    "ruling": "parks"
+  },
+  "to_id": "dec:a-dated-field-report-is-registered-and-parked"
+}

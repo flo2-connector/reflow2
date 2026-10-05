@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:846b3cddd4e2c219e1d47d4d717275746f791489e4d339add1a1792bc5b97729",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:field-reports-are-untracked-because-the-repository-is-public",
+  "properties": {
+    "evidence": "The same accepted decision that retires every other field report: the repository is public, so the log is git-ignored and exists only on this machine. Without this retirement the coherence gate in CI reports it as a missing artifact on a checkout that never had it."
+  },
+  "to_id": "art:vscode-call-field-log-2026-10-05"
+}

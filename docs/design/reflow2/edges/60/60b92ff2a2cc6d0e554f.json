@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3f5892ffb37e65ff885ce40fa1951ec54cbcea72e6a4dc8d2297906fd0129e66",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-basis-names-four-value-sets-around-a-temporal-fact-and-provenance-a-fifth-2026-10-02",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The 2026-10-02 overload, re-measured on main e7e304d: basis is still [measured, forecast] with `measured` as the default. The adopt skill's deferral marker and an agent's provisional choice fit neither, so the field record shows markers written `forecast` and one finding not written.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-deferral-marker-and-a-code-read-observation-have-no-basis-and-the-default-says-measured-2026-10-05"
+}
