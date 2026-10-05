@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:94930bcbd6d3f658f08f43096bbbc3e358d94e0a34c75dfedb80c5cf30e53c70",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:the-vs-code-setup-is-built-as-one-increment-2026-10-05",
+  "properties": {
+    "evidence": "The increment ships the hooks that decision chose (idea 12). Their design is settled there, not here.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code"
+}

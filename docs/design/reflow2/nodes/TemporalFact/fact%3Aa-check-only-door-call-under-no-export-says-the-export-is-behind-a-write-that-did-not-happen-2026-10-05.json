@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:877cda182f1c70ab0c6e2f3cfbeaf4b1104494a7d647961d45bd2b2a503cd1d0",
+  "node_id": "fact:a-check-only-door-call-under-no-export-says-the-export-is-behind-a-write-that-did-not-happen-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "DEFECT (measured 2026-10-05, main e7e304d): a check_only call to a writing tool through the door, with --no-export, prints \"the committed export is now behind this write\" although nothing was written. The door treats every successful call to a tool not annotated read-only as a write",
+    "source": "who:claude-code",
+    "statement": "Met while recording a design change through the door (reflow2-mcp --no-export write create_edges with \"check_only\": true). The reply said applied: false and would_apply: true, and stderr said: \"export NOT written (--no-export): the committed export is now behind this write.\" Nothing was written, so the export was not behind.\n\nCAUSE, read in crates/reflow2-mcp/src/main.rs around line 1046: after a call whose result is not an error, `if !read_only` runs the write-through, or prints call_export::NOT_ASKED under --no-export. read_only is the tool's served annotation, so a check_only batch counts as a write. Without --no-export the same call exports, which is harmless but costs an export on a large design.\n\nExpected: a call that wrote nothing says nothing about the export, or says it is unchanged. Workaround: ignore the line after a check_only call. Not met through MCP, where no export line is printed.",
+    "subject_id": "cap:a-build-can-call-one-tool-from-the-shell-and-read-the-reply-as-json",
+    "valid_from": "2026-10-05"
+  }
+}
