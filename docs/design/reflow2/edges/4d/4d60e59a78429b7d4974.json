@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:becb725e890d0400a6ab63b6f36034b718e5e366218d67152422eb0e2b667a32",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-7bbb259a6d7a187f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b1975dfc400257a221e347c627fb9574f492b51dcf4a4082a05a5eeeeb0e3709",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-unexported-changes-say-whose-they-are"
+}

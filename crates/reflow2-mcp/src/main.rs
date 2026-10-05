@@ -1300,15 +1300,25 @@ fn fill_snapshot(
     // export, reported as a success. Caught by the degraded-server suite the
     // hour identity landed; without that test this would have started returning
     // empty designs the next time anyone reconnected.
-    let source_identity = reflow2_core::identity::identity_path(graph_path);
-    if source_identity.exists() {
-        let target_identity = std::path::PathBuf::from(format!("{}.id.json", dir.display()));
-        std::fs::copy(&source_identity, &target_identity).with_context(|| {
-            format!(
-                "could not copy the design identity {} into the snapshot",
-                source_identity.display()
-            )
-        })?;
+    //
+    // The file carried is the one an open of the real store would read
+    // (`identity::locate`) — beside the store, or where an older reflow2 put it
+    // — and a store whose open would refuse over its identity file is refused
+    // here for the same reason, rather than read from a copy that guessed.
+    match reflow2_core::identity::locate(graph_path).decide() {
+        reflow2_core::identity::Located::Found(found) => {
+            let target_identity = std::path::PathBuf::from(format!("{}.id.json", dir.display()));
+            std::fs::copy(&found.file, &target_identity).with_context(|| {
+                format!(
+                    "could not copy the design identity {} into the snapshot",
+                    found.file.display()
+                )
+            })?;
+        }
+        reflow2_core::identity::Located::Absent => {}
+        reflow2_core::identity::Located::Refused(e) => {
+            return Err(anyhow::anyhow!("{e}"));
+        }
     }
     // AND THE SAME VERSION GUARD. The stamp of which reflow2 last wrote the
     // store also lives beside it, and opening a store with no stamp reads it as

@@ -187,6 +187,11 @@ readers:
   temporal.rs::schedule_for: { kind: unjudged, edges: [SCHEDULED_FOR] }
   temporal.rs::snapshot_from: { kind: unjudged, edges: [HAS_SNAPSHOT, SCHEDULED_FOR] }
   topic.rs::topic_report: { kind: unjudged, edges: [CHANGED, HAS_SNAPSHOT] }
+  unexported.rs::credited: { kind: not_derived, edges: [AUTHORED_BY], why: "A grouping key for a reading aid: names the Contributor whose author edge on an item was written since the export, so loop_status can list unexported changes by writer. One hop on the item's own edges; it asserts no relation." }
+  unexported.rs::edge_group_key: { kind: not_derived, edges: [ACTS_FOR, AUTHORED_BY], why: "A grouping key: files a credit edge (AUTHORED_BY, ACTS_FOR) written since the export under the writer it names. One hop; it asserts no relation." }
+  unexported.rs::epoch_of: { kind: not_derived, edges: [AT_EPOCH, CHANGED, OCCURS_DURING], why: "A grouping key: the epoch an item, or a ChangeEvent that CHANGED it, is pinned to, so the unexported list can be read by epoch. Reads pins already drawn; it asserts no relation." }
+  unexported.rs::node_key: { kind: not_derived, edges: [HAS_SNAPSHOT], why: "A grouping key: a preserved prior state is listed with the node it preserves. One hop; it asserts no relation." }
+  unexported.rs::node_key_direct: { kind: not_derived, edges: [CHANGED], why: "A grouping key: an item no author edge credits is filed under the writer of a ChangeEvent, written since the export, that CHANGED it. One hop; it asserts no relation." }
   verify.rs::calibrated_against: { kind: unjudged, edges: [CALIBRATED_AGAINST] }
   verify.rs::has_runnable_passing_verification: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
   verify.rs::invalidates: { kind: unjudged, edges: [INVALIDATES] }

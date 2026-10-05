@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5d13da05b4fc83d32afd39f00de9e27825f7ba721af60c869431cff391cb1090",
+  "node_id": "art:test-unexported-changes-say-whose-they-are",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The grouping on the in-memory backend: two writers as two groups with their agents, uncredited work and removals counted and never guessed, an epoch group from a ChangeEvent's pin with its date window, nothing on an up-to-date store, bounded at 600 changes across 30 writers.",
+    "location": "crates/reflow2-core/tests/unexported_changes_say_whose_they_are.rs",
+    "name": "unexported_changes_say_whose_they_are.rs",
+    "status": "realized"
+  }
+}

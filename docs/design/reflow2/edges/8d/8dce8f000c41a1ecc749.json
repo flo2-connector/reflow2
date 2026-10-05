@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7f8f7843c89178e304bc6dd4fe1e2d1c19f831de7347e8bebf3433b5d4e8bb59",
+  "edge_type": "CAUSES",
+  "from_id": "art:updating-doc",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "UPDATING.md documents only the install.sh path. SETUP.md, the VS Code guide and verbs.rs all expect machines with only the binary, and nothing says how to install or upgrade one, or how to tell one from a machine with the installer's wrapper (measured on main 7f5984ec5 and the v0.79.0 release assets).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-reflow2-documents-no-binary-only-install-and-no-way-to-tell-a-wrapper-machine-2026-10-05"
+}

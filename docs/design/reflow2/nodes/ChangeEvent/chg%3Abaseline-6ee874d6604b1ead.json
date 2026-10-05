@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93e79347faf2b00a389b008d90ef51ee3468d0cf21f802428d8e772f87c9e983",
+  "node_id": "chg:baseline-6ee874d6604b1ead",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:unexported-changes' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: New in this change: the grouping of unexported changes by writer, agent and epoch.",
+    "subject": "record"
+  }
+}

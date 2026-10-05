@@ -126,6 +126,28 @@ pub struct DesignGraph {
     /// an index that already held what the store holds, and every in-memory
     /// graph, whose index is built by the same writes that build the graph.
     pub(crate) search_rebuilt_on_open: Option<crate::search::SearchIndexRebuild>,
+    /// What opening this store found or did about its identity file that a
+    /// person should be told (`crate::identity::IdentityNote`): an identity
+    /// found only where an older reflow2 put it and copied beside the store, or
+    /// two identity files naming different designs. `None` on every ordinary
+    /// open. Kept so `loop_status` can say it, for the reason `repaired_on_open`
+    /// is kept.
+    pub(crate) identity_on_open: Option<crate::identity::IdentityNote>,
+}
+
+/// How an open settled the store's identity, before anything was written.
+enum Settled {
+    /// An identity file was found (beside the store, or where an older reflow2
+    /// put it).
+    Known(crate::identity::FoundIdentity),
+    /// No identity and no data: a new store, minted (or adopted) once open.
+    NewStore,
+    /// No identity file, and the store holds the pre-identity design under the
+    /// shared id, read without writing: adopt it.
+    SharedDesign,
+    /// No identity file, data, and the store could not be read without
+    /// opening it for writing: asked the old way, after the open.
+    AskAfterOpening(String),
 }
 
 /// What [`DesignGraph::derived`] holds. `generation` is the engine write
@@ -355,6 +377,7 @@ impl DesignGraph {
             signer: None,
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
+            identity_on_open: None,
         })
     }
 
@@ -382,14 +405,63 @@ impl DesignGraph {
         path: &str,
     ) -> Result<(Self, crate::provenance::Provenance), DynoError> {
         let schema = crate::schema::load_schema()?;
+        // ⭐ NOTHING IS WRITTEN — in the store or beside it — UNTIL THE IDENTITY
+        // IS SETTLED. An open that is going to refuse must leave the folder as
+        // it found it. Until 0.79.0 it did not: the read-write open rotated the
+        // store's LOG, WAL, CURRENT, MANIFEST and OPTIONS, and the version stamp
+        // was written before the identity check, so a refused open left a fresh
+        // `graph.meta.json` beside a store with no identity file — the very pair
+        // a field report then had to explain
+        // (fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05).
+        //
         // Ask BEFORE opening whether a store has ever held data here: opening
         // creates the directory, and after that "a design was here" and "nothing
         // was ever here" look identical. It is the only evidence that survives a
         // lost identity sidecar, and it is gone one line later.
         let store_had_content = crate::identity::store_has_content(path);
-        // Open the store FIRST. A build without the `rocksdb` feature fails loud
-        // here (naming the feature — AGENTS.md rule 4), and it must do so BEFORE
-        // the provenance stamp touches disk: check_and_stamp writes
+        // Who is this design? (req:design-identity.) Read from a sibling file —
+        // the id namespaces every stored key, so it has to be known before the
+        // design can be. `locate` looks beside the store's REAL directory first,
+        // then where an older reflow2 put it for this spelling (beside a
+        // symlink, or inside the store for `.`). Reading only.
+        let lookup = crate::identity::locate(path);
+        let settled = match lookup.decide() {
+            crate::identity::Located::Refused(e) => return Err(e),
+            crate::identity::Located::Found(found) => Settled::Known(found),
+            // Nothing was ever stored here, so there is no design to lose. This
+            // is every first open, and it must stay cheap and silent; whether
+            // to mint or adopt is asked of the opened store below, as before.
+            crate::identity::Located::Absent if !store_had_content => Settled::NewStore,
+            // Data and no identity file anywhere. Either the pre-identity design
+            // (adopt its shared id, or every graph that predates identity is
+            // locked out of its own design) or a design whose name was lost
+            // (refuse). The question needs the store's keys, so it is asked of a
+            // READ-ONLY open, which writes nothing; refusing after a read-write
+            // open would leave the store changed.
+            crate::identity::Located::Absent => {
+                match StorageEngine::open_rocksdb_read_only(schema.clone(), path) {
+                    Ok(reader) => {
+                        if Self::holds_a_design_probe(&reader, DEFAULT_GRAPH_ID) {
+                            Settled::SharedDesign
+                        } else {
+                            let reading = crate::identity::StoreReading {
+                                ids: reader.graph_ids_with_node_counts()?,
+                            };
+                            return Err(crate::identity::lost_identity(&lookup, Ok(&reading)));
+                        }
+                    }
+                    // A store the read-only open cannot read (a build without
+                    // the `rocksdb` feature among them) is asked the old way,
+                    // after the read-write open — which fails loud on its own if
+                    // it cannot open either. Said in the refusal if it comes to
+                    // one, because then the store's own files were touched.
+                    Err(e) => Settled::AskAfterOpening(e.to_string()),
+                }
+            }
+        };
+        // Open the store. A build without the `rocksdb` feature fails loud here
+        // (naming the feature — AGENTS.md rule 4), and it must do so BEFORE the
+        // provenance stamp touches disk: check_and_stamp writes
         // `<path>.meta.json` for any non-refused path, so stamping before a failed
         // open leaves a stray stamp that poisons the next open across a schema
         // change (a stale higher-count stamp then reads as "knows more of the
@@ -397,17 +469,47 @@ impl DesignGraph {
         // interpreted — so the "knows more" refusal check_and_stamp raises next is
         // unchanged for a real on-disk graph.
         let engine = StorageEngine::new_rocksdb(schema.clone(), path)?;
-        // The engine is ALREADY OPEN one line above, so the population question
-        // is answerable right here — the guard simply never asked it. Counting
-        // under the id the identity sidecar names, falling back to the default:
-        // identity is resolved below, but the sidecar is a file and readable now.
+        let (identity, write_identity) = match &settled {
+            Settled::Known(found) => (found.identity.clone(), false),
+            // The migration: a store that ALREADY holds a design under the old
+            // shared id keeps that id. Minting one instead would leave the design
+            // on disk and open a new empty one beside it, reporting nothing wrong.
+            Settled::NewStore => (
+                crate::identity::establish(
+                    path,
+                    DEFAULT_GRAPH_ID,
+                    Self::holds_a_design_probe(&engine, DEFAULT_GRAPH_ID),
+                ),
+                true,
+            ),
+            Settled::SharedDesign => (
+                crate::identity::establish(path, DEFAULT_GRAPH_ID, true),
+                true,
+            ),
+            Settled::AskAfterOpening(why) => {
+                if Self::holds_a_design_probe(&engine, DEFAULT_GRAPH_ID) {
+                    (
+                        crate::identity::establish(path, DEFAULT_GRAPH_ID, true),
+                        true,
+                    )
+                } else {
+                    return Err(crate::identity::lost_identity(&lookup, Err(why.clone())));
+                }
+            }
+        };
+        // The population question for the version guard, counted under the id
+        // just settled (the shared id for a store that has none yet, which is the
+        // only id a pre-identity graph could be under).
         //
         // WHEN THE POPULATION CANNOT BE ESTABLISHED, REFUSE. `count_nodes`
         // propagates scan failures rather than collapsing them to zero, and this
         // closure passes that straight through — a retired type that cannot be
         // counted is exactly the case the conservative refusal is still right for.
-        let count_under =
-            crate::identity::read_graph_id(path).unwrap_or_else(|| DEFAULT_GRAPH_ID.to_string());
+        let count_under = if write_identity {
+            DEFAULT_GRAPH_ID.to_string()
+        } else {
+            identity.graph_id.clone()
+        };
         let provenance = crate::provenance::check_and_stamp(
             path,
             &schema,
@@ -443,24 +545,32 @@ impl DesignGraph {
                 Ok(stored)
             },
         )?;
-        // Who is this design? (req:design-identity.) Established on first open
-        // and read on every one after, from a sibling file — the id namespaces
-        // every stored key, so it has to be known before the design can be.
-        //
-        // The closure is the migration, and it only runs when there is no
-        // identity file yet: a store that ALREADY holds a design under the old
-        // shared id keeps that id. Minting one instead would leave the design on
-        // disk and open a new empty one beside it, reporting nothing wrong.
-        //
-        // `resolve_on_open` rather than `resolve`: the probe below can only see a
-        // design under the OLD SHARED id, so on a store whose sidecar has been
-        // parted from it — the mounted-volume case `cap:hosted-state-on-a-volume`
-        // is about — it answers "no design here" for a design that is very much
-        // here, and the mint that follows overwrites the only record of its name.
-        let identity =
-            crate::identity::resolve_on_open(path, DEFAULT_GRAPH_ID, store_had_content, || {
-                Self::holds_a_design_probe(&engine, DEFAULT_GRAPH_ID)
-            })?;
+        // The identity is written only now, once nothing is left to refuse: a
+        // new one beside the store's real directory, or a COPY there of one found
+        // only where an older reflow2 put it — the old file left in place, since
+        // an older reflow2 opening by the same spelling still reads it. A copy
+        // that cannot be written does not fail an open that found its identity;
+        // the note says so, and the next open tries again.
+        let mut identity_note = None;
+        if write_identity {
+            crate::identity::write(path, &identity)?;
+        } else if let Settled::Known(found) = settled {
+            let mut note = found.note;
+            if found.copy_beside_store
+                && let Err(e) = crate::identity::copy_beside_store(path, &found.file)
+                && let Some(n) = note.as_mut()
+            {
+                n.copied_to = None;
+                n.needs_attention = true;
+                n.summary = format!(
+                    "{} BUT THE COPY COULD NOT BE WRITTEN ({e}), so an open by the store's real                      path is still refused until a copy of {} sits beside the store, at {}. The                      next open will try again.",
+                    n.summary,
+                    found.file.display(),
+                    lookup.beside_the_store().display()
+                );
+            }
+            identity_note = note;
+        }
         let mut graph = Self {
             engine,
             graph_id: identity.graph_id,
@@ -471,6 +581,7 @@ impl DesignGraph {
             signer: None,
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
+            identity_on_open: identity_note,
         };
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
@@ -706,6 +817,12 @@ impl DesignGraph {
     /// design the copy was taken from.
     pub fn take_search_rebuilt_on_open(&mut self) -> Option<crate::search::SearchIndexRebuild> {
         self.search_rebuilt_on_open.take()
+    }
+
+    /// What opening this store found or did about its identity file that a
+    /// person should be told; `None` on every ordinary open.
+    pub fn identity_on_open(&self) -> Option<&crate::identity::IdentityNote> {
+        self.identity_on_open.as_ref()
     }
 
     /// Refuse a write whose property NAMES a node that does not exist.

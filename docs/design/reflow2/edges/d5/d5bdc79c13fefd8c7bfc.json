@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a5b995169309c51db99ffe363f1bc10013d7d0b2bf08110ad2499124a6ecb677",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-stores-identity-follows-its-real-path"
+}

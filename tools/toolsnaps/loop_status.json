@@ -17,7 +17,7 @@
       },
       "since_export": {
         "default": false,
-        "description": "Also report what is owed on ground the COMMITTED EXPORT does not hold —\nthe closest thing to \"what did this session introduce\" that a design\nwith no clock can answer.\n\nOFF BY DEFAULT AND THAT IS A COST DECISION: it reads and parses the\ncommitted export, which the ordinary orientation call has no reason to\npay for. Everything else in the reply stays design-wide either way.",
+        "description": "Also report what is owed on ground the COMMITTED EXPORT does not hold —\nthe closest thing to \"what did this session introduce\" that a design\nwith no clock can answer.\n\nOFF BY DEFAULT AND THAT IS A COST DECISION: it reads and parses the\ncommitted export, which the ordinary orientation call has no reason to\npay for. Everything else in the reply stays design-wide either way.\n\nAlso returns `unexported`: what the store holds that the export does\nnot, grouped by who wrote it (the contributor and agent the store\ncredits, and the epoch) with counts, a few ids each and the dates they\ncarry — so another session's work in progress can be seen before an\nexport. Bounded; `compare_designs` lists every change.",
         "type": "boolean"
       }
     },

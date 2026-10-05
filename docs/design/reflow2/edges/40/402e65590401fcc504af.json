@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5a6a3069b79845bce32e65c9093b42cad390a1e661cbebca7b66924d8219f097",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-stores-identity-follows-its-real-path",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:hosted-state-on-a-volume"
+}

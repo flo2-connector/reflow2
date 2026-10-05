@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25e352edd8065c4f7fb8ad680750614cc932feaa07e408c7556a630097973010",
+  "node_id": "chg:baseline-9629a8ff64c75f5c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:test-loop-status-says-what-is-not-exported' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: New in this change: the MCP-side tests, written first.",
+    "subject": "record"
+  }
+}

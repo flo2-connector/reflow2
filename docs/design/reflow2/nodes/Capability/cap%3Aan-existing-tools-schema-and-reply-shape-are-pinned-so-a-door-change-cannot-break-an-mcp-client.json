@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:47310143ccf716aa7100c26987fa3f303596e115cb64430ccaca137696e64566",
+  "node_id": "cap:an-existing-tools-schema-and-reply-shape-are-pinned-so-a-door-change-cannot-break-an-mcp-client",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The enforcement req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in recommends: a CI gate that fails when an existing tool's input schema or reply shape is renamed, removed or given a new meaning, while a new tool, field or line passes. THE INPUT-SCHEMA HALF EXISTS: tools/toolsnap.py diffs every served tool's schema and description against the committed goldens in tools/toolsnaps/ on every push, so such a change is a reviewed diff. THE REPLY-SHAPE HALF DOES NOT: nothing pins which fields a reply carries or what they mean, so additivity is held today by review and by tests a change writes for itself (for loop_status, an_up_to_date_store_says_nothing_new). PLANNED, NOT APPROVED: Anthony has not approved building the reply-shape gate (2026-10-05). It is recorded so the requirement is not left satisfied by nothing, and building it waits on his word.",
+    "name": "An existing tool's input schema and reply shape are pinned, so a change made for the --call door cannot silently break an MCP client",
+    "provenance": "authored",
+    "status": "planned",
+    "tier": "operational"
+  }
+}

@@ -478,6 +478,40 @@ impl RocksBackend {
         Ok(Self { db })
     }
 
+    /// Open an EXISTING store read-only, writing nothing in its directory.
+    ///
+    /// For a question that has to be answered before deciding whether to open
+    /// a store at all: whether a store with no identity file holds the
+    /// pre-identity design, or one whose name was lost. A read-write open is not
+    /// neutral — measured on 0.79.0, it rotates the info `LOG`, starts a new
+    /// write-ahead log, rewrites `CURRENT` and writes a new `MANIFEST` and
+    /// `OPTIONS` file — so an open that then refused left the store changed.
+    /// RocksDB's read-only open creates no info log (`SanitizeOptions` skips the
+    /// logger when `read_only`), takes no lock, and replays the write-ahead log
+    /// in memory only.
+    ///
+    /// Only the column families the store already has are opened: a read-only
+    /// open cannot create one, and a store written by an older build may lack
+    /// a family added since. A family it lacks reads as `CF not found`.
+    pub(crate) fn open_read_only(path: &str) -> Result<Self, DynoError> {
+        let mut opts = Options::default();
+        opts.set_max_open_files(MAX_OPEN_FILES_PER_STORE);
+        let existing = DB::list_cf(&opts, Path::new(path)).map_err(|e| {
+            DynoError::Storage(format!(
+                "Failed to list the column families of the RocksDB store at {path}: {e}"
+            ))
+        })?;
+        let cf_descriptors: Vec<ColumnFamilyDescriptor> = existing
+            .iter()
+            .map(|name| ColumnFamilyDescriptor::new(name, cf_options(name)))
+            .collect();
+        let db = DB::open_cf_descriptors_read_only(&opts, Path::new(path), cf_descriptors, false)
+            .map_err(|e| {
+            DynoError::Storage(format!("Failed to open RocksDB read-only at {path}: {e}"))
+        })?;
+        Ok(Self { db })
+    }
+
     /// Collect every key in `cf_handle` starting with `prefix`, via seek +
     /// range iteration. The fallback for a prefix delete when no exclusive
     /// upper bound exists (an all-`0xFF` prefix, so `next_prefix` is `None`)

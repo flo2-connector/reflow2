@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dbe034225f956d27b2c5436f0d36373cc848cacd7a3f93ddeb0b37f4b0b5f1a7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-c1e5983e09857b6c",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:80e9385d45f888fd4546f378eeaa706865116b1c985bb60ea8b34327df6a17b6",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:test-a-stores-identity-follows-its-real-path"
+}

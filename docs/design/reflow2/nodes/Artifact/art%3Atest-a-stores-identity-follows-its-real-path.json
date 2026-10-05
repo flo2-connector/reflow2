@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:505bbd0c8519170cedcdf753df8329417021d9181a0f5ea7501b52a440ade711",
+  "node_id": "art:test-a-stores-identity-follows-its-real-path",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Real-path test: drives the core open (DesignGraph::open_rocksdb) and the shipped binary's --call door. Ten cases: symlinked first open then the real path; `--graph-path .`; a plain path leaves exactly graph.id.json and graph.meta.json beside the store with the same four-field record and says nothing; two stores WRITTEN BY THE RELEASED 0.76.0 BINARY (tests/fixtures/legacy-identity/, through a symlink and as `.`) open by their old spelling and by their real path, in both orders, the copy byte-identical to the old file and the old file untouched; a refused open leaves `.reflow2/` byte-identical (bytes and mtimes); the refusal names every place looked, the id the store's keys carry and the recovery, and that id file opens the design; the field case (0.76.0 symlink store opened by its real path first); two identity files naming different designs.",
+    "location": "crates/reflow2-mcp/tests/a_stores_identity_follows_its_real_path.rs",
+    "name": "a_stores_identity_follows_its_real_path.rs — a store's identity follows its real path, stores an older reflow2 made still open, and a refused open writes nothing",
+    "status": "realized"
+  }
+}

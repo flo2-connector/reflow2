@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a73aa4a0eb11ae4b4973837dd777d66a1622f43c55de306c4161935bb9aaf90",
+  "node_id": "fact:worked-the-release-checksums-verified-a-hand-downloaded-0-79-0-tarball-2026-10-05",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "WHAT WORKED (field log 2026-10-05, re-measured on the v0.79.0 assets): the release's checksums.txt verified a hand-downloaded tarball (`sha256sum -c --ignore-missing`). The unpacked binary's hash (0d2237cf…) let the reporter prove after the fact that the binary already installed was the release's. Do not regress it",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry [works] (art:vscode-call-field-log-2026-10-05, lines 368-371): \"the release checksum flow (`sha256sum -c --ignore-missing checksums.txt`) confirmed the tarball, and the unpacked binary was byte-identical to the one already installed (`0d2237cf…`), so verification after the fact was possible.\"\n\nRE-MEASURED with v0.79.0's checksums.txt and `sha256sum -c --ignore-missing`: reflow2-kit.tar.gz OK, reflow2-mcp-linux-x86_64.tar.gz OK. The unpacked reflow2-mcp hashes to sha256:0d2237cf5a7b3bcc04eb…, the prefix the reporter recorded. install.sh runs the same check before installing, and refuses on a mismatch. So the flow serves a hand install as well as the installer.",
+    "subject_id": "cmp:packaging",
+    "valid_from": "2026-10-05"
+  }
+}

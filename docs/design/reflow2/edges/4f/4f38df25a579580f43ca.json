@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7500af6d7c1119de8836d3e244d2c9227ad997a4628fd32aea42ee2a08bae20c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-cc47e04939d8a10f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dbf4aec38ddfef4e099fe70c9d8ac64959e98caec0fabe36d684617aa1fd1bd1",
+    "checksum_basis": "measured"
+  },
+  "to_id": "art:export-standing"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:38d3ba68423d6b1637caf488ce120f460fd5bca17d06c511cdc9bf421e4f45b4",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05",
+  "properties": {
+    "at": "2026-10-05",
+    "note": "The state it measured (clean: true, next: [] and no word about exports for a design that exists only in its store) now raises a high-severity never_exported item first in next, an export_standing block and the ahead_of_export headline, on MCP, --call and read alike (tests/loop_status_says_what_is_not_exported.rs). A re-run on a build carrying this change is what confirms it."
+  },
+  "to_id": "fact:recurrence-a-never-exported-design-is-still-clean-in-loop-status-on-0-78-0-and-main-2026-10-05"
+}

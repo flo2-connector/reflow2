@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a70b6565ec24e382ab6d3f98ba958de780aa8d94ca34b72ab949cd784a725db5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-unexported-changes-say-whose-they-are",
+  "properties": {
+    "covers": "partial",
+    "evidence": "The grouping half: 5 core tests on the in-memory backend. CI runs them in both the core-only and the workspace test runs. They did not compile on main, which has no reflow2_core::unexported."
+  },
+  "to_id": "ver:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported"
+}

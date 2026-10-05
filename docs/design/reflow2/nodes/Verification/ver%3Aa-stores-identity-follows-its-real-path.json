@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bc18b2d9b6c6a4f4294e2b573c5ba0685f6d6dbaba3361b57caf7cb6dd11549e",
+  "node_id": "ver:a-stores-identity-follows-its-real-path",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_stores_identity_follows_its_real_path.rs, run in CI's workspace job; it drives the core open and the shipped binary's --call door. Ten cases: a store first opened through a symlink opens by its real path (one identity file, beside the store, none beside the link); `--graph-path .` writes the identity beside the store and both spellings read it; a plain path leaves exactly graph.id.json and graph.meta.json beside the store with the same four-field record and says nothing; two stores WRITTEN BY THE RELEASED 0.76.0 BINARY (tests/fixtures/legacy-identity/, one through a symlink, one as `.`) open by their old spelling and by their real path, in both orders, with the copy byte-identical to the old file and the old file untouched, said once; a refused open leaves `.reflow2/` byte-identical (every file's bytes and mtime, every directory's mtime) through the binary and the core; the refusal names every place looked, the id the store's keys carry and the recovery, and that id file opens the design with its data; the field case (a 0.76.0 symlink store opened by its real path first) is refused untouched, naming the id and the link, then opens through the link and by its real path; two identity files naming different designs open the one beside the store and put the other in loop_status `next`. Seven unit tests in crates/reflow2-core/src/identity.rs pin the resolution rule and the lookup order.",
+    "findings": "OBSERVED FAILING FIRST against main's code (ad631c6, the new test file built against the unchanged source): 9 of 10 failed. Symlink first open: graph.id.json was written beside the LINK, not the store. `.`: the id went inside the store as ..id.json. 0.76.0 symlink store: opened through the link (the baseline held) but said nothing and then refused by its real path. 0.76.0 `.` store: opened as `.` (baseline held) and was refused by its real path, in both orders. Refused open: `.reflow2/` changed (the store's WAL 000004.log removed and replaced, CURRENT, MANIFEST, OPTIONS and LOG rotated, graph.meta.json created). The refusal named one place and no id. Two disagreeing files: the link's id was used. The plain-path pin passed on main, as it must. WITH THE FIX all 10 pass, as do the 7 new unit tests in identity.rs and the identity-adjacent suites run locally (design_identity, sessions_cannot_cross_designs, a_registry_names_every_store_it_cannot_serve, a_session_names_its_design, a_held_designs_read_is_as_true_as_the_live_one, every_one_shot_mode_resolves_its_design_first, a_degraded_server_recovers_when_its_cause_clears, a_build_can_call_one_tool_from_the_shell, a_store_an_older_reflow2_wrote_is_rechecked, a_read_only_surface_refuses_every_write, latent_mode, and reflow2-mcp's 220 unit tests).",
+    "kind": "verification",
+    "last_run_at": "2026-10-05",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_stores_identity_follows_its_real_path.rs",
+    "method": "test",
+    "name": "A store's identity follows its real path, stores older reflow2 made still open, and a refused open writes nothing",
+    "status": "passing"
+  }
+}

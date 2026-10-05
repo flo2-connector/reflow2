@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0919ac1d1e6faece708045fbefb37fd997a6a938d41b1c4d2b3245bda6263a29",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on",
+  "properties": {
+    "evidence": "Every option reads the mirror coordinate or mirrors(). Without a mirrored surface between two members there is no exit to name and no path to continue on.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:mirror-surface"
+}
