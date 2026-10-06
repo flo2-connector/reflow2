@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2a73124b7d64fdb896372e809b872efd123fc5ab734da3ba0b436f09e9fa5e95",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-design-is-composable-on-two-axes-authority-and-role",
+  "properties": {
+    "evidence": "The y axis (authority: answerable to, intent down and evidence up) is the PART OF relation named here; the two-axes idea saw this coming."
+  },
+  "to_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses"
+}
