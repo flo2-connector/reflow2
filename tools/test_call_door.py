@@ -262,14 +262,20 @@ class Door(unittest.TestCase):
         self.assertIn("loop_status", context)
         self.assertIn("reflow2 read", context)
 
-        # A door write with no MCP config naming a file: stderr says so, and
-        # the record is behind until the Stop hook writes it.
+        # A door write in a project init set up: init RECORDED the export in
+        # .reflow2.toml, so the write keeps the committed record current itself
+        # and says who named it. Until 2026-10-06 the record stayed behind until
+        # the Stop hook wrote it, to the receipt's path, which on a real project
+        # was not the project's export (field log 2026-10-06,
+        # fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
         r = self.sh("reflow2 write add_requirement --args - <<'EOF'\n"
                     '{"id": "req:by-the-hook", "name": "By the hook", '
                     '"statement": "Exported at the end of the turn."}\n'
                     "EOF")
         self.assertEqual(r.returncode, 0, r.stderr)
-        self.assertNotIn("req:by-the-hook", self.record.read_text())
+        self.assertIn("req:by-the-hook", self.record.read_text(),
+                      "the write kept the export .reflow2.toml records")
+        self.assertIn(".reflow2.toml", r.stderr, "and said who named the file")
 
         stop = self.hook({"hook_event_name": "Stop", "session_id": session,
                           "stop_hook_active": False})

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6a17eda3a965b442740cea27bf91d4a9a1bf9c085d61d17eae5393c8d9a6b377",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current",
+  "properties": {},
+  "to_id": "fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06"
+}

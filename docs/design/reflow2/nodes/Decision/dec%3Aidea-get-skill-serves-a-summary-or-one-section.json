@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:72bd86ef2725e366c6137a62110cae844d6abeb0e0baf403f89b66a8bfafd3ef",
+  "node_id": "dec:idea-get-skill-serves-a-summary-or-one-section",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS AN IDEA from the 0.80.0 field log (2026-10-06), nothing chosen. root-cause is 251 lines and capture-session 257; get_skill replies went over the VS Code chat harness's inline limit and were written to a temp file, then read. Fine for a first fetch, heavy when re-fetched each time per AGENTS.md. Idea: a summary_only or section fetch, as get_instructions already offers. Counter: a skill read in part is followed in part; the full body is what makes the steps happen in order.",
+    "kind": "exploratory",
+    "name": "OPEN — should get_skill serve a summary or one section on request, so a skill re-fetched each time (root-cause, capture-session) does not overflow a chat harness's inline reply limit?",
+    "no_relation_note": "Searched get_skill and served skills; nearest are dec:how-skills-ride-in-the-reflow2-plugin and cap:a-lesson-is-served-at-the-step-it-concerns, neither of which this depends on, contradicts or extends by a review relation. No edge drawn.",
+    "status": "proposed"
+  }
+}

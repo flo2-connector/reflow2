@@ -52,6 +52,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import design_io  # noqa: E402  (the one reader of the recorded export; ships beside this file)
+
 REPO = Path(__file__).resolve().parent.parent
 KIT = REPO / "getting-started"
 STAMP = ".reflow2/kit-version.json"
@@ -1175,7 +1178,10 @@ def ensure_gitattributes(project: Path) -> str | None:
     independence. reflow2's own repo has carried this rule for months; a project
     installed by this script never got it.
     """
-    rel = design_record_path(project).relative_to(project).as_posix()
+    record = design_record_path(project)
+    if record.is_dir() or str(design_io.recorded_export(project) or "").endswith("/"):
+        return None  # the item layout merges with plain git; no driver is named for a folder
+    rel = record.relative_to(project).as_posix()
     line = f"{rel} merge=reflow2"
     attrs = project / ".gitattributes"
     existing = attrs.read_text() if attrs.exists() else ""
@@ -1528,7 +1534,81 @@ def design_record_path(project: Path) -> Path:
     point of naming it here is that a new project no longer has to invent one,
     and every message that mentions the record can name the same path.
     """
+    if recorded := design_io.recorded_export(project):
+        return project / recorded
     return project / "docs" / "design" / f"{project.name}.json"
+
+
+def existing_export(project: Path) -> str | None:
+    """An export this project already keeps for THIS design, so the terminal
+    route adopts it rather than inventing `docs/design/<p>.json` beside it
+    (field log 2026-10-06: a hub exporting to `reflow2.json` got a second record,
+    and the Stop hook exported to the invented one).
+
+    In order: an MCP configuration's `--export-to`; then a saved design in the
+    repo root or docs/design whose `graph_id` is this store's. None when the
+    project has no export, which is when the convention applies.
+    """
+    for spec in MCP_CONFIGS:
+        path = project / spec["path"]
+        if spec.get("format") == "toml" or not path.exists():
+            continue
+        try:
+            obj = json.loads(path.read_text())
+        except (OSError, ValueError):
+            continue
+        entry = (obj.get(spec["key"]) or {}).get("reflow2") if isinstance(obj, dict) else None
+        args = list((entry or {}).get("args") or []) if isinstance(entry, dict) else []
+        if isinstance(entry, dict) and isinstance(entry.get("command"), list):
+            args = entry["command"]
+        if "--export-to" in args and args.index("--export-to") + 1 < len(args):
+            return args[args.index("--export-to") + 1].removeprefix("./")
+    try:
+        gid = json.loads((project / ".reflow2" / "graph.id.json").read_text()).get("graph_id")
+    except (OSError, ValueError, AttributeError):
+        gid = None
+    if not gid:
+        return None
+    candidates = sorted(project.glob("*.json")) + sorted((project / "docs" / "design").glob("*.json"))
+    candidates += sorted(d for d in (project / "docs" / "design").glob("*/") if (d / design_io.DESIGN_FILE).exists())
+    for cand in candidates:
+        doc = cand / design_io.DESIGN_FILE if cand.is_dir() else cand
+        try:
+            head = json.loads(doc.read_text())
+        except (OSError, ValueError):
+            continue
+        if isinstance(head, dict) and head.get("graph_id") == gid and (cand.is_dir() or "nodes" in head):
+            rel = cand.relative_to(project).as_posix()
+            return rel + "/" if cand.is_dir() else rel
+    return None
+
+
+def export_to_record(project: Path) -> tuple[str, str]:
+    """The path the terminal route will record, and why."""
+    if found := existing_export(project):
+        return found, "adopted: the export this design already keeps"
+    rel = (project / "docs" / "design" / f"{project.name}.json").relative_to(project).as_posix()
+    return rel, "the convention, since this design keeps no export yet; edit it here to move it"
+
+
+def record_export(project: Path) -> str | None:
+    """Write `[export] path` into `.reflow2.toml`: the ONE record every writing
+    call, the Stop hook, `reflow2_check.py` and this script read
+    (design_io.recorded_export; pointer.rs in the binary). Never rewrites one
+    somebody already recorded. Terminal route only: an MCP project's own
+    configuration already names its export, and its install stays unchanged."""
+    if design_io.recorded_export(project):
+        return None
+    rel, why = export_to_record(project)
+    toml = project / design_io.RECORD_FILE
+    existing = toml.read_text() if toml.exists() else ""
+    block = ("\n" if existing and not existing.endswith("\n") else "") + (
+        "\n" if existing else "") + (
+        "# Where this design's committed export lives. Every writing call, the VS Code\n"
+        "# Stop hook, reflow2 init and the CI gate read it, so they never disagree.\n"
+        f'[export]\npath = "{rel}"\n')
+    toml.write_text(existing + block)
+    return f"{'update' if existing else 'create'}  .reflow2.toml  ([export] path = \"{rel}\" — {why})"
 
 
 def ensure_design_record(project: Path, binary: Path) -> str | None:
@@ -1745,7 +1825,44 @@ def planned_changes(project: Path, harnesses: list[str]) -> list[str]:
     for _, line in IGNORE_LINES:
         if already_tracked(project, line):
             changes.append(f"report  {line} is committed — you will need `{untrack_hint(line)}`")
+    changes.extend(planned_record_steps(project, harnesses))
     return changes
+
+
+def planned_record_steps(project: Path, harnesses: list[str]) -> list[str]:
+    """The record, .gitattributes and the merge driver, as a run would do them.
+
+    THE THREE STEPS THE PREVIEW USED TO LEAVE OUT: `--check` listed none of
+    them and the run then did all three (field log 2026-10-06). Each line here
+    mirrors its step's own guard (record_export, ensure_design_record,
+    ensure_gitattributes, ensure_merge_driver), and tools/test_init.py pins the
+    class: every path a real run changes must appear in the preview."""
+    out = []
+    rel = design_io.recorded_export(project)
+    if rel is None and any(h in harnesses for h in DOOR_HARNESSES):
+        rel, why = export_to_record(project)
+        verb = "update" if (project / design_io.RECORD_FILE).exists() else "create"
+        out.append(f'{verb}  .reflow2.toml  ([export] path = "{rel}" — {why})')
+    if rel is None:
+        rel = design_record_path(project).relative_to(project).as_posix()
+    record = project / rel
+    if not record.exists():
+        out.append(f"create  {rel}  (the shareable design record: exported from the "
+                   f"store, or named for you to export)")
+    if record.is_dir() or rel.endswith("/"):
+        return out  # the item layout merges with plain git; no driver is named for a folder
+    attrs = project / ".gitattributes"
+    existing = attrs.read_text() if attrs.exists() else ""
+    if "merge=reflow2" not in existing:
+        out.append(f"{'append' if existing else 'create'}  .gitattributes  "
+                   f"({rel} merge=reflow2 — merged per node, not by lines)")
+    if (project / ".git").exists():
+        got = subprocess.run(["git", "-C", str(project), "config", "--local", "--get",
+                              "merge.reflow2.driver"], capture_output=True, text=True)
+        if not got.stdout.strip():
+            out.append("register  merge.reflow2.driver  (this clone's git config; git "
+                       "will not carry a merge driver in the repo)")
+    return out
 
 
 def backup_graph(project: Path, binary: Path) -> str | None:
@@ -2029,6 +2146,9 @@ def install(
 
     (project / ".reflow2").mkdir(exist_ok=True)
     done.extend(ensure_gitignore(project))
+    if any(h in harnesses for h in DOOR_HARNESSES):
+        if recorded := record_export(project):
+            done.append(recorded)
     if record := ensure_design_record(project, binary):
         done.append(record)
     # Order matters: the repo-side rule must exist before the per-clone driver

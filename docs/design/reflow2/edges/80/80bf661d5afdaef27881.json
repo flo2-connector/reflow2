@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9df6dd81f4418b3b520803dc2961b007545b878ffdf1a231a35511dd4c544428",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:4ede68f6c6509a17bbca9caa8a126f45adb21b418637fdc93a61340c5730e4b0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:loop-nudge"
+}

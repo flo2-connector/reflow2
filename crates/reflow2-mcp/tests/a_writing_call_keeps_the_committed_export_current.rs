@@ -607,3 +607,33 @@ fn in_a_pointer_folder_a_writing_call_still_refuses_and_writes_no_export() {
         assert!(!named.exists(), "the named export was written");
     }
 }
+
+/// THE PROJECT'S RECORDED EXPORT (field log, 2026-10-06). On the VS Code terminal
+/// route no MCP configuration exists, so a writing call found no export and every
+/// write said "no export was kept current", while the Stop hook exported to a
+/// different file (init's receipt) and init had invented a third
+/// (fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
+/// `.reflow2.toml` `[export] path` is the one record they all read: a project
+/// that names its export there gets it kept by every writing call, and a file
+/// with no `[design]` table still leaves the folder a LOCAL design.
+#[test]
+fn a_recorded_export_in_reflow2_toml_is_the_file_a_writing_call_keeps() {
+    let p = Project::bare();
+    p.write(".reflow2.toml", "[export]\npath = \"reflow2.json\"\n");
+    let export = p.path("reflow2.json");
+
+    let o = p.call("add_project", PROJECT);
+    ok(&o);
+    let e = err(&o);
+    assert!(export.exists(), "the recorded export was not written: {e}");
+    assert!(
+        e.contains("export written to") && e.contains("reflow2.json"),
+        "{e}"
+    );
+    assert!(e.contains(".reflow2.toml"), "names who named the file: {e}");
+
+    let o = p.call("add_requirement", REQ);
+    ok(&o);
+    assert!(holds(&export_at(&export), "req:through-the-door"));
+    assert!(!p.path("docs").exists(), "nothing invented a second export");
+}

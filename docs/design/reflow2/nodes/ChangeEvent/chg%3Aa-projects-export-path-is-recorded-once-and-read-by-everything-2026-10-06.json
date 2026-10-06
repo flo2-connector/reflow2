@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:bc5ea12a4158eb3462da47e54ca0b7f48be7bf79fa4a4b463db386503cffb361",
+  "node_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-10-06",
+    "name": "A project's export path is recorded once, in .reflow2.toml, and every writing call, the Stop hook, init and the CI gate read it; init --check names every step; search hits carry status and kind",
+    "rationale": "The class, not the instance: the export path had no owner, so each part found it its own way (fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06). One committed record closes it for writes, the hook, init and the gate at once, and would have prevented the 2026-10-02 and 2026-09-18 occurrences of the same class. MCP projects are unchanged unless they add the key.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": ".reflow2.toml takes an optional [export] path; a file with only it leaves the folder a local design. call_export.rs reads it after --export-to, so loop_status's export standing does too; loop_nudge's Stop hook reads it and leaves the export to the writes; reflow2_init adopts an existing export (an MCP configuration's --export-to, or a committed export of this design) and records it on the terminal route; reflow2_check.py defaults to it. init --check now names the record, .gitattributes and the merge driver, and a test fails if a run touches a file the preview did not name. search_design hits carry status and kind."
+  }
+}

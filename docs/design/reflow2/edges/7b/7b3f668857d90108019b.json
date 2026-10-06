@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e48ce56f4785aeebc4c4b7fd043e9642c246a5c35dc0786c86015d7f1d8a6237",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06"
+}

@@ -85,12 +85,33 @@ pub struct Also {
     pub role: Option<String>,
 }
 
+/// Where this project's committed export lives, relative to the folder the file
+/// is in: `[export] path = "reflow2.json"` (a directory ending in `/` for the
+/// item layout).
+///
+/// ⭐ THE ONE RECORD OF WHERE A PROJECT'S EXPORT LIVES (field log 2026-10-06,
+/// fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
+/// Until it existed a writing call read `--export-to` or an MCP configuration,
+/// the VS Code Stop hook read init's git-ignored receipt, and init invented
+/// `docs/design/<p>.json`, so on the terminal route all three disagreed. The
+/// kit's Python reads the same key (tools/design_io.py `recorded_export`).
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ExportTable {
+    pub path: String,
+}
+
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct OnDisk {
-    design: Named,
+    /// Absent in a file that only records the export: the folder is then a
+    /// LOCAL design, and `read` says there is no pointer.
+    #[serde(default)]
+    design: Option<Named>,
     #[serde(default)]
     also: Vec<Also>,
+    #[serde(default)]
+    export: Option<ExportTable>,
 }
 
 /// Where the pointer for a design at `graph_path` would be: the folder the
@@ -114,21 +135,68 @@ pub fn read(path: &Path) -> Result<Option<Pointer>, String> {
             ));
         }
     };
+    // A file that records only the export names no design on a server: the
+    // folder stays a local design, exactly as with no file at all.
+    let disk = on_disk(&text, path)?;
+    if disk.design.is_none() && disk.also.is_empty() {
+        return Ok(None);
+    }
     parse(&text, path).map(Some)
+}
+
+/// The export this project records in its `.reflow2.toml` (`[export] path`),
+/// or `Ok(None)` when there is no file or no `[export]` table. `Err` when the
+/// file exists and cannot be read as one: never guess past a broken record.
+pub fn recorded_export(path: &Path) -> Result<Option<String>, String> {
+    let text = match std::fs::read_to_string(path) {
+        Ok(t) => t,
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(None),
+        Err(e) => {
+            return Err(format!(
+                "{} exists but could not be read: {e}",
+                path.display()
+            ));
+        }
+    };
+    Ok(on_disk(&text, path)?
+        .export
+        .map(|e| e.path)
+        .filter(|p| !p.trim().is_empty()))
 }
 
 /// Parse and check a pointer's text.
 pub fn parse(text: &str, path: &Path) -> Result<Pointer, String> {
     let where_ = path.display();
-    let on_disk: OnDisk = toml::from_str(text).map_err(|e| {
+    let on_disk = on_disk(text, path)?;
+    let Some(design) = on_disk.design else {
+        return Err(format!(
+            "{where_} names [[also]] designs but no [design] table: a folder that lists other \
+             designs names its own first, with an `id` and an `address`."
+        ));
+    };
+    check("[design]", &design.id, &design.address, &where_)?;
+    for a in &on_disk.also {
+        check("[[also]]", &a.id, &a.address, &where_)?;
+    }
+    Ok(Pointer {
+        path: path.to_path_buf(),
+        design,
+        also: on_disk.also,
+    })
+}
+
+/// The file's tables, parsed but not yet checked.
+fn on_disk(text: &str, path: &Path) -> Result<OnDisk, String> {
+    let where_ = path.display();
+    toml::from_str(text).map_err(|e| {
         let msg = e.message().to_string();
         let secret = ["key", "token", "secret", "password", "bearer"]
             .iter()
             .any(|w| msg.contains(&format!("`{w}`")));
         format!(
             "{where_} is not a pointer reflow2 can use: {msg}.{} It takes a [design] table with an \
-             `id` and an `address`, and optional [[also]] entries with an `id`, an `address` and a \
-             `role`.",
+             `id` and an `address`, optional [[also]] entries with an `id`, an `address` and a \
+             `role`, and an optional [export] table with a `path`.",
             if secret {
                 " It holds NO secret: a key for a server belongs in `reflow2-mcp setup remote \
                  <server>`, which keeps it in the OS keychain."
@@ -136,20 +204,6 @@ pub fn parse(text: &str, path: &Path) -> Result<Pointer, String> {
                 ""
             }
         )
-    })?;
-    check(
-        "[design]",
-        &on_disk.design.id,
-        &on_disk.design.address,
-        &where_,
-    )?;
-    for a in &on_disk.also {
-        check("[[also]]", &a.id, &a.address, &where_)?;
-    }
-    Ok(Pointer {
-        path: path.to_path_buf(),
-        design: on_disk.design,
-        also: on_disk.also,
     })
 }
 
@@ -464,5 +518,33 @@ role    = "consumes"
         assert_eq!(graph_id_in(&text).as_deref(), Some("g2"));
         let error = vec![json!({"jsonrpc":"2.0","id":1,"result":{"isError":true,"content":[{"type":"text","text":"{\"graph_id\":\"g3\"}"}]}}).to_string()];
         assert_eq!(graph_id_in(&error), None, "an error reply names no design");
+    }
+
+    #[test]
+    fn a_file_that_records_only_the_export_is_not_a_pointer() {
+        let d = tempfile::tempdir().unwrap();
+        let f = d.path().join(FILE);
+        std::fs::write(&f, "[export]\npath = \"reflow2.json\"\n").unwrap();
+        assert_eq!(read(&f).unwrap(), None, "the folder stays a local design");
+        assert_eq!(
+            recorded_export(&f).unwrap().as_deref(),
+            Some("reflow2.json")
+        );
+        assert_eq!(
+            recorded_export(&d.path().join("absent.toml")).unwrap(),
+            None
+        );
+    }
+
+    #[test]
+    fn also_without_a_design_is_refused_rather_than_read_as_local() {
+        let d = tempfile::tempdir().unwrap();
+        let f = d.path().join(FILE);
+        std::fs::write(
+            &f,
+            "[[also]]\nid = \"abc\"\naddress = \"https://h/g/abc/mcp\"\n",
+        )
+        .unwrap();
+        assert!(read(&f).unwrap_err().contains("no [design] table"));
     }
 }

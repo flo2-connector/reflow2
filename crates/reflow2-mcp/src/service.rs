@@ -6783,6 +6783,9 @@ impl ReflowService {
                         named_by: match t.named_by {
                             crate::call_export::NamedBy::Flag => "--export-to".to_string(),
                             crate::call_export::NamedBy::Config(c) => c,
+                            crate::call_export::NamedBy::Recorded => {
+                                format!("{} [export] path", crate::pointer::FILE)
+                            }
                         },
                     }
                 }

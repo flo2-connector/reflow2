@@ -28,10 +28,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import os
 import subprocess
 
 DESIGN_FILE = "design.json"
+# Where a project records which file (or item-layout directory) its export is.
+RECORD_FILE = ".reflow2.toml"
 TAKEN_AT_FILE = "taken_at.json"
 NODES_DIR = "nodes"
 EDGES_DIR = "edges"
@@ -42,6 +45,40 @@ _MAX_NAME_BYTES = 150
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITEMS_REL = os.path.join("docs", "design", "reflow2")
 FILE_REL = os.path.join("docs", "design", "reflow2.json")
+
+
+def recorded_export(root) -> str | None:
+    """The export a project records in `.reflow2.toml` as `[export] path`, or None.
+
+    THE ONE RECORD OF WHERE A PROJECT'S EXPORT LIVES. Until it existed, a writing
+    call read `--export-to` or an MCP configuration, the VS Code Stop hook read
+    init's git-ignored receipt, and `reflow2 init` invented `docs/design/<p>.json`
+    — so on the terminal route, where no MCP configuration exists, all three
+    disagreed (field log 2026-10-06,
+    fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
+    The binary reads the same key (crates/reflow2-mcp/src/pointer.rs).
+
+    A small reader, not a TOML parser: the table holds one string, and tomllib
+    only arrived in Python 3.11. A path is relative to the folder the file is in.
+    """
+    try:
+        with open(os.path.join(str(root), RECORD_FILE), encoding="utf-8") as f:
+            text = f.read()
+    except OSError:
+        return None
+    table = None
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("["):
+            table = line.strip("[]").strip()
+            continue
+        if table == "export":
+            m = re.match(r"""path\s*=\s*(["'])(.*?)\1\s*(#.*)?$""", line)
+            if m:
+                return m.group(2) or None
+    return None
 
 
 def default_export(root: str = REPO) -> str:

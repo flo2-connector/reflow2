@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:525e7db6cb4770facbf7030dac82223d7b049970f8585c33d31931b299605239",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:a-projects-export-path-is-recorded-once-in-reflow2-toml-2026-10-06"
+}

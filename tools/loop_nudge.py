@@ -1732,8 +1732,22 @@ def catch_up_from_ledger(session_id: str) -> None:
         update_state(session_id, counted)
 
 
+def recorded_export() -> str | None:
+    """The export this project records in `.reflow2.toml` — read through
+    design_io, the one reader, which ships beside this file in the kit."""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import design_io  # noqa: E402
+    except ImportError:
+        return None
+    return design_io.recorded_export(".")
+
+
 def design_record() -> str | None:
-    """The committed record, as `reflow2 init` recorded it in the receipt."""
+    """The committed record: the one `.reflow2.toml` records, else the one
+    `reflow2 init` wrote in its receipt (projects set up before the record)."""
+    if recorded := recorded_export():
+        return recorded
     try:
         got = json.loads(STAMP.read_text()).get("design_record")
     except (OSError, ValueError, AttributeError):
@@ -1742,6 +1756,10 @@ def design_record() -> str | None:
 
 
 def export_is_configured() -> bool:
+    # A recorded export is kept current by every writing call (call_export.rs
+    # reads the same record), so the Stop hook leaves it to them.
+    if recorded_export():
+        return True
     for name in MCP_CONFIG_FILES:
         try:
             if "--export-to" in Path(name).read_text():

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d282dfd58d831ff081a83b313b69e676322d46cd1066d3ec610fea0ee60b3cb",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:a-projects-export-path-is-recorded-once-in-reflow2-toml-2026-10-06",
+  "properties": {
+    "evidence": "One recorded export path, read by every part, removes the disagreement the root cause measured."
+  },
+  "to_id": "fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06"
+}
