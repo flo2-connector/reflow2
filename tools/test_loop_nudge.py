@@ -1896,6 +1896,18 @@ class VsCodeHook(unittest.TestCase):
         self.stop()
         self.assertFalse([c for c in self.calls() if "export_graph" in c])
 
+    def test_a_recorded_export_is_left_to_the_writes_that_keep_it(self):
+        # .reflow2.toml [export] path is the project's one record of where its
+        # export lives; every writing call keeps that file current, so the Stop
+        # hook must not export to the receipt's (different) path
+        # (fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
+        (self.project / ".reflow2.toml").write_text('[export]\npath = "reflow2.json"\n')
+        self.start()
+        self.ledger_call("add_requirement")
+        self.ledger_call("loop_status")
+        self.stop()
+        self.assertFalse([c for c in self.calls() if "export_graph" in c])
+
     def test_a_record_that_is_not_an_export_is_never_overwritten(self):
         record = self.project / "docs" / "design" / "proj.json"
         record.write_text("<<<<<<< HEAD\n{}\n=======\n{}\n>>>>>>> theirs\n")

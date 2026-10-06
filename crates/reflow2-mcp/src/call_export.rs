@@ -41,13 +41,19 @@
 //! # Where the file comes from — the project's configuration, never the agent
 //!
 //! 1. `--export-to FILE` on the command line: that file.
-//! 2. Otherwise the file a long-lived server for THIS design would keep
+//! 2. Otherwise the export the project RECORDS in its `.reflow2.toml`
+//!    (`[export] path`, read by [`crate::pointer::recorded_export`]): the one
+//!    record the VS Code Stop hook, `reflow2 init` and `reflow2_check.py` read
+//!    too, so on the terminal route (no MCP configuration at all) a write keeps
+//!    the same file they do (field log 2026-10-06,
+//!    fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
+//! 3. Otherwise the file a long-lived server for THIS design would keep
 //!    current, read from where that server reads it: the `--export-to` in the
 //!    project's MCP configuration ([`MCP_CONFIGS`], the files
 //!    `tools/reflow2_init.py` writes), from an entry whose `--graph-path` is
 //!    this call's store. The project is the folder the store sits in
 //!    (`<project>/.reflow2/graph`), the same root a server measures under.
-//! 3. Otherwise nothing is exported, and one line on stderr says so and how to
+//! 4. Otherwise nothing is exported, and one line on stderr says so and how to
 //!    name one.
 //!
 //! `--no-export` asks a writing call for no export, for a script making many
@@ -109,6 +115,8 @@ pub enum NamedBy {
     Flag,
     /// The project's MCP configuration, at this path relative to the project.
     Config(String),
+    /// The project's `.reflow2.toml` `[export] path`.
+    Recorded,
 }
 
 /// The file a writing call keeps current, and who named it.
@@ -155,6 +163,22 @@ pub fn find(graph_path: &str, export_to: Option<&str>, no_export: bool) -> Resul
         }));
     }
     let root = crate::wall_check::project_root(Some(graph_path), None);
+    if let Some(rel) = crate::pointer::recorded_export(&crate::pointer::location_for(graph_path))
+        .map_err(|why| format!("{why} Nothing was opened and nothing was written."))?
+    {
+        // Relative to the folder the record sits in; a trailing `/` keeps the
+        // item layout's directory form, which export_graph reads from it.
+        let mut path = normalize(&root.join(rel.trim_end_matches('/')))
+            .display()
+            .to_string();
+        if rel.ends_with('/') {
+            path.push('/');
+        }
+        return Ok(Found::Target(Target {
+            path,
+            named_by: NamedBy::Recorded,
+        }));
+    }
     let cwd = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
     let store = normalize(&cwd.join(graph_path));
     let home = std::env::var_os("HOME").map(PathBuf::from);
@@ -385,6 +409,7 @@ fn named_by(t: &Target) -> String {
     match &t.named_by {
         NamedBy::Flag => "named by --export-to".to_string(),
         NamedBy::Config(w) => format!("named by {w}"),
+        NamedBy::Recorded => format!("named by {} [export] path", crate::pointer::FILE),
     }
 }
 

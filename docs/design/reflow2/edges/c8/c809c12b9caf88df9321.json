@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c1619f52e7cca49119e98256c1545088d50a7a94a863d698745ee80c6c2c5278",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f83b57f54ec133a1624412314ebf1c0fefb54c67f175fa673522029e3c0048dd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:pointer"
+}

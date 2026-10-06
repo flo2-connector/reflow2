@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d47db40679ba10ee933e57a816bf424add061d02da4d5db1d21409187ac5bb48",
+  "node_id": "dec:idea-init-local-for-a-repository-you-do-not-own",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS AN IDEA from the 0.80.0 field log (2026-10-06), nothing chosen. For upstream or third-party repos one cannot commit ~70 kit files plus AGENTS.md/.gitignore/.gitattributes edits (two members were on open-PR branches). The workaround applied to 10 member locations: snapshot edited tracked files, run init, restore them byte for byte, drop the export copy, list every new path in .git/info/exclude; git status unchanged in all. Idea: `init --local` does exactly that. Counter: a second install mode to keep in step; the export of such a member lives in the hub, which the recorded [export] path can now say.",
+    "kind": "exploratory",
+    "name": "OPEN — should `reflow2 init --local` set up the terminal route in a repository you do not own, writing the kit and listing its paths in .git/info/exclude, and editing no tracked file?",
+    "no_relation_note": "Searched for init modes and local-only setup; the nearest is cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current, which this would extend rather than relate to by a review relation. No edge drawn.",
+    "status": "proposed"
+  }
+}

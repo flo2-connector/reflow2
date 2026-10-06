@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7331a34792505f296aa774d90fc6d2734054518179444536fc23090318242a70",
+  "node_id": "fact:the-installer-said-local-bin-was-not-on-path-when-it-was-2026-10-06",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "FIELD LOG 2026-10-06: install.sh printed \"~/.local/bin is not on your PATH\" while it was, in the interactive shell and in a fresh sh",
+    "statement": "Measured by the field log on the work laptop. Not root-caused. Candidates to measure there: PATH holding a literal `~/.local/bin` (bash expands a tilde in PATH, sh does not, and install.sh's case match compares the literal string), a trailing slash, or a different spelling of the home path. The measurement that separates them: `sh -c 'echo \"$PATH\"' | tr : '\\n' | grep -n local` on that machine.",
+    "subject_id": "cap:machine-wide-install",
+    "valid_from": "2026-10-06"
+  }
+}

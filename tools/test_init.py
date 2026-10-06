@@ -56,6 +56,59 @@ class InstallerTest(unittest.TestCase):
 
     # ---- the full kit lands ------------------------------------------------
 
+    def _existing_design(self, p, export_rel="reflow2.json", gid="0123456789abcdef"):
+        """A project that already keeps a design and exports it where IT chose."""
+        (p / ".reflow2").mkdir(parents=True, exist_ok=True)
+        (p / ".reflow2" / "graph.id.json").write_text(json.dumps({"graph_id": gid}))
+        dest = p / export_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(json.dumps({"graph_id": gid, "nodes": [], "edges": [],
+                                    "stamp": {}, "content_hash": "sha256:x"}))
+        return dest
+
+    def test_the_terminal_route_adopts_the_export_the_project_already_has(self):
+        """Field log 2026-10-06: init wrote a SECOND export at docs/design/<p>.json
+        (and .gitattributes and .gitignore lines for it) over a design that already
+        exported to reflow2.json; the Stop hook then exported to the invented path
+        (fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06)."""
+        p = self.project()
+        self._existing_design(p)
+        self.install(p, harnesses=["vscode-cli"])
+        toml = (p / ".reflow2.toml").read_text()
+        self.assertIn("[export]", toml)
+        self.assertIn('path = "reflow2.json"', toml)
+        self.assertFalse((p / "docs" / "design").exists(), "no second export invented")
+        attrs = (p / ".gitattributes").read_text()
+        self.assertIn("reflow2.json merge=reflow2", attrs)
+        self.assertNotIn("docs/design", attrs)
+        receipt = json.loads((p / ".reflow2" / "kit-version.json").read_text())
+        self.assertEqual(receipt.get("design_record"), "reflow2.json")
+
+    def test_the_preview_names_every_file_the_run_touches(self):
+        """--check listed neither the design record, .gitattributes nor the merge
+        driver that the real run then wrote (field log 2026-10-06). The preview is
+        its own list beside the steps, so pin the CLASS: every path a real run
+        changes must appear in what --check said first."""
+        p = self.project()
+        subprocess.run(["git", "init", "-q", "."], cwd=p, capture_output=True, check=True)
+        (p / "README.md").write_text("x\n")
+        subprocess.run(["git", "add", "-A"], cwd=p, capture_output=True, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "base"],
+                       cwd=p, capture_output=True, check=True)
+        preview = "\n".join(init.planned_changes(p, ["vscode-cli"]))
+        self.install(p, harnesses=["vscode-cli"])
+        status = subprocess.run(["git", "status", "--porcelain", "-uall"], cwd=p,
+                                capture_output=True, text=True, check=True).stdout
+        touched = [line[3:].strip() for line in status.splitlines() if line.strip()]
+        missing = [path for path in touched
+                   if not path.startswith(".reflow2/") and path not in preview]
+        self.assertEqual(missing, [], "the run touched files --check never named:\n" + preview)
+        driver = subprocess.run(["git", "config", "--get", "merge.reflow2.driver"], cwd=p,
+                                capture_output=True, text=True).stdout.strip()
+        if driver:
+            self.assertIn("merge.reflow2.driver", preview, "the merge driver the run registered")
+
+
     def test_fresh_install_lays_down_the_full_kit(self):
         p = self.project()
         self.install(p)

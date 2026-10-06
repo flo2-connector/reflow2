@@ -29,6 +29,15 @@ pub struct SearchHit {
     pub score: f32,
     /// The node's `name` property at hit time (empty if it has none).
     pub name: String,
+    /// The node's `status` (`accepted`, `proposed`, `realized`, …) when it has
+    /// one, and a Decision's `kind` (`exploratory` / `choice`). ADDED 2026-10-06
+    /// from the field log: the brainstorm skill says to search accepted intent
+    /// before framing a question as open, and with no status on a hit every
+    /// candidate cost a `get_node`. Absent, not null, when the node has none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub status: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kind: Option<String>,
     /// How old this node's claim is, when it carries a date.
     ///
     /// FLATTENED AND SILENT BY DEFAULT: a node with no `valid_from` /
@@ -135,6 +144,16 @@ impl DesignGraph {
                         .and_then(crate::foundation::core::Value::as_str)
                         .unwrap_or_default()
                         .to_string(),
+                    status: node
+                        .properties
+                        .get("status")
+                        .and_then(crate::foundation::core::Value::as_str)
+                        .map(str::to_string),
+                    kind: node
+                        .properties
+                        .get("kind")
+                        .and_then(crate::foundation::core::Value::as_str)
+                        .map(str::to_string),
                     age: self.claim_age_of(&h.node_id, &node.properties, &today)?,
                     node_id: h.node_id,
                     node_type: h.node_type,

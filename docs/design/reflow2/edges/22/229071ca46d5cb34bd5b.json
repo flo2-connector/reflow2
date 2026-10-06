@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d28e6e9193cc7de542ce45cbfcab9c501e7401f43f3e682206ca999d3aad4db8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:8cc7367c2d25a5a413e078df8e8318c53204ac4c840655f981cb0ed6a15b907f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-io"
+}

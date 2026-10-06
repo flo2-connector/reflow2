@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5de05ec42dc89464bd52bfb75830ea2fb23218dca9a29046b7b81098629b2532",
+  "node_id": "fact:init-on-a-project-it-does-not-own-or-that-already-has-a-convention-2026-10-06",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "FIELD LOG 2026-10-06, recorded for later: init on projects it does not own, or that already have a convention, still has three gaps (store in a subdirectory, MCP wording on the terminal route, a second calling convention added silently)",
+    "statement": "From the 0.80.0 field log (hxm_program hub and 11 members), not root-caused yet:\n- A design whose store lives in a subdirectory (hex-ob: hex-simulated-beamline/.reflow2): init at the repo root would have created a new empty store (`create .reflow2/` in the preview). Worked around by running init in the subdirectory.\n- The generated REFLOW2.md / AGENTS.md say reflow2 \"is reached through the reflow2 MCP server, already configured in this repo\" even for --harness vscode-cli; the .github instructions file correctly says to read that as the terminal commands. The harness should select the wording.\n- init added `reflow2 read/write` instructions beside the project's own documented `RUST_LOG=error reflow2-mcp --graph-path … --call` convention, silently: two conventions in one repo. Idea: notice an existing --call convention and offer to update or leave it.\nThe fourth item from the same entry (the preview omitting steps) is fixed by chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06.",
+    "subject_id": "cap:init-installs-the-vscode-terminal-route-and-update-keeps-it-current",
+    "valid_from": "2026-10-06"
+  }
+}

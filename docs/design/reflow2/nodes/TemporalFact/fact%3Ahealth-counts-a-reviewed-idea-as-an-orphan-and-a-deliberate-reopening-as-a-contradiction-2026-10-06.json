@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8a5da84357c091b8a9b002d9468655f0b207458f05d85d623e315983e7f0a5c9",
+  "node_id": "fact:health-counts-a-reviewed-idea-as-an-orphan-and-a-deliberate-reopening-as-a-contradiction-2026-10-06",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "FIELD LOG 2026-10-06, recorded for cleanup pass 2: detect_defects counts an idea closed with a review note as an orphan, and an exploratory idea that deliberately CONTRADICTS an accepted decision (the brainstorm skill's way to reopen one) as a contradiction",
+    "statement": "Measured on 0.80.0 in the hub design: a brainstorm idea recorded with review_relations -> state reviewed_unlinked (the skill calls a note \"a full answer\") was still reported as orphan_node, raising structural defects 20 -> 21; an exploratory Decision that CONTRADICTS an accepted one, reopening it as instructed, was counted as a contradiction defect. Expected: neither counts against health, or both read as acknowledged. Same family as the cleanup pass 1 finding that a superseded Decision counts as neither parked nor followed through (heal.rs follow_through_exists) and fact:the-defect-count-is-severity-blind-so-parked-ideas-are-reported-as-outstanding-debt. Not root-caused yet; it belongs to cleanup pass 2.",
+    "subject_id": "cap:a-node-attached-to-nothing-is-reported-whatever-its-type",
+    "valid_from": "2026-10-06"
+  }
+}

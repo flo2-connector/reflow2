@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bfbf8e2528ce2657c8a3a422e9c20e16ca0b1fc846990da91d4023615297feab",
+  "edge_type": "CAUSES",
+  "from_id": "art:call-export",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "call_export.rs reads only --export-to or an MCP configuration, and the terminal route writes no MCP configuration, so a write could never find the export the Stop hook and init used.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06"
+}

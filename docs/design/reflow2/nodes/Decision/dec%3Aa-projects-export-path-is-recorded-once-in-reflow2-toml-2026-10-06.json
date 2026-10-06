@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b62fc272289723115a29e9cccfc202767a8347fd902bee96987ca2983079b498",
+  "node_id": "dec:a-projects-export-path-is-recorded-once-in-reflow2-toml-2026-10-06",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Asked where the one record should live, @ajs chose \"In .reflow2.toml (Recommended)\" over the install receipt (git-ignored, per machine) and the store's metadata (machine-local, absent in CI).\n\n- `.reflow2.toml` takes an optional `[export] path`, relative to its folder (a directory ending in `/` for the item layout).\n- A file with only `[export]` names no design on a server: the folder stays a LOCAL design.\n- Readers: call_export.rs (after --export-to, before MCP configurations), loop_nudge's Stop hook (and it leaves the export to the writes that keep it), reflow2_init, reflow2_check.py's default, and loop_status's export standing (through call_export).\n- `reflow2 init --harness vscode-cli` records it, ADOPTING the export the design already keeps (an MCP configuration's --export-to, or a committed export whose graph_id is this store's) and using docs/design/<p>.json only when there is none.\n- MCP projects are unchanged unless they add the key themselves (the owner's constraint of 2026-10-05).",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-06 — a project's export path is recorded once, in the committed .reflow2.toml as [export] path, and writes, the Stop hook, init and the CI gate all read it",
+    "rationale": "A committed record is the only one a teammate's clone and a CI checkout both have. The receipt fixed the hook alone and only on the machine that ran init.",
+    "status": "accepted"
+  }
+}

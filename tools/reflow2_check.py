@@ -1187,17 +1187,23 @@ def main() -> int:
     # of them was `design.json` (flo2, 2026-09-18); the store's sync sidecar
     # already names the export it is in step with, so that is the honest
     # default and a bare `reflow2 check` finds it.
+    # FIRST the record the project COMMITS: `.reflow2.toml` `[export] path`, which a
+    # CI checkout has even though it has no store and so no sidecar (field log
+    # 2026-10-06, fact:root-cause-the-export-path-has-no-owner-so-writes-the-hook-and-init-disagree-2026-10-06).
     export_from_sidecar = None
+    named_by = None
     if opts.export is None:
-        export_from_sidecar = synced_export_path(opts.root)
-        opts.export = export_from_sidecar or "design.json"
+        if recorded := design_io.recorded_export(opts.root):
+            opts.export = os.path.join(opts.root, recorded)
+            named_by = os.path.join(opts.root, design_io.RECORD_FILE) + " [export] path"
+        else:
+            export_from_sidecar = synced_export_path(opts.root)
+            opts.export = export_from_sidecar or "design.json"
+            if export_from_sidecar:
+                named_by = os.path.join(opts.root, ".reflow2", "graph.sync.json")
 
     if not os.path.exists(opts.export):
-        where = (
-            f"'{opts.export}' (named by {os.path.join(opts.root, '.reflow2', 'graph.sync.json')})"
-            if export_from_sidecar
-            else f"'{opts.export}'"
-        )
+        where = f"'{opts.export}' (named by {named_by})" if named_by else f"'{opts.export}'"
         die(
             2,
             f"no design export at {where}. Commit one "
