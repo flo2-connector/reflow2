@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:828e2624c9aed5ace4cb023604aea27d0d6af743a94a57ee4af29c62aa410e03",
+  "node_id": "chg:the-installer-falls-back-to-curl-when-gh-fails-2026-10-06",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-10-06",
+    "name": "The installer falls back to curl when gh fails",
+    "rationale": "The release is public, so curl needs no sign-in; gh is kept first only for a fork kept private. The class is closed rather than the one message: any gh failure now falls through, and the new test fails against the old installer.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "tools/install.sh tries gh first when it is installed and, when gh fails (not signed in, or anything else), downloads with plain curl instead of ending the install. checksums.txt follows the same path. tools/test_release_workflow.py drives the case, and the keep-the-old-binary test gets a stand-in curl so it never reaches the network."
+  }
+}

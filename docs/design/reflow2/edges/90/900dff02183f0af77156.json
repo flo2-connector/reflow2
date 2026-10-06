@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:65aebea9110d0fca04bfd1b6e2bb9dedefcc2f5f6d2b9516c7a4825c80cb05e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-vscode-guide-catches-up-with-v0-80-0-2026-10-06",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:5e47568a933c5c7312eb61221bf29ce596ed89e2eeb074e6fc9526f0c8b52fbb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:using-reflow2-in-vscode-without-mcp"
+}

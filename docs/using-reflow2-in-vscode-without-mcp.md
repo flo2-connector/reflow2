@@ -39,8 +39,8 @@ v0.78.0 also shipped the fixes the report's triage asked for outside the plan. A
 honours `--read-only`. A read of a design another session holds is as true as a read of the design itself.
 `external_dependency` replies with a receipt. Each is under [Fixed since the report](#fixed-since-the-report).
 
-Still open: a call joining a running shared server (idea 2), a hub address book (idea 13), and a warning for
-a design that was never exported (idea 14). [The last section](#every-idea-and-where-it-is-recorded) lists every
+Still open: a call joining a running shared server (idea 2) and a hub address book (idea 13). The warning for
+a design that was never exported (idea 14) shipped in v0.80.0. [The last section](#every-idea-and-where-it-is-recorded) lists every
 idea with the record that holds it.
 
 ## The problem
@@ -221,9 +221,10 @@ Each was root-caused on 2026-10-02, and its finding is in reflow2's design under
     the door reads it (`upstream_status`); since v0.78.0 the served hub skill says so. What no record holds is
     where each member's store is on this machine (idea 13, open).
     (`fact:root-cause-a-local-hubs-list-is-its-watch-manifest-but-the-hub-skill-names-the-mcp-config-and-no-pin-says-where-a-store-is-2026-10-02`)
-15. **A design can exist only in its store.** `loop_status` on a design that was never exported still says
-    `clean: true`, with nothing about exports. With `.reflow2/` git-ignored, that design lives on one disk (idea
-    14, open). (`fact:a-never-exported-local-design-is-still-silent-in-loop-status-through-the-door-on-0-77-0-2026-10-02`)
+15. **A design can exist only in its store.** With `.reflow2/` git-ignored, a design never exported lives on
+    one disk. **Fixed in v0.80.0** (#682, idea 14): `loop_status` now opens with "THIS DESIGN HAS NEVER BEEN
+    EXPORTED" and names the one command that writes a copy, and a store holding more than its export says so in
+    its first line (`ahead_of_export`). (`fact:a-never-exported-local-design-is-still-silent-in-loop-status-through-the-door-on-0-77-0-2026-10-02`)
 20. **Command-line safety hooks misfire on reflow2 calls.** A `PreToolUse` hook that blocks remote-shell words
     anywhere in the command text also blocks writes whose design text *mentions* those words. Match the
     command's executable position (after env assignments and wrappers like `sudo -u`/`timeout`), strip heredoc
@@ -300,7 +301,7 @@ them on 2026-10-05
 | 11 | A CI probe for the door (`tools/test_call_door.py`) | as idea 1 | **Built** (#680) |
 | 12 | Ship VS Code hooks (`SessionStart` → `loop_status`, `Stop` → export) | `dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code` | **Built** (#680) |
 | 13 | A hub address book | `dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door` | Open |
-| 14 | Warn on a never-exported design | `dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design` (linked as a duplicate) | Open |
+| 14 | Warn on a never-exported design | `dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design` (linked as a duplicate) | **Built** (#682, v0.80.0) |
 | 15 | Refusals name the tool and the field | `dec:idea-every-argument-refusal-names-the-tool-and-the-field-path` | Shipped in v0.78.0 |
 | 16 | Atomic typed writes | `dec:idea-a-refused-typed-write-stores-nothing` | Shipped in v0.78.0 |
 | 17 | Re-check stored data on a schema change | `dec:idea-stored-data-is-rechecked-against-the-current-schema` | Shipped in v0.78.0 |

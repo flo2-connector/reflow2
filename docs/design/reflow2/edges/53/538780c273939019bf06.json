@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1f696441cda0bc127fdb0f29686c53446daf9a8f7513ac90d71750f31af56bfa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-installer-falls-back-to-curl-when-gh-fails-2026-10-06",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:c991e732bc99680a4e8789d40893d3676cf6345769f332196776e8d8815ae889",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-release-workflow"
+}

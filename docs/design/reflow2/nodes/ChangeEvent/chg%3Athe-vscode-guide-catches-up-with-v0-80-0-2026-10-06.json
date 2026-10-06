@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8b366240c6d7c5875ed3b3b8b0396eeb9d307baef6bed7e5ef253f16ca02d16b",
+  "node_id": "chg:the-vscode-guide-catches-up-with-v0-80-0-2026-10-06",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-06",
+    "name": "The VS Code guide catches up with v0.80.0: the never-exported warning shipped",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "docs/using-reflow2-in-vscode-without-mcp.md still listed the never-exported warning (idea 14, limitation 15) as open after v0.80.0 shipped it (#682). Its 'still open' sentence, limitation 15 and the idea table now say it shipped."
+  }
+}
