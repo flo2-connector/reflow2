@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bebfc1f60c8ec1efb57fcd552cf8a37c3a66eb58afdee31db7dfb419fe0c0608",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-status-that-advances-past-its-own-prose",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

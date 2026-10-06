@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:b205c037854f5e5077dbf3601f86eadcf083dfdcd7539ac144eec0fceb3a8da7",
+  "content_hash": "sha256:00282ddebd99d74c2b55e280bce471abb11f24f29b4713e30b6a6318ef194fbc",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-package-versus-shared-server",
+  "prev_item_hash": "sha256:b205c037854f5e5077dbf3601f86eadcf083dfdcd7539ac144eec0fceb3a8da7",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

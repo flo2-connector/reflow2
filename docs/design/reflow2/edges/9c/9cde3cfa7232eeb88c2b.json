@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:31258cfd3e60e9b785a32dc8788f7b91aeb489e38053f6bc411b73b33377c149",
+  "content_hash": "sha256:6fbd998a1095e8ad892fae65d74d097637e48075e012c5b7b0d5ffda4dd39426",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-an-agent-that-wants-to-update-a-node-finds-the-revise-path",
+  "prev_item_hash": "sha256:31258cfd3e60e9b785a32dc8788f7b91aeb489e38053f6bc411b73b33377c149",
   "properties": {
+    "approved_at": "2026-10-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

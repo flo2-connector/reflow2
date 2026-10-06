@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:966784a9402b10956e76e7d9ac220364a37f5c80353ce1f9a363cdc09f9143d6",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-moment-a-cause-is-written-becomes-a-tool-call-and-the-tool-demands-the-skill",
+  "properties": {
+    "note": "MEASURED 2026-10-05 with the 0.79.0 binary built from main a4b557bb6: record_finding's served description demands the root-cause skill by name (\"GET THE `root-cause` SKILL FIRST\"), so root-cause is no longer demanded by no tool. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:the-root-cause-skill-is-demanded-by-no-tool-and-named-by-no-trigger-so-it-loads-only-by-luck"
+}

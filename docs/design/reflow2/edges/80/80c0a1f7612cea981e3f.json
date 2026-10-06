@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7b855a862f9769eeab3f2999ac481b6b1b78a9dff90a9479fade2a70e2e89542",
+  "edge_type": "CAUSES",
+  "from_id": "art:qs-project-feedback-2026-09-04",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:qs-project-feedback-2026-09-04 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-verification-cannot-record-a-partly-blocked-run"
+}

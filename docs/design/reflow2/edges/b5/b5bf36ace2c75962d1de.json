@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:e785721b245724335646bcf78cd9afa344176388df0e9f39f91a7a9f3625469a",
+  "content_hash": "sha256:5cb4e8cdd854b391cb3e8ef4de041d6427a3aef73f3bab78d1054feaba251e76",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-how-does-a-hub-learn-two-of-its-projects-duplicate-or-contradict-each-other",
+  "prev_item_hash": "sha256:e785721b245724335646bcf78cd9afa344176388df0e9f39f91a7a9f3625469a",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-22",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

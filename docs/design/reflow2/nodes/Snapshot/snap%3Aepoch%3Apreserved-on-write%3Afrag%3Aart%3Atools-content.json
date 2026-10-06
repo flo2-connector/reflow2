@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:09223459133f30f46e44170987a94ffb925c446813fedb21faafc740db674419",
+  "node_id": "snap:epoch:preserved-on-write:frag:art:tools-content",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"fragment_type\":\"implementation\",\"provenance\":\"authored\",\"status\":\"ingested\",\"title\":\"Registered tools/content_tools.rs\"}",
+    "target_id": "frag:art:tools-content",
+    "target_type": "Fragment"
+  }
+}

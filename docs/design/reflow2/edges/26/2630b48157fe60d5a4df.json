@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cc7273457b6c1d63401fc3bb56bdb30f2a3a353d66894df8e8c459730cd614ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

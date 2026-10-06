@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:c733b245fb25d4a94e010f0f2dd462f8b5f0a275c3a7722cc64dd56d0ca1aa06",
+  "content_hash": "sha256:2b5344b5c91077ceb3dd40fa4f29594ed06895cc503fcc313ce14b53fb891962",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-does-the-agent-keep-a-notepad-in-the-graph-for-the-next-agent",
+  "prev_item_hash": "sha256:c733b245fb25d4a94e010f0f2dd462f8b5f0a275c3a7722cc64dd56d0ca1aa06",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-12",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

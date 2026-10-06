@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9e0ddd8b904aa709cff22eb87d36e7c6570745e7e21a7fb64872d480cfe6a28d",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-04",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:dev-storyflow-feedback-2026-09-04 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-malformed-parameter-block-lands-in-prose-and-the-write-succeeds"
+}

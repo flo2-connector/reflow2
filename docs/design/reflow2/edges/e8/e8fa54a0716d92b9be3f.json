@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:10094e97247e5d75208125f785b2fbd9e5c6f90446f8f2c3b699812c23673f9c",
+  "content_hash": "sha256:2e68a82548d0b5975206ed7f2e7f494cfc9485dc6b15b9704028854e9c29a622",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-can-reflow2-say-whether-a-design-has-ever-closed-its-own-loop",
+  "prev_item_hash": "sha256:10094e97247e5d75208125f785b2fbd9e5c6f90446f8f2c3b699812c23673f9c",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-22",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

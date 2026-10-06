@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:6c865fa92264ba0083a4ce6f69bfb13707050fbd2150957aa4f7229d956777e8",
+  "content_hash": "sha256:d5c80291b48dcf87426c02006a2435e271c5fae281f1e0aa83325827c137751c",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-linking-half-ideas-needs-a-task-that-can-be-run",
+  "prev_item_hash": "sha256:6c865fa92264ba0083a4ce6f69bfb13707050fbd2150957aa4f7229d956777e8",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-25",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

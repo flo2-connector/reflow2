@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9de131751bfac0d753bba6950050cbe14e09eda78cf5f58cfba51bee12254adf",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-latent-surface-notices-a-design-arrived",
+  "properties": {
+    "note": "MEASURED 2026-10-05 in source on main a4b557bb6: crates/reflow2-mcp/src/latent.rs re-probes the directory on every call (\"RE-PROBE FIRST\", line 372) and cites this defect (line 82); the never-re-probes condition no longer holds. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:defect-the-latent-surface-never-re-probes-after-a-cli-restore"
+}

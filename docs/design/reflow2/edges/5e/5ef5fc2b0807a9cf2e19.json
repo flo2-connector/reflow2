@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:15ac738c104f51aecc4d555bc2df0dd10eb1f9ce26c24d7ec1cf2483ad61ce0e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-agent-acting-for-a-person-is-recorded-as-both",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

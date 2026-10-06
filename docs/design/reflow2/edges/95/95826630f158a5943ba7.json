@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:19a1a04e8116899acc8fdf661b335aa049d5afdbb8a2565ed059c78ebe67e550",
+  "content_hash": "sha256:6406e94dde37fbbb6d3c61de6ff8436357943a64c7aaf802319dd960ea6b8bf3",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-person-learns-what-to-do-next-once-they-have-a-design",
+  "prev_item_hash": "sha256:19a1a04e8116899acc8fdf661b335aa049d5afdbb8a2565ed059c78ebe67e550",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-24",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

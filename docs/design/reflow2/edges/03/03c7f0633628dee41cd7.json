@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:4c3c2cf84ac2a2510f67452f21f55f7d3381bbf7fc5d4cdbd0106b173f5da935",
+  "content_hash": "sha256:8d6fa8da1e4a31d8080de8b81b2f31a9d6c5eb7e76ca534c6e03a97b453a50d2",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-quantity-that-crosses-a-seam-carries-its-unit-and-the-seam-check-compares-them",
+  "prev_item_hash": "sha256:4c3c2cf84ac2a2510f67452f21f55f7d3381bbf7fc5d4cdbd0106b173f5da935",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-13",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

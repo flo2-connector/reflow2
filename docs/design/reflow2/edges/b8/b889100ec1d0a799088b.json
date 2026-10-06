@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e229455a444628d93e043566fb1f80764c14cd6db8a09723930357d84efd9789",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-question-is-addressed-to-a-person-and-travels-as-a-batch-with-its-evidence",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

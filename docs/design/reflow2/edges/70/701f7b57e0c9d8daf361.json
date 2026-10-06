@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:004f34684a636d98587c8891e15b3bce352da2a7f1382ac92f2eb48d6a404fb7",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-04",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:dev-storyflow-feedback-2026-09-04 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-sibling-constructors-disagree-on-how-to-name-a-node-and-what-status-it-lands-in"
+}

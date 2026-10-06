@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:6008337f7c2b07f1854a691afdc44e687d110242ba37c6b197a6c9fd88be6077",
+  "content_hash": "sha256:6127926e20226769c02a6cb93a8038bfe1fc7de1d403a54316a408859cd0277c",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-claim-says-what-its-session-is-doing-and-never-reads-gone-when-it-cannot-be-verified",
+  "prev_item_hash": "sha256:6008337f7c2b07f1854a691afdc44e687d110242ba37c6b197a6c9fd88be6077",
   "properties": {
+    "approved_at": "2026-10-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

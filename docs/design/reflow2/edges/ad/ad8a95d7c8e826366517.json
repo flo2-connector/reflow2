@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e7b1fb8057687395258ac2510aaa6ae1c5e98a5945c18057490401b0fe919548",
+  "edge_type": "CAUSES",
+  "from_id": "art:vscode-call-door-field-report-2026-10-02",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:vscode-call-door-field-report-2026-10-02 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-door-reports-carried-over-ideas-were-recorded-from-its-first-version-and-linked-only-in-prose-2026-10-05"
+}

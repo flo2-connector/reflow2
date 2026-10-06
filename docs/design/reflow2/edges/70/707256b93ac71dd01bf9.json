@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:5723e9eb072a8a80187ff746dfeffec04c07f0ee2d81ae6af4dfd3a66a83245f",
+  "content_hash": "sha256:479cd9415d8038585e1c28666f77df59c96e81e968a4fec4ffe57876622fd5d5",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-repo-front-door-is-minimal-and-the-documentation-is-a-small-site",
+  "prev_item_hash": "sha256:5723e9eb072a8a80187ff746dfeffec04c07f0ee2d81ae6af4dfd3a66a83245f",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-28",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

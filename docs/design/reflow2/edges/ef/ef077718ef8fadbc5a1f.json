@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:b59c8110c67c6e0ee25fef222377f320f5e3a6c36a4da3420cf305377f80c1ea",
+  "content_hash": "sha256:98bad3b1738b23568f817eceab0a61406e9565005bb7a1e03c4b1fa170158249",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-agent-does-the-file-work-so-a-remote-design-loses-only-what-runs-over-files",
+  "prev_item_hash": "sha256:b59c8110c67c6e0ee25fef222377f320f5e3a6c36a4da3420cf305377f80c1ea",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-27",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

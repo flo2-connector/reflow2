@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1edb8a672274d61520f0eab070d7edfffb6204c72dae4b6e2f832cbe48f359b1",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-07",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:dev-storyflow-feedback-2026-09-07 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:dev-storyflow-2026-09-06-entries-five-of-nine-asks-were-already-shipped-on-a-later-build"
+}

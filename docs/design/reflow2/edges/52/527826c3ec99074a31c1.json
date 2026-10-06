@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:dfb373982fd044a0f27ce967969f835628952db8bc107ed1cf7555a94aa682e7",
+  "content_hash": "sha256:5a8d1fd1a69d668ba7803f3897dca184c7a7e247dac5357d7c129d98b3d7c641",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-can-exhaustive-per-subsystem-tests-be-derived-rather-than-imagined",
+  "prev_item_hash": "sha256:dfb373982fd044a0f27ce967969f835628952db8bc107ed1cf7555a94aa682e7",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-21",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

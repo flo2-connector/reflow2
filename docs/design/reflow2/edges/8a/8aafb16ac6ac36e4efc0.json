@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6a3b7e3a8b73a87ec65c34eba1c739473d06eb20fde1ca42f8cba7b51c621668",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-constraint-says-how-its-quantity-composes",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
