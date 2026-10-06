@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:601e4eaf4d2c41f5dd167dfee8805b76105b57367f8eba951a320627b0afa596",
+  "node_id": "cap:the-site-publishes-reflow2s-setup-paths",
+  "node_type": "Capability",
+  "properties": {
+    "description": "site/index.html, in flo2.io's dark layout, gives three complete setup paths: on your own computer (install.sh, then /genesis, /adopt or /where in an MCP agent), VS Code where an organisation blocks third-party MCP (reflow2 init --harness vscode-cli, the read auto-approve rule, the hooks, and upgrading), and a server for a team (the container image by digest, the volume, probes, one writer per store, bearer-token sign-in, and upgrading). .github/workflows/pages.yml publishes site/ to GitHub Pages on every push to main that touches it. IN PROGRESS until the repository's Pages source is set to GitHub Actions and the first deploy has run; then the page is live and this is realized.",
+    "name": "reflow2's site publishes its setup paths at flo2-connector.github.io/reflow2",
+    "provenance": "authored",
+    "status": "in_progress"
+  }
+}

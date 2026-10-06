@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6f8f1c0dcb9400eabce420c13d27aa2c4286e031763225c9dd49f90ef2055302",
+  "node_id": "frag:art:pages-workflow",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered .github/workflows/pages.yml — publishes site/ to GitHub Pages"
+  }
+}

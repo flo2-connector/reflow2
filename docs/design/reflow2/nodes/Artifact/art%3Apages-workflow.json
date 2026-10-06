@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:75bb46ca4241d85d2ee3b26518bf65ef2bfe08c725d95b7b277b195899161b45",
+  "node_id": "art:pages-workflow",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "An Actions deploy of site/ to GitHub Pages on each push to main that touches it; nothing is built.",
+    "location": ".github/workflows/pages.yml",
+    "name": ".github/workflows/pages.yml — publishes site/ to GitHub Pages",
+    "status": "realized"
+  }
+}

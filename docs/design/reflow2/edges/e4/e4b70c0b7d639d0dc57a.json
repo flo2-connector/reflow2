@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:195ca1430ecfd5488f8f85e5d4ee26b8a0ecbbf5e857e5f989622096448aca2f",
+  "edge_type": "REALIZES",
+  "from_id": "art:pages-workflow",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-site-publishes-reflow2s-setup-paths"
+}

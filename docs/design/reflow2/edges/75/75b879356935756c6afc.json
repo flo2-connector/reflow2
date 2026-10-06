@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6ea25222b250fae543feac265e997342b4ba7d0b3cb52a9230ce827d5d62b331",
+  "edge_type": "REALIZES",
+  "from_id": "art:site-index-html",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-site-publishes-reflow2s-setup-paths"
+}

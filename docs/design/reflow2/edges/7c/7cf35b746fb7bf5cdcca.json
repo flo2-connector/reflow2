@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0eb77a46525276c4c6c4acaecccc765c54aabbd6826f2e559daac2cf0ef1df5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-site-starts-with-three-setup-paths-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-site-publishes-reflow2s-setup-paths"
+}

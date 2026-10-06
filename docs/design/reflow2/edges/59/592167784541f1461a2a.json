@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3654bb9ec107b988640f42b3c3a450556afa7b70017e6956b498dcd48db31c24",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:site-copy-js",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:site-copy-js"
+}

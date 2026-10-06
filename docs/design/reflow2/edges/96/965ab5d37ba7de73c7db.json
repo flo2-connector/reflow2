@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d27410547c6920b587ec41f26b75c7325d559375882336d0c8e666975c61fde7",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:pages-workflow",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:pages-workflow"
+}

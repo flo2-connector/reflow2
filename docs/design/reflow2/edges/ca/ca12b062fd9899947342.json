@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:485f8e9eaccdf650d2310040eadbd0c7b79e52f5f8a9f96a61a0e280e3d9baab",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-site-publishes-reflow2s-setup-paths",
+  "properties": {},
+  "to_id": "req:reflow2-has-a-public-page-anyone-can-read"
+}

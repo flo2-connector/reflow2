@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:74a0b38c3244cffa73a832f0d571b6efe93e416e1a3b8c92d2de0f2fe88bb7a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-site-starts-with-three-setup-paths-2026-10-05",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated"
+}

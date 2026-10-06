@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2718e88168167d4df1a64cef35c4b2cd90c6aed016014863b3e9b65e372b7ddb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-site-starts-with-three-setup-paths-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7e9d509b2543f082e5a3ad57aea3cca50b8b198df0235e0bd8b717a9779b6059",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:pages-workflow"
+}
