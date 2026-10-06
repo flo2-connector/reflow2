@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:4e47c6bae85276c4cd2f3d74465c126fc8d7d7dbc157c8789ef9e6413a0595ab",
+  "content_hash": "sha256:87bcad3d9af88539889691907aca1723466bf3a850f44e137fa43d5e86a17180",
   "node_id": "art:site-index-html",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "document",
-    "description": "reflow2's public setup page: three setup paths, hand-written by the owner's 2026-10-05 decision, in flo2.io's dark layout.",
+    "description": "reflow2's front page: what a project brain is, in eight drawings, told through a made-up school robotics team. Drawn after the owner's Project Brain one-pager; hand-written under the owner's 2026-10-05 decision, with no real design's numbers in it.",
     "location": "site/index.html",
-    "name": "site/index.html — the setup page",
+    "name": "site/index.html — the explainer: a project brain, told through a made-up team",
     "status": "realized"
   }
 }

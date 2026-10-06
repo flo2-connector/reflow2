@@ -93,3 +93,30 @@ li { margin: 0.35rem 0; }
 
 footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1.25rem; }
 footer p { margin: 0.3rem 0; }
+
+.mark a { color: inherit; text-decoration: none; }
+
+/* ---- The explainer (index.html): wide drawings, a narrow text column. ----
+   The drawings are laid out on a 1280-wide canvas, so they get the page's full
+   width; text stays in the 42rem column the rest of the site reads in. */
+.explainer main { max-width: 74rem; }
+.explainer .text { max-width: 42rem; margin-left: auto; margin-right: auto; }
+.explainer .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; justify-content: center; }
+.explainer .hero .text { flex: 1 1 22rem; margin: 0; }
+.explainer .hero-art { flex: 0 1 24rem; width: 100%; max-width: 24rem; height: auto; }
+.explainer .example-note { color: var(--muted); font-size: 0.95rem; margin-top: 2rem; }
+.explainer .example-note b { color: var(--ink); }
+.explainer section { border-top: 1px solid var(--line); margin-top: 2.5rem; }
+.explainer h2 { display: flex; align-items: center; gap: 0.6rem; }
+.explainer .kicker { color: var(--muted); margin: 0 0 0.5rem; }
+.explainer .caption { text-align: center; font-weight: 600; margin-top: 0.25rem; }
+figure.drawing { margin: 0.5rem 0; overflow-x: auto; }
+figure.drawing svg { display: block; width: 100%; height: auto; }
+figure.drawing.narrow-art svg { max-width: 40rem; margin: 0 auto; }
+/* Below this width the drawings' text would be too small to read, so a drawing
+   keeps a readable size and scrolls sideways inside its own frame. */
+@media (max-width: 900px) {
+  figure.drawing svg { min-width: 860px; }
+  figure.drawing.narrow-art svg { min-width: 560px; }
+  figure.drawing::after { content: "Scroll sideways to see the whole drawing."; display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; position: sticky; left: 0; }
+}

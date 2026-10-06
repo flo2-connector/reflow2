@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reflow2 — set it up</title>
+  <meta name="description" content="How to set up reflow2: on your own computer, in VS Code where MCP is blocked, or as a server for a team.">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HAND-WRITTEN ON PURPOSE. The owner's 2026-10-05 decision
+       (dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated)
+       lets setup and explainer pages be written by hand: they are addressed to someone
+       who does not have reflow2 yet. A page that shows a real design's content stays
+       generated from that design (dec:idea-what-is-on-reflow2s-public-page).
+       Version numbers and image digests are deliberately absent: each release's notes
+       carry them, and a page that named one would be wrong the day after the next cut. -->
+  <main>
+    <header>
+      <p class="mark"><a href="./">reflow2</a></p>
+      <h1>Set up reflow2.</h1>
+      <p class="lede">
+        Pick how you will run it. Each way is complete on its own.
+        New here? <a href="./">See what reflow2 is</a> first.
+      </p>
+      <p class="actions">
+        <a class="button" href="#own-computer">On your own computer</a>
+        <a class="button" href="#vscode">VS Code, where MCP is blocked</a>
+        <a class="button" href="#team-server">A server for a team</a>
+      </p>
+      <p class="quiet">
+        Releases, with every version's notes, are on
+        <a href="https://github.com/flo2-connector/reflow2/releases/latest">GitHub</a>.
+      </p>
+    </header>
+
+    <!-- ============================================================ 1 -->
+    <section id="own-computer" aria-labelledby="own-computer-h">
+      <h2 id="own-computer-h">On your own computer</h2>
+      <p class="quiet">
+        For a coding agent that speaks MCP: Claude Code, OpenCode or Grok Build. reflow2 runs on your
+        machine and keeps each design in the project's own folder. Linux (x86_64 or arm64) or macOS.
+      </p>
+
+      <h3><span class="n">1</span> Install it, once per computer</h3>
+      <div class="cmd">
+        <pre><code id="own-install">curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh</code></pre>
+        <button type="button" class="copy" data-copy="own-install" hidden>Copy</button>
+      </div>
+      <p>
+        That puts <code>reflow2-mcp</code> and the <code>reflow2</code> command in <code>~/.local/bin</code>
+        and registers reflow2 with Claude Code and OpenCode for every project on the computer. A folder
+        you never design in stays untouched.
+      </p>
+      <p class="quiet">
+        If the GitHub CLI (<code>gh</code>) is installed, the installer downloads through it, so be
+        signed in first (<code>gh auth status</code>). Without <code>gh</code> it uses plain
+        <code>curl</code>.
+      </p>
+
+      <h3><span class="n">2</span> Start a design</h3>
+      <div class="cmd">
+        <pre><code id="own-start">cd my-project
+claude            # or: opencode</code></pre>
+        <button type="button" class="copy" data-copy="own-start" hidden>Copy</button>
+      </div>
+      <p class="quiet">
+        Grok Build is set up per project: run <code>reflow2 init . --harness grok</code> in the project
+        first, then start <code>grok</code> there.
+      </p>
+      <p>Then say one of these to your agent:</p>
+      <ul>
+        <li><code>/genesis I want to build …</code> for something new. A paragraph is plenty.</li>
+        <li><code>/adopt</code> for code, hardware or documents that already exist.</li>
+        <li><code>/where</code> for a design somebody else started and handed you.</li>
+      </ul>
+
+      <h3><span class="n">3</span> A repository you share <span class="quiet">(optional)</span></h3>
+      <p>
+        If other people or other computers work on the project, add the in-repo part, so their agent
+        is told reflow2 keeps this project's design:
+      </p>
+      <div class="cmd">
+        <pre><code id="own-init">reflow2 init .</code></pre>
+        <button type="button" class="copy" data-copy="own-init" hidden>Copy</button>
+      </div>
+      <p class="quiet">Commit what it writes and your design's export. The <code>.reflow2/</code> folder stays local.</p>
+
+      <h3><span class="n">4</span> Updating</h3>
+      <ol>
+        <li>Export each design and commit it, and copy each project's <code>.reflow2/</code> folder
+          somewhere safe. An older reflow2 refuses an export written by a newer one, so that copy is
+          your way back.</li>
+        <li>Run the install command again. It keeps the binary it replaces as
+          <code>~/.local/bin/reflow2-mcp.&lt;old version&gt;</code>.</li>
+        <li>To roll back, copy that file over <code>~/.local/bin/reflow2-mcp</code> and put your copy of
+          <code>.reflow2/</code> back.</li>
+      </ol>
+    </section>
+
+    <!-- ============================================================ 2 -->
+    <section id="vscode" aria-labelledby="vscode-h">
+      <h2 id="vscode-h">VS Code, where MCP is blocked</h2>
+      <p class="quiet">
+        For an organisation whose Copilot policy blocks third-party MCP servers. The agent reaches
+        reflow2 through the terminal instead: <code>reflow2 read …</code> for anything that only reads,
+        <code>reflow2 write …</code> for anything that changes the design. Linux or macOS.
+      </p>
+
+      <h3><span class="n">1</span> Install it</h3>
+      <p>The same command as on your own computer:</p>
+      <div class="cmd">
+        <pre><code id="vs-install">curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh</code></pre>
+        <button type="button" class="copy" data-copy="vs-install" hidden>Copy</button>
+      </div>
+      <p>Check it:</p>
+      <div class="cmd">
+        <pre><code id="vs-check">reflow2 --version
+reflow2 read --list | head -3</code></pre>
+        <button type="button" class="copy" data-copy="vs-check" hidden>Copy</button>
+      </div>
+
+      <h3><span class="n">2</span> Set up each repository</h3>
+      <p>In each repository you design in, preview first, then write:</p>
+      <div class="cmd">
+        <pre><code id="vs-init">reflow2 init . --harness vscode-cli --check    # shows what it would write; writes nothing
+reflow2 init . --harness vscode-cli
+git status --short</code></pre>
+        <button type="button" class="copy" data-copy="vs-init" hidden>Copy</button>
+      </div>
+      <p>
+        It writes no MCP configuration. Under <code>.github/</code> it writes an instructions file, VS Code
+        hooks, one skill per reflow2 skill and the slash commands. Commit them, so everyone on the
+        project gets the same setup:
+      </p>
+      <div class="cmd">
+        <pre><code id="vs-commit">git add .github &amp;&amp; git commit -m "reflow2: VS Code terminal route"</code></pre>
+        <button type="button" class="copy" data-copy="vs-commit" hidden>Copy</button>
+      </div>
+      <ul>
+        <li>If some teammates can use MCP, use <code>--harness vscode-cli,vscode</code>.</li>
+        <li><code>reflow2 update</code> refreshes these files later. Files somebody edited are kept, and files
+          you wrote yourself are left alone.</li>
+        <li>If <code>git status</code> shows changes outside <code>.github/</code>, read them before adding them.</li>
+      </ul>
+
+      <h3><span class="n">3</span> Let reads run without asking</h3>
+      <p>Add this to your own VS Code settings. Every read runs without a prompt, and each write still asks:</p>
+      <div class="cmd">
+        <pre><code id="vs-approve">"chat.tools.terminal.autoApprove": {
+  "/^reflow2 read /": true
+}</code></pre>
+        <button type="button" class="copy" data-copy="vs-approve" hidden>Copy</button>
+      </div>
+
+      <h3><span class="n">4</span> Start a chat</h3>
+      <p>
+        Open the repository in VS Code and start a chat. A hook checks the design
+        (<code>loop_status</code>) when the session starts, and another says what is owed when it stops.
+        If nothing appears:
+      </p>
+      <ul>
+        <li>Your organisation may have turned agent hooks off (<code>chat.useHooks</code>).</li>
+        <li>VS Code's own terminal must find <code>reflow2</code>. Run <code>command -v reflow2</code> there.
+          If it finds nothing, <code>~/.local/bin</code> is missing from that terminal's <code>PATH</code>.</li>
+      </ul>
+
+      <details>
+        <summary>Upgrading a computer that already has reflow2</summary>
+        <p>Close VS Code first, so nothing has a design open. Then look before you change anything:</p>
+        <div class="cmd">
+          <pre><code id="vs-look">command -v reflow2 reflow2-mcp
+reflow2-mcp --version
+head -2 "$(command -v reflow2)"    # "installed by reflow2_install.py" means the installer's wrapper
+command -v gh &amp;&amp; gh auth status</code></pre>
+          <button type="button" class="copy" data-copy="vs-look" hidden>Copy</button>
+        </div>
+        <p>
+          If <code>reflow2</code> is a symlink to the binary rather than the installer's wrapper, that is fine:
+          the installer replaces the link and leaves the binary alone.
+        </p>
+        <p>Back up before anything is replaced. Run this once, then the second part in each repository you design in:</p>
+        <div class="cmd">
+          <pre><code id="vs-backup">B=~/reflow2-backup-$(date +%F); mkdir -p "$B"
+cp -p ~/.local/bin/reflow2-mcp "$B/"
+
+# in each repository:
+mkdir -p "$B/$(basename "$PWD")" &amp;&amp; cp -a .reflow2 "$B/$(basename "$PWD")/"
+git status --short    # commit the design's export first; git keeps that copy</code></pre>
+          <button type="button" class="copy" data-copy="vs-backup" hidden>Copy</button>
+        </div>
+        <p>
+          Then install, check and set up each repository as in steps 1 to 3. Lines the installer prints
+          about Claude Code or OpenCode are harmless on a computer without them. To install one version
+          rather than the newest, put <code>REFLOW2_VERSION=vX.Y.Z</code> before <code>sh</code>.
+        </p>
+        <p>
+          <b>If you wrote your own instructions file</b> for this route before reflow2 set it up, for
+          example under <code>~/.config/Code/User/prompts/</code> (on macOS,
+          <code>~/Library/Application Support/Code/User/prompts/</code>), move it into your backup
+          folder <em>after</em> every repository you use has been set up. Until then, it is what tells
+          the agent about reflow2 in the repositories still waiting.
+        </p>
+        <p>
+          <b>To roll back:</b> copy the old binary back over <code>~/.local/bin/reflow2-mcp</code> and put
+          each repository's <code>.reflow2/</code> back from <code>$B</code>. An older reflow2 refuses an
+          export a newer one wrote.
+        </p>
+      </details>
+
+      <p class="quiet">
+        The full guide, with what each command does and what still has limits:
+        <a href="https://github.com/flo2-connector/reflow2/blob/main/docs/using-reflow2-in-vscode-without-mcp.md">using reflow2 in VS Code without MCP</a>.
+      </p>
+    </section>
+
+    <!-- ============================================================ 3 -->
+    <section id="team-server" aria-labelledby="team-server-h">
+      <h2 id="team-server-h">A server for a team</h2>
+      <p class="quiet">
+        One reflow2 that several people's agents reach over HTTP, from the published container image,
+        on Docker or Kubernetes.
+      </p>
+
+      <h3><span class="n">1</span> The image</h3>
+      <div class="cmd">
+        <pre><code id="team-image">ghcr.io/flo2-connector/reflow2/reflow2-mcp:&lt;version&gt;</code></pre>
+        <button type="button" class="copy" data-copy="team-image" hidden>Copy</button>
+      </div>
+      <ul>
+        <li>One image for linux/amd64 and linux/arm64. It is public, so pulling needs no token.</li>
+        <li>Pin it by the digest in that release's notes
+          (<a href="https://github.com/flo2-connector/reflow2/releases/latest">latest release</a>).
+          A tag can be pushed again; a digest names one image forever.</li>
+        <li><b>The image moved in 0.79.0.</b> Images up to 0.78.0 are only at
+          <code>ghcr.io/sligara7/reflow2/reflow2-mcp</code>, and that name gets no newer release, so a
+          manifest still pinning it never moves. Change the name when you upgrade.</li>
+      </ul>
+
+      <h3><span class="n">2</span> Run it</h3>
+      <div class="cmd">
+        <pre><code id="team-run">docker run -d --name reflow2 \
+  -p 127.0.0.1:8080:8080 -v reflow2-data:/data \
+  --log-opt max-size=10m --log-opt max-file=3 \
+  ghcr.io/flo2-connector/reflow2/reflow2-mcp:&lt;version&gt;</code></pre>
+        <button type="button" class="copy" data-copy="team-run" hidden>Copy</button>
+      </div>
+      <ul>
+        <li>This listens on this machine only. Until step 3 is done, anything that reaches the port can
+          write the design, so open it to others only after that.</li>
+        <li>Designs live under <code>/data</code>. Keep it on a volume, and back that volume up.</li>
+        <li>By default it serves one design, at the server's root address. Set
+          <code>REFLOW2_REGISTRY_ROOT</code> to serve every design under a folder instead, each at
+          <code>/g/&lt;design id&gt;/</code>.</li>
+        <li>Readiness is <code>GET /readyz</code> (200 only while the design is served) and liveness is
+          <code>GET /healthz</code>.</li>
+        <li>Run one replica per store: a design has one writer. On a rolling update the new pod takes the
+          store over when the old one lets go, and turns ready without a restart.</li>
+        <li>Cap the log as above. Docker's default log has no size limit.</li>
+      </ul>
+
+      <h3><span class="n">3</span> Decide who may call it</h3>
+      <p>Give it your sign-in provider, and it checks every caller's bearer token itself:</p>
+      <div class="cmd">
+        <pre><code id="team-auth">docker run … ghcr.io/flo2-connector/reflow2/reflow2-mcp:&lt;version&gt; \
+  --http-oidc-issuer https://sso.example.org/realms/team \
+  --http-public-url https://reflow2.example.org \
+  --http-contributor-id 'who:{preferred_username}'</code></pre>
+        <button type="button" class="copy" data-copy="team-auth" hidden>Copy</button>
+      </div>
+      <ul>
+        <li>The same settings work as environment variables: <code>REFLOW2_OIDC_ISSUER</code>,
+          <code>REFLOW2_PUBLIC_URL</code>, <code>REFLOW2_CONTRIBUTOR_ID</code>.</li>
+        <li>Without a sign-in provider or a trusted gateway in front, a server set up for others serves
+          reads and proposals only. A server set up as neither is a local server: anything that reaches
+          its port can write the design, so keep that port private.</li>
+        <li>reflow2 does not handle TLS. Put a TLS proxy in front, and give its <code>https://</code>
+          address as <code>--http-public-url</code>.</li>
+      </ul>
+
+      <details>
+        <summary>Upgrading a running server</summary>
+        <ol>
+          <li>
+            <p>See what you run now:</p>
+            <div class="cmd">
+              <pre><code id="team-look">kubectl -n &lt;namespace&gt; get deploy &lt;name&gt; -o jsonpath='{.spec.template.spec.containers[*].image}'
+kubectl -n &lt;namespace&gt; exec deploy/&lt;name&gt; -- /usr/local/bin/reflow2-mcp --version
+# on Docker:
+docker exec reflow2 /usr/local/bin/reflow2-mcp --version</code></pre>
+              <button type="button" class="copy" data-copy="team-look" hidden>Copy</button>
+            </div>
+          </li>
+          <li><b>Snapshot the volume behind <code>/data</code>.</b> That snapshot is your rollback. An older
+            reflow2 refuses an export a newer one wrote, so an old export will not take you back.
+            For a portable copy as well, call <code>export_graph</code> with a <code>path</code> under
+            <code>/data</code> from any MCP client before you roll out.</li>
+          <li><b>Upgrade everything that opens the team's designs at the same time:</b> the server, and
+            anyone whose own reflow2 imports its exports.</li>
+          <li><b>Read "What a consumer or operator should know"</b> in the
+            <a href="https://github.com/flo2-connector/reflow2/blob/main/CHANGELOG.md">CHANGELOG</a> for
+            every version you skip. One that surprises agents: from 0.78.0, an argument a tool does not
+            take is refused instead of ignored, and the refusal names the tool and the field. Drop what it
+            names.</li>
+          <li>Change the image (and its name, if it is still the old one) and roll out.</li>
+          <li>Afterwards, <code>loop_status</code> may open with "THIS DESIGN HAS NEVER BEEN EXPORTED" or
+            say the design is ahead of its export. Export as it says, and commit the file.</li>
+        </ol>
+        <p><b>To roll back:</b> pin the old image again (the old name, for 0.78.0 and earlier) and restore
+          the snapshot.</p>
+      </details>
+    </section>
+
+    <footer>
+      <p class="quiet">
+        <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
+        <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
+        Apache License 2.0
+      </p>
+    </footer>
+  </main>
+  <script src="copy.js" defer></script>
+</body>
+</html>

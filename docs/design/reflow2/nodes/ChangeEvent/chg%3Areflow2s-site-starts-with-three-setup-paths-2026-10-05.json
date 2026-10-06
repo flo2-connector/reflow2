@@ -1,14 +1,14 @@
 {
-  "content_hash": "sha256:b9313a3fea65261cbfd6bc46101236fbe01cf0ac681df31abc49e19d96bfb1d8",
+  "content_hash": "sha256:e8b82e3974586aa284977d9155ac073715cdea493736b0eafddb088d73300b27",
   "node_id": "chg:reflow2s-site-starts-with-three-setup-paths-2026-10-05",
   "node_type": "ChangeEvent",
   "properties": {
     "change_type": "new_feature",
     "detected_at": "2026-10-05",
-    "name": "reflow2's site starts: a hand-written setup page with three paths, published to GitHub Pages",
+    "name": "reflow2's site starts: a hand-written explainer and setup page, published to GitHub Pages",
     "rationale": "The owner asked for the page to start with the setup he uses at home, the one he uses at work, and the one a team server needs, with no person named. Setup pages are hand-written under dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated; everything describing the design stays generated.",
     "rationale_basis": "contemporaneous",
     "subject": "system",
-    "summary": "site/ holds reflow2's first public page, flo2-connector.github.io/reflow2: three setup paths (own computer, VS Code where MCP is blocked, a server for a team) in flo2.io's dark layout, published by an Actions deploy."
+    "summary": "site/ holds reflow2's first public pages, flo2-connector.github.io/reflow2: an explainer of the project brain told through a made-up robotics team (index.html), and three setup paths (setup.html), in flo2.io's dark layout, published by an Actions deploy."
   }
 }

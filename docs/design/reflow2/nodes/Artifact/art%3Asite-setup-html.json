@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:30943c8a2b6c5d7eb2695c26025ce53e15caf88f8246dc73216befb2ebe7a5f2",
+  "node_id": "art:site-setup-html",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "reflow2's setup page: three setup paths (own computer, VS Code where MCP is blocked, a server for a team), hand-written by the owner's 2026-10-05 decision, in flo2.io's dark layout.",
+    "location": "site/setup.html",
+    "name": "site/setup.html — the three setup paths",
+    "status": "realized"
+  }
+}
