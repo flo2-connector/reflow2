@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c5e196f8ad2dab61cc3d9c6dd2be3879c913519452a4337a2cad82808f2f5ed6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:a8c586ec6f150aa452db0efabd72d81c2a5e4075ba4f2f1392e623053099d7b2"
+  },
+  "to_id": "art:dev-reflow2-two-agent-exercise-feedback-2026-09-29"
+}

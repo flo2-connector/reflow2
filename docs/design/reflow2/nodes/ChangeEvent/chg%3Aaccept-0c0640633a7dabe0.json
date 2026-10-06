@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e110419d8bc7465f839335431f8668645ca4c24cf923e8a5baab4d5f609ffc21",
+  "node_id": "chg:accept-0c0640633a7dabe0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "The v0.80.0 cut re-blessed the last release's schema snapshot, as #660's gate (tests/a_schema_narrowing_ships_its_migration.rs) orders at every cut: reflow2_version 0.79.0 → 0.80.0 and nothing else, because no schema property, type or enum value changed since 0.79.0. Accepted before the manifest is frozen, as flow:release-cut step 1 orders.",
+    "subject": "system"
+  }
+}

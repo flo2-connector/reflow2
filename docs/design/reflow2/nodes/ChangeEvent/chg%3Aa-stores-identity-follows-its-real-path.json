@@ -1,9 +1,11 @@
 {
-  "content_hash": "sha256:1f1f02fd234a66a49763e905e76dc8044ef313213fa1a14381484c1ecf900f20",
+  "content_hash": "sha256:45c08a5e5709e0191b726b5cacaa9ad5c22c7d971f18fbe48543c8d11cccd6f5",
   "node_id": "chg:a-stores-identity-follows-its-real-path",
   "node_type": "ChangeEvent",
+  "prev_item_hash": "sha256:1f1f02fd234a66a49763e905e76dc8044ef313213fa1a14381484c1ecf900f20",
   "properties": {
     "change_type": "defect_fix",
+    "commits": "f6f62ccdda7d5da1eae46a6df831650880029fc2",
     "detected_at": "2026-10-05",
     "name": "A store's identity file is placed beside the store's REAL directory however the path is spelled, the places an older reflow2 used are still read, and a refused open writes nothing",
     "rationale": "Fixes the cause in fact:root-cause-a-stores-identity-file-is-placed-by-how-its-path-was-spelled-2026-10-05: a sidecar was located by the path's spelling rather than by the directory it belongs to, and the open's writes were not ordered after its last refusal. Owner's constraint (Anthony, 2026-10-05): \"I just want to make sure the changes we implement for vscode don't break it for how it was originally used/designed as an mcp server. My brother likes using as is\" — so a store opened by its plain path behaves exactly as before (same two files beside the store, same record), and stores the RELEASED 0.76.0 binary made through a symlink and as `.` are committed as fixtures and pinned to still open, by their old spelling and now by their real path. WHY A COPY, NOT A MOVE: the copy is what makes the real path open; leaving the old file is what keeps an older reflow2 that opens by the same spelling working. NOT DONE, deliberately: the version stamp, client record and usage ledger still follow the spelling (the same class, but none is fatal and moving them changes what an older binary reads); the work machine's own store still needs its id file put back by hand, which the refusal now says how to do. The one behaviour change is loud and needs two identity files naming different designs for one store, which only a reflow2 older than the 2026-08-07 refusal or a hand edit could leave.",

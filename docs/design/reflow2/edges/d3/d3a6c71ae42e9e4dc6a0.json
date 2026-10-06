@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:625c85f3198a2bf586ccd04783fd90ab2fd4abdd957ca641424d7b03d46cf1ff",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:ad0f30849a2cfb5ed01db48ed7337b5b93f0058c3ad1de38c5182ee20f252db7"
+  },
+  "to_id": "art:dependency-holds"
+}

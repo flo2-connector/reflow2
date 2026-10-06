@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d5712c70270696540fb31bdf9d931b43d4f62a3fc3830a2b36134f8ccefb8a1b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:9f0dce2ef7957ac83eadbbda351ff180e6124d7085b474ce93d3b65fec51180e"
+  },
+  "to_id": "art:retire-from-design-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d21d4232e640d7623ee0c26e0c6ead375421f7d96f1897e31267f00341389e5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:83ef9f672ce8f420e9fccaa94e7d48f942c712e7d7468adac814b87d20447d2d"
+  },
+  "to_id": "art:seam-test"
+}

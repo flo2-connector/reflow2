@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e5851de030405e42ceb7a154f71062108a4e747193106787bbc4e6a0880a720e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0800",
+  "properties": {
+    "as_checksum": "sha256:7d4b3af14b4f8bfecd3c0fb60cd5bcc34e915b7904c522ae6cfa965a88eb4060"
+  },
+  "to_id": "art:a-capability-carries-its-thread-test"
+}
