@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:087b7ce62c907cf70e580d3d211cc7c70c3c0fc55d3238c62d31c4cb609ecd96",
+  "content_hash": "sha256:90f5b2d8da767b3f4bfb2bdf4c6f8e8ab1fd0ccd2cf1e4965b47e62bb3160032",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-repository-root-holds-only-what-a-build-or-a-harness-needs",
+  "prev_item_hash": "sha256:087b7ce62c907cf70e580d3d211cc7c70c3c0fc55d3238c62d31c4cb609ecd96",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-28",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

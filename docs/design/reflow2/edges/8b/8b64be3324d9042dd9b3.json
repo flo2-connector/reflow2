@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:1086cd8bd6e34c752ba8d61d7dab90a224aa5f25b7f343097795b02dd7cf3601",
+  "content_hash": "sha256:ba15ea6c8d9efd6b586e2b54f0ee356f3964ebe65ea980816a8b4ef56e7c4414",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:how-should-reflow2-log-its-own-usage",
+  "prev_item_hash": "sha256:1086cd8bd6e34c752ba8d61d7dab90a224aa5f25b7f343097795b02dd7cf3601",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-09",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

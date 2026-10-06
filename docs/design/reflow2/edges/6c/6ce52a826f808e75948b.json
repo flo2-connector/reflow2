@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:986520b84f634f567b733f70394f0a2cdca93f2dc06f78a45a2126137ff9b441",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-ility-report-is-bounded-when-the-designs-own-growth-crossed-the-cap",
+  "properties": {
+    "at": "2026-09-20",
+    "note": "MEASURED 2026-10-05 with the 0.79.0 binary on this design: ility_report replied in 28,003 characters, inside its 30,000 budget, withholding fields to fit and saying so (full answer 53,419); the report no longer crosses its cap as the design grows, and tools/replies_are_bounded.py gates it in CI. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:a-report-with-no-way-to-narrow-itself-crossed-its-cap-because-the-design-grew-not-because-anything-changed"
+}

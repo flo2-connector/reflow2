@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61966c83c7df03416e9f1e948148de448caa49798e516b3f3729824d423b8f19",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-shared-client-outside-the-project-attaches-to-the-running-server",
+  "properties": {
+    "at": "2026-09-22",
+    "note": "MEASURED 2026-10-05: tools/test_shared_attach_from_another_folder.py, which drives this exact case, runs in CI (ci.yml:292) and CI is green on main a4b557bb6; the change's CHANGED set names this defect. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:shared-attach-by-absolute-path-missed-the-running-server-and-spawned-a-rival-2026-09-22"
+}

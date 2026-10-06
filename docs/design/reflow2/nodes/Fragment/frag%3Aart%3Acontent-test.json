@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:8de4529317ff859a30c9c21a54bcc13bdfc4f03d9e1f8de1cbfb2c0c9919fe4d",
+  "content_hash": "sha256:68ceec5143b7302c34da3b48fb70b9b69a3b6bc038c5645b3fa94dd48586cd24",
   "node_id": "frag:art:content-test",
   "node_type": "Fragment",
+  "prev_item_hash": "sha256:8de4529317ff859a30c9c21a54bcc13bdfc4f03d9e1f8de1cbfb2c0c9919fe4d",
   "properties": {
     "fragment_type": "implementation",
     "provenance": "authored",
-    "status": "ingested",
+    "status": "superseded",
     "title": "Registered tests/content.rs"
   }
 }

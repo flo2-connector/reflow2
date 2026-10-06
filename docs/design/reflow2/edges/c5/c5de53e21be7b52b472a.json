@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:fe860ac82fb192fa623accef684cef228bd62b1d12e8aa2221591984c8877321",
+  "content_hash": "sha256:8441614c40105d6eccebcd751ccbae0316fdaa9a1c6a353d3047f220c13525b6",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-what-else-should-cast-doubt-on-a-settled-decision-and-what-should-strengthen-one",
+  "prev_item_hash": "sha256:fe860ac82fb192fa623accef684cef228bd62b1d12e8aa2221591984c8877321",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-22",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

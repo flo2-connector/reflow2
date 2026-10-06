@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:b150ec0a3b5bc4ad96f81e77eb77737a4195618b56b4f4f7e71af4259159409f",
+  "content_hash": "sha256:f62d46cdc7add70152bcdbc715b70b820887013b53a9d4c527659f53930e1516",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-could-a-projects-codegraph-become-part-of-its-reflow2-design",
+  "prev_item_hash": "sha256:b150ec0a3b5bc4ad96f81e77eb77737a4195618b56b4f4f7e71af4259159409f",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-23",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

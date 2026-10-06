@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9b6c2d10988dee5b53f048af78933223a36e9119713cf6922d11d6c039445736",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-served-read-evaluates-every-derived-relation-reflow2-computes",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

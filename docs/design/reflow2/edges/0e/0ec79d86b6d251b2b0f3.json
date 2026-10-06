@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:580ba9fd6356b61f7db8d317d2ed67164c0d30266d17cf6de3d494d84a45bc1f",
+  "edge_type": "CAUSES",
+  "from_id": "art:qs-project-feedback-2026-09-04",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:qs-project-feedback-2026-09-04 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-designrule-has-no-constructor-reported-by-two-independent-projects"
+}

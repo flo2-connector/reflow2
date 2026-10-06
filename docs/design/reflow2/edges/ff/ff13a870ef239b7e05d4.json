@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dbe099c06042e3a44ba76f1c2549813cc3dfb728a767b62089e66cb11d6fe82b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-release-publishes-one-amd64-and-arm64-index-and-names-its-digest",
+  "properties": {
+    "at": "2026-10-01",
+    "note": "MEASURED 2026-10-05 on main a4b557bb6: .github/workflows/release.yml builds and smoke-tests each architecture's image (docker/smoke.sh) before it publishes the index, and tools/test_release_workflow.py runs in CI (ci.yml:108); the cut no longer verifies only the assets. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:the-cut-verified-the-assets-and-never-the-image-2026-09-14"
+}

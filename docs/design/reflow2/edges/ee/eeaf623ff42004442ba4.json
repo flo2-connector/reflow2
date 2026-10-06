@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:687ddb40caf84e1f049e207f4eb8a6c8ef6f57a2f7c039fac756db32e85d743d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-near-match-report-is-not-cut-at-three",
+  "properties": {
+    "at": "2026-09-21",
+    "note": "MEASURED 2026-10-05 on main a4b557bb6: NEAR_MATCH_LIMIT is 6 (crates/reflow2-mcp/src/tools/capture.rs:80), not 3, and the change added a test pinning that a crowded band is not reported as three; the cut-at-three condition no longer holds. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:the-near-match-guard-shows-three-of-a-nine-way-tie-so-relevance-is-decided-by-score-noise"
+}

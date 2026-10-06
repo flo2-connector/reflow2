@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:06b4e90d20ea910b96dd6362dbba7baa5754bc47003c2060ddaf6fbe46e11fd9",
+  "content_hash": "sha256:b80df4d043947af6f40e3487de0a417bd61a4f9b409ae100e460cf2ed205aeaf",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:how-a-session-is-pointed-at-a-design",
+  "prev_item_hash": "sha256:06b4e90d20ea910b96dd6362dbba7baa5754bc47003c2060ddaf6fbe46e11fd9",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:567905d3fd29b6ac7b098090334f63ef7ed6b1f62b0059ced61685705f33c3a6",
+  "content_hash": "sha256:b6afbdd93c527b414049621551a4bcca77395c02660051928824f5af8d3b4de1",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-every-design-starts-as-a-pseudo-design-and-whether-reflow2-already-holds-that-layer",
+  "prev_item_hash": "sha256:567905d3fd29b6ac7b098090334f63ef7ed6b1f62b0059ced61685705f33c3a6",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-13",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

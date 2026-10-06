@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ce0fe8145876a575eb9762b1e15d807273bb2b2c660aed62973055b865dea80a",
+  "node_id": "decision:ack:heal:504141f82230f7af",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Accepted the structural defect heal:504141f82230f7af.",
+    "name": "Reviewed: heal:504141f82230f7af",
+    "rationale": "Deliberate, not a duplicate to merge: the DUPLICATES edge between these two facts carries its own evidence, \"Linked rather than merged: they were found for different reasons and both reasons matter\" — the same class (a principle settled for one case and never carried to its structural sibling) found twice on unrelated surfaces. The link is the record; merging would lose one of the two reasons. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "status": "accepted"
+  }
+}

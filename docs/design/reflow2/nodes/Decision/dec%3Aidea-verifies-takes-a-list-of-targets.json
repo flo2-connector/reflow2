@@ -1,13 +1,15 @@
 {
-  "content_hash": "sha256:ea20febf9a7b29626936597e666036e7986783d6023a0dd786948d3a686b7a01",
+  "content_hash": "sha256:3dc58cf9f16d3fdf268ea05b148d60a4262758093a554ab235f73b0923bfe209",
   "node_id": "dec:idea-verifies-takes-a-list-of-targets",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:ea20febf9a7b29626936597e666036e7986783d6023a0dd786948d3a686b7a01",
   "properties": {
+    "chose": "Superseded by dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks: this idea EVOLVES_INTO it (\"The older thought, that one helper (verifies) takes a list, grows here into every typed edge helper having a bulk form, measured on a whole design built through the connector.\"), and that successor is now settled (accepted 2026-10-05 in this same pass, on its own promotion into accepted intent or its built form). Settled 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
     "decision": "Recorded as BRAINSTORMING, not as a proposal. dev_storyflow agent, 2026-09-06 on 0.48.0, wish #32: \"`verifies` is one edge per call. Recording a check that covers a capability and two artifacts is three round-trips. Wish: `verifies` accepting a list of targets (like `set_artifact_checksums` does for baselines).\"\n\nWHAT ALREADY SHIPPED, on 0.50.0 (invisible to the reporter's build): `add_verification` takes `verifies: [{target_id, target_type?}]` in the CREATE call, so the common case — record the check and what it checks together — is one call. What remains is the standalone edge tool: adding targets to an EXISTING check is still one call per target.\n\nOPTIONS: (a) `verifies` gains an optional `targets` list beside `target_id` (one or the other; both refused), each entry resolved from its id, the whole call refused if any target is unknown — the same all-or-nothing shape the bulk accept uses. (b) leave `verifies` singular and point the skills at the constructor form. (c) a general `create_edges` bulk already exists — check whether it covers this; if it does, the wish is a discoverability gap, not a tool gap.",
     "kind": "exploratory",
-    "name": "OPEN — should `verifies` take a LIST of targets, as `set_artifact_checksums` takes a list of baselines, so a check covering a capability and two artifacts is one call rather than three?",
+    "name": "SUPERSEDED — grew into dec:idea-every-typed-edge-helper-has-a-bulk-form-that-keeps-its-checks, which is settled",
     "no_relation_note": "Searched for bulk verifies and target lists; nearest were the one-call constructor ruling (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call, which shipped the create-time list and is named in the text) and cap:bulk-forms; neither is the same question (this is the standalone edge tool after creation), so no edge was drawn.",
     "rationale": "COUNTER-ARGUMENTS beside each. (a) is small and consistent with the bulk-forms precedent, but a second way to say the same thing on a surface whose naming inconsistency was the largest friction class — the one-call constructor may already be the right answer, and dec:idea-one-way-to-name-which-node-across-the-tool-surface argues for fewer shapes, not more. (b) leaves the add-targets-later case at one call per target, which is what the reporter met. (c) needs measuring: `create_edges` exists and takes typed endpoints; if it draws VERIFIES it is the answer and `find_tools` should rank it for this ask. A RANKING IS A FINDING: measure (c) first; if it covers the case, the fix is one sentence in the verifies description; if not, (a). Anthony's call.",
-    "status": "proposed"
+    "status": "superseded"
   }
 }

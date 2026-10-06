@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:925099912e9dce3274bbc84c157a2e31ec1a815e5f9d58d40f000b2bfad56e78",
+  "content_hash": "sha256:dcda8a4c20ce36fd38c06f0e3f9b62c591ee312e87c5abd255cf7726a419e411",
   "node_id": "dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:925099912e9dce3274bbc84c157a2e31ec1a815e5f9d58d40f000b2bfad56e78",
   "properties": {
+    "chose": "Promoted into chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only on 2026-09-05, which the design holds as chg:alexs-four-surface-fixes-sequence-hint-get-node-by-id-auth-hint-and-bulk-check-only (ChangeEvent). The promotion answered the question; the options it did not take stay recorded above as considered. Settled 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup (the design itself proves it: EVOLVES_INTO to an accepted or realized successor).",
     "decision": "Recorded as BRAINSTORMING, not as a proposal — dev_storyflow field report 2026-09-05, wish #26. get_node cost two round-trips to learn: unknown field `node_id`, then missing `node_type`. 'Requiring node_type as well is a second round-trip for every read.' WHAT IS CHEAP: node_type_index already resolves an id to its type for every detector, so a by-id read is one existing lookup away, and the typed-prefix convention is the documented reason ids are unique across types. A MIDDLE PATH: accept node_type as optional, resolve by index when omitted, and REFUSE (never guess) when an id resolves to more than one type — the one-call read for the common case, honesty for the collision.",
     "kind": "exploratory",
-    "name": "OPEN — get_node requires node_type as well as id, though the id prefix (`dec:`, `ver:`, `req:`) already names the type. Should a read resolve by id alone?",
+    "name": "SETTLED — promoted into: Four surface fixes from Alex's report: add_epoch names the sequence it needs, get_node resolves by id alone, Interface.auth says it is authentication, and a bulk…",
     "rationale": "THE COUNTER-ARGUMENT, and it is real: the prefix is a CONVENTION, not a rule — node_type_index's own comment says 'on a collision the first type scanned wins', so a by-id read on a graph with a convention violation would return a silently wrong node, which is worse than a required field. That is why the middle path refuses rather than picks. Part of the sibling-inconsistency class (fact:defect-sibling-constructors-disagree..., fact:defect-typed-tool-parameter-names-are-inconsistent): the read tools disagree with each other too.",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

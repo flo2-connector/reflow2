@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:faa70d168126964c2969d877c3e8170198fea5f71d0fe90ce0bab185a8ea41c3",
+  "content_hash": "sha256:70f8817ab467e9411f9cf5f57eaa968f3b9082b303df43a22e24f79ddaccaad4",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list",
+  "prev_item_hash": "sha256:faa70d168126964c2969d877c3e8170198fea5f71d0fe90ce0bab185a8ea41c3",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-08-21",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

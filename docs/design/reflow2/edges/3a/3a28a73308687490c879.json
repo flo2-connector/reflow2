@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:84dd5a40b75e126832f6fdfd03cd72fbe55a9e462d6ceac31cc27114fae9dc22",
+  "content_hash": "sha256:691dd4b4f744f4d1338fa0d51bf0767d7946653f0614f7fb2c1f535e4c30ecec",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-per-version-upgrade-notes-retire-into-the-changelog",
+  "prev_item_hash": "sha256:84dd5a40b75e126832f6fdfd03cd72fbe55a9e462d6ceac31cc27114fae9dc22",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-28",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

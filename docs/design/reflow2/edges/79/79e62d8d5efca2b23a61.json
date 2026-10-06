@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:37e48d713481628b74668dd88cb7a65d038c1088c614a596472a056af271dc13",
+  "content_hash": "sha256:a6a0c6a09950a4b8eecae987544ae5d83896e95cd50d74303a6f262ba47a6fce",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-slash-feedback-emits-a-computed-tally-not-an-agents-recollection",
+  "prev_item_hash": "sha256:37e48d713481628b74668dd88cb7a65d038c1088c614a596472a056af271dc13",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-12",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

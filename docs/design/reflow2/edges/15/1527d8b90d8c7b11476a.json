@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:be0c2faafba4df1a74046fde10163affd9623c2404dd1f2cb9e0489e305cb666",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-stale-lock-reclaim-is-serialized",
+  "properties": {
+    "note": "The defect's own text says FIXED 2026-09-13; this change (not the one the detector guessed) serialized the reclaim. MEASURED 2026-10-05: tools/test_loop_nudge.py::test_a_stale_lock_is_reclaimed_exactly_once runs in CI (ci.yml:69), green on main a4b557bb6. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:the-stale-probe-lock-reclaim-lets-two-winners-through-2026-09-13"
+}

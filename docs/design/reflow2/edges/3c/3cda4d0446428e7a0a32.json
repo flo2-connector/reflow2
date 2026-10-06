@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d06db16b7d0f1486922acdf057f5e5595ddde209deb747c9500bbd5647e77e2a",
+  "edge_type": "CAUSES",
+  "from_id": "art:dev-storyflow-feedback-2026-09-04",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Back-edge of a triage already recorded: this finding is attached to the report (HAS_TEMPORAL_FACT) and its own text cites art:dev-storyflow-feedback-2026-09-04 as its source. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:defect-a-status-can-advance-past-its-own-prose-and-nothing-says-so"
+}

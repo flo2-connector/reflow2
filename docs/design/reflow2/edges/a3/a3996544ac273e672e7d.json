@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:0eeb9b5163b1bb2dd4441637e4e2e36030d9de5c86320f8e30860adf7e3a6fbe",
+  "content_hash": "sha256:d0ee22de21ef6ff8d897c1ca17bb218ed8a3fb03ef4d15cccb32c34e880e2caf",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-fact-has-one-home-across-a-family-of-designs-and-reflow2-enforces-it",
+  "prev_item_hash": "sha256:0eeb9b5163b1bb2dd4441637e4e2e36030d9de5c86320f8e30860adf7e3a6fbe",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-09-22",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

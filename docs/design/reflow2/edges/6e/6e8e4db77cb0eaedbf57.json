@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5ebbbb81ae97adc852af6b3b10c1e479f438fcc179d594c290bc9b6b4b16329",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:every-overridden-tool-list-is-built-in-one-place-2026-09-26",
+  "properties": {
+    "at": "2026-09-26",
+    "note": "MEASURED 2026-10-05: crates/reflow2-mcp/tests/every_tool_list_carries_the_cache_hints_its_protocol_requires.rs pins the cache hints on every tool list, latent included, and runs in the workspace tests CI runs (green on main a4b557bb6); the change's CHANGED set names this defect. Closed 2026-10-05 under dec:the-owner-delegates-the-design-cleanup-2026-10-05, pass 1 of the design cleanup."
+  },
+  "to_id": "fact:root-cause-the-latent-tool-list-omits-the-cache-fields-the-2026-07-28-spec-requires-2026-09-26"
+}

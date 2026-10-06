@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:46ea4332b8ab6ef399b957009a278109a5be86e6a2ca52c1f2861734b69ae255",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:orphan-attachment-is-an-exclusion-list",
+  "properties": {
+    "approved_at": "2026-10-05",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

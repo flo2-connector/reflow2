@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:35e43c8a838dbef15c8d9a4c7c9a30bc3bfb3d59973ff674e9f3e7ba70fb1d7c",
+  "content_hash": "sha256:2e3d802bf53f9a67267c12f109ea5c9cbc61418f5dac6f5950c6c7a1a21abb03",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-door-reads-its-arguments-from-a-named-file",
+  "prev_item_hash": "sha256:35e43c8a838dbef15c8d9a4c7c9a30bc3bfb3d59973ff674e9f3e7ba70fb1d7c",
   "properties": {
+    "approved_at": "2026-10-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

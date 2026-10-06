@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:d60ab7bd6a8155bd05fe4d4c2c547200e10ec54e272f7ab4c0de1d45a3089866",
+  "content_hash": "sha256:45bc885703a327c11be2484b7518350867130ba3ebbe7491f58c7562d96c6c3b",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:linked-repos-poc",
+  "prev_item_hash": "sha256:d60ab7bd6a8155bd05fe4d4c2c547200e10ec54e272f7ab4c0de1d45a3089866",
   "properties": {
+    "approved_at": "2026-10-05",
     "authored_at": "2026-07-27T00:00:00Z",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"
