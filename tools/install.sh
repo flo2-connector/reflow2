@@ -7,9 +7,11 @@
 # Releases, installs the binary onto PATH and the kit beside it, and says
 # exactly what to run next. No Rust toolchain, no ~14-minute RocksDB build.
 #
-# While the repo is PRIVATE, unauthenticated downloads fail — so this prefers
-# `gh release download` (which uses your GitHub auth) and falls back to plain
-# curl, which is the path that simply works the day the repo goes public.
+# The repo is public, so plain curl needs no sign-in. Where the GitHub CLI is
+# installed this tries `gh release download` first (it carries your sign-in, for a
+# fork kept private), and WHEN gh FAILS IT FALLS BACK TO curl. Until 0.80.0 a gh
+# that was installed but not signed in ended the install even though curl would
+# have worked (fact:the-installer-gave-up-when-gh-was-installed-but-not-signed-in-2026-10-06).
 # "I could not download" is reported as exactly that, never as a half-install.
 #
 # Overrides:
@@ -50,25 +52,29 @@ trap 'rm -rf "$tmp"' EXIT
 
 download() {
   # $1 = asset name; lands in $tmp/$1
-  if command -v gh > /dev/null 2>&1; then
-    if [ "$VERSION" = "latest" ]; then
-      gh release download --repo "$REPO" --pattern "$1" --dir "$tmp" \
-        || fail "could not download $1 from the latest release of $REPO (gh)"
-    else
-      gh release download "$VERSION" --repo "$REPO" --pattern "$1" --dir "$tmp" \
-        || fail "could not download $1 from release $VERSION of $REPO (gh)"
-    fi
+  if gh_download "$1"; then return 0; fi
+  if [ "$VERSION" = "latest" ]; then
+    url="https://github.com/$REPO/releases/latest/download/$1"
   else
-    if [ "$VERSION" = "latest" ]; then
-      url="https://github.com/$REPO/releases/latest/download/$1"
-    else
-      url="https://github.com/$REPO/releases/download/$VERSION/$1"
-    fi
-    curl -fsSL -o "$tmp/$1" "$url" \
-      || fail "could not download $url
-If the repository is private, install the GitHub CLI (gh) and authenticate — this
-script uses it automatically. 'Could not download' never means 'up to date'."
+    url="https://github.com/$REPO/releases/download/$VERSION/$1"
   fi
+  curl -fsSL -o "$tmp/$1" "$url" \
+    || fail "could not download $url
+For a private fork, install the GitHub CLI (gh) and sign in (gh auth login) — this
+script tries it first. 'Could not download' never means 'up to date'."
+}
+
+# gh first when it is installed; nonzero (and a note) when it is absent or fails,
+# so the caller falls back to curl instead of ending the install.
+gh_download() {
+  command -v gh > /dev/null 2>&1 || return 1
+  if [ "$VERSION" = "latest" ]; then
+    gh release download --repo "$REPO" --pattern "$1" --dir "$tmp" && return 0
+  else
+    gh release download "$VERSION" --repo "$REPO" --pattern "$1" --dir "$tmp" && return 0
+  fi
+  say "note: gh could not download $1 (is it signed in? gh auth status) — trying plain curl"
+  return 1
 }
 
 # Like download(), but returns nonzero instead of exiting — for an OPTIONAL
@@ -78,18 +84,11 @@ script uses it automatically. 'Could not download' never means 'up to date'."
 # (BL-55). The honest-skip branch below was unreachable dead code.
 try_download() {
   # $1 = asset name; lands in $tmp/$1
-  if command -v gh > /dev/null 2>&1; then
-    if [ "$VERSION" = "latest" ]; then
-      gh release download --repo "$REPO" --pattern "$1" --dir "$tmp" 2> /dev/null
-    else
-      gh release download "$VERSION" --repo "$REPO" --pattern "$1" --dir "$tmp" 2> /dev/null
-    fi
+  if gh_download "$1" 2> /dev/null > /dev/null; then return 0; fi
+  if [ "$VERSION" = "latest" ]; then
+    curl -fsSL -o "$tmp/$1" "https://github.com/$REPO/releases/latest/download/$1" 2> /dev/null
   else
-    if [ "$VERSION" = "latest" ]; then
-      curl -fsSL -o "$tmp/$1" "https://github.com/$REPO/releases/latest/download/$1" 2> /dev/null
-    else
-      curl -fsSL -o "$tmp/$1" "https://github.com/$REPO/releases/download/$VERSION/$1" 2> /dev/null
-    fi
+    curl -fsSL -o "$tmp/$1" "https://github.com/$REPO/releases/download/$VERSION/$1" 2> /dev/null
   fi
 }
 

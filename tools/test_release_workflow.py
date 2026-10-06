@@ -574,6 +574,9 @@ while [ $# -gt 0 ]; do case "$1" in --pattern) p="$2"; shift;; --dir) d="$2"; sh
 [ -f "{release}/$p" ] || exit 1
 cp "{release}/$p" "$d/"
 """)
+        # No real network: since gh's failure falls back to curl, an unstubbed curl
+        # would fetch the REAL release's checksums.txt and fail the stand-in assets.
+        make_exe(stand / "curl", "#!/bin/sh\nexit 22\n")
         make_exe(stand / "python3", "#!/bin/sh\nexit 0\n")
         env = dict(os.environ, PATH=f"{stand}:/usr/bin:/bin", HOME=str(tmp / "home"))
 
@@ -615,6 +618,42 @@ def test_the_kit_ships_the_design_reader_beside_the_gate() -> None:
     assert "import design_io" in gate, "the gate no longer imports the reader; drop this test"
 
 
+def test_install_sh_falls_back_to_curl_when_gh_is_not_signed_in() -> None:
+    """Until 0.80.0 a gh that was installed but not signed in ended the install
+    ("could not download ... (gh)") although the release is public and plain curl
+    works (fact:the-installer-gave-up-when-gh-was-installed-but-not-signed-in-2026-10-06).
+    DRIVEN: a stand-in gh that always fails, a stand-in curl that serves a stand-in
+    release; the install must succeed through curl and say gh was skipped."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        stand = tmp / "stand-ins"
+        stand.mkdir()
+        release = tmp / "release"
+        (release / "pkg").mkdir(parents=True)
+        make_exe(release / "pkg" / "reflow2-mcp", '#!/bin/sh\necho "reflow2-mcp 0.80.0"\n')
+        subprocess.run(["tar", "-C", str(release / "pkg"), "-czf",
+                        str(release / "reflow2-mcp-linux-x86_64.tar.gz"), "reflow2-mcp"], check=True)
+        (release / "kit" / "k").mkdir(parents=True)
+        subprocess.run(["tar", "-C", str(release / "kit"), "-czf",
+                        str(release / "reflow2-kit.tar.gz"), "k"], check=True)
+        make_exe(stand / "uname", '#!/bin/sh\ncase "$1" in -s) echo Linux;; -m) echo x86_64;; esac\n')
+        make_exe(stand / "gh", "#!/bin/sh\necho 'To get started with GitHub CLI, please run: gh auth login' >&2\nexit 4\n")
+        # curl -fsSL -o OUT URL: serve the URL's last path segment from the stand-in release.
+        make_exe(stand / "curl", f"""#!/bin/sh
+while [ $# -gt 0 ]; do case "$1" in -o) o="$2"; shift;; http*) u="$1";; esac; shift; done
+f="{release}/${{u##*/}}"
+[ -f "$f" ] || exit 22
+cp "$f" "$o"
+""")
+        make_exe(stand / "python3", "#!/bin/sh\nexit 0\n")
+        env = dict(os.environ, PATH=f"{stand}:/usr/bin:/bin", HOME=str(tmp / "home"))
+        r = subprocess.run(["sh", str(INSTALL_SH)], capture_output=True, text=True, env=env, cwd=tmp)
+        both = r.stdout + r.stderr
+        assert r.returncode == 0, "a signed-out gh must not end the install:\n" + both
+        assert "trying plain curl" in both, "the install must say it fell back to curl:\n" + both
+        assert (tmp / "home" / ".local" / "bin" / "reflow2-mcp").exists(), both
+
+
 def main() -> int:
     tests = [
         test_the_kit_ships_the_design_reader_beside_the_gate,
@@ -627,6 +666,7 @@ def main() -> int:
         test_the_image_description_no_longer_says_no_authentication,
         test_install_sh_maps_linux_aarch64,
         test_install_sh_keeps_the_binary_it_replaces,
+        test_install_sh_falls_back_to_curl_when_gh_is_not_signed_in,
     ]
     failed = 0
     for t in tests:

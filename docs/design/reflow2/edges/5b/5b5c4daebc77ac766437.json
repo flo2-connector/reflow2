@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5478cd822359f08248f1a3eabf153411e3224e5df7d8c011c35f82fd9e94f5bc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-installer-falls-back-to-curl-when-gh-fails-2026-10-06",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:the-installer-gave-up-when-gh-was-installed-but-not-signed-in-2026-10-06"
+}

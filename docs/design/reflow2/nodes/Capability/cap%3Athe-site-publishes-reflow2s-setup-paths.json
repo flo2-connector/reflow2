@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:4ff113b8b4addc9fad0f024594f0c2ae580a803481829b00446c7d17f94bdd8b",
+  "content_hash": "sha256:335af053277866f4d27102e8beadcc71e65077cd5b8a65e6135e79a6deef75a3",
   "node_id": "cap:the-site-publishes-reflow2s-setup-paths",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:4ff113b8b4addc9fad0f024594f0c2ae580a803481829b00446c7d17f94bdd8b",
   "properties": {
-    "description": "site/index.html explains what reflow2 is as a project brain, in drawings, through a made-up school robotics team (where knowledge lives; what goes in; one brain across repositories; troubleshooting, designing something new, a requirement change; the loop). site/setup.html gives three complete setup paths: your own computer (install.sh, then /genesis, /adopt or /where in an MCP agent), VS Code where an organisation blocks third-party MCP (reflow2 init --harness vscode-cli, the read auto-approve rule, the hooks, upgrading), and a server for a team (the container image by digest, the volume, probes, one writer per store, bearer-token sign-in, upgrading). Both are in flo2.io's dark layout. .github/workflows/pages.yml publishes site/ to GitHub Pages on every push to main that touches it. IN PROGRESS until the repository's Pages source is set to GitHub Actions and the first deploy has run; then the pages are live and this is realized.",
+    "description": "site/index.html explains what reflow2 is as a project brain, in drawings, through a made-up school robotics team (where knowledge lives; what goes in; one brain across repositories; troubleshooting, designing something new, a requirement change; the loop). site/setup.html gives three complete setup paths: your own computer (install.sh, then /genesis, /adopt or /where in an MCP agent), VS Code where an organisation blocks third-party MCP (reflow2 init --harness vscode-cli, the read auto-approve rule, the hooks, upgrading), and a server for a team (the container image by digest, the volume, probes, one writer per store, bearer-token sign-in, upgrading). Both are in flo2.io's dark layout. .github/workflows/pages.yml publishes site/ to GitHub Pages on every push to main that touches it. LIVE since 2026-10-06 (#689 merged at 69a23912; Pages source set to GitHub Actions on the owner's word; the first deploy ran green). Both pages answered 200 from outside.",
     "name": "reflow2's site explains what reflow2 is and publishes its setup paths, at flo2-connector.github.io/reflow2",
     "provenance": "authored",
-    "status": "in_progress"
+    "status": "realized"
   }
 }

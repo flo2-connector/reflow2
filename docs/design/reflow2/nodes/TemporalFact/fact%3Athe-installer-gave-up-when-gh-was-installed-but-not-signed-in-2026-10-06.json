@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:428fca224c0379c587c85ba63141269800a0e5daa04da4ab75130fe8767d5e98",
+  "node_id": "fact:the-installer-gave-up-when-gh-was-installed-but-not-signed-in-2026-10-06",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-06: tools/install.sh gave up when the GitHub CLI was installed but not signed in, though the release is public and plain curl works",
+    "statement": "tools/install.sh used `gh release download` whenever gh was on PATH, and treated gh's failure as the end of the install (\"could not download ... (gh)\"), with no fallback to curl. A gh that is installed but not signed in fails even on a public release, so such a machine could not install reflow2 by the documented one-line command, though curl alone would have worked. FOUND 2026-10-05 by reading the v0.80.0 installer while writing an upgrade recipe; MEASURED 2026-10-06 by a stand-in gh that refuses and a stand-in curl that serves the release: the installer from main at 69a23912 fails, and with the fix it installs through curl and says it fell back.",
+    "subject_id": "cap:machine-wide-install",
+    "valid_from": "2026-10-06"
+  }
+}
