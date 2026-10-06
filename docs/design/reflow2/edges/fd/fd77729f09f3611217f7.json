@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aab4c650c326c8040b762c8f4e9ab160423e51dc508f6e2a50c6d4b1397d8ae7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:a-hub-members-relation-is-a-field-on-its-pin-and-the-ripple-comes-first-2026-10-06",
+  "properties": {
+    "evidence": "These are the two implementation choices for the accepted idea.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses"
+}

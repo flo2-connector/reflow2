@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa27b3645f8bf6c06ed01ef0a86f56946643f176c076c6cabfd091accf851929",
+  "node_id": "dec:a-hub-members-relation-is-a-field-on-its-pin-and-the-ripple-comes-first-2026-10-06",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "@ajs, 2026-10-06: \"capture the requirement in 692, go with your picks\", answering two choices put to him:\n1. WHERE THE RELATION LIVES. Chosen: a field on the member's existing pin (the Resource external_dependency writes), naming the relation (`part_of` or `uses`) and, for `uses`, the interfaces it crosses. Not chosen: a new edge type between designs, which is cleaner for systems engineering but moves the schema stamp, so every copy of reflow2 (flo2.io's included) would have to upgrade together.\n2. HOW FAR THE FIRST SLICE GOES. Chosen: record the relation and make the cross-design ripple follow it (part_of up and down, uses across). Not chosen yet: a parent's requirements flowing down into its parts as allocation, which needs dec:idea-intent-crosses-designs and dec:idea-gap-flows-to-the-dependency settled first.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-06 — a hub member's relation is a FIELD on its existing dependency pin (no new edge type, no schema-wide upgrade), and the first build is the ripple only; a parent's intent flowing down into its parts comes later",
+    "rationale": "The pin is where a hub's member list already lives (upstream_status reads it), so the relation joins the record every reader meets, without a schema stamp move. Ripple first because it is the measured gap (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05); allocation across designs is larger and rests on two open ideas.",
+    "status": "accepted"
+  }
+}

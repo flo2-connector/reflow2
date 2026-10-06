@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dc2d3df4158d1dfb74b2cfe070317d022bf2555900a2ae3d209dd9bd37a2b56d",
+  "node_id": "ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Acceptance check, to be written FAILING before either slice is built. Three designs: P (the parent), A (PART OF P) and B (a peer that A USES across interface I, mirrored into A). A change in B at I, analysed from the hub, must reach A's consumers of I (across) and P's capability that A serves (up), and every result must name its design. Today the radius stops at each design and no row names a design (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05), so it fails.",
+    "kind": "verification",
+    "name": "A change ripples across a USES link and up a PART OF link, in three designs (parent, part, peer)",
+    "status": "planned"
+  }
+}

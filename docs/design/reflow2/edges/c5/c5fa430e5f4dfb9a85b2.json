@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fbd288974f67b799af65f183459ea798c12bfcacffd4ecd7454490666e175945",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it",
+  "properties": {
+    "approved_at": "2026-10-06",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

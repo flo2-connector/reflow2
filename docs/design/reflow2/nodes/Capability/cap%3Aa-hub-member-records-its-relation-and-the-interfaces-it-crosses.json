@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3b50298f8847105a44695c0a5c0e540409c359777d617872249d94102e84bc13",
+  "node_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Slice 1. A field on the member's dependency pin (external_dependency) carries the relation, and the interfaces for a uses link; upstream_status reads it back. The served /hub skill asks for the relation when a member is added and runs link-projects for each named interface. A health check reports a member whose relation is unset, or a uses link with no mirrored interface to follow. Additive: a pin without the field reads as 'relation not stated', never as a guess.",
+    "name": "A hub member records its relation (part_of or uses) and the interfaces it crosses on its pin; /hub asks for it when a member is added; a health check names a member linked by nothing",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}
