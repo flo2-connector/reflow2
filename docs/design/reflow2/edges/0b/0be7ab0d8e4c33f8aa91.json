@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:efbe708e4eb732c4c3370cd93b9e78da2aec50c7dec3777fe6dbee624feeba5b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-site-starts-with-three-setup-paths-2026-10-05",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:197a2e5c1155504d1b946af0dd3d6f7761c3712a1a56f68fe93323f45e17d301",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-style-css"
+}

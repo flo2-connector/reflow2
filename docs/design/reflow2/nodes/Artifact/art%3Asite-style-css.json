@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d17fdd499d806f5e7eb49bb6bb174cb3731c869d7eabbefa5710c2dab72e1d8c",
+  "node_id": "art:site-style-css",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "flo2.io's layout and dark palette for reflow2's site, with a command box whose Copy button sits beside the command.",
+    "location": "site/style.css",
+    "name": "site/style.css — the site's stylesheet",
+    "status": "realized"
+  }
+}

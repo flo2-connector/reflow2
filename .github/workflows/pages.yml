@@ -1,0 +1,42 @@
+# reflow2's site: site/ published to GitHub Pages (flo2-connector.github.io/reflow2).
+#
+# AN ACTIONS DEPLOY, NOT A BRANCH OR /docs, because the repository root is a Rust
+# workspace and req:reflow2-has-a-public-page-anyone-can-read asked for the HTML to
+# stay out of it. Only site/ is uploaded; nothing is built.
+#
+# The repository's Pages source must be "GitHub Actions" (Settings -> Pages) for the
+# deploy step to have a site to publish to.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; a newer push waits rather than cancelling one mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v5

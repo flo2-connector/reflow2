@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ccf7d064fd1f6cfd7239ba245187c47d09ab191fc1c214efe31d8e49ae078d12",
+  "node_id": "art:site-copy-js",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Wires each command's Copy button; a button stays hidden unless the browser can write to the clipboard.",
+    "location": "site/copy.js",
+    "name": "site/copy.js — the Copy buttons",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9fcdbd83ab956befea9dd4926342a541ce8201462c6e62a855890d95c540c80f",
+  "node_id": "snap:epoch:preserved-on-write:cap:the-site-publishes-reflow2s-setup-paths",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:pages-workflow\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:site-copy-js\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:site-index-html\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:site-style-css\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:docs\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:reflow2-has-a-public-page-anyone-can-read\",\"properties\":{}}]",
+    "state": "{\"description\":\"site/index.html, in flo2.io's dark layout, gives three complete setup paths: on your own computer (install.sh, then /genesis, /adopt or /where in an MCP agent), VS Code where an organisation blocks third-party MCP (reflow2 init --harness vscode-cli, the read auto-approve rule, the hooks, and upgrading), and a server for a team (the container image by digest, the volume, probes, one writer per store, bearer-token sign-in, and upgrading). .github/workflows/pages.yml publishes site/ to GitHub Pages on every push to main that touches it. IN PROGRESS until the repository's Pages source is set to GitHub Actions and the first deploy has run; then the page is live and this is realized.\",\"name\":\"reflow2's site publishes its setup paths at flo2-connector.github.io/reflow2\",\"provenance\":\"authored\",\"status\":\"in_progress\"}",
+    "target_id": "cap:the-site-publishes-reflow2s-setup-paths",
+    "target_type": "Capability"
+  }
+}

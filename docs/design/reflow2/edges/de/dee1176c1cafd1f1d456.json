@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b16b253bc3d04f09b4679f2ac14183bbc7fc419807bf46143b99fd1714e9731",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-site-publishes-reflow2s-setup-paths",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}
