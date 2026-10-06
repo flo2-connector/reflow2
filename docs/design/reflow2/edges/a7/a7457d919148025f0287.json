@@ -1,13 +1,13 @@
 {
-  "content_hash": "sha256:19787696ccf4d372ef42365ddeec51d46bb7b95fbbde677f3cfe3cdc04d8a0b2",
+  "content_hash": "sha256:24b16743d1e4837ad4c6c5b7b4c2cd1fce9a8ca27ace434d61359290ce69fe36",
   "edge_type": "CHANGED",
   "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 2,
     "action": "modified",
-    "checksum_after": "sha256:0a365483c4495fd557be2f4ea01ad8444dd7b7e936e5e333017deb1618a1f44e",
+    "checksum_after": "sha256:aebba1838f05f94814436f109dbccc9d562d1aaeff665054233703e797a412af",
     "checksum_basis": "asserted"
   },
-  "to_id": "art:pointer"
+  "to_id": "art:test-call-door"
 }

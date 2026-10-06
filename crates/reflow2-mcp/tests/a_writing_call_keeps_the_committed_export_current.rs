@@ -626,7 +626,10 @@ fn a_recorded_export_in_reflow2_toml_is_the_file_a_writing_call_keeps() {
     ok(&o);
     let e = err(&o);
     assert!(export.exists(), "the recorded export was not written: {e}");
-    assert!(e.contains("export written to") && e.contains("reflow2.json"), "{e}");
+    assert!(
+        e.contains("export written to") && e.contains("reflow2.json"),
+        "{e}"
+    );
     assert!(e.contains(".reflow2.toml"), "names who named the file: {e}");
 
     let o = p.call("add_requirement", REQ);

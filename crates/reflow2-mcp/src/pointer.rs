@@ -151,7 +151,12 @@ pub fn recorded_export(path: &Path) -> Result<Option<String>, String> {
     let text = match std::fs::read_to_string(path) {
         Ok(t) => t,
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(None),
-        Err(e) => return Err(format!("{} exists but could not be read: {e}", path.display())),
+        Err(e) => {
+            return Err(format!(
+                "{} exists but could not be read: {e}",
+                path.display()
+            ));
+        }
     };
     Ok(on_disk(&text, path)?
         .export
@@ -521,16 +526,25 @@ role    = "consumes"
         let f = d.path().join(FILE);
         std::fs::write(&f, "[export]\npath = \"reflow2.json\"\n").unwrap();
         assert_eq!(read(&f).unwrap(), None, "the folder stays a local design");
-        assert_eq!(recorded_export(&f).unwrap().as_deref(), Some("reflow2.json"));
-        assert_eq!(recorded_export(&d.path().join("absent.toml")).unwrap(), None);
+        assert_eq!(
+            recorded_export(&f).unwrap().as_deref(),
+            Some("reflow2.json")
+        );
+        assert_eq!(
+            recorded_export(&d.path().join("absent.toml")).unwrap(),
+            None
+        );
     }
 
     #[test]
     fn also_without_a_design_is_refused_rather_than_read_as_local() {
         let d = tempfile::tempdir().unwrap();
         let f = d.path().join(FILE);
-        std::fs::write(&f, "[[also]]\nid = \"abc\"\naddress = \"https://h/g/abc/mcp\"\n").unwrap();
+        std::fs::write(
+            &f,
+            "[[also]]\nid = \"abc\"\naddress = \"https://h/g/abc/mcp\"\n",
+        )
+        .unwrap();
         assert!(read(&f).unwrap_err().contains("no [design] table"));
     }
-
 }

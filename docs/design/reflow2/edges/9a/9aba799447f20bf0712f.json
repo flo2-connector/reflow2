@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:0824e3015f13146d5b7c138d9e0eaf85449a8ff91483790fcf81c353d9e2d362",
+  "content_hash": "sha256:02e7d36d1dd27f739f90ca844b23ffb27cede485100bbde4f2bf8d6a475a094d",
   "edge_type": "CHANGED",
   "from_id": "chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 2,
     "action": "modified",
-    "checksum_after": "sha256:b2d16cc41031371599c5d1b5fb6fea8e5e8803b861f6384c3ae9de0e45fde39d",
+    "checksum_after": "sha256:ab4043500936864054d047138095103f1cccf746893181179558b1b2ab01adc7",
     "checksum_basis": "asserted"
   },
   "to_id": "art:test-a-writing-call-keeps-the-committed-export-current"
