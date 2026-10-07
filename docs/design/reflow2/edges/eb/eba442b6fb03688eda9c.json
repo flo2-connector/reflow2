@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7fa09b40d01bfbe91673850b7b5259908b33d382ea41370e0f3cb4547c0b1a4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:c594d867844637a91bcfbfb18e3e6e300072d10937c6c6275eac8345747a8360",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:replies-are-bounded-gate"
+}

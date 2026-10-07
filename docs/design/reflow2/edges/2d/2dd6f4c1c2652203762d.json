@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ecdd48d04328b38172c728ce25b7f8871b7baf764edf1960378ca96149b87a73",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {},
+  "to_id": "fact:a-plain-get-instructions-withheld-the-whole-document-from-v0-78-0-and-the-pin-that-would-have-caught-it-was-never-committed-2026-10-06"
+}
