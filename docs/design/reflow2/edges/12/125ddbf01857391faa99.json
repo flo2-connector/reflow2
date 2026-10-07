@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f3a61e392bf2af58c759931cf6ae20aa409f7b4efe307d1673136168b4811fe8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-requirement-sent-down-moves-to-the-part-or-decomposes-rather-than-being-copied",
+  "properties": {
+    "evidence": "Moving or decomposing across designs needs a typed reference to a node in another design.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design"
+}

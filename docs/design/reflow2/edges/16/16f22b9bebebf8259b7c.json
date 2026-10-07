@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1e68a52648e9ed9812556b51f482e2ab1381efdcd0c428ab8ed04363f1a69b93",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design",
+  "properties": {
+    "evidence": "A recorded cross-design relation would let the linking discipline reach a vision spread across designs, which the root cause found it cannot."
+  },
+  "to_id": "fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07"
+}

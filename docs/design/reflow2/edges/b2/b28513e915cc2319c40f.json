@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:93039871aa4ba2b022479c5642fbf61137df216f5c349ae140f32228abc348be",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-a-requirement-sent-down-moves-to-the-part-or-decomposes-rather-than-being-copied",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "The planned capability copies a sent requirement into the part, which leaves two homes; options (b) to (d) avoid the copy."
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:233a4935145c90db095d0897fb6c0c37662805c52cb64d09269eda7516a2e493",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-family-is-checked-for-facts-held-twice-or-held-above-the-lowest-design-that-owns-them",
+  "properties": {
+    "evidence": "Finding a fact held twice across designs needs one search across them first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:one-search-reaches-every-design-a-hub-tracks"
+}

@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:cb220cb61c0dbe0d1f68dff9b2cc6e593f6d179b830555341c466e0c926f18c3",
+  "content_hash": "sha256:30999c00da78fdb7a3330de6064f9ba6dbb7f972c84d279b9024d3de33704703",
   "node_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:cb220cb61c0dbe0d1f68dff9b2cc6e593f6d179b830555341c466e0c926f18c3",
   "properties": {
     "concern": "core",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "When a session holds several designs, a skill that writes goes to the design the fact belongs in, and says which, instead of defaulting to one",
     "priority": "medium",
     "provenance": "authored",

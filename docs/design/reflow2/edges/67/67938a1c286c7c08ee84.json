@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f1fcb6454113a0bdd7a0dbd3f23c4eb0c727f559e7f2b7071c6e0adaa625896d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-family-is-checked-for-facts-held-twice-or-held-above-the-lowest-design-that-owns-them",
+  "properties": {
+    "evidence": "Recording a verdict like 'this duplicates that one in flo2' needs a cross-design relation to record it with.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design"
+}
