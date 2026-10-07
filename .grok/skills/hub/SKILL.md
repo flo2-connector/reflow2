@@ -57,13 +57,19 @@ link with no mirrored Interface. Put those to the person as one question per mem
 3. **Read a child design only when a request needs it.** Every child you read costs the
    conversation context, and most requests touch one or two designs. A `search_design` in the child
    you suspect beats reading them all.
-4. **An impact question that crosses designs is a radius per design.** An edge cannot cross a
-   store, so a blast radius stops at the design it runs in: run it where the change starts, and for
-   each published Interface it reaches (`boundary_crossings`), continue in each member that mirrored
-   that surface (`mirror_surface`) with `propagate_from` seeded at the same Interface id. Name the
-   designs you continued into, and say so when a member never mirrored the surface, because its
-   impact cannot be reached that way. The members' recorded relations (section 1) say which way a
-   ripple may go: up and down along `part_of`, across along `uses`.
+4. **An impact question that crosses designs is a radius per design, carried on member to
+   member.** An edge cannot cross a store, so a blast radius stops at the design it runs in. Run it
+   where the change starts. Then repeat until no new design is reached:
+   - Follow the radius's `continue_in`. Each entry names a member and the `seeds` to run
+     `propagate_from` with there.
+   - In every member not yet reached, call `propagate_from` with `arriving_from` (the design the
+     ripple is in) and `interfaces` (that radius's `interfaces_reached`). The member's own pins say
+     whether and where the ripple enters: across a `uses` interface, or up from a part.
+
+   Report every design reached, each with its own radius. Every radius names its `design`, and a
+   row from another design names that one. Say where the record has no way through, never skip
+   it: a `continue_in` with no seeds, or a member that answers `arrived: false`. The relations and
+   mirrored interfaces from section 1 are what make a way through.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

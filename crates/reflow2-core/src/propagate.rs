@@ -76,6 +76,54 @@ pub struct ImpactedNode {
     /// on a high-centrality node has a wider secondary blast radius, so it ranks
     /// higher among equals (IP-9).
     pub centrality: f64,
+    /// The OTHER design this node belongs to, when it is not this design's own:
+    /// a node mirrored from a member (`mirrored_from`, or a mirrored Project's
+    /// `mirror_of`), or an Interface a `uses` pin names. Absent means the node
+    /// is this design's, which [`BlastRadius::design`] names.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub design: Option<String>,
+}
+
+/// Another design a radius should be carried on in, named from THIS design's
+/// own pins (`cap:a-cross-design-ripple-follows-each-members-relation`). An
+/// edge cannot cross a store, so the radius stops here; this says where it
+/// would have gone, and from which seeds to run it there.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct Continuation {
+    /// The member design's id.
+    pub design: String,
+    /// Its name, as the pin gives it.
+    pub name: String,
+    /// The pin that names it.
+    pub dependency: String,
+    /// `uses` or `part_of`, from the pin.
+    pub relation: String,
+    /// `across` (into a peer this design uses) or `down` (into a part).
+    pub direction: &'static str,
+    /// The node ids to seed `propagate_from` with in that design. Empty when
+    /// this design records nothing of the member to seed with; `why` says so.
+    pub seeds: Vec<String>,
+    /// Why the radius continues there, in a sentence.
+    pub why: String,
+}
+
+/// How a ripple from another design enters THIS one, read from this design's
+/// own pins of it: across the interfaces a `uses` pin names, or up through
+/// the pin of a part.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct Arrival {
+    /// The pin that names the design the ripple came from.
+    pub dependency: String,
+    /// Its name.
+    pub name: String,
+    /// `uses` or `part_of`, from the pin.
+    pub relation: String,
+    /// `across` (from a peer this design uses) or `up` (from one of its parts).
+    pub direction: &'static str,
+    /// The node ids the radius here starts from.
+    pub seeds: Vec<String>,
+    /// Why it enters here, in a sentence.
+    pub why: String,
 }
 
 /// The computed blast radius of a change.
@@ -104,6 +152,16 @@ pub struct BlastRadius {
     /// designated — which is what MOSA asks a program to demonstrate and what a
     /// diagram cannot prove.
     pub boundary_crossings: Vec<String>,
+    /// The design this radius ran in — every row is this design's unless it
+    /// names another (`ImpactedNode::design`).
+    pub design: String,
+    /// Every Interface the radius stood on or reached, published or not and
+    /// seeds included: what another design's pins are matched against when the
+    /// ripple is carried on (`DesignGraph::arrival_seeds`).
+    pub interfaces_reached: Vec<String>,
+    /// The member designs to carry the radius on in, from this design's pins.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub continue_in: Vec<Continuation>,
 }
 
 impl BlastRadius {
@@ -138,6 +196,7 @@ impl BlastRadius {
                     direction: n.direction,
                     edge_type: hop.edge_type.clone(),
                     is_risk: hop.is_risk,
+                    design: n.design.clone(),
                 }
             })
             .collect();
@@ -149,6 +208,7 @@ impl BlastRadius {
                 node_id: n.node_id.clone(),
                 node_type: n.node_type.clone(),
                 distance: n.distance,
+                design: n.design.clone(),
             })
             .collect();
         BlastRadiusSummary {
@@ -164,6 +224,9 @@ impl BlastRadius {
             boundary_crossings: self.boundary_crossings.clone(),
             max_depth: self.max_depth,
             truncated_beyond_depth: self.truncated_beyond_depth,
+            design: self.design.clone(),
+            interfaces_reached: self.interfaces_reached.clone(),
+            continue_in: self.continue_in.clone(),
         }
     }
 }
@@ -183,6 +246,9 @@ pub struct RingNode {
     pub direction: ImpactDirection,
     pub edge_type: String,
     pub is_risk: bool,
+    /// The other design this node belongs to; absent when it is this design's.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub design: Option<String>,
 }
 
 /// A node whose impact chain crossed a risk edge, wherever it sits.
@@ -191,6 +257,9 @@ pub struct RiskCrossing {
     pub node_id: String,
     pub node_type: String,
     pub distance: usize,
+    /// The other design this node belongs to; absent when it is this design's.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub design: Option<String>,
 }
 
 /// [`BlastRadius`] compressed for reading inside a session; see
@@ -219,6 +288,13 @@ pub struct BlastRadiusSummary {
     /// Nodes on the frontier one hop past `max_depth` (a lower bound, not the
     /// full remainder — see [`BlastRadius::truncated_beyond_depth`]).
     pub truncated_beyond_depth: usize,
+    /// See [`BlastRadius::design`].
+    pub design: String,
+    /// See [`BlastRadius::interfaces_reached`].
+    pub interfaces_reached: Vec<String>,
+    /// See [`BlastRadius::continue_in`].
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub continue_in: Vec<Continuation>,
 }
 
 /// Options for a propagation run.
@@ -377,6 +453,7 @@ impl DesignGraph {
                         crosses_risk_edge: next_crosses,
                         crosses_published_boundary: next_boundary,
                         centrality: 0.0, // filled in below
+                        design: None,    // filled in below
                     },
                 );
                 queue.push_back((nb.id, next_depth, next_via, next_crosses, next_boundary));
@@ -409,6 +486,113 @@ impl DesignGraph {
                 .then(a.node_id.cmp(&b.node_id))
         });
 
+        // WHICH DESIGN EACH ROW IS, AND WHERE THE RADIUS GOES NEXT
+        // (cap:a-cross-design-ripple-follows-each-members-relation). An edge
+        // cannot cross a store, so the walk above stops at this design; these
+        // say where it left, from this design's own pins.
+        let members: Vec<crate::DependencyDeclaration> = self
+            .declared_dependencies()?
+            .into_iter()
+            .filter(|d| d.graph_id.as_deref().is_some_and(|g| !g.trim().is_empty()))
+            .collect();
+        let mut used_interface_owner: HashMap<&str, &str> = HashMap::new();
+        for m in &members {
+            if m.relation.iter().any(|r| r == "uses") {
+                let gid = m.graph_id.as_deref().unwrap_or_default();
+                for i in &m.interfaces {
+                    used_interface_owner.insert(i.as_str(), gid);
+                }
+            }
+        }
+        let here = self.graph_id().to_string();
+        for n in impacted.iter_mut() {
+            n.design = self
+                .owning_design(&n.node_id, &n.node_type, &used_interface_owner)?
+                .filter(|d| *d != here);
+        }
+        let interfaces_reached: Vec<String> = seeds
+            .iter()
+            .filter(|s| index.get(*s).is_some_and(|t| t == node::INTERFACE))
+            .cloned()
+            .chain(
+                impacted
+                    .iter()
+                    .filter(|n| n.node_type == node::INTERFACE)
+                    .map(|n| n.node_id.clone()),
+            )
+            .collect::<BTreeSet<String>>()
+            .into_iter()
+            .collect();
+        let reached: HashSet<&str> = seeds
+            .iter()
+            .map(String::as_str)
+            .chain(impacted.iter().map(|n| n.node_id.as_str()))
+            .collect();
+        let mut continue_in = Vec::new();
+        for m in &members {
+            let gid = m.graph_id.as_deref().unwrap_or_default();
+            let theirs: BTreeSet<String> = impacted
+                .iter()
+                .filter(|n| n.design.as_deref() == Some(gid))
+                .map(|n| n.node_id.clone())
+                .chain(
+                    m.interfaces
+                        .iter()
+                        .filter(|i| interfaces_reached.contains(i))
+                        .cloned(),
+                )
+                .collect();
+            let continuation = |relation: &str,
+                                direction: &'static str,
+                                seeds: Vec<String>,
+                                why: String| Continuation {
+                design: gid.to_string(),
+                name: m.name.clone(),
+                dependency: m.id.clone(),
+                relation: relation.to_string(),
+                direction,
+                seeds,
+                why,
+            };
+            if m.relation.iter().any(|r| r == "uses") && !theirs.is_empty() {
+                continue_in.push(continuation(
+                    "uses",
+                    "across",
+                    theirs.iter().cloned().collect(),
+                    format!(
+                        "The radius reached what this design uses of '{}' ({}). Carry it on \
+                         there from the same ids.",
+                        m.name,
+                        theirs.iter().cloned().collect::<Vec<_>>().join(", ")
+                    ),
+                ));
+            }
+            if m.relation.iter().any(|r| r == "part_of")
+                && (reached.contains(m.id.as_str()) || !theirs.is_empty())
+            {
+                let why = if theirs.is_empty() {
+                    format!(
+                        "The radius reached this design's pin of its part '{}', and nothing \
+                         mirrored from it is here to seed with. In '{}', propagate from what the \
+                         change touches there.",
+                        m.name, m.name
+                    )
+                } else {
+                    format!(
+                        "The radius reached what this design holds of its part '{}'. Carry it \
+                         on there from the same ids.",
+                        m.name
+                    )
+                };
+                continue_in.push(continuation(
+                    "part_of",
+                    "down",
+                    theirs.iter().cloned().collect(),
+                    why,
+                ));
+            }
+        }
+
         Ok(BlastRadius {
             seeds,
             unknown_seeds,
@@ -416,7 +600,119 @@ impl DesignGraph {
             max_depth: opts.max_depth,
             truncated_beyond_depth: beyond_depth.len(),
             boundary_crossings: boundary_crossings.into_iter().collect(),
+            design: here,
+            interfaces_reached,
+            continue_in,
         })
+    }
+
+    /// The design a node belongs to, when that can be said: an Interface a
+    /// `uses` pin names belongs to that member; a mirrored node says where it
+    /// came from (`mirrored_from`, or `mirror_of` on a mirrored Project).
+    /// `None` reads as this design's own.
+    fn owning_design(
+        &self,
+        node_id: &str,
+        node_type: &str,
+        used_interface_owner: &HashMap<&str, &str>,
+    ) -> Result<Option<String>, DynoError> {
+        if node_type == node::INTERFACE
+            && let Some(g) = used_interface_owner.get(node_id)
+        {
+            return Ok(Some((*g).to_string()));
+        }
+        let Some(n) = self.get_node(node_type, node_id)? else {
+            return Ok(None);
+        };
+        Ok(n.properties
+            .get("mirrored_from")
+            .or_else(|| n.properties.get("mirror_of"))
+            .and_then(crate::foundation::core::Value::as_str)
+            .filter(|s| !s.trim().is_empty())
+            .map(str::to_string))
+    }
+
+    /// Where a ripple from the design `from` enters this one, read from this
+    /// design's own pins of it: across each Interface a `uses` pin names that
+    /// the ripple reached there (`interfaces`, that radius's
+    /// `interfaces_reached`) and this design holds; up through the pin itself
+    /// when `from` is a part of this design. Empty when nothing here names
+    /// `from` — a ripple that has no recorded way in.
+    pub fn arrival_seeds(
+        &self,
+        from: &str,
+        interfaces: &[String],
+    ) -> Result<Vec<Arrival>, DynoError> {
+        let mut out = Vec::new();
+        for d in self.declared_dependencies()? {
+            if d.graph_id.as_deref() != Some(from) {
+                continue;
+            }
+            if d.relation.iter().any(|r| r == "uses") {
+                let seeds: Vec<String> = d
+                    .interfaces
+                    .iter()
+                    .filter(|i| interfaces.contains(i))
+                    .filter(|i| matches!(self.get_node(node::INTERFACE, i), Ok(Some(_))))
+                    .cloned()
+                    .collect();
+                if !seeds.is_empty() {
+                    out.push(Arrival {
+                        dependency: d.id.clone(),
+                        name: d.name.clone(),
+                        relation: "uses".into(),
+                        direction: "across",
+                        why: format!(
+                            "This design uses '{}' across {}, which the change there reached.",
+                            d.name,
+                            seeds.join(", ")
+                        ),
+                        seeds,
+                    });
+                }
+            }
+            if d.relation.iter().any(|r| r == "part_of") {
+                out.push(Arrival {
+                    dependency: d.id.clone(),
+                    name: d.name.clone(),
+                    relation: "part_of".into(),
+                    direction: "up",
+                    seeds: vec![d.id.clone()],
+                    why: format!(
+                        "'{}' is a part of this design, so a change in it reaches what here \
+                         requires it, through this design's pin of it.",
+                        d.name
+                    ),
+                });
+            }
+        }
+        Ok(out)
+    }
+
+    /// Carry a ripple on from the design `from` into this one: the seeds come
+    /// from [`Self::arrival_seeds`], and the radius they start is returned with
+    /// them. `None` when nothing here names `from`. The radius's own
+    /// `continue_in` leaves out `from`, which the ripple has already been in.
+    pub fn propagate_arriving(
+        &self,
+        from: &str,
+        interfaces: &[String],
+        opts: PropagateOptions,
+    ) -> Result<Option<(Vec<Arrival>, BlastRadius)>, DynoError> {
+        let arrivals = self.arrival_seeds(from, interfaces)?;
+        if arrivals.is_empty() {
+            return Ok(None);
+        }
+        let seeds: Vec<String> = arrivals
+            .iter()
+            .flat_map(|a| a.seeds.iter().cloned())
+            .collect::<BTreeSet<String>>()
+            .into_iter()
+            .collect();
+        let seed_refs: Vec<&str> = seeds.iter().map(String::as_str).collect();
+        let mut radius = self.propagate_from(&seed_refs, opts)?;
+        radius.continue_in.retain(|c| c.design != from);
+        Ok(Some((arrivals, radius)))
     }
 
     /// Reactive PROPAGATE: the blast radius of an already-recorded

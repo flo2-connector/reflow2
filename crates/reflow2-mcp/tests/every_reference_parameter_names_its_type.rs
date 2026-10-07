@@ -113,11 +113,6 @@ const EXEMPT: &[(&str, &str, &str)] = &[
         "Any node type — it must match the seed of the claim being released.",
     ),
     (
-        "propagate_from",
-        "seed_ids",
-        "Any node type: a blast radius starts wherever the caller says it starts.",
-    ),
-    (
         "delete_edge",
         "from_id",
         "Any node type — an edge may join any pair the schema allows, and the \

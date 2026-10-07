@@ -192,7 +192,9 @@ pub use preserve::{
     ClassifiedFinding, DivergenceClass, FUNCTION_PRESERVATION_INVARIANT, PreservationCertificate,
     PreservationCounts, PreservationVerdict, certify_preservation, classify_node_type,
 };
-pub use propagate::{BlastRadius, Hop, ImpactDirection, ImpactedNode, PropagateOptions};
+pub use propagate::{
+    Arrival, BlastRadius, Continuation, Hop, ImpactDirection, ImpactedNode, PropagateOptions,
+};
 pub use provenance::{GraphStamp, Provenance};
 pub use readiness::{
     GateFinding, GateStatus, READINESS_FACT, ReadinessForecast, ReadinessGate, ReadinessKind,

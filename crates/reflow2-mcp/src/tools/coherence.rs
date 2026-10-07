@@ -939,7 +939,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Speculative blast radius from seed node ids — what would touching these reach? Walks the traceability edges outward and returns a SUMMARY by default: counts by distance, the distance-1 ring, and the risk and boundary crossings (an edge that leaves a component or crosses a published interface). Pass `full=true` for every impacted node with its hop chain; the default withholds it because on a large design the full dump overflows what a session can read, and every band is still counted. `max_depth` bounds the walk (default 5) and the reply says what it truncated beyond it. AN EMPTY RADIUS SAYS WHICH EMPTY — an unknown seed is reported in `unknown_seeds`, never silently walked as nothing. This is the read half of impact-check; `propagate_change` records the change as well. Ask for this when you want to know what depends on this part — show the blast radius — before you change it.",
+        description = "Speculative blast radius from seed node ids — what would touching these reach? Walks the traceability edges outward and returns a SUMMARY by default: counts by distance, the distance-1 ring, and the risk and boundary crossings (an edge that leaves a component or crosses a published interface). Pass `full=true` for every impacted node with its hop chain; the default withholds it because on a large design the full dump overflows what a session can read, and every band is still counted. `max_depth` bounds the walk (default 5) and the reply says what it truncated beyond it. AN EMPTY RADIUS SAYS WHICH EMPTY — an unknown seed is reported in `unknown_seeds`, never silently walked as nothing. This is the read half of impact-check; `propagate_change` records the change as well. ACROSS DESIGNS: every radius names its `design`, a row that belongs to another design names that one, and `continue_in` names the member designs to carry it on in, from this design's pins. In each of those, or in any member whose pins name this design, call this with `arriving_from` (this design's id) and `interfaces` (this radius's `interfaces_reached`) instead of seeds. Ask for this when you want to know what depends on this part — show the blast radius — before you change it.",
         annotations(read_only_hint = true)
     )]
     pub async fn propagate_from(
@@ -949,8 +949,65 @@ impl ReflowService {
         let opts = PropagateOptions {
             max_depth: req.max_depth.unwrap_or(5),
         };
-        let seeds: Vec<&str> = req.seed_ids.iter().map(String::as_str).collect();
         let g = self.graph.read().await;
+        // CARRYING A RIPPLE ON FROM ANOTHER DESIGN
+        // (cap:a-cross-design-ripple-follows-each-members-relation): this
+        // design's own pins say where it enters, so the caller needs to know
+        // nothing about this design's ids.
+        if let Some(from) = req
+            .arriving_from
+            .as_deref()
+            .filter(|f| !f.trim().is_empty())
+        {
+            if !req.seed_ids.is_empty() {
+                return Err(McpError::invalid_params(
+                    "propagate_from: pass `seed_ids` OR `arriving_from`, not both. With \
+                     `arriving_from` this design's own pins of that design say where the ripple \
+                     enters.",
+                    None,
+                ));
+            }
+            let interfaces = req.interfaces.clone().unwrap_or_default();
+            let Some((arrivals, radius)) = g
+                .propagate_arriving(from, &interfaces, opts)
+                .map_err(dyno_err)?
+            else {
+                return ok_json(json!({
+                    "arrived": false,
+                    "design": g.graph_id(),
+                    "arriving_from": from,
+                    "note": format!(
+                        "Nothing in this design records a way in from '{from}': no pin of it says \
+                         `part_of`, and no `uses` pin names an interface the ripple reached ({}). \
+                         The ripple does not continue here by a recorded relation.",
+                        if interfaces.is_empty() { "none were given".to_string() } else { interfaces.join(", ") }
+                    ),
+                }));
+            };
+            let mut out = if req.full.unwrap_or(false) {
+                serde_json::to_value(&radius)
+            } else {
+                serde_json::to_value(radius.summarize())
+            }
+            .map_err(ser_err)?;
+            if let Some(obj) = out.as_object_mut() {
+                obj.insert("arrived".into(), json!(true));
+                obj.insert("arriving_from".into(), json!(from));
+                obj.insert(
+                    "arrived_via".into(),
+                    serde_json::to_value(&arrivals).map_err(ser_err)?,
+                );
+            }
+            return ok_json(out);
+        }
+        if req.seed_ids.is_empty() {
+            return Err(McpError::invalid_params(
+                "propagate_from: name the `seed_ids` to walk from, or `arriving_from` (another \
+                 design's id) to carry a ripple on from that design.",
+                None,
+            ));
+        }
+        let seeds: Vec<&str> = req.seed_ids.iter().map(String::as_str).collect();
         let radius = g.propagate_from(&seeds, opts).map_err(dyno_err)?;
         if req.full.unwrap_or(false) {
             ok_json(radius)

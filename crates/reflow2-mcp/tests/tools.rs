@@ -152,7 +152,9 @@ async fn golden_thread_and_reports() {
     let radius = j!(s.propagate_from(Parameters(PropagateFromReq {
         seed_ids: vec!["req:physics".into()],
         max_depth: None,
-        full: None
+        full: None,
+        arriving_from: None,
+        interfaces: None,
     })));
     assert!(
         radius["unknown_seeds"].is_array(),
@@ -163,7 +165,9 @@ async fn golden_thread_and_reports() {
     let radius2 = j!(s.propagate_from(Parameters(PropagateFromReq {
         seed_ids: vec!["nope:x".into()],
         max_depth: Some(3),
-        full: None
+        full: None,
+        arriving_from: None,
+        interfaces: None,
     })));
     assert_eq!(radius2["unknown_seeds"][0], "nope:x");
 }
@@ -533,6 +537,9 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
         seed_ids: vec!["cmp:physics".into()],
         max_depth: None,
         full: Some(true),
+
+        arriving_from: None,
+        interfaces: None,
     })));
     let impacted = radius["impacted"].as_array().expect("impacted array");
     assert!(
@@ -646,6 +653,9 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
         seed_ids: vec!["cap:flight".into()],
         max_depth: None,
         full: Some(true),
+
+        arriving_from: None,
+        interfaces: None,
     })));
     assert!(
         radius["impacted"]
@@ -912,6 +922,9 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
         seed_ids: vec!["ver:flight".into()],
         max_depth: None,
         full: Some(true),
+
+        arriving_from: None,
+        interfaces: None,
     })));
     assert!(
         radius["impacted"]
@@ -1834,7 +1847,9 @@ async fn propagate_defaults_to_a_summary_that_counts_everything() {
     let summary = j!(s.propagate_from(Parameters(PropagateFromReq {
         seed_ids: vec!["req:physics".into()],
         max_depth: None,
-        full: None
+        full: None,
+        arriving_from: None,
+        interfaces: None,
     })));
     assert!(
         summary.get("impacted").is_none(),
@@ -1867,7 +1882,9 @@ async fn propagate_defaults_to_a_summary_that_counts_everything() {
     let radius = j!(s.propagate_from(Parameters(PropagateFromReq {
         seed_ids: vec!["req:physics".into()],
         max_depth: None,
-        full: Some(true)
+        full: Some(true),
+        arriving_from: None,
+        interfaces: None,
     })));
     let impacted = radius["impacted"].as_array().expect("impacted");
     assert_eq!(impacted.len() as u64, total, "same radius, both shapes");

@@ -77,6 +77,10 @@ NON_TOOL_TERMS = {
     # (depends.rs `relation_not_stated`, `no_interface_to_follow`).
     "relation", "interfaces", "part_of", "uses",
     "relation_not_stated", "no_interface_to_follow",
+    # hub (2026-10-06): carrying a radius across designs — the radius fields
+    # `design`, `continue_in`, `seeds`, `interfaces_reached`, and
+    # propagate_from's `arriving_from` (propagate.rs, coherence.rs).
+    "continue_in", "seeds", "interfaces_reached", "arriving_from", "design",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).
