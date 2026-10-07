@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:07776323dc853c8cbe7104b4d5b2a3e8f398390f4888ea4c5da066c8314ff1c0",
+  "node_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Acceptance check for slice 3, to be written FAILING before it is built. Two designs: P (parent) and A (PART OF P). P sends req:p-r to A. In A it is a Requirement at proposed, with origin (design-p, req:p-r, P's version) and attributed to the sender. Any attempt to receive it at another status is refused. A's loop_status lists it as waiting. When A's owner accepts it, P's view of the allocation reads accepted. When P's req:p-r changes, A reports the origin moved. A ripple from P reaching its pin of A continues down seeded at the requirement A received, not with empty seeds.",
+    "kind": "verification",
+    "method": "test",
+    "name": "A parent's requirement sent to its part arrives proposed with its origin, binds only on the part owner's word, and its moves are reported both ways",
+    "status": "planned"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d0dc73d42e1e45b2bb6cc4a95de39023b0aaf171f1156bbd788e00b6d135a13e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin",
+  "properties": {},
+  "to_id": "req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word"
+}

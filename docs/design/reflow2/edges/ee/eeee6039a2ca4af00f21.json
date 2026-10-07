@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0a93944766013dbda25e1f4b5a4a0d495139bfe70e8b69437c0ad92f05b57ef1",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "properties": {},
+  "to_id": "req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word"
+}

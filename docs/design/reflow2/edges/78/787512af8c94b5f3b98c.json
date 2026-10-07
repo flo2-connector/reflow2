@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b9cc852b3851f9484c482763b7ab0f9b3c5953eaabdf126846364eea408eeff",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:upstream"
+}

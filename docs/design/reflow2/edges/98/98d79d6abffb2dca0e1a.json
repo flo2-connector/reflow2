@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:30797c41245b4a358576ba3c40cdd181bc5b7f336de4c98feab2313710359c58",
+  "content_hash": "sha256:f6ab7aae115e48c566dd6c5b997c908dfc223ff2b7d11df72b1162efcfc8996f",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-gap-flows-to-the-dependency",
+  "prev_item_hash": "sha256:30797c41245b4a358576ba3c40cdd181bc5b7f336de4c98feab2313710359c58",
   "properties": {
+    "approved_at": "2026-10-07",
     "authored_at": "2026-08-06T09:40:00Z",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

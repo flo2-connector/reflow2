@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7f124af9970ee4b9972480b0e9769e1051bcddb22cdcac5bdd64bc3cc538974c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirements-flow-down-to-a-part-at-proposed-ruled-and-planned-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word"
+}

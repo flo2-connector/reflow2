@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3f766310c45b47fe7ebc0334ba753d5df559353edeb28b56f09e58f0f47476b1",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "properties": {},
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}
