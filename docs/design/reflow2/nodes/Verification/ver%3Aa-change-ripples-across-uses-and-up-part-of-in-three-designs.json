@@ -1,11 +1,13 @@
 {
-  "content_hash": "sha256:dc2d3df4158d1dfb74b2cfe070317d022bf2555900a2ae3d209dd9bd37a2b56d",
+  "content_hash": "sha256:ab2ac14385a40644f792f4a6cf7908eb61f720739fc77429a7735ee3a06b1137",
   "node_id": "ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs",
   "node_type": "Verification",
+  "prev_item_hash": "sha256:dc2d3df4158d1dfb74b2cfe070317d022bf2555900a2ae3d209dd9bd37a2b56d",
   "properties": {
-    "description": "Acceptance check, to be written FAILING before either slice is built. Three designs: P (the parent), A (PART OF P) and B (a peer that A USES across interface I, mirrored into A). A change in B at I, analysed from the hub, must reach A's consumers of I (across) and P's capability that A serves (up), and every result must name its design. Today the radius stops at each design and no row names a design (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05), so it fails.",
+    "description": "Acceptance check, to be written FAILING before either slice is built. Three designs: P (the parent), A (PART OF P) and B (a peer that A USES across interface I, mirrored into A). A change in B at I, analysed from the hub, must reach A's consumers of I (across) and P's capability that A serves (up), and every result must name its design. Today the radius stops at each design and no row names a design (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05), so it fails.\n\n\n\nWRITTEN AND PASSING (2026-10-06): crates/reflow2-core/tests/a_change_ripples_across_uses_and_up_part_of_in_three_designs.rs, five cases, with the /hub hop written out as the test's ripple(). It was not run failing first in the literal sense: the fields it reads did not exist before the slice, so the old code cannot compile it. Its negative control stands in, the same three designs with no relations stated, where the ripple stays in B. Tool-level: crates/reflow2-mcp/tests/a_ripple_is_carried_on_with_arriving_from.rs.",
     "kind": "verification",
+    "last_run_at": "2026-10-06",
     "name": "A change ripples across a USES link and up a PART OF link, in three designs (parent, part, peer)",
-    "status": "planned"
+    "status": "passing"
   }
 }

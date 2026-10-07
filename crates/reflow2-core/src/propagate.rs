@@ -567,9 +567,18 @@ impl DesignGraph {
                     ),
                 ));
             }
-            if m.relation.iter().any(|r| r == "part_of")
-                && (reached.contains(m.id.as_str()) || !theirs.is_empty())
-            {
+            // The pin counts only when the radius reached it DIRECTLY: every
+            // pin hangs off the design's Project (REQUIRES_RESOURCE), so a
+            // radius that reached the Project reaches every pin through it,
+            // and "carry it down into every part" would be noise.
+            let pin_reached = seeds.iter().any(|s| s == &m.id)
+                || impacted.iter().any(|n| {
+                    n.node_id == m.id
+                        && n.via.last().is_some_and(|h| {
+                            index.get(&h.from_id).map(String::as_str) != Some(node::PROJECT)
+                        })
+                });
+            if m.relation.iter().any(|r| r == "part_of") && (pin_reached || !theirs.is_empty()) {
                 let why = if theirs.is_empty() {
                     format!(
                         "The radius reached this design's pin of its part '{}', and nothing \
@@ -672,17 +681,47 @@ impl DesignGraph {
                 }
             }
             if d.relation.iter().any(|r| r == "part_of") {
+                // What here REQUIRES the part — the capability it serves —
+                // rather than the pin itself, which hangs off the Project and
+                // from there reaches everything. The pin only when nothing
+                // here says what needs the part.
+                let index = self.node_type_index()?;
+                let requirers: Vec<String> = self
+                    .incoming(&d.id, Some(edge::REQUIRES_RESOURCE))?
+                    .into_iter()
+                    .map(|e| e.from_id)
+                    .filter(|f| index.get(f).map(String::as_str) != Some(node::PROJECT))
+                    .collect::<BTreeSet<String>>()
+                    .into_iter()
+                    .collect();
+                let (seeds, why) = if requirers.is_empty() {
+                    (
+                        vec![d.id.clone()],
+                        format!(
+                            "'{}' is a part of this design, and nothing here records what \
+                             requires it (require_resource), so the radius starts at this \
+                             design's pin of it.",
+                            d.name
+                        ),
+                    )
+                } else {
+                    (
+                        requirers.clone(),
+                        format!(
+                            "'{}' is a part of this design, so a change in it reaches what here \
+                             requires it: {}.",
+                            d.name,
+                            requirers.join(", ")
+                        ),
+                    )
+                };
                 out.push(Arrival {
                     dependency: d.id.clone(),
                     name: d.name.clone(),
                     relation: "part_of".into(),
                     direction: "up",
-                    seeds: vec![d.id.clone()],
-                    why: format!(
-                        "'{}' is a part of this design, so a change in it reaches what here \
-                         requires it, through this design's pin of it.",
-                        d.name
-                    ),
+                    seeds,
+                    why,
                 });
             }
         }

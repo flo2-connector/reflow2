@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:484e68c431ee1ad270bb6a68a593d7abd9d7f985dc00ecf2a762c58f1ce23e66",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-blast-radius-names-its-design-and-is-carried-on-member-to-member",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:00e3f62d4a9619251f837eeb70a5aeff9d61ecc37015b96f7de5d2838f35c3d1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:propagate"
+}

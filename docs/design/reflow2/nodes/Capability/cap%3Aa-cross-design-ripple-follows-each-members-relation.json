@@ -1,14 +1,15 @@
 {
-  "content_hash": "sha256:410ff6fc2a39d41dfe953f6786dc9e10cc457895b5d2e94425b98e9e76925e9b",
+  "content_hash": "sha256:b622f68a63595d40db3c7c7c6e97701295d9b83dd29533b70b1b929f63184c53",
   "node_id": "cap:a-cross-design-ripple-follows-each-members-relation",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:410ff6fc2a39d41dfe953f6786dc9e10cc457895b5d2e94425b98e9e76925e9b",
   "properties": {
-    "description": "Slice 2. A radius that reaches a mirrored node says which design that node belongs to (its rows carry the design), and names the members to continue in, following part_of up and down and uses across. The /hub skill carries the radius on and reports every design it reached. Builds the open dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on on the recorded relation.",
+    "description": "Slice 2. A radius that reaches a mirrored node says which design that node belongs to (its rows carry the design), and names the members to continue in, following part_of up and down and uses across. The /hub skill carries the radius on and reports every design it reached. Builds the open dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on on the recorded relation.\n\n\n\nAS BUILT (2026-10-06):\n- Every blast radius (propagate_change, propagate_from; summary and full) names its `design`. A row whose node belongs to another design names that design: a node mirrored from a member (mirror_surface now stamps `mirrored_from` on every mirrored node; a mirrored Project keeps `mirror_of`), or an Interface a `uses` pin names.\n- `interfaces_reached` lists every Interface the radius stood on or reached, seeds included.\n- `continue_in` names, from this design's pins, the members to carry the radius on in, with seeds. ACROSS into a `uses` peer, seeded at the interfaces and mirrored nodes of it the radius reached. DOWN into a `part_of` part, seeded at what is mirrored from it, or no seeds and a sentence saying why, when only its pin was reached. A pin reached only through the Project is not counted, because every pin hangs off the Project.\n- `propagate_from` takes `arriving_from` (another design's id) and `interfaces` instead of seeds. That design's own pins say where the ripple enters: ACROSS each interface its `uses` pin names that the ripple reached; UP from a part at what requires the part (require_resource), or at the pin when nothing does. It replies `arrived: false` and walks nothing when no pin names the design, and its continue_in leaves out the design the ripple came from.\n- The /hub skill makes the hop: continue_in, then arriving_from in every member not yet reached, until no new design is reached. It reports every design reached and says where the record has no way through.\nLIMITS: an edge still cannot cross a store, so the agent makes each hop, and each hosted design is asked separately. A ripple goes UP only where the parent pins its part. flo2.io serves 0.79.0, so hosted hubs get this when flo2.io moves.",
     "distinct_from": [
       "fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05"
     ],
     "name": "A cross-design ripple follows each member's recorded relation and names the design each result belongs to and the one to continue in",
     "provenance": "authored",
-    "status": "planned"
+    "status": "realized"
   }
 }

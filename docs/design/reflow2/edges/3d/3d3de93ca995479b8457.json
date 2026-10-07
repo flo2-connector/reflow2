@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7bd9d4e8ac99e1a18a1c44b8e68c66996901874db6f6856ae5ced733cdd72ec5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-blast-radius-names-its-design-and-is-carried-on-member-to-member",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:fa51f4ca13dce2691a9d04e9cc338810ee81590511e7ce576b11af9cebae04a4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

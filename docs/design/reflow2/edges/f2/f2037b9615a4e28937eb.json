@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7a62030d1ce5c80ab1eae16d57c6adaa7d1e8d4bcf1abdc8ace8649400808fe",
+  "edge_type": "REALIZES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

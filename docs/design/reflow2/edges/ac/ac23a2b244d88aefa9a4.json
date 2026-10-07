@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a6f61d6d9e264c500e2cd800362a67a0b90e43d7fb9155da8a0582b81be5b41",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-ripple-is-carried-on-with-arriving-from",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

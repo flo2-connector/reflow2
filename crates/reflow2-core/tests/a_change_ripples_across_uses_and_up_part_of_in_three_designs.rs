@@ -139,8 +139,11 @@ fn ripple(
     out
 }
 
+/// Reached, or started from: a ripple entering a design starts AT what it
+/// reaches there first (the capability that needs a part, the interface a peer
+/// is used across), so those are seeds of that design's radius.
 fn reaches(r: &BlastRadius, id: &str) -> bool {
-    r.impacted.iter().any(|n| n.node_id == id)
+    r.seeds.iter().any(|s| s == id) || r.impacted.iter().any(|n| n.node_id == id)
 }
 
 #[test]
@@ -160,6 +163,11 @@ fn a_change_in_b_at_i_reaches_a_across_uses_and_p_up_part_of() {
     assert!(
         reaches(&out["design-p"], "cap:p-serves"),
         "up `part_of`: P's capability that A serves"
+    );
+    assert_eq!(
+        out["design-p"].seeds,
+        vec!["cap:p-serves".to_string()],
+        "the ripple enters P at what requires A, not at the pin, which would reach all of P"
     );
     for (design, r) in &out {
         assert_eq!(&r.design, design, "every radius names the design it ran in");
@@ -240,5 +248,23 @@ fn without_stated_relations_the_ripple_stays_in_the_design_it_started_in() {
             .unwrap()
             .is_empty(),
         "P names no B at all"
+    );
+}
+
+#[test]
+fn a_part_reached_only_through_the_parents_project_is_not_a_place_to_carry_it_down() {
+    // Every pin hangs off the design's Project, so a radius that reaches the
+    // Project reaches every pin through it. Only a part the radius reached
+    // DIRECTLY is somewhere to continue; the rest would be noise.
+    let mut designs = three_designs(true);
+    let p = designs.get_mut("design-p").unwrap();
+    p.declare_external_dependency(&pin("dep:c", "design-c", &["part_of"], &[]))
+        .unwrap();
+    let r = p.propagate_from(&["cap:p-serves"], OPTS).unwrap();
+    let to: Vec<&str> = r.continue_in.iter().map(|c| c.design.as_str()).collect();
+    assert!(to.contains(&"design-a"), "A is required by the capability: {to:?}");
+    assert!(
+        !to.contains(&"design-c"),
+        "C is reached only through P's Project, and nothing here needs it: {to:?}"
     );
 }

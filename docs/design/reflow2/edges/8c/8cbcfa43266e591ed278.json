@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:befb817bc4e630d1ff4d0e939df353fce0bd56fdd39b4333c1371106a360d44f",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

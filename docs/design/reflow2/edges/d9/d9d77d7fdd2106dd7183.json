@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:26bed1cac99a28d9bd37ef4ee175f8e4a376b2909fa5f137066d9e00f44abea8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-80642f0a81f26f14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:99092b749b57fed5b491f90b96cbeb60664e2ec6bd5e108939f23bfba598ae20",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-change-ripples-across-uses-and-up-part-of-in-three-designs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a9184aef85e1a81ec2bced716d189874fe699e9007fadab749280a8413d7cab1",
+  "node_id": "snap:epoch:preserved-on-write:ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-cross-design-ripple-follows-each-members-relation\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it\",\"properties\":{}}]",
+    "state": "{\"description\":\"Acceptance check, to be written FAILING before either slice is built. Three designs: P (the parent), A (PART OF P) and B (a peer that A USES across interface I, mirrored into A). A change in B at I, analysed from the hub, must reach A's consumers of I (across) and P's capability that A serves (up), and every result must name its design. Today the radius stops at each design and no row names a design (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05), so it fails.\",\"kind\":\"verification\",\"name\":\"A change ripples across a USES link and up a PART OF link, in three designs (parent, part, peer)\",\"status\":\"planned\"}",
+    "target_id": "ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs",
+    "target_type": "Verification"
+  }
+}
