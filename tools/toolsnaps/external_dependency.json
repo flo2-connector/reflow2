@@ -6,19 +6,12 @@
   "inputSchema": {
     "$defs": {
       "MemberRelationReq": {
-        "description": "How a member design stands to the design that pins it.",
-        "oneOf": [
-          {
-            "const": "part_of",
-            "description": "The dependency is a part of this design: intent flows down to it,\nstatus flows up from it.",
-            "type": "string"
-          },
-          {
-            "const": "uses",
-            "description": "A peer this design uses across named interfaces.",
-            "type": "string"
-          }
-        ]
+        "description": "How a member design stands to the design that pins it: `part_of` (the\ndependency is a part of this design — intent flows down to it, status flows\nup from it) or `uses` (a peer this design uses across named interfaces).\n\nThe variants carry no doc comments ON PURPOSE: a documented variant makes\nschemars emit `oneOf`, which the argument check does not read\n(the_argument_check_agrees_with_the_deserialiser.rs), while undocumented\nones publish a plain `enum`.",
+        "enum": [
+          "part_of",
+          "uses"
+        ],
+        "type": "string"
       }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",

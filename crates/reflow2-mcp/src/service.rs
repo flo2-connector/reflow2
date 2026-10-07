@@ -4827,14 +4827,18 @@ pub struct ExternalDependencyReq {
     pub interfaces: Option<Vec<String>>,
 }
 
-/// How a member design stands to the design that pins it.
+/// How a member design stands to the design that pins it: `part_of` (the
+/// dependency is a part of this design — intent flows down to it, status flows
+/// up from it) or `uses` (a peer this design uses across named interfaces).
+///
+/// The variants carry no doc comments ON PURPOSE: a documented variant makes
+/// schemars emit `oneOf`, which the argument check does not read
+/// (the_argument_check_agrees_with_the_deserialiser.rs), while undocumented
+/// ones publish a plain `enum`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum MemberRelationReq {
-    /// The dependency is a part of this design: intent flows down to it,
-    /// status flows up from it.
     PartOf,
-    /// A peer this design uses across named interfaces.
     Uses,
 }
 
