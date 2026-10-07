@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:51367ccffaa7d6927b0fdb03301d0bf8ec335bb031028d260de82c574ce14860",
+  "node_id": "req:a-relation-between-nodes-in-two-designs-is-recorded-in-the-design-that-makes-it",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A relation between a node in this design and a node in another design is recorded as a typed link in the design that makes it, and a far end that is missing or has moved is reported",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-07, dev_reflow2 hub",
+    "statement": "A design shall record a relation to a node in another design (DUPLICATES, CONTRADICTS, EVOLVES_INTO, DECOMPOSES, DEPENDS_ON and the rest of the relation vocabulary) as a typed link. The link holds the relation, the local node, the other design's id and the node id there, plus the reason. It is kept in the design that makes the link, so each design stays readable alone. A check shall report a link whose far end no longer exists, or has changed since the link was made, as the dependency watch does for a pinned design. The linking, duplicate-warning, ripple and root-cause steps shall read these links. Anthony, 2026-10-07, asked for the agent's recommendation on the four open choices and replied \"Go with your picks\".",
+    "status": "accepted"
+  }
+}

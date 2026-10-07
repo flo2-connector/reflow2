@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6802cd9caf090331d338012f927e434bf851aebbbc99dd5d448f0b37fab2f15c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-pieces-of-one-picture-are-found-together",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

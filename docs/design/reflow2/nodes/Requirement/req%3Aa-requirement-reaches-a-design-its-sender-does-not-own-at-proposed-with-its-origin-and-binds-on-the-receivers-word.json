@@ -1,15 +1,15 @@
 {
-  "content_hash": "sha256:f16e9f86dd629753c89b12852092e253807370e9a8fc80d09507dff77adba07d",
+  "content_hash": "sha256:94fc2ccf63fa8f7ac05e0cde2a25c31c948f373243e0ad000387d66844680a79",
   "node_id": "req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word",
   "node_type": "Requirement",
   "properties": {
     "kind": "functional",
     "lineage": "decomposed",
-    "name": "A requirement or decision sent to another design (a parent's to its part, or a customer's to a supplier) arrives there proposed, with its origin, and binds only on the receiving owner's word",
+    "name": "A requirement or decision sent to another design arrives there proposed and binds only on the receiving owner's word: a requirement moves or decomposes, never copied; a decision flows down as derived requirements linked to it",
     "priority": "medium",
     "provenance": "authored",
     "source": "Anthony, 2026-10-07: rulings on dec:idea-intent-crosses-designs (\"Once accepted\") and dec:idea-gap-flows-to-the-dependency (\"Write-only-at-proposed\"), for slice 3 of the hub work",
-    "statement": "When one design sends a requirement OR A DECISION to another (a parent allocating to its part, or a customer levying one on a supplier), the receiving design shall hold it as its own node at `proposed`. It shall carry its origin: the sending design, the sender's node id where there is one, and the version it was taken from. It shall be attributed to whoever sent it. Only the receiving design's owner shall move it off `proposed`. Once accepted, a received decision may govern the receiving design's own nodes. The receiving design shall report what is waiting on its owner's word, and an origin that has moved since it was received. A parent shall see whether each requirement or decision it sent was accepted, dropped or is still waiting. (Decisions added 2026-10-07 on Anthony's word: \"re-plan slice 3 to include Decisions\".)",
+    "statement": "When one design sends intent to another (a parent to its part, or a customer to a supplier), nothing shall be copied. A requirement that belongs wholly to the receiver MOVES: the receiver becomes its single home, and the sender keeps a cross-design link and reads its status from there. A requirement that spans several receivers DECOMPOSES: the sender keeps the whole's need, and each receiver holds its own piece, linked DECOMPOSES to it across designs. A decision stays with the sender. What the receiver must do because of it lands as DERIVED requirements (or constraints) linked to that decision. Whatever lands in the receiver arrives at `proposed`, attributed to the sender, and only the receiver's owner moves it. The receiver reports what waits on its owner, and the sender sees whether each piece it sent was accepted, dropped or is still waiting. (Revised 2026-10-07: 'copy with origin' replaced by move-or-decompose on Anthony's \"Go with your picks\".)",
     "status": "accepted"
   }
 }

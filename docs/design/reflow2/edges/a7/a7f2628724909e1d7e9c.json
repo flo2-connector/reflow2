@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:376eaf0a31e721377aa57db3e1511dee3f260b61fbd19c63ed0427960191d239",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:skills"
+}

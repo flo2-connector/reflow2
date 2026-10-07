@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:16ff8c2b2a20a26c48d0b6ae5a3c8633e544ebbe20b2fb4144f85a350ecb275d",
+  "node_id": "chg:anthony-keeps-the-cross-design-link-move-or-decompose-and-the-linking-fixes-2026-10-07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-07",
+    "name": "The one-graph choices settled: a typed cross-design link, move-or-decompose never copy, and the five linking fixes kept as intent; the family check left as considered",
+    "rationale": "The cross-design link is the shared piece the duplicate warning, slice 3, the ripple and the root-cause neighbours pass all need, so it is built before slice 3. Copying was replaced because it contradicts the accepted one-home rule (Anthony, 2026-09-22). F2 comes before F1 and F5 because both offer the suggester's candidates, which are poor today (1 of 10 in the measured case).",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Four open choices settled on Anthony's \"Go with your picks\". (1) A relation into another design is a typed link kept in the design that makes it. (2) Checking the family for duplicates and misplaced facts stays considered until one search across designs and the link exist, and a manual check measures the rate. (3) Slice 3 moves or decomposes and never copies; a decision flows down as derived requirements. (4) The linking fixes F1–F5 are intent. BUILD ORDER: 1 merge #696; 2 the root-cause skill change with F4; 3 F2+F3; 4 the cross-design link; 5 slice 3; 6 F1+F5; 7 the family check, revisited with a measured rate."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bf9d40e00b8077727612369230497af58dc69dd99e164cde662179a59e82ae71",
+  "node_id": "cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-07, build order 6 of 7, after F2 so the offers are worth reading. F1 widens unreviewed_ideas, or adds a sibling finding, to requirements and accepted ideas that relate to nothing beyond their author, project or satisfaction. F5: capture-intent runs relation_candidates after a requirement is written and puts the candidates to the person, as link-ideas does.",
+    "distinct_from": [
+      "fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07"
+    ],
+    "name": "Missing links are looked for on requirements and accepted ideas, not only open ideas (F1), and capturing a requirement offers its likely relations (F5)",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

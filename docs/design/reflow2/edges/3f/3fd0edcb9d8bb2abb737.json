@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8f204bfeaf1aa7f32b610fa1f8aaf51239fd499a7dcbe6d454258ba18c1ce62a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-relation-between-nodes-in-two-designs-is-recorded-in-the-design-that-makes-it",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

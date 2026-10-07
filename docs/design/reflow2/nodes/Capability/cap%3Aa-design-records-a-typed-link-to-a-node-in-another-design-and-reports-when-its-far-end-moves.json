@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2ce84e24c8ea588f968317f806ab1b4a515dfd86706dbd88f7938e12630a3825",
+  "node_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-07. Build order 4 of 7 in the one-graph plan, after the root-cause skill change and the linking fixes F2+F3, and before slice 3, which depends on it. A link record (relation, local node, other design id, other node id, evidence, the far end's fingerprint when linked) written by a relation tool that accepts an id in another design. upstream_status-style checking reports missing or moved far ends. review_relations, link-ideas, the duplicate warning, the ripple and the root-cause neighbours pass read the links.",
+    "name": "A design records a typed link to a node in another design, and reports when the far end is missing or has moved",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}
