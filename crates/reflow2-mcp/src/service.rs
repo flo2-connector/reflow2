@@ -4809,6 +4809,42 @@ pub struct ExternalDependencyReq {
     /// written there.
     #[serde(default)]
     pub note: Option<String>,
+    /// When the dependency is ANOTHER DESIGN in a hub or a tier, how it stands
+    /// to this one: `part_of` (it is a part of this design: intent flows down
+    /// to it, status flows up) and/or `uses` (a peer this design uses across
+    /// named interfaces). Both may hold. Ask the person: it is never inferred,
+    /// and a design pin without it is reported by `upstream_status` as
+    /// `relation_not_stated`. Omit it on a re-declare to keep what is stored;
+    /// pass `[]` to clear it.
+    #[serde(default)]
+    pub relation: Option<Vec<MemberRelationReq>>,
+    /// For `uses`, the Interface ids the use crosses — each one meant to exist
+    /// here as a mirrored Interface (`mirror_surface`) so a cross-design ripple
+    /// can follow it; `upstream_status` reports one that does not
+    /// (`no_interface_to_follow`). Refused without `uses` in `relation`. Omit
+    /// it on a re-declare to keep what is stored; pass `[]` to clear it.
+    #[serde(default)]
+    pub interfaces: Option<Vec<String>>,
+}
+
+/// How a member design stands to the design that pins it.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum MemberRelationReq {
+    /// The dependency is a part of this design: intent flows down to it,
+    /// status flows up from it.
+    PartOf,
+    /// A peer this design uses across named interfaces.
+    Uses,
+}
+
+impl MemberRelationReq {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::PartOf => "part_of",
+            Self::Uses => "uses",
+        }
+    }
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]

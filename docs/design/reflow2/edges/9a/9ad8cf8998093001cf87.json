@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:23d2605bb789315a4897226da0b6b7d0d57da0a3319854b0414919562829988d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-a53e9b2e063534f1",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:79b3c06071f48c88f52a99bf06a5f707a7db47ea99e93c5cbd75dcd310a91f64",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-hub-member-records-its-relation"
+}

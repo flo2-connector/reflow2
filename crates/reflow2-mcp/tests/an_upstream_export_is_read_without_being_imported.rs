@@ -84,6 +84,8 @@ fn reading_an_upstream_does_not_pull_a_single_node_into_this_design() {
         design_address_hash: None,
         design_address_seen_at: None,
         note: None,
+        relation: vec![],
+        interfaces: vec![],
     })
     .expect("declare");
 
@@ -138,6 +140,8 @@ fn a_real_change_upstream_is_seen_and_keeps_being_seen() {
         design_address_hash: None,
         design_address_seen_at: None,
         note: None,
+        relation: vec![],
+        interfaces: vec![],
     })
     .expect("declare");
 
@@ -227,6 +231,8 @@ fn declaring_a_watch_on_an_export_that_does_not_exist_yet_is_allowed() {
         design_address_hash: None,
         design_address_seen_at: None,
         note: None,
+        relation: vec![],
+        interfaces: vec![],
     })
     .expect("a watch on an export nobody has written yet must be declarable");
 

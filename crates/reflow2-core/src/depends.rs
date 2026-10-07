@@ -150,7 +150,25 @@ pub struct DependencyDeclaration {
     pub design_address_seen_at: Option<String>,
     /// Free-text note — why this pin, what was verified, what is owed.
     pub note: Option<String>,
+    /// How this design stands to the dependency's design, when it is a member
+    /// of a hub or a tier (`req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it`):
+    /// `part_of` (the dependency is a part of this design — intent flows down,
+    /// status flows up) and/or `uses` (a peer this design uses across named
+    /// interfaces). Both may hold. EMPTY MEANS "NOT STATED", never a guess:
+    /// the relation is the person's to say, so a pin without it is reported
+    /// as unstated rather than defaulted.
+    #[serde(default)]
+    pub relation: Vec<String>,
+    /// For a `uses` relation, the Interface ids the use crosses — the ids a
+    /// cross-design ripple follows, so each one is meant to exist here as a
+    /// mirrored Interface (`mirror_surface`, the `link-projects` skill).
+    #[serde(default)]
+    pub interfaces: Vec<String>,
 }
+
+/// The relations a member can stand in. `part_of` is the tier (the member is a
+/// part of this design); `uses` is a peer across interfaces.
+pub const MEMBER_RELATIONS: [&str; 2] = ["part_of", "uses"];
 
 /// Where a declared upstream design is watched: its committed export on disk,
 /// or the server that holds it.
@@ -294,6 +312,30 @@ impl DesignGraph {
                     .into(),
             });
         }
+        if let Some(bad) = decl
+            .relation
+            .iter()
+            .find(|r| !MEMBER_RELATIONS.contains(&r.as_str()))
+        {
+            return Err(DynoError::Validation {
+                node_type: node::RESOURCE.into(),
+                property: "relation".into(),
+                message: format!(
+                    "{bad:?} is not a relation a member can stand in. Use `part_of` (the \
+                     dependency is a part of this design: intent flows down to it, status up from \
+                     it) and/or `uses` (a peer this design uses across named interfaces)"
+                ),
+            });
+        }
+        if !decl.interfaces.is_empty() && !decl.relation.iter().any(|r| r == "uses") {
+            return Err(DynoError::Validation {
+                node_type: node::RESOURCE.into(),
+                property: "interfaces".into(),
+                message: "`interfaces` names what a `uses` relation crosses, and this declaration \
+                          does not say `uses`. Add `uses` to `relation`, or leave `interfaces` out"
+                    .into(),
+            });
+        }
         let mut props = Props::new()
             .set("name", decl.name.as_str())
             .set("resource_type", "design-dependency")
@@ -364,6 +406,17 @@ impl DesignGraph {
         for k in WATCH_PROPERTIES {
             merged.remove(k);
         }
+        // The relation is stated as a whole or not at all: an empty list clears
+        // it, so a stale relation never outlives the declaration that dropped it.
+        for k in ["member_relation", "relation_interfaces"] {
+            merged.remove(k);
+        }
+        if !decl.relation.is_empty() {
+            props = props.set("member_relation", decl.relation.join(","));
+        }
+        if !decl.interfaces.is_empty() {
+            props = props.set("relation_interfaces", decl.interfaces.join(","));
+        }
         merged.extend(std::collections::HashMap::from(props));
         self.create_node(node::RESOURCE, &decl.id, merged)?;
         for p in self.scan_nodes(node::PROJECT)? {
@@ -420,6 +473,8 @@ impl DesignGraph {
                 design_address_hash: get("design_address_hash"),
                 design_address_seen_at: get("design_address_seen_at"),
                 note: get("description"),
+                relation: split("member_relation"),
+                interfaces: split("relation_interfaces"),
             });
         }
         out.sort_by(|a, b| a.id.cmp(&b.id));
@@ -686,7 +741,11 @@ pub struct ObservedUpstream {
 pub struct UpstreamFinding {
     /// `moved` | `unchanged` | `never_seen` | `missing` | `unreadable`
     /// | `unreachable` | `refused` | `graph_id_mismatch` | `not_watched`
-    /// | `not_observed`
+    /// | `not_observed` — and two about the member's RELATION rather than its
+    /// watch: `relation_not_stated` (the pin names a design and does not say
+    /// whether it is part of this one or a peer it uses) and
+    /// `no_interface_to_follow` (a `uses` link names no Interface here that a
+    /// cross-design ripple could follow).
     pub kind: &'static str,
     /// The declaration's id.
     pub dependency: String,
@@ -714,15 +773,44 @@ impl UpstreamFinding {
     pub fn is_actionable(&self) -> bool {
         matches!(
             self.kind,
-            "moved" | "missing" | "unreadable" | "unreachable" | "refused" | "graph_id_mismatch"
+            "moved"
+                | "missing"
+                | "unreadable"
+                | "unreachable"
+                | "refused"
+                | "graph_id_mismatch"
+                | "relation_not_stated"
+                | "no_interface_to_follow"
         )
     }
+}
+
+/// How one member design stands to this one, as its pin says
+/// (`cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses`).
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct MemberRelation {
+    /// The declaration's id.
+    pub dependency: String,
+    /// Its human name.
+    pub name: String,
+    /// The member's own design id.
+    pub graph_id: String,
+    /// `part_of` and/or `uses`, or `["not stated"]` when the pin does not say —
+    /// written out, so an unstated relation never reads as an empty answer.
+    pub relation: Vec<String>,
+    /// For `uses`, the Interface ids the use crosses; omitted when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub interfaces: Vec<String>,
 }
 
 /// What the declared dependencies say about the designs upstream of them.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct UpstreamReport {
     pub findings: Vec<UpstreamFinding>,
+    /// Every declared dependency that names another reflow2 design, with the
+    /// relation its pin records. Omitted when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub members: Vec<MemberRelation>,
     /// How many declarations name another reflow2 design at all.
     pub designs_declared: usize,
     /// How many of those name somewhere to watch it: an export path or a
@@ -1009,6 +1097,81 @@ impl DesignGraph {
                 )
             })
             .count();
+        // THE RELATION, per member (slice 1 of
+        // req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it).
+        // Reported whether or not the member is watched: a hosted design cannot
+        // watch another, and its members still need a relation for a ripple to
+        // follow. Never defaulted — the relation is the person's to state.
+        let mut members = Vec::new();
+        let mut unlinked = 0usize;
+        for d in declared.iter() {
+            let Some(graph_id) = stated(&d.graph_id) else {
+                continue;
+            };
+            let finding = |kind: &'static str, detail: String| UpstreamFinding {
+                kind,
+                dependency: d.id.clone(),
+                name: d.name.clone(),
+                design_export: None,
+                design_address: None,
+                detail,
+            };
+            if d.relation.is_empty() {
+                unlinked += 1;
+                findings.push(finding(
+                    "relation_not_stated",
+                    format!(
+                        "'{}' (design {graph_id}) does not say how it stands to this design, so a \
+                         change in one cannot be followed into the other. Ask the person whether \
+                         it is PART OF this design or a PEER this design USES (or both), and for \
+                         a peer which interfaces it crosses; record it with external_dependency \
+                         `relation` and `interfaces`.",
+                        d.name
+                    ),
+                ));
+            } else if d.relation.iter().any(|r| r == "uses") {
+                let missing: Vec<&str> = d
+                    .interfaces
+                    .iter()
+                    .map(String::as_str)
+                    .filter(|i| !matches!(self.get_node(node::INTERFACE, i), Ok(Some(_))))
+                    .collect();
+                if d.interfaces.is_empty() || !missing.is_empty() {
+                    unlinked += 1;
+                    let detail = if d.interfaces.is_empty() {
+                        format!(
+                            "'{}' is recorded as a peer this design USES, and the pin names no \
+                             interface the use crosses, so a ripple has nothing to follow into \
+                             it. Name them in `interfaces` and mirror each one here \
+                             (`mirror_surface`, the link-projects skill).",
+                            d.name
+                        )
+                    } else {
+                        format!(
+                            "'{}' is used across {}, and this design has no Interface {}, so a \
+                             ripple cannot follow the use into it. Mirror the member's surface \
+                             here (`mirror_surface`, the link-projects skill).",
+                            d.name,
+                            d.interfaces.join(", "),
+                            missing.join(", ")
+                        )
+                    };
+                    findings.push(finding("no_interface_to_follow", detail));
+                }
+            }
+            members.push(MemberRelation {
+                dependency: d.id.clone(),
+                name: d.name.clone(),
+                graph_id: graph_id.to_string(),
+                relation: if d.relation.is_empty() {
+                    vec!["not stated".to_string()]
+                } else {
+                    d.relation.clone()
+                },
+                interfaces: d.interfaces.clone(),
+            });
+        }
+
         let note = if declared.is_empty() {
             "Nothing is declared, so nothing can be watched. This is \"nobody has said\", never \
              \"depends on nothing\"."
@@ -1033,8 +1196,18 @@ impl DesignGraph {
             format!("{moved} of {watched} watched upstream design(s) have moved.")
         };
 
+        let note = if unlinked > 0 {
+            format!(
+                "{note} {unlinked} member design(s) are linked by nothing a cross-design ripple \
+                 could follow: see the relation_not_stated and no_interface_to_follow findings."
+            )
+        } else {
+            note
+        };
+
         Ok(UpstreamReport {
             findings,
+            members,
             designs_declared,
             watched,
             note,

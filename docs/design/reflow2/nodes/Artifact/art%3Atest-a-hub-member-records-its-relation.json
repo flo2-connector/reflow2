@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:695529b666bc7e134d174d94fbbc35636517bf6548882784b15498c4f7093ef7",
+  "node_id": "art:test-a-hub-member-records-its-relation",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins the relation on a member's pin in the core: a stated relation (part_of, uses, or both) and its interfaces survive the round trip and are read back by the upstream report; a member that says nothing is reported relation_not_stated, never defaulted; a uses link with no interface, or naming one this design does not hold, is no_interface_to_follow until the Interface exists; an unknown relation and interfaces without uses are refused and store nothing; an empty relation clears; a code dependency naming no design is never asked.",
+    "location": "crates/reflow2-core/tests/a_hub_member_records_its_relation.rs",
+    "name": "a_hub_member_records_its_relation.rs",
+    "status": "realized"
+  }
+}

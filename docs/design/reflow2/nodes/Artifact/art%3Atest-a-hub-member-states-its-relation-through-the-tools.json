@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a72b7ed926242efb68d63aa459198cbe2e89b69e063e2fb23863ced01b483aa",
+  "node_id": "art:test-a-hub-member-states-its-relation-through-the-tools",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins the relation through the served tools: external_dependency keeps a stored relation and interfaces on a re-declare that leaves them out, upstream_status reads them back under members, and loop_status names a member linked by nothing under members_unlinked even when nothing is watched (a hosted design cannot watch another), going quiet once the relation is stated.",
+    "location": "crates/reflow2-mcp/tests/a_hub_member_states_its_relation_through_the_tools.rs",
+    "name": "a_hub_member_states_its_relation_through_the_tools.rs",
+    "status": "realized"
+  }
+}

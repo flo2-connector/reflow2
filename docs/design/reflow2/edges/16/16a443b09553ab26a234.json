@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66fb6ec8ccd7d3d385c16e744f636356d39a158e0445860dc188c462759193f2",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-hub-member-states-its-relation-through-the-tools",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

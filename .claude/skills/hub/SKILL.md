@@ -35,6 +35,15 @@ directive to you. The standing rule is in AGENTS.md.
 
 If the session reaches only one design, this skill does not apply.
 
+**When a member joins, ask how it stands to the hub, and record the answer on its pin.** Ask the
+person whether the member is **part of** the hub's design (a tier: intent flows down to it, status
+flows up) or a **peer it uses** across named interfaces, or both. Never infer it. Record it with
+`external_dependency` `relation` (`part_of` and/or `uses`) and, for a peer, `interfaces` (the
+Interface ids the use crosses). For each interface, run the link-projects skill so this design
+mirrors it. `upstream_status` lists every member with its relation, and reports one linked by
+nothing a ripple could follow: `relation_not_stated`, or `no_interface_to_follow` for a `uses`
+link with no mirrored Interface. Put those to the person as one question per member.
+
 ## 2. Orient in one line, then read on demand
 
 1. **Find the designs the hub names**, from the host's list or, for a local hub, from
@@ -53,7 +62,8 @@ If the session reaches only one design, this skill does not apply.
    each published Interface it reaches (`boundary_crossings`), continue in each member that mirrored
    that surface (`mirror_surface`) with `propagate_from` seeded at the same Interface id. Name the
    designs you continued into, and say so when a member never mirrored the surface, because its
-   impact cannot be reached that way.
+   impact cannot be reached that way. The members' recorded relations (section 1) say which way a
+   ripple may go: up and down along `part_of`, across along `uses`.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

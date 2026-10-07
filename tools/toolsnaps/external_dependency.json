@@ -4,6 +4,23 @@
   },
   "description": "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves, and returns the manifest. A declaration without a version is refused. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise: absent means 'nobody has said'. Re-declaring keeps whatever you leave out, and replies with a receipt.",
   "inputSchema": {
+    "$defs": {
+      "MemberRelationReq": {
+        "description": "How a member design stands to the design that pins it.",
+        "oneOf": [
+          {
+            "const": "part_of",
+            "description": "The dependency is a part of this design: intent flows down to it,\nstatus flows up from it.",
+            "type": "string"
+          },
+          {
+            "const": "uses",
+            "description": "A peer this design uses across named interfaces.",
+            "type": "string"
+          }
+        ]
+      }
+    },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
@@ -90,6 +107,17 @@
         "description": "Stable id, e.g. `dep:dynograph-foundation`.",
         "type": "string"
       },
+      "interfaces": {
+        "default": null,
+        "description": "For `uses`, the Interface ids the use crosses — each one meant to exist\nhere as a mirrored Interface (`mirror_surface`) so a cross-design ripple\ncan follow it; `upstream_status` reports one that does not\n(`no_interface_to_follow`). Refused without `uses` in `relation`. Omit\nit on a re-declare to keep what is stored; pass `[]` to clear it.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "name": {
         "description": "The dependency as a person names it — the crate, package, service or standard (`rmcp`, `RocksDB`, `MIL-STD-882`). It is the id's stem and what `search_design` finds it by.",
         "type": "string"
@@ -99,6 +127,16 @@
         "description": "What a person should know about this dependency — kept as the\nResource's `description`. Omit it on a re-declare to keep what is\nwritten there.",
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "relation": {
+        "description": "When the dependency is ANOTHER DESIGN in a hub or a tier, how it stands\nto this one: `part_of` (it is a part of this design: intent flows down\nto it, status flows up) and/or `uses` (a peer this design uses across\nnamed interfaces). Both may hold. Ask the person: it is never inferred,\nand a design pin without it is reported by `upstream_status` as\n`relation_not_stated`. Omit it on a re-declare to keep what is stored;\npass `[]` to clear it.",
+        "items": {
+          "$ref": "#/$defs/MemberRelationReq"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

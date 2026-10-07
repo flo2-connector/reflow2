@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6bae30040aee25e694ca7762f95053383535be485d8773e4578a193d741065d3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-8a8d9bdf60ea12f5",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c662330d9c0dd62f4bcfab796ed14429b2c4c3215fe336d0c0cd7834a8fb0a26",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-hub-member-states-its-relation-through-the-tools"
+}

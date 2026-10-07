@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5df26577b1185b1aab7b0731915059fa6168325eae9986134acc39b2b0b5a587",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:fb720f8dd26fdfbf95bf8ead7cb685c709c8376208c588e7fad6f95b83e723b5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

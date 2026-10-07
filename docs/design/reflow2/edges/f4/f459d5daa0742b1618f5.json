@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a9322cfa1316403fd30fc22d14aaecfe4177eb0e004a0c061a0d8a628c750b3e",
+  "edge_type": "REALIZES",
+  "from_id": "art:depends",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

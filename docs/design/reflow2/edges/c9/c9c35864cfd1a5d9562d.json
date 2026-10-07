@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c8ee9f94738535bbb724bfc8bd8548c7e14548d762ab3b6d5ac71bcb2b66123e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:94c2560bef1dbd5f42769f1d169d45a38a61c2004e2b8d4e68a0969dd22c10d0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

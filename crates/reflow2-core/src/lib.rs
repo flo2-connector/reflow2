@@ -139,8 +139,8 @@ pub use corpus::{
 };
 pub use coverage::{CoverageReport, ObservedPath, UnclaimedRegion};
 pub use depends::{
-    DependencyDeclaration, DependencyFinding, DependencyReport, ObservedDependency,
-    ObservedUpstream, UpstreamFinding, UpstreamReport, UpstreamTarget,
+    DependencyDeclaration, DependencyFinding, DependencyReport, MEMBER_RELATIONS, MemberRelation,
+    ObservedDependency, ObservedUpstream, UpstreamFinding, UpstreamReport, UpstreamTarget,
 };
 pub use detect::{
     AFFECTED_CAP, Answering, AskedQuestion, AskedRecord, DEFAULT_REPLY_BUDGET_CHARS, EvidenceLink,

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b43d9c16850cf86a5c0afaa13109d0f93850c6dc83d9d20b550fe3b9ba6401dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:843e5e9d27290a2367628cfffa7fa0d6e9fa81240f31e59c70fea9c9e9d17f11",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:upstream-judgement-test"
+}
