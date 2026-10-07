@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a05aeefcd57fb5cd819f6c7a07341788cadba6730a5c27215c0f9569be8d941f",
+  "node_id": "snap:epoch:preserved-on-write:ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word\",\"properties\":{}}]",
+    "state": "{\"description\":\"Acceptance check for slice 3, to be written FAILING before it is built. Two designs: P (parent) and A (PART OF P). P sends req:p-r to A. In A it is a Requirement at proposed, with origin (design-p, req:p-r, P's version) and attributed to the sender. Any attempt to receive it at another status is refused. A's loop_status lists it as waiting. When A's owner accepts it, P's view of the allocation reads accepted. When P's req:p-r changes, A reports the origin moved. A ripple from P reaching its pin of A continues down seeded at the requirement A received, not with empty seeds.\",\"kind\":\"verification\",\"method\":\"test\",\"name\":\"A parent's requirement sent to its part arrives proposed with its origin, binds only on the part owner's word, and its moves are reported both ways\",\"status\":\"planned\"}",
+    "target_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+    "target_type": "Verification"
+  }
+}

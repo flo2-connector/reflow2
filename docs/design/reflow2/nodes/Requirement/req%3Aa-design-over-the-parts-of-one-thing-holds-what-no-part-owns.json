@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:952bee3ecc228846ee4cdad9763c66d8b87f99cebcea1f96e385065e76a2928d",
+  "content_hash": "sha256:7d1960f297b4836dbc6f737d2ec242ca57c0fd5610b33cb452373e9b33adbbe2",
   "node_id": "req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:952bee3ecc228846ee4cdad9763c66d8b87f99cebcea1f96e385065e76a2928d",
   "properties": {
     "concern": "core",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "A design over the parts of one thing holds what no part owns: the whole's requirements and their allocation, which parts' contracts connect, and the checks only the whole can pass",
     "priority": "medium",
     "provenance": "authored",

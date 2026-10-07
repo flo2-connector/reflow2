@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:90236904b55ca1b465c40af784824e21807d6de65feed606cb0eb1650f957780",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-set-of-designs-that-make-up-one-system-is-worked-as-one-design-graph",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

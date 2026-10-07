@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67a6f7b95fb60490d65547ba3e974b38344f39f62f86bdc80d1d6cfdc063443b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-one-graph-vision-is-recorded-as-one-requirement-and-slice-3-carries-decisions-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:e1ed13c27f40452ede977aaa76f5e3b2e34cb951b0b120d76f6279cd5b6afc7a",
+  "content_hash": "sha256:27b63f670a40d95163ee6ced2c6f7c12659eec756a124d00384c8545a9229926",
   "node_id": "req:design-composes",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:e1ed13c27f40452ede977aaa76f5e3b2e34cb951b0b120d76f6279cd5b6afc7a",
   "properties": {
     "concern": "core",
     "designation": "internal",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "A system's design can be a unit of its own that composes with the designs around it",
     "priority": "medium",
     "provenance": "authored",

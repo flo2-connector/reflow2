@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8ad436f1c64e7a792131ba8633391ed3cee78497cdc16e452bebaea837cf905e",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

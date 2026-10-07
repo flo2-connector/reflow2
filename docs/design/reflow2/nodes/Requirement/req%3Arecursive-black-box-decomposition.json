@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:2280584f8ba4647c67d5846bea1f9fdddb14eb3d9758783a06f651aaafab04b0",
+  "content_hash": "sha256:6ce0f03ca5bb2ef4ceab5a9cb50031e5f4e865c4a6aa80ead6fa819225f19843",
   "node_id": "req:recursive-black-box-decomposition",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:2280584f8ba4647c67d5846bea1f9fdddb14eb3d9758783a06f651aaafab04b0",
   "properties": {
     "concern": "core",
     "designation": "internal",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "Every element of a design is a black box with inner function and interfaces, nested as deep as the design needs, in any domain",
     "priority": "medium",
     "provenance": "authored",

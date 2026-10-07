@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:62ffc27a57009092d5d9a2f9997b711e73edc0acd89fe1081ac9f1ad822a2c76",
+  "content_hash": "sha256:391a9247c6ec4afe330479e0efab3dedc0940e037aa9b9d9f0d6cfa47bb403be",
   "node_id": "req:one-search-reaches-every-design-a-hub-tracks",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:62ffc27a57009092d5d9a2f9997b711e73edc0acd89fe1081ac9f1ad822a2c76",
   "properties": {
     "concern": "core",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "One search reaches the hub and every design it tracks, gives each design's hits separately, and names every tracked design it could not search and why",
     "priority": "high",
     "provenance": "authored",

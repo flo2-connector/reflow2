@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:036b4480075f98daee61fe96e6d3e5cf7a234c493ce0e92ce44bd021b4d2d693",
+  "content_hash": "sha256:9d1843f93c81b6f5d097446f60e76783bfe9c1727ac212720ade444261eb8681",
   "node_id": "req:one-design-or-several-is-asked",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:036b4480075f98daee61fe96e6d3e5cf7a234c493ce0e92ce44bd021b4d2d693",
   "properties": {
     "concern": "core",
     "designation": "internal",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "Whether this is one design or several is a question asked once, not a consequence of where init was run",
     "priority": "medium",
     "provenance": "authored",
