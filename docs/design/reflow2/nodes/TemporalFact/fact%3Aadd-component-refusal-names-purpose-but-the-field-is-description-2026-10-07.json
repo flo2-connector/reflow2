@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ca4a2b8a99f287c0c2a5cbd4ab718bddb4e3a54e6c841a6317a15ea6bd322302",
+  "node_id": "fact:add-component-refusal-names-purpose-but-the-field-is-description-2026-10-07",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-07: add_component, creating without a description, is refused with \"`purpose` is required ... pass `purpose`\", and passing `purpose` is refused as an unknown field (the field is `description`). The refusal names the stored property, not the tool's field",
+    "statement": "Met while writing a test (crates/reflow2-mcp/tests/a_ripple_is_carried_on_with_arriving_from.rs) through the served tool. First refusal, verbatim: \"`purpose` is required to CREATE Component 'cmp:b-engine', and no such node exists yet to take it from... If you meant to create this node, pass `purpose`\". Following it, the deserialiser refused: \"unknown field `purpose`, expected one of `id`, `name`, `description`, `level`, `kind`, `distinct_from`, `replaces`, `tier`, `status`\". CAUSE, read in the code: crates/reflow2-mcp/src/tools/capture.rs:2437 calls the required-field helper as __rf.str(\"purpose\", req.description), passing the core property's name where every other constructor passes the request field's name. The class: a refusal built from a hand-written field name that nothing checks against the published schema. Same family as fact:defect-add-epoch-requires-a-sequence-the-refusal-cannot-name-because-the-required-field-helper-is-generic.",
+    "steps": [
+      "add_component"
+    ],
+    "subject_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked",
+    "valid_from": "2026-10-07"
+  }
+}

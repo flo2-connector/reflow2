@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:00ff10c1e9c973ee9bfef9b17f032460b2147497783621a133f7418b6e3c2d87",
+  "node_id": "fact:a-checksum-accepted-against-a-change-that-does-not-name-the-artifact-is-applied-and-does-not-count-2026-10-07",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "MEASURED 2026-10-07: set_artifact_checksums accepted a checksum with design_change_event_id naming a ChangeEvent that did not list the artifact as changed, replied applied: true, and reflow2_check still reported the drift. It counted only after the artifact was added to the change's affected list and the acceptance repeated",
+    "statement": "Met recording PR #695's design (schema/derived/edge_readers.yaml, art:derived-edge-readers). The batch acceptance replied {applied: true} for all 10 artifacts. reflow2_check then reported \"art:derived-edge-readers: checksum_change ... no change in it accepted the new checksum\" until add_change_event added the artifact to the change's `affected` and the same acceptance was sent again. The tool said nothing at the first call. Expected: refuse, or at least warn, that the named change does not say it changed this artifact, so the acceptance will not count. Cost: one extra export-and-check round, about five minutes.",
+    "steps": [
+      "set_artifact_checksums"
+    ],
+    "subject_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it",
+    "valid_from": "2026-10-07"
+  }
+}

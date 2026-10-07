@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9850f1180fbd310b58db2ec68f8f9ea9e36a9cacc22817b84faa11216dade0bb",
+  "node_id": "fact:manual-work-90091bbbe3065160",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "wrote a script that mapped the files a branch changed to the Artifact nodes recording them, three times in one session, to know which checksums to accept and which artifacts a change affected",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-07",
+    "value": "{\"diagnosis\":\"tool_not_found\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:36190f1ea64ab15bb48f63f3bdf7536cca606ea8cb25f4bef4934ecfe484e23b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-quantity-that-compounds-across-designs-is-rolled-up-across-the-family",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

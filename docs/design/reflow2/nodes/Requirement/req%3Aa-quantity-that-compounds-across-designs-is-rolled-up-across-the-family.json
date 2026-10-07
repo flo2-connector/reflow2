@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fc64fa54ebe3bfa76795c34daa696da94ef7120f328dfea8b60029bd60cba460",
+  "node_id": "req:a-quantity-that-compounds-across-designs-is-rolled-up-across-the-family",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A quantity that compounds across designs (a budget, a tolerance, a timing allowance) is rolled up across the family, so a fault within limits in each design but over them in the whole is found",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-07, dev_reflow2 hub",
+    "statement": "Where a quantity is allocated across the designs of one system (mass, power, latency, a tolerance stack, an error budget), the family shall be able to roll each design's contribution up to the whole and say when the whole is over its limit, even though each design is within its own. The whole's limit lives in the design over the parts (req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns), and each contribution lives in the part that owns it. RECORDED FOR LATER on Anthony's word, 2026-10-07 (\"with 3 recorded for later\"), from his concern that \"a small fault in one design may be compounded in another project that is dependent/interfaces with another project\". Today budget_report and constraint composition (dec:idea-a-constraint-says-how-its-quantity-composes) work inside one design only.",
+    "status": "deferred"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:75a5141fa0c9bbcf94ae70c641533c41ee209f0c9cfe7c8901b554b1f231168e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-root-cause-across-a-family-looks-in-every-member-and-records-the-cause-where-it-lives",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

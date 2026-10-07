@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5cead309e4f8f0efb6de275c00104398ee376eea114946a75430c04b344e901a",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "capture.rs:2437 hands the required-field helper the core property name `purpose` instead of the tool field `description`.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:add-component-refusal-names-purpose-but-the-field-is-description-2026-10-07"
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:6f823a312a6a486deb3b04435a8a839d64eafe2bfde1d874b5d82032d8e92e70",
+  "node_id": "req:a-root-cause-across-a-family-looks-in-every-member-and-records-the-cause-where-it-lives",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-root-cause-run-from-a-hub-investigates-one-design-and-the-hub-chooses-which-2026-10-07"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A root cause run where several designs make up one system looks in every member design, and records the cause in the design where the cause lives",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-07, dev_reflow2 hub",
+    "statement": "When a failure is investigated in a design that is one of a family (a hub and its members, a parent and its parts, a design and the peers it uses), the investigation shall look across the family, not only in the design where the symptom shows:\n(1) WHERE TO LOOK IS NOT WHERE TO RECORD. The investigation looks in every member design the session can reach. The cause is recorded in the design where it LIVES, and the symptom's design links to it.\n(2) A NEIGHBOURS PASS, whenever the design names member designs:\n  - past causes are searched in every member;\n  - the members that changed since this design last looked are named;\n  - the interfaces at the seam are compared with the other side's current version;\n  - impact is walked backwards from the members that changed, to see whether it reaches the failing part.\nA member the session cannot reach is named as not looked at, never skipped silently.\n\nANTHONY, 2026-10-07: \"When I do root-cause at the hub level, does the agent just look at one project...? In a system of systems or a system with multiple sub-systems/components, an issue in one project may have downstream affects in other projects or a small fault in one design may be compounded in another project that is dependent/interfaces with another project. If we just look across one design only, may miss these type of failures.\" Then: \"capture 1 and 2 as a requirement and make the skill change next, with 3 recorded for later.\" Measured gap: fact:a-root-cause-run-from-a-hub-investigates-one-design-and-the-hub-chooses-which-2026-10-07.",
+    "status": "accepted"
+  }
+}

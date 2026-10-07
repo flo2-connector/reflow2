@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7307fe5910b977ecaf8b2b0f8618c7727a8863c7dbc76afdbb106420efe14d5a",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {},
+  "to_id": "fact:the-served-instructions-sit-at-the-edge-of-the-default-reply-budget-and-nothing-pinned-it-2026-09-28"
+}

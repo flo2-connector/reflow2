@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4c009460d332bb92b1304d0b1b094851d6cef879bbea5d6fd0754bce2753d94f",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:lesson-a-stacked-branch-merged-toward-main-after-a-squash-reverts-its-own-work-silently",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:lesson-a-stacked-branch-merged-toward-main-after-a-squash-reverts-its-own-work-silently"
+}

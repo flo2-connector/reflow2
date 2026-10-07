@@ -1,13 +1,14 @@
 {
-  "content_hash": "sha256:76e6de9ed45f314d3368f60ed073fa5e548a01f44e648647b33c37964caca585",
+  "content_hash": "sha256:e6ad38e40926217818fe6e34a3e3e90286e42a9d9c169b7e0f575b3333122bc8",
   "node_id": "fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03",
   "node_type": "TemporalFact",
+  "prev_item_hash": "sha256:76e6de9ed45f314d3368f60ed073fa5e548a01f44e648647b33c37964caca585",
   "properties": {
     "basis": "measured",
     "fact_type": "defect",
     "name": "STILL OPEN 2026-10-03: external_dependency stores `features` and `components` as ONE comma-joined string, so a feature whose text holds a comma is read back as several. The second lossy shape of fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23, carried here because that fact's first shape is fixed",
     "source": "fix program item 8, --call on a scratch store with the branch binary",
-    "statement": "Measured on the item 8 branch after its re-declare fix: declaring dep:x with features [\"the jot skill: /jot, /note and /log-issue\"] reads back from reconcile_dependencies as [\"the jot skill: /jot\", \"/note and /log-issue\"]. crates/reflow2-core/src/depends.rs writes `features` with join(\",\") and declared_dependencies splits on \",\". First seen 2026-09-24 on flo2 (0.70.0), recorded inside the 2026-09-23 description-drop fact. Item 8 fixed the description drop and invalidated that fact, so this shape is recorded on its own to stay open. Not fixed here: storing a list needs a schema decision (a list property, or an escaped join), outside item 8.",
+    "statement": "Measured on the item 8 branch after its re-declare fix: declaring dep:x with features [\"the jot skill: /jot, /note and /log-issue\"] reads back from reconcile_dependencies as [\"the jot skill: /jot\", \"/note and /log-issue\"]. crates/reflow2-core/src/depends.rs writes `features` with join(\",\") and declared_dependencies splits on \",\". First seen 2026-09-24 on flo2 (0.70.0), recorded inside the 2026-09-23 description-drop fact. Item 8 fixed the description drop and invalidated that fact, so this shape is recorded on its own to stay open. Not fixed here: storing a list needs a schema decision (a list property, or an escaped join), outside item 8.\n\n\n\nBROADER SINCE 2026-10-07: slice 1 of the hub work (#694) stores a pin's `relation` and `interfaces` the same way, joined with commas into member_relation and relation_interfaces and split on read. An Interface id containing a comma would come back as several. Relation values are an enum and cannot contain one; interface ids are slugs in practice. Same class, two more fields.",
     "steps": [
       "external_dependency"
     ],

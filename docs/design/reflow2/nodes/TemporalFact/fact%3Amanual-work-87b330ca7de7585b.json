@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fa93f7238278d984c70f11662cce8316e9f861610bb5db71bfd15aa45f286b7d",
+  "node_id": "fact:manual-work-87b330ca7de7585b",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "wrote a script that took a hand-picked set of nodes and counted the edges and text cross-references among them, and the connected groups they form, to answer whether a set of related records is linked together",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-07",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":null}"
+  }
+}
