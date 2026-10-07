@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c87ab8770a54976b8fd59a189739b28644537f3e3dc1a10a6b927e5d3d575b3c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-5957896e20c6e870",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:47891cdb39599129ba872024e7328186ea965912ddd6971b16bba19682f17eb4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-plain-get-instructions-returns-the-whole-document"
+}

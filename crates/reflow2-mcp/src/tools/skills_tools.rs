@@ -44,9 +44,13 @@ pub struct ListSkillsReq {
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct GetInstructionsReq {
-    /// How many characters of JSON this reply may spend before prose is
-    /// withheld to make it fit (default 30,000). See `reply_budget`: counts and
-    /// ids are never budgeted away, so a shorter answer is never a quieter one.
+    /// The most characters this client can take in one tool result. Omit it
+    /// and the whole document comes back, however long it has grown; pass it
+    /// and a document longer than that is withheld WHOLE, with the `sections`
+    /// manifest to fetch it a part at a time. There is deliberately no default
+    /// limit: the shared 30,000 one withheld the document from every plain
+    /// call from 2026-09-30, when it grew past 30,000 bytes, and the handshake
+    /// sends every session here first.
     #[serde(default)]
     pub budget_chars: Option<usize>,
     /// One section slug from the `sections` manifest, e.g. `the-loop`.
@@ -305,10 +309,12 @@ impl ReflowService {
                        what to do first on an existing design. Served by the server rather than \
                        stored in the project, so it always matches the reflow2 you are talking to. \
                        Read it before the first design action of a session — the file in the repo \
-                       is only a pointer here. IT IS ~27 KB AND SOME CLIENTS CAP A TOOL RESULT, \
+                       is only a pointer here. IT IS ~31 KB AND SOME CLIENTS CAP A TOOL RESULT, \
                        so every reply states `total_bytes` and a `sections` manifest: if what you \
                        hold is shorter than `returned_bytes`, your client truncated it and you \
-                       can fetch the rest a section at a time with `section`. A capped read used \
+                       can fetch the rest a section at a time with `section`, or pass your \
+                       client's cap as `budget_chars` to get only the manifest when it will not fit. \
+                       A capped read used \
                        to be silent, and what it removed was the tail — the gap→question \
                        handshake and the whole tool inventory. \
                        Ask for this first: it says how I am supposed to work with the design here.",
@@ -370,10 +376,18 @@ impl ReflowService {
         // The honest bound is the one the tool already has: refuse to send a
         // whole document that cannot fit, and hand back the manifest so the
         // caller fetches it a section at a time.
-        let budget = req
+        //
+        // NO DEFAULT LIMIT, AND THAT IS DELIBERATE TOO. With the shared 30,000
+        // default, the day the document passed 30,000 bytes (2026-09-30) every
+        // plain call — the one the handshake tells each session to make FIRST —
+        // got a table of contents and no instructions, from v0.78.0 to v0.80.0,
+        // and nothing failed (fact:a-plain-get-instructions-withheld-the-whole-
+        // document-from-v0-78-0-and-the-pin-that-would-have-caught-it-was-never-
+        // committed-2026-10-06). Only a caller that names its own cap is held to one.
+        if let Some(budget) = req
             .budget_chars
-            .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
-        if returned_section.is_none() && body.len() > budget {
+            .filter(|b| returned_section.is_none() && body.len() > *b)
+        {
             return structured(json!({
                 "instructions": null,
                 "section": null,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3272fc67bbffb8a508ccc74559c3e5bc0cc305d2c178918a6bc70b773c2f58ac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-plain-get-instructions-returns-the-whole-document"
+}

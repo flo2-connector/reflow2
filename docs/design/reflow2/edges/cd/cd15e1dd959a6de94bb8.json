@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:71d8be49854f6405bd529e78d734370274fe8e62df38522bc4dc05020ae1ed92",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:every-failure-is-searched-and-every-cause-is-root-caused-before-it-is-written"
+}

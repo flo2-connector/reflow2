@@ -61,8 +61,10 @@ DEFAULT_BUDGET = 30_000
 DOCUMENT_SHAPED = {
     # its job IS the whole document; needs streaming or a path, not a budget
     "export_graph": "returns the design document itself",
-    # withholds whole + hands back the section manifest (see skills_tools.rs)
-    "get_instructions": "returns an instruction document; bounded via `section`",
+    # whole by default; withholds whole + hands back the section manifest when
+    # the caller names a cap it will not fit (see skills_tools.rs). No default
+    # cap: the shared 30,000 one withheld it from every plain call from 0.78.0.
+    "get_instructions": "returns an instruction document; bounded via `section` or a caller's `budget_chars`",
     # withholds whole + hands back counts and hash (see exchange.rs)
     "export_surface": "returns a published contract; bounded via `path`",
 }
