@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:92428aa5ea0024f856b5817ab249751c03d0f1866d759631d1b092442ec90565",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses",
+  "properties": {},
+  "to_id": "req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it"
+}

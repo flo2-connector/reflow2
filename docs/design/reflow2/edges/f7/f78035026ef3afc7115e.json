@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3b1964f415390d09660fdd6c3d7ff43081bdce9325ae27d408d2fa7490e6d7ed",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses",
+  "properties": {
+    "approved_at": "2026-10-06",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

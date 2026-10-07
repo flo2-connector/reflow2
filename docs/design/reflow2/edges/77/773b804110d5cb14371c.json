@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a1aaa0ea25fc1fa1d6a01f7f4a918af33aa83a7d37fcabe982232b7a5250b92a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on",
+  "properties": {
+    "evidence": "Carrying a radius on into other designs needs to know which way each link points: up and down along PART OF, across along USES.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses"
+}

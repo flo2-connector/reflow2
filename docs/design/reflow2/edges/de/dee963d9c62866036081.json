@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:70e18d29c6a966f02f0f3b6d8d813a756946c9353d0216c748746a63a49d9a2a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:upstream"
+}

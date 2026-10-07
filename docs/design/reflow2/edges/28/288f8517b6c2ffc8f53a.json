@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dbee84d02fe8764c3a3e3250cc5661be07a3e4183e733da823e704a695056e01",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation",
+  "properties": {
+    "evidence": "hxm_program asked for a hub that owns members without absorbing them; recording each member's relation is how that ownership is stated."
+  },
+  "to_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses"
+}

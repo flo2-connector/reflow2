@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c6effced3b979dab12925fab71d78af15a9c3bd6faf478a27297b047e03fb870",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses",
+  "properties": {},
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

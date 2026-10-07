@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6073f30f8491b072451371a6794d3c2e64a78fe37600c699dc04b18ae5f57a7e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses",
+  "properties": {
+    "evidence": "It refines the settled rule that what a parent holds depends on whether its children are peers or parts, by recording which on each link.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-graph-whose-children-are-themselves-reflow2-designs"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ad2bd496e226c0b814b2afc5dc1f65c41adf992bd980e93f7141b994814309b4",
+  "node_id": "req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A hub records how each member relates (part of the parent, or a peer it uses across named interfaces), asks for it when a member is added, says when a member is linked by nothing, and a cross-design ripple follows that relation",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-06: \"capture the requirement in 692, go with your picks\", after accepting dec:idea-a-hub-records-whether-each-member-is-a-part-or-a-peer-it-uses",
+    "statement": "A hub (a design coordinating other designs) shall record, for each member, whether the member is PART OF the parent (the tier) or a PEER it USES, and for a peer the interfaces the use crosses. A member may be both. When a member is added, the hub asks for that relation. A health check says when a member is linked by nothing that a ripple could follow. When a change is analysed in one member, its ripple continues into the other members along the recorded relations (up and down along part of, across along uses), and every result names the design it reached and the design it continued in. A parent's requirements flowing down into its parts is NOT part of this requirement (dec:a-hub-members-relation-is-a-field-on-its-pin-and-the-ripple-comes-first-2026-10-06).",
+    "status": "accepted"
+  }
+}
