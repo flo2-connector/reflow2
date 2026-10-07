@@ -140,6 +140,9 @@ async fn a_drawn_relation_is_a_complete_answer_and_lands_in_the_same_call() {
             seed_ids: vec!["dec:first".into()],
             max_depth: Some(2),
             full: None,
+
+            arriving_from: None,
+            interfaces: None,
         }))
         .await
         .expect("propagate ok")

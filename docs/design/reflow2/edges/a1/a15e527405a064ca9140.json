@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b1792d59bd064ca54ce506f85f064eaca54838ad05f1f58a50ff4d5d7331edc",
+  "edge_type": "REALIZES",
+  "from_id": "art:export",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

@@ -5124,7 +5124,22 @@ pub struct FindSkillsReq {
 pub struct PropagateFromReq {
     /// Seed node ids to propagate impact from.
     /// Any node type — the blast radius is walked outward from these.
+    /// Leave it empty with `arriving_from`, which works out the seeds itself.
+    #[serde(default)]
     pub seed_ids: Vec<String>,
+    /// CARRY ON A RIPPLE FROM ANOTHER DESIGN: that design's id. This design's
+    /// own pins of it say where the ripple enters — across each interface a
+    /// `uses` pin names that the ripple reached there (`interfaces`), up through
+    /// the pin when that design is a part of this one — and the radius runs
+    /// from there. A design whose pins do not name it replies `arrived: false`
+    /// and walks nothing. Used by the hub skill to follow a change from member
+    /// to member; `continue_in` on every radius names the next designs.
+    #[serde(default)]
+    pub arriving_from: Option<String>,
+    /// With `arriving_from`: the Interface ids the ripple reached in that
+    /// design — its radius's `interfaces_reached`.
+    #[serde(default)]
+    pub interfaces: Option<Vec<String>>,
     /// Max traversal depth (default 5).
     #[serde(default)]
     pub max_depth: Option<usize>,
@@ -6591,6 +6606,15 @@ impl ReflowService {
     /// Open an in-memory design graph (tests / dry runs; not persisted).
     pub fn in_memory() -> Result<Self, DynoError> {
         Ok(Self::wrap(DesignGraph::open_in_memory()?))
+    }
+
+    /// An in-memory design that answers to `graph_id` — for a test holding
+    /// several designs at once, where each must be told apart the way two
+    /// real stores are.
+    pub fn in_memory_as(graph_id: &str) -> Result<Self, DynoError> {
+        Ok(Self::wrap(
+            DesignGraph::open_in_memory()?.with_graph_id(graph_id),
+        ))
     }
 
     /// THE SERVED SURFACE: the base router and the twelve slice routers,

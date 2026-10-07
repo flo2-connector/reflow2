@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9d7ea7ef15b1e8c925e371874d4b07ed64bedcfab4a827f5b3ddc7c85e4cec23",
+  "node_id": "art:test-a-change-ripples-across-uses-and-up-part-of-in-three-designs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The acceptance check ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs. P has part A; A uses peer B across I, mirrored. A change in B at I, carried on the way the /hub skill carries it (continue_in, then arriving_from in every member not yet reached), reaches A's consumer of I across and P's capability that A serves up. Every radius names its design, and rows mirrored from B name design-b. A parent reaching its pin of a part says to carry it down, with no invented seeds. A part reached only through the parent's Project is not a place to continue. Negative control: with no relations stated, the ripple stays in B.",
+    "location": "crates/reflow2-core/tests/a_change_ripples_across_uses_and_up_part_of_in_three_designs.rs",
+    "name": "a_change_ripples_across_uses_and_up_part_of_in_three_designs.rs",
+    "status": "realized"
+  }
+}

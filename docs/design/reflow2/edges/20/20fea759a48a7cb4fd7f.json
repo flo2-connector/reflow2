@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a162bbfc40ac5eca89550b513998dcb6c13780008897b75b88817492d521c042",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-change-ripples-across-uses-and-up-part-of-in-three-designs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a21d5e2b60e5639c788f4c2cd655395c95cc6e468f3902fe883170e280c1342",
+  "node_id": "art:test-a-ripple-is-carried-on-with-arriving-from",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins propagate_from's arriving_from through the served tool. A member that uses the changed design takes the ripple across its interface (arrived, arrived_via across, its consumer reached) and does not send it back. A design with no recorded way in replies arrived: false and walks nothing. Seeds plus arriving_from, or neither, is refused. A row for an interface a uses pin names carries the member's design, and continue_in points across into it.",
+    "location": "crates/reflow2-mcp/tests/a_ripple_is_carried_on_with_arriving_from.rs",
+    "name": "a_ripple_is_carried_on_with_arriving_from.rs",
+    "status": "realized"
+  }
+}

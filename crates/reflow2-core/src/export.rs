@@ -1306,6 +1306,14 @@ impl DesignGraph {
                 // existing provenance value for exactly this (BL-45's "imported
                 // reference nodes aren't marked foreign" — now they are).
                 props.insert("provenance".into(), Value::from("imported"));
+                // Every other mirrored node says WHICH design it came from, so a
+                // blast radius that reaches it can name that design and carry
+                // the ripple on there (cap:a-cross-design-ripple-follows-each-
+                // members-relation). Not `mirror_of`: that key marks the
+                // mirrored Project, and readers of it expect only Projects.
+                if n.node_type != node::PROJECT {
+                    props.insert("mirrored_from".into(), Value::from(source.as_str()));
+                }
                 if n.node_type == node::PROJECT {
                     props.insert("mirror_of".into(), Value::from(source.as_str()));
                     if let Some(hash) = &doc.content_hash {

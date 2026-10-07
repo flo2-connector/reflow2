@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:07d7773431c12093af04aa98deed9007f93a09d354b1935c152a46b738bf6c6a",
+  "node_id": "chg:a-blast-radius-names-its-design-and-is-carried-on-member-to-member",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-06",
+    "name": "A blast radius names the design each row belongs to, says which members to carry it on in, and a design works out where a ripple from another enters it",
+    "rationale": "Measured 2026-10-05: a radius stopped at the design it ran in and no row named a design (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05). An edge cannot cross a store, so the hop stays the agent's. What this makes mechanical is each end of it: every radius says where it left, and every design says how a ripple enters it, from its own pins. The hub agent needs no member's ids, and a hosted design, which cannot call another, still answers. Builds dec:idea-a-blast-radius-says-where-it-leaves-its-design-and-a-hub-carries-it-on on the relation slice 1 recorded. Two refinements came from reading the first version. Every pin hangs off the Project, so a parent's radius reached every part through it, and 'carry it down' is counted only for a pin reached directly. A ripple arriving up from a part seeded at the pin flooded the parent, so it starts at what requires the part, which is the capability the part serves.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Slice 2 of req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it. propagate_change and propagate_from name their `design`, mark rows from another design, list `interfaces_reached`, and give `continue_in` (across into a uses peer, down into a part) from this design's pins. propagate_from takes `arriving_from` and `interfaces`, and this design's pins of that design say where the ripple enters (across a used interface, or up at what requires the part). mirror_surface stamps `mirrored_from` on every mirrored node. The /hub skill carries a change from member to member."
+  }
+}

@@ -165,6 +165,7 @@ readers:
   operate.rs::require_resource: { kind: unjudged, edges: [REQUIRES_RESOURCE] }
   operate.rs::set_violation_status: { kind: unjudged, edges: [VIOLATES_RULE] }
   operate.rs::violates_rule: { kind: unjudged, edges: [VIOLATES_RULE] }
+  propagate.rs::arrival_seeds: { kind: not_derived, edges: [REQUIRES_RESOURCE], why: "A seed picker: one hop back from a part's pin to what requires it (the capability the part serves), where a ripple arriving up from that part starts. The radius is propagate_from's; this computes no relation." }
   propagate.rs::propagate_change: { kind: unjudged, edges: [CHANGED] }
   readiness.rs::add_readiness: { kind: not_derived, edges: [HAS_READINESS], why: "A writer: records a ReadinessAssessment and its HAS_READINESS edge, which readiness_gate reads." }
   readiness.rs::forecast_readiness: { kind: not_derived, edges: [HAS_TEMPORAL_FACT, VALID_FROM], why: "A writer: records a dated forecast (HAS_TEMPORAL_FACT, VALID_FROM) that readiness_gate reads. #631 named it as readiness_gate's code; it computes nothing." }
