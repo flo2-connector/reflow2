@@ -33,6 +33,10 @@ fn watched(hash: Option<&str>) -> DependencyDeclaration {
         design_address_hash: None,
         design_address_seen_at: None,
         note: None,
+        // The relation is stated so these tests see only the WATCH; an unstated
+        // one is its own finding (a_hub_member_records_its_relation.rs).
+        relation: vec!["part_of".into()],
+        interfaces: vec![],
     }
 }
 
@@ -223,6 +227,8 @@ fn a_plain_build_dependency_produces_no_upstream_finding() {
         design_address_hash: None,
         design_address_seen_at: None,
         note: None,
+        relation: vec![],
+        interfaces: vec![],
     })
     .expect("declare");
     let report = g.reconcile_upstream(&[]).expect("reconcile");

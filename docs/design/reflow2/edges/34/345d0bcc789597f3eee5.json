@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2a795911795a66cc8aaf3104ef0b3ccd33a06fcf39aec152e3755f2a1e23654",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

@@ -33,6 +33,8 @@ fn decl() -> DependencyDeclaration {
         design_address_hash: None,
         design_address_seen_at: None,
         note: Some("v0.12.0 verified safe to take: built and tested against it.".into()),
+        relation: vec![],
+        interfaces: vec![],
     }
 }
 

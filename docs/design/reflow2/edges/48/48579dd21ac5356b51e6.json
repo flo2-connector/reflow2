@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9a53c500d72bf3885dad2a3d18e077ada5d381b9a258881fed0cdd95efca204",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

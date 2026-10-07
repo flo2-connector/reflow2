@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:3b50298f8847105a44695c0a5c0e540409c359777d617872249d94102e84bc13",
+  "content_hash": "sha256:4c8b36b7c16387fbb81f1a2b6ae7285b51f7e2e0cd66702daf052451533d8eeb",
   "node_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:3b50298f8847105a44695c0a5c0e540409c359777d617872249d94102e84bc13",
   "properties": {
-    "description": "Slice 1. A field on the member's dependency pin (external_dependency) carries the relation, and the interfaces for a uses link; upstream_status reads it back. The served /hub skill asks for the relation when a member is added and runs link-projects for each named interface. A health check reports a member whose relation is unset, or a uses link with no mirrored interface to follow. Additive: a pin without the field reads as 'relation not stated', never as a guess.",
+    "description": "Slice 1. A field on the member's dependency pin (external_dependency) carries the relation, and the interfaces for a uses link; upstream_status reads it back. The served /hub skill asks for the relation when a member is added and runs link-projects for each named interface. A health check reports a member whose relation is unset, or a uses link with no mirrored interface to follow. Additive: a pin without the field reads as 'relation not stated', never as a guess.\n\n\n\nAS BUILT (2026-10-06): external_dependency takes `relation` (an enum list: part_of and/or uses) and `interfaces` (Interface ids). Both are kept on a re-declare that leaves them out, `[]` clears, an unknown relation is refused, and interfaces without uses are refused. They are stored on the Resource as member_relation and relation_interfaces, with no schema stamp move. upstream_status lists every design pin under `members` with its relation, or [\"not stated\"]. The health check lives in that same report: `relation_not_stated` for a design pin with no relation, and `no_interface_to_follow` for a uses link naming no interface, or one this design holds no Interface for. Both are actionable. loop_status lists them under `members_unlinked` and in `next`, even when nothing is watched, because a hosted design cannot watch another; `upstream_moved` keeps its meaning. The /hub skill asks the person for the relation when a member joins and runs link-projects for each interface. NOT YET: flo2.io serves 0.79.0, so hosted hubs get the field when flo2.io moves to the release carrying it. The ripple following the relations is slice 2 (cap:a-cross-design-ripple-follows-each-members-relation).",
     "name": "A hub member records its relation (part_of or uses) and the interfaces it crosses on its pin; /hub asks for it when a member is added; a health check names a member linked by nothing",
     "provenance": "authored",
-    "status": "planned"
+    "status": "realized"
   }
 }

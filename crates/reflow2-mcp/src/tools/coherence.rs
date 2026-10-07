@@ -618,15 +618,49 @@ impl ReflowService {
         // statement about this design's own record rather than about the
         // upstream; both stay in `upstream_status` where a reader who asked can
         // see them, and neither becomes a line in the list a session acts on.
+        //
+        // A DESIGN THAT NAMES MEMBER DESIGNS IS READ EVEN WHEN IT WATCHES NONE:
+        // a member whose relation is unstated, or a `uses` link with no
+        // Interface to follow, is owed whether or not anything is watched, and
+        // a hosted design cannot watch another at all. Those findings go under
+        // their own key, `members_unlinked`, so `upstream_moved` still means
+        // exactly what it says.
+        let names_designs = g.declared_dependencies().is_ok_and(|ds| {
+            ds.iter()
+                .any(|d| d.graph_id.as_deref().is_some_and(|x| !x.trim().is_empty()))
+        });
         if let Ok(targets) = g.upstream_targets()
-            && !targets.is_empty()
+            && (!targets.is_empty() || names_designs)
         {
             let (observed, _) = crate::upstream::observe_upstreams(&targets);
             if let Ok(report) = g.reconcile_upstream(&observed) {
+                let is_relation = |f: &reflow2_core::UpstreamFinding| {
+                    matches!(f.kind, "relation_not_stated" | "no_interface_to_follow")
+                };
+                let unlinked: Vec<&reflow2_core::UpstreamFinding> =
+                    report.findings.iter().filter(|f| is_relation(f)).collect();
+                if !unlinked.is_empty() {
+                    if let Some(obj) = payload.as_object_mut() {
+                        obj.insert(
+                            "members_unlinked".into(),
+                            json!(
+                                unlinked
+                                    .iter()
+                                    .map(|f| f.detail.clone())
+                                    .collect::<Vec<_>>()
+                            ),
+                        );
+                    }
+                    if let Some(arr) = payload.get_mut("next").and_then(|v| v.as_array_mut()) {
+                        for f in &unlinked {
+                            arr.push(json!(f.detail.clone()));
+                        }
+                    }
+                }
                 let acting: Vec<&reflow2_core::UpstreamFinding> = report
                     .findings
                     .iter()
-                    .filter(|f| f.is_actionable())
+                    .filter(|f| f.is_actionable() && !is_relation(f))
                     .collect();
                 if !acting.is_empty() {
                     if let Some(obj) = payload.as_object_mut() {

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eedaf837cf34f7b0901616907f48c04ac9e6017512d7badd8255d2e43b3777ac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:a79c2925ec78779813d5cadfcf18cb4e6a85bff505faf2d9533a138764e6e28a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-built"
+}

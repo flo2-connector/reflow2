@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:41c6a85d599b7f863fefbbd43e55252cabe8969d08631644cd50b364b854c547",
+  "node_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-06",
+    "name": "A hub member's pin records whether it is part of the design or a peer it uses, and a member linked by nothing is reported",
+    "rationale": "Measured 2026-10-05 in the dev_reflow2 hub: six member designs were linked only by pins that said nothing about how they stood to one another, so a change in one had no recorded way into the others (fact:root-cause-a-blast-radius-stops-at-its-design-by-design-and-nothing-says-where-it-left-2026-10-05). Anthony chose a field on the existing pin over a new edge type (dec:a-hub-members-relation-is-a-field-on-its-pin-and-the-ripple-comes-first-2026-10-06), so no schema stamp moves and flo2.io's copy is not forced to upgrade in step. The relation is never inferred: an unstated one is a finding that asks the person. The health check sits in upstream_status and loop_status rather than detect_gaps, because those are what the hub skill and the end-of-session check already call. Existing pins that name a design now read relation_not_stated until someone answers; that is the intended prompt, one question per member.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Slice 1 of req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it. external_dependency gains `relation` (part_of and/or uses) and `interfaces`. upstream_status reports each design pin's relation under `members`, plus two actionable findings: relation_not_stated, and no_interface_to_follow for a uses link with no Interface here to follow. loop_status lists them under `members_unlinked` even when nothing is watched. The /hub skill asks for the relation when a member joins and links each interface."
+  }
+}

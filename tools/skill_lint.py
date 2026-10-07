@@ -71,6 +71,12 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # hub (2026-10-06): a member's RELATION on its pin — external_dependency's
+    # `relation` (`part_of` / `uses`) and `interfaces` fields, and the two
+    # upstream_status finding kinds that report a member linked by nothing
+    # (depends.rs `relation_not_stated`, `no_interface_to_follow`).
+    "relation", "interfaces", "part_of", "uses",
+    "relation_not_stated", "no_interface_to_follow",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).

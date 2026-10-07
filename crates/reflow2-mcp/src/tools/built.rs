@@ -118,6 +118,9 @@ impl ReflowService {
             if req.graph_id.is_none() {
                 req.graph_id = before.graph_id.clone();
             }
+            if req.interfaces.is_none() {
+                req.interfaces = Some(before.interfaces.clone());
+            }
             if !stated(&req.design_export) && !stated(&req.design_address) {
                 if req.design_export.is_none() {
                     req.design_export = before.design_export.clone();
@@ -228,6 +231,15 @@ impl ReflowService {
             features: req.features.unwrap_or_default(),
             declared_in: req.declared_in,
             graph_id: req.graph_id,
+            // Left out on a re-declare, the stored relation is kept.
+            relation: match &req.relation {
+                Some(v) => v.iter().map(|r| r.as_str().to_string()).collect(),
+                None => before
+                    .as_ref()
+                    .map(|b| b.relation.clone())
+                    .unwrap_or_default(),
+            },
+            interfaces: req.interfaces.unwrap_or_default(),
             // THE BASELINE IS TAKEN HERE, AT THE MOMENT OF DECLARING, and that
             // placement is the design. A hash recorded on a READ would make the
             // watch report `moved` exactly once and then go permanently quiet,
