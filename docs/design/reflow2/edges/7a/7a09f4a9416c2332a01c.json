@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:26dc948a91a21b4737bc9b1ae0eb939c65d9dd536179c1e21e3dae1a9111fb7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:71951c8df0f31434e71196566bfa4dbab1050aac6e5aed66bb61361386da06a5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:vscode-terminal-route-instructions"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2dd9101d9d52d4a4152b0bd003978e1c923dac7d83ecbd0d814c7be4fbca1a65",
+  "node_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "detected_at": "2026-10-06",
+    "name": "The root-cause rule is served to every project, and a plain get_instructions returns the whole document again",
+    "rationale": "Root cause: fact:a-cause-written-in-a-reply-is-seen-by-nothing-and-the-root-cause-rule-was-served-to-no-consumer-2026-10-06. The rule lived only in reflow2's contributor AGENTS.md, so the hub, Alex's projects and every flo2.io design never received it, and a cause written in a reply calls no tool any detector could see. Fixing the delivery exposed a second defect in the path itself (fact:a-plain-get-instructions-withheld-the-whole-document-from-v0-78-0-and-the-pin-that-would-have-caught-it-was-never-committed-2026-10-06): since v0.78.0 a plain get_instructions withheld the whole document, so a rule added there would never have arrived. Anthony chose \"No limit by default\" over moving the 7.3 KB tool inventory to a fetched section or trimming to fit, because either of those hits the same wall at the next addition. He kept the Stop-hook detector closed (\"leave the hook closed\"). What still cannot be caught is a cause written in a reply by an agent that ignores a delivered rule; the 09-18 miss happened where rule 10 was loaded.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "The two-tier root-cause rule (search the exact error on any failure; get_skill root-cause the moment a cause is about to be written, in the design or in a reply) is now in the served instructions as a standing section near the top, in one handshake sentence that ends before character 1,200, and in the VS Code route's always-loaded file. get_instructions no longer applies the shared 30,000 reply default: a plain call returns the whole document, and only a caller that names its cap gets the manifest instead. tools/replies_are_bounded.py's reviewed exemption says so."
+  }
+}

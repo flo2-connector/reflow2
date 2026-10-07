@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d95f60aba9b17a6da2eca19e24d64c814d091e725d0d7da0c4969eaed6063695",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:skills-served"
+}

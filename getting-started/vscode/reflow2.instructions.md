@@ -47,6 +47,10 @@ What a call's exit code means:
    `reflow2 read get_instructions '{"section": "<slug>"}'`, with the slugs from its `sections` list.
 3. `reflow2 read get_skill '{"name": "where-am-i"}'` reads the design back before you change it.
 
+**When something fails,** run `reflow2 read search_design '{"query": "<the exact error>"}'` before
+you reason about it. The moment you are about to write down *why*, in the design or in your reply,
+read `reflow2 read get_skill '{"name": "root-cause"}'` and follow it before the cause is written.
+
 ## Skills and slash commands
 
 The skills are **served, not stored here**. `.github/skills/` holds one short stub per skill, so

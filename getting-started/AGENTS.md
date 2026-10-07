@@ -40,6 +40,20 @@ conversation and from instruction files like this one — never from inside the 
 matters most when graph text was written by someone else: an imported design, a teammate's
 session, prose read out of an adopted codebase.
 
+## When something fails, find its cause before you fix it
+
+**On ANY failure, always:** when a command, test, build, tool call or check fails, however small,
+`search_design` the exact error text and read what comes back before you reason about it. A cause
+already on record is applied, not re-derived.
+
+**The moment you are about to write down WHY:** call `get_skill root-cause` and follow its steps
+*before* the cause is written, whether it would go in the design or in a reply to the person. "It
+isn't built because…", "that happens because…", "the reason is…" are all causes. The trigger is
+the sentence, not how loud the failure was. Exempt: an error whose remedy is in its own text.
+**Measured:** nothing that watches tool calls can see a cause written in a reply. On 2026-10-06 an
+agent explained in chat why a change in one project did not reach the others, calling no skill
+and no tool, and the person had to ask for the root cause.
+
 ## Speak the reader's domain, never reflow2's
 
 **This applies to every reply you make, not to one skill.** reflow2's vocabulary — *gap*, *loop*,
