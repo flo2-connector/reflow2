@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9f574cf62b40c6e2bb441d32fd8342b364e87be8c7a9d323ea8c7073b98f9e16",
+  "node_id": "art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins the served words of item 2 of the one-graph plan. The root-cause skill walks member designs: precedent in every member, upstream_status for what moved, the seam against the other side, arriving_from for the ripple back, and an unreachable member named as not looked at. It records the cause where it lives. The hub skill separates where to look from where to record. capture-intent, brainstorm and link-ideas ask whether a new piece belongs under a recorded whole (F4). Observed failing 0 of 4 against main's skill text, and passing 4 of 4 with the change.",
+    "location": "crates/reflow2-mcp/tests/a_root_cause_looks_across_the_family_and_a_new_piece_is_asked_for_its_whole.rs",
+    "name": "a_root_cause_looks_across_the_family_and_a_new_piece_is_asked_for_its_whole.rs",
+    "status": "realized"
+  }
+}

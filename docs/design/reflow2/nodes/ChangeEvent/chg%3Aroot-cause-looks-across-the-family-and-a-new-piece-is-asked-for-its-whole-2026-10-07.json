@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:75fd0d3688a4883178ae4f26f5928554d0a26511e5dd39cabbea4f854a67cb96",
+  "node_id": "chg:root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole-2026-10-07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-07",
+    "name": "The root-cause skill walks the member designs and records the cause where it lives; the hub separates where to look from where to record; capture, brainstorm and link-ideas ask a new piece for its whole",
+    "rationale": "Measured 2026-10-07 (fact:a-root-cause-run-from-a-hub-investigates-one-design-and-the-hub-chooses-which-2026-10-07): the skill never looked past the one design the hub chose as the place to record. Anthony: \"If we just look across one design only, may miss these type of failures.\" F4 is batched here because it is one line of skill text in each of three skills (Anthony's \"Go with your picks\"). Not in it: compounding across designs (deferred requirement), and a typed link from the symptom to a cause in another design (build order 4).",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Item 2 of the one-graph build order. The served root-cause skill gains a neighbours pass (precedent in every member; Change across, Seam and Ripple back bones) and records a cause in the design where it lives. The hub skill separates where to look from where to record. capture-intent, brainstorm and link-ideas ask whether a new piece belongs under a recorded whole (F4). A test pins all four and was observed failing on main's text."
+  }
+}

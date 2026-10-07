@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2516875552ac8eb80af4c3a738325358bc0e8e5d0034cc9e8637a78a15a65100",
+  "edge_type": "REALIZES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-root-cause-skill-walks-the-members-of-a-family-and-the-hub-records-the-cause-where-it-lives"
+}

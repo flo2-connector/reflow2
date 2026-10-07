@@ -103,6 +103,11 @@ false and nothing will catch it.
 candidate list is not permission: relatedness is not similarity, and the score
 only ranks hypotheses.
 
+**Then ask whether the idea belongs under a whole already recorded**: a vision or an umbrella
+requirement the design holds, of which this is one facet. Pairs alone never gather a picture.
+Measured 2026-10-07: one aim spread across sixteen records read as scattered, though most of its
+pieces were linked, because no record named the whole. Link it to the whole, or say none fits.
+
 ## 4. Record it — including the nothing
 
     review_relations {"node_type": "Decision", "node_id": "…", "links": [ … ]}

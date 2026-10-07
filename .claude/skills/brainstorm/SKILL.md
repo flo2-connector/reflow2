@@ -154,6 +154,12 @@ every single time.
    not a person, not a detector — can tell them apart without it. **A note is a full answer, not a
    weaker one.**
 
+5. **Ask whether it belongs under a whole already recorded.** An idea is often one facet of a
+   larger aim the design already holds: a vision, or an umbrella requirement. Search for it, and
+   link the idea to that whole (`ANTICIPATES`, or `EVOLVES_INTO` when the whole is what it grew
+   into), or note that none fits. Pairs alone never gather a picture: measured 2026-10-07, one aim
+   spread across sixteen records read as scattered.
+
 **Nothing here is asked of the user, and nothing here nags.** `unreviewed_ideas` counts the ideas
 that carry neither a relation nor a note, but the detection and the *invitation* are different acts
 (`req:detecting-is-not-asking`): the count is computed always and put to the user at a boundary — a

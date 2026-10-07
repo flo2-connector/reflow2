@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bfa8fd21a836a79a1abfb83ef50455f3a8db4a2d7c530cc8931becad250c2bad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:7e1006d39a42891f777ec9cfef23936ca6abbbec4bc937857727ce4f19df4fd0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

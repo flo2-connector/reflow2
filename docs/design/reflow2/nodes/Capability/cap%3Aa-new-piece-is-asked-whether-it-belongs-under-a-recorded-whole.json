@@ -1,14 +1,15 @@
 {
-  "content_hash": "sha256:9374cbf8a9e668a1559e2d8497c45d516f5a7b4def0c3a52dc9f10bd4cf81d4a",
+  "content_hash": "sha256:6ef151a39d8f241203c9e9c65d2bf40ab7c134a9623a4da0ec50598d7a5a30f5",
   "node_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:9374cbf8a9e668a1559e2d8497c45d516f5a7b4def0c3a52dc9f10bd4cf81d4a",
   "properties": {
-    "description": "Planned 2026-10-07, build order 2 of 7, batched with the root-cause skill change: one step in capture-intent, brainstorm and link-ideas. Before or after writing, search for an umbrella requirement or idea the new piece is a facet of, and link it (DECOMPOSES for a requirement, EVOLVES_INTO or ANTICIPATES for an idea) or say none fits.",
+    "description": "Planned 2026-10-07, build order 2 of 7, batched with the root-cause skill change: one step in capture-intent, brainstorm and link-ideas. Before or after writing, search for an umbrella requirement or idea the new piece is a facet of, and link it (DECOMPOSES for a requirement, EVOLVES_INTO or ANTICIPATES for an idea) or say none fits.\n\n\n\nAS BUILT 2026-10-07: capture-intent (after the EVOLVES_INTO step: DECOMPOSES to the whole, or say none fits), brainstorm (step 4, item 5: ANTICIPATES or EVOLVES_INTO to the whole, or note none) and link-ideas (step 3) each ask whether the new piece belongs under a whole already recorded.",
     "distinct_from": [
       "fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07"
     ],
     "name": "Writing a new idea or requirement asks whether it belongs under a whole already recorded, and links it there (F4)",
     "provenance": "authored",
-    "status": "planned"
+    "status": "realized"
   }
 }

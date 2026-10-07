@@ -137,6 +137,12 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
    on reading as though the question were still open, and no query anywhere can tell the
    difference.
 
+   ⭐ **THEN ASK WHETHER IT BELONGS UNDER A WHOLE ALREADY RECORDED.** A new requirement is often
+   one facet of a larger aim already written down: a vision, or an umbrella requirement over a
+   system. Search for that whole. If there is one, draw `DECOMPOSES` from the new requirement to it;
+   if none fits, say so. Measured 2026-10-07: one aim was spread across sixteen records, and no
+   record named the whole, so it read as scattered even where its pieces were linked.
+
 2. Create each node with a stable id (`req:…`, `cap:…`, `cmp:…`, `ifc:…`) and a clear
    name/statement. **Requirements land at status `proposed` and stay there until the user
    confirms the wording** — every move off `proposed` (`accepted`, `met`, `deferred`,

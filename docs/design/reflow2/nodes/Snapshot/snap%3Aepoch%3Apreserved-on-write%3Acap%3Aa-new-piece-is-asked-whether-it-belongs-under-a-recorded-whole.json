@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1e736e7e7aebe3e98102a0b0bfcd715ccdf5fe1edf68f8d56f2ce46fe7ae0b6c",
+  "node_id": "snap:epoch:preserved-on-write:cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:brainstorm-skill\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:capture-intent-skill\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole\",\"properties\":{\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:the-served-skills-walk-the-member-designs-record-the-cause-where-it-lives-and-ask-for-the-whole\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:skills\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:the-pieces-of-one-picture-are-found-together\",\"properties\":{}}]",
+    "state": "{\"description\":\"Planned 2026-10-07, build order 2 of 7, batched with the root-cause skill change: one step in capture-intent, brainstorm and link-ideas. Before or after writing, search for an umbrella requirement or idea the new piece is a facet of, and link it (DECOMPOSES for a requirement, EVOLVES_INTO or ANTICIPATES for an idea) or say none fits.\",\"distinct_from\":[\"fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07\"],\"name\":\"Writing a new idea or requirement asks whether it belongs under a whole already recorded, and links it there (F4)\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole",
+    "target_type": "Capability"
+  }
+}
