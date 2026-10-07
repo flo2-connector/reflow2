@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:237a9f82d23bb002da48bb9263f6d8cd77f8abaa292915f90d47a04f3359188f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirements-flow-down-to-a-part-at-proposed-ruled-and-planned-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

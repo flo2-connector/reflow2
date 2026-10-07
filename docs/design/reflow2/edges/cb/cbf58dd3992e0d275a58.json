@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f15ef986e3f2914ea742676ad5a44651cbc6ab3e77e3f3cc07499612b0ec7e85",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:relate"
+}

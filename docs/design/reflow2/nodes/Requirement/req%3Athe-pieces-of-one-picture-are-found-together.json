@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:0354f13c668f5e42a6a92bb9de13407b87c4fa453cf2f2bea77ac7f571fab463",
+  "node_id": "req:the-pieces-of-one-picture-are-found-together",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The pieces of one picture are found together: related records, ideas and requirements alike, are suggested, linked and returned together, within a design and across a family",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-08-21 and 2026-10-07",
+    "statement": "Records that belong to one picture (ideas, requirements and accepted decisions alike) shall be found together. Suggestions for what a record relates to shall weigh real shared neighbours over ubiquitous ones (the author, the project) and shall compare ideas and requirements with each other (F2). Search shall return each hit's directly linked records, so a linked family comes back together (F3). Records of every intent kind, not only open ideas, shall be checked for missing links (F1). Capturing a requirement shall offer its likely relations (F5). Writing a new piece shall ask whether it belongs under a recorded whole (F4). Anthony's need, 2026-08-21: \"we talked about black-boxes, systems engineering, functional allocation, and a few other inter-related ideas that paint a bigger, more holistic picture about what I'm trying to link together... does reflow2 link ideas/concepts or does it rely on the agent to do this?\" Measured gap: fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07. Kept as intent 2026-10-07 ('Go with your picks'), in the order F4 (with the root-cause skill change), F2+F3, then F1+F5.",
+    "status": "accepted"
+  }
+}

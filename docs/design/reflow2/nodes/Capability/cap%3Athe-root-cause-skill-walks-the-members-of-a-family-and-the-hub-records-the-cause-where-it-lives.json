@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7e331895efff34ec5e65b97214aabbdecee4619bd8f5f41b02d621d4c9ee83f2",
+  "node_id": "cap:the-root-cause-skill-walks-the-members-of-a-family-and-the-hub-records-the-cause-where-it-lives",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-07, next build after #696. The served root-cause skill gains a neighbours pass, used whenever the design names member designs (its pins with a graph_id) or the session reaches several designs:\n- step 2 searches past causes in every member;\n- a CHANGE-ACROSS bone uses upstream_status, or each member's changelog where it is hosted, to name the members that moved since this design last looked;\n- a SEAM bone compares the interfaces this design uses or provides with the member's current version (mirrored interfaces, seam_report);\n- a RIPPLE-BACK bone runs propagate_from with arriving_from from each member that moved, to see whether the change reaches the failing part;\n- a member it cannot reach is named as not looked at.\nThe /hub skill separates where to LOOK (the whole family) from where to RECORD (the design where the cause lives, with the symptom's design linking to it). Mostly skill text, plus a test that both skills carry the steps. Compounding across designs (budgets and tolerances rolled up across the family) is NOT in this: req:a-quantity-that-compounds-across-designs-is-rolled-up-across-the-family, deferred.",
+    "distinct_from": [
+      "fact:a-root-cause-run-from-a-hub-investigates-one-design-and-the-hub-chooses-which-2026-10-07"
+    ],
+    "name": "The root-cause skill walks a design's member designs (precedent, what moved, the seam, impact walked backwards), and the hub skill records the cause where it lives, not where it was asked",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

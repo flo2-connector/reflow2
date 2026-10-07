@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dde028ca9ba556f4cb3dbe82fefa59b3836a9163a198fc68f06b7f735b348421",
+  "node_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Acceptance check for slice 3, to be written FAILING before it is built. Two designs: P (parent) and A (PART OF P). P sends req:p-r to A. In A it is a Requirement at proposed, with origin (design-p, req:p-r, P's version) and attributed to the sender. Any attempt to receive it at another status is refused. A's loop_status lists it as waiting. When A's owner accepts it, P's view of the allocation reads accepted. When P's req:p-r changes, A reports the origin moved. A ripple from P reaching its pin of A continues down seeded at the requirement A received, not with empty seeds.\n\n\n\nADDED 2026-10-07: the same check for a DECISION. P sends dec:p-d to A. It arrives at proposed with its origin. Once A's owner accepts it, an A requirement can be GOVERNED_BY A's copy. When P reopens dec:p-d, A reports the origin moved.\n\n\n\n═══ REVISED 2026-10-07: MOVE OR DECOMPOSE ═══\nThe check becomes:\n- P sends req:p-whole, wholly A's: it MOVES, so A holds it proposed, P holds only a link, and P reads A's status.\n- P sends req:p-span, which spans A and B: each holds its own proposed piece, DECOMPOSES-linked to P's.\n- P's dec:p-d yields a derived requirement in A, linked to dec:p-d.\n- Nothing is copied: no node text appears in two designs.\n- When P reopens dec:p-d or changes req:p-span, A reports the far end moved.\n- A ripple from P carries down seeded at what A holds from P.",
+    "kind": "verification",
+    "method": "test",
+    "name": "A parent's requirement sent to its part arrives proposed with its origin, binds only on the part owner's word, and its moves are reported both ways",
+    "status": "planned"
+  }
+}

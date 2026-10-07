@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ae262de7178f510187756fa85b996bda84953e1d4fa54894322e76207a3f12f3",
+  "node_id": "snap:epoch:preserved-on-write:fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Artifact\",\"other_id\":\"art:depends\",\"properties\":{}}]",
+    "state": "{\"basis\":\"measured\",\"fact_type\":\"defect\",\"name\":\"STILL OPEN 2026-10-03: external_dependency stores `features` and `components` as ONE comma-joined string, so a feature whose text holds a comma is read back as several. The second lossy shape of fact:re-declaring-a-dependency-drops-the-resources-description-2026-09-23, carried here because that fact's first shape is fixed\",\"source\":\"fix program item 8, --call on a scratch store with the branch binary\",\"statement\":\"Measured on the item 8 branch after its re-declare fix: declaring dep:x with features [\\\"the jot skill: /jot, /note and /log-issue\\\"] reads back from reconcile_dependencies as [\\\"the jot skill: /jot\\\", \\\"/note and /log-issue\\\"]. crates/reflow2-core/src/depends.rs writes `features` with join(\\\",\\\") and declared_dependencies splits on \\\",\\\". First seen 2026-09-24 on flo2 (0.70.0), recorded inside the 2026-09-23 description-drop fact. Item 8 fixed the description drop and invalidated that fact, so this shape is recorded on its own to stay open. Not fixed here: storing a list needs a schema decision (a list property, or an escaped join), outside item 8.\",\"steps\":[\"external_dependency\"],\"subject_id\":\"art:depends\",\"valid_from\":\"2026-10-03\"}",
+    "target_id": "fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03",
+    "target_type": "TemporalFact"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c8e8545218640a7a9f0dcefa69c036b251920ea39121f6d750946b9a1ea3f0a9",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:a-dependency-feature-containing-a-comma-is-read-back-as-several-2026-10-03"
+}

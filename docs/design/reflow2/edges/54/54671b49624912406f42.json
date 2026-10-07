@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ce34d11486f16a0572a434766c693de0b79aaf8a08e2e9628d5b434861742b8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

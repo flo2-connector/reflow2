@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:fef1340ab9eee9e64d5769faa30ff7722d98aa902dc88c276f55ae4aa01f3264",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "fact:relation-candidates-shared-neighbour-signal-is-dominated-by-the-author-edge",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:fact:relation-candidates-shared-neighbour-signal-is-dominated-by-the-author-edge"
+}

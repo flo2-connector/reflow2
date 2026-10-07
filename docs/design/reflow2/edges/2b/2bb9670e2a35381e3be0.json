@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ba4f68a9c4c60feb69ad33381f239cdcbb8f5830f906ba8da550d305ff3ff9d6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-requirement-reaches-a-design-its-sender-does-not-own-at-proposed-with-its-origin-and-binds-on-the-receivers-word",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

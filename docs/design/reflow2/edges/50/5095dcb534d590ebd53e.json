@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7833965fc727e45303d0a9fe9e9997e9dd557355e3741d7cadc963ab0891a114",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-quantity-that-compounds-across-designs-is-rolled-up-across-the-family",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-design-over-the-parts-of-one-thing-holds-what-no-part-owns"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c138fd0e51f59568ba149be5f651cff5fe74b68806df2d3402ec6261e030501b",
+  "edge_type": "CAUSES",
+  "from_id": "art:root-cause-skill",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The served root-cause skill generates candidates only from the one design it is run in, and the hub skill hands it exactly one design, chosen as the place to record the result.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-root-cause-run-from-a-hub-investigates-one-design-and-the-hub-chooses-which-2026-10-07"
+}

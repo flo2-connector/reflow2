@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bff2d68222aaf8c1cad6c8e4dbe13b0033594a486502d827f038bbcaf9046327",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-cross-design-ripple-follows-each-members-relation"
+}

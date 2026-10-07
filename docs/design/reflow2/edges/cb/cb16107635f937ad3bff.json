@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6acbcbf272589ac9d29f41da70da9d0ae554e00b76f2748f35581b0517fb3fcd",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

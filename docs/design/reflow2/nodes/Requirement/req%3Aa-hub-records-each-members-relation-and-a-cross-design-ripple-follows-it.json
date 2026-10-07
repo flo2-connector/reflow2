@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:ad2bd496e226c0b814b2afc5dc1f65c41adf992bd980e93f7141b994814309b4",
+  "content_hash": "sha256:5ae097b06ae7a1d75528ec4cfb3d4173663369d3161b10c470696f15c01a9766",
   "node_id": "req:a-hub-records-each-members-relation-and-a-cross-design-ripple-follows-it",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:ad2bd496e226c0b814b2afc5dc1f65c41adf992bd980e93f7141b994814309b4",
   "properties": {
     "concern": "core",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "A hub records how each member relates (part of the parent, or a peer it uses across named interfaces), asks for it when a member is added, says when a member is linked by nothing, and a cross-design ripple follows that relation",
     "priority": "high",
     "provenance": "authored",

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6b77de3e6feebe9ec438fd5dcfe9a6b2616f1099057db23444e957b99e62be3d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-requirement-sent-down-moves-to-the-part-or-decomposes-rather-than-being-copied",
+  "properties": {
+    "evidence": "The one-home, lowest-level principle this idea applies to requirements that cross designs.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs"
+}

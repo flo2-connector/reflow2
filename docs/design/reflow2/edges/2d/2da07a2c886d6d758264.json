@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d477440b17f32fa65ead6fef4776e8d03554e00614b5ee62daf710f6278c76f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:requirements-flow-down-to-a-part-at-proposed-ruled-and-planned-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

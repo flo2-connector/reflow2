@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b9ed78ea1ebeab61429cfe17bd54d164366e5bb5be855bf06226c1337537656a",
+  "node_id": "chg:requirements-flow-down-to-a-part-at-proposed-ruled-and-planned-2026-10-07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-07",
+    "name": "Slice 3 ruled and planned: a requirement sent to another design arrives proposed with its origin and binds on the receiver's word",
+    "rationale": "Walked through on 2026-10-07 with the agent's recommendation and chosen as recommended. Binding-on-acceptance keeps check_intent_authority single-owner; where one person owns both designs it costs nothing. The 08-06 counter to option (A), that reflow2 cannot enforce file-only, is now answerable on a hosted design, where flo2.io authenticates every caller, but that is a flo2 permission change.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Anthony ruled the two open ideas slice 3 rested on: dec:idea-intent-crosses-designs (\"Once accepted\": a parent's requirement binds when the part's owner accepts it; copied with its origin) and dec:idea-gap-flows-to-the-dependency (\"Write-only-at-proposed\", one mechanism down to a part and across to a supplier). The requirement, capability (planned) and acceptance check (planned) are captured."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8d65e62b8b92fba7ca19e67184d6ef205caf269e39b6b196e48f9fdbf2959a83",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-family-is-checked-for-facts-held-twice-or-held-above-the-lowest-design-that-owns-them",
+  "properties": {
+    "evidence": "The sweep checks after the fact the one-home rule this requirement applies at write time.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-skill-run-in-a-session-holding-several-designs-writes-where-the-fact-belongs"
+}

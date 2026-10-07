@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:28ad252126b293ff0c5fc3c83b6840b42221f98481ffc4cc22c0648f565da5a9",
+  "content_hash": "sha256:056e49cbeb3467e9fd302d90e0ba42ffb5294a9c32ce7a98a53096babe62f853",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-intent-crosses-designs",
+  "prev_item_hash": "sha256:28ad252126b293ff0c5fc3c83b6840b42221f98481ffc4cc22c0648f565da5a9",
   "properties": {
+    "approved_at": "2026-10-07",
     "authored_at": "2026-08-05",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

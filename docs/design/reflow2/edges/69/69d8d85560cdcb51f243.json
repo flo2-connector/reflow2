@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2e9f3a4923eac32418e3c5371ad3340749f706ebbcbc85496092a68279aa437b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design",
+  "properties": {
+    "approved_at": "2026-10-07",
+    "authored_at": "2026-10-07",
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

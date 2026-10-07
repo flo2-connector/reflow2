@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d83faa7faf479c647e8ce4b1fa144b3f70016b56a249b87ca5c6d712bb15e38",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:relate"
+}

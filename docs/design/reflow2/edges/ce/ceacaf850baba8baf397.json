@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5091d6d25102f544bb52788260496d432cb7e4a102ec7afaa3cbc90c5e0414ce",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design",
+  "properties": {
+    "evidence": "The settled answer that ideas form a graph, linked by the brainstorm and link-ideas skills, is what this extends across designs.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-do-ideas-form-a-graph-or-only-a-list"
+}

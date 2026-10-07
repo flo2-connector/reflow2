@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:921e94e25a61142d04f1eab0406d300dd701dbd7e7ba9543c8623e3e8957d6b1",
+  "content_hash": "sha256:f2cd753ee0a1114fc3f9c69525a118dc1860dcd8f1f71e6fd32ec302f9fe1f52",
   "node_id": "req:a-write-is-warned-when-the-same-thing-already-lives-in-a-related-design",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:921e94e25a61142d04f1eab0406d300dd701dbd7e7ba9543c8623e3e8957d6b1",
   "properties": {
     "concern": "core",
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "decomposed",
     "name": "A write is warned, not refused, when the same thing already lives in a related design, and is told where to reference it",
     "priority": "medium",
     "provenance": "authored",
