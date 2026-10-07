@@ -523,11 +523,6 @@ impl DesignGraph {
             .collect::<BTreeSet<String>>()
             .into_iter()
             .collect();
-        let reached: HashSet<&str> = seeds
-            .iter()
-            .map(String::as_str)
-            .chain(impacted.iter().map(|n| n.node_id.as_str()))
-            .collect();
         let mut continue_in = Vec::new();
         for m in &members {
             let gid = m.graph_id.as_deref().unwrap_or_default();

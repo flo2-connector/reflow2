@@ -262,7 +262,10 @@ fn a_part_reached_only_through_the_parents_project_is_not_a_place_to_carry_it_do
         .unwrap();
     let r = p.propagate_from(&["cap:p-serves"], OPTS).unwrap();
     let to: Vec<&str> = r.continue_in.iter().map(|c| c.design.as_str()).collect();
-    assert!(to.contains(&"design-a"), "A is required by the capability: {to:?}");
+    assert!(
+        to.contains(&"design-a"),
+        "A is required by the capability: {to:?}"
+    );
     assert!(
         !to.contains(&"design-c"),
         "C is reached only through P's Project, and nothing here needs it: {to:?}"
