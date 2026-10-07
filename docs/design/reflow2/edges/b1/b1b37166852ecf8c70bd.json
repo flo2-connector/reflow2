@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3471ef9b4b59556ba1e7c13489eddec11793d6b50c448182457969d550a2e813",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-skills",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "get_instructions applied the shared 30,000 reply default to a document that passed 30,000 bytes on 2026-09-30, and withholds an over-budget document whole.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-plain-get-instructions-withheld-the-whole-document-from-v0-78-0-and-the-pin-that-would-have-caught-it-was-never-committed-2026-10-06"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b350d4df7655f921b5b476d440618d2e281e826a8f28fdd7ca9ce151cd8ca52d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:skills-served"
+}

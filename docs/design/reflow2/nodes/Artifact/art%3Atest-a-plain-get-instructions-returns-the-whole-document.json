@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d8cbaa018f7a952467feef62d21d9474b728ff3b51e3b335e4bdd2f6e9a24a03",
+  "node_id": "art:test-a-plain-get-instructions-returns-the-whole-document",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Pins that a plain get_instructions returns the whole served document however long it grows, and that a caller who names a smaller cap still gets the manifest rather than half a document. It also pins that the root-cause rule rides every channel a session reads unasked: both tiers in the served instructions, ahead of a capped client's cut; the handshake sentence, ending before character 1,200; and the VS Code route file. Positive control: its plain-call test fails against the old 30,000 default.",
+    "location": "crates/reflow2-mcp/tests/a_plain_get_instructions_returns_the_whole_document_and_the_root_cause_rule_rides_it.rs",
+    "name": "a_plain_get_instructions_returns_the_whole_document_and_the_root_cause_rule_rides_it.rs",
+    "status": "realized"
+  }
+}

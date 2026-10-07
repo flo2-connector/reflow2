@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2bb13658e6e71fcbcf1bd11ad1c01d86820c9131e9ee283a385d7e981c11af54",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-root-cause-rule-is-served-and-a-plain-get-instructions-returns-the-whole-document",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f0c4589095d15d07a09e3a2691097ba310b8a40d8a0d53ec344452bb530ee78e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kit-instructions"
+}

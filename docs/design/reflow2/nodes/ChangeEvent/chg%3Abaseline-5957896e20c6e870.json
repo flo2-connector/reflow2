@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c95bf9ee1fb649fc1857dca0d3e543a4738ee2101f825d248f3255fdb8df73b6",
+  "node_id": "chg:baseline-5957896e20c6e870",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline recorded: the artifact was registered without a checksum and nothing was compared",
+    "subject": "record"
+  }
+}

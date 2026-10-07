@@ -2,14 +2,14 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "How to work THIS project with reflow2: the loop, the standing rules, and what to do first on an existing design. Served by the server rather than stored in the project, so it always matches the reflow2 you are talking to. Read it before the first design action of a session — the file in the repo is only a pointer here. IT IS ~27 KB AND SOME CLIENTS CAP A TOOL RESULT, so every reply states `total_bytes` and a `sections` manifest: if what you hold is shorter than `returned_bytes`, your client truncated it and you can fetch the rest a section at a time with `section`. A capped read used to be silent, and what it removed was the tail — the gap→question handshake and the whole tool inventory. Ask for this first: it says how I am supposed to work with the design here.",
+  "description": "How to work THIS project with reflow2: the loop, the standing rules, and what to do first on an existing design. Served by the server rather than stored in the project, so it always matches the reflow2 you are talking to. Read it before the first design action of a session — the file in the repo is only a pointer here. IT IS ~31 KB AND SOME CLIENTS CAP A TOOL RESULT, so every reply states `total_bytes` and a `sections` manifest: if what you hold is shorter than `returned_bytes`, your client truncated it and you can fetch the rest a section at a time with `section`, or pass your client's cap as `budget_chars` to get only the manifest when it will not fit. A capped read used to be silent, and what it removed was the tail — the gap→question handshake and the whole tool inventory. Ask for this first: it says how I am supposed to work with the design here.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "budget_chars": {
         "default": null,
-        "description": "How many characters of JSON this reply may spend before prose is\nwithheld to make it fit (default 30,000). See `reply_budget`: counts and\nids are never budgeted away, so a shorter answer is never a quieter one.",
+        "description": "The most characters this client can take in one tool result. Omit it\nand the whole document comes back, however long it has grown; pass it\nand a document longer than that is withheld WHOLE, with the `sections`\nmanifest to fetch it a part at a time. There is deliberately no default\nlimit: the shared 30,000 one withheld the document from every plain\ncall from 2026-09-30, when it grew past 30,000 bytes, and the handshake\nsends every session here first.",
         "format": "uint",
         "minimum": 0,
         "type": [

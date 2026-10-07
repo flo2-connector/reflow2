@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:55c9410d1008b46ba9a689877d985e9f98300a3d1aaf0da1959410858b02ae95",
+  "edge_type": "CAUSES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The served instructions (getting-started/AGENTS.md) never named root-cause, so no consumer project's agent was told the rule; rule 10 lived only in the contributor AGENTS.md.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-cause-written-in-a-reply-is-seen-by-nothing-and-the-root-cause-rule-was-served-to-no-consumer-2026-10-06"
+}

@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:219ed2b1a38a1279bd73f8668c7da0c2b8cf52502b553fa391cbb880388cb4e9",
+  "content_hash": "sha256:c39528ad800cc874809a0140180d08b919d5ee4d56712c366810606501dc63b8",
   "edge_type": "CHANGED",
   "from_id": "chg:a-hub-member-records-its-relation-and-a-member-linked-by-nothing-is-reported",
   "properties": {
     "accepted_baseline": true,
-    "accepted_seq": 8,
+    "accepted_seq": 9,
     "action": "modified",
-    "checksum_after": "sha256:aefcb83e5e2f4de5a85c102c3a4536da6c0d4fe48f8f0162f4b8e637028f7352",
+    "checksum_after": "sha256:3149c36e2faa41dd9ab6a33ceced3ce769d7d245eea9c5402a1043456bc90090",
     "checksum_basis": "asserted"
   },
   "to_id": "art:service"
