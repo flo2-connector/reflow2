@@ -260,6 +260,11 @@ EDGE_ONLY = {
     "acknowledge_defect", "apply_heal", "apply_merge", "claim_region", "delete_node",
     "design_identity", "import_graph", "mirror_surface",
     "release_claim", "report_manual_work", "usage_report", "withdraw_defect_acknowledgement",
+    # Intent sent between designs (slice 3): `send_to_design` mints a reference
+    # and draws an edge to it; `receive_from_design` mints a Requirement whose
+    # name and statement add_requirement already reaches, and its other
+    # parameters (`from_design`, `kind`, `sender`) are addressing, not properties.
+    "receive_from_design", "send_to_design",
     # `replace_text` edits prose that is ALREADY THERE: it replaces a unique string
     # in a named field, or appends to one. It cannot make an unset property set, so
     # it cannot be what makes a property reachable, and counting it would make every

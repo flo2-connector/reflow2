@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3f9237662c2663f56e32d24639a43af01ef56331f53e6d5db6f370514e480ae7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:acdb41f49d28bb3b3063e5e5edcc8ed31d1aa79c8c4385b16c49cd35e02554f7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-write-replies-with-a-receipt"
+}

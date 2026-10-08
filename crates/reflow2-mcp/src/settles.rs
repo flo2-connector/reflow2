@@ -128,6 +128,16 @@ const LANDING: &[&str] = &["proposed"];
 /// `authored_by` is not here on purpose: with `role: approver` it IS the
 /// signature, not a settle that needs one.
 pub const SETTLES: &[Settles] = &[
+    // A requirement MOVED to another design leaves this one: dropped here, on
+    // this owner's word (slice 3, 2026-10-08). A piece or a derived send
+    // settles nothing here.
+    Settles {
+        tool: "send_to_design",
+        argument: Some("kind"),
+        when: When::In(&["moved"]),
+        approver: "approver",
+        unsigned: Unsigned::Refused,
+    },
     Settles {
         tool: "add_requirement",
         argument: Some("status"),

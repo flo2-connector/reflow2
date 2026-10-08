@@ -153,7 +153,14 @@ impl DesignGraph {
                 continue;
             }
             let mut links = Vec::new();
-            for r in crate::relate::REVIEW_RELATIONS {
+            // The review relations, plus the two slice 3 draws across designs:
+            // a piece DECOMPOSES its parent's requirement, a derived requirement
+            // is GOVERNED_BY the decision that forced it.
+            let kinds = crate::relate::REVIEW_RELATIONS.iter().copied().chain([
+                crate::nodes::edge::DECOMPOSES,
+                crate::nodes::edge::GOVERNED_BY,
+            ]);
+            for r in kinds {
                 for e in self.incoming(&n.node_id, Some(r))? {
                     links.push(ReferenceLink {
                         node_id: e.from_id,

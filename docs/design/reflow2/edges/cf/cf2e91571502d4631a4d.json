@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f9e11d1aeb4d5d3acd02c96e6a89045f1b2a018d6d4d7a9115afcc2a1c5ebc13",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0bc57f5aa438e530e4c4dbca0067405067bf9d4974bcd0527628874067b720a8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:settles"
+}

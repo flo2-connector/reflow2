@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b628e612633c2de71fdc9ffd47992afa42e8e7cd9c49bf7c22b885bbcfe68956",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

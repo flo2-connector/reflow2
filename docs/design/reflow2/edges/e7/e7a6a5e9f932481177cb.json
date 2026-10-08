@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:03d54c6544cfaa3f4f1bf036678ee2f15627df00d5ee08f6a737f776190dc4c0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b9c7fbe9dac0ee2f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f2e20163a85cb339c77790a3526e9e06d4cf1ed2a5a24c0b2814a675607619fe",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools"
+}

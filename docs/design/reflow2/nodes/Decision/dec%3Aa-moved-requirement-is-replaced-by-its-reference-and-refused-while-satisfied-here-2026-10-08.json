@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3471d45559c93fab5864dab49262d6234234027b3df4b91261652615e749180f",
+  "node_id": "dec:a-moved-requirement-is-replaced-by-its-reference-and-refused-while-satisfied-here-2026-10-08",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-08, asked what happens to a requirement in the parent when it moves wholly to a part, chose \"Reference replaces it\" over \"Keep it, marked moved\". In the parent the requirement is dropped and marked moved_to_design / moved_to_node, and kept as history. The reference to its new home OBSOLETES it. The move needs the parent owner's approver and is refused while a capability in the parent still satisfies it.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-08 — a requirement moved to a part is replaced in the parent by the reference to its new home, and the move is refused while a capability in the parent still satisfies it",
+    "rationale": "One home per fact (the 2026-09-22 rule): the moved requirement lives only in the part. Keeping it marked moved would have needed a new status value and left two nodes for one requirement. A requirement the parent itself still realizes is not wholly the part's, so the refusal names the capabilities to re-home first.",
+    "status": "accepted"
+  }
+}

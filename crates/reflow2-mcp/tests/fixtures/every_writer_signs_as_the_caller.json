@@ -773,6 +773,15 @@
       "artifact_id": "art:f",
       "target_id": "cap:c"
     },
+    "receive_from_design": {
+      "id": "req:received",
+      "name": "Received",
+      "statement": "A requirement another design sent here.",
+      "from_design": "design-other",
+      "from_node_id": "req:there",
+      "kind": "piece",
+      "sender": "who:alice"
+    },
     "reconcile_artifacts": {
       "observed": [
         {
@@ -859,6 +868,12 @@
     "schedule_for": {
       "item_id": "cap:c",
       "target_id": "epoch:e2"
+    },
+    "send_to_design": {
+      "node_id": "req:r2",
+      "to_design": "design-other",
+      "to_node_id": "req:there-piece",
+      "kind": "piece"
     },
     "set_artifact_checksum": {
       "artifact_id": "art:f",

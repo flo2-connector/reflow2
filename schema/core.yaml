@@ -303,8 +303,11 @@ schema:
         seat: { type: string, description: "The SESSION that made the claim, as <machine>:<pid>:<mint> — assigned with zero coordination, never negotiated (dec:identity-out-of-band). It is what makes liveness COMPUTABLE: a claim whose session has exited is a ghost, and a ghost that reads as live makes the overlap report lie. A claim with no seat is from before this existed, and is reported as unknown rather than assumed live." }
 
     DECOMPOSES:
-      from: Requirement
-      to: Requirement
+      # Resource on either end is a cross-design REFERENCE (a node another design
+      # holds, crate::crosslink): a part's piece decomposes its parent's
+      # requirement across designs. Widened 2026-10-08 on Anthony's pick (slice 3).
+      from: [Requirement, Resource]
+      to: [Requirement, Resource]
       reading: { form: "primitive", primitive: "part-of", sub: "partition of intent", frame: "structure", modifiers: { note: "other" }, basis: "classified" }
       extraction_hint: >
         Child DECOMPOSES parent: a 1:1 split of one requirement into smaller

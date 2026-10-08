@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0186ab5ca5ad50772a39b84d9db3767947b35e11c07d8ccbd6a5f637e495581e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:2d3727068704646deff5b191e81b1f4fef62d80e9c821ee921dd54b4643512e8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skills-and-tools"
+}

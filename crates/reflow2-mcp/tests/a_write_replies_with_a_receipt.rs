@@ -506,6 +506,10 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
     // A fixed-size acknowledgement: the ids this call acted on, and a flag or a
     // status. Nothing stored comes back, so nothing can grow.
     const ACKNOWLEDGEMENT: &[&str] = &[
+        // slice 3 (2026-10-08): each replies with a fixed-size record naming the
+        // ids it wrote on its side (the requirement, or the reference), never a node.
+        "receive_from_design",
+        "send_to_design",
         "acknowledge_defect",
         "acknowledge_gap",
         "answer_question",

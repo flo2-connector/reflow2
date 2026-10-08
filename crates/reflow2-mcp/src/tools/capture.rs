@@ -3184,6 +3184,84 @@ impl ReflowService {
     }
 
     #[tool(
+        description = "HAND A REQUIREMENT DOWN TO ONE OF THE PARTS, or a decision, and record here \
+                       where it went: the parent's side of an allocation, or a customer's side of a \
+                       request to a supplier. Nothing is copied. `moved`: a requirement wholly the \
+                       receiver's leaves this design; a reference to its new home replaces it, its \
+                       ending kept as history (needs this owner's `approver`; refused while a \
+                       capability here still satisfies it). `piece`: the requirement stays here and \
+                       the receiver holds its own part, DECOMPOSES-linked across designs. `derived`: a \
+                       decision stays here and the receiver holds the requirements it forces, \
+                       GOVERNED_BY it. Call `receive_from_design` in the receiving design first, \
+                       then this here: an edge cannot cross a store, so each side is its own write. \
+                       What the receiver holds is `proposed` until its owner accepts it. Ask for \
+                       this to hand a requirement down to a part or send it to another project.",
+        annotations(read_only_hint = false)
+    )]
+    pub async fn send_to_design(
+        &self,
+        Parameters(req): Parameters<SendToDesignReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let settles = crate::settles::rule("send_to_design").settles_str(Some(req.kind.as_str()));
+        crate::settles::gate(
+            "send_to_design",
+            settles,
+            req.approver.as_deref(),
+            "a requirement moved out of this design",
+        )?;
+        let mut g = self.write_lock().await?;
+        approver_must_exist(&g, req.approver.as_deref(), "send_to_design")?;
+        ok_json(
+            g.send_to_design(
+                &req.node_id,
+                &req.to_design,
+                &req.to_node_id,
+                req.to_name.as_deref(),
+                req.kind.as_str(),
+                req.approver.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        )
+    }
+
+    #[tool(
+        description = "YOU WERE SENT A REQUIREMENT FROM ANOTHER PROJECT: record it here as your own, \
+                       waiting until your owner accepts it (a parent's handed down to this part, or \
+                       a customer's levied on this supplier). It lands as this design's own \
+                       Requirement at `proposed`, attributed to `sender`, with where it came from \
+                       recorded and a typed reference to it: `piece` DECOMPOSES the sender's \
+                       requirement, `derived` is GOVERNED_BY the sender's decision, and `moved` is the \
+                       sender's requirement, now living here. Only this design's owner moves it off \
+                       `proposed` (set_requirement_status); upstream_status and loop_status list \
+                       what waits. Refused when the requirement here was already ruled on. Then call \
+                       `send_to_design` in the sending design. Ask for this when another project \
+                       hands you a requirement.",
+        annotations(read_only_hint = false)
+    )]
+    pub async fn receive_from_design(
+        &self,
+        Parameters(req): Parameters<ReceiveFromDesignReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let mut g = self.write_lock().await?;
+        if let Some(who) = req.sender.as_deref() {
+            approver_must_exist(&g, Some(who), "receive_from_design")?;
+        }
+        ok_json(
+            g.receive_from_design(
+                &req.id,
+                &req.name,
+                &req.statement,
+                &req.from_design,
+                &req.from_node_id,
+                req.from_name.as_deref(),
+                req.kind.as_str(),
+                req.sender.as_deref(),
+            )
+            .map_err(dyno_err)?,
+        )
+    }
+
+    #[tool(
         description = "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses \
                        between real alternatives — the rationale is what stops the choice being silently \
                        reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is \

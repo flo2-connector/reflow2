@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0288afd458743a2de2a026cbb5896de065627fb5d99f8485c01cde52b860a0b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:61cb73989c5c5be1c50b4375a153dade301e20891da21dcf63e8d314a1109114",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

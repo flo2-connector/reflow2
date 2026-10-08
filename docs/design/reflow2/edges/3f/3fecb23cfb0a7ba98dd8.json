@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:43c416ecbe893af9d36278673e5e5a8f64538aa57b039f4f83e25dc5faa7b425",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-moved-requirement-is-replaced-by-its-reference-and-refused-while-satisfied-here-2026-10-08",
+  "properties": {
+    "approved_at": "2026-10-08",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:27c05f31a10cee691baecdb1a65f1f9f3ab06c9094d1710fe3f269725c1b8df5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:ea786745f1af69513d2ba4c85616e9a66083dae1040f85feb58f4baacb9f91c9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:19d3c46bd3dbdd287c342c335d4c4b363a1f586024cdd5c57a8645677b318348",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:8e0a955af2c98f4d0aec1a001db546e8cea89db70dff4aa6f4777ad977fd4ae2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:vocabulary-reach"
+}

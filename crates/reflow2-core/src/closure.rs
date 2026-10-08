@@ -639,6 +639,13 @@ impl DesignGraph {
         if depth == 0 {
             return Ok(Some("its decomposition is too deep to follow".into()));
         }
+        // A piece held by ANOTHER design (a cross-design reference, slice 3) is
+        // traced there, where its owner realizes it. From here it is handed
+        // off, not missing: reporting it as untraced would ask this design to
+        // realize something it deliberately gave away.
+        if self.reference_target(requirement_id)?.is_some() {
+            return Ok(None);
+        }
         let requirement_checked = !self
             .incoming(requirement_id, Some(edge::VERIFIES))?
             .is_empty();

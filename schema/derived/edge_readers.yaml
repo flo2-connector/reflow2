@@ -50,7 +50,7 @@ readers:
   compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
   confirm.rs::confirmation_ledger: { kind: unjudged, edges: [ALLOCATED_TO, CHANGED, DEPENDS_ON, REALIZES, VERIFIES] }
   consumption.rs::has_a_recorded_consumer: { kind: unjudged, edges: [DEPENDS_ON, INTERACTS_WITH, PART_OF_FLOW] }
-  crosslink.rs::design_references: { kind: not_derived, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES], why: "A listing: every reference to a node in another design, with the review-relation edges drawn to or from it, as they are. It computes no relation." }
+  crosslink.rs::design_references: { kind: not_derived, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DECOMPOSES, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, GOVERNED_BY, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES], why: "A listing: every reference to a node in another design, with the review-relation, DECOMPOSES and GOVERNED_BY edges drawn to or from it, as they are. It computes no relation." }
   depends.rs::declare_external_dependency: { kind: unjudged, edges: [REQUIRES_RESOURCE] }
   derived.rs::evaluate_derived: { kind: not_derived, edges: [GATED_ON], why: "The served read's dispatcher: it finds the subjects with a GATED_ON edge and hands each to readiness_report, which readiness_gate declares." }
   detect.rs::detect_artifact_standard: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
@@ -106,6 +106,8 @@ readers:
   export.rs::import_graph_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The import: writes a document's nodes and edges, normalising a legacy AUTHORED_BY on the way in; its edge rewrites come from narrowing::edge_rewrite_for. It answers one restore and derives no relation." }
   fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }
   flow.rs::part_of_flow: { kind: unjudged, edges: [PART_OF_FLOW] }
+  flowdown.rs::receive_from_design: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A writer: holds a requirement another design sent, and draws DECOMPOSES (a piece) or GOVERNED_BY (a derived requirement) to the reference standing in for the sender's node." }
+  flowdown.rs::send_to_design: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY, OBSOLETES, SATISFIES], why: "A writer and a guard: draws the sending side (OBSOLETES for a move, DECOMPOSES for a piece, GOVERNED_BY for a derived requirement) and refuses a move while a capability still SATISFIES the requirement here." }
   fork.rs::fork_point: { kind: unjudged, edges: [AT_EPOCH, CHANGED, GOVERNED_BY, OBSOLETES] }
   fork.rs::reopen_decision: { kind: unjudged, edges: [OBSOLETES] }
   frontier.rs::frontier: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS, SATISFIES] }

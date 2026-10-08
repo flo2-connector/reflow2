@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4239756745c2fa1d5d9645608f922ec746fbff189013a7d6029dbf615ad396f5",
+  "edge_type": "REALIZES",
+  "from_id": "art:closure",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

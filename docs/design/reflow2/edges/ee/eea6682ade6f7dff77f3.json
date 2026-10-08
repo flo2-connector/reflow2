@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5677b5d9c66e5ea0d045dea15b8fdca7741907cda15bb5c6f87dc0b53513259e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

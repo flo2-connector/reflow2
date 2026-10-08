@@ -209,6 +209,14 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
             ok(call(c, "add_decision", json!({"id": id, "name": format!("Pick the {word}"), "decision": format!("{word} pick {n}"), "rationale": "fixture", "kind": "choice"})).await, "decision");
             json!({"decision_id": id, "status": if settling { "accepted" } else { "proposed" }})
         }
+        // Slice 3: a MOVE settles the requirement here (it leaves); a piece
+        // settles nothing.
+        "send_to_design" => {
+            let id = format!("req:send-{n}");
+            ok(call(c, "add_requirement", json!({"id": id, "name": format!("The {word} part"), "statement": format!("{word} part {n}")})).await, "requirement");
+            json!({"node_id": id, "to_design": "design-other", "to_node_id": format!("req:there-{n}"),
+                   "kind": if settling { "moved" } else { "piece" }})
+        }
         "collapse_decision" => {
             if !settling {
                 return Ok(None);

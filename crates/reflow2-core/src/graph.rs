@@ -2510,15 +2510,33 @@ impl DesignGraph {
             }
         }
 
+        // Either end may be a cross-design REFERENCE (crate::crosslink): a part's
+        // piece decomposes its parent's requirement held in another design, and
+        // a hub may record that one member's requirement decomposes another's.
+        // Widened 2026-10-08 (slice 3). The lineage is this design's to set only
+        // on a requirement it holds.
+        let end_type = |id: &str| -> Result<&'static str, DynoError> {
+            if self.get_node(node::RESOURCE, id)?.is_some()
+                && self.get_node(node::REQUIREMENT, id)?.is_none()
+            {
+                Ok(node::RESOURCE)
+            } else {
+                Ok(node::REQUIREMENT)
+            }
+        };
+        let child_type = end_type(child_id)?;
+        let parent_type = end_type(parent_id)?;
         let edge = self.create_edge(
             edge::DECOMPOSES,
-            node::REQUIREMENT,
+            child_type,
             child_id,
-            node::REQUIREMENT,
+            parent_type,
             parent_id,
             Props::new(),
         )?;
-        self.set_requirement_lineage(child_id, "decomposed")?;
+        if child_type == node::REQUIREMENT {
+            self.set_requirement_lineage(child_id, "decomposed")?;
+        }
         Ok(edge)
     }
 

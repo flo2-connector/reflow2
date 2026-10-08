@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:53ebc2123b06877349a538d30b07f397f2e2d6ea6958f4121d74ea6ee704bfe5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:c6b94044579ddbafdacef56689872f3bca794f50fa2340bdb3285b5c748d9b26",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:loop-nudge"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:120b1f659962c645978ffb5bae0740693877952fe2410689919f12c488e8f49b",
+  "node_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Through the served tools: receive_from_design in the part, send_to_design in the parent (refused without approver for a move), and loop_status received_waiting in the part.",
+    "location": "crates/reflow2-mcp/tests/a_requirement_is_sent_down_and_received_through_the_tools.rs",
+    "name": "a_requirement_is_sent_down_and_received_through_the_tools.rs",
+    "status": "realized"
+  }
+}

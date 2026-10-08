@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7036d88791aca7d9bcfc3bcd721589ba5fdaf32109d58d357e2854eff2cbfcef",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:decomposes-and-governed-by-may-reach-a-cross-design-reference-2026-10-08",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-requirement-sent-down-moves-to-the-part-or-decomposes-rather-than-being-copied"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7bc40865836f80b94082de3003ced74322194d6c2445d70d628679d72edda861",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:flowdown"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7abd91759ee2928a1fb89eb646cfb636045dd0ca36b4a52dd7ddfead1eb55bd0",
+  "node_id": "art:flowdown",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Intent sent between designs. receive_from_design (in the receiver: a proposed Requirement with its origin, DECOMPOSES or GOVERNED_BY to the reference) and send_to_design (in the sender: OBSOLETES and dropped for a move, refused while satisfied or without approver; DECOMPOSES or GOVERNED_BY from the reference). Also received_intents and sent_intents.",
+    "location": "crates/reflow2-core/src/flowdown.rs",
+    "name": "flowdown.rs",
+    "status": "realized"
+  }
+}

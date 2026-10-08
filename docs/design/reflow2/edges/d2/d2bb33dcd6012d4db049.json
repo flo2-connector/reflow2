@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:746dc95be3275a6e618a302df261d5bbe966c0b12445ea1b49b87b7fc6797263",
+  "edge_type": "REALIZES",
+  "from_id": "art:flowdown",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

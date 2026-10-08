@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 195 tools
+# What reflow2 offers: 32 skills and 197 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 195 tools
+## The 197 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -156,6 +156,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `record_alias` | **write** | Record WHAT THE USER CALLS a node, in their own words — the domain nouns that mean this thing. |
 | `set_closure_criterion` | **write** | Declare what DONE means for this design: which closure legs count — traceability (every live requirement traced to a built, passing capability), budgets (every limit met with its declared margin), seams (every coupling specified on both sides), decisions (no scheduled work governed by an open decision), provenance (no number without a source) — and the share of each that must close. |
 | `replace_text` | **write** | Replace ONE piece of a node's text without re-sending the field: `old` must occur exactly once in `field` and is replaced by `new` (absent or repeated is refused, naming the count); omit `old` to append `new` after a blank line. |
+| `receive_from_design` | **write** | YOU WERE SENT A REQUIREMENT FROM ANOTHER PROJECT: record it here as your own, waiting until your owner accepts it (a parent's handed down to this part, or a customer's levied on this supplier). |
+| `send_to_design` | **write** | HAND A REQUIREMENT DOWN TO ONE OF THE PARTS, or a decision, and record here where it went: the parent's side of an allocation, or a customer's side of a request to a supplier. |
 
 ### Coherence — what the design says about itself
 
@@ -391,7 +393,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `claim_region` | **write** | Take a region of the design in hand so colleagues can see it is held: `contributor_id` claims everything within `depth` hops of `seed_id`. |
 | `claim_report` | read | Who holds what, and where two people are working the same ground |
 | `mint_seat` | read | Mint a seat: a durable name for THIS session, to pass as `seat` on the tools that record who is working (claim_region) |
-| `release_claim` | **write** | Let a claimed region go, so colleagues reading `claim_report` stop seeing it as held. |
+| `release_claim` | **write** | Give up a region you claimed, so colleagues reading `claim_report` stop seeing it as held. |
 | `claim_report` | **read** | Who holds what, and where two people are working the same ground. |
 | `mint_seat` | **read** | Mint a seat: a durable name for THIS session, to pass as `seat` on the tools that record who is working (claim_region). |
 | `writes_for` | **read** | Attribute every edit a session makes to one person: name them once, and each node written afterwards is credited to them as its author. |

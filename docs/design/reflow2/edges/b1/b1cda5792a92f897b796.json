@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8050bde3084f4c0cc5aae58c3e64d0d80b65c4ca6ca6f1441f39decaca275c02",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:bb6ac4358b8dd6c34801a743c0202416fae0139f971c1a95f585daa0ed46b3d7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:crosslink"
+}

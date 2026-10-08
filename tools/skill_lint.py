@@ -88,6 +88,9 @@ NON_TOOL_TERMS = {
     # cross-design ones (`other_design`, `other_name`) and add_decision's
     # `related_to` (service.rs RelationLinkReq).
     "other_design", "other_id", "other_name", "related_to",
+    # hub (2026-10-08): the three ways intent travels between designs, the
+    # values of send_to_design / receive_from_design `kind` (flowdown.rs).
+    "moved", "piece", "derived",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).
