@@ -143,6 +143,12 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
    if none fits, say so. Measured 2026-10-07: one aim was spread across sixteen records, and no
    record named the whole, so it read as scattered even where its pieces were linked.
 
+   ⭐ **AND OFFER WHAT IT RELATES TO.** Once the requirement is written, call
+   `relation_candidates` on it. With no `pool_type` it ranks requirements and ideas together, so
+   the idea it grew from and its siblings come back too. Put the two or three real candidates to
+   the person, then draw the ones they confirm with `review_relations`. Record a note when nothing
+   is honestly related. Never draw an edge just to clear the `unlinked_intent` finding.
+
 2. Create each node with a stable id (`req:…`, `cap:…`, `cmp:…`, `ifc:…`) and a clear
    name/statement. **Requirements land at status `proposed` and stay there until the user
    confirms the wording** — every move off `proposed` (`accepted`, `met`, `deferred`,

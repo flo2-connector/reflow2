@@ -89,3 +89,19 @@ fn a_new_piece_is_asked_whether_it_belongs_under_a_whole_already_recorded() {
         );
     }
 }
+
+/// F5 of `req:the-pieces-of-one-picture-are-found-together` (2026-10-08):
+/// capture offers what a new requirement relates to, and link-ideas works the
+/// requirement-side backlog too.
+#[test]
+fn capture_offers_what_a_new_requirement_relates_to() {
+    let ci = body("capture-intent");
+    assert!(
+        ci.contains("relation_candidates") && ci.contains("review_relations"),
+        "capture-intent must offer relation candidates after a requirement is written (F5)"
+    );
+    assert!(
+        body("link-ideas").contains("unlinked_intent"),
+        "link-ideas must work the unlinked_intent backlog as well as open ideas (F1)"
+    );
+}
