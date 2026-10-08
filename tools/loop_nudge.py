@@ -97,8 +97,8 @@ LOOP_OPS = {"loop_status", "detect_gaps", "detect_defects"}
 EXTRA_WRITE_OPS = {
     "allocate", "consumes", "contain_component", "contains", "deploy_to",
     "genesis", "import_graph", "link_artifact", "part_of_flow", "pin_at_epoch",
-    "precedes", "provides", "snapshot_before_change", "record_change", "release_includes",
-    "require_resource", "satisfies", "set_capability_status",
+    "precedes", "provides", "snapshot_before_change", "receive_from_design", "record_change",
+    "release_includes", "require_resource", "satisfies", "send_to_design", "set_capability_status",
     "set_provenance", "set_requirement_status", "set_verification_status",
     "verifies",
 }
@@ -602,10 +602,10 @@ WRITE_OPS = frozenset({
     "import_graph", "imposes", "ingest_corpus_step", "ingest_step", "invalidates",
     "link_artifact", "mirror_surface", "move_component", "operates_in", "owned_by",
     "part_of_flow", "performed_in", "pin_at_epoch", "plan_epoch", "precedes",
-    "provides", "realizes", "reconcile_artifacts", "reconcile_deployment", "reconcile_verification",
+    "provides", "realizes", "receive_from_design", "reconcile_artifacts", "reconcile_deployment", "reconcile_verification",
     "record_alias", "record_finding", "register_alternative", "release_claim", "release_includes", "reopen_choice",
     "release_includes_all", "replace_text", "report_manual_work", "require_resource", "review_relations",
-    "satisfies", "schedule_for", "set_artifact_checksum", "set_artifact_checksums", "set_artifact_intent",
+    "satisfies", "schedule_for", "send_to_design", "set_artifact_checksum", "set_artifact_checksums", "set_artifact_intent",
     "set_capability_delivery", "set_capability_signature", "set_capability_status", "set_closure_criterion", "set_decision_status",
     "set_epoch_status", "set_evidence_scope", "set_interface_designation", "set_interface_spec", "set_project_mode",
     "set_provenance", "set_quality_target", "set_requirement_designation", "set_requirement_lineage", "set_requirement_status",
