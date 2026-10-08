@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:a375bdc7a3e1e4d90357a137883a0ee0629dfee06686f9f36937775f65af43bf",
+  "content_hash": "sha256:ca470067198f965186bcfd20571e9172505b9d555596551550d5c81a4f395ebb",
   "edge_type": "CHANGED",
   "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 3,
     "action": "modified",
-    "checksum_after": "sha256:e8998700158dd18ff1aa6b544a4b8489855d7a62e540f24c4171fb84267c4d31",
+    "checksum_after": "sha256:0a82bd9a97c5abd12b93dacfde8d604b1313684b21ff0e27e459ca302119884c",
     "checksum_basis": "asserted"
   },
   "to_id": "art:detect"

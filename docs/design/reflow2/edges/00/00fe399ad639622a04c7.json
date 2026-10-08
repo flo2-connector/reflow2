@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e92be016ac7db685b901018474beabec44cdae23e1611ad27bebfcd798ccd423",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:bb2de87fe9dac4e1465bd7305daa298c59ec2a6033f66fad91aee3d7dbba65cd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3550b222a0af10eb4b2ff38ff801a1beb591ce804bdf08c8df957be20d5969c0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:55eb8c3dad8636f59e6f4dda69a89fa0e67604480b016c5ae976bd0509a12e9d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}
