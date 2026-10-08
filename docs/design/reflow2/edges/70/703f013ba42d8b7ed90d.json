@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:33655761a3b9fb63639d5db5d624d126137fdfbad0f9291b2a85e6b177f82d37",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-9a810d4c1c0c3fcf",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:95f7ea43bf028ce0ac8e9bb9fbe0b6b0f511c6d677f72b7d22050d1e8a0f8530",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance"
+}

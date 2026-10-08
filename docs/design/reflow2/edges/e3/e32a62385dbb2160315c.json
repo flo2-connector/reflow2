@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2a3e24154e2d6fb78e2549ad17909e1973c631da933e877a1dbed798133f7fd3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:cb68cace67f41d786b97ece4794408495f735d94b5caaf936a1676c5e5dfa372",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:714da4bf654a654eac377e3a2d031f04a5be39c28ca6fe587e9b18abb94daeb0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

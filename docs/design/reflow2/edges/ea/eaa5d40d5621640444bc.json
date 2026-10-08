@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b8033a819eebb62b92bb2a8c36fdf373bbb31f9e4c094bdac33a8ebaea853811",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:a-moved-requirement-is-replaced-by-its-reference-and-refused-while-satisfied-here-2026-10-08",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-requirement-sent-down-moves-to-the-part-or-decomposes-rather-than-being-copied"
+}

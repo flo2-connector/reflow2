@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6db1ab52613135b2d7a6098e95b49d9b7e7b8ec79aa7c439b4d7d1fbdabc8c70",
+  "node_id": "dec:decomposes-and-governed-by-may-reach-a-cross-design-reference-2026-10-08",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-08, asked how slice 3's cross-design edges reach the other design, chose \"Widen the two edges\" over \"Use review relations instead\" and \"Wait on slice 3\". DECOMPOSES now runs Requirement-or-Resource to Requirement-or-Resource, so a part's piece decomposes its parent's requirement through the reference standing in for it. GOVERNED_BY was already open (from \"*\" to \"*\"), measured 2026-10-08: a derived requirement GOVERNED_BY a reference was accepted unchanged.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-08 — DECOMPOSES and GOVERNED_BY may reach a cross-design reference (an additive schema widening)",
+    "rationale": "The widening is purely additive: no migration, and nothing existing changes meaning. Decomposition checks and roll-ups see the edges as decomposition, which review relations would not have been. The cost was named and accepted: an older reflow2, such as flo2.io's 0.79, refuses such an edge if a design carrying it is imported there, until flo2.io upgrades.",
+    "status": "accepted"
+  }
+}

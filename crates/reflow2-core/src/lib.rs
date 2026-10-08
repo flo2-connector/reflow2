@@ -55,6 +55,7 @@ pub mod edge_prose;
 pub mod export;
 pub mod fielded;
 pub mod flow;
+pub mod flowdown;
 pub mod fork;
 pub mod frontier;
 pub mod genesis;
@@ -165,6 +166,7 @@ pub use fielded::{
     FieldedDriftKind, FieldedFinding, FieldedOptions, FieldedReport, ObservedEnvironment,
 };
 pub use flow::{FlowCycle, FlowReport, FlowStep, FlowTransition};
+pub use flowdown::{ReceivedIntent, SEND_KINDS, SentIntent};
 pub use fork::{ChangeSince, ForkEpoch, ForkPoint, Reopened};
 pub use frontier::{DEFERRED_DERIVATION, Deferral, FrontierItem, FrontierReport};
 pub use genesis::{GENESIS_EPOCH_ID, GenesisOptions, GenesisReport};

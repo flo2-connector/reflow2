@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6fb16bac1d8202a5592382508535cceb7b31a03ce072183083dfddf4811b83cf",
+  "node_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-08",
+    "name": "A requirement or decision is sent to another design by move, piece or derived, received there at proposed, and binds on the receiver's word",
+    "rationale": "Anthony's rulings: binding once accepted and write-only-at-proposed (2026-10-07); move-or-decompose, never copy (2026-10-07); the DECOMPOSES widening and the move semantics (2026-10-08). Two new tools rather than new fields on add_requirement: the two halves are different acts in different designs, and each one's refusal (approver, still satisfied, already ruled on) belongs to its own act.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Item 5 of the one-graph build order (slice 3 of the hub work). New tools send_to_design and receive_from_design. Nothing is copied: a requirement wholly a part's moves, the parent keeping a reference that OBSOLETES it; one that spans parts stays, with each part's piece DECOMPOSES-linked; a decision stays, and its consequences arrive as derived requirements GOVERNED_BY it. DECOMPOSES is widened to reach a reference. upstream_status and loop_status report what waits on the receiver's owner."
+  }
+}

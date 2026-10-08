@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b06bd3b85712696e049ab6187253df275fca5d14295544461fbbd1924722f00e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:62638a04e7942ece29de84f7ed7e9bdd19371e9eb2739a916ec254b6b35968f3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

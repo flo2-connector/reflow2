@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f7a93f8965e14d1c0708b96377d3bcfb0c627fc95324de4ddc5ada105609246f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:a-parent-requirement-sent-to-a-part-binds-only-when-the-part-accepts-and-its-moves-are-reported"
+}

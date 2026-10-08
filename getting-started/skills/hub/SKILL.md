@@ -44,6 +44,14 @@ mirrors it. `upstream_status` lists every member with its relation, and reports 
 nothing a ripple could follow: `relation_not_stated`, or `no_interface_to_follow` for a `uses`
 link with no mirrored Interface. Put those to the person as one question per member.
 
+**When a requirement or decision of the whole belongs to a part, send it down; never copy it.** Ask
+the person, then make both writes, the part's first: `receive_from_design` in the part, then
+`send_to_design` here. A requirement wholly one part's is `moved`: it leaves the hub, which keeps a
+reference to its new home (it needs the hub owner's `approver`, and is refused while a capability
+here still satisfies it). One that spans parts stays here, and each part holds its own `piece`. A
+decision stays here, and each part it constrains holds the `derived` requirements it forces. What
+the part receives is `proposed` until its owner accepts it; `loop_status` there lists what waits.
+
 ## 2. Orient in one line, then read on demand
 
 1. **Find the designs the hub names**, from the host's list or, for a local hub, from

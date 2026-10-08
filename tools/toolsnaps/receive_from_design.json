@@ -1,0 +1,82 @@
+{
+  "annotations": {
+    "readOnlyHint": false
+  },
+  "description": "YOU WERE SENT A REQUIREMENT FROM ANOTHER PROJECT: record it here as your own, waiting until your owner accepts it (a parent's handed down to this part, or a customer's levied on this supplier). It lands as this design's own Requirement at `proposed`, attributed to `sender`, with where it came from recorded and a typed reference to it: `piece` DECOMPOSES the sender's requirement, `derived` is GOVERNED_BY the sender's decision, and `moved` is the sender's requirement, now living here. Only this design's owner moves it off `proposed` (set_requirement_status); upstream_status and loop_status list what waits. Refused when the requirement here was already ruled on. Then call `send_to_design` in the sending design. Ask for this when another project hands you a requirement.",
+  "inputSchema": {
+    "$defs": {
+      "SendKindReq": {
+        "description": "How intent travels between designs (`send_to_design`, `receive_from_design`).\n\nNo doc comments on the variants: a documented variant makes schemars emit\n`oneOf`, which the argument check does not read.",
+        "enum": [
+          "moved",
+          "piece",
+          "derived"
+        ],
+        "type": "string"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "from_design": {
+        "description": "The sending design's id.",
+        "type": "string"
+      },
+      "from_name": {
+        "default": null,
+        "description": "Its name there.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "from_node_id": {
+        "description": "The node's id THERE: the requirement or the decision it comes from.",
+        "type": "string"
+      },
+      "id": {
+        "description": "The Requirement's id HERE, in this (the receiving) design.",
+        "type": "string"
+      },
+      "kind": {
+        "$ref": "#/$defs/SendKindReq",
+        "description": "How it travels: `moved`, `piece` or `derived` (see `send_to_design`)."
+      },
+      "name": {
+        "description": "The requirement's short name, in this design's words.",
+        "type": "string"
+      },
+      "sender": {
+        "default": null,
+        "description": "Who sent it (a Contributor id), credited as its author here.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "statement": {
+        "description": "What this design must do, in its own words. For a piece, the part of\nthe sender's requirement that falls to this design, not the whole.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "statement",
+      "from_design",
+      "from_node_id",
+      "kind"
+    ],
+    "type": "object"
+  },
+  "name": "receive_from_design"
+}

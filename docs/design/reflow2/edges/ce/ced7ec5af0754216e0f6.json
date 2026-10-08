@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:00efe762222b0a402991e8ba8e5059c1934393bd586b5b05b3cb9f90aa86b0c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f9f46e3d301dd726b9a9850fc2819bb9876e2a81666128d0e486c11d8ed74618",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-write-records-the-agent-beside-the-principal"
+}

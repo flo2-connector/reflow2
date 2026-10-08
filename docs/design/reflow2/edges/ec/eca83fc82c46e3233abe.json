@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:037d24e8721472abbe3bfbc2465357a5f4886453aaec859e78f5aed6f1fd7148",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:a-moved-requirement-is-replaced-by-its-reference-and-refused-while-satisfied-here-2026-10-08"
+}

@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": "kind",
+      "unsigned": "refused",
+      "version": 1,
+      "when": {
+        "in": [
+          "moved"
+        ]
+      }
+    }
+  },
+  "annotations": {
+    "readOnlyHint": false
+  },
+  "description": "HAND A REQUIREMENT DOWN TO ONE OF THE PARTS, or a decision, and record here where it went: the parent's side of an allocation, or a customer's side of a request to a supplier. Nothing is copied. `moved`: a requirement wholly the receiver's leaves this design; a reference to its new home replaces it, its ending kept as history (needs this owner's `approver`; refused while a capability here still satisfies it). `piece`: the requirement stays here and the receiver holds its own part, DECOMPOSES-linked across designs. `derived`: a decision stays here and the receiver holds the requirements it forces, GOVERNED_BY it. Call `receive_from_design` in the receiving design first, then this here: an edge cannot cross a store, so each side is its own write. What the receiver holds is `proposed` until its owner accepts it. Ask for this to hand a requirement down to a part or send it to another project.",
+  "inputSchema": {
+    "$defs": {
+      "SendKindReq": {
+        "description": "How intent travels between designs (`send_to_design`, `receive_from_design`).\n\nNo doc comments on the variants: a documented variant makes schemars emit\n`oneOf`, which the argument check does not read.",
+        "enum": [
+          "moved",
+          "piece",
+          "derived"
+        ],
+        "type": "string"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "approver": {
+        "default": null,
+        "description": "This design owner's word, REQUIRED for `moved`, which settles the\nrequirement here as it leaves.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "kind": {
+        "$ref": "#/$defs/SendKindReq",
+        "description": "`moved`: wholly the receiver's, so it leaves this design (refused while a\ncapability here still satisfies it). `piece`: the receiver's part of a\nrequirement that stays here. `derived`: what the receiver must do because\nof a decision that stays here."
+      },
+      "node_id": {
+        "description": "The node HERE that is sent: a requirement (moved down, or sent in\npieces) or a decision (sent as the requirements it forces).",
+        "type": "string"
+      },
+      "to_design": {
+        "description": "The receiving design's id.",
+        "type": "string"
+      },
+      "to_name": {
+        "default": null,
+        "description": "Its name there, so the reference here reads as more than an id.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "to_node_id": {
+        "description": "The Requirement's id THERE, in the receiving design: the requirement\n`receive_from_design` created. It is not a node of this design.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "node_id",
+      "to_design",
+      "to_node_id",
+      "kind"
+    ],
+    "type": "object"
+  },
+  "name": "send_to_design"
+}

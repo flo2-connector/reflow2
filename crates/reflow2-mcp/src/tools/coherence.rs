@@ -632,7 +632,8 @@ impl ReflowService {
         if let Ok(targets) = g.upstream_targets()
             && (!targets.is_empty()
                 || names_designs
-                || g.design_references().is_ok_and(|r| !r.is_empty()))
+                || g.design_references().is_ok_and(|r| !r.is_empty())
+                || g.received_intents().is_ok_and(|r| !r.is_empty()))
         {
             let (observed, _) = crate::upstream::observe_upstreams(&targets);
             if let Ok(report) = g.reconcile_upstream(&observed) {
@@ -644,6 +645,23 @@ impl ReflowService {
                 let is_link = |f: &reflow2_core::UpstreamFinding| {
                     matches!(f.kind, "link_into_undeclared_design" | "link_far_end_moved")
                 };
+                // Intent another design sent, waiting on this owner's word.
+                let is_inbox = |f: &reflow2_core::UpstreamFinding| f.kind == "received_waiting";
+                let inbox: Vec<&reflow2_core::UpstreamFinding> =
+                    report.findings.iter().filter(|f| is_inbox(f)).collect();
+                if !inbox.is_empty() {
+                    if let Some(obj) = payload.as_object_mut() {
+                        obj.insert(
+                            "received_waiting".into(),
+                            json!(inbox.iter().map(|f| f.detail.clone()).collect::<Vec<_>>()),
+                        );
+                    }
+                    if let Some(arr) = payload.get_mut("next").and_then(|v| v.as_array_mut()) {
+                        for f in &inbox {
+                            arr.push(json!(f.detail.clone()));
+                        }
+                    }
+                }
                 let links: Vec<&reflow2_core::UpstreamFinding> =
                     report.findings.iter().filter(|f| is_link(f)).collect();
                 if !links.is_empty() {
@@ -682,7 +700,7 @@ impl ReflowService {
                 let acting: Vec<&reflow2_core::UpstreamFinding> = report
                     .findings
                     .iter()
-                    .filter(|f| f.is_actionable() && !is_relation(f) && !is_link(f))
+                    .filter(|f| f.is_actionable() && !is_relation(f) && !is_link(f) && !is_inbox(f))
                     .collect();
                 if !acting.is_empty() {
                     if let Some(obj) = payload.as_object_mut() {

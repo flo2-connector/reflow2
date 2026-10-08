@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c4627af31c950e5d92351c1d6f1a6e316a82506d5a0d67c220830e15b9fba498",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:23191988d57169f3a61c748baf16709fa95ddbbdc9e48c9cf4e6be416877e69f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-core"
+}

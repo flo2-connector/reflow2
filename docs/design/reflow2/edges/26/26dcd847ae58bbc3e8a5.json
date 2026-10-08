@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f304358f550dfd2fb50f9e3ef647eae0cb107187bcaab511bbe2ab5e845eac7c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

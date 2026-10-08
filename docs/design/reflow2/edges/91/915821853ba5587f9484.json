@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9989bc30ac14eac35fa412f1092c5defbfc8be7b7e85e51cb3ac0bb5a8448d46",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance"
+}

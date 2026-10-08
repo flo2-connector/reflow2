@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9dc78fb7d5ac491167a0391d99bc7ef0fcfddd1d1dde86394154e0685e21f43",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

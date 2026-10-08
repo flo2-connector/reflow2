@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bc4766904b7e7ce0c2b2ea27ffeb3188e3651c592ce3fb4c2d64c861b3b56609",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

@@ -783,6 +783,7 @@ impl UpstreamFinding {
                 | "no_interface_to_follow"
                 | "link_into_undeclared_design"
                 | "link_far_end_moved"
+                | "received_waiting"
         )
     }
 }
@@ -817,6 +818,13 @@ pub struct UpstreamReport {
     /// its links (`crate::crosslink`). Omitted when there are none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub references: Vec<crate::crosslink::DesignReference>,
+    /// Requirements another design sent here (crate::flowdown), with their
+    /// status: `proposed` ones wait on this design's owner. Omitted when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub received: Vec<crate::flowdown::ReceivedIntent>,
+    /// What this design sent to others. Omitted when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub sent: Vec<crate::flowdown::SentIntent>,
     /// How many declarations name another reflow2 design at all.
     pub designs_declared: usize,
     /// How many of those name somewhere to watch it: an export path or a
@@ -1261,6 +1269,34 @@ impl DesignGraph {
             }
         }
 
+        // INTENT ANOTHER DESIGN SENT HERE (crate::flowdown): what waits on this
+        // design's owner, one finding per sending design.
+        let received = self.received_intents()?;
+        let sent = self.sent_intents()?;
+        let mut waiting: BTreeMap<&str, Vec<&str>> = BTreeMap::new();
+        for r in received.iter().filter(|r| r.status == "proposed") {
+            waiting
+                .entry(r.from_design.as_str())
+                .or_default()
+                .push(r.requirement_id.as_str());
+        }
+        for (from, ids) in &waiting {
+            findings.push(UpstreamFinding {
+                kind: "received_waiting",
+                dependency: format!("received:{from}"),
+                name: format!("sent from {from}"),
+                design_export: None,
+                design_address: None,
+                detail: format!(
+                    "{} requirement(s) sent from design {from} wait on this design's owner: {}. \
+                     Accept each (set_requirement_status) or drop it; until then it does not \
+                     bind here.",
+                    ids.len(),
+                    ids.join(", ")
+                ),
+            });
+        }
+
         let note = if unlinked > 0 {
             format!(
                 "{note} {unlinked} member design(s) are linked by nothing a cross-design ripple \
@@ -1274,6 +1310,8 @@ impl DesignGraph {
             findings,
             members,
             references,
+            received,
+            sent,
             designs_declared,
             watched,
             note,

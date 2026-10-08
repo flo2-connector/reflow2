@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b6daa9f5dc12ce1bceeccc7cad6a26c1153066a9e4956db2c71dd66fbaa5fd99",
+  "edge_type": "REALIZES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}

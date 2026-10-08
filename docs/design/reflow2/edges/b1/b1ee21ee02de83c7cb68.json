@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:abacf348f23c69c1bb92e27bb3af52564f3902b5572142c59fd7c69c5c5b087e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:intent-flows-down-by-move-piece-or-derived-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools"
+}

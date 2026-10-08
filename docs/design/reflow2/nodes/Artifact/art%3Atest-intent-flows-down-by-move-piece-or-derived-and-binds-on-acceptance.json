@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:195a94e8be2b1214d31e817d675547fd710509f69ab2d76dea518e8af6b1e16d",
+  "node_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The acceptance check for slice 3, six cases:\n- what lands is proposed with its origin, and the inbox is reported;\n- it binds only on the part owner's acceptance and cannot be rewritten after;\n- a move hands the requirement over and copies nothing;\n- a move is refused while satisfied here or without the owner's word;\n- piece and derived are linked across, and the parent lists what it sent;\n- a ripple in the parent carries down seeded at what the part received.",
+    "location": "crates/reflow2-core/tests/intent_flows_down_by_move_piece_or_derived_and_binds_on_acceptance.rs",
+    "name": "intent_flows_down_by_move_piece_or_derived_and_binds_on_acceptance.rs",
+    "status": "realized"
+  }
+}

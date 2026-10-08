@@ -4036,6 +4036,77 @@ pub struct RelationLinkReq {
     pub other_name: Option<String>,
 }
 
+/// How intent travels between designs (`send_to_design`, `receive_from_design`).
+///
+/// No doc comments on the variants: a documented variant makes schemars emit
+/// `oneOf`, which the argument check does not read.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum SendKindReq {
+    Moved,
+    Piece,
+    Derived,
+}
+
+impl SendKindReq {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            Self::Moved => "moved",
+            Self::Piece => "piece",
+            Self::Derived => "derived",
+        }
+    }
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct SendToDesignReq {
+    /// The node HERE that is sent: a requirement (moved down, or sent in
+    /// pieces) or a decision (sent as the requirements it forces).
+    pub node_id: String,
+    /// The receiving design's id.
+    pub to_design: String,
+    /// The Requirement's id THERE, in the receiving design: the requirement
+    /// `receive_from_design` created. It is not a node of this design.
+    pub to_node_id: String,
+    /// Its name there, so the reference here reads as more than an id.
+    #[serde(default)]
+    pub to_name: Option<String>,
+    /// `moved`: wholly the receiver's, so it leaves this design (refused while a
+    /// capability here still satisfies it). `piece`: the receiver's part of a
+    /// requirement that stays here. `derived`: what the receiver must do because
+    /// of a decision that stays here.
+    pub kind: SendKindReq,
+    /// This design owner's word, REQUIRED for `moved`, which settles the
+    /// requirement here as it leaves.
+    #[serde(default)]
+    pub approver: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ReceiveFromDesignReq {
+    /// The Requirement's id HERE, in this (the receiving) design.
+    pub id: String,
+    /// The requirement's short name, in this design's words.
+    pub name: String,
+    /// What this design must do, in its own words. For a piece, the part of
+    /// the sender's requirement that falls to this design, not the whole.
+    pub statement: String,
+    /// The sending design's id.
+    pub from_design: String,
+    /// The node's id THERE: the requirement or the decision it comes from.
+    pub from_node_id: String,
+    /// Its name there.
+    #[serde(default)]
+    pub from_name: Option<String>,
+    /// How it travels: `moved`, `piece` or `derived` (see `send_to_design`).
+    pub kind: SendKindReq,
+    /// Who sent it (a Contributor id), credited as its author here.
+    #[serde(default)]
+    pub sender: Option<String>,
+}
+
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct BudgetReportReq {

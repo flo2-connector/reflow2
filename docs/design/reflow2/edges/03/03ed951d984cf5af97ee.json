@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa466c70eddc9f6f9cbaf58fadae5bac74922770664bb54634ca9cbc4b58dd77",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-receives-a-requirement-from-another-proposed-with-its-origin"
+}
