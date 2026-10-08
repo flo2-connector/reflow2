@@ -1812,6 +1812,12 @@ fn asked_question_id(gap_id: &str) -> String {
 /// is not told again; `withdraw_gap_acknowledgement` brings it back.
 pub const NEVER_EXPORTED_GAP_ID: &str = "gap:the-design-has-never-been-exported";
 
+/// The fewest live requirements and accepted decisions at which
+/// `unlinked_intent` is asked. The same six item 3 chose as the smallest pool
+/// worth reasoning about (`neighbourhood`'s background rule); below it a
+/// design's intent is read whole, so nothing is lost to a search.
+pub const UNLINKED_INTENT_FLOOR: usize = 6;
+
 fn ack_decision_id(gap_id: &str) -> String {
     format!(
         "decision:ack:{}",
@@ -5728,22 +5734,20 @@ impl DesignGraph {
         Ok(())
     }
 
-    /// The ideas nobody has opened: proposed Decisions with no relation and no
-    /// note (`GapSource::UnreviewedIdeas`).
-    ///
-    /// One aggregate finding. The `affected_ids` are the ideas themselves, so
-    /// the question can name them, but the gap is one question about a practice
-    /// rather than 115 questions about 115 thoughts.
     /// F1 of `req:the-pieces-of-one-picture-are-found-together`: the
     /// requirement-side twin of `unreviewed_ideas`. Measured 2026-10-07: a
     /// vision spread across sixteen records read as scattered, and the three
     /// records outside its web were all REQUIREMENTS, which no linking finding
     /// ever looked at.
+    ///
+    /// NOT ASKED BELOW [`UNLINKED_INTENT_FLOOR`] live intent nodes. The harm it
+    /// names is a search returning a piece without its picture, and a design
+    /// whose whole intent is a handful of nodes is read whole by any
+    /// orientation call: a lone requirement "connects to no other intent"
+    /// because there is none. Measured 2026-10-08: without the floor it fired
+    /// on the one-requirement, complete-thread fixtures that pin "nothing
+    /// specific is wrong", and outranked the phase nudge they exist to keep.
     fn detect_unlinked_intent(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
-        let unlinked = self.unlinked_intent()?;
-        if unlinked.is_empty() {
-            return Ok(());
-        }
         let mut total = 0usize;
         for r in self.scan_live_nodes(node::REQUIREMENT)? {
             let s = r
@@ -5762,6 +5766,13 @@ impl DesignGraph {
             {
                 total += 1;
             }
+        }
+        if total < UNLINKED_INTENT_FLOOR {
+            return Ok(());
+        }
+        let unlinked = self.unlinked_intent()?;
+        if unlinked.is_empty() {
+            return Ok(());
         }
         let n = unlinked.len();
         gaps.push(GapCandidate {
@@ -5796,6 +5807,12 @@ impl DesignGraph {
         Ok(())
     }
 
+    /// The ideas nobody has opened: proposed Decisions with no relation and no
+    /// note (`GapSource::UnreviewedIdeas`).
+    ///
+    /// One aggregate finding. The `affected_ids` are the ideas themselves, so
+    /// the question can name them, but the gap is one question about a practice
+    /// rather than 115 questions about 115 thoughts.
     fn detect_unreviewed_ideas(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
         let unreviewed = self.unreviewed_ideas()?;
         if unreviewed.is_empty() {

@@ -55,6 +55,8 @@ const READING_FUNCTIONS: &[(&str, Option<&str>)] = &[
     ),
     // Feeds `detect_unreviewed_ideas`, which renders the gap.
     ("unreviewed_ideas", Some("unreviewed_ideas")),
+    // Feeds `detect_unlinked_intent`, which renders the gap.
+    ("unlinked_intent", Some("unlinked_intent")),
     // closure_report's traceability leg counts a parked requirement in
     // `parked`, never as a hole; it renders no finding
     // (req:closure-reads-design-done-separately-from-build-done).

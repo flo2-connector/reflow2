@@ -87,3 +87,31 @@ fn the_gap_pass_reports_it_as_one_aggregate_finding_with_its_denominator() {
         gap.title
     );
 }
+
+#[test]
+fn a_design_whose_intent_is_read_whole_is_not_asked_and_one_past_the_floor_is() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    g.add_project("prj:p", "P").unwrap();
+    let asked = |g: &DesignGraph| {
+        g.detect_gaps()
+            .unwrap()
+            .iter()
+            .any(|c| c.gap_source.as_str() == "unlinked_intent")
+    };
+    for i in 1..reflow2_core::detect::UNLINKED_INTENT_FLOOR {
+        g.add_requirement(&format!("req:r{i}"), "R", "A requirement.")
+            .unwrap();
+    }
+    assert_eq!(
+        g.unlinked_intent().unwrap().len(),
+        reflow2_core::detect::UNLINKED_INTENT_FLOOR - 1,
+        "the list itself is unfiltered"
+    );
+    assert!(
+        !asked(&g),
+        "below the floor, a lone requirement connects to no other intent because there is none"
+    );
+    g.add_requirement("req:one-more", "R", "A requirement.")
+        .unwrap();
+    assert!(asked(&g), "at the floor the finding is asked");
+}
