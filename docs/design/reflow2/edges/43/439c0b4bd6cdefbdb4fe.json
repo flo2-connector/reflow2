@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7a8867b8b90de9c56b92a658a8eaa7cbaa5e6db73df4a42d74426f02c9fd9b30",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:97d15d37c8af1b48a6ac27d52356fa051da86a1b578b48491d3fd305b4e70f0e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:relate"
+}

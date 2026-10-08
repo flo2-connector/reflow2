@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3a18ea8300d5cfe807290f508b12d43c0141d2fcbd5cd35258ecbac27f900084",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them"
+}

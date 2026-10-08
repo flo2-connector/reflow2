@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2d02a05710d50594cc9de8d2b80941f2cb3f0825761fe0ca759f3b2d4b07de28",
+  "node_id": "ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two test files, three cases. The core file checks unlinked_intent and its unlinked_intent gap finding. capture_offers_what_a_new_requirement_relates_to, in the second test artifact, checks that the served capture-intent skill calls relation_candidates on a new requirement and puts the candidates to the person. Measured 2026-10-08 on reflow2's own design: 134 of 890 requirements and accepted decisions relate to no other intent. Not covered: whether the person acts on the offers. That is behaviour in a session, which no test here can see.",
+    "kind": "verification",
+    "last_run_at": "2026-10-08",
+    "method": "test",
+    "name": "Requirements and accepted decisions linked to no other intent are noticed, and capture-intent offers a new requirement's relations",
+    "status": "passing"
+  }
+}

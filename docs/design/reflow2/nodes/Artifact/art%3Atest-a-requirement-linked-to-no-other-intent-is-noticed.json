@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4772563023e887ca90f77954b50d5d4fbd0695c76ff8c981f37694f1c80a1de8",
+  "node_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Two cases:\n- unlinked_intent lists the requirements and accepted decisions related to no other intent, and leaves out the linked, the noted, the dropped and the still-open idea; a capability satisfying a requirement is build, not a link;\n- detect_gaps reports them as one aggregate unlinked_intent finding with its denominator.",
+    "location": "crates/reflow2-core/tests/a_requirement_linked_to_no_other_intent_is_noticed.rs",
+    "name": "a_requirement_linked_to_no_other_intent_is_noticed.rs",
+    "status": "realized"
+  }
+}

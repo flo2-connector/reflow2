@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2a431e21838367d475a88785c2724da025767919dd74dfc8fdd0221dc6d51a1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d6858af0e6b84060",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1842525fba2024d30a35aa5b4aaf2a9ffa7f0adec80014cda5b1e8eef9a94893",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed"
+}

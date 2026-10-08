@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ba37199434a4e0c0db240e56a36fae7789256d1a3c1b9d31822e0d769b68706",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them"
+}

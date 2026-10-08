@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e98b3fe35f844e644cd2abfa1606962127089b6a973221ea77e0ad78bf80aecb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:74b461fc07548501bfaf60515eab17b9209d69b6c7e06b5c0b867faa3a97293b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:capture-intent-skill"
+}

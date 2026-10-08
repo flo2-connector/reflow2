@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5224a462478e58ea68959031f9188797b99c75b44005ebc26c6ab2bad6b9d1eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations"
+}

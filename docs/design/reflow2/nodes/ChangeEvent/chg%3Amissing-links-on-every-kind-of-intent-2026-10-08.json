@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bdd77f0bbbd36b8c62154b30b07340a2077ed8495d5e057fbf14f77633130471",
+  "node_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-08",
+    "name": "Requirements and accepted decisions linked to no other intent are noticed, and capture offers a new requirement's relations",
+    "rationale": "The 2026-10-07 root cause found that the three records outside a sixteen-record vision were all requirements, which unreviewed_ideas never looks at. A sibling finding rather than widening unreviewed_ideas keeps that finding's meaning (an idea nobody has reviewed) and gives the new one its own denominator. Anthony kept F1 to F5 on 2026-10-07.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Item 6 of the one-graph build order (F1 and F5 of req:the-pieces-of-one-picture-are-found-together). A new gap finding, unlinked_intent, covers requirements and accepted decisions as unreviewed_ideas covers open ideas. capture-intent offers relation_candidates on a new requirement. The link-ideas skill works the backlog."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9424c000545cb394b0203f176c9aaa123216fcee6d5f26f304d3ea2b0f10e10e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:7eadd954b9aeab79b6003bd3a2a853c9d9c0bd99e2668245084cf4699b8a8418",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole"
+}

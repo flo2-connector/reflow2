@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d06808f36c38dde02bed8da6227e7eeabf4f9dbcf51a319687ddbb125f9125c5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them"
+}

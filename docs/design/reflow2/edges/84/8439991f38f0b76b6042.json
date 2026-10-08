@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e79a06723ef11024e01a00047e48f3408531a842a0e7935abef320cf99514961",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:031f1b08b508b11557548c3cdf65d3547f3b4315c7a62f7b8005b4712441c9a6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

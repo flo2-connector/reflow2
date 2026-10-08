@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd0e3865247582c60b178c2ec15e367b91bb2f9c9c894bc3d44fb9d7e0b08926",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed"
+}

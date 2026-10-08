@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e8dcda54720932cd370dcdec85dbf9f4f7fcea03e954bf63ba9cb2de492b68c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations"
+}
