@@ -4022,6 +4022,18 @@ pub struct RelationLinkReq {
     /// backwards the same edge asserts something false with nothing to catch it.
     #[serde(default)]
     pub incoming: Option<bool>,
+    /// When the other node lives in ANOTHER DESIGN: that design's id. `other_id`
+    /// is then the node's id THERE, and this design keeps a reference standing
+    /// in for it (`xref:<design>:<node>`), so the link is typed and checkable:
+    /// `upstream_status` reports a link into a design this one does not declare,
+    /// and one whose far design has changed since the link was made. Linking
+    /// again acknowledges it.
+    #[serde(default)]
+    pub other_design: Option<String>,
+    /// With `other_design`: the far node's name as you read it there, so the
+    /// reference reads as more than an id.
+    #[serde(default)]
+    pub other_name: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

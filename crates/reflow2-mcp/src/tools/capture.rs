@@ -3148,7 +3148,15 @@ impl ReflowService {
         Parameters(req): Parameters<ReviewRelationsReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut links: Vec<RelationLink> = Vec::new();
+        let mut across: Vec<crate::service::RelationLinkReq> = Vec::new();
         for l in req.links.unwrap_or_default() {
+            if l.other_design
+                .as_deref()
+                .is_some_and(|d| !d.trim().is_empty())
+            {
+                across.push(l);
+                continue;
+            }
             let other_type = self
                 .resolve_type(l.other_type.as_deref(), &l.other_id, "other_type")
                 .await?;
@@ -3168,6 +3176,7 @@ impl ReflowService {
         // agent stamp and signing the hold carries; the unit
         // (`crate::service::unit`) closed the raw lock to handlers.
         let mut g = self.write_lock().await?;
+        links.extend(cross_design_links(&mut g, across)?);
         ok_json(
             g.review_relations(&node_type, &req.node_id, &links, req.note.as_deref())
                 .map_err(dyno_err)?,
@@ -3335,7 +3344,17 @@ impl ReflowService {
         let mut edges = crate::drawn_edges::DrawnEdges::new();
         if req.related_to.is_some() || req.no_relation_note.is_some() {
             let mut links: Vec<RelationLink> = Vec::new();
-            for l in req.related_to.unwrap_or_default() {
+            let (across, local): (Vec<_>, Vec<_>) = req
+                .related_to
+                .unwrap_or_default()
+                .into_iter()
+                .partition(|l| {
+                    l.other_design
+                        .as_deref()
+                        .is_some_and(|d| !d.trim().is_empty())
+                });
+            links.extend(cross_design_links(&mut g, across)?);
+            for l in local {
                 // `g` (the write lock) is already held here, so resolve IN-lock: the
                 // scoped-read sibling would deadlock against it.
                 let other_type = crate::service::resolve_node_type(
@@ -4044,4 +4063,33 @@ pub(crate) fn parks_block(
         // Refused before the write; never reached with a stored edge.
         ParkingEffect::Never { .. } => serde_json::json!({ "in_force": false }),
     }
+}
+
+/// Links into ANOTHER design (`other_design` set): each far node gets the
+/// reference this design keeps for it (`reflow2_core::crosslink`), and the link
+/// is drawn to that reference like any other. Runs under the write lock.
+fn cross_design_links(
+    g: &mut reflow2_core::DesignGraph,
+    across: Vec<crate::service::RelationLinkReq>,
+) -> Result<Vec<RelationLink>, McpError> {
+    let mut out = Vec::new();
+    for l in across {
+        let design = l.other_design.as_deref().unwrap_or_default();
+        let id = g
+            .ensure_design_reference(
+                design,
+                &l.other_id,
+                l.other_type.as_deref(),
+                l.other_name.as_deref(),
+            )
+            .map_err(dyno_err)?;
+        out.push(RelationLink {
+            relation: l.relation,
+            other_type: reflow2_core::nodes::node::RESOURCE.to_string(),
+            other_id: id,
+            evidence: l.evidence,
+            incoming: l.incoming.unwrap_or(false),
+        });
+    }
+    Ok(out)
 }

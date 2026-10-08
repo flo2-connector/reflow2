@@ -66,6 +66,12 @@ pub struct LinkedRecord {
     /// `out` when the hit is the edge's source (*hit RELATION linked*), `in`
     /// when it is the target (*linked RELATION hit*).
     pub direction: &'static str,
+    /// When the linked record stands in for a node in ANOTHER design
+    /// (`crate::crosslink`): that design's id, and the node's id there.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub design: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub design_node_id: Option<String>,
 }
 
 /// How many linked records a hit carries at most, so a heavily linked node
@@ -87,6 +93,8 @@ impl DesignGraph {
                     node_id: e.to_id,
                     relation: kind.to_string(),
                     direction: "out",
+                    design: None,
+                    design_node_id: None,
                 });
             }
             for e in self.incoming(node_id, Some(kind))? {
@@ -94,6 +102,8 @@ impl DesignGraph {
                     node_id: e.from_id,
                     relation: kind.to_string(),
                     direction: "in",
+                    design: None,
+                    design_node_id: None,
                 });
             }
         }
@@ -104,6 +114,12 @@ impl DesignGraph {
                 .then(a.node_id.cmp(&b.node_id))
         });
         out.truncate(LINKED_PER_HIT);
+        for l in &mut out {
+            if let Some((design, far)) = self.reference_target(&l.node_id)? {
+                l.design = Some(design);
+                l.design_node_id = Some(far);
+            }
+        }
         Ok(out)
     }
 }

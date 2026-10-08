@@ -42,6 +42,7 @@ pub mod confirm;
 pub mod consumption;
 pub mod corpus;
 pub mod coverage;
+pub mod crosslink;
 pub mod dates;
 pub mod depends;
 pub mod derived;
@@ -138,6 +139,7 @@ pub use corpus::{
     CorpusDocument, CorpusOptions, CorpusReport, CorpusStep, DocumentOutcome, DocumentStatus,
 };
 pub use coverage::{CoverageReport, ObservedPath, UnclaimedRegion};
+pub use crosslink::{DESIGN_NODE_REFERENCE, DesignReference, ReferenceLink, reference_id};
 pub use depends::{
     DependencyDeclaration, DependencyFinding, DependencyReport, MEMBER_RELATIONS, MemberRelation,
     ObservedDependency, ObservedUpstream, UpstreamFinding, UpstreamReport, UpstreamTarget,

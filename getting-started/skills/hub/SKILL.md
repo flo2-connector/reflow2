@@ -167,5 +167,8 @@ capture in the destination.
   readings are both plausible, ask.
 - **In a local hub this skill states the private-child rule; it cannot enforce it.** Only a host
   that keeps the hub's membership, such as flo2.io, can.
-- **A pointer in the hub is text, not an edge.** Designs held by different servers cannot share an
-  edge, so the node id in the pointer is how a later reader finds the routed idea.
+- **A link into another design is a reference, not an edge into it.** Designs held by different
+  servers cannot share an edge. Pass `other_design` (that design's id) with `other_id` on a relation
+  (`review_relations`, or `related_to` on a decision): this design keeps a typed reference to the far
+  node, search shows it, and `upstream_status` says when the far design has changed since the link
+  was made, or when nothing here declares that design.

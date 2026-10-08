@@ -526,10 +526,15 @@ impl DesignGraph {
         let mut continue_in = Vec::new();
         for m in &members {
             let gid = m.graph_id.as_deref().unwrap_or_default();
+            // A reference reached here seeds the far design at the node it
+            // stands for, not at the reference's own id.
             let theirs: BTreeSet<String> = impacted
                 .iter()
                 .filter(|n| n.design.as_deref() == Some(gid))
-                .map(|n| n.node_id.clone())
+                .map(|n| match self.reference_target(&n.node_id) {
+                    Ok(Some((_, far))) => far,
+                    _ => n.node_id.clone(),
+                })
                 .chain(
                     m.interfaces
                         .iter()
@@ -628,6 +633,19 @@ impl DesignGraph {
         let Some(n) = self.get_node(node_type, node_id)? else {
             return Ok(None);
         };
+        // A reference to a node in another design (crate::crosslink) is that
+        // design's.
+        if n.properties
+            .get("resource_type")
+            .and_then(crate::foundation::core::Value::as_str)
+            == Some(crate::crosslink::DESIGN_NODE_REFERENCE)
+        {
+            return Ok(n
+                .properties
+                .get("design_graph_id")
+                .and_then(crate::foundation::core::Value::as_str)
+                .map(str::to_string));
+        }
         Ok(n.properties
             .get("mirrored_from")
             .or_else(|| n.properties.get("mirror_of"))

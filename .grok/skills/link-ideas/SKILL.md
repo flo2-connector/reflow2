@@ -104,7 +104,8 @@ candidate list is not permission: relatedness is not similarity, and the score
 only ranks hypotheses.
 
 **Then ask whether the idea belongs under a whole already recorded**: a vision or an umbrella
-requirement the design holds, of which this is one facet. Pairs alone never gather a picture.
+requirement the design holds, of which this is one facet. Pairs alone never gather a picture. When the related record lives in ANOTHER design, link it all the
+same: pass `other_design` (that design's id) with `other_id`, and `other_name` as you read it there.
 Measured 2026-10-07: one aim spread across sixteen records read as scattered, though most of its
 pieces were linked, because no record named the whole. Link it to the whole, or say none fits.
 
