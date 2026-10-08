@@ -71,6 +71,13 @@ graph. That issue reached eleven known occurrences before anyone searched.
 ⚠️ **It can take tens of seconds on a mature design.** Pay it. This is a deliberate investigation,
 not a background check, and one search is cheaper than one wrong fix.
 
+⭐ **IN A FAMILY OF DESIGNS, SEARCH EVERY MEMBER, NOT ONLY HERE.** When this design names member
+designs (pins with a design id, which `upstream_status` lists under `members`), or the session
+reaches several designs, run the same search in every member design you can reach. A failure on a
+seam has precedent on both sides. Measured 2026-09-29: a flo2.io failure's mechanism was the third
+hit in reflow2's design, and the search ran only in flo2's. Name any member you could not reach as
+**not looked at**; never leave it out silently.
+
 ## ③ GENERATE candidates from the design — do not brainstorm them
 
 Not one. **Three is a floor, not a target**, and the number is the point: a single hypothesis
@@ -96,6 +103,23 @@ candidates arrive as evidence rather than as imagination.
 | **Governance** | Does this violate a Decision, DesignRule or Constraint already settled? | `detect_defects`; a `CONTRADICTS` edge is a cause somebody already predicted |
 | **Staleness** | Is a record here describing a world that has moved? | `invalidated_findings` — a finding that outlived its fix sends you down a dead path |
 | **Choice** | Does the failure stand behind a decision you already settled — a road worth re-opening? | `choices_in_doubt`, AFTER the failing run is fed back (`reconcile_verification` with `record_events`, by file with `observed_by_file`) — it lists every accepted decision the bad news reaches, unranked, and re-opens nothing |
+
+**IN A FAMILY OF DESIGNS, WALK THE NEIGHBOURS TOO.** Every bone above is answered inside this one
+design, and a system's failures often are not. A cause can sit upstream of the symptom (a supplier
+design changed an interface, or a part's fault shows in its parent), and a small fault in one design
+can surface in another that depends on it. When the symptom's design names member designs, walk
+three more bones, each answered in another design. A member you cannot reach is **not looked at**,
+and you say so:
+
+| Bone | The question it asks | What answers it |
+|---|---|---|
+| **Change across** | Did a member design this one uses, or is part of, move since this design last looked? | `upstream_status`, which names the members that moved. A design hosted on a server cannot watch another, so there, read each member's `changelog_view` |
+| **Seam** | Does the interface used or provided here still match the other side's current version? | the mirrored Interface here against the member's own (`seam_report` there; `mirror_surface` again shows what moved) |
+| **Ripple back** | Does a change in a member that moved reach the failing part? | here, `propagate_from` with `arriving_from` (that member's design id) and `interfaces` (its radius's `interfaces_reached`) |
+
+A cause found in a member **lives there** (step ⑧). One shape is still out of reach: a quantity
+within limits in each design and over them in the whole, such as a budget or a tolerance that
+compounds across designs. Nothing rolls those up across a family yet, so say so in step ⑨.
 
 ⭐ **WHEN THE PROJECT IS A CODEBASE, THE ARTIFACT LAYER IS THE BRIDGE.** Symptom → the capability
 it belongs to → the artifacts that `REALIZES` it → the actual files. That path turns "something is
@@ -168,6 +192,10 @@ step happened at all.
 
 Then write the cause down where a later session will meet it:
 
+- **The design where the cause LIVES**, which is not necessarily the one where the symptom was
+  reported. When the cause is in a member design, write the finding there. In the symptom's design,
+  record the symptom with a pointer to it (the member's design id and the finding's id), so a later
+  search from either side meets the same cause.
 - The **test's own comment** — the reader most likely to need it is whoever the test next fails on.
 - The **graph**: `record_finding` — it writes the dated finding, hangs it off the node it is
   about, and draws the `CAUSES` edge from the cause with your reason in its evidence, in one

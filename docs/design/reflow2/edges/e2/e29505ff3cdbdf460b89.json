@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:05ec45658db8e4760a47c540851a3a0d3f65dabc6b9d28305cb3b453c9519e24",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole"
+}

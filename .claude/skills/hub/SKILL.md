@@ -91,6 +91,10 @@ format, which belongs to reflow2, so I'm recording it in reflow2."*
   copy of something it already holds.
 - **Run the skill the fact calls for** (brainstorm, capture-intent, root-cause, jot) against the
   design you chose. This skill decides where; that one decides how.
+- **Where to record is not where to look.** Above all for a root cause: a failure that shows in one
+  member can be caused in another. Investigate across the family (the root-cause skill's neighbours
+  pass looks in every member), then record the cause in the design where it lives, and the symptom
+  where it showed, pointing at the cause.
 
 ## 4. What the hub itself holds
 

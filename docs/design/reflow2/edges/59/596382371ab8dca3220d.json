@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a185ba07d8b5920a91b81dcee41b4d67a35a9d7a07c58d05a66062310afc8db4",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole"
+}

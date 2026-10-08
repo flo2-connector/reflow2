@@ -81,6 +81,9 @@ NON_TOOL_TERMS = {
     # `design`, `continue_in`, `seeds`, `interfaces_reached`, and
     # propagate_from's `arriving_from` (propagate.rs, coherence.rs).
     "continue_in", "seeds", "interfaces_reached", "arriving_from", "design",
+    # root-cause (2026-10-07): upstream_status's `members` list, read by the
+    # neighbours pass to know which member designs to walk.
+    "members",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).

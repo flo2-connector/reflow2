@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ab81911c2b3de517ab029dfa030053eb9dd18d53a1d45f8daf7a4a3b2de2e6c",
+  "edge_type": "REALIZES",
+  "from_id": "art:brainstorm-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-new-piece-is-asked-whether-it-belongs-under-a-recorded-whole"
+}
