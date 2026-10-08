@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4aca2a46cca18fb4b223f224f1ac12b4f7cb5156d9046e0009bf0cfe26bde65d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-eb7e47a559224cfb",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5b61a4692c92be69bad946d0fe06646ecd047933f988d5ec83e0f91580352690",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-link-into-another-design-is-recorded-and-checked"
+}

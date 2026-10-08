@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:de4cfd587e5eff439055db273d4dccc85678c03bc60afccbc7fba81abd61d662",
+  "edge_type": "REALIZES",
+  "from_id": "art:depends",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

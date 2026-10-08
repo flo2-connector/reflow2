@@ -630,13 +630,35 @@ impl ReflowService {
                 .any(|d| d.graph_id.as_deref().is_some_and(|x| !x.trim().is_empty()))
         });
         if let Ok(targets) = g.upstream_targets()
-            && (!targets.is_empty() || names_designs)
+            && (!targets.is_empty()
+                || names_designs
+                || g.design_references().is_ok_and(|r| !r.is_empty()))
         {
             let (observed, _) = crate::upstream::observe_upstreams(&targets);
             if let Ok(report) = g.reconcile_upstream(&observed) {
                 let is_relation = |f: &reflow2_core::UpstreamFinding| {
                     matches!(f.kind, "relation_not_stated" | "no_interface_to_follow")
                 };
+                // Links into other designs get their own key, for the same
+                // reason relations do: `upstream_moved` means a watched design moved.
+                let is_link = |f: &reflow2_core::UpstreamFinding| {
+                    matches!(f.kind, "link_into_undeclared_design" | "link_far_end_moved")
+                };
+                let links: Vec<&reflow2_core::UpstreamFinding> =
+                    report.findings.iter().filter(|f| is_link(f)).collect();
+                if !links.is_empty() {
+                    if let Some(obj) = payload.as_object_mut() {
+                        obj.insert(
+                            "cross_design_links".into(),
+                            json!(links.iter().map(|f| f.detail.clone()).collect::<Vec<_>>()),
+                        );
+                    }
+                    if let Some(arr) = payload.get_mut("next").and_then(|v| v.as_array_mut()) {
+                        for f in &links {
+                            arr.push(json!(f.detail.clone()));
+                        }
+                    }
+                }
                 let unlinked: Vec<&reflow2_core::UpstreamFinding> =
                     report.findings.iter().filter(|f| is_relation(f)).collect();
                 if !unlinked.is_empty() {
@@ -660,7 +682,7 @@ impl ReflowService {
                 let acting: Vec<&reflow2_core::UpstreamFinding> = report
                     .findings
                     .iter()
-                    .filter(|f| f.is_actionable() && !is_relation(f))
+                    .filter(|f| f.is_actionable() && !is_relation(f) && !is_link(f))
                     .collect();
                 if !acting.is_empty() {
                     if let Some(obj) = payload.as_object_mut() {

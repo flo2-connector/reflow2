@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:36d7a9280bef10959fd9644e3445c70ecdad97c56763a225179f305d21ebb779",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:crosslink"
+}

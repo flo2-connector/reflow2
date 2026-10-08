@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88f42fc2dbd557c55e9352299e3eb2ee60e51b87b06f1ea81f7f80ac1ae2c891",
+  "node_id": "art:test-a-relation-reaches-into-another-design",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Three tool-level cases:\n- review_relations with other_design, and search's `linked` naming the design and the far node;\n- add_decision related_to with other_design, read back by upstream_status `references`;\n- loop_status naming a link into an undeclared design under cross_design_links. It caught loop_status skipping the upstream read for a design with links and no pins.\nOn main, other_design is refused as an unknown field.",
+    "location": "crates/reflow2-mcp/tests/a_relation_reaches_into_another_design.rs",
+    "name": "a_relation_reaches_into_another_design.rs",
+    "status": "realized"
+  }
+}

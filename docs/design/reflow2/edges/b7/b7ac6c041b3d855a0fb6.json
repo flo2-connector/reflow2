@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c56f07cddabe5bd3fedd3ac3247e882b3c462eecf4a2c81c13b266324d280574",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-link-into-another-design-is-recorded-and-checked",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-link-into-another-design-is-recorded-read-back-and-checked-against-its-far-design"
+}

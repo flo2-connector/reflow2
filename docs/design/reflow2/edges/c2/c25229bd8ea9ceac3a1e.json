@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d99417c9e2ddecc03566aac49a6de56a6d9061bf7af5b3ed79fbe000da25901d",
+  "edge_type": "REALIZES",
+  "from_id": "art:crosslink",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

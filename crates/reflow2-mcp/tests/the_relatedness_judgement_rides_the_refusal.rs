@@ -127,6 +127,8 @@ async fn a_drawn_relation_is_a_complete_answer_and_lands_in_the_same_call() {
         evidence: "The earlier thought, grown up: same mechanism, stated for a second reason."
             .into(),
         incoming: Some(true),
+        other_design: None,
+        other_name: None,
     }]);
     s.add_decision(Parameters(second))
         .await

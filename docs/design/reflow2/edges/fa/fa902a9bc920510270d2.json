@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:46f83ce8a6f97958c0d3d106943d411883bb9a240d778af87bb5edf4c62fd00e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-link-into-another-design-is-recorded-and-checked"
+}

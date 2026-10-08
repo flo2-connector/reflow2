@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2b226a763140648a4eda6be71efc21236b0e52bd35f54bc96091fc3b9308f89e",
+  "node_id": "art:crosslink",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "References to nodes in other designs: ensure_design_reference (a Resource of kind design-node-reference, id xref:<design>:<node>, with the far design's fingerprint from this design's pin at link time), design_references, reference_target.",
+    "location": "crates/reflow2-core/src/crosslink.rs",
+    "name": "crosslink.rs",
+    "status": "realized"
+  }
+}

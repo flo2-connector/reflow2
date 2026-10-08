@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fb625738f7d83d550a4368e594df840d1be55b41f0103cd9b9cd7fdfe1d93b48",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

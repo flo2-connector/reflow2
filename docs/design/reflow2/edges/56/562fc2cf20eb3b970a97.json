@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:596adbd60094c0ec8afd2e05c04370c04e8c762b739d96a7383a6113047f0b2f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:3853000c507232872395bc4badacda8ab24122ea8e6bee58f2d5b46ac3224611",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

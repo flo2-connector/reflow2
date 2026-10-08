@@ -21,9 +21,25 @@
               "null"
             ]
           },
+          "other_design": {
+            "default": null,
+            "description": "When the other node lives in ANOTHER DESIGN: that design's id. `other_id`\nis then the node's id THERE, and this design keeps a reference standing\nin for it (`xref:<design>:<node>`), so the link is typed and checkable:\n`upstream_status` reports a link into a design this one does not declare,\nand one whose far design has changed since the link was made. Linking\nagain acknowledges it.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "other_id": {
             "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node id).\nThe edge runs TO it unless `incoming` turns it round. Its type is resolved\nfrom the id; `other_type` names it when the id is ambiguous.",
             "type": "string"
+          },
+          "other_name": {
+            "default": null,
+            "description": "With `other_design`: the far node's name as you read it there, so the\nreference reads as more than an id.",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "other_type": {
             "default": null,

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:47864a11ab6970c717064373fd6b9121da664ee25b52c0f8da8ff42639db7236",
+  "node_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-07",
+    "name": "A relation into another design is recorded as a typed reference, read back by search and the ripple, and checked against the far design",
+    "rationale": "Anthony's pick (b), 2026-10-07: a typed link kept in the design that makes it, checked for a far end that moved. It is the shared piece the duplicate warning, slice 3, the ripple and the root-cause neighbours pass need. A Resource was chosen over a stand-in of the far type because no detector skips imported nodes. The fingerprint check reuses the pin's watch, so a hosted design, which cannot watch another, reports a link it cannot check rather than passing it.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Item 4 of the one-graph build order. A relation link takes other_design and other_name; the design keeps a reference (xref:<design>:<node>) and draws the relation to it. upstream_status lists references and reports links into undeclared designs and links whose far design moved; loop_status names them; search's linked and the ripple name the far design."
+  }
+}

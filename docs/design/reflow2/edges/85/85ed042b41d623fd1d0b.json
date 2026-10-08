@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:43c0ddf4ca7d06e6e3d00ce4e15a184dfe18297889598e61ff6cfad89e804a4c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:6114b4b1f5f508f3a7154bdd1eacdb597a1875ea8cce230aaed4837384067dea",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

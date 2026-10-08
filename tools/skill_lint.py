@@ -84,6 +84,10 @@ NON_TOOL_TERMS = {
     # root-cause (2026-10-07): upstream_status's `members` list, read by the
     # neighbours pass to know which member designs to walk.
     "members",
+    # hub, link-ideas (2026-10-07): a relation link's fields, including the
+    # cross-design ones (`other_design`, `other_name`) and add_decision's
+    # `related_to` (service.rs RelationLinkReq).
+    "other_design", "other_id", "other_name", "related_to",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).

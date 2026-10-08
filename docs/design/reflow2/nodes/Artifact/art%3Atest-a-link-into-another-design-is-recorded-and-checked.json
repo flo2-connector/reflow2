@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:01654db489557f3a2772aa898a6fdf24509e29d62861898acc4c06c226aa7c1f",
+  "node_id": "art:test-a-link-into-another-design-is-recorded-and-checked",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Six core cases:\n- the reference reads back with its link;\n- a link to this design, or with no target, is refused;\n- a link into an undeclared design is reported;\n- a link whose far design moved is reported until the link is made again;\n- a link made before any baseline says it cannot tell;\n- a radius reaching the reference names the other design.",
+    "location": "crates/reflow2-core/tests/a_link_into_another_design_is_recorded_and_checked.rs",
+    "name": "a_link_into_another_design_is_recorded_and_checked.rs",
+    "status": "realized"
+  }
+}

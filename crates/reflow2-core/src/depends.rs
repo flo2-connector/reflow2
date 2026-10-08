@@ -781,6 +781,8 @@ impl UpstreamFinding {
                 | "graph_id_mismatch"
                 | "relation_not_stated"
                 | "no_interface_to_follow"
+                | "link_into_undeclared_design"
+                | "link_far_end_moved"
         )
     }
 }
@@ -811,6 +813,10 @@ pub struct UpstreamReport {
     /// relation its pin records. Omitted when there are none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub members: Vec<MemberRelation>,
+    /// Every reference this design keeps to a node in another design, with
+    /// its links (`crate::crosslink`). Omitted when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub references: Vec<crate::crosslink::DesignReference>,
     /// How many declarations name another reflow2 design at all.
     pub designs_declared: usize,
     /// How many of those name somewhere to watch it: an export path or a
@@ -1196,6 +1202,65 @@ impl DesignGraph {
             format!("{moved} of {watched} watched upstream design(s) have moved.")
         };
 
+        // LINKS INTO OTHER DESIGNS (crate::crosslink). A link is checked only
+        // against what this design can say about the far design: its pin's
+        // baseline and what was observed on this pass. A link into a design
+        // nothing here declares cannot be checked at all, and says so.
+        let references = self.design_references()?;
+        for r in &references {
+            let finding = |kind: &'static str, detail: String| UpstreamFinding {
+                kind,
+                dependency: r.id.clone(),
+                name: r.name.clone(),
+                design_export: None,
+                design_address: None,
+                detail,
+            };
+            let Some(pin) = declared
+                .iter()
+                .find(|d| d.graph_id.as_deref() == Some(r.design.as_str()))
+            else {
+                findings.push(finding(
+                    "link_into_undeclared_design",
+                    format!(
+                        "'{}' links into design {}, which this design does not declare, so \
+                         nothing here can say whether {} still exists or has changed. Declare \
+                         that design with external_dependency (its graph_id, and where to watch \
+                         it).",
+                        r.name, r.design, r.node_id
+                    ),
+                ));
+                continue;
+            };
+            let Some(now) = by_id
+                .get(pin.id.as_str())
+                .and_then(|o| o.content_hash.as_deref())
+            else {
+                continue;
+            };
+            match r.fingerprint_at_link.as_deref() {
+                Some(then) if then != now => findings.push(finding(
+                    "link_far_end_moved",
+                    format!(
+                        "Design {} has changed since the link to {} ('{}') was made. Re-read {} \
+                         there; if the link still holds, make it again to acknowledge, and if \
+                         not, remove it.",
+                        r.design, r.node_id, r.name, r.node_id
+                    ),
+                )),
+                Some(_) => {}
+                None => findings.push(finding(
+                    "link_unbaselined",
+                    format!(
+                        "The link to {} in design {} was made before this design recorded a \
+                         baseline of that design, so whether it moved since cannot be told. Make \
+                         the link again to take one.",
+                        r.node_id, r.design
+                    ),
+                )),
+            }
+        }
+
         let note = if unlinked > 0 {
             format!(
                 "{note} {unlinked} member design(s) are linked by nothing a cross-design ripple \
@@ -1208,6 +1273,7 @@ impl DesignGraph {
         Ok(UpstreamReport {
             findings,
             members,
+            references,
             designs_declared,
             watched,
             note,

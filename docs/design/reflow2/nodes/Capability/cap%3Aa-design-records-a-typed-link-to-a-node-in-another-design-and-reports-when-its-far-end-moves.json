@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:2ce84e24c8ea588f968317f806ab1b4a515dfd86706dbd88f7938e12630a3825",
+  "content_hash": "sha256:085ecc9dd95fcbb8252c97d1721009f63c35c6ad293c04fa0a5f1a8f82e96271",
   "node_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:2ce84e24c8ea588f968317f806ab1b4a515dfd86706dbd88f7938e12630a3825",
   "properties": {
-    "description": "Planned 2026-10-07. Build order 4 of 7 in the one-graph plan, after the root-cause skill change and the linking fixes F2+F3, and before slice 3, which depends on it. A link record (relation, local node, other design id, other node id, evidence, the far end's fingerprint when linked) written by a relation tool that accepts an id in another design. upstream_status-style checking reports missing or moved far ends. review_relations, link-ideas, the duplicate warning, the ripple and the root-cause neighbours pass read the links.",
+    "description": "Planned 2026-10-07. Build order 4 of 7 in the one-graph plan, after the root-cause skill change and the linking fixes F2+F3, and before slice 3, which depends on it. A link record (relation, local node, other design id, other node id, evidence, the far end's fingerprint when linked) written by a relation tool that accepts an id in another design. upstream_status-style checking reports missing or moved far ends. review_relations, link-ideas, the duplicate warning, the ripple and the root-cause neighbours pass read the links.\n\n\n\nAS BUILT 2026-10-07 (item 4):\n- A link is an ordinary review-relation edge to a REFERENCE: a Resource of kind design-node-reference, id xref:<design>:<node>. It holds the far design and node, the node's type and name as the linker gave them, and the far design's fingerprint from this design's pin at link time. It is created by review_relations or add_decision related_to with `other_design` (plus `other_id` and `other_name`).\n- upstream_status lists `references` and reports link_into_undeclared_design, link_far_end_moved (re-linking acknowledges it) and link_unbaselined. loop_status lists the first two under cross_design_links.\n- search's `linked` names the far design and node; the ripple attributes the reference to the far design and seeds there at the far node id.\nWHY A RESOURCE AND NOT A STAND-IN OF THE FAR TYPE: no detector skips imported nodes, so a stand-in Requirement would read as an unsatisfied requirement here.\nLIMITS:\n- DECOMPOSES is Requirement-to-Requirement in the schema (measured 2026-10-07: refused to a Resource), so decomposition across designs needs a choice in slice 3 (item 5).\n- The far-end check is per design (its fingerprint), not per node.\n- An arriving ripple does not yet enter through references, only through a pin's interfaces and a part's pin.",
     "name": "A design records a typed link to a node in another design, and reports when the far end is missing or has moved",
     "provenance": "authored",
-    "status": "planned"
+    "status": "realized"
   }
 }
