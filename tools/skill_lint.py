@@ -91,6 +91,9 @@ NON_TOOL_TERMS = {
     # hub (2026-10-08): the three ways intent travels between designs, the
     # values of send_to_design / receive_from_design `kind` (flowdown.rs).
     "moved", "piece", "derived",
+    # capture-intent, link-ideas (2026-10-08): the requirement-side linking
+    # finding (detect.rs `unlinked_intent`).
+    "unlinked_intent",
     # hub, impact-check (2026-10-05): the blast-radius FIELD that names the
     # published Interfaces a radius reached, where it continues in a member
     # design (propagate.rs `boundary_crossings`).

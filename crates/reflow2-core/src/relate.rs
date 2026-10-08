@@ -397,6 +397,66 @@ impl DesignGraph {
         Ok(r)
     }
 
+    /// Requirements and ACCEPTED decisions linked to no other intent: no review
+    /// relation, no DECOMPOSES or GOVERNED_BY either way, and no note saying
+    /// the relations were reviewed (F1 of
+    /// `req:the-pieces-of-one-picture-are-found-together`). A capability
+    /// satisfying a requirement is build, not related intent, so it does not
+    /// count. Dropped and met requirements, parked nodes and decision points
+    /// with registered alternatives are left out. The open-idea twin is
+    /// [`Self::unreviewed_ideas`].
+    pub fn unlinked_intent(&self) -> Result<Vec<String>, DynoError> {
+        let linked_by = |id: &str| -> Result<bool, DynoError> {
+            if self.has_review_relation(id)? {
+                return Ok(true);
+            }
+            for e in [edge::DECOMPOSES, edge::GOVERNED_BY] {
+                if !self.outgoing(id, Some(e))?.is_empty()
+                    || !self.incoming(id, Some(e))?.is_empty()
+                {
+                    return Ok(true);
+                }
+            }
+            Ok(false)
+        };
+        let mut out = Vec::new();
+        for r in self.scan_nodes(node::REQUIREMENT)? {
+            let status = r
+                .properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str);
+            if matches!(status, Some("dropped") | Some("met")) {
+                continue;
+            }
+            if r.properties.contains_key("no_relation_note") || self.is_parked(&r.node_id)? {
+                continue;
+            }
+            if !linked_by(&r.node_id)? {
+                out.push(r.node_id.clone());
+            }
+        }
+        for d in self.scan_nodes(node::DECISION)? {
+            if d.properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str)
+                != Some("accepted")
+            {
+                continue;
+            }
+            if d.properties.contains_key("no_relation_note")
+                || self.is_parked(&d.node_id)?
+                || self.alternatives_for(&d.node_id)?.len() >= 2
+            {
+                continue;
+            }
+            if !linked_by(&d.node_id)? {
+                out.push(d.node_id.clone());
+            }
+        }
+        out.sort();
+        Ok(out)
+    }
+
     pub fn unreviewed_ideas(&self) -> Result<Vec<String>, DynoError> {
         let mut out = Vec::new();
         for dec in self.scan_nodes(node::DECISION)? {

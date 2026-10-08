@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:aefce4a9edc5f28e0d606d2054772f23549de5c996efebabd425ef407d15033a",
+  "node_id": "snap:epoch:preserved-on-write:ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"IMPLEMENTS\",\"other_type\":\"Artifact\",\"other_id\":\"art:test-a-requirement-linked-to-no-other-intent-is-noticed\",\"properties\":{\"covers\":\"whole\"}},{\"direction\":\"in\",\"edge_type\":\"IMPLEMENTS\",\"other_type\":\"Artifact\",\"other_id\":\"art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole\",\"properties\":{\"covers\":\"whole\"}},{\"direction\":\"out\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:missing-links-are-found-on-every-kind-of-intent-and-capture-offers-them\",\"properties\":{}}]",
+    "state": "{\"description\":\"Two test files, three cases. The core file checks unlinked_intent and its unlinked_intent gap finding. capture_offers_what_a_new_requirement_relates_to, in the second test artifact, checks that the served capture-intent skill calls relation_candidates on a new requirement and puts the candidates to the person. Measured 2026-10-08 on reflow2's own design: 134 of 890 requirements and accepted decisions relate to no other intent. Not covered: whether the person acts on the offers. That is behaviour in a session, which no test here can see.\",\"kind\":\"verification\",\"last_run_at\":\"2026-10-08\",\"method\":\"test\",\"name\":\"Requirements and accepted decisions linked to no other intent are noticed, and capture-intent offers a new requirement's relations\",\"status\":\"passing\"}",
+    "target_id": "ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations",
+    "target_type": "Verification"
+  }
+}

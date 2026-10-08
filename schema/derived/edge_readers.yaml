@@ -175,6 +175,7 @@ readers:
   readiness.rs::gate_on: { kind: not_derived, edges: [GATED_ON], why: "A writer: draws the GATED_ON threshold readiness_gate reads." }
   relate.rs::has_review_relation: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   relate.rs::review_relations: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
+  relate.rs::unlinked_intent: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A detector filter: it lists the requirements and accepted decisions with no review relation and no DECOMPOSES or GOVERNED_BY edge in either direction, one hop, only to say which carry none. It derives no relation and asserts none: a node it lists is asked about, never linked." }
   report.rs::open_follow_ups: { kind: unjudged, edges: [INVALIDATES] }
   report.rs::verification_recency: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
   scope.rs::containment_closure: { kind: unjudged, edges: [CONTAINS] }

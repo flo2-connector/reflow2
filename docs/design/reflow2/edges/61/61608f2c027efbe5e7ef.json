@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b5882640602203a0016df128e35742c5fadb80601b5b4e6adf549c45eec3c4d0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:intent-linked-to-no-other-intent-is-noticed-and-capture-offers-its-relations"
+}

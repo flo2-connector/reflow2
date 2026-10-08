@@ -971,6 +971,7 @@ pub const PARKING_READERS: &[&str] = &[
     "prohibition_in_prose",
     "settled_decision_named_open",
     "unallocated_component",
+    "unlinked_intent",
     "unreviewed_ideas",
     "unsatisfied_requirement",
 ];

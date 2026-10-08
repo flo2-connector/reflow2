@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4812c0d5165d801f4e521123f4a15d03c6297a47adae69a4939fc615bc09fa57",
+  "edge_type": "CHANGED",
+  "from_id": "chg:missing-links-on-every-kind-of-intent-2026-10-08",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:892e5cc95b81d0cd84c0c93244579a219d47b922b691c896285f5a7d9d7a81ba",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:heal"
+}

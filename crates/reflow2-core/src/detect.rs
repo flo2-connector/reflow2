@@ -433,6 +433,9 @@ pub enum GapSource {
     /// has a cost. The gap is computed always and PUT at a capture-session or
     /// an increment close.
     UnreviewedIdeas,
+    /// Requirements and accepted decisions linked to no other intent — the
+    /// requirement-side twin of `UnreviewedIdeas` (F1, 2026-10-08).
+    UnlinkedIntent,
     // Verification vs validation (BL — edge-orthogonality)
     /// Capabilities with a passing verification-kind check but no passing
     /// validation-kind check — built to spec, but nothing confirms they meet the
@@ -873,6 +876,7 @@ impl GapSource {
             GapSource::UnknownLevel => "unknown_level",
             GapSource::UndecidedDecisionPoint => "undecided_decision_point",
             GapSource::UnreviewedIdeas => "unreviewed_ideas",
+            GapSource::UnlinkedIntent => "unlinked_intent",
             GapSource::UnvalidatedCapability => "unvalidated_capability",
             GapSource::KppUnbound => "kpp_unbound",
             GapSource::KppBreached => "kpp_breached",
@@ -956,6 +960,8 @@ impl GapSource {
             // had a thought, which is the trap unvalidated_capability fell into
             // and was re-acknowledged twenty times for.
             GapSource::UnreviewedIdeas => true,
+            // Aggregate for the practice reason UnreviewedIdeas gives.
+            GapSource::UnlinkedIntent => true,
             // Aggregate, and the reason is the same practice argument: the
             // finding is about a design that does not record the axis, not
             // about any one change. Per-event keying would expire the standing
@@ -1806,6 +1812,12 @@ fn asked_question_id(gap_id: &str) -> String {
 /// is not told again; `withdraw_gap_acknowledgement` brings it back.
 pub const NEVER_EXPORTED_GAP_ID: &str = "gap:the-design-has-never-been-exported";
 
+/// The fewest live requirements and accepted decisions at which
+/// `unlinked_intent` is asked. The same six item 3 chose as the smallest pool
+/// worth reasoning about (`neighbourhood`'s background rule); below it a
+/// design's intent is read whole, so nothing is lost to a search.
+pub const UNLINKED_INTENT_FLOOR: usize = 6;
+
 fn ack_decision_id(gap_id: &str) -> String {
     format!(
         "decision:ack:{}",
@@ -2634,6 +2646,7 @@ impl DesignGraph {
         self.detect_hierarchy_gaps(&mut gaps)?;
         self.detect_undecided_decision_points(&mut gaps)?;
         self.detect_unreviewed_ideas(&mut gaps)?;
+        self.detect_unlinked_intent(&mut gaps)?;
         self.detect_unvalidated_capabilities(&mut gaps)?;
         self.detect_kpp_violations(&mut gaps)?;
         // The roll-up's blind spot: delivery climbs a decomposition without
@@ -5718,6 +5731,79 @@ impl DesignGraph {
                 ),
             });
         }
+        Ok(())
+    }
+
+    /// F1 of `req:the-pieces-of-one-picture-are-found-together`: the
+    /// requirement-side twin of `unreviewed_ideas`. Measured 2026-10-07: a
+    /// vision spread across sixteen records read as scattered, and the three
+    /// records outside its web were all REQUIREMENTS, which no linking finding
+    /// ever looked at.
+    ///
+    /// NOT ASKED BELOW [`UNLINKED_INTENT_FLOOR`] live intent nodes. The harm it
+    /// names is a search returning a piece without its picture, and a design
+    /// whose whole intent is a handful of nodes is read whole by any
+    /// orientation call: a lone requirement "connects to no other intent"
+    /// because there is none. Measured 2026-10-08: without the floor it fired
+    /// on the one-requirement, complete-thread fixtures that pin "nothing
+    /// specific is wrong", and outranked the phase nudge they exist to keep.
+    fn detect_unlinked_intent(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let mut total = 0usize;
+        for r in self.scan_live_nodes(node::REQUIREMENT)? {
+            let s = r
+                .properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str);
+            if !matches!(s, Some("dropped") | Some("met")) {
+                total += 1;
+            }
+        }
+        for d in self.scan_live_nodes(node::DECISION)? {
+            if d.properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str)
+                == Some("accepted")
+            {
+                total += 1;
+            }
+        }
+        if total < UNLINKED_INTENT_FLOOR {
+            return Ok(());
+        }
+        let unlinked = self.unlinked_intent()?;
+        if unlinked.is_empty() {
+            return Ok(());
+        }
+        let n = unlinked.len();
+        gaps.push(GapCandidate {
+            id: gap_id(GapSource::UnlinkedIntent, &unlinked),
+            gap_source: GapSource::UnlinkedIntent,
+            scope: GapScope::Project,
+            // Lower than unreviewed_ideas: settled intent is findable by its
+            // own words and usually by what satisfies it. This is about the
+            // PICTURE it belongs to not coming back with it.
+            severity: 0.25,
+            title: format!(
+                "{n} of {total} requirement(s) and accepted decision(s) connect to no other intent"
+            ),
+            description: format!(
+                "{n} requirement(s) and accepted decision(s) carry no relation to any other \
+                 requirement or idea (no review relation, no DECOMPOSES, no GOVERNED_BY) and no \
+                 note saying their relations were reviewed. A search that lands on one returns it \
+                 alone, and the larger aim it is a facet of does not come back with it. Work them \
+                 a few at a time with the link-ideas skill (relation_candidates, then \
+                 review_relations), and record a note where nothing is honestly related. Do NOT \
+                 draw an edge to clear this finding."
+            ),
+            affected_ids: unlinked.clone(),
+            suggested_depth: 2,
+            evidence: format!(
+                "{n} of {total} live requirement(s) (not dropped or met) and accepted decision(s) \
+                 have no review relation, DECOMPOSES or GOVERNED_BY in either direction and no \
+                 `no_relation_note`; parked nodes and decision points with 2+ alternatives are \
+                 excluded. A capability satisfying a requirement does not count."
+            ),
+        });
         Ok(())
     }
 
