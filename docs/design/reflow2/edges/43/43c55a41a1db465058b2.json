@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dbb0e9d658b784d34fbe04ba9d53d1d4e8bdbfd289b5aaeed6e5df1dd3d3a2a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

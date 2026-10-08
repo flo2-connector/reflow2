@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:900dd9018e99ee1bb2f0a156143b76d61dbfe9e04e8ce46fb2d3ba24d0b26b8c",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

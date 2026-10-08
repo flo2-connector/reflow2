@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a2f05cc8c5fc877d33c33ddce15c4b9e5e399853d1401508c99d66ae2e72de0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-relation-reaches-into-another-design",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-link-into-another-design-is-recorded-read-back-and-checked-against-its-far-design"
+}

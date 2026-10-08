@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8dcd4fb282d562515cdea635682123aa78c43e81f28bf5e0f7a1df07bd2ed30c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:864ac1db1a4c6b4525a9d3c3f872b7d8b500131e83f3956b7a6f1199e44a0088",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

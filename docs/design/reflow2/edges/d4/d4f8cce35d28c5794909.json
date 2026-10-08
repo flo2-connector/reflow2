@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b45e6e9afc08a345a89e7981007e3d44f2bb4bc09516295487de6ce7b56a34f9",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-link-into-another-design-is-recorded-and-checked",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

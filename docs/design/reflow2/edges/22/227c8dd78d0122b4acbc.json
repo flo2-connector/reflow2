@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:240acdfdcb95cfe767a66bc27b861375a75d6b67c31d4c97a0d083ff2c1a3f62",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:27566c036a94202d4b08d03523cf62de7f37105ecf1cc4a095a9a58279e4c610",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

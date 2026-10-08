@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:faf619d7cdf800ebfabb8e4e9d17b43b0c21e4783445b3595acee2f15f6d467e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-2d0ceff727385a23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:64390689cb7e436c6f846a99fca0f0ac8a8f6b650cabe5a20761bd3840fd3350",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:crosslink"
+}

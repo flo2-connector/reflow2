@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebb230508d2c71095c389df72daaa9c7a93e6ee055370e8fc95f7c0abfce0125",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-relation-reaches-into-another-design",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

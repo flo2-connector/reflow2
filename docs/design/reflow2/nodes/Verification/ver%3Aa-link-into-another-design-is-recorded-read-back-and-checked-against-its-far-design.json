@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6688cbb15838036c3d4a627ea45b69f18b00bca20ef1d21fdbb72fa25918f561",
+  "node_id": "ver:a-link-into-another-design-is-recorded-read-back-and-checked-against-its-far-design",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two test files, nine cases (see the two test artifacts). Not covered: whether the far NODE still exists. The check is at the level of the far design's fingerprint, the same as a pin's watch, because that is what this design can observe.",
+    "kind": "verification",
+    "last_run_at": "2026-10-07",
+    "method": "test",
+    "name": "A link into another design is recorded as a typed reference, read back by search, upstream_status and the ripple, and checked against its far design",
+    "status": "passing"
+  }
+}

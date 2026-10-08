@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64bad756918fb618a4c989a653e096106f717f10d2902775a5b45a51a6dbd67d",
+  "edge_type": "REALIZES",
+  "from_id": "art:hub-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves"
+}

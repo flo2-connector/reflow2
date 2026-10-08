@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0a0178ae3d5f6bfb904357bd8023d2a94ceec64a08c486b6ece887363d04e93a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-relation-into-another-design-is-a-typed-reference-checked-against-its-far-design-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:dafe9f23f247e95900e27e6edacf35159cfcd2ae5104cda4db1db5096d10a8b2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-capture"
+}
