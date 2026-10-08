@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c8165d0ee2f5d72e8ed4835cb1f2a7922af1ac8a5b98560f0a68729ccd02021a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:suggestions-weigh-real-neighbours-and-search-returns-linked-records-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-relation-suggestion-weighs-real-neighbours-and-compares-ideas-with-requirements"
+}

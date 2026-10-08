@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b1401e567829f023a933f958cc94fb5ebbaa6c272b7fcbf0c1e896785243ec2d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-5cf74fb6110f7f78",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:e72349256e954de03a979e5db2fe08686a7d859c0bb29e44a6c0d8154606d976",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:neighbourhood"
+}

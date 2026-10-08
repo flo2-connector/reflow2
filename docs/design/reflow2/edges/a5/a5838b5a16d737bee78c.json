@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:43b93b3d8fb34afed4ef6b490510ceb1c840537a3b12f97e150d9c098a1abcf5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-relation-suggestion-weighs-real-neighbours-and-compares-ideas-with-requirements",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:suggestions-weigh-real-neighbours-across-intent-and-a-search-hit-carries-its-linked-records"
+}

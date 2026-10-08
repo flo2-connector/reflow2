@@ -80,6 +80,26 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                         "as_of": {
                             "type": "string",
                             "description": "The date the claim was made, when it carries one."
+                        },
+                        "linked": {
+                            "type": "array",
+                            "description": "Records directly linked to this hit by a review \
+                                            relation or DECOMPOSES, at most 8. LINKED, not \
+                                            matched: they need not contain the query. Absent \
+                                            when nothing is linked.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "node_id": { "type": "string" },
+                                    "relation": { "type": "string" },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "`out`: hit RELATION linked. `in`: \
+                                                        linked RELATION hit."
+                                    }
+                                },
+                                "required": ["node_id", "relation", "direction"]
+                            }
                         }
                     },
                     "required": ["node_id", "node_type", "name", "score"]
@@ -1100,7 +1120,10 @@ impl ReflowService {
                        Search BEFORE creating a node that might already exist, and to map the \
                        user's words to the node they mean. Result reports its own bounds: \
                        hits.len() == limit means there may be more, and a non-empty `stale` \
-                       list means the index has drifted from the store. \
+                       list means the index has drifted from the store. Each hit also lists, \
+                       under `linked`, the records directly linked to it (a review relation or \
+                       DECOMPOSES, with the direction), so a linked family comes back together \
+                       even where only one of its records carries your words. \
                        Ask for this to find out whether anyone has written something down about a subject, such as budgets.",
         output_schema = search_design_output_schema(),
         annotations(read_only_hint = true)

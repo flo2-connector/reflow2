@@ -163,7 +163,26 @@ impl DesignGraph {
         let subject_terms = terms(&self.comparable_text(&subject.properties));
         let subject_neighbours = self.neighbours_of(node_id)?;
 
-        let pool = self.scan_nodes(pool_type.unwrap_or(node_type))?;
+        // INTENT IS COMPARED WITH INTENT, WHATEVER ITS TYPE. A requirement and
+        // the idea it grew from, or the idea that anticipated it, are the pairs
+        // most worth finding, and a same-type pool never offered them: measured
+        // 2026-10-07 on a sixteen-record family split across requirements and
+        // ideas (fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-
+        // vision-spread-across-requirements-is-never-gathered-2026-10-07). A
+        // named `pool_type` is still obeyed exactly.
+        let intent = [
+            crate::nodes::node::REQUIREMENT,
+            crate::nodes::node::DECISION,
+        ];
+        let pool_types: Vec<&str> = match pool_type {
+            Some(t) => vec![t],
+            None if intent.contains(&node_type) => intent.to_vec(),
+            None => vec![node_type],
+        };
+        let mut pool = Vec::new();
+        for t in &pool_types {
+            pool.extend(self.scan_nodes(t)?);
+        }
 
         // Document frequency over the POOL, so "rare" means rare here rather
         // than rare in English. A term true of every idea says nothing about
@@ -188,6 +207,31 @@ impl DesignGraph {
         }
 
         let pool_examined = pool_terms.len();
+
+        // NEIGHBOUR FREQUENCY over the pool, the twin of term frequency below.
+        // A neighbour nearly every record touches (the author of most of the
+        // design, the project that contains it) says nothing about which two
+        // belong together, and counting it made every candidate look related:
+        // "both relate to who:ajs" was the first reason on all ten suggestions
+        // in the 2026-10-07 measurement, and it ranked them categorically above
+        // a real textual match. Weighted the same way terms are.
+        let mut cand_neighbours: HashMap<String, BTreeSet<String>> = HashMap::new();
+        let mut ndf: HashMap<String, usize> = HashMap::new();
+        for (cand_id, ..) in &pool_terms {
+            let nb = self.neighbours_of(cand_id)?;
+            for n in &nb {
+                *ndf.entry(n.clone()).or_insert(0) += 1;
+            }
+            cand_neighbours.insert(cand_id.clone(), nb);
+        }
+        let rarity = |df: usize| -> Option<f64> {
+            // Background past a third of the pool, once the pool is big enough
+            // for a proportion to mean anything: the rule terms already use.
+            if df == 0 || (pool_examined >= 6 && df * 3 > pool_examined) {
+                return None;
+            }
+            Some(((pool_examined + 1) as f64 / df as f64).ln())
+        };
         let mut scored: Vec<(bool, NeighbourCandidate)> = Vec::new();
 
         for (cand_id, cand_type, cand_name, cand_terms) in &pool_terms {
@@ -197,12 +241,17 @@ impl DesignGraph {
             let mut because = Vec::new();
             let mut score = 0.0_f64;
 
-            // ── structural: a third node both of them touch ──
-            let cand_neighbours = self.neighbours_of(cand_id)?;
-            let shared: Vec<&String> = subject_neighbours.intersection(&cand_neighbours).collect();
+            // ── structural: a third node both of them touch, if it is rare ──
+            let empty = BTreeSet::new();
+            let cand_nb = cand_neighbours.get(cand_id).unwrap_or(&empty);
+            let shared: Vec<(&String, f64)> = subject_neighbours
+                .intersection(cand_nb)
+                .filter_map(|n| rarity(*ndf.get(n).unwrap_or(&0)).map(|w| (n, w)))
+                .collect();
             let has_shared_neighbour = !shared.is_empty();
             if has_shared_neighbour {
-                score += shared.len() as f64;
+                score += shared.iter().map(|(_, w)| w).sum::<f64>();
+                let shared: Vec<&String> = shared.iter().map(|(n, _)| *n).collect();
                 let sample: Vec<&str> = shared.iter().take(3).map(|s| s.as_str()).collect();
                 because.push(format!(
                     "both relate to {}{}",
@@ -291,7 +340,7 @@ impl DesignGraph {
         } else if pool_examined == 0 {
             Some(format!(
                 "nothing to compare against: the pool holds no other {} node(s)",
-                pool_type.unwrap_or(node_type)
+                pool_types.join(" or ")
             ))
         } else if subject_terms.is_empty() {
             Some(

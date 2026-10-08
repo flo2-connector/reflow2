@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7fdfa5c173f40891766d3cbb59f5506bfcbc50dd0c3fa62d0fd90df2d1fcdaf3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:suggestions-weigh-real-neighbours-and-search-returns-linked-records-2026-10-07",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:suggestions-weigh-real-neighbours-across-intent-and-a-search-hit-carries-its-linked-records"
+}

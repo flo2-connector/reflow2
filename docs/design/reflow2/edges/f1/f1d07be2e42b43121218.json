@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:baa43c1cd4c2303892a8babf7bcd4c8c9a76303b015a46ac2790f60602aa062b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-search-hit-carries-its-linked-records",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:suggestions-weigh-real-neighbours-across-intent-and-a-search-hit-carries-its-linked-records"
+}

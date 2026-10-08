@@ -6272,8 +6272,11 @@ pub struct RelationCandidatesReq {
     /// guessed — pass it then.
     #[serde(default)]
     pub node_type: Option<String>,
-    /// What to rank it against. Omit to compare like with like (the same type
-    /// as the subject), which is what working an idea backlog wants.
+    /// What to rank it against. Omit it and INTENT (a Requirement or a
+    /// Decision) is ranked against requirements and decisions together, since
+    /// a requirement and the idea it grew from are the pairs most worth
+    /// finding; any other type is ranked against its own type. Name one type
+    /// to rank against that type only.
     #[serde(default)]
     pub pool_type: Option<String>,
     /// How many candidates to return (default 5). Kept small on purpose: the

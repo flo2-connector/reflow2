@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7d653ad87243c07e7500b3116a6540c1f21e3c83d202fec82957cd6a4925d74b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-f968b6eaa8dee72f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1d2f27dd77eeeb9f7527da3bc94809fb19d5aea84424a1de5ca18362b3705fa7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-search-hit-carries-its-linked-records"
+}

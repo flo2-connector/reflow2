@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8797791e41cbbaa5f0e1f1adb5217e97b12cc95cc9b4bc530f6fa8cb718db0f5",
+  "node_id": "ver:suggestions-weigh-real-neighbours-across-intent-and-a-search-hit-carries-its-linked-records",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two test files, eight cases (see the two test artifacts). Measured on reflow2's own design, same data both ways, for req:one-search-reaches-every-design-a-hub-tracks: main's suggester put 2 of its top 10 in the one-graph family and gave the author as the first reason on all 10. This change puts 10 of 10 there and gives the author on none. For req:recursive-black-box-decomposition the top 10 are within-design decomposition ideas: real neighbours, not the across-design family.",
+    "kind": "verification",
+    "last_run_at": "2026-10-07",
+    "method": "test",
+    "name": "Relation suggestions weigh real neighbours and compare ideas with requirements; a search hit carries its linked records",
+    "status": "passing"
+  }
+}
