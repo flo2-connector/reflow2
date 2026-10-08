@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1ca7322ad6e4f5cad89949586e3bd0b3d1147ba29c30e5d8e1a8a618e53f2f51",
+  "edge_type": "CHANGED",
+  "from_id": "chg:suggestions-weigh-real-neighbours-and-search-returns-linked-records-2026-10-07",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:3d85f247338148c70ff81e48ce425a659cf9ef71e9dbcdb0bf658e7784ca10e1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-query"
+}

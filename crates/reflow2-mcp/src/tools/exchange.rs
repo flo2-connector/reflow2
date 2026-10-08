@@ -842,9 +842,10 @@ impl ReflowService {
                        answered the question a person working that backlog actually has \u{2014} which of \
                        these belong together? \u{2b50} EVERY CANDIDATE CARRIES THE WALK THAT PRODUCED IT \
                        in `because`: a shared neighbour (two nodes that both relate to a third are \
-                       related in the graph\u{2019}s own terms, whatever their words) or distinctive shared \
-                       terms (weighted by rarity ACROSS THE POOL, so words true of everything count \
-                       for nothing). A candidate whose reason cannot be stated is not offered. \
+                       related in the graph\u{2019}s own terms) or distinctive shared terms, each \
+                       weighted by rarity ACROSS THE POOL: one true of nearly everything (the \
+                       author, the project) counts for nothing. With no `pool_type`, \
+                       intent is ranked against requirements AND decisions. A candidate whose reason cannot be stated is not offered. \
                        \u{1f6d1} IT NEVER WRITES AND NEVER PROPOSES AN EDGE. Ranking is the machine\u{2019}s half; \
                        drawing is yours, through `review_relations`, and a false neighbour is worse \
                        than a missing one because anything searching by neighbourhood repeats it \

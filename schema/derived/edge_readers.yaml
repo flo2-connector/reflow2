@@ -176,6 +176,7 @@ readers:
   report.rs::verification_recency: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
   scope.rs::containment_closure: { kind: unjudged, edges: [CONTAINS] }
   search.rs::claim_age_of: { kind: unjudged, edges: [INVALIDATES] }
+  search.rs::linked_records: { kind: not_derived, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DECOMPOSES, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES], why: "A one-hop read for a search hit: lists the records directly linked to it by a review relation or DECOMPOSES, so a linked family comes back together. It returns the edges as they are and computes no relation." }
   structure.rs::couples_only_as_a_library: { kind: unjudged, edges: [PROVIDES] }
   structure.rs::dependency_pairs: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PROVIDES] }
   supersede.rs::inherited_edges: { kind: not_derived, edges: [ALLOCATED_TO, SATISFIES], why: "A table, not a read: which edges a successor inherits from the node it replaces (a Capability's SATISFIES, the ALLOCATED_TO pointing at a Component). It names edge types and walks nothing." }

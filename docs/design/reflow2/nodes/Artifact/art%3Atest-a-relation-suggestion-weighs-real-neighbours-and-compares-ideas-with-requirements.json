@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d32eb333cf1f1e81e41c50d9b82d1056193cc5d12ebe05fba11b5d42ea42b0a2",
+  "node_id": "art:test-a-relation-suggestion-weighs-real-neighbours-and-compares-ideas-with-requirements",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "F2, four cases in a design one author wrote nearly all of:\n- the author alone is no reason to offer a candidate;\n- a requirement is compared with ideas too;\n- a rare shared neighbour still outranks shared words;\n- an explicit pool is still obeyed.\nObserved on main: 3 of the 4 failing, and the explicit-pool case passing as the regression guard.",
+    "location": "crates/reflow2-core/tests/a_relation_suggestion_weighs_real_neighbours_and_compares_ideas_with_requirements.rs",
+    "name": "a_relation_suggestion_weighs_real_neighbours_and_compares_ideas_with_requirements.rs",
+    "status": "realized"
+  }
+}

@@ -47,6 +47,65 @@ pub struct SearchHit {
     /// observation must not be read back as though it were current.
     #[serde(flatten)]
     pub age: crate::dates::ClaimAge,
+    /// The records directly linked to this hit by a review relation or
+    /// DECOMPOSES, so a linked family comes back together (F3 of
+    /// `req:the-pieces-of-one-picture-are-found-together`). They are LINKED,
+    /// not matched: they did not necessarily contain the query. At most
+    /// [`LINKED_PER_HIT`]; absent when nothing is linked.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub linked: Vec<LinkedRecord>,
+}
+
+/// One record linked to a search hit.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct LinkedRecord {
+    pub node_id: String,
+    /// The edge type: a review relation (`EVOLVES_INTO`, `DEPENDS_ON`, ...) or
+    /// `DECOMPOSES`.
+    pub relation: String,
+    /// `out` when the hit is the edge's source (*hit RELATION linked*), `in`
+    /// when it is the target (*linked RELATION hit*).
+    pub direction: &'static str,
+}
+
+/// How many linked records a hit carries at most, so a heavily linked node
+/// cannot swamp the reply.
+pub const LINKED_PER_HIT: usize = 8;
+
+impl DesignGraph {
+    /// The records directly linked to `node_id` by a review relation or
+    /// DECOMPOSES, outbound first, capped at [`LINKED_PER_HIT`].
+    pub fn linked_records(&self, node_id: &str) -> Result<Vec<LinkedRecord>, DynoError> {
+        let mut out = Vec::new();
+        let kinds = crate::relate::REVIEW_RELATIONS
+            .iter()
+            .copied()
+            .chain(std::iter::once(crate::nodes::edge::DECOMPOSES));
+        for kind in kinds {
+            for e in self.outgoing(node_id, Some(kind))? {
+                out.push(LinkedRecord {
+                    node_id: e.to_id,
+                    relation: kind.to_string(),
+                    direction: "out",
+                });
+            }
+            for e in self.incoming(node_id, Some(kind))? {
+                out.push(LinkedRecord {
+                    node_id: e.from_id,
+                    relation: kind.to_string(),
+                    direction: "in",
+                });
+            }
+        }
+        out.sort_by(|a, b| {
+            (a.direction != "out")
+                .cmp(&(b.direction != "out"))
+                .then(a.relation.cmp(&b.relation))
+                .then(a.node_id.cmp(&b.node_id))
+        });
+        out.truncate(LINKED_PER_HIT);
+        Ok(out)
+    }
 }
 
 impl DesignGraph {
@@ -155,6 +214,7 @@ impl DesignGraph {
                         .and_then(crate::foundation::core::Value::as_str)
                         .map(str::to_string),
                     age: self.claim_age_of(&h.node_id, &node.properties, &today)?,
+                    linked: self.linked_records(&h.node_id)?,
                     node_id: h.node_id,
                     node_type: h.node_type,
                     score: h.score,

@@ -1,14 +1,15 @@
 {
-  "content_hash": "sha256:6329ffa2cd5df75dd3e200e0fe2c3c617c9e70e0dd5b92cb99486d578e619e51",
+  "content_hash": "sha256:655459b85e2e6c2c9ff61c5a614494dcccd42e1099f2d12748bb96c800cdf25a",
   "node_id": "cap:relation-suggestions-weigh-real-neighbours-and-search-returns-a-hits-linked-records",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:6329ffa2cd5df75dd3e200e0fe2c3c617c9e70e0dd5b92cb99486d578e619e51",
   "properties": {
-    "description": "Planned 2026-10-07, build order 3 of 7. F2: relation_candidates weights a shared neighbour by its rarity, as terms already are, so the author and the project count for little, and pools ideas and requirements together when the subject is intent. F3: search_design returns, for each hit, the records directly linked to it by a review relation, EVOLVES_INTO or DECOMPOSES, marked as linked rather than matched. Pinned by the measured case: the one-graph family ranked together.",
+    "description": "Planned 2026-10-07, build order 3 of 7. F2: relation_candidates weights a shared neighbour by its rarity, as terms already are, so the author and the project count for little, and pools ideas and requirements together when the subject is intent. F3: search_design returns, for each hit, the records directly linked to it by a review relation, EVOLVES_INTO or DECOMPOSES, marked as linked rather than matched. Pinned by the measured case: the one-graph family ranked together.\n\n\n\nAS BUILT 2026-10-07:\n- F2: relation_candidates weighs each shared neighbour by ln((pool+1)/df) over the pool, dropping one that touches more than a third of a pool of six or more. That is the rule terms already used. Only a distinctive shared neighbour earns the categorical top tier. With no pool_type, a Requirement or Decision subject is ranked against requirements AND decisions; a named pool_type is obeyed exactly.\n- F3: SearchHit gains `linked`: each record directly linked by a review relation or DECOMPOSES, with the relation and the direction, outbound first, capped at 8, and absent when empty. The tool description and output schema say so.\nMEASURED on reflow2's own design, same data: for req:one-search-reaches-every-design-a-hub-tracks the family share of the top 10 went from 2 to 10, and the author as a reason from 10 of 10 to 0.",
     "distinct_from": [
       "fact:root-cause-idea-linking-covers-open-ideas-in-pairs-and-a-vision-spread-across-requirements-is-never-gathered-2026-10-07"
     ],
     "name": "Relation suggestions discount ubiquitous neighbours and compare ideas with requirements (F2); search returns each hit's directly linked records (F3)",
     "provenance": "authored",
-    "status": "planned"
+    "status": "realized"
   }
 }

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:446e845cd4e4ec78f5b043eb36c06e1e7a1cbc7ad380cdee85a96e02ee63b4c4",
+  "node_id": "chg:suggestions-weigh-real-neighbours-and-search-returns-linked-records-2026-10-07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-07",
+    "name": "Relation suggestions weigh shared neighbours by rarity and compare ideas with requirements; search hits carry their linked records",
+    "rationale": "Measured 2026-09-22 and again 2026-10-07: the suggester's top reason was the shared author, it compared a requirement only with requirements, and search ignored every link. A family read as scattered even where its pieces were linked. The rarity weighting reuses the rule terms already followed, so no new constant is chosen to make one example come out right. Pooling requirements with decisions follows Anthony's 08-21 need that the pieces of one picture are found together, whatever their kind.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Item 3 of the one-graph build order (F2 and F3 of req:the-pieces-of-one-picture-are-found-together). relation_candidates weighs a shared neighbour by rarity, so the author and the project stop counting, and pools requirements with decisions for an intent subject. search_design hits list their linked records (review relations and DECOMPOSES, with direction)."
+  }
+}

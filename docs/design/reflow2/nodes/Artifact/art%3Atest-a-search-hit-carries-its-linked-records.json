@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6a096ffd24016bff09c6125fcde818606ee1757471546e3c67af2f5883bf869c",
+  "node_id": "art:test-a-search-hit-carries-its-linked-records",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "F3, through the served tool: a search hit lists the records linked to it, with the relation and the direction (DECOMPOSES in, DEPENDS_ON out), and a hit with nothing linked carries no linked field. Observed failing on main.",
+    "location": "crates/reflow2-mcp/tests/a_search_hit_carries_its_linked_records.rs",
+    "name": "a_search_hit_carries_its_linked_records.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:08ab8f22a0e777ccc9ca91b0587522dd1eabd039af050d99df379d682d828efa",
+  "node_id": "art:neighbourhood",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "relation_candidates: ranks the records a node might relate to, by shared neighbours weighted by rarity and by distinctive shared terms, and never draws an edge. Registered 2026-10-07; it had no Artifact before.",
+    "location": "crates/reflow2-core/src/neighbourhood.rs",
+    "name": "neighbourhood.rs",
+    "status": "realized"
+  }
+}

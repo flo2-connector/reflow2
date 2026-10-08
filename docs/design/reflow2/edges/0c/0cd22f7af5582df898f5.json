@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:207a42f258f43ce3b5c4fd1150872f43d9465e148e04497c1c31c1107ae69714",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:relation-suggestions-weigh-real-neighbours-and-search-returns-a-hits-linked-records"
+}
