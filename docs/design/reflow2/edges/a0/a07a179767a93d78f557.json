@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a668cc2550a21bc5fa9bbd4ec35dd98f8301b483e2d7176fd778aa94a11e6d4b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local",
+  "properties": {
+    "evidence": "The move pays off only when flo2.io reads a hub's members in-host; without those reads, a hosted reflow2 design is no more watched than a local one.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "xref:1a97fc1f1de4d5d2:req:a-flo2-io-hubs-designs-are-its-members-for-reflow2s-hub-work-read-in-host-as-the-caller"
+}

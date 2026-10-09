@@ -1,11 +1,14 @@
 {
-  "content_hash": "sha256:a4551391445b6b4094aae9c731549edee8e346ec33039fd7bfa1c70592d558ff",
+  "content_hash": "sha256:f250b61716e05b1a54513dfd8e5d998c2bebe53d1f3dd2d5dcd887c0af57cdc3",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local",
+  "prev_item_hash": "sha256:a4551391445b6b4094aae9c731549edee8e346ec33039fd7bfa1c70592d558ff",
   "properties": {
+    "approved_at": "2026-10-09",
     "authored_at": "2026-09-27",
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"
