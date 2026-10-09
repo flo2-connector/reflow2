@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a2b7dbb06f0d2b5c1a816fe888f1236489c4f5575b8e2a55f7ad69515e965b1d",
+  "node_id": "dec:idea-an-unknown-tool-name-is-answered-with-find-tools-on-its-own-words",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0). No idea was stated in the entry; this one comes from its measurement, fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09: find_tools on \"query nodes\" ranks scan_nodes 2nd, but the refusal for `query_nodes` names no tool.\n\nOPTIONS, NONE CHOSEN:\n(a) The refusal splits the guessed name on underscores, runs find_tools on those words, and names the top three with one line each. Cheap: find_tools already exists.\n(b) Nearest by spelling, as --describe does: finds typos, but misses a different word for the same act (query vs scan).\n(c) Both.\n\nCOUNTERPOINT: a ranked guess can be wrong, and the agent may run it without reading it. The refusal names; it never runs the suggestion.\n\n\n\n═══ KEPT AS INTENT 2026-10-09 — OPTION (A) ═══\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four). Promoted into req:a-tool-name-that-is-not-served-is-answered-with-the-tools-its-own-words-find.",
+    "kind": "exploratory",
+    "name": "SETTLED 2026-10-09 — kept as intent, option (a): A tool name that is not served is answered with the tools its own words find",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dc34f5b1f4af5a3b06fa34331221e3e4acdc26c3a770dde9ec7d8109daca9e9d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned",
+  "properties": {},
+  "to_id": "req:every-reflow2-hook-keeps-a-local-log-of-what-it-returned"
+}

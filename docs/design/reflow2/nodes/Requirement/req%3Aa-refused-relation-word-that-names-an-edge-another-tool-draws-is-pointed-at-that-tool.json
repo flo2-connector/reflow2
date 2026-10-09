@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:162f22d79adbdc4336d53820a9547dbb4092ebba3a43992726371f33c9426793",
+  "node_id": "req:a-refused-relation-word-that-names-an-edge-another-tool-draws-is-pointed-at-that-tool",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-relation-refusal-lists-the-review-words-cuts-their-glosses-and-never-names-the-tool-for-the-word-used-2026-10-09"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A refused relation word that names an edge another tool draws is pointed at that tool, and the refusal's glosses are never cut mid-list",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub (work field log triage)",
+    "statement": "When a relation argument (related_to, review_relations, a relation field) is refused with a word that matches an edge type's name by stem (governs to GOVERNED_BY, satisfies to SATISFIES, realizes to REALIZES), the refusal shall name the tool that draws that edge and its direction. The match is derived from the schema's edge names, not a hand-kept list. It names the tool and never draws the edge. And a refusal's list of allowed values with glosses shall not be cut mid-list: it says how many more there are and where to read them. Measured case: fact:a-relation-refusal-lists-the-review-words-cuts-their-glosses-and-never-names-the-tool-for-the-word-used-2026-10-09.\n\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four).",
+    "status": "accepted"
+  }
+}

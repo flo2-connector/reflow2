@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:50d57d51c3b2bc3c0383093947d6805eb5e2f3f0e8362c99f59e24b364ccaf9e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-tool-name-that-is-not-served-is-answered-with-the-tools-its-own-words-find",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

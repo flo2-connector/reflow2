@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f5ae7e53ef2110b6ef79cf51d473dfb181f2677468b1d34a9559c3d1318764a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:field-log-2026-10-09-is-triaged",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09"
+}

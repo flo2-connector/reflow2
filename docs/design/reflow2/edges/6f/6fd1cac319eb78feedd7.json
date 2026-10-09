@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3da9a89e9b3774ebd6c813fa1291ff671de1c2a27d921f3000707813c5206cf1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:field-log-2026-10-09-is-triaged",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-refused-relation-word-points-at-the-tool-that-draws-it"
+}

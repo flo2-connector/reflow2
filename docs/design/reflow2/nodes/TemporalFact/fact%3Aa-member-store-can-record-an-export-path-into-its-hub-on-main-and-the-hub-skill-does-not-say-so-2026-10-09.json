@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8eb681618c54d0e8e1d4501fae8210dfef216b8d1925dfef29b5c212f1fe2108",
+  "node_id": "fact:a-member-store-can-record-an-export-path-into-its-hub-on-main-and-the-hub-skill-does-not-say-so-2026-10-09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "A member store can record an export path into its hub on main, and the hub skill does not say so",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0): every write to a member store printed \"no export was kept current\". The member's export lives in the hub repo (designs/<member>/design.json) and is written by hand. The reporter: same root as the 2026-10-06 entry (no recorded export target per store).\n\nMEASURED 2026-10-09 ON MAIN: a member folder holding only `.reflow2.toml` with `[export] path = \"../hub/designs/m/design.json\"` exported into the hub on its first --call write: \"export written to …/hub/designs/m/design.json (created; named by .reflow2.toml [export] path)\". So the 2026-10-06 fix (chg:a-projects-export-path-is-recorded-once-and-read-by-everything-2026-10-06) covers a member whose export lives in another repo. It is not in 0.80.0, which the reporter runs. In a repo the person does not own, the .reflow2.toml must stay untracked (.git/info/exclude). The served hub skill does not mention [export] at all, so a member is not told to set it.",
+    "subject_id": "dec:idea-the-hub-skill-teaches-how-a-member-design-is-kept-under-the-door",
+    "valid_from": "2026-10-09"
+  }
+}

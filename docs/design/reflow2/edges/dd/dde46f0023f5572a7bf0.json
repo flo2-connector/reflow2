@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f2ffe290fb8f67936d73033a42fb08d53bf86a0654245728b8766bebfdb22a34",
+  "edge_type": "DECOMPOSES",
+  "from_id": "req:a-tool-name-that-is-not-served-is-answered-with-the-tools-its-own-words-find",
+  "properties": {},
+  "to_id": "req:every-served-tool-is-reachable-by-find-tools-on-a-users-words"
+}

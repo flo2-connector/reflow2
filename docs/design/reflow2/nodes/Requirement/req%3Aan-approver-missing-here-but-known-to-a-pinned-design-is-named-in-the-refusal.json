@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:0651bd295f2ee9f119cbc12bf7177820a9c2a36f91484f85d7cae60fbaa33d23",
+  "node_id": "req:an-approver-missing-here-but-known-to-a-pinned-design-is-named-in-the-refusal",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-member-store-refuses-an-approver-its-hub-knows-because-contributors-live-in-one-store-2026-10-09"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An approver missing from this design but known to a design it pins is named in the refusal, with the one call that records them here",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub (work field log triage)",
+    "statement": "When a write names an approver that is not a Contributor in this design, and a design it declares (a hub pin or a member pin) that this server can read holds a Contributor with that id, the refusal shall say so: where the match was found, its name and kind, and the one add_contributor call that records it here. Nothing is written by the refusal, so an approver stays a name somebody chose to record (dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id). Measured case: fact:a-member-store-refuses-an-approver-its-hub-knows-because-contributors-live-in-one-store-2026-10-09.\n\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four).",
+    "status": "accepted"
+  }
+}

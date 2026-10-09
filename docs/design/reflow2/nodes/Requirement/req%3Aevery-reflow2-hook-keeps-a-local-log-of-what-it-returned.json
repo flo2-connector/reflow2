@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:371383fdad7bba31fcdf07f7c5301c80c553a772fda7f9a87a7f2ae3c777ec58",
+  "node_id": "req:every-reflow2-hook-keeps-a-local-log-of-what-it-returned",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every reflow2 hook keeps a local log of what it returned, so a turn it touched can be matched to what it said",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub (work field log triage)",
+    "statement": "Each hook reflow2 ships (Claude Code, OpenCode, VS Code; SessionStart, Stop and the rest) shall append one line per reply to a git-ignored log beside the store: the time, the event, the session, the decision, the first line and the length of any reason or warning, and the exit code. The log stays local, because hook texts name design ids. Measured need: fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09, where a refused turn could not be matched to what the hook had said. No existing requirement is its whole: it spans every harness's hooks, not one harness's install.\n\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four).",
+    "status": "accepted"
+  }
+}

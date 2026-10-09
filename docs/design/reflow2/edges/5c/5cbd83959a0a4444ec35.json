@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cd42b9f34f995054d4f500fd7306f4b86c9ec30ef05195d5fe680a93f302d404",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-field-log-ideas-are-kept-as-intent-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-tool-name-that-is-not-served-is-answered-with-the-tools-its-own-words-find"
+}

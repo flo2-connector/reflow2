@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2876eb7ffe2d8afcd5845dd1c44587f3aa8f60ae245e0450c3aafa27658af5d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:field-log-2026-10-09-is-triaged",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned"
+}

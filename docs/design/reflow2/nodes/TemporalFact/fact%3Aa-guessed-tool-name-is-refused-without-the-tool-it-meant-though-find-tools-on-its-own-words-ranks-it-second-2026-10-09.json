@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:78a8341e4686b5f96192a09d151de69afc61371c708873a1702f510797abbf3c",
+  "node_id": "fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "A guessed tool name is refused without the tool it meant, though find_tools on the guess's own words ranks it second",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0): wanting a list of the Contributors to find the approver id, the reporter guessed `--call query_nodes` (not served) and read the export with Python instead.\n\nMEASURED 2026-10-09 on 0.80.0 and main:\n- The refusal says only \"no tool named `query_nodes` is served\", and to use find_tools or list_skills; it names no tool.\n- find_tools \"query nodes\" (the guess's words) ranks scan_nodes 2nd; \"query_nodes\" as typed returns nothing.\n- find_tools \"list nodes of type X\" ranks scan_nodes 3rd. \"list all contributors\" does not reach it in the top 5 (list_skills, release_includes_all, budget_report, propose_allocation, allocate).\nThis verification passes on one query per tool, and the phrasing that failed here was a natural one. --describe's refusal already suggests the nearest names by spelling; --call's does not.",
+    "subject_id": "ver:every-tool-is-found-by-a-query-in-the-users-words",
+    "valid_from": "2026-10-09"
+  }
+}

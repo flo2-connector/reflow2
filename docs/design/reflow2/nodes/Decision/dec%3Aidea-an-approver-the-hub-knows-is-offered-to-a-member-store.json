@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cae155f68c204e808fa7efacb0fc25d1b99b00bb21b7fa5b0e025698f298700b",
+  "node_id": "dec:idea-an-approver-the-hub-knows-is-offered-to-a-member-store",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0). The reporter's idea, in their words: \"the refusal could suggest a matching Contributor from a linked hub, or add_decision could accept approver plus a one-shot contributor record.\"\n\nWHY: fact:a-member-store-refuses-an-approver-its-hub-knows-because-contributors-live-in-one-store-2026-10-09.\n\nOPTIONS, NONE CHOSEN:\n(a) THE REFUSAL NAMES THE MATCH: when the id exists in a design this store pins, or in one that pins it and is reachable, the refusal says so and gives the one add_contributor call. Nothing is written without the call. Cheap.\n(b) A ONE-SHOT RECORD: add_decision takes approver_contributor (name, kind) and creates the Contributor in the same write. One call, but a typo creates a person.\n(c) A FAMILY'S WHO-IS-WHO: members resolve a Contributor through their hub's pin, so one record serves the family. Larger. It is one piece of req:a-set-of-designs-that-make-up-one-system-is-worked-as-one-design-graph.\n\nCOUNTERPOINTS: the refusal exists so an approver is a name somebody can check (dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id). (a) keeps that, since the hub record is checkable through a declared pin. (b) weakens it. (c) moves the check to the hub, and on flo2.io the gateway already names the caller per account.\n\n\n\n═══ KEPT AS INTENT 2026-10-09 — OPTION (A) ONLY; (B) AND (C) STAY CONSIDERED ═══\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four). Promoted into req:an-approver-missing-here-but-known-to-a-pinned-design-is-named-in-the-refusal.",
+    "kind": "exploratory",
+    "name": "SETTLED 2026-10-09 — kept as intent, option (a) only; (b) and (c) stay considered: An approver missing from this design but known to a design it pins is named in the refusal, with the one call that records them here",
+    "status": "accepted"
+  }
+}

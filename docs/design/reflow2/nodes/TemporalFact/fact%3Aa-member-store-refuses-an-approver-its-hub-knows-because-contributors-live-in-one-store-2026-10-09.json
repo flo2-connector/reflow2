@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d19cb98bdf26fb723d31d4a8582ef83d9a46392ba90b9ba8f7f36ff6e0f83c3d",
+  "node_id": "fact:a-member-store-refuses-an-approver-its-hub-knows-because-contributors-live-in-one-store-2026-10-09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "A member store refuses an approver its hub already knows, because a Contributor lives in one store and nothing in a family shares who is who",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0): add_decision status accepted with approver who:ajs was refused in a member store (cs-studio-xf). The hub holds who:ajs; add_contributor of the same id into the member was needed first.\n\nMEASURED 2026-10-09 on 0.80.0 and main, same text: \"no Contributor `who:ajs` in this design, so nothing was written. An approver who does not exist would attach the owner's authority to a name nobody can check. Create them with add_contributor first, or check the id.\" A fresh store holds no Contributor, and nothing copies one from a design that pins it, or that it pins.\n\nIt is a gap in the one-graph umbrella, not a defect in the refusal: identity is per store by design, and authority is only as checkable as the store it names (dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id). Each member a person writes to therefore costs one add_contributor, discovered by a refusal. Measured once by the reporter; how many member writes it cost over all their members is not measured.",
+    "subject_id": "req:a-set-of-designs-that-make-up-one-system-is-worked-as-one-design-graph",
+    "valid_from": "2026-10-09"
+  }
+}
