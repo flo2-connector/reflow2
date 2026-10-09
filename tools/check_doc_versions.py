@@ -195,6 +195,22 @@ def claims(reflow2: str, foundation: str) -> list[tuple[str, str, str, str]]:
             "schema edge-type count",
             r"\(\d+ node types, (\d+) edges\)",
             edge_types,
+        ),        # THE SITE (flo2-connector.github.io/reflow2) names the release each page
+        # was checked against, so a cut that leaves the site describing an older
+        # release fails here instead of being noticed by a reader
+        # (req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships).
+        # Moving the line is the cut's promise that the page was read again.
+        (
+            "site/index.html",
+            "site page checked against",
+            r"Checked against reflow2 v([0-9]+\.[0-9]+\.[0-9]+)\.",
+            reflow2,
+        ),
+        (
+            "site/setup.html",
+            "site page checked against",
+            r"Checked against reflow2 v([0-9]+\.[0-9]+\.[0-9]+)\.",
+            reflow2,
         ),
     ]
 

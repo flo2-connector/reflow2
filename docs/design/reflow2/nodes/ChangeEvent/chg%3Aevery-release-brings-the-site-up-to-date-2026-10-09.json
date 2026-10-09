@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e8f7bc10b112c91e8106d6fc4ca8927bffe89565c4be572c2da0fdd4503bf815",
+  "node_id": "chg:every-release-brings-the-site-up-to-date-2026-10-09",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-09",
+    "name": "Every release brings reflow2's site up to date, and the version gate fails a page left at an older release",
+    "rationale": "Anthony, 2026-10-09, during the v0.81.0 cut: \"make sure to update flo2-connector.github.io/reflow2 documentation appropriately /req\". A line the gate checks is used rather than a written rule, because a rule an agent must remember at the cut is the kind measured to be missed.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "A new step of flow:release-cut, with the gate that holds it: each site page names the release it was checked against, and check_doc_versions fails when it names another. The pages were brought up to date for v0.81.0."
+  }
+}

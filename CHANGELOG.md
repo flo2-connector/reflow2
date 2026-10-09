@@ -31,6 +31,225 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.81.0] — 2026-10-09
+
+**Minor. This is the release in which a family of designs is worked as one design graph.** A hub
+records whether each member is a part of it or a peer it uses. A change's impact is carried from
+one member to the next. A record can link to a record in another design. A requirement is handed
+to the design that owns it, by move or by piece, never by copy, and binds there only when that
+design's owner accepts it. Linking within a design got better too: suggestions weigh real
+neighbours, search returns each hit's linked records, and requirements linked to nothing are
+noticed. It also contains the VS Code terminal route's one recorded export path, the installer's
+curl fallback and the public site. It contains #689–#691, #693–#695 and #697–#701. #688, #692 and
+#696 are design records, and #687 re-blessed 0.80.0's surface.
+
+### What a consumer or operator should know
+
+- **Upgrade every reflow2 that opens a shared design before anyone hands a requirement down as a
+  `piece`.** The schema moves by one widening: `DECOMPOSES` may now start or end at a cross-design
+  reference. Node types (28) and edge types (66) are unchanged, and no enum value or required
+  property changed. Measured: reflow2 0.80.0 refuses a design holding such an edge. The refusal
+  is all-or-nothing and holds even with `--accept-newer`. A design whose requirements were only
+  moved or derived still imports. flo2.io runs 0.79.0, so a hosted design cannot hold a piece
+  until flo2.io upgrades.
+- **On MCP, nothing to do.** Two tools were added, `send_to_design` and `receive_from_design`
+  (197 tools; none removed). Every argument added to an existing tool is optional, and every reply
+  field added is new; `tests/the_mcp_surface_only_grows.rs` passes against 0.80.0's published surface. A plain
+  `get_instructions` returns the whole document again.
+- **On the VS Code terminal route**, re-run `reflow2 init . --harness vscode-cli` in each
+  repository. It records the export the design already keeps in `.reflow2.toml`; commit that file
+  with `.github/`. For a design of a repository you do not own, write an untracked
+  `.reflow2.toml` whose `[export] path` points where you keep its export, and list it in
+  `.git/info/exclude`.
+- **Back up before installing.** `install.sh` keeps the replaced binary as
+  `reflow2-mcp.<old version>`.
+
+### Added
+
+- **A change's impact can be followed from one design into the next.** A blast radius
+  (`propagate_change`, `propagate_from`) now names the `design` it ran in. A row that belongs to
+  another design names that design: a mirrored node, or an interface a `uses` pin names.
+  `continue_in` lists the member designs to carry the radius on in, and the ids to start from
+  there. `propagate_from` also takes `arriving_from` (another design's id) with `interfaces` (that
+  radius's `interfaces_reached`) instead of seeds. The design's own pins then say where the ripple
+  enters: across an interface it uses, or up at what requires the part that changed.
+  `arrived: false` means nothing records a way in. The `/hub` skill uses this to carry a change
+  from member to member and to report every design it reached. `mirror_surface` now records which
+  design each mirrored node came from (`mirrored_from`). **What to do:** nothing, for a single
+  design. In a hub, state each member's relation first (the `relation_not_stated` findings): a
+  ripple follows only the relations that are recorded.
+
+- **A design pin can say how the other design stands to this one.** `external_dependency` takes
+  `relation`: `part_of` (the other design is a part of this one; intent flows down to it, status
+  flows up) and/or `uses` (a peer this design uses). For `uses`, `interfaces` names the
+  interfaces the use crosses. `upstream_status` lists every design pin under `members` with its
+  relation, or "not stated". It also reports a member linked by nothing a ripple could follow:
+  `relation_not_stated`, or `no_interface_to_follow` for a `uses` link with no mirrored Interface
+  here. `loop_status` names these under `members_unlinked`, even when nothing is watched. The
+  `/hub` skill asks for the relation when a member joins. **What to do:** in a hub, answer the
+  `relation_not_stated` findings once per member: re-declare each pin with its `relation`, and
+  for a peer its `interfaces`, then mirror each interface with the link-projects skill. Pins that
+  name no design are never asked.
+
+- **A relation can point at a node in another design.** On `review_relations`, and on
+  `related_to` when adding a decision, pass `other_design` (that design's id) with `other_id` (the
+  node's id there), and optionally `other_name`. The design records a typed reference to the far
+  node (`xref:<design>:<node>`) and draws the relation to it.
+  - Search's `linked` shows which design the linked node lives in.
+  - A ripple that reaches the reference names that design.
+  - `upstream_status` lists every reference, and reports a link into a design this one does not
+    declare (`link_into_undeclared_design`). It also reports a link whose far design has changed
+    since the link was made (`link_far_end_moved`); making the link again acknowledges it.
+  - `loop_status` names both under `cross_design_links`.
+
+  **What to do:** nothing. Where you used to write "see the requirement in flo2" as prose, you can
+  now record it as a link. Decomposing a requirement across designs is not available yet.
+
+- **A requirement or decision can be sent to another design, a parent's to its part or a customer's
+  to a supplier, without copying it.** Two new tools, one for each side. In the receiving design,
+  `receive_from_design` holds the requirement at `proposed`, attributed to the sender, with where it
+  came from. In the sending design, `send_to_design` records the send. `kind` says how it travels:
+  - `moved`: the requirement belongs wholly to the receiver and leaves the sender. A reference to
+    its new home replaces it, and its ending is kept as history. It needs the sending owner's
+    `approver`, and is refused while a capability in the sender still satisfies it.
+  - `piece`: the requirement stays with the sender, and the receiver holds its own part, linked
+    with `DECOMPOSES` across the designs.
+  - `derived`: a decision stays with the sender, and the receiver holds the requirements it forces,
+    `GOVERNED_BY` that decision.
+
+  What lands is binding only once the receiver's owner accepts it. `upstream_status` lists what was
+  `received` and `sent`, and `loop_status` names what waits under `received_waiting`. A ripple in
+  the sender carries down to what the part received. **What to do:** nothing. The `/hub` skill
+  offers this when a requirement of the whole belongs to a part.
+
+- **Requirements and accepted decisions linked to no other intent are noticed, not only open
+  ideas.** A new gap finding, `unlinked_intent`, counts the requirements and accepted decisions
+  that relate to no other requirement or idea. That means no review relation, no `DECOMPOSES`, no
+  `GOVERNED_BY`, and no note saying their relations were reviewed. A capability satisfying a
+  requirement does not count as a link. It is one low-severity finding with its denominator; on
+  reflow2's own design it reads "134 of 890". It is not asked in a design with fewer than six
+  live requirements and accepted decisions, where the whole intent is read at once. The
+  `link-ideas` skill now works this backlog alongside `unreviewed_ideas`. **What to do:** nothing; work it a few at a time when it suits you.
+- **Capturing a requirement offers what it relates to.** `capture-intent` now calls
+  `relation_candidates` on a new requirement, puts the real candidates to you, and links the ones
+  you confirm.
+
+- **`search_design` hits carry the node's `status` and `kind`** (when it has them), so you can
+  tell settled intent from an open idea without reading each hit.
+
+- **A search hit lists the records linked to it.** `search_design` hits carry `linked`: each
+  record directly linked by a review relation or `DECOMPOSES`, with the relation and its direction,
+  up to 8. A family whose pieces are linked comes back together, even when only one of them
+  contains your words.
+
+- **reflow2 has a public site, at flo2-connector.github.io/reflow2.** Both pages are in
+  flo2.io's dark layout:
+  - **The front page explains what a project brain is, in drawings.** It tells the story
+    through a made-up school robotics team: where the knowledge lives, what goes in, one brain
+    across repositories, troubleshooting, designing something new, and a change of requirements.
+  - **A setup page gives three complete ways to set reflow2 up:** on your own computer with an
+    agent that speaks MCP; in VS Code, where an organisation blocks third-party MCP servers; and
+    as a server for a team, from the container image.
+
+  `site/` holds the pages, and `.github/workflows/pages.yml` publishes them on each push to main
+  that touches them. By the owner's decision of 2026-10-05, pages for someone who does not have
+  reflow2 yet are written by hand. Any page that shows a real design's content stays generated
+  from that design. **What to do:** nothing. A maintainer sets the repository's Pages source to
+  "GitHub Actions" once, so the first deploy has a site to publish to.
+
+### Changed
+
+- **The VS Code guide says the never-exported warning shipped.**
+  `docs/using-reflow2-in-vscode-without-mcp.md` still listed it as open after v0.80.0 delivered it.
+  The guide now marks idea 14 and limitation 15 as shipped in v0.80.0.
+
+- **`DECOMPOSES` can reach a cross-design reference**, so a part's piece can decompose its parent's
+  requirement. This is additive. **What to do:** nothing. An older reflow2 refuses such an edge if
+  a design carrying one is imported into it.
+
+- **Relation suggestions no longer treat the author as a reason.** `relation_candidates` weighs a
+  shared neighbour by how rare it is, the way it already weighed shared words. A neighbour that
+  nearly every record touches, such as the person who wrote most of the design or the project,
+  now counts for nothing. Before, "both relate to <author>" was the top reason on almost every
+  suggestion. With no `pool_type`, a requirement or decision is now compared with requirements AND
+  decisions, so a requirement is offered the idea it grew from. Measured on reflow2's own design:
+  for one requirement, the share of its top 10 suggestions from its actual family went from 2 to
+  10. **What to do:** nothing; pass `pool_type` if you want the old same-type ranking.
+
+- **A root cause in a family of designs looks in every member, not only where the symptom
+  showed.** The `root-cause` skill now walks a design's member designs. It searches past causes in
+  each, asks which members moved since this design last looked (`upstream_status`), compares the
+  interfaces at the seam with the other side's current version, and walks impact backwards from a
+  member that moved (`propagate_from` with `arriving_from`). It names any member it could not reach.
+  It records the cause in the design where the cause lives, with a pointer from where the symptom
+  showed. The `/hub` skill now says where to record is not where to look. **What to do:** nothing.
+  The skills are served, so the next session uses them.
+- **A new idea or requirement is asked whether it belongs under a whole already recorded.**
+  `capture-intent`, `brainstorm` and `link-ideas` each ask whether the new piece is one facet of a
+  larger aim the design holds, such as a vision or an umbrella requirement, and link it there, or
+  say none fits.
+
+- **The site says which release each page describes, and every release brings it up to date.**
+  Both pages of flo2-connector.github.io/reflow2 end with "Checked against reflow2 vX.Y.Z", and
+  `tools/check_doc_versions.py` fails the build when that line names anything but the version
+  being built. So a release cannot leave the site describing an older reflow2. For 0.81.0:
+  - The front page's "One brain across all your repositories" now says what the hub does with
+    them: a record can point into another repository's design, a change is followed from one
+    repository into the next, and a requirement is handed to the repository that owns it.
+  - The VS Code setup says `reflow2 init` also writes `.reflow2.toml`, which names where the
+    export is kept, to commit with `.github/`. It also says how to keep a design for a
+    repository you do not own: an untracked `.reflow2.toml` whose `[export] path` points where
+    you keep its export, listed in `.git/info/exclude`.
+
+  **What to do:** nothing.
+
+### Fixed
+
+- **The installer no longer gives up when the GitHub CLI is installed but not signed in.**
+  `tools/install.sh` used `gh` whenever it was on your PATH, and a signed-out `gh` ended the
+  install, though the release is public and plain `curl` works. It now tries `gh` first and,
+  when `gh` fails for any reason, downloads with `curl` and says so. **What to do:** nothing.
+  Re-run the one-line install if it stopped at "could not download … (gh)".
+
+- **A project records where its export lives in one place, `.reflow2.toml`, and everything reads
+  it.** On the VS Code terminal route three parts each found the export their own way and
+  disagreed:
+  - every `reflow2 write` said "no export was kept current", because it looked only at
+    `--export-to` and MCP configurations, and that route has none;
+  - the end-of-turn hook exported to the path in `init`'s git-ignored receipt;
+  - `reflow2 init` invented `docs/design/<project>.json`, with `.gitattributes` and `.gitignore`
+    lines for it, beside an export the project already kept.
+
+  Now `.reflow2.toml` holds an `[export] path` that writing calls, the hook, `reflow2 init` and
+  `reflow2_check.py` all read. `init --harness vscode-cli` records the export the design already
+  has: one an MCP configuration names, or a committed export of this design. It invents
+  `docs/design/<project>.json` only when there is none. A `.reflow2.toml` with only an
+  `[export]` table leaves the folder a local design. Projects set up for MCP are unchanged.
+  **What to do:** on the terminal route, re-run `reflow2 init . --harness vscode-cli` (it
+  records your existing export), or add one yourself:
+  `[export]` / `path = "reflow2.json"` in `.reflow2.toml`. Then delete any
+  `docs/design/<project>.json` that `init` created by mistake, with its `.gitattributes` line.
+- **`reflow2 init --check` names everything the run will do.** It used to leave out the design
+  record, the `.gitattributes` line and the merge driver, which the run then wrote. A test now
+  fails if the run touches a file the preview did not name.
+
+- **A plain `get_instructions` returns the working instructions again.** From v0.78.0 the served
+  document was over 30,000 bytes, and `get_instructions` withheld any document longer than its
+  30,000 default limit. So the call the handshake tells every session to make first returned a table of
+  contents and no instructions. Nothing failed, and a test recorded as guarding this had never
+  been committed. Now a call with no `budget_chars` returns the whole document however long it
+  grows. A client that names its cap still gets the section list instead of half a document. A
+  test pins both. **What to do:** nothing. If your agent has been reading
+  the instructions a section at a time, a plain call works again.
+- **Every project is told to find a failure's cause before fixing it.** The two-step root-cause
+  rule reached only reflow2's own repository. On any failure, search the design for the exact
+  error first. The moment you are about to write down *why*, in the design or in a reply, read
+  the `root-cause` skill and follow it. The rule is now served in the instructions, in the
+  handshake every MCP agent sees, and in the VS Code terminal route's instructions file. The
+  handshake is the only one of the three that reaches an agent without a call. **What to do:** on
+  the VS Code terminal route, re-run `reflow2 init . --harness vscode-cli` to refresh
+  `.github/instructions/reflow2.instructions.md`. MCP projects need nothing.
+
 ## [0.80.0] — 2026-10-05
 
 **Minor. This is the release in which reflow2 works well from VS Code**, including where an

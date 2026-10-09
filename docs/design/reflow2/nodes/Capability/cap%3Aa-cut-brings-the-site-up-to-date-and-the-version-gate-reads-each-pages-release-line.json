@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:37c4f1edb3666b428e8d4aec55b25028b397a51ff75ce4c395961cd132522677",
+  "node_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Each page of the site (site/index.html, site/setup.html) ends with \"Checked against reflow2 vX.Y.Z.\" tools/check_doc_versions.py holds that line as a claim for each page, so CI fails when a page names any release but the one being built. Moving the line is the cut's promise that the page was read again for what the release ships. Built 2026-10-09 in the v0.81.0 cut, where the pages were brought up to date for the first time: the front page's one-brain section says what the hub now does across repositories, and the VS Code setup names .reflow2.toml and how to keep a design for a repository you do not own. LIMIT: the gate checks that the line moved, not that the content is right; reading the pages again is still the person's or agent's step.",
+    "name": "A cut brings the site up to date, and the version gate reads the release each site page names",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

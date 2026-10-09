@@ -79,6 +79,26 @@ def test_a_stale_claim_is_caught() -> None:
         agents.write_text(original)
 
 
+def test_a_site_page_left_at_an_older_release_is_caught() -> None:
+    """req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships: each
+    page of flo2-connector.github.io/reflow2 names the release it was checked
+    against, so a cut that leaves the site behind fails here. Measured
+    2026-10-09: the release-cut flow's nine steps named no site step, and
+    nothing read the site."""
+    for name in ("site/index.html", "site/setup.html"):
+        page = REPO / name
+        original = page.read_text()
+        stamp = f"Checked against reflow2 v{current_version()}."
+        assert stamp in original, f"{name} must carry the line the cut moves"
+        try:
+            page.write_text(original.replace(stamp, "Checked against reflow2 v0.0.1."))
+            r = run()
+            assert r.returncode == 1, f"{name} left at an older release must fail the build"
+            assert "DRIFT" in r.stdout and name in r.stdout, r.stdout
+        finally:
+            page.write_text(original)
+
+
 def test_rewording_the_prose_fails_loudly_rather_than_disabling_the_check() -> None:
     # THE test. This is the whole reason this exists rather than a `grep || true`.
     agents = REPO / "AGENTS.md"
@@ -166,6 +186,7 @@ def main() -> int:
     tests = [
         test_the_repo_as_it_stands_passes,
         test_a_stale_claim_is_caught,
+        test_a_site_page_left_at_an_older_release_is_caught,
         test_rewording_the_prose_fails_loudly_rather_than_disabling_the_check,
         test_the_provenance_headers_are_where_the_tag_comes_from,
         test_losing_every_provenance_header_fails_rather_than_passing_empty,

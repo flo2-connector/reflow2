@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4ba2551ea8c3198507ace4ea519177f1b4adbc2cc5bf9d90f95c971e5b9e45d2",
+  "node_id": "epoch:v0810-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The cut that ships the one-design-graph work: a hub's members and their relations, a change carried member to member, links between designs, intent sent between designs, and better linking within one; plus the recorded export path, the installer's curl fallback, and the site, now checked against each release.",
+    "epoch_type": "release_cut",
+    "name": "v0.81.0 release cut (2026-10-09)",
+    "sequence": 667,
+    "status": "arrived"
+  }
+}

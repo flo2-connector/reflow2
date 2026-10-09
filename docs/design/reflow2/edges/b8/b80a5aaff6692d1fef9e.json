@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf795dbe608f1befe5d013f0e44c5d86b63ce65d6f2c3ffcbb242445de63e8e9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:95a01788375527c4afb05bd62bfbafcea183e5b180386ca6319b4a5c6e89ec88"
+  },
+  "to_id": "art:skill-link-projects"
+}

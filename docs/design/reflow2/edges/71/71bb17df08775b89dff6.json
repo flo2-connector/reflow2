@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:915eb477ee5eabc804792c49fb4aa03cd624a124328fba2f422b059292d7f6ca",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-check-doc-versions",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line"
+}

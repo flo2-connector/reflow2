@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:0f0896cc1f2ce915dd9b982c30b06c1de41918dd82866fa03ea2e24d42a75974",
+  "content_hash": "sha256:710f73982b816149e431909c013f63d186e3d69b063ee906f2f0555bd3fdc0f9",
   "node_id": "rel:v0800",
   "node_type": "Release",
+  "prev_item_hash": "sha256:0f0896cc1f2ce915dd9b982c30b06c1de41918dd82866fa03ea2e24d42a75974",
   "properties": {
-    "description": "Cut 2026-10-05, approved by Anthony Sligar as the \"VS Code works well\" release. Ships #647 and #680-#685: a guide to reflow2 from VS Code's Copilot agent through the --call door (#647), reflow2 init --harness vscode-cli installing the terminal route under .github/ (#680), loop_status saying when a design was never exported and whose work is unexported (#682), a store's identity file following its real path (#683), a tool surface that tells the truth with --args @file and the pin that the MCP surface only grows (#684), and one-shot opens reporting their version verdict with install.sh keeping a rollback point (#685).\n\nMINOR. THE SCHEMA STAMP DOES NOT MOVE: 28 node types, 66 edge types and 69 enum vocabularies are identical to 0.79.0's, and no schema property changed. No upgrade note is owed. The MCP surface only grew: tests/the_mcp_surface_only_grows.rs compares the build with 0.79.0's tools, argument schemas and reply shapes.\n\nWHAT A CONSUMER OR OPERATOR SHOULD KNOW:\n- VS Code with MCP blocked: upgrade with tools/install.sh, run reflow2 init . --harness vscode-cli, commit .github/, add the chat.tools.terminal.autoApprove setting for /^reflow2 read /, and delete the hand-written user instructions file.\n- On MCP, nothing to do; every surface change is additive, and an MCP init or update writes what it wrote before.\n- install.sh keeps the replaced binary as reflow2-mcp.<old version> for a rollback. Measured at this cut: the published 0.79.0 binary refuses a 0.80.0 export by default (stamped newer); with --accept-newer it imports all 6,761 nodes and 44,732 edges of reflow2's own design.\n- loop_status may open with THIS DESIGN HAS NEVER BEEN EXPORTED or an ahead_of_export line; run the command it names.\n- A store refused as having lost its identity file recovers when <store>.id.json is put beside it.",
+    "description": "Cut 2026-10-05, approved by Anthony Sligar as the \"VS Code works well\" release. Retired 2026-10-09 by v0.81.0.",
     "name": "v0.80.0 — VS Code works well: the terminal route installed by init, a loop that says what is not exported, and a surface that only grows",
-    "status": "deployed",
+    "status": "retired",
     "unit_type": "binary",
     "version": "0.80.0"
   }

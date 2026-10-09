@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bf13e800f405ddc1e5ad5bff9f14ad96fe9a39faca4e5d8968bb6fa460abc236",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:8cdc372ddc44c72d95493f1543124561c088010abf70f59e0631849026762faf"
+  },
+  "to_id": "art:test-a-write-unit-is-all-or-nothing"
+}

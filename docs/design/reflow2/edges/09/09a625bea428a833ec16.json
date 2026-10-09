@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:605431b80d0023227af9d18bff6db6f673b4f3ab3ec286137fd49dd521ec9b1f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:docs"
+}

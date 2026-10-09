@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ed0bd0b2a6d8a7f412ad5cb01c56facd8fab9d29193639ae3473001a56e0145e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line",
+  "properties": {},
+  "to_id": "req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships"
+}

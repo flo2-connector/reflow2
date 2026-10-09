@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a2b1c821e4da270951ca451ca9bf0b2e344e39719e10d4d544b44e9c8983119d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:7b920d164ea4539d5a1ca81d28c13fb9e5ff6188fd28998ac9db9fd2c3290307"
+  },
+  "to_id": "art:test-the-near-match-report-is-not-cut-at-three"
+}

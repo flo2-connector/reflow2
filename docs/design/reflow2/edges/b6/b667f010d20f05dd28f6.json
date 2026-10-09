@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:295da6efc6869ef9383d29c9ad016e5d70b979957d3b291bda1b56a46b995f01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-release-brings-the-site-up-to-date-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-site-page-left-at-an-older-release-fails-the-version-gate"
+}

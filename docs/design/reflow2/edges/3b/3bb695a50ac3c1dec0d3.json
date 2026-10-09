@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:31d97646651ab418dbbdadb9a5e92dd3197b86e4c2d3a37365f4ffe0c57b006d",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-site-page-left-at-an-older-release-fails-the-version-gate",
+  "properties": {},
+  "to_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line"
+}

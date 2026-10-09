@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5252e5a10d9a57dbfbe547ef959d9270e4d575126790e0255095fe62526c2ece",
+  "node_id": "ver:a-site-page-left-at-an-older-release-fails-the-version-gate",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_check_doc_versions.py, test_a_site_page_left_at_an_older_release_is_caught: for each site page it moves the \"Checked against reflow2\" line to v0.0.1 and asserts the gate fails naming the page. Observed failing 2026-10-09 against the gate without the site claims (6/7), passing with them (7/7).",
+    "kind": "verification",
+    "last_run_at": "2026-10-09",
+    "method": "test",
+    "name": "A site page left at an older release fails the version gate",
+    "status": "passing"
+  }
+}

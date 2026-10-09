@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0e48e68d9aa3efa158034d077db2f23e65555b51e4528e94807943143e0e11f8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:e82a5b48a8772f053affc2bc3fb0ea646a970fa1c5ffb66b2e50d235f9008985"
+  },
+  "to_id": "art:a-store-opened-without-its-search-index-rebuilds-it-test"
+}
