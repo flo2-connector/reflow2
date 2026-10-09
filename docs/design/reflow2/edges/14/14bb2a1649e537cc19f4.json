@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f1c4e6bda76d02063a2fe9daac76cfade97e6db47e353e9a86900f181936255",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:9a68cfd176d8f9ec2bb08585f7e13dd70586946f823619d57b503a12b8bcbdfd"
+  },
+  "to_id": "art:twins"
+}

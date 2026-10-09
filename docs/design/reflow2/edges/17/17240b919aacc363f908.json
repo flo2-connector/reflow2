@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e57ab673a188a16acb4f603557095c65555f1741e814b063dae741a6405b686b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:cb68cace67f41d786b97ece4794408495f735d94b5caaf936a1676c5e5dfa372"
+  },
+  "to_id": "art:hub-skill"
+}

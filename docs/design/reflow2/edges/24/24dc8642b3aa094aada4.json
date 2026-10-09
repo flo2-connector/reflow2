@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b9e7652d37cdfbcf18db25173c976d89daae1734c62f68d3eea6727ad7d7d7d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-release-brings-the-site-up-to-date-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:620c379ec19bb13ff5cff65a174e5d10e02fd0d9e3bfeb95a9cb187eaf633767",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:722b56ace4c4be001c2ad396f142c4ba50f09eeca8f8615eeb3e75adeed28d13"
+  },
+  "to_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test"
+}

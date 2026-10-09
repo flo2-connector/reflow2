@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9d893599b080ac7ad138d0876abce855a1088f1a6e6bba6cf344c929d6d01517",
+  "node_id": "art:test-check-doc-versions",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Tests of tools/check_doc_versions.py: the repo passes as it stands; a stale claim is caught; rewording the prose fails loudly; the provenance-header checks. Since 2026-10-09 it also tests that a site page left at an older release is caught (test_a_site_page_left_at_an_older_release_is_caught), observed failing without the site claims.",
+    "location": "tools/test_check_doc_versions.py",
+    "name": "test_check_doc_versions.py",
+    "status": "realized"
+  }
+}

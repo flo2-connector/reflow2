@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b5944d0b130f3d3b5b0a7f3dc7350b1941a004c2ae136744d524b57cb75045ce",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

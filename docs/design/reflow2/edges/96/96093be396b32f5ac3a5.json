@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e6f7047a350cbc860fc17510efb45802c053871835b6e9607b9046b5fb35555f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:c662330d9c0dd62f4bcfab796ed14429b2c4c3215fe336d0c0cd7834a8fb0a26"
+  },
+  "to_id": "art:test-a-hub-member-states-its-relation-through-the-tools"
+}

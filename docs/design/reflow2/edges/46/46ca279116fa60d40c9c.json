@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9a9477855959f5ecbab83b857410e435640cb5f9c37b64632043a01c5a1b3d28",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:6aebcb0e756c9ce4c7ae0dfe5f37ffc9716d2e4da1553152b9eb4199e2620b3f"
+  },
+  "to_id": "art:test-closure-reads-a-design-phase-and-a-build-phase"
+}

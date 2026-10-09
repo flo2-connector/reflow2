@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8751dd75fe63d4268d37d595ea73597d9dfb35fd4de6f285a8b8afc3c0faff1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:bbdee071cea57ed040c92b14baef5b0dc4d24333d455ed6dc231d2b2e633969a"
+  },
+  "to_id": "art:schema-dimensions"
+}
