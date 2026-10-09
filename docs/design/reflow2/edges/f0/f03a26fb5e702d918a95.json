@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:920dcb76b880efec4f2b9a0f711ec476dbaac86ae7ddd4e9df86d7702ff29ea2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-record-that-names-another-designs-record-in-its-text-is-offered-a-typed-link-and-flagged-when-their-statuses-disagree",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:41e16c40ac0276de43674849f596f16803a5377bd8493f59093a44adad5f9ef1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-record-that-names-another-designs-record-in-its-text-is-offered-a-typed-link-and-flagged-when-their-statuses-disagree",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-relation-between-nodes-in-two-designs-is-recorded-in-the-design-that-makes-it"
+}

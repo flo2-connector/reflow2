@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5769af0173537c13a92d74be9cd0871d3718f68d05ec72b100ee11fad4defcd2",
+  "node_id": "chg:the-family-check-is-measured-and-a-reference-check-is-kept-2026-10-09",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-09",
+    "name": "The family check is measured: the duplicate sweep stays considered and a check of cross-design references is kept as intent",
+    "rationale": "Anthony, 2026-10-09, after the measured family check, chose \"Narrow check as intent\" and \"After flo2.io upgrades\", both the agent's recommendations.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Build order item 7. The manual check over the dev_reflow2 family found five facts held twice, one held too high, and two roll-ups drifted. A similarity sweep found a duplicate one time in eight. Anthony kept the duplicate sweep as considered and made a narrower check intent: a record naming another design's record in its text is offered a typed link and flagged when their statuses disagree. The seven findings wait for flo2.io's upgrade."
+  }
+}

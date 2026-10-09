@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:3fdcafd10db76cf93de961d10d81e3ffa6384c798be340c8d4e6b2a53b1f1c4d",
+  "node_id": "req:a-record-that-names-another-designs-record-in-its-text-is-offered-a-typed-link-and-flagged-when-their-statuses-disagree",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:the-dev-reflow2-family-holds-five-facts-twice-and-a-similarity-sweep-finds-a-duplicate-one-time-in-eight-2026-10-09"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A record that names another design's record in its text is offered a typed link to it, and is flagged when their statuses disagree",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub",
+    "statement": "Where a requirement, decision or capability names a record of another design in its text (by id, with the design named or known from a declared dependency), reflow2 shall offer to record that mention as a typed cross-design link (req:a-relation-between-nodes-in-two-designs-is-recorded-in-the-design-that-makes-it), and shall flag when the two records' statuses disagree: a roll-up still planned whose named part is realized, or an idea still open here that the other design settled. It offers and flags; it never links or changes a status by itself, because each change is a write in a design with its own owner. It reads the references a record already writes, so it needs no similarity guess across designs written in different words.\n\nAnthony, 2026-10-09, after the measured family check, chose \"Narrow check as intent\" and \"After flo2.io upgrades\", both the agent's recommendations. Grounded in fact:the-dev-reflow2-family-holds-five-facts-twice-and-a-similarity-sweep-finds-a-duplicate-one-time-in-eight-2026-10-09: 44 of 52 cross-design pairs a similarity sweep raised were real relations that name each other only in prose, and both drifts found were of this shape.",
+    "status": "accepted"
+  }
+}
