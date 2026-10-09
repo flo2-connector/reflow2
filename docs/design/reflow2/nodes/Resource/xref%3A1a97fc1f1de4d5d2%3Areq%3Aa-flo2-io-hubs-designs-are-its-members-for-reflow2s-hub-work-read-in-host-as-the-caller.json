@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cdd8f03a2763cfbf05e5e83bc0d541a2d2cda9a0fcf7832d090fa8e785bf116f",
+  "node_id": "xref:1a97fc1f1de4d5d2:req:a-flo2-io-hubs-designs-are-its-members-for-reflow2s-hub-work-read-in-host-as-the-caller",
+  "node_type": "Resource",
+  "properties": {
+    "design_graph_id": "1a97fc1f1de4d5d2",
+    "design_node_id": "req:a-flo2-io-hubs-designs-are-its-members-for-reflow2s-hub-work-read-in-host-as-the-caller",
+    "name": "A flo2.io hub's designs are its members for reflow2's hub work, read on flo2.io as the caller",
+    "resource_type": "design-node-reference"
+  }
+}
