@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:16fdccc9da7b2a2162936ea582e27f94138672a5bfb5a9cb742a141650dedbf7",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned",
+  "properties": {
+    "evidence": "The missing instrument the finding names: what the hook returned on the refused turn."
+  },
+  "to_id": "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09"
+}

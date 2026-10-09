@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b94e3f25cb15f7efce587ea1574805ac7cb4a1e5332f5e8b6718007325d890db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:field-log-2026-10-09-is-triaged",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:a-relation-refusal-lists-the-review-words-cuts-their-glosses-and-never-names-the-tool-for-the-word-used-2026-10-09"
+}

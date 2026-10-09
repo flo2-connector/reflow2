@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:491843417b88fab605e4b5eaae2539900f8ddc4b51d84d421f3f30e3b000b18e",
+  "node_id": "chg:field-log-2026-10-09-is-triaged",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-09",
+    "name": "The work field log's 2026-10-09 entries are triaged: five findings and four open ideas",
+    "rationale": "AGENTS.md rule 9: root-cause on every defect, friction and gap, brainstorm on every idea.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Root-cause on the defect and the four frictions, measured on 0.80.0 and main. Brainstorm on the three ideas the entries gave, plus one from a measurement. Two report claims were corrected by measurement: the relation refusal's value list is whole (reflow2 cuts its glosses), and the member export target is settable on main, not yet released."
+  }
+}

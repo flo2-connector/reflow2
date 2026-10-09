@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8760d37089f14fc1a775c66d4d2ef03a1767f3afdaef8d090ddf732d6cf7715",
+  "node_id": "dec:idea-an-approver-the-hub-knows-is-offered-to-a-member-store",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0). The reporter's idea, in their words: \"the refusal could suggest a matching Contributor from a linked hub, or add_decision could accept approver plus a one-shot contributor record.\"\n\nWHY: fact:a-member-store-refuses-an-approver-its-hub-knows-because-contributors-live-in-one-store-2026-10-09.\n\nOPTIONS, NONE CHOSEN:\n(a) THE REFUSAL NAMES THE MATCH: when the id exists in a design this store pins, or in one that pins it and is reachable, the refusal says so and gives the one add_contributor call. Nothing is written without the call. Cheap.\n(b) A ONE-SHOT RECORD: add_decision takes approver_contributor (name, kind) and creates the Contributor in the same write. One call, but a typo creates a person.\n(c) A FAMILY'S WHO-IS-WHO: members resolve a Contributor through their hub's pin, so one record serves the family. Larger. It is one piece of req:a-set-of-designs-that-make-up-one-system-is-worked-as-one-design-graph.\n\nCOUNTERPOINTS: the refusal exists so an approver is a name somebody can check (dec:idea-authentication-is-somebody-elses-layer-and-the-line-is-the-contributor-id). (a) keeps that, since the hub record is checkable through a declared pin. (b) weakens it. (c) moves the check to the hub, and on flo2.io the gateway already names the caller per account.",
+    "kind": "exploratory",
+    "name": "OPEN — when an approver is missing from a member store but present in its hub, should reflow2 offer the hub's Contributor, accept a one-shot record, or share identity across the family?",
+    "status": "proposed"
+  }
+}

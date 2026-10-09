@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0016a4351255459d2eec8eff9a615943ef40c16c9e4be3cc8a75ed2c82f75e54",
+  "node_id": "fact:a-relation-refusal-lists-the-review-words-cuts-their-glosses-and-never-names-the-tool-for-the-word-used-2026-10-09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "A refused relation word gets the review vocabulary with its glosses cut short, and no pointer to the tool that draws what the word meant",
+    "source": "art:vscode-call-field-log-2026-10-05",
+    "statement": "Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0): add_decision related_to relation \"governs\" was refused, the allowed values were \"cut off mid-list in the terminal\", and none fitted \"this decision governs a Component\", so the reporter wrote a no_relation_note instead.\n\nMEASURED 2026-10-09 on 0.80.0 and main (same output): exit 2; the reply lists all 13 allowed values, CONTRADICTS through VIOLATES, then their one-line glosses, and reflow2 itself cuts the glosses mid-list (\"…they were…\"). So the list was whole, and the cut the reporter saw is reflow2's, in the glosses.\n\nNEITHER VERSION NAMES governed_by, the tool that draws what the word meant (a Component GOVERNED_BY a Decision). The schema refusal answers \"which values does this field take\". It never answers \"where does what you meant go\" when the word names an edge type another tool draws: governs, satisfies, realizes, allocates, decomposes. The reporter's intended link was not recorded; a note stands in its place.",
+    "subject_id": "art:arguments",
+    "valid_from": "2026-10-09"
+  }
+}

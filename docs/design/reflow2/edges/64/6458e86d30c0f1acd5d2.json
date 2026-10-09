@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f3a8ab3daee5868139bde0bef6eccd70c9945f4a25c679a082c3e5681657aeb9",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-an-unknown-tool-name-is-answered-with-find-tools-on-its-own-words",
+  "properties": {
+    "evidence": "Answers the guessed name with the tool it meant, which the measured refusal did not."
+  },
+  "to_id": "fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09"
+}

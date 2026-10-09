@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:19d79750646d7d2d81810e9164a3746302a5de03a555f40ac94dcbae19f59280",
+  "node_id": "dec:idea-an-unknown-tool-name-is-answered-with-find-tools-on-its-own-words",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0). No idea was stated in the entry; this one comes from its measurement, fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09: find_tools on \"query nodes\" ranks scan_nodes 2nd, but the refusal for `query_nodes` names no tool.\n\nOPTIONS, NONE CHOSEN:\n(a) The refusal splits the guessed name on underscores, runs find_tools on those words, and names the top three with one line each. Cheap: find_tools already exists.\n(b) Nearest by spelling, as --describe does: finds typos, but misses a different word for the same act (query vs scan).\n(c) Both.\n\nCOUNTERPOINT: a ranked guess can be wrong, and the agent may run it without reading it. The refusal names; it never runs the suggestion.",
+    "kind": "exploratory",
+    "name": "OPEN — should a --call to a tool that is not served answer with the tools find_tools ranks for the guessed name's own words?",
+    "status": "proposed"
+  }
+}

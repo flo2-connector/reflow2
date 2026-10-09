@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cbbc4a65db31cc5bb941b74b88ce65a10a7a8a38e4a872f12efa69108be000fa",
+  "edge_type": "CAUSES",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "0.80.0's export_if_owed keeps writes_since_export until an export succeeds and retries it on every Stop, and the export target it reads (the install receipt's docs/design path) was removed in this repo on 2026-10-06; replayed, every Stop after the first failed export returned that failure as systemMessage.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a81889278c3de3497e1b750dd385d3d70b56784c9f0ec42202e0237120610131",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-a-refused-relation-word-points-at-the-tool-that-draws-it",
+  "properties": {
+    "evidence": "Names the tool for the word the caller used, which the refusal measured lacks."
+  },
+  "to_id": "fact:a-relation-refusal-lists-the-review-words-cuts-their-glosses-and-never-names-the-tool-for-the-word-used-2026-10-09"
+}

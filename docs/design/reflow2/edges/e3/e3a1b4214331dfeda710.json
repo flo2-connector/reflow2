@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:29b1009a48d2a8fa1ce028e8700f8d604578e378991cc1605999a51f594b840a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:field-log-2026-10-09-is-triaged",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09"
+}
