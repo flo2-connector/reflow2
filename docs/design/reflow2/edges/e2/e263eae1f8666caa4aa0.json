@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e65a81d1dbb336d0256f994364597d2ec5be1d55f3dffc6d0acc84e9c48872e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-field-log-ideas-are-kept-as-intent-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned"
+}

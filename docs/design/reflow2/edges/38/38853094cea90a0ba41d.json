@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c3ed4f0315fde3a01cbb574fab6b93234b0e6f567c4e3323175fb84bbc99937",
+  "edge_type": "CHANGED",
+  "from_id": "chg:four-field-log-ideas-are-kept-as-intent-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:every-reflow2-hook-keeps-a-local-log-of-what-it-returned"
+}

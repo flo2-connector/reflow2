@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2135e52931420c628607d554b275f5376e1271aa9c64008fd86980d66a09ba0f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-approver-missing-here-but-known-to-a-pinned-design-is-named-in-the-refusal",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

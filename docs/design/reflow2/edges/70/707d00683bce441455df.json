@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ff95bd926a6f88d59ed12c4c94874ef6e5972b36d4f838b3b19ea5ff3264487f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-approver-the-hub-knows-is-offered-to-a-member-store",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

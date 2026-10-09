@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1ac21218365e944211627dba941f23ba792707a3e409e26c7c41a28ef0d93a70",
+  "node_id": "snap:epoch:preserved-on-write:dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[]",
+    "state": "{\"decision\":\"RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From Field log entry 2026-10-09 (hxm_program hub, VS Code 1.140, reflow2 0.80.0). The reporter's idea, in their words: \\\"the Stop hook could log what it returned (time, decision, reason) to a local file, so a refused turn can be matched to what the hook injected.\\\"\\n\\nWHY IT CAME UP: fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09. The /capture-session refusal could not be diagnosed because nothing kept the hook's reply, and VS Code's debug logs held neither string. Replaying the state here recovered what 0.80.0 would have said, but only by guessing that state.\\n\\nOPTIONS, NONE CHOSEN:\\n(a) Append one line per hook reply to .reflow2/loop-nudge/hooks.log: time, event, session, decision, the length and first line of reason and systemMessage, exit code. Small, and private: .reflow2 is git-ignored. Cheap.\\n(b) The same, with the full texts. Diagnoses more, grows faster; needs rotation.\\n(c) Nothing new: loop_status or a `reflow2 hook --last` read reconstructs the last reply from the nudge's state files. No new file, but it can only show the last reply.\\n\\nCOUNTERPOINTS: hook texts name design ids, so the log must stay local; every harness's hook would want it (Claude, OpenCode, VS Code), not only Stop; and a log nobody reads diagnoses nothing, so loop_status might name it when a hook failed.\",\"kind\":\"exploratory\",\"name\":\"OPEN — should reflow2's hooks keep a local log of what they returned, so a turn a hook touched can be matched to what it said?\",\"status\":\"proposed\"}",
+    "target_id": "dec:idea-the-stop-hook-keeps-a-log-of-what-it-returned",
+    "target_type": "Decision"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d05d9ce5ed30b295c047f36f143109398202cc33b1f0aaf241027d8615b4fc62",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-refused-relation-word-points-at-the-tool-that-draws-it",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

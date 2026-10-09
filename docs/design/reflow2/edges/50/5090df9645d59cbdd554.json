@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7c386c3266469b2f65a7341ad2fccd226420fa4278d3310799de65128fbc21cb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-refused-relation-word-that-names-an-edge-another-tool-draws-is-pointed-at-that-tool",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

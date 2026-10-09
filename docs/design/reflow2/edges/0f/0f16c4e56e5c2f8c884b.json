@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a102e0cf62c4add23df5ca1adcc8d7890632ae98d69d2bb9d8d5551b687ed876",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-reflow2-hook-keeps-a-local-log-of-what-it-returned",
+  "properties": {
+    "approved_at": "2026-10-09",
+    "roles": [
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

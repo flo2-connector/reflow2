@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dccf51dfde46d4edb9a34d352d033f0dcfb1d489a0affd64d25b0f46539a75f8",
+  "edge_type": "DECOMPOSES",
+  "from_id": "req:an-approver-missing-here-but-known-to-a-pinned-design-is-named-in-the-refusal",
+  "properties": {},
+  "to_id": "req:a-refusal-names-what-would-have-worked"
+}

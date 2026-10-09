@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:52a83fbde21ce9f48cb4aa5b327048fee34c10a77fec00b4ca2becd0f066c98d",
+  "node_id": "req:a-tool-name-that-is-not-served-is-answered-with-the-tools-its-own-words-find",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A tool name that is not served is answered with the tools its own words find",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub (work field log triage)",
+    "statement": "When a call names a tool that is not served (--call, --describe, or the read and write verbs), the refusal shall split the name on underscores, run find_tools on those words, and name the top three tools with one line each. It names them and never runs one. Measured case: `query_nodes` would have named scan_nodes, which find_tools ranks 2nd for \"query nodes\" (fact:a-guessed-tool-name-is-refused-without-the-tool-it-meant-though-find-tools-on-its-own-words-ranks-it-second-2026-10-09).\n\nAnthony, 2026-10-09, kept this as intent when asked which of the field log's four ideas to keep (he kept all four).",
+    "status": "accepted"
+  }
+}
