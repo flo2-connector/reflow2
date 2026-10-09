@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6ba4ba7ba2031d95150b5e3953fcfe4e7d4fbe6dad221d297ac5bca70ca0ff6a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:c88f401d7fa5c30892cbc3801410c4977d8bcb5f83db909c46fa7016f3581364"
+  },
+  "to_id": "art:export-to-reaches-the-daemon-gate"
+}

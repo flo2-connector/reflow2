@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d588017d9cbfbc9d2983ef9d764cf36d4a4c687c731526a43371f7b46e618c89",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-24fd3c1c45967829",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:20cefad2e830417531d6d2e037caa48c7ae62759fccb111a8db6bdac49830609",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-check-doc-versions"
+}

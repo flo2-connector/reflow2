@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0a5e4d9031c8f6cd71b2d45fa040092721a450cdb493d17864d6bef53647674f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-release-brings-the-site-up-to-date-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c61504f47e095ee94e6fa0ea898d66734b68ace3eb66e8a54cc5690a7935995d",
+  "node_id": "req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Every release brings reflow2's site (flo2-connector.github.io/reflow2) up to date with what it ships, and a release that leaves it behind fails the build",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-09, dev_reflow2 hub",
+    "statement": "Each reflow2 release shall bring the public site up to date with what that release ships: what it explains, the setup steps it gives, and the version it says it describes. A release whose site still describes an older reflow2 shall fail the build rather than wait for a reader to notice. The release cut (flow:release-cut) carries this as a step, beside assembling the CHANGELOG.\n\nAnthony, 2026-10-09, during the v0.81.0 cut: \"make sure to update flo2-connector.github.io/reflow2 documentation appropriately /req\". Measured 2026-10-09: the nine steps of flow:release-cut named no site step, and no check read the site.",
+    "status": "accepted"
+  }
+}

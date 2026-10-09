@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:022769aec9a5134a415affc125a603d5b0f0fe83e2a49acbbe865c7c53526703",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:33dcb73ee856487bd482d90334f9959e4042bf2fdfc72fd762f82d80fa38f3a0"
+  },
+  "to_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks"
+}

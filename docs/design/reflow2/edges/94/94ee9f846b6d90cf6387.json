@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:67888e617fc285f3aceb977b81ab41f7e23d3b7677037cf0d8a06c386249b534",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:c300e70dd318b21d03f110a2676491af57021d37566f33977fb9b22717b42e57"
+  },
+  "to_id": "art:budget"
+}

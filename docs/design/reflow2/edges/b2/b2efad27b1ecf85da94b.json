@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:39c4232738274b9715e9241098557814efb851831b2d4476afd71373060091eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-release-brings-the-site-up-to-date-2026-10-09",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5098e3d5ebc5ae99e84ad03fe30a203daa8252db329f162ca9d22711777cef70",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-setup-html"
+}

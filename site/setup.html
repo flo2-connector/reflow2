@@ -131,18 +131,25 @@ git status --short</code></pre>
       </div>
       <p>
         It writes no MCP configuration. Under <code>.github/</code> it writes an instructions file, VS Code
-        hooks, one skill per reflow2 skill and the slash commands. Commit them, so everyone on the
+        hooks, one skill per reflow2 skill and the slash commands. Beside them it writes
+        <code>.reflow2.toml</code>, which names where the design's export is kept: the export the design
+        already has, or <code>docs/design/&lt;repository&gt;.json</code>. Every write, the Stop hook and the
+        CI check read that one line, so they keep the same file current. Commit them, so everyone on the
         project gets the same setup:
       </p>
       <div class="cmd">
-        <pre><code id="vs-commit">git add .github &amp;&amp; git commit -m "reflow2: VS Code terminal route"</code></pre>
+        <pre><code id="vs-commit">git add .github .reflow2.toml &amp;&amp; git commit -m "reflow2: VS Code terminal route"</code></pre>
         <button type="button" class="copy" data-copy="vs-commit" hidden>Copy</button>
       </div>
       <ul>
         <li>If some teammates can use MCP, use <code>--harness vscode-cli,vscode</code>.</li>
         <li><code>reflow2 update</code> refreshes these files later. Files somebody edited are kept, and files
           you wrote yourself are left alone.</li>
-        <li>If <code>git status</code> shows changes outside <code>.github/</code>, read them before adding them.</li>
+        <li>If <code>git status</code> shows changes outside <code>.github/</code> and <code>.reflow2.toml</code>, read them before adding them.</li>
+        <li>In a repository you do not own, such as one a hub of yours designs, commit nothing there. Write
+          only <code>.reflow2.toml</code>, with <code>[export]</code> and <code>path = "…"</code> naming where you
+          keep its export (a path into your hub's repository works), and list that file in
+          <code>.git/info/exclude</code>.</li>
       </ul>
 
       <h3><span class="n">3</span> Let reads run without asking</h3>
@@ -316,7 +323,8 @@ docker exec reflow2 /usr/local/bin/reflow2-mcp --version</code></pre>
       <p class="quiet">
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
-        Apache License 2.0
+        Apache License 2.0 ·
+        Checked against reflow2 v0.81.0.
       </p>
     </footer>
   </main>

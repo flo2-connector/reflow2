@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3466e813554d4ff3fb3da5cad225924b24c593b9a2a3fc91f17e83b942dea911",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-check-doc-versions",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-site-page-left-at-an-older-release-fails-the-version-gate"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5164899147c476feef5b57277ea60c168134954b4a9cb315b93356ed5499105a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:ef7b63d255a6bd1c970a465ed11a4741e90029a84a3b26a91802d815e473dc3c"
+  },
+  "to_id": "art:test-impact-of-diff"
+}

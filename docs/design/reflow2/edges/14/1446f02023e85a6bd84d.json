@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57a00b58a1c7635d244db9356ab4d8b10bc4b996075c8b9f2d942fb51671ee19",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0810",
+  "properties": {
+    "as_checksum": "sha256:ef034ce196d5a466cbff2c0ab343b2ce7ad8dd0859ff1f4c329e2645d8725dc4"
+  },
+  "to_id": "art:test-a-setup-command-chooses-local-or-remote-once"
+}
