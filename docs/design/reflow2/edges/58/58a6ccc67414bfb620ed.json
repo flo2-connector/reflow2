@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a06b796976356bc30c5139efcf46d73b500cd06a2f8dccc04cd473b91ca742cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-family-check-is-measured-and-a-reference-check-is-kept-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:the-dev-reflow2-family-holds-five-facts-twice-and-a-similarity-sweep-finds-a-duplicate-one-time-in-eight-2026-10-09"
+}

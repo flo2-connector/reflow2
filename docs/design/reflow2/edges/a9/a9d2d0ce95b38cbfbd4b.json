@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7db61ea5cc930ae5fcda259f6a5269a56a54ff5b79b80ff57660bdc842fd558f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-family-check-is-measured-and-a-reference-check-is-kept-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "req:a-record-that-names-another-designs-record-in-its-text-is-offered-a-typed-link-and-flagged-when-their-statuses-disagree"
+}
