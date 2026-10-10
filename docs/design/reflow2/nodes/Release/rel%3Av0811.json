@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d29384c6e10553a1afc273ad7af4a9a07542c61cc7aacfe0856198c2cb9e0131",
+  "node_id": "rel:v0811",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-09 on Anthony's word (\"Then start taking care of the blocker\"): the blocker to moving reflow2's design onto flo2.io was loop_status over the gateway's 30 s door, fixed by #707. Patch: no tool, argument, reply field or schema change.",
+    "name": "v0.81.1 — loop_status is fast again on a large design",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.81.1"
+  }
+}

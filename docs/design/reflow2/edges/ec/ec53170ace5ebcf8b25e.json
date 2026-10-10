@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f0ac150c6e981dfa723a0f5de73cff85c8e5cb236c481bef1c3ac6be72c7b61b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:bc2c77f761e7a7142338dde8baf3a486527f4b982ce1165b120651bd4d471c0d"
+  },
+  "to_id": "art:the-build-question-is-silent-while-nothing-is-built-test"
+}

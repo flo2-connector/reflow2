@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:80e63bf5aea5ceca48f3d24939596fb3577036ba72bd50f36839038efc7c993b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:eb50362700e967ba24b571aa5791531966038d868ea2d93b56ba9a183cc95347"
+  },
+  "to_id": "art:frontier"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dc6ab6a6af9d2e77bf8bbf4ec18aec89cfcb1ba25154727a0713d35529c33d62",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:0a8810fd4579f11315637db7f98e919433962d689c97c971eebd71e296b39d3e"
+  },
+  "to_id": "art:vscode-hook-file"
+}
