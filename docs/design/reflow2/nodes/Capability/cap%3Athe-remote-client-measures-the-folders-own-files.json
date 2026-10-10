@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:487beb49986d7b22e7e46520d1f49c58bccfcfcdbb997c9e7b44e07b9c4177a4",
+  "node_id": "cap:the-remote-client-measures-the-folders-own-files",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Combined plan position 7 (epoch:planned-local-files-are-measured-for-a-remote-design), point 3 of req:a-local-client-works-against-a-remote-reflow2-server-by-url. A design served from flo2.io or a registry holds no tree, so a checksum-less link_artifact, set_artifact_checksum(s) or reconcile_artifacts was refused by name or recorded whatever the agent typed. The one process that can see the folder, the person's own reflow2-mcp client (crates/reflow2-mcp/src/client_measure.rs, called from proxy.rs's per-line task), now intercepts those four tools by parsed method and tool name, measures with the server's own code (crate::measure: sha256 over raw bytes, a URI never looked for on disk, an escape from the root refused unread, a directory never hashed) and injects the checksums. The server records them as asserted; the reply's `measurement` block says the value was measured on this machine by the client and under which root, with the server's own block beside it under `server`. THE ROOT, NEVER A GUESS: the folder holding .reflow2.toml for a pointer-attached client, --tree-root for a bare --remote client, an explicit --tree-root winning in both; with neither nothing is measured, the current directory is never used, and the reply says so (`client: {measured: false, why: \"no_root\"}`). link_artifact with no checksum: the location (given, or the stored one via an internal get_node) is measured; an unmeasurable one is forwarded as it came and the reply names why. set_artifact_checksum(s): each checksum-less item's stored location is read, measured, injected; an unmeasurable one is refused locally with the server's own wording as JSON-RPC -32602 and nothing is sent, the batch all-or-nothing. reconcile_artifacts with no observed: every Artifact is paged with an internal scan_nodes and sent as `observed` the way measure_registered builds it. Items already carrying a checksum pass through untouched; internal calls carry the client's own ids and never reach the agent's stream; the read-only screen runs first. Additive only: nothing on the wire changes for anyone not using the remote client, and the server is untouched. NOT HERE: loop_status's `artifacts` block (needs a server surface change); extra roots (dec:idea-a-design-measures-under-a-configured-list-of-extra-roots). Built 2026-10-10, commit f792e88dc. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "distinct_from": [
+      "epoch:planned-local-files-are-measured-for-a-remote-design"
+    ],
+    "name": "The person's own remote client measures the folder's files for link_artifact, set_artifact_checksum(s) and reconcile_artifacts, and sends the checksums as asserted, saying so in the reply",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

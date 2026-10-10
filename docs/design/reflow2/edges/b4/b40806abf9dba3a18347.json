@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:890f442b0a1df386ea987063d6c786d794c2ff7910967ca2dabd15965fa04310",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
+}

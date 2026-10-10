@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:05137dd29e2068ac163768e8cb7910bb2202aab2efb65b30f6b917d1b6c93bad",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:rocksdb-checkpoints-sst-ingestion-and-a-shared-block-cache-are-measured-as-speed-ups-for-the-cross-design-layer",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:fccf4888b9b538d6e54a7ad096b0b2e1702700e89f08f5e7bb144e932e4c4cc1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-composed-analysis-across-a-familys-designs-writes-its-seam-gaps-back-to-the-hub",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
