@@ -1,0 +1,2 @@
+### Changed
+- **For contributors to reflow2: reflow2's own design now lives on flo2.io, at `https://api.flo2.io/g/reflow2/mcp`.** Record design changes there: hold the design with `tools/reflow2_design_copy.py hold`, and take the copy CI reads last, with `copy`. `.reflow2.toml` names the hosted design, so a session in this repository no longer opens the local store, and a one-shot command on `./.reflow2/graph` here is refused. To work locally, import `docs/design/reflow2/` into a store outside `.reflow2/`. Nothing changes for anyone using reflow2.

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4b8bcdab259dfb6fb2a04cc6f1be80f7d768f11de0410bea204edfc1375473ed",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-cut-exports-the-record-once-from-the-new-binary",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

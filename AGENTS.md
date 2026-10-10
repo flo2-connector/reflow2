@@ -89,6 +89,11 @@ python3 tools/test_init.py
 # refuse then. A writer that succeeds writes the export before exiting —
 # `--export-to`, else the one the project's MCP config names — and stderr says
 # where; exit 3 means the write landed and the export could not be written.
+#
+# IN THIS REPOSITORY, `.reflow2/graph` IS REFUSED: since 2026-10-10 `.reflow2.toml`
+# names reflow2's design on flo2.io, and a one-shot command never opens the store
+# the move left behind. Point --graph-path at a store you imported from
+# docs/design/reflow2/ (the import below), or reach the design itself over MCP.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 # The same door with the read/write split in the command text, for a terminal
@@ -116,8 +121,9 @@ EOF
 # Load a design into a graph without speaking MCP — the sibling of --export.
 # Upsert, so it layers onto whatever is there. Takes `-` for stdin, so an export
 # on one machine pipes into an import on another. The graph is single-writer:
-# stop any running MCP server first, and the error says so if you forget.
-./target/release/reflow2-mcp --graph-path .reflow2/graph --import docs/design/reflow2/
+# stop any running MCP server first, and the error says so if you forget. In
+# this repository, import into a path outside `.reflow2/` (see above).
+./target/release/reflow2-mcp --graph-path /tmp/reflow2-local/.reflow2/graph --import docs/design/reflow2/
 # (--import, import_graph, --diff and compare_designs take either saved form: the
 # item layout's directory, or a single-file export such as docs/design/reflow2.json.)
 
@@ -235,7 +241,15 @@ checksum-verified binary and never compiles. It matters for contributors, and fo
 platform with no prebuilt asset, whom the installer deliberately refuses and redirects to a
 source build.
 
-**The MCP server this repo runs on its own design graph is launched via
+**reflow2's own design is on flo2.io since 2026-10-10, and `.reflow2.toml` names it.** Reach it
+with an `http` entry in your `.mcp.json`, `{"type": "http", "url": "https://api.flo2.io/g/reflow2/mcp"}`.
+Your MCP client signs in through flo2.io, and you must be a member of the design; Anthony adds
+members. reflow2's own client cannot sign in to flo2.io yet
+(`epoch:planned-reflow2-signs-in-as-an-oauth-client`). So the launcher below, started in this
+folder, attaches nothing, opens no local store, and serves one tool that says why. It remains the
+way to serve a LOCAL store, which is the break-glass path in "The design record" below.
+
+**The MCP server this repo ran on its own design graph is launched via
 [`tools/reflow2-mcp-launch.sh`](tools/reflow2-mcp-launch.sh)** (wired in `.mcp.json`), not a raw
 binary. **Since 2026-09-12 it serves `target/release/reflow2-mcp` and does not build it**
 (`req:a-session-runs-a-release-binary`). Measured on the same bytes with only the profile
@@ -489,11 +503,13 @@ on each `--call` write there, or `export_graph` to that path when you are done.
 > moves at the shared file-write seam, so a deliberate export is still yours to make whenever you
 > want one. A read-only server is refused the write-through outright.
 
-**Once reflow2's design is on flo2.io: write there, copy last, one design PR at a time.** The
-design moves to flo2.io in phase 2 of `dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local`
-(option c1, Anthony 2026-10-09). **Until that move lands, record exactly as above.** From the
-move on, the one live design is `reflow2` on flo2.io. `docs/design/reflow2/` is a copy of it for CI,
-refreshed by `tools/reflow2_design_copy.py`:
+**Since 2026-10-10 reflow2's design is on flo2.io: write there, copy last, one design PR at a
+time.** It moved in phase 2 of `dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local`
+(option c1, Anthony 2026-10-09). The one live design is `reflow2` on flo2.io. The paragraphs above
+still describe the committed copy: its layout, its per-item lineage, and how it merges. The local
+store and write-through they describe are now the break-glass path at the end of this section.
+`docs/design/reflow2/` is a copy of the live design for CI, refreshed by
+`tools/reflow2_design_copy.py`:
 
 1. **Hold the design before your first design write.** Run `python3 tools/reflow2_design_copy.py hold`
    on your branch. It compares the hosted design with main's copy and says whether you may begin.
@@ -734,8 +750,8 @@ joined by *traceability* edges) for HEAL's topology detectors.
   places**: accept the `reflow2.toml` version drift BEFORE freezing the manifest, rebuild the
   binary after the version bump and before the export, and export LAST because it costs the
   session its MCP access.
-  - **Once reflow2's design is on flo2.io, the cut writes its record there,** while flo2.io still
-    runs the PREVIOUS release. Step 6 becomes the copy, taken by the cut's own freshly built binary,
+  - **Since reflow2's design moved onto flo2.io (2026-10-10), the cut writes its record there,**
+    while flo2.io still runs the PREVIOUS release. Step 6 becomes the copy, taken by the cut's own freshly built binary,
     so the stamp and each item's lineage are the new release's:
     `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/reflow2_design_copy.py copy`. Nothing is
     stopped and no session loses MCP. The cut is a design PR like any other, so hold the design

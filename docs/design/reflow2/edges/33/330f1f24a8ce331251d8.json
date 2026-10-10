@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b649b5e5943543293682efcbc16e892b4196f52ef5e0ae372eeb3d901bb1d99d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-design-pr-holds-reflow2s-hosted-design-and-copies-it-in-last",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

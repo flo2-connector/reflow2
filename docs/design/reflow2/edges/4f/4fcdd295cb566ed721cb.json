@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f431e73512c08262506d7ce3d45444988b3f325420b1c4e08cb363c032680b93",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b46604cd3179c4b7",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:bf24b6bb30e0dcc3aa862b1b3770473a436d19e35ab80744788dbeae584bf4b7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reflow2-design-pointer"
+}

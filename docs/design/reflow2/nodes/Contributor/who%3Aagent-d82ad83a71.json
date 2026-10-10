@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9281f9735582b52e13175bedd4b0035b42eae3a7e0f2abe944de1e882ee749bf",
+  "node_id": "who:agent-d82ad83a71",
+  "node_type": "Contributor",
+  "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+  }
+}

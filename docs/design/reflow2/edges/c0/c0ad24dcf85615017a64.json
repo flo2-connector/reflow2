@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:501aab4bc0d4f665e805a53b112a2da431e617d0a586c19fcdf81bf9e59fe85e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:reflow2-design-pointer",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
