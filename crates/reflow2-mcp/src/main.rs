@@ -1668,7 +1668,16 @@ async fn main() -> anyhow::Result<()> {
         };
         reflow2_mcp::proxy::check_remote_url(&url, bearer.is_some())?;
         tracing::info!(remote = %url, credential = bearer.is_some(), "working against a remote reflow2 server");
-        return reflow2_mcp::proxy::run_remote(&url, bearer, cli.read_only).await;
+        // The folder's files are measured HERE, under `--tree-root` when one
+        // was given; with none, nothing is measured and the current directory
+        // is never guessed (`reflow2_mcp::client_measure`).
+        let root = cli.tree_root.as_deref().map(|r| {
+            (
+                std::path::PathBuf::from(r),
+                reflow2_mcp::client_measure::RootSource::TreeRoot,
+            )
+        });
+        return reflow2_mcp::proxy::run_remote(&url, bearer, cli.read_only, root).await;
     }
 
     // THE OAUTH RESOURCE SERVER (`reflow2_mcp::bearer`), when the operator
@@ -3467,7 +3476,24 @@ async fn attach_to_named_design(
     );
     eprintln!("reflow2: {told}");
     tracing::info!(remote = %address, design = %pointer.design.id, "attached to the design this folder names");
-    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told), cli.read_only).await
+    // The folder's files are measured HERE, under the folder that holds the
+    // pointer — the one place a design's files are known to live when the
+    // design itself is elsewhere. An explicit `--tree-root` wins, as it does
+    // for a served design (`with_cli_tree_root`).
+    let root = match cli.tree_root.as_deref() {
+        Some(r) => Some((
+            std::path::PathBuf::from(r),
+            reflow2_mcp::client_measure::RootSource::TreeRoot,
+        )),
+        None => pointer.path.parent().map(|folder| {
+            (
+                folder.to_path_buf(),
+                reflow2_mcp::client_measure::RootSource::PointerFolder,
+            )
+        }),
+    };
+    reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told), cli.read_only, root)
+        .await
 }
 
 /// Serve the degraded surface on stdio: one tool, and `reason` in the handshake,

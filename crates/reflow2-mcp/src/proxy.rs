@@ -19,6 +19,7 @@
 //! someone adds a push. If that ever changes, this file is where it breaks, and
 //! it breaks loudly (a message with no request to answer).
 
+use crate::client_measure::{ClientMeasure, Prepared, RootSource};
 use crate::mcp_http::{CALL_TIMEOUT, PROBE_TIMEOUT, SessionGone, post, post_with};
 use crate::read_only_client::{Forwarder, ReadOnlyClient, Screened};
 use anyhow::{Context, bail};
@@ -624,20 +625,30 @@ impl Forwarder for Remote {
 }
 
 /// Forward this session's stdio JSON-RPC to a REMOTE reflow2 until stdin ends.
-/// `read_only` is the session's `--read-only` (see [`run`]).
-pub async fn run_remote(url: &str, bearer: Option<String>, read_only: bool) -> anyhow::Result<()> {
-    run_remote_with_notice(url, bearer, None, read_only).await
+/// `read_only` is the session's `--read-only` (see [`run`]); `root` is where
+/// this client measures the folder's own files, or `None` to measure nothing
+/// ([`crate::client_measure`]) — REQUIRED like `read_only`, so no client mode
+/// can forward without deciding it.
+pub async fn run_remote(
+    url: &str,
+    bearer: Option<String>,
+    read_only: bool,
+    root: Option<(std::path::PathBuf, RootSource)>,
+) -> anyhow::Result<()> {
+    run_remote_with_notice(url, bearer, None, read_only, root).await
 }
 
 /// `run_remote`, with `notice` put in front of the server's handshake
 /// instructions — the one channel every agent reads unasked. A folder's
 /// `.reflow2.toml` uses it to say which design the session was attached to
-/// and that a local store was left alone (`crate::pointer`).
+/// and that a local store was left alone (`crate::pointer`). When the client
+/// has a root to measure under, that is said there too.
 pub async fn run_remote_with_notice(
     url: &str,
     bearer: Option<String>,
     notice: Option<String>,
     read_only: bool,
+    root: Option<(std::path::PathBuf, RootSource)>,
 ) -> anyhow::Result<()> {
     let up = Arc::new(Remote {
         url: url.to_string(),
@@ -650,6 +661,15 @@ pub async fn run_remote_with_notice(
         eprintln!("reflow2: {}", screen.banner());
         Arc::new(screen)
     });
+    // The measuring half: the one process that can see the folder hashes its
+    // files for the server, which cannot (`crate::client_measure`).
+    let measurer = Arc::new(ClientMeasure::new(root));
+    eprintln!("reflow2: {}", measurer.banner());
+    let notice = match (notice, measurer.notice()) {
+        (Some(n), Some(m)) => Some(format!("{n}\n\n{m}")),
+        (None, Some(m)) => Some(m),
+        (n, None) => n,
+    };
     let out = Arc::new(Mutex::new(tokio::io::stdout()));
     let mut lines = BufReader::new(tokio::io::stdin()).lines();
     let mut tasks = tokio::task::JoinSet::new();
@@ -682,25 +702,38 @@ pub async fn run_remote_with_notice(
         let up = Arc::clone(&up);
         let out = Arc::clone(&out);
         let screen = screen.clone();
+        let measurer = Arc::clone(&measurer);
         tasks.spawn(async move {
             let replies = match screened(screen.as_deref(), &line, &*up).await {
                 // Refused by the read-only screen: answered here, nothing sent.
                 Err(answers) => answers,
-                Ok((body, lists_tools)) => match up.send(body).await {
-                    Ok(messages) => {
-                        if lists_tools && let Some(s) = &screen {
-                            s.learn(&messages).await;
+                // Screened first, measured second: the screen judges the call
+                // (a read-only session refuses these writers before any file
+                // is touched), and the measurement only adds a checksum to the
+                // call that was judged.
+                Ok((body, lists_tools)) => match measurer.prepare(&body, &*up).await {
+                    // Unmeasurable where a baseline would move: answered here,
+                    // nothing sent (the server's own refusal, from this side).
+                    Prepared::Answer(answers) => answers,
+                    Prepared::Forward { body, after } => match up.send(body).await {
+                        Ok(messages) => {
+                            if lists_tools && let Some(s) = &screen {
+                                s.learn(&messages).await;
+                            }
+                            match &after {
+                                Some(a) => measurer.rewrite(messages, a),
+                                None => messages,
+                            }
                         }
-                        messages
-                    }
-                    Err(e) => remote_error(&line, &up.url, &format!("{e:#}"))
-                        .map(|m| vec![m])
-                        .unwrap_or_else(|| {
-                            tracing::error!(
-                                "forwarding to the remote reflow2 server failed: {e:#}"
-                            );
-                            Vec::new()
-                        }),
+                        Err(e) => remote_error(&line, &up.url, &format!("{e:#}"))
+                            .map(|m| vec![m])
+                            .unwrap_or_else(|| {
+                                tracing::error!(
+                                    "forwarding to the remote reflow2 server failed: {e:#}"
+                                );
+                                Vec::new()
+                            }),
+                    },
                 },
             };
             let mut w = out.lock().await;
