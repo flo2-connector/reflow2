@@ -48,7 +48,9 @@ readers:
   compare.rs::changelog_point: { kind: unjudged, edges: [AT_EPOCH] }
   compare.rs::changelog_view: { kind: unjudged, edges: [AT_EPOCH, CHANGED] }
   compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
-  confirm.rs::confirmation_ledger: { kind: unjudged, edges: [ALLOCATED_TO, CHANGED, DEPENDS_ON, REALIZES, VERIFIES] }
+  confirm.rs::artifact_claims: { kind: not_derived, edges: [CHANGED, DEPENDS_ON], why: "A counter over ONE artifact's own history: its DriftEvents (incoming DEPENDS_ON) and its accepted changes (incoming CHANGED with accepted_baseline), each read once per ledger and summed per capability by confirmation_ledger. It derives no relation." }
+  confirm.rs::confirmation_ledger: { kind: unjudged, edges: [ALLOCATED_TO, CHANGED, REALIZES, VERIFIES] }
+  confirm.rs::event_claim: { kind: not_derived, edges: [CHANGED], why: "Classifies ONE accepting ChangeEvent once per ledger: whether it is a first baseline, its date, and which non-Artifact nodes it CHANGED, which decides whether an accept moved the design. It derives no relation." }
   consumption.rs::has_a_recorded_consumer: { kind: unjudged, edges: [DEPENDS_ON, INTERACTS_WITH, PART_OF_FLOW] }
   crosslink.rs::design_references: { kind: not_derived, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DECOMPOSES, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, GOVERNED_BY, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES], why: "A listing: every reference to a node in another design, with the review-relation, DECOMPOSES and GOVERNED_BY edges drawn to or from it, as they are. It computes no relation." }
   depends.rs::declare_external_dependency: { kind: unjudged, edges: [REQUIRES_RESOURCE] }

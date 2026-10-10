@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c6ac6ccf330f6eb606a44fc84ee373e326130fd391f47e4165b6d918519a6ae6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-593f4a89d52783af",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:9cb937478889da17cdc48d7757eb1f31b03938289ce6a3f1d242e2f2a504edfa",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}
