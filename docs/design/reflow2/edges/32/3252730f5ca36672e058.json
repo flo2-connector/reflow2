@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2bc15d07e32621f9c899d963710e31a0e0b0230ea87b3b63f88d8317146fbbc1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:a-member-store-can-record-an-export-path-into-its-hub-on-main-and-the-hub-skill-does-not-say-so-2026-10-09"
+}
