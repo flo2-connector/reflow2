@@ -17,5 +17,6 @@
     ],
     "type": "object"
   },
-  "name": "get_skill"
+  "name": "get_skill",
+  "title": "Get a Skill"
 }

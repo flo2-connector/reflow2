@@ -105,5 +105,6 @@
     ],
     "type": "object"
   },
-  "name": "record_change"
+  "name": "record_change",
+  "title": "Snapshot Before a Change (Old Name)"
 }

@@ -56,5 +56,6 @@
     ],
     "type": "object"
   },
-  "name": "set_evidence_scope"
+  "name": "set_evidence_scope",
+  "title": "Set Evidence Scope"
 }

@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Record what someone said in reply to a question, closing it — and in the same call WHO said it (`answered_by`, a Contributor: the person it was put to, their delegate, or the chat user) and the node that now holds it (`record`, linked for you, so no second call). Omit either and the reply says so; neither is guessed, and a reply naming nobody is never credited to the chat user or to whoever replied before. A name that resolves to nothing is REFUSED and nothing is written. Write the design nodes the reply implies first — this is the record that it was settled, not a substitute for the design. Takes EITHER `gap_id` or `question_id`; `open_questions` publishes both and either is accepted, because a Question this graph did not derive from a gap is reachable only by its own id. Answering one that was never asked is refused, not silently accepted — distinct from the withdraw_* tools, which no-op on an absent record — and the refusal names the ids that DO exist.",
@@ -82,5 +83,6 @@
     ],
     "type": "object"
   },
-  "name": "answer_question"
+  "name": "answer_question",
+  "title": "Answer a Question"
 }

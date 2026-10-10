@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "sync_status"
+  "name": "sync_status",
+  "title": "Sync Status"
 }

@@ -38,5 +38,6 @@
     },
     "type": "object"
   },
-  "name": "detect_gaps"
+  "name": "detect_gaps",
+  "title": "Detect Gaps"
 }

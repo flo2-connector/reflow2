@@ -27,5 +27,6 @@
     ],
     "type": "object"
   },
-  "name": "find_skills"
+  "name": "find_skills",
+  "title": "Find a Skill"
 }

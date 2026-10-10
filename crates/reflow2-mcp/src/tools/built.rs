@@ -69,7 +69,8 @@ fn artifact_has_baseline(g: &DesignGraph, artifact_id: &str) -> Result<bool, Mcp
 impl ReflowService {
     #[tool(
         description = "Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. Records the source, the version (a tag or commit), the parts taken, and the build switches forwarded BY NAME. This is what you MEAN to depend on; reconcile_dependencies compares it against what the build actually resolves, and returns the manifest. A declaration without a version is refused. Pass `graph_id` when the dependency is ITSELF a reflow2 design, which makes it composable from this committed file rather than from a per-machine config — omit it otherwise: absent means 'nobody has said'. Re-declaring keeps whatever you leave out, and replies with a receipt.",
-        annotations(read_only_hint = false)
+        title = "Declare an External Dependency",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn external_dependency(
         &self,
@@ -303,6 +304,7 @@ impl ReflowService {
 
     #[tool(
         description = "Has the design this one DEPENDS ON moved since the declaration was made? The second check req:design-dependencies-declared names, and the half never built — reconcile_dependencies answers the other one, against the BUILD. Walks the declared dependencies naming another reflow2 design AND an export or `design_address`, reads each WITHOUT IMPORTING IT, and compares against what was recorded at declaration time. Importing is the obvious route and the wrong one: an import into a store already holding a design keeps the HOST'S name and absorbs the incoming nodes, so watching that way swallows the thing watched. REPORTS, and silence is reported rather than assumed: `moved`, `unchanged`, `never_seen` (declared, nobody has looked yet), `missing`, `unreadable`, `graph_id_mismatch` (that export belongs to a different design), `not_watched` (names a design, gives nothing to watch) and `not_observed` (the bounded pass skipped it). IT NEVER UPDATES THE BASELINE — a check that refreshed what it compares against would report a move once and then go quiet forever; read what changed, then re-declare. An empty answer means nothing is declared to watch, NEVER that nothing moved. Ask for this to learn whether a design or library we depend on has changed, moved or been updated since we last checked or pinned it.",
+        title = "Upstream Status",
         annotations(read_only_hint = true)
     )]
     pub async fn upstream_status(
@@ -339,6 +341,7 @@ impl ReflowService {
                        files — Cargo.toml, docker-compose.yml, versions.env, whatever holds the \
                        pins. Declaring nothing reads as 'nobody has said', never as 'depends on \
                        nothing'.",
+        title = "Reconcile Dependencies",
         annotations(read_only_hint = true)
     )]
     pub async fn reconcile_dependencies(
@@ -380,6 +383,7 @@ impl ReflowService {
                        refused with what to do. Served since 2026-09-14 because a consumer re-wrote it by hand \
                        25 days after it was built here. `root` points at another checkout; `budget_chars` \
                        bounds the report.",
+        title = "Wall Check",
         annotations(read_only_hint = true)
     )]
     pub async fn wall_check(
@@ -417,7 +421,8 @@ impl ReflowService {
                        reporting zero. The result's `propagation_seeds` are the design nodes the \
                        changes land on — feed them to `propagate_from` to see what a code change \
                        means upstream. The reply is bounded (`budget_chars`); counts survive the cut.",
-        annotations(read_only_hint = false)
+        title = "Reconcile Artifacts",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn reconcile_artifacts(
         &self,
@@ -482,7 +487,8 @@ impl ReflowService {
                        design erodes into fiction over N fix cycles while reporting zero gaps. \
                        Until you accept, the same checksum_change is reported on every reconcile. \
                        An artifact with NO checksum yet has exactly one legal disposition, so whatever you pass for it is READ as `baseline_established` — a first baseline, nothing moved, the design takes no position — and the reply's change_event_id (`chg:baseline-…`) says so; no CHANGED edge is drawn. Refused inside a batch, that case used to discard the rest (2026-09-07).",
-        annotations(read_only_hint = false)
+        title = "Accept an Artifact Checksum",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_artifact_checksum(
         &self,
@@ -537,7 +543,8 @@ impl ReflowService {
                        inferred, in particular never from the file's path, because that would \
                        encode one project's layout. Omitted fields are left alone; every other \
                        property is preserved.",
-        annotations(read_only_hint = false)
+        title = "Set Artifact Intent",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_artifact_intent(
         &self,
@@ -565,7 +572,8 @@ impl ReflowService {
                        NONE OF IT — every item is attempted so you learn every failure at once, \
                        and if anything failed no baseline moves. \
                        Ask for this to accept several files' new content at once.",
-        annotations(read_only_hint = false)
+        title = "Accept Many Artifact Checksums",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_artifact_checksums(
         &self,
@@ -637,7 +645,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this when you want to register a file, drawing or document in the design.",
-        annotations(read_only_hint = false)
+        title = "Add an Artifact",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_artifact(
         &self,
@@ -684,7 +693,8 @@ impl ReflowService {
 
     #[tool(
         description = "Link an Artifact to the Capability or Component it REALIZES — the file, drawing or binary that implements it, as opposed to one that merely describes it (`documents`). This is the as-built half of the design: a capability nothing realizes is raised as `unrealized_capability`, and `reconcile_artifacts` compares each realizing file's checksum against its recorded baseline to catch drift. `link_artifact` does this in one call with provenance and a checksum, and is the better door; use this when the Artifact node already exists. Ask for this when you want to record that a real file implements a capability or part.",
-        annotations(read_only_hint = false)
+        title = "Link an Artifact to What It Realizes",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn realizes(
         &self,
@@ -701,7 +711,8 @@ impl ReflowService {
                        drifted out of step with the design — not every file. Fails loud if \
                        either endpoint is missing. Distinct from REALIZES (implementation) \
                        and SPECIFIES (machine-readable contract).",
-        annotations(read_only_hint = false)
+        title = "Link an Artifact to What It Documents",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn documents(
         &self,
@@ -724,7 +735,8 @@ impl ReflowService {
                        agrees. Ask for this when you want to record that \
                        a source file or document implements a capability or part — register the file against \
                        the design.",
-        annotations(read_only_hint = false)
+        title = "Link a File to the Design",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn link_artifact(
         &self,

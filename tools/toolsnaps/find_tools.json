@@ -27,5 +27,6 @@
     ],
     "type": "object"
   },
-  "name": "find_tools"
+  "name": "find_tools",
+  "title": "Find a Tool"
 }

@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "consumption_report"
+  "name": "consumption_report",
+  "title": "Consumption Report"
 }

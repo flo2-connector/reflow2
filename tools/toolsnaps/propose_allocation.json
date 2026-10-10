@@ -18,5 +18,6 @@
     ],
     "type": "object"
   },
-  "name": "propose_allocation"
+  "name": "propose_allocation",
+  "title": "Propose an Allocation"
 }

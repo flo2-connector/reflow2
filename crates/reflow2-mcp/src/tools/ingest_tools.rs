@@ -68,7 +68,8 @@ impl ReflowService {
                        resolution bands that ask instead of guessing, and the structural pass \
                        that catches `Auth` versus `Authentication Service`. \
                        Ask for this to extract requirements and parts from a brief or a spec.",
-        annotations(read_only_hint = false)
+        title = "Ingest a Document",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn ingest_step(
         &self,
@@ -108,7 +109,8 @@ impl ReflowService {
                        whose fragment_id already exists comes back `skipped`, not `failed`, so pointing it at a \
                        grown folder ingests only what is new. Read `failures` before you trust the result — it \
                        names every document that could not be taken. Ask for this to extract design content from a set of documents.",
-        annotations(read_only_hint = false)
+        title = "Ingest a Corpus",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn ingest_corpus_step(
         &self,

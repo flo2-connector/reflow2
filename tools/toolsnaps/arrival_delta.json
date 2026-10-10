@@ -17,5 +17,6 @@
     ],
     "type": "object"
   },
-  "name": "arrival_delta"
+  "name": "arrival_delta",
+  "title": "Planned Versus Delivered"
 }

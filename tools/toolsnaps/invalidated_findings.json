@@ -20,5 +20,6 @@
     },
     "type": "object"
   },
-  "name": "invalidated_findings"
+  "name": "invalidated_findings",
+  "title": "Findings Claimed Answered"
 }

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:583c7dbc27096f1a32b66af656693899c22f33a94331f7061cdc18ef54e073a9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

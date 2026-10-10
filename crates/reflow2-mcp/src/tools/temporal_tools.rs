@@ -239,7 +239,8 @@ impl ReflowService {
                        sortable as a list. \
                        Ask for this when you want to record that one point in the design's history comes before another. \
                        Ask for this to say which epoch comes before which.",
-        annotations(read_only_hint = false)
+        title = "Order Two Epochs",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn precedes(
         &self,
@@ -254,7 +255,8 @@ impl ReflowService {
                        release_cut epoch, so the release and the design state it was cut from \
                        are joined on axis Z. Generic: AT_EPOCH is declared from any type. \
                        Ask for this when you want to snapshot or freeze how an item looks today, at a point in time, so it can be compared later.",
-        annotations(read_only_hint = false)
+        title = "Pin a Node to an Epoch",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn pin_at_epoch(
         &self,
@@ -282,7 +284,8 @@ impl ReflowService {
                        whose judgement it needed giving one. A WITHDRAWN question reports \
                        `discontinued`, not `outstanding`. Ask for this to put a piece of work into a release, \
                        increment or milestone.",
-        annotations(read_only_hint = false)
+        title = "Schedule Against an Epoch",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn schedule_for(
         &self,
@@ -310,6 +313,7 @@ impl ReflowService {
                        `notes` — it says what this computation cannot see. Ask for this when you want to know \
                        what was planned for a release or increment that did not actually ship — the \
                        planned-versus-delivered gap.",
+        title = "Planned Versus Delivered",
         annotations(read_only_hint = true)
     )]
     pub async fn arrival_delta(
@@ -335,6 +339,7 @@ impl ReflowService {
                        downstream — `needs_a_human` names that obligation instead of inventing \
                        it. Nothing is stored; a stored changelog would be a second source of \
                        truth able to disagree with the graph.",
+        title = "Changelog Draft",
         annotations(read_only_hint = true)
     )]
     pub async fn changelog_view(
@@ -368,7 +373,8 @@ impl ReflowService {
                        telemetry payload (`req:telemetry-carries-usage-never-design-content` — \
                        log the verb, never the object). \
                        Ask for this when you had to do it by hand because no tool did it.",
-        annotations(read_only_hint = false)
+        title = "Report Manual Work",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn report_manual_work(
         &self,
@@ -408,6 +414,7 @@ impl ReflowService {
                        (report_manual_work) only by word order, and the two were mistaken for \
                        each other. This name refuses and points at the new one; it is removed \
                        next release.",
+        title = "Manual Work Ledger (Old Name)",
         annotations(read_only_hint = true)
     )]
     pub async fn manual_work_report(&self) -> Result<CallToolResult, McpError> {
@@ -420,6 +427,7 @@ impl ReflowService {
 
     #[tool(
         description = "Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
+        title = "Manual Work Ledger",
         annotations(read_only_hint = true)
     )]
     pub async fn manual_work_ledger(
@@ -459,7 +467,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this when you want to mark a point in time in the design's history.",
-        annotations(read_only_hint = false)
+        title = "Add an Epoch",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_epoch(
         &self,
@@ -513,7 +522,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to schedule a milestone that has not arrived.",
-        annotations(read_only_hint = false)
+        title = "Plan an Epoch",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn plan_epoch(
         &self,
@@ -552,7 +562,8 @@ impl ReflowService {
                        arrival can be corrected; it is not a way to un-happen an epoch. \
                        Everything else about the epoch is preserved. CARRIES `prose_currency` WHEN THE STATUS ACTUALLY MOVES and the node holds prose: the description was written under the OLD status and this call did not touch it, so the block names both statuses and QUOTES the prose so you can judge it here rather than in another call. It never says the prose is wrong - only a person can. From a 2026-09-02 field report where a capability went `realized` twenty minutes after a description saying the fix was not installed, and nothing noticed. \
                        Ask for this to mark a planned milestone as having arrived.",
-        annotations(read_only_hint = false)
+        title = "Set Epoch Status",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_epoch_status(
         &self,
@@ -594,7 +605,8 @@ impl ReflowService {
                        the diff and the cause is not. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing.",
-        annotations(read_only_hint = false)
+        title = "Record a Finding",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn record_finding(
         &self,
@@ -809,7 +821,8 @@ impl ReflowService {
                        not touch. A PAST change explained today? Set `rationale_basis`. \
                        Ask for this to record that something changed and why — log a change and the \
                        reason.",
-        annotations(read_only_hint = false)
+        title = "Add a Change Event",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_change_event(
         &self,
@@ -986,6 +999,7 @@ impl ReflowService {
                        The old name shared its words with add_change_event and the two were \
                        mistaken for each other, measured on the agent building reflow2 itself. \
                        This name refuses and points at the new one; it is removed next release.",
+        title = "Snapshot Before a Change (Old Name)",
         annotations(read_only_hint = true)
     )]
     pub async fn record_change(
@@ -1015,7 +1029,8 @@ impl ReflowService {
                        SKILL FIRST (`get_skill`) — it propagates from what you are about to \
                        touch and shows the blast radius, so you edit what is actually \
                        affected and learn what rotted before the edit, not after.",
-        annotations(read_only_hint = false)
+        title = "Snapshot Before a Change",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn snapshot_before_change(
         &self,

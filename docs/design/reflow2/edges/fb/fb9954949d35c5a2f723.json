@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b7d6ad1e0cebcf25d4dd97baa12b811df70cfba373901f7d57b5a3c72df4e46f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tools-ingest",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

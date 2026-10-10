@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25bdea5e0e8c0dc5b3f729c13a036192638f10783babe381f03c81e8e625108d",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-ask",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-served-tool-carries-a-title-and-every-writer-says-whether-it-destroys"
+}

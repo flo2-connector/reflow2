@@ -35,5 +35,6 @@
     ],
     "type": "object"
   },
-  "name": "compare_designs"
+  "name": "compare_designs",
+  "title": "Compare Two Designs"
 }

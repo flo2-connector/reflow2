@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:54ebabb34180a3fc640a45c133a67de487885368751c3e805c5985196117175f",
+  "node_id": "req:a-nightly-check-on-the-box-runs-reflow2s-client-against-the-hosted-design-and-the-copy-retires",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2's repository holds code only: a nightly job on flo2.io's box runs reflow2's own client in a checkout of main against the hosted design and records the result as a Verification run, and the committed design copy with its gates retires",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "1. GitHub CI tests reflow2's code only. The design gate (reflow2_check --export), the design-only Python gates, the item-layout lineage, the worktree-private stores, the copy script and its one-PR hold, and the cut's export step all retire with the committed copy (docs/design/reflow2/), in one PR, once item 2 runs.\n2. A nightly job on flo2.io's droplet clones reflow2's main, runs reflow2's own client in that checkout against the hosted design `reflow2` (the client measures the folder's files: combined position 7), and records the outcome in the design as a Verification run with findings: which registered files drifted from their accepted checksums, which capabilities claim a check that did not run. loop_status then shows the drift to the next session. No credential leaves the box, and fork pull requests are unaffected.\n3. The release cut's record is written on the hosted design through the person's client (position 10), with no export step.\nAnthony, 2026-10-10, kept option (d) of dec:idea-reflow2-becomes-a-plain-code-repo-and-the-design-check-moves-to-the-box. Kept beside it: a nightly check is not a per-PR gate (a breaking PR is caught the next morning); public readability of the design on GitHub ends until flo2.io has public designs; req:ci-checks-the-code-against-its-design-on-the-server needs the owner's rewording from \"CI\" to \"a check\".\nORDER: after position 7 lands; before position 10; position 11 is no longer gated on 9.",
+    "status": "accepted"
+  }
+}

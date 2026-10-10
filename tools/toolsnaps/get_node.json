@@ -96,5 +96,6 @@
     ],
     "type": "object"
   },
-  "name": "get_node"
+  "name": "get_node",
+  "title": "Get a Node"
 }

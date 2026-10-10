@@ -38,5 +38,6 @@
     },
     "type": "object"
   },
-  "name": "detect_defects"
+  "name": "detect_defects",
+  "title": "Detect Structural Defects"
 }

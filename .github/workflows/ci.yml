@@ -336,6 +336,12 @@ jobs:
         run: python3 tools/refusal_speaks.py
       - name: Toolsnaps — served surface matches the committed goldens (BL-76)
         run: python3 tools/toolsnap.py
+      - name: Every served tool carries a title, and every writing tool says whether it can destroy
+        # The toolsnaps pin the tools that EXIST; a new tool added with no
+        # `title` or no `destructiveHint` is a clean golden diff and a green
+        # build. This asks the whole served surface, on the wire
+        # (req:every-served-tool-carries-a-title-and-says-whether-it-destroys).
+        run: python3 tools/every_tool_carries_a_title.py
       - name: The confusability replica ranks as find_tools does
         # tools/tool_confusability.py scores the toolsnaps offline, and its
         # --baseline rewrites the find_tools rank ratchet. It agreed with the

@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Record that a design element SATISFIES an EnvironmentRule (COMPLIES_WITH). Pass `verified: true` ONLY when compliance was demonstrated — a calc package, a stamped drawing, a test report — and put what demonstrates it in `evidence`. It defaults to false because a claim is not a check, and the two must stay distinguishable to anyone reading the record later. Ask for this when you want to record that a part meets a regulation or rule the environment imposes. MANY AT ONCE: `draw_edges`, items {\"tool\": \"complies_with\", \"arguments\": {…}}, same checks, all or nothing.",
@@ -55,5 +56,6 @@
     ],
     "type": "object"
   },
-  "name": "complies_with"
+  "name": "complies_with",
+  "title": "Record Compliance With a Rule"
 }

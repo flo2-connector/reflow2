@@ -55,5 +55,6 @@
     },
     "type": "object"
   },
-  "name": "propagate_from"
+  "name": "propagate_from",
+  "title": "Blast Radius From a Node"
 }

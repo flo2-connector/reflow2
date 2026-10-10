@@ -1486,7 +1486,8 @@ impl ReflowService {
                        decisions here exceed 4 KB; 92 re-sends kept in full). Ask for this to replace \
                        one sentence in a decision or requirement's text, or to add a dated note to it, \
                        without rewriting the whole thing.",
-        annotations(read_only_hint = false)
+        title = "Replace One Piece of Text",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn replace_text(
         &self,
@@ -1619,7 +1620,8 @@ impl ReflowService {
                        first, then seed the brief into Requirements/Capabilities via the add_* \
                        tools and run detect_gaps. \
                        Ask for this when you want to start a brand-new design from scratch — set up a fresh project.",
-        annotations(read_only_hint = false)
+        title = "Start the Design",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn genesis(
         &self,
@@ -1648,7 +1650,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to start the top-level record of the thing being designed.",
-        annotations(read_only_hint = false)
+        title = "Add a Project",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_project(
         &self,
@@ -1712,7 +1715,8 @@ impl ReflowService {
                        touches with interacts_with. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing.",
-        annotations(read_only_hint = false)
+        title = "Add an Actor",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_actor(
         &self,
@@ -1755,7 +1759,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this when you want to write down something the system must do or must never do — a need, a shall-statement, a constraint the customer stated — so it is captured as intent.",
-        annotations(read_only_hint = false)
+        title = "Add a Requirement",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_requirement(
         &self,
@@ -1892,7 +1897,8 @@ impl ReflowService {
                        the wording. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE. Ask for this \
                        when you want to record a rule about how the team always or never does things — a \
                        convention or standard you hold yourselves to.",
-        annotations(read_only_hint = false)
+        title = "Add a Design Rule",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_design_rule(
         &self,
@@ -2040,7 +2046,12 @@ impl ReflowService {
                        STATEMENT (\"takes nothing in\" is a real claim about a source or a \
                        generator) and is distinct from nobody having said; and an unknown id is \
                        REFUSED rather than created.",
-        annotations(read_only_hint = false, idempotent_hint = true)
+        title = "Set Capability Signature",
+        annotations(
+            read_only_hint = false,
+            destructive_hint = false,
+            idempotent_hint = true
+        )
     )]
     pub async fn set_capability_signature(
         &self,
@@ -2076,7 +2087,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record something the system does — one function it performs, in a line.",
-        annotations(read_only_hint = false)
+        title = "Add a Capability",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_capability(
         &self,
@@ -2227,7 +2239,8 @@ impl ReflowService {
                        or dropped it — certainty is derived from this status, so promoting it \
                        yourself forges their signature (dec:certainty-derived). A `dropped` or \
                        `met` requirement stops raising unsatisfied_requirement.",
-        annotations(read_only_hint = false)
+        title = "Set Requirement Status",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_requirement_status(
         &self,
@@ -2267,7 +2280,8 @@ impl ReflowService {
                        `flexible` DEFAULT and could never move off it — a governance choice \
                        nobody made and nobody could revisit. The default records that nobody \
                        has chosen, not that flexible was chosen (req:mode-is-chosen-and-changeable).",
-        annotations(read_only_hint = false)
+        title = "Set Project Mode",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_project_mode(
         &self,
@@ -2295,7 +2309,8 @@ impl ReflowService {
                        gate. Ask for this when the user says what finished means for this project, \
                        or when closure_criterion_undeclared is raised. \
                        Ask for this to record how much of the design must be done before it counts as finished.",
-        annotations(read_only_hint = false)
+        title = "Set Closure Criterion",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_closure_criterion(
         &self,
@@ -2315,7 +2330,8 @@ impl ReflowService {
                        through its life; to record one that already ships, pass `status` to \
                        add_capability instead and save a write. CARRIES `prose_currency` WHEN THE STATUS ACTUALLY MOVES and the node holds prose: the description was written under the OLD status and this call did not touch it, so the block names both statuses and QUOTES the prose so you can judge it here rather than in another call. It never says the prose is wrong - only a person can. From a 2026-09-02 field report where a capability went `realized` twenty minutes after a description saying the fix was not installed, and nothing noticed. \
                        Ask for this to mark a capability as built.",
-        annotations(read_only_hint = false)
+        title = "Set Capability Status",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_capability_status(
         &self,
@@ -2353,7 +2369,8 @@ impl ReflowService {
                        type, so an alias can be wrong without making anything else wrong. \
                        Declared on Requirement, Capability, Component, Interface and Flow: the \
                        five that name a THING in the user's world.",
-        annotations(read_only_hint = false)
+        title = "Record an Alias",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn record_alias(
         &self,
@@ -2382,7 +2399,8 @@ impl ReflowService {
                        to tell. For bulk adoption prefer import_graph, which carries this at \
                        create time. \
                        Ask for this to record where an item came from.",
-        annotations(read_only_hint = false)
+        title = "Set Provenance",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_provenance(
         &self,
@@ -2413,7 +2431,8 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch.",
-        annotations(read_only_hint = false)
+        title = "Add a Component",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_component(
         &self,
@@ -2516,7 +2535,8 @@ impl ReflowService {
                        two components at the same level is reported as a level_mismatch, and \
                        skipping a level as a missing_intermediate_level. Set `level` on both via \
                        add_component first, or every containment looks like a mismatch.",
-        annotations(read_only_hint = false)
+        title = "Nest a Component in a Parent",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn contain_component(
         &self,
@@ -2543,7 +2563,8 @@ impl ReflowService {
                        enforced — hierarchy_issues is the authority. It does not snapshot for \
                        you: `history_note` names the record_change that preserves the previous \
                        parent, because the old containment is design history.",
-        annotations(read_only_hint = false)
+        title = "Move a Component",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn move_component(
         &self,
@@ -2555,7 +2576,8 @@ impl ReflowService {
 
     #[tool(
         description = "Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. `detect_gaps` raises `unsatisfied_requirement` on any requirement without one and `unmotivated_capability` on any capability without one, and delivery is COMPUTED along this edge (satisfied, and realized, and its check passing) rather than read from a status field, which is why it cannot be inflated by marking work done. `add_capability` draws this in the same call via its `satisfies` parameter. The types are resolved from the ids, so every pair the schema models is accepted. Ask for this when you want to record that a capability fulfils, meets or satisfies a requirement.",
-        annotations(read_only_hint = false)
+        title = "Link a Capability to a Requirement",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn satisfies(
         &self,
@@ -2577,7 +2599,8 @@ impl ReflowService {
                        decision may remove its reason to exist. Marks the child `decomposed`. \
                        Refuses a cycle: a tree that contains itself has no leaves and could never \
                        roll up.",
-        annotations(read_only_hint = false)
+        title = "Decompose a Requirement",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn decomposes(
         &self,
@@ -2596,7 +2619,8 @@ impl ReflowService {
                        where the need came from. The classes behave differently: delivery rolls up \
                        a decomposition, and a derived requirement may lose its reason to exist if \
                        the decision behind it is re-opened.",
-        annotations(read_only_hint = false)
+        title = "Set Requirement Lineage",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_requirement_lineage(
         &self,
@@ -2620,7 +2644,8 @@ impl ReflowService {
                        DESIGN this one is built against — a different concept that used to hold \
                        this name and was renamed to free it. Between two Capabilities it is the \
                        functional DAG and is accepted too; the types are resolved from the ids.",
-        annotations(read_only_hint = false)
+        title = "Record a Dependency",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn depends_on(
         &self,
@@ -2632,7 +2657,8 @@ impl ReflowService {
 
     #[tool(
         description = "Allocate a Capability to a Component (ALLOCATED_TO) — say WHICH PART of the design will provide the function. This is the structure half of the golden thread: `satisfies` says what need a capability serves, this says who owns delivering it. `evaluate_allocation` reads these edges to score modularity, and `detect_gaps` raises `unallocated_capability` on any capability without one. A capability may be allocated to more than one component; `propose_allocation` suggests a grouping from dependencies but never applies it. Ask for this when you want to record that a component owns, delivers or is responsible for a capability.",
-        annotations(read_only_hint = false)
+        title = "Allocate a Capability to a Component",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn allocate(
         &self,
@@ -2654,7 +2680,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record where two parts meet — the contract at the seam.",
-        annotations(read_only_hint = false)
+        title = "Add an Interface",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_interface(
         &self,
@@ -2709,7 +2736,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record a process made of ordered steps, end to end.",
-        annotations(read_only_hint = false)
+        title = "Add a Flow",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_flow(
         &self,
@@ -2745,7 +2773,8 @@ impl ReflowService {
 
     #[tool(
         description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
-        annotations(read_only_hint = false)
+        title = "Add a Step to a Flow",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn part_of_flow(
         &self,
@@ -2763,6 +2792,7 @@ impl ReflowService {
                        model left unstated (an unmatched entry/exit point, steps without step_order, \
                        transitions without a role) is confessed by name. Ask for this when you want to walk \
                        through an end-to-end process step by step and see what is missing from it.",
+        title = "Flow Report",
         annotations(read_only_hint = true)
     )]
     pub async fn flow_report(
@@ -2775,7 +2805,8 @@ impl ReflowService {
 
     #[tool(
         description = "Record that a Component PROVIDES an Interface — it is the side that implements the contract. `from_id` is the Component, `to_id` the Interface; the consuming side is `consumes`. Together the two edges are what `seam_coverage`, `seam_report` and `pair_designs` read to find where two parts, or two designs, meet — an Interface nothing provides is raised as `unprovided_interface` when something consumes it, and one nothing consumes is dead surface. The Interface's own contract axes (medium, paradigm, payload, auth …) live on it via `set_interface_spec`; this edge only says who implements it. Ask for this when you want to record that this component offers that interface — which component implements it.",
-        annotations(read_only_hint = false)
+        title = "Record a Provided Interface",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn provides(
         &self,
@@ -2793,7 +2824,8 @@ impl ReflowService {
                        recorded, `propagate_change` on either Component reaches the other, and `detect_gaps` \
                        reports a contract that is consumed but never provided. Ask for this when you want to \
                        record that a component uses, calls or depends on an interface.",
-        annotations(read_only_hint = false)
+        title = "Record a Consumed Interface",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn consumes(
         &self,
@@ -2806,7 +2838,8 @@ impl ReflowService {
     #[tool(
         description = "Link a Project to a child node it CONTAINS — project membership, so a Requirement, Capability or Component is counted under the project whose gaps and rollups it belongs to. NOT decomposition: a Component inside another Component is `contain_component` (adds a parent) or `move_component` (moves it on the spine). Most typed constructors draw this edge for you when a project exists; use it directly for nodes created with `create_node`. Ask for this when a node sits in no project and the reports are not seeing it. \
                        Ask for this to attach an item under its project.",
-        annotations(read_only_hint = false)
+        title = "Add a Node to a Project",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn contains(
         &self,
@@ -2839,7 +2872,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record a hard cap, a forbidden value, or a budget figure the design must stay inside.",
-        annotations(read_only_hint = false)
+        title = "Add a Constraint",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_constraint(
         &self,
@@ -2945,7 +2979,8 @@ impl ReflowService {
                        that nobody has built it yet, so inferring would report unbuilt work as \
                        delivered. Same shape as set_interface_designation — you declare the one \
                        thing only you can know, and the computation earns the rest.",
-        annotations(read_only_hint = false)
+        title = "Set Capability Delivery",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_capability_delivery(
         &self,
@@ -2975,7 +3010,8 @@ impl ReflowService {
                        NOT a claim the boundary has held; whether it stayed stable is its drift \
                        history. \
                        Ask for this to mark a contract as public, internal, or required from outside.",
-        annotations(read_only_hint = false)
+        title = "Set Interface Designation",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_interface_designation(
         &self,
@@ -3000,7 +3036,8 @@ impl ReflowService {
                        as set_interface_designation. It is NOT a claim the promise is kept; \
                        whether it held is its verification and drift history. \
                        Ask for this to mark a requirement as a public commitment.",
-        annotations(read_only_hint = false)
+        title = "Set Requirement Designation",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_requirement_designation(
         &self,
@@ -3030,7 +3067,8 @@ impl ReflowService {
                        contributors and set `composition: path`. \
                        Ask for this when you want to say how much a part contributes \
                        to a budget or limit — its share of the mass, latency, cost or other quantity.",
-        annotations(read_only_hint = false)
+        title = "Link a Constraint to Its Target",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn constrains(
         &self,
@@ -3051,6 +3089,7 @@ impl ReflowService {
                        path); `judged_on` and `composition_note` name which. Omit \
                        `constraint_id` to read them all at once. \
                        Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
+        title = "Budget Report",
         annotations(read_only_hint = true)
     )]
     pub async fn budget_report(
@@ -3132,6 +3171,7 @@ impl ReflowService {
                        is an id prefix deliberately retired, and reading it here would launder it \
                        back in. \
                        Ask for this to see whether our brainstormed ideas are connected to anything or floating.",
+        title = "Linking Report",
         annotations(read_only_hint = true)
     )]
     pub async fn linking_report(&self) -> Result<CallToolResult, McpError> {
@@ -3141,7 +3181,8 @@ impl ReflowService {
 
     #[tool(
         description = "Record what a node relates to — or that nothing does. Use it right after capturing an idea, decision or requirement, while the search you ran to check for duplicates is still in hand: those near-matches are the candidates, and today they are read once and thrown away. Draw the relations that are genuinely true (`CONTRADICTS`, `EVOLVES_INTO`, `DEPENDS_ON`, `CAUSES`, `TRIGGERS`, `BLOCKS`, `DUPLICATES`, `ANTICIPATES`, `OBSOLETES`, `RISKS`, `MITIGATES`, `MASKS`, `VIOLATES`), each with the reason in `evidence`. Two or three is a good outcome; ten is a smell, because relatedness is not similarity. If nothing is honestly related, pass `note` instead — that is a real answer, not a weaker one, and it is what tells a later reader this node was considered rather than never opened. NEVER invent a relation to have something to pass: a false neighbour is worse than a missing one, since anything that searches by neighbourhood repeats it forever. Refuses when you give neither.",
-        annotations(read_only_hint = false)
+        title = "Review a Node's Relations",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn review_relations(
         &self,
@@ -3196,7 +3237,8 @@ impl ReflowService {
                        then this here: an edge cannot cross a store, so each side is its own write. \
                        What the receiver holds is `proposed` until its owner accepts it. Ask for \
                        this to hand a requirement down to a part or send it to another project.",
-        annotations(read_only_hint = false)
+        title = "Send to Another Design",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn send_to_design(
         &self,
@@ -3236,7 +3278,8 @@ impl ReflowService {
                        what waits. Refused when the requirement here was already ruled on. Then call \
                        `send_to_design` in the sending design. Ask for this when another project \
                        hands you a requirement.",
-        annotations(read_only_hint = false)
+        title = "Receive From Another Design",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn receive_from_design(
         &self,
@@ -3275,7 +3318,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending a 2 KB field \
                        you did not touch. Ask for this when you want to write down a decision that was made and \
                        the reasoning behind it — an architecture decision record.",
-        annotations(read_only_hint = false)
+        title = "Add a Decision",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_decision(
         &self,
@@ -3545,7 +3589,8 @@ impl ReflowService {
                        one nobody has said anything about, NOT one whose answer went \
                        unwritten, and no report treats it as debt \u{2014} every design written \
                        before 2026-09-02 has answered questions and none of these edges.",
-        annotations(read_only_hint = false)
+        title = "Link a Record to the Question It Answers",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn answers(
         &self,
@@ -3572,7 +3617,8 @@ impl ReflowService {
                        QUOTES an old question looks identical from the outside. Ask for this to record that an \
                        item is subject to, governed by or falls under a decision or design rule — link it to \
                        whatever governs it.",
-        annotations(read_only_hint = false)
+        title = "Link a Node to What Governs It",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn governed_by(
         &self,
@@ -3592,7 +3638,8 @@ impl ReflowService {
                        value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for \
                        this when you want to record who is working on this design — a person or an agent \
                        contributing to it.",
-        annotations(read_only_hint = false)
+        title = "Add a Contributor",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_contributor(
         &self,
@@ -3632,7 +3679,8 @@ impl ReflowService {
                        Record it when a decision is MADE, not at session end — \
                        captured-when-decided is what keeps the authorship honest. \
                        Ask for this to record whose idea this was.",
-        annotations(read_only_hint = false)
+        title = "Attribute a Node to a Contributor",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn authored_by(
         &self,
@@ -3659,7 +3707,8 @@ impl ReflowService {
                        is never reported. Once recorded, `loop_status` with a `contributor_id` \
                        lists the open gaps standing on that person's ground. \
                        Ask for this when you want to record who owns or is accountable for a part.",
-        annotations(read_only_hint = false)
+        title = "Record a Node's Owner",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn owned_by(
         &self,
@@ -3682,7 +3731,8 @@ impl ReflowService {
                        timeouts and concurrency do NOT belong here: they are numeric limits with \
                        a unit and a direction, so record them as a `Constraint` and point it at \
                        this interface with `constrains`.",
-        annotations(read_only_hint = false)
+        title = "Set Interface Spec",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_interface_spec(
         &self,

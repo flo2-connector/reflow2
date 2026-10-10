@@ -36,5 +36,6 @@
     ],
     "type": "object"
   },
-  "name": "set_verification_kind"
+  "name": "set_verification_kind",
+  "title": "Set Verification Kind"
 }

@@ -301,7 +301,8 @@ impl LatentService {
                        a design another session is holding right now describes fine. Node counts \
                        are deliberately absent because counting would mean opening, and opening \
                        MINTS an identity where there is none — naming a design by the act of \
-                       looking at it is the very failure this prevents."
+                       looking at it is the very failure this prevents.",
+        title = "Describe Designs at Paths"
     )]
     pub async fn describe_designs(
         &self,
@@ -344,7 +345,8 @@ impl LatentService {
                        session that skipped this started a third design on a repo that already \
                        had two, one and two directories down, and nobody noticed until later. \
                        Starting one is cheap to do and awkward to undo, so the check is not \
-                       optional even when the user sounds certain."
+                       optional even when the user sounds certain.",
+        title = "Start a Design Here"
     )]
     pub async fn reflow2_start_design(
         &self,

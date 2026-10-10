@@ -34,5 +34,6 @@
     },
     "type": "object"
   },
-  "name": "export_graph"
+  "name": "export_graph",
+  "title": "Export the Design"
 }

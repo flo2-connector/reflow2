@@ -28,5 +28,6 @@
     },
     "type": "object"
   },
-  "name": "get_instructions"
+  "name": "get_instructions",
+  "title": "Get the Working Instructions"
 }

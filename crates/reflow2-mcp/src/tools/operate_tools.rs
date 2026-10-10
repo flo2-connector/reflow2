@@ -58,7 +58,8 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field.",
-        annotations(read_only_hint = false)
+        title = "Add a Release",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_release(
         &self,
@@ -114,7 +115,8 @@ impl ReflowService {
                        advisory one is not. Wire it with imposes, then answer it with \
                        complies_with or violates_rule. \
                        Ask for this to record a regulation, code or law the environment imposes on us.",
-        annotations(read_only_hint = false)
+        title = "Add an Environment Rule",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_environment_rule(
         &self,
@@ -149,7 +151,8 @@ impl ReflowService {
                        provisions; the same house on Mars faces 0.38 g and no atmosphere. A \
                        project may target more than one, and each brings its own imposed rules. \
                        Ask for this to record which environment a project runs in.",
-        annotations(read_only_hint = false)
+        title = "Record an Operating Environment",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn operates_in(
         &self,
@@ -161,7 +164,8 @@ impl ReflowService {
 
     #[tool(
         description = "Record that an Environment imposes an EnvironmentRule (IMPOSES) — the codes, standards and physical laws a place holds the design to, one edge per rule. An EnvironmentRule is imposed from OUTSIDE (a building code, a radiation environment, a regulatory regime); a rule the project sets for itself is a DesignRule and is recorded with `governed_by`/`violates_rule` instead. `reconcile_deployment` and the environment reports read these edges to ask whether a release deployed somewhere meets what that somewhere imposes. Ask for this when you want to record that an environment holds the design to a code, standard or physical constraint.",
-        annotations(read_only_hint = false)
+        title = "Record a Rule an Environment Imposes",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn imposes(
         &self,
@@ -179,7 +183,8 @@ impl ReflowService {
                        is not a check, and the two must stay distinguishable to anyone reading \
                        the record later. \
                        Ask for this when you want to record that a part meets a regulation or rule the environment imposes.",
-        annotations(read_only_hint = false)
+        title = "Record Compliance With a Rule",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn complies_with(
         &self,
@@ -197,7 +202,8 @@ impl ReflowService {
                        Triage with set_violation_status: `confirmed` records a granted variance, \
                        which is KEPT and documented rather than deleted, and `rejected` says it \
                        must be fixed.",
-        annotations(read_only_hint = false)
+        title = "Flag a Rule Violation",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn violates_rule(
         &self,
@@ -214,7 +220,8 @@ impl ReflowService {
                        it must be fixed, and the finding is retained for the same reason. Put \
                        the waiver reference, or what has to change, in `rationale`. The edge is \
                        rewritten rather than removed — nothing is deleted by triaging it.",
-        annotations(read_only_hint = false)
+        title = "Set Violation Status",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_violation_status(
         &self,
@@ -244,7 +251,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record the place a system will run — a site, a lab, a data centre, a rig.",
-        annotations(read_only_hint = false)
+        title = "Add an Environment",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_environment(
         &self,
@@ -288,7 +296,8 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch.",
-        annotations(read_only_hint = false)
+        title = "Add a Resource",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_resource(
         &self,
@@ -319,7 +328,8 @@ impl ReflowService {
 
     #[tool(
         description = "Deploy a Release to an Environment (DEPLOYED_TO), with the deployment's state — `planned`, `active` or `rolled_back`. This is what puts a release on the operation band: a Release with no DEPLOYED_TO edge reads as never fielded, however much of it is running, and `reconcile_deployment` compares these edges against what is actually observed. Deployment is per RELEASE; a project's standing relationship to an environment is `operates_in`. Ask for this when you want to record that this release runs in that environment — is running, was, or is planned to.",
-        annotations(read_only_hint = false)
+        title = "Deploy a Release",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn deploy_to(
         &self,
@@ -336,7 +346,8 @@ impl ReflowService {
                        and moves with every accept, so without the frozen copy a past release's \
                        manifest would quietly rewrite itself. A Release with no INCLUDES edges \
                        is a version number, not a manifest.",
-        annotations(read_only_hint = false)
+        title = "Record What a Release Includes",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn release_includes(
         &self,
@@ -359,7 +370,8 @@ impl ReflowService {
                        the live drift baseline. without_checksum names the artifacts whose entry \
                        cannot say WHAT shipped. \
                        Ask for this to put everything built since the last release into this one.",
-        annotations(read_only_hint = false)
+        title = "Derive a Release Manifest",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn release_includes_all(
         &self,
@@ -379,6 +391,7 @@ impl ReflowService {
                        deployed. This is the query 'does what we released match what we \
                        designed?' — compare capabilities_covered against the design's \
                        capability list, and built_capabilities_not_covered is the diff.",
+        title = "Release Report",
         annotations(read_only_hint = true)
     )]
     pub async fn release_report(
@@ -401,7 +414,8 @@ impl ReflowService {
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
                        Ask for this to record how mature a technology is, like a TRL rung.",
-        annotations(read_only_hint = false)
+        title = "Add a Readiness Level",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_readiness(
         &self,
@@ -443,7 +457,8 @@ impl ReflowService {
                        reports 'ungated', never 'ready' — silence about a gate is not evidence \
                        there is none. \
                        Ask for this when this release cannot ship until that technology is mature enough.",
-        annotations(read_only_hint = false)
+        title = "Gate an Increment on Readiness",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn gate_on(
         &self,
@@ -463,7 +478,8 @@ impl ReflowService {
                        appetite. The epoch must already exist — plan_epoch it first. \
                        Ask for this when you want to put on record when a technology is expected to reach a maturity or readiness level (a TRL) by some date. \
                        Ask for this to record when we expect a technology to reach the maturity we need.",
-        annotations(read_only_hint = false)
+        title = "Forecast a Readiness Level",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn forecast_readiness(
         &self,
@@ -506,6 +522,7 @@ impl ReflowService {
                        optimistic date built by ignoring the inconvenient evidence). \
                        Ask for this when you want to know when a release can ship given the technology maturity it depends on. \
                        Ask for this to learn when a release can ship, given the technology it depends on.",
+        title = "Readiness Report",
         annotations(read_only_hint = true)
     )]
     pub async fn readiness_report(
@@ -552,7 +569,8 @@ impl ReflowService {
                        when the divergence is gone; the design-side fix is deploy_to with the \
                        true status. \
                        Ask for this to see whether what is deployed agrees with the design — does it, and where does it not?",
-        annotations(read_only_hint = false)
+        title = "Reconcile Deployments",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn reconcile_deployment(
         &self,
@@ -580,7 +598,8 @@ impl ReflowService {
 
     #[tool(
         description = "Record that a Component or Release needs a Resource (REQUIRES_RESOURCE), with how critical it is — `optional`, `recommended` or `required`. A Resource (`add_resource`) is something the design consumes from outside itself — power, bandwidth, a licence, a person-hour budget, a physical facility — and the `no_deploy_operate` gap asks for these alongside environments and deployments so an operate-phase design does not read as complete with nothing to run on. Ask for this when you want to record what a part or a release depends on having available.",
-        annotations(read_only_hint = false)
+        title = "Record a Required Resource",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn require_resource(
         &self,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e6502cd99b187f130bb647241eff703fff27eb01e35c102d937b7134e592de10",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-reflow2-becomes-a-plain-code-repo-and-the-design-check-moves-to-the-box",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "That requirement puts the design check in CI, per PR, against the server; option (d) puts it on the box, nightly. Both cannot hold as written, so the requirement needs the owner's rewording from CI to a scheduled check."
+  },
+  "to_id": "req:ci-checks-the-code-against-its-design-on-the-server"
+}

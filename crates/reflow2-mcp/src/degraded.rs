@@ -283,6 +283,7 @@ impl DegradedService {
                        single-writer), or because it was written by a different reflow2. This tool \
                        existing at all means reflow2 IS configured here: do not report the design \
                        brain as missing or unconfigured.",
+        title = "Why reflow2 Is Unavailable",
         annotations(read_only_hint = true)
     )]
     pub async fn reflow2_unavailable(

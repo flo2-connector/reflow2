@@ -42,5 +42,6 @@
     ],
     "type": "object"
   },
-  "name": "register_alternative"
+  "name": "register_alternative",
+  "title": "Register an Alternative"
 }
