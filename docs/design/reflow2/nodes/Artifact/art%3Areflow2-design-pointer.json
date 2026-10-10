@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a9e3b045ccd3f789035513aa71624a11bf0871252020ba112f0ccbe3a5f254b8",
+  "node_id": "art:reflow2-design-pointer",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "config",
+    "description": "Names reflow2's own design on flo2.io (id reflow2, https://api.flo2.io/g/reflow2/mcp), so an MCP session started in the repository attaches there and never opens the local store the move left behind, and a one-shot command on ./.reflow2/graph is refused. Committed 2026-10-10, phase 2 of the move.",
+    "location": ".reflow2.toml",
+    "name": ".reflow2.toml",
+    "status": "realized"
+  }
+}

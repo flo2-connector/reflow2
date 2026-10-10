@@ -1,0 +1,12 @@
+# .reflow2.toml: which design this repository implements, and where it lives.
+# It is committed and holds no secret. reflow2 0.73.0 and later read it: an MCP
+# session started in this folder attaches to this design and never opens the
+# local store the move left behind, and a one-shot command on ./.reflow2/graph
+# here is refused.
+#
+# reflow2's own design moved onto flo2.io on 2026-10-10, keeping its id (phase 2
+# of dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local). CI reads
+# the copy at docs/design/reflow2/, which tools/reflow2_design_copy.py refreshes.
+[design]
+id      = "reflow2"
+address = "https://api.flo2.io/g/reflow2/mcp"

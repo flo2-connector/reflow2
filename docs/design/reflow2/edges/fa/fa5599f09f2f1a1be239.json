@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:26425753c5ad54a9d47c831dde22a355eec33e4aa28a1b1813a4b61db9ecad89",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-design-moves-onto-flo2-io-2026-10-10",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-design-pr-holds-reflow2s-hosted-design-and-copies-it-in-last"
+}

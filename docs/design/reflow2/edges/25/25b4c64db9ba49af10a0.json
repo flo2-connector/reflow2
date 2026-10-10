@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:76a8dfb20c8f419d1f2e64e593135e0ecfda4b254003e792c09ed9d2546fd945",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:agent-instructions",
+  "properties": {
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

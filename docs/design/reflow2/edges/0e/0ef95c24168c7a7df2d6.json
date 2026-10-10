@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b623ca881e1a869e5c49278d890458b812560e008cc343305e042eed346655ee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-design-moves-onto-flo2-io-2026-10-10",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:f4cf84e20e059083ca1c4d1329730bd012d3d4db81dd4af5310b016de89615b0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ca502ce6861a42909457fdb1894315f10f2e198e5b781681522b66d02faf0330",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reflow2s-design-moves-onto-flo2-io-2026-10-10",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-cut-exports-the-record-once-from-the-new-binary"
+}

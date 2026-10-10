@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7497e0259222616dc5338ac0e9193b8c467e2babf9aaa660115bcbb36bb1b6db",
+  "node_id": "chg:reflow2s-design-moves-onto-flo2-io-2026-10-10",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "environment_change",
+    "detected_at": "2026-10-10",
+    "name": "reflow2's own design moves onto flo2.io (id reflow2), and the repository names it there",
+    "rationale": "Anthony, 2026-10-10: \"Merge 711 when green, then begin phase 2\", \"go ahead with the import once 711 merges\", \"then finish phase 2\". The move was settled on dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local, option c1.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Phase 2 of the move. main's committed copy (b6395ec57) was imported onto flo2.io under the id reflow2 by the engine's own 0.81.1 image, and registered to Anthony as who:ajs. The engine read back the same content hash, and nothing was in flight. .reflow2.toml names the hosted design. AGENTS.md now says the design is on flo2.io and how to reach it. Through the live gateway, loop_status took 12.6 s on the first call and 1.8 s warm."
+  }
+}
