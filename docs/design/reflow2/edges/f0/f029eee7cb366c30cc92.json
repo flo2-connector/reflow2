@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4fe5e831e7785634a9caa5ba0eeb0925995ad177e7ba05f093fa34eb6da39706",
+  "edge_type": "CHANGED",
+  "from_id": "chg:phase-1-of-the-move-the-copy-and-its-one-pr-guard-2026-10-10",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:47f8d2ce7dfb16cab4fea98a594bb5d3987f03d65c6f8ca173757d0db8684a00",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}

@@ -397,7 +397,8 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
 > `test_skill_lint`, `self_host_uses_documents`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
-> `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments` — so **green here is not green
+> `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments`,
+> `test_reflow2_design_copy` — so **green here is not green
 > there**, and *"believe CI"* below is not a figure of speech. Run the ones your change touches;
 > [docs/sharpening.md](docs/sharpening.md) says which instrument covers what.
 >
@@ -487,6 +488,62 @@ on each `--call` write there, or `export_graph` to that path when you are done.
 > Resolve the file and it resumes. Your own `export_graph` never looks like tampering: the baseline
 > moves at the shared file-write seam, so a deliberate export is still yours to make whenever you
 > want one. A read-only server is refused the write-through outright.
+
+**Once reflow2's design is on flo2.io: write there, copy last, one design PR at a time.** The
+design moves to flo2.io in phase 2 of `dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local`
+(option c1, Anthony 2026-10-09). **Until that move lands, record exactly as above.** From the
+move on, the one live design is `reflow2` on flo2.io. `docs/design/reflow2/` is a copy of it for CI,
+refreshed by `tools/reflow2_design_copy.py`:
+
+1. **Hold the design before your first design write.** Run `python3 tools/reflow2_design_copy.py hold`
+   on your branch. It compares the hosted design with main's copy and says whether you may begin.
+   Then claim it as it tells you: `claim_region` on `proj:reflow2`, depth 0, note
+   `design PR: <your branch>`. While you hold it, every other branch's `hold` and `copy` refuse.
+2. **Write through flo2.io.** Your writes are live at once, before anyone reviews the PR. Undoing
+   one is a new write, not a closed PR.
+3. **Copy last.** Run `git merge origin/main`, then `python3 tools/reflow2_design_copy.py copy`, and
+   commit `docs/design/reflow2/`. It prints what your copy carries; read it.
+   - It refuses while another branch holds the design.
+   - It refuses while writes nobody holds are in flight. `--adopt` takes them into your PR
+     deliberately.
+   - It refuses until your branch contains main.
+   - If you write again after copying (a CI fix, say), copy again.
+4. **After the merge there is nothing to release.** Nothing is in flight, so your hold is stale
+   and the next PR may hold.
+
+What the choice costs, accepted with it:
+
+- **One design-writing PR at a time.** No stacked design work. Code-only PRs are unaffected.
+- **A write nobody holds rides in the next copy.** Intent written outside a PR (a hub session's
+  ideas, a requirement added from claude.ai) belongs to no branch and is harmless to carry.
+  `hold` and `copy` name it, so it is carried knowingly. Implementation facts, such as an accepted
+  checksum or an artifact's location, belong to one branch's files; those are what the hold
+  protects.
+- **The guard binds only whoever runs it.** Claims are advisory (`crates/reflow2-core/src/claims.rs`),
+  and the design records who wrote, not on which branch. A session that writes without holding
+  is the one gap the guard cannot close.
+- **A record that needs schema only your branch's build knows** cannot be written on flo2.io until
+  a release carrying that schema reaches flo2.io. Record that part afterwards, or locally (below).
+- **flo2.io does not serve every tool.** `wall_check` and the tools that open another design by
+  path run locally, against the committed copy.
+- **An outside contributor cannot write the hosted design.** Their PR changes code. A maintainer
+  records its design change on flo2.io and copies it in a follow-up PR.
+
+> 🧯 **BREAK GLASS: WHEN flo2.io CANNOT SERVE reflow2's DESIGN.** flo2.io's engine IS reflow2, so a
+> release that breaks opening designs also locks you out of the design you would read to fix it.
+> Bringing flo2.io back is flo2's operator work (flo2's `ops/README.md`). Meanwhile:
+>
+> 1. **Work locally from the newest committed copy**, as before the move:
+>    `./target/release/reflow2-mcp --graph-path <a fresh path> --import docs/design/reflow2/`.
+>    Everything merged is there.
+> 2. **Writes made on flo2.io since the last merged copy are not in git.** They are in flo2.io's
+>    nightly backup, which archives every hosted design's store and is pulled hourly to the
+>    operator's machine. Restore the store from the tarball (`designs/reflow2/` in flo2's
+>    `ops/README.md`, "Restore"), export it with the binary flo2.io last ran, and
+>    `python3 tools/reflow2_design_copy.py copy --from <that export>` brings it into a branch.
+> 3. **When flo2.io serves the design again, local writes are not on it.** Write them again
+>    through flo2.io, using the local record's ChangeEvents as the list. Replacing the hosted
+>    store with a local one stops flo2.io's engine, so it is an operator act and needs Anthony's go.
 
 **Since 2026-09-12 the server also keeps a usage ledger** — `<graph-path>.usage.jsonl`, beside the
 store with the other sidecars — one line per tool call: the tool, the outcome class (`ok` /
@@ -677,6 +734,13 @@ joined by *traceability* edges) for HEAL's topology detectors.
   places**: accept the `reflow2.toml` version drift BEFORE freezing the manifest, rebuild the
   binary after the version bump and before the export, and export LAST because it costs the
   session its MCP access.
+  - **Once reflow2's design is on flo2.io, the cut writes its record there,** while flo2.io still
+    runs the PREVIOUS release. Step 6 becomes the copy, taken by the cut's own freshly built binary,
+    so the stamp and each item's lineage are the new release's:
+    `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/reflow2_design_copy.py copy`. Nothing is
+    stopped and no session loses MCP. The cut is a design PR like any other, so hold the design
+    first. Measured 2026-10-10 on the real design: an export from 0.81.0, imported and exported by
+    0.81.1, came back with the identical content hash.
 - **Structural topology detectors are selective.** A design's golden thread is tree-shaped,
   where every internal node is a naive articulation point — so `single_point_of_failure`
   only fires when a node separates ≥2 real subsystems (see `structure.rs`).

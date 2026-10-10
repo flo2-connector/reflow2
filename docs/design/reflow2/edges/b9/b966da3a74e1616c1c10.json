@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0ee1cb60be098ee3e6165733f171142cf820cc5f342bc45250cbfba95b623656",
+  "edge_type": "CHANGED",
+  "from_id": "chg:phase-1-of-the-move-the-copy-and-its-one-pr-guard-2026-10-10",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-cut-exports-the-record-once-from-the-new-binary"
+}

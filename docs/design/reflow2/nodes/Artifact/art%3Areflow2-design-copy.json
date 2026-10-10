@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4e122555850506b5dda056966b2daba16bafa85011f3835658912936a22b9a0d",
+  "node_id": "art:reflow2-design-copy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The copy of reflow2's hosted design that CI reads, and the one-PR guard: `hold`, `copy` and `status`. Reads the design from flo2.io's engine over ssh (a read), or from a saved design with --from.",
+    "location": "tools/reflow2_design_copy.py",
+    "name": "reflow2_design_copy.py",
+    "status": "realized"
+  }
+}

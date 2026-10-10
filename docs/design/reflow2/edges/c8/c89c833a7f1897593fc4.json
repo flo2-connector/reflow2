@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99b2372ab7029e25dea225645b2a668e9fa9c3b055d63a69d9be7f8eed647236",
+  "edge_type": "CHANGED",
+  "from_id": "chg:phase-1-of-the-move-the-copy-and-its-one-pr-guard-2026-10-10",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-design-pr-holds-reflow2s-hosted-design-and-copies-it-in-last"
+}
