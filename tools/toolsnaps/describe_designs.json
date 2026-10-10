@@ -20,5 +20,6 @@
     ],
     "type": "object"
   },
-  "name": "describe_designs"
+  "name": "describe_designs",
+  "title": "Describe Designs at Paths"
 }

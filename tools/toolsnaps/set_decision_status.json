@@ -85,5 +85,6 @@
     ],
     "type": "object"
   },
-  "name": "set_decision_status"
+  "name": "set_decision_status",
+  "title": "Set Decision Status"
 }

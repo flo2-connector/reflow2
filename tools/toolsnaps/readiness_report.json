@@ -17,5 +17,6 @@
     ],
     "type": "object"
   },
-  "name": "readiness_report"
+  "name": "readiness_report",
+  "title": "Readiness Report"
 }

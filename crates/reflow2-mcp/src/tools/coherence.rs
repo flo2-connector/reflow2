@@ -71,6 +71,7 @@ impl ReflowService {
                        never a quieter one. Raise `budget_chars` if your client has the room. Ask for this when \
                        you want to know what is missing or unanswered in the design. \
                        Ask for this to learn what the owner should be asked about.",
+        title = "Detect Gaps",
         annotations(read_only_hint = true)
     )]
     pub async fn detect_gaps(
@@ -118,6 +119,7 @@ impl ReflowService {
                        derived on every call, because storing a rolled-up edge would make the graph assert a \
                        contract nobody declared. Ask for this when you want to know how many of the boundaries \
                        between components have a stated contract.",
+        title = "Seam Coverage",
         annotations(read_only_hint = true)
     )]
     pub async fn seam_coverage(
@@ -142,6 +144,7 @@ impl ReflowService {
                        they look like. Rows are ordered by how much is open there now, which is \
                        stated in `order` and is NOT a ranking of importance. A design that names \
                        no parts yet gets an empty list WITH a note saying that is why.",
+        title = "Design Regions",
         annotations(read_only_hint = true)
     )]
     pub async fn design_regions(
@@ -178,6 +181,7 @@ impl ReflowService {
                        named: the store writes it onto every instance, so what this reports is \
                        the undefaulted optional. Under ten nodes a `note` says the figures mean \
                        the design has barely STARTED, not that vocabulary is going unused.",
+        title = "Vocabulary Coverage",
         annotations(read_only_hint = true)
     )]
     pub async fn vocabulary_coverage(
@@ -209,6 +213,7 @@ impl ReflowService {
                        design is clean. An unknown contributor_id is REFUSED: a typo would otherwise give the \
                        most reassuring reply there is. `verifications` is a DIGEST: counts by status, how many \
                        never ran, and every check not currently passing. Ask for this to learn what the design process is owed right now and what you should do next.",
+        title = "What the Loop Owes",
         annotations(read_only_hint = true)
     )]
     pub async fn loop_status(
@@ -905,6 +910,7 @@ impl ReflowService {
                        has no timestamp, so staleness never enters; one linked to nothing scores zero however \
                        important — `unranked_pool` and `not_shown` report how many, so a short answer never reads \
                        as the whole set. Review records excluded throughout.",
+        title = "What to Settle Next",
         annotations(read_only_hint = true)
     )]
     pub async fn what_next(
@@ -925,6 +931,7 @@ impl ReflowService {
                        `coverage_note` saying the check was SILENT about its edges rather than clean on them. \
                        Ask for this when you want to know what a change will break downstream — the blast \
                        radius of a change you recorded.",
+        title = "Blast Radius of a Change",
         annotations(read_only_hint = true)
     )]
     pub async fn propagate_change(
@@ -983,6 +990,7 @@ impl ReflowService {
 
     #[tool(
         description = "Speculative blast radius from seed node ids — what would touching these reach? Walks the traceability edges outward and returns a SUMMARY by default: counts by distance, the distance-1 ring, and the risk and boundary crossings (an edge that leaves a component or crosses a published interface). Pass `full=true` for every impacted node with its hop chain; the default withholds it because on a large design the full dump overflows what a session can read, and every band is still counted. `max_depth` bounds the walk (default 5) and the reply says what it truncated beyond it. AN EMPTY RADIUS SAYS WHICH EMPTY — an unknown seed is reported in `unknown_seeds`, never silently walked as nothing. This is the read half of impact-check; `propagate_change` records the change as well. ACROSS DESIGNS: every radius names its `design`, a row that belongs to another design names that one, and `continue_in` names the member designs to carry it on in, from this design's pins. In each of those, or in any member whose pins name this design, call this with `arriving_from` (this design's id) and `interfaces` (this radius's `interfaces_reached`) instead of seeds. Ask for this when you want to know what depends on this part — show the blast radius — before you change it.",
+        title = "Blast Radius From a Node",
         annotations(read_only_hint = true)
     )]
     pub async fn propagate_from(
@@ -1071,6 +1079,7 @@ impl ReflowService {
                        whose check last ran before the artifact last moved, and \
                        `unknown_verification_freshness` is those where one of the two dates is missing so \
                        neither can be said — never read the second as fresh.",
+        title = "Confirmation Ledger",
         annotations(read_only_hint = true)
     )]
     pub async fn confirmation_ledger(
@@ -1108,6 +1117,7 @@ impl ReflowService {
                        check NOT currently passing, in full. \
                        Ask for this when you want the overall health summary of the design — how healthy it is right now, how the project is doing. \
                        Ask for this to give me the overall health of the design in one read.",
+        title = "Graph Report",
         annotations(read_only_hint = true)
     )]
     pub async fn graph_report(
@@ -1156,6 +1166,7 @@ impl ReflowService {
     #[tool(
         description = "The graph report rendered as Markdown — `graph_report`'s computed snapshot (counts, requirement certainty, the delivery line, top gaps, allocation, confirmation, coverage, the maturity trajectory) as prose a person reads rather than JSON an agent parses; the substance is documented on `graph_report`. Withholds the per-check roll for the same reason it does. Ask for this when you want the design's health and status as readable prose — a plain-English rundown of how the project is doing. \
                        Ask for this to give me the status as prose.",
+        title = "Graph Report as Markdown",
         annotations(read_only_hint = true)
     )]
     pub async fn graph_report_markdown(&self) -> Result<CallToolResult, McpError> {
@@ -1203,6 +1214,7 @@ impl ReflowService {
                        level, and that is the one that bites — measured here, the cycle rule walked 182 pairs \
                        and found none while ZERO joined two subsystems, so a clean result was SILENT about the \
                        subsystems rather than clean about them. Ask for this to find structural trouble like cycles, single points of failure and orphans.",
+        title = "Detect Structural Defects",
         annotations(read_only_hint = true)
     )]
     pub async fn detect_defects(
@@ -1236,7 +1248,8 @@ impl ReflowService {
                        node that outlives the session. Because a defect id hashes its category \
                        with its affected set, the review EXPIRES when that shape changes — the \
                        new shape has a new id nobody has accepted.",
-        annotations(read_only_hint = false)
+        title = "Acknowledge a Defect",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn acknowledge_defect(
         &self,
@@ -1285,6 +1298,7 @@ impl ReflowService {
                        given. Worth re-reading when the architecture shifts: an acknowledgement \
                        is keyed to a defect's shape, so one still listed here still applies, and \
                        one whose shape has gone is reported as `retired` rather than vanishing.",
+        title = "Reviewed Defects",
         annotations(read_only_hint = true)
     )]
     pub async fn reviewed_defects(&self) -> Result<CallToolResult, McpError> {
@@ -1301,7 +1315,8 @@ impl ReflowService {
                        Decision is superseded rather than deleted — the judgement was real and \
                        its record survives being changed. No-ops (returns withdrawn: false) when \
                        there was no acknowledgement.",
-        annotations(read_only_hint = false)
+        title = "Withdraw a Defect Acknowledgement",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn withdraw_defect_acknowledgement(
         &self,
@@ -1316,6 +1331,7 @@ impl ReflowService {
 
     #[tool(
         description = "Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept, and a project in `rigid` mode makes even that stop at a proposal. Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what each proposes before applying; the check-health skill is the workflow around this. AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a mechanical repair (a SPOF is a design question, not a heal) — the reply names which. Ask for this when you want suggested repairs for the design's structural problems, to review before anything changes.",
+        title = "Propose a Heal",
         annotations(read_only_hint = true)
     )]
     pub async fn propose_heal(
@@ -1336,6 +1352,7 @@ impl ReflowService {
 
     #[tool(
         description = "Evaluate how capabilities are allocated across components: the coupling each ALLOCATED_TO grouping carries, where cross-component dependencies concentrate, and a modularity score over the partition. MODULARITY IS REPORTED `null` WHEN IT CANNOT BE COMPUTED — a design whose components carry no declared coupling has no partition to score, and the reply says so rather than printing the 1.00 that once let an almost-unmodelled decomposition read as perfect. Which allocation is RIGHT depends on what the design is for (reliability may deliberately duplicate a function; performance wants the least cross-boundary chatter), so this scores, it does not judge. Ask for this when you want to know how modular the decomposition is and whether the coupling sits where you think it does.",
+        title = "Evaluate the Allocation",
         annotations(read_only_hint = true)
     )]
     pub async fn evaluate_allocation(&self) -> Result<CallToolResult, McpError> {
@@ -1345,6 +1362,7 @@ impl ReflowService {
 
     #[tool(
         description = "Propose a capability→component allocation by Leiden clustering over the DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never applied; `allocate` records what you actually decide. ⚠️ IT ANSWERS THE PERFORMANCE QUESTION SPECIFICALLY (least cross-boundary chatter), and other quality targets want other partitions: reliability may deliberately duplicate a function, security follows trust boundaries rather than coupling at all. ⚠️ AND IT CLUSTERS ON EDGES MOST DESIGNS NEVER DECLARE: on reflow2's own graph that is one DEPENDS_ON across 238 capabilities, so it returned one cluster per capability — and now SAYS SO, reporting how many edges it had to work with, so 238 singletons cannot be read as a proposal. Ask for this when you want it to suggest how to group capabilities into components based on their dependencies — a starting grouping to argue with, after checking the reply says it had enough edges to mean anything.",
+        title = "Propose an Allocation",
         annotations(read_only_hint = true)
     )]
     pub async fn propose_allocation(
@@ -1357,6 +1375,7 @@ impl ReflowService {
 
     #[tool(
         description = "Decomposition and hierarchy issues — the matryoshka checks over Component.level and the CONTAINS spine: a part with two parents, a child at a level not finer than its parent's, a level that is not on this design's declared ladder (`unknown_level`), and a spine that skips a rung. Ranked by POSITION on the project's `decomposition_levels` list, not by a compiled-in order, so a domain that bottoms out at a bought engine or a code module is not told it is wrong. AN EMPTY LIST SAYS WHICH EMPTY: no components carry a level (nothing could be checked), components carry levels and every check held, or there is no CONTAINS spine at all — the reply names which, because clean and vacuous must never read the same. Ask for this when you want to know whether the component tree is consistent.",
+        title = "Hierarchy Issues",
         annotations(read_only_hint = true)
     )]
     pub async fn hierarchy_issues(&self) -> Result<CallToolResult, McpError> {
@@ -1384,6 +1403,7 @@ impl ReflowService {
                        hidden coupling worth removing, or a creative link the design leans on. Ask for this \
                        when you want to see unexpected or surprising couplings between parts that should be \
                        separate — cross-community links the design did not intend.",
+        title = "Surprising Connections",
         annotations(read_only_hint = true)
     )]
     pub async fn surprising_connections(&self) -> Result<CallToolResult, McpError> {
@@ -1397,6 +1417,7 @@ impl ReflowService {
     #[tool(
         description = "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. `dimension_drift` (singular) reads one node. Ask for this when you want to know what in the design is getting worse. \
                        Ask for this to see which quality measures are sliding across the whole design.",
+        title = "All Quality Drifts",
         annotations(read_only_hint = true)
     )]
     pub async fn dimension_drifts(&self) -> Result<CallToolResult, McpError> {
@@ -1409,6 +1430,7 @@ impl ReflowService {
 
     #[tool(
         description = "Quality-dimension drift for ONE target node: the recorded observations of a single `-ility` (reliability, performance, maintainability …) on that node over time, and whether the latest reading is worse than the one before. A NULL VALUE SAYS WHICH NULL: the reply distinguishes a legal dimension with no observations recorded on this node, a node that does not exist, and a dimension name the schema does not declare — three facts that used to share `{\"value\": null}`. `dimension_drifts` (plural) sweeps the whole design worst-first. Ask for this when you want to know whether one part of the design is getting worse on one quality axis.",
+        title = "Quality Drift of One Node",
         annotations(read_only_hint = true)
     )]
     pub async fn dimension_drift(
@@ -1465,7 +1487,8 @@ impl ReflowService {
                        The reason is stored as a real Decision node in the graph, so it outlives \
                        this session. If the gap's affected nodes later change, the review \
                        expires and the gap returns for a fresh judgement.",
-        annotations(read_only_hint = false)
+        title = "Acknowledge a Gap",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn acknowledge_gap(
         &self,
@@ -1519,7 +1542,8 @@ impl ReflowService {
                        than the loop it replaces. The round trip collapses; the judgement stays \
                        per gap. ALL OF IT OR NONE OF IT — every item is attempted so you learn \
                        every failure at once, and if anything failed nothing is acknowledged.",
-        annotations(read_only_hint = false)
+        title = "Acknowledge Many Gaps",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn acknowledge_gaps(
         &self,
@@ -1580,6 +1604,7 @@ impl ReflowService {
 
     #[tool(
         description = "Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gap` writes, kept as a Decision node so it outlives the session. Worth re-reading when the design shifts: an acknowledgement is keyed on the gap's SHAPE and expires by construction when the affected nodes change, and an entry whose gap no current detector raises is reported as such rather than silently kept. THE REPLY IS BOUNDED: measured 2026-09-11 at 292,947 characters across 188 entries, which harnesses refuse outright, so over `budget_chars` (default 30,000) each reason is trimmed to its first sentences and the gap detail dropped — the COUNTS never change. Ask for this when you want to know what was raised and consciously accepted, and why.",
+        title = "Reviewed Gaps",
         annotations(read_only_hint = true)
     )]
     pub async fn reviewed_gaps(
@@ -1642,7 +1667,8 @@ impl ReflowService {
     #[tool(
         description = "Withdraw a gap's acceptance: the Decision `acknowledge_gap` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. Withdrawing an acknowledgement that does not exist returns `withdrawn: false` and names that, exactly as documented; it does not invent one to withdraw. Ask for this when a review turns out to have been wrong and a parked gap needs attention again. \
                        Ask for this to reopen a gap you previously accepted.",
-        annotations(read_only_hint = false)
+        title = "Withdraw a Gap Acknowledgement",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn withdraw_gap_acknowledgement(
         &self,
@@ -1678,6 +1704,7 @@ impl ReflowService {
                        something against. That is a disagreement between two records, and reflow2 \
                        rules on neither. \
                        Ask for this to see how my design scores on reliability and the other qualities.",
+        title = "Quality Attributes Report",
         annotations(read_only_hint = true)
     )]
     pub async fn ility_report(
@@ -1719,6 +1746,7 @@ impl ReflowService {
                        a label no computation reads would be a distinction that does not earn \
                        its keep. Pure arithmetic over edges already in the graph — no file I/O. \
                        Ask for this when you want to know how mature the design is overall and what stage it is at — how far along from idea to operating system.",
+        title = "Maturity Report",
         annotations(read_only_hint = true)
     )]
     pub async fn maturity_report(
@@ -1748,6 +1776,7 @@ impl ReflowService {
                        and release_report carries the verdict beside its own. Pure arithmetic \
                        over the graph. Ask for this when you want to know whether the design is \
                        done, verified and closed, or what is still open before it can be.",
+        title = "Closure Report",
         annotations(read_only_hint = true)
     )]
     pub async fn closure_report(
@@ -1771,6 +1800,7 @@ impl ReflowService {
                        Stores nothing: whether a derived result should be KEPT is an open decision. \
                        `only` narrows to named relations. Ask for this when you want to know what \
                        the design computes from what it stores, or how many derived facts there are.",
+        title = "Derived Relations Report",
         annotations(read_only_hint = true)
     )]
     pub async fn derived_report(
@@ -1801,6 +1831,7 @@ impl ReflowService {
                        until you look, which is the breadth-first warning kept honest. Never a \
                        verdict. Ask for this when you are resuming an adopt, working one region \
                        at a time, or want to know what has been captured without its intent.",
+        title = "Where I Left Off",
         annotations(read_only_hint = true)
     )]
     pub async fn frontier(
@@ -1836,6 +1867,7 @@ impl ReflowService {
                        `not_observed_about` names what it cannot see: unregistered artifacts, \
                        size of any kind, and outliers that mask each other. Pure arithmetic over \
                        REALIZES edges — no file I/O.",
+        title = "Granularity Report",
         annotations(read_only_hint = true)
     )]
     pub async fn granularity_report(
@@ -1865,6 +1897,7 @@ impl ReflowService {
                        overwrite live work (dec:ask-not-repair); it names the remedy and leaves \
                        the choice. `loop_status` carries the same finding as `record_moved` when \
                        there is one.",
+        title = "Sync Status",
         annotations(read_only_hint = true)
     )]
     pub async fn sync_status(
@@ -1930,6 +1963,7 @@ impl ReflowService {
                        file I/O. Ask for this when you want to know what has been built that nothing actually \
                        uses — capabilities with no consumer, unused work. \
                        Ask for this to see what we have built that nothing actually uses.",
+        title = "Consumption Report",
         annotations(read_only_hint = true)
     )]
     pub async fn consumption_report(
@@ -1948,7 +1982,8 @@ impl ReflowService {
                        fails rather than merging the wrong nodes. Merging deletes a node and \
                        cannot be undone. Read `discarded` in the result: it lists what the merge \
                        could not carry onto the survivor.",
-        annotations(read_only_hint = false)
+        title = "Apply a Heal",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn apply_heal(
         &self,

@@ -26,5 +26,6 @@
     },
     "type": "object"
   },
-  "name": "writes_for"
+  "name": "writes_for",
+  "title": "Credit This Session's Edits to One Person"
 }

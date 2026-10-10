@@ -65,5 +65,6 @@
     ],
     "type": "object"
   },
-  "name": "collapse_decision"
+  "name": "collapse_decision",
+  "title": "Collapse a Decision Point"
 }

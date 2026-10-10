@@ -23,5 +23,6 @@
     },
     "type": "object"
   },
-  "name": "loop_status"
+  "name": "loop_status",
+  "title": "What the Loop Owes"
 }

@@ -9,6 +9,7 @@
     }
   },
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Accept a gap the user has judged fine, recording WHY. It moves out of `detect_gaps` into `reviewed_gaps` — not deleted, not hidden. Use this once the user has actually decided something, so the open list means \"still needs attention\"; a list that can never reach zero gets skimmed. The reason is stored as a real Decision node in the graph, so it outlives this session. If the gap's affected nodes later change, the review expires and the gap returns for a fresh judgement.",
@@ -64,5 +65,6 @@
     ],
     "type": "object"
   },
-  "name": "acknowledge_gap"
+  "name": "acknowledge_gap",
+  "title": "Acknowledge a Gap"
 }

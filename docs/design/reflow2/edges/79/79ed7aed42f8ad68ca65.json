@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:165ebc62f25a2836f7e09f187113ef6a0844386da2e6695982bc0b9f64bed433",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-served-tool-carries-a-title-and-every-writer-says-whether-it-destroys"
+}

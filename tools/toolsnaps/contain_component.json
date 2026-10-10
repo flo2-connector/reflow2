@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": true,
     "readOnlyHint": false
   },
   "description": "Nest one Component inside another (parent CONTAINS child) — the assembly spine — DETACHING any parent it already had and naming it in the reply, so a child has one place on the spine (a second parent was the recorded cause of the multiple_parents defect). The parent should sit exactly one level above the child: nesting two components at the same level is reported as a level_mismatch, and skipping a level as a missing_intermediate_level. Set `level` on both via add_component first, or every containment looks like a mismatch. MANY AT ONCE: `draw_edges`, items {\"tool\": \"contain_component\", \"arguments\": {…}}, same checks, all or nothing.",
@@ -31,5 +32,6 @@
     ],
     "type": "object"
   },
-  "name": "contain_component"
+  "name": "contain_component",
+  "title": "Nest a Component in a Parent"
 }

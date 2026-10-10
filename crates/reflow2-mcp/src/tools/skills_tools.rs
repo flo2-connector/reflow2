@@ -105,6 +105,7 @@ impl ReflowService {
                        matches the running reflow2. Read one with get_skill BEFORE doing the work \
                        it covers. \
                        Ask for this when you want to see which playbooks, procedures or step-by-step guides are available for working on this design.",
+        title = "List Skills",
         annotations(read_only_hint = true)
     )]
     pub async fn list_skills(
@@ -165,6 +166,7 @@ impl ReflowService {
                        fits, including their author; this is the catalogue you ask instead of \
                        reading them all. Ask for this when you want to know which skill fits the \
                        job you are about to do.",
+        title = "Find a Skill",
         annotations(read_only_hint = true)
     )]
     pub async fn find_skills(
@@ -234,6 +236,7 @@ impl ReflowService {
                        whole SKILL.md — follow it as written. Call this BEFORE the work the skill \
                        covers, not after: these describe how to do the step, not how to report it. \
                        Ask for this when you want the full playbook, procedure or step-by-step guide for a kind of task — how to do it properly, not just what exists.",
+        title = "Get a Skill",
         annotations(read_only_hint = true)
     )]
     pub async fn get_skill(
@@ -318,6 +321,7 @@ impl ReflowService {
                        to be silent, and what it removed was the tail — the gap→question \
                        handshake and the whole tool inventory. \
                        Ask for this first: it says how I am supposed to work with the design here.",
+        title = "Get the Working Instructions",
         annotations(read_only_hint = true)
     )]
     pub async fn get_instructions(
@@ -441,6 +445,7 @@ impl ReflowService {
                        nothing is written, and a design another session holds right now describes \
                        fine. Node counts are deliberately absent: counting means opening, and \
                        opening MINTS an identity where there is none.",
+        title = "Describe Designs at Paths",
         annotations(read_only_hint = true)
     )]
     pub async fn describe_designs(
@@ -468,7 +473,8 @@ impl ReflowService {
                        the id is untouched. Read this when a session needs to say WHICH design it \
                        is working in. \
                        Ask for this when you want to know which design or project's model this session is connected to right now.",
-        annotations(read_only_hint = false)
+        title = "Design Identity",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn design_identity(
         &self,
@@ -519,7 +525,8 @@ impl ReflowService {
                        shell error, a git failure — and WHICH MODEL the agent is, which no harness sends. \
                        Ask for this when you want a tally of which reflow2 tools were used and which calls failed, for feedback on reflow2 itself. \
                        Ask for this to give me the numbers on how this project has been using reflow2, to send a maintainer.",
-        annotations(read_only_hint = false)
+        title = "Usage Report",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn usage_report(
         &self,

@@ -17,5 +17,6 @@
     ],
     "type": "object"
   },
-  "name": "release_report"
+  "name": "release_report",
+  "title": "Release Report"
 }

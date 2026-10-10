@@ -33,5 +33,6 @@
     ],
     "type": "object"
   },
-  "name": "dimension_drift"
+  "name": "dimension_drift",
+  "title": "Quality Drift of One Node"
 }

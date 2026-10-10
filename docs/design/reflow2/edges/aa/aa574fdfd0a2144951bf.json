@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b39b324e75bbf9bee7d69fd9f309fd11964e5c6a694cd1e3f79e52e3db1dea8a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5561883a45b2fbc267d3b1802a21ed0f74666c8ddeec1dfabc700765de969d23",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tools-operate",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

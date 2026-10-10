@@ -35,5 +35,6 @@
     ],
     "type": "object"
   },
-  "name": "propagate_change"
+  "name": "propagate_change",
+  "title": "Blast Radius of a Change"
 }

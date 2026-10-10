@@ -8,5 +8,6 @@
     "properties": {},
     "type": "object"
   },
-  "name": "evaluate_allocation"
+  "name": "evaluate_allocation",
+  "title": "Evaluate the Allocation"
 }

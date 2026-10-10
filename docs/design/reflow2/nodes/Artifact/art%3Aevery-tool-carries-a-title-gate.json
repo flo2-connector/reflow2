@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:98b828ffc94e884607797613b9a79675bd6441c9da87d8b78167ee622c9881e0",
+  "node_id": "art:every-tool-carries-a-title-gate",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "CI gate over the real binary's tools/list (stdio, through smoke_mcp's Server): every served tool carries a non-empty title distinct from its name, and every tool with readOnlyHint=false states destructiveHint. Refuses to pass on an empty list. Observed failing on main's binary (309 problems: 197 missing titles, 112 missing hints) before the annotations were added. Runs in ci.yml after toolsnap.",
+    "location": "tools/every_tool_carries_a_title.py",
+    "name": "every_tool_carries_a_title.py",
+    "status": "realized"
+  }
+}

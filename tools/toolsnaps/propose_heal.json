@@ -34,5 +34,6 @@
     },
     "type": "object"
   },
-  "name": "propose_heal"
+  "name": "propose_heal",
+  "title": "Propose a Heal"
 }

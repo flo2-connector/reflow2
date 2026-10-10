@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0ddb25cdb4603adc4b2855d401a58299a29986402dad770d25509d80b2743bb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-reflow2-becomes-a-plain-code-repo-and-the-design-check-moves-to-the-box",
+  "properties": {
+    "evidence": "Anthony kept option (d) on 2026-10-10; the requirement is that option as intent."
+  },
+  "to_id": "req:a-nightly-check-on-the-box-runs-reflow2s-client-against-the-hosted-design-and-the-copy-retires"
+}

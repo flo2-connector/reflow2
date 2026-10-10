@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "closure_report"
+  "name": "closure_report",
+  "title": "Closure Report"
 }

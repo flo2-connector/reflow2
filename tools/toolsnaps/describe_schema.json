@@ -62,5 +62,6 @@
     },
     "type": "object"
   },
-  "name": "describe_schema"
+  "name": "describe_schema",
+  "title": "Describe the Schema"
 }

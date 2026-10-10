@@ -1,6 +1,6 @@
 {
   "annotations": {
-    "destructiveHint": false,
+    "destructiveHint": true,
     "readOnlyHint": false
   },
   "description": "Apply a resolved three-way merge into the live design — the write side of merge_designs (BL-80). `ours` is the live graph at --graph-path; this merges `theirs` into it against the common ancestor `base`, making the live design equal the merged result, atomically. Pass `resolutions` — one decision per conflict (its `merge:…` id → base/ours/theirs, from a prior merge_designs run). It REFUSES and writes nothing if any conflict is undecided, or a decision names no conflict. This is the explicit commit the proposal is designed around: run merge_designs first, decide the conflicts, then apply.",
@@ -45,5 +45,6 @@
     ],
     "type": "object"
   },
-  "name": "apply_merge"
+  "name": "apply_merge",
+  "title": "Apply a Merge"
 }

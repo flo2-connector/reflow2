@@ -66,6 +66,7 @@ impl ReflowService {
                        DEFAULT and cannot tell \"deliberately internal\" from \"never classified\" — otherwise \
                        a design that did no labelling reports a clean seam. Feed `paired` to seam_report to \
                        learn whether the full contracts agree (req:complementary-pairing). Ask for this to match our required contracts against what the other system publishes.",
+        title = "Pair Two Designs",
         annotations(read_only_hint = true)
     )]
     pub async fn pair_designs(
@@ -94,6 +95,7 @@ impl ReflowService {
                        examine — the types that CROSS these boundaries are part of the contract \
                        and are invisible to it. \
                        Ask for this to check whether both sides of an interface actually agree.",
+        title = "Seam Report",
         annotations(read_only_hint = true)
     )]
     pub async fn seam_report(
@@ -131,6 +133,7 @@ impl ReflowService {
                        writes return. \u{26A0} The unexported-work nudge will NOT catch it — it \
                        compares NODE COUNTS, so a missed PROPERTY change is invisible. Ask for this \
                        to save the design to a file you can commit.",
+        title = "Export the Design",
         annotations(read_only_hint = true)
     )]
     pub async fn export_graph(
@@ -254,6 +257,7 @@ impl ReflowService {
                        design, and it is not a backup. A design with no designated boundary gets \
                        an EMPTY SURFACE warning rather than a quietly empty file. \
                        Ask for this to give a vendor just our public contracts.",
+        title = "Export the Published Surface",
         annotations(read_only_hint = true)
     )]
     pub async fn export_surface(
@@ -351,7 +355,8 @@ impl ReflowService {
                        somebody else's node, and two designs using one id for different things is \
                        a naming conversation between owners. \
                        Ask for this when you want to bring in a pinned or frozen copy of what another team's design publishes — its public interfaces.",
-        annotations(read_only_hint = false)
+        title = "Mirror Another Design's Surface",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn mirror_surface(
         &self,
@@ -385,6 +390,7 @@ impl ReflowService {
                        project id, source graph, surface content hash, and when the mirror was \
                        taken. A mirror is a dated claim about a VERSION of another design, never a \
                        live truth, so this is the list to re-check when a partner publishes again.",
+        title = "Mirrored Designs",
         annotations(read_only_hint = true)
     )]
     pub async fn mirrors(&self) -> Result<CallToolResult, McpError> {
@@ -414,7 +420,8 @@ impl ReflowService {
                        implicit (the 853 of 2026-09-14). `materialized` in the report names every Type.property \
                        written that the document did not state. Ask for this when you want to load a design or \
                        model file that someone exported or sent you.",
-        annotations(read_only_hint = false)
+        title = "Import a Design",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn import_graph(
         &self,
@@ -488,6 +495,7 @@ impl ReflowService {
                        session diverged from the record?'); pass other_path too to compare two \
                        export files (branches, machines, alternatives). Reports divergence, \
                        never judges which side is right.",
+        title = "Compare Two Designs",
         annotations(read_only_hint = true)
     )]
     pub async fn compare_designs(
@@ -553,6 +561,7 @@ impl ReflowService {
                        clean one: this reads two design records and has read no code, so it \
                        never claims the implementation preserved behaviour. \
                        Ask for this when you want to know whether a restructuring or reorganisation changed what the system does or only how it is organised — proof that no function was lost.",
+        title = "Certify Function Preserved",
         annotations(read_only_hint = true)
     )]
     pub async fn certify_preservation(
@@ -588,6 +597,7 @@ impl ReflowService {
                        that commit), ours_path (merge into) and theirs_path (merge in). This is a \
                        PROPOSAL: it writes nothing. Applying the resolved merge is a separate, \
                        explicit step.",
+        title = "Propose a Three-Way Merge",
         annotations(read_only_hint = true)
     )]
     pub async fn merge_designs(
@@ -617,7 +627,8 @@ impl ReflowService {
                        undecided, or a decision names no conflict. This is the explicit commit the \
                        proposal is designed around: run merge_designs first, decide the conflicts, \
                        then apply.",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Apply a Merge",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn apply_merge(
         &self,
@@ -665,6 +676,7 @@ impl ReflowService {
                        once, then apply_merge with use_recorded, or feed these suggestions back as \
                        explicit resolutions. A suggestion, never an auto-decision. \
                        Ask for this to see how we settled the same conflict last time.",
+        title = "Recall Conflict Resolutions",
         annotations(read_only_hint = true)
     )]
     pub async fn recall_resolutions(
@@ -708,6 +720,7 @@ impl ReflowService {
                        throwaway graphs, so it never touches and is never blocked by the live one. \
                        Collapse the winner with merge_designs/apply_merge and retire the losers. \
                        Ask for this to line candidate designs up on the same numbers.",
+        title = "Analyze Alternatives",
         annotations(read_only_hint = true)
     )]
     pub async fn analyze_alternatives(
@@ -741,6 +754,7 @@ impl ReflowService {
                        then records what it settled without rewriting the deliberation that \
                        produced it. PASS `name` TO RETITLE IT in the same call. \
                        Ask for this to mark a decision accepted with the owner's name.",
+        title = "Set Decision Status",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_decision_status(
@@ -856,6 +870,7 @@ impl ReflowService {
                        node carries no comparable text\u{2019} and \u{2018}ranked N and none matched\u{2019}, because only \
                        the last means the node may be genuinely new. Needs no search index and no \
                        database, so it works in an index-less build.",
+        title = "Relation Candidates",
         annotations(read_only_hint = true)
     )]
     pub async fn relation_candidates(
@@ -898,6 +913,7 @@ impl ReflowService {
                        that weighed it and chose, and `quality_target_unstated` reads exactly \
                        that difference. Every other property is preserved; link what the choice \
                        shapes with governed_by.",
+        title = "Set a Quality Target",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_quality_target(
@@ -918,6 +934,7 @@ impl ReflowService {
                        siblings. Refuses unless the Decision is `proposed` — you fork an open \
                        choice, not a settled one. Compare the registered alternatives with \
                        analyze_alternatives, then collapse_decision to choose.",
+        title = "Register an Alternative",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn register_alternative(
@@ -934,6 +951,7 @@ impl ReflowService {
     #[tool(
         description = "List the alternatives registered under a decision point (BL-70) — the Artifact pointers GOVERNED_BY the Decision, each with its export location, ready to feed to analyze_alternatives. AN EMPTY LIST SAYS WHICH EMPTY: the reply distinguishes a decision that exists but has no alternatives registered, a decision that is not `proposed` (only an open decision point can carry forks), and an id that names no Decision at all — three different facts that used to share one bare zero. Ask for this when you want to see the roads recorded under an open choice before comparing them. \
                        Ask for this to see which candidate designs we did register against a decision.",
+        title = "Alternatives for a Decision",
         annotations(read_only_hint = true)
     )]
     pub async fn alternatives_for(
@@ -972,6 +990,7 @@ impl ReflowService {
                        This records the choice; merge the winner's design content into the \
                        baseline separately with apply_merge. \
                        Ask for this to pick the winner and retire the others.",
+        title = "Collapse a Decision Point",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn collapse_decision(
@@ -1014,6 +1033,7 @@ impl ReflowService {
 
     #[tool(
         description = "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Measured 2026-09-11 on a partner design that required an interface this one publishes: `pair_designs` found the pair and its conflict; this returned `seam_findings: []`. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement. Root cause recorded, not fixed here.",
+        title = "Compose and Analyse Two Designs",
         annotations(read_only_hint = true)
     )]
     pub async fn compose_and_analyse(

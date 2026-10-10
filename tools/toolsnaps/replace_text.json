@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Replace ONE piece of a node's text without re-sending the field: `old` must occur exactly once in `field` and is replaced by `new` (absent or repeated is refused, naming the count); omit `old` to append `new` after a blank line. Same revision guard as every write — the earlier text is kept and the reply's `revision` names what moved. Measured 2026-09-18 on three projects: settling a prose-option decision or appending a dated section meant re-sending a 6 KB body to move one sentence, or leaving a line that was now false (210 of 743 decisions here exceed 4 KB; 92 re-sends kept in full). Ask for this to replace one sentence in a decision or requirement's text, or to add a dated note to it, without rewriting the whole thing.",
@@ -51,5 +52,6 @@
     ],
     "type": "object"
   },
-  "name": "replace_text"
+  "name": "replace_text",
+  "title": "Replace One Piece of Text"
 }

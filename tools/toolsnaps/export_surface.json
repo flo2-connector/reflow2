@@ -36,5 +36,6 @@
     },
     "type": "object"
   },
-  "name": "export_surface"
+  "name": "export_surface",
+  "title": "Export the Published Surface"
 }

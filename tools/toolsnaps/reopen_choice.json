@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Revisit something you settled: take an earlier choice up again without losing the fact that it was once settled. Mints a NEW proposed choice that retires the original, which stays accepted and untouched, so the record keeps both the settlement and the revisiting. Pass the road originally taken's location (fork_point gives it) and it becomes the first alternative; omit it and nothing is invented. Refuses a choice that is not accepted, an id that exists, and a choice already being revisited. The owner's act: never run it on your own judgement. Ask for this when the owner has decided an earlier choice needs to be made again.",
@@ -49,5 +50,6 @@
     ],
     "type": "object"
   },
-  "name": "reopen_choice"
+  "name": "reopen_choice",
+  "title": "Reopen a Settled Choice"
 }
