@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4745ad6fb3ba4224a7a3e2c46cee352edbb30217701ce7f616e47b4bac940385",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-reflow2-design-copy",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-design-copy-refuses-another-branchs-work-and-never-carries-a-hold"
+}

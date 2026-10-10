@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d44b83ca4a158e233a7598f0f5a8414fcc7ecdf1764b3b4360f235da4ded3c7d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:phase-1-of-the-move-the-copy-and-its-one-pr-guard-2026-10-10",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-design-copy-refuses-another-branchs-work-and-never-carries-a-hold"
+}

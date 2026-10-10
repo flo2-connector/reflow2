@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b293fda3dbca6888d9332c7a32b24ba9b1a65be2664976be3b7cb362ae8af2e6",
+  "node_id": "art:test-reflow2-design-copy",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Tests of tools/reflow2_design_copy.py. Eight hermetic cases on the guard, and three on the real binary (--bin) in a throwaway repository: the holder's copy is the live design without its hold; another branch's hold refuses the copy and nothing is written; a branch that does not contain main is refused. CI runs all eleven in the full job.",
+    "location": "tools/test_reflow2_design_copy.py",
+    "name": "test_reflow2_design_copy.py",
+    "status": "realized"
+  }
+}

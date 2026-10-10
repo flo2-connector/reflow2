@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:16e743ee406c7eb015135a2ce55e9b9cbe7e8bcb16d76404fa193bd2082498ae",
+  "node_id": "ver:the-design-copy-refuses-another-branchs-work-and-never-carries-a-hold",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_reflow2_design_copy.py --bin target/debug/reflow2-mcp: 11 cases, run in CI's full job. Observed failing on three deliberate breaks before it was trusted: a copy that kept its hold claims (3 cases failed), a guard that ignored another branch's hold (2), and a copy that skipped the contains-main check (1).",
+    "kind": "verification",
+    "last_run_at": "2026-10-10",
+    "method": "test",
+    "name": "The design copy refuses another branch's work, waits for main, and never carries a hold",
+    "status": "passing"
+  }
+}

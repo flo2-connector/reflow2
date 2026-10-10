@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:24c110f7ab82d11ad37919dc3d099c5bbbcd14d9fd2798f769d79f2b7c85eee8",
+  "edge_type": "REALIZES",
+  "from_id": "art:reflow2-design-copy",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-design-pr-holds-reflow2s-hosted-design-and-copies-it-in-last"
+}

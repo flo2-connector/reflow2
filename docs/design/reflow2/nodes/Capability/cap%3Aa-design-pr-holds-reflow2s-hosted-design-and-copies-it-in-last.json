@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92fdf834d328761e12131dfa8c31984491b992db361938b6489dcfcca31b5e6b",
+  "node_id": "cap:a-design-pr-holds-reflow2s-hosted-design-and-copies-it-in-last",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The bridge of option (c1) of dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local: the design lives on flo2.io, and CI reads a copy committed per PR. tools/reflow2_design_copy.py mirrors flo2's ops/flo2-design-copy for the item layout.\n\n- `hold`, before a PR's first design write: says whether this branch may write. It refuses while another branch holds the design, or while writes nobody holds are in flight (--adopt takes those into the PR deliberately).\n- `copy`, last, after `git merge origin/main`: the same refusals, plus one until the branch contains main. It drops the hold claims, imports the rest with this repo's binary into a throwaway store, and exports the item layout into docs/design/reflow2/. Then it compares what it wrote with the source, and exits 2 naming any value the round trip changed (fact:bl-198).\n- `status`: what is in flight, and who holds the design.\n\nTHE HOLD is a claim: `claim_region` on proj:reflow2, depth 0, note `design PR: <branch>`. IN FLIGHT is the live design without its hold claims, compared item by item with main's copy. After a merge nothing is in flight, so the hold is stale and there is no release step. --from reads a saved design instead of flo2.io; the tests and the break-glass path use it.\n\nLIMIT: the guard binds whoever runs it. Claims are advisory, and the design records who wrote, not on which branch, so a session that writes without holding is not caught.",
+    "name": "A design PR holds reflow2's hosted design before writing, and copies it into the repository last; the copy refuses another branch's work",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

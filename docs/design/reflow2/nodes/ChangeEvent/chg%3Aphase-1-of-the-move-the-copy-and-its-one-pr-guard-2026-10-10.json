@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0655eb9124fe039880d859551e3d9f34ca1487c8c9d65363b5d1d8db70561da2",
+  "node_id": "chg:phase-1-of-the-move-the-copy-and-its-one-pr-guard-2026-10-10",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-10",
+    "name": "Phase 1 of moving reflow2's design onto flo2.io: the copy CI reads, its one-PR guard, the recording path, the cut's step 6 and a break-glass note",
+    "rationale": "Anthony, 2026-10-10: \"Merge 708, 710 and begin phase 1\". The plan on dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local names phase 1 as the copy script with the one-PR guard, AGENTS.md's recording path, the release-cut changes and a break-glass note, all before the move.",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "tools/reflow2_design_copy.py (hold, copy, status) and its tests: 8 hermetic, 3 on the real binary, run in CI's full job. AGENTS.md now says how to record once the design is on flo2.io, what that choice costs, how the cut's step 6 changes, and how to work when flo2.io cannot serve the design. Nothing changes in practice until phase 2 moves the design."
+  }
+}
