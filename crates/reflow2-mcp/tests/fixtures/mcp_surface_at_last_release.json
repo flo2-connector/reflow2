@@ -1,6 +1,6 @@
 {
 "_what": "The MCP surface of the LAST RELEASE, for tests/the_mcp_surface_only_grows.rs: each tool's read/write hint and input schema with its prose taken out, and the reply shape of a fixed scenario of ordinary calls. Taken by driving the release binary (--list-tools --full, and --call). Re-bless at a cut: REFLOW2_BLESS_SURFACE=<that release's binary> cargo test -p reflow2-mcp --test the_mcp_surface_only_grows.",
-"taken_with": "reflow2-mcp 0.81.0",
+"taken_with": "reflow2-mcp 0.81.1",
 "tools": {
 "acknowledge_defect": {"input_schema":{"$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"properties":{"acted_at":{"type":["string","null"]},"affected_ids":{"items":{"type":"string"},"type":"array"},"approver":{"type":["string","null"]},"defect_id":{"type":"string"},"echo":{"enum":["receipt","node"],"type":"string"},"reason":{"type":"string"}},"required":["defect_id","reason"],"type":"object"},"read_only":false},
 "acknowledge_gap": {"input_schema":{"$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"properties":{"acted_at":{"type":["string","null"]},"affected_ids":{"items":{"type":"string"},"type":"array"},"approver":{"type":["string","null"]},"echo":{"enum":["receipt","node"],"type":"string"},"gap_id":{"type":"string"},"reason":{"type":"string"}},"required":["gap_id","reason"],"type":"object"},"read_only":false},
