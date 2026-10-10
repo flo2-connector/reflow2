@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d207bf218c5629e863697626986da13a9de4c57d8ecb0bd13bd4ae3e25e727f1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:1a97fc1f1de4d5d2:req:flo2s-chat-door-is-listed-in-the-claude-connectors-directory-once-its-tools-are-annotated-and-the-gate-is-settled",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

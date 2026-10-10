@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:9763958c7de2595525ede19b9f2d58b610439784b9bc6d52d206ccfd35bb8d15",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-served-tool-carries-a-title-and-says-whether-it-destroys",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
