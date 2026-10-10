@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:839feb3c6e00de2d40e89d591929566651df31d2d233a3c36d957826395ca8af",
+  "node_id": "chg:session-capture-2026-10-09",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-09",
+    "name": "What the 2026-10-09 session measured and settled, written down: the move plan and phase 0, the disk recurrence, and three findings the day overtook",
+    "rationale": "/capture-session, 2026-10-09.",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "The move decision gains the plan, phase 0's measurements, Anthony's one-design-PR-at-a-time ruling and the loop_status blocker with its fix. The disk finding gains two recurrences and the /tmp leak. Three findings are marked as overtaken in part by v0.81.0 and flo2.io's move."
+  }
+}

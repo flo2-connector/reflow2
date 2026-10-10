@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ea449e4b995b798effe8553c2ead6c32568939028ba033813514106868620a5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09"
+}

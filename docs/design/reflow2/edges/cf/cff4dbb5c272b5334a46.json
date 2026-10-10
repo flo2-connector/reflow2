@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0ad81d61b3e1ec14cc610e697131c13dfd650410058f2afe53e8e2eeddb521c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries"
+}

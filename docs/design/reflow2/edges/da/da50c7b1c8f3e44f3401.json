@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fdffd0c3e6eeea0f31aea4c8f36c215c61b76532df3e4fd86883e662838ade1a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:session-capture-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:the-dev-reflow2-family-holds-five-facts-twice-and-a-similarity-sweep-finds-a-duplicate-one-time-in-eight-2026-10-09"
+}
