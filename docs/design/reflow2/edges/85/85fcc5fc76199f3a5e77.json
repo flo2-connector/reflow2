@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4522d1e08f854849e496369804463156c201e93a360f44c9b27f203f53d4e1d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-confirmation-ledger-reads-each-history-once-2026-10-09",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-confirmation-ledger-reads-each-history-once"
+}

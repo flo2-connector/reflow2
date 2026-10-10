@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:87a68ff9a57cd185b692f92ab4b76654e13358c6e26cca4713d940212390b17c",
+  "edge_type": "CAUSES",
+  "from_id": "art:confirm",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "confirmation_ledger summed each capability's artifacts' accept histories by re-reading and re-classifying every accept for every capability, so an artifact realizing a hundred capabilities had its whole history walked a hundred times. Counted on the design's own data: 943,665 node reads classifying accepts where 4,001 accepting events' targets would do; timed: 17.4 s of loop_status's 23.2 s.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09"
+}

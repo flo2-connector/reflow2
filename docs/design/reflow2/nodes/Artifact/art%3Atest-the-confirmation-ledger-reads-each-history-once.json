@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f1a2f7d8fccf636d68bc4be3d564871562e8973c69d8e6d5edf5a1dbf3f354d5",
+  "node_id": "art:test-the-confirmation-ledger-reads-each-history-once",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Two cases. One: each of 20 capabilities sharing one artifact still sees its whole accepted history (15 design-moving accepts each). Two: through a GraphRead that counts every store read, doubling the capabilities on one shared artifact must not double the reads spent on its history, and the total is bounded by one pass over the history plus a fixed handful per capability. Observed failing on the old ledger: 40 more capabilities cost 9,880 more reads (9,881 -> 19,761).",
+    "location": "crates/reflow2-core/tests/the_confirmation_ledger_reads_each_history_once.rs",
+    "name": "the_confirmation_ledger_reads_each_history_once.rs",
+    "status": "realized"
+  }
+}

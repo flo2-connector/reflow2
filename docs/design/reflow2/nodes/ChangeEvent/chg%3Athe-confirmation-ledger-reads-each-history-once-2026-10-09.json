@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:47cc5cc31f0f31fffa543becc46a72275103075399c20bea9bfd4c1f1cd32347",
+  "node_id": "chg:the-confirmation-ledger-reads-each-history-once-2026-10-09",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "detected_at": "2026-10-09",
+    "name": "The confirmation ledger reads each artifact's history once, so loop_status is fast on a large design and fits flo2.io's 30 s door",
+    "rationale": "Anthony, 2026-10-09: \"Fix the root cause\", after phase 0 of moving reflow2's design onto flo2.io found loop_status over the gateway's 30 s door. See fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09.",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "confirmation_ledger now computes each artifact's claims and each accepting event's classification once per ledger, and sums them per capability; its output is unchanged. On reflow2's design the ledger goes from 17.4 s to 0.26 s. loop_status on flo2.io's hardware goes from 46.3 s cold and 30.8 s warm to 11.7 s and 0.8 s. A stale comment in coherence.rs about incoming() is corrected."
+  }
+}

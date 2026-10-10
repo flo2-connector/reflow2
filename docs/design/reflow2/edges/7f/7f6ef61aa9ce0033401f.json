@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:393b37c68ce73319c04c54296b495ae879ab3ea05e7aac79354d037bef40d5da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-9b5b52f7090049bf",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:44b0e786b665f4973801f42e2b44295e8d7951374580c5deba30a13a738a33ec",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

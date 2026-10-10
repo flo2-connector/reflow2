@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:877b28fb826f5dab9d41dff141b61e9871b8a1a5770abbf3fc7fdb2a54bdf5f2",
+  "node_id": "ver:the-confirmation-ledger-reads-each-history-once",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Pins the class behind fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09 as a WORK bound rather than a timing, so it holds on any hardware: the ledger's store reads grow with the design's size, not with capabilities × history. It is the first executable check on con:loop-status-warm-latency-ms's cause. The wall time itself was measured by hand on the droplet: 0.8 s warm.",
+    "kind": "verification",
+    "last_run_at": "2026-10-09",
+    "method": "test",
+    "name": "The confirmation ledger reads each artifact's history once, however many capabilities share it",
+    "status": "passing"
+  }
+}

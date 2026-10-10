@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b8f820a7e19597c41dc39317c6903183123525c8a6ef4dacd093613638f176a8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-the-confirmation-ledger-reads-each-history-once",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-confirmation-ledger-reads-each-history-once"
+}

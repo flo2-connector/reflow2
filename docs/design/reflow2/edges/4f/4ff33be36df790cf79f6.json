@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d487852b152263625d6f4b201b9df51806371f2864665b02ae2ed8d80043e144",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-7135d17de5004e09",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c1a44e6d0dee7e89092b36d47c2b08e2bd6504bba664dcc0d6682e7b302f239d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-confirmation-ledger-reads-each-history-once"
+}
