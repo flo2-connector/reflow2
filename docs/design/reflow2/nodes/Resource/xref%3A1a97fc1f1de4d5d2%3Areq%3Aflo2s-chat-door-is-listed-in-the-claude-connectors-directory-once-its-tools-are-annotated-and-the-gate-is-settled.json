@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fcf6db341dfd995f5a82d03503ddbab0af0c7447313ab227c2c1ad2c25ddbb5b",
+  "node_id": "xref:1a97fc1f1de4d5d2:req:flo2s-chat-door-is-listed-in-the-claude-connectors-directory-once-its-tools-are-annotated-and-the-gate-is-settled",
+  "node_type": "Resource",
+  "properties": {
+    "design_graph_id": "1a97fc1f1de4d5d2",
+    "design_node_id": "req:flo2s-chat-door-is-listed-in-the-claude-connectors-directory-once-its-tools-are-annotated-and-the-gate-is-settled",
+    "name": "flo2's chat door is submitted to the Claude Connectors Directory, after every served tool carries a title and read/write hints, and after who may sign up and the capacity road are settled",
+    "resource_type": "design-node-reference"
+  }
+}

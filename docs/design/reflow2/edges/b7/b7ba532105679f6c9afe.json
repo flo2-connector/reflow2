@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a0e6fbae75fed217e3996944f95a299002b4d57acf15e7186a7170e28cbea23d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:no-served-tool-carries-a-title-and-seven-of-119-writers-say-whether-they-destroy-2026-10-10",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
