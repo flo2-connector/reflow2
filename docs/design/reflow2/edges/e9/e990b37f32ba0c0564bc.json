@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1275bb34ced56546ea3a0f6e74c8be816e37293788c622b10d37d0f51ba981a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:every-served-tool-carries-a-title-and-every-writer-says-whether-it-destroys",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8dd9535b0b795837bee30737f2ac72a73c7352fe070794e42026ffa62eccf66e",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-served-tool-carries-a-title-and-every-writer-says-whether-it-destroys"
+}

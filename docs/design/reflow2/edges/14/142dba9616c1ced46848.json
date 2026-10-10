@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3ad852ae73471d685079f105705d6ec3ab98d5bad28582b83f6a35e623ab0079",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

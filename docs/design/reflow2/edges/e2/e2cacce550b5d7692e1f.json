@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:59561baf8db2d139f937087cdd95d28c3b8ecfc55894322e54968002f34a4edd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-served-tool-carries-a-title-and-every-writer-a-destruction-hint-2026-10-10",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:45ee7719145b0a76debe5cf37cfbd79daf4e8b2d319af229c1f8cf443f681d78",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:latent"
+}

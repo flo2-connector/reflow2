@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:2663ee825c2061090d7b9e91342cffa1c77e816b503f4b371e004800ae90d864",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:ci-checks-the-code-against-its-design-on-the-server",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:ci-checks-the-code-against-its-design-on-the-server"
+}
