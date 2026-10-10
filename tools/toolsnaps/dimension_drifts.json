@@ -8,5 +8,6 @@
     "properties": {},
     "type": "object"
   },
-  "name": "dimension_drifts"
+  "name": "dimension_drifts",
+  "title": "All Quality Drifts"
 }

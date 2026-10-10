@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. Lands with no status unless you pass one: absent means nobody said. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to register a file, drawing or document in the design.",
@@ -94,5 +95,6 @@
     ],
     "type": "object"
   },
-  "name": "add_artifact"
+  "name": "add_artifact",
+  "title": "Add an Artifact"
 }

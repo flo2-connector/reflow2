@@ -20,5 +20,6 @@
     ],
     "type": "object"
   },
-  "name": "recall_resolutions"
+  "name": "recall_resolutions",
+  "title": "Recall Conflict Resolutions"
 }

@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Record how a node entered the graph: `authored` (the default, someone stated it) / `planned` / `inferred` (read back out of an existing system) / `healed` / `reconciled` / `imported`. Accepted on Requirement, Capability, Component and Interface. Mark inferred requirements as such — a requirement backed out of the code that implements it is satisfied by construction and cannot contradict anything, and a reader has no other way to tell. For bulk adoption prefer import_graph, which carries this at create time. Ask for this to record where an item came from.",
@@ -47,5 +48,6 @@
     ],
     "type": "object"
   },
-  "name": "set_provenance"
+  "name": "set_provenance",
+  "title": "Set Provenance"
 }

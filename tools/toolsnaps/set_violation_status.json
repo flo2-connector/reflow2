@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Triage a flagged violation. `confirmed` = a variance or waiver was GRANTED: the violation is KEPT and documented, because the record of what was found and what was decided about it IS the audit trail. `rejected` = it must be fixed, and the finding is retained for the same reason. Put the waiver reference, or what has to change, in `rationale`. The edge is rewritten rather than removed — nothing is deleted by triaging it.",
@@ -49,5 +50,6 @@
     ],
     "type": "object"
   },
-  "name": "set_violation_status"
+  "name": "set_violation_status",
+  "title": "Set Violation Status"
 }

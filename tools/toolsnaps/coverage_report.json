@@ -59,5 +59,6 @@
     ],
     "type": "object"
   },
-  "name": "coverage_report"
+  "name": "coverage_report",
+  "title": "Coverage Report"
 }

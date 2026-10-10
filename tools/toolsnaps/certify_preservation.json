@@ -25,5 +25,6 @@
     ],
     "type": "object"
   },
-  "name": "certify_preservation"
+  "name": "certify_preservation",
+  "title": "Certify Function Preserved"
 }

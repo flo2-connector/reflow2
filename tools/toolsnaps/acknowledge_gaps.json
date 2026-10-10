@@ -9,6 +9,7 @@
     }
   },
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Acknowledge MANY gaps in one call — the bulk form of acknowledge_gap. EACH GAP CARRIES ITS OWN REASON, which is the point: a batch of acknowledgements under one shared reason is exactly the erosion the ask-don't-repair rule exists to prevent, and would make a bulk form worse than the loop it replaces. The round trip collapses; the judgement stays per gap. ALL OF IT OR NONE OF IT — every item is attempted so you learn every failure at once, and if anything failed nothing is acknowledged.",
@@ -88,5 +89,6 @@
     ],
     "type": "object"
   },
-  "name": "acknowledge_gaps"
+  "name": "acknowledge_gaps",
+  "title": "Acknowledge Many Gaps"
 }

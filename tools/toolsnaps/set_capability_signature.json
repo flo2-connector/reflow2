@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "idempotentHint": true,
     "readOnlyHint": false
   },
@@ -57,5 +58,6 @@
     ],
     "type": "object"
   },
-  "name": "set_capability_signature"
+  "name": "set_capability_signature",
+  "title": "Set Capability Signature"
 }

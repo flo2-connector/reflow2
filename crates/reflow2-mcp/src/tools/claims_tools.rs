@@ -61,7 +61,8 @@ impl ReflowService {
                        claim_report, never refused. Ask for this to mark, flag or claim that you are working on \
                        a part, region or subsystem, so nobody else collides with you or edits it at the same \
                        time.",
-        annotations(read_only_hint = false)
+        title = "Claim a Region",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn claim_region(
         &self,
@@ -103,6 +104,7 @@ impl ReflowService {
                        must already be a Contributor. Credit only — never an approval. One \
                        call can name someone else in its `_meta` under `reflow2/writes_for`, \
                        the only way when no session is kept. Omit contributor_id to stop.",
+        title = "Credit This Session's Edits to One Person",
         annotations(read_only_hint = true)
     )]
     pub async fn writes_for(
@@ -248,6 +250,7 @@ impl ReflowService {
                        Writes NOTHING: a seat is a name assigned with no coordination \
                        (dec:identity-out-of-band), never a lock, and it grants no rights. \
                        Ask for this when you want a durable name for this session so its claims are attributed.",
+        title = "Mint a Seat",
         annotations(read_only_hint = true)
     )]
     pub async fn mint_seat(&self) -> Result<CallToolResult, McpError> {
@@ -291,7 +294,8 @@ impl ReflowService {
 
     #[tool(
         description = "Give up a region you claimed, so colleagues reading `claim_report` stop seeing it as held. Returns whether a claim was there to release — releasing what nobody holds says so rather than pretending it worked. Claims are advisory and never block a write; on a server serving many sessions a claim does NOT expire on its own (its liveness reads `unknown`, never `free`), so this is the only thing that clears one, and a claim left behind makes the next person pause. Ask for this when you finish work on a part you claimed with `claim_region`.",
-        annotations(read_only_hint = false)
+        title = "Release a Claim",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn release_claim(
         &self,
@@ -310,6 +314,7 @@ impl ReflowService {
                        not reported as a collision. An overlap is a WARNING, not a refusal: the \
                        merge still resolves it correctly if two people do collide. \
                        Ask for this to see who holds what right now and whether any two people are overlapping.",
+        title = "Claim Report",
         annotations(read_only_hint = true)
     )]
     pub async fn claim_report(&self) -> Result<CallToolResult, McpError> {

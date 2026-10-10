@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Accept an artifact's current content as the new drift baseline — a two-sided decision. `disposition` is required: `design_holds` (the change carries no design meaning; recorded as a dated claim) or `design_updated` (behaviour moved and the design moved with it; pass `design_change_event_id` from the record_change that updated it, so code and design are one change). Silent accept does not exist: it is how a design erodes into fiction over N fix cycles while reporting zero gaps. Until you accept, the same checksum_change is reported on every reconcile. An artifact with NO checksum yet has exactly one legal disposition, so whatever you pass for it is READ as `baseline_established` — a first baseline, nothing moved, the design takes no position — and the reply's change_event_id (`chg:baseline-…`) says so; no CHANGED edge is drawn. Refused inside a batch, that case used to discard the rest (2026-09-07).",
@@ -93,5 +94,6 @@
     ],
     "type": "object"
   },
-  "name": "set_artifact_checksum"
+  "name": "set_artifact_checksum",
+  "title": "Accept an Artifact Checksum"
 }

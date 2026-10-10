@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Withdraw a defect's acknowledgement, returning it to the open list. The Decision is superseded rather than deleted — the judgement was real and its record survives being changed. No-ops (returns withdrawn: false) when there was no acknowledgement.",
@@ -26,5 +27,6 @@
     ],
     "type": "object"
   },
-  "name": "withdraw_defect_acknowledgement"
+  "name": "withdraw_defect_acknowledgement",
+  "title": "Withdraw a Defect Acknowledgement"
 }

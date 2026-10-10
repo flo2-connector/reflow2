@@ -58,5 +58,6 @@
     },
     "type": "object"
   },
-  "name": "reconcile_dependencies"
+  "name": "reconcile_dependencies",
+  "title": "Reconcile Dependencies"
 }

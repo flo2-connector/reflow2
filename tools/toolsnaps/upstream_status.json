@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "upstream_status"
+  "name": "upstream_status",
+  "title": "Upstream Status"
 }

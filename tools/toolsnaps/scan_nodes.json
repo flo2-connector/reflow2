@@ -53,5 +53,6 @@
     ],
     "type": "object"
   },
-  "name": "scan_nodes"
+  "name": "scan_nodes",
+  "title": "List Nodes of a Type"
 }

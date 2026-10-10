@@ -67,7 +67,8 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch.",
-        annotations(read_only_hint = false)
+        title = "Add a Verification",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn add_verification(
         &self,
@@ -207,7 +208,8 @@ impl ReflowService {
                        a reader can catch — which is a real 2026-08-07 field report, where a \
                        check recorded \"EXIT 0, verdict STALE\" and stayed passing forever. CARRIES `prose_currency` WHEN THE STATUS ACTUALLY MOVES and the node holds prose: the description was written under the OLD status and this call did not touch it, so the block names both statuses and QUOTES the prose so you can judge it here rather than in another call. It never says the prose is wrong - only a person can. \
                        Ask for this when you want to record that a test passed or failed, went red or green, and when.",
-        annotations(read_only_hint = false)
+        title = "Set Verification Status",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_verification_status(
         &self,
@@ -235,6 +237,7 @@ impl ReflowService {
 
     #[tool(
         description = "Set a Verification's kind: `verification` (built right — checks the spec) or `validation` (the right thing — checks the operational intent). A distinct axis from method/level. A capability with a passing verification but no passing validation raises the `unvalidated_capability` gap — this is how you answer it (or acknowledge). Replaces the retired VALIDATES edge. Ask for this when you want to say whether this check verifies the build or validates the need.",
+        title = "Set Verification Kind",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_verification_kind(
@@ -250,7 +253,8 @@ impl ReflowService {
 
     #[tool(
         description = "Link a Verification to what it checks (VERIFIES) — a Capability, Component, Requirement or Artifact. This is the assurance half of the golden thread: a capability with no VERIFIES edge is raised as `unverified_capability`, one proven only at its component's granularity is reported as such, and delivery counts a capability only when its OWN check is passing. `add_verification` draws these in the same call via `verifies`. Recording the check is not running it — `set_verification_status` records the outcome, and a check left `planned` counts as no confirmation. Ask for this when you want to record that a test, analysis, inspection or demonstration covers a particular capability or part.",
-        annotations(read_only_hint = false)
+        title = "Link a Verification to What It Checks",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn verifies(
         &self,
@@ -271,6 +275,7 @@ impl ReflowService {
                        parameters every passing check pinned and none swept. Reported as a fact, \
                        never a gap — pinning a seed is normal, and a detector that fired on it \
                        would punish correct work. The check must already verify the target.",
+        title = "Set Evidence Scope",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_evidence_scope(
@@ -308,7 +313,8 @@ impl ReflowService {
                        independence, so nothing can find the circularity by analysis. Also a \
                        traceability edge — correcting the anchor puts every value fitted to it \
                        in the blast radius.",
-        annotations(read_only_hint = false)
+        title = "Record a Calibration Against Evidence",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn calibrated_against(
         &self,
@@ -334,7 +340,8 @@ impl ReflowService {
                        hours earlier and recorded on other nodes, and nothing joined the two. Ask for this when \
                        you want to record that a fix or change made an earlier finding no longer true — close \
                        it out.",
-        annotations(read_only_hint = false)
+        title = "Mark a Finding Answered",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn invalidates(
         &self,
@@ -354,6 +361,7 @@ impl ReflowService {
                        \u{2014} never read null as false. Findings here keep their own recorded \
                        status untouched: this says a verdict is STALE, never that it turned. \
                        Ask for this when you want to know which recorded test results or verdicts have gone stale and need re-running because something changed since.",
+        title = "Findings Claimed Answered",
         annotations(read_only_hint = true)
     )]
     pub async fn invalidated_findings(
@@ -398,6 +406,7 @@ impl ReflowService {
                        read as it. THE COST OF NOT HAVING THIS: `INVALIDATES` shipped \
                        with its reader and a day later ZERO edges were drawn \u{2014} nothing had noticed the absence. \
                        Ask for this to learn whether my recent changes made any recorded findings false.",
+        title = "What This Session Made False",
         annotations(read_only_hint = true)
     )]
     pub async fn unclaimed_findings(
@@ -431,7 +440,8 @@ impl ReflowService {
                        auto-resolved when a later run agrees; the design-side answer is \
                        set_verification_status with what the run actually said. \
                        Ask for this when you have fresh test results and want the design's checks updated to match them.",
-        annotations(read_only_hint = false)
+        title = "Reconcile Test Results",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn reconcile_verification(
         &self,
@@ -484,7 +494,8 @@ impl ReflowService {
                        `env_type` says what kind of place that is — `simulation` for a rig, a \
                        digital twin, a physics model. \
                        Ask for this to record where a test was run.",
-        annotations(read_only_hint = false)
+        title = "Record Where a Check Ran",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn performed_in(
         &self,
@@ -507,6 +518,7 @@ impl ReflowService {
                        `reviewed` / `verified`) — registering a file and checking it are different acts. \
                        `with_unplaced_checks` and `with_unscoped_checks` count capabilities whose evidence \
                        names no environment and no swept parameters.",
+        title = "Evidence Report",
         annotations(read_only_hint = true)
     )]
     pub async fn evidence_report(
@@ -525,6 +537,7 @@ impl ReflowService {
     #[tool(
         description = "What still rests on a patch? Counts every recorded repair and splits it                        three ways: the cause was corrected, a symptom was contained, or NOBODY                        SAID. Read `unstated` FIRST — a small `contained_symptom` beside a large                        `unstated` means the design does not know what rests on a patch, not that                        little does, and `note` states which of those an empty answer is. Each                        standing patch comes back with the sentence naming what the proper fix                        would be, which is what turns a workaround from an invisible cost into a                        debt somebody can find; a patch nobody wrote down is indistinguishable                        from a design decision six weeks later. ⚠️ IT REPORTS AND DOES NOT JUDGE:                        a workaround is often the correct call under a deadline, so nothing here                        ranks or flags one — the requirement is that it be VISIBLE, never that it                        be forbidden. And it can only reflect what an author CLAIMED, so it cannot                        detect a patch reported as a correction. Write the disposition with                        `record_change`'s `repair` argument. \
                        Ask for this when you want to know which fixes were real fixes and which are workarounds still standing in for one.",
+        title = "Repair Report",
         annotations(read_only_hint = true)
     )]
     pub async fn repair_report(&self) -> Result<CallToolResult, McpError> {
@@ -544,6 +557,7 @@ impl ReflowService {
                        An empty answer on a design that has never \
                        fed a run back is not an all-clear; loop_status's loop_closure says which. \
                        Ask for this when something went wrong and you want to know which earlier choice it calls into question.",
+        title = "Choices in Doubt",
         annotations(read_only_hint = true)
     )]
     pub async fn choices_in_doubt(
@@ -569,6 +583,7 @@ impl ReflowService {
                        containing it is found in git and returned as EARLIEST EVIDENCE, never as \
                        when it was decided. Reads only; nothing is re-opened. \
                        Ask for this when you are thinking of going back on an earlier choice and want to see what you would be returning to.",
+        title = "Fork Point of a Settled Choice",
         annotations(read_only_hint = true)
     )]
     pub async fn fork_point(
@@ -621,7 +636,8 @@ impl ReflowService {
                        accepted, an id that exists, and a choice already being revisited. The \
                        owner's act: never run it on your own judgement. \
                        Ask for this when the owner has decided an earlier choice needs to be made again.",
-        annotations(read_only_hint = false)
+        title = "Reopen a Settled Choice",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn reopen_choice(
         &self,
@@ -658,6 +674,7 @@ impl ReflowService {
                        be perfectly healthy at your stage and reflow2 has no way to know. Ask for this when you \
                        want to know what fraction of one kind of item carries a given link — how many decisions \
                        link to another decision, how many components have an interface attached.",
+        title = "Relation Coverage",
         annotations(read_only_hint = true)
     )]
     pub async fn relation_coverage(
@@ -706,6 +723,7 @@ impl ReflowService {
                        come back named. Run it at the end of an adopt pass, so a thin pass is \
                        measured rather than felt. \
                        Ask for this to find what my repository holds that the design has never heard of.",
+        title = "Coverage Report",
         annotations(read_only_hint = true)
     )]
     pub async fn coverage_report(

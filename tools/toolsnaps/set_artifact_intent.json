@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Declare what an Artifact node stands for and how its content behaves — the two things only its author can say. `granularity`: `atomic` (one deliverable), `opaque` (a directory or vendored mass claimed as a unit ON PURPOSE — do not descend), or `pending_expansion` (a PLACEHOLDER for items that should each become their own node). Those last two look identical to every report today, and they are opposite states: one is a decision, the other is unfinished work — a registration check read GREEN over 359 individually unreferenceable files because nothing could tell them apart. `volatility`: `stable` (any content change is drift — the default and the safe reading), or `append_only`/`living` (a log, a bus, a changelog: a content change is EXPECTED and reports as `expected_change` rather than being recorded, so you are not owed a disposition on every reconcile forever). ABSENCE still fires at full severity whatever the volatility, because a missing file is always a real finding. `audience` says WHO THE DELIVERABLE IS FOR — `consumer` (a user of the product reaches it) or `internal` (it serves this project's own machinery: CI, a release script, a coordination board). Leaving it unset is a true answer and is NEVER inferred, in particular never from the file's path, because that would encode one project's layout. Omitted fields are left alone; every other property is preserved.",
@@ -67,5 +68,6 @@
     ],
     "type": "object"
   },
-  "name": "set_artifact_intent"
+  "name": "set_artifact_intent",
+  "title": "Set Artifact Intent"
 }

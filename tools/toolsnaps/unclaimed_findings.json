@@ -20,5 +20,6 @@
     ],
     "type": "object"
   },
-  "name": "unclaimed_findings"
+  "name": "unclaimed_findings",
+  "title": "What This Session Made False"
 }

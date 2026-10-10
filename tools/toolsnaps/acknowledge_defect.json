@@ -9,6 +9,7 @@
     }
   },
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Accept a structural defect the user has judged fine, recording WHY. It moves out of detect_defects into reviewed_defects — not deleted, not hidden — the mirror of acknowledge_gap, and for the same reason: a list that can never reach zero gets skimmed, so a genuine new defect must arrive into a list someone still reads. The reason becomes a real Decision node that outlives the session. Because a defect id hashes its category with its affected set, the review EXPIRES when that shape changes — the new shape has a new id nobody has accepted.",
@@ -64,5 +65,6 @@
     ],
     "type": "object"
   },
-  "name": "acknowledge_defect"
+  "name": "acknowledge_defect",
+  "title": "Acknowledge a Defect"
 }

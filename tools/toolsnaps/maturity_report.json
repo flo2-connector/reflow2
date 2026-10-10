@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "maturity_report"
+  "name": "maturity_report",
+  "title": "Maturity Report"
 }

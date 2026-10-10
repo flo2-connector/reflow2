@@ -27,5 +27,6 @@
     ],
     "type": "object"
   },
-  "name": "merge_designs"
+  "name": "merge_designs",
+  "title": "Propose a Three-Way Merge"
 }

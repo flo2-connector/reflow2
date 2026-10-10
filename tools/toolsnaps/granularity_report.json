@@ -8,5 +8,6 @@
     "additionalProperties": false,
     "type": "object"
   },
-  "name": "granularity_report"
+  "name": "granularity_report",
+  "title": "Granularity Report"
 }

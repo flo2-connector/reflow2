@@ -74,7 +74,8 @@ impl ReflowService {
                        the serve pass: each question is numbered in `gaps` order, and per-gap \
                        `evidence` attaches what each rests on. \
                        Ask for this to turn a batch of gaps into questions for the owner.",
-        annotations(read_only_hint = false)
+        title = "Phrase Many Gaps as Questions",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn gaps_to_prompts(
         &self,
@@ -210,7 +211,8 @@ impl ReflowService {
                        branch on it without matching prose. Unmatched \
                        answers come back in `unused_answers`, and `degrade_reason` says what went wrong. Ask \
                        for this when you want to turn a gap into a question you can put to the owner.",
-        annotations(read_only_hint = false)
+        title = "Phrase a Gap as a Question",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn gap_to_prompt(
         &self,
@@ -308,6 +310,7 @@ impl ReflowService {
     #[tool(
         description = "Questions already put to the user that still bear on something open, with the wording they saw. `status: asked` means they have not replied \u{2014} follow it up, do not ask again. `status: answered` means they replied but the gap is still open, so their answer needs writing into the design or the gap needs acknowledging; their reply comes back with it. Read this at the start of a session, before detect_gaps. AN EMPTY ANSWER IS NEVER BARE: because this is the orientation call a session runs FIRST, a zero here was being read as an all-clear while the loop was owed dozens of other things, so `count: 0` always arrives with a `loop_hint` saying WHICH it is \u{2014} the other non-zero debt named, or an explicit statement that nothing else is owed either. No questions open is not the same fact as nothing to do. \
                        PASS `asked_of` (a Contributor) TO READ ONE ADDRESSEE'S QUESTIONS, as the batch they travel in \u{2014} batch, then number \u{2014} each with `evidence`: links to every node it asks about and every finding or file the asker attached, to read rather than a summary to trust. That is the read to hand a person who is not in the chat, and it counts what it left out. Every row carries `asked_of` (`null`: nobody was named) and an answered row `answered_by` (`null`: nobody said) \u{2014} neither is guessed.",
+        title = "Open Questions",
         annotations(read_only_hint = true)
     )]
     pub async fn open_questions(
@@ -352,7 +355,8 @@ impl ReflowService {
                        by its own id. Answering one that was never asked is refused, not \
                        silently accepted — distinct from the withdraw_* tools, which no-op on an \
                        absent record — and the refusal names the ids that DO exist.",
-        annotations(read_only_hint = false)
+        title = "Answer a Question",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn answer_question(
         &self,
@@ -437,7 +441,8 @@ impl ReflowService {
     #[tool(
         description = "Withdraw a question asked in error or overtaken by events. Kept in the graph, not deleted. \u{1f6d1} THIS IS NOT HOW YOU FIX BAD WORDING, AND THERE IS NO TOOL THAT IS. A Question records WHAT WAS ASKED, and the answer stored beside it was given to those exact words \u{2014} so editing it afterwards would make the record a claim about what somebody wishes they had asked. The immutability is deliberate, not a missing feature: two projects went looking for an edit tool in the 2026-09-02 reports and the absence cost them more than the wording did. IF THE PHRASING CAME OUT AS RAW DETECTOR JARGON, the cause was almost certainly the replayed gap being mutilated between the two passes \u{2014} fixed 2026-09-02, so asking again now produces the phrasing you meant. Withdraw is for a question that should not have been asked or no longer applies; a question asked BADLY is a different fact. \
                        Ask for this to retract a question.",
-        annotations(read_only_hint = false)
+        title = "Withdraw a Question",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn withdraw_question(
         &self,

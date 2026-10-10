@@ -30,5 +30,6 @@
     ],
     "type": "object"
   },
-  "name": "relation_coverage"
+  "name": "relation_coverage",
+  "title": "Relation Coverage"
 }

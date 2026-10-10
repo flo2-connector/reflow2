@@ -25,5 +25,6 @@
     ],
     "type": "object"
   },
-  "name": "fork_point"
+  "name": "fork_point",
+  "title": "Fork Point of a Settled Choice"
 }

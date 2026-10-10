@@ -176,7 +176,8 @@ impl ReflowService {
     #[tool(
         description = "Create a node of any schema type with a property object. An existing id MERGES: the props you pass overwrite, every stored property you omit survives — so a partial props object edits, it does not reset the rest to defaults. A `null` UNSETS a property: the key is removed and the reply lists it under `unset`; a REQUIRED property refuses instead (a null used to be stored as a value that readers read two ways, 2026-09-07). READ `undeclared` IN THE REPLY: it names any property you sent that the schema does not declare for this type. The write still SUCCEEDS — the store is a property bag on purpose, so a design can record what reflow2 never anticipated — but a typo and a deliberate extension used to be indistinguishable, and this is how you tell them apart. Absent when there is nothing to say. ⚠️ EDITING SOMETHING YOU READ? PASS `expected_content_hash` — the `revision.prior_content_hash` from when you read it. The write then becomes a COMPARE-AND-SWAP and is REFUSED if the node moved in between, naming both hashes, instead of silently overwriting whoever wrote it meanwhile. Without it a shared graph loses updates by luck: measured from both sides of one real collision, the write returned a normal success and THE WINNER WAS NEVER TOLD. The `revision` block reports an overwrite AFTER the fact; this prevents it. Opt-in, because a caller who never read the node has no honest expectation to state. \
                        Ask for this when you want to add an item of a type no specific tool covers.",
-        annotations(read_only_hint = false)
+        title = "Create a Node",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn create_node(
         &self,
@@ -285,7 +286,8 @@ impl ReflowService {
                        anything failed nothing is written. Upsert, like create_node, so re-running after a fix \
                        is safe. Ask for this when you want to add many items at once — several nodes in one \
                        call, a bulk create.",
-        annotations(read_only_hint = false)
+        title = "Create Many Nodes",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn create_nodes(
         &self,
@@ -373,7 +375,8 @@ impl ReflowService {
                        and if anything failed nothing is written. \
                        Ask for this to link many pairs of items in one call with an edge type no \
                        typed helper draws.",
-        annotations(read_only_hint = false)
+        title = "Create Many Edges",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn create_edges(
         &self,
@@ -437,7 +440,8 @@ impl ReflowService {
                        edge drawn, subject first. \
                        Ask for this when you have a whole batch of typed links to record and want \
                        each one checked exactly as it would be alone.",
-        annotations(read_only_hint = false)
+        title = "Draw Many Typed Edges",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn draw_edges(
         &self,
@@ -480,7 +484,8 @@ impl ReflowService {
 
     #[tool(
         description = "Create an edge of any schema type between typed endpoints — the generic write for a relationship no typed helper covers. PREFER THE TYPED HELPER when one exists (`satisfies`, `allocate`, `depends_on`, `verifies` …): it supplies the required properties and refuses a wrong endpoint by name. Before reaching for this, call `describe_schema` with `from` and `to`: it names which edge types may join two node types and flags whether each actually models that pair or merely accepts it through a `*` wildcard — several will validate, and the first that does is not necessarily the one that means what you intend. Ask for this when you want to link two items with a relationship the typed tools do not offer.",
-        annotations(read_only_hint = false)
+        title = "Create an Edge",
+        annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn create_edge(
         &self,
@@ -541,6 +546,7 @@ impl ReflowService {
                        2026-09-02 they were rendered identically. Three projects acted on the \
                        wrong one and two drew an edge they themselves called a stand-in. \
                        Ask for this to see which fields each type takes before you use it.",
+        title = "Describe the Schema",
         annotations(read_only_hint = true)
     )]
     pub async fn describe_schema(
@@ -646,6 +652,7 @@ impl ReflowService {
                        the full record for a requirement or any single node — or a node and its \
                        edges: what it is connected to, its neighbours, which nodes link to it. \
                        Ask for this to show me everything recorded about one item.",
+        title = "Get a Node",
         annotations(read_only_hint = true)
     )]
     pub async fn get_node(
@@ -835,6 +842,7 @@ impl ReflowService {
                        instead returns leaves nobody wired to a parent, which is a different set and a \
                        confidently wrong one. Ask for this to list all the requirements, or every component, \
                        interface or other kind of item — show all of one type.",
+        title = "List Nodes of a Type",
         annotations(read_only_hint = true)
     )]
     pub async fn scan_nodes(
@@ -963,6 +971,7 @@ impl ReflowService {
                        know the name, `describe_schema` with `tool` reads its whole input schema \
                        and the lessons this design holds for it (the reply's `describe` says \
                        how, through any door).",
+        title = "Find a Tool",
         annotations(read_only_hint = true)
     )]
     pub async fn find_tools(
@@ -1125,6 +1134,7 @@ impl ReflowService {
                        DECOMPOSES, with the direction), so a linked family comes back together \
                        even where only one of its records carries your words. \
                        Ask for this to find out whether anyone has written something down about a subject, such as budgets.",
+        title = "Search the Design",
         output_schema = search_design_output_schema(),
         annotations(read_only_hint = true)
     )]
@@ -1158,6 +1168,7 @@ impl ReflowService {
                        \"where does it stand\": call it on the project's name before you write a \
                        word (field report 2026-09-14). Writes nothing. \
                        Ask for this to read everything the design says about one subject in one place.",
+        title = "Topic Report",
         annotations(read_only_hint = true)
     )]
     pub async fn topic_report(
@@ -1178,7 +1189,8 @@ impl ReflowService {
 
     #[tool(
         description = "Delete a node by type and id, returning whether it existed. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, record_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
-        annotations(read_only_hint = false)
+        title = "Delete a Node",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn delete_node(
         &self,
@@ -1197,7 +1209,8 @@ impl ReflowService {
                        than erasing it. Until this tool existed the only way to remove a wrong \
                        edge over MCP was to delete one of its endpoints. \
                        Ask for this to remove one link between two items.",
-        annotations(read_only_hint = false)
+        title = "Delete an Edge",
+        annotations(read_only_hint = false, destructive_hint = true)
     )]
     pub async fn delete_edge(
         &self,

@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "Choose how much this project lets a machine change its design on its own: `flexible` (apply_heal applies structural repairs) or `rigid` (apply_heal proposes them and stops, so a human decides). That one gate is ALL the mode currently changes — said plainly because the older schema wording, \"design is the source of truth\", promised a breadth the code does not implement. ASK THE USER; do not pick for them. Until 2026-07-30 the mode could only be set at genesis, so every design ever made carried the `flexible` DEFAULT and could never move off it — a governance choice nobody made and nobody could revisit. The default records that nobody has chosen, not that flexible was chosen (req:mode-is-chosen-and-changeable).",
@@ -35,5 +36,6 @@
     ],
     "type": "object"
   },
-  "name": "set_project_mode"
+  "name": "set_project_mode",
+  "title": "Set Project Mode"
 }

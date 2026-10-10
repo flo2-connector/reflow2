@@ -43,5 +43,6 @@
     ],
     "type": "object"
   },
-  "name": "relation_candidates"
+  "name": "relation_candidates",
+  "title": "Relation Candidates"
 }

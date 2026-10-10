@@ -1,5 +1,6 @@
 {
   "annotations": {
+    "destructiveHint": false,
     "readOnlyHint": false
   },
   "description": "YOU WERE SENT A REQUIREMENT FROM ANOTHER PROJECT: record it here as your own, waiting until your owner accepts it (a parent's handed down to this part, or a customer's levied on this supplier). It lands as this design's own Requirement at `proposed`, attributed to `sender`, with where it came from recorded and a typed reference to it: `piece` DECOMPOSES the sender's requirement, `derived` is GOVERNED_BY the sender's decision, and `moved` is the sender's requirement, now living here. Only this design's owner moves it off `proposed` (set_requirement_status); upstream_status and loop_status list what waits. Refused when the requirement here was already ruled on. Then call `send_to_design` in the sending design. Ask for this when another project hands you a requirement.",
@@ -78,5 +79,6 @@
     ],
     "type": "object"
   },
-  "name": "receive_from_design"
+  "name": "receive_from_design",
+  "title": "Receive From Another Design"
 }

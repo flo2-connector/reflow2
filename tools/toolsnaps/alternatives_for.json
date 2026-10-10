@@ -17,5 +17,6 @@
     ],
     "type": "object"
   },
-  "name": "alternatives_for"
+  "name": "alternatives_for",
+  "title": "Alternatives for a Decision"
 }
