@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cbe38a46966e12de33a40fe55f0c690ef5f1be458a09a78aa749a8769168e1d1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:88703a66c2c6d8e62ce40125319dcfb639d9a358a7a508c0c9c6e32dfad71a98"
+  },
+  "to_id": "art:test-a-write-records-the-agent-it-went-through"
+}

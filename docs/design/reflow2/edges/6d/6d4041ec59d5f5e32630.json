@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98060a5f9555f15445684ae3b9df78068b2f2c23e91b9510ce024c7086591dab",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:7e9d509b2543f082e5a3ad57aea3cca50b8b198df0235e0bd8b717a9779b6059"
+  },
+  "to_id": "art:pages-workflow"
+}

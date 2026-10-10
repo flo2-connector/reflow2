@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:33b0da166e27ec32e20117d70a7bda1e6b515d1f53e5e42ef855b996692571bb",
+  "node_id": "epoch:v0811-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The patch that makes loop_status fast on a large design (#707), which unblocks moving reflow2's own design onto flo2.io.",
+    "epoch_type": "release_cut",
+    "name": "v0.81.1 release cut (2026-10-09)",
+    "sequence": 668,
+    "status": "arrived"
+  }
+}

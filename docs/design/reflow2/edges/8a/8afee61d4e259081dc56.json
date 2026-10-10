@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b334195bb6b62668bad575b766a6b87ab3dd1e9b9baf6cf5fe1567ed9024cf67",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:61245274748f547a7b6589bf8179ed4cd9099059dec77631fe7589ecc21bdef5"
+  },
+  "to_id": "art:test-two-designs-over-the-transport"
+}

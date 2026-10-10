@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3130cf23191b233bbef565ff08b5593a83befe9c9609feffbebf4e4bb11ea488",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:b4efa81d63059bd71291377bbde7185d365dd9c0be48e6a717767fc45302e62c"
+  },
+  "to_id": "art:log-issue-skill"
+}

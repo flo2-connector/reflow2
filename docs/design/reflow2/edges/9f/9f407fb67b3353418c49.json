@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cf3a3502493b540743c45a743db37ea7bcec115dfda05607d8a549b37ba73527",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:c565c0afd0dd35f2321ee9a5453fbd800eea7601261d3cf7fb03a17578105ee0"
+  },
+  "to_id": "art:sweep-harness"
+}

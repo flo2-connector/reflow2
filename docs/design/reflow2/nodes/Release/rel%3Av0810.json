@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:96f78babfdf988da4bed093c1e6392185b2aa16bf5f00fa1f2ea2b98eb7fe65d",
+  "content_hash": "sha256:684d16838e3fee9b34dbe3cf650ff285315428371f66825b68051a3f77c074df",
   "node_id": "rel:v0810",
   "node_type": "Release",
+  "prev_item_hash": "sha256:96f78babfdf988da4bed093c1e6392185b2aa16bf5f00fa1f2ea2b98eb7fe65d",
   "properties": {
     "description": "Cut 2026-10-09 on Anthony's word (\"go with your suggestion on the reflow2 release next\"). Ships #689–#691, #693–#695 and #697–#701. One schema widening: DECOMPOSES may reach a cross-design reference; reflow2 0.80.0 refuses a design holding such an edge (measured).",
     "name": "v0.81.0 — a family of designs is worked as one design graph",
-    "status": "deployed",
+    "status": "retired",
     "unit_type": "binary",
     "version": "0.81.0"
   }

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fcde73f09ac93912f11d019291d86280343f88c0f9a439b9a792540c3b03ae0d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:e4b334fbb0a4444ee935a656f9bae4dfd3599653f8563b631761f75cc8035a3b"
+  },
+  "to_id": "art:test-a-refused-host-is-told-which-flag-admits-it"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d717815b4b8c015717a5448a9bfa174c14cc4127bcdb1a4e2b09cb4fbf8c8573",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:2189fbe1a8e7bf365d86d40a6ab02a439dbe43567778434e2abdf07e90bd4bb1"
+  },
+  "to_id": "art:test-a-stored-item-the-schema-now-refuses-is-reported"
+}

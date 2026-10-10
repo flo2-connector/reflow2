@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9982f902216f77492018e3308109e0265d6d469ba7c97eae01251aee4c25b4aa",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:7263308771657e5a4572218416a208d19418bd5a3a55e59a5dc5e72be8ab204f"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes"
+}

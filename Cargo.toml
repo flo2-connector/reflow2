@@ -21,7 +21,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.81.0"
+version = "0.81.1"
 edition = "2024"
 # The FLOOR, kept at stable minus one (Anthony, 2026-10-02, under
 # req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases). It is

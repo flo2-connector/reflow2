@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99bdf5a02c9b6b9400c355575ee844e362b613be410359c9a1dc5be2164693d1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:181c309ee9fea3f6c24b85d50dcf1639b3b94472ee8af5842850adf35e0b9ff1"
+  },
+  "to_id": "art:a-dependency-declaration-replies-with-a-receipt-test"
+}

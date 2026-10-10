@@ -31,6 +31,31 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.81.1] — 2026-10-09
+
+**Patch. `loop_status` is fast again on a large design.** It is the change that unblocks moving
+reflow2's own design onto flo2.io, whose gateway allows an engine call 30 s. It contains #707; #702,
+#703 and #706 are design records, and #705 re-blessed 0.81.0's surface.
+
+### What a consumer or operator should know
+
+- **Nothing to do.** The schema is unchanged: node types (28), edge types (66), every enum and
+  every endpoint are 0.81.0's. No tool, argument or reply field changed.
+- On reflow2's own design (6,955 nodes), `loop_status` went from 46.3 s cold and 30.8 s warm to
+  11.7 s cold and 0.8 s warm on a two-vCPU server, and `confirmation_ledger` from 17.4 s to
+  0.26 s. Designs whose artifacts each realize many capabilities gain the most.
+
+### Fixed
+
+- **`loop_status` is fast again on a large design.** On reflow2's own design (about 7,000
+  nodes) it took 30 s locally and 31–46 s on flo2.io's server. That is over the 30 s a hosted
+  call is allowed, and over the 2,000 ms limit set for a warm `loop_status`. Nearly all of it
+  was the confirmation ledger: it re-read an artifact's whole history once for every
+  capability that artifact realizes, about 940,000 reads where 4,000 would do. It now reads
+  each artifact and each change once. Its answer is unchanged, and the ledger drops from 17 s
+  to 0.26 s. `confirmation_ledger` itself is faster by the same amount. A test now fails if
+  the ledger's reads grow with capabilities × history again. **What to do:** nothing.
+
 ## [0.81.0] — 2026-10-09
 
 **Minor. This is the release in which a family of designs is worked as one design graph.** A hub

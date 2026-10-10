@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e628226f27423185f32eb70892003a4677c9de6be057c16e354ce1acdff841e5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0811",
+  "properties": {
+    "as_checksum": "sha256:972e433981a431ba415df08677915298fa8c8e8bc0fc793c0c03ab4c1d447cd1"
+  },
+  "to_id": "art:writers-map"
+}
