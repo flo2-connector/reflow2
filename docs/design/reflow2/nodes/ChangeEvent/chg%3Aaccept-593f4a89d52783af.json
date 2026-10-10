@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99e80c0e39ce6a916261f508af14e175c4d76ca0e968e4f16e07ce7e4fbeca30",
+  "node_id": "chg:accept-593f4a89d52783af",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "Accepted a new baseline: the change carries no design meaning",
+    "subject": "system"
+  }
+}

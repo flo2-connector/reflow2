@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:69ec49ef72b7e6d33a927a49589786e55a4b8c4e1c68f5b81980a6e4308f11c1",
+  "node_id": "chg:accept-4865b767283f2ef7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "name": "Accepted a new baseline: the change carries no design meaning",
+    "subject": "system"
+  }
+}

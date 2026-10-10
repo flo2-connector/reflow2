@@ -232,9 +232,12 @@ impl ReflowService {
         // the recency roll is shared.
         // 🛑 SCOPED TO THE ROWS THE DIGEST WILL SHOW, and that is a fix rather
         // than an optimisation. The exhaustive form asks `incoming()` about
-        // every Verification and TemporalFact, and each of those walks the whole
-        // edge set — measured 2026-08-24 at 39s on this graph, inside the call
-        // `cap:loop-status` promises is CHEAP. The digest only annotates checks
+        // every Verification and TemporalFact. Measured 2026-08-24 at 39 s on
+        // this graph, when each of those walked the whole edge set; since then
+        // `incoming()` is an indexed prefix scan (measured 2026-10-09), but the
+        // digest still only needs the rows it shows. What made loop_status slow
+        // again on 2026-10-09 was the confirmation ledger, not this
+        // (fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09). The digest only annotates checks
         // that are NOT passing, so those are the only ids worth asking about.
         let attention_ids: Vec<&str> = status
             .verifications

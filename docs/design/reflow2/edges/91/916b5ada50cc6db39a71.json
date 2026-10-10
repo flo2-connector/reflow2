@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:9ca00b295f6d16eb6c932a324d148d927c75aa792f5de4fe4b59b08af93510dc",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-confirmation-ledger-reads-each-history-once",
+  "properties": {},
+  "to_id": "cap:loop-status"
+}

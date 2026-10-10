@@ -210,6 +210,145 @@ impl DesignGraph {
     }
 }
 
+/// What one artifact's own history says, whichever capability asks.
+struct ArtifactClaims {
+    /// BL-158: the date a reconcile last found it unchanged.
+    confirmed_at: Option<String>,
+    drift_events: usize,
+    unresolved: usize,
+    design_holds: usize,
+    design_updated: usize,
+    baseline_claims: usize,
+    /// The newest accept of a change to this artifact, first baselines aside.
+    last_claim_at: Option<String>,
+}
+
+/// What one accepting ChangeEvent is, read once however many artifacts and
+/// capabilities it reaches.
+struct EventClaim {
+    /// BL-157: a first baseline is not an accept at all.
+    first_baseline: bool,
+    detected_at: Option<String>,
+    /// The non-Artifact nodes it CHANGED. An accept "moved the design" when
+    /// one of these is not the artifact being examined.
+    non_artifact_targets: Vec<String>,
+}
+
+fn event_claim(g: &dyn GraphRead, id: &str) -> Result<Option<EventClaim>, DynoError> {
+    let Some(ev) = g.get_node(node::CHANGE_EVENT, id)? else {
+        return Ok(None);
+    };
+    let first_baseline = ev
+        .properties
+        .get("change_type")
+        .and_then(crate::foundation::core::Value::as_str)
+        == Some(crate::temporal::ChangeType::BaselineEstablished.as_str());
+    let detected_at = ev
+        .properties
+        .get("detected_at")
+        .and_then(crate::foundation::core::Value::as_str)
+        .map(str::to_string);
+    let mut non_artifact_targets = Vec::new();
+    if !first_baseline {
+        for t in g.outgoing(&ev.node_id, Some(edge::CHANGED))? {
+            if g.get_node(node::ARTIFACT, &t.to_id)?.is_none() {
+                non_artifact_targets.push(t.to_id);
+            }
+        }
+    }
+    Ok(Some(EventClaim {
+        first_baseline,
+        detected_at,
+        non_artifact_targets,
+    }))
+}
+
+fn artifact_claims(
+    g: &dyn GraphRead,
+    art: &str,
+    per_event: &mut std::collections::HashMap<String, EventClaim>,
+) -> Result<ArtifactClaims, DynoError> {
+    let mut a = ArtifactClaims {
+        confirmed_at: None,
+        drift_events: 0,
+        unresolved: 0,
+        design_holds: 0,
+        design_updated: 0,
+        baseline_claims: 0,
+        last_claim_at: None,
+    };
+    // BL-158 · someone ran a reconcile and this still matched. Read off the
+    // artifact rather than off an event, because a clean check is not a
+    // change (see `drift::stamp_confirmed`).
+    if let Some(node) = g.get_node(node::ARTIFACT, art)? {
+        a.confirmed_at = node
+            .properties
+            .get("last_confirmed_at")
+            .and_then(crate::foundation::core::Value::as_str)
+            .map(str::to_string);
+    }
+    for e in g.incoming(art, Some(edge::DEPENDS_ON))? {
+        let Some(ev) = g.get_node(node::DRIFT_EVENT, &e.from_id)? else {
+            continue;
+        };
+        a.drift_events += 1;
+        let resolved = ev
+            .properties
+            .get("resolved")
+            .and_then(crate::foundation::core::Value::as_bool)
+            .unwrap_or(false);
+        if !resolved {
+            a.unresolved += 1;
+        }
+    }
+    for e in g.incoming(art, Some(edge::CHANGED))? {
+        // Only accept claims count; ordinary change history on the artifact
+        // (a record_change) is not a disposition.
+        let is_claim = e
+            .properties
+            .get("accepted_baseline")
+            .and_then(crate::foundation::core::Value::as_bool)
+            .unwrap_or(false);
+        if !is_claim {
+            continue;
+        }
+        if !per_event.contains_key(&e.from_id) {
+            let Some(claim) = event_claim(g, &e.from_id)? else {
+                continue;
+            };
+            per_event.insert(e.from_id.clone(), claim);
+        }
+        let ev = &per_event[&e.from_id];
+        // A first baseline is not an accept at all (BL-157), and it has to be
+        // tested FIRST: it only ever CHANGED the artifact, so the design-moved
+        // test below would silently count it as a `design_holds` claim.
+        if ev.first_baseline {
+            a.baseline_claims += 1;
+            // `last_claim_at` means "the newest accepted change to the code
+            // this check covers", so a first baseline must NOT feed it:
+            // nothing moved.
+            continue;
+        }
+        // Which kind of claim is this accept? A design-moving event also
+        // CHANGED a non-Artifact design node.
+        if ev.non_artifact_targets.iter().any(|t| t != art) {
+            a.design_updated += 1;
+        } else {
+            a.design_holds += 1;
+        }
+        if let Some(at) = &ev.detected_at
+            && a.last_claim_at
+                .as_deref()
+                .is_none_or(|prev| at.as_str() > prev)
+        {
+            // ISO-8601 strings order lexically; the caller supplies them (the
+            // core takes no clock).
+            a.last_claim_at = Some(at.clone());
+        }
+    }
+    Ok(a)
+}
+
 /// Compute the confirmation ledger, over anything readable as a design.
 ///
 /// ⭐ THE FIRST MODULE TO EXERCISE MOST OF THE CONTRACT. `granularity` used
@@ -223,6 +362,17 @@ impl DesignGraph {
 /// `unrealized_capability`'s question, not a confirmation question.
 pub fn confirmation_ledger(g: &dyn GraphRead) -> Result<ConfirmationLedger, DynoError> {
     let mut claims = Vec::new();
+    // ⚠️ ONE PASS PER ARTIFACT AND PER EVENT, NOT PER CAPABILITY. An artifact
+    // such as the MCP service realizes over a hundred capabilities, and every
+    // accept on it was re-read and re-classified once for each of them.
+    // Measured 2026-10-09 on reflow2's own design: 943,665 node reads to
+    // classify 4,001 accepting events' targets, 17.4 s of loop_status's 23 s,
+    // and over the gateway's 30 s door on flo2.io
+    // (fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09).
+    let mut per_artifact: std::collections::HashMap<String, ArtifactClaims> =
+        std::collections::HashMap::new();
+    let mut per_event: std::collections::HashMap<String, EventClaim> =
+        std::collections::HashMap::new();
 
     for cap in g.scan_nodes(node::CAPABILITY)? {
         // Both P3 shapes (BL-38): files realizing the capability, or files
@@ -243,6 +393,9 @@ pub fn confirmation_ledger(g: &dyn GraphRead) -> Result<ConfirmationLedger, Dyno
             continue;
         }
 
+        // Summed from per-artifact facts computed ONCE per ledger (see
+        // `ArtifactClaims`): an artifact's history does not depend on which
+        // capability is asking.
         let mut drift_events = 0usize;
         let mut unresolved = 0usize;
         let mut design_holds = 0usize;
@@ -253,96 +406,31 @@ pub fn confirmation_ledger(g: &dyn GraphRead) -> Result<ConfirmationLedger, Dyno
         let mut last_confirmed_at: Option<String> = None;
 
         for art in &artifacts {
-            // BL-158 · someone ran a reconcile and this still matched. Read
-            // off the artifact rather than off an event, because a clean
-            // check is not a change (see `drift::stamp_confirmed`).
-            if let Some(node) = g.get_node(node::ARTIFACT, art)?
-                && let Some(at) = node
-                    .properties
-                    .get("last_confirmed_at")
-                    .and_then(crate::foundation::core::Value::as_str)
-            {
+            if !per_artifact.contains_key(art) {
+                let facts = artifact_claims(g, art, &mut per_event)?;
+                per_artifact.insert(art.clone(), facts);
+            }
+            let a = &per_artifact[art];
+            if let Some(at) = &a.confirmed_at {
                 confirmations += 1;
-                if last_confirmed_at.as_deref().is_none_or(|prev| at > prev) {
-                    last_confirmed_at = Some(at.to_string());
-                }
-            }
-            for e in g.incoming(art, Some(edge::DEPENDS_ON))? {
-                let Some(ev) = g.get_node(node::DRIFT_EVENT, &e.from_id)? else {
-                    continue;
-                };
-                drift_events += 1;
-                let resolved = ev
-                    .properties
-                    .get("resolved")
-                    .and_then(crate::foundation::core::Value::as_bool)
-                    .unwrap_or(false);
-                if !resolved {
-                    unresolved += 1;
-                }
-            }
-            for e in g.incoming(art, Some(edge::CHANGED))? {
-                // Only accept claims count; ordinary change history on the
-                // artifact (a record_change) is not a disposition.
-                let is_claim = e
-                    .properties
-                    .get("accepted_baseline")
-                    .and_then(crate::foundation::core::Value::as_bool)
-                    .unwrap_or(false);
-                if !is_claim {
-                    continue;
-                }
-                let Some(ev) = g.get_node(node::CHANGE_EVENT, &e.from_id)? else {
-                    continue;
-                };
-                // A first baseline is not an accept at all (BL-157), and it
-                // has to be tested FIRST: it only ever CHANGED the artifact,
-                // so the design-moved test below would silently count it as
-                // a `design_holds` claim — the same fiction one layer over,
-                // now in the ledger's own arithmetic.
-                let is_first_baseline = ev
-                    .properties
-                    .get("change_type")
-                    .and_then(crate::foundation::core::Value::as_str)
-                    == Some(crate::temporal::ChangeType::BaselineEstablished.as_str());
-                if is_first_baseline {
-                    baseline_claims += 1;
-                } else {
-                    // Which kind of claim is this accept? A design-moving
-                    // event also CHANGED a non-Artifact design node.
-                    let mut moved_design = false;
-                    for t in g.outgoing(&ev.node_id, Some(edge::CHANGED))? {
-                        if t.to_id != *art && g.get_node(node::ARTIFACT, &t.to_id)?.is_none() {
-                            moved_design = true;
-                            break;
-                        }
-                    }
-                    if moved_design {
-                        design_updated += 1;
-                    } else {
-                        design_holds += 1;
-                    }
-                }
-                // `last_claim_at` is read by the freshness comparison as
-                // "the newest accepted change to the code this check
-                // covers", so a first baseline must NOT feed it: nothing
-                // moved, and letting it in would mark every passing check
-                // on the capability stale the moment someone registered a
-                // checksum that had been missing all along.
-                if is_first_baseline {
-                    continue;
-                }
-                if let Some(at) = ev
-                    .properties
-                    .get("detected_at")
-                    .and_then(crate::foundation::core::Value::as_str)
+                if last_confirmed_at
+                    .as_deref()
+                    .is_none_or(|prev| at.as_str() > prev)
                 {
-                    // ISO-8601 strings order lexically; the caller supplies
-                    // them (the core takes no clock).
-                    if last_claim_at.as_deref().is_none_or(|prev| at > prev) {
-                        last_claim_at = Some(at.to_string());
-                    }
+                    last_confirmed_at = Some(at.clone());
                 }
+            }
+            drift_events += a.drift_events;
+            unresolved += a.unresolved;
+            design_holds += a.design_holds;
+            design_updated += a.design_updated;
+            baseline_claims += a.baseline_claims;
+            if let Some(at) = &a.last_claim_at
+                && last_claim_at
+                    .as_deref()
+                    .is_none_or(|prev| at.as_str() > prev)
+            {
+                last_claim_at = Some(at.clone());
             }
         }
 

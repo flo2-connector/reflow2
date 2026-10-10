@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87af47fbf0063a05f8d88baea60fcd00a2411c3c88ea0891d79cfec77adcfffd",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-confirmation-ledger-reads-each-history-once",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:loop-status"
+}

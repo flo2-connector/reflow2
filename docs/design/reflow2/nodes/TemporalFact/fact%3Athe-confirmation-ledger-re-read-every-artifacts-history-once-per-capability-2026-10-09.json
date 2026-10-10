@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea71444373587e9fecd906b7454fce0391f204197b86b0b948edb9ac2ae43343",
+  "node_id": "fact:the-confirmation-ledger-re-read-every-artifacts-history-once-per-capability-2026-10-09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "The confirmation ledger re-read every artifact's history once per capability, which put loop_status at 30 s on reflow2's design and over flo2.io's 30 s door",
+    "statement": "Found by phase 0 of the move of reflow2's design onto flo2.io (a rehearsal on the droplet, 2026-10-09). With reflow2 0.81.0, loop_status took 46.3 s cold and 30.8 s warm there, against the gateway's 30 s limit per engine call. Locally it took 30.0 s one-shot. con:loop-status-warm-latency-ms (2,000 ms warm, accepted 2026-09-05) had no check that measures it, so the growth went unnoticed after September's fix brought it to 1.3 s.\n\nMEASURED, section by section, release build on a copy of the store: confirmation_ledger 17.4 s; every other section of loop_status under 0.1 s together; the open 0.9 s. Counted from the export: 943,665 node reads to classify accepts (art:service alone 88,413) against 4,001 if each accepting event were classified once.\n\nREFUTED ON THE WAY: incoming() walking the whole edge set. A comment in coherence.rs said so, from 2026-08-24. Today it is an indexed prefix scan (scan_incoming_edges over CF_ADJ_IN), and the comment is corrected.\n\nAFTER THE FIX (each artifact's and each event's facts computed once per ledger; the answer unchanged): ledger 0.26 s; core loop_status 7.2 s cold and 0.47 s warm locally; on the droplet 11.7 s cold and 0.8 s warm, with the export working and peak memory 677 MB.\n\nA MEASUREMENT OF MINE THAT WAS WRONG, recorded so its numbers are not reused: a second droplet run read 43.0 s and 33.3 s. It measured the FIRST run's server, which had survived because I stopped the /usr/bin/time wrapper and not the server under it. The new server could not bind the port. The empty export in that run was the tell.\n\nTHE CLASS: a per-capability rollup recomputing facts that belong to shared artifacts and events, so its cost grows as capabilities × history. Pinned by art:test-the-confirmation-ledger-reads-each-history-once, which counts the ledger's store reads, so it does not depend on the hardware.",
+    "subject_id": "con:loop-status-warm-latency-ms",
+    "valid_from": "2026-10-09"
+  }
+}
