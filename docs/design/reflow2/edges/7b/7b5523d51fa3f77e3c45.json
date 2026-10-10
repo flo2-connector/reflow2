@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:605e775a488c6e95874f4cfe65b796f55bd425161dff7f60a577074a03fd84c1",
+  "edge_type": "ACTS_FOR",
+  "from_id": "who:agent-8d84cd1476",
+  "properties": {
+    "route": "request"
+  },
+  "to_id": "who:ajs"
+}

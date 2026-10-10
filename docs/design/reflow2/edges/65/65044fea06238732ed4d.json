@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18f81eff75ce7fd6f24d2f068665dbcd2759c9fe450bcb078a1582842727ca84",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-tool-class-should-carry-a-contract-that-something-checks",
+  "properties": {
+    "evidence": "That open idea asks whether a declared tool class should oblige its members to state the same things, checked; a title and a destruction hint on every tool, held by a test over tools/list, is one such contract, arrived at from the outside."
+  },
+  "to_id": "req:every-served-tool-carries-a-title-and-says-whether-it-destroys"
+}
