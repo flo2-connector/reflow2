@@ -24,6 +24,19 @@
 //! its own root. Isolation is a property of WHAT IS THERE, not of a check on who
 //! is asking.
 //!
+//! ⭐ ONE BOUNDED WAY ACROSS DESIGNS, SINCE 2026-10-10
+//! (`dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`,
+//! which re-opened the paragraph above for this case alone). A design this
+//! router serves may READ a second design it also serves, by graph_id, through
+//! [`RegistryHandle`] — that design's export and nothing else: never a path,
+//! never a write, never a session on it. `ReflowService::other_design` is the
+//! one door, and it opens only behind a trusted gateway or a bearer gate AND
+//! only for an id in the readable set the host put on THAT call
+//! (`_meta["reflow2/readable_graph_ids"]`), because on flo2.io one root holds
+//! every tenant and the root alone would let any member of A read any design on
+//! the droplet. Listing stays unfiltered; a session still cannot address another
+//! design by path; a registry with no trusted host reaches no other design.
+//!
 //! 🛑 ISOLATION HOLDS BY CONSTRUCTION HERE, NOT BY A CHECK, and that is
 //! deliberate — flo2's own tracker warns that "a handler that reaches the wrong
 //! graph corrupts a design rather than erroring, so this wants property tests,
@@ -615,10 +628,16 @@ impl GraphRouter {
         // And it establishes who is calling the way the OPERATOR declared for
         // the whole root (`crate::caller`), so a signature through any design
         // it serves is the caller's own.
+        //
+        // And it carries the one bounded way back to this router — weakly —
+        // so a cross-design read can reach a SECOND design it serves, by
+        // graph_id, under the readable set the host hands over
+        // (`RegistryHandle`, `ReflowService::other_design`).
         let opened = opened
             .without_tree()
             .without_reaching_out()
-            .with_caller_rule(self.inner.caller_rule.clone());
+            .with_caller_rule(self.inner.caller_rule.clone())
+            .with_registry(self.handle());
         let svc = if self.inner.read_only {
             opened.into_read_only()
         } else {
@@ -635,6 +654,71 @@ impl GraphRouter {
             sessions,
             store,
         }))
+    }
+
+    /// The handle a design this router opens carries back to it.
+    fn handle(&self) -> RegistryHandle {
+        RegistryHandle {
+            inner: Arc::downgrade(&self.inner),
+        }
+    }
+}
+
+/// A design's bounded way to a SECOND design this same router holds — that
+/// design's export, by graph_id, and nothing else
+/// (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`).
+///
+/// ⭐ WEAK, NOT STRONG, and this is load-bearing: a strong handle would cycle
+/// `Inner → open → Slot → OpenDesign.http → closure → svc → Inner`, so the
+/// router and every design it ever opened would live until the process ended.
+/// The router owns the designs; a design only knows which router it came from.
+///
+/// 🛑 AUTHORISATION IS NOT HERE. This resolves and exports; whether the CALLER
+/// may read that design is decided before this is asked, in
+/// `ReflowService::other_design`, against the readable set the trusted host
+/// put on the call. Nothing else in the crate holds one of these.
+#[derive(Clone)]
+pub struct RegistryHandle {
+    inner: Weak<Inner>,
+}
+
+impl RegistryHandle {
+    /// The current export of design `graph_id`, opened if it is not (and
+    /// closed again by the ordinary idle rules — it takes a slot like any
+    /// request, and meets the same `Busy`).
+    ///
+    /// Holds the design's in-flight guard for the whole call, so it is not
+    /// closed under the export, and ITS read guard only while exporting: that
+    /// guard is dropped before this returns, so a caller that then reads its
+    /// own design never holds two. (tokio's `RwLock` queues a writer ahead of
+    /// new readers, so A→B against B→A with two guards each would deadlock.)
+    pub async fn other_design_export(
+        &self,
+        graph_id: &str,
+    ) -> Result<reflow2_core::GraphExport, Refusal> {
+        let Some(inner) = self.inner.upgrade() else {
+            return Err(Refusal::Busy(
+                "the registry that served this design has stopped, so no other design can be \
+                 opened through it."
+                    .to_string(),
+            ));
+        };
+        let router = GraphRouter { inner };
+        let (open, _in_flight) = router.service_for(graph_id).await?;
+        let Some(store) = open.store.upgrade() else {
+            return Err(Refusal::Busy(format!(
+                "design '{graph_id}' is closing and will reopen once its last request ends. Try \
+                 again in a few seconds."
+            )));
+        };
+        let export = {
+            let g = store.read().await;
+            g.export_graph().map_err(|e| {
+                Refusal::CouldNotOpen(format!("design '{graph_id}' could not be exported: {e}"))
+            })?
+            // `g` drops here: the other design's guard is never held past this block.
+        };
+        Ok(export)
     }
 }
 

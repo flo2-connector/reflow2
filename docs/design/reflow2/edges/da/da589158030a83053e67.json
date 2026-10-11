@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:12f53fe505d24bb9d0eba8f256c74cb1dcc7b7cca55bde288006ffe242ad733a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-no-per-design-globals",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

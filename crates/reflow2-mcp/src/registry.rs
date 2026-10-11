@@ -190,7 +190,16 @@ impl std::error::Error for AttachError {}
 ///
 /// Holds the resolved store path so the server can open it, and offers NO way to
 /// name a second design. That absence is the isolation property, not an
-/// oversight.
+/// oversight: a session is bound to one design and cannot ADDRESS another.
+///
+/// Since 2026-10-10 there is exactly one bounded way a design READS another —
+/// not through a binding, but through `crate::registry_http::RegistryHandle`
+/// and `ReflowService::other_design`: the other design's export, by graph_id,
+/// only behind a trusted host and only for an id in the readable set that host
+/// put on the call
+/// (`dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`).
+/// A `Binding` still names one design, and a path is still refused as an
+/// unknown id.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Binding {
     graph_id: String,

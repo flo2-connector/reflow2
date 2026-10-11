@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2d7605861f7e514f1b23546491f1c5debaceb6c68c7af37fd1dd6d41f4490b17",
+  "edge_type": "CHANGED",
+  "from_id": "chg:compare-and-compose-take-the-other-design-by-graph-id-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:386b8e746b72309da5ffd08c895f9de5a5f2b2d6c09a3c0f98856d2947183a7a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-exchange"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7f5c9bf1986589350c6612baa4518ee308c95352c93ffa2ce74da1fc55783ce2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

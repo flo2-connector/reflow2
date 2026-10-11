@@ -134,6 +134,19 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          every design it opens.",
     ),
     (
+        "reflow2-mcp/src/service.rs",
+        "READABLE_GRAPH_IDS",
+        "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: it \
+         holds the set of designs, by graph_id, the trusted host said the ONE tool call \
+         now being served may read (`_meta[\"reflow2/readable_graph_ids\"]`, \
+         dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-\
+         by-the-root-alone), set by `call_tool` around that call's handler and gone when \
+         it returns. It is the host's word about one call, never a property of a design: \
+         two calls — on one design or on two — each see only their own set, so a second \
+         design open in the process cannot be read under the first call's permission. \
+         Read in one place, `ReflowService::other_design`.",
+    ),
+    (
         "reflow2-mcp/src/service/unit.rs",
         "CALL",
         "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: \

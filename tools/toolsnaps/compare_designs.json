@@ -2,14 +2,18 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. Findings are directional relative to the named base: `added` / `removed` / `changed` (property-level), banded into design content vs the supporting layer (change events, questions, provenance). Pass base_path alone to compare the live graph against a committed export ('has this session diverged from the record?'); pass other_path too to compare two export files (branches, machines, alternatives). Reports divergence, never judges which side is right.",
+  "description": "Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. Findings are directional relative to the named base: `added` / `removed` / `changed` (property-level), banded into design content vs the supporting layer (change events, questions, provenance). Pass base_path alone to compare the live graph against a committed export ('has this session diverged from the record?'); pass other_path too to compare two export files (branches, machines, alternatives). Reports divergence, never judges which side is right. On a server that holds many designs (a registry behind a trusted host) pass other_graph_id instead of a path: the live graph is the base and the other design is read by graph_id from the one the server holds, inside the set of designs the host says you may read; a path is not served there.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "base_path": {
-        "description": "Path to the base export document — what every finding is relative to\n(`added` = in the other side, not here). Typically the committed\nexport, or the main branch's copy of it.",
-        "type": "string"
+        "default": null,
+        "description": "Path to the base export document — what every finding is relative to\n(`added` = in the other side, not here). Typically the committed\nexport, or the main branch's copy of it. Required unless\n`other_graph_id` is passed, which makes the live graph the base.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "budget_chars": {
         "default": null,
@@ -18,6 +22,14 @@
         "minimum": 0,
         "type": [
           "integer",
+          "null"
+        ]
+      },
+      "other_graph_id": {
+        "default": null,
+        "description": "The other design BY GRAPH_ID, on a server that holds many designs (a\nregistry behind a trusted host): the live graph is the base, labelled\nby this design's graph_id, and the other design is read from the one\nthe server already holds, inside the set of designs the host says you\nmay read. Not combined with a path; refused on a single-design server,\nand for a design outside that set.",
+        "type": [
+          "string",
           "null"
         ]
       },
@@ -30,9 +42,6 @@
         ]
       }
     },
-    "required": [
-      "base_path"
-    ],
     "type": "object"
   },
   "name": "compare_designs",

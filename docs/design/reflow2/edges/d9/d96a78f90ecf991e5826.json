@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:726ad364c3b38bd4d35834bdb06bc32eca40f4c64fc16ba3428d3e9a9edc7117",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-cross-design-read-takes-the-other-design-by-graph-id-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-cross-design-read-takes-the-other-design-by-graph-id"
+}

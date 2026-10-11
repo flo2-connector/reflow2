@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:14f091869a94bc150faee17d6ed4abbb25b094e9f964fa0bb7beeeb972582e9d",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:compare-and-compose-take-the-other-design-by-graph-id"
+}

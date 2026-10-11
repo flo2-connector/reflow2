@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6b4302c3f4060e859ae66b531fd18440bbc69cf59868cf0280b454d73482f0fc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:compare-and-compose-take-the-other-design-by-graph-id-2026-10-11",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

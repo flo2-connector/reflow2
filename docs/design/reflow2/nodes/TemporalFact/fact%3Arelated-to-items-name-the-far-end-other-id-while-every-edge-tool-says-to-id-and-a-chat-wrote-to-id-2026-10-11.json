@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:3a5493a3dbec3254ce638fe99111c78e6d74afb1618d7ff2f729b073f442bcbc",
+  "node_id": "fact:related-to-items-name-the-far-end-other-id-while-every-edge-tool-says-to-id-and-a-chat-wrote-to-id-2026-10-11",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "finding",
+    "name": "OBSERVED 2026-10-11: a claude.ai chat following the brainstorm skill wrote `related_to[0].to_id` on add_decision and was refused before the call ran (\"not a parameter … the names there are evidence, incoming, other_design, other_id, other_name, other_type, relation\"); the retry with other_id went through 483 ms later — the one refusal in a 61-call session, and the one place the surface says other_id where every edge tool says to_id",
+    "source": "flo2.io's connector_calls table, client Claude-User, 2026-10-11 03:01 UTC (two add_decision calls, the first refused)",
+    "statement": "From flo2.io's call log: at 03:01 the chat (running the brainstorm skill on reflow2's design, recording dec:idea-how-is-a-decision-that-rests-on-numbers-held-to-keeping-its-math) called add_decision with related_to items shaped {relation, to_id, evidence}; the argument check refused it listing the seven legal names; the second call, 483 ms later, used other_id and was stored. Cost: one round trip, no damage — the refusal did its job. WHY IT IS WORTH A LINE: related_to's item (RelationLinkReq) names its far end other_id / other_type / other_design because the same shape reaches into another design (cap above), while depends_on, satisfies, create_edge and the rest name theirs to_id; an agent that has just drawn edges reaches for to_id. The same shape is also what the 2026-10-10 StoryFlow root cause touched (the skills never name other_design). Not judged here whether to alias to_id → other_id on the item (an additive alias, as `id`/`node_id` are on several tools) or to leave the refusal to teach; recorded so the next report of it is a recurrence and not a first sighting. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "add_decision",
+      "review_relations",
+      "brainstorm"
+    ],
+    "subject_id": "cap:a-design-records-a-typed-link-to-a-node-in-another-design-and-reports-when-its-far-end-moves",
+    "valid_from": "2026-10-11"
+  }
+}
