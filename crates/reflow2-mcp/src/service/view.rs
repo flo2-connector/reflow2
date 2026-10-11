@@ -72,13 +72,19 @@ pub(crate) const NOT_VIEWED: &[&str] = &[
     "find_tools",
     "find_skills",
     "describe_schema",
-    // CROSS-DESIGN TOOLS: each already names its second design (by graph_id
-    // or by path), so the view does not hand it a third.
+    // CROSS-DESIGN TOOLS: each already names its second design (by graph_id,
+    // by path or as an inline export), so the view does not hand it a third.
+    // Held to the served schemas by
+    // `every_read_that_names_another_design_is_not_viewed` below: a read-only
+    // tool taking any argument in OTHER_DESIGN_ARGUMENTS must be listed here.
+    // (`seam_coverage` was listed by mistake until 2026-10-11, and
+    // `seam_report` left out; the first reads one design's own seams and fans
+    // out like any read, the second names its other design.)
     "compare_designs",
     "compose_and_analyse",
     "describe_designs",
     "pair_designs",
-    "seam_coverage",
+    "seam_report",
     "fork_point",
     "merge_designs",
     "apply_merge",
@@ -870,5 +876,69 @@ mod tests {
         strip_member(&mut v, "abc");
         assert_eq!(v["from_id"], "req:x");
         assert_eq!(v["nested"]["to"], json!(["abcd:req:y", "req:z"]));
+    }
+
+    /// Every argument by which a tool names a design other than the one it is
+    /// called on: by graph_id, by path, or as an inline export.
+    const OTHER_DESIGN_ARGUMENTS: &[&str] = &[
+        "other_graph_id",
+        "other_graph_ids",
+        "base_graph_id",
+        "base_path",
+        "other_path",
+        "ours_path",
+        "theirs_path",
+        "paths",
+        "export_path",
+        "design",
+    ];
+
+    /// A READ that names its own second design must not be fanned out by a
+    /// view: run once per member it would compare each member with that same
+    /// design and answer N comparisons nobody asked for. A write naming no
+    /// member already acts on the hub alone (step 4), so only reads are held.
+    /// The list is read from the served schemas, so a new cross-design read
+    /// cannot slip past NOT_VIEWED the way `seam_report` did in 0.83.0.
+    #[test]
+    fn every_read_that_names_another_design_is_not_viewed() {
+        let svc = ReflowService::in_memory().expect("in-memory service");
+        let mut missing = Vec::new();
+        let mut held = Vec::new();
+        for tool in svc.tool_router.list_all() {
+            let schema = crate::receipt::published_input_schema(&tool);
+            let Some(props) = schema.get("properties").and_then(|p| p.as_object()) else {
+                continue;
+            };
+            let names: Vec<&str> = OTHER_DESIGN_ARGUMENTS
+                .iter()
+                .copied()
+                .filter(|a| props.contains_key(*a))
+                .collect();
+            if names.is_empty() || crate::receipt::is_write(&tool) {
+                continue;
+            }
+            held.push(tool.name.to_string());
+            if !NOT_VIEWED.contains(&tool.name.as_ref()) {
+                missing.push(format!("{} (takes {})", tool.name, names.join(", ")));
+            }
+        }
+        assert!(
+            missing.is_empty(),
+            "these reads name another design but a view would fan them out: {missing:?}"
+        );
+        for named in ["seam_report", "compare_designs", "pair_designs"] {
+            assert!(
+                held.iter().any(|t| t == named),
+                "the guard must see {named} as a cross-design read, or it guards nothing: {held:?}"
+            );
+        }
+    }
+
+    /// A read of one design's own seams is a read like any other: a view fans
+    /// it out, so each member's answer is in the reply.
+    #[test]
+    fn seam_coverage_is_fanned_out_and_seam_report_is_not() {
+        assert!(!NOT_VIEWED.contains(&"seam_coverage"));
+        assert!(NOT_VIEWED.contains(&"seam_report"));
     }
 }
