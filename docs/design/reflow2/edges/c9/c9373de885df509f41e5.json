@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:68382dc84a6d6c25d13ffc2c08df14ba6b5c9450dd4f565b7c46cf73a7021888",
+  "edge_type": "REALIZES",
+  "from_id": "art:service-view",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hubs-address-serves-a-view-over-its-members"
+}

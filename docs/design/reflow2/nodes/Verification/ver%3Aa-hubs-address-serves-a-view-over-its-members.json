@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:52ed99f67752b60ba8d5458fcba0138c1471d9de8c5dac1e280e68b086ca2a95",
+  "node_id": "ver:a-hubs-address-serves-a-view-over-its-members",
+  "node_type": "Verification",
+  "properties": {
+    "description": "cargo test -p reflow2-mcp --test a_hubs_address_serves_a_view_over_its_members. Proves: a call naming \"<member>:<id>\" routes to that member and prefixes ids back; a write lands in the one member named and is the caller's (AUTHORED_BY read back on the member); two members named in one call are refused; a member outside the readable set is refused with other_design's sentence; a read naming no member fans out over hub then members ({view, by_design, unreachable}); search_design merges ranked hits with a view_note; a NOT_VIEWED tool runs on the hub only with a view_note; no view key is byte-identical to a registry that never admits a view; a fan-out never holds two designs' guards (no deadlock). Failing first 7 of 9 on main; 9 of 9 after. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "verification",
+    "method": "test",
+    "name": "A hub's address serves a view: nine tests over a real registry with a hub and two members",
+    "status": "passing"
+  }
+}

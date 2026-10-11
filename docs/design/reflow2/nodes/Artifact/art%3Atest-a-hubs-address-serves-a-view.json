@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c6402df2d6c9d9f1298c4f1f7855e5772d40e55031e3f136e51c4ab113e771dc",
+  "node_id": "art:test-a-hubs-address-serves-a-view",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_hubs_address_serves_a_view_over_its_members.rs",
+    "name": "tests/a_hubs_address_serves_a_view_over_its_members.rs — nine tests: routed read and write, the write is the caller's, two members refused, an unreadable member refused, fan-out, merged search, NOT_VIEWED, no view key byte-identical, no deadlock",
+    "status": "realized"
+  }
+}

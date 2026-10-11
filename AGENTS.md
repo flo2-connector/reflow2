@@ -608,6 +608,67 @@ reads the checkout at `root` (or the store's folder). Paths the design itself st
 this change (and `external_dependency` re-reads it on a re-declare that leaves it out), and
 `loop_status { since_export }` reads the export paths in the sync sidecar.
 
+### A hub's address serves a view over its members
+
+**Since 2026-10-11 the hub's address IS the view** — layer 2 of the cross-design work, at the
+tool layer, with no tool and no argument added (`crates/reflow2-mcp/src/service/view.rs`). The
+host passes **`_meta["reflow2/view_graph_ids"]`** (`VIEW_GRAPH_IDS_META`, beside
+`READABLE_GRAPH_IDS_META`) on every call to a hub's own design: a JSON array of graph_ids, the
+hub's members ∩ the caller's readable set. `call_tool` reads it per call into the
+`VIEW_GRAPH_IDS` task-local; **a call without the key goes straight to `call_tool_unshaped`, the
+path every call took before, and its reply is byte-identical** (asserted against a registry that
+never admits a view). A view is honoured only where `other_design` is — a registry server
+(`served_from_registry()`) behind a trusted gateway or a bearer gate; anywhere else the hub
+answers alone and `view_note` says why the view was not served. Each call is then one of:
+
+- **Routed.** If any string anywhere in the arguments is `"<graph_id>:<rest>"` with `<graph_id>`
+  one of the view's ids (an exact id, then `:`), the call is a MEMBER CALL: the prefix is stripped
+  from every such string, the same tool runs on that member's own service
+  (`RegistryHandle::member`, a fresh session on it for this one call), and the member's ids in the
+  reply are prefixed back. The caller's `_meta` — `reflow2/writes_for`, `reflow2/acting_agent`,
+  the readable set — and the verified token ride along, so a write lands in the member credited
+  to the caller. **Ids of TWO members in one call are refused before anything runs:** *a write
+  lands in one design; a relation across designs is a typed link record made in one of them — use
+  `review_relations` with `other_design` and `other_id`.* A member outside the readable set is
+  refused with `other_design`'s own sentence (`service::not_readable`): the id and the key,
+  nothing it holds.
+- **Fan-out read.** A tool whose served annotation says `readOnlyHint: true`, naming no member,
+  runs on the hub and then on each readable member IN TURN, and answers
+  `{"view": [...], "by_design": {"<hub>": …, "<member>": …}, "unreachable": [...], "view_note"}`
+  with a text block saying it is a view. A member that fails is `{"error": …}` under its id, never
+  dropped. **`search_design` is the one MERGED reply:** every design's hits ranked together by
+  score, each member's `node_id` prefixed (the hub's own unprefixed), each hit naming its
+  `design`, and `designs_searched` listed.
+- **A write naming no member** writes the hub's own design exactly as before.
+- **Not viewed** (`service::view::NOT_VIEWED`, one const with the reason per group): export and
+  import, releases and the cut, claims and holds, seats, served text (`get_instructions`,
+  `get_skill`, `list_skills`, `find_tools`, `find_skills`, `describe_schema`), and the
+  cross-design tools that already name their other design. These act on the hub alone and say so
+  in `view_note`.
+
+**The prefix rule, kept small on purpose.** In a member's reply, a string under a key named `id`
+or ending in `_id` (`node_id`, `from_id`, `to_id`, `target_id`, `subject_id`, `source_id`,
+`other_id`, `artifact_id`, `decision_id`, `verification_id`, `capability_id`, …) gets
+`"<graph_id>:"`; so does every string item of an array under a key ending in `_ids`; under
+`drawn`, `edges_drawn` and `edges_already_present` each item is an edge sentence `"A REL B"`, and
+A and B get it. A key ending in `graph_id`/`graph_ids` names a design and is left alone, as is all
+free text; so is an id a cross-design record places in ANOTHER design — `<p>_node_id`
+(`design_node_id`, `to_node_id`, `from_node_id`) beside a non-empty `<p>`, `<p>_design` or
+`<p>_graph_id`. (Merged search also prefixes its `stale` ids.)
+
+**One design's guard at a time.** Every call the view makes is `call_tool_unshaped` on ONE design,
+awaited to the end before the next starts, and it takes and drops that design's guard inside —
+never two at once, never the hub's while a member's is taken. Two hubs viewing the same members in
+opposite orders cannot deadlock on tokio's writer-preferring `RwLock`
+(`tests/a_hubs_address_serves_a_view_over_its_members.rs` runs H1 over [A, B] against H2 over
+[B, A], routed writes included, under a deadline).
+
+**What flo2 must send:** on EVERY call to a hub's own design, reads included,
+`reflow2/view_graph_ids` (the hub's members ∩ what the caller may read) together with
+`reflow2/readable_graph_ids` and `reflow2/writes_for`. A member it leaves out of the view is
+simply not reached; one it names but leaves out of the readable set is reported `unreachable`
+and refused when routed to.
+
 > 🧯 **BREAK GLASS: WHEN flo2.io CANNOT SERVE reflow2's DESIGN.** flo2.io's engine IS reflow2, so a
 > release that breaks opening designs also locks you out of the design you would read to fix it.
 > Bringing flo2.io back is flo2's operator work (flo2's `ops/README.md`). Meanwhile:

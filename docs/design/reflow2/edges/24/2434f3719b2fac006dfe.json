@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f0e9579fdb4b6e283c77d4f3314798851b0e91f428bd344713b161ca0e86e098",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-hubs-address-serves-a-view-over-its-members",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7dd7db491c6d14b985b44a8433bb1270fd6c422286d2162319fc36eef6b7d423",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hubs-address-is-a-view-over-its-members-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 16,
+    "action": "modified",
+    "checksum_after": "sha256:dd637a0ecbed1e019968673e5cf6c0db59dfb82d9ad11c3adb39332438677bb6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}
