@@ -2,29 +2,52 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Propose a three-way merge of two divergent designs against their common ancestor — compare's write-side sibling (BL-80). Runs git's trivial-merge case table per node and per property over typed values: only one side changed → take it; both changed the same way → take it; both changed differently → a conflict, surfaced as a Question for the human, never guessed. A node one side deleted and the other changed is retained and asked (deletion must be re-justified); edges get the identical rule. Pass base_path (the ancestor — e.g. git merge-base + the committed export at that commit), ours_path (merge into) and theirs_path (merge in). This is a PROPOSAL: it writes nothing. Applying the resolved merge is a separate, explicit step.",
+  "description": "Propose a three-way merge of two divergent designs against their common ancestor — compare's write-side sibling (BL-80). Runs git's trivial-merge case table per node and per property over typed values: only one side changed → take it; both changed the same way → take it; both changed differently → a conflict, surfaced as a Question for the human, never guessed. A node one side deleted and the other changed is retained and asked (deletion must be re-justified); edges get the identical rule. Pass base_path (the ancestor — e.g. git merge-base + the committed export at that commit), ours_path (merge into) and theirs_path (merge in). This is a PROPOSAL: it writes nothing. Applying the resolved merge is a separate, explicit step. On a registry server, give `other_graph_id` (theirs) and `base_graph_id` instead of paths; ours is then this design.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "base_graph_id": {
+        "default": null,
+        "description": "The common ancestor BY GRAPH_ID, with `other_graph_id` — the design\nboth this one and theirs diverged from.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "base_path": {
-        "description": "Path to the common-ancestor export — the state `ours` and `theirs`\ndiverged from. Typically `git merge-base` + the committed export at\nthat commit; reflow2 builds no commit DAG of its own here.",
-        "type": "string"
+        "default": null,
+        "description": "Path to the common-ancestor export — the state `ours` and `theirs`\ndiverged from. Typically `git merge-base` + the committed export at\nthat commit; reflow2 builds no commit DAG of its own here. The three\npaths go together, unless the designs are named by graph_id instead.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "other_graph_id": {
+        "default": null,
+        "description": "The design being merged IN, BY GRAPH_ID, on a server that holds many\ndesigns (a registry behind a trusted host). Ours is then the live graph,\nlabelled by this design's graph_id, and `base_graph_id` names the common\nancestor; both are read from the designs the server already holds,\ninside the set of designs the host says you may read. Not combined with\na path; refused on a single-design server.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "ours_path": {
+        "default": null,
         "description": "Path to the export being merged *into* (the current design).",
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "theirs_path": {
+        "default": null,
         "description": "Path to the export being merged *in* (the other branch's design).",
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
-    "required": [
-      "base_path",
-      "ours_path",
-      "theirs_path"
-    ],
     "type": "object"
   },
   "name": "merge_designs",

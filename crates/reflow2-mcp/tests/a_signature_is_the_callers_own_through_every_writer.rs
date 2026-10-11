@@ -589,6 +589,14 @@ async fn every_served_writer_writes_only_the_callers_own_signature() {
     );
     let writers = probe.write_tools();
     let table = fixture["writers"].as_object().expect("writers");
+    // Writers this registry refuses for EVERY caller before reading or
+    // writing anything — a write that takes another design only by a path,
+    // which a registry does not serve (since 2026-10-11). Each is still
+    // driven, both ways, and must refuse with its sentence and write nothing.
+    let refused_here = fixture["refused_on_a_registry"]
+        .as_object()
+        .cloned()
+        .unwrap_or_default();
     let mut problems: Vec<String> = Vec::new();
     for w in &writers {
         if !table.contains_key(w) {
@@ -607,6 +615,7 @@ async fn every_served_writer_writes_only_the_callers_own_signature() {
     }
 
     let (mut driven, mut named, mut refused) = (0usize, 0usize, 0usize);
+    let mut refused_outright = 0usize;
     let mut other_refusals: Vec<String> = Vec::new();
     for tool in &writers {
         let Some(call) = table.get(tool) else {
@@ -618,6 +627,30 @@ async fn every_served_writer_writes_only_the_callers_own_signature() {
         let names_a_person = renamed(call, me, other) != *call;
         let call = resolve(call, &ctx, &files);
         let mut s = Session::open(server.port, &id);
+
+        if let Some(sentence) = refused_here.get(tool).and_then(Value::as_str) {
+            for (who, args) in [(me, &call), (other, &forged)] {
+                let before = s.design();
+                match s.call(tool, args, Some(me)) {
+                    Ok(r) => problems.push(format!(
+                        "`{tool}` is declared refused on a registry, but answered the call \
+                         naming {who}: {r}"
+                    )),
+                    Err(text) if !text.contains(sentence) => problems.push(format!(
+                        "`{tool}` was refused, but not with \"{sentence}\": {}",
+                        &text[..text.len().min(400)]
+                    )),
+                    Err(_) => {}
+                }
+                if s.design() != before {
+                    problems.push(format!(
+                        "`{tool}` was refused on a registry and still WROTE to the design"
+                    ));
+                }
+            }
+            refused_outright += 1;
+            continue;
+        }
 
         // As the caller: it must go through, and sign only as the caller.
         let before = s.design();
@@ -682,7 +715,8 @@ async fn every_served_writer_writes_only_the_callers_own_signature() {
     eprintln!(
         "{} served write tools; {driven} driven as the caller; {named} name a person and were \
          driven again in {other}'s name; {refused} of those refused as a signature in someone \
-         else's name; refused for another reason: {other_refusals:#?}",
+         else's name; {refused_outright} refused outright on a registry, both ways, writing \
+         nothing; refused for another reason: {other_refusals:#?}",
         writers.len()
     );
     assert!(

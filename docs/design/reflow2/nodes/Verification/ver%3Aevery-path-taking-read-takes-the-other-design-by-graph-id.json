@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:04a23f7a8928975bc7ba76025fcf8df142d3c7a69e4ce1be49330c389c6d7065",
+  "node_id": "ver:every-path-taking-read-takes-the-other-design-by-graph-id",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/every_path_taking_read_takes_the_other_design_by_graph_id.rs: on a registry server holding A and B, certify_preservation, merge_designs (other_graph_id + base_graph_id), analyze_alternatives (other_graph_ids), pair_designs and seam_report answer by graph_id inside the readable set; B outside the set is refused naming B and nothing of it; every path argument of a read or a writer (fork_point, describe_designs, apply_merge, import_graph, external_dependency's design_export) is refused on the registry and nothing is written; on stdio the path forms answer as before.",
+    "findings": "2026-10-11 at 13d2c8c27: failing first 4 of 4 — the registry-path test listed 10 problems (9 path calls answered by reading the host file, import_graph importing a host file's requirement into design A); outside-the-set 5 of 5 tools could not take a graph_id; inside-the-set and stdio failed on the unknown field. After: 4 of 4, #720's file 6 of 6, the signature class test 2 of 2 (apply_merge now refused by path on a registry, as the caller and in another's name, nothing written). Workspace: 382 binaries, 2,994 passed, 0 failed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "verification",
+    "last_run_at": "2026-10-11",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_path_taking_read_takes_the_other_design_by_graph_id.rs",
+    "method": "test",
+    "name": "Every cross-design read answers by graph_id inside the readable set, and every path-taking tool is refused a path on a registry server",
+    "status": "passing"
+  }
+}

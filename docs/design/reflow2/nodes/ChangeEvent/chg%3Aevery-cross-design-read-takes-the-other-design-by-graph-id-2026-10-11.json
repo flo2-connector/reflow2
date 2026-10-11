@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1c097353f7524171a3a12d1f967240e7cc8b69b0c2502c6cce6367eda1213796",
+  "node_id": "chg:every-cross-design-read-takes-the-other-design-by-graph-id-2026-10-11",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "13d2c8c27",
+    "detected_at": "2026-10-11",
+    "name": "Every cross-design read takes the other design by graph_id, and no registry server reads a host path (layer 1d)",
+    "rationale": "Anthony, 2026-10-11: \"Let's prioritize getting 1b, 1c, 1d and 2 done of the views. Let's get that done before anything else.\" Layer 1d widens #720's resolver to the rest of the read family. The registry-path test, run first, found the hole wider than #720 had closed: nine path calls answered by reading files on the server's host, describe_designs naming a design stored at a host path, and import_graph importing a host file into the caller's design — all refused now on a registry server, stdio unchanged. Failing first 4 of 4; workspace 2,994 passed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "certify_preservation, merge_designs (other_graph_id + base_graph_id), analyze_alternatives (other_graph_ids), pair_designs and seam_report take the other design by graph_id through ReflowService::other_design (one guard at a time); their path or inline forms become optional and are refused together with a graph_id. One function, refuse_a_path_on_a_registry, refuses every path argument on a registry server: those reads plus fork_point, describe_designs, apply_merge, import_graph and external_dependency's design_export. Five toolsnaps re-blessed; the signature class test's fixture records apply_merge as refused on a registry; changelog fragment; AGENTS.md's cross-design section lists the tools and what stays open (export paths, wall_check's root, a stored design_export, the sync sidecar)."
+  }
+}

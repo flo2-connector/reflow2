@@ -551,9 +551,17 @@ What the choice costs, accepted with it:
 
 **Since 2026-10-10 `compare_designs` and `compose_and_analyse` take the other design by
 `other_graph_id`** — the first step of the cross-design layer
-(`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`;
-the rest of the family — `merge_designs`, `fork_point`, `pair_designs`, `seam_coverage` — still
-takes paths and is widened after this step is measured on flo2.io). On a `--registry-root` server
+(`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`).
+**Since 2026-10-11 every other READ of another design does too**: `certify_preservation`
+(`other_graph_id`; the live graph is the base, as in `compare_designs`), `merge_designs`
+(`other_graph_id` for theirs and `base_graph_id` for the common ancestor; ours is the live graph),
+`analyze_alternatives` (`other_graph_ids`; the live graph is the baseline), and `pair_designs` /
+`seam_report` (`other_graph_id` instead of the inline `design`, exactly one of the two). Each keeps
+its path or inline argument, made optional where it was required, and refuses a graph_id together
+with one. Each resolves through the same door, theirs before ours and one guard at a time — a merge
+reads the ancestor, then theirs, then the live graph
+(`tests/every_path_taking_read_takes_the_other_design_by_graph_id.rs`). `seam_coverage` reads only
+this design and was never in the family. On a `--registry-root` server
 the other design is read from the one the process already holds (`registry_http::RegistryHandle`,
 opened on demand like any request, closed by the ordinary idle rules), `compare_designs` makes the
 live graph the base labelled by this design's graph_id, and `compose_and_analyse` namespaces the
@@ -576,13 +584,29 @@ ahead of new readers and A→B against B→A would otherwise deadlock
 (`tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs` holds all of this against the
 real binary, the deadlock case included).
 
-**A registry server refuses a path.** Until this change a `--registry-root` server given
+**A registry server refuses a path.** Until 2026-10-10 a `--registry-root` server given
 `compare_designs` with `base_path`/`other_path` opened that path on its own host and answered the
 diff — the flo2 gateway's `REFUSED_TOOLS` was the only thing standing between a caller and the
-droplet's filesystem. It now refuses with "a path is not served here; name the design by
-graph_id". Only `compare_designs` is closed this way in this step; `certify_preservation`,
-`merge_designs`, `apply_merge`, `fork_point` and the alternatives tools still read a path on a
-registry server and remain on the gateway's refused list until they are widened.
+droplet's filesystem. Since 2026-10-11 EVERY tool that opens a design, an export or a store at a
+path a call names refuses it there, through one function
+(`ReflowService::refuse_a_path_on_a_registry`, "a path is not served here; …" plus what works
+instead): the reads above, `fork_point`'s `export_path` (this design's own record in git, so it has
+no graph_id form — left out, the version comes from the design itself) and `describe_designs`'
+`paths` (which named any design stored on the host, its graph_id and label, to whoever asked).
+**The WRITES that take another design stay path-only, refused on a registry, until the two-lock
+step**: `apply_merge` (`base_path`, `theirs_path`), `import_graph` (`path`; an inline `document`
+still imports) and `external_dependency` (`design_export`, read for the baseline; `""`, which stops
+a watch, is not refused). Taking theirs by graph_id while writing ours needs a lock order across
+two designs that does not exist yet. A server that is not a registry — stdio, `--shared` — is
+unchanged: the path there is the caller's own.
+
+**What a registry still opens on the host** (open; read from the code on 2026-10-11, not yet
+measured, and still behind the gateway's refused lists). Paths a call names that are not another
+design: `export_graph`/`export_surface` WRITE this design to the `path` given, and `wall_check`
+reads the checkout at `root` (or the store's folder). Paths the design itself stores:
+`upstream_status` and `loop_status` read an `ExternalDependency.design_export` recorded before
+this change (and `external_dependency` re-reads it on a re-declare that leaves it out), and
+`loop_status { since_export }` reads the export paths in the sync sidecar.
 
 > 🧯 **BREAK GLASS: WHEN flo2.io CANNOT SERVE reflow2's DESIGN.** flo2.io's engine IS reflow2, so a
 > release that breaks opening designs also locks you out of the design you would read to fix it.

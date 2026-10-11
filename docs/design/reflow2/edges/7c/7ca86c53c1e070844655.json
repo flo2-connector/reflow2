@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a78b906d0ec1e2e61936f25bf6cabd55ce5ae629310c6f8f60f06e99fb4802c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-cross-design-read-takes-the-other-design-by-graph-id-2026-10-11",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
+}

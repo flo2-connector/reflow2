@@ -2,22 +2,34 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70). Pass the paths to two or more alternative export documents (branch-by-file); the first is the baseline. Returns each branch's measures side by side — design nodes, open gaps, structural defects, allocation modularity, capabilities verified — plus every non-baseline branch's structural divergence from the baseline (added/removed/changed). Makes alternatives comparable on measures, not advocacy; it opens its own throwaway graphs, so it never touches and is never blocked by the live one. Collapse the winner with merge_designs/apply_merge and retire the losers. Ask for this to line candidate designs up on the same numbers.",
+  "description": "Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70). Pass the paths to two or more alternative export documents (branch-by-file); the first is the baseline. Returns each branch's measures side by side — design nodes, open gaps, structural defects, allocation modularity, capabilities verified — plus every non-baseline branch's structural divergence from the baseline (added/removed/changed). Makes alternatives comparable on measures, not advocacy; it opens its own throwaway graphs, so it never touches and is never blocked by the live one. Collapse the winner with merge_designs/apply_merge and retire the losers. On a registry server, give `other_graph_ids` instead of paths, measured against this design. Ask for this to line candidate designs up on the same numbers.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
-      "paths": {
-        "description": "Paths to the alternative design exports (branch-by-file). The first is\nthe baseline the others' divergence is reported against. Two or more.",
+      "other_graph_ids": {
+        "default": null,
+        "description": "The alternatives BY GRAPH_ID, on a server that holds many designs (a\nregistry behind a trusted host): the live graph is the baseline,\nlabelled by this design's graph_id, and each alternative is read from\nthe design the server already holds, inside the set of designs the host\nsays you may read. One or more; not combined with `paths`; refused on a\nsingle-design server.",
         "items": {
           "type": "string"
         },
-        "type": "array"
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "paths": {
+        "default": null,
+        "description": "Paths to the alternative design exports (branch-by-file). The first is\nthe baseline the others' divergence is reported against. Two or more.\nRequired unless `other_graph_ids` is passed.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
       }
     },
-    "required": [
-      "paths"
-    ],
     "type": "object"
   },
   "name": "analyze_alternatives",

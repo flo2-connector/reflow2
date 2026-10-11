@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Compare paired boundaries across a seam and say where two designs DISAGREE — the check the ordinary detectors cannot do, because they reason about structure and a contract mismatch is a comparison of PROPERTIES ACROSS A PAIR. Compares medium, paradigm, payload format, auth, transport security, operations, error model and payload schema. THREE RULES WORTH KNOWING: `unspecified` on either side reports as UNSTATED, never as agreement, so 0 incompatibilities can never be read as compatible; free-text axes report as DIFFERS for a person to read, never as incompatible, because a machine cannot tell a real mismatch from different wording; and the report always names what it did NOT examine — the types that CROSS these boundaries are part of the contract and are invisible to it. Ask for this to check whether both sides of an interface actually agree.",
+  "description": "Compare paired boundaries across a seam and say where two designs DISAGREE — the check the ordinary detectors cannot do, because they reason about structure and a contract mismatch is a comparison of PROPERTIES ACROSS A PAIR. Compares medium, paradigm, payload format, auth, transport security, operations, error model and payload schema. THREE RULES WORTH KNOWING: `unspecified` on either side reports as UNSTATED, never as agreement, so 0 incompatibilities can never be read as compatible; free-text axes report as DIFFERS for a person to read, never as incompatible, because a machine cannot tell a real mismatch from different wording; and the report always names what it did NOT examine — the types that CROSS these boundaries are part of the contract and are invisible to it. On a registry server, `other_graph_id` instead of `design`. Ask for this to check whether both sides of an interface actually agree.",
   "inputSchema": {
     "$defs": {
       "SeamPairDto": {
@@ -29,8 +29,20 @@
     "properties": {
       "design": {
         "additionalProperties": true,
-        "description": "The other design, as a published-surface or full export document.",
-        "type": "object"
+        "default": null,
+        "description": "The other design, as a published-surface or full export document.\nPass this OR `other_graph_id`, never both.",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
+      "other_graph_id": {
+        "default": null,
+        "description": "The other design BY GRAPH_ID, on a server that holds many designs (a\nregistry behind a trusted host): it is read from the design the server\nalready holds, inside the set of designs the host says you may read.\nRefused on a single-design server, and for a design outside that set.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "pairs": {
         "description": "Which boundary of ours answers which of theirs. `pair_designs` computes\nthese from complementary roles since 2026-07-30; supply them by hand only\nwhen a design has not declared its roles yet.",
@@ -41,7 +53,6 @@
       }
     },
     "required": [
-      "design",
       "pairs"
     ],
     "type": "object"

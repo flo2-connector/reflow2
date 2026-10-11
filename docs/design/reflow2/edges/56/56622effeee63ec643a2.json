@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:91dbb3a859af1f46eb7bab6b0fdec7c9d96f56e3a461983cd8367e07ce4de2ad",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:every-cross-design-read-takes-the-other-design-by-graph-id-and-no-registry-reads-a-host-path",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:registry"
+}

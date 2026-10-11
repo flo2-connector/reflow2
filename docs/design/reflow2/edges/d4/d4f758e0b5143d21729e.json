@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e72077e82bbdc6168965fcf8ff0219eb603b3a08a5f1468f106a01065a5360f7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-cross-design-read-takes-the-other-design-by-graph-id-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:69cd8e783b8f62fd8333a764312eb340f7615faed6aaf50026a828f68f5b02aa",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

@@ -77,6 +77,15 @@ impl ReflowService {
         Parameters(req): Parameters<ExternalDependencyReq>,
     ) -> Result<CallToolResult, McpError> {
         let stated = |v: &Option<String>| v.as_deref().is_some_and(|s| !s.trim().is_empty());
+        // A WRITE THAT READS ANOTHER DESIGN'S EXPORT for its baseline: on a
+        // registry that export is a file on the host, so the path is refused
+        // before anything is read or recorded. `""`, which stops a watch,
+        // reads nothing and is not refused.
+        self.refuse_a_path_on_a_registry(
+            &[("design_export", req.design_export.as_deref())],
+            "declare the dependency with its `graph_id`, and watch its design at an address \
+             (`design_address`) or from your own machine.",
+        )?;
         // Refused BEFORE any network call. The core refuses it too, but a
         // declaration that will be refused must not first cost a round trip to
         // somebody's server.

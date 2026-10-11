@@ -452,6 +452,19 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<crate::latent::DescribeDesignsReq>,
     ) -> Result<CallToolResult, McpError> {
+        // On a registry every design on the host sits under one root, so a
+        // store path here would name ANOTHER PERSON'S design — its graph_id
+        // and label — to whoever asked. Refused before any sidecar is read.
+        let named: Vec<(&str, Option<&str>)> = req
+            .paths
+            .iter()
+            .map(|p| ("paths", Some(p.as_str())))
+            .collect();
+        self.refuse_a_path_on_a_registry(
+            &named,
+            "this session's design is the one its address names by graph_id — design_identity \
+             describes it — and no other is described by where it is stored.",
+        )?;
         if req.paths.is_empty() {
             return Err(McpError::invalid_params(
                 "describe_designs needs at least one path. Walk the tree first — \
