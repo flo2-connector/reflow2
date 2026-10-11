@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:38f67beea22eb03c9f89366041ae485e7a1460d1a0d4c9df36463b330c46e80c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0820",
+  "properties": {
+    "as_checksum": "sha256:c8583f383637725ac5dfaa35ffb3fe9eababcf2c46d3bb71f2666c5221b07d79"
+  },
+  "to_id": "art:test-a-schema-narrowing-ships-its-migration"
+}
