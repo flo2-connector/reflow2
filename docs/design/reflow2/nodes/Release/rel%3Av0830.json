@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:113badfc228b3091d34960e91a5dc86adf32b0c2a47931d95cb8f03001216326",
+  "node_id": "rel:v0830",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-11 on Anthony's word (\"then cut 0.83.0 and upgrade flo2.io\"). Minor: on a registry server every tool that reads a second design takes it by graph_id, bounded by the readable set the host hands over (#720 compare_designs/compose_and_analyse, #721 the rest of the family, and no registry server reads a host path); a hub's own address is served as a view over its members when the host names them (#722); a revised affected list keeps the acceptances on its CHANGED edges (#719); the site carries a hub guide (#717). #718 re-blessed the surface record from 0.82.0. Nothing taken away from the MCP surface; new arguments are optional; a call without the new _meta keys is answered as before. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.83.0 — one hub is one place to work across many designs",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.83.0"
+  }
+}

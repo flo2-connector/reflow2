@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3e1d0ef1402943f96441bd631a28f03048bbf30211cf4ba754fa6b157e25d08d",
+  "node_id": "chg:accept-785e0502b1816f31",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-11",
+    "name": "v0.83.0 cut: the schema-acceptance snapshot re-blessed from the 0.83.0 build (REFLOW2_BLESS_ACCEPTANCE=1); 11 tests pass, only reflow2_version moved, no narrowing. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

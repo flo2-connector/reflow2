@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:be63c7ef4dc5c9c3c06515d15d190f6234a564a5455ff483d32b2ef583e623b9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0830",
+  "properties": {
+    "as_checksum": "sha256:7befd2e936958a6b7d3ea06a1ec1d2edde451ca31354d7c8b49719cddd0d4b75"
+  },
+  "to_id": "art:artifact-intent-test"
+}

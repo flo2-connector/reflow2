@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:240d7282a671192dfe38eca26317c4918a0b0775ab3a705290ef0a2717b591da",
+  "node_id": "chg:accept-dd3063b47f7dcf04",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-11",
+    "name": "v0.83.0 cut, step 1: reflow2.toml's version moved 0.82.0 -> 0.83.0. The design meaning of a cut lives in the Release and its epoch, never in the version string; accepted before the manifest is frozen (cap:a-cut-moves-every-version-claim-together). Measured on the builder's machine. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

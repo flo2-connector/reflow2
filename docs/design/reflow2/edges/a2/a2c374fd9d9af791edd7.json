@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe948b5827cb7b9b48a4dd703ab7cd9024b10e3c3f42d0c914daede35d1e8b89",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0830",
+  "properties": {
+    "as_checksum": "sha256:80e9385d45f888fd4546f378eeaa706865116b1c985bb60ea8b34327df6a17b6"
+  },
+  "to_id": "art:test-a-stores-identity-follows-its-real-path"
+}

@@ -31,6 +31,117 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.83.0] — 2026-10-11
+
+**Minor. This is the release in which one hub is one place to work across many designs.** On a
+server that holds many designs (`--registry-root`, flo2.io's shape), every tool that reads a
+second design takes it by graph_id, read only inside the set of designs the host says the caller
+may read (#720, #721). A call to a hub's own design that carries the hub's members is served as
+a view over all of them: an id written `"<graph_id>:<id>"` runs in that member, a read naming no
+member is answered by each design in turn, and search merges every design's hits (#722).
+Revising a change's `affected` list no longer erases the checksums already accepted on it
+(#719), and the site carries a guide to making a hub (#717). Nothing was taken away from the MCP
+surface: new arguments are optional, and a call without the new `_meta` keys is answered as
+before. **What a host must do** is in the entries below: send `reflow2/readable_graph_ids` on
+every call, and on a write send a view holding only the members the caller may change.
+
+### Added
+
+- **A hub's address serves a view over its members, when the host names them.** A registry
+  server behind a trusted gateway or a bearer gate (flo2.io's shape) now reads
+  `_meta["reflow2/view_graph_ids"]` — the hub's members the caller may read — on a call to the
+  hub's own design, and serves that address as a view. A call naming an id as
+  `"<member graph_id>:<id>"` runs on that member alone, its prefix stripped and its reply's ids
+  prefixed back, a write included, credited to the caller. A read naming no member runs on the hub
+  and then on each readable member in turn and answers `{"view", "by_design", "unreachable"}`;
+  `search_design` answers one merged list, every design's hits ranked together. A write naming no
+  member writes the hub, exactly as before. Exports, releases, claims, seats, served text and the
+  cross-design tools act on the hub alone and say so in `view_note`. A call naming ids in two
+  members is refused before anything runs (a relation across designs is a typed link record:
+  `review_relations` with `other_design` and `other_id`), and a member outside
+  `reflow2/readable_graph_ids` is refused naming the id and nothing it holds. No tool or argument
+  was added, and a call without the key is answered byte for byte as before. **What a host must
+  do:** send `reflow2/view_graph_ids` together with `reflow2/readable_graph_ids` on every call
+  to a hub, reads included. On a read the view is the hub's members ∩ the caller's readable set.
+  On a write it must hold only the members the caller may change: reflow2 routes a write naming
+  a member and knows no roles, exactly as on that member's own address, so a host that sends
+  every readable member lets someone who may edit the hub write into a design they may only view.
+
+- **`compare_designs` and `compose_and_analyse` take the other design by graph_id on a server
+  that holds many designs.** Pass `other_graph_id` instead of a path or an inline export: on a
+  registry server (`--registry-root`, flo2.io's shape) the other design is read from the one the
+  server already holds, `compare_designs` makes the live graph the base (labelled by this design's
+  graph_id) and `compose_and_analyse` namespaces the other design by its graph_id unless you pass
+  `namespace`. `base_path` and `design` are optional now, so an existing call is unchanged. The
+  read is bounded by the host: the trusted gateway or bearer-token server in front hands reflow2
+  the set of designs the caller may read in `_meta["reflow2/readable_graph_ids"]` on every call,
+  and a graph_id outside that set — or a call carrying no set — is refused naming the id and
+  saying nothing about whether such a design is here or what it holds. A registry server with no
+  trusted host reaches no other design, and a single-design server says `other_graph_id` is served
+  only by a registry server
+  (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`,
+  `dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`).
+  **What a host must do:** send `reflow2/readable_graph_ids` in `_meta` on reads as well as writes;
+  a gateway that names the caller only on writes gets every cross-design read refused.
+
+- **Every tool that reads another design takes it by graph_id on a server that holds many
+  designs.** After `compare_designs` and `compose_and_analyse`, the rest of the family:
+  `certify_preservation` takes `other_graph_id` (the live graph is the base, as in
+  `compare_designs`), `merge_designs` takes `other_graph_id` for theirs and `base_graph_id` for the
+  common ancestor (ours is the live graph), `analyze_alternatives` takes `other_graph_ids` (the live
+  graph is the baseline), and `pair_designs` and `seam_report` take `other_graph_id` instead of the
+  inline `design`. Each is read from the designs a registry server (`--registry-root`, flo2.io's
+  shape) already holds, only inside the set the trusted host hands over in
+  `_meta["reflow2/readable_graph_ids"]` on that call; a design outside it is refused naming the id
+  and saying nothing about what it holds. The path and inline arguments stay, made optional where
+  they were required, so an existing call is unchanged; a graph_id together with a path or an
+  inline export is refused naming both
+  (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`).
+
+- **The site explains how to make a hub, or project brain.** A third page,
+  `flo2-connector.github.io/reflow2/hub.html`, says what a hub is (one design that stands
+  over several and holds what spans them, while each member stays its own), how to make one
+  with reflow2 alone (`genesis` for the hub, `external_dependency` with a `relation` per
+  member, and the `hub` skill for search, a change carried member to member, and a
+  requirement handed down with `send_to_design` / `receive_from_design`), how to make one on
+  flo2.io from chat, the two tiers of a system of systems, and what is coming, named as intent.
+  The front page and the setup page link to it, and `tools/check_doc_versions.py` now holds its
+  "Checked against" line to the version being built, as it does the other two pages.
+  **What to do:** nothing.
+
+### Fixed
+
+- **Revising a change's `affected` list no longer erases the checksums accepted on
+  it.** Calling `add_change_event` again on an existing ChangeEvent with one more
+  `affected` entry re-drew every CHANGED edge with its `action` alone, so an
+  acceptance `set_artifact_checksum(s)` had written on an edge — `accepted_baseline`,
+  `accepted_seq`, `checksum_after` — was gone, the reply said only
+  `edges_already_present`, and the design gate failed on files accepted minutes
+  earlier. An edge already drawn now keeps every property the call did not pass;
+  only `action` moves when the call says a different one. **What to do:** nothing.
+  If a gate ever told you to "accept it two-sided" for a file you had just
+  accepted, this was why; re-accepting it was the right repair, and the order
+  "name every artifact first, then accept" is no longer needed.
+
+- **A registry server no longer reads a file path handed to `compare_designs`.** Until now a
+  `--registry-root` server given `base_path` or `other_path` opened that path on its own host and
+  answered the diff; a path is not a design it serves. It now refuses, naming the route that works
+  (`other_graph_id`). Only the registry server changes; a server you run yourself over stdio or
+  `--shared` compares files exactly as before.
+
+- **A registry server no longer opens a design, an export or a store at a path a call hands it,
+  through any tool.** Until now a `--registry-root` server opened the path it was given in
+  `certify_preservation`, `merge_designs`, `analyze_alternatives`, `fork_point` (`export_path`) and
+  `describe_designs` — which told any caller the graph_id and label of a design stored at a path on
+  the host — and in three writes: `apply_merge` merged from the paths, `import_graph` imported a
+  file from the host into the design, and `external_dependency` read a `design_export` there for
+  its baseline. Each now refuses with "a path is not served here", naming what works instead. The
+  writes do not take the other design by graph_id yet: send `import_graph` the export as
+  `document`, and run `apply_merge` on a server you run yourself. Only the registry server changes;
+  over stdio or `--shared` every path works exactly as before. A gateway in front of reflow2 can
+  keep its own refusals of these arguments; they are no longer the only thing standing between a
+  caller and the host's files for these tools.
+
 ## [0.82.0] — 2026-10-10
 
 **Minor. This is the release in which reflow2's own design lives on flo2.io, and your own client
