@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reflow2 — a hub, or project brain</title>
+  <meta name="description" content="How to make a hub with reflow2: one design that stands over several designs and holds what spans them, on your own computer or on flo2.io.">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HAND-WRITTEN ON PURPOSE. The owner's 2026-10-05 decision
+       (dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated)
+       lets setup and explainer pages be written by hand: they are addressed to someone
+       who does not have reflow2 yet. A page that shows a real design's content stays
+       generated from that design (dec:idea-what-is-on-reflow2s-public-page).
+       Every tool and skill named here is one the repository serves at the version in
+       the footer; "What is coming" names intent the design records, not anything shipped. -->
+  <main>
+    <header>
+      <p class="mark"><a href="./">reflow2</a></p>
+      <h1>A hub, or project brain.</h1>
+      <p class="lede">
+        One design that stands over several designs and holds what spans them. Each design
+        underneath stays its own. New here? <a href="./">See what reflow2 is</a> first, or
+        <a href="setup.html">set it up</a>.
+      </p>
+      <p class="actions">
+        <a class="button" href="#what">What a hub is</a>
+        <a class="button" href="#alone">With reflow2 alone</a>
+        <a class="button" href="#flo2io">On flo2.io</a>
+        <a class="button secondary" href="#tiers">A system of systems</a>
+      </p>
+    </header>
+
+    <!-- ============================================================ 1 -->
+    <section id="what" aria-labelledby="what-h">
+      <h2 id="what-h">What a hub is</h2>
+      <p>
+        A hub is a reflow2 design like any other, with one job: it stands over several designs and
+        holds what spans them. Who is in the effort. How the work is done. Decisions about process
+        that every member has to honour. Links between members: which one depends on which, and
+        across which interfaces. Ideas nobody has placed in one design yet.
+      </p>
+      <p>
+        Every member design stays its own. It keeps its own owner, its own history and its own
+        repository or server. The hub holds no copy of any of it: when a hub note needs a member's
+        detail, it points at the member's record rather than restating it. A fact has one home,
+        the lowest design that owns all of it, and the hub is the home only for what no single
+        member owns.
+      </p>
+      <p class="quiet">
+        People also call this a project brain: the place you type into, which works out which of
+        the projects is affected.
+      </p>
+    </section>
+
+    <!-- ============================================================ 2 -->
+    <section id="alone" aria-labelledby="alone-h">
+      <h2 id="alone-h">Make one with reflow2 alone</h2>
+      <p class="quiet">
+        On your own computer, or against a server your team runs. Nothing but reflow2 and the designs
+        you already have. The <a href="setup.html">setup page</a> gets reflow2 installed first.
+      </p>
+
+      <h3><span class="n">1</span> Start a design for the hub</h3>
+      <p>
+        In a folder of its own, start a design the way you would any other: say
+        <code>/genesis</code> to your agent, with a paragraph about the effort. That calls
+        <code>genesis</code>, and the design it makes is the hub. Give it the effort's name, not a
+        member's.
+      </p>
+
+      <h3><span class="n">2</span> Record each member, and how it stands to the hub</h3>
+      <p>
+        The hub's list of members is the set of designs it declares with
+        <code>external_dependency</code>, one call per member. Each call names the member's design
+        by its <code>graph_id</code> and says where the hub watches it: at the server that holds it
+        (<code>design_address</code>, such as <code>https://api.flo2.io/g/&lt;id&gt;/mcp</code>), or
+        through the export it commits beside its repository (<code>design_export</code>). One or the
+        other, never both.
+      </p>
+      <p>
+        The same call records how the member stands to the hub, in its <code>relation</code>:
+      </p>
+      <ul>
+        <li><code>part_of</code>: the member is a <b>part</b> of what the hub designs. Intent flows down
+          to it and status flows up.</li>
+        <li><code>uses</code>: the member is a <b>peer</b> the hub's work uses. For a peer, name the
+          <code>interfaces</code> the use crosses, and mirror each one into the hub with
+          <code>mirror_surface</code> (the <code>link-projects</code> skill walks you through it) so a
+          change can be followed across it.</li>
+      </ul>
+      <p>
+        Both may hold. The relation is never guessed: your agent asks you when a member joins.
+        <code>upstream_status</code> reads the list back with each member's relation, and names any
+        member linked by nothing a change could follow (<code>relation_not_stated</code>, or
+        <code>no_interface_to_follow</code> for a peer with no mirrored interface).
+      </p>
+
+      <h3><span class="n">3</span> Work it with the hub skill</h3>
+      <p>
+        Say <code>/hub</code>, or just work in the hub's folder with the member designs reachable
+        from the same session. The <code>hub</code> skill is served by reflow2, so your agent has
+        the current one. It does three things for you:
+      </p>
+      <ul>
+        <li><b>Search where the answer is likely to be.</b> The skill names the members in one line,
+          says what moved in each since the hub last looked, and runs <code>search_design</code> in
+          the member a question points at rather than reading every design into the conversation.
+          A search hit lists the records linked to it, including ones in another design.</li>
+        <li><b>Carry a change's impact from one member to the next.</b> A blast radius
+          (<code>propagate_change</code>) stops at the edge of the design it runs in and says where it
+          left: <code>continue_in</code> names each member to carry on in. There, the skill calls
+          <code>propagate_from</code> with <code>arriving_from</code> and the interfaces the ripple
+          reached, and the member's own pins say where it enters. You get one radius per design
+          reached, and a plain statement of any design the record has no way into.</li>
+        <li><b>Hand a requirement to the design that owns it.</b> When something recorded in the hub
+          turns out to belong to a part, it is sent, never copied: <code>receive_from_design</code>
+          in the part first, then <code>send_to_design</code> in the hub. It travels by
+          <code>moved</code> (it leaves the hub, which keeps a reference to its new home), by
+          <code>piece</code> (it stays in the hub and the part holds its own share), or as
+          <code>derived</code> requirements that a hub decision forces on the part. What lands is
+          <code>proposed</code>, and binds only when that design's owner accepts it;
+          <code>loop_status</code> there lists what is waiting.</li>
+      </ul>
+      <p>
+        Before every write the skill says which design it is writing to, and why. At the end it lists
+        where everything went.
+      </p>
+      <p class="quiet">
+        Not yet: one call that searches the hub and every member together. It is recorded as
+        intent; today the skill searches member by member.
+      </p>
+    </section>
+
+    <!-- ============================================================ 3 -->
+    <section id="flo2io" aria-labelledby="flo2io-h">
+      <h2 id="flo2io-h">Make one on flo2.io</h2>
+      <p class="quiet">
+        For a team whose designs are hosted on <a href="https://flo2.io/">flo2.io</a>. The host keeps
+        the hub's list of designs and who may read them; there is nothing to declare by hand.
+      </p>
+      <ol>
+        <li><b>Make the hub from chat.</b> Say <i>make a hub called X with A, B and C</i>. The designs
+          you name are its members.</li>
+        <li><b>Give it a design.</b> A new one, or one you already have. That design holds what spans
+          the members: process, people, decisions of the whole, ideas not yet routed.</li>
+        <li><b>Share that design once.</b> Everyone in it reads every design the hub names, through the
+          hub. A member who cannot write to a design can still drop an idea or feedback into the
+          hub's design, where it waits until someone who works on the right design routes it there.</li>
+      </ol>
+      <p>
+        The same <code>hub</code> skill does the routing: it records the idea in the hub in the
+        author's words, proposes a destination, writes it there when you agree, and leaves a pointer
+        behind rather than a copy. A write into a design you are not a member of is refused, and
+        the idea stays in the hub.
+      </p>
+      <p class="quiet">
+        The flo2.io details, including sharing and what each member sees, are at
+        <a href="https://flo2.io/hub/">flo2.io/hub</a>.
+      </p>
+    </section>
+
+    <!-- ============================================================ 4 -->
+    <section id="tiers" aria-labelledby="tiers-h">
+      <h2 id="tiers-h">A system of systems: two tiers</h2>
+      <p>
+        When the members are the parts of one thing, an engine over its component designs or a
+        product over its sub-systems, two designs stand over them, with different jobs.
+      </p>
+      <ul>
+        <li><b>The hub</b> is for the effort: who is in it, how it works, the decisions about
+          process, the links between members, the unrouted ideas.</li>
+        <li><b>A design for the whole</b> holds what no part owns: the seams between systems and
+          which published contract connects to which, a budget that compounds across designs (an
+          engine's power or mass, allocated to the parts), and a requirement one system levies on
+          another. Each interface's specification stays with the parts that define it; the whole
+          records that they meet, and the checks only the whole can pass.</li>
+      </ul>
+      <p>
+        The rule of thumb: <b>engineering of the whole goes to the design for the whole; process
+        goes to the hub.</b> A hub over peer products that assemble into nothing has no second tier,
+        and holds none of the engineering.
+      </p>
+    </section>
+
+    <!-- ============================================================ 5 -->
+    <section id="coming" aria-labelledby="coming-h">
+      <h2 id="coming-h">What is coming</h2>
+      <p class="quiet">Intent the design records, not anything shipped.</p>
+      <p>
+        Operations between designs, compare, compose and seam coverage among them, are to take their
+        other designs by graph id on one server, so a hosted server can serve a whole family where
+        today it withholds every tool that opens a design by path. After that, an on-demand view over
+        a hub's members, where the ordinary tools run across every member at once and a write lands
+        in the design that owns the node.
+      </p>
+    </section>
+
+    <footer>
+      <p class="quiet">
+        <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
+        <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
+        Apache License 2.0 ·
+        Checked against reflow2 v0.81.1.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
