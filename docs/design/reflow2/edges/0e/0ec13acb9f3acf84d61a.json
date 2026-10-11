@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5cc2112187ae38cefdfcea4f54a072376bc4b15d9091103bcd37dfc695bcef1e",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-hubs-address-serves-a-view-over-its-members",
+  "properties": {},
+  "to_id": "req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design"
+}

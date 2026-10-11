@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cacb8f1a5842add3ed461f85e682b051670049b749911dc881eb6da238245c46",
+  "node_id": "frag:art:test-a-hubs-address-serves-a-view",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/a_hubs_address_serves_a_view_over_its_members.rs — nine tests: routed read and write, the write is the caller's, two members refused, an unreadable member refused, fan-out, merged search, NOT_VIEWED, no view key byte-identical, no deadlock"
+  }
+}

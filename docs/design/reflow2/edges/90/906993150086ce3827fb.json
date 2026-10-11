@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:99dc003813f178a14e1ab13ef00d0634ba92a1aee2c6ae408442db0ff22d31c3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-a-hubs-address-serves-a-view",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:554c8f90261a425341d3da36121e403d8d27737842b972986302d98d36ad956d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:service-view",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:service-view"
+}
