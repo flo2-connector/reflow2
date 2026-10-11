@@ -1,7 +1,10 @@
 {
-  "about": "Fixture for a_signature_is_the_callers_own_through_every_writer.rs. `seed` builds the design on a LOCAL engine (where nothing changes). `writers` holds ONE call per served write tool, naming the caller (who:alice) wherever the call names a person. The test reads the served tool list, requires a call here for every write tool it serves, runs it as the caller, then runs it again with every occurrence of the caller's id, at any depth, replaced by another contributor's. The table says which values are people only by using the caller's id; it never says which ARGUMENTS carry a signature. A value written {\"$file\": ...} is a document the test writes to a file and passes by path: `empty`, or `signed` (a Decision whose approver is `signed_by`), so a tool that takes a PATH is driven in another name too.",
+  "about": "Fixture for a_signature_is_the_callers_own_through_every_writer.rs. `seed` builds the design on a LOCAL engine (where nothing changes). `writers` holds ONE call per served write tool, naming the caller (who:alice) wherever the call names a person. The test reads the served tool list, requires a call here for every write tool it serves, runs it as the caller, then runs it again with every occurrence of the caller's id, at any depth, replaced by another contributor's. The table says which values are people only by using the caller's id; it never says which ARGUMENTS carry a signature. A value written {\"$file\": ...} is a document the test writes to a file and passes by path: `empty`, or `signed` (a Decision whose approver is `signed_by`), so a tool that takes a PATH is driven in another name too. `refused_on_a_registry` names a writer this registry refuses for EVERY caller before it reads or writes anything (a write that takes another design only by path, since 2026-10-11), with the sentence it refuses with: the test requires that refusal, as the caller and in the other name, and that nothing was written.",
   "caller": "who:alice",
   "other": "who:mallory",
+  "refused_on_a_registry": {
+    "apply_merge": "a path is not served here"
+  },
   "seed": [
     [
       "add_contributor",

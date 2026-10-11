@@ -2,14 +2,26 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling. A maturity restructuring holds the function set invariant and moves everything else (allocation, packaging, which functions live in which component, which seams are declared), and it is safe exactly when function is provably unchanged. That is computable, so this CERTIFIES rather than asserts: every divergence is classified function / structure / supporting and the verdict is `preserved`, `not_preserved` or `indeterminate`. NOTHING IS WAVED THROUGH — a node type, an edge endpoint or a property edit the rules cannot place lands in `unclassified` and forces `indeterminate`, because a classifier that has not been taught part of the vocabulary must not certify a design it never examined. A reworded capability is undecidable by construction (a rename and a scope change are the same bytes) and comes back with both values for a human. `not_certified_about` is on every certificate INCLUDING a clean one: this reads two design records and has read no code, so it never claims the implementation preserved behaviour. Ask for this when you want to know whether a restructuring or reorganisation changed what the system does or only how it is organised — proof that no function was lost.",
+  "description": "Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling. A maturity restructuring holds the function set invariant and moves everything else (allocation, packaging, which functions live in which component, which seams are declared), and it is safe exactly when function is provably unchanged. That is computable, so this CERTIFIES rather than asserts: every divergence is classified function / structure / supporting and the verdict is `preserved`, `not_preserved` or `indeterminate`. NOTHING IS WAVED THROUGH — a node type, an edge endpoint or a property edit the rules cannot place lands in `unclassified` and forces `indeterminate`, because a classifier that has not been taught part of the vocabulary must not certify a design it never examined. A reworded capability is undecidable by construction (a rename and a scope change are the same bytes) and comes back with both values for a human. `not_certified_about` is on every certificate INCLUDING a clean one: this reads two design records and has read no code, so it never claims the implementation preserved behaviour. On a registry server, give `other_graph_id` instead of a path. Ask for this when you want to know whether a restructuring or reorganisation changed what the system does or only how it is organised — proof that no function was lost.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "base_path": {
-        "description": "Path to the base export document — the design BEFORE the\nrestructuring. Typically the committed export, or the export at the\ncommit the restructuring started from.",
-        "type": "string"
+        "default": null,
+        "description": "Path to the base export document — the design BEFORE the\nrestructuring. Typically the committed export, or the export at the\ncommit the restructuring started from. Required unless\n`other_graph_id` is passed, which makes the live graph the base.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "other_graph_id": {
+        "default": null,
+        "description": "The restructured design BY GRAPH_ID, on a server that holds many\ndesigns (a registry behind a trusted host): the live graph is the base,\nlabelled by this design's graph_id, and the other design is read from\nthe one the server already holds, inside the set of designs the host\nsays you may read. Not combined with a path; refused on a single-design\nserver, and for a design outside that set.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "other_path": {
         "default": null,
@@ -20,9 +32,6 @@
         ]
       }
     },
-    "required": [
-      "base_path"
-    ],
     "type": "object"
   },
   "name": "certify_preservation",

@@ -47,6 +47,38 @@ use reflow2_core::{
 use crate::dto::{EdgeDto, NodeDto};
 use crate::service::*;
 
+/// THE OTHER DESIGN of a seam tool, from exactly one of two sources: inline,
+/// as always, or BY GRAPH_ID through the registry this design is served from
+/// (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`),
+/// resolved and authorised by `other_design`, the one door, which drops the
+/// other design's guard before it returns — so the caller then reads its own
+/// design holding one guard, never two. `verb` finishes "which one was …".
+async fn inline_or_by_graph_id(
+    service: &ReflowService,
+    design: Option<JsonMap<String, JsonValue>>,
+    other_graph_id: Option<&str>,
+    verb: &str,
+) -> Result<reflow2_core::GraphExport, McpError> {
+    match (design, other_graph_id) {
+        (Some(_), Some(_)) => Err(McpError::invalid_params(
+            format!(
+                "pass design OR other_graph_id, not both — with two other designs there is no \
+                 way to say which one was {verb}."
+            ),
+            None,
+        )),
+        (None, None) => Err(McpError::invalid_params(
+            "no other design: pass design (an export document) or other_graph_id (another \
+             design this server holds)."
+                .to_string(),
+            None,
+        )),
+        (Some(design), None) => serde_json::from_value(JsonValue::Object(design))
+            .map_err(|e| McpError::invalid_params(format!("not an export document: {e}"), None)),
+        (None, Some(other_id)) => service.other_design(other_id).await,
+    }
+}
+
 #[tool_router(router = exchange_router, vis = "pub")]
 impl ReflowService {
     #[tool(
@@ -65,7 +97,8 @@ impl ReflowService {
                        actions. Boundaries carrying no role are counted and NAMED, because `internal` is the \
                        DEFAULT and cannot tell \"deliberately internal\" from \"never classified\" — otherwise \
                        a design that did no labelling reports a clean seam. Feed `paired` to seam_report to \
-                       learn whether the full contracts agree (req:complementary-pairing). Ask for this to match our required contracts against what the other system publishes.",
+                       learn whether the full contracts agree (req:complementary-pairing). On a registry server, \
+                       `other_graph_id` instead of `design`. Ask for this to match our required contracts against what the other system publishes.",
         title = "Pair Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -73,10 +106,9 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<PairDesignsReq>,
     ) -> Result<CallToolResult, McpError> {
-        let other: reflow2_core::GraphExport =
-            serde_json::from_value(JsonValue::Object(req.design)).map_err(|e| {
-                McpError::invalid_params(format!("not an export document: {e}"), None)
-            })?;
+        let other =
+            inline_or_by_graph_id(self, req.design, req.other_graph_id.as_deref(), "paired")
+                .await?;
         let g = self.graph.read().await;
         ok_json(g.pair_designs(&other).map_err(dyno_err)?)
     }
@@ -93,7 +125,8 @@ impl ReflowService {
                        never as incompatible, because a machine cannot tell a real mismatch \
                        from different wording; and the report always names what it did NOT \
                        examine — the types that CROSS these boundaries are part of the contract \
-                       and are invisible to it. \
+                       and are invisible to it. On a registry server, `other_graph_id` instead of \
+                       `design`. \
                        Ask for this to check whether both sides of an interface actually agree.",
         title = "Seam Report",
         annotations(read_only_hint = true)
@@ -102,10 +135,13 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<SeamReportReq>,
     ) -> Result<CallToolResult, McpError> {
-        let other: reflow2_core::GraphExport =
-            serde_json::from_value(JsonValue::Object(req.design)).map_err(|e| {
-                McpError::invalid_params(format!("not an export document: {e}"), None)
-            })?;
+        let other = inline_or_by_graph_id(
+            self,
+            req.design,
+            req.other_graph_id.as_deref(),
+            "reported against",
+        )
+        .await?;
         let pairs: Vec<(String, String)> =
             req.pairs.into_iter().map(|p| (p.ours, p.theirs)).collect();
         let g = self.graph.read().await;
@@ -427,6 +463,14 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ImportGraphReq>,
     ) -> Result<CallToolResult, McpError> {
+        // A WRITE FROM A FILE: on a registry the path names a file on the
+        // host, possibly another person's design, so it is refused; the
+        // document itself, sent in the call, still imports.
+        self.refuse_a_path_on_a_registry(
+            &[("path", req.path.as_deref())],
+            "send the export itself as `document`; another design held here is not imported by \
+             graph_id yet.",
+        )?;
         let read: crate::saved_design::ReadDesign = match (req.document, &req.path) {
             (Some(document), None) => crate::saved_design::ReadDesign {
                 export: parse_struct_param(document, "reflow2 export")?,
@@ -573,16 +617,13 @@ impl ReflowService {
         // is not a design it serves — and until 2026-10-10 a bare registry read
         // any path it was given here (measured in
         // `tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs`).
-        if self.served_from_registry() {
-            return Err(McpError::invalid_params(
-                format!(
-                    "a path is not served here; name the design by graph_id (other_graph_id). \
-                     This server serves designs from a registry for other people, and a file on \
-                     its host ({base_path}) is not a design it serves — it reads none."
-                ),
-                None,
-            ));
-        }
+        self.refuse_a_path_on_a_registry(
+            &[
+                ("base_path", Some(base_path)),
+                ("other_path", req.other_path.as_deref()),
+            ],
+            "name the design by graph_id (other_graph_id).",
+        )?;
         let base = read_export_document(base_path)?;
         match &req.other_path {
             Some(other_path) => {
@@ -620,7 +661,8 @@ impl ReflowService {
                        and a scope change are the same bytes) and comes back with both values \
                        for a human. `not_certified_about` is on every certificate INCLUDING a \
                        clean one: this reads two design records and has read no code, so it \
-                       never claims the implementation preserved behaviour. \
+                       never claims the implementation preserved behaviour. On a registry server, \
+                       give `other_graph_id` instead of a path. \
                        Ask for this when you want to know whether a restructuring or reorganisation changed what the system does or only how it is organised — proof that no function was lost.",
         title = "Certify Function Preserved",
         annotations(read_only_hint = true)
@@ -629,17 +671,67 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<CertifyPreservationReq>,
     ) -> Result<CallToolResult, McpError> {
-        let base = read_export_document(&req.base_path)?;
+        // THE RESTRUCTURED DESIGN BY GRAPH_ID, exactly as compare_designs
+        // takes it: the live graph is the base, labelled by this design's
+        // graph_id, and the other design is resolved and authorised by
+        // `other_design`, the one door — theirs exported first under their
+        // guard, which is dropped before ours is read.
+        if let Some(other_id) = req.other_graph_id.as_deref() {
+            if req.other_path.is_some() {
+                return Err(McpError::invalid_params(
+                    "pass other_graph_id OR other_path, not both — with two restructured sides \
+                     there is no way to say which one was certified."
+                        .to_string(),
+                    None,
+                ));
+            }
+            if req.base_path.is_some() {
+                return Err(McpError::invalid_params(
+                    "with other_graph_id the live graph is the base, so base_path is not \
+                     combined with it: certify two files with base_path and other_path, or \
+                     another design against this one with other_graph_id alone."
+                        .to_string(),
+                    None,
+                ));
+            }
+            let other = self.other_design(other_id).await?;
+            let (live, own) = {
+                let g = self.graph.read().await;
+                (
+                    g.export_graph().map_err(dyno_err)?,
+                    g.graph_id().to_string(),
+                )
+            };
+            let diff = reflow2_core::compare_designs(&live, &other, &own, other_id);
+            return ok_json(reflow2_core::certify_preservation(&diff, &live, &other));
+        }
+        self.refuse_a_path_on_a_registry(
+            &[
+                ("base_path", req.base_path.as_deref()),
+                ("other_path", req.other_path.as_deref()),
+            ],
+            "name the restructured design by graph_id (other_graph_id).",
+        )?;
+        let Some(base_path) = req.base_path.as_deref() else {
+            return Err(McpError::invalid_params(
+                "nothing to certify against: pass base_path (the export before the \
+                 restructuring) or other_graph_id (the restructured design, another one this \
+                 server holds)."
+                    .to_string(),
+                None,
+            ));
+        };
+        let base = read_export_document(base_path)?;
         match &req.other_path {
             Some(other_path) => {
                 let other = read_export_document(other_path)?;
-                let diff = reflow2_core::compare_designs(&base, &other, &req.base_path, other_path);
+                let diff = reflow2_core::compare_designs(&base, &other, base_path, other_path);
                 ok_json(reflow2_core::certify_preservation(&diff, &base, &other))
             }
             None => {
                 let g = self.graph.read().await;
                 ok_json(
-                    g.certify_preservation_against(&base, &req.base_path)
+                    g.certify_preservation_against(&base, base_path)
                         .map_err(dyno_err)?,
                 )
             }
@@ -657,7 +749,8 @@ impl ReflowService {
                        base_path (the ancestor — e.g. git merge-base + the committed export at \
                        that commit), ours_path (merge into) and theirs_path (merge in). This is a \
                        PROPOSAL: it writes nothing. Applying the resolved merge is a separate, \
-                       explicit step.",
+                       explicit step. On a registry server, give `other_graph_id` (theirs) and \
+                       `base_graph_id` instead of paths; ours is then this design.",
         title = "Propose a Three-Way Merge",
         annotations(read_only_hint = true)
     )]
@@ -665,16 +758,76 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<MergeDesignsReq>,
     ) -> Result<CallToolResult, McpError> {
-        let base = read_export_document(&req.base_path)?;
-        let ours = read_export_document(&req.ours_path)?;
-        let theirs = read_export_document(&req.theirs_path)?;
+        let paths = [
+            ("base_path", req.base_path.as_deref()),
+            ("ours_path", req.ours_path.as_deref()),
+            ("theirs_path", req.theirs_path.as_deref()),
+        ];
+        // THE OTHER DESIGNS BY GRAPH_ID: theirs and the common ancestor, each
+        // through `other_design`, the one door, one after the other — each
+        // guard dropped before the next is taken — and ours, the live graph,
+        // read last. Never two guards at once.
+        if req.other_graph_id.is_some() || req.base_graph_id.is_some() {
+            if let Some((argument, _)) = paths.iter().find(|(_, p)| p.is_some()) {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "name the designs by graph_id OR by path, not both: with other_graph_id \
+                         and base_graph_id ours is the live graph, so `{argument}` has nothing \
+                         to name."
+                    ),
+                    None,
+                ));
+            }
+            let (Some(theirs_id), Some(base_id)) =
+                (req.other_graph_id.as_deref(), req.base_graph_id.as_deref())
+            else {
+                return Err(McpError::invalid_params(
+                    "a merge by graph_id names two designs: other_graph_id (theirs, merged in) \
+                     and base_graph_id (the common ancestor both diverged from). Ours is the \
+                     live graph."
+                        .to_string(),
+                    None,
+                ));
+            };
+            let base = self.other_design_named("base_graph_id", base_id).await?;
+            let theirs = self.other_design(theirs_id).await?;
+            let (ours, own) = {
+                let g = self.graph.read().await;
+                (
+                    g.export_graph().map_err(dyno_err)?,
+                    g.graph_id().to_string(),
+                )
+            };
+            return ok_json(reflow2_core::merge_designs(
+                &base, &ours, &theirs, base_id, &own, theirs_id,
+            ));
+        }
+        self.refuse_a_path_on_a_registry(
+            &paths,
+            "name theirs by graph_id (other_graph_id) and the common ancestor by base_graph_id; \
+             ours is the live graph.",
+        )?;
+        let (Some(base_path), Some(ours_path), Some(theirs_path)) =
+            (paths[0].1, paths[1].1, paths[2].1)
+        else {
+            return Err(McpError::invalid_params(
+                "nothing to merge: pass base_path, ours_path and theirs_path (three export \
+                 files), or other_graph_id and base_graph_id (designs this server holds; ours is \
+                 the live graph)."
+                    .to_string(),
+                None,
+            ));
+        };
+        let base = read_export_document(base_path)?;
+        let ours = read_export_document(ours_path)?;
+        let theirs = read_export_document(theirs_path)?;
         ok_json(reflow2_core::merge_designs(
             &base,
             &ours,
             &theirs,
-            &req.base_path,
-            &req.ours_path,
-            &req.theirs_path,
+            base_path,
+            ours_path,
+            theirs_path,
         ))
     }
 
@@ -695,6 +848,18 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ApplyMergeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // A WRITE FROM ANOTHER DESIGN takes it by path only, for now: by
+        // graph_id it would hold theirs while writing ours, which needs a
+        // two-lock order this server does not have yet. On a registry the path
+        // is refused, as every path is there.
+        self.refuse_a_path_on_a_registry(
+            &[
+                ("base_path", Some(&req.base_path)),
+                ("theirs_path", Some(&req.theirs_path)),
+            ],
+            "apply_merge does not take the other design by graph_id yet, so apply a merge on a \
+             server you run yourself, where the path is yours.",
+        )?;
         let base = read_export_document(&req.base_path)?;
         let theirs = read_export_document(&req.theirs_path)?;
         let mut resolutions = std::collections::BTreeMap::new();
@@ -780,6 +945,8 @@ impl ReflowService {
                        Makes alternatives comparable on measures, not advocacy; it opens its own \
                        throwaway graphs, so it never touches and is never blocked by the live one. \
                        Collapse the winner with merge_designs/apply_merge and retire the losers. \
+                       On a registry server, give `other_graph_ids` instead of paths, measured \
+                       against this design. \
                        Ask for this to line candidate designs up on the same numbers.",
         title = "Analyze Alternatives",
         annotations(read_only_hint = true)
@@ -788,8 +955,63 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<AnalyzeAlternativesReq>,
     ) -> Result<CallToolResult, McpError> {
-        let mut alternatives = Vec::with_capacity(req.paths.len());
-        for p in &req.paths {
+        // THE ALTERNATIVES BY GRAPH_ID: the live graph is the baseline,
+        // labelled by this design's graph_id, and each alternative comes
+        // through `other_design`, the one door, one at a time — each guard
+        // dropped before the next is taken, ours read last.
+        if let Some(ids) = req.other_graph_ids.as_deref() {
+            if req.paths.is_some() {
+                return Err(McpError::invalid_params(
+                    "pass other_graph_ids OR paths, not both — the baseline is the live graph by \
+                     graph_id and the first file by path, and one comparison has one baseline."
+                        .to_string(),
+                    None,
+                ));
+            }
+            if ids.is_empty() {
+                return Err(McpError::invalid_params(
+                    "other_graph_ids is empty: name at least one alternative design by graph_id \
+                     to measure against this one."
+                        .to_string(),
+                    None,
+                ));
+            }
+            let mut others = Vec::with_capacity(ids.len());
+            for id in ids {
+                others.push((
+                    id.clone(),
+                    self.other_design_named("other_graph_ids", id).await?,
+                ));
+            }
+            let baseline = {
+                let g = self.graph.read().await;
+                (
+                    g.graph_id().to_string(),
+                    g.export_graph().map_err(dyno_err)?,
+                )
+            };
+            let mut alternatives = Vec::with_capacity(others.len() + 1);
+            alternatives.push(baseline);
+            alternatives.extend(others);
+            return ok_json(reflow2_core::analyze_alternatives(&alternatives).map_err(dyno_err)?);
+        }
+        let Some(paths) = req.paths.as_deref() else {
+            return Err(McpError::invalid_params(
+                "nothing to compare: pass paths (two or more export files; the first is the \
+                 baseline) or other_graph_ids (designs this server holds; the live graph is the \
+                 baseline)."
+                    .to_string(),
+                None,
+            ));
+        };
+        let named: Vec<(&str, Option<&str>)> =
+            paths.iter().map(|p| ("paths", Some(p.as_str()))).collect();
+        self.refuse_a_path_on_a_registry(
+            &named,
+            "name the alternatives by graph_id (other_graph_ids); the live graph is the baseline.",
+        )?;
+        let mut alternatives = Vec::with_capacity(paths.len());
+        for p in paths {
             alternatives.push((p.clone(), read_export_document(p)?));
         }
         ok_json(reflow2_core::analyze_alternatives(&alternatives).map_err(dyno_err)?)

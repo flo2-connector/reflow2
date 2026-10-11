@@ -4843,18 +4843,34 @@ pub struct InterfaceDesignationReq {
 #[serde(deny_unknown_fields)]
 pub struct SeamReportReq {
     /// The other design, as a published-surface or full export document.
-    pub design: serde_json::Map<String, JsonValue>,
+    /// Pass this OR `other_graph_id`, never both.
+    #[serde(default)]
+    pub design: Option<serde_json::Map<String, JsonValue>>,
     /// Which boundary of ours answers which of theirs. `pair_designs` computes
     /// these from complementary roles since 2026-07-30; supply them by hand only
     /// when a design has not declared its roles yet.
     pub pairs: Vec<SeamPairDto>,
+    /// The other design BY GRAPH_ID, on a server that holds many designs (a
+    /// registry behind a trusted host): it is read from the design the server
+    /// already holds, inside the set of designs the host says you may read.
+    /// Refused on a single-design server, and for a design outside that set.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct PairDesignsReq {
     /// The other design, as a published-surface or full export document.
-    pub design: serde_json::Map<String, JsonValue>,
+    /// Pass this OR `other_graph_id`, never both.
+    #[serde(default)]
+    pub design: Option<serde_json::Map<String, JsonValue>>,
+    /// The other design BY GRAPH_ID, on a server that holds many designs (a
+    /// registry behind a trusted host): it is read from the design the server
+    /// already holds, inside the set of designs the host says you may read.
+    /// Refused on a single-design server, and for a design outside that set.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]
@@ -6276,12 +6292,22 @@ pub struct FrontierReq {
 pub struct CertifyPreservationReq {
     /// Path to the base export document — the design BEFORE the
     /// restructuring. Typically the committed export, or the export at the
-    /// commit the restructuring started from.
-    pub base_path: String,
+    /// commit the restructuring started from. Required unless
+    /// `other_graph_id` is passed, which makes the live graph the base.
+    #[serde(default)]
+    pub base_path: Option<String>,
     /// Path to the restructured document. Omit to certify the live graph —
     /// "did the work in this session move structure without moving function?".
     #[serde(default)]
     pub other_path: Option<String>,
+    /// The restructured design BY GRAPH_ID, on a server that holds many
+    /// designs (a registry behind a trusted host): the live graph is the base,
+    /// labelled by this design's graph_id, and the other design is read from
+    /// the one the server already holds, inside the set of designs the host
+    /// says you may read. Not combined with a path; refused on a single-design
+    /// server, and for a design outside that set.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6302,12 +6328,28 @@ pub struct ChangelogViewReq {
 pub struct MergeDesignsReq {
     /// Path to the common-ancestor export — the state `ours` and `theirs`
     /// diverged from. Typically `git merge-base` + the committed export at
-    /// that commit; reflow2 builds no commit DAG of its own here.
-    pub base_path: String,
+    /// that commit; reflow2 builds no commit DAG of its own here. The three
+    /// paths go together, unless the designs are named by graph_id instead.
+    #[serde(default)]
+    pub base_path: Option<String>,
     /// Path to the export being merged *into* (the current design).
-    pub ours_path: String,
+    #[serde(default)]
+    pub ours_path: Option<String>,
     /// Path to the export being merged *in* (the other branch's design).
-    pub theirs_path: String,
+    #[serde(default)]
+    pub theirs_path: Option<String>,
+    /// The design being merged IN, BY GRAPH_ID, on a server that holds many
+    /// designs (a registry behind a trusted host). Ours is then the live graph,
+    /// labelled by this design's graph_id, and `base_graph_id` names the common
+    /// ancestor; both are read from the designs the server already holds,
+    /// inside the set of designs the host says you may read. Not combined with
+    /// a path; refused on a single-design server.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
+    /// The common ancestor BY GRAPH_ID, with `other_graph_id` — the design
+    /// both this one and theirs diverged from.
+    #[serde(default)]
+    pub base_graph_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6346,7 +6388,17 @@ pub struct RecallResolutionsReq {
 pub struct AnalyzeAlternativesReq {
     /// Paths to the alternative design exports (branch-by-file). The first is
     /// the baseline the others' divergence is reported against. Two or more.
-    pub paths: Vec<String>,
+    /// Required unless `other_graph_ids` is passed.
+    #[serde(default)]
+    pub paths: Option<Vec<String>>,
+    /// The alternatives BY GRAPH_ID, on a server that holds many designs (a
+    /// registry behind a trusted host): the live graph is the baseline,
+    /// labelled by this design's graph_id, and each alternative is read from
+    /// the design the server already holds, inside the set of designs the host
+    /// says you may read. One or more; not combined with `paths`; refused on a
+    /// single-design server.
+    #[serde(default)]
+    pub other_graph_ids: Option<Vec<String>>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -7623,6 +7675,43 @@ impl ReflowService {
         self.registry.is_some()
     }
 
+    /// 🛑 A PATH IS NOT SERVED ON A REGISTRY SERVER — the one refusal every
+    /// tool gives there when a call names a design, an export or a store by
+    /// PATH. A registry serves designs for other people under one root, so a
+    /// path names a file on ITS host, never a design it serves; until
+    /// 2026-10-11 eight tools besides `compare_designs` opened whatever path
+    /// they were handed there (measured in
+    /// `tests/every_path_taking_read_takes_the_other_design_by_graph_id.rs`).
+    ///
+    /// `named` is each path argument with what the call passed; the first one
+    /// given (non-blank) is refused, before anything is read. `route` says
+    /// what works instead, in a sentence. A server that is not a registry —
+    /// stdio, `--shared` — is never refused here: the path there is the
+    /// caller's own.
+    pub(crate) fn refuse_a_path_on_a_registry(
+        &self,
+        named: &[(&str, Option<&str>)],
+        route: &str,
+    ) -> Result<(), McpError> {
+        if !self.served_from_registry() {
+            return Ok(());
+        }
+        let Some((argument, path)) = named.iter().find_map(|(argument, path)| {
+            path.filter(|p| !p.trim().is_empty())
+                .map(|p| (*argument, p))
+        }) else {
+            return Ok(());
+        };
+        Err(McpError::invalid_params(
+            format!(
+                "a path is not served here; {route} This server serves designs by graph_id from a \
+                 registry for other people, and a file on its host (`{argument}`: {path}) is not \
+                 a design it serves — it reads none."
+            ),
+            None,
+        ))
+    }
+
     /// ⭐ THE ONE DOOR TO A SECOND DESIGN: its export, by graph_id, through the
     /// registry this design is served from, bounded by the readable set the
     /// trusted host put on THIS call
@@ -7649,10 +7738,22 @@ impl ReflowService {
         &self,
         graph_id: &str,
     ) -> Result<reflow2_core::GraphExport, McpError> {
+        self.other_design_named("other_graph_id", graph_id).await
+    }
+
+    /// [`Self::other_design`] for a tool whose argument naming the design is
+    /// not `other_graph_id` — `merge_designs`' `base_graph_id`,
+    /// `analyze_alternatives`' `other_graph_ids` — so a refusal names the
+    /// argument the caller actually passed. Same door, same order.
+    pub(crate) async fn other_design_named(
+        &self,
+        argument: &str,
+        graph_id: &str,
+    ) -> Result<reflow2_core::GraphExport, McpError> {
         let refuse = |msg: String| McpError::invalid_params(msg, None);
         let Some(registry) = self.registry.as_ref() else {
             return Err(refuse(format!(
-                "`other_graph_id` ({graph_id}) is served only by a registry server, which holds \
+                "`{argument}` ({graph_id}) is served only by a registry server, which holds \
                  many designs and can open another by graph_id; this server holds one design. \
                  Pass a path here instead (base_path / other_path, or an inline `design`)."
             )));
@@ -7660,7 +7761,7 @@ impl ReflowService {
         let own = self.graph.read().await.graph_id().to_string();
         if graph_id == own {
             return Err(refuse(format!(
-                "`other_graph_id` {graph_id} is this design itself; name a different design by \
+                "`{argument}` {graph_id} is this design itself; name a different design by \
                  its graph_id."
             )));
         }

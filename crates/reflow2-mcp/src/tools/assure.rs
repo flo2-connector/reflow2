@@ -590,6 +590,15 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<crate::service::ForkPointReq>,
     ) -> Result<CallToolResult, McpError> {
+        // `export_path` is THIS design's committed record, searched in git —
+        // not another design, so there is nothing to name by graph_id. On a
+        // registry it is a path on the host, and refused before anything is
+        // read.
+        self.refuse_a_path_on_a_registry(
+            &[("export_path", req.export_path.as_deref())],
+            "leave export_path out: this design is the one named by graph_id in the address, and \
+             its version and history are read from the design itself.",
+        )?;
         let fp = {
             let g = self.graph.read().await;
             g.fork_point(&req.decision_id).map_err(dyno_err)?
@@ -617,6 +626,12 @@ impl ReflowService {
                     Ok(ev) => serde_json::to_value(ev).map_err(ser_err)?,
                     Err(why) => json!({ "not_found": why }),
                 },
+                // On a registry the remedy below is refused, so it is not
+                // offered there.
+                None if self.served_from_registry() => json!({
+                    "not_found": "this design is served from a registry, which keeps no committed \
+                                  export of it in git to search"
+                }),
                 None => json!({ "not_found": "no export path: pass export_path" }),
             };
             if let Some(obj) = payload.as_object_mut() {
