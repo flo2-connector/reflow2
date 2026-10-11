@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e3e0d809d550b33dcb583b0898c047be27cebe828f46a5a894fdd21bb69b4c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revised-affected-list-keeps-the-acceptances-on-its-changed-edges-2026-10-11",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:revising-a-change-events-affected-list-resets-the-acceptances-already-on-its-changed-edges-2026-10-10"
+}

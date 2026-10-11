@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:e14a94f149abeb623162dfc6e3b47667d2b45ae602cd2c168aa05d4bdd55521a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-decision-written-with-unsourced-numbers-is-flagged-in-the-write-reply",
+  "properties": {
+    "approved_at": "2026-10-11",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

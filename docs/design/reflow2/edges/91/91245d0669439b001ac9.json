@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:76b1564f04c9e098cd8d8fa31535551df32ae7479887be5fa34d026f5d830a9f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-revised-affected-list-keeps-the-acceptances-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-revised-affected-list-keeps-the-acceptances-on-its-changed-edges"
+}
