@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ee6cf0f140a59525d9669ca6917040730040b273efa79bf8b050f4e9f4873d0a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:every-cross-design-read-takes-the-other-design-by-graph-id-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:a1794922c98ee686d5b6ee4f383de8cd9d7d06771e04b5bcde4c8cdd6a396c15",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-skills"
+}
