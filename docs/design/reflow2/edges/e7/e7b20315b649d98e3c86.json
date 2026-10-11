@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fe02fbd95d2a29c99dedaaae95a9c3c8568234b70801c9728d964bb9ee036548",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-remote-client-measures-the-folders-own-files-2026-10-10",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:627a10737b76c5e92e057117812aec50f3677bcb91881df40edd70d25557d711",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:client-measure"
+}

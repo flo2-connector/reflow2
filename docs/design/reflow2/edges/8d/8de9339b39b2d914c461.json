@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3beb65d760590e20e339627b2ed6f07e72689dbd66edf7f87871381bb07aa627",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:the-remote-client-measures-the-folders-own-files",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

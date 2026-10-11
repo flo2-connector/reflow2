@@ -10,6 +10,7 @@ pub mod bearer;
 pub mod bulk_edges;
 pub mod call_export;
 pub mod caller;
+pub mod client_measure;
 pub mod client_setup;
 pub mod content_policy;
 pub mod degraded;

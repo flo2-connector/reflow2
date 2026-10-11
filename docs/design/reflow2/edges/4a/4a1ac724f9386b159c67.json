@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b641e8fe4ab71556683b6392a756d1ba603e261d6d0c79796f6429dcef6736d7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter",
+  "properties": {
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone"
+}

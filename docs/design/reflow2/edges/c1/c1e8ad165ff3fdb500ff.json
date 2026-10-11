@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81389281c2a920dff682e0c8b0f4990eabf054a6dee177d18f50dc44de5228bd",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:graph-registry",
+  "properties": {
+    "evidence": "The registry already holds many designs in one process by graph_id, which is the one precondition this layer needs; it saw the many-designs case coming without serving any operation across them."
+  },
+  "to_id": "dec:idea-cross-design-operations-are-a-primitive-layer-served-by-the-registry-by-graph-id"
+}

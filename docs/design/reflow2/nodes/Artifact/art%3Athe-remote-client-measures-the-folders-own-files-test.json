@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e9b6dae63d567b321e58b840bb0a9ab8cc30147fc8f0f39f9db3683241fb031e",
+  "node_id": "art:the-remote-client-measures-the-folders-own-files-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Seven tests against a tree-less registry server: the pointer-attached and the bare --remote client send measured checksums for the four tools, the reply names the client and the root, no root measures nothing and says no_root, an unmeasurable accept is refused locally, an item carrying a checksum passes through. The file IS the check that ver:the-remote-client-measures-the-folders-own-files records.",
+    "location": "crates/reflow2-mcp/tests/the_remote_client_measures_the_folders_own_files.rs",
+    "name": "crates/reflow2-mcp/tests/the_remote_client_measures_the_folders_own_files.rs — the end-to-end check",
+    "status": "realized"
+  }
+}

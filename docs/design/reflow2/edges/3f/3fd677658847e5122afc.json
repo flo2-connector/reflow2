@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:234239adcd3cef518e61b34267b8c2e6fb1ae27bb70cbdc02ec93bbdfb1f4c39",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-cross-design-operations-are-a-primitive-layer-served-by-the-registry-by-graph-id",
+  "properties": {
+    "evidence": "The layer serves designs that stay separate stores and are assembled or compared for a question; it rests on that settlement and on today's 'assembled when asked' choice recorded there.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:81db5c47df06b29be572ed35e8829f9af051c7c4c051161150c7a2f70d1a943f",
+  "node_id": "art:client-measure",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The root (pointer folder or --tree-root, never the cwd), the interception of link_artifact / set_artifact_checksum(s) / reconcile_artifacts by parsed method and tool name, the internal get_node and scan_nodes calls on the same session under the client's own ids, the local refusal in the server's wording, and the reply's `measurement` rewrite. 11 unit tests against a stand-in forwarder. New in commit f792e88dc (2026-10-10).",
+    "location": "crates/reflow2-mcp/src/client_measure.rs",
+    "name": "crates/reflow2-mcp/src/client_measure.rs — the remote client's measuring half",
+    "status": "realized"
+  }
+}

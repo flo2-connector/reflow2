@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97262649671768a96e6cc78c1b4800909d0303624c9ad8efd9ce07a740c3898d",
+  "edge_type": "REALIZES",
+  "from_id": "art:main",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-remote-client-measures-the-folders-own-files"
+}

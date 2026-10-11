@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:aa544bea11d31521c402d2a63b56c29a52b47e4afbd4ff50b76a6949a73157a8",
+  "node_id": "fact:revising-a-change-events-affected-list-resets-the-acceptances-already-on-its-changed-edges-2026-10-10",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-10-10 (0.81.1, hosted): calling add_change_event again on an existing event with a LONGER `affected` list (one artifact added) re-drew its CHANGED edges and RESET the two acceptances already on them — accepted_baseline back to false, accepted_seq and checksum_after gone — so reflow2_check failed on the two files whose checksums had been accepted minutes earlier; cause not walked",
+    "source": "who:ajs via the dev_reflow2 hub session, on the hosted design (api.flo2.io/g/reflow2, reflow2 0.81.1)",
+    "statement": "SEQUENCE, in order, on reflow2's hosted design while recording PR #715: (1) add_change_event chg:the-remote-client-measures-the-folders-own-files-2026-10-10 with affected [cap, art:proxy, art:main, epoch, req, ver]. (2) set_artifact_checksums {art:proxy, art:main} design_updated against that event: applied; the copy taken next showed both CHANGED edges with accepted_baseline true, accepted_seq 2, checksum_after. (3) The design gate then failed on art:client-measure (a new file, \"no change in it accepted the new checksum\"), so, following fact:a-checksum-accepted-against-a-change-that-does-not-name-the-artifact-is-applied-and-does-not-count-2026-10-07, add_change_event was called AGAIN with the same id and `affected` extended by art:client-measure. Reply: edges_already_present for the six, edges_drawn for the one. (4) set_artifact_checksums art:client-measure design_updated: applied. (5) The copy taken next: the CHANGED edge to art:client-measure carried accepted_baseline true / accepted_seq 1 / checksum_after; the CHANGED edges to art:proxy and art:main now carried {accepted_baseline: false, action: modified} ONLY — their acceptance properties were gone — and reflow2_check failed on exactly those two. get_node art:proxy confirmed the live edge had lost them. (6) Re-accepting both (set_artifact_checksums again) restored the properties; the gate then passed. WHAT THIS MEANS: the two lessons together make a trap — an acceptance only counts if the event names the artifact (10-07), and naming the artifact afterwards by revising the event wipes the acceptances already there (this). The safe order today is: name EVERY artifact in the event's first `affected` list, then accept. Reply of step (3) said \"edges_already_present\" and nothing about properties, so nothing told the caller a baseline had moved. Cause NOT walked (the root-cause skill was not run tonight; it is owed): the plausible place is add_change_event's revise path re-drawing CHANGED edges from `affected` with default properties instead of leaving an existing edge's properties alone. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "add_change_event",
+      "set_artifact_checksums"
+    ],
+    "subject_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it",
+    "valid_from": "2026-10-10"
+  }
+}

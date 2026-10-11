@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7115867ece54594b60ccdbf6b97e0f3c4dadae3facf804e3ad918b1313b5a38d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:composed-analysis",
+  "properties": {
+    "evidence": "compose_and_analyse is the first cross-design operation reflow2 built, by path and for one pair; this idea asks for its kind to be served by graph_id over N designs."
+  },
+  "to_id": "dec:idea-cross-design-operations-are-a-primitive-layer-served-by-the-registry-by-graph-id"
+}

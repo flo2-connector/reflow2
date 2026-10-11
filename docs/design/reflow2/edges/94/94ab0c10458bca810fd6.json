@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:91eba3a879a9d8befa7341b23da6697cd003f134f30936240a36b68a1062b455",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-two-designs-are-compared-on-one-topic-on-demand",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

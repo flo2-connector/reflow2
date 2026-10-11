@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:578d12ca25d6e6a48514a9b6fe3793138d0c8d364f0c7c5b417828123108aae2",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
+}

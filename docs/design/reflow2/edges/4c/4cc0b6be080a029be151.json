@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a873067fc63d71905655af0aec714f96528829d8a3458acb4c8ab74b716d091b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:two-or-more-designs-are-compared-on-one-topic-on-demand",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

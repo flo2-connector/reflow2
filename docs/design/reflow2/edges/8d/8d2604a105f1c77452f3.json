@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:9e2da6ae19a3006ca9aeb2e3fc349e728f1e126bb572ebb75862cd01e6fcb08a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-cross-design-operations-are-a-primitive-layer-served-by-the-registry-by-graph-id",
+  "properties": {
+    "approved_at": "2026-10-10",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

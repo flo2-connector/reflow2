@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bb34ae2cf185dc5a5a77dfc5207fea4a31a76c8c0dfac3bd6144516bb1d9f8f6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-two-designs-are-compared-on-one-topic-on-demand",
+  "properties": {
+    "evidence": "Both options rest on the 2026-10-07 and 2026-10-10 settlement that designs stay separate stores and are assembled only for a question; a stored union would have made this moot.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-relation-between-nodes-in-two-designs-is-recorded-so-linking-works-on-the-one-design"
+}
