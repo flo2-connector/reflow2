@@ -31,6 +31,67 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.82.0] — 2026-10-10
+
+**Minor. This is the release in which reflow2's own design lives on flo2.io, and your own client
+measures your files for a design on a server.** The repository names its hosted design, every
+design change is recorded there, and CI reads a copy taken one PR at a time (#711, #712). The
+`reflow2-mcp` client started in a folder that names a hosted design hashes that folder's files
+itself for `link_artifact`, `set_artifact_checksum(s)` and `reconcile_artifacts`, so a checksum
+is measured where the files are and never typed by hand (#715). Every served tool now carries a
+human title, and every writing tool says whether it can destroy (#714). #708, #710 and #713 are
+design records. This cut is the first made through the remote client against the hosted design,
+with no export committed as its record.
+
+### What a consumer or operator should know
+
+- **Nothing to do.** No tool, argument or reply field was taken away; `tools/list` gains `title`
+  on every tool and `destructiveHint` on every writing tool. The schema's node types, edge types
+  and enums are 0.81.1's.
+- The remote client's measuring is on your machine only: a server you run is unchanged, and a
+  client with no `.reflow2.toml` folder and no `--tree-root` measures nothing and says so.
+
+### Added
+
+- **Every tool reflow2 serves now carries a `title`, and every writing tool says
+  whether it can destroy.** `tools/list` gives each tool MCP's short human name
+  beside its snake_case id (`add_requirement` is "Add a Requirement",
+  `loop_status` is "What the Loop Owes"), and every tool whose `readOnlyHint` is
+  false now states `destructiveHint`: true where a call can delete or overwrite
+  what a person made (`delete_node`, `delete_edge`, `apply_heal`, `import_graph`,
+  `apply_merge`, `contain_component`, `move_component`), false where it only
+  adds, or revises with the prior state preserved. Nothing else changes: no tool
+  name, argument, description or reply moved, so a client that read the old list
+  sees only the new fields. A gate (`tools/every_tool_carries_a_title.py`) now
+  holds the whole surface to it, so a tool added without them fails the build
+  (`req:every-served-tool-carries-a-title-and-says-whether-it-destroys`).
+
+- **For contributors to reflow2: `tools/reflow2_design_copy.py` takes the copy of reflow2's own design that CI reads from flo2.io, one design PR at a time.** It is phase 1 of moving reflow2's design onto flo2.io; nothing changes in practice until the move itself. `hold` says whether a branch may start writing the design. `copy`, run last after merging main, writes `docs/design/reflow2/` from the hosted design, and refuses while another branch holds the design, while writes nobody holds are in flight, or until the branch contains main. AGENTS.md says how to record once the move lands, how the release cut's export step changes, and what to do when flo2.io cannot serve the design. Nothing changes for anyone using reflow2.
+
+- **Your own reflow2 client, attached to a design on a server, now measures the
+  folder's files for you.** `link_artifact`, `set_artifact_checksum`,
+  `set_artifact_checksums` and `reconcile_artifacts` called without a checksum
+  used to be refused by a server that holds no tree (flo2.io, a registry), or
+  recorded whatever hash the agent typed. The client started in a folder whose
+  `.reflow2.toml` names the design — or a bare `--remote` client given
+  `--tree-root` — now hashes the folder's own files on your machine with the
+  server's own measuring code (sha256, never content; a URI unmeasured, a path
+  outside the folder refused unread) and sends the result, so checksums no
+  longer have to be typed by hand. The server records them as **asserted**,
+  because it did not measure them, and the reply's `measurement` block says
+  the value was measured on this machine by the client and under which root;
+  the server's own block rides beside it under `server`. An accept whose file
+  cannot be measured is refused on your machine with the server's own words
+  and nothing is sent. A client with no root — no `.reflow2.toml` folder and no
+  `--tree-root` — measures nothing, never guesses the current directory, and
+  says so in the reply. Nothing changes on the wire for anyone not using the
+  remote client; the server is untouched. `loop_status`'s `artifacts` block is
+  not measured this way yet.
+
+### Changed
+
+- **For contributors to reflow2: reflow2's own design now lives on flo2.io, at `https://api.flo2.io/g/reflow2/mcp`.** Record design changes there: hold the design with `tools/reflow2_design_copy.py hold`, and take the copy CI reads last, with `copy`. `.reflow2.toml` names the hosted design, so a session in this repository no longer opens the local store, and a one-shot command on `./.reflow2/graph` here is refused. To work locally, import `docs/design/reflow2/` into a store outside `.reflow2/`. Nothing changes for anyone using reflow2.
+
 ## [0.81.1] — 2026-10-09
 
 **Patch. `loop_status` is fast again on a large design.** It is the change that unblocks moving
