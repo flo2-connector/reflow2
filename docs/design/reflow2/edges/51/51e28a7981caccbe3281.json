@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b66cb2988fac5e23c2a61a4f60937b8b55d2768657eb56ec53daa0f87fde6e98",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-site-explains-how-to-make-a-hub-or-project-brain",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

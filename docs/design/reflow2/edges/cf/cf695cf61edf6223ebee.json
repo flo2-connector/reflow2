@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8711418af62e892e09c6e4d9a9267b1fdf282d85951c5105f9dbd899edcb2ce1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-site-explains-how-to-make-a-hub-or-project-brain-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:0bbe6b55781edb1e6023c473703511cb7acdeaeb1d5679df33f357ffe9b94652",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-index-html"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e04da161e14c62ded8dfd3d0985d1d64785fac3e5facbdd42411923fffd5ad8a",
+  "edge_type": "REALIZES",
+  "from_id": "art:site-index-html",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-site-explains-how-to-make-a-hub-or-project-brain"
+}

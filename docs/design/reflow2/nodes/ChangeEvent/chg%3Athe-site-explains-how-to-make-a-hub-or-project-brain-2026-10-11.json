@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3ff13bf903bbfb128fab9e4ac85f2a107b1d697807be91e4a5095662e7f62bd8",
+  "node_id": "chg:the-site-explains-how-to-make-a-hub-or-project-brain-2026-10-11",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "commits": "98a6a06ad,8e303e29c",
+    "detected_at": "2026-10-11",
+    "name": "The site carries a hub guide (site/hub.html)",
+    "rationale": "Anthony, 2026-10-11: \"need to add instructions for how to create a 'hub' or 'project brain' in flo2-connector.github.io/reflow2 and also something like flo2.io/hub\" — the evening flo2's hub cascade and adoption shipped and dev_reflow2 became a flo2 hub with its existing design. The page says plainly that one call searching the hub and every member together is not built (req:one-search-reaches-every-design-a-hub-tracks is accepted only); every tool and skill name on it was confirmed in the repository. Written on branch feat/the-site-explains-how-to-make-a-hub-or-project-brain (98a6a06a, 8e303e29c). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "A new page site/hub.html explains a hub, or project brain: what it is, making one with reflow2 alone (genesis, external_dependency with relation and interfaces, the hub skill's search, propagation and send/receive), making one on flo2.io (make a hub, give it a design new or one you own, share it once), two tiers for a system of systems, and what is coming named as intent. Linked from site/index.html and site/setup.html; its release line is read by tools/check_doc_versions.py (14 claims) and mutated by test_check_doc_versions.py; a changelog fragment announces it."
+  }
+}

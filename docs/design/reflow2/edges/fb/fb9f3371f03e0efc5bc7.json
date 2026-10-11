@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4357579e45914a18b3b8fae17c1ee684b0d115c69863233021e23a8f6cb87028",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-check-doc-versions",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-hub-guide-is-version-checked-with-the-other-site-pages"
+}

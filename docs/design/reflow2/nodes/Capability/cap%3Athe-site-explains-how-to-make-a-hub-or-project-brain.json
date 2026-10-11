@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6ae8e0d5566d2156d1de0d90e598e9f83f8f06beeae009d78b635af0b7a2c0e2",
+  "node_id": "cap:the-site-explains-how-to-make-a-hub-or-project-brain",
+  "node_type": "Capability",
+  "properties": {
+    "description": "A page in setup.html's layout and voice, linked from site/index.html (the \"One brain across all your repositories\" kicker and a line under \"Try it\") and from site/setup.html's header paragraph. Sections: what a hub is; make one with reflow2 alone in three steps (genesis; external_dependency with graph_id and design_address or design_export, relation part_of / uses with interfaces, mirror_surface via the link-projects skill, upstream_status with relation_not_stated / no_interface_to_follow; the hub skill: search_design member by member, propagate_change → continue_in → propagate_from with arriving_from, receive_from_design then send_to_design with moved / piece / derived, proposed until the owner accepts, loop_status); make one on flo2.io (the chat sentence, give it a design new or one you have, share once, link to https://flo2.io/hub/); a system of systems in two tiers with the rule of thumb; what is coming (operations by graph id, the on-demand view) named as intent. It says plainly that one call searching the hub and every member together is NOT built (req:one-search-reaches-every-design-a-hub-tracks is accepted only), and the skill searches member by member. The footer says which release it was checked against, and tools/check_doc_versions.py lists hub.html among the site claims (14 now), with test_check_doc_versions.py mutating it like the others. Every tool and skill name on the page was confirmed in the repository. Built 2026-10-11 (98a6a06a + the version line at 8e303e29c). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "site/hub.html — a hub, or project brain: what it is, making one with reflow2 alone (external_dependency, the hub skill, send/receive), making one on flo2.io, two tiers for a system of systems, and what is coming named as intent; version-checked like the other pages",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}
