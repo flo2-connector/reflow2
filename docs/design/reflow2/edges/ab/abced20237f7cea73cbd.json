@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3d0591cc971befbd0ebcade324afc362f238d7343b96c9fdedcb6b0be68f4845",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-revised-affected-list-keeps-the-acceptances-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-accepted-checksum-rides-the-change-that-accepted-it"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:dadc2d48df9620b2fb6a40f8798c008eaa5d4d0dc2e755a98cb31e54e1ca81f3",
+  "node_id": "chg:a-revised-affected-list-keeps-the-acceptances-on-its-changed-edges-2026-10-11",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2c5366a8a",
+    "detected_at": "2026-10-11",
+    "name": "A revised affected list keeps the acceptances on the CHANGED edges it already drew",
+    "rationale": "Root cause walked as the skill (fact:revising-a-change-events-affected-list-resets-the-acceptances-already-on-its-changed-edges-2026-10-10, now closed and CAUSED by art:tools-temporal): the revise contract \"a revise keeps what it was not passed\" was held for node properties by upsert_node and never for an edge another tool decorates; CHANGED is the one such edge, so add_change_event was the only writer where the class bit. Reproduced on 0.82.0 with no gateway, which killed the hosted-path candidate. Anthony, 2026-10-11: \"the /root-cause pass on the acceptance-reset finding\". Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "add_change_event, on a revise, reads each CHANGED edge DrawnEdges::classify reports as already present and carries every stored property the call did not pass — the acceptance set_artifact_checksum put there (accepted_baseline, accepted_seq, checksum_after) survives — moving only `action`. Before, it re-created every edge with {action} alone and create_edge replaced the rest. Pinned by tests/a_revised_affected_list_keeps_the_acceptances_on_its_changed_edges.rs (2 of 3 failing on unchanged main); changelog fragment a-revised-affected-list-keeps-its-acceptances.md."
+  }
+}
