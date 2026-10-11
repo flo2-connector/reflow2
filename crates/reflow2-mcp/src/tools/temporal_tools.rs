@@ -938,17 +938,16 @@ impl ReflowService {
             // edges-2026-10-10). Carry its properties and move only `action`,
             // the one thing this call says.
             let mut props = reflow2_core::nodes::Props::new();
-            if was {
-                if let Some(existing) = g
+            if was
+                && let Some(existing) = g
                     .outgoing(&req.id, Some(reflow2_core::nodes::edge::CHANGED))
                     .map_err(dyno_err)?
                     .into_iter()
                     .find(|e| e.to_id == a.node_id)
-                {
-                    for (k, v) in existing.properties {
-                        if k != "action" {
-                            props = props.set(&k, v);
-                        }
+            {
+                for (k, v) in existing.properties {
+                    if k != "action" {
+                        props = props.set(&k, v);
                     }
                 }
             }
