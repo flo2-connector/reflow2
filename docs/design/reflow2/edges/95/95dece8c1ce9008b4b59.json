@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:39a06fdf6cf73e2a49e4fa7e3a0df9738b6606c1b4457bad80378aa6b754b737",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:find-tools-rank-baseline",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

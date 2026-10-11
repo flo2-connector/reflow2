@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:542182d176e25b27140a06519f1a71f6fa13771df4b9d9986fc26fb00057dabf",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:compare-and-compose-take-the-other-design-by-graph-id",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:registry"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7121dcaade08b8ae901753acd7a1886bea3aff2d563a629bfb737380bbc8bc42",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-cross-design-read-takes-the-other-design-by-graph-id",
+  "properties": {},
+  "to_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
+}

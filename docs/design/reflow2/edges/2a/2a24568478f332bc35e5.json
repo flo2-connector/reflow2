@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ced61ce0fed5b086c2b7e9ac793b992e9df5bbed20f11c892d960d5b774ba4a9",
+  "edge_type": "REALIZES",
+  "from_id": "art:registry-http",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:compare-and-compose-take-the-other-design-by-graph-id"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca65a48e9cc722fab9ed5beb3ecf081f03fdcfa3c895160587963485dd216809",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-cross-design-read-takes-the-other-design-by-graph-id",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
