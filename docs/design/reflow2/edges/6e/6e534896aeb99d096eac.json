@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:954d3c19985d25fbafe23faf304a76920ebdf6cb1b4ac8e9bcaf35f34bac546a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:dependency-manifest",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

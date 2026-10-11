@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a51766fb2aba97857bffb4182cd0bb777f96cd7b9fe2ad636cb4dfcc77b74c85",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0820",
+  "properties": {
+    "as_checksum": "sha256:8cfb870d35f74b1a57d61fbe440153087ff9b2a133e3e144f2f48a3e04d02d8e"
+  },
+  "to_id": "art:saved-design"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4a494af2b0fcd107b32762305ecfaaa7f1c20d454317c3a86ace6a9be0291210",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0820",
+  "properties": {
+    "as_checksum": "sha256:9410654f4f0c8cd4509738b0e0debec55f7409d71f72db20a9680abf48009f2e"
+  },
+  "to_id": "art:convert-design-to-items"
+}

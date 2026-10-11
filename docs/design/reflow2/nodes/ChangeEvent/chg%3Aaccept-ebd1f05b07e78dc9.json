@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4300285cccc4a2ae017179860c3e756655dc94942f703858069ef2992cd50a35",
+  "node_id": "chg:accept-ebd1f05b07e78dc9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-10",
+    "name": "v0.82.0 cut, step 1: the two version claims in AGENTS.md moved 0.81.1 -> 0.82.0; no rule changed.",
+    "subject": "system"
+  }
+}
