@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7e017804458c9695249ee7598f92aabe2f4730be413d300f325597f6e0fb2f74",
+  "node_id": "epoch:v0830-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The release in which one hub is one place to work across many designs: every cross-design read takes the other design by graph_id under the host's readable set (#720, #721), a hub's address is a view over its members (#722), a revised affected list keeps its acceptances (#719), and the site explains how to make a hub (#717).",
+    "epoch_type": "release_cut",
+    "name": "v0.83.0 release cut (2026-10-11)",
+    "sequence": 730,
+    "status": "arrived"
+  }
+}

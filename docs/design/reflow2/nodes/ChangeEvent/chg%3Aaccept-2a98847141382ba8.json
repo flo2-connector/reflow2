@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a2e95029ba5f30cc7b70fa4be4aee1e171d852c83692f478184d8547a564cf8",
+  "node_id": "chg:accept-2a98847141382ba8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-11",
+    "name": "v0.83.0 cut, step 1: the two version claims in AGENTS.md moved 0.82.0 -> 0.83.0; no rule changed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}
