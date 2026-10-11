@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4db9c3335f494c85117b1dbe3199c923775cb0d6e4802c19b58b28b416202659",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:f51e9525234d2aa27bb95385be990303e87cfa7e418bcd11967e47f970a8989e"
+  },
+  "to_id": "art:test-every-open-store-shares-one-memory-budget"
+}

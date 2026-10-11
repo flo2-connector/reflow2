@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e194c3ab51144330017f773d4df4d3a3838c65fe514d5ff7c6afb578e67ee2c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:0bc57f5aa438e530e4c4dbca0067405067bf9d4974bcd0527628874067b720a8"
+  },
+  "to_id": "art:settles"
+}

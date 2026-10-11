@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a2fc71c8174905d79da981336df6fd8fad205c228aff0680f9415b3eee77d35",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:ea5a845f1a727650f69404df4e94d0b4d30e2ae3f8655f8c69c229646541981b"
+  },
+  "to_id": "art:writers"
+}

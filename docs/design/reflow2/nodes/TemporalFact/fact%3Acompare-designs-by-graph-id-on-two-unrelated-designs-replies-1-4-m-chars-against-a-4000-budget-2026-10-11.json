@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a2346ce00c614ffd2b5bb111bd268f6f1331426d861ce6e781f8782bb4424d45",
+  "node_id": "fact:compare-designs-by-graph-id-on-two-unrelated-designs-replies-1-4-m-chars-against-a-4000-budget-2026-10-11",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.95,
+    "fact_type": "finding",
+    "name": "MEASURED on flo2.io 2026-10-11 (0.83.0): compare_designs flo2 vs reflow2 by graph_id answers in 5.2–5.8 s, but with budget_chars 4000 its reply is 1,421,523 characters — the budget trims prose and edges_added, and keeps every diverging id in design.added/removed and edges_removed at full length; compose_and_analyse on the same pair takes 18.3–18.7 s and 2.1 MB",
+    "source": "api.flo2.io/g/1a97fc1f1de4d5d2/mcp, 2026-10-11 ~19:15 UTC, scratchpad measure_view.py and inspect_view.py",
+    "statement": "Layer 1c, through api.flo2.io with the owner's key, 3 rounds each. compare_designs {other_graph_id: reflow2, budget_chars: 4000} on flo2's design: 5.83, 5.20, 5.69 s; reply 3.78 MB on the wire. Its budget block says applied: true, full_chars 7,302,525, reply_chars 1,421,523, fields_trimmed 10,124, and \"Every diverging node id and every count is still here\"; edges_removed alone is 608,049 chars and design.added 340,314. So the budget's floor — every id kept — is far above any client's limit when the two designs are unrelated (flo2 and reflow2 share almost nothing), and the reply the budget note itself says a client refuses is still sent. compose_and_analyse {other_graph_id: reflow2}: 18.51, 18.73, 18.33 s; 2.09 MB. Neither was refused; the readable set admitted reflow2 for the owner. Not a view defect: compare_designs was built for versions of one design, where the diff is small; by graph_id any readable design can be named, so the worst case is now one call away. Fix direction (not built): when the ids alone exceed the budget, page them (offset/limit per list) or answer counts plus the first N ids per list with a way to fetch the rest, instead of keeping all. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject_id": "cap:compare-and-compose-take-the-other-design-by-graph-id",
+    "valid_from": "2026-10-11"
+  }
+}
