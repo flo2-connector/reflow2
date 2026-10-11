@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:11cf3e47a2b17ca7494bbd9e66c1be40490cfbb0ef0e64e309d9379513b38e48",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:the-remote-client-measures-the-folders-own-files-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:the-remote-client-measures-the-folders-own-files-test"
+}

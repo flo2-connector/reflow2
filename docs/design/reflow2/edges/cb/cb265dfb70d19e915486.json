@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:44eb308fbcbdc51df562111a5a185926ec8f141dd03bbb2e0f4a298298f0cb4a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-position-7-record-names-the-file-that-is-its-check-2026-10-10",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:e98acddcd00111ff3d412b9b8ff1bf9c5240e8ad8551f125a4e3566d495b9dc6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-remote-client-measures-the-folders-own-files-test"
+}
