@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:69f9893646d139b0fcf0f9a1262c75a6ef34f51969aa513a3db04dc696cfd1d1",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:how-a-session-opens-a-view-over-several-designs",
+  "properties": {
+    "evidence": "The decision chooses the door for the view that requirement defines.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design"
+}
