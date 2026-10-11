@@ -37,6 +37,15 @@
 //! the droplet. Listing stays unfiltered; a session still cannot address another
 //! design by path; a registry with no trusted host reaches no other design.
 //!
+//! ⭐ AND A HUB'S ADDRESS SERVES A VIEW, SINCE 2026-10-11 (AGENTS.md "A hub's
+//! address serves a view over its members"). When the trusted host names a
+//! hub's members on a call to the hub (`_meta["reflow2/view_graph_ids"]`), the
+//! hub's view runs that call on a member through [`RegistryHandle::member`] —
+//! one session for one call, a write included when the call named one of the
+//! member's ids — and only for a member in the readable set on that call. The
+//! same admission as the export above: a trusted gateway or a bearer gate, or
+//! no view at all. A call that names no view never reaches another design.
+//!
 //! 🛑 ISOLATION HOLDS BY CONSTRUCTION HERE, NOT BY A CHECK, and that is
 //! deliberate — flo2's own tracker warns that "a handler that reaches the wrong
 //! graph corrupts a design rather than erroring, so this wants property tests,
@@ -178,6 +187,13 @@ impl Refusal {
 /// One design, open.
 struct OpenDesign {
     http: GraphService,
+    /// The design's own service, the one every session is `share()`d from —
+    /// kept so a hub's view can run ONE call on this design as a member
+    /// ([`RegistryHandle::member`]) without going through HTTP. It holds what
+    /// the `http` closure already holds (the store, strongly; the registry,
+    /// only weakly), so it neither lengthens this design's life nor ties the
+    /// router to it.
+    base: ReflowService,
     /// Kept so that closing the design can end every session held on it.
     sessions: Arc<LocalSessionManager>,
     /// Whether this copy still holds its store. Upgrading fails once every
@@ -645,12 +661,14 @@ impl GraphRouter {
         };
         let store = svc.graph.downgrade();
         let sessions = Arc::new(LocalSessionManager::default());
+        let base = svc.clone();
         Ok(Arc::new(OpenDesign {
             http: StreamableHttpService::new(
                 move || Ok(svc.share()),
                 Arc::clone(&sessions),
                 self.inner.config.clone(),
             ),
+            base,
             sessions,
             store,
         }))
@@ -673,10 +691,12 @@ impl GraphRouter {
 /// router and every design it ever opened would live until the process ended.
 /// The router owns the designs; a design only knows which router it came from.
 ///
-/// 🛑 AUTHORISATION IS NOT HERE. This resolves and exports; whether the CALLER
-/// may read that design is decided before this is asked, in
-/// `ReflowService::other_design`, against the readable set the trusted host
-/// put on the call. Nothing else in the crate holds one of these.
+/// 🛑 AUTHORISATION IS NOT HERE. This resolves and exports, or hands one call
+/// a member's session; whether the CALLER may read that design is decided
+/// before this is asked — in `ReflowService::other_design` for an export, and
+/// in a hub's view (`service::view`) for a member call — against the readable
+/// set the trusted host put on the call. Nothing else in the crate holds one
+/// of these.
 #[derive(Clone)]
 pub struct RegistryHandle {
     inner: Weak<Inner>,
@@ -719,6 +739,50 @@ impl RegistryHandle {
             // `g` drops here: the other design's guard is never held past this block.
         };
         Ok(export)
+    }
+
+    /// A member of a hub's view, for ONE call: a fresh session on design
+    /// `graph_id` (opened if it is not), and the in-flight guard that keeps it
+    /// open until the [`Member`] is dropped
+    /// (`service::view`, AGENTS.md "A hub's address serves a view over its
+    /// members").
+    ///
+    /// No guard on the design's graph is taken here: the call run on the
+    /// member takes and drops its own, exactly as a request through HTTP
+    /// would, so a view that reaches the hub and its members in turn holds
+    /// ONE design's guard at a time and never two.
+    ///
+    /// 🛑 AUTHORISATION IS NOT HERE either: the view decides, against the
+    /// readable set the trusted host put on the call, before it asks.
+    pub async fn member(&self, graph_id: &str) -> Result<Member, Refusal> {
+        let Some(inner) = self.inner.upgrade() else {
+            return Err(Refusal::Busy(
+                "the registry that served this design has stopped, so no other design can be \
+                 opened through it."
+                    .to_string(),
+            ));
+        };
+        let router = GraphRouter { inner };
+        let (open, in_flight) = router.service_for(graph_id).await?;
+        Ok(Member {
+            svc: open.base.share(),
+            _in_flight: in_flight,
+        })
+    }
+}
+
+/// One member design, held open for one call a hub's view makes on it
+/// ([`RegistryHandle::member`]). Dropping it ends the session and lets the
+/// design close by the ordinary idle rules.
+pub struct Member {
+    svc: ReflowService,
+    _in_flight: InFlight,
+}
+
+impl Member {
+    /// The member's service: a session of its own, sharing the design.
+    pub fn service(&self) -> &ReflowService {
+        &self.svc
     }
 }
 

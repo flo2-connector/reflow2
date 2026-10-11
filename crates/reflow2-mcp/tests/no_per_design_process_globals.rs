@@ -147,6 +147,18 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          Read in one place, `ReflowService::other_design`.",
     ),
     (
+        "reflow2-mcp/src/service.rs",
+        "VIEW_GRAPH_IDS",
+        "A tokio TASK-LOCAL beside READABLE_GRAPH_IDS, and the same shape: it holds the \
+         hub's members, by graph_id, the trusted host named for the ONE tool call now \
+         being served (`_meta[\"reflow2/view_graph_ids\"]`, AGENTS.md \"A hub's address \
+         serves a view over its members\"), set by `call_tool` around that call and gone \
+         when it returns. It is the host's word about one call, never a property of a \
+         design: two calls — to one hub or to two — each see only their own view, and \
+         every call the view then makes on one design runs with it cleared, so no design \
+         serves a view from inside another's. Read in one place, `service::view::serve`.",
+    ),
+    (
         "reflow2-mcp/src/service/unit.rs",
         "CALL",
         "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: \
