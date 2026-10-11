@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3eb593a04e4a00045636b3c3e3122ac26b57e31012b6b30ce70c9cb2a4b2db74",
+  "node_id": "ver:the-hub-guide-is-version-checked-with-the-other-site-pages",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/check_doc_versions.py lists site/hub.html among the site claims (14 targeted claims after the change, 13 before); tools/test_check_doc_versions.py includes hub.html in the pages its \"left at an older release\" test mutates, so a hub guide left at a stale version fails the build like index.html and setup.html.",
+    "findings": "2026-10-11 at 8e303e29c: check_doc_versions OK — 14 targeted claim(s) agree with the build; pytest tools/test_check_doc_versions.py: 7 passed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "verification",
+    "last_run_at": "2026-10-11",
+    "level": "unit",
+    "location": "tools/test_check_doc_versions.py",
+    "method": "test",
+    "name": "check_doc_versions reads hub.html's release line with the other site pages, and its test mutates hub.html like the others",
+    "status": "passing"
+  }
+}

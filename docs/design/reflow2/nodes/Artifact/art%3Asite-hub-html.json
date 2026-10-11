@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e8b79d9b51d3150d38704f1746780642cc93ff3c15ab7877b7082ecbd794eb48",
+  "node_id": "art:site-hub-html",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The hub guide: what a hub is, making one with reflow2 alone, making one on flo2.io, two tiers for a system of systems, what is coming named as intent; footer says which release it was checked against.",
+    "location": "site/hub.html",
+    "name": "site/hub.html — a hub, or project brain",
+    "status": "realized"
+  }
+}

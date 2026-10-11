@@ -85,7 +85,7 @@ def test_a_site_page_left_at_an_older_release_is_caught() -> None:
     against, so a cut that leaves the site behind fails here. Measured
     2026-10-09: the release-cut flow's nine steps named no site step, and
     nothing read the site."""
-    for name in ("site/index.html", "site/setup.html"):
+    for name in ("site/index.html", "site/setup.html", "site/hub.html"):
         page = REPO / name
         original = page.read_text()
         stamp = f"Checked against reflow2 v{current_version()}."

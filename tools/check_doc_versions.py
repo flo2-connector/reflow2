@@ -212,6 +212,12 @@ def claims(reflow2: str, foundation: str) -> list[tuple[str, str, str, str]]:
             r"Checked against reflow2 v([0-9]+\.[0-9]+\.[0-9]+)\.",
             reflow2,
         ),
+        (
+            "site/hub.html",
+            "site page checked against",
+            r"Checked against reflow2 v([0-9]+\.[0-9]+\.[0-9]+)\.",
+            reflow2,
+        ),
     ]
 
 
