@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:482f06ee94c61a80a3f882d46e2a4d974b64e7ad7a058d9cc269f4b7a3cbc4ec",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-decision-written-with-unsourced-numbers-is-flagged-in-the-write-reply",
+  "properties": {
+    "evidence": "The note reads the named quantities and their provenance where a decision records them; prose scanning alone is the weaker half.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-decision-names-the-quantities-it-rests-on-each-with-its-provenance"
+}

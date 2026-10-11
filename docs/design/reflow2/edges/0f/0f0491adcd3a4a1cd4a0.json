@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0135a9acd3faca2323ff3cb1b9b018246a6092cb265619fc614f8743fb086dde",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-temporal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "temporal_tools.rs's add_change_event loop discards DrawnEdges::classify's \"already present\" answer and calls create_edge with Props{action} for every affected entry; create_edge replaces the stored edge, so the acceptance properties set_artifact_checksum wrote on it are erased. Reproduced on 0.82.0 with no gateway; pinned by the new test, which fails on the unchanged handler and passes with the carry.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:revising-a-change-events-affected-list-resets-the-acceptances-already-on-its-changed-edges-2026-10-10"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:95e73da55df6d64166184eee6d771819ba55522d1c80bdeb3872fc9f82bd1401",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-decision-names-the-quantities-it-rests-on-each-with-its-provenance",
+  "properties": {
+    "evidence": "It reuses that requirement's provenance kinds and its unsourced-quantity report, extending them to the quantities a Decision rests on.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported"
+}

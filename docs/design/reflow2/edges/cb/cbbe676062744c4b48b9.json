@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5bcc243460e6124b5e948c18115dad2bf48092197a1392376a2759a9b063c84b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-revised-affected-list-keeps-the-acceptances-on-its-changed-edges-2026-10-11",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:04b9ac0b53a283ea7dab79b0b10cfee101810d3c3da4f6b488142bd6ef94ee37",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-temporal"
+}

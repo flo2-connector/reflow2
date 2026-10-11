@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fa51a64cd95463e9c4bc301d0ba81726dbfafa83028db396e5cce5d7a615c8a3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:a-revised-affected-list-keeps-the-acceptances-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

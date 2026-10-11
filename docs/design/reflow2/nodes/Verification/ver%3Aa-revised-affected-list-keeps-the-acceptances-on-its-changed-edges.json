@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b58aae7846cb2cb9ce4f70fe3c45340c420238145a657b68735358c76e51e17f",
+  "node_id": "ver:a-revised-affected-list-keeps-the-acceptances-on-its-changed-edges",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_revised_affected_list_keeps_the_acceptances_on_its_changed_edges.rs, three tests on an in-memory service: the acceptance (accepted_baseline, accepted_seq, checksum_after) is on the CHANGED edge before the revise; add_change_event with one more affected entry keeps it and reports the edge as already present while drawing the new one; a revise that says a different action moves action and keeps the acceptance.",
+    "findings": "2026-10-11: on unchanged main (2f60fad38) 2 of 3 failed — adding_an_affected_entry_keeps_the_acceptance_on_the_edges_already_drawn and a_changed_action_moves_and_the_acceptance_still_stays — and the precondition test passed; run twice (once with the fix stashed) with the same result. With the change (2c5366a8a): 3 passed; a_revise_keeps_what_it_was_not_passed (5), a_design_holds_acceptance_says_why_the_code_moved (5) and a_write_replies_with_a_receipt (4) stay green. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "verification",
+    "last_run_at": "2026-10-11",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_revised_affected_list_keeps_the_acceptances_on_its_changed_edges.rs",
+    "method": "test",
+    "name": "Revising a change's affected list keeps the acceptances on the CHANGED edges already drawn, and only a changed action moves",
+    "status": "passing"
+  }
+}
