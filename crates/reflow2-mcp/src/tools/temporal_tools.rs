@@ -925,16 +925,40 @@ impl ReflowService {
                 "node_type",
             )?;
             let action = a.action.as_deref().unwrap_or("modified");
-            edges
+            let was = edges
                 .classify(&g, &req.id, reflow2_core::nodes::edge::CHANGED, &a.node_id)
                 .map_err(dyno_err)?;
+            // A revise keeps what it was not passed — on the EDGE too. An
+            // edge already drawn may carry what another tool put there (an
+            // acceptance's `accepted_baseline`, `accepted_seq` and
+            // `checksum_after` from set_artifact_checksum), and `create_edge`
+            // replaces, so re-drawing it with `{action}` alone erased two
+            // acceptances on 2026-10-10 (fact:revising-a-change-events-
+            // affected-list-resets-the-acceptances-already-on-its-changed-
+            // edges-2026-10-10). Carry its properties and move only `action`,
+            // the one thing this call says.
+            let mut props = reflow2_core::nodes::Props::new();
+            if was {
+                if let Some(existing) = g
+                    .outgoing(&req.id, Some(reflow2_core::nodes::edge::CHANGED))
+                    .map_err(dyno_err)?
+                    .into_iter()
+                    .find(|e| e.to_id == a.node_id)
+                {
+                    for (k, v) in existing.properties {
+                        if k != "action" {
+                            props = props.set(&k, v);
+                        }
+                    }
+                }
+            }
             g.create_edge(
                 reflow2_core::nodes::edge::CHANGED,
                 reflow2_core::nodes::node::CHANGE_EVENT,
                 &req.id,
                 &a_type,
                 &a.node_id,
-                reflow2_core::nodes::Props::new().set("action", action),
+                props.set("action", action),
             )
             .map_err(dyno_err)?;
             changed.push(json!({ "node_id": a.node_id, "action": action }));
