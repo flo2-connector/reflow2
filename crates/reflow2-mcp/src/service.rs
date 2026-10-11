@@ -429,6 +429,14 @@ pub struct ReflowService {
     /// session, never reset. `Local` is every engine nobody declared
     /// otherwise, which is held to nothing new.
     caller_rule: Arc<crate::caller::CallerRule>,
+    /// The registry this design is served from, when it is one of many a
+    /// `--registry-root` server holds — the ONE bounded way to a second
+    /// design, by graph_id (`crate::registry_http::RegistryHandle`, read only
+    /// through [`ReflowService::other_design`]). `None` on every single-design
+    /// server, where `other_graph_id` is refused by name. Weak inside, so a
+    /// design never keeps its registry alive. A property of the SERVER, like
+    /// `caller_rule`: inherited by every session, never reset.
+    registry: Option<crate::registry_http::RegistryHandle>,
 }
 
 /// The served tools that write a FILE at a caller's `path` — annotated
@@ -471,7 +479,40 @@ pub const WRITES_FOR_META: &str = "reflow2/writes_for";
 /// request alone. The value is a Contributor id of kind `automated_agent`.
 pub const ACTING_AGENT_META: &str = "reflow2/acting_agent";
 
+/// The request `_meta` key carrying the SET OF DESIGNS, by graph_id, that the
+/// caller may READ on this one call — the trusted host's word, exactly as
+/// [`WRITES_FOR_META`] is, and read the same way: per call, never remembered.
+/// The value is a JSON array of graph_id strings. Read by
+/// [`ReflowService::other_design`], the one door to a second design, which
+/// refuses an id outside the set naming the id and nothing else
+/// (`dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`).
+/// A gateway sends it on EVERY call, reads included — a call without it
+/// reaches no other design.
+pub const READABLE_GRAPH_IDS_META: &str = "reflow2/readable_graph_ids";
+
+/// The readable set one request carried ([`READABLE_GRAPH_IDS_META`]): `None`
+/// when the key is absent, else the string entries of its array. A value that
+/// is not an array is a set with nothing in it — present and empty — so the
+/// refusal says "not in the set", never "no set", about a host that sent one
+/// in the wrong shape.
+pub(crate) fn readable_graph_ids_in(value: Option<&JsonValue>) -> Option<Vec<String>> {
+    value.map(|v| {
+        v.as_array()
+            .map(|a| {
+                a.iter()
+                    .filter_map(|x| x.as_str().map(String::from))
+                    .collect()
+            })
+            .unwrap_or_default()
+    })
+}
+
 tokio::task_local! {
+    /// The designs, by graph_id, the host said the tool call now being served
+    /// may read ([`READABLE_GRAPH_IDS_META`]) — `None` when the call carried
+    /// no such set. Set by `call_tool` around the handler and read by
+    /// `other_design`, so no cross-design tool reads `_meta` itself.
+    static READABLE_GRAPH_IDS: Option<Vec<String>>;
     /// Who the tool call now being served writes for — the request's `_meta`
     /// value, else the session's declaration, else nobody. Set by `call_tool`
     /// around the handler and read by `write_lock`, which is how every write
@@ -5369,11 +5410,21 @@ pub struct InterfaceSpecReq {
 #[serde(deny_unknown_fields)]
 pub struct ComposeReq {
     /// The other design, as an export document (what `export_graph` returns).
-    pub design: JsonObject,
-    /// Prefix for the other design's ids — usually its `graph_id`. Required:
-    /// without it the two designs' ids would collide, which is the entire
-    /// reason this is not `import_graph`.
-    pub namespace: String,
+    /// Pass this OR `other_graph_id`, never both.
+    #[serde(default)]
+    pub design: Option<JsonObject>,
+    /// Prefix for the other design's ids — usually its `graph_id`. Required
+    /// with `design`: without it the two designs' ids would collide, which is
+    /// the entire reason this is not `import_graph`. With `other_graph_id` it
+    /// defaults to that graph_id.
+    #[serde(default)]
+    pub namespace: Option<String>,
+    /// The other design BY GRAPH_ID, on a server that holds many designs (a
+    /// registry behind a trusted host): it is read from the design the server
+    /// already holds, inside the set of designs the host says you may read.
+    /// Refused on a single-design server, and for a design outside that set.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6154,12 +6205,22 @@ pub struct CompareDesignsReq {
     pub budget_chars: Option<usize>,
     /// Path to the base export document — what every finding is relative to
     /// (`added` = in the other side, not here). Typically the committed
-    /// export, or the main branch's copy of it.
-    pub base_path: String,
+    /// export, or the main branch's copy of it. Required unless
+    /// `other_graph_id` is passed, which makes the live graph the base.
+    #[serde(default)]
+    pub base_path: Option<String>,
     /// Path to the other export document. Omit to compare the live graph as
     /// the other side — "has this session diverged from the record?".
     #[serde(default)]
     pub other_path: Option<String>,
+    /// The other design BY GRAPH_ID, on a server that holds many designs (a
+    /// registry behind a trusted host): the live graph is the base, labelled
+    /// by this design's graph_id, and the other design is read from the one
+    /// the server already holds, inside the set of designs the host says you
+    /// may read. Not combined with a path; refused on a single-design server,
+    /// and for a design outside that set.
+    #[serde(default)]
+    pub other_graph_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -6774,6 +6835,8 @@ impl ReflowService {
             writes_for: Arc::new(std::sync::Mutex::new(None)),
             acting_agent: Arc::new(std::sync::Mutex::new(None)),
             caller_rule: Arc::new(crate::caller::CallerRule::Local),
+            // A single design, until a registry says otherwise (`with_registry`).
+            registry: None,
         }
     }
 
@@ -7033,6 +7096,9 @@ impl ReflowService {
             // new client must never come back local on an engine served for
             // others.
             caller_rule: Arc::clone(&self.caller_rule),
+            // A property of the SERVER, like the caller rule: every session on
+            // a registry-served design has the same bounded way to another.
+            registry: self.registry.clone(),
         }
     }
 
@@ -7541,6 +7607,113 @@ impl ReflowService {
         &self.caller_rule
     }
 
+    /// Serve this design as one of many a registry holds, carrying the bounded
+    /// way back to that registry a cross-design read uses
+    /// (`crate::registry_http::RegistryHandle`, [`Self::other_design`]).
+    /// Builder, like `with_caller_rule`, so every single-design entry point
+    /// keeps its signature and stays without one.
+    pub fn with_registry(mut self, registry: crate::registry_http::RegistryHandle) -> Self {
+        self.registry = Some(registry);
+        self
+    }
+
+    /// Whether this design is served from a registry of many — where a PATH a
+    /// tool would read names a file on the host, not a design it serves.
+    pub fn served_from_registry(&self) -> bool {
+        self.registry.is_some()
+    }
+
+    /// ⭐ THE ONE DOOR TO A SECOND DESIGN: its export, by graph_id, through the
+    /// registry this design is served from, bounded by the readable set the
+    /// trusted host put on THIS call
+    /// (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`,
+    /// `dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`).
+    /// Every cross-design tool resolves `other_graph_id` here and nowhere
+    /// else, so the refusals have one wording and one order:
+    ///
+    /// 1. no registry — a single-design server serves no other design, and
+    ///    says where `other_graph_id` IS served;
+    /// 2. this design's own graph_id — not another design;
+    /// 3. no trusted host — a registry with no trusted gateway and no bearer
+    ///    gate has nobody to hand it a readable set, so it reaches no other
+    ///    design, whatever a call claims in `_meta`;
+    /// 4. the id is not in the set the host handed over on this call (or the
+    ///    call carried no set) — refused naming the id and the key, and saying
+    ///    nothing about whether such a design is here or what it holds.
+    ///
+    /// Only then does the registry open and export it. The other design's
+    /// read guard is held while exporting and dropped before this returns
+    /// (`RegistryHandle::other_design_export`), so a caller that then reads
+    /// its own design never holds two guards.
+    pub(crate) async fn other_design(
+        &self,
+        graph_id: &str,
+    ) -> Result<reflow2_core::GraphExport, McpError> {
+        let refuse = |msg: String| McpError::invalid_params(msg, None);
+        let Some(registry) = self.registry.as_ref() else {
+            return Err(refuse(format!(
+                "`other_graph_id` ({graph_id}) is served only by a registry server, which holds \
+                 many designs and can open another by graph_id; this server holds one design. \
+                 Pass a path here instead (base_path / other_path, or an inline `design`)."
+            )));
+        };
+        let own = self.graph.read().await.graph_id().to_string();
+        if graph_id == own {
+            return Err(refuse(format!(
+                "`other_graph_id` {graph_id} is this design itself; name a different design by \
+                 its graph_id."
+            )));
+        }
+        match self.caller_rule.as_ref() {
+            crate::caller::CallerRule::TrustedGateway { .. }
+            | crate::caller::CallerRule::BearerToken { .. } => {}
+            crate::caller::CallerRule::Local | crate::caller::CallerRule::Undeclared { .. } => {
+                return Err(refuse(format!(
+                    "REFUSED: design {graph_id} was not read. A second design is read by \
+                     graph_id only through a host that establishes who is calling and hands this \
+                     server the set of designs they may read, in \
+                     _meta[\"{READABLE_GRAPH_IDS_META}\"] on every call — a trusted gateway \
+                     (`--http-trusted-gateway <NAME>` or REFLOW2_TRUSTED_GATEWAY) or a \
+                     bearer-token server (`--http-oidc-issuer`). This server declares neither, \
+                     so it reaches no other design by graph_id."
+                )));
+            }
+        }
+        match READABLE_GRAPH_IDS.try_with(|r| r.clone()).ok().flatten() {
+            None => {
+                return Err(refuse(format!(
+                    "REFUSED: design {graph_id} was not read — this call carried no \
+                     _meta[\"{READABLE_GRAPH_IDS_META}\"], the set of designs the host says the \
+                     caller may read. The host names that set on every call, reads included."
+                )));
+            }
+            Some(ids) if !ids.iter().any(|i| i == graph_id) => {
+                return Err(refuse(format!(
+                    "REFUSED: design {graph_id} is not in the set of designs the host handed \
+                     over on this call (_meta[\"{READABLE_GRAPH_IDS_META}\"]), so it was not \
+                     read. Whether a design by that id is here, and what it holds, is not said."
+                )));
+            }
+            Some(_) => {}
+        }
+        registry
+            .other_design_export(graph_id)
+            .await
+            .map_err(|r| match r {
+                // Authorised and absent: say so, without the registry's
+                // listing remedy, which is about the root rather than the set.
+                crate::registry_http::Refusal::NotADesign(_) => refuse(format!(
+                    "design {graph_id} is in the set the host handed over, but no design by that \
+                     id is served here."
+                )),
+                crate::registry_http::Refusal::Busy(why)
+                | crate::registry_http::Refusal::CouldNotOpen(why) => McpError::internal_error(
+                    format!("design {graph_id} could not be read right now: {why}"),
+                    None,
+                ),
+            })
+    }
+
     /// The signer a call writing for `writes_for` is held to on this engine
     /// (`None` on a local one).
     pub fn signer_for(&self, writes_for: Option<&str>) -> Option<reflow2_core::intent::Signer> {
@@ -7957,6 +8130,10 @@ impl ServerHandler for ReflowService {
             Ok(w) => (w, None),
             Err(refusal) => (None, Some(refusal)),
         };
+        // AND WHICH DESIGNS THE HOST SAYS THIS CALL MAY READ
+        // (`READABLE_GRAPH_IDS_META`): the request's own `_meta`, never the
+        // session's — a set is handed over per call or not at all.
+        let readable = readable_graph_ids_in(context.meta.get(READABLE_GRAPH_IDS_META));
         // AND WHICH AGENT IT WRITES THROUGH (`reflow2_core::acting`): the
         // request's own `_meta`, else the session's declaration, else the
         // Contributor matching the name this client gave at handshake.
@@ -8041,8 +8218,11 @@ impl ServerHandler for ReflowService {
                                 acting,
                                 WRITES_FOR.scope(
                                     writes_for,
-                                    crate::arguments::TRANSPORT
-                                        .scope(transport, self.tool_router.call(tcc)),
+                                    READABLE_GRAPH_IDS.scope(
+                                        readable,
+                                        crate::arguments::TRANSPORT
+                                            .scope(transport, self.tool_router.call(tcc)),
+                                    ),
                                 ),
                             ),
                         ),

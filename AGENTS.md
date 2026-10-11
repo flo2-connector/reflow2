@@ -542,9 +542,47 @@ What the choice costs, accepted with it:
 - **A record that needs schema only your branch's build knows** cannot be written on flo2.io until
   a release carrying that schema reaches flo2.io. Record that part afterwards, or locally (below).
 - **flo2.io does not serve every tool.** `wall_check` and the tools that open another design by
-  path run locally, against the committed copy.
+  path run locally, against the committed copy. Two of the cross-design tools no longer need a
+  path there — see the next section.
 - **An outside contributor cannot write the hosted design.** Their PR changes code. A maintainer
   records its design change on flo2.io and copies it in a follow-up PR.
+
+### Cross-design reads by graph_id, and what a registry server refuses
+
+**Since 2026-10-10 `compare_designs` and `compose_and_analyse` take the other design by
+`other_graph_id`** — the first step of the cross-design layer
+(`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`;
+the rest of the family — `merge_designs`, `fork_point`, `pair_designs`, `seam_coverage` — still
+takes paths and is widened after this step is measured on flo2.io). On a `--registry-root` server
+the other design is read from the one the process already holds (`registry_http::RegistryHandle`,
+opened on demand like any request, closed by the ordinary idle rules), `compare_designs` makes the
+live graph the base labelled by this design's graph_id, and `compose_and_analyse` namespaces the
+other design by its graph_id unless `namespace` says otherwise. The core did not change: both
+operations needed only a `GraphExport`.
+
+**The read is bounded by the set the host hands over, not by the root**
+(`dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone`,
+which re-opened `dec:the-registry-root-is-the-tenant-boundary` for this case alone, because on
+flo2.io one root holds every tenant). `ReflowService::other_design` is the one door, and its
+refusals come in a fixed order: no registry ("served only by a registry server; pass a path
+here"); this design's own graph_id; no trusted gateway or bearer gate (a bare registry reaches no
+other design, whatever a call claims); and an id outside `_meta["reflow2/readable_graph_ids"]` on
+THIS call — refused naming the id and the key, never saying whether such a design is here or what
+it holds. **A gateway must send `reflow2/readable_graph_ids` on reads as well as writes**; the
+flo2 gateway sends `_meta` only on writes today, so until it changes every cross-design read
+through it is refused. The other design is exported under its own read guard, which is dropped
+before this design's is taken — never two guards at once, because tokio's `RwLock` queues a writer
+ahead of new readers and A→B against B→A would otherwise deadlock
+(`tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs` holds all of this against the
+real binary, the deadlock case included).
+
+**A registry server refuses a path.** Until this change a `--registry-root` server given
+`compare_designs` with `base_path`/`other_path` opened that path on its own host and answered the
+diff — the flo2 gateway's `REFUSED_TOOLS` was the only thing standing between a caller and the
+droplet's filesystem. It now refuses with "a path is not served here; name the design by
+graph_id". Only `compare_designs` is closed this way in this step; `certify_preservation`,
+`merge_designs`, `apply_merge`, `fork_point` and the alternatives tools still read a path on a
+registry server and remain on the gateway's refused list until they are widened.
 
 > 🧯 **BREAK GLASS: WHEN flo2.io CANNOT SERVE reflow2's DESIGN.** flo2.io's engine IS reflow2, so a
 > release that breaks opening designs also locks you out of the design you would read to fix it.

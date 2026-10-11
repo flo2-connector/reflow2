@@ -494,7 +494,11 @@ impl ReflowService {
                        alone to compare the live graph against a committed export ('has this \
                        session diverged from the record?'); pass other_path too to compare two \
                        export files (branches, machines, alternatives). Reports divergence, \
-                       never judges which side is right.",
+                       never judges which side is right. On a server that holds many designs (a \
+                       registry behind a trusted host) pass other_graph_id instead of a path: the \
+                       live graph is the base and the other design is read by graph_id from the \
+                       one the server holds, inside the set of designs the host says you may \
+                       read; a path is not served there.",
         title = "Compare Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -502,7 +506,6 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<CompareDesignsReq>,
     ) -> Result<CallToolResult, McpError> {
-        let base = read_export_document(&req.base_path)?;
         // A divergence report is a LIST OF WHAT MOVED, not a document — so
         // unlike export_surface above, trimming its prose leaves it answering
         // the question it was asked. The node ids and every count survive; the
@@ -517,15 +520,76 @@ impl ReflowService {
                  with get_node, and the other from the export file itself.",
             )
         };
+        // THE OTHER DESIGN BY GRAPH_ID
+        // (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`):
+        // the live graph is the base, labelled by this design's graph_id, and
+        // the other design is whatever the registry holds under that id —
+        // resolved and authorised by `other_design`, the one door.
+        if let Some(other_id) = req.other_graph_id.as_deref() {
+            if req.other_path.is_some() {
+                return Err(McpError::invalid_params(
+                    "pass other_graph_id OR other_path, not both — with two other sides there \
+                     is no way to say which one was compared."
+                        .to_string(),
+                    None,
+                ));
+            }
+            if req.base_path.is_some() {
+                return Err(McpError::invalid_params(
+                    "with other_graph_id the live graph is the base, so base_path is not \
+                     combined with it: compare two files with base_path and other_path, or this \
+                     design against another with other_graph_id alone."
+                        .to_string(),
+                    None,
+                ));
+            }
+            // THEIRS FIRST, under their guard, which `other_design` drops before
+            // it returns; THEN ours. Never both at once — tokio's RwLock queues
+            // a writer ahead of new readers, so A→B against B→A holding two
+            // guards each would deadlock.
+            let other = self.other_design(other_id).await?;
+            let (live, own) = {
+                let g = self.graph.read().await;
+                (
+                    g.export_graph().map_err(dyno_err)?,
+                    g.graph_id().to_string(),
+                )
+            };
+            return ok_json(bound(
+                serde_json::to_value(reflow2_core::compare_designs(&live, &other, &own, other_id))
+                    .map_err(ser_err)?,
+            ));
+        }
+        let Some(base_path) = req.base_path.as_deref() else {
+            return Err(McpError::invalid_params(
+                "nothing to compare: pass base_path (an export file, what every finding is \
+                 relative to) or other_graph_id (another design this server holds)."
+                    .to_string(),
+                None,
+            ));
+        };
+        // 🛑 A PATH IS NOT SERVED ON A REGISTRY SERVER. It serves designs for
+        // other people under one root; a path names a file on ITS host, which
+        // is not a design it serves — and until 2026-10-10 a bare registry read
+        // any path it was given here (measured in
+        // `tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs`).
+        if self.served_from_registry() {
+            return Err(McpError::invalid_params(
+                format!(
+                    "a path is not served here; name the design by graph_id (other_graph_id). \
+                     This server serves designs from a registry for other people, and a file on \
+                     its host ({base_path}) is not a design it serves — it reads none."
+                ),
+                None,
+            ));
+        }
+        let base = read_export_document(base_path)?;
         match &req.other_path {
             Some(other_path) => {
                 let other = read_export_document(other_path)?;
                 ok_json(bound(
                     serde_json::to_value(reflow2_core::compare_designs(
-                        &base,
-                        &other,
-                        &req.base_path,
-                        other_path,
+                        &base, &other, base_path, other_path,
                     ))
                     .map_err(ser_err)?,
                 ))
@@ -533,11 +597,8 @@ impl ReflowService {
             None => {
                 let g = self.graph.read().await;
                 ok_json(bound(
-                    serde_json::to_value(
-                        g.compare_with_base(&base, &req.base_path)
-                            .map_err(dyno_err)?,
-                    )
-                    .map_err(ser_err)?,
+                    serde_json::to_value(g.compare_with_base(&base, base_path).map_err(dyno_err)?)
+                        .map_err(ser_err)?,
                 ))
             }
         }
@@ -1032,7 +1093,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Measured 2026-09-11 on a partner design that required an interface this one publishes: `pair_designs` found the pair and its conflict; this returned `seam_findings: []`. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement. Root cause recorded, not fixed here.",
+        description = "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Measured 2026-09-11 on a partner design that required an interface this one publishes: `pair_designs` found the pair and its conflict; this returned `seam_findings: []`. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement. Root cause recorded, not fixed here. On a server that holds many designs (a registry behind a trusted host) pass other_graph_id instead of `design`: the other design is read by graph_id from the one the server holds, inside the set of designs the host says you may read, and `namespace` defaults to that graph_id.",
         title = "Compose and Analyse Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -1040,12 +1101,50 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ComposeReq>,
     ) -> Result<CallToolResult, McpError> {
-        let doc = serde_json::from_value(JsonValue::Object(req.design))
-            .map_err(|e| McpError::invalid_params(format!("invalid design document: {e}"), None))?;
+        // ONE OTHER DESIGN, from exactly one of two sources: inline, as always,
+        // or BY GRAPH_ID through the registry this design is served from
+        // (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`),
+        // resolved and authorised by `other_design`, the one door. Theirs is
+        // exported first (that guard is dropped inside), ours read after.
+        let (doc, namespace): (reflow2_core::GraphExport, String) =
+            match (req.design, req.other_graph_id.as_deref()) {
+                (Some(_), Some(_)) => {
+                    return Err(McpError::invalid_params(
+                        "pass design OR other_graph_id, not both — with two other designs there \
+                         is no way to say which one was composed in."
+                            .to_string(),
+                        None,
+                    ));
+                }
+                (None, None) => {
+                    return Err(McpError::invalid_params(
+                        "nothing to compose: pass design (an export document) or other_graph_id \
+                         (another design this server holds)."
+                            .to_string(),
+                        None,
+                    ));
+                }
+                (Some(design), None) => {
+                    let Some(namespace) = req.namespace else {
+                        return Err(McpError::invalid_params(
+                            "a namespace is required with an inline design: without it the two \
+                             designs' ids would collide, which is the whole reason this is not \
+                             import_graph. (With other_graph_id it defaults to that graph_id.)"
+                                .to_string(),
+                            None,
+                        ));
+                    };
+                    let doc = serde_json::from_value(JsonValue::Object(design)).map_err(|e| {
+                        McpError::invalid_params(format!("invalid design document: {e}"), None)
+                    })?;
+                    (doc, namespace)
+                }
+                (None, Some(other_id)) => {
+                    let doc = self.other_design(other_id).await?;
+                    (doc, req.namespace.unwrap_or_else(|| other_id.to_string()))
+                }
+            };
         let g = self.graph.read().await;
-        ok_json(
-            g.compose_and_analyse(&doc, &req.namespace)
-                .map_err(dyno_err)?,
-        )
+        ok_json(g.compose_and_analyse(&doc, &namespace).map_err(dyno_err)?)
     }
 }

@@ -2,25 +2,37 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Measured 2026-09-11 on a partner design that required an interface this one publishes: `pair_designs` found the pair and its conflict; this returned `seam_findings: []`. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement. Root cause recorded, not fixed here.",
+  "description": "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Measured 2026-09-11 on a partner design that required an interface this one publishes: `pair_designs` found the pair and its conflict; this returned `seam_findings: []`. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement. Root cause recorded, not fixed here. On a server that holds many designs (a registry behind a trusted host) pass other_graph_id instead of `design`: the other design is read by graph_id from the one the server holds, inside the set of designs the host says you may read, and `namespace` defaults to that graph_id.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "design": {
         "additionalProperties": true,
-        "description": "The other design, as an export document (what `export_graph` returns).",
-        "type": "object"
+        "default": null,
+        "description": "The other design, as an export document (what `export_graph` returns).\nPass this OR `other_graph_id`, never both.",
+        "type": [
+          "object",
+          "null"
+        ]
       },
       "namespace": {
-        "description": "Prefix for the other design's ids — usually its `graph_id`. Required:\nwithout it the two designs' ids would collide, which is the entire\nreason this is not `import_graph`.",
-        "type": "string"
+        "default": null,
+        "description": "Prefix for the other design's ids — usually its `graph_id`. Required\nwith `design`: without it the two designs' ids would collide, which is\nthe entire reason this is not `import_graph`. With `other_graph_id` it\ndefaults to that graph_id.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "other_graph_id": {
+        "default": null,
+        "description": "The other design BY GRAPH_ID, on a server that holds many designs (a\nregistry behind a trusted host): it is read from the design the server\nalready holds, inside the set of designs the host says you may read.\nRefused on a single-design server, and for a design outside that set.",
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
-    "required": [
-      "design",
-      "namespace"
-    ],
     "type": "object"
   },
   "name": "compose_and_analyse",
