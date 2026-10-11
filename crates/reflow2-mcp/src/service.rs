@@ -38,6 +38,7 @@ use reflow2_core::{
 
 /// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
 mod unit;
+mod view;
 pub(crate) use unit::{CallScope, CallUnit, GraphHold, Settled, SharedGraph};
 
 /// Who is actually answering: the crate version this binary was built from,
@@ -490,6 +491,17 @@ pub const ACTING_AGENT_META: &str = "reflow2/acting_agent";
 /// reaches no other design.
 pub const READABLE_GRAPH_IDS_META: &str = "reflow2/readable_graph_ids";
 
+/// The request `_meta` key naming a HUB'S MEMBERS, by graph_id, that the
+/// caller may read — the trusted host's word, sent on every call to a hub's
+/// own design, so the hub's address serves a VIEW over the hub and those
+/// members (`service::view`, AGENTS.md "A hub's address serves a view over its
+/// members"). The value is a JSON array of graph_id strings: the hub's members
+/// ∩ [`READABLE_GRAPH_IDS_META`]. Read per call, never remembered, exactly as
+/// the readable set is; honoured only on a registry server behind a trusted
+/// gateway or a bearer gate. A call without it is served exactly as before
+/// the view existed.
+pub const VIEW_GRAPH_IDS_META: &str = "reflow2/view_graph_ids";
+
 /// The readable set one request carried ([`READABLE_GRAPH_IDS_META`]): `None`
 /// when the key is absent, else the string entries of its array. A value that
 /// is not an array is a set with nothing in it — present and empty — so the
@@ -507,12 +519,40 @@ pub(crate) fn readable_graph_ids_in(value: Option<&JsonValue>) -> Option<Vec<Str
     })
 }
 
+/// Why design `graph_id` may NOT be reached on this call, given the readable
+/// set the call carried — `None` when it may. One wording for every door to a
+/// second design ([`ReflowService::other_design`], and a hub's view routing a
+/// call to a member): it names the id and the key, and never says whether a
+/// design by that id is here or what it holds.
+pub(crate) fn not_readable(graph_id: &str, readable: Option<&[String]>) -> Option<String> {
+    match readable {
+        None => Some(format!(
+            "REFUSED: design {graph_id} was not read — this call carried no \
+             _meta[\"{READABLE_GRAPH_IDS_META}\"], the set of designs the host says the \
+             caller may read. The host names that set on every call, reads included."
+        )),
+        Some(ids) if !ids.iter().any(|i| i == graph_id) => Some(format!(
+            "REFUSED: design {graph_id} is not in the set of designs the host handed over on \
+             this call (_meta[\"{READABLE_GRAPH_IDS_META}\"]), so it was not read. Whether a \
+             design by that id is here, and what it holds, is not said."
+        )),
+        Some(_) => None,
+    }
+}
+
 tokio::task_local! {
     /// The designs, by graph_id, the host said the tool call now being served
     /// may read ([`READABLE_GRAPH_IDS_META`]) — `None` when the call carried
     /// no such set. Set by `call_tool` around the handler and read by
     /// `other_design`, so no cross-design tool reads `_meta` itself.
     static READABLE_GRAPH_IDS: Option<Vec<String>>;
+    /// The hub's members, by graph_id, the host named for the tool call now
+    /// being served ([`VIEW_GRAPH_IDS_META`]) — `None` when the call named no
+    /// view. Set by `call_tool` around the whole call and read by
+    /// `view::serve`; every call the view then makes on one design (the hub's
+    /// own, or a member's) runs with it cleared, so no design ever serves a
+    /// view from inside another's.
+    static VIEW_GRAPH_IDS: Option<Vec<String>>;
     /// Who the tool call now being served writes for — the request's `_meta`
     /// value, else the session's declaration, else nobody. Set by `call_tool`
     /// around the handler and read by `write_lock`, which is how every write
@@ -7780,22 +7820,9 @@ impl ReflowService {
                 )));
             }
         }
-        match READABLE_GRAPH_IDS.try_with(|r| r.clone()).ok().flatten() {
-            None => {
-                return Err(refuse(format!(
-                    "REFUSED: design {graph_id} was not read — this call carried no \
-                     _meta[\"{READABLE_GRAPH_IDS_META}\"], the set of designs the host says the \
-                     caller may read. The host names that set on every call, reads included."
-                )));
-            }
-            Some(ids) if !ids.iter().any(|i| i == graph_id) => {
-                return Err(refuse(format!(
-                    "REFUSED: design {graph_id} is not in the set of designs the host handed \
-                     over on this call (_meta[\"{READABLE_GRAPH_IDS_META}\"]), so it was not \
-                     read. Whether a design by that id is here, and what it holds, is not said."
-                )));
-            }
-            Some(_) => {}
+        let readable = READABLE_GRAPH_IDS.try_with(|r| r.clone()).ok().flatten();
+        if let Some(why) = not_readable(graph_id, readable.as_deref()) {
+            return Err(refuse(why));
         }
         registry
             .other_design_export(graph_id)
@@ -8115,29 +8142,14 @@ impl ReflowService {
     }
 }
 
-#[tool_handler(router = self.tool_router)]
-impl ServerHandler for ReflowService {
-    /// rmcp's own listing, with this design's lessons on the tools they name
-    /// (req:a-lesson-is-served-at-the-step-it-concerns). The reply is built by
-    /// tool_listing.rs, which owns the protocol-version rule every overridden
-    /// listing must follow — so overriding this changes nothing but the
-    /// descriptions, and only where the design holds a lesson.
-    async fn list_tools(
-        &self,
-        _request: Option<rmcp::model::PaginatedRequestParams>,
-        context: rmcp::service::RequestContext<RoleServer>,
-    ) -> Result<rmcp::model::ListToolsResult, McpError> {
-        Ok(crate::tool_listing::tools_result(
-            self.tools_with_lessons().await,
-            &context,
-        ))
-    }
-
-    /// The macro's own `call_tool`, plus one sentence on an unknown-field
-    /// refusal. Overridden rather than generated because the refusal is
-    /// produced before any handler runs, and the one thing the server knows
-    /// that the client may not is its own version.
-    async fn call_tool(
+impl ReflowService {
+    /// One tool call on THIS design, exactly as `call_tool` served every call
+    /// before a hub's view existed — everything but the per-client shaping of
+    /// `content`, which `call_tool` applies once to whatever answer it gives.
+    /// Split out so a hub's view (`view::serve`) can run the same call on the
+    /// hub's own design and on a member's, one design at a time, and so a call
+    /// that names no view goes through exactly this and nothing else.
+    pub(crate) async fn call_tool_unshaped(
         &self,
         request: rmcp::model::CallToolRequestParams,
         context: rmcp::service::RequestContext<RoleServer>,
@@ -8200,10 +8212,6 @@ impl ServerHandler for ReflowService {
                 )
             })
             .unwrap_or_else(|| ("unknown".to_string(), String::new()));
-        // THE SHAPE OF `content` IS CHOSEN PER CLIENT, by the name it gave at
-        // handshake (`crate::content_policy`): a client measured to hand its
-        // model only the text block gets the payload there too.
-        let policy = crate::content_policy::for_client(Some(client.as_str()));
         let started = std::time::Instant::now();
         // WHAT THE TRANSPORT VERIFIED (`crate::bearer`): on a resource server,
         // the bearer gate put the token's verified caller into the HTTP
@@ -8381,7 +8389,7 @@ impl ServerHandler for ReflowService {
         };
         // The receipt is cut from the reply the handler built, so `echo: "node"`
         // costs nothing and a refusal is never touched.
-        let answer = match (echo, answer) {
+        match (echo, answer) {
             (
                 Ok(crate::receipt::Echo::Receipt),
                 Ok(rmcp::model::CallToolResponse::Complete(mut r)),
@@ -8392,8 +8400,67 @@ impl ServerHandler for ReflowService {
                 Ok(rmcp::model::CallToolResponse::Complete(r))
             }
             (_, other) => other,
-        };
-        crate::content_policy::shape(policy, answer)
+        }
+    }
+}
+
+#[tool_handler(router = self.tool_router)]
+impl ServerHandler for ReflowService {
+    /// rmcp's own listing, with this design's lessons on the tools they name
+    /// (req:a-lesson-is-served-at-the-step-it-concerns). The reply is built by
+    /// tool_listing.rs, which owns the protocol-version rule every overridden
+    /// listing must follow — so overriding this changes nothing but the
+    /// descriptions, and only where the design holds a lesson.
+    async fn list_tools(
+        &self,
+        _request: Option<rmcp::model::PaginatedRequestParams>,
+        context: rmcp::service::RequestContext<RoleServer>,
+    ) -> Result<rmcp::model::ListToolsResult, McpError> {
+        Ok(crate::tool_listing::tools_result(
+            self.tools_with_lessons().await,
+            &context,
+        ))
+    }
+
+    /// The macro's own `call_tool`, plus one sentence on an unknown-field
+    /// refusal. Overridden rather than generated because the refusal is
+    /// produced before any handler runs, and the one thing the server knows
+    /// that the client may not is its own version.
+    ///
+    /// ⭐ AND A HUB'S ADDRESS SERVES A VIEW, when the host names the hub's
+    /// members in `_meta` ([`VIEW_GRAPH_IDS_META`]): `view::serve` routes,
+    /// fans out or answers for the hub alone. A call that names no view goes
+    /// straight to [`ReflowService::call_tool_unshaped`] — the path every call
+    /// took before the view existed, byte for byte.
+    async fn call_tool(
+        &self,
+        request: rmcp::model::CallToolRequestParams,
+        context: rmcp::service::RequestContext<RoleServer>,
+    ) -> Result<rmcp::model::CallToolResponse, McpError> {
+        // THE SHAPE OF `content` IS CHOSEN PER CLIENT, by the name it gave at
+        // handshake (`crate::content_policy`): a client measured to hand its
+        // model only the text block gets the payload there too.
+        let client = context
+            .peer
+            .peer_info()
+            .map(|info| info.client_info.name.clone())
+            .unwrap_or_else(|| "unknown".to_string());
+        let policy = crate::content_policy::for_client(Some(client.as_str()));
+        // WHICH OF THE HUB'S MEMBERS THE HOST NAMED (`VIEW_GRAPH_IDS_META`):
+        // the request's own `_meta`, never the session's.
+        let view = readable_graph_ids_in(context.meta.get(VIEW_GRAPH_IDS_META));
+        VIEW_GRAPH_IDS
+            .scope(view, async move {
+                if VIEW_GRAPH_IDS.with(Option::is_some) {
+                    view::serve(self, request, context, policy).await
+                } else {
+                    crate::content_policy::shape(
+                        policy,
+                        self.call_tool_unshaped(request, context).await,
+                    )
+                }
+            })
+            .await
     }
 
     /// Record who connected, then answer exactly as rmcp's default would.
