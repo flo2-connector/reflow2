@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:977cff5a1b04d78ddff58bc756d79989b9a08752abeb385e15f5af5b6489c4e0",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:three-party-checks",
+  "properties": {
+    "evidence": "The 2026-07-19 decision already split the work by what each party does badly (the LLM's memory and confidence, the human's memory and blindness to slow drift), which is the bias half of the decision-process framing."
+  },
+  "to_id": "dec:idea-reflow2-explained-as-support-for-the-human-decision-process"
+}

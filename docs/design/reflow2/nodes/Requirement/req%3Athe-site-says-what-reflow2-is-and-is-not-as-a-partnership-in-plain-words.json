@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:17ff1c0b5d92a59a470aefb929f4d51670729b0c4bf2e3411a282bf4938dddb9",
+  "node_id": "req:the-site-says-what-reflow2-is-and-is-not-as-a-partnership-in-plain-words",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "decomposed",
+    "name": "reflow2's site says, in plain words a non-technical reader follows, what reflow2 is and is not: a partnership in which a person decides, an AI drafts, asks and checks, and a graph remembers",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-12. He brainstormed it (dec:idea-what-is-the-one-story-of-what-reflow2-is-and-is-not), then accepted the agent's recommendation in these words: \"Go with your recommendation on: one-design walkthrough, the \"is / is not\" story built on the human/AI/graph partnership, and the human decision process as the spine.\" Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "statement": "Someone with no technical background can read reflow2's site and come away knowing what reflow2 is and what it is not, without being intimidated or bogged down.\n\nIt is a partnership of three:\n- The person brings the ideas and makes every decision.\n- An AI drafts, asks what is missing, and checks.\n- The graph remembers what was decided, by whom and why, and what was measured. So the reasons outlive the chat, the model and the people who leave.\n\nIt is not an AI that does the work, and it does not replace people or their conversations. It gives those conversations a memory and helps people work together.\n\nThe site also says plainly:\n- reflow2 itself runs no AI.\n- Some work does not need it: short, one-person, one-sitting work.\n- Which part carries over to a project that is not software.\n\nThe story spans two or three pages. The first page stands on its own in plain words, and a deeper page serves those who want more.",
+    "status": "accepted"
+  }
+}

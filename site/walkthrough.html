@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>reflow2 — one project, start to finish</title>
+  <meta name="description" content="Follow one made-up design, a robotics team's climber, from the first thing it has to do into the code and back, with each step labelled by who does it: the people, their AI assistant, or reflow2.">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="explainer">
+  <!-- HAND-WRITTEN ON PURPOSE, AND TOLD THROUGH A MADE-UP EXAMPLE
+       (dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated).
+       The Gearheads, Maya, Leo and Coach Rivera are fictional; no real design's content is
+       shown. It realizes req:the-site-follows-one-design-from-its-first-requirement-into-the-code-and-back:
+       one design by itself, before any hub, followed into the work and back, each step
+       labelled with who does it. Every behaviour described is one reflow2 has at the
+       version in the footer: questions from what the design doesn't say yet, ideas kept
+       with their counter-arguments, a decision settled only with a person's name, files
+       linked to what they carry out, drift between design and work caught by the check,
+       a change's reach shown before the edit, measured results kept apart from assumptions,
+       and the decisions a bad result reaches pointed out. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#8d8b85"/>
+      </marker>
+      <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#eb6834"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <main>
+    <header class="text">
+      <p class="mark"><a href="./">reflow2</a></p>
+      <h1>One project, start to finish.</h1>
+      <p class="lede">
+        The Gearheads are a made-up school robotics team. This season they need a climber: the part
+        of the robot that pulls it up onto a bar at the end of a match. Here is that one design, from
+        the first thing it has to do to the first competition, and what happens when the rules change.
+      </p>
+      <p class="legend">
+        Each step says who does it:
+        <span class="who you">You</span> the people,
+        <span class="who ai">AI</span> their AI assistant,
+        <span class="who r2">reflow2</span> the record.
+      </p>
+    </header>
+
+    <section class="text" aria-labelledby="w1">
+      <h2 id="w1"><span class="n">1</span> Say what it has to do</h2>
+      <p>
+        Maya, the team captain, tells the AI what the climber is for: it has to lift the robot onto the
+        bar in under 10 seconds, and it must never drop the robot, even if the battery runs low. The AI
+        writes these down as one thing the climber must do and one limit it must never break, with
+        Maya's name on both.
+      </p>
+      <p class="wholine"><span class="who you">You</span> say it · <span class="who ai">AI</span> writes it down · <span class="who r2">reflow2</span> keeps it, with who said it</p>
+    </section>
+
+    <section class="text" aria-labelledby="w2">
+      <h2 id="w2"><span class="n">2</span> reflow2 asks what's missing</h2>
+      <p>
+        Nothing in the record yet says how the climber will meet either one. reflow2 points that out,
+        and the AI turns it into plain questions for Maya: how heavy is the robot? What should happen if
+        power cuts out halfway up?
+      </p>
+      <p>
+        Before asking, the AI searches what the team already knows, and finds last season's note: the
+        old winch slipped when the battery was low. Maya's answers go into the record too, so nobody
+        asks her again.
+      </p>
+      <p class="wholine"><span class="who r2">reflow2</span> finds the gap · <span class="who ai">AI</span> searches, then asks · <span class="who you">You</span> answer</p>
+    </section>
+
+    <section class="text" aria-labelledby="w3">
+      <h2 id="w3"><span class="n">3</span> Weigh the options</h2>
+      <p>
+        The AI lays out three ways to build it: a winch, a telescoping arm, or hooks that grab the bar.
+        It writes each one down as an idea, beside the strongest argument against it. A winch can slip,
+        and theirs did last season. A telescoping arm is heavy. Hooks need the driver to line up
+        perfectly. Leo, who writes the robot's code, adds a fourth: a winch with a ratchet that can't
+        run backwards.
+      </p>
+      <p class="wholine"><span class="who ai">AI</span> drafts the options and the case against each · <span class="who you">You</span> add your own · <span class="who r2">reflow2</span> keeps them all</p>
+    </section>
+
+    <section class="text" aria-labelledby="w4">
+      <h2 id="w4"><span class="n">4</span> Decide</h2>
+      <p>
+        Maya chooses Leo's ratchet winch, because the ratchet answers both the never-drop limit and last
+        season's slip. The record keeps who decided, when, and why, and the three options that weren't
+        chosen, with the reasons they lost. The AI could suggest a choice, but a decision only counts
+        as made with a person's name on it.
+      </p>
+      <p class="wholine"><span class="who you">You</span> decide · <span class="who r2">reflow2</span> records who, when, why, and what lost</p>
+    </section>
+
+    <section class="text" aria-labelledby="w5">
+      <h2 id="w5"><span class="n">5</span> Build it</h2>
+      <p>
+        Leo and the AI write the winch code, and the team draws the bracket. Each file is linked to the
+        part of the design it carries out, so anyone can point at a file and ask "why is this here?"
+        and get the decision back.
+      </p>
+      <p class="wholine"><span class="who you">You</span> and the <span class="who ai">AI</span> build · <span class="who r2">reflow2</span> links each file to the design</p>
+    </section>
+
+    <section class="text" aria-labelledby="w6">
+      <h2 id="w6"><span class="n">6</span> Keep the design and the work in agreement</h2>
+      <p>
+        Two weeks later Leo rewrites how the winch code stops at the top of the bar, and forgets to
+        say so. The next time the team runs reflow2's check, it notices that the winch code no longer
+        matches what the design last accepted, and asks: did the design change, or only the code? Leo
+        answers, and the AI records which it was. Nothing drifts apart quietly.
+      </p>
+      <p class="wholine"><span class="who r2">reflow2</span> notices · <span class="who you">You</span> say which · <span class="who ai">AI</span> records it</p>
+    </section>
+
+    <section aria-labelledby="w7">
+      <div class="text">
+        <h2 id="w7"><span class="n">7</span> When the rules change, see what it touches first</h2>
+        <p>
+          Coach Rivera brings news: a new rule says the climb must take under 6 seconds. Before anyone
+          edits anything, reflow2 shows what that touches: the gearing decision, the motor choice, the
+          winch code and the climb test. The bracket and the wiring are untouched.
+        </p>
+      </div>
+      <figure class="drawing"><svg id="g1" viewBox="40 150 1220 440" role="img" aria-label="Today's design, the coach's new rule, the new requirement and decision that replace the old ones, then what the change touches before anything is built."></svg></figure>
+      <div class="text">
+        <p>
+          Maya records the new requirement and a new decision. The old ones are kept, marked as
+          replaced, so next season "why did we change the gearing?" still has an answer.
+        </p>
+        <p class="wholine"><span class="who you">You</span> bring the change · <span class="who r2">reflow2</span> shows its reach · <span class="who you">You</span> decide · <span class="who ai">AI</span> updates the work</p>
+      </div>
+    </section>
+
+    <section class="text" aria-labelledby="w8">
+      <h2 id="w8"><span class="n">8</span> Learn from how it turned out</h2>
+      <p>
+        At the first competition the climb takes 7 seconds, one too many. The result goes into the
+        record marked as measured, with the date and the match, so nobody mistakes it for a guess. reflow2 points to the decisions that result calls into question, starting with the
+        gearing.
+      </p>
+      <p>
+        When the team works out why (the battery sags under the new motor's load), the cause is written
+        down before the fix. Next season, the AI starts from this, not from zero.
+      </p>
+      <p class="wholine"><span class="who you">You</span> and the <span class="who ai">AI</span> record what happened · <span class="who r2">reflow2</span> points to the decisions it reaches</p>
+    </section>
+
+    <section class="text" aria-labelledby="loop">
+      <h2 id="loop">Five steps, over and over</h2>
+      <p>
+        Look back and every step above is one of five: notice a choice is needed, look into it, weigh
+        the options, decide, and learn from how it turned out. The climber went round that loop several
+        times in one season, and the record grew each time.
+      </p>
+      <p>
+        <b>No code?</b> A season plan has no code for step 6 to check. Every other step works the same:
+        the questions, the options, the decisions and their reasons, what changed, and what was learned.
+      </p>
+      <p class="actions">
+        <a class="button" href="why.html">Why it works this way</a>
+        <a class="button secondary" href="setup.html">Set it up</a>
+      </p>
+      <p>The climber is one design. A team with many gives each its own and links them with a <a href="hub.html">hub</a>.</p>
+    </section>
+
+    <footer class="text">
+      <p class="quiet">
+        <a href="./">What reflow2 is</a> ·
+        <a href="why.html">Why it works this way</a> ·
+        <a href="hub.html">Hubs</a> ·
+        <a href="setup.html">Set it up</a>
+      </p>
+      <p class="quiet">
+        <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
+        <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
+        Apache License 2.0 ·
+        Checked against reflow2 v0.83.3.
+      </p>
+    </footer>
+  </main>
+
+<script src="draw.js"></script>
+<script>
+/* ---------- 7 · when the rules change ---------- */
+(() => {
+  let s = '';
+  const cols = [170, 470, 790, 1090];
+  const heads = ['Today', 'The new rule', 'The design changes', 'See the reach, then build'];
+  s += ln(cols[0], 150, cols[3], 150, {c: AXIS, w: 2});
+  cols.forEach((x, i) => {
+    s += `<circle cx="${x}" cy="150" r="13" fill="${ACC}"/>` + tx(x, 150.5, String(i + 1), {size: 13, w: 700, c: ACC_INK, a: 'middle', base: 'central'});
+    s += tx(x, 190, heads[i], {size: 19, w: 700, a: 'middle'});
+  });
+  const x1 = 84;
+  s += nd(x1 + 20, 262, 'D', 20) + tx(x1 + 52, 258, 'Gearing 50:1', {size: 17, w: 700}) + tx(x1 + 52, 279, 'decided', {size: 14, c: INK2});
+  s += nd(x1 + 20, 352, 'R', 20) + tx(x1 + 52, 348, 'Climb under 10 s', {size: 17, w: 700}) + tx(x1 + 52, 369, 'as agreed', {size: 14, c: INK2});
+  s += nd(x1 + 20, 442, 'C', 20) + tx(x1 + 52, 438, 'winch code', {size: 17, w: 700}) + tx(x1 + 52, 459, 'carries them out', {size: 14, c: INK2});
+  s += ln(x1 + 20, 284, x1 + 20, 330, {c: AXIS}) + ln(x1 + 20, 374, x1 + 20, 420, {c: AXIS});
+  const x2 = cols[1];
+  s += icon('user', x2, 262, 40, INK, 1.6);
+  s += tx(x2, 308, 'Coach Rivera', {size: 17, w: 700, a: 'middle'});
+  const bxx = x2 - 120, byy = 336, bw = 240, bh = 108;
+  s += `<path d="M${bxx},${byy + 14} a14,14 0 0 1 14,-14 H${x2 - 12} l12,-14 l12,14 H${bxx + bw - 14} a14,14 0 0 1 14,14 V${byy + bh - 14} a14,14 0 0 1 -14,14 H${bxx + 14} a14,14 0 0 1 -14,-14 Z" fill="${PANEL}" stroke="none"/>`;
+  s += tx(x2, byy + 42, '“New rule: the climb', {size: 17, a: 'middle'});
+  s += tx(x2, byy + 70, 'must take under', {size: 17, a: 'middle'});
+  s += tx(x2, byy + 94, '6 seconds.”', {size: 17, a: 'middle'});
+  const x3 = cols[2] - 110;
+  s += nd(x3 + 20, 262, 'R', 20) + tx(x3 + 52, 258, 'Climb under 6 s', {size: 17, w: 700}) + tx(x3 + 52, 279, 'new requirement', {size: 14, c: INK2});
+  s += nd(x3 + 20, 352, 'D', 20) + tx(x3 + 52, 348, 'Gearing 30:1', {size: 17, w: 700}) + tx(x3 + 52, 369, 'new decision · who · why', {size: 14, c: INK2});
+  s += path(`M${x3 + 20},${376} L${x3 + 20},${420}`, {c: COL.D, w: 2, arrow: 'arrD'});
+  s += tx(x3 + 32, 404, 'replaces', {size: 14, c: WARN, italic: true});
+  s += nd(x3 + 20, 442, 'D', 20, {hollow: true, dash: true, op: 0.75});
+  s += `<text x="${x3 + 52}" y="438" font-size="17" font-weight="700" fill="${MUTED}" text-decoration="line-through">Gearing 50:1</text>`;
+  s += tx(x3 + 52, 459, 'kept, not deleted', {size: 14, c: INK2});
+  const x4 = cols[3] - 96;
+  [['gearing decision', true], ['motor choice', true], ['winch code', true], ['climb test', true], ['bracket', false], ['wiring', false]].forEach(([n, hit], i) => {
+    const y = 250 + i * 40;
+    if (hit) {
+      s += `<circle cx="${x4 + 10}" cy="${y - 5}" r="8" fill="#ec835a"/>`;
+      s += tx(x4 + 28, y, n, {size: 17, w: 700});
+      s += tx(x4 + 182, y, 'touched', {size: 14, c: WARN});
+    } else {
+      s += `<circle cx="${x4 + 10}" cy="${y - 5}" r="7" fill="none" stroke="${MUTED}" stroke-width="1.6"/>`;
+      s += tx(x4 + 28, y, n, {size: 17, c: MUTED});
+      s += tx(x4 + 182, y, 'unchanged', {size: 14, c: MUTED});
+    }
+  });
+  s += icon('cpu', x4 + 12, 512, 26, ACC, 1.8);
+  s += tx(x4 + 34, 510, 'Then the work moves', {size: 16, w: 700});
+  s += tx(x4 + 34, 530, 'to the new design', {size: 16, w: 700});
+  s += ln(cols[0] + 90, 352, cols[1] - 140, 352, {c: AXIS, w: 1.6, arrow: 'arr'});
+  s += ln(cols[1] + 138, 352, x3 - 14, 352, {c: AXIS, w: 1.6, arrow: 'arr'});
+  s += ln(x3 + 250, 352, x4 - 14, 352, {c: AXIS, w: 1.6, arrow: 'arr'});
+  set('g1', `<g transform="translate(0,22)">${s}</g>`);
+})();
+</script>
+</body>
+</html>

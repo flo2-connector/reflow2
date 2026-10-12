@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce7361d9780aae30ac3181e34bfc3cc5403478bc7ce5e534ab9ebf1da9d108e9",
+  "edge_type": "REALIZES",
+  "from_id": "art:site-draw-js",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-site-explains-reflow2-in-three-pages-plain-first"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:33a328727e20435e1195981ca13231883dc5e34cf501894ff290e94d9fe83bd4",
+  "edge_type": "ANTICIPATES",
+  "from_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others",
+  "properties": {
+    "evidence": "The rule was written on 2026-09-02 after a colleague's 'a model could design this without reflow2' and settled the partnership this story has to tell; the same misreading has now come from his boss."
+  },
+  "to_id": "dec:idea-what-is-the-one-story-of-what-reflow2-is-and-is-not"
+}

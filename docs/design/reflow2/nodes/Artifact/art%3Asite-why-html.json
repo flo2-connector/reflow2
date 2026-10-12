@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:88bb9795e1db8a2b39895661d1f2351fba96e42928b17dffd2f36378cb00b0a1",
+  "node_id": "art:site-why-html",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The deeper page. It shows who brings what and can't be trusted with what (from docs/partnership.md). It sets each AI failure (making things up, false confidence, agreeing, forgetting, sums) and each human one (forgetting, confirmation bias, anchoring, slow drift, feelings) beside what catches it. Fast and slow thinking is told as a comparison. It also says what reflow2 can't do: remove bias, make a record true, make an AI honest, or run an AI itself. Hand-written; the footer says which release it was checked against.",
+    "location": "site/why.html",
+    "name": "site/why.html — why it works this way",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:393f72914796c1bb4fe45cd319c285a6a493dc7fe66b543c3e9320517130b425",
+  "edge_type": "REALIZES",
+  "from_id": "art:site-why-html",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-site-explains-reflow2-in-three-pages-plain-first"
+}

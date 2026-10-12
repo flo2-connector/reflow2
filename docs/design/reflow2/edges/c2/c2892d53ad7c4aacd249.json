@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:03c7058b40fd2ff33423da2157a0ff624ff91ea679801663aa0b150f8e12e7a6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:site-why-html",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

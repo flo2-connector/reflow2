@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7e093a8bfd8a45c40014df79b2f6d38bb37f1b4e1dfb6a8d035fd4dd3b3fc31e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:site-draw-js",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
