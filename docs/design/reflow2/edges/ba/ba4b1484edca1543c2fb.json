@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:97135720d77b8df51d91ea934d52e5e8e6713114bb2b31c66fc4e8a0e34a4c6c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:site-walkthrough-html",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

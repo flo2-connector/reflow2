@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:87bcad3d9af88539889691907aca1723466bf3a850f44e137fa43d5e86a17180",
+  "content_hash": "sha256:1d516773b2050407d6f437f4af30491182c4c227675a0f2f2cf8c71bede2c6a9",
   "node_id": "art:site-index-html",
   "node_type": "Artifact",
+  "prev_item_hash": "sha256:87bcad3d9af88539889691907aca1723466bf3a850f44e137fa43d5e86a17180",
   "properties": {
     "artifact_type": "document",
-    "description": "reflow2's front page: what a project brain is, in eight drawings, told through a made-up school robotics team. Drawn after the owner's Project Brain one-pager; hand-written under the owner's 2026-10-05 decision, with no real design's numbers in it.",
+    "description": "The home page, rewritten 2026-10-12, in this order:\n- \"You decide. The AI helps. reflow2 remembers why.\"\n- What it is and isn't, including that reflow2 runs no AI, doesn't replace people or their conversations, and isn't needed for one-afternoon jobs.\n- The three partners, each with what it brings and can't be trusted with.\n- The five decision steps (notice, look into it, weigh the options, decide, learn), each with what goes wrong and what reflow2 does.\n- What the record keeps.\n- A pointer to walkthrough.html.\n- The hub as the next step.\nIt uses the made-up Gearheads, and \"project brain\" names only a hub. The footer says which release it was checked against.",
     "location": "site/index.html",
-    "name": "site/index.html — the explainer: a project brain, told through a made-up team",
+    "name": "site/index.html — what reflow2 is and isn't: a partnership, told along the five decision steps",
     "status": "realized"
   }
 }

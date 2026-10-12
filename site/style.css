@@ -120,3 +120,35 @@ figure.drawing.narrow-art svg { max-width: 40rem; margin: 0 auto; }
   figure.drawing.narrow-art svg { min-width: 560px; }
   figure.drawing::after { content: "Scroll sideways to see the whole drawing."; display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; position: sticky; left: 0; }
 }
+
+/* ---- What it is and is not; the three partners; the five steps (index.html,
+   walkthrough.html, why.html). The three partners keep one colour each, the same
+   as draw.js's WHO: you green, the AI blue-violet, reflow2 orange. ---- */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.4rem 1rem 0.6rem; }
+.card h3 { margin-top: 0.75rem; }
+.card ul { margin: 0.25rem 0 0.5rem; }
+.pair, .partners { display: grid; gap: 0.9rem; margin: 1rem 0; }
+.pair { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.partners { grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); }
+.partners p { margin: 0.4rem 0; }
+.who {
+  display: inline-block; font-size: 0.82rem; font-weight: 700; line-height: 1.2;
+  padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap;
+  vertical-align: 0.08em;
+}
+.who.you { background: #5cc3a6; color: #0f1a16; }
+.who.ai { background: #7f8cf0; color: #10122a; }
+.who.r2 { background: #eb6834; color: #1f0d05; }
+h3 .who { font-size: 0.95rem; }
+.steps { list-style: none; padding: 0; }
+.steps li { border-left: 3px solid var(--line); padding: 0.1rem 0 0.4rem 1rem; margin: 1.1rem 0; }
+.steps h3 { margin: 0.2rem 0 0.4rem; }
+.steps p { margin: 0.35rem 0; }
+.legend { color: var(--muted); }
+.wholine { color: var(--muted); font-size: 0.95rem; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; margin: 0.75rem 0; font-size: 0.95rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--line); }
+thead th { color: var(--muted); font-weight: 600; }
+dl.pairs dt { font-weight: 700; margin-top: 1rem; }
+dl.pairs dd { margin: 0.25rem 0 0; color: var(--muted); }

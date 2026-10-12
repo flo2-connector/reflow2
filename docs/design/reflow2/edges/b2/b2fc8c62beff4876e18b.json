@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:b42846e9125210d935f8050ee6f9059891c7ef25de818b3f308eadb2b2e32a57",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-site-follows-one-design-from-its-first-requirement-into-the-code-and-back",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

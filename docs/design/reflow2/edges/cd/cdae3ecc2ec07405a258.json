@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8dda61321604b892c4289aee32ee5edf3a2a0e368080403e00bbf7286b5185b7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-site-explains-reflow2-in-three-pages-plain-first",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

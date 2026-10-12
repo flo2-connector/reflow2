@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:de85344211610e90b7d132517a23ee3292cdbbf374e3d316f10b9ed99edb212b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-capture-session-skill-body-still-says-the-reasoning-dies-with-the-session-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

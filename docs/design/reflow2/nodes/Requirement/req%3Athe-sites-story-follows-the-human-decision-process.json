@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bf9fb18d30da11dc2477d8310a7e6302059b7fe95ab506865fd1bc9f48270978",
+  "node_id": "req:the-sites-story-follows-the-human-decision-process",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "decomposed",
+    "name": "The site's story follows the human decision process in everyday words: notice that a choice is needed, look into it, weigh the options, decide, learn from how it turned out",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-12. He brainstormed it (dec:idea-reflow2-explained-as-support-for-the-human-decision-process), then accepted the agent's recommendation in these words: \"Go with your recommendation on: one-design walkthrough, the \"is / is not\" story built on the human/AI/graph partnership, and the human decision process as the spine.\" Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "statement": "The explanation of reflow2 is built on the human decision process, because every project reflow2 serves comes down to it, whether a complex system or a sports season. Each step is told in everyday words:\n1. Notice that a choice is needed.\n2. Look into it: what the project already knows, and what the world says.\n3. Weigh the options against what matters.\n4. Decide. The person decides, never the AI.\n5. Learn from how it turned out.\n\nAt each step the site says what goes wrong for people and for an AI, and what reflow2 does about it.\n\nThe psychology behind it lives on a deeper page, told as a likeness and not as science about reflow2. It covers fast and slow thinking, confirmation bias, anchoring, and the AI's own overconfidence and agreeableness. The site never claims reflow2 removes bias. It claims only that reflow2 puts the evidence, the options and the counter-argument in front of the person.",
+    "status": "accepted"
+  }
+}

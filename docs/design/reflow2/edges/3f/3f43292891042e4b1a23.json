@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fa3b2a998a7d29955a162b4faa4122984f901ec05ae44bbe2914685f0467524a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-site-says-what-reflow2-is-and-is-not-in-plain-words-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

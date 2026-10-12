@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca0aec06d235de4e9947708b014053758631fb746b14b04e68512d5e32a6ed1c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-home-pages-headline-describes-a-hub-and-project-brain-names-both-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

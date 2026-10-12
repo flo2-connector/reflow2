@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:12130af9c7b464dfeb90bb9470f34d1b51a26596ad38fd3188916c26897dd8ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-site-says-what-reflow2-is-and-is-not-in-plain-words-2026-10-12",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:dc7f733f1cfc6f815e0c43444f6f91bbf8702a2c6104004734cda1bfefc5a389",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-walkthrough-html"
+}

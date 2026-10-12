@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:29186a4e5dd2f59ebfa68f53fda403ae10678d000585bdf3343d155469998f94",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-is-the-one-story-of-what-reflow2-is-and-is-not",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_at": "2026-10-12",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

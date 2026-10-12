@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f501c27bf10ff1bc9f72451860f89cfc5a54735a707dc3deea83b104e4b7c2e4",
+  "node_id": "fact:the-home-pages-headline-describes-a-hub-and-project-brain-names-both-2026-10-12",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "OBSERVED 2026-10-12 (site as of v0.83.3): reflow2's home page never shows one design by itself. Its headline is \"One shared design across all your repositories\", which is a hub's definition, and \"project brain\" names both the home page's subject and the hub (hub.html: \"A hub, or project brain\")",
+    "source": "site/index.html, site/hub.html, site/setup.html at 89556fb18 (the v0.83.3 cut), read as text",
+    "statement": "Read 2026-10-12, when Anthony said the site says nothing about one design by itself. site/index.html is titled \"reflow2 — a project brain\". Its opening line is \"One shared design across all your repositories\". Its sections are: Where the knowledge lives; What goes into the brain; One brain across all your repositories (each repository keeps its own graph, the hub links them); It gets smarter every time you use it; Try it. Its three made-up Gearheads scenarios (a motor failing at a competition, designing next season's climber, requirements changing) are told as uses of the brain. None of them follows one design from the first requirement to working code. site/hub.html is titled \"a hub, or project brain\", so the one phrase names both. site/setup.html says how to install and nothing about the work. So a reader meets reflow2 first as a multi-repository hub, and never meets the single-design case, which is how most people start (Anthony at work: one project, VS Code, --call). Observation only: no cause was walked, and nothing is decided. The open question is dec:idea-how-does-the-site-show-what-reflow2-is-for-one-design-by-itself. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq\n\nALSO READ 2026-10-12, when Anthony said people take reflow2 for \"AI\" meant to replace people: the home page's only description of how it works is \"Kept in a graph any AI agent can read, and updated as you work.\" It never says who decides, never names the partnership of human, model and graph that rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others and dec:three-party-checks settled, and does not link docs/partnership.md, which maps each known model failure mode (hallucination, overconfidence, memory) to its check. Measured on the source at the v0.83.3 cut: no crate depends on a model library, so reflow2 itself runs no AI. The site does not say that either. Observation only. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject_id": "art:site-index-html",
+    "valid_from": "2026-10-12"
+  }
+}

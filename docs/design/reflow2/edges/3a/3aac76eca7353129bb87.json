@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:bc012996936456e9f837b463c56c15ca7908cdf779fda97678de50d0a1026086",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-site-says-what-reflow2-is-and-is-not-as-a-partnership-in-plain-words",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
