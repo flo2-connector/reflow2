@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3fa15008da503a197676bc3d5fe4b57701ec41ec02389ecec7b472b11219c5b5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-cut-says-what-the-release-brings-to-the-call-setup-and-what-still-needs-a-hosted-gateway",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

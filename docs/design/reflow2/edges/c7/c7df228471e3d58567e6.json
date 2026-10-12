@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c82654b48d22ed01786f3455c03420bd92ec40559c0b4395451f13e8c0c9d688",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:a-cut-says-what-the-release-brings-to-the-call-setup-and-what-still-needs-a-hosted-gateway",
+  "properties": {
+    "step_order": 2,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}
