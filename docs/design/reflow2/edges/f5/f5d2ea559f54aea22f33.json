@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ff66481fe63a5286424a7152b82167f19b1a2152bd15f8fcc5bbc875e3d176c4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:ab4043500936864054d047138095103f1cccf746893181179558b1b2ab01adc7"
+  },
+  "to_id": "art:test-a-writing-call-keeps-the-committed-export-current"
+}

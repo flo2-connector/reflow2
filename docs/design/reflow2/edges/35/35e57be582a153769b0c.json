@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2c4c70742d3aa0854eeb62e7a1c80f93f49ebe166959cda08c970e01c8751db6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:60b908e8b517db6eab3e06e4fdf30054eb0667748091d34093e5cff506aede1d"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

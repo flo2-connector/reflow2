@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:af2e5d2b7b90c05103294e9703c01da1df853f9fd19ac05323ae6d3617bd6573",
+  "node_id": "chg:accept-1a96233d4fca1e5b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-11",
+    "name": "v0.83.1 cut, step 1: AGENTS.md's shipping-version line moved 0.83.0 -> 0.83.1; nothing else. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

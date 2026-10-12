@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a900618e5a7b2ffe76f5a48e2a7043cfa027714f5acee35d1a6b3afcc017c00",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0831",
+  "properties": {
+    "as_checksum": "sha256:d785b80eed7fd4a7b13d256305d538b622a19fdfc74ae94fae9710622c219112"
+  },
+  "to_id": "art:one-status-contract-across-sibling-constructors-test"
+}

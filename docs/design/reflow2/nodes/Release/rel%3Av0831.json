@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1dbce0aad199db977c2bc503f72153f533704e8b3452a044f46bafd42a950e58",
+  "node_id": "rel:v0831",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-11 on Anthony's word (\"Do the 3 steps\": cut 0.83.1, move flo2 to it, upgrade flo2.io). Patch: a hub's view serves seam_report on the hub alone and fans out seam_coverage, held by a test that reads every served schema (#725); #724 re-blessed 0.83.0's surface record. No tool, argument or store schema moved; only crates/reflow2-mcp/src/service/view.rs changed in code since v0.83.0. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.83.1 — a hub's view sends seam_report to the hub alone",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.83.1"
+  }
+}
