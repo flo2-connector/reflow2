@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:905195079e94416c5369e9c438c7907bf9811c5353a334e0148f8e28b20e9ef2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-hub-and-setup-pages-agree-with-v0-83-2-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

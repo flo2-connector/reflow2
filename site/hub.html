@@ -15,7 +15,8 @@
        who does not have reflow2 yet. A page that shows a real design's content stays
        generated from that design (dec:idea-what-is-on-reflow2s-public-page).
        Every tool and skill named here is one the repository serves at the version in
-       the footer; "What is coming" names intent the design records, not anything shipped. -->
+       the footer. "Across the members" describes what that release does at a hub's address
+       on flo2.io, checked there; it changes when a release changes it. -->
   <main>
     <header>
       <p class="mark"><a href="./">reflow2</a></p>
@@ -146,8 +147,8 @@
           you name are its members.</li>
         <li><b>Give it a design.</b> A new one, or one you already have. That design holds what spans
           the members: process, people, decisions of the whole, ideas not yet routed.</li>
-        <li><b>Share that design once.</b> Everyone in it reads every design the hub names, through the
-          hub. A member who cannot write to a design can still drop an idea or feedback into the
+        <li><b>Share that design once.</b> Everyone in it reads, through the hub, every design the hub
+          names that you can still open. A member who cannot write to a design can still drop an idea or feedback into the
           hub's design, where it waits until someone who works on the right design routes it there.</li>
       </ol>
       <p>
@@ -186,15 +187,24 @@
     </section>
 
     <!-- ============================================================ 5 -->
-    <section id="coming" aria-labelledby="coming-h">
-      <h2 id="coming-h">What is coming</h2>
-      <p class="quiet">Intent the design records, not anything shipped.</p>
+    <section id="across" aria-labelledby="across-h">
+      <h2 id="across-h">Across the members, on flo2.io</h2>
       <p>
-        Operations between designs, compare, compose and seam coverage among them, are to take their
-        other designs by graph id on one server, so a hosted server can serve a whole family where
-        today it withholds every tool that opens a design by path. After that, an on-demand view over
-        a hub's members, where the ordinary tools run across every member at once and a write lands
-        in the design that owns the node.
+        At a hub's own address on flo2.io, the ordinary tools work across the hub and every member
+        you can read. A read runs on each design and answers design by design.
+        <code>search_design</code> ranks every design's hits together and applies your one
+        <code>limit</code> to the merged list; the reply says how many hits each design found
+        (<code>found_by_design</code>) and how many fell outside the limit (<code>hits_withheld</code>).
+        An id written as <code>&lt;member&gt;:&lt;id&gt;</code> sends the call to that member alone.
+      </p>
+      <p>
+        <code>compare_designs</code> and <code>compose_and_analyse</code> take the other design by its
+        graph id. A long diff fits the <code>budget_chars</code> you set, names each list it shortened,
+        and <code>list</code> with <code>offset</code> reads one list a page at a time.
+      </p>
+      <p class="quiet">
+        This needs a server that holds the members, such as flo2.io. <code>reflow2 read</code> and
+        <code>--call</code> on your own machine open one design and cannot reach a hub's members.
       </p>
     </section>
 

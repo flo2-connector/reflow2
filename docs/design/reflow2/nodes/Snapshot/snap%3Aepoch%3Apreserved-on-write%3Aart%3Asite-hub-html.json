@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1b44358e6d60c334d98130a7aa0672c4d8d256a3fa216f698e66d93c0932f183",
+  "node_id": "snap:epoch:preserved-on-write:art:site-hub-html",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0830\",\"properties\":{\"as_checksum\":\"sha256:9cd44a505798179fa25ce678ffa14ca39fc5b7cc49bf9e4a3949bb81986a33a1\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0831\",\"properties\":{\"as_checksum\":\"sha256:2a7e5634db58f045a10bb1e3b84a50d104ecaa3cb31a82813ebf59f0baa093d7\"}},{\"direction\":\"in\",\"edge_type\":\"INCLUDES\",\"other_type\":\"Release\",\"other_id\":\"rel:v0832\",\"properties\":{\"as_checksum\":\"sha256:b8160443cb3b6b550ed75c4dbd776f7842cf11ba56432965bb7efd960981be32\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"out\",\"edge_type\":\"REALIZES\",\"other_type\":\"Capability\",\"other_id\":\"cap:the-site-explains-how-to-make-a-hub-or-project-brain\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}}]",
+    "state": "{\"artifact_type\":\"document\",\"checksum\":\"sha256:b77fdf2c42cf28726a84e1ad772217404f77a81f2e701ad0e74bf2174fc79575\",\"checksum_basis\":\"asserted\",\"description\":\"The hub guide: what a hub is, making one with reflow2 alone, making one on flo2.io, two tiers for a system of systems, what is coming named as intent; footer says which release it was checked against.\",\"location\":\"site/hub.html\",\"name\":\"site/hub.html — a hub, or project brain\",\"status\":\"realized\"}",
+    "target_id": "art:site-hub-html",
+    "target_type": "Artifact"
+  }
+}
