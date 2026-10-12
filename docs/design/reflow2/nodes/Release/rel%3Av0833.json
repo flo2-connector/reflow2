@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8fdfaa707234a501339b86538e2e8f2563e1358f042378c1e745104cdda776df",
+  "node_id": "rel:v0833",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-12 on Anthony's word (\"Cut 0.83.3\"). Patch: the /capture-session command asks for \"the rationale for the work\" and the capture-session skill's description says the project's rationale (what was measured, tried and dropped, and why), so the Claude route GitHub Copilot takes in VS Code stops refusing it (category reasoning_extraction, 5 of 5 before the rewording); tools/skill_lint.py refuses the old phrasing (#731). #730 re-blessed 0.83.2's surface record and brought site/hub.html and site/setup.html up to date with what 0.83.2 ships. No tool, argument or store schema moved. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.83.3 — /capture-session asks for the work's rationale",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.83.3"
+  }
+}

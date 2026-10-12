@@ -31,6 +31,18 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.83.3] — 2026-10-12
+
+**Patch. `/capture-session` asks for the work's rationale, so VS Code with GitHub Copilot stops
+refusing it.** It contains #731; #730 re-blessed 0.83.2's surface record and brought the site's
+hub and setup pages up to date. No tool, argument or schema on the MCP surface moved, and the
+store's schema is 0.83.2's. Only the `/capture-session` command and the `capture-session` skill's
+description changed. **What to do:** run `reflow2 update` in each project.
+
+### Fixed
+
+- **`/capture-session` was refused in VS Code with GitHub Copilot.** Measured 2026-10-12 with Claude Opus 5.5: "Sorry, the model declined to complete this request", five times out of five, once in a brand-new chat on its first call. Copilot logged each as `Refusal received: category='reasoning_extraction'`. The command asked for "the reasoning" that dies with the session, which that route's safety classifier reads as a request for the model's own thinking. It now asks for "the rationale for the work", and the skill's description says the project's rationale (what was measured, tried and dropped, and why). Reworded that way it completed in fresh chats. The same wording had run fine in Claude Code, so the refusal depends on the route a host takes to the model. `tools/skill_lint.py` now fails any slash command or skill description that puts "reasoning" beside the session, conversation or chat. **What to do:** run `reflow2 update` in each project to refresh the command. If you edited your copy of `capture-session` to work around this, delete it first so `reflow2 update` writes the new one. A chat that already holds the old wording keeps refusing; start a new chat.
+
 ## [0.83.2] — 2026-10-12
 
 **Patch. A hub's search and `compare_designs` answer within the limits the caller set.** It
