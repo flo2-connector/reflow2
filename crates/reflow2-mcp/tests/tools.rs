@@ -1978,6 +1978,8 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         base_path: Some(base_str.clone()),
         other_path: None,
         other_graph_id: None,
+        list: None,
+        offset: None,
     })));
     assert_eq!(same["summary"]["identical"], true);
     assert_eq!(same["base"], base_str.as_str());
@@ -2001,6 +2003,8 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         base_path: Some(base_str.clone()),
         other_path: None,
         other_graph_id: None,
+        list: None,
+        offset: None,
     })));
     assert_eq!(diff["summary"]["identical"], false);
     assert_eq!(diff["summary"]["design_added"], 1);
@@ -2022,6 +2026,8 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
         base_path: Some(base_str.clone()),
         other_path: Some(other_str.clone()),
         other_graph_id: None,
+        list: None,
+        offset: None,
     })));
     assert_eq!(files["summary"]["design_added"], 1);
     assert_eq!(files["other"], other_str.as_str());
@@ -2033,6 +2039,8 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
             base_path: Some("/nonexistent/reflow2-compare.json".into()),
             other_path: None,
             other_graph_id: None,
+            list: None,
+            offset: None,
         }))
         .await
         .is_err(),
@@ -2262,6 +2270,8 @@ async fn export_files_chain_by_content_hash() {
         base_path: Some(old_copy.to_str().unwrap().into()),
         other_path: Some(path_str.clone()),
         other_graph_id: None,
+        list: None,
+        offset: None,
     })));
     assert_eq!(diff["ancestry"], "other_succeeds_base");
 

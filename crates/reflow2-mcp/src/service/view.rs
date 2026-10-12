@@ -483,7 +483,15 @@ impl View<'_> {
 
     /// `search_design`'s one merged reply: every design's hits ranked
     /// together by score, each member's prefixed and every hit naming its
-    /// design.
+    /// design, and the caller's ONE `limit` bounding the merged list.
+    ///
+    /// The hub's address is one design to the caller, so one limit. Each
+    /// design is asked with that same limit (its top-k), the hits are merged
+    /// and ranked, and the top-k of the merged list is returned: exact,
+    /// because no hit outside a design's top-k can be in the merged top-k.
+    /// Measured 2026-10-11 on flo2.io before this: `limit: 10` through a hub
+    /// of seven designs answered 65 hits, the reply saying the limit applied
+    /// to each design.
     fn merged_search(
         &self,
         replies: Vec<(String, Result<CallToolResponse, McpError>)>,
@@ -492,6 +500,7 @@ impl View<'_> {
         let mut hits: Vec<JsonValue> = Vec::new();
         let mut stale: Vec<JsonValue> = Vec::new();
         let mut searched = JsonMap::new();
+        let mut found = JsonMap::new();
         let mut failed = JsonMap::new();
         let mut loop_hints = JsonMap::new();
         let mut designs_searched: Vec<String> = Vec::new();
@@ -503,7 +512,9 @@ impl View<'_> {
                 failed.insert(id, error.clone());
                 continue;
             }
-            for mut hit in v["hits"].as_array().cloned().unwrap_or_default() {
+            let own = v["hits"].as_array().cloned().unwrap_or_default();
+            found.insert(id.clone(), JsonValue::from(own.len()));
+            for mut hit in own {
                 if let Some(o) = hit.as_object_mut() {
                     o.insert("design".into(), JsonValue::String(id.clone()));
                 }
@@ -533,20 +544,34 @@ impl View<'_> {
                 .partial_cmp(&score(a))
                 .unwrap_or(std::cmp::Ordering::Equal)
         });
+        // ONE limit, the caller's, on the merged list. Every design was asked
+        // with the same limit, so the merged top-k is exact; what falls off
+        // the end is counted, and `found_by_design` still names every design
+        // that matched.
+        let ranked = hits.len();
+        if let Some(n) = limit.as_u64().map(|n| n as usize) {
+            hits.truncate(n);
+        }
+        let withheld = ranked - hits.len();
         let note = format!(
             "search_design through hub {}'s view: every design's hits ranked together by score, \
              each member's node_id prefixed with its graph_id ('<graph_id>:<id>') and the hub's \
              own unprefixed; `design` names where each hit came from. Scores come from each \
              design's own index, so the order across designs is a guide, not a measurement. The \
-             limit applies to each design.{}",
+             one `limit` bounds this merged list: each design was asked for that many, \
+             `found_by_design` says how many each returned (a design at the limit may hold \
+             more), and `hits_withheld` counts the ranked hits that fell outside it — raise \
+             `limit`, or search a member's own address, to see them.{}",
             self.hub_id,
             self.unreachable_sentence()
         );
         let mut payload = json!({
             "hits": hits,
+            "limit": limit,
+            "hits_withheld": withheld,
+            "found_by_design": found,
             "designs_searched": designs_searched,
             "searched_by_design": searched,
-            "limit_per_design": limit,
             "stale": stale,
             "view": self.members,
             "unreachable": self.unreachable,

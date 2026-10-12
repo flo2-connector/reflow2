@@ -595,6 +595,8 @@ async fn a_server_without_a_registry_says_where_other_graph_id_is_served() {
             base_path: None,
             other_path: None,
             other_graph_id: Some("someone-else".into()),
+            list: None,
+            offset: None,
         }))
         .await
         .expect_err("compare by graph_id on a server without a registry is refused");
@@ -631,6 +633,8 @@ async fn a_server_without_a_registry_says_where_other_graph_id_is_served() {
             base_path: None,
             other_path: None,
             other_graph_id: None,
+            list: None,
+            offset: None,
         }))
         .await
         .expect_err("nothing to compare is a refusal");
@@ -650,6 +654,201 @@ async fn a_server_without_a_registry_says_where_other_graph_id_is_served() {
     assert!(
         err.message.contains("design") && err.message.contains("other_graph_id"),
         "names both routes: {}",
+        err.message
+    );
+}
+
+/// A diff of two unrelated designs has SEVERAL long id lists. Measured
+/// 2026-10-11 on flo2.io: `compare_designs {budget_chars: 4000}` answered
+/// 1,421,523 characters, because only the one list with the most entries was
+/// shortened and every other list stayed whole. Now every list gives by the
+/// characters it costs until the reply fits, the budget block names each one
+/// with `shown` and `total`, and `list` + `offset` read any one in full.
+#[tokio::test]
+async fn a_diff_over_budget_fits_names_every_shortened_list_and_pages_one() {
+    use reflow2_mcp::service::{
+        CapabilityReq, CompareDesignsReq, ExportGraphToReq, ReflowService, RequirementReq,
+    };
+    use rmcp::handler::server::wrapper::Parameters;
+
+    let dir = tempfile::tempdir().unwrap();
+    let s = ReflowService::in_memory_as("paged").expect("in-memory service");
+    let base = dir.path().join("base.json").display().to_string();
+    s.export_graph(Parameters(
+        serde_json::from_value::<ExportGraphToReq>(json!({"path": base})).unwrap(),
+    ))
+    .await
+    .expect("export the base");
+
+    // Two long lists relative to the base: 120 design nodes added and 60
+    // SATISFIES edges added.
+    for i in 0..60 {
+        s.add_requirement(Parameters(
+            serde_json::from_value::<RequirementReq>(json!({
+                "id": format!("req:r{i:02}"), "name": format!("R{i}"),
+                "statement": "One of many."
+            }))
+            .unwrap(),
+        ))
+        .await
+        .expect("a requirement");
+        s.add_capability(Parameters(
+            serde_json::from_value::<CapabilityReq>(json!({
+                "id": format!("cap:c{i:02}"), "name": format!("C{i}"),
+                "description": "Does one thing.", "satisfies": format!("req:r{i:02}")
+            }))
+            .unwrap(),
+        ))
+        .await
+        .expect("a capability");
+    }
+    let compare = |args: Value| {
+        let s = &s;
+        async move {
+            s.compare_designs(Parameters(
+                serde_json::from_value::<CompareDesignsReq>(args).unwrap(),
+            ))
+            .await
+            .expect("compare answers")
+            .structured_content
+            .expect("structured content")
+        }
+    };
+    let chars = |v: &Value| v.to_string().len();
+
+    let full = compare(json!({"base_path": base, "budget_chars": 10_000_000})).await;
+    assert!(
+        full.get("budget").is_none(),
+        "a reply with room is untouched: {full}"
+    );
+    assert_eq!(full["summary"]["design_added"], 120, "{full}");
+    assert_eq!(full["summary"]["edges_added"], 60, "{full}");
+    assert!(
+        chars(&full) > 3_000,
+        "the whole diff is well over the budget tried next"
+    );
+
+    // Over budget: within it, every count intact, every shortened list named.
+    let tight = compare(json!({"base_path": base, "budget_chars": 3_000})).await;
+    assert!(
+        chars(&tight) <= 3_000,
+        "the reply, budget block included, fits: {} chars",
+        chars(&tight)
+    );
+    assert_eq!(tight["summary"], full["summary"], "every count is intact");
+    let shortened = tight["budget"]["lists_shortened"]
+        .as_array()
+        .unwrap_or_else(|| panic!("names every shortened list: {tight}"));
+    let paths: Vec<&str> = shortened
+        .iter()
+        .map(|l| l["path"].as_str().unwrap())
+        .collect();
+    assert!(
+        paths.contains(&"design.added") && paths.contains(&"edges_added"),
+        "both long lists gave: {paths:?}"
+    );
+    for l in shortened {
+        let path = l["path"].as_str().unwrap();
+        let at = |v: &Value| {
+            v.pointer(&format!("/{}", path.replace('.', "/")))
+                .and_then(Value::as_array)
+                .map(Vec::len)
+        };
+        assert_eq!(at(&tight), l["shown"].as_u64().map(|n| n as usize), "{l}");
+        assert_eq!(at(&full), l["total"].as_u64().map(|n| n as usize), "{l}");
+    }
+    let note = tight["budget"]["note"].as_str().unwrap();
+    assert!(
+        note.contains("`list`") && note.contains("`offset`"),
+        "the block says how to read the rest: {note}"
+    );
+
+    // Page one list until it is complete; the pages together are the list.
+    let mut offset = 0u64;
+    let mut collected: Vec<Value> = Vec::new();
+    let mut pages = 0;
+    loop {
+        let page = compare(json!({
+            "base_path": base, "budget_chars": 3_000,
+            "list": "edges_added", "offset": offset
+        }))
+        .await;
+        assert!(chars(&page) <= 3_000, "a page fits: {} chars", chars(&page));
+        assert_eq!(page["page"]["list"], "edges_added", "{page}");
+        assert_eq!(page["page"]["offset"], offset, "{page}");
+        assert_eq!(page["page"]["total"], 60, "{page}");
+        assert_eq!(page["summary"], full["summary"], "{page}");
+        assert_eq!(page["counts"]["design.added"], 120, "{page}");
+        assert_eq!(page["counts"]["edges_added"], 60, "{page}");
+        assert!(
+            page.get("edges_added").is_none() && page.get("design").is_none(),
+            "the other lists come as counts only: {page}"
+        );
+        let items = page["items"].as_array().expect("items").clone();
+        assert_eq!(page["page"]["shown"], items.len(), "{page}");
+        if let Some(b) = page.get("budget") {
+            assert_eq!(
+                b["reply_chars"],
+                chars(&page),
+                "the block measures the page as sent"
+            );
+        }
+        collected.extend(items);
+        pages += 1;
+        assert!(pages < 100, "paging terminates");
+        let next = page["page"]["next_offset"].as_u64().expect("next_offset");
+        if page["page"]["complete"] == true {
+            assert_eq!(next, 60, "{page}");
+            break;
+        }
+        assert!(next > offset, "every page advances: {page}");
+        offset = next;
+    }
+    assert!(
+        pages >= 2,
+        "the budget was tight enough to need more than one page"
+    );
+    assert_eq!(
+        Value::Array(collected),
+        full["edges_added"],
+        "the pages together are the whole list, in order"
+    );
+
+    // The caller's mistakes are refused, naming what is legal.
+    let err = s
+        .compare_designs(Parameters(
+            serde_json::from_value::<CompareDesignsReq>(
+                json!({"base_path": base, "list": "edges"}),
+            )
+            .unwrap(),
+        ))
+        .await
+        .expect_err("an unknown list is refused");
+    assert!(
+        err.message.contains("edges_removed") && err.message.contains("design.added"),
+        "names the legal lists: {}",
+        err.message
+    );
+    let err = s
+        .compare_designs(Parameters(
+            serde_json::from_value::<CompareDesignsReq>(json!({"base_path": base, "offset": 3}))
+                .unwrap(),
+        ))
+        .await
+        .expect_err("offset without list is refused");
+    assert!(err.message.contains("`list`"), "{}", err.message);
+    let err = s
+        .compare_designs(Parameters(
+            serde_json::from_value::<CompareDesignsReq>(
+                json!({"base_path": base, "list": "edges_added", "offset": 61}),
+            )
+            .unwrap(),
+        ))
+        .await
+        .expect_err("an offset past the end is refused");
+    assert!(
+        err.message.contains("60"),
+        "names the length: {}",
         err.message
     );
 }

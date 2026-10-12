@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:944f74224982c99294ae2db9ae0fe5523d205936f70ba02a7d5e8050d92b508c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:reply-budget",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

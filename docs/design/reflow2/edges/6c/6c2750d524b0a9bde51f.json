@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bc4daecfd2faa6407a9542ef9ff339f75299822f1df76c0171334870c1426909",
+  "edge_type": "CHANGED",
+  "from_id": "chg:release-claims-description-names-the-claim-it-releases-2026-10-12",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:b206e7d9aa929638051a06aa4fe31e66ab483fca31317637a0e38951f5ce07b8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-claims"
+}

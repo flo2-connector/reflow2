@@ -31,8 +31,10 @@
 //!
 //! ⭐ THE RULE THE TRIM FOLLOWS: **a shorter answer is never a quieter one.**
 //! Numbers are never touched — every count, total and tally survives at full
-//! precision. What is withheld is PROSE, and only then list length, and the
-//! reply always says which happened and how much it dropped. That ordering is
+//! precision. What is withheld is PROSE, and only then list length — every
+//! list by the characters it costs, each one named — and the reply always says
+//! which happened and how much it dropped. The reply that has to fit is the
+//! one the client receives, its `budget` block included. That ordering is
 //! deliberate: on every tool measured above, the bytes are in long `statement`,
 //! `rationale`, `reason`, `note` and `description` fields, while the part a
 //! reader acts on is the counts and the ids.
@@ -137,20 +139,36 @@ fn truncate_prose(v: &Value, limit: usize, cut: &mut usize) -> Value {
     }
 }
 
-/// Find the longest array in the value and report its path and length.
-///
-/// Used only when prose alone could not make the reply fit, so the reply can
-/// say WHICH list it shortened rather than reporting a bare "truncated".
-fn longest_array(v: &Value, path: &str, best: &mut (String, usize)) {
+/// One list the budget may shorten: an array reached through object keys
+/// alone (`design.added`, `edges_removed`), never one nested inside another
+/// list's element — a sub-list inside an item is part of that item, and
+/// shortening it would leave the item quietly incomplete.
+struct ListSlot {
+    path: String,
+    /// What each element costs on the wire, in characters, in order.
+    costs: Vec<usize>,
+    /// How many entries are kept, from the front.
+    keep: usize,
+}
+
+impl ListSlot {
+    fn total(&self) -> usize {
+        self.costs.len()
+    }
+    /// The characters the kept entries cost, commas included.
+    fn kept_chars(&self) -> usize {
+        self.costs[..self.keep].iter().sum::<usize>() + self.keep.saturating_sub(1)
+    }
+}
+
+/// Every list the budget may shorten, with what each entry costs.
+fn collect_lists(v: &Value, path: &str, out: &mut Vec<ListSlot>) {
     match v {
-        Value::Array(a) => {
-            if a.len() > best.1 {
-                *best = (path.to_string(), a.len());
-            }
-            for (i, x) in a.iter().enumerate() {
-                longest_array(x, &format!("{path}[{i}]"), best);
-            }
-        }
+        Value::Array(a) if !a.is_empty() => out.push(ListSlot {
+            path: path.to_string(),
+            costs: a.iter().map(chars_of).collect(),
+            keep: a.len(),
+        }),
         Value::Object(o) => {
             for (k, x) in o {
                 let p = if path.is_empty() {
@@ -158,11 +176,48 @@ fn longest_array(v: &Value, path: &str, best: &mut (String, usize)) {
                 } else {
                     format!("{path}.{k}")
                 };
-                longest_array(x, &p, best);
+                collect_lists(x, &p, out);
             }
         }
         _ => {}
     }
+}
+
+/// Take `excess` characters out of the lists, by the characters they cost:
+/// the list costing the most gives first, one entry from its tail at a time,
+/// so a short list stays whole for as long as a long one can still give. Stops
+/// at a floor of one entry per list. Returns how much was taken.
+fn shorten_by_chars(lists: &mut [ListSlot], mut excess: usize) -> usize {
+    use std::collections::BinaryHeap;
+    let mut heap: BinaryHeap<(usize, usize)> = lists
+        .iter()
+        .enumerate()
+        .filter(|(_, l)| l.keep > 1)
+        .map(|(i, l)| (l.kept_chars(), i))
+        .collect();
+    let mut taken = 0usize;
+    while excess > 0 {
+        let Some((_, i)) = heap.pop() else { break };
+        let l = &mut lists[i];
+        // The entry's characters and the comma before it.
+        let saved = l.costs[l.keep - 1] + 1;
+        l.keep -= 1;
+        taken += saved;
+        excess = excess.saturating_sub(saved);
+        if l.keep > 1 {
+            heap.push((l.kept_chars(), i));
+        }
+    }
+    taken
+}
+
+/// `body` with every shortened list capped at what it keeps.
+fn apply_caps(body: &Value, lists: &[ListSlot]) -> Value {
+    let mut out = body.clone();
+    for l in lists.iter().filter(|l| l.keep < l.total()) {
+        out = cap_array_at(&out, &l.path, l.keep);
+    }
+    out
 }
 
 /// Cap the array at `path` to `keep` entries.
@@ -191,6 +246,78 @@ fn cap_array_at(v: &Value, path: &str, keep: usize) -> Value {
     }
     let parts: Vec<&str> = path.split('.').filter(|p| !p.is_empty()).collect();
     walk(v, &parts, keep)
+}
+
+/// What a bounded reply says about itself, assembled once per candidate so
+/// its own size is counted against the budget — the client receives the block
+/// too, so a reply that fit "before its budget block" did not fit.
+struct Block<'a> {
+    budget: usize,
+    full_chars: usize,
+    prose_limit: usize,
+    fields_trimmed: usize,
+    list_note: String,
+    lists_shortened: Vec<Value>,
+    hint: &'a str,
+}
+
+impl Block<'_> {
+    fn value(&self, reply_chars: usize) -> Value {
+        let note = format!(
+            "WITHHELD TO FIT. The whole answer is {} characters against a budget of {}, which \
+             is the size at which a client refuses the reply outright — and a reader who \
+             receives nothing cannot be told to narrow their question. What was withheld is \
+             PROSE: {} text field(s) cut to {} characters. Every number, count and id is \
+             untouched and at full precision, so a shorter answer here is never a quieter \
+             one.{} Raise `budget_chars` if this client has the room. {}",
+            self.full_chars,
+            self.budget,
+            self.fields_trimmed,
+            self.prose_limit,
+            self.list_note,
+            self.hint
+        );
+        let mut block = json!({
+            "applied": true,
+            "budget_chars": self.budget,
+            "full_chars": self.full_chars,
+            "reply_chars": reply_chars,
+            "prose_limit": self.prose_limit,
+            "fields_trimmed": self.fields_trimmed,
+            "note": note,
+        });
+        if !self.lists_shortened.is_empty() {
+            block["lists_shortened"] = Value::Array(self.lists_shortened.clone());
+        }
+        block
+    }
+
+    /// The reply: `body` carrying the block, its `reply_chars` the size of
+    /// the reply it sits in (settled by a short fixpoint, since the number is
+    /// part of what it measures).
+    fn assemble(&self, body: &Value) -> Value {
+        let mut reply_chars = chars_of(body);
+        let mut out = Value::Null;
+        for _ in 0..4 {
+            out = match body {
+                Value::Object(o) => {
+                    let mut o = o.clone();
+                    o.insert("budget".to_string(), self.value(reply_chars));
+                    Value::Object(o)
+                }
+                // A bare array or scalar has nowhere to carry the block, so it
+                // is wrapped rather than silently returned without its own
+                // explanation.
+                other => json!({"items": other, "budget": self.value(reply_chars)}),
+            };
+            let n = chars_of(&out);
+            if n == reply_chars {
+                break;
+            }
+            reply_chars = n;
+        }
+        out
+    }
 }
 
 /// Bound `full` to `budget` characters, withholding prose first and list
@@ -236,8 +363,16 @@ pub fn bound_reply(full: Value, budget: usize, hint: &str) -> Value {
     bound_reply_with(full, budget, hint, Sampling::Forbidden)
 }
 
-/// Bound a reply, and permit shortening its longest list if prose alone could
-/// not make it fit. See [`Sampling`] before reaching for this.
+/// Bound a reply, and permit shortening its lists if prose alone could not
+/// make it fit: every list gives by the characters it costs, the longest
+/// first, down to a floor of one entry, and the budget block names each one
+/// shortened (`lists_shortened: [{path, shown, total}]`). See [`Sampling`]
+/// before reaching for this.
+///
+/// Until 2026-10-12 only the ONE list with the most entries was shortened,
+/// halved down to one entry, and every other list stayed whole: measured on
+/// flo2.io, `compare_designs` with a 4,000 budget answered 1,421,523
+/// characters, one id list of 608,049 characters among several.
 #[must_use]
 pub fn bound_reply_sampling(full: Value, budget: usize, hint: &str) -> Value {
     bound_reply_with(full, budget, hint, Sampling::Allowed)
@@ -249,94 +384,90 @@ fn bound_reply_with(full: Value, budget: usize, hint: &str, sampling: Sampling) 
     if full_chars <= budget {
         return full;
     }
+    let mut block = Block {
+        budget,
+        full_chars,
+        prose_limit: *PROSE_RUNGS.last().unwrap(),
+        fields_trimmed: 0,
+        list_note: String::new(),
+        lists_shortened: Vec::new(),
+        hint,
+    };
 
-    // ① Prose first, progressively. Numbers and ids are never candidates.
+    // ① Prose first, progressively. Numbers and ids are never candidates. The
+    //    reply that has to fit is the one the client receives, block included.
     let mut body = full.clone();
-    let mut rung_used = None;
-    let mut strings_cut = 0usize;
     for rung in PROSE_RUNGS {
         let mut cut = 0usize;
-        let candidate = truncate_prose(&full, rung, &mut cut);
-        body = candidate;
-        rung_used = Some(rung);
-        strings_cut = cut;
-        if chars_of(&body) <= budget {
-            break;
+        body = truncate_prose(&full, rung, &mut cut);
+        block.prose_limit = rung;
+        block.fields_trimmed = cut;
+        if chars_of(&block.assemble(&body)) <= budget {
+            return block.assemble(&body);
         }
     }
 
     // ② Only if prose was not enough, and only where a sample is honest for
-    //    this tool: shorten the longest list, and say which.
-    let mut list_note = String::new();
-    if chars_of(&body) > budget && sampling == Sampling::Forbidden {
-        list_note = format!(
+    //    this tool: shorten the lists, by the characters each costs, until the
+    //    reply fits or every list is at its floor — and name every one.
+    if sampling == Sampling::Forbidden {
+        block.list_note = format!(
             " THE LIST ITSELF IS NOT shortened AND THE REPLY IS STILL {} CHARACTERS: for this \
              tool completeness IS the answer, so returning part of the list would be a quieter \
              answer wearing a complete one's shape. Narrow the question instead, or raise \
              `budget_chars`.",
             chars_of(&body)
         );
-    } else if chars_of(&body) > budget {
-        let mut best = (String::new(), 0usize);
-        longest_array(&body, "", &mut best);
-        let (path, len) = best;
-        if len > 1 {
-            // Halve until it fits or we are down to a token sample.
-            let mut keep = len;
-            while keep > 1 && chars_of(&body) > budget {
-                keep = (keep / 2).max(1);
-                body = cap_array_at(&body, &path, keep);
-            }
-            list_note = format!(
-                " THEN LIST LENGTH: `{path}` is shown as {keep} of {len} entries, because \
-                 trimming prose alone still did not fit."
-            );
+        return block.assemble(&body);
+    }
+    let mut lists = Vec::new();
+    collect_lists(&body, "", &mut lists);
+    let mut capped = body.clone();
+    // Each round takes the measured excess out of the lists and re-measures,
+    // because the block that names them grows as they are named; a round that
+    // can take nothing more ends it.
+    for _ in 0..32 {
+        let out = block.assemble(&capped);
+        let now = chars_of(&out);
+        if now <= budget {
+            return out;
         }
-    }
-
-    let now = chars_of(&body);
-    let rung = rung_used.unwrap_or(*PROSE_RUNGS.last().unwrap());
-    let note = format!(
-        "WITHHELD TO FIT. The whole answer is {full_chars} characters against a budget of \
-         {budget}, which is the size at which a client refuses the reply outright — and a \
-         reader who receives nothing cannot be told to narrow their question. What was \
-         withheld is PROSE: {strings_cut} text field(s) cut to {rung} characters. Every \
-         number, count and id is untouched and at full precision, so a shorter answer here \
-         is never a quieter one.{list_note} Raise `budget_chars` if this client has the room. \
-         {hint}"
-    );
-
-    let mut out = body;
-    if let Value::Object(ref mut o) = out {
-        o.insert(
-            "budget".to_string(),
-            json!({
-                "applied": true,
-                "budget_chars": budget,
-                "full_chars": full_chars,
-                "reply_chars": now,
-                "prose_limit": rung,
-                "fields_trimmed": strings_cut,
-                "note": note,
-            }),
+        if shorten_by_chars(&mut lists, now - budget) == 0 {
+            // Every list is at its floor of one entry and the reply is still
+            // over: what remains is structure, not length.
+            block.list_note.push_str(&format!(
+                " EVERY LIST IS AT ITS FLOOR OF ONE ENTRY AND THE REPLY IS STILL {now} \
+                 CHARACTERS: what remains is its structure, which this budget cannot hold — \
+                 raise `budget_chars`, or ask for less."
+            ));
+            return block.assemble(&capped);
+        }
+        capped = apply_caps(&body, &lists);
+        let shortened: Vec<&ListSlot> = lists.iter().filter(|l| l.keep < l.total()).collect();
+        block.lists_shortened = shortened
+            .iter()
+            .map(|l| json!({"path": l.path, "shown": l.keep, "total": l.total()}))
+            .collect();
+        let named = shortened
+            .iter()
+            .map(|l| {
+                format!(
+                    "`{}` is shown as {} of {} entries",
+                    l.path,
+                    l.keep,
+                    l.total()
+                )
+            })
+            .collect::<Vec<_>>()
+            .join(", ");
+        block.list_note = format!(
+            " THEN LIST LENGTH, because trimming prose alone still did not fit: {} list(s) \
+             shortened by the characters each costs, the longest giving first — {named}. \
+             `lists_shortened` names each with `shown` and `total`.",
+            shortened.len()
         );
-        out
-    } else {
-        // A bare array or scalar has nowhere to carry the block, so it is
-        // wrapped rather than silently returned without its own explanation.
-        json!({
-            "items": out,
-            "budget": {
-                "applied": true,
-                "budget_chars": budget,
-                "full_chars": full_chars,
-                "reply_chars": now,
-                "prose_limit": rung,
-                "fields_trimmed": strings_cut,
-                "note": note,
-            }
-        })
     }
+    block.assemble(&capped)
 }
 
 #[cfg(test)]
@@ -423,6 +554,70 @@ mod tests {
             "a shortened list must be named, not silent"
         );
         assert!(out["items"].as_array().unwrap().len() < 4000);
+    }
+
+    #[test]
+    fn every_long_list_gives_by_the_characters_it_costs_until_the_reply_fits() {
+        // MEASURED 2026-10-11 on flo2.io: compare_designs with budget_chars
+        // 4,000 against an unrelated design answered 1,421,523 characters —
+        // edges_removed alone was 608,049 and design.added 340,314 — because
+        // only the ONE list with the most entries was shortened and every
+        // other list stayed whole. Two long lists under one object, short ids:
+        // prose trimming cannot help, so both lists have to give.
+        let a: Vec<Value> = (0..4000).map(|i| json!({"id": format!("a:{i}")})).collect();
+        let b: Vec<Value> = (0..4000).map(|i| json!({"id": format!("b:{i}")})).collect();
+        let v = json!({"count_a": 4000, "count_b": 4000, "a": a, "b": b});
+        let out = bound_reply_sampling(v, 2_000, "page one list with list and offset");
+        assert!(
+            chars_of(&out) <= 2_000,
+            "the WHOLE reply, budget block included, fits the budget: {} chars",
+            chars_of(&out)
+        );
+        assert_eq!(out["count_a"], 4000, "counts are never budgeted away");
+        assert_eq!(out["count_b"], 4000);
+        let shortened = out["budget"]["lists_shortened"]
+            .as_array()
+            .unwrap_or_else(|| panic!("the block names every shortened list: {out}"));
+        let mut paths: Vec<&str> = shortened
+            .iter()
+            .map(|l| l["path"].as_str().expect("a path"))
+            .collect();
+        paths.sort_unstable();
+        assert_eq!(
+            paths,
+            ["a", "b"],
+            "BOTH lists were shortened and named: {out}"
+        );
+        for l in shortened {
+            assert_eq!(l["total"], 4000, "each names its true length: {l}");
+            let shown = l["shown"].as_u64().expect("shown") as usize;
+            assert!((1..4000).contains(&shown), "{l}");
+            let path = l["path"].as_str().unwrap();
+            assert_eq!(
+                out[path].as_array().map(Vec::len),
+                Some(shown),
+                "`shown` is what the list holds: {out}"
+            );
+        }
+        let note = out["budget"]["note"].as_str().unwrap();
+        assert!(
+            note.contains("THEN LIST LENGTH") && note.contains("`a`") && note.contains("`b`"),
+            "the note names every shortened list: {note}"
+        );
+    }
+
+    #[test]
+    fn a_shortened_reply_fits_with_its_own_budget_block() {
+        // The block is part of the reply the client receives, so it counts.
+        let items: Vec<Value> = (0..4000).map(|i| json!({"id": format!("n:{i}")})).collect();
+        let v = json!({"count": 4000, "items": items});
+        let out = bound_reply_sampling(v, 1_500, "narrow with scope");
+        assert!(chars_of(&out) <= 1_500, "{} chars", chars_of(&out));
+        assert_eq!(out["budget"]["reply_chars"], chars_of(&out));
+        assert!(
+            !out["items"].as_array().unwrap().is_empty(),
+            "a floor of one entry"
+        );
     }
 
     #[test]

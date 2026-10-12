@@ -6277,6 +6277,21 @@ pub struct CompareDesignsReq {
     /// and for a design outside that set.
     #[serde(default)]
     pub other_graph_id: Option<String>,
+    /// Read ONE of the diff's lists in full, a page at a time: its path —
+    /// `design.added`, `design.removed`, `design.changed`, `supporting.added`,
+    /// `supporting.removed`, `supporting.changed`, `edges_added`,
+    /// `edges_removed` or `edges_changed`. The reply holds that list from
+    /// `offset` under `items`, as much as the budget allows, every other list
+    /// as a count under `counts`, and `page.next_offset` for the page after.
+    /// A shortened reply's `budget.lists_shortened` names the lists to page
+    /// this way.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::diff_list_opt")]
+    pub list: Option<String>,
+    /// With `list`: the entry to start from (default 0) — the previous page's
+    /// `page.next_offset`.
+    #[serde(default)]
+    pub offset: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

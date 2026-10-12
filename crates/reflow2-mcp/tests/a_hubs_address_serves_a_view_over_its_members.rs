@@ -17,7 +17,9 @@
 //!   · FAN-OUT: `loop_status` and `detect_gaps` through H answer `by_design`
 //!     keyed H, A, B, with a text block saying the reply is a view
 //!   · MERGED SEARCH: `search_design` through H finds a word only B holds,
-//!     its hit prefixed "B:" and ranked with every design's hits
+//!     its hit prefixed "B:" and ranked with every design's hits; the
+//!     caller's one `limit` bounds the merged list, and `found_by_design`
+//!     says how many hits each design returned
 //!   · THE READABLE SET BINDS: with B outside it, B is absent from
 //!     `by_design`, named in `unreachable`, and nothing B holds is revealed;
 //!     a routed call to "B:<id>" is refused naming B and nothing else
@@ -90,6 +92,15 @@ impl WaitKill for Child {
 /// requirement only it has — `req:<marker>`, whose statement carries `word` —
 /// and return its graph_id.
 fn mint(dir: &Path, marker: &str, word: &str) -> String {
+    mint_holding(
+        dir,
+        &[(format!("req:{marker}"), format!("only-in-{marker} {word}"))],
+    )
+}
+
+/// Mint a design over stdio holding the caller as a Contributor and the
+/// requirements given as (id, statement), and return its graph_id.
+fn mint_holding(dir: &Path, requirements: &[(String, String)]) -> String {
     let store = dir.join(".reflow2").join("graph");
     let mut child = Command::new(bin())
         .arg("--graph-path")
@@ -99,12 +110,16 @@ fn mint(dir: &Path, marker: &str, word: &str) -> String {
         .stderr(Stdio::null())
         .spawn()
         .expect("spawn reflow2-mcp to mint a design");
-    let lines = [
+    let mut lines = vec![
         json!({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"mint","version":"1"}}}),
         json!({"jsonrpc":"2.0","method":"notifications/initialized"}),
         json!({"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"add_contributor","arguments":{"id": CALLER, "name": "Tester", "kind": "person"}}}),
-        json!({"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"add_requirement","arguments":{"id": format!("req:{marker}"), "name": marker, "statement": format!("only-in-{marker} {word}")}}}),
     ];
+    for (i, (id, statement)) in requirements.iter().enumerate() {
+        let name = id.strip_prefix("req:").unwrap_or(id);
+        lines.push(json!({"jsonrpc":"2.0","id": 3 + i as u64,"method":"tools/call","params":{"name":"add_requirement","arguments":{"id": id, "name": name, "statement": statement}}}));
+    }
+    let last_id = format!(r#""id":{}"#, 2 + requirements.len());
     {
         let stdin = child.stdin.as_mut().expect("stdin");
         for l in &lines {
@@ -127,12 +142,13 @@ fn mint(dir: &Path, marker: &str, word: &str) -> String {
                     !line.contains(r#""isError":true"#),
                     "minting the contributor failed: {line}"
                 );
-            }
-            if line.contains(r#""id":3"#) {
+            } else if line.contains(r#""id":"#) {
                 assert!(
                     !line.contains(r#""isError":true"#),
-                    "minting the requirement failed: {line}"
+                    "minting a requirement failed: {line}"
                 );
+            }
+            if line.contains(&last_id) {
                 break;
             }
         }
@@ -608,6 +624,17 @@ fn search_through_the_hub_ranks_every_designs_hits_together() {
         json!([h, a, b]),
         "names every design searched, the hub first: {got}"
     );
+    assert_eq!(
+        got["limit"],
+        json!(10),
+        "the one limit applied, search_design's default: {got}"
+    );
+    assert_eq!(
+        got["found_by_design"][b.as_str()],
+        json!(1),
+        "how many hits each design returned: {got}"
+    );
+    assert_eq!(got["hits_withheld"], json!(0), "{got}");
     let scores: Vec<f64> = hits
         .iter()
         .map(|hit| hit["score"].as_f64().expect("every hit keeps its score"))
@@ -631,6 +658,102 @@ fn search_through_the_hub_ranks_every_designs_hits_together() {
             .is_some_and(|hits| hits.iter().any(|hit| hit["node_id"] == "req:hub")),
         "the hub's own hit is unprefixed: {got}"
     );
+}
+
+/// Measured 2026-10-11 on flo2.io: `search_design {limit: 10}` through a hub
+/// of seven designs answered 65 hits, because the view asked each design for
+/// 10 and returned every design's hits merged. The hub's address is ONE design
+/// to the caller, so its `limit` bounds the one merged list; each design is
+/// still asked for the same limit (per-design top-k, then merged top-k, is
+/// exact), and `found_by_design` says how many each design returned, so a
+/// design that matched beyond what is shown is still named.
+#[test]
+fn search_through_the_hub_applies_the_limit_to_the_merged_list() {
+    let root = tmp_root("merged-limit");
+    let mut ids = Vec::new();
+    for (dir, marker) in [("hub", "hub"), ("alpha", "alpha"), ("beta", "beta")] {
+        let d = root.join(dir);
+        std::fs::create_dir_all(&d).unwrap();
+        let reqs: Vec<(String, String)> = (0..3)
+            .map(|i| {
+                (
+                    format!("req:{marker}-quokka-{i}"),
+                    format!("{marker} holds a quokka, number {i}"),
+                )
+            })
+            .collect();
+        ids.push(mint_holding(&d, &reqs));
+    }
+    let (h, a, b) = (ids[0].clone(), ids[1].clone(), ids[2].clone());
+    let server = serve(&root, Some(GATEWAY));
+    let mut on_h = Session::open(server.port, &h);
+    let readable = [h.as_str(), a.as_str(), b.as_str()];
+    let view = [a.as_str(), b.as_str()];
+
+    let reply = on_h.call(
+        "search_design",
+        json!({"query": "quokka", "limit": 2}),
+        Some(&readable),
+        Some(&view),
+    );
+    let got = ok(&reply, "search_design with limit 2 through H");
+    let hits = got["hits"].as_array().expect("one merged list of hits");
+    assert_eq!(
+        hits.len(),
+        2,
+        "the caller's limit bounds the MERGED list, not each design's: {got}"
+    );
+    assert_eq!(
+        got["limit"],
+        json!(2),
+        "the one limit applied is echoed: {got}"
+    );
+    for id in [&h, &a, &b] {
+        assert_eq!(
+            got["found_by_design"][id.as_str()],
+            json!(2),
+            "every design's own count is named, so a design that matched beyond what is \
+             shown is not lost: {got}"
+        );
+    }
+    assert_eq!(
+        got["hits_withheld"],
+        json!(4),
+        "six ranked hits, two shown, four withheld: {got}"
+    );
+    assert!(
+        got.get("limit_per_design").is_none(),
+        "there is one limit, not one per design: {got}"
+    );
+    let note = got["view_note"].as_str().unwrap_or_default();
+    assert!(
+        !note.contains("applies to each design"),
+        "the note no longer says the limit is per design: {note}"
+    );
+    let scores: Vec<f64> = hits
+        .iter()
+        .map(|hit| hit["score"].as_f64().expect("every hit keeps its score"))
+        .collect();
+    assert!(
+        scores.windows(2).all(|w| w[0] >= w[1]),
+        "the two shown are the top of the merged ranking: {scores:?}"
+    );
+
+    // The default limit (10) bounds the merged list the same way.
+    let reply = on_h.call(
+        "search_design",
+        json!({"query": "quokka"}),
+        Some(&readable),
+        Some(&view),
+    );
+    let got = ok(&reply, "search_design with the default limit through H");
+    assert_eq!(got["limit"], json!(10), "{got}");
+    assert_eq!(
+        got["hits"].as_array().map(Vec::len),
+        Some(9),
+        "nine hits exist across the three designs, all under the default limit: {got}"
+    );
+    assert_eq!(got["hits_withheld"], json!(0), "{got}");
 }
 
 #[test]

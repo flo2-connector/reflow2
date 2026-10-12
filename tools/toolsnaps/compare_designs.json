@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. Findings are directional relative to the named base: `added` / `removed` / `changed` (property-level), banded into design content vs the supporting layer (change events, questions, provenance). Pass base_path alone to compare the live graph against a committed export ('has this session diverged from the record?'); pass other_path too to compare two export files (branches, machines, alternatives). Reports divergence, never judges which side is right. On a server that holds many designs (a registry behind a trusted host) pass other_graph_id instead of a path: the live graph is the base and the other design is read by graph_id from the one the server holds, inside the set of designs the host says you may read; a path is not served there.",
+  "description": "Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. Findings are directional relative to the named base: `added` / `removed` / `changed` (property-level), banded into design content vs the supporting layer (change events, questions, provenance). Pass base_path alone to compare the live graph against a committed export ('has this session diverged from the record?'); pass other_path too to compare two export files (branches, machines, alternatives). Reports divergence, never judges which side is right. On a server that holds many designs (a registry behind a trusted host) pass other_graph_id instead of a path: the live graph is the base and the other design is read by graph_id from the one the server holds, inside the set of designs the host says you may read; a path is not served there. Over `budget_chars` the long lists are shortened and named in `budget.lists_shortened`; read any one in full, a page at a time, with `list` and `offset`.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -18,6 +18,36 @@
       "budget_chars": {
         "default": null,
         "description": "How many characters of JSON this reply may spend before prose is\nwithheld to make it fit (default 30,000). See `reply_budget`: counts and\nids are never budgeted away, so a shorter answer is never a quieter one.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "list": {
+        "default": null,
+        "description": "Read ONE of the diff's lists in full, a page at a time: its path —\n`design.added`, `design.removed`, `design.changed`, `supporting.added`,\n`supporting.removed`, `supporting.changed`, `edges_added`,\n`edges_removed` or `edges_changed`. The reply holds that list from\n`offset` under `items`, as much as the budget allows, every other list\nas a count under `counts`, and `page.next_offset` for the page after.\nA shortened reply's `budget.lists_shortened` names the lists to page\nthis way.",
+        "enum": [
+          "design.added",
+          "design.removed",
+          "design.changed",
+          "supporting.added",
+          "supporting.removed",
+          "supporting.changed",
+          "edges_added",
+          "edges_removed",
+          "edges_changed",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "offset": {
+        "default": null,
+        "description": "With `list`: the entry to start from (default 0) — the previous page's\n`page.next_offset`.",
         "format": "uint",
         "minimum": 0,
         "type": [

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:096997cb2daa20c66303b604b901ebdb6bf75dae21045966b6b996ecfd31b582",
+  "node_id": "chg:release-claims-description-names-the-claim-it-releases-2026-10-12",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "commits": "c873341c6",
+    "detected_at": "2026-10-12",
+    "name": "release_claim's description names the claim it releases, so the findability ratchet holds",
+    "rationale": "CI's no_new_mutually_confusable_pair failed on PR #728 with one new pair although neither tool's text had changed: compare_designs' longer description added the word \"in\", df(\"in\") moved 125 to 126 of 197, and the 0.024 margin between pin_at_epoch and release_claim on release_report's query was smaller than that shift. The test prescribes sharpening one description, and this is the sharpening that is also true: the sentence now names the claim rather than saying \"what\". Removing the standalone word \"release\" from release_claim's description was measured as the alternative and rejected: it would drop release_claim behind claim_region on its own query. This is a containment: the class (near-ties flipping on an unrelated common word) is recorded on the finding and left for a decision. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "repair": "contained_symptom",
+    "stands_in_for": "A findability ratchet that cannot flip on a noise-level margin: either the mutual-pair check carries a margin floor, or term weights are made insensitive to one description adding a common word; today any description edit anywhere moves every tool's score through document frequency, and pairs 0.02 apart flip.",
+    "subject": "system",
+    "summary": "release_claim's second sentence said \"releasing what nobody holds says so\"; it now says \"releasing a claim nobody holds says so\". One word, and the only incidental match between release_claim's description and release_report's corpus query (\"what is in this release and is it ready to cut\"). Measured with the built binaries: release_claim's score on that query falls from 11.658 to 11.076 while pin_at_epoch stays at 11.638, so release_claim leaves the top 5 by 0.56 instead of sitting in it by 0.02, and the pair release_claim/release_report is no longer mutually confusable; release_claim still ranks first for its own job (25.688 over claim_region 25.225). All five findability tests pass; toolsnap release_claim.json regenerated; the surface-only-grows test, skill lint and tool_confusability pass. Why it was needed: fact:root-cause-the-findability-ratchet-flipped-on-an-unrelated-descriptions-common-word-2026-10-12."
+  }
+}

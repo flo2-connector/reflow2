@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a6559fa5b0096352808934f515c84f5e8be480490a97d9af3568b042c7a85d87",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-hub-views-search-applies-the-callers-one-limit-to-the-merged-list-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

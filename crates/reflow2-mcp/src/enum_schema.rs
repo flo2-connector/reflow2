@@ -251,6 +251,21 @@ pub const DOC_KINDS: &[&str] = &[
 ];
 list_enum!(doc_kind_opt, DOC_KINDS, opt);
 pub const HEAL_STRATEGIES: &[&str] = &["conservative", "balanced", "aggressive"];
+/// The lists a `compare_designs` divergence report holds, by the path its
+/// `list` argument takes — the same spelling `budget.lists_shortened` uses to
+/// name one. The handler checks against this same const.
+pub const DIFF_LISTS: &[&str] = &[
+    "design.added",
+    "design.removed",
+    "design.changed",
+    "supporting.added",
+    "supporting.removed",
+    "supporting.changed",
+    "edges_added",
+    "edges_removed",
+    "edges_changed",
+];
+list_enum!(diff_list_opt, DIFF_LISTS, opt);
 /// The two-sided accept's answers (`crate::service::parse_disposition`, which
 /// refuses any other). Published since 2026-10-05: the set was prose only, so
 /// the argument check could not list a wrong one beside the call's other

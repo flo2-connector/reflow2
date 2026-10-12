@@ -542,7 +542,9 @@ impl ReflowService {
                        registry behind a trusted host) pass other_graph_id instead of a path: the \
                        live graph is the base and the other design is read by graph_id from the \
                        one the server holds, inside the set of designs the host says you may \
-                       read; a path is not served there.",
+                       read; a path is not served there. Over `budget_chars` the long lists are \
+                       shortened and named in `budget.lists_shortened`; read any one in full, a \
+                       page at a time, with `list` and `offset`.",
         title = "Compare Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -552,17 +554,43 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         // A divergence report is a LIST OF WHAT MOVED, not a document — so
         // unlike export_surface above, trimming its prose leaves it answering
-        // the question it was asked. The node ids and every count survive; the
-        // long statements and rationales are what made it unusable on two real
-        // 9-16 MB exports, which is the friction this was reported as.
-        let bound = |v: serde_json::Value| {
-            crate::reply_budget::bound_reply_sampling(
-                v,
-                req.budget_chars
-                    .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
-                "Every diverging node id and every count is still here; read one side in full \
-                 with get_node, and the other from the export file itself.",
-            )
+        // the question it was asked. Every count survives; the long statements
+        // and rationales are what made it unusable on two real 9-16 MB exports,
+        // which is the friction this was reported as. Two unrelated designs
+        // have several long id lists (measured 2026-10-11 on flo2.io: a 4,000
+        // budget answered 1,421,523 characters while only the longest list was
+        // shortened), so the lists give by the characters they cost, each one
+        // named, and `list` + `offset` read any one of them in full.
+        let budget = req
+            .budget_chars
+            .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
+        let page = match req.list.as_deref() {
+            Some(list) => Some((list_path(list)?, req.offset.unwrap_or(0))),
+            None => {
+                if req.offset.is_some() {
+                    return Err(McpError::invalid_params(
+                        "`offset` pages one list, so it goes with `list`: name the list to \
+                         read (design.added, edges_removed, …)."
+                            .to_string(),
+                        None,
+                    ));
+                }
+                None
+            }
+        };
+        let bound = |diff: serde_json::Value| -> Result<serde_json::Value, McpError> {
+            match page {
+                Some((list, offset)) => page_of_diff(diff, list, offset, budget),
+                None => Ok(crate::reply_budget::bound_reply_sampling(
+                    diff,
+                    budget,
+                    "Every count is still here (`summary`). To read a shortened list in full, \
+                     call compare_designs again with the same arguments plus `list` (its `path` \
+                     from `lists_shortened`) and `offset` (its `shown`): the reply is that list \
+                     from there under `items`, every other list as a count, and \
+                     `page.next_offset` for the page after. Read one node in full with get_node.",
+                )),
+            }
         };
         // THE OTHER DESIGN BY GRAPH_ID
         // (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`):
@@ -602,7 +630,7 @@ impl ReflowService {
             return ok_json(bound(
                 serde_json::to_value(reflow2_core::compare_designs(&live, &other, &own, other_id))
                     .map_err(ser_err)?,
-            ));
+            )?);
         }
         let Some(base_path) = req.base_path.as_deref() else {
             return Err(McpError::invalid_params(
@@ -633,14 +661,14 @@ impl ReflowService {
                         &base, &other, base_path, other_path,
                     ))
                     .map_err(ser_err)?,
-                ))
+                )?)
             }
             None => {
                 let g = self.graph.read().await;
                 ok_json(bound(
                     serde_json::to_value(g.compare_with_base(&base, base_path).map_err(dyno_err)?)
                         .map_err(ser_err)?,
-                ))
+                )?)
             }
         }
     }
@@ -1369,4 +1397,110 @@ impl ReflowService {
         let g = self.graph.read().await;
         ok_json(g.compose_and_analyse(&doc, &namespace).map_err(dyno_err)?)
     }
+}
+
+/// The lists a divergence report holds, by the path `compare_designs`'s `list`
+/// takes — published as that argument's enum, and the same spelling
+/// `budget.lists_shortened` uses to name one.
+use crate::enum_schema::DIFF_LISTS;
+
+/// `list` as one of the diff's list paths, or a refusal naming them all.
+fn list_path(list: &str) -> Result<&'static str, McpError> {
+    DIFF_LISTS
+        .iter()
+        .copied()
+        .find(|p| *p == list)
+        .ok_or_else(|| {
+            McpError::invalid_params(
+                format!(
+                    "`list` must name one of the diff's lists — {} — not {list:?}.",
+                    DIFF_LISTS.join(", ")
+                ),
+                None,
+            )
+        })
+}
+
+/// One page of one of the diff's lists, bounded: `items` holds `list` from
+/// `offset` for as far as the budget reaches, `counts` holds every list's
+/// length, and `page` says where this page ends and whether another follows.
+///
+/// The budget shortens `items` — the only list on the page — and `page` is
+/// settled AFTER that, from what the page actually holds, so `next_offset` is
+/// always the entry the shortened page stopped before. The fields are written
+/// first at their widest (every entry shown, `complete: false`) so settling
+/// them never grows the reply past the budget it was bounded to.
+fn page_of_diff(
+    mut diff: serde_json::Value,
+    list: &'static str,
+    offset: usize,
+    budget: usize,
+) -> Result<serde_json::Value, McpError> {
+    let pointer = |path: &str| format!("/{}", path.replace('.', "/"));
+    let mut counts = serde_json::Map::new();
+    for path in DIFF_LISTS.iter().copied() {
+        let n = diff
+            .pointer(&pointer(path))
+            .and_then(serde_json::Value::as_array)
+            .map_or(0, Vec::len);
+        counts.insert(path.to_string(), serde_json::Value::from(n));
+    }
+    let items: Vec<serde_json::Value> = diff
+        .pointer_mut(&pointer(list))
+        .and_then(|v| v.as_array_mut())
+        .map(std::mem::take)
+        .unwrap_or_default();
+    let total = items.len();
+    if offset > total {
+        return Err(McpError::invalid_params(
+            format!(
+                "`offset` {offset} is past the end of `{list}`, which holds {total} entries; a \
+                 page starts at most at {total}."
+            ),
+            None,
+        ));
+    }
+    let rest: Vec<serde_json::Value> = items.into_iter().skip(offset).collect();
+    let mut out = serde_json::Map::new();
+    for key in ["base", "other", "ancestry", "summary", "provenance_note"] {
+        if let Some(v) = diff.get(key) {
+            out.insert(key.to_string(), v.clone());
+        }
+    }
+    out.insert(
+        "page".to_string(),
+        json!({
+            "list": list,
+            "offset": offset,
+            "total": total,
+            "shown": rest.len(),
+            "next_offset": total,
+            "complete": false,
+        }),
+    );
+    out.insert("items".to_string(), serde_json::Value::Array(rest));
+    out.insert("counts".to_string(), serde_json::Value::Object(counts));
+    let mut bounded = crate::reply_budget::bound_reply_sampling(
+        serde_json::Value::Object(out),
+        budget,
+        "This is one page of one list: `page.next_offset` is where the next page starts — pass \
+         it as `offset` with the same arguments while `page.complete` is false. `counts` holds \
+         every list's length.",
+    );
+    let shown = bounded["items"].as_array().map_or(0, Vec::len);
+    let next = offset + shown;
+    bounded["page"]["shown"] = serde_json::Value::from(shown);
+    bounded["page"]["next_offset"] = serde_json::Value::from(next);
+    bounded["page"]["complete"] = serde_json::Value::Bool(next >= total);
+    // The block measured the page before `page` was settled; it only shrank.
+    if bounded.get("budget").is_some() {
+        for _ in 0..3 {
+            let now = crate::reply_budget::chars_of(&bounded);
+            if bounded["budget"]["reply_chars"] == now {
+                break;
+            }
+            bounded["budget"]["reply_chars"] = serde_json::Value::from(now);
+        }
+    }
+    Ok(bounded)
 }

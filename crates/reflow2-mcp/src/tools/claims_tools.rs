@@ -293,7 +293,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Give up a region you claimed, so colleagues reading `claim_report` stop seeing it as held. Returns whether a claim was there to release — releasing what nobody holds says so rather than pretending it worked. Claims are advisory and never block a write; on a server serving many sessions a claim does NOT expire on its own (its liveness reads `unknown`, never `free`), so this is the only thing that clears one, and a claim left behind makes the next person pause. Ask for this when you finish work on a part you claimed with `claim_region`.",
+        description = "Give up a region you claimed, so colleagues reading `claim_report` stop seeing it as held. Returns whether a claim was there to release — releasing a claim nobody holds says so rather than pretending it worked. Claims are advisory and never block a write; on a server serving many sessions a claim does NOT expire on its own (its liveness reads `unknown`, never `free`), so this is the only thing that clears one, and a claim left behind makes the next person pause. Ask for this when you finish work on a part you claimed with `claim_region`.",
         title = "Release a Claim",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
