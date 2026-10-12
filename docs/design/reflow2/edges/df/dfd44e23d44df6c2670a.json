@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3333ab0a0cf6756d2912b4b58b2821c2d85101a453a15c491c5ca012cf3e8ae6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0833",
+  "properties": {
+    "as_checksum": "sha256:71951c8df0f31434e71196566bfa4dbab1050aac6e5aed66bb61361386da06a5"
+  },
+  "to_id": "art:vscode-terminal-route-instructions"
+}

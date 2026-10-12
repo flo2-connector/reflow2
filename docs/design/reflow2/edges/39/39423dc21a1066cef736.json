@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:29520a1a02ca6f92c711f4355476280a0b7102befb5fc318fbda8148c6c7db2b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0833",
+  "properties": {
+    "as_checksum": "sha256:d9c9e3e056e10bef30829b43018ffb321a643ce4b308c20dd1c79c560b06ab43"
+  },
+  "to_id": "art:test-edges-need-both-ends"
+}
