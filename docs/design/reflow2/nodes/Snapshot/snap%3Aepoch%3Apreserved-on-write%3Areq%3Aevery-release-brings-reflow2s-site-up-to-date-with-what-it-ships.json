@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7fc30a66d27581b8e0d7b4023c299a96d937a34bca6929ee3bcb92d607c27fc8",
+  "node_id": "snap:epoch:preserved-on-write:req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-10-09\",\"roles\":[\"approver\"]}},{\"direction\":\"out\",\"edge_type\":\"DECOMPOSES\",\"other_type\":\"Requirement\",\"other_id\":\"req:reflow2-has-a-public-page-anyone-can-read\",\"properties\":{}}]",
+    "state": "{\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"Every release brings reflow2's site (flo2-connector.github.io/reflow2) up to date with what it ships, and a release that leaves it behind fails the build\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Anthony, 2026-10-09, dev_reflow2 hub\",\"statement\":\"Each reflow2 release shall bring the public site up to date with what that release ships: what it explains, the setup steps it gives, and the version it says it describes. A release whose site still describes an older reflow2 shall fail the build rather than wait for a reader to notice. The release cut (flow:release-cut) carries this as a step, beside assembling the CHANGELOG.\\n\\nAnthony, 2026-10-09, during the v0.81.0 cut: \\\"make sure to update flo2-connector.github.io/reflow2 documentation appropriately /req\\\". Measured 2026-10-09: the nine steps of flow:release-cut named no site step, and no check read the site.\",\"status\":\"accepted\"}",
+    "target_id": "req:every-release-brings-reflow2s-site-up-to-date-with-what-it-ships",
+    "target_type": "Requirement"
+  }
+}
