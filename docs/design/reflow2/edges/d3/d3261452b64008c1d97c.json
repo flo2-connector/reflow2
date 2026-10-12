@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:638c5c2c9ac1a7468a0efcf5a664f8d61e8708b7a41652d1e3edf77a0778fbdc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:release-claims-description-names-the-claim-it-releases-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
