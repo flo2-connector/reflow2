@@ -1,6 +1,6 @@
 ---
 name: capture-session
-description: Use when the user asks you to capture what this session produced — "capture anything important from this conversation", or at a natural break, or before a long session ends. Writes the reasoning that exists only in the conversation into the graph, routed to the node type that already fits it. Not for capturing new intent (that is capture-intent) and not for transcribing the session.
+description: Use when the user asks you to capture what this session produced — "capture anything important from this conversation", or at a natural break, or before a long session ends. Writes the project's rationale that exists only in the conversation (what was measured, tried and dropped, and why) into the graph, routed to the node type that already fits it. Not for capturing new intent (that is capture-intent) and not for transcribing the session.
 metadata: {composes: [STANDING, WRITES, MINTS, REVISES], audience: anyone, summary: "Save what this conversation decided or found before it is lost."}
 ---
 
