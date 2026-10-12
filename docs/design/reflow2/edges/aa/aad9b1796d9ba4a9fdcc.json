@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cec7d3bf3a58551ddfca23af2b08ba6d71d3464e7362b392db73ebd8fb27bb32",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:dec:idea-a-change-runs-its-full-gate-set-once-locally-or-in-ci-not-both",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

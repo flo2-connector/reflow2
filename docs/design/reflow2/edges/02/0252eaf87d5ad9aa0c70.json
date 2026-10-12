@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7e12fdac34faab28abebf79406d84fbc7e42a042a5b1e54674d5591e0e0b90c0",
+  "edge_type": "RISKS",
+  "from_id": "fact:a-local-feature-error-was-worked-around-instead-of-read-as-the-ci-contract",
+  "properties": {
+    "evidence": "Four measured cases of a local subset read as the whole gate set are the hazard option (b) carries."
+  },
+  "to_id": "dec:idea-a-change-runs-its-full-gate-set-once-locally-or-in-ci-not-both"
+}

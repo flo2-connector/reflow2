@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c8c6c4cf955e3e1a68c0eec383cb008c6eb5e49509fb745c4cc5b9bb2c9bae18",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:capture-session-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

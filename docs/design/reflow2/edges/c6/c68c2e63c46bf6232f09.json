@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:36a69a16de5a67304092bf6b15c1e7241d88ec94d25bfcd8d1e7dc367b6bd63f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
+  "properties": {
+    "evidence": "Its option G already named feature-gating RocksDB out of the builds that do not need it; the 2026-09-11 ruling rejected swapping the production engine, which this idea does not do."
+  },
+  "to_id": "dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes"
+}

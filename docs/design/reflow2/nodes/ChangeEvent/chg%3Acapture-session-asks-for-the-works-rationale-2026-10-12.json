@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3d486b32bb60a2da45e80b787bc1c4ad074cfc7698d271cb594d9e8961a00e85",
+  "node_id": "chg:capture-session-asks-for-the-works-rationale-2026-10-12",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "2af2b05c0",
+    "detected_at": "2026-10-12",
+    "name": "/capture-session asks for the work's rationale, so Copilot's route stops refusing it",
+    "rationale": "Root-caused in fact:recurrence-capture-session-in-vs-code-is-declined-by-the-models-refusal-stop-not-a-service-failure-2026-10-12: in VS Code with GitHub Copilot (claude-opus-5-5) the old command was refused 5 of 5 times as reasoning_extraction, once in a fresh chat on its first call; with the one phrase changed it completed in fresh chats. The class is served text phrased as a request for the session's \"reasoning\", which a provider's classifier protects; the lint pins the class, not the one sentence. Would this have prevented 10-09? Yes: the same sentence was in 0.80.0's command. Reaches users at the next release; a user who edited their copy deletes it and runs reflow2 update. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "The /capture-session command (getting-started/commands/capture-session.md and its .claude mirror) now asks for \"the rationale for the work\" where it said \"what dies with the session is the reasoning\", and the capture-session skill's description says the project's rationale (what was measured, tried and dropped, and why) where it said \"the reasoning that exists only in the conversation\" (source and .claude/.grok mirrors). tools/skill_lint.py gains asks_for_session_reasoning: a slash command or a skill description that puts \"reasoning\" beside the session, conversation or chat fails the lint; run against the old text it failed both checks, and nothing else in the tree matched. tools/test_skill_lint.py pins the refused and completed sentences, the old description, the /decisions and /where wording it must not flag, and the real tree (24 tests OK). The MCP-install golden is re-blessed: only .claude/commands/capture-session.md and the kit-version receipt moved; test_init 132 OK. The four skill-findability tests pass on the new description (0.79 s, after a 35m 22s cold build)."
+  }
+}
