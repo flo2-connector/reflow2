@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1c2b02511a293d68331ca68496cbb962ac5be960264b846a179df4b61aa36b71",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:964ededa654d3d3803e1c38eedf74eaafb1cac95cfaf6adbfd4086b5359b02f0"
+  },
+  "to_id": "art:every-edge-type-declares-what-it-means-test"
+}

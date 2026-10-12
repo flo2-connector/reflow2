@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae03e5f1edaedcf9d3e119bd4532a2aca2b9abe7f8e030247f3adeaea6f67b37",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:19888c2f764f761d285c4c5cd0a9eae99d436bdffecfd25d5d1cd56c81db5d4a"
+  },
+  "to_id": "art:test-session-names-its-design"
+}

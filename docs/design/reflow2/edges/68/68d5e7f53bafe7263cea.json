@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f8a0c48a15e9125e94375cd5c3a418e837d371ea5551b5e5cc4393e50a23bc46",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:a5cadde784b4cb2f8ff7d8a29010395456bd0f507c80fb07b0d6c215fd28cad1"
+  },
+  "to_id": "art:test-a-closure-criterion-is-declared-on-the-served-surface"
+}

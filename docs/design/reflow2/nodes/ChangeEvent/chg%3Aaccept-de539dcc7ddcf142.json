@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:560e8a633e6aa06f6c7bb88cae50877b3c9c2eae0ecf7a4fb2b890485147d176",
+  "node_id": "chg:accept-de539dcc7ddcf142",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-12",
+    "name": "v0.83.2 cut, step 2: the page's 'Checked against reflow2' line moved 0.83.1 -> 0.83.2; nothing else. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}
