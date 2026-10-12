@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e00a44a3aa99f19787c2d17e1e751a0ffce179178fcd8be6e2274bc5d0b367b0",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:4f50ca974d580d541de0c8dd180600b5ce5d919ca56ec440787d7bd8ef2d3eff"
+  },
+  "to_id": "art:a-design-that-publishes-contracts-publishes-intent-test"
+}

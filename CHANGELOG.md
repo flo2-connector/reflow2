@@ -31,6 +31,25 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.83.2] — 2026-10-12
+
+**Patch. A hub's search and `compare_designs` answer within the limits the caller set.** It
+contains #728. The MCP surface only grows: `compare_designs` gains two optional arguments
+(`list`, `offset`), and `release_claim`'s description changes one phrase. A bounded reply can now
+carry `budget.lists_shortened`, and a search through a hub's view replaces `limit_per_design` with
+`limit`, `found_by_design` and `hits_withheld`. The store's schema is 0.83.1's. **What to do:**
+nothing beyond the upgrade, unless you read `limit_per_design` from a hub's search reply.
+
+### Added
+
+- **`compare_designs` reads one of a diff's lists in full, a page at a time.** New optional arguments `list` (one of `design.added`, `design.removed`, `design.changed`, `supporting.added`, `supporting.removed`, `supporting.changed`, `edges_added`, `edges_removed`, `edges_changed`) and `offset`. The reply holds that list from `offset` under `items`, as far as the budget reaches, every other list's length under `counts`, and `page` (`list`, `offset`, `total`, `shown`, `next_offset`, `complete`). **What to do:** when a diff comes back shortened, take a `path` and its `shown` from `budget.lists_shortened` and call again with the same arguments plus `list: <path>, offset: <shown>`; keep passing `page.next_offset` as `offset` until `page.complete` is true.
+
+### Fixed
+
+- **`compare_designs` ignored its `budget_chars` on a large diff.** Measured 2026-10-11 on flo2.io: with `budget_chars: 4000` against an unrelated design the reply was 1,421,523 characters (the whole diff 7,302,525) — `edges_removed` alone 608,049, `design.added` 340,314. The budget shortened only the one list with the most entries and left every other list whole, so a diff with several long lists stayed far over budget whatever the caller asked. Now, when trimming prose is not enough, every list gives by the characters it costs — the longest first, down to a floor of one entry — until the whole reply, its `budget` block included, fits. The block names every shortened list in `budget.lists_shortened` (`path`, `shown`, `total`); every count is still in `summary`. This is the one bounding path every tool that allows a shortened list goes through, so `detect_defects`, `evidence_report` and the others gain the same behaviour; tools for which completeness is the answer (`describe_schema`) are untouched. **What to do:** nothing for a diff that fits.
+
+- **`search_design` through a hub's view returned far more hits than its `limit`.** Measured 2026-10-11 on flo2.io: `limit: 10` through a hub of seven designs answered 65 hits, and the reply said "the limit applies to each design". The hub's address is one design to the caller, so there is one limit: it now bounds the merged list. Each design is still asked for the same `limit` (its top-k), the hits are ranked together, and the top `limit` of them come back — exact, since no hit outside a design's top-k can be in the merged top-k. The reply says what it did: `limit` (the one applied), `found_by_design` (how many hits each design returned, so a design that matched beyond what is shown is still named — a design at the limit may hold more) and `hits_withheld` (the ranked hits that fell outside the limit). `limit_per_design` is gone. **What to do:** nothing for an ordinary search; to see the withheld hits, raise `limit` or search the member's own address.
+
 ## [0.83.1] — 2026-10-11
 
 **Patch. A hub's view sends `seam_report` to the hub alone.** It contains #725; #724 re-blessed

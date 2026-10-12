@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:05037c5c33c6d8924959d3c43758758257a4162baa22b006b8d3f71438cd1bc8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:a834a508c5e37e0e59bbc6c7185300072fbacb646149faad514241ccfcbf3eb1"
+  },
+  "to_id": "art:test-a-capture-that-replaces-a-node-says-so"
+}

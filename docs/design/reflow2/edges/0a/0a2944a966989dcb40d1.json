@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e1d7da8ffcc642a3c840a5cf2c10a2cdc21fabb5cdb1174edfdde31ee568fa0c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0832",
+  "properties": {
+    "as_checksum": "sha256:5b61a4692c92be69bad946d0fe06646ecd047933f988d5ec83e0f91580352690"
+  },
+  "to_id": "art:test-a-link-into-another-design-is-recorded-and-checked"
+}
