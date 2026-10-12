@@ -174,6 +174,15 @@ git status --short</code></pre>
           If it finds nothing, <code>~/.local/bin</code> is missing from that terminal's <code>PATH</code>.</li>
       </ul>
 
+      <p>
+        <b>What this route reaches.</b> <code>reflow2 read</code> and <code>reflow2 write</code> work on a
+        design on your own machine. A long reply fits the <code>budget_chars</code> you pass, and
+        <code>compare_designs</code> between two exports reads one list a page at a time with
+        <code>list</code> and <code>offset</code>. This route cannot reach a design hosted on flo2.io, so a
+        hub's view over its members, its merged search and reads across designs by graph id need an MCP
+        client connected there. Each release's notes say what it adds to this route.
+      </p>
+
       <details>
         <summary>Upgrading a computer that already has reflow2</summary>
         <p>Close VS Code first, so nothing has a design open. Then look before you change anything:</p>

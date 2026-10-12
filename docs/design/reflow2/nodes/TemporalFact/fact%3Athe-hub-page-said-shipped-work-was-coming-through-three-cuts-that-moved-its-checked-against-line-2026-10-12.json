@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0948493b00a0b0614defb8f9201d6edac9db9798649bb70e8b366d561fc263fb",
+  "node_id": "fact:the-hub-page-said-shipped-work-was-coming-through-three-cuts-that-moved-its-checked-against-line-2026-10-12",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "The hub page said shipped work was \"coming\" through three cuts that each moved its \"Checked against\" line",
+    "source": "art:site-hub-html",
+    "statement": "MEASURED 2026-10-12, reading site/hub.html at 1d1c0d794 (v0.83.2) against what the release serves: its \"What is coming\" section, headed \"Intent the design records, not anything shipped\", named cross-design operations by graph id and an on-demand view over a hub's members, both shipped in 0.83.0 (#721, #722). The v0.83.0, v0.83.1 and v0.83.2 cuts each moved the page's footer to \"Checked against reflow2 v0.83.x\", and tools/check_doc_versions.py passed each time, because the version gate reads the release line each page names, not the content. OBSERVATION ONLY: why no cut step caught the content is not root-caused. Corrected by hand on chore/surface-record-is-v0-83-2 (794a05378, chg:the-hub-and-setup-pages-agree-with-v0-83-2-2026-10-12). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject_id": "cap:a-cut-brings-the-site-up-to-date-and-the-version-gate-reads-each-pages-release-line",
+    "valid_from": "2026-10-12",
+    "valid_to": "2026-10-12"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d90854fcc8de65919a5818a862de0e9f922b05bd55796732061efec80808e88f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-hub-page-said-shipped-work-was-coming-through-three-cuts-that-moved-its-checked-against-line-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

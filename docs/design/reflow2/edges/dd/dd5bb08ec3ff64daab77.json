@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:d83a90c7f80151536b7e14bc52be2b578b402a45973ef95d63087d0cf9ff75f7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:every-release-says-what-it-brings-to-the-call-setup-and-what-still-needs-flo2-io",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

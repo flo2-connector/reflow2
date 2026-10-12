@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca4e4e15fd349b4273d2e019b65e3eb456a15dd41e7dbf2049af5a20f0370092",
+  "node_id": "chg:the-hub-and-setup-pages-agree-with-v0-83-2-2026-10-12",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "commits": "794a05378",
+    "detected_at": "2026-10-12",
+    "name": "The hub and setup pages agree with v0.83.2",
+    "rationale": "Anthony, 2026-10-12, coupled with req:every-release-says-what-it-brings-to-the-call-setup-and-what-still-needs-flo2-io: \"if changes affect flo2-connector.github.io/reflow2 page or the flo2.io/what or flo2.io/api pages, they need to be updated also so that they are always in agreement with the latest version of reflow2.\" Checking the three pages against 0.83.2 found only reflow2's hub page out of agreement, and it had been since 0.83.0: three cuts moved its \"Checked against\" line while its content stayed behind. flo2.io/what and flo2.io/api state nothing 0.83.2 changed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system",
+    "summary": "site/hub.html's \"What is coming\" listed cross-design operations by graph id and the hub's view over its members as unshipped intent, though both shipped in 0.83.0; it is replaced by \"Across the members, on flo2.io\", saying what a hub's address does in 0.83.2 (reads answer design by design; search_design applies one limit to the merged list with found_by_design and hits_withheld; <member>:<id> routes to one member; compare_designs and compose_and_analyse take the other design by graph id; a long diff fits its budget and pages one list) and that the terminal route cannot reach it. The sharing sentence now says members read the named designs that the hub's owner can still open (flo2 #146). site/setup.html's VS Code section gains \"What this route reaches\": a design on your own machine, reply budgets and compare_designs paging, but not a design hosted on flo2.io."
+  }
+}
