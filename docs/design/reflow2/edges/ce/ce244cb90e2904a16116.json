@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:259034875b819000220a4af7744ca9d38ee17a2ff6c643cc67e2935482a38e4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-bounded-reply-shortens-every-list-by-its-cost-and-compare-designs-pages-one-2026-10-12",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:9b19fdc60d0fc17a35ed1bdace72325fe27c460a7dd78e57f790ef3bf899e7bf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-cross-design-read-takes-the-other-design-by-graph-id-test"
+}

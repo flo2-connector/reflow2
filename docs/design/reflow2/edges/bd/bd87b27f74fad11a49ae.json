@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5ad5ad2f48fdc29bc4715594d8b0aefa0ca8a3f2fa4d5857ff16f4c5df134d1c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:enum-schema",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:af98f1cdeea4ca45cfcc9e94200293879ac30d3cdbd6f0969f84ba86178f4045",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-hub-views-search-applies-the-callers-one-limit-to-the-merged-list-2026-10-12",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:cb3fcad26136096b11d19a836da276515d605f339dd604d1679e884e31d7d508",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-hubs-address-serves-a-view"
+}

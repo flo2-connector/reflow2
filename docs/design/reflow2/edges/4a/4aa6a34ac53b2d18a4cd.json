@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b8c47aec557c92f536a22a7ac64d68d5f3e62071e1ebd80fd83c72ac261c1355",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-bounded-reply-shortens-every-list-by-its-cost-and-compare-designs-pages-one-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6d510577ec697878f52db322f040fba903e0e763cb51dbbbd903a57d8266c87c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:every-oversized-reply-offers-a-bound",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

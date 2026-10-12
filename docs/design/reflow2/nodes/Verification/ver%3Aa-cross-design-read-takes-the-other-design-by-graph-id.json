@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:a1362e0bdecf81885bf703a1b555aea696473062e111ff84ec11d848861a64a9",
+  "content_hash": "sha256:0e2c270afdf7ea577b07d5a9bd5be0ce9867040d3b7dbf66c69c36b4836ce52e",
   "node_id": "ver:a-cross-design-read-takes-the-other-design-by-graph-id",
   "node_type": "Verification",
+  "prev_item_hash": "sha256:a1362e0bdecf81885bf703a1b555aea696473062e111ff84ec11d848861a64a9",
   "properties": {
     "description": "crates/reflow2-mcp/tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs: against a registry server holding designs A and B — a session on A with _meta reflow2/readable_graph_ids [A,B] gets a diff / composed report naming B; B absent from the set → refused naming B and saying nothing of what it holds; no _meta → refused naming the key; A's own graph_id → refused; compare_designs with a path on the registry server → refused (\"a path is not served here\"); A→B and B→A concurrently (6 rounds each) finish without deadlock. One in-process test and five wire tests. It is the check of dec:a-cross-design-read-is-bounded-by-the-readable-set-the-host-hands-over-not-by-the-root-alone as well.",
-    "findings": "2026-10-11 at 5a282ebb9: failing first — the in-process test did not compile (no other_graph_id on either struct) and the five wire tests failed 5 of 5 against the unchanged binary, the path test showing the hole live (a registry server behind a declared trusted gateway read /tmp/…/some-export.json and answered a diff); with the change 6 of 6 pass; the concurrency test finished in seconds under a 240 s deadline. Full workspace: 381 suites, 3,226 passed, 0 failed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "findings": "2026-10-12, 59553c771: seven tests now. Added a paging test: a diff over budget comes back within budget with summary and every count intact and every shortened list named in budget.lists_shortened; paging edges_added with list + offset across two or more pages concatenates to the unbudgeted list in order, every page within budget and budget.reply_chars equal to the page's size. 7 passed; the compare_designs case in tests/tools.rs passes; the_mcp_surface_only_grows passes with its fixture untouched.",
     "kind": "verification",
-    "last_run_at": "2026-10-11",
+    "last_run_at": "2026-10-12",
     "level": "integration",
     "location": "crates/reflow2-mcp/tests/a_cross_design_read_takes_the_other_design_by_graph_id.rs",
     "method": "test",

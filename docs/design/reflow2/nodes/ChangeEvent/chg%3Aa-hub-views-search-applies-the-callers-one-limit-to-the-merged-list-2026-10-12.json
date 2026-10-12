@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cd2d4f0a5922b799f0b7f037d27108dc52282a053a3f6bd4ff4aa07f0b4c738f",
+  "node_id": "chg:a-hub-views-search-applies-the-callers-one-limit-to-the-merged-list-2026-10-12",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "f53ad6f8c",
+    "detected_at": "2026-10-12",
+    "name": "A hub view's search_design applies the caller's one limit to the merged list",
+    "rationale": "The view was built as a fan-out that forwards each call unchanged, and search was the one tool whose replies were merged rather than listed by design; the merge step carried the per-design semantics of the forwarded calls into the one reply, where the caller had asked for a single bounded list. The cause is the merge not applying the caller's own argument to the merged result, and the fix applies it there, once, and says what it withheld, so a shorter answer is not a quieter one. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Measured on flo2.io 2026-10-11 (fact:a-hubs-view-on-flo2-io-answers-every-member-in-1-s-warm-14-s-cold-2026-10-11): search_design through the dev_reflow2 hub with limit 10 returned 65 hits, because view.rs merged_search concatenated every design's hits, ranked them and returned them all, saying \"The limit applies to each design\" and carrying limit_per_design. The hub's address is one design to the caller, so one limit: each member is still asked with the caller's limit (its top-k), the hits are merged, ranked and truncated to that limit (exact: no hit outside a design's top-k can be in the merged top-k). The reply now carries `limit` (the one applied; search_design's default 10 when omitted), `hits_withheld` (ranked hits beyond it), `found_by_design` ({graph_id: n}, how many each design returned; a design at the limit may hold more) beside designs_searched, searched_by_design, stale, view, unreachable and a reworded view_note; limit_per_design and the false sentence are gone. Failing first on main: the new test search_through_the_hub_applies_the_limit_to_the_merged_list (three designs each holding \"quokka\" in three nodes, limit 2) got 6 hits; after the fix 2. The ranking test also asserts limit, found_by_design and hits_withheld; 10 tests in the file pass. Changelog fragment changelog.d/the-hub-views-search-answers-within-its-limit.md."
+  }
+}
