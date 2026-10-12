@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:75bae4e65ef6ecaaa35fc54d1e10d13bce621c4b541b244944496de7a82742c1",
+  "edge_type": "RISKS",
+  "from_id": "fact:a-local-feature-error-was-worked-around-instead-of-read-as-the-ci-contract",
+  "properties": {
+    "evidence": "The recorded lesson that a build without the rocksdb feature runs 46 fewer tests than the workspace is the hazard this idea carries: some tests exist only with RocksDB."
+  },
+  "to_id": "dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes"
+}

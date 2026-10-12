@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c594f279f3c071e0eef0b0f0241d1ce60faf88a028e6ccfd3dee6954faff943b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-change-runs-its-full-gate-set-once-locally-or-in-ci-not-both",
+  "properties": {
+    "evidence": "Cutting the local run to what a change touches is safe only while CI runs the whole set before a merge, which is that question's option (c) and the lesson it records.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-should-the-gate-set-be-selected-per-diff"
+}

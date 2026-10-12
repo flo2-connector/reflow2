@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ece0b7fd5966c8c50bd8136e537c8064ba6935599b0d0eddd1aaa66ed6fe5460",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:skill-lint",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

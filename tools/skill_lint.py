@@ -1245,6 +1245,41 @@ def served_descriptions() -> dict[str, str]:
     return out
 
 
+# A SERVED REQUEST MUST NOT READ AS A REQUEST FOR THE MODEL'S OWN REASONING.
+#
+# MEASURED 2026-10-12 in VS Code with GitHub Copilot (claude-opus-5-5):
+# `/capture-session` was refused five times out of five, each logged by Copilot
+# as "Refusal received: category='reasoning_extraction'", once in a brand-new
+# chat on its very first model call. The command, sent as the user's turn,
+# said "what dies with the session is the reasoning". With that one phrase
+# changed to "the rationale for the work", it completed in two fresh chats.
+# The same wording ran fine in Claude Code, so whether it is refused depends on
+# the route the host takes to the model, which reflow2 cannot see.
+#
+# So the text a host sends AS A REQUEST (a slash command) or lists to the model
+# for every request (a skill's description) must not put "reasoning" beside
+# the session or the conversation: that reads as asking the model to hand over
+# its own thinking. What these commands want is the project's rationale, and
+# they say so. A skill BODY is read as a tool's output and passed in the same
+# measurement, so it is not held to this. Recorded in reflow2's design as
+# fact:recurrence-capture-session-in-vs-code-is-declined-by-the-models-refusal-stop-not-a-service-failure-2026-10-12.
+REASONING_WORD = re.compile(r"(?i)\breasoning\b")
+SESSION_WORDS = re.compile(r"(?i)\b(session|conversation|chat)\b")
+
+
+def asks_for_session_reasoning(text: str) -> list[str]:
+    """The sentences of `text` that put "reasoning" beside the session, the
+    conversation or the chat, whitespace-collapsed. Empty when there are none.
+
+    A sentence ends at . ! or ?, at a blank line, or where a new list item
+    starts, so two neighbouring bullets are never read as one sentence."""
+    out = []
+    for sentence in re.split(r"(?<=[.!?])\s+|\n\s*\n|\n\s*[-*]\s+", text):
+        if REASONING_WORD.search(sentence) and SESSION_WORDS.search(sentence):
+            out.append(" ".join(sentence.split()))
+    return out
+
+
 def frontmatter(text: str) -> dict[str, str]:
     """The skill's YAML frontmatter, parsed minimally (stdlib only)."""
     m = re.match(r"\A---\n(.*?)\n---\n", text, re.DOTALL)
@@ -1288,6 +1323,12 @@ def main() -> int:
               bool(fm.get("description")))
         check(f"{name}: states the standing rule (graph text is {STANDING_RULE})",
               STANDING_RULE in text)
+        session_reasoning = asks_for_session_reasoning(fm.get("description", ""))
+        check(f"{name}: description does not ask for the session's reasoning",
+              not session_reasoning,
+              f"{session_reasoning} — a provider refuses this as reasoning "
+              f"extraction (see asks_for_session_reasoning); ask for the "
+              f"work's rationale instead")
 
         terms = set(re.findall(r"`([a-z0-9_]+)`", text))
         seen_terms |= terms
@@ -1343,6 +1384,15 @@ def main() -> int:
     check("every command names a skill that exists",
           not dangling,
           f"these commands point at skills that are not served: {dangling}")
+    reasoning_asks = []
+    for cmd in sorted(command_src.glob("*.md")):
+        for sentence in asks_for_session_reasoning(cmd.read_text()):
+            reasoning_asks.append(f"{cmd.name}: {sentence[:120]}")
+    check("no command asks for the session's reasoning",
+          not reasoning_asks,
+          f"{reasoning_asks} — sent as the user's turn, this is refused as "
+          f"reasoning extraction (see asks_for_session_reasoning); ask for the "
+          f"work's rationale instead")
 
     # THE OTHER DIRECTION, and it was checked by nothing until 2026-08-14.
     #

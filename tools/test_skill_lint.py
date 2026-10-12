@@ -214,5 +214,50 @@ class TestFirstQuoteParagraph(unittest.TestCase):
         self.assertFalse(both, f"listed AND declared omitted: {both}")
 
 
+class TestSessionReasoning(unittest.TestCase):
+    """`asks_for_session_reasoning`: the rule that keeps a served request from
+    reading as a request for the model's own reasoning (measured 2026-10-12:
+    refused 5 of 5 as reasoning_extraction in VS Code; reworded, it completed)."""
+
+    REFUSED = ("- Do not transcribe. The commits already say what we did; what dies "
+               "with the session is the reasoning — what got measured, what was "
+               "tried and abandoned, why the losing option lost.")
+    COMPLETED = REFUSED.replace("is the reasoning", "is the rationale for the work")
+
+    def test_the_sentence_that_was_refused_is_flagged(self):
+        self.assertEqual(len(skill_lint.asks_for_session_reasoning(self.REFUSED)), 1)
+
+    def test_the_sentence_that_completed_passes(self):
+        self.assertEqual(skill_lint.asks_for_session_reasoning(self.COMPLETED), [])
+
+    def test_the_old_skill_description_is_flagged(self):
+        old = ("Writes the reasoning that exists only in the conversation into the "
+               "graph, routed to the node type that already fits it.")
+        self.assertEqual(len(skill_lint.asks_for_session_reasoning(old)), 1)
+
+    def test_reasoning_about_recorded_decisions_is_not_flagged(self):
+        """/decisions and /where ask for the reasoning recorded behind a
+        decision, not the session's; nothing measured them refused."""
+        for ok in ("what was decided and the reasoning, not the ids.",
+                   "what's settled and the reasoning behind it, the shape so far."):
+            self.assertEqual(skill_lint.asks_for_session_reasoning(ok), [], ok)
+
+    def test_neighbouring_bullets_are_not_read_as_one_sentence(self):
+        text = "- Keep the session short\n- Bring me the reasoning behind the budget"
+        self.assertEqual(skill_lint.asks_for_session_reasoning(text), [])
+
+    def test_the_real_tree_passes(self):
+        """Every command and every skill description in this repository."""
+        found = []
+        for cmd in sorted(skill_lint.REPO.joinpath("getting-started/commands").glob("*.md")):
+            found += [f"{cmd.name}: {x}" for x in skill_lint.asks_for_session_reasoning(cmd.read_text())]
+        for d in sorted(skill_lint.SKILLS.iterdir()):
+            md = d / "SKILL.md"
+            if md.exists():
+                desc = skill_lint.frontmatter(md.read_text()).get("description", "")
+                found += [f"{d.name}: {x}" for x in skill_lint.asks_for_session_reasoning(desc)]
+        self.assertEqual(found, [])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

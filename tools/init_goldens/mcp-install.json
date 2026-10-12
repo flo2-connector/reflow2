@@ -2,7 +2,7 @@
   "all": {
     ".claude/commands/adopt.md": "c2aa3faf53192b797f7cf30d0903b7cefec90d2d7c5c408bc160d5da576c30bd",
     ".claude/commands/brainstorm.md": "44d2cec9c0c591964b62151115f0610a767eed3bf02aa3cff41a330d6c2e95a0",
-    ".claude/commands/capture-session.md": "82f018ecfdc0760e11788f8955c088a4553be9b6cad6ab45b7871f2c1e97a673",
+    ".claude/commands/capture-session.md": "e75550bae944d5f5b6369875a993086dcf45c3dbaf6a80c9830cc6cde18b1e8f",
     ".claude/commands/ci-gate.md": "8169367ba02fec759cdd4749322be21992d82815d46cc3270e3d8ffc67005b18",
     ".claude/commands/debt.md": "5cf1cb09cfdcb3ebc313a641e396abf1490bc0e714ecd8b919ec2eabb3b3e6bb",
     ".claude/commands/decisions.md": "92aa5191cdaf6de4640a98c3ac291864dd122f2c178b8588c8cb5ff49e13635f",
@@ -43,7 +43,7 @@
     ".grok/config.toml": "27ce8c99e91acce72ec4aecd7b91178e17734fc1bfe2538190f11debe7d41166",
     ".mcp.json": "78df97663f80a291b07d53cd867d88800e9b79f9533973202a0c1722e0b62370",
     ".opencode/plugins/reflow2-loop-nudge.js": "92ca1c0d429ecf3f1b4d8fe67cf894a79b4cdbbbf09d65d2be4d821d6fd226f4",
-    ".reflow2/kit-version.json": "dccd8715014ff23026e9a7410e9226c5ff1b06911f2dab03dd1891d93f3a5100",
+    ".reflow2/kit-version.json": "c18893702a8f3db4e895d33787dcc5630c9cdeac9d1b54cc60b6da70ace3bbad",
     ".vscode/mcp.json": "d0be572eaab033818bd8e6f504d8772da686fa309cd3b7852585fb40a8e0f50b",
     "AGENTS.md": "4329e5563666ab6708edfe68c0d0188818571b39ea408c70ef71663bc2f98f36",
     "CLAUDE.md": "8f513aee061844c6ab3a695513f2be53ca30afeb02ceb6915fcc3df100de334a",
@@ -52,7 +52,7 @@
   "claude": {
     ".claude/commands/adopt.md": "c2aa3faf53192b797f7cf30d0903b7cefec90d2d7c5c408bc160d5da576c30bd",
     ".claude/commands/brainstorm.md": "44d2cec9c0c591964b62151115f0610a767eed3bf02aa3cff41a330d6c2e95a0",
-    ".claude/commands/capture-session.md": "82f018ecfdc0760e11788f8955c088a4553be9b6cad6ab45b7871f2c1e97a673",
+    ".claude/commands/capture-session.md": "e75550bae944d5f5b6369875a993086dcf45c3dbaf6a80c9830cc6cde18b1e8f",
     ".claude/commands/ci-gate.md": "8169367ba02fec759cdd4749322be21992d82815d46cc3270e3d8ffc67005b18",
     ".claude/commands/debt.md": "5cf1cb09cfdcb3ebc313a641e396abf1490bc0e714ecd8b919ec2eabb3b3e6bb",
     ".claude/commands/decisions.md": "92aa5191cdaf6de4640a98c3ac291864dd122f2c178b8588c8cb5ff49e13635f",
@@ -91,7 +91,7 @@
     ".gitattributes": "7ddfcac4f1b5138584626091fe9c43a91dac9b8a77240d494e5a4d8d5a2b3fa9",
     ".gitignore": "151a13576aa1cd812798aef0555c8a1acb72a3758dc81ec1b2a2264981dabd11",
     ".mcp.json": "78df97663f80a291b07d53cd867d88800e9b79f9533973202a0c1722e0b62370",
-    ".reflow2/kit-version.json": "f86f2fb35501fdbb0938af936bbebcb4053ef8ec1b912f6c689d22ac03448838",
+    ".reflow2/kit-version.json": "0cb9a2213cdacb195b005036d5f8ba7b999e6bb99aa95cb0198a0baac4ab09c7",
     "AGENTS.md": "4329e5563666ab6708edfe68c0d0188818571b39ea408c70ef71663bc2f98f36",
     "CLAUDE.md": "8f513aee061844c6ab3a695513f2be53ca30afeb02ceb6915fcc3df100de334a"
   },

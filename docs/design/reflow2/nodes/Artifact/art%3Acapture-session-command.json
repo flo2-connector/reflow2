@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0762d81cc186806e9248cfce2ac2bb73756ef59510a6a5e9273efbde2cf59bf6",
+  "node_id": "art:capture-session-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The /capture-session command reflow2 installs for every harness (copied to .claude/commands, and generated as a VS Code prompt file under .github/prompts). Its body is sent as the user's turn, so its wording is what a model provider's classifiers judge. Registered 2026-10-12 because its old wording (\"what dies with the session is the reasoning\") was the measured cause of Copilot's reasoning_extraction refusals and the design had no node for it; the other command files under getting-started/commands/ are still unregistered.",
+    "location": "getting-started/commands/capture-session.md",
+    "name": "getting-started/commands/capture-session.md — the /capture-session slash command",
+    "status": "realized"
+  }
+}
