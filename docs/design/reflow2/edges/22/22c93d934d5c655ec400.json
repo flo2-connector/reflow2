@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0074da05c0332288e2b7e3f9f7f61ba407d3a8166c99569c591e19b152d9f49",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0834",
+  "properties": {
+    "as_checksum": "sha256:b1975dfc400257a221e347c627fb9574f492b51dcf4a4082a05a5eeeeb0e3709"
+  },
+  "to_id": "art:test-unexported-changes-say-whose-they-are"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79737a3b159e716cbf76c7366d6f1a599a6ae9ac458a68727d18fc8a8d5bf6e3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0834",
+  "properties": {
+    "as_checksum": "sha256:657e883ee56d1b66e564c990a780c2953659b6c1bd3b9e4254bf88d8de4226e1"
+  },
+  "to_id": "art:check-intent-authority-test"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:951ea3bd29baba512b56a69f9587e8014f62430af3f236579a51a4d13f19e53e",
+  "node_id": "chg:accept-9906fcb6c55c9a1f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-13",
+    "name": "v0.83.4 cut, step 2: 'Checked against' moved 0.83.3 -> 0.83.4; content unaffected. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

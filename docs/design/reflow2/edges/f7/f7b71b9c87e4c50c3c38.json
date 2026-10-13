@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a026b38e8e7f4d3fc598d61af534f4cbff5e86f2e0953670ef7d8988a296305",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0834",
+  "properties": {
+    "as_checksum": "sha256:79b3c06071f48c88f52a99bf06a5f707a7db47ea99e93c5cbd75dcd310a91f64"
+  },
+  "to_id": "art:test-a-hub-member-records-its-relation"
+}

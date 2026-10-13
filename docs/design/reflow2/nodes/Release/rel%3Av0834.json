@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f6919c5b5583d4ee9630e3584ccf4344d10f54dd00ab2198fabb6582039562c7",
+  "node_id": "rel:v0834",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-13 on Anthony's word (\"merge 735 when green, then cut 0.83.4\"). A patch with two parts.\n- #735: the served capture-intent skill asks, before a structural addition, what could be taken away instead (via negativa, advisory, barbell-style, never from the record), so every design gets the question.\n- #734: reflow2's site says in plain words what reflow2 is and isn't, along the human decision process, with a walkthrough of one design and a page on why.\nNo tool, argument or store schema moved. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.83.4 — capture-intent asks what could be taken away; the site says what reflow2 is and isn't",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.83.4"
+  }
+}

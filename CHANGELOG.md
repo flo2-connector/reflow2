@@ -31,6 +31,20 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.83.4] — 2026-10-13
+
+**Patch. `capture-intent` asks what could be taken away before it adds, and reflow2's site says
+what reflow2 is and isn't.** It contains #735 and #734. No tool, argument or schema on the MCP
+surface moved, and the store's schema is 0.83.3's. The served capture-intent skill gains one
+paragraph; the site is published from `site/` and is not part of the binary. **What to do:**
+nothing; every design gets the new question from the skill it is served.
+
+### Changed
+
+- **`capture-intent` now asks what could be taken away before it adds.** Before a structural addition (a new requirement, capability, component, rule or step), the skill asks the person whether something could be removed in its place, or whether the addition lets something go, and writes the answer down. It asks only on structural additions, never on a wording, a fix or a status. It takes away from what is built, required or ruled, newest and least proven first, and never from the record: prior values and roads not taken stay. It is a question, not a gate. This is the advisory via-negativa principle Anthony kept on 2026-10-12, now carried by the skill every design is served. **What to do:** nothing; projects get it with the served skill.
+
+- **reflow2's site now says, in plain words, what reflow2 is and what it isn't.** The home page opens on the partnership: you decide, the AI assistant you already use drafts, asks and checks, and reflow2 remembers what was decided, by whom and why. It says plainly that reflow2 runs no AI of its own and doesn't replace people or their conversations, and it tells the story along five everyday steps of a decision: notice, look into it, weigh the options, decide, learn. Two new pages go further. `walkthrough.html` follows one made-up design, a robotics team's climber, from its first requirement into the code and back, with each step labelled by who does it. `why.html` sets each mistake people and AI make beside what catches it, and says what reflow2 can't do. "Project brain" now names only a hub. The version gate reads both new pages' "Checked against" line. **What to do:** nothing.
+
 ## [0.83.3] — 2026-10-12
 
 **Patch. `/capture-session` asks for the work's rationale, so VS Code with GitHub Copilot stops
