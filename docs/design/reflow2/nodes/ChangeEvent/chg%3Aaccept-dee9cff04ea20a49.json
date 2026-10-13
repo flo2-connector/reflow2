@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4c802300a3c7ab42493de62dda8db0c37c940ab75c52321481b8fa88685f8368",
+  "node_id": "chg:accept-dee9cff04ea20a49",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-13",
+    "name": "v0.83.5 cut: re-blessed from the 0.83.5 release build (11 passed); only reflow2_version moved, because the snapshot records types, endpoints and enums, not the fulltext flags #738 set. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

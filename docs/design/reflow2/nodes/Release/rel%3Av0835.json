@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:10783774e8d716d2d70aeaec15dad5aeabcd2074668cdabe0d123f32a897815b",
+  "node_id": "rel:v0835",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-13 on Anthony's word (\"Merge 738 and 152\", then \"Cut v0.83.5 and move flo2.io to it\"). A patch with one part, #738. search_design and topic_report now read every field a node's prose is written in: 15 fields were added, a change's rationale among them. A new test lists every text property as either searched or left out with its reason. The full-text index records which fields it was built over, so a design opened by this release rebuilds its index once, by itself. That includes the one-shot --call door, which used to leave older nodes unsearchable until they were next written. The search_design description names the prose fields. No tool or argument was added or removed, and no node or edge type moved. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.83.5 — search reads every prose field, and an index built over fewer fields rebuilds itself",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.83.5"
+  }
+}
