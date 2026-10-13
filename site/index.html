@@ -13,8 +13,11 @@
        decision (dec:the-sites-setup-pages-are-hand-written-and-its-design-pages-stay-generated)
        lets an explainer page be written by hand. A page that shows a REAL design's content
        (its counts, views or status) stays generated from that design
-       (dec:idea-what-is-on-reflow2s-public-page), so nothing here is a real number: the
-       Gearheads are fictional, and the page says so.
+       (dec:idea-what-is-on-reflow2s-public-page), so nothing here is a typed real number: the
+       Gearheads are fictional, and the page says so. The one real design shown, reflow2's own
+       in "It adds up", is drawn from counts.json, which tools/site_counts.py writes from the
+       design committed at each release tag when the site is published (pages.yml)
+       (req:the-site-shows-why-linked-decisions-are-more-than-a-record).
        WHAT THIS PAGE MUST SAY, accepted 2026-10-12:
        req:the-site-says-what-reflow2-is-and-is-not-as-a-partnership-in-plain-words,
        req:the-sites-story-follows-the-human-decision-process and
@@ -41,7 +44,8 @@
           reflow2 is a shared record of a project: what it has to do, what was decided and why,
           and what was learned along the way. You and the AI assistant you already use work on it
           together, and it is still there tomorrow, next season, and after the people who wrote it
-          have moved on.
+          have moved on. Every piece is linked to what it rests on and what it affects, so the record
+          can also say what a change will reach before anyone makes it.
         </p>
         <p class="actions">
           <a class="button" href="walkthrough.html">See one project, start to finish</a>
@@ -57,7 +61,7 @@
         <div class="card">
           <h3>It is</h3>
           <ul>
-            <li><b>A shared record of your project</b>: what it has to do, what you decided and why, what you measured, and what went wrong.</li>
+            <li><b>A shared, connected record of your project</b>: what it has to do, what you decided and why, what you measured, and what went wrong, each linked to what it rests on and what it affects.</li>
             <li><b>A partnership</b> between you, the AI assistant you already use, and the record itself. Each covers for what the others do badly.</li>
             <li><b>A memory for working together.</b> Everyone can see who decided what, when, and why, so the next conversation starts from there.</li>
             <li><b>For any project made of decisions</b>: a robot, a building, a season plan.</li>
@@ -69,6 +73,7 @@
             <li><b>An AI.</b> reflow2 runs no AI of its own. When words need writing, it asks the assistant you already use.</li>
             <li><b>A replacement for people</b>, or for talking to each other. It gives those conversations a memory.</li>
             <li><b>The one who decides.</b> The AI can suggest anything; a decision is only marked as made with a person's name on it.</li>
+            <li><b>Just a place to write things down.</b> A list of decisions can't tell you which ones a change will reach, or which need nothing delivers yet. The links between them can.</li>
             <li><b>Needed for everything.</b> A one-person job finished in an afternoon doesn't need a record that outlives it.</li>
           </ul>
         </div>
@@ -142,10 +147,48 @@
 
     <section aria-labelledby="keeps">
       <div class="text">
-        <h2 id="keeps">What the record keeps</h2>
+        <h2 id="keeps">What the record keeps, and what the links let it answer</h2>
         <p class="kicker">Small facts, linked to each other and to the work.</p>
       </div>
       <figure class="drawing"><svg id="g3" viewBox="40 140 1220 540" role="img" aria-label="Requirements, decisions, findings and changes, each linked to the work that carries it out. Every fact remembers who, when, why, and what it replaced."></svg></figure>
+      <div class="text">
+        <p>
+          A decision here isn't a line in a list. Each fact is a record of a known kind (a need, a
+          decision, a finding, a check, a change), joined by named links to what it rests on, what
+          delivers it, what checks it, what it caused and what it replaced. reflow2 refuses a record
+          or a link that doesn't fit, so the links stay something it can reason over. That is what
+          lets it answer questions a list of notes can't:
+        </p>
+        <ul>
+          <li><b>If we change this, what else moves?</b> It follows the links out from the change, before anyone edits.</li>
+          <li><b>Which needs does nothing deliver yet, and what has never been checked?</b></li>
+          <li><b>Which decisions rest on a result that just failed?</b></li>
+          <li><b>What hasn't anyone asked yet?</b> It finds what the design doesn't say, and turns each gap into a question for you.</li>
+          <li><b>Who decided this, when, and what did they not choose?</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="adds-up">
+      <div class="text">
+        <h2 id="adds-up">It adds up</h2>
+        <p class="kicker">No one designs a whole project at once. It grows one small decision at a time.</p>
+      </div>
+      <figure class="drawing" id="g5-figure"><svg id="g5" viewBox="0 0 1280 500" role="img" aria-label="reflow2's own design growing week by week: its records, the links between them, and its decisions."></svg></figure>
+      <div class="text">
+        <p id="g5-numbers">
+          The drawing shows reflow2's own design, counted from the copy kept with each release when
+          this site is published.
+        </p>
+        <p>
+          Nobody planned that whole. Each decision was small, cheap to make and cheap to undo, and kept
+          with its reason and its links. It's the tinkering Nassim Taleb describes in
+          <i>Antifragile</i>: many small tries, each one kept, adding up to more than any plan could
+          have laid out. And reflow2 isn't a large project. A building or a spacecraft would hold far
+          more. reflow2's part is keeping every piece connected, so the whole stays something you
+          can ask questions of, however large it grows.
+        </p>
+      </div>
     </section>
 
     <section class="text" aria-labelledby="one">
@@ -342,6 +385,59 @@
   s += icon('lock', 1040, by, 16, INK2, 2.2);
   s += tx(1054, by + 6, 'restricted repository', {size: 14, c: INK2});
   set('g4', s);
+})();
+
+/* ---------- it adds up: reflow2's own design, week by week ----------
+   counts.json is written when the site is published (tools/site_counts.py), from
+   the design committed at each release tag. Nothing here is typed: without the
+   file the figure is left out and the text says where the numbers come from. */
+(() => {
+  const fmt = (n) => n.toLocaleString('en-US');
+  const day = (iso) => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {month: 'short', day: 'numeric', timeZone: 'UTC'});
+  const draw = (c) => {
+    const P = c && Array.isArray(c.points) ? c.points : [];
+    if (P.length < 2) { document.getElementById('g5-figure').hidden = true; return; }
+    const L = 120, R = 1090, T = 40, B = 420;
+    const top = Math.max(...P.map((p) => p.links));
+    const step = 10 ** Math.floor(Math.log10(top)) / 2;
+    const ymax = Math.ceil(top / step) * step;
+    const x = (i) => L + (R - L) * i / (P.length - 1);
+    const y = (v) => B - (B - T) * v / ymax;
+    let s = '';
+    for (let v = 0; v <= ymax; v += step) {
+      s += ln(L, y(v), R, y(v), {c: HAIR, w: 1});
+      s += tx(L - 14, y(v) + 5, fmt(v), {size: 14, c: MUTED, a: 'end'});
+    }
+    P.forEach((p, i) => { if (i % 2 === 0 || i === P.length - 1) s += tx(x(i), B + 28, day(p.date), {size: 14, c: MUTED, a: 'middle'}); });
+    const series = [
+      ['links', 'links between them', ACC],
+      ['records', 'records', COL.R],
+      ['decisions', 'decisions', COL.D],
+    ];
+    series.forEach(([k, label, col]) => {
+      const pts = P.map((p, i) => `${x(i)},${y(p[k])}`).join(' L');
+      s += path(`M${x(0)},${B} L${pts} L${x(P.length - 1)},${B} Z`, {fill: col, c: 'none', op: 0.08});
+      s += path(`M${pts}`, {c: col, w: 3});
+      P.forEach((p, i) => s += `<circle cx="${x(i)}" cy="${y(p[k])}" r="4" fill="${col}"/>`);
+      const last = P[P.length - 1];
+      s += tx(R + 16, y(last[k]) + 6, fmt(last[k]), {size: 19, w: 700, c: col});
+      s += tx(R + 16, y(last[k]) + 26, label, {size: 14, c: INK2});
+    });
+    // The first week's numbers sit clear of the lines' climb, with a leader to their point.
+    s += ln(x(0) + 4, y(P[0].links) - 8, x(0) + 18, B - 96, {c: MUTED, w: 1});
+    s += tx(x(0) + 22, B - 100, `${fmt(P[0].records)} records, ${fmt(P[0].links)} links`, {size: 15, c: INK2});
+    set('g5', s);
+    const a = P[0], z = P[P.length - 1];
+    const weeks = Math.round((new Date(z.date) - new Date(a.date)) / (7 * 864e5));
+    document.getElementById('g5-numbers').innerHTML =
+      `This is reflow2's own design, counted from the copy kept with each release. On ${day(a.date)} ` +
+      `it held ${fmt(a.records)} records and ${fmt(a.links)} links between them. ${weeks} weeks later, ` +
+      `at ${z.tag}, it holds ${fmt(z.records)} records of ${z.kinds_of_record} kinds and ` +
+      `${fmt(z.links)} links of ${z.kinds_of_link} kinds, among them ${fmt(z.decisions)} decisions, ` +
+      `${fmt(z.requirements)} requirements and ${fmt(z.checks)} checks. Each release also lists the ` +
+      `files it ships; those ${fmt(z.manifest_links)} links are bookkeeping and aren't counted here.`;
+  };
+  fetch('counts.json').then((r) => (r.ok ? r.json() : null)).then(draw).catch(() => draw(null));
 })();
 </script>
 </body>

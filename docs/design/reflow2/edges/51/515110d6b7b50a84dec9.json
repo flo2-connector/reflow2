@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7ee18b359f379e1efbac4ca54cdd5ebaf6d6a07012ef88383897bafac6b68904",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:how-the-changelog-balance-is-counted",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d08483c3dc774b7f94cbf1f1b098d5cf446aebb515bcee58729906e72c61931",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-via-negativa-holds-any-design-against-requirements-creep",
+  "properties": {
+    "evidence": "Option (b) of the idea, making creep visible by setting removals and closure beside additions, became this requirement on Anthony's word of 2026-10-13: a balance line in changelog_view."
+  },
+  "to_id": "req:a-changelog-shows-what-was-taken-away-beside-what-was-added"
+}

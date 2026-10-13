@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddaa39a137dc5adee75c3d3ae93d36883e7e8618d8ea5155c6c8b4a6b797ee46",
+  "edge_type": "REALIZES",
+  "from_id": "art:site-index-html",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-home-page-says-what-the-links-answer-and-shows-them-adding-up"
+}

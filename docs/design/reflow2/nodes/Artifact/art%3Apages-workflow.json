@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:75bb46ca4241d85d2ee3b26518bf65ef2bfe08c725d95b7b277b195899161b45",
+  "content_hash": "sha256:fc9f7a3aa7aae316da9c396a12a622aa565182f6b3b0ed789a6ff9843db553ee",
   "node_id": "art:pages-workflow",
   "node_type": "Artifact",
+  "prev_item_hash": "sha256:75bb46ca4241d85d2ee3b26518bf65ef2bfe08c725d95b7b277b195899161b45",
   "properties": {
     "artifact_type": "code",
-    "description": "An Actions deploy of site/ to GitHub Pages on each push to main that touches it; nothing is built.",
+    "description": "An Actions deploy of site/ to GitHub Pages, on each push to main that touches site/, the workflow or tools/site_counts.py, and on each v* release tag. It checks out every tag (fetch-depth 0) and writes one file, site/counts.json, with tools/site_counts.py: reflow2's own design counted at each release, for the home page's \"It adds up\". Nothing else is built (2026-10-13).",
     "location": ".github/workflows/pages.yml",
     "name": ".github/workflows/pages.yml — publishes site/ to GitHub Pages",
     "status": "realized"

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7bc3f5baa717f273228b0352df782d545affb592a9547e2899f083f3eadd706d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-home-page-says-what-the-links-answer-and-shows-them-adding-up-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 23,
+    "action": "modified",
+    "checksum_after": "sha256:a08ab781f09f92665bd91d16fa3d73d2ca32007fdb09eae9c7ddb65d476a518a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}

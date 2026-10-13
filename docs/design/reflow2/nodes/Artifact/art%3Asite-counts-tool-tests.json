@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ac8a28c6f533c29f99053d69b343076805cd2f7f19e0458714558728b41c5ce7",
+  "node_id": "art:site-counts-tool-tests",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Hermetic. It builds a throwaway git repository with a tag holding no design, a tag in the single-file layout and a tag in the item layout, and checks three things: the manifest is never counted in `links`; both layouts give the same counts; the empty tag is named in `skipped`. It also checks the weekly selection. CI runs it (ci.yml), and AGENTS.md lists it. Seen failing when count_design was mutated to count INCLUDES in `links`.",
+    "location": "tools/test_site_counts.py",
+    "name": "tools/test_site_counts.py — the site counts' own net: manifest apart, both layouts alike, an empty tag named, one point a week",
+    "status": "realized"
+  }
+}

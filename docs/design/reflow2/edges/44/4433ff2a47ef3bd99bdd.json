@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:97bc865fd1a07a5d9c4f0ac3facc6cb57e9e971b43bff9c0595f6a37fb67d36b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:site-counts-tool",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
