@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:d7382590efc9d8af25a94b3634fe3c6fab177b706740595584f105da589a34c8",
+  "node_id": "ver:every-prose-field-is-searched-or-named-as-not-prose",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/every_prose_field_is_searched.rs. Three tests:\n(1) Every `string` property on every node type is either `fulltext: true` or on the NOT_PROSE list, with one of seven reasons: when, which, hash, where, category, provenance, payload. A new string property fails until somebody says which it is.\n(2) Every NOT_PROSE entry names a string property that exists and that search skips, so the list cannot go stale.\n(3) In a fresh design, a word that only a change's rationale holds is found by search_design.\nThe engine half, which rebuilds an index built over fewer fields, is checked in fulltext_tests.rs:\n- an_index_built_over_fewer_fields_is_rebuilt_when_its_store_opens;\n- an_index_that_says_nothing_about_its_fields_is_rebuilt_once;\n- a_new_stores_index_says_its_fields_through_many_commits.",
+    "findings": "2026-10-13, local, branch fix/search-reads-every-prose-field. BEFORE the schema flags: (1) and (3) FAILED. (1) named exactly 15 properties: Anchor.name, ChangeEvent.rationale, ChangeEvent.stands_in_for, Constraint.rationale, Decision.alternatives, DimensionAssessment.description, DimensionAssessment.evidence, DriftEvent.name, and Interface endpoint, error_model, operations, payload_schema and spec, Project.objective, Requirement.rationale. (3) did not find the rationale word. AFTER flagging the 15: cargo test --workspace --no-fail-fast passed, 385 test binaries, no failure.",
+    "kind": "verification",
+    "last_run_at": "2026-10-13",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/every_prose_field_is_searched.rs",
+    "method": "test",
+    "name": "Every string property is searched, or named as not prose with its reason",
+    "status": "passing"
+  }
+}

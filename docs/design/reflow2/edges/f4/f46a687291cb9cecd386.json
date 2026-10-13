@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:28434aec9fe73ed7735c800be4f9f95fdcf7e23bd76375c95c000354736d6bb1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-convexity-in-the-decision-process",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

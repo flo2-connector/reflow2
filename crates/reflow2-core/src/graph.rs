@@ -645,6 +645,7 @@ impl DesignGraph {
                 .map(|found| crate::search::SearchIndexRebuild {
                     indexed_before: found.indexed,
                     searchable: found.searchable,
+                    fields_changed: !found.built_over_these_fields,
                 });
         }
         Ok((graph, provenance))

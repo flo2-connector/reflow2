@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:5aba4c102b92d88ff9aa1e7a9271636856562f125459799e518e8e3b62a65184",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-hard-to-undo-decision-is-asked-what-a-wrong-call-costs-and-how-far-a-right-one-goes",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

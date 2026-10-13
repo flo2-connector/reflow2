@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c4022fd0a7bd0ee13c8172505eba3281b8c87d3b0aa9db9374dd1eebbe19c343",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "question:0bab956571a6ba6a",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

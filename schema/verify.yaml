@@ -98,7 +98,7 @@ schema:
 
     DriftEvent:
       properties:
-        name: { type: string, required: true, indexed: true }
+        name: { type: string, fulltext: true, required: true, indexed: true }
         summary: { type: string, fulltext: true }
         severity: { type: enum, values: [low, medium, high, critical], default: medium, indexed: true }
         # The deployment_* values are the P5 kinds (BL-9): the as-fielded

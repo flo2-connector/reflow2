@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f0bd4cb5695a824577c58179993d00a3f0c84bea43bb03122f3abcb924b0bced",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:store-engine",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

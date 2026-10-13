@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8d94b6585bb60072d3218f60fa48665301a5ed978b8f040fa2895f9ef916dfa1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:schema-temporal",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

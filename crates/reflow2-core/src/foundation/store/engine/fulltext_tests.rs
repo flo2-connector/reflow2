@@ -563,7 +563,8 @@ fn an_index_that_does_not_cover_the_store_refuses_an_empty_answer() {
         engine.fulltext_coverage("g1").unwrap(),
         Some(FulltextCoverage {
             indexed: 1,
-            searchable: 1
+            searchable: 1,
+            built_over_these_fields: true
         })
     );
     assert_eq!(engine.fulltext_indexed("g1").unwrap(), 1);
@@ -588,7 +589,8 @@ fn an_index_that_does_not_cover_the_store_refuses_an_empty_answer() {
         found,
         Some(FulltextCoverage {
             indexed: 0,
-            searchable: 1
+            searchable: 1,
+            built_over_these_fields: true
         })
     );
     assert_eq!(
@@ -636,7 +638,8 @@ fn a_store_reopened_without_its_index_directory_refuses_until_rebuilt() {
         engine.fulltext_coverage("g1").unwrap(),
         Some(FulltextCoverage {
             indexed: 0,
-            searchable: 1
+            searchable: 1,
+            built_over_these_fields: true
         })
     );
     assert!(engine.search_fulltext("g1", "zebra", None, 10).is_err());
@@ -648,4 +651,139 @@ fn a_store_reopened_without_its_index_directory_refuses_until_rebuilt() {
             .len(),
         1
     );
+}
+
+/// The same document schema with `body` NOT searched: an earlier release, from
+/// before `body` was marked `fulltext`.
+fn ft_schema_with_fewer_fields() -> Schema {
+    Schema::from_yaml(
+        r#"
+schema:
+  name: ft
+  version: 1
+  node_types:
+    Document:
+      properties:
+        title: { type: string, fulltext: true }
+        body:  { type: string }
+        author: { type: string, indexed: true }
+    Tag:
+      properties:
+        name: { type: string, indexed: true }
+  edge_types: {}
+"#,
+    )
+    .unwrap()
+}
+
+/// FOUND 2026-10-12: a `fulltext` flag added in a later release reached only
+/// the nodes written after it. An open compared document COUNTS, and a field
+/// added to a type that is already indexed leaves the count where it was, so
+/// the index was never rebuilt and a word in the newly searched field of an
+/// older node was never found.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn an_index_built_over_fewer_fields_is_rebuilt_when_its_store_opens() {
+    let dir = tempfile::tempdir().expect("temp dir");
+    let path = dir.path().to_str().expect("utf-8 temp path").to_string();
+    {
+        let mut engine = StorageEngine::new_rocksdb(ft_schema_with_fewer_fields(), &path)
+            .expect("open under the earlier schema");
+        engine
+            .create_node(
+                "g1",
+                "Document",
+                "n1",
+                props! { "title" => "zebra pattern", "body" => "okapi" },
+            )
+            .unwrap();
+    }
+
+    let engine =
+        StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen under the later schema");
+    let coverage = engine.fulltext_coverage("g1").unwrap().expect("full-text");
+    assert_eq!(
+        (coverage.indexed, coverage.searchable),
+        (1, 1),
+        "the counts agree, which is why counting alone never noticed"
+    );
+    assert!(!coverage.built_over_these_fields);
+    let err = engine
+        .search_fulltext("g1", "okapi", None, 10)
+        .expect_err("an empty answer from an index built over fewer fields is refused");
+    assert!(
+        err.to_string().contains("different list of the fields"),
+        "the refusal says WHY the index falls short: {err}"
+    );
+
+    // The open-time repair rebuilds it over this build's fields.
+    assert!(engine.ensure_fulltext_covers("g1").unwrap().is_some());
+    assert_eq!(found(&engine, "okapi"), vec!["n1".to_string()]);
+    assert_eq!(engine.ensure_fulltext_covers("g1").unwrap(), None);
+    drop(engine);
+
+    // And it stays rebuilt: the next open finds nothing to do.
+    let engine = StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen again");
+    assert_eq!(engine.ensure_fulltext_covers("g1").unwrap(), None);
+    assert_eq!(found(&engine, "okapi"), vec!["n1".to_string()]);
+}
+
+/// An index made by a build from before the record existed says nothing about
+/// what it was built over. Nothing said is never read as current: it is
+/// rebuilt once, and after that it says.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn an_index_that_says_nothing_about_its_fields_is_rebuilt_once() {
+    let dir = tempfile::tempdir().expect("temp dir");
+    let path = dir.path().to_str().expect("utf-8 temp path").to_string();
+    {
+        let mut engine =
+            StorageEngine::new_rocksdb(ft_schema(), &path).expect("open rocksdb engine");
+        engine
+            .create_node("g1", "Document", "n1", props! { "title" => "zebra" })
+            .unwrap();
+    }
+    let record = dir.path().join("fulltext").join("built-under.json");
+    std::fs::remove_file(&record).expect("a new index records what it was built under");
+
+    let engine = StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen");
+    let found = engine.ensure_fulltext_covers("g1").unwrap();
+    assert!(
+        found.is_some_and(|f| !f.built_over_these_fields),
+        "rebuilt because it said nothing: {found:?}"
+    );
+    assert!(record.exists(), "the rebuild says what it was built under");
+    drop(engine);
+
+    let engine = StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen again");
+    assert_eq!(engine.ensure_fulltext_covers("g1").unwrap(), None);
+}
+
+/// A store this build creates says what its index was built under from the
+/// first write, through many commits, so its next open has nothing to rebuild.
+/// The record lives inside Tantivy's directory without being one of Tantivy's
+/// managed files, which its garbage collection would delete.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn a_new_stores_index_says_its_fields_through_many_commits() {
+    let dir = tempfile::tempdir().expect("temp dir");
+    let path = dir.path().to_str().expect("utf-8 temp path").to_string();
+    {
+        let mut engine =
+            StorageEngine::new_rocksdb(ft_schema(), &path).expect("open rocksdb engine");
+        for i in 0..40 {
+            engine
+                .create_node(
+                    "g1",
+                    "Document",
+                    &format!("n{i}"),
+                    props! { "title" => format!("zebra {i}") },
+                )
+                .unwrap();
+        }
+    }
+    let engine = StorageEngine::new_rocksdb(ft_schema(), &path).expect("reopen");
+    let found = engine.fulltext_coverage("g1").unwrap().expect("full-text");
+    assert!(found.covers(), "{found:?}");
+    assert_eq!(engine.ensure_fulltext_covers("g1").unwrap(), None);
 }
