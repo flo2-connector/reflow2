@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:526454c736aa82324cbccc65cc50f2240abc9d99dc701637258d39f4b949f546",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:search-design-did-not-find-a-change-event-by-the-error-its-rationale-quotes-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

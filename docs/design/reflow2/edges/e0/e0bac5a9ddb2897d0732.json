@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6b7602f8accac9b0d32e1f1d91f3953924662008281c23e1c84c13dbffd84bc8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:capture-intent-asks-what-could-be-taken-away-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

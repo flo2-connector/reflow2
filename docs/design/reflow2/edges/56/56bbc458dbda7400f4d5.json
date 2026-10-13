@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:76d4c183321dc2e54afaefc6814328e5023cab96a7b4147cf47f12f840dc9708",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-via-negativa-as-a-standing-principle-of-every-decision",
+  "properties": {
+    "approved_at": "2026-10-12",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_at": "2026-10-12",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

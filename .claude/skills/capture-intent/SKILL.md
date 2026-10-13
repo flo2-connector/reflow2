@@ -93,6 +93,13 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
    the existing node (see **revise-design**), not create a near-duplicate that HEAL will later
    flag and someone must merge. No hits is also information: record it and create freely.
 
+   **Then ask what could be taken away instead.** Before a structural addition (a new
+   requirement, capability, component, rule or step), ask the person whether something could be
+   removed in its place, or whether this lets something go. Write the answer down, or that
+   nothing could be. Ask it on structural additions only, never on a wording, a fix or a status.
+   Take away from what is built, required or ruled, newest and least proven first, and never
+   from the record: prior values and roads not taken stay. It is a question, not a gate.
+
    ⭐ **WHEN A CONSTRUCTOR REFUSES A NEAR-MATCH, THERE ARE THREE ANSWERS, AND THE ONE YOU
    GIVE IS KEPT.** The refusal lists what it matched; read those nodes, then:
    - **SHARPEN** — the new words belong on the existing node: call the same tool with ITS id.
