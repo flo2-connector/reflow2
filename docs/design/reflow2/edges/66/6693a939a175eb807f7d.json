@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:460393afbf74111d2d65f37497ffba15ab67444ec04868e111c0976424f17cd6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0835",
+  "properties": {
+    "as_checksum": "sha256:f02a39e639f766d8d7b5fb77e304c03b6feb5bc45ffd856180dc3245a702facd"
+  },
+  "to_id": "art:test-a-relation-suggestion-weighs-real-neighbours-and-compares-ideas-with-requirements"
+}

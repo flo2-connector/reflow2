@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c2e09a8f2fa63e073addf122f0ce98da60d190057c40c15ae4d26b64b3f509b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0835",
+  "properties": {
+    "as_checksum": "sha256:5bce5511379f9f153aae300433f80b107d2eef1249931ad8c107bc9535b73da8"
+  },
+  "to_id": "art:onboarding-skill"
+}

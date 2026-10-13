@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebda53e9edf1bf7b27d9fd9be63f65a753092ffc7e7a18216323849433741bf8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0835",
+  "properties": {
+    "as_checksum": "sha256:e232809b444216b6da0bbadeb01c2a05a13c0de5c912347792d9a370ac64241b"
+  },
+  "to_id": "art:plan-increments-skill"
+}
