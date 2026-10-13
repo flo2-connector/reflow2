@@ -411,8 +411,8 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   `add_interface`, `add_flow`, `part_of_flow`, `add_constraint`, `constrains`, `satisfies`,
   `allocate`, `contains`, `provides`, `consumes`, `create_node`, `create_edge`, `get_node`,
   `scan_nodes`, `delete_node`, `delete_edge`, `apply_heal`.
-- **Find:** `search_design` — keyword search over every node's name/statement/description,
-  for when you don't know the id: mapping the user's words to their node, and checking
+- **Find:** `search_design` — keyword search over every field a node's prose is written in
+  (name, statement, description, a rationale, a change's summary ...), for when you don't know the id: mapping the user's words to their node, and checking
   whether a requirement like the one you are about to add already exists. Finding by content
   is the graph's job; do not scan whole types into context to eyeball them.
 - **When a constructor refuses a near-match**, there are three answers and the one you give is

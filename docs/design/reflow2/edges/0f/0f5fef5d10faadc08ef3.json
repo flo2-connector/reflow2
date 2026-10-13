@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9adfe2ec143b78e08523ad3d80beb692766b794e358db827bcc21babff558790",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:every-prose-field-is-searched-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

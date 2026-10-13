@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ac07aa94a04b8dbce462f70b40c96bdd3ad2022dcf1ebd395ee373aa93796940",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-reads-every-prose-field-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:5032ec3ad0d61a83e3b4b8fa13637a46b90b17161246dac9b885c66c10603b38",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:store-engine"
+}

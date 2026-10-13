@@ -88,6 +88,35 @@ pub enum TextError {
     /// Any other Tantivy-level failure (add/delete/commit/search).
     #[error("full-text index error: {0}")]
     Tantivy(#[from] tantivy::TantivyError),
+    /// The record of what the index was built under could not be written.
+    #[error("failed to record what the full-text index at {path} was built under: {source}")]
+    BuiltUnder {
+        path: String,
+        #[source]
+        source: std::io::Error,
+    },
+}
+
+/// The file, inside the index directory, that says what its documents were
+/// built under. Written with `std::fs` rather than through Tantivy's managed
+/// directory, whose garbage collection deletes any managed file a commit no
+/// longer references.
+const BUILT_UNDER_FILE: &str = "built-under.json";
+
+/// What an index's documents were built under, as the CALLER labels it (this
+/// crate knows nothing of schemas; reflow2 passes a hash of the properties it
+/// indexes). A count of documents cannot tell an index built over fewer fields
+/// from a current one, and this can.
+#[derive(Debug, Default, Clone, serde::Serialize, serde::Deserialize)]
+struct BuiltUnder {
+    /// The label the index was CREATED under, empty, by a caller that said
+    /// one: every document written into it since was written under that
+    /// label. Absent on an index created by a build that did not say.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    created: Option<String>,
+    /// The label each graph was last rebuilt under; outranks `created`.
+    #[serde(default)]
+    graphs: std::collections::BTreeMap<String, String>,
 }
 
 /// Handles for the fixed Tantivy document schema this crate maintains.
@@ -124,6 +153,10 @@ pub struct TextIndex {
     /// Only for error messages — a refusal that cannot say WHICH index it is
     /// about is not much of a diagnosis on a host with several graphs.
     path: String,
+    /// What the documents were built under, and the file that keeps it
+    /// (`None` for an index in RAM, which lives and dies with its builder).
+    built_under: Mutex<BuiltUnder>,
+    built_under_file: Option<std::path::PathBuf>,
 }
 
 impl TextIndex {
@@ -147,7 +180,7 @@ impl TextIndex {
             source: tantivy::TantivyError::from(e),
         })?;
         let index = Index::open_or_create(dir, schema).map_err(map_open)?;
-        Self::finish(index, fields, path.display().to_string())
+        Self::finish(index, fields, path.display().to_string()).map(|ti| ti.kept_in(path))
     }
 
     /// Open an EXISTING index for reading only, taking no writer lock — so this
@@ -173,7 +206,7 @@ impl TextIndex {
             source: tantivy::TantivyError::from(e),
         })?;
         let index = Index::open(dir).map_err(map_open)?;
-        Self::finish_read_only(index, fields, path.display().to_string())
+        Self::finish_read_only(index, fields, path.display().to_string()).map(|ti| ti.kept_in(path))
     }
 
     /// Open an ephemeral, RAM-backed index. Nothing is persisted — intended for
@@ -220,6 +253,8 @@ impl TextIndex {
             writer: Some(Mutex::new(writer)),
             fields,
             path,
+            built_under: Mutex::new(BuiltUnder::default()),
+            built_under_file: None,
         })
     }
 
@@ -242,6 +277,8 @@ impl TextIndex {
             writer: None,
             fields,
             path,
+            built_under: Mutex::new(BuiltUnder::default()),
+            built_under_file: None,
         })
     }
 
@@ -251,6 +288,80 @@ impl TextIndex {
             path: self.path.clone(),
             operation,
         })
+    }
+
+    /// Read what an on-disk index says it was built under, from `dir`. A file
+    /// that is missing or unreadable reads as nothing said, which only ever
+    /// costs a rebuild; a record trusted when it should not be would cost
+    /// search answers.
+    fn kept_in(mut self, dir: &Path) -> Self {
+        let file = dir.join(BUILT_UNDER_FILE);
+        let said = std::fs::read(&file)
+            .ok()
+            .and_then(|bytes| serde_json::from_slice::<BuiltUnder>(&bytes).ok())
+            .unwrap_or_default();
+        *self.built_under.get_mut().unwrap() = said;
+        self.built_under_file = Some(file);
+        self
+    }
+
+    /// The label `graph_id`'s documents were built under, if this index says
+    /// one: its last rebuild's, else the one the index was created under.
+    /// `None` means nobody said (an index an older build made and never
+    /// rebuilt) and is never to be read as current.
+    pub fn built_under(&self, graph_id: &str) -> Option<String> {
+        let said = self.built_under.lock().unwrap();
+        said.graphs
+            .get(graph_id)
+            .cloned()
+            .or_else(|| said.created.clone())
+    }
+
+    /// Record that `graph_id`'s documents were just rebuilt under `label`.
+    /// Call it after the rebuild's commit and never before: a label written
+    /// ahead of a rebuild that then failed would vouch for documents nobody
+    /// built.
+    pub fn mark_built_under(&self, graph_id: &str, label: &str) -> Result<(), TextError> {
+        self.writer("mark_built_under")?;
+        let mut said = self.built_under.lock().unwrap();
+        said.graphs.insert(graph_id.to_string(), label.to_string());
+        self.keep(&said)
+    }
+
+    /// Record `label` as what this index was created under — only while it
+    /// holds no document at all, when every document it will hold is written
+    /// by the caller holding it now. Returns whether it was recorded. A
+    /// read-only view records nothing.
+    pub fn mark_created_under(&self, label: &str) -> Result<bool, TextError> {
+        if self.writer.is_none() {
+            return Ok(false);
+        }
+        let mut said = self.built_under.lock().unwrap();
+        if said.created.is_some()
+            || !said.graphs.is_empty()
+            || self.reader.searcher().num_docs() > 0
+        {
+            return Ok(false);
+        }
+        said.created = Some(label.to_string());
+        self.keep(&said)?;
+        Ok(true)
+    }
+
+    /// Write the record beside the index, replacing the old one whole (a
+    /// rename), so a crash leaves the old record or the new, never half.
+    fn keep(&self, said: &BuiltUnder) -> Result<(), TextError> {
+        let Some(file) = &self.built_under_file else {
+            return Ok(());
+        };
+        let failed = |source| TextError::BuiltUnder {
+            path: self.path.clone(),
+            source,
+        };
+        let bytes = serde_json::to_vec_pretty(said).map_err(|e| failed(e.into()))?;
+        let staged = file.with_extension("json.tmp");
+        std::fs::write(&staged, bytes).map_err(failed)?;
+        std::fs::rename(&staged, file).map_err(failed)
     }
 
     fn uid(graph_id: &str, node_id: &str) -> String {

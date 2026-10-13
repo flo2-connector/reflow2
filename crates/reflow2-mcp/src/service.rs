@@ -2653,9 +2653,10 @@ pub struct ReviewedGapsReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct SearchDesignReq {
-    /// Keywords to search for — tokenized BM25 over every node's name,
-    /// statement and description (not substring or regex). Use the words the
-    /// design would use: "persistence", "dedup window", "latency budget".
+    /// Keywords to search for — tokenized BM25 over every field a node's prose
+    /// is written in: name, statement, description, a rationale, a change's
+    /// summary ... (not substring or regex). Use the words the design would
+    /// use: "persistence", "dedup window", "latency budget".
     pub query: String,
     /// Restrict hits to one node type (e.g. "Requirement"); omit for all.
     #[serde(default)]

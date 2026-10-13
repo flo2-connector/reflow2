@@ -283,8 +283,12 @@ impl StorageEngine {
         // constructor signature; the ephemeral backend is test-oriented anyway.
         #[cfg(feature = "fulltext")]
         let text_index = schema.has_any_fulltext_properties().then(|| {
-            crate::foundation::text::TextIndex::open_in_ram()
-                .expect("in-memory full-text index creation should not fail")
+            let ti = crate::foundation::text::TextIndex::open_in_ram()
+                .expect("in-memory full-text index creation should not fail");
+            // Born empty under this schema: everything it will hold is written
+            // under the fields this build searches. Nothing to write to.
+            let _ = ti.mark_created_under(&schema.fulltext_stamp());
+            ti
         });
         Self {
             schema: Arc::new(schema),
@@ -315,10 +319,14 @@ impl StorageEngine {
         #[cfg(feature = "fulltext")]
         let text_index = if schema.has_any_fulltext_properties() {
             let ft_dir = std::path::Path::new(path).join("fulltext");
-            Some(
-                crate::foundation::text::TextIndex::open(&ft_dir)
-                    .map_err(|e| DynoError::Storage(format!("full-text index open failed: {e}")))?,
-            )
+            let ti = crate::foundation::text::TextIndex::open(&ft_dir)
+                .map_err(|e| DynoError::Storage(format!("full-text index open failed: {e}")))?;
+            // An index that holds nothing yet will hold only what this build
+            // writes, so it says so; one that already holds documents keeps
+            // what it said, and an open compares that (`fulltext_coverage`).
+            ti.mark_created_under(&schema.fulltext_stamp())
+                .map_err(|e| DynoError::Storage(format!("full-text index open failed: {e}")))?;
+            Some(ti)
         } else {
             None
         };

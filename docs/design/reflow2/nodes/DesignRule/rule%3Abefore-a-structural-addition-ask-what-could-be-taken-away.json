@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:8f27c41be7d238a3aebcd368d6d3a993ca1e821c1e5d55cc85f44471a0104e93",
+  "content_hash": "sha256:55bb1a86ab7d85a77ad1c7ce044334e1e94655d2a88340924a708073bb1fb283",
   "node_id": "rule:before-a-structural-addition-ask-what-could-be-taken-away",
   "node_type": "DesignRule",
+  "prev_item_hash": "sha256:8f27c41be7d238a3aebcd368d6d3a993ca1e821c1e5d55cc85f44471a0104e93",
   "properties": {
     "category": "methodology",
     "distinct_from": [
@@ -14,6 +15,7 @@
       "capture-intent",
       "add_requirement",
       "add_capability",
+      "add_component",
       "add_design_rule"
     ]
   }

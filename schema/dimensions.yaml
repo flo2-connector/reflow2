@@ -18,8 +18,8 @@ schema:
         score: { type: float, range: [0.0, 1.0], description: "0 = worst, 1 = best on this axis." }
         confidence: { type: float, range: [0.0, 1.0] }
         evidence_count: { type: int, default: 1 }
-        evidence: { type: string, description: "Cited support for the score." }
-        description: { type: string }
+        evidence: { type: string, fulltext: true, description: "Cited support for the score." }
+        description: { type: string, fulltext: true }
         assessed_at: { type: string }
       embedding_field: evidence
       extraction_hint: >

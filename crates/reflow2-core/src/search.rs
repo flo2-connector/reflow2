@@ -180,12 +180,15 @@ pub struct SearchResult {
 
 /// What opening a store found wrong with its search index, when the open had
 /// to rebuild it: the index held `indexed_before` documents for a store holding
-/// `searchable` nodes that belong in it. Kept so a surface can say it — a
-/// rebuild that went only to a log would be the silent kind.
+/// `searchable` nodes that belong in it, and `fields_changed` when it had been
+/// built over a different list of the fields search reads (an older release's,
+/// or one that never said). Kept so a surface can say it — a rebuild that went
+/// only to a log would be the silent kind.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
 pub struct SearchIndexRebuild {
     pub indexed_before: usize,
     pub searchable: usize,
+    pub fields_changed: bool,
 }
 
 #[cfg(feature = "fulltext")]

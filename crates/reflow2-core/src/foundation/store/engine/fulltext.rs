@@ -65,15 +65,42 @@ pub struct FulltextCoverage {
     /// Nodes the store holds for the graph, of every type that declares a
     /// `fulltext` property: what a search should run over.
     pub searchable: usize,
+    /// Whether the index was built over the properties THIS build searches.
+    /// `false` when it says a different list, or says none (an index an older
+    /// build made) — even with the counts equal, because a `fulltext` flag
+    /// added to a type already indexed leaves the count where it was. Measured
+    /// 2026-10-12: six prose fields marked searchable reached no node written
+    /// before the release that marked them.
+    pub built_over_these_fields: bool,
 }
 
 #[cfg(feature = "fulltext")]
 impl FulltextCoverage {
-    /// Whether the index holds exactly what the store says it should. Every
-    /// node write mirrors into the index, so two counts that differ mean the
-    /// index was not built from this store — never a matter of timing.
+    /// Whether the index holds exactly what the store says it should, over
+    /// the fields this build searches. Every node write mirrors into the
+    /// index, so two counts that differ mean the index was not built from this
+    /// store — never a matter of timing.
     pub fn covers(&self) -> bool {
-        self.indexed == self.searchable
+        self.indexed == self.searchable && self.built_over_these_fields
+    }
+
+    /// What is wrong with an index that does not cover its store, in a
+    /// sentence a refusal can carry.
+    fn shortfall(&self) -> String {
+        if self.indexed == self.searchable {
+            format!(
+                "the full-text index holds all {} node(s) of this design, but it was built \
+                 over a different list of the fields search reads than this build's, so a \
+                 word in a field it did not read is not in it",
+                self.indexed
+            )
+        } else {
+            format!(
+                "the full-text index holds {} document(s) for this design and the store \
+                 holds {} node(s) that should be in it",
+                self.indexed, self.searchable
+            )
+        }
     }
 }
 
@@ -121,13 +148,11 @@ impl StorageEngine {
                 && !coverage.covers()
             {
                 return Err(DynoError::Storage(format!(
-                    "SEARCH REFUSED rather than answer \"nothing matched\": the full-text index \
-                     holds {} document(s) for this design and the store holds {} node(s) that \
-                     should be in it, so an empty result here would be an absence nobody \
-                     searched for. The index is a copy derived from the store and is rebuilt \
-                     when the store is opened; reopen it (restart the server, or run the call \
-                     again) for a full answer.",
-                    coverage.indexed, coverage.searchable
+                    "SEARCH REFUSED rather than answer \"nothing matched\": {}, so an empty \
+                     result here would be an absence nobody searched for. The index is a copy \
+                     derived from the store and is rebuilt when the store is opened; reopen it \
+                     (restart the server, or run the call again) for a full answer.",
+                    coverage.shortfall()
                 )));
             }
             return Ok(hits);
@@ -174,9 +199,15 @@ impl StorageEngine {
                 searchable += self.count_nodes(graph_id, node_type)?;
             }
         }
+        // What the index says it was built under, against what this build
+        // searches. An engine with no index has already failed above.
+        let built_over_these_fields = self.text_index.as_ref().is_none_or(|ti| {
+            ti.built_under(graph_id).as_deref() == Some(self.schema.fulltext_stamp().as_str())
+        });
         Ok(Some(FulltextCoverage {
             indexed,
             searchable,
+            built_over_these_fields,
         }))
     }
 
@@ -187,7 +218,8 @@ impl StorageEngine {
     ///
     /// Called when a store is opened, because that is the moment a store meets
     /// an index it may not have been written with — a copied directory, an
-    /// older build's store, a lost `fulltext/` — and the one moment a rebuild is
+    /// older build's store, a lost `fulltext/`, an index built over fewer
+    /// fields than this build searches — and the one moment a rebuild is
     /// both cheap to justify and safe (nothing else holds the store yet). This
     /// is what the live server already did at start (`reindex_search`), made a
     /// property of every open instead of one caller's habit: the copy `--call`
@@ -269,6 +301,10 @@ impl StorageEngine {
             }
             ti.commit()
                 .map_err(|e| DynoError::Storage(format!("full-text reindex commit failed: {e}")))?;
+            // Only now, after the commit: the record vouches for documents
+            // that exist.
+            ti.mark_built_under(graph_id, &self.schema.fulltext_stamp())
+                .map_err(|e| DynoError::Storage(e.to_string()))?;
             Ok(count)
         };
         // Best-effort rollback to drop the uncommitted batch on failure;

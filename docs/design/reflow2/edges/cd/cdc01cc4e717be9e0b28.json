@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a8c5e171786409136cc49414d6b330e97a0b4161f9f5a1fe532cb7f3612ac1e7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-reads-every-prose-field-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 18,
+    "action": "modified",
+    "checksum_after": "sha256:4eb68e64034217b9e29c9434353198857c2301ac250d03e4a0a999583b28902e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

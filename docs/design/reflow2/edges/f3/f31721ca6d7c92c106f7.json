@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87462f3b976fc8f4b7350afeebeafa2cb54f5cbf3bfa4f7b6446f8c41aebaa2f",
+  "edge_type": "ANSWERS",
+  "from_id": "ifc:mcp-tools-http",
+  "properties": {
+    "note": "Written in 2026-10-12: medium set to json_rpc, the value his answer added to the vocabulary; the design export document already recorded all nine axes."
+  },
+  "to_id": "question:0bab956571a6ba6a"
+}

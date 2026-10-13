@@ -384,14 +384,25 @@ impl ReflowService {
                 json!({
                     "indexed_before": rebuilt.indexed_before,
                     "searchable": rebuilt.searchable,
-                    "summary": format!(
-                        "Opening this design found its search index holding {} of the {} \
-                         node(s) it should, and rebuilt it from the store, so search now \
-                         covers all of them. Nothing to do. A search made through a build \
-                         older than this one may have answered \"nothing matched\" for \
-                         words the design holds.",
-                        rebuilt.indexed_before, rebuilt.searchable
-                    ),
+                    "fields_changed": rebuilt.fields_changed,
+                    "summary": if rebuilt.indexed_before == rebuilt.searchable
+                        && rebuilt.fields_changed
+                    {
+                        "Opening this design found its search index built over fewer of \
+                         the fields search reads than this build does (an older release's \
+                         index), and rebuilt it from the store, so a word in any of those \
+                         fields is now found. Nothing to do."
+                            .to_string()
+                    } else {
+                        format!(
+                            "Opening this design found its search index holding {} of the {} \
+                             node(s) it should, and rebuilt it from the store, so search now \
+                             covers all of them. Nothing to do. A search made through a build \
+                             older than this one may have answered \"nothing matched\" for \
+                             words the design holds.",
+                            rebuilt.indexed_before, rebuilt.searchable
+                        )
+                    },
                 }),
             );
         }

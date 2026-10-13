@@ -1124,8 +1124,11 @@ impl ReflowService {
     #[tool(
         description = "Find design nodes by what they say, when you don't know their ids — \
                        'what does the design say about persistence?', 'is there already a \
-                       requirement about latency?'. BM25 keyword search over every node's \
-                       name/statement/description, ranked, optionally scoped to one node type. \
+                       requirement about latency?'. BM25 keyword search over every field a node's \
+                       prose is written in (name, statement, description, a rationale, a \
+                       change's summary, a check's findings, an interface's spec ...; never an \
+                       id, date, hash, path or where a record came from), ranked, optionally \
+                       scoped to one node type. \
                        Search BEFORE creating a node that might already exist, and to map the \
                        user's words to the node they mean. Result reports its own bounds: \
                        hits.len() == limit means there may be more, and a non-empty `stale` \

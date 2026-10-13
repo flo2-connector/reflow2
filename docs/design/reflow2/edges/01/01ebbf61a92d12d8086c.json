@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2c5b59cebaa2243344b759d8d5e0fea62ea8e834942f1c1703e2fdb003f30849",
+  "edge_type": "CHANGED",
+  "from_id": "chg:search-reads-every-prose-field-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:9f8d59a8663423726cf8384b229a0cd447a4a3a953646029f3aa6263ade61050",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-temporal"
+}

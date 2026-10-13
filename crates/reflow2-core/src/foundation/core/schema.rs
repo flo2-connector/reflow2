@@ -1366,6 +1366,38 @@ impl Schema {
             .any(|def| def.properties.values().any(|p| p.fulltext))
     }
 
+    /// Every property search reads, as sorted `Type.property` lines, hashed:
+    /// what a full-text index built under this schema covers. An index keeps
+    /// the stamp it was built under, and the open of a store whose index
+    /// carries a different one rebuilds it. Without it a `fulltext` flag
+    /// turned on in a later release reached only the nodes written after it,
+    /// because the document COUNT an open compared is the same before and
+    /// after a flag is added to a type that is already indexed (2026-10-12).
+    pub fn fulltext_stamp(&self) -> String {
+        use sha2::{Digest, Sha256};
+        let mut lines: Vec<String> = self
+            .node_types
+            .iter()
+            .flat_map(|(node_type, def)| {
+                def.properties
+                    .iter()
+                    .filter(|(_, p)| p.fulltext)
+                    .map(move |(name, _)| format!("{node_type}.{name}"))
+            })
+            .collect();
+        lines.sort_unstable();
+        // Byte by byte, as `node_content_hash` does: sha2 0.11's output array
+        // does not implement LowerHex.
+        let digest = Sha256::digest(lines.join("\n").as_bytes());
+        let mut hex = String::with_capacity(7 + 64);
+        hex.push_str("sha256:");
+        for b in digest {
+            use std::fmt::Write as _;
+            let _ = write!(hex, "{b:02x}");
+        }
+        hex
+    }
+
     /// All edge-type names that carry an `inference_category`, sorted for
     /// deterministic output. Replaces the hardcoded `ALL_INFERENCE_TYPES`
     /// list that query endpoints used to maintain by hand.
