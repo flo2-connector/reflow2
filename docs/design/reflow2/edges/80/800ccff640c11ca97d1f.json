@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:22ef0f8983fcf5914b0a9053a74320ffdd38811be4b9675a4e17efae186714e6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7e87b6736f150295d158c9340cdeb13dd3f8ed49ea2f9f02f0838964070ad10e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:capture-intent-asks-what-could-be-taken-away-2026-10-12",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "rule:before-a-structural-addition-ask-what-could-be-taken-away"
+}
