@@ -211,9 +211,9 @@ impl DesignGraph {
     ///
     /// These are the ways reflow2's own design acts on a finding, read from
     /// the 13 follow-through findings of 2026-10-13 that pointed at one
-    /// already acted on: INVALIDATES from a ChangeEvent (8, two of them also
+    /// already acted on: INVALIDATES from a ChangeEvent (9, two of them also
     /// carrying a `valid_to`), MITIGATES from an accepted Decision (1), and
-    /// CAUSES or TRIGGERS out of the finding into a ChangeEvent (2), a
+    /// CAUSES or TRIGGERS out of the finding into a ChangeEvent (1), a
     /// Decision (1) or a Requirement (1). EVOLVES_INTO, the only route the rule
     /// read before, closed none of them.
     ///
