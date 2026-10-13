@@ -83,6 +83,7 @@ fn the_three_states_are_told_apart() {
             other_id: "dec:other".into(),
             evidence: "the first is only worth anything if the second lands".into(),
             incoming: false,
+            properties: Default::default(),
         }],
         None,
     )

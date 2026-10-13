@@ -3,13 +3,43 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Record what a node relates to — or that nothing does. Use it right after capturing an idea, decision or requirement, while the search you ran to check for duplicates is still in hand: those near-matches are the candidates, and today they are read once and thrown away. Draw the relations that are genuinely true (`CONTRADICTS`, `EVOLVES_INTO`, `DEPENDS_ON`, `CAUSES`, `TRIGGERS`, `BLOCKS`, `DUPLICATES`, `ANTICIPATES`, `OBSOLETES`, `RISKS`, `MITIGATES`, `MASKS`, `VIOLATES`), each with the reason in `evidence`. Two or three is a good outcome; ten is a smell, because relatedness is not similarity. If nothing is honestly related, pass `note` instead — that is a real answer, not a weaker one, and it is what tells a later reader this node was considered rather than never opened. NEVER invent a relation to have something to pass: a false neighbour is worse than a missing one, since anything that searches by neighbourhood repeats it forever. Refuses when you give neither.",
+  "description": "Record what a node relates to — or that nothing does. Use it right after capturing an idea, decision or requirement, while the search you ran to check for duplicates is still in hand: those near-matches are the candidates, and today they are read once and thrown away. Draw the relations that are genuinely true (`CONTRADICTS`, `EVOLVES_INTO`, `DEPENDS_ON`, `CAUSES`, `TRIGGERS`, `BLOCKS`, `DUPLICATES`, `ANTICIPATES`, `OBSOLETES`, `RISKS`, `MITIGATES`, `MASKS`, `VIOLATES`), each with the reason in `evidence`. ⚠️ A CONTRADICTS is stored `alignment: opposing` — a conflict, which `detect_defects` reports — unless the link says `\"alignment\": \"supporting\"`: that field, not the evidence, is how a link records corroboration. A link overrides the other defaults the same way: CAUSES `basis` (stored `correlational` when unsaid) and `validation_status` (`unvalidated`), DUPLICATES `basis` (`suspected`), DEPENDS_ON `optional` (`false`) and `weight_basis` (`estimated`); one its relation does not declare is refused. Two or three is a good outcome; ten is a smell, because relatedness is not similarity. If nothing is honestly related, pass `note` instead — that is a real answer, not a weaker one, and it is what tells a later reader this node was considered rather than never opened. NEVER invent a relation to have something to pass: a false neighbour is worse than a missing one, since anything that searches by neighbourhood repeats it forever. Refuses when you give neither.",
   "inputSchema": {
     "$defs": {
       "RelationLinkReq": {
         "additionalProperties": false,
         "description": "One relation for `review_relations`.",
         "properties": {
+          "alignment": {
+            "default": null,
+            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
+            "enum": [
+              "opposing",
+              "supporting",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "basis": {
+            "default": null,
+            "description": "CAUSES: how strongly the link is grounded — `observed`,\n`correlational` (stored when unsaid: a co-variation, not a cause),\n`causal` (only with a mechanism) or `spurious`. DUPLICATES: who\ndecided the two cover the same ground — `asserted` (a person says so)\nor `suspected` (stored when unsaid; never merged).",
+            "enum": [
+              "observed",
+              "correlational",
+              "causal",
+              "spurious",
+              "asserted",
+              "suspected",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "evidence": {
             "description": "WHY this relation is true, in a sentence. Required — a relation with no\nevidence is an assertion the next reader can neither check nor overturn.",
             "type": "string"
@@ -17,6 +47,14 @@
           "incoming": {
             "default": null,
             "description": "Draw the edge FROM the other node instead. Direction is part of the\nclaim: every one of these reads as a sentence, *from RELATION to*, and\nbackwards the same edge asserts something false with nothing to catch it.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "optional": {
+            "default": null,
+            "description": "DEPENDS_ON only: `true` when the source works without the target.\nUnsaid, the dependency is stored as required (`false`).",
             "type": [
               "boolean",
               "null"
@@ -68,6 +106,35 @@
               "VIOLATES"
             ],
             "type": "string"
+          },
+          "validation_status": {
+            "default": null,
+            "description": "CAUSES only: how far the claim has been tested — `unvalidated` (stored\nwhen unsaid), `hypothesis`, `validated` or `refuted`.",
+            "enum": [
+              "unvalidated",
+              "hypothesis",
+              "validated",
+              "refuted",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "weight_basis": {
+            "default": null,
+            "description": "DEPENDS_ON only: how the coupling weight was set — `estimated` (stored\nwhen unsaid), `evidence` or `measured`.",
+            "enum": [
+              "estimated",
+              "evidence",
+              "measured",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [

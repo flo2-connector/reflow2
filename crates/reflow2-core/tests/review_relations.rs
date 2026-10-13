@@ -32,6 +32,7 @@ fn link(relation: &str, other: &str) -> RelationLink {
         other_id: other.into(),
         evidence: "the earlier one already noticed the same discarded material".into(),
         incoming: false,
+        properties: Default::default(),
     }
 }
 
@@ -334,4 +335,61 @@ fn nothing_to_run_on_produces_no_finding_at_all() {
     let mut g = DesignGraph::open_in_memory().expect("open");
     g.add_project("proj:1", "Thing").expect("project");
     assert_eq!(unreviewed_gap(&g), None);
+}
+
+/// A link says the value its relation's schema would otherwise default, and
+/// that value is stored; a link that says nothing stores the default, as
+/// before (`fact:root-cause-review-relations-cannot-mark-a-contradiction-supporting-and-the-default-says-opposing-2026-10-13`).
+#[test]
+fn a_link_property_is_stored_and_an_unsaid_one_takes_the_default() {
+    let mut g = two_ideas();
+    g.create_node(
+        node::DECISION,
+        "dec:c",
+        Props::new()
+            .set("name", "dec:c")
+            .set("decision", "a third idea")
+            .set("status", "proposed"),
+    )
+    .expect("decision");
+    let mut supporting = link(edge::CONTRADICTS, "dec:b");
+    supporting.properties.insert(
+        "alignment".into(),
+        reflow2_core::foundation::core::Value::String("supporting".into()),
+    );
+    g.review_relations(
+        node::DECISION,
+        "dec:a",
+        &[supporting, link(edge::CONTRADICTS, "dec:c")],
+        None,
+    )
+    .expect("review");
+    let alignment = |to: &str| {
+        g.outgoing("dec:a", Some(edge::CONTRADICTS))
+            .expect("edges")
+            .into_iter()
+            .find(|e| e.to_id == to)
+            .and_then(|e| e.properties.get("alignment").cloned())
+            .and_then(|v| v.as_str().map(String::from))
+    };
+    assert_eq!(alignment("dec:b").as_deref(), Some("supporting"));
+    assert_eq!(alignment("dec:c").as_deref(), Some("opposing"));
+}
+
+/// What a link may set is read from the schema: the relation's DEFAULTED
+/// properties, and nothing else.
+#[test]
+fn a_link_may_set_exactly_its_relations_defaulted_properties() {
+    let schema = reflow2_core::schema::load_schema().expect("schema");
+    let names = |rel: &str| -> Vec<String> {
+        reflow2_core::relate::review_link_properties(&schema, rel)
+            .into_iter()
+            .map(|(n, _)| n.to_string())
+            .collect()
+    };
+    assert_eq!(names(edge::CONTRADICTS), ["alignment"]);
+    assert_eq!(names(edge::CAUSES), ["basis", "validation_status"]);
+    assert_eq!(names(edge::DUPLICATES), ["basis"]);
+    assert_eq!(names(edge::DEPENDS_ON), ["optional", "weight_basis"]);
+    assert!(names(edge::BLOCKS).is_empty());
 }
