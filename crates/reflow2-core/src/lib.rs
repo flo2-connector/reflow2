@@ -32,6 +32,7 @@ pub mod allocate;
 pub mod alternatives;
 pub mod artifact;
 pub mod attribution;
+pub mod balance;
 pub mod budget;
 pub mod bulk;
 pub mod claims;
@@ -122,6 +123,11 @@ pub use alternatives::{
     AlternativeRef, AoaReport, BranchMeasures, CollapseReport, analyze_alternatives,
 };
 pub use artifact::{ArtifactLink, DriftDisposition, LinkArtifactOptions};
+pub use balance::{
+    BalanceColumn, BalanceEnd, BalanceItem, BalancePair, BalanceSource, ChangelogBalance,
+    STATUS_SNAPSHOT_PREFIX, StatusEntry, StatusMap, StatusSnapshotOutcome, StatusSnapshotPayload,
+    StatusSnapshotReport, StoredAs, is_status_snapshot_id, status_snapshot_id,
+};
 pub use budget::{BudgetContributor, BudgetReport, BudgetVerdict};
 pub use claims::{Claim, ReaderLens};
 pub use closure::{

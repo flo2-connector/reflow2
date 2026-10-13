@@ -963,9 +963,18 @@ impl DesignGraph {
     /// epoch it was filed in, revision within that epoch, then id to break
     /// ties). That is the only total order the graph actually holds, and it is
     /// the one `snapshot_node`'s `:rN` suffix was designed to be read by.
+    ///
+    /// A release's STATUS SNAPSHOT (`crate::balance`) also hangs from the
+    /// release by `HAS_SNAPSHOT`, and is left out: it records the design's
+    /// statuses at the cut, not the release node's own prior state, and read
+    /// as one it would hand the schedule guard and `arrival_delta` an empty
+    /// plan.
     pub fn snapshots_of(&self, node_id: &str) -> Result<Vec<StoredNode>, DynoError> {
         let mut rows: Vec<(i64, usize, String, StoredNode)> = Vec::new();
         for e in self.outgoing(node_id, Some(edge::HAS_SNAPSHOT))? {
+            if crate::balance::is_status_snapshot_id(&e.to_id) {
+                continue;
+            }
             let Some(snap) = self.get_node(node::SNAPSHOT, &e.to_id)? else {
                 continue;
             };
@@ -1949,7 +1958,9 @@ impl DesignGraph {
         let mut by_field: BTreeMap<String, String> = BTreeMap::new();
 
         for snapshot in self.scan_nodes(node::SNAPSHOT)? {
-            if snapshot.properties.get("target_id").and_then(Value::as_str) != Some(target_id) {
+            if snapshot.properties.get("target_id").and_then(Value::as_str) != Some(target_id)
+                || crate::balance::is_status_snapshot_id(&snapshot.node_id)
+            {
                 continue;
             }
             // A snapshot that will not parse is not evidence of preservation,

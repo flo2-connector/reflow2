@@ -338,7 +338,14 @@ impl ReflowService {
                        do, because the graph holds what moved and never what it costs \
                        downstream — `needs_a_human` names that obligation instead of inventing \
                        it. Nothing is stored; a stored changelog would be a second source of \
-                       truth able to disagree with the graph.",
+                       truth able to disagree with the graph. The draft also carries a `balance`, \
+                       counted from the status snapshots releases keep at their cut: \
+                       requirements added against dropped or deferred, capabilities added against \
+                       removed or withdrawn, decisions accepted against reversed, checks gone from \
+                       passing to failing, and the window's test_failure_fix changes. Each count \
+                       says how it was counted; an end with no snapshot is named, its counts \
+                       absent, never zero. `[Unreleased]` reads the last deployed release against \
+                       the live design. It never says a design does too much.",
         title = "Changelog Draft",
         annotations(read_only_hint = true)
     )]

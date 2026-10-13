@@ -640,6 +640,12 @@ pub struct ChangelogDraft {
     /// Anything that limited the answer — a release with no epoch, an
     /// unresolvable point. Loud, never silent.
     pub notes: Vec<String>,
+    /// What was taken away beside what was added between the two ends, and
+    /// the failures that came back (`cap:changelog-view-carries-a-balance-line`).
+    /// Counted from the status snapshot each release keeps at its cut, or the
+    /// live design for `[Unreleased]`; an end with none is named in its
+    /// `notes` and its counts are absent, never zero.
+    pub balance: crate::balance::ChangelogBalance,
 }
 
 /// One end of the window, resolved to the epoch ordering that drives it.
@@ -952,6 +958,17 @@ impl DesignGraph {
             ));
         }
 
+        let balance = self.changelog_balance(
+            from_point
+                .as_ref()
+                .map(|p| (p.id.as_str(), p.release_id.as_deref())),
+            to_point
+                .as_ref()
+                .map(|p| (p.id.as_str(), p.release_id.as_deref())),
+            to.is_none(),
+            &epochs_in_window,
+        )?;
+
         Ok(ChangelogDraft {
             heading,
             from: from_point.as_ref().map(|p| p.id.clone()),
@@ -964,6 +981,7 @@ impl DesignGraph {
             is_draft: true,
             needs_a_human,
             notes,
+            balance,
         })
     }
 

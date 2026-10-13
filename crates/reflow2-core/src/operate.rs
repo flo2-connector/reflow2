@@ -494,6 +494,12 @@ pub struct DerivedManifest {
     pub without_checksum: Vec<String>,
     /// False when nothing was written — the derivation was only looked at.
     pub applied: bool,
+    /// The release's STATUS SNAPSHOT, kept with the manifest at the cut
+    /// (`cap:changelog-view-carries-a-balance-line`): whether this call wrote
+    /// it, found it already kept, would write it, or did not take it and why,
+    /// and how many entries it holds. `changelog_view` reads it as one end of
+    /// the balance between two releases.
+    pub status_snapshot: crate::balance::StatusSnapshotReport,
 }
 
 impl DesignGraph {
@@ -625,11 +631,26 @@ impl DesignGraph {
         entries.sort_by(|a, b| a.target_id.cmp(&b.target_id));
         without_checksum.sort();
 
-        if apply {
-            for (target_type, target_id, checksum) in &to_write {
-                self.release_includes(release_id, target_type, target_id, checksum.as_deref())?;
+        // The status snapshot is planned from what the design holds BEFORE
+        // anything is written, and written in the same batch as the manifest,
+        // so the two land together or not at all. Whether the manifest held
+        // anything before this call is what says the cut is past.
+        let prepared = self.prepare_status_snapshot(release_id, existing.is_empty())?;
+        let status_snapshot = if apply {
+            self.begin_batch();
+            match self.write_manifest_and_snapshot(release_id, &to_write, prepared) {
+                Ok(report) => {
+                    self.commit_batch()?;
+                    report
+                }
+                Err(e) => {
+                    self.discard_batch();
+                    return Err(e);
+                }
             }
-        }
+        } else {
+            self.settle_status_snapshot(prepared, false)?
+        };
 
         let added = to_write.len();
         let already_present = entries
@@ -649,6 +670,21 @@ impl DesignGraph {
             excluded: excluded_count,
             without_checksum,
             applied: apply,
+            status_snapshot,
         })
+    }
+
+    /// The writes of an applied derivation: the manifest's new `INCLUDES`
+    /// edges, then the release's status snapshot. Run inside one batch.
+    fn write_manifest_and_snapshot(
+        &mut self,
+        release_id: &str,
+        to_write: &[(&str, String, Option<String>)],
+        prepared: crate::balance::PreparedStatusSnapshot,
+    ) -> Result<crate::balance::StatusSnapshotReport, DynoError> {
+        for (target_type, target_id, checksum) in to_write {
+            self.release_includes(release_id, target_type, target_id, checksum.as_deref())?;
+        }
+        self.settle_status_snapshot(prepared, true)
     }
 }

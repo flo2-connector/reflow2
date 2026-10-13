@@ -573,7 +573,8 @@ fn cut(g: &mut DesignGraph, rel: &str, epoch: &str, seq: i64) -> StatusSnapshotR
     )
     .unwrap();
     let manifest = g.release_includes_all(rel, &[], true).unwrap();
-    g.add_epoch(epoch, epoch, EpochType::ReleaseCut, seq).unwrap();
+    g.add_epoch(epoch, epoch, EpochType::ReleaseCut, seq)
+        .unwrap();
     g.pin_at_epoch(node::RELEASE, rel, epoch).unwrap();
     manifest.status_snapshot
 }
@@ -904,7 +905,11 @@ fn each_balance_count_says_what_it_counted_and_how() {
     let caps = b.capabilities.unwrap();
     assert_eq!(ids(&caps.added.items), ["cap:new"]);
     assert_eq!(ids(&caps.taken_away.items), ["cap:gone", "cap:withdrawn"]);
-    assert!(caps.taken_away.items[0].how.contains("no longer in the design"));
+    assert!(
+        caps.taken_away.items[0]
+            .how
+            .contains("no longer in the design")
+    );
 
     let decs = b.decisions.unwrap();
     assert_eq!(ids(&decs.added.items), ["dec:later", "dec:withdraw"]);
@@ -935,7 +940,9 @@ fn each_balance_count_says_what_it_counted_and_how() {
     }
     // And it reports; it never judges.
     assert!(
-        b.limits.iter().any(|l| l.contains("never says a design does too much")),
+        b.limits
+            .iter()
+            .any(|l| l.contains("never says a design does too much")),
         "{:?}",
         b.limits
     );
@@ -1023,5 +1030,19 @@ fn an_unreleased_window_reads_the_last_deployed_release_against_the_live_design(
         b.limits.iter().any(|l| l.contains("live design")),
         "{:?}",
         b.limits
+    );
+}
+
+#[test]
+fn a_release_status_snapshot_is_not_read_as_the_release_nodes_own_history() {
+    // It hangs from the release by HAS_SNAPSHOT, as a node's own prior state
+    // does. Read as one, it would hand the schedule guard and arrival_delta a
+    // snapshot of an EMPTY plan for the release.
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+    assert!(
+        g.snapshots_of("rel:one").unwrap().is_empty(),
+        "the status snapshot is not the release's own history"
     );
 }
