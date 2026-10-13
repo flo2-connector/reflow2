@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7f970038a18c6c02d12171387d89857e6c9ebbf7593a69ca32621642c06b723c",
+  "node_id": "req:a-changelog-shows-what-was-taken-away-beside-what-was-added",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A changelog between two releases shows a balance: what was taken away beside what was added, and the failures that came back from real runs",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-13: option (b) of dec:idea-via-negativa-holds-any-design-against-requirements-creep, with (e) of dec:idea-convexity-in-the-decision-process merged in",
+    "statement": "changelog_view's draft between two moments of a design carries one balance line. In each pair, the first is what was added and the rest is what was taken away or turned back:\n- requirements added, against those dropped or deferred;\n- capabilities added, against those removed or deprecated;\n- decisions accepted, against those reversed (superseded or rejected after acceptance);\n- failures that came back from real runs: checks that failed, and fixes a check caught.\nEach count says how it was counted, and names what the window could not see rather than counting it as zero. Read release after release, the line shows whether a design only grows. It never says a design does too much: scope stays the person's call.\n\nAnthony, 2026-10-13, choosing between a balance line in changelog_view and a separate report: \"On the removals measure, we could start a balance line in the change log view.\"\n\nVia negativa, asked before this addition: nothing is taken away, and the separate report it could have been is the addition avoided. It adds to a view that exists rather than adding a tool.",
+    "status": "accepted"
+  }
+}

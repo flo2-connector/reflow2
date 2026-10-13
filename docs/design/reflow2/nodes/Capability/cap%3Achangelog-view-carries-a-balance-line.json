@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0fd396b5395bd1a4dbfd957c0131027d6713f5ee9ab7c917b6085ad0df8a060f",
+  "node_id": "cap:changelog-view-carries-a-balance-line",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Planned 2026-10-13. Where the counts come from waits on dec:how-the-changelog-balance-is-counted; option (C), a status snapshot kept by each release, is recommended. Not started. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "changelog_view's draft carries a balance line: requirements, capabilities and decisions added beside those taken away or reversed, and failures that came back, each count saying how it was counted",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

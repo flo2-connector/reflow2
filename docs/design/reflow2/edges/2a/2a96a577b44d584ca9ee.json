@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:adf6790db332877dd600bdeaaf7afe2eaacfa4323b2a44442978cff5f7f42943",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-home-page-says-what-the-links-answer-and-shows-them-adding-up",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

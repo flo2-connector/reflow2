@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3b498fe1bf2c67330626efe7506af69a0884e78d4a632bebaa6f98a1c94f598c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-home-page-says-what-the-links-answer-and-shows-them-adding-up-2026-10-13",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

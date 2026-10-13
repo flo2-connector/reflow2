@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e8ed67194bc5734d4867a4d37ebdac12cef0efa202c4f9f9f243b55fb1f14d87",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:site-counts-tool-tests",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-sites-counts-of-reflow2s-design-are-never-inflated-or-quietly-empty"
+}
