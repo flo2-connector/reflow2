@@ -19,7 +19,9 @@
 
 use reflow2_core::nodes::{Props, edge, node};
 use reflow2_core::{
-    ChangeAction, ChangeRecord, ChangeType, ChangelogBucket, DesignGraph, EpochType, changelog_rule,
+    BalanceSource, ChangeAction, ChangeRecord, ChangeType, ChangelogBucket, DesignGraph, EpochType,
+    StatusSnapshotOutcome, StatusSnapshotPayload, StatusSnapshotReport, StoredAs, changelog_rule,
+    status_snapshot_id,
 };
 
 /// Two releases, each pinned to an epoch, with `before` deployed. The shape
@@ -508,4 +510,518 @@ fn an_accept_that_is_not_a_fix_stays_out_of_the_fixed_bucket() {
         .unwrap();
     assert_eq!(entry.bucket, ChangelogBucket::Changed);
     assert_eq!(entry.rule, changelog_rule::ACTION_MODIFIED);
+}
+
+// =========================================================================
+// The balance line (`cap:changelog-view-carries-a-balance-line`,
+// `dec:how-the-changelog-balance-is-counted`, option C).
+//
+// Each release keeps a STATUS SNAPSHOT, written by `release_includes_all` with
+// `apply: true` at the cut: the status of every Requirement, Capability,
+// Decision and Verification, and whether an accepted decision has withdrawn
+// it. The first is stored whole and each later one as a delta from the
+// previous release's. `changelog_view` compares two releases' reconstructed
+// states and reports what was added beside what was taken away.
+//
+// The ways this could report success while being wrong, which these tests
+// exist to catch:
+//
+// - a count of ZERO where an end simply kept no snapshot — the false
+//   reassurance the measure exists to prevent;
+// - a delta that does not reconstruct to what the release saw;
+// - a re-run of the cut quietly rewriting what a past release saw;
+// - a withdrawn capability read as live because its status did not move;
+// - the window's own blind spot (added and dropped inside it) left unsaid.
+// =========================================================================
+
+/// One of each kind of intent the balance counts, at a starting status.
+fn intent(g: &mut DesignGraph) {
+    for id in ["req:keep", "req:drop", "req:defer"] {
+        g.add_requirement(id, id, "a statement").unwrap();
+        g.set_requirement_status(id, "accepted").unwrap();
+    }
+    for id in ["cap:keep", "cap:gone", "cap:withdrawn"] {
+        g.add_capability(id, id, "a capability", Some("realized"))
+            .unwrap();
+    }
+    for id in ["dec:stay", "dec:super", "dec:rej"] {
+        g.add_decision(id, id, "a decision", None).unwrap();
+        g.set_decision_status(id, "accepted").unwrap();
+    }
+    g.add_decision("dec:later", "dec:later", "a decision", None)
+        .unwrap();
+    for id in ["ver:ok", "ver:breaks"] {
+        g.add_verification(id, id, Some("test"), None, None)
+            .unwrap();
+        g.set_verification_status(id, "passing", None, None)
+            .unwrap();
+    }
+}
+
+/// A cut in the order `flow:release-cut` runs it: the release exists, its
+/// manifest is derived with `apply: true` (step 4, which keeps the status
+/// snapshot), and only THEN is it pinned to its epoch (step 5). Deployed, so
+/// `[Unreleased]` reads from it.
+fn cut(g: &mut DesignGraph, rel: &str, epoch: &str, seq: i64) -> StatusSnapshotReport {
+    g.create_node(
+        node::RELEASE,
+        rel,
+        Props::new()
+            .set("name", rel)
+            .set("version", rel)
+            .set("status", "deployed"),
+    )
+    .unwrap();
+    let manifest = g.release_includes_all(rel, &[], true).unwrap();
+    g.add_epoch(epoch, epoch, EpochType::ReleaseCut, seq).unwrap();
+    g.pin_at_epoch(node::RELEASE, rel, epoch).unwrap();
+    manifest.status_snapshot
+}
+
+fn payload_of(g: &DesignGraph, rel: &str) -> StatusSnapshotPayload {
+    let snap = g
+        .get_node(node::SNAPSHOT, &status_snapshot_id(rel))
+        .unwrap()
+        .unwrap_or_else(|| panic!("no status snapshot kept for {rel}"));
+    let state = snap
+        .properties
+        .get("state")
+        .and_then(reflow2_core::foundation::core::Value::as_str)
+        .expect("the payload is the Snapshot's `state`");
+    serde_json::from_str(state).expect("the payload parses")
+}
+
+fn ids(items: &[reflow2_core::BalanceItem]) -> Vec<&str> {
+    items.iter().map(|i| i.id.as_str()).collect()
+}
+
+#[test]
+fn the_cut_keeps_a_status_snapshot_of_every_requirement_capability_decision_and_check() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    g.create_node(
+        node::RELEASE,
+        "rel:one",
+        Props::new().set("name", "one").set("status", "planned"),
+    )
+    .unwrap();
+
+    // A dry run says what it WOULD keep and writes nothing.
+    let dry = g.release_includes_all("rel:one", &[], false).unwrap();
+    assert_eq!(dry.status_snapshot.outcome, StatusSnapshotOutcome::DryRun);
+    assert_eq!(dry.status_snapshot.statuses, Some(12));
+    assert!(
+        g.get_node(node::SNAPSHOT, &status_snapshot_id("rel:one"))
+            .unwrap()
+            .is_none(),
+        "a dry run must write nothing"
+    );
+
+    let kept = g
+        .release_includes_all("rel:one", &[], true)
+        .unwrap()
+        .status_snapshot;
+    assert_eq!(kept.outcome, StatusSnapshotOutcome::Written);
+    assert_eq!(kept.stored_as, Some(StoredAs::Whole));
+    assert_eq!(kept.base_release, None);
+    assert_eq!(kept.entries, Some(12), "the first is stored whole");
+    assert_eq!(kept.statuses, Some(12));
+    assert!(
+        kept.note.contains("12"),
+        "the reply says how many entries it holds: {}",
+        kept.note
+    );
+
+    // Stored on the existing Snapshot type, linked to the release.
+    let snap = g
+        .get_node(node::SNAPSHOT, &status_snapshot_id("rel:one"))
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        snap.properties
+            .get("target_id")
+            .and_then(reflow2_core::foundation::core::Value::as_str),
+        Some("rel:one")
+    );
+    assert!(
+        g.outgoing("rel:one", Some(edge::HAS_SNAPSHOT))
+            .unwrap()
+            .iter()
+            .any(|e| e.to_id == status_snapshot_id("rel:one")),
+        "the release links to its snapshot"
+    );
+
+    let p = payload_of(&g, "rel:one");
+    assert_eq!(p.stored_as, StoredAs::Whole);
+    assert_eq!(
+        p.covers,
+        ["Capability", "Decision", "Requirement", "Verification"]
+    );
+    assert_eq!(
+        p.set["Requirement"]["req:drop"].status.as_deref(),
+        Some("accepted")
+    );
+    assert_eq!(
+        p.set["Decision"]["dec:later"].status.as_deref(),
+        Some("proposed")
+    );
+    assert_eq!(
+        p.set["Verification"]["ver:breaks"].status.as_deref(),
+        Some("passing")
+    );
+    assert_eq!(
+        g.release_statuses("rel:one").unwrap(),
+        Some(g.current_statuses().unwrap())
+    );
+}
+
+#[test]
+fn a_discontinued_node_is_kept_as_discontinued_because_its_status_does_not_move() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+
+    g.add_decision("dec:withdraw", "withdraw it", "withdrawn", None)
+        .unwrap();
+    g.set_decision_status("dec:withdraw", "accepted").unwrap();
+    g.create_edge(
+        edge::OBSOLETES,
+        node::DECISION,
+        "dec:withdraw",
+        node::CAPABILITY,
+        "cap:withdrawn",
+        Props::new(),
+    )
+    .unwrap();
+    cut(&mut g, "rel:two", "epoch:two", 20);
+
+    let two = g.release_statuses("rel:two").unwrap().unwrap();
+    let withdrawn = &two["Capability"]["cap:withdrawn"];
+    assert_eq!(
+        withdrawn.status.as_deref(),
+        Some("realized"),
+        "the stored status still records what was built"
+    );
+    assert!(withdrawn.discontinued, "and the snapshot says it is gone");
+    assert!(!two["Capability"]["cap:keep"].discontinued);
+
+    let balance = g
+        .changelog_view(Some("rel:one"), Some("rel:two"))
+        .unwrap()
+        .balance;
+    let caps = balance.capabilities.expect("both ends keep a snapshot");
+    assert_eq!(ids(&caps.taken_away.items), ["cap:withdrawn"]);
+    assert!(
+        caps.taken_away.items[0].how.contains("withdrawn"),
+        "{}",
+        caps.taken_away.items[0].how
+    );
+}
+
+#[test]
+fn three_cuts_keep_one_whole_snapshot_and_two_deltas_that_reconstruct_exactly() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    let one = cut(&mut g, "rel:one", "epoch:one", 10);
+    let at_one = g.current_statuses().unwrap();
+
+    g.set_requirement_status("req:drop", "dropped").unwrap();
+    g.add_requirement("req:new", "new", "a statement").unwrap();
+    let two = cut(&mut g, "rel:two", "epoch:two", 20);
+    let at_two = g.current_statuses().unwrap();
+
+    g.set_verification_status("ver:breaks", "failing", None, None)
+        .unwrap();
+    g.delete_node(node::CAPABILITY, "cap:gone").unwrap();
+    let three = cut(&mut g, "rel:three", "epoch:three", 30);
+    let at_three = g.current_statuses().unwrap();
+
+    assert_eq!(one.stored_as, Some(StoredAs::Whole));
+    assert_eq!(two.stored_as, Some(StoredAs::Delta));
+    assert_eq!(two.base_release.as_deref(), Some("rel:one"));
+    assert_eq!(two.entries, Some(2), "one status moved, one node added");
+    assert_eq!(two.statuses, Some(13));
+    assert_eq!(three.stored_as, Some(StoredAs::Delta));
+    assert_eq!(three.base_release.as_deref(), Some("rel:two"));
+    assert_eq!(three.entries, Some(2), "one status moved, one node removed");
+    assert_eq!(three.statuses, Some(12));
+
+    let p2 = payload_of(&g, "rel:two");
+    assert_eq!(
+        p2.base_snapshot.as_deref(),
+        Some(status_snapshot_id("rel:one").as_str())
+    );
+    assert_eq!(
+        p2.set["Requirement"]["req:drop"].status.as_deref(),
+        Some("dropped")
+    );
+    assert!(p2.set["Requirement"].contains_key("req:new"));
+    assert!(
+        !p2.set.contains_key("Capability"),
+        "a delta holds only what moved"
+    );
+    let p3 = payload_of(&g, "rel:three");
+    assert_eq!(p3.removed["Capability"], ["cap:gone"]);
+
+    assert_eq!(g.release_statuses("rel:one").unwrap(), Some(at_one));
+    assert_eq!(g.release_statuses("rel:two").unwrap(), Some(at_two));
+    assert_eq!(g.release_statuses("rel:three").unwrap(), Some(at_three));
+}
+
+#[test]
+fn a_rerun_of_apply_leaves_a_past_snapshot_exactly_as_it_was() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+    let before = g
+        .get_node(node::SNAPSHOT, &status_snapshot_id("rel:one"))
+        .unwrap()
+        .unwrap();
+    let at_cut = g.release_statuses("rel:one").unwrap();
+
+    // The design moves on, and the cut's derivation is run again.
+    g.set_requirement_status("req:keep", "dropped").unwrap();
+    g.add_artifact("art:late", "late.rs", None, Some("src/late.rs"))
+        .unwrap();
+    let again = g.release_includes_all("rel:one", &[], true).unwrap();
+
+    assert_eq!(
+        again.status_snapshot.outcome,
+        StatusSnapshotOutcome::AlreadyKept
+    );
+    assert_eq!(again.status_snapshot.entries, Some(12));
+    let after = g
+        .get_node(node::SNAPSHOT, &status_snapshot_id("rel:one"))
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        before.properties, after.properties,
+        "what a release saw must not move"
+    );
+    assert_eq!(g.release_statuses("rel:one").unwrap(), at_cut);
+}
+
+#[test]
+fn a_release_whose_manifest_was_frozen_earlier_gets_no_snapshot_dated_today() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    g.add_artifact("art:a", "a.rs", None, Some("src/a.rs"))
+        .unwrap();
+    g.create_node(
+        node::RELEASE,
+        "rel:old",
+        Props::new().set("name", "old").set("status", "deployed"),
+    )
+    .unwrap();
+    // Cut before releases kept a snapshot: its manifest was typed out.
+    g.release_includes("rel:old", node::ARTIFACT, "art:a", None)
+        .unwrap();
+
+    let report = g
+        .release_includes_all("rel:old", &[], true)
+        .unwrap()
+        .status_snapshot;
+    assert_eq!(report.outcome, StatusSnapshotOutcome::NotTaken);
+    assert!(
+        report.note.contains("frozen"),
+        "the reply says why: {}",
+        report.note
+    );
+    assert!(
+        g.get_node(node::SNAPSHOT, &status_snapshot_id("rel:old"))
+            .unwrap()
+            .is_none(),
+        "today's statuses must not be written down as what an old release saw"
+    );
+}
+
+#[test]
+fn each_balance_count_says_what_it_counted_and_how() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+
+    // Requirements: one added, one dropped, one deferred.
+    g.add_requirement("req:new", "new", "a statement").unwrap();
+    g.set_requirement_status("req:drop", "dropped").unwrap();
+    g.set_requirement_status("req:defer", "deferred").unwrap();
+    // Capabilities: one added, one removed, one withdrawn.
+    g.add_capability("cap:new", "new", "a capability", None)
+        .unwrap();
+    g.delete_node(node::CAPABILITY, "cap:gone").unwrap();
+    g.add_decision("dec:withdraw", "withdraw it", "withdrawn", None)
+        .unwrap();
+    g.set_decision_status("dec:withdraw", "accepted").unwrap();
+    g.create_edge(
+        edge::OBSOLETES,
+        node::DECISION,
+        "dec:withdraw",
+        node::CAPABILITY,
+        "cap:withdrawn",
+        Props::new(),
+    )
+    .unwrap();
+    // Decisions: two accepted (dec:later, dec:withdraw), two reversed.
+    g.set_decision_status("dec:later", "accepted").unwrap();
+    g.set_decision_status("dec:super", "superseded").unwrap();
+    g.set_decision_status("dec:rej", "rejected").unwrap();
+    // Checks: one went from passing to failing.
+    g.set_verification_status("ver:breaks", "failing", None, None)
+        .unwrap();
+
+    cut(&mut g, "rel:two", "epoch:two", 20);
+    // A fix a check caught, pinned into the window.
+    g.add_change_event(
+        "chg:fix",
+        "a check caught it",
+        ChangeType::TestFailureFix,
+        None,
+        None,
+        None,
+        None,
+    )
+    .unwrap();
+    g.pin_at_epoch(node::CHANGE_EVENT, "chg:fix", "epoch:two")
+        .unwrap();
+
+    let draft = g.changelog_view(Some("rel:one"), Some("rel:two")).unwrap();
+    let b = draft.balance;
+    assert!(b.counted, "both ends keep a snapshot: {:?}", b.notes);
+    assert_eq!(b.from.source, BalanceSource::Snapshot);
+    assert_eq!(b.to.source, BalanceSource::Snapshot);
+    assert_eq!(b.from.id.as_deref(), Some("rel:one"));
+    assert_eq!(b.to.id.as_deref(), Some("rel:two"));
+
+    let reqs = b.requirements.unwrap();
+    assert_eq!(ids(&reqs.added.items), ["req:new"]);
+    assert_eq!(ids(&reqs.taken_away.items), ["req:defer", "req:drop"]);
+    assert_eq!(reqs.added.count, 1);
+    assert_eq!(reqs.taken_away.count, 2);
+    let drop = &reqs.taken_away.items[1];
+    assert_eq!(drop.before.as_deref(), Some("accepted"));
+    assert_eq!(drop.after.as_deref(), Some("dropped"));
+
+    let caps = b.capabilities.unwrap();
+    assert_eq!(ids(&caps.added.items), ["cap:new"]);
+    assert_eq!(ids(&caps.taken_away.items), ["cap:gone", "cap:withdrawn"]);
+    assert!(caps.taken_away.items[0].how.contains("no longer in the design"));
+
+    let decs = b.decisions.unwrap();
+    assert_eq!(ids(&decs.added.items), ["dec:later", "dec:withdraw"]);
+    assert_eq!(ids(&decs.taken_away.items), ["dec:rej", "dec:super"]);
+
+    let checks = b.checks_now_failing.unwrap();
+    assert_eq!(ids(&checks.items), ["ver:breaks"]);
+    assert_eq!(checks.count, 1);
+
+    assert_eq!(ids(&b.failures_that_came_back.items), ["chg:fix"]);
+
+    // Every count says how it was counted.
+    for column in [
+        &reqs.added,
+        &reqs.taken_away,
+        &caps.added,
+        &caps.taken_away,
+        &decs.added,
+        &decs.taken_away,
+        &checks,
+        &b.failures_that_came_back,
+    ] {
+        assert!(
+            !column.how_counted.is_empty(),
+            "a count with no method: {column:?}"
+        );
+        assert_eq!(column.count, column.items.len());
+    }
+    // And it reports; it never judges.
+    assert!(
+        b.limits.iter().any(|l| l.contains("never says a design does too much")),
+        "{:?}",
+        b.limits
+    );
+}
+
+#[test]
+fn an_end_with_no_snapshot_is_named_and_never_counted_as_zero() {
+    // Two releases cut before releases kept snapshots.
+    let mut g = two_releases();
+    a_requirement(&mut g, "req:x", "x");
+
+    let b = g
+        .changelog_view(Some("rel:one"), Some("rel:two"))
+        .unwrap()
+        .balance;
+    assert!(!b.counted);
+    assert_eq!(b.from.source, BalanceSource::NotKept);
+    assert!(b.requirements.is_none(), "no count, rather than a zero");
+    assert!(b.capabilities.is_none());
+    assert!(b.decisions.is_none());
+    assert!(b.checks_now_failing.is_none());
+    assert!(
+        b.notes.iter().any(|n| n.contains("'rel:one'")),
+        "the end with no snapshot is named: {:?}",
+        b.notes
+    );
+
+    // An epoch end is named the same way: only a release keeps one.
+    let b = g
+        .changelog_view(Some("epoch:one"), Some("rel:two"))
+        .unwrap()
+        .balance;
+    assert!(!b.counted);
+    assert!(
+        b.notes.iter().any(|n| n.contains("'epoch:one'")),
+        "{:?}",
+        b.notes
+    );
+}
+
+#[test]
+fn something_added_and_taken_away_inside_one_window_is_in_neither_column_and_the_limit_says_so() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+    g.add_requirement("req:brief", "came and went", "a statement")
+        .unwrap();
+    g.set_requirement_status("req:brief", "dropped").unwrap();
+    cut(&mut g, "rel:two", "epoch:two", 20);
+
+    let b = g
+        .changelog_view(Some("rel:one"), Some("rel:two"))
+        .unwrap()
+        .balance;
+    let reqs = b.requirements.unwrap();
+    assert!(!ids(&reqs.added.items).contains(&"req:brief"));
+    assert!(!ids(&reqs.taken_away.items).contains(&"req:brief"));
+    assert!(
+        b.limits.iter().any(|l| l.contains("neither column")),
+        "the net-count limit is stated: {:?}",
+        b.limits
+    );
+}
+
+#[test]
+fn an_unreleased_window_reads_the_last_deployed_release_against_the_live_design() {
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    intent(&mut g);
+    cut(&mut g, "rel:one", "epoch:one", 10);
+    g.add_requirement("req:since", "since the cut", "a statement")
+        .unwrap();
+    g.set_decision_status("dec:super", "superseded").unwrap();
+
+    let draft = g.changelog_view(None, None).unwrap();
+    assert_eq!(draft.heading, "[Unreleased]");
+    let b = draft.balance;
+    assert!(b.counted, "{:?}", b.notes);
+    assert_eq!(b.from.id.as_deref(), Some("rel:one"));
+    assert_eq!(b.from.source, BalanceSource::Snapshot);
+    assert_eq!(b.to.source, BalanceSource::LiveDesign);
+    assert_eq!(b.to.id, None);
+    assert_eq!(ids(&b.requirements.unwrap().added.items), ["req:since"]);
+    assert_eq!(ids(&b.decisions.unwrap().taken_away.items), ["dec:super"]);
+    assert!(
+        b.limits.iter().any(|l| l.contains("live design")),
+        "{:?}",
+        b.limits
+    );
 }
