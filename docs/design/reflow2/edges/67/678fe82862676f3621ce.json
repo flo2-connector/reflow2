@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b90781da1e1fb1fe6baa99ce2fc1052f18937f86a43869633c592827853f8a91",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-changelog-shows-a-balance",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:changelog-view-carries-a-balance-line"
+}

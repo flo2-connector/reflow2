@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d1b3709731551157320e3b09cad6690bc0fd08926782f6676d3560ccff997e1a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-reflow2-can-learn-from-oh-my-pi",
+  "properties": {
+    "evidence": "Option (d): parallel subagents in worktrees, now a harness default, are what makes per-agent identity and claims load-bearing.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:every-agent-working-a-design-is-its-own-claimant-subagents-included"
+}

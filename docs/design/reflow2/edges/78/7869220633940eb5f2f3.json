@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f70fe4b00c46140271ecfe08a6d0fab756f9e7d7f35b834416873c61bf86b7ed",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:changelog-view-carries-a-balance-line",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compare"
+}

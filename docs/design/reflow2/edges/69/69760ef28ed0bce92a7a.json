@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:76f4a955f8933b3348ce0cb6b1f0f4ed03039aeba2ac054495713c371784fba1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:compare",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

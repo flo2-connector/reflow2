@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:7ee18b359f379e1efbac4ca54cdd5ebaf6d6a07012ef88383897bafac6b68904",
+  "content_hash": "sha256:f275d65c32d088955a65ae4405c9a8fc956e76d4ca7ca4afa6d6751c98a54b8d",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:how-the-changelog-balance-is-counted",
+  "prev_item_hash": "sha256:7ee18b359f379e1efbac4ca54cdd5ebaf6d6a07012ef88383897bafac6b68904",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

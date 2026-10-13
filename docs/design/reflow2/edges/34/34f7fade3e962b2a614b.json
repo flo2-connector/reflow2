@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:72132c47e912dc4f633d2f5095d9524786602652e14b8b963a4aa16fa2ff5a53",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-changelog-shows-a-balance",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:0256b72ea0ac0189ba9bf4960b4f1855481ad819904bedcfd0c320eac77102f8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-operate"
+}

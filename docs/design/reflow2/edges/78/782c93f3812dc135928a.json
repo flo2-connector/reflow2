@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:10607153be7c6e78955793e446495d32a370f5621783315630b881a87a65b839",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-reflow2-can-learn-from-oh-my-pi",
+  "properties": {
+    "evidence": "Option (a) is evidence for that accepted pruning, not a new direction: a full harness covers its job with 31 tools.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set"
+}

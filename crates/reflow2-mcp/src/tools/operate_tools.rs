@@ -368,7 +368,11 @@ impl ReflowService {
                        the manifest is reported as already_present and its frozen checksum is \
                        never rewritten, because what a past release shipped must not move with \
                        the live drift baseline. without_checksum names the artifacts whose entry \
-                       cannot say WHAT shipped. \
+                       cannot say WHAT shipped. With apply it also keeps the release's status \
+                       snapshot (every requirement, capability, decision and check's status, \
+                       stored as a delta from the previous release's), which changelog_view's \
+                       balance reads: `status_snapshot` says it was written and how many entries \
+                       it holds, and a re-run never rewrites one. \
                        Ask for this to put everything built since the last release into this one.",
         title = "Derive a Release Manifest",
         annotations(read_only_hint = false, destructive_hint = false)

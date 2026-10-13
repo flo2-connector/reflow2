@@ -42,6 +42,8 @@ readers:
   artifact.rs::set_checksum_basis: { kind: not_derived, edges: [CHANGED], why: "A writer: stamps the basis onto the artifact's current acceptance edge as well as the node, so the two copies of one fact say the same thing." }
   artifact.rs::stamp_acceptance: { kind: not_derived, edges: [CHANGED], why: "A writer: puts the checksum an accept accepted on the accepting change's CHANGED edge, numbered one above the artifact's other acceptances." }
   artifact.rs::write_artifact_link: { kind: unjudged, edges: [IMPLEMENTS, YIELDED] }
+  balance.rs::failures_in_window: { kind: not_derived, edges: [AT_EPOCH], why: "A listing: the test_failure_fix ChangeEvents pinned to the epochs changelog_view already put in its window, one hop each, for the balance line's failures-that-came-back column. It derives no relation." }
+  balance.rs::release_epoch_sequence: { kind: not_derived, edges: [AT_EPOCH], why: "One hop, one release's own record: the sequence of the epoch it is pinned to, which orders releases when a cut chooses the base of its status-snapshot delta. It derives no relation." }
   budget.rs::constrains_by: { kind: unjudged, edges: [CONSTRAINS] }
   claims.rs::claim_region: { kind: unjudged, edges: [CLAIMS] }
   claims.rs::release_claim: { kind: unjudged, edges: [CLAIMS] }
