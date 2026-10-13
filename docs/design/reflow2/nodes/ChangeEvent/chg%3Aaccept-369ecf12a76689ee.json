@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:30cacb0c6e86b78f8ef4e442272ced57c76111a2651174accbb431f0dd4bf63a",
+  "node_id": "chg:accept-369ecf12a76689ee",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-13",
+    "name": "v0.83.4 cut, step 2: 'Checked against' moved 0.83.3 -> 0.83.4. Content read against the release: the page names nothing 0.83.4 changes (the capture-intent skill's text). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

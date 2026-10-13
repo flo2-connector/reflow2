@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d370d73c01e92e5a7208c6b4a45011f548e7ec8e96876445d32221a475e2f77d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0834",
+  "properties": {
+    "as_checksum": "sha256:6bf8bd04d6f0ab7a3470e0d05adaad77f37109022875de8be623e3f216adda8b"
+  },
+  "to_id": "art:find-skills-rank-baseline"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ef8f8350b78c9464ba01341f817e49faf5d7d15562c266ddea89f4ac71f53c8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0834",
+  "properties": {
+    "as_checksum": "sha256:dcfa99be801b89c0915a3ddf9a17d2097134335506cbd6cd0160ff81b2d80c08"
+  },
+  "to_id": "art:fork"
+}

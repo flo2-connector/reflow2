@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:37120c94a802e0221d526cfb3edf6af428694f7325b401dbc4e4023336a0aa62",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:reported-coding-agents-made-building-easy-and-owning-it-is-the-work-new-stack-2026-10-12",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

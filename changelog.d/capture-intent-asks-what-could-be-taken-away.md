@@ -1,3 +1,0 @@
-### Changed
-
-- **`capture-intent` now asks what could be taken away before it adds.** Before a structural addition (a new requirement, capability, component, rule or step), the skill asks the person whether something could be removed in its place, or whether the addition lets something go, and writes the answer down. It asks only on structural additions, never on a wording, a fix or a status. It takes away from what is built, required or ruled, newest and least proven first, and never from the record: prior values and roads not taken stay. It is a question, not a gate. This is the advisory via-negativa principle Anthony kept on 2026-10-12, now carried by the skill every design is served. **What to do:** nothing; projects get it with the served skill.
