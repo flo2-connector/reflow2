@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7d881bd1504e2fbbe32b7f7ea498ee1b5844be30c11dd19f394386ae82dfb2ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:derived-edge-readers",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

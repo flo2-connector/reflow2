@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e30d3ebdff8b90ca5f39e3f52059b16be0bf3a9959d2092d69fdf4a7c20e6064",
+  "edge_type": "REALIZES",
+  "from_id": "art:balance",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:compare"
+}

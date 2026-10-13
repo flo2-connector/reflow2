@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5bd5a7a861a8b90d188e568056da3c52b1688ba638c27527d3f34c8e9c46f793",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:how-the-changelog-balance-is-counted",
+  "properties": {
+    "evidence": "A release's status snapshot is identified the way a fork point already is: the epoch's content hash is its identity, and git supplies the bytes where a copy is committed.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:fork-point-address"
+}

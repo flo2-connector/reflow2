@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8d3e03e39f7e09c160c0c66e1082bed996e8bbe4f3091deb2940d9ae5030689b",
+  "node_id": "art:the-changelog-balance-only-adds-to-the-reply-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Over the MCP surface: release_includes_all with apply keeps every reply key it had and adds `status_snapshot` (written, whole, its entries); changelog_view keeps every key it had and adds `balance`, counted from the release's snapshot against the live design for [Unreleased].",
+    "location": "crates/reflow2-mcp/tests/the_changelog_balance_only_adds_to_the_reply.rs",
+    "name": "tests/the_changelog_balance_only_adds_to_the_reply.rs",
+    "status": "realized"
+  }
+}

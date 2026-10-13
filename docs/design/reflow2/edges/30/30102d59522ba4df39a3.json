@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b522b41559fd86c0fa81227f63478175942d7ac41a86e928bf4253239ba8479d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-reflow2-can-learn-from-oh-my-pi",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b6890865c213561425004d8baeff28f316eca0a69860cc736fe4aade84347447",
+  "node_id": "snap:epoch:preserved-on-write:cap:changelog-view-carries-a-balance-line",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"ALLOCATED_TO\",\"other_type\":\"Component\",\"other_id\":\"cmp:compare\",\"properties\":{\"weight_basis\":\"estimated\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:a-changelog-shows-what-was-taken-away-beside-what-was-added\",\"properties\":{}}]",
+    "state": "{\"description\":\"Planned 2026-10-13. Where the counts come from waits on dec:how-the-changelog-balance-is-counted; option (C), a status snapshot kept by each release, is recommended. Not started. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq\",\"name\":\"changelog_view's draft carries a balance line: requirements, capabilities and decisions added beside those taken away or reversed, and failures that came back, each count saying how it was counted\",\"provenance\":\"authored\",\"status\":\"planned\"}",
+    "target_id": "cap:changelog-view-carries-a-balance-line",
+    "target_type": "Capability"
+  }
+}
