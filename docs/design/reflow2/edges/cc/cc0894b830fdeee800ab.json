@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a3de32ec176c4b13b05e49fcbfb8ae468166d432becd22b0d849e5b36fab7c9a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-direction-of-ai-hardware-shapes-what-reflow2-cuts-and-what-it-emphasises",
+  "properties": {
+    "evidence": "Every cut or emphasis here is judged by that rule's test (is this making one part do another's job?), and its 09-02 limit (do not cut what a model can do) is the part he would have to reopen.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92faabb20868e17d7158120b4a68ef6a06a6e020dd0f8d92d18e679af2ab79ee",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-direction-of-ai-hardware-shapes-what-reflow2-cuts-and-what-it-emphasises",
+  "properties": {
+    "evidence": "The latency-sensitive emphasis (g) is only worth anything once time and tokens per call are measured against budgets, which that proposed requirement asks for.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

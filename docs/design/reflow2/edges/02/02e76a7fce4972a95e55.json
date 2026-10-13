@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5df94d0a74e3745ecbab99c7ccd49a6b9366279e193219c2662065b7beba933d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:after-an-older-reflow2-writes-a-store-0-83-5-stamped-the-call-door-misses-words-until-a-rebuild-2026-10-13",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
