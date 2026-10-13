@@ -290,15 +290,20 @@ relations:
 
   unresolved_setup:
     name: "unresolved setup"
-    reading: { form: composite, composition: "unresolved(x, y) := before(x, y) ∧ about(x, y) ∧ ¬becomes(y, ·) ∧ ¬arrived(y)", components: [before, about, becomes] }
-    rule: "An ANTICIPATES edge whose target has no EVOLVES_INTO and has not reached its type's arrival status."
+    reading: { form: composite, composition: "unresolved(x, y) := before(x, y) ∧ about(x, y) ∧ ¬becomes(y, ·) ∧ ¬arrived(y); a finding y has arrived when it is invalidated or closed by a valid_to, when causes(−)(m, y) for an accepted decision or a change m, or when causes(y, z) for a decision, change or requirement z", components: [before, about, becomes, causes] }
+    rule: "An ANTICIPATES edge whose target has no EVOLVES_INTO and has not arrived on its own type's terms (arrival.rs, shared with the promotion detector since 2026-10-13): a Decision accepted; a Capability, Component or Artifact realized or verified; a Requirement delivered or met; an epoch arrived; a ChangeEvent or DesignRule by existing; a finding closed (INVALIDATES or a valid_to), answered (MITIGATES from an accepted Decision or a ChangeEvent) or led on (CAUSES or TRIGGERS into a Decision, ChangeEvent or Requirement)."
     stated_over_readings: partial
-    not_yet_stated: "arrival is a per-type status value (Decision accepted, Capability realized, …), a node property."
+    not_yet_stated: "arrival by status (Decision accepted, Capability/Component/Artifact realized or verified, Requirement met, epoch arrived) and a finding's valid_to are node properties; which source of MITIGATES (an accepted Decision or a ChangeEvent) and which target of CAUSES or TRIGGERS (a Decision, ChangeEvent or Requirement) counts is a per-edge choice no reading carries."
     inference: deduced
-    edges: [ANTICIPATES, EVOLVES_INTO]
+    edges: [ANTICIPATES, EVOLVES_INTO, INVALIDATES, MITIGATES, CAUSES, TRIGGERS]
+    over: [delivered]
     code:
       - { file: heal.rs, function: all_defects, dedicated: false }
-      - { file: heal.rs, function: follow_through_exists, dedicated: true }
+      - { file: arrival.rs, function: follows_through, dedicated: true }
+      - { file: arrival.rs, function: has_evolved, dedicated: true }
+      - { file: arrival.rs, function: arrival, dedicated: false }
+      - { file: arrival.rs, function: finding_arrival, dedicated: false }
+      - { file: arrival.rs, function: finding_is_closed, dedicated: false }
     counts: "one unresolved setup"
     cost: detectors
 

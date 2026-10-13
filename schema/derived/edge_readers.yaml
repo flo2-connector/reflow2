@@ -62,7 +62,6 @@ readers:
   detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
   detect.rs::detect_decision_overtaken_by_promotion: { kind: unjudged, edges: [EVOLVES_INTO] }
   detect.rs::changes_that_may_have_fixed: { kind: not_derived, edges: [CAUSES, CHANGED, MITIGATES, REALIZES], why: "Ranks the changes that MAY have fixed one open defect — joined to it by CAUSES, MITIGATES or a repair CHANGED it, or a dated repair that CHANGED its subject or a file realizing that subject alone — so defect_overtaken_by_change can ASK which did. It asserts no relation: the answer is the owner's, recorded as INVALIDATES or an acknowledgement." }
-  detect.rs::detect_defect_overtaken_by_change: { kind: unjudged, edges: [INVALIDATES] }
   detect.rs::detect_encoding_undecided: { kind: unjudged, edges: [GOVERNED_BY] }
   detect.rs::detect_failing_verifications: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_fix_without_recorded_cause: { kind: unjudged, edges: [CAUSES, CHANGED, INVALIDATES] }
@@ -99,7 +98,7 @@ readers:
   dimensions.rs::add_dimension_observation: { kind: unjudged, edges: [HAS_OBSERVATION, OBSERVED_IN] }
   dimensions.rs::dimension_drift: { kind: unjudged, edges: [HAS_OBSERVATION] }
   dimensions.rs::rollup_assessment: { kind: unjudged, edges: [ASSESSED_ON] }
-  doubt.rs::decisions_in_doubt: { kind: unjudged, edges: [DEPENDS_ON, GOVERNED_BY, INVALIDATES] }
+  doubt.rs::decisions_in_doubt: { kind: unjudged, edges: [DEPENDS_ON, GOVERNED_BY] }
   doubt.rs::held_up_under: { kind: unjudged, edges: [GOVERNED_BY, VERIFIES] }
   doubt.rs::walk_up: { kind: unjudged, edges: [ALLOCATED_TO, DEPENDS_ON, REALIZES, SATISFIES, VERIFIES] }
   drift.rs::realized_targets: { kind: unjudged, edges: [REALIZES] }
@@ -180,7 +179,6 @@ readers:
   relate.rs::has_review_relation: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   relate.rs::review_relations: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   relate.rs::unlinked_intent: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A detector filter: it lists the requirements and accepted decisions with no review relation and no DECOMPOSES or GOVERNED_BY edge in either direction, one hop, only to say which carry none. It derives no relation and asserts none: a node it lists is asked about, never linked." }
-  report.rs::open_follow_ups: { kind: unjudged, edges: [INVALIDATES] }
   report.rs::verification_recency: { kind: unjudged, edges: [IMPLEMENTS, VERIFIES] }
   scope.rs::containment_closure: { kind: unjudged, edges: [CONTAINS] }
   search.rs::claim_age_of: { kind: unjudged, edges: [INVALIDATES] }

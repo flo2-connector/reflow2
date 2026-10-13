@@ -30,6 +30,7 @@ pub mod acting;
 pub mod agent;
 pub mod allocate;
 pub mod alternatives;
+pub mod arrival;
 pub mod artifact;
 pub mod attribution;
 pub mod balance;
