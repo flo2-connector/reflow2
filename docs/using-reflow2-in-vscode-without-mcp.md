@@ -175,6 +175,27 @@ because hooks can supply what the door lacks. The accepted design is a `SessionS
 `loop_status` and a `Stop` hook that exports and nudges
 (`dec:idea-how-reflow2-triggers-the-loop-for-a-call-door-agent-in-vs-code`), and step 5 installs them.
 
+### Upgrading a machine (field run, 0.81.0 → 0.83.5, 2026-10-13)
+
+One machine with a hub and twelve member stores reached through `--graph-path`:
+
+1. **See what is there:** `command -v reflow2 && head -2 "$(command -v reflow2)"` (the installer's wrapper)
+   and `reflow2-mcp --version`.
+2. **Back up every store first**, named with that version: in each repo,
+   `tar czf ~/reflow2-store-backups/reflow2-store-<repo>-<version>-$(date +%F).tgz .reflow2`. Each archive
+   is a few MB; check it opens (`tar tzf`).
+3. **Install:** `curl -fsSL https://raw.githubusercontent.com/flo2-connector/reflow2/main/tools/install.sh | sh`.
+   The repository moved from `sligara7/reflow2` (the old address redirects). The script downloads the release
+   and checks it against the release's `checksums.txt`, and keeps the previous binary as `reflow2-mcp.<old>`.
+   Download it and read it first if your policy asks you to.
+4. **Refresh the VS Code files only where the kit is meant to be:** `reflow2 init . --harness vscode-cli --check`
+   (writes nothing), then `reflow2 update`, then commit what changed under `.github/`. Files you edited are
+   kept ("it has edits since reflow2 wrote it, so it is yours now").
+5. **Every other store just needs one read:** `reflow2 read loop_status` in each. The first call on each store
+   rebuilds its search index by itself; after that a word found only in a fix's rationale is searchable.
+
+In step 4, check which repos should get the kit before running `update` in any of them. See limitation 21.
+
 ## Limitations that still hold
 
 Each was root-caused on 2026-10-02, and its finding is in reflow2's design under the id given.
@@ -219,6 +240,17 @@ Each was root-caused on 2026-10-02, and its finding is in reflow2's design under
     command's executable position (after env assignments and wrappers like `sudo -u`/`timeout`), strip heredoc
     bodies and quoted strings first, and test the hook with reflow2 payloads. reflow2 ships no such hook.
     (`fact:root-cause-a-text-matching-guard-blocks-door-writes-that-mention-remote-shell-words-and-reflow2-ships-no-such-hook-2026-10-02`)
+21. **`reflow2 update` recreates a kit you removed** (0.83.5, field run 2026-10-13; not yet recorded in
+    reflow2's design). `.reflow2/kit-version.json` lists the files a kit install wrote. If those files are
+    later deleted by hand (for example from repos that are only a hub's members, where nobody wants the kit),
+    the list stays. `update` then brings the recorded kit forward: in each such repo it created about 72
+    files (`AGENTS.md`, `.github/{skills,prompts,hooks,instructions}`) and appended to tracked files
+    (`.gitignore`, `.gitattributes`, `AGENTS.md`, `.github/copilot-instructions.md`). In a repo whose store had
+    no `kit-version.json` it refused instead ("carries a design but no installed kit … that is a first install:
+    `reflow2 init`"). Until that changes, run `update` only where the kit belongs, and undo a stray run with
+    `git checkout --` for the tracked files, deleting the files it created (all carry the run's timestamp), and
+    putting `kit-version.json` back from the store backup. A fix could make `update` check that the recorded
+    files still exist before bringing a kit forward, or refuse the way it does when no record exists.
 
 ## Fixed since the report
 
