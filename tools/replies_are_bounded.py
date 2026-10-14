@@ -149,6 +149,63 @@ def main() -> int:
                         f"to DOCUMENT_SHAPED with the reason."
                     )
 
+            # ②b THE CALLS THAT NEED AN ARGUMENT, which ② cannot reach. Measured
+            #    2026-10-14: the owner-scoped `loop_status` (a contributor_id)
+            #    grew from 10,249 to 38,939 characters on reflow2's own design
+            #    when it began listing `awaiting_word`, and this gate passed,
+            #    because it only fired tools that take no argument. Every
+            #    `scan_nodes` of a large type was already over, for the same
+            #    reason. These are the argument-taking reads an agent fires as
+            #    routinely as the blind ones, so the same rule holds them.
+            contributors = [
+                i["node_id"]
+                for i in (s.call("scan_nodes", {"node_type": "Contributor", "brief": True}) or {}).get("items", [])
+            ]
+            # One person is enough to exercise the scoped answer, and the
+            # owner of a real design is the one with the most waiting on them.
+            owner = "who:ajs" if "who:ajs" in contributors else (contributors[:1] or [None])[0]
+            argument_cases: list[tuple[str, dict]] = []
+            if owner:
+                argument_cases.append(("loop_status", {"contributor_id": owner}))
+            for node_type in ("Requirement", "Capability", "Decision", "Component", "TemporalFact"):
+                for brief in (False, True):
+                    argument_cases.append(("scan_nodes", {"node_type": node_type, "brief": brief}))
+            for name, args in argument_cases:
+                label = f"{name} {json.dumps(args, separators=(',', ':'))}"
+                try:
+                    # Compact and unescaped: what a gateway measures.
+                    raw = json.dumps(s.call(name, args), separators=(",", ":"), ensure_ascii=False)
+                except Exception as e:
+                    rows.append((0, label, f"(skipped: {type(e).__name__})"))
+                    continue
+                measured += 1
+                size = len(raw)
+                schema = (by_name[name].get("inputSchema") or {}).get("properties") or {}
+                if size <= a.budget:
+                    rows.append((size, label, "fits"))
+                    continue
+                oversized += 1
+                if "budget_chars" not in schema:
+                    rows.append((size, label, "OVER BUDGET AND UNBOUNDED"))
+                    failures.append(
+                        f"{label}: {size} characters against a budget of {a.budget}, and its "
+                        f"schema declares no `budget_chars` — a gateway holding replies to "
+                        f"{a.budget} replaces this answer with a refusal."
+                    )
+                    continue
+                bounded = json.dumps(
+                    s.call(name, {**args, "budget_chars": a.budget}),
+                    separators=(",", ":"),
+                    ensure_ascii=False,
+                )
+                if len(bounded) > a.budget:
+                    rows.append((size, label, "OVER BUDGET, and its budget_chars does not bind"))
+                    failures.append(
+                        f"{label}: passing budget_chars {a.budget} still answered {len(bounded)}."
+                    )
+                else:
+                    rows.append((size, label, "over budget, but BOUNDED"))
+
             for size, name, verdict in sorted(rows, reverse=True):
                 print(f"{size:>9}  {name:<26} {verdict}")
 
