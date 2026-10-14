@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98df79bc2aea57e148bc950384dd4575719ca1f152ac13385421ec3e0808e34f",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-optimize-be-a-served-skill-any-project-can-run",
+  "properties": {
+    "evidence": "The optimize skill ships and is served (chg:the-optimize-skill-ships-with-its-own-n-of-2-stated, art:optimize-command); its capability record still reads planned, so the owner's list will not show this idea until that status reads built. Evidence: cap:optimize-skill is planned, realized by art:optimize-command. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:optimize-skill"
+}

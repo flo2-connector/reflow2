@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2b68f1f37dfe09eb5e623b212db7ac3367891d3e0d3e71a379ec1bc820079a42",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-coupling-explained",
+  "properties": {
+    "evidence": "Built in the set-of-contracts form: a dependency cycle says which edge kinds it walked and through which contracts. Evidence: cap:cycle-names-its-basis is verified, ver:cycle-basis passing, realized by art:cycles-test. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:cycle-names-its-basis"
+}

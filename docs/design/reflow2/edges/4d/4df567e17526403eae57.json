@@ -1,11 +1,21 @@
 {
-  "content_hash": "sha256:b68f900372039d58827f231369ef4f260c84fd7fcb2a7ac8f158d0d79215d9e5",
+  "content_hash": "sha256:089e4e6a913e957800af5a96a30ea3fe1de5b0bec85c9c9b96034b87c9f1e8ce",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-is-the-embeddings-option-really-embeddings-plus-hnsw",
+  "prev_item_hash": "sha256:b68f900372039d58827f231369ef4f260c84fd7fcb2a7ac8f158d0d79215d9e5",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "reviewed_at": "2026-09-10",
     "roles": [
-      "reviewer"
+      "author",
+      "reviewer",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:30d1f62d2534d6c6f3ff6cf5a0cb3c5ce6598532af328ecb35dc8ba161f19024",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:epoch-roadmap-storage",
+  "properties": {
+    "evidence": "Planned epochs are nodes in the graph (plan_epoch) that arrival_delta reads, so the roadmap lives in the design and git holds no second copy. Evidence: cap:planned-epochs is realized, ver:planned-epochs passing, realized by art:revising-an-epochs-prose-keeps-its-status-test. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:planned-epochs"
+}

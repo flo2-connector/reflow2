@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5effb4d48db555a78e0fd116722c680e35b17ea420a0245ed4b902e79b988ef6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-is-session-context-already-in-the-graph",
+  "properties": {
+    "evidence": "The capture-session skill writes the session's connective tissue into the graph. Evidence: cap:capture-session-skill is realized, ver:served-skills passing, realized by art:capture-session-skill. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:capture-session-skill"
+}

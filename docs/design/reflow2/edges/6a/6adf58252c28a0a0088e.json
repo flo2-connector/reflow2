@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61c4eccc10c057085643fa2b4f2eee99e00669b7cc5a759f29ecbcf8c108e1ad",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:what-pins-a-snapshot",
+  "properties": {
+    "evidence": "Option (c) as identity, built: each item carries its content hash and the hash it replaced. Evidence: cap:lineage-is-kept-per-item is verified, ver:an-item-layout-write-reads-back-whole-and-anchors-each-item passing, realized by art:item-layout. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:lineage-is-kept-per-item"
+}

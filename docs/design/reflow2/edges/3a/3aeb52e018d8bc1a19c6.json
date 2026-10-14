@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ca3ad28db23abc6d53beafc0accdca8b89e1210a793921c173f91348a960576d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary",
+  "properties": {
+    "evidence": "record_alias keeps the user's own word on the node (chg:a-node-records-what-the-user-calls-it), and the taxonomy skill records the routing choice once per design. Evidence: cap:a-design-holds-the-users-own-vocabulary is realized, ver:a-design-holds-the-users-own-vocabulary passing, realized by art:test-a-node-records-what-the-user-calls-it. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-design-holds-the-users-own-vocabulary"
+}

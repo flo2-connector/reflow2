@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ddc4307f0d0e8ab0e514ad9904902ff28f34960205c32def52ea30c922de4b6b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:built-work-is-linked-and-reading-only-ideas-are-rejected-2026-10-14",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-a-decision-has-no-state-for-having-been-implemented"
+}

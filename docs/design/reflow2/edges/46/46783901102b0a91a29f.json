@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:223b0541b90d285f6d14d3da1e2b32ee0a763000821db0d6f4f289361e068a76",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary",
+  "properties": {
+    "evidence": "record_alias keeps the user's own word on the node (chg:a-node-records-what-the-user-calls-it), and the taxonomy skill records the routing choice once per design. Evidence: cap:establish-taxonomy-before-bulk-capture is realized, ver:a-taxonomy-is-decided-once-before-bulk-capture passing, realized by art:adopt-skill. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:establish-taxonomy-before-bulk-capture"
+}

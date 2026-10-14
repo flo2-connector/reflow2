@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2262d75f6645662ad57d8d25651f0a4486d98142fd69f92a5a32f02e0df13ea8",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-the-rules-that-tell-the-types-apart-be-served-as-data",
+  "properties": {
+    "evidence": "The schema serves a discrimination block per node type; its test art:test-the-schema-serves-the-rules-that-tell-the-types-apart realizes this capability (chg:an-unplaced-sentence-has-a-home-and-the-instructions-say-to-search-first). Evidence: cap:the-design-interview-precedes-the-capture is realized, ver:the-capture-skills-do-not-hand-the-vocabulary-back passing, realized by art:capture-intent-skill. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:the-design-interview-precedes-the-capture"
+}

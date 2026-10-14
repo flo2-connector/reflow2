@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:046656ffcd917b659b53c18499f170df5326f66c9ab776af8544da2c25d5a2b5",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-can-reflow2-see-the-work-a-session-did-by-hand",
+  "properties": {
+    "evidence": "A session reports work done by hand (report_manual_work), with the diagnosis of a missing versus an unfindable tool. Evidence: cap:a-session-reports-the-work-it-did-by-hand is verified, ver:a-session-can-report-and-read-back-hand-rolled-work passing, realized by art:by-hand-names-a-real-tool-test. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-session-reports-the-work-it-did-by-hand"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0a0a42fb8138b7a7301d196e6e9fdff52a57153d9b161a8d29e327986d5109d4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:built-work-is-linked-and-reading-only-ideas-are-rejected-2026-10-14",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:idea-document-generation"
+}

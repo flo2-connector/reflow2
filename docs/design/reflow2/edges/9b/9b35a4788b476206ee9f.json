@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7af08e0f0699aaf05dab4826fba58ac54314316f0433c317f603a96702b02f2e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-should-a-refusal-teach-every-rule-it-knows-in-one-reply",
+  "properties": {
+    "evidence": "Arguments are checked against the published schema before anything runs, and a refusal lists every problem with the tool and field path. Evidence: cap:a-missing-field-refusal-names-the-fields-this-call-lacked is realized, ver:a-missing-field-refusal-names-the-fields-this-call-lacked passing, realized by art:a-missing-argument-names-the-tool-and-what-it-wants-test. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-missing-field-refusal-names-the-fields-this-call-lacked"
+}

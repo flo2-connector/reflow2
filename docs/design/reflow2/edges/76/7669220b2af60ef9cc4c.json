@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:cc199195a5a968bdad4a13dd9a782cffa4fc614895f5ae7012e2c4289d3800ea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-dimension-correlation",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

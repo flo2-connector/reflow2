@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0858b5539d62c44895f3d8c0c5baf65e85a80a347ba759c621e45e62ac56bd4",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation",
+  "properties": {
+    "evidence": "A hub records each member's relation (part of or uses) and its address serves a view over its members; this idea is parked by dec:the-hub-waits-for-somebody-to-ask-for-it, so the owner's list will not show it until that ruling is revisited. Evidence: cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses is realized, ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs passing, realized by art:depends. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

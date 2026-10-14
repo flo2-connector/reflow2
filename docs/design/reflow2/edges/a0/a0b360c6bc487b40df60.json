@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:229bccc8927c7c0632abf87e51022634072cc1b522d2a881b1f286eda8413370",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-hub-owns-designs-it-does-not-absorb-and-that-is-a-third-relation",
+  "properties": {
+    "evidence": "A hub records each member's relation (part of or uses) and its address serves a view over its members; this idea is parked by dec:the-hub-waits-for-somebody-to-ask-for-it, so the owner's list will not show it until that ruling is revisited. Evidence: cap:a-hubs-address-serves-a-view-over-its-members is realized, ver:a-hubs-address-serves-a-view-over-its-members passing, realized by art:service-view. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-hubs-address-serves-a-view-over-its-members"
+}

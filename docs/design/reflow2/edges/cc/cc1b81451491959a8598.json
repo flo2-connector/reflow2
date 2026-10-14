@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b295003aee3bba79a4b5abfb2277de7458972937c2d6bb01a9dcb836ec97af61",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-corpus-ingest-strategies",
+  "properties": {
+    "evidence": "The ingest-corpus skill ingests a folder of specifications as one design under a declared coverage scope. Evidence: cap:corpus-ingest is verified, ver:corpus-is-one-design passing, realized by art:corpus. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:corpus-ingest"
+}
