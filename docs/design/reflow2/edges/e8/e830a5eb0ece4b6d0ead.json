@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7729451dd735b0bf411398b77464c9319987051193c7cf3f911c91ad69f3db8c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:gap-surfacing-doc",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

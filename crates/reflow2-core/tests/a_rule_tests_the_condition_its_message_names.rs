@@ -30,7 +30,10 @@
 //! - An anticipation is FOLLOWED THROUGH when its target EVOLVES_INTO
 //!   something, or has arrived on its own type's terms: a Decision `accepted`,
 //!   a Capability or Component `realized`/`verified`, a Requirement `met`, an
-//!   epoch `arrived`.
+//!   epoch `arrived`. Widened 2026-10-13 to the one reading of arrival the
+//!   promotion detector shares (`arrival.rs`): a delivered Requirement, a
+//!   finding closed, answered or acted on, a ChangeEvent and a DesignRule —
+//!   pinned in `follow_through_reads_one_arrival.rs`.
 //!
 //! Each definition is pinned from both sides — the case it clears and the
 //! nearest case it must NOT clear — because answering either question too

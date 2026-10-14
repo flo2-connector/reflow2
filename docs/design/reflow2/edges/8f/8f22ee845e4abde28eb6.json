@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f2c15133920c8d905e4829e12315a8eaff67c241194cb3b353b06c151b269e5e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:heal",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

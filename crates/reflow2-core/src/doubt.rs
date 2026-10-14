@@ -156,13 +156,7 @@ impl DesignGraph {
             }
         }
         for f in self.scan_nodes(node::TEMPORAL_FACT)? {
-            if prop(&f, "fact_type") != Some("defect") || prop(&f, "valid_to").is_some() {
-                continue;
-            }
-            if !self
-                .incoming(&f.node_id, Some(edge::INVALIDATES))?
-                .is_empty()
-            {
+            if prop(&f, "fact_type") != Some("defect") || self.finding_is_closed(&f)? {
                 continue;
             }
             let Some(subject) = prop(&f, "subject_id") else {

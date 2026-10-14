@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:17b7794a6337ae7edb48e2d8d91e6f3a54c294bccf56430e8979c5bdae4d0ba7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:follow-through-and-promotion-read-one-arrival-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:cecee2ded5a146bd83c30f4f892c9af92184c3000e007eb1ba15666a6bb213d2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:heal"
+}

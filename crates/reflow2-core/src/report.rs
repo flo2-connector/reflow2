@@ -891,13 +891,8 @@ impl DesignGraph {
             let Some(tag) = follow_up_tag(&fact_type) else {
                 continue;
             };
-            if prop("valid_to").is_some_and(|v| !v.is_empty()) {
-                continue;
-            }
-            if !self
-                .incoming(&n.node_id, Some(edge::INVALIDATES))?
-                .is_empty()
-            {
+            // Closed by a valid_to or an INVALIDATES — the shared rule.
+            if self.finding_is_closed(&n)? {
                 continue;
             }
             out.push(FollowUp {

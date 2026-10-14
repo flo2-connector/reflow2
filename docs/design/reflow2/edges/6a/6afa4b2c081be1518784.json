@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:66ef9c00f5ade35fc543a213d76b8d529bf3bf6aea33f45ddf5759da3e779490",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:follow-through-and-promotion-read-one-arrival",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

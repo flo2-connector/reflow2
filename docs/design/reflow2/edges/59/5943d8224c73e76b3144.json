@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9d56397a71f76a18270b5bb033ddfdeff91d759b71e46938ce7025195ddaa765",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:derived-relations-are-declared-and-checked-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

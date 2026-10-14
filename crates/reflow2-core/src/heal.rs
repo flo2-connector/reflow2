@@ -2299,12 +2299,21 @@ impl DesignGraph {
             //
             // WHAT COUNTS AS FOLLOW-THROUGH, on the owner's word 2026-09-15: the
             // anticipated node has EVOLVED_INTO something (work was recorded
-            // against it), or it has ARRIVED on its own type's terms — a
-            // Decision `accepted`, a Capability or Component `realized` or
-            // `verified`, a Requirement `met`, an epoch `arrived`. Each of those
-            // is the design saying the setup was acted on; anything short of it
-            // is still a commitment nobody kept.
-            if self.follow_through_exists(&index, &e.to_id) {
+            // against it), or it has ARRIVED on its own type's terms. Each of
+            // those is the design saying the setup was acted on; anything
+            // short of it is still a commitment nobody kept.
+            //
+            // 🛑 "ARRIVED" IS NO LONGER WRITTEN HERE. Until 2026-10-13 this
+            // rule kept its own list (`met` for a Requirement, EVOLVES_INTO
+            // alone for a finding) while the promotion detector kept another,
+            // and 20 of 47 findings on reflow2's own design pointed at work
+            // already done: 5 delivered requirements, 13 findings already
+            // closed, answered or acted on, a ChangeEvent and a DesignRule
+            // (fact:root-cause-follow-through-reads-arrival-from-a-status-
+            // nothing-sets-and-misses-how-findings-close-2026-10-13). Both
+            // rules now read `arrival.rs`, which says what arrival is per type
+            // and names the one clause each rule adds.
+            if self.follows_through(&index, &e.to_id)? {
                 *suppressed
                     .resolved
                     .entry(HealCategory::UnresolvedSetup.as_str())
@@ -2312,13 +2321,19 @@ impl DesignGraph {
                 continue;
             }
             let affected = vec![e.from_id.clone(), e.to_id.clone()];
+            // The message names the condition computed (the 09-15 rule): the
+            // target neither evolved nor arrived, and what arriving means
+            // for its type.
+            let condition =
+                crate::arrival::arrival_condition(index.get(&e.to_id).map(String::as_str));
             issues.push(HealIssue {
                 id: issue_id(HealCategory::UnresolvedSetup, &affected),
                 category: HealCategory::UnresolvedSetup,
                 severity: HealSeverity::Info,
                 message: format!(
-                    "'{}' anticipates '{}' but nothing follows through",
-                    e.from_id, e.to_id
+                    "'{}' anticipates '{}' but nothing follows through: '{}' has evolved \
+                     into nothing and has not arrived ({condition})",
+                    e.from_id, e.to_id, e.to_id
                 ),
                 suggested_fix_type: Some("generate_entity"),
                 repair_is_a_judgement: None,
@@ -2480,38 +2495,6 @@ impl DesignGraph {
         };
         let of_b = accepted_governors(b);
         accepted_governors(a).into_iter().find(|d| of_b.contains(d))
-    }
-
-    /// Whether the node an ANTICIPATES edge points at has been ACTED ON —
-    /// what the unresolved_setup rule means by "follows through". True when
-    /// the node EVOLVES_INTO anything, or when its status says it arrived on
-    /// its own type's terms. A type with no arrival status (a TemporalFact,
-    /// an Artifact) can only follow through by evolving.
-    fn follow_through_exists(&self, index: &HashMap<String, String>, id: &str) -> bool {
-        if self
-            .outgoing(id, Some(edge::EVOLVES_INTO))
-            .is_ok_and(|es| !es.is_empty())
-        {
-            return true;
-        }
-        let Some(node_type) = index.get(id) else {
-            return false;
-        };
-        let Some(status) = self.get_node(node_type, id).ok().flatten().and_then(|n| {
-            n.properties
-                .get("status")
-                .and_then(Value::as_str)
-                .map(str::to_string)
-        }) else {
-            return false;
-        };
-        match node_type.as_str() {
-            node::DECISION => status == "accepted",
-            node::CAPABILITY | node::COMPONENT => status == "realized" || status == "verified",
-            node::REQUIREMENT => status == "met",
-            node::DESIGN_EPOCH => status == "arrived",
-            _ => false,
-        }
     }
 
     /// Graph-topology defects over the design network (via `dynograph-graph`):

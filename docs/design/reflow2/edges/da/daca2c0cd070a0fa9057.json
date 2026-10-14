@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6ce32f8f119097e13dda453de47ba37e8feddbe53ac2e7319460b8e4fb436c1d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-rule-tests-the-condition-its-message-names",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

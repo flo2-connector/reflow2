@@ -6199,19 +6199,14 @@ impl DesignGraph {
             if prop("fact_type") != Some("defect") {
                 continue;
             }
-            if prop("valid_to").is_some_and(|s| !s.is_empty()) {
-                continue;
-            }
             let Some(subject) = prop("subject_id").filter(|s| !s.is_empty()) else {
                 continue;
             };
-            // CLOSED BY INVALIDATES, from anything, and by nothing weaker: a
-            // CAUSES or MITIGATES edge says the change answered the defect, not
-            // that the defect is gone.
-            if !self
-                .incoming(&fact.node_id, Some(edge::INVALIDATES))?
-                .is_empty()
-            {
+            // CLOSED BY INVALIDATES, from anything, or a valid_to — and by
+            // nothing weaker: a CAUSES or MITIGATES edge says the change
+            // answered the defect, not that the defect is gone. One rule,
+            // shared (`arrival.rs`).
+            if self.finding_is_closed(&fact)? {
                 continue;
             }
             if self.is_parked(&fact.node_id)? {
@@ -6324,10 +6319,7 @@ impl DesignGraph {
         let is_change = |id: &str| index.get(id).map(String::as_str) == Some(node::CHANGE_EVENT);
         let is_finding = |id: &str| index.get(id).map(String::as_str) == Some(node::TEMPORAL_FACT);
         // A CAUSES edge a person marked refuted or spurious asserts no cause.
-        let asserts = |e: &crate::foundation::store::StoredEdge| {
-            let p = |k: &str| e.properties.get(k).and_then(Value::as_str);
-            p("validation_status") != Some("refuted") && p("basis") != Some("spurious")
-        };
+        let asserts = crate::arrival::asserts_a_link;
         // A change that CAUSES the defect introduced it.
         let introduced: BTreeSet<String> = self
             .incoming(fact_id, Some(edge::CAUSES))?
@@ -6552,10 +6544,13 @@ impl DesignGraph {
     /// (`GapSource::DecisionOvertakenByPromotion`).
     ///
     /// A Decision still reading `proposed` whose `EVOLVES_INTO` target has been
-    /// taken up: an `accepted`/`met` Requirement, a `realized`/`verified`
-    /// Capability, an `accepted` Decision, a recorded ChangeEvent, or a
-    /// DesignRule now in force. The idea was promoted, the promotion landed,
-    /// and nobody went back to close the question it came from.
+    /// taken up ([`DesignGraph::promotion_has_landed`]): it has arrived on its
+    /// own type's terms — an `accepted` Decision, a `realized`/`verified`
+    /// Capability, Component or Artifact, a delivered or `met` Requirement, an
+    /// `arrived` epoch, a recorded ChangeEvent, a DesignRule in force, a finding
+    /// closed, answered or acted on — or it is a Requirement the owner
+    /// `accepted`. The idea was promoted, the promotion landed, and nobody went
+    /// back to close the question it came from.
     ///
     /// # Why this detector had to exist
     ///
@@ -6572,11 +6567,15 @@ impl DesignGraph {
     ///
     /// ChangeEvent and DesignRule carry no `status` and are counted on their
     /// existence: a change was recorded as having happened, a rule is in force.
-    /// **TemporalFact is not**, though it is equally status-free — a
+    /// **A bare TemporalFact is not**, though it is equally status-free — a
     /// measurement about an idea is evidence toward an answer, not the answer.
-    /// A `dropped`, `deferred`, `rejected` or `superseded` target is not
-    /// counted either: what the idea became was itself put down, which reopens
-    /// the question rather than settling it.
+    /// A finding counts only once it has itself been acted on (closed, answered
+    /// by an accepted Decision or a change, or led to a decision, change or
+    /// requirement), which is the reading the follow-through rule shares. A
+    /// `dropped`, `deferred`, `rejected` or `superseded` target is not counted
+    /// either: what the idea became was itself put down, which reopens the
+    /// question rather than settling it. Nor is a target that merely EVOLVED
+    /// into something else: a chain of ideas is not an answer.
     ///
     /// # What it cannot see
     ///
@@ -6618,15 +6617,10 @@ impl DesignGraph {
                 let Some(target) = self.get_node(ty, &e.to_id)? else {
                     continue;
                 };
-                let status = target.properties.get("status").and_then(Value::as_str);
-                let up = match (ty.as_str(), status) {
-                    // Status-free on purpose: a recorded change happened, and a
-                    // design rule is in force. TemporalFact is NOT here.
-                    (node::CHANGE_EVENT | node::DESIGN_RULE, _) => true,
-                    (_, Some("accepted" | "met" | "realized" | "verified")) => true,
-                    _ => false,
-                };
-                if up {
+                // ONE READING OF "TAKEN UP", shared with the follow-through
+                // rule since 2026-10-13 (`arrival.rs`): this list used to be
+                // kept here by hand, and it disagreed with that rule's.
+                if self.promotion_has_landed(&index, &e.to_id)? {
                     taken_up.push((e.to_id.clone(), node_name(&target)));
                 }
             }
@@ -6680,8 +6674,11 @@ impl DesignGraph {
                 suggested_depth: 1,
                 evidence: format!(
                     "Decision '{}' has status=proposed and {n} outgoing EVOLVES_INTO edge(s) \
-                     to a live node that is accepted/met/realized/verified, or to a ChangeEvent \
-                     or DesignRule (both status-free, counted on existence); {} of {proposed} \
+                     to a live node that has arrived (an accepted Decision; a realized or \
+                     verified Capability, Component or Artifact; a delivered, met or accepted \
+                     Requirement; an arrived epoch; a finding closed, answered or acted on) or \
+                     to a ChangeEvent or DesignRule (both status-free, counted on existence); \
+                     {} of {proposed} \
                      proposed Decision(s) in the design are in this state. Parked decisions are \
                      skipped. Only promotions that DREW the edge are reachable: an idea answered \
                      by work nobody linked back is invisible here, and on this design that was 2 \

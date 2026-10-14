@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7f380825d73d5a00b45fa6cc6b9e8d59b762283d9c9da58abc2e96603a6e80e6",
+  "node_id": "ver:follow-through-and-promotion-read-one-arrival",
+  "node_type": "Verification",
+  "properties": {
+    "description": "14 tests over in-memory designs, written before the code (crates/reflow2-core/tests/follow_through_reads_one_arrival.rs). They pin the shared reading of arrival (crates/reflow2-core/src/arrival.rs) from both sides through the two detectors' own outputs. unresolved_setup must stay quiet for a delivered requirement, a finding closed by a change or by its valid_to, a finding answered by an accepted Decision, a finding that led to a change, decision or requirement, a ChangeEvent and a DesignRule. It must still raise for an accepted requirement not yet delivered, a finding only an idea mitigates, a finding whose only cause edge is refuted, and a finding-to-finding link whose later finding is still open (C4, held for the owner's ruling). Its message must name the condition it computed. On a fixture of 19 target kinds, decision_overtaken_by_promotion and unresolved_setup must agree on every kind. They may differ only in the two clauses each rule's definition adds: evolving counts for follow-through alone, and an accepted requirement for promotion alone.",
+    "findings": "2026-10-13. At 35403c87f, on main c58305ba8 with only the tests added, 9 of 14 FAILED. The agreement test listed the disagreements: a delivered requirement, a realized artifact, a ChangeEvent and a DesignRule (promotion counted them, follow-through did not); an arrived epoch (the reverse); and three acted-on findings (neither counted them). With the fix (03429b37b, eee4ba910), 14 of 14 passed. After merging main f879c72ac (#744) at eadb3b29e, they still pass, with the whole core suite at 2088 passed and 0 failed (cargo test -p reflow2-core --no-default-features). Measured on main's design copy, unresolved_setup went from 47 to 27 and decision_overtaken_by_promotion from 9 to 13.",
+    "kind": "verification",
+    "last_run_at": "2026-10-13",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/follow_through_reads_one_arrival.rs",
+    "method": "test",
+    "name": "The follow-through rule and the promotion detector read one \"arrived\"",
+    "status": "passing"
+  }
+}

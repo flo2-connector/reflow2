@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e86e6a2dab15e8acbb7f7f671662e6c490344bb90aa2d18608dc16677914b9e7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:follow-through-and-promotion-read-one-arrival-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a0c51724fbff2c51b86017faa437ef92407e72a13da21eda6613c1fbc80f57e5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:doubt"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b698818006f483ceeacdc7dfd61bbf2bc3d3537e0f8f70d6189a3c6262161b25",
+  "node_id": "art:gap-surfacing-doc",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The catalogue of gap sources detect_gaps raises, one row per source: what each detects, why it exists, what it deliberately excludes and what it cannot see. Its decision_overtaken_by_promotion row states the condition the detector reads, which since 2026-10-13 is the shared reading of \"arrived\" in crates/reflow2-core/src/arrival.rs.",
+    "location": "docs/gap-surfacing.md",
+    "name": "docs/gap-surfacing.md",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c767076be133c6ead50c63be126da16ef173ba4b3c8d539dd48ad4c758975781",
+  "edge_type": "CHANGED",
+  "from_id": "chg:follow-through-and-promotion-read-one-arrival-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:b5936ae0fe718c877f97845b534983762ab93f8f74b4628def4206babfba6c51",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}
