@@ -15,6 +15,16 @@
           "null"
         ]
       },
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000),\nenvelope included. Nodes are listed whole, in order, until the next\nwould pass it; `capped_by: size` and `next_offset` say where to resume.\n\nUntil 2026-10-14 the cap was a fixed 40,000 characters of nodes alone,\nso a scan of any large type answered 37,000-40,000 characters, over the\n30,000 a host such as flo2.io holds every reply to — which replaces a\nlarger one with a refusal. Raise it only if this client has the room.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "level": {
         "default": null,
         "description": "Keep only Components at this rung of the decomposition ladder —\ncomponent, subsystem, system, system_of_systems, /// enterprise. THIS IS HOW YOU ASK FOR \"the top-level boxes\".\n\nIt exists because the obvious alternative is wrong. Component.level\nhas always been indexed and populated, and with no way to ASK by it\nevery caller wrote their own filter — usually by walking CONTAINS and\ntaking the parentless nodes, which returns leaves that were never wired\nto a parent rather than top-level boxes. Measured on reflow2's own\ndesign 2026-08-18: by level, the top tier is 8 subsystems; by spine\nposition it is 2 leaves. Both queries look reasonable and they disagree.\n\nOnly Component carries a level; asking for one on any other type is\nrefused rather than silently returning nothing.",

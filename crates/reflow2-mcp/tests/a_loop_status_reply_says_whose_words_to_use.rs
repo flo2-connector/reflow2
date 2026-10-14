@@ -56,6 +56,7 @@ async fn loop_status(s: &ReflowService) -> serde_json::Value {
     j!(s.loop_status(Parameters(LoopScopeReq {
         contributor_id: None,
         since_export: false,
+        budget_chars: None,
     })))
 }
 

@@ -108,6 +108,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
     let before = j!(s.loop_status(Parameters(LoopScopeReq {
         contributor_id: None,
         since_export: false,
+        budget_chars: None,
     })));
     assert!(
         ids_in(&before, "assigned_decisions", "decision_id").contains(&"dec:the-one".to_string()),
@@ -131,6 +132,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
     let after = j!(s.loop_status(Parameters(LoopScopeReq {
         contributor_id: None,
         since_export: false,
+        budget_chars: None,
     })));
     assert!(
         !ids_in(&after, "assigned_decisions", "decision_id").contains(&"dec:the-one".to_string()),

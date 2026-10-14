@@ -92,8 +92,7 @@ impl Session {
 fn long_name(i: usize) -> String {
     format!(
         "Requirement {i}: {}",
-        "the owner wants this part built, checked and kept honest across every release "
-            .repeat(7)
+        "the owner wants this part built, checked and kept honest across every release ".repeat(7)
     )
 }
 
@@ -103,8 +102,11 @@ const AWAITING: usize = 80;
 /// one realized capability with a passing check, and a contributor to ask for.
 async fn many_awaiting() -> Session {
     let s = session().await;
-    s.ok("add_contributor", json!({"id": "who:owner", "name": "The Owner"}))
-        .await;
+    s.ok(
+        "add_contributor",
+        json!({"id": "who:owner", "name": "The Owner"}),
+    )
+    .await;
     s.node(
         "Capability",
         "cap:delivers",
@@ -146,7 +148,12 @@ fn awaiting_ids(r: &Value) -> Vec<String> {
         .as_array()
         .unwrap_or_else(|| panic!("awaiting_word is a list: {r}"))
         .iter()
-        .map(|i| i["node_id"].as_str().expect("every item keeps its id").to_string())
+        .map(|i| {
+            i["node_id"]
+                .as_str()
+                .expect("every item keeps its id")
+                .to_string()
+        })
         .collect()
 }
 
@@ -188,10 +195,20 @@ async fn a_scoped_loop_status_with_many_awaiting_items_fits_the_default_budget_a
         );
         assert_eq!(item["evidence_ids"], json!(["cap:delivers"]), "{item}");
     }
-    assert!(says_the_count(&r), "the count is never budgeted: {:?}", r["next"]);
-    assert_eq!(r["budget"]["applied"], true, "and it says it trimmed: {}", r["budget"]);
     assert!(
-        r["budget"]["note"].as_str().is_some_and(|n| n.contains("awaiting_word")),
+        says_the_count(&r),
+        "the count is never budgeted: {:?}",
+        r["next"]
+    );
+    assert_eq!(
+        r["budget"]["applied"], true,
+        "and it says it trimmed: {}",
+        r["budget"]
+    );
+    assert!(
+        r["budget"]["note"]
+            .as_str()
+            .is_some_and(|n| n.contains("awaiting_word")),
         "naming where: {}",
         r["budget"]
     );
@@ -227,8 +244,12 @@ async fn an_explicit_small_budget_is_honoured_and_says_what_it_withheld() {
         .unwrap_or_else(|| panic!("awaiting_word is the list shortened: {shortened:?}"));
     assert_eq!(row["total"], AWAITING, "{row}");
     let shown = row["shown"].as_u64().expect("shown") as usize;
-    assert_eq!(awaiting_ids(&r).len(), shown, "`shown` is what the list holds");
-    assert!(shown >= 1 && shown < AWAITING, "{row}");
+    assert_eq!(
+        awaiting_ids(&r).len(),
+        shown,
+        "`shown` is what the list holds"
+    );
+    assert!((1..AWAITING).contains(&shown), "{row}");
     assert!(says_the_count(&r), "the count stays whole: {:?}", r["next"]);
     for item in r["awaiting_word"].as_array().unwrap() {
         assert!(item["node_id"].as_str().is_some() && item["closed_by"].as_str().is_some());
@@ -248,7 +269,9 @@ async fn scan_nodes_fits_the_default_budget_whole_reply_and_honours_a_smaller_on
         )
         .await;
     }
-    let r = s.ok("scan_nodes", json!({"node_type": "Requirement"})).await;
+    let r = s
+        .ok("scan_nodes", json!({"node_type": "Requirement"}))
+        .await;
     assert!(
         chars(&r) <= 30_000,
         "the whole reply, not only its items, fits the 30,000 default: {} chars",

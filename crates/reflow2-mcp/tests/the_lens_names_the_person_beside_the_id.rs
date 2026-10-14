@@ -135,6 +135,7 @@ async fn loop_status_carries_the_names_as_well() {
     let out = j!(s.loop_status(Parameters(LoopScopeReq {
         contributor_id: None,
         since_export: false,
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
     assert!(lens.contains("who:ajs (Anthony Sligar)"), "{lens}");

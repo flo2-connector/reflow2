@@ -7,6 +7,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000).\n\nThe owner-scoped answer lists everything awaiting an owner's word\n(`awaiting_word`), which grows with the design: measured 2026-10-14 on\nreflow2's own design it took that answer to 38,939 characters, and a\nhost holding replies to 30,000 refuses a larger one outright. Over the\nbudget, `awaiting_word`'s prose goes first (long names, the evidence\nsentence), then its rows from the tail, and only then prose anywhere\nelse; every count, id and closing call stays, and `budget` says what\nwas withheld. Raise it only if this client has the room.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "contributor_id": {
         "default": null,
         "description": "Narrow the debt to what this CONTRIBUTOR was asked to settle — \"what\nneeds me\". Omit for the whole design, which is the historical behaviour.\n\nOnly ASSIGNMENT is attributed: an `AUTHORED_BY role=approver` edge, the\ngraph saying in structure that this named person was asked. Every other\ndebt class belongs to the design rather than to a person and comes back\nunder `scope.not_attributable` instead of being filtered away — a scoped\nanswer must never be readable as \"the design is fine\".\n\nAn id that names no Contributor is REFUSED. A typo would otherwise\nanswer \"nothing is owed to you\", which is the most reassuring reply the\ntool can give and the one least likely to be questioned.",

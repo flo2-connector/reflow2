@@ -19,6 +19,17 @@
   and the scoped `next` says so. It moves no status. Unscoped, `awaiting_word` is an empty list,
   as `gaps_on_owned_ground` and `questions_put_to_them` are, so the call every session makes costs
   what it did.
+- **`loop_status` and `scan_nodes` take `budget_chars` and fit a 30,000-character reply by
+  default.** A host such as flo2.io holds every reply to 30,000 characters and refuses a larger
+  one; it asks a tool for less only when the tool takes `budget_chars`, and neither did. The
+  scoped `loop_status` would have answered 38,939 characters on reflow2's own design once
+  `awaiting_word` was added, and every `scan_nodes` of a large type already answered 37,000 to
+  40,000. Over its budget, `loop_status` cuts `awaiting_word`'s long names and evidence sentences
+  first, then withholds its last rows, and only then shortens prose elsewhere; every count, id and
+  closing call stays, and the reply's `budget` block says what was withheld and how to see the
+  rest. `scan_nodes` now counts its whole reply against the budget, and pages sooner: by default
+  about 30,000 characters per page instead of 40,000 characters of nodes. As before, `capped_by`
+  and `next_offset` say where to resume.
 
 ### Changed
 
@@ -29,4 +40,6 @@
   `detect_gaps` cannot put it to the owner. On reflow2's own design, 47 of 59 ideas found already
   built had no such edge.
 
-  **What to do:** nothing. Replies gained fields and no field changed or went away.
+  **What to do:** nothing. Replies gained fields and no field changed or went away. A
+  `scan_nodes` caller that read a whole large type in one call now pages one call sooner: follow
+  `next_offset`, or pass a larger `budget_chars`.

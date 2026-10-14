@@ -259,15 +259,22 @@ struct Block<'a> {
     list_note: String,
     lists_shortened: Vec<Value>,
     hint: &'a str,
+    /// Where the prose was cut, when it was cut in one list only
+    /// ([`bound_reply_list_first`]); `None` means anywhere in the reply.
+    prose_in: Option<&'a str>,
 }
 
 impl Block<'_> {
     fn value(&self, reply_chars: usize) -> Value {
+        let place = self
+            .prose_in
+            .map(|p| format!(" in `{p}`"))
+            .unwrap_or_default();
         let note = format!(
             "WITHHELD TO FIT. The whole answer is {} characters against a budget of {}, which \
              is the size at which a client refuses the reply outright — and a reader who \
              receives nothing cannot be told to narrow their question. What was withheld is \
-             PROSE: {} text field(s) cut to {} characters. Every number, count and id is \
+             PROSE{place}: {} text field(s) cut to {} characters. Every number, count and id is \
              untouched and at full precision, so a shorter answer here is never a quieter \
              one.{} Raise `budget_chars` if this client has the room. {}",
             self.full_chars,
@@ -392,6 +399,7 @@ fn bound_reply_with(full: Value, budget: usize, hint: &str, sampling: Sampling) 
         list_note: String::new(),
         lists_shortened: Vec::new(),
         hint,
+        prose_in: None,
     };
 
     // ① Prose first, progressively. Numbers and ids are never candidates. The
@@ -468,6 +476,110 @@ fn bound_reply_with(full: Value, budget: usize, hint: &str, sampling: Sampling) 
         );
     }
     block.assemble(&capped)
+}
+
+/// Bound a reply whose weight is ONE named top-level list of items, giving
+/// in this order until it fits: that list's prose, then that list's rows from
+/// the tail, and only then prose anywhere else.
+///
+/// For a reply that is mostly a fixed report with one list that grows with
+/// the design — `loop_status`'s owner-scoped `awaiting_word`, measured
+/// 2026-10-14 at 27,951 of the 38,939 characters it brought the scoped answer
+/// to on reflow2's own design, against flo2.io's 30,000. Cutting prose across
+/// the whole reply first, as [`bound_reply`] does, would cut the to-do lines in
+/// `next` before the names in the list that caused the overflow.
+///
+/// The same rules as everywhere here: numbers and ids are never touched (a
+/// string under [`NEVER_TRIM_BELOW`] survives every rung, and a row is dropped
+/// whole, never thinned), the list is never emptied (a floor of one row), and
+/// the `budget` block says which prose was cut, which rows were withheld
+/// (`lists_shortened: [{path, shown, total}]`) and how to see the rest. The
+/// reply's own counts of the list are the caller's to keep, beside the list.
+#[must_use]
+pub fn bound_reply_list_first(full: Value, budget: usize, list: &str, hint: &str) -> Value {
+    let full_chars = chars_of(&full);
+    if full_chars <= budget {
+        return full;
+    }
+    let mut block = Block {
+        budget,
+        full_chars,
+        prose_limit: *PROSE_RUNGS.last().unwrap(),
+        fields_trimmed: 0,
+        list_note: String::new(),
+        lists_shortened: Vec::new(),
+        hint,
+        prose_in: Some(list),
+    };
+    let rows = full.get(list).and_then(Value::as_array).cloned();
+    let Some(rows) = rows.filter(|r| !r.is_empty()) else {
+        // Nothing in the list to give: the whole reply's prose, as usual.
+        return bound_reply(full, budget, hint);
+    };
+    let with_rows = |rows: Vec<Value>| -> Value {
+        let mut v = full.clone();
+        if let Some(o) = v.as_object_mut() {
+            o.insert(list.to_string(), Value::Array(rows));
+        }
+        v
+    };
+
+    // ① The list's prose, progressively — its long names and evidence text.
+    let mut trimmed: Vec<Value> = rows.clone();
+    for rung in PROSE_RUNGS {
+        let mut cut = 0usize;
+        trimmed = rows
+            .iter()
+            .map(|r| truncate_prose(r, rung, &mut cut))
+            .collect();
+        block.prose_limit = rung;
+        block.fields_trimmed = cut;
+        let out = block.assemble(&with_rows(trimmed.clone()));
+        if chars_of(&out) <= budget {
+            return out;
+        }
+    }
+
+    // ② The list's rows, from the tail, each withheld whole, to a floor of one.
+    let total = trimmed.len();
+    let mut keep = total;
+    let mut body = with_rows(trimmed.clone());
+    while keep > 1 {
+        keep -= 1;
+        body = with_rows(trimmed[..keep].to_vec());
+        block.lists_shortened = vec![json!({"path": list, "shown": keep, "total": total})];
+        block.list_note = format!(
+            " THEN ROWS of `{list}`, because its prose alone did not fit: {keep} of {total} \
+             are shown, the rest withheld whole from the tail, and `lists_shortened` says so."
+        );
+        let out = block.assemble(&body);
+        if chars_of(&out) <= budget {
+            return out;
+        }
+    }
+
+    // ③ The list is at its floor: prose anywhere else in the reply.
+    block.prose_in = None;
+    for rung in PROSE_RUNGS {
+        let mut cut = 0usize;
+        let everywhere = truncate_prose(&body, rung, &mut cut);
+        block.prose_limit = rung;
+        block.fields_trimmed = cut;
+        let out = block.assemble(&everywhere);
+        if chars_of(&out) <= budget {
+            return out;
+        }
+        if rung == *PROSE_RUNGS.last().unwrap() {
+            block.list_note.push_str(&format!(
+                " AND THE REPLY IS STILL {} CHARACTERS with `{list}` at one row and every long \
+                 text cut: what remains is the report's structure, which this budget cannot \
+                 hold — raise `budget_chars`.",
+                chars_of(&out)
+            ));
+            return block.assemble(&everywhere);
+        }
+    }
+    block.assemble(&body)
 }
 
 #[cfg(test)]
@@ -656,6 +768,53 @@ mod tests {
         assert!(
             got[7]["hint"].as_str().unwrap().chars().count() < 100,
             "its hint, which is prose, should be gone"
+        );
+    }
+
+    #[test]
+    fn the_named_list_gives_its_prose_then_its_rows_before_anything_else_does() {
+        // The loop_status shape: a to-do list whose lines must survive, and a
+        // list that grows with the design and is where the bytes are.
+        let rows: Vec<Value> = (0..60)
+            .map(|i| json!({"node_id": format!("req:r{i}"), "name": long(600), "closed_by": "set_requirement_status"}))
+            .collect();
+        let next = vec![json!(long(300))];
+        let v = json!({"count": 60, "next": next.clone(), "awaiting_word": rows});
+        let out = bound_reply_list_first(v.clone(), 12_000, "awaiting_word", "get_node on its id");
+        assert!(chars_of(&out) <= 12_000, "{} chars", chars_of(&out));
+        assert_eq!(
+            out["next"],
+            json!(next),
+            "prose outside the list is untouched"
+        );
+        let got = out["awaiting_word"].as_array().unwrap();
+        assert_eq!(
+            got.len(),
+            60,
+            "its prose alone was enough, so every row stays"
+        );
+        assert_eq!(got[59]["node_id"], "req:r59");
+        assert_eq!(got[59]["closed_by"], "set_requirement_status");
+        assert!(
+            out["budget"]["note"]
+                .as_str()
+                .unwrap()
+                .contains("in `awaiting_word`")
+        );
+
+        // Smaller: rows go, from the tail, named with shown and total.
+        let out = bound_reply_list_first(v, 3_000, "awaiting_word", "get_node on its id");
+        assert!(chars_of(&out) <= 3_000, "{} chars", chars_of(&out));
+        assert_eq!(out["count"], 60, "a count is never budgeted away");
+        let shown = out["awaiting_word"].as_array().unwrap().len();
+        assert!((1..60).contains(&shown));
+        assert_eq!(
+            out["awaiting_word"][0]["node_id"], "req:r0",
+            "the head is kept"
+        );
+        assert_eq!(
+            out["budget"]["lists_shortened"],
+            json!([{"path": "awaiting_word", "shown": shown, "total": 60}])
         );
     }
 

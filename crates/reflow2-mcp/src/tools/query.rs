@@ -905,6 +905,12 @@ impl ReflowService {
         let total = nodes.len();
         let offset = req.offset.unwrap_or(0).min(total);
         let brief = req.brief.unwrap_or(false);
+        // The nodes' share of the reply budget: the whole reply must fit, so
+        // the paging fields and a read hint are kept back from it.
+        let node_budget = req
+            .budget_chars
+            .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS)
+            .saturating_sub(SCAN_REPLY_RESERVE_CHARS);
 
         // Render one node at a time, stopping at whichever bound bites first:
         // the caller's `limit`, or the payload budget. The budget exists because
@@ -933,7 +939,7 @@ impl ReflowService {
             // verified: the ordering is reasoning, not measurement. Reversing
             // these two lines kills no test in
             // `discontinued_reaches_the_reader.rs`, because catching it needs a
-            // graph sitting within ~22 bytes per node of SCAN_PAYLOAD_BUDGET_BYTES.
+            // graph sitting within ~22 bytes per node of the budget.
             // The overrun it would cause is bounded and small (one short bool
             // per returned node), which is why this is a note and not a gate.
             let rendered = decorate(&g, rendered, &req.node_type, &node.node_id)?;
@@ -941,11 +947,12 @@ impl ReflowService {
             // Always return at least one node: a single node larger than the
             // whole budget must still be readable, or a big node becomes
             // unreachable rather than merely expensive.
-            if !items.is_empty() && bytes + size > SCAN_PAYLOAD_BUDGET_BYTES {
+            // The comma before it counts too: the budget is the wire's.
+            if !items.is_empty() && bytes + size + 1 > node_budget {
                 capped_by = Some("size");
                 break;
             }
-            bytes += size;
+            bytes += size + 1;
             items.push(rendered);
         }
 
