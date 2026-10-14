@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:a029febef352c2792f6f364b789a52e9287cf7ef1e3c55a6b213343ebc765cdc",
+  "content_hash": "sha256:c7f2cdc3fae15503cae7cb171293ce377cb684d7f6df5e65cb2b75679460e59a",
   "node_id": "art:deprecation",
   "node_type": "Artifact",
+  "prev_item_hash": "sha256:a029febef352c2792f6f364b789a52e9287cf7ef1e3c55a6b213343ebc765cdc",
   "properties": {
     "artifact_type": "code",
-    "description": "REGISTRY (empty), the one place a deprecation is declared: item, deprecated_in, what_to_do, decision. mark_tools puts \"DEPRECATED in <version>, removed in the next release: <what to do>\" on a deprecated tool's, argument's or reply field's description; mark_vocabulary and listing mark describe_schema; used_by decides which deprecated items a call uses (shared with the surface check) and attach_notice adds `deprecation_notice`; removed_tool is a removed tool's one-release stub refusal; validate and changelog_problems are the registry's own checks. Every function is the identity on an empty registry.",
+    "description": "REGISTRY, the one place a deprecation is declared: item, deprecated_in, what_to_do, decision. Its first real entry (2026-10-14) deprecates the Anchor node type in 0.85.0 under dec:anchor-retire-or-implement. mark_tools puts \"DEPRECATED in <version>, removed in the next release: <what to do>\" on a deprecated tool's, argument's or reply field's description; mark_vocabulary and listing mark describe_schema; used_by decides which deprecated items a call uses (shared with the surface check) and attach_notice adds `deprecation_notice`; removed_tool is a removed tool's one-release stub refusal; validate and changelog_problems are the registry's own checks. Every function is the identity on an empty registry.",
     "location": "crates/reflow2-mcp/src/deprecation.rs",
     "name": "deprecation.rs — the retirement rule: the one registry of deprecations, the mark, the notice, the tool stub and the changelog check",
     "status": "realized"

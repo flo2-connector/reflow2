@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:eca36ad88385675f47f9d9b80afc78100f6246a0ddf0d9ef7a6afe6069fdc3bc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-unused-anchor-type-is-announced-for-removal-2026-10-14",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

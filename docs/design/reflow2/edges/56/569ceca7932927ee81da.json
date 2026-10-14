@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:978bf6d88f13b2f513e58b5eade8f4b75033023c51fdd88440cb84df5c5eded6",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:the-unused-anchor-type-is-announced-for-removal",
+  "properties": {
+    "note": "A check on the ruling's deprecating half: the release that ships it still serves Anchor, marks it in describe_schema, notices a call that uses it, and moves the two hints the decision named. The removal half is a later PR."
+  },
+  "to_id": "dec:anchor-retire-or-implement"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c3bf8a9b9e42afdc242d5ba355610a617eaa26243db5f8f51ccf55e4c8f9e1c7",
+  "node_id": "ver:the-unused-anchor-type-is-announced-for-removal",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The deprecating half of dec:anchor-retire-or-implement, checked the way a client of the MCP server sees it, with deprecation::REGISTRY as built (its first real entry) and every call over the protocol: (1) describe_schema marks Anchor `deprecated` with the registry's what-to-do, lists it under `deprecations` with the decision and 0.85.0, the listed item is the registry's item and not marked as vocabulary, Anchor is the only marked type, and the what-to-do names tools this build serves (add_epoch, snapshot_before_change); (2) create_node of an Anchor still works and answers exactly as the last release did but for `deprecation_notice`, and get_node and scan_nodes of it carry the notice; (3) DriftEvent's hint no longer names the Anchor and says it DEPENDS_ON the drifted Artifact, a recorded reconcile_artifacts draws exactly that edge, and Anchor's hint no longer claims DriftEvents reference it; (4) nine common reads that never touch Anchor carry no notice.",
+    "findings": "Run 2026-10-14 on feat/the-unused-anchor-type-is-announced-for-removal at 81c5f2a1a (debug build, this worktree's own target): 4/4 pass. WRITTEN FIRST (4d8122650): on main at 959436d80 all 4 failed — no `deprecated` on Anchor, `deprecation_notice` absent on the create (left: []), DriftEvent's hint still \"References the Anchor it diverged from via DEPENDS_ON\", and no Anchor entry in the registry. A fifth assertion, added once the first real entry was served, failed on 3a24c4daa: describe_schema's `deprecations[0].item` carried a `deprecated` copy of the mark, because the listing went in before the whole reply was marked; it passes with tools/query.rs inserting the listing after the mark (81c5f2a1a). THE CHANGELOG CHECK: with the entry and hints but no fragment, every_registry_entry_is_announced_with_what_to_do failed (\"the node type `Anchor` (deprecated in 0.85.0) is announced by no changelog.d fragment\"); with changelog.d/the-unused-anchor-type-is-announced-for-removal.md it passes, 5/5. THE SURFACE: the_mcp_surface_only_grows 3/3 against the unchanged v0.84.0 record; all 197 toolsnaps match (a node type's mark is in describe_schema, not tools/list). The whole reflow2-mcp suite: 1170 passed, 0 failed, 2 ignored; reflow2-core --no-default-features: 2108 passed. NOISE: 46 read-only tools called with {} on an ordinary design carried no notice. Also run: smoke_mcp.py, a_reply_is_sent_once.py, empty_speaks.py, replies_are_bounded.py, refusal_speaks.py, every_tool_carries_a_title.py, check_command_surface.py, the_served_surface_names_no_real_person.py, render_skills_and_tools.py --check, skill_lint.py, changelog_fragments.py --check, vocabulary_reach.py --check, validate_schema.py, clippy for both configurations, fmt.",
+    "kind": "verification",
+    "last_run_at": "2026-10-14",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_unused_anchor_type_is_announced_for_removal.rs",
+    "method": "test",
+    "name": "The unused Anchor type is announced for removal",
+    "status": "passing"
+  }
+}
