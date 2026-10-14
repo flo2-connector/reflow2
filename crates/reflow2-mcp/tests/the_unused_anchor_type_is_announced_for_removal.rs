@@ -13,8 +13,9 @@
 //! with the registry AS BUILT (no test-only entries):
 //!
 //! 1. describe_schema marks `Anchor` deprecated with what to do, lists it
-//!    under `deprecations` with the decision that retires it, and the
-//!    what-to-do names tools this build serves.
+//!    under `deprecations` with the decision that retires it (the listed item
+//!    as the registry holds it, not marked as if it were the vocabulary), and
+//!    the what-to-do names tools this build serves.
 //! 2. Creating an Anchor still works, exactly as before but for the notice
 //!    its reply carries — and reading it back carries the notice too.
 //! 3. The two extraction hints the decision says must move have moved:
@@ -30,6 +31,14 @@
 //! (`left: []`), DriftEvent's hint still saying it "References the Anchor it
 //! diverged from via DEPENDS_ON", and the noise check, which asks its question
 //! of the registry as built, finding no Anchor entry to ask it of.
+//!
+//! AND ONE THING THE FIRST REAL ENTRY SHOWED, which #751's test-only entries
+//! did not: describe_schema's full answer marked its own `deprecations`
+//! listing, because the listing went in before the mark was applied to the
+//! whole reply, and the listed `item` holds a `node_type`. So
+//! `deprecations[0].item` carried a `deprecated` copy of the mark. The
+//! assertion on the listed item failed on 3a24c4daa and passes once the
+//! listing goes in after the mark (tools/query.rs).
 
 use reflow2_mcp::deprecation::{Item, REGISTRY};
 use reflow2_mcp::service::ReflowService;
@@ -202,6 +211,14 @@ async fn describe_schema_marks_anchor_deprecated_with_what_to_do() {
     assert_eq!(it["decision"], DECISION);
     assert_eq!(it["what_to_do"], entry.what_to_do.as_ref());
     assert_eq!(it["what"], "the node type `Anchor`");
+    // The listing names the item and nothing else. Its `item` holds a
+    // `node_type`, so a mark applied to the whole answer after the listing
+    // went in would mark the listing's own entry as if it were the vocabulary.
+    assert_eq!(
+        it["item"],
+        json!({"kind": "node_type", "node_type": "Anchor"}),
+        "the listed item is the registry's item, unmarked: {it}"
+    );
 
     let one = ok(&c, "describe_schema", json!({"node_type": "Anchor"})).await;
     assert_eq!(

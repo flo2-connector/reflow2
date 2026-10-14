@@ -604,19 +604,10 @@ impl ReflowService {
                  and `to` together, to read one part's hints in full.",
             )
         };
+        let full = matches!((&req.node_type, &req.from, &req.to), (None, None, None));
         let mut reply = match (&req.node_type, &req.from, &req.to) {
             (None, None, None) => {
-                let mut v = bound(serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?);
-                // THE FULL ANSWER LISTS WHAT IS GOING (`crate::deprecation`):
-                // every deprecation with what to do, after bounding, like the
-                // writers below — and no key at all while nothing is.
-                if let (Some(list), Some(m)) = (
-                    crate::deprecation::listing(&self.deprecations),
-                    v.as_object_mut(),
-                ) {
-                    m.insert("deprecations".into(), list);
-                }
-                v
+                bound(serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?)
             }
             // The writers are added AFTER bounding: they are a handful of tool
             // names and one short sentence, and a trimmed reply is exactly the
@@ -653,6 +644,21 @@ impl ReflowService {
         // the vocabulary is read (`crate::deprecation::mark_vocabulary`). An
         // empty registry leaves the answer untouched.
         crate::deprecation::mark_vocabulary(&mut reply, &self.deprecations);
+        // THE FULL ANSWER LISTS WHAT IS GOING (`crate::deprecation`): every
+        // deprecation with what to do, after bounding, like the writers above —
+        // and no key at all while nothing is. AFTER THE MARK, NOT BEFORE: a
+        // listed item names its type under `node_type`, so a listing that was
+        // already in the reply got marked as if it were the vocabulary, and
+        // `deprecations[].item` carried a `deprecated` copy of the mark. The
+        // first real entry (the Anchor type, 2026-10-14) showed it.
+        if full
+            && let (Some(list), Some(m)) = (
+                crate::deprecation::listing(&self.deprecations),
+                reply.as_object_mut(),
+            )
+        {
+            m.insert("deprecations".into(), list);
+        }
         ok_json(reply)
     }
 
