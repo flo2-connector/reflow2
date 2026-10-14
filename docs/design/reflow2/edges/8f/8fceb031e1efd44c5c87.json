@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:35c2419cd00270102539037f9f2f79cd58770d7d20e3a118e6275340dca6491d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:the-server-keeps-the-export-current-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

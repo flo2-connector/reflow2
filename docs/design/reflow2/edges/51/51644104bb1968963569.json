@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c77eb622027633d12e24c0557f6c8ef79fd9d220f21fd181409d4a4f821cc4d2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-scoped-loop-status-fits-its-budget-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

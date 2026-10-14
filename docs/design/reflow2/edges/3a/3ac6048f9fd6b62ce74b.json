@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8080095dcc91fe465c99d830f0a45a531d6ebb53486c2b5519bdc63d0eec9a23",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:lens-names-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

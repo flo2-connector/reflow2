@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ffd5f05c4ded43e4e4e2ceef7685e571bbd5536fdbd09f8d5a3f9bb779c260e5",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-scoped-loop-status-fits-its-budget-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:built-work-reads-as-built-and-awaits-the-owners-word"
+}
