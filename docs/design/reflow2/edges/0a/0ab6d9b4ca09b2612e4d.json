@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66519488210375b736bd07b3e24d072611d4089d3e6dd1f38e361d4adf256fdc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0840",
+  "properties": {
+    "as_checksum": "sha256:9c966923e23e2e19c8e0ee76726f7effc9cfc87a56e6820f0b9c8a7f0e0db130"
+  },
+  "to_id": "art:test-a-budget-says-how-it-composes-core"
+}

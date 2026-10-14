@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:987bf9e609b4a94401b9927610a6dbfc74b68b2a2a93a3a01decdf9d36cc950c",
+  "node_id": "rel:v0840",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-14 on Anthony's word (\"Cut v0.84.0\"). A minor with five parts. #745: a Component carries built_reading on get_node and scan_nodes (what its evidence shows built, beside the stored status it never moves); the scoped loop_status lists awaiting_word; loop_status and scan_nodes take budget_chars and fit a 30,000-character reply; the ship step (link-artifacts, capture-session, the served instructions' step 3) draws EVOLVES_INTO from the idea it answers. #744: review_relations and add_decision's related_to take alignment and the other defaulted link properties, so a CONTRADICTS can be stored supporting. #743: follow-through and promotion read one arrival. #742: changelog_view carries a balance, and release_includes_all with apply keeps the release's status snapshot. #741: the site says what the links answer and charts the design adding up. #740 re-blessed 0.83.5's surface record. 197 tools on both 0.83.5 and 0.84.0; seven differ, and every difference is one of those PRs. No node or edge type moved, the stamp's types and enum values are 0.83.5's, and the store needs no migration. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.84.0 — built work reads as built, and the changelog shows what was taken away beside what was added",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.84.0"
+  }
+}

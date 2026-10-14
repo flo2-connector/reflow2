@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eefac210e0679c0f2a5d36fd5b81c6af95863c2eae5c210b9571ef7ee9fb8bff",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-a040611855a47959",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:0615fda0258b26cdd394957ca3274911e1c3dba7a67a0a3eaf9fdf73e1fbad79",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-why-html"
+}
