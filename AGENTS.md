@@ -888,7 +888,8 @@ joined by *traceability* edges) for HEAL's topology detectors.
     first. Measured 2026-10-10 on the real design: an export from 0.81.0, imported and exported by
     0.81.1, came back with the identical content hash.
   - **The release notes say what is going and what has gone** (step 2, beside the changelog's
-    assembly; the retirement rule, `cap:a-served-item-is-removed-only-after-a-release-that-announced-it`).
+    assembly, `cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone`; the retirement
+    rule is `cap:a-served-item-is-removed-only-after-a-release-that-announced-it`).
     Before tagging, the release's opening paragraph and its `### Deprecated` and `### Removed`
     sections list every entry `deprecation::REGISTRY` deprecates in this release, each with its
     **What to do:** line, and every item this release removes (a tool removed now answers its
