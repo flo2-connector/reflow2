@@ -5852,7 +5852,9 @@ pub struct SetChecksumReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct ApplyHealReq {
-    /// A `HealProposal` previously returned by `propose_heal`.
+    /// A `HealProposal` previously returned by `propose_heal`. The one edit it
+    /// takes is a person's pick of a merge's survivor: swap that merge's keep
+    /// and remove, or set the operation's `chosen_survivor`.
     pub proposal: JsonObject,
 }
 

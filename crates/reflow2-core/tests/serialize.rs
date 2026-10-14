@@ -53,6 +53,8 @@ fn heal_proposal_round_trips_through_json() {
                 remove_type: "Component".to_string(),
                 remove_id: "cmp:b".to_string(),
             },
+            survivor: None,
+            chosen_survivor: None,
         }],
         would_destroy: vec![SkippedOperation {
             reference: "cmp:b".to_string(),

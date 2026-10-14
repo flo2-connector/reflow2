@@ -150,7 +150,22 @@ fn merge_carries_a_unique_edge_onto_the_survivor() {
     )
     .unwrap();
 
-    let proposal = g.propose_heal(HealOptions::default()).unwrap();
+    // CHANGED 2026-10-14: this pair differs in nothing but the ids (one
+    // allocation each), and the alphabet used to pick cap:a. That WAS the
+    // defect (fact:root-cause-a-merge-deletes-the-wrong-node-because-the-
+    // survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14):
+    // a tie now needs a person's pick, so the person picks cap:a here. What
+    // this test is about — the merge carrying cap:b's unique edge — is
+    // unchanged.
+    let mut proposal = g.propose_heal(HealOptions::default()).unwrap();
+    assert!(
+        proposal.operations[0]
+            .survivor
+            .as_ref()
+            .is_some_and(|s| s.needs_choice),
+        "a pair tied on everything is a person's to pick"
+    );
+    proposal.operations[0].chosen_survivor = Some("cap:a".into());
     g.apply_heal(&proposal).unwrap();
 
     let allocs: Vec<String> = g
@@ -543,6 +558,16 @@ fn chained_graph() -> DesignGraph {
     g.add_capability("cap:a", "Cap A", "does a", None).unwrap();
     g.add_capability("cap:b", "Cap B", "does a", None).unwrap();
     g.add_capability("cap:c", "Cap C", "does a", None).unwrap();
+    // CHANGED 2026-10-14: the three were identical but for their ids, so the
+    // alphabet decided every link of the chain — the defect the merge-survivor
+    // fix removes; a tie now waits for a person's pick. These tests are about
+    // the CHAIN, not the choice, so the fixture states a real difference
+    // instead: authored > planned > inferred decides each link the way the
+    // ids used to (a over b, b over c, a over c).
+    g.set_provenance(node::CAPABILITY, "cap:b", "planned")
+        .unwrap();
+    g.set_provenance(node::CAPABILITY, "cap:c", "inferred")
+        .unwrap();
     g.allocate("cap:c", "cmp:d").unwrap(); // unique to the chain's far end
     for (x, y) in [("cap:a", "cap:b"), ("cap:b", "cap:c")] {
         g.create_edge(
@@ -576,6 +601,8 @@ fn merge_op(g: &DesignGraph, keep: &str, remove: &str) -> HealOperation {
             remove_type: "Capability".into(),
             remove_id: remove.into(),
         },
+        survivor: None,
+        chosen_survivor: None,
     }
 }
 
@@ -754,7 +781,7 @@ fn an_edge_joining_the_merging_pair_is_reported_not_silently_dropped() {
     );
 }
 
-// ---- BL-29 · the survivor rule: provenance wins, id breaks ties ------------
+// ---- BL-29 · the survivor rule: provenance wins; the id never decides -----
 
 #[test]
 fn an_authored_node_survives_a_merge_with_an_inferred_one_regardless_of_id() {
@@ -803,10 +830,14 @@ fn an_authored_node_survives_a_merge_with_an_inferred_one_regardless_of_id() {
 }
 
 #[test]
-fn equal_provenance_falls_back_to_the_smaller_id() {
-    // dup_graph's pair carries the schema default — both authored — so the
-    // pre-decision rule still decides: cap:a survives. This is also the
-    // behaviour of every graph written before the property existed.
+fn equal_provenance_falls_to_the_design_never_to_the_id() {
+    // CHANGED 2026-10-14. This was `equal_provenance_falls_back_to_the_smaller_id`
+    // and pinned the id tiebreak itself, which WAS the defect: the id decided
+    // all 11 same-type pairs in reflow2's own design. dup_graph's pair carries
+    // the schema default — both authored — and cap:a still survives, but now
+    // because it carries more of the design (it also satisfies req:r), and the
+    // proposal says so. A pair that differs in nothing is a person's to pick
+    // (the_engine_proposes_a_merge_and_a_person_picks_the_survivor.rs).
     let g = dup_graph();
     let proposal = g.propose_heal(HealOptions::default()).unwrap();
     match &proposal.operations[0].op {
@@ -818,6 +849,12 @@ fn equal_provenance_falls_back_to_the_smaller_id() {
         }
         other => panic!("expected a Merge, got {other:?}"),
     }
+    let survivor = proposal.operations[0]
+        .survivor
+        .as_ref()
+        .expect("a merge carries its ranking");
+    assert_eq!(survivor.decided_by.as_deref(), Some("connections"));
+    assert!(!survivor.needs_choice);
 }
 
 #[test]
@@ -1033,6 +1070,14 @@ fn the_proposal_names_the_properties_the_merge_would_destroy() {
     )
     .unwrap();
 
+    // CHANGED 2026-10-14. The four assertions here pinned the defect itself:
+    // the victim was req:z-content-bible because the ALPHABET kept
+    // req:a-backend, the note said a critical priority died, and it said
+    // "THE ALPHABET CHOSE THE VICTIM". The merge-survivor fix
+    // (fact:root-cause-a-merge-deletes-the-wrong-node-because-the-survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14)
+    // ranks the pair instead: priority decides, the critical requirement is
+    // the recommendation, and what this test is about — the proposal names
+    // what dies before anyone can apply it — now names the medium one's loss.
     let proposal = g.propose_heal(HealOptions::default()).unwrap();
     assert_eq!(
         proposal.would_destroy.len(),
@@ -1042,23 +1087,28 @@ fn the_proposal_names_the_properties_the_merge_would_destroy() {
     );
     let note = &proposal.would_destroy[0];
     assert_eq!(
-        note.reference, "req:z-content-bible",
-        "the alphabet keeps req:a-backend, so the critical one is the victim"
+        note.reference, "req:a-backend",
+        "priority decides now, so the medium one is the recommended victim"
     );
     assert!(
-        note.reason.contains("priority 'critical' -> 'medium'"),
-        "the proposal must say a critical priority dies here: {}",
+        note.reason.contains("priority 'medium' -> 'critical'"),
+        "the proposal must say what dies with it: {}",
         note.reason
     );
     assert!(
-        note.reason.contains("status 'proposed' -> 'accepted'"),
-        "and that the status changes under it: {}",
+        note.reason.contains("status 'accepted' -> 'proposed'"),
+        "including the acceptance the survivor does not carry: {}",
         note.reason
     );
     assert!(
-        note.reason.contains("THE ALPHABET CHOSE THE VICTIM"),
-        "equal provenance means nothing about the DESIGN decided this, and \
-         saying so is the whole disclosure: {}",
+        !note.reason.contains("ALPHABET"),
+        "the alphabet no longer chooses: {}",
+        note.reason
+    );
+    assert!(
+        note.reason
+            .contains("Recommended: keep 'req:z-content-bible'"),
+        "and the disclosure says the survivor is a recommendation, and why: {}",
         note.reason
     );
 }
