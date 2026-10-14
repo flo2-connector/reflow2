@@ -3,7 +3,7 @@
     "destructiveHint": true,
     "readOnlyHint": false
   },
-  "description": "Apply a reviewed HealProposal atomically (rigid mode = no-op). Pass a proposal `propose_heal` returned — every operation is checked against what HEAL proposes for the graph as it stands now, and anything else is refused before a single write, so hand-editing the proposal or reusing a stale one fails rather than merging the wrong nodes. THE ONE EDIT IT TAKES IS A PERSON'S PICK OF WHICH NODE A MERGE KEEPS: swap that merge's keep and remove, or set the operation's `chosen_survivor` to the id to keep. A merge whose `survivor.needs_choice` is true is refused until it carries `chosen_survivor`. Merging deletes a node and cannot be undone. Read `discarded` in the result: it lists what the merge could not carry onto the survivor.",
+  "description": "Apply a reviewed HealProposal atomically (rigid mode = no-op). Pass a proposal `propose_heal` returned: every operation is checked against what HEAL proposes for the graph as it stands now, and anything else is refused before a single write. The one edit it takes is a person's pick of which node a merge keeps: swap keep and remove, or set `chosen_survivor` (required when `needs_choice`). Merging deletes a node and cannot be undone; `discarded` lists what the merge could not carry onto the survivor.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
