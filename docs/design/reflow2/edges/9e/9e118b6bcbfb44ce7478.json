@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:2dfcd1c73d5c4b3961f43b9212e3db7908996f224bb14a3752f325e668acd603",
+  "content_hash": "sha256:8d1edcc909cef9bd61220e985a4258933f06d12547495dde361c1b5916993d07",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:ci-runs-the-primitives-conformance-kit-with-a-ratchet",
+  "prev_item_hash": "sha256:2dfcd1c73d5c4b3961f43b9212e3db7908996f224bb14a3752f325e668acd603",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:28c38cd2aebf9391c4fde55d8784d72169b430bd7388e95f6efc5bb79bf392aa",
+  "content_hash": "sha256:45278a2276a408cc222a4a49831b9c260b0d20381b817990ed6c887f1b0e48d1",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:every-relationship-declares-its-algebra-and-no-method-runs-where-it-cannot-represent-it",
+  "prev_item_hash": "sha256:28c38cd2aebf9391c4fde55d8784d72169b430bd7388e95f6efc5bb79bf392aa",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

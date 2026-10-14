@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:8a81bd1ef349695412d60b490af7c8460dd6e542bdd87baa658dd98fa91824bd",
+  "content_hash": "sha256:ded1a487258c9b3565efc3d8c7183f2b6f7012a029e92f2ff59384985d2eedef",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:each-fact-reflow2-holds-is-held-correctly-and-kept-current",
+  "prev_item_hash": "sha256:8a81bd1ef349695412d60b490af7c8460dd6e542bdd87baa658dd98fa91824bd",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

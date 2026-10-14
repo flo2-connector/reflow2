@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0703ef99456423f8d490ca697293da4fc62b811c22b51aeed62bc957bdb9a257",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:the-mcp-surface-is-sized-for-tokens-per-task",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:the-mcp-surface-is-sized-for-tokens-per-task"
+}

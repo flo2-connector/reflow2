@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:4db5303805870e03cc6fd4e179639b9b36e8b4d19fbf6d489fa4b3a8eed5fa66",
+  "content_hash": "sha256:909e5010841132e240836b4c30c541ff4a8f1ec074f9d44ac264f5d633a18a6d",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:time-and-tokens-are-measured-per-task-against-budgets",
+  "prev_item_hash": "sha256:4db5303805870e03cc6fd4e179639b9b36e8b4d19fbf6d489fa4b3a8eed5fa66",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

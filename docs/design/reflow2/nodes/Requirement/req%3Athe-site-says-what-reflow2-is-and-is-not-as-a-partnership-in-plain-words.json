@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:17ff1c0b5d92a59a470aefb929f4d51670729b0c4bf2e3411a282bf4938dddb9",
+  "content_hash": "sha256:71d0afc7ca5a04e1188f4b923a3bed2dbd4bc81107c94faa9ed0eb0bb71a9fa1",
   "node_id": "req:the-site-says-what-reflow2-is-and-is-not-as-a-partnership-in-plain-words",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:17ff1c0b5d92a59a470aefb929f4d51670729b0c4bf2e3411a282bf4938dddb9",
   "properties": {
     "concern": "usability",
     "kind": "functional",
@@ -10,7 +11,7 @@
     "priority": "medium",
     "provenance": "authored",
     "source": "Anthony, 2026-10-12. He brainstormed it (dec:idea-what-is-the-one-story-of-what-reflow2-is-and-is-not), then accepted the agent's recommendation in these words: \"Go with your recommendation on: one-design walkthrough, the \"is / is not\" story built on the human/AI/graph partnership, and the human decision process as the spine.\" Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "statement": "Someone with no technical background can read reflow2's site and come away knowing what reflow2 is and what it is not, without being intimidated or bogged down.\n\nIt is a partnership of three:\n- The person brings the ideas and makes every decision.\n- An AI drafts, asks what is missing, and checks.\n- The graph remembers what was decided, by whom and why, and what was measured. So the reasons outlive the chat, the model and the people who leave.\n\nIt is not an AI that does the work, and it does not replace people or their conversations. It gives those conversations a memory and helps people work together.\n\nThe site also says plainly:\n- reflow2 itself runs no AI.\n- Some work does not need it: short, one-person, one-sitting work.\n- Which part carries over to a project that is not software.\n\nThe story spans two or three pages. The first page stands on its own in plain words, and a deeper page serves those who want more.",
+    "statement": "Someone with no technical background can read reflow2's site and come away knowing what reflow2 is and what it is not, without being intimidated or bogged down.\n\nIt is a partnership of three:\n- The person brings the ideas and makes every decision.\n- An AI drafts, asks what is missing, and checks.\n- The graph remembers what was decided, by whom and why, and what was measured. So the reasons outlive the chat, the model and the people who leave.\n\nIt is not an AI that does the work, and it does not replace people or their conversations. It gives those conversations a memory and helps people work together.\n\nThe site also says plainly:\n- reflow2 itself runs no AI.\n- Some work does not need it: short, one-person, one-sitting work.\n- Which part carries over to a project that is not software.\n\nThe story spans two or three pages. The first page stands on its own in plain words, and a deeper page serves those who want more.\n\nADDED 2026-10-13: Anthony kept option (b) of dec:idea-what-reflow2-can-learn-from-oh-my-pi as intent (\"Go with your recommendation on: which oh-my-pi ideas, (a) to (h), to keep\"). Coding-agent harnesses now keep their own memory; oh-my-pi's retain and recall are one example. So the \"is not\" list also says that reflow2 is not an agent's private memory. It says what reflow2 holds that such memory does not:\n- it is shared between people and models;\n- it is typed and linked;\n- it is clear about whose word settles what;\n- it is checkable;\n- it outlives any one harness.\nThe served working instructions say the same in one line. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
     "status": "accepted"
   }
 }

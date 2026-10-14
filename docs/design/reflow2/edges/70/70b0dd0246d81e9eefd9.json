@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:5b8860837fa36ddb23879428132a3a32eed7cb9d63b21f185e2139eabb334600",
+  "content_hash": "sha256:d1fbc3e0da9487a9829c0ca91dde2e890dd30959ff3997e66346650a740845d6",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:each-projections-cycles-are-tracked-across-design-epochs-from-birth-to-death",
+  "prev_item_hash": "sha256:5b8860837fa36ddb23879428132a3a32eed7cb9d63b21f185e2139eabb334600",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

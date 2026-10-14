@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e276a62e0e824c76c79b369eb4c3e531f2f6e67c04920fd3050a937d35d5190a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:review-relations-can-say-a-contradiction-supports-2026-10-13",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:root-cause-review-relations-cannot-mark-a-contradiction-supporting-and-the-default-says-opposing-2026-10-13"
+}

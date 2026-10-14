@@ -1,0 +1,17 @@
+{
+  "content_hash": "sha256:9fde6c3284373e6a41886af186ff73ad84b231cdc89a0adc7ce3f88b8ee4447d",
+  "node_id": "fact:root-cause-review-relations-cannot-mark-a-contradiction-supporting-and-the-default-says-opposing-2026-10-13",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured): review_relations writes only `evidence`, so every CONTRADICTS it draws takes the schema default `alignment: opposing`; 10 edges whose own evidence says \"alignment=supporting\" are stored opposing, and 9 are reported as contradictions",
+    "source": "root-cause skill run 2026-10-13 over the committed copy at main c58305ba8 and live detect_defects",
+    "statement": "ROOT CAUSE (walked, measured on main c58305ba8 and the live design, 2026-10-13; RUN AS THE SKILL, root-cause fetched fresh).\n\n1 OBSERVED: 93 CONTRADICTS edges, 55 `opposing` and 38 `supporting`. 10 of the opposing ones carry evidence that says in words \"alignment=supporting\" or \"corroboration, not conflict\" (e.g. fact:the-linking-discipline-reproduced-its-own-finding-2026-08-30 CONTRADICTS cap:search-first-at-the-tool). Each stores exactly {alignment: opposing, evidence}. detect_defects reports 9 of them as contradictions (heal:70d4e842a92aadaf, heal:8d4ae0308730b5aa, heal:120c0b59fb37331b, heal:f660a760ca6a9652, heal:243253b5bfcb11a3, heal:5958ba71686aebf4, heal:9f4dfee2481b30f3, heal:1cd8225c12b486c6, heal:90f5a328414adf9d); the tenth touches a rejected decision and is suppressed. Expected: a corroboration recorded as one. NOT affected: the detector, which skips alignment=supporting (heal.rs; ver:supporting-is-not-conflict passes), and create_edge, whose props can set alignment.\n\n2 PRECEDENT: fact:the-causes-edge-carries-a-full-rca-vocabulary-that-no-served-tool-can-set (2026-09-22), the same shape on CAUSES.\n\n3 CAUSE: review_relations, the route the brainstorm and capture-intent skills send an agent to for CONTRADICTS, takes relation, other_id, evidence, incoming, other_design and other_name (RelationLinkReq, deny_unknown_fields, crates/reflow2-mcp/src/service.rs), and writes Props::new().set(\"evidence\", ...) (crates/reflow2-core/src/relate.rs). schema/inference.yaml declares alignment {default: opposing}, which materialises on create. A writer who means \"supporting\" has no field to say it in, writes it into the evidence, and the default asserts the opposite.\n\n4 REFUTED: \"the detector ignores alignment\" (it reads it; the stored value is opposing). \"The writers forgot a field they had\" (the instructed route has none; create_edge could set it, but no skill sends a relation there). UNSEPARATED: which route drew each of the 10 edges. An edge records no writer route, so \"drawn through review_relations\" is inferred from the evidence wording, not measured per edge.\n\n5 CLASS: a relation-drawing route that writes only evidence lets every defaulted edge property speak for the writer: CONTRADICTS alignment=opposing, CAUSES basis=correlational and validation_status=unvalidated, DUPLICATES basis=suspected, DEPENDS_ON optional=false and weight_basis=estimated. Only alignment is read as a defect today. The 2026-07-28 fix (the detector reads alignment) could not have stopped this, because the instructed writer cannot write the property.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "review_relations"
+    ],
+    "subject_id": "art:relate",
+    "valid_from": "2026-10-13"
+  }
+}

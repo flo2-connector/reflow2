@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bdb018eeaf191c32c04caca4b855db9e2064f2f2b1a30d567bf0bcf7fa3f1009",
+  "node_id": "ver:every-defaulted-edge-property-is-exposed-or-exempt",
+  "node_type": "Verification",
+  "properties": {
+    "description": "For every tool writers.json maps to the edge types it draws (review_relations and the typed edge helpers), plus add_decision's related_to, each property the schema declares with a default on those edge types must be a published field able to carry every legal value, or be listed in EXEMPT with a one-line reason; a new unlisted gap fails and a stale exemption fails. Read off the served tool list and the compiled-in schema, so a new default or a new edge tool is checked the day it lands. A second case writes every defaulted review-relation property with a non-default value through review_relations and reads it back, so a field accepted and dropped cannot pass; a third requires every write tool named after an edge type to be in the map.",
+    "findings": "2026-10-13 on branch fix/review-relations-can-say-a-contradiction-supports at 12c543617: 3 passed, 0 failed. 35 tools covered (34 in draws_edge_type plus add_decision); 7 exemptions, all on typed helpers. Before the fix, on main c58305ba8 with only the test added (5090b58c6): the class guard FAILED with 12 gaps (review_relations and add_decision each on CAUSES basis and validation_status, CONTRADICTS alignment, DEPENDS_ON optional and weight_basis, DUPLICATES basis) and the read-back case FAILED (\"unknown field `basis`\"); the map-completeness case passed.",
+    "kind": "verification",
+    "last_run_at": "2026-10-13",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/every_defaulted_edge_property_is_exposed_or_exempt.rs",
+    "method": "test",
+    "name": "Every defaulted edge property a typed tool draws is sayable or exempt with a reason",
+    "status": "passing"
+  }
+}
