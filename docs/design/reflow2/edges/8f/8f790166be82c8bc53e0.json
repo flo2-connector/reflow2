@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c739166cec083cf8a4e140b6c586816e216d8fd0595b4a2f658917f5c7da61e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-site-republishes-from-main-after-a-release-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:36ad49f2ceff2e0f725a48a87b4c387956eb822e1106df2806691fcb4a7482f8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-counts-tool"
+}

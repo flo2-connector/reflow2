@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1c6089f186481e12466ec9227217fa6ddffad62e38f90e28f806d87b9d394dd3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-merge-deletes-the-wrong-node-because-the-survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
