@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ba972359857784478fc492921e171004eb1eccf83039758f00723bee86684f2c",
+  "node_id": "art:a-person-picks-the-merge-survivor-over-mcp-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Over the served path (call_tool through an in-process client): propose_heal serves each merge's survivor block; a person who swaps the recommended merge's keep and remove keeps their choice through apply_heal; a pair tied on everything is refused with \"a person must pick\" and the chosen_survivor instruction, and applies once the operation carries chosen_survivor.",
+    "location": "crates/reflow2-mcp/tests/a_person_picks_the_merge_survivor_over_mcp.rs",
+    "name": "tests/a_person_picks_the_merge_survivor_over_mcp.rs",
+    "status": "realized"
+  }
+}

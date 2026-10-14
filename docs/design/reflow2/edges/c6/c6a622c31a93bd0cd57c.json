@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2a3147f9d56766b60428f476dbb2a11eab51da50bd0ce4667f6c765d0f511fa9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:11aa753dbaadf3b732e3a7047e50ef1970837340151dd10e61ff6ca73bc62a65",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

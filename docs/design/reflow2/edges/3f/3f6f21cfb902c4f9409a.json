@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6b73b9f1e981ec58cd708fb8abec9c399eb1b0e88ecda3779bed3e4714b33f63",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor",
+  "properties": {
+    "evidence": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor replaces dec:merge-survivor-provenance: declared by the writer through `replaces` on add_decision. dec:merge-survivor-provenance's ending is recorded in chg:replaced:dec:merge-survivor-provenance:by:dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor, and the thread that says what it was for moved to dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor."
+  },
+  "to_id": "dec:merge-survivor-provenance"
+}

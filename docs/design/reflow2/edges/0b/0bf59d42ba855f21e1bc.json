@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa4a19b1a939d858a434d1bbffb23ab27ea05974502f1f329ad0705b1af1b03d",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "at": "2026-10-14",
+    "note": "Verified false on this branch's code. The survivor is no longer picked by provenance-then-id: propose_heal ranks both candidates on provenance, standing, priority, status and connections and recommends only on a real difference, and apply_heal accepts the person's pick (a swapped keep/remove or chosen_survivor) and refuses a tie without one. The new tests failed on main 1f46299a0 (10 of 11 core, 2 of 2 MCP) and pass at 21db7f39c. Measured on a scratch import of main's design copy with this build: the two recorded cases now recommend who:ajs (connections 1368 against 9) and the critical requirement (priority); of the 11 same-type pairs, 8 are decided by a real difference and 3 wait for a person. The rule the finding named is superseded by dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor. Still true, and not claimed: flo2.io serves 0.84.0 until a release carrying this reaches it."
+  },
+  "to_id": "fact:root-cause-a-merge-deletes-the-wrong-node-because-the-survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14"
+}

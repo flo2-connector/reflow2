@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:53b937e9b7e72a12e2b17d158ca1fe21dc8d76dec4a5472f6812a9bdcce363b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:2657056d826043d9a5c7f93d44ced857985a701a1e63604d571f05c33b9a4337",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

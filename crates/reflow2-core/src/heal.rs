@@ -565,7 +565,9 @@ impl Default for HealOptions {
 ///
 /// `PartialEq` is load-bearing: [`apply_heal`](DesignGraph::apply_heal) compares
 /// each incoming operation against the ones HEAL would produce from the graph as
-/// it stands, and refuses anything that does not match.
+/// it stands, and refuses anything that does not match. A `Merge` is compared as
+/// the PAIR it joins, in either orientation, because which of the two survives
+/// is a person's choice (see [`MergeSurvivor`]).
 #[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 pub enum HealOp {
     /// Create an edge between two existing nodes.
@@ -578,6 +580,12 @@ pub enum HealOp {
     },
     /// Merge `remove` into `keep` (re-point `remove`'s edges onto `keep`, then
     /// delete `remove`).
+    ///
+    /// As proposed, `keep` is the engine's RECOMMENDATION, or — when nothing in
+    /// the design separates the two — just the first in id order, with the
+    /// operation's [`MergeSurvivor::needs_choice`] set. Either way a person may
+    /// keep the other: swap the two, or set
+    /// [`HealOperation::chosen_survivor`].
     Merge {
         keep_type: String,
         keep_id: String,
@@ -594,6 +602,119 @@ pub struct HealOperation {
     pub issue_id: String,
     /// The graph mutation.
     pub op: HealOp,
+    /// For a merge: both candidates, ranked, each with its reasons, and the
+    /// engine's recommendation — or the plain statement that a person must
+    /// pick. Written by `propose_heal`; `apply_heal` never trusts it and
+    /// re-derives the ranking from the design as it stands.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub survivor: Option<MergeSurvivor>,
+    /// For a merge: the node a PERSON chose to keep. Never written by
+    /// `propose_heal`. When set it decides the survivor, whichever way
+    /// `keep_id`/`remove_id` are ordered; it must name one of the two. A merge
+    /// whose [`MergeSurvivor::needs_choice`] is true is refused without it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chosen_survivor: Option<String>,
+}
+
+/// One of the two nodes a merge could keep, with what the engine read about it.
+#[derive(Debug, Clone, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[serde(default)]
+pub struct SurvivorCandidate {
+    /// The node.
+    pub node_id: String,
+    /// Its `provenance`, or `None` when it records none (a node written before
+    /// the property existed, or a type that does not carry it).
+    pub provenance: Option<String>,
+    /// Its edges in and out, NOT counting the edges joining the pair (they die
+    /// with the merge either way) or any `DUPLICATES` edge (a claim that a node
+    /// is redundant is not the design using it).
+    pub connections: usize,
+    /// Its `status`, if it has one.
+    pub status: Option<String>,
+    /// Its `priority`, if its type has one.
+    pub priority: Option<String>,
+    /// The date the node records for itself (`created_at`, `valid_from`,
+    /// `asked_at`, `detected_at`, or else its earliest `authored_at`), when
+    /// one is known.
+    pub dated: Option<String>,
+    /// One line per signal, in the order the engine weighs them:
+    /// provenance, standing, priority, status, connections, then newer
+    /// (shown, never weighed).
+    pub reasons: Vec<String>,
+}
+
+/// Which node a merge keeps: the engine's ranking of the two candidates and,
+/// ONLY when a real difference separates them, its recommendation.
+///
+/// # Why the engine proposes and a person picks
+///
+/// Anthony, 2026-10-13, on item 23 of the judgement pass: "merge survivor: the
+/// engine proposes and a person picks, after a root-cause pass". The rule this
+/// replaces (`dec:merge-survivor-provenance`) picked by provenance and then by
+/// node id, and read nothing of status, priority or connections; measured on
+/// 0.83.5 the id decided all 11 same-type pairs in reflow2's own design, kept
+/// `ctr:anthony` (10 edges) over `who:ajs` (1,353), and kept a medium,
+/// accepted requirement over a critical, proposed one — while `apply_heal`
+/// refused the swapped operation that would have let a person correct it
+/// (`fact:root-cause-a-merge-deletes-the-wrong-node-because-the-survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14`).
+///
+/// # The ladder, and why it is ordered so
+///
+/// A merge carries the removed node's EDGES onto the survivor, but none of its
+/// PROPERTIES: its words, its status and its priority die with it. So the
+/// signals that live in properties are weighed first, and connections — which
+/// the merge re-points — only when the records weigh the same:
+///
+/// 1. **provenance** — a person's words over a machine's (the BL-29 order,
+///    unchanged).
+/// 2. **standing** — a live node over one the design withdrew (`superseded`,
+///    `rejected`, `dropped`, `retired`, … or discontinued by an accepted
+///    Decision). Keeping the withdrawn one would resurrect it.
+/// 3. **priority** — `critical` > `high` > `medium` > `low`. Above status
+///    because a lost acceptance is asked for again by the loop (a proposed
+///    node is owed a decision), and a lost priority is not asked for by
+///    anything.
+/// 4. **status** — settled (`accepted`, `realized`, `verified`, `met`, …)
+///    over open (`proposed`, `planned`, …).
+/// 5. **connections** — the node the design leans on; its id is the one
+///    other records, prose and systems already name.
+///
+/// The first signal that differs decides, and the reason names the signals
+/// that point the other way, so a person sees a close call as one. **Which is
+/// newer** is shown and never weighed: whether the newer record or the older
+/// one should survive is not something the engine can know. **The node id is
+/// never a signal.** When nothing differs, `recommendation` is `None`,
+/// `needs_choice` is true, and `apply_heal` refuses the merge until a person
+/// sets [`HealOperation::chosen_survivor`].
+#[derive(Debug, Clone, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[serde(default)]
+pub struct MergeSurvivor {
+    /// Both candidates: the recommendation first, or in id order (which is not
+    /// a ranking) when there is none.
+    pub candidates: Vec<SurvivorCandidate>,
+    /// The node the engine recommends keeping, or `None` when nothing real
+    /// separates them.
+    pub recommendation: Option<String>,
+    /// The signal that decided the recommendation (`provenance`, `standing`,
+    /// `priority`, `status`, `connections`), or `None`.
+    pub decided_by: Option<String>,
+    /// The recommendation and why, in one paragraph — or, when there is none,
+    /// "no recommendation: a person must pick" and what was compared.
+    pub reason: String,
+    /// True when a person must pick: `apply_heal` refuses this merge until the
+    /// operation carries [`HealOperation::chosen_survivor`].
+    pub needs_choice: bool,
+}
+
+impl MergeSurvivor {
+    /// The pair in proposal order: the recommendation first, else id order.
+    fn ordered_ids(&self) -> (String, String) {
+        let ids: Vec<&str> = self.candidates.iter().map(|c| c.node_id.as_str()).collect();
+        (
+            ids.first().copied().unwrap_or_default().to_string(),
+            ids.get(1).copied().unwrap_or_default().to_string(),
+        )
+    }
 }
 
 /// A description of content the LLM healer must generate (deferred). Carrying
@@ -660,13 +781,13 @@ pub struct HealProposal {
     /// `cap:heal` SATISFIES `req:no-silent-fallback` (accepted, critical),
     /// which this failed.
     ///
-    /// It also names the case nothing else can: when both nodes carry the same
-    /// provenance the survivor falls to the **smaller id** (BL-29), so the
-    /// ALPHABET decides which one dies. That is fine between two equivalent
-    /// nodes and indefensible between nodes that differ, and until now nothing
-    /// said which had happened. Reported by dev_storyflow 2026-08-08, where the
-    /// tiebreak would have deleted a `critical`/`proposed` requirement in
-    /// favour of an unrelated `medium`/`accepted` one.
+    /// Until 2026-10-14 it also said "THE ALPHABET CHOSE THE VICTIM" when both
+    /// nodes carried the same provenance and the smaller id survived (BL-29).
+    /// The alphabet no longer chooses: each merge's
+    /// [`HealOperation::survivor`] ranks the two with their reasons, so a
+    /// recommended merge's entry says why that node is kept, and a merge that
+    /// needs a person's pick names BOTH nodes (its `reference` is the issue
+    /// id) and what keeping each would lose.
     ///
     /// Empty when the proposal deletes nothing.
     #[serde(default)]
@@ -830,6 +951,87 @@ fn merge_op_for(
     })
 }
 
+/// `operation` turned to keep the node a person chose in `chosen_survivor`.
+///
+/// The pick decides whichever way `keep_id`/`remove_id` arrive. A pick that
+/// names neither node is refused, and so is one on an operation that deletes
+/// nothing — the field means "this node survives the merge" and nothing else.
+fn oriented_by_the_pick(operation: &HealOperation) -> Result<HealOperation, DynoError> {
+    let Some(chosen) = operation.chosen_survivor.as_deref() else {
+        return Ok(operation.clone());
+    };
+    let HealOp::Merge {
+        keep_type,
+        keep_id,
+        remove_type,
+        remove_id,
+    } = &operation.op
+    else {
+        return Err(DynoError::Validation {
+            node_type: operation.issue_id.clone(),
+            property: "chosen_survivor".into(),
+            message: format!(
+                "operation for issue '{}' names chosen_survivor '{chosen}', but it is not a \
+                 merge: only a merge has a survivor to choose. Nothing was changed.",
+                operation.issue_id
+            ),
+        });
+    };
+    if chosen == keep_id {
+        return Ok(operation.clone());
+    }
+    if chosen != remove_id {
+        return Err(DynoError::Validation {
+            node_type: keep_id.clone(),
+            property: "chosen_survivor".into(),
+            message: format!(
+                "operation for issue '{}' names chosen_survivor '{chosen}', which is neither node \
+                 of the merge ('{keep_id}' and '{remove_id}') — the survivor must be one of the \
+                 two. Nothing was changed.",
+                operation.issue_id
+            ),
+        });
+    }
+    let mut turned = operation.clone();
+    turned.op = HealOp::Merge {
+        keep_type: remove_type.clone(),
+        keep_id: remove_id.clone(),
+        remove_type: keep_type.clone(),
+        remove_id: keep_id.clone(),
+    };
+    Ok(turned)
+}
+
+/// Is `incoming` the operation HEAL sanctioned as `sanctioned`? Same issue,
+/// and for a merge the same PAIR in either orientation — which of the two
+/// survives is the person's choice — while a `CreateEdge` must match exactly.
+fn same_operation(sanctioned: &HealOperation, incoming: &HealOperation) -> bool {
+    if sanctioned.issue_id != incoming.issue_id {
+        return false;
+    }
+    match (&sanctioned.op, &incoming.op) {
+        (
+            HealOp::Merge {
+                keep_type: sk_t,
+                keep_id: sk,
+                remove_type: sr_t,
+                remove_id: sr,
+            },
+            HealOp::Merge {
+                keep_type: ik_t,
+                keep_id: ik,
+                remove_type: ir_t,
+                remove_id: ir,
+            },
+        ) => {
+            (sk == ik && sr == ir && sk_t == ik_t && sr_t == ir_t)
+                || (sk == ir && sr == ik && sk_t == ir_t && sr_t == ik_t)
+        }
+        (s @ HealOp::CreateEdge { .. }, i @ HealOp::CreateEdge { .. }) => s == i,
+        _ => false,
+    }
+}
+
 /// Every pair joined by a `COMPLEMENTS` edge, ordered so a lookup does not
 /// depend on which way the edge was drawn.
 fn complementary_pairs(
@@ -934,6 +1136,232 @@ fn provenance_rank(provenance: Option<&str>) -> u8 {
     }
 }
 
+/// A `status` that says the design WITHDREW the node. Across the schema's
+/// status vocabularies these are the words for "no longer intended"; a merge
+/// that kept such a node over a live one would resurrect it.
+fn is_withdrawn_status(status: &str) -> bool {
+    matches!(
+        status,
+        "superseded"
+            | "rejected"
+            | "dropped"
+            | "retired"
+            | "withdrawn"
+            | "rolled_back"
+            | "archived"
+    )
+}
+
+/// How settled a `status` is: 0 withdrawn, 1 open, 2 settled.
+fn settled_rank(status: &str) -> Option<u8> {
+    if is_withdrawn_status(status) {
+        return Some(0);
+    }
+    Some(match status {
+        "accepted" | "met" | "realized" | "verified" | "built" | "deployed" | "confirmed"
+        | "answered" | "integrated" | "passing" | "active" | "arrived" => 2,
+        _ => 1,
+    })
+}
+
+fn settled_word(status: &str) -> &'static str {
+    match settled_rank(status) {
+        Some(0) => "withdrawn",
+        Some(2) => "settled",
+        _ => "open",
+    }
+}
+
+/// `critical` > `high` > `medium` > `low`. Anything else (a DesignRule's
+/// integer weight, say) is shown and never ranked: its direction is not this
+/// vocabulary's.
+fn priority_rank(priority: &str) -> Option<u8> {
+    match priority {
+        "low" => Some(0),
+        "medium" => Some(1),
+        "high" => Some(2),
+        "critical" => Some(3),
+        _ => None,
+    }
+}
+
+/// `Some(a_wins)` when `x` and `y` differ, `None` when they are the same.
+fn differs<T: PartialEq>(x: T, y: T, a_wins: impl Fn(&T, &T) -> bool) -> Option<bool> {
+    (x != y).then(|| a_wins(&x, &y))
+}
+
+fn both<T>(x: Option<T>, y: Option<T>) -> Option<(T, T)> {
+    x.zip(y)
+}
+
+/// What [`DesignGraph::rank_merge_survivor`] read about one candidate.
+struct SurvivorReading {
+    id: String,
+    provenance: Option<String>,
+    provenance_rank: u8,
+    withdrawn: bool,
+    discontinued: bool,
+    status: Option<String>,
+    settled_rank: Option<u8>,
+    priority: Option<String>,
+    priority_rank: Option<u8>,
+    connections: usize,
+    /// (date, the property it came from)
+    dated: Option<(String, String)>,
+}
+
+impl SurvivorReading {
+    /// This candidate as the proposal shows it, its reasons read beside `other`.
+    fn candidate(&self, other: &SurvivorReading) -> SurvivorCandidate {
+        let quoted = |v: &Option<String>| match v {
+            Some(v) => format!("'{v}'"),
+            None => "none recorded".to_string(),
+        };
+        let standing = if self.discontinued {
+            "withdrawn — discontinued by an accepted Decision".to_string()
+        } else if self.withdrawn {
+            format!(
+                "withdrawn — status '{}'",
+                self.status.as_deref().unwrap_or_default()
+            )
+        } else {
+            "live".to_string()
+        };
+        let status = match &self.status {
+            Some(s) => format!("'{s}' ({})", settled_word(s)),
+            None => "none recorded".to_string(),
+        };
+        let newer = match (&self.dated, &other.dated) {
+            (Some((mine, from)), Some((theirs, _))) if mine > theirs => {
+                format!("yes — {from} {mine} against {theirs}; shown, never weighed")
+            }
+            (Some((mine, from)), Some((theirs, _))) if mine < theirs => {
+                format!("no — {from} {mine} against {theirs}; shown, never weighed")
+            }
+            (Some((mine, from)), Some(_)) => format!("same date — {from} {mine}"),
+            (None, _) => "not known — this node records no date".to_string(),
+            (Some(_), None) => "not known — the other node records no date".to_string(),
+        };
+        SurvivorCandidate {
+            node_id: self.id.clone(),
+            provenance: self.provenance.clone(),
+            connections: self.connections,
+            status: self.status.clone(),
+            priority: self.priority.clone(),
+            dated: self.dated.as_ref().map(|(d, _)| d.clone()),
+            reasons: vec![
+                format!("provenance: {}", quoted(&self.provenance)),
+                format!("standing: {standing}"),
+                format!("priority: {}", quoted(&self.priority)),
+                format!("status: {status}"),
+                format!(
+                    "connections: {} (edges in and out, not counting DUPLICATES or the edges \
+                     joining the pair)",
+                    self.connections
+                ),
+                format!("newer: {newer}"),
+            ],
+        }
+    }
+}
+
+/// The signals the survivor ladder weighs, in order. The node id is not one.
+const SURVIVOR_SIGNALS: [&str; 5] = [
+    "provenance",
+    "standing",
+    "priority",
+    "status",
+    "connections",
+];
+
+/// Does `signal` favour `x` over `y`?
+fn signal_favours(signal: &str, x: &SurvivorReading, y: &SurvivorReading) -> bool {
+    match signal {
+        "provenance" => x.provenance_rank < y.provenance_rank,
+        "standing" => !x.withdrawn && y.withdrawn,
+        "priority" => both(x.priority_rank, y.priority_rank).is_some_and(|(a, b)| a > b),
+        "status" => both(x.settled_rank, y.settled_rank).is_some_and(|(a, b)| a > b),
+        "connections" => x.connections > y.connections,
+        _ => false,
+    }
+}
+
+/// Why `signal` favours `x` over `y`, in a clause.
+fn signal_sentence(signal: &str, x: &SurvivorReading, y: &SurvivorReading) -> String {
+    let quoted = |v: &Option<String>| match v {
+        Some(v) => format!("'{v}'"),
+        None => "unrecorded".to_string(),
+    };
+    match signal {
+        "provenance" => format!(
+            "provenance {} ranks above {} (authored > unrecorded > planned > imported > \
+             reconciled > inferred > healed)",
+            quoted(&x.provenance),
+            quoted(&y.provenance)
+        ),
+        "standing" if y.discontinued => format!(
+            "'{}' was discontinued by an accepted Decision and '{}' is live",
+            y.id, x.id
+        ),
+        "standing" => format!(
+            "'{}' is {}, withdrawn by the design, and '{}' is live",
+            y.id,
+            quoted(&y.status),
+            x.id
+        ),
+        "priority" => format!(
+            "priority {} against {}",
+            quoted(&x.priority),
+            quoted(&y.priority)
+        ),
+        "status" => format!(
+            "status {} ({}) against {} ({})",
+            quoted(&x.status),
+            x.status.as_deref().map(settled_word).unwrap_or("open"),
+            quoted(&y.status),
+            y.status.as_deref().map(settled_word).unwrap_or("open")
+        ),
+        "connections" => format!("connections {} against {}", x.connections, y.connections),
+        _ => String::new(),
+    }
+}
+
+/// What was compared when nothing separated the pair, one clause per signal.
+fn tie_summary(x: &SurvivorReading, y: &SurvivorReading) -> String {
+    let same = |label: &str, a: &Option<String>, b: &Option<String>| match (a, b) {
+        (Some(a), Some(b)) if a == b => format!("{label} '{a}' on both"),
+        (Some(a), Some(b)) => format!("{label} '{a}' and '{b}', which rank the same"),
+        (None, None) => format!("no {label} on either"),
+        (Some(v), None) | (None, Some(v)) => {
+            format!("{label} '{v}' on one and none on the other, which cannot be ranked")
+        }
+    };
+    let standing = if x.withdrawn {
+        "both withdrawn"
+    } else {
+        "both live"
+    };
+    let newer = match (&x.dated, &y.dated) {
+        (Some((dx, from)), Some((dy, _))) if dx != dy => {
+            let (newer, older) = if dx > dy { (dx, dy) } else { (dy, dx) };
+            let newer_id = if dx > dy { &x.id } else { &y.id };
+            format!(
+                "; '{newer_id}' is newer ({from} {newer} against {older}), which is shown and \
+                 never weighed"
+            )
+        }
+        (Some(_), Some(_)) => "; both carry the same date".to_string(),
+        _ => "; which is newer is not known".to_string(),
+    };
+    format!(
+        "{}, {standing}, {}, {}, {} connections each{newer}",
+        same("provenance", &x.provenance, &y.provenance),
+        same("priority", &x.priority, &y.priority),
+        same("status", &x.status, &y.status),
+        x.connections
+    )
+}
+
 /// What a `parks` ruling does, read by the one predicate
 /// [`DesignGraph::parking_ruling_effect`].
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -1009,53 +1437,169 @@ static ORPHAN_REPAIR: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| 
 });
 
 impl DesignGraph {
-    /// Which of a duplicate pair a merge keeps: **stronger provenance survives;
-    /// equal provenance falls back to the smaller id** (the BL-29 survivor
-    /// decision, taken by the user 2026-07-20 — option 2 of the recorded
-    /// alternatives). Returns `(keep, remove)`.
+    /// Rank the two candidates of a merge and recommend one ONLY when a real
+    /// difference separates them — the engine proposes, a person picks. See
+    /// [`MergeSurvivor`] for the ladder and why it is ordered so.
     ///
-    /// Provenance is what the choice is *for*: a merge keeps only the
-    /// survivor's properties, and before this the lexicographically smaller id
-    /// won regardless — so on an adopted graph an `inferred` stub could delete
-    /// an `authored` node's words. The fallback keeps the choice fully
-    /// deterministic regardless of which way the `DUPLICATES` edge points; a
-    /// node without the property (a pre-provenance vintage, or a type that
-    /// does not carry it) ranks just below an explicit `authored` and above
-    /// everything else — so a vintage pair still ties and falls to the id,
-    /// leaving pre-provenance graphs exactly as before, while an explicitly
-    /// authored node beats its vintage twin instead of racing it on the
-    /// alphabet (BL-47).
-    fn merge_survivor(
+    /// Replaces `merge_survivor`, which returned `(keep, remove)` by provenance
+    /// and then by node id: the id decided every pair whose provenance tied,
+    /// which in practice was nearly every pair, because only five of 28 node
+    /// types declare provenance at all. That tiebreak is gone, not moved: a pair
+    /// nothing separates is a person's to pick.
+    fn rank_merge_survivor(
         &self,
         index: &HashMap<String, String>,
         a: &str,
         b: &str,
-    ) -> Result<(String, String), DynoError> {
-        let rank_of = |id: &str| -> Result<u8, DynoError> {
-            let Some(node_type) = index.get(id) else {
-                // Unresolvable endpoint: rank is moot — merge_op_for refuses
-                // the pair before an operation is built.
-                return Ok(provenance_rank(None));
+    ) -> Result<MergeSurvivor, DynoError> {
+        let read_a = self.survivor_reading(index, a, b)?;
+        let read_b = self.survivor_reading(index, b, a)?;
+
+        // The first signal that differs decides. `Some(true)` = a wins.
+        let rungs: [(&'static str, Option<bool>); 5] = [
+            (
+                "provenance",
+                differs(read_a.provenance_rank, read_b.provenance_rank, |x, y| x < y),
+            ),
+            (
+                "standing",
+                differs(read_a.withdrawn, read_b.withdrawn, |x, y| !*x && *y),
+            ),
+            (
+                "priority",
+                both(read_a.priority_rank, read_b.priority_rank)
+                    .and_then(|(x, y)| differs(x, y, |x, y| x > y)),
+            ),
+            (
+                "status",
+                both(read_a.settled_rank, read_b.settled_rank)
+                    .and_then(|(x, y)| differs(x, y, |x, y| x > y)),
+            ),
+            (
+                "connections",
+                differs(read_a.connections, read_b.connections, |x, y| x > y),
+            ),
+        ];
+        let decided = rungs
+            .iter()
+            .find_map(|(signal, verdict)| verdict.map(|a_wins| (*signal, a_wins)));
+
+        let Some((signal, a_wins)) = decided else {
+            // NOTHING SEPARATES THEM. Listed in id order so the operation is
+            // stable, and the reason says that order is not a ranking.
+            let (first, second) = if a <= b {
+                (read_a, read_b)
+            } else {
+                (read_b, read_a)
             };
-            let stored = self.get_node(node_type, id)?;
-            Ok(provenance_rank(
-                stored
-                    .as_ref()
-                    .and_then(|n| n.properties.get("provenance"))
-                    .and_then(crate::foundation::core::Value::as_str),
-            ))
+            let reason = format!(
+                "no recommendation: a person must pick. Nothing in the design separates '{}' and \
+                 '{}': {}. The engine does not decide on the node id, so they are listed in id \
+                 order, which is not a ranking. To merge them, set `chosen_survivor` on this \
+                 operation to the id to keep; to keep both, take the operation out (and say \
+                 why on the DUPLICATES edge, or acknowledge the defect).",
+                first.id,
+                second.id,
+                tie_summary(&first, &second)
+            );
+            return Ok(MergeSurvivor {
+                candidates: vec![first.candidate(&second), second.candidate(&first)],
+                recommendation: None,
+                decided_by: None,
+                reason,
+                needs_choice: true,
+            });
         };
-        let (rank_a, rank_b) = (rank_of(a)?, rank_of(b)?);
-        let a_survives = match rank_a.cmp(&rank_b) {
-            std::cmp::Ordering::Less => true,
-            std::cmp::Ordering::Greater => false,
-            std::cmp::Ordering::Equal => a <= b,
-        };
-        if a_survives {
-            Ok((a.to_string(), b.to_string()))
+
+        let (keep, other) = if a_wins {
+            (read_a, read_b)
         } else {
-            Ok((b.to_string(), a.to_string()))
+            (read_b, read_a)
+        };
+        let because = signal_sentence(signal, &keep, &other);
+        // The signals that point the other way, so a close call reads as one.
+        let against: Vec<String> = SURVIVOR_SIGNALS
+            .into_iter()
+            .filter(|s| *s != signal && signal_favours(s, &other, &keep))
+            .map(|s| signal_sentence(s, &other, &keep))
+            .collect();
+        let mut reason = format!("Recommended: keep '{}', because {because}", keep.id);
+        if !against.is_empty() {
+            reason.push_str(&format!(
+                ". Pointing the other way, for '{}': {}",
+                other.id,
+                against.join("; ")
+            ));
         }
+        reason.push_str(&format!(
+            ". A recommendation, not a decision: to keep '{}' instead, swap keep and remove, or \
+             set `chosen_survivor` to '{}'.",
+            other.id, other.id
+        ));
+        Ok(MergeSurvivor {
+            candidates: vec![keep.candidate(&other), other.candidate(&keep)],
+            recommendation: Some(keep.id.clone()),
+            decided_by: Some(signal.to_string()),
+            reason,
+            needs_choice: false,
+        })
+    }
+
+    /// What the survivor ranking reads about `id`, beside its partner `other`.
+    fn survivor_reading(
+        &self,
+        index: &HashMap<String, String>,
+        id: &str,
+        other: &str,
+    ) -> Result<SurvivorReading, DynoError> {
+        let stored = match index.get(id) {
+            Some(t) => self.get_node(t, id)?,
+            // Unresolvable endpoint: merge_op_for refuses the pair before an
+            // operation is built, so the reading only has to be harmless.
+            None => None,
+        };
+        let prop = |k: &str| -> Option<String> {
+            stored
+                .as_ref()
+                .and_then(|n| n.properties.get(k))
+                .and_then(Value::as_str)
+                .map(str::to_string)
+        };
+        let outgoing = self.outgoing(id, None)?;
+        let incoming = self.incoming(id, None)?;
+        let counts = |e: &StoredEdge, far: &str| e.edge_type != edge::DUPLICATES && far != other;
+        let connections = outgoing.iter().filter(|e| counts(e, &e.to_id)).count()
+            + incoming.iter().filter(|e| counts(e, &e.from_id)).count();
+        // The date the node records for itself, else its earliest authorship.
+        let dated = ["created_at", "valid_from", "asked_at", "detected_at"]
+            .into_iter()
+            .find_map(|k| prop(k).map(|v| (v, k.to_string())))
+            .or_else(|| {
+                outgoing
+                    .iter()
+                    .filter(|e| e.edge_type == edge::AUTHORED_BY)
+                    .filter_map(|e| e.properties.get("authored_at").and_then(Value::as_str))
+                    .min()
+                    .map(|d| (d.to_string(), "authored_at".to_string()))
+            });
+        let status = prop("status");
+        let discontinued = stored.is_some() && self.is_discontinued(id)?;
+        let withdrawn = discontinued || status.as_deref().is_some_and(is_withdrawn_status);
+        let provenance = prop("provenance");
+        let priority = prop("priority");
+        Ok(SurvivorReading {
+            id: id.to_string(),
+            provenance_rank: provenance_rank(provenance.as_deref()),
+            priority_rank: priority.as_deref().and_then(priority_rank),
+            settled_rank: status.as_deref().and_then(settled_rank),
+            provenance,
+            withdrawn,
+            discontinued,
+            status,
+            priority,
+            connections,
+            dated,
+        })
     }
 
     /// The project's `mode` (`flexible` / `rigid`), or `flexible` if unset. In
@@ -2223,8 +2767,13 @@ impl DesignGraph {
             ) {
                 continue;
             }
-            let (keep, remove) = self.merge_survivor(&index, &e.from_id, &e.to_id)?;
-            let affected = vec![keep, remove];
+            // The engine's recommendation first, or id order when nothing
+            // separates the pair — an ORDER, never a decision: the merge built
+            // from it is marked as needing a person's pick (MergeSurvivor).
+            let (first, second) = self
+                .rank_merge_survivor(&index, &e.from_id, &e.to_id)?
+                .ordered_ids();
+            let affected = vec![first, second];
             // The score, where one was recorded, is printed WITH the verdict.
             // "cover the same ground" alone is unfalsifiable: dev_storyflow had
             // to fetch and read four node pairs to dismiss what a number beside
@@ -3009,9 +3558,16 @@ impl DesignGraph {
                             } else {
                                 merge_kept.insert(keep_id.clone());
                                 merge_removed.insert(remove_id.clone());
+                                // Beside the existing fields: both candidates
+                                // ranked with their reasons, and the
+                                // recommendation or "a person must pick".
+                                let survivor =
+                                    self.rank_merge_survivor(&index, keep_id, remove_id)?;
                                 operations.push(HealOperation {
                                     issue_id: issue.id.clone(),
                                     op,
+                                    survivor: Some(survivor),
+                                    chosen_survivor: None,
                                 });
                             }
                         }
@@ -3131,6 +3687,7 @@ impl DesignGraph {
         // after the max_operations cap above — so it describes what would
         // happen, never what was considered.
         let mut would_destroy = Vec::new();
+        let mut merges_needing_a_pick = 0usize;
         for operation in &operations {
             if let HealOp::Merge {
                 keep_type,
@@ -3139,10 +3696,37 @@ impl DesignGraph {
                 remove_id,
             } = &operation.op
             {
-                would_destroy.push(SkippedOperation {
-                    reference: remove_id.clone(),
-                    reason: self.merge_loss_note(keep_type, keep_id, remove_type, remove_id)?,
-                });
+                let survivor = operation.survivor.as_ref();
+                if survivor.is_some_and(|s| s.needs_choice) {
+                    // The victim is the person's to choose, so the entry names
+                    // BOTH nodes and what keeping each would lose.
+                    merges_needing_a_pick += 1;
+                    let keeping_first =
+                        self.merge_loss_note(keep_type, keep_id, remove_type, remove_id)?;
+                    let keeping_second =
+                        self.merge_loss_note(remove_type, remove_id, keep_type, keep_id)?;
+                    would_destroy.push(SkippedOperation {
+                        reference: operation.issue_id.clone(),
+                        reason: format!(
+                            "one of '{keep_id}' and '{remove_id}' will be deleted, and a person \
+                             must pick which: nothing in the design separates them, so the \
+                             merge is refused until its operation carries `chosen_survivor`. \
+                             Keeping '{keep_id}': {keeping_first}. Keeping '{remove_id}': \
+                             {keeping_second}"
+                        ),
+                    });
+                } else {
+                    let loss = self.merge_loss_note(keep_type, keep_id, remove_type, remove_id)?;
+                    let why = survivor.map(|s| s.reason.as_str()).unwrap_or_default();
+                    would_destroy.push(SkippedOperation {
+                        reference: remove_id.clone(),
+                        reason: if why.is_empty() {
+                            loss
+                        } else {
+                            format!("{loss}. {why}")
+                        },
+                    });
+                }
             }
         }
 
@@ -3163,7 +3747,7 @@ impl DesignGraph {
                 ""
             }
         );
-        let summary = format!(
+        let mut summary = format!(
             "{} issue(s) addressed across the whole design ({} Project(s)): {}, {} awaiting \
              generation, {} skipped.",
             issues_addressed.len(),
@@ -3172,6 +3756,13 @@ impl DesignGraph {
             generated_content.len(),
             skipped_operations.len()
         );
+        if merges_needing_a_pick > 0 {
+            summary.push_str(&format!(
+                " {merges_needing_a_pick} merge(s) need a person to pick the survivor: nothing \
+                 in the design separates the pair, so apply_heal refuses each until its \
+                 operation carries `chosen_survivor`."
+            ));
+        }
 
         Ok(HealProposal {
             target_id,
@@ -3193,9 +3784,11 @@ impl DesignGraph {
     /// What is lost when `remove_id` is merged into `keep_id`, in one sentence
     /// a person can act on before applying.
     ///
-    /// Says three things, in the order that matters to someone deciding:
-    /// the properties that die, whether the ALPHABET picked the victim, and
-    /// nothing else. It deliberately reports long free-text fields by NAME
+    /// Says the properties that die, and nothing else: why THIS node is the one
+    /// removed is the survivor ranking's to say ([`MergeSurvivor::reason`]),
+    /// and until 2026-10-14 this note said "THE ALPHABET CHOSE THE VICTIM"
+    /// instead, because the smaller id decided every tie. It deliberately
+    /// reports long free-text fields by NAME
     /// rather than by value — dumping two statements into a proposal field
     /// would reproduce the defect dev_storyflow reported the same day, where a
     /// finding with nowhere to put its prose ends up unreadable.
@@ -3261,20 +3854,6 @@ impl DesignGraph {
             }
         }
 
-        // Whether the choice was decided by the design or by the alphabet.
-        let rank_of = |n: &crate::StoredNode| {
-            provenance_rank(
-                n.properties
-                    .get("provenance")
-                    .and_then(crate::foundation::core::Value::as_str),
-            )
-        };
-        if rank_of(&keep) == rank_of(&doomed) {
-            note.push_str(
-                ". THE ALPHABET CHOSE THE VICTIM: both carry the same provenance, so the smaller \
-                 id survived (BL-29) — nothing about the design decided which of these two lives",
-            );
-        }
         Ok(note)
     }
 
@@ -3291,9 +3870,20 @@ impl DesignGraph {
             if issue.category == HealCategory::Duplicate
                 && let Ok(op) = merge_op_for(&issue, &index, &complementary)
             {
+                // The ranking rides along so apply can tell a merge that
+                // needs a person's pick from one the engine can recommend —
+                // read from the design as it stands, never from the proposal.
+                let survivor = match &op {
+                    HealOp::Merge {
+                        keep_id, remove_id, ..
+                    } => Some(self.rank_merge_survivor(&index, keep_id, remove_id)?),
+                    HealOp::CreateEdge { .. } => None,
+                };
                 ops.push(HealOperation {
                     issue_id: issue.id.clone(),
                     op,
+                    survivor,
+                    chosen_survivor: None,
                 });
             }
         }
@@ -3351,6 +3941,16 @@ impl DesignGraph {
             });
         }
 
+        // A PERSON'S PICK DECIDES THE SURVIVOR. `chosen_survivor` names the node
+        // to keep whichever way keep/remove are ordered, so every merge is put
+        // into the orientation the person chose before anything else reads
+        // it: the chain guard below must see the node that will actually be
+        // deleted. A pick that is neither node of the merge is refused.
+        let mut operations: Vec<HealOperation> = Vec::with_capacity(proposal.operations.len());
+        for operation in &proposal.operations {
+            operations.push(oriented_by_the_pick(operation)?);
+        }
+
         // A node a merge deletes must not appear in any other operation of the
         // same proposal. Each operation can be individually sanctioned — on a
         // chain a↔b, b↔c both merges are — yet applying both writes to a node
@@ -3360,11 +3960,11 @@ impl DesignGraph {
         // re-pointed onto the already-deleted `cap:b`). `propose_heal` defers
         // the second link of a chain; this refuses the hand-built proposal
         // that carries both anyway.
-        for (i, a) in proposal.operations.iter().enumerate() {
+        for (i, a) in operations.iter().enumerate() {
             let HealOp::Merge { remove_id, .. } = &a.op else {
                 continue;
             };
-            for (j, b) in proposal.operations.iter().enumerate() {
+            for (j, b) in operations.iter().enumerate() {
                 if i == j {
                     continue;
                 }
@@ -3394,9 +3994,19 @@ impl DesignGraph {
 
         // Refuse the whole proposal before mutating anything, so a rejected one
         // never leaves the graph half-changed.
+        //
+        // A merge is matched as the PAIR it joins, in either orientation: which
+        // of the two survives is a person's choice, so a swapped keep/remove is
+        // the person picking, not a forgery. Everything else that was refused
+        // before still is — an issue id HEAL did not raise, a pair it did not
+        // assert, a stale proposal. And a pair nothing in the design separates
+        // is refused until the operation carries the person's pick, read from
+        // the design as it stands, so dropping the proposal's marker does not
+        // get round it.
         let sanctioned = self.sanctioned_operations()?;
-        for operation in &proposal.operations {
-            if !sanctioned.iter().any(|s| s == operation) {
+        let mut picks: Vec<String> = Vec::new();
+        for operation in &operations {
+            let Some(matched) = sanctioned.iter().find(|s| same_operation(s, operation)) else {
                 let subject = match &operation.op {
                     HealOp::Merge { remove_id, .. } => remove_id.clone(),
                     HealOp::CreateEdge { from_id, .. } => from_id.clone(),
@@ -3410,6 +4020,39 @@ impl DesignGraph {
                         operation.issue_id
                     ),
                 });
+            };
+            let (
+                HealOp::Merge {
+                    keep_id, remove_id, ..
+                },
+                Some(survivor),
+            ) = (&operation.op, &matched.survivor)
+            else {
+                continue;
+            };
+            if survivor.needs_choice && operation.chosen_survivor.is_none() {
+                return Err(DynoError::Validation {
+                    node_type: keep_id.clone(),
+                    property: "chosen_survivor".into(),
+                    message: format!(
+                        "operation for issue '{}' merges '{keep_id}' and '{remove_id}', and \
+                         nothing in the design separates them, so a person must pick which one \
+                         survives — the engine does not decide on the node id. Set \
+                         `chosen_survivor` on that operation to the id to keep, or take the \
+                         operation out of the proposal. Nothing was changed.",
+                        operation.issue_id
+                    ),
+                });
+            }
+            match &survivor.recommendation {
+                Some(recommended) if recommended != keep_id => picks.push(format!(
+                    "kept '{keep_id}' over the recommended '{recommended}' (a person's pick)"
+                )),
+                None => picks.push(format!(
+                    "kept '{keep_id}' over '{remove_id}' (a person's pick; nothing in the \
+                     design separated them)"
+                )),
+                Some(_) => {}
             }
         }
 
@@ -3422,7 +4065,7 @@ impl DesignGraph {
         // batching is safe.
         let index = self.node_type_index()?;
         self.begin_batch();
-        let (applied, discarded) = match self.apply_heal_operations(&proposal.operations, &index) {
+        let (applied, discarded) = match self.apply_heal_operations(&operations, &index) {
             Ok(result) => {
                 self.commit_batch()?;
                 result
@@ -3434,11 +4077,8 @@ impl DesignGraph {
         };
 
         // Post-repair verification: only the issues the OPERATIONS targeted.
-        let op_issue_ids: std::collections::HashSet<&str> = proposal
-            .operations
-            .iter()
-            .map(|o| o.issue_id.as_str())
-            .collect();
+        let op_issue_ids: std::collections::HashSet<&str> =
+            operations.iter().map(|o| o.issue_id.as_str()).collect();
         let remaining: std::collections::HashSet<String> =
             self.open_defects()?.into_iter().map(|i| i.id).collect();
         let unresolved: Vec<String> = op_issue_ids
@@ -3447,7 +4087,7 @@ impl DesignGraph {
             .map(|id| id.to_string())
             .collect();
 
-        let message = if discarded.is_empty() {
+        let mut message = if discarded.is_empty() {
             format!("applied {applied} structural operation(s)")
         } else {
             format!(
@@ -3455,6 +4095,9 @@ impl DesignGraph {
                 discarded.len()
             )
         };
+        if !picks.is_empty() {
+            message.push_str(&format!("; {}", picks.join("; ")));
+        }
         Ok(HealReport {
             applied: applied > 0,
             blocked_by_mode: false,

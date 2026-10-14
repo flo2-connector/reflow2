@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6ab125adbce15fd38442b62bd978a8981a7272e70e19eb37a0cf4a32255b7fb0",
+  "node_id": "ver:a-person-picks-which-node-a-merge-keeps",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Drives propose_heal and apply_heal on in-memory designs, editing the proposal as JSON the way an MCP client sends it back, and once more over the served path (call_tool). Pins the rule of dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor: a merge carries both candidates ranked with their reasons and a recommendation only on a real difference; a swapped keep/remove or a chosen_survivor keeps the person's pick; a pick outside the pair is refused before any write; a pair tied on everything says \"no recommendation: a person must pick\" and is refused without chosen_survivor, also when keep/remove are swapped or the survivor block is stripped; the id never decides in either sort order; a withdrawn node never outlives a live one; would_destroy no longer blames the alphabet; and the two recorded cases recommend who:ajs (connections) and the critical requirement (priority).",
+    "findings": "2026-10-14 on branch fix/the-engine-proposes-a-merge-and-a-person-picks-the-survivor at 21db7f39c (test files unchanged at 4a67511d3): the_engine_proposes_a_merge_and_a_person_picks_the_survivor.rs 11 passed, 0 failed; a_person_picks_the_merge_survivor_over_mcp.rs 2 passed, 0 failed; the_mcp_surface_only_grows.rs 2 passed against v0.84.0's record; the rest of the workspace green except the find_tools rank ratchet, fixed in 4a67511d3 (5 of 5). Before the fix, on main 1f46299a0 with only the tests added (commit 73eb3a9d0): 10 of 11 FAILED in core (a swapped survivor refused as \"not one HEAL proposes\", chosen_survivor ignored and the alphabet's pick merged, no survivor block, a tie applied with no pick, the ALPHABET line still served); the round-trip guard passed, as it must; 2 of 2 FAILED over MCP (no survivor block). Measured with the release build on a scratch import of main's design copy, 13 merges: the two recorded cases now recommend who:ajs (connections 1368 against 9) and req:graph_is_the_content_bible (priority critical against medium); 8 same-type pairs are decided by a real difference and 3 wait for a person.",
+    "kind": "verification",
+    "last_run_at": "2026-10-14",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/the_engine_proposes_a_merge_and_a_person_picks_the_survivor.rs",
+    "method": "test",
+    "name": "A person picks which node a merge keeps",
+    "status": "passing"
+  }
+}

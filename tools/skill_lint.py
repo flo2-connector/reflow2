@@ -386,6 +386,13 @@ NON_TOOL_TERMS = {
     "priority",
     "status",
     "false",
+    # A merge's survivor ranking and the person's pick (2026-10-14,
+    # the engine proposes and a person picks) — check-health tells the reader
+    # to bring a `needs_choice` merge to the person and to record their pick in
+    # `chosen_survivor`.
+    "survivor",
+    "chosen_survivor",
+    "needs_choice",
     # DesignRule properties and the two governance gap keys (2026-08-08) — the
     # governance-proposal skill names the field whose DEFAULT is the whole
     # hazard (`enforced` defaults to true, so silence claims gate-blocking) and

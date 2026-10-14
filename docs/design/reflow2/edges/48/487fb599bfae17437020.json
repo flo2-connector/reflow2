@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a9a262ab9e2162499e27daac1dfa0886ead53e28455a9e4360f4080777992a35",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:2aa0d3df55d8d6c89419bbdd2965b836321997b49282118506dd8277b6fc0598",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

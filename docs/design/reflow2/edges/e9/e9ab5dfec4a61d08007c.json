@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3b8d305ea7262ed6374ebc8a290897157c47f7d518dd4d2cc939aa2e22a17002",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:replaced:dec:merge-survivor-provenance:by:dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1356,7 +1356,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept, and a project in `rigid` mode makes even that stop at a proposal. Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what each proposes before applying; the check-health skill is the workflow around this. AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a mechanical repair (a SPOF is a design question, not a heal) — the reply names which. Ask for this when you want suggested repairs for the design's structural problems, to review before anything changes.",
+        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept, and a project in `rigid` mode makes even that stop at a proposal. Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what each proposes before applying; the check-health skill is the workflow around this. WHICH NODE A MERGE KEEPS IS A PERSON'S CHOICE: each merge's `survivor` ranks both candidates with their reasons (provenance, standing, priority, status, connections, and which is newer) and recommends one — the `keep_id` — only when a real difference separates them; when nothing does, `survivor.needs_choice` is true, the reason says a person must pick, and the node id never decides. AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a mechanical repair (a SPOF is a design question, not a heal) — the reply names which. Ask for this when you want suggested repairs for the design's structural problems, to review before anything changes.",
         title = "Propose a Heal",
         annotations(read_only_hint = true)
     )]
@@ -2002,12 +2002,13 @@ impl ReflowService {
 
     #[tool(
         description = "Apply a reviewed HealProposal atomically (rigid mode = no-op). Pass a \
-                       proposal `propose_heal` returned — every operation is checked against what \
+                       proposal `propose_heal` returned: every operation is checked against what \
                        HEAL proposes for the graph as it stands now, and anything else is refused \
-                       before a single write, so hand-editing the proposal or reusing a stale one \
-                       fails rather than merging the wrong nodes. Merging deletes a node and \
-                       cannot be undone. Read `discarded` in the result: it lists what the merge \
-                       could not carry onto the survivor.",
+                       before a single write. The one edit it takes is a person's pick of which \
+                       node a merge keeps: swap keep and remove, or set `chosen_survivor` \
+                       (required when `needs_choice`). Merging deletes a node and cannot be \
+                       undone; `discarded` lists what the merge could not carry onto the \
+                       survivor.",
         title = "Apply a Heal",
         annotations(read_only_hint = false, destructive_hint = true)
     )]

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:51664064cc7bc64852ab8dfe0bbadcd9e441689e86926663c2077f4dabdebffa",
+  "node_id": "chg:baseline-a287ff607d51143c",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-14",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: New test: the merge-survivor rule in the core.",
+    "subject": "record"
+  }
+}

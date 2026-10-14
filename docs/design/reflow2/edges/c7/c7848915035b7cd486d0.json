@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:36b87e846a55c3b2045076b436876adea35b5bd981775c0cad73a76a34c10a3f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-chris-designs-an-argument-for-and-against-as-a-first-trial",
+  "properties": {
+    "evidence": "The trial's point on a contested topic is that a model's bias shows as what the agent supplied apart from what Chris said; that read is settled and not yet built.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-what-did-the-agent-infer-provenance-per-field-per-type-and-as-a-report"
+}

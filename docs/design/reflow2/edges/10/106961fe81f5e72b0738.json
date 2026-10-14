@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:36bba50164ce250869d63c01dbc9b29182a8dd7b3cdd23ae846964932f930335",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-chris-designs-an-argument-for-and-against-as-a-first-trial",
+  "properties": {
+    "evidence": "A trial of designing an argument is only worth running once there is an answer, even option (a)'s written mapping, to how reflow2 carries a line of reasoning.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-reflow2-designs-a-line-of-reasoning-an-argument-an-experiment-a-paper-a-legal-case"
+}

@@ -73,17 +73,22 @@ critical + warning), `aggressive` (everything). Optional `max_operations` to cap
 
 Read the whole proposal, not just the operations:
 
-- `operations` — mechanical graph edits. Today the only one is merging a `duplicate`.
+- `operations` — mechanical graph edits. Today the only one is merging a `duplicate`. **Which
+  node a merge keeps is the person's choice; the engine only proposes.** Each merge carries
+  `survivor`: both candidates ranked, each with its reasons (provenance, standing, priority,
+  status, connections, and which is newer), and the recommendation, which is the merge's keep —
+  given only when a real difference separates the two. When nothing does, `needs_choice` is true
+  and the reason says plainly that a person must pick; the node id never decides.
 - `generated_content` — defects whose fix needs *judgement*, left deliberately unwritten. Each
   says what would need to be decided. **This is most of them.**
 - `skipped_operations` — anything dropped, with a reason (a cap hit, an endpoint that doesn't
   resolve). Never ignore this list; nothing is dropped silently, so a non-empty list means
   something real was set aside.
 - `would_destroy` — **what applying this would DELETE, said before you can apply it.** One entry
-  per merge, naming the doomed node, the properties that die with it, and — when both nodes carry
-  the same provenance — that the survivor was picked by the ALPHABET rather than by anything in
-  the design. Read this list before `operations`; it is the only field that tells you the cost of
-  saying yes. Empty means the proposal destroys nothing.
+  per merge, naming the doomed node, the properties that die with it, and why the other one is
+  recommended — or, for a merge a person must pick, both nodes and what keeping each would lose.
+  Read this list before `operations`; it is the only field that tells you the cost of saying yes.
+  Empty means the proposal destroys nothing.
 - `requires_human_review` — true when `generated_content` is non-empty **or the proposal would
   destroy a node** (so: true for every merge). Before 2026-08-08 it was the first clause only,
   which meant a proposal made entirely of irreversible deletions reported `false` at confidence
@@ -101,8 +106,9 @@ that stops a mechanical apply is **rigid** mode — reported as `blocked_by_mode
 > DELETES a node with no undo.** Read `would_destroy` before you apply — it names every node
 > that dies and what dies with it. Say what you are about to remove, in the user's words, and
 > get their answer when anything in that list carries consequence: a differing `priority` or
-> `status`, or the line saying **the alphabet chose the victim** (equal provenance, so the
-> smaller id won and nothing about the design decided it).
+> `status`, a recommendation with something **pointing the other way**, or a merge with
+> `needs_choice` — there the engine recommends nothing and the person must pick which node
+> survives. Bring both candidates and their reasons to them; never pick for them.
 >
 > Since 2026-08-08 `requires_human_review` is true for **every** proposal containing a merge,
 > not only for ones with `generated_content`. So it no longer distinguishes "there is also
@@ -121,11 +127,14 @@ that stops a mechanical apply is **rigid** mode — reported as `blocked_by_mode
 > (`basis`), and this paragraph is the second guard: a plan that deletes design content is
 > read before it is run.
 
-**Pass the proposal back exactly as you received it.** Every operation is checked against what HEAL
-proposes for the graph as it stands, and anything else is refused before a single write. So do not
-hand-edit a proposal, do not assemble one yourself, and do not reuse one from earlier in the session
-if the graph has changed since — re-run `propose_heal` instead. A merge deletes a node and cannot be
-undone, which is why the check exists.
+**Pass the proposal back as you received it, with one exception: the person's pick of which node a
+merge keeps.** To keep the other node, swap that merge's keep and remove, or set the operation's
+`chosen_survivor` to the id the person chose; a merge with `needs_choice` is refused until it
+carries `chosen_survivor`. Every operation is checked against what HEAL proposes for the graph as it
+stands, and anything else is refused before a single write. So make no other edit, do not assemble a
+proposal yourself, and do not reuse one from earlier in the session if the graph has changed since —
+re-run `propose_heal` instead. A merge deletes a node and cannot be undone, which is why the check
+exists.
 
 Read the `HealReport` back:
 

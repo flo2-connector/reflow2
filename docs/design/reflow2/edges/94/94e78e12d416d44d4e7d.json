@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cfdf736805c099038f8344822ab267818166417b0899c4cb3cf8590064827eaa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-chris-designs-an-argument-for-and-against-as-a-first-trial",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
