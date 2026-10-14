@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3857f93926b3f323f7e71f4ef05c69bc9be8f870d75eb8fa4d31d0aa79775399",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-served-item-is-removed-only-after-a-release-that-announced-it-2026-10-14",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:the-mcp-surface-only-grows-test"
+}

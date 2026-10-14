@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b6518d33f53d2cf78bd7f4644769d241f8deaf687548ce29b49c4b1c8afbb7dc",
+  "node_id": "cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone",
+  "node_type": "Capability",
+  "properties": {
+    "description": "At step 2 of flow:release-cut, beside the changelog's assembly: the release's opening paragraph and its ### Deprecated and ### Removed sections list every entry deprecation::REGISTRY deprecates in this release, each with its What to do line, and every item this release removes (a tool removed now answers its old name with a refusal saying what to do, for this one release). Each new entry's deprecated_in is set to this release's version; tests/every_deprecation_is_announced_in_the_changelog.rs checks the assembled section. Telling the people who rely on the MCP server is owed before the release ships. D3: who tells Alex, and how, is Anthony's open decision; this step does not choose it. Written into AGENTS.md (the flow:release-cut bullet) on 2026-10-14 with cap:a-served-item-is-removed-only-after-a-release-that-announced-it (#751), which is the rule this step serves at the cut: that one is the mechanism in the build, this one is what the person cutting does. Planned until a cut first applies it, which is the release carrying the first deprecation. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "distinct_from": [
+      "cap:a-served-item-is-removed-only-after-a-release-that-announced-it"
+    ],
+    "name": "A cut's release notes say what is going and what has gone, and the people who rely on the MCP server are told before the release ships",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

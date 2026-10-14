@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:463f4a800e0d162c90286b5f0d360ca45b9aa400d5eb9607b484803a27052d28",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:deprecation",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

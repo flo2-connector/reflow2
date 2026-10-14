@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f569deb9b564a683116cdf7442c9d2bda1870ec0b95be828ec735f93f9e54328",
+  "edge_type": "REALIZES",
+  "from_id": "art:main",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}

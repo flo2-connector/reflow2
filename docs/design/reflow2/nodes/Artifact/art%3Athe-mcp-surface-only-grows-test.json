@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83c3a365be1af16e305a7f2ba51b38e3c3e64ca78b7258b5d6679d709927db08",
+  "node_id": "art:the-mcp-surface-only-grows-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Compares the build with the LAST RELEASE's record (fixtures/mcp_surface_at_last_release.json): tools, argument schemas, the reply shapes of a fixed scenario, the vocabulary (node types with properties, edge types) and the deprecations that release announced, both read from its own describe_schema at a bless. Anything taken away fails unless the record marks it deprecated; a deprecated item still served passes; a deprecated tool no longer listed must still answer its old name with what to do. The listed narrowings (UNADVERTISED, ENUM_ATTACHED) keep their proofs. Name kept for its history; registered 2026-10-14 when the retirement rule rewrote its check.",
+    "location": "crates/reflow2-mcp/tests/the_mcp_surface_only_grows.rs",
+    "name": "tests/the_mcp_surface_only_grows.rs — the MCP surface shrinks only through a deprecating release",
+    "status": "realized"
+  }
+}

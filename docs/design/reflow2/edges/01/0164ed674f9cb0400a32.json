@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2bc17f6b66500be868ce6b7342648a6ac97d7711c098e7654599828c482c1e8e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:the-mcp-surface-only-grows-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

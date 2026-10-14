@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:886f2b2626bc22e1e33e635919f471cb99146a1be3fa173ece931c44213175c6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

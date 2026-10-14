@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1db7c7173f1542ba0284a603521390cf6c25a2cc5eb2b82a140e2e47db878099",
+  "node_id": "chg:baseline-b2840120131f9ca3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-14",
+    "name": "New: the retirement rule's module.",
+    "subject": "record"
+  }
+}

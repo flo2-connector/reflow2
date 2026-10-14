@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:086bd08bd8a0d01fed080fdd30dbe594bb1f0c93c9ca795c97b918584a188873",
+  "node_id": "chg:baseline-ff09dda0250648f8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-14",
+    "name": "New test: the changelog check.",
+    "subject": "record"
+  }
+}

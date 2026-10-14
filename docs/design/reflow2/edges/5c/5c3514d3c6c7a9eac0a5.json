@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d00f7520df4b0edab1384c180f1bf956d3cf7fba0f9d09015de8feb518bf2780",
+  "edge_type": "REALIZES",
+  "from_id": "art:every-deprecation-is-announced-in-the-changelog-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:35dcfd7495f6e929e1df5fcf3583d8ad579ce2d610162772370f557b334f2ab0",
+  "node_id": "art:a-served-item-is-removed-only-after-a-release-that-announced-it-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Over the protocol (an in-process client, call_tool and list_tools), with test-only registry entries: a deprecated tool still answers exactly as before but for the notice, and its description opens with the mark; a deprecated argument and reply field are marked where a client reads them; describe_schema marks a deprecated node type, property and edge type and lists every deprecation; a call that passes the argument, names or reads back the type, writes or reads the property, draws the edge type or gets the reply field carries the notice, and a call using none carries nothing new; a removed tool's old name is refused with what to do; the registry as built leaves tools/list equal to the toolsnap goldens; the registry names only what this build serves.",
+    "location": "crates/reflow2-mcp/tests/a_served_item_is_removed_only_after_a_release_that_announced_it.rs",
+    "name": "tests/a_served_item_is_removed_only_after_a_release_that_announced_it.rs",
+    "status": "realized"
+  }
+}
