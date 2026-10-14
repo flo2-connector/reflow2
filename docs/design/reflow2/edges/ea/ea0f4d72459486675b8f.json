@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e0640f5c4b2bfeb2c0a1b8dae9a43070ba107d49e776b3ef00bf6c4b0a19fdfe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:arrival",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

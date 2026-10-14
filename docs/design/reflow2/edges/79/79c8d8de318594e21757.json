@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bad49dac2b52ab597f280bfb116620ec029a4473c74295d3d45e603d79e370d2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:follow-through-and-promotion-read-one-arrival-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:6999b6bb01e9353a538d052c499e48666d31ff902ae128c350551038472a3172",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

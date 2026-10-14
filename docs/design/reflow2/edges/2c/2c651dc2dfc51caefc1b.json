@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b003ce803e29e7fc8000ad5d1db632569545824b30f029211b4dd323eaa711e3",
+  "edge_type": "REALIZES",
+  "from_id": "art:gap-surfacing-doc",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:docs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fa16611bea4d2d764ea5c3c20142887a7a5b56a5a17e3f5713f5a2d3900f6272",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:follow-through-reads-one-arrival-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:follow-through-and-promotion-read-one-arrival"
+}

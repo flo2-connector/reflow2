@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e89cae6f5fa65cccbbb0ecf7180994b35fe9699e92c6a0a2cc2dbc71265118fd",
+  "edge_type": "REALIZES",
+  "from_id": "art:arrival",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-finding-describes-the-walk-that-produced-it"
+}
