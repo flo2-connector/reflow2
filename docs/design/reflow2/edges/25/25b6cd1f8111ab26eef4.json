@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:8d731b15a02a37d4102d50b636d976beab42cf1e123030a0a7bbb5fc0d7a5d8c",
+  "content_hash": "sha256:618ed8a6db84f130a6f2def277379952ebe2d9547a44170a65772458dbc32522",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:where-one-fact-is-held-in-several-places-how-far-the-copies-disagree-is-measured-and-located",
+  "prev_item_hash": "sha256:8d731b15a02a37d4102d50b636d976beab42cf1e123030a0a7bbb5fc0d7a5d8c",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

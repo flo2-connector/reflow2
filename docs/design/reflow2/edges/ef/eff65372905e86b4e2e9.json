@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2e85b4110e9327584ec80daa064f8ac4401c3b3b43850c30e151bd2fe5ecff64",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-link-into-another-design-is-recorded-and-checked",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

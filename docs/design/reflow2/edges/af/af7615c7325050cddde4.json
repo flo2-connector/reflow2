@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57fef6e55a9522182d6e2400a661cecf536b6ab0d93f792d1c75dbc499adfc57",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-contradiction-drawn-as-corroboration-is-stored-supporting-test",
+  "properties": {
+    "covers": "whole",
+    "note": "The whole check: six cases over review_relations and add_decision."
+  },
+  "to_id": "ver:a-review-link-can-say-a-contradiction-supports"
+}

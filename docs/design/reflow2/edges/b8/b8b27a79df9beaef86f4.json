@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:170196fd0ce403bdc3c9b9e50ab65d0266848b469f70a0928939767d3a810bd4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:review-relations-can-say-a-contradiction-supports-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:e86f815a60b6dfe00e9fc15a15b95e1d93d9c55721492ed39b7ab1327ae772dc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test"
+}

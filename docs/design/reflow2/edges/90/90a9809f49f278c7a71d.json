@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:27a8d284db5137ffaffb44667f2841389fb7f52819095be679e01abdbd3312e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:every-declared-enum-is-wired-or-exempt-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

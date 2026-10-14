@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:401d9c1eb6d162cfa8c7a1a1c93a3fed8e20dadac19bcad56af957a113cf0558",
+  "node_id": "chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-13",
+    "name": "The owner's rulings on judgement-pass items 17–25 and its surprises",
+    "rationale": "His words, 2026-10-13: \"Go with your recommendations.\" He asked for the work to be planned in phases with decision points. He first leaned toward retiring the additive-only requirement and took the amend recommendation instead, because it protects Alex while giving the first cut a rule to pass through. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "record",
+    "summary": "Anthony took the recommendations on items 17–25 and on the judgement pass's surprises. Recorded now:\n- delegation deferred;\n- recency keyed to a revision, not a clock;\n- no new field for qualified check results;\n- the physical-numbers dividing line set and its build deferred;\n- the four OAuth client choices (official SDK auth, browser at setup only, keychain with a one-time warning, a domain reflow2 controls, which is still to be chosen);\n- both owners named in writing;\n- the additive-only promise amended to \"never removed without a release of notice\";\n- an advisory rule that an idea from reading waits for a real use.\n\nAccepted and recorded when they are carried out:\n- merge survivor: the engine proposes and a person picks, after a root-cause pass;\n- follow-through: a link between two findings reads as precedent, once it is confirmed that an unacted finding is still reported elsewhere;\n- undelivered accepted requirements: link those already built, then keep, defer or drop against the few-jobs yardstick;\n- built-but-open work: draw the missing links before he rules;\n- the proposed rejections of reading-only ideas."
+  }
+}

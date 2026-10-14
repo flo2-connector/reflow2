@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:59b4e89fe92bb98d2f6f7e99762e4cb56c25873b19114811937939f544f741f0",
+  "content_hash": "sha256:7c4ded8304702975825bd1cd72a50f2e32a3c4f117e1c39667de517209fc19e5",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:reflow2-keeps-the-knowledge-it-derives",
+  "prev_item_hash": "sha256:59b4e89fe92bb98d2f6f7e99762e4cb56c25873b19114811937939f544f741f0",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

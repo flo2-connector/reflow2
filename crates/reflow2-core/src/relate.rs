@@ -34,8 +34,9 @@
 //! brainstorm skill forbids. A fabricated relation is worse than a missing one,
 //! because anything that searches by neighbourhood repeats it forever.
 
-use crate::foundation::core::DynoError;
+use crate::foundation::core::{DynoError, PropertyDef, PropertyType, Schema, Value};
 use serde::Serialize;
+use std::collections::BTreeMap;
 
 use crate::graph::DesignGraph;
 use crate::nodes::{Props, edge, node};
@@ -80,6 +81,126 @@ pub struct RelationLink {
     /// EVOLVES_INTO this one" and "this one EVOLVES_INTO the older" are not the
     /// same claim, and nothing downstream can tell that one of them is wrong.
     pub incoming: bool,
+    /// Values for the relation's DEFAULTED properties — the ones
+    /// [`review_link_properties`] names, such as CONTRADICTS `alignment`.
+    /// Empty is exactly the behaviour before this field existed: the schema
+    /// default is stored.
+    ///
+    /// ⭐ WHY THESE AND ONLY THESE. A property with no default is simply
+    /// absent when nobody says it. One WITH a default materialises on create,
+    /// so it asserts a value whether or not the writer meant it — and until
+    /// 2026-10-13 a writer here could not say otherwise. Every CONTRADICTS a
+    /// review drew was stored `opposing`; 10 in reflow2's own design said in
+    /// their evidence that they were corroborations, and 9 were reported as
+    /// contradictions
+    /// (`fact:root-cause-review-relations-cannot-mark-a-contradiction-supporting-and-the-default-says-opposing-2026-10-13`).
+    ///
+    /// Never inferred from `evidence`: what the writer says here is what is
+    /// stored, and nothing reads the prose for it.
+    pub properties: BTreeMap<String, Value>,
+}
+
+/// The properties a review link may set for `relation`: every property the
+/// schema declares on that edge type WITH A DEFAULT, sorted by name. Anything
+/// else on a link is refused, naming these.
+///
+/// Read from the schema rather than listed, so a default added to a review
+/// relation is sayable the day it is declared — and
+/// `crates/reflow2-mcp/tests/every_defaulted_edge_property_is_exposed_or_exempt.rs`
+/// fails until the served surface carries a field for it.
+pub fn review_link_properties<'s>(
+    schema: &'s Schema,
+    relation: &str,
+) -> Vec<(&'s str, &'s PropertyDef)> {
+    let mut out: Vec<(&str, &PropertyDef)> = schema
+        .edge_types
+        .get(relation)
+        .map(|def| {
+            def.properties
+                .iter()
+                .filter(|(_, p)| p.default.is_some())
+                .map(|(k, p)| (k.as_str(), p))
+                .collect()
+        })
+        .unwrap_or_default();
+    out.sort_by(|a, b| a.0.cmp(b.0));
+    out
+}
+
+/// A property value as a person reads it in a refusal.
+fn shown(v: &Value) -> String {
+    match v {
+        Value::String(s) => s.clone(),
+        Value::Bool(b) => b.to_string(),
+        other => format!("{other:?}"),
+    }
+}
+
+/// `` `name` (a, b, c) `` for an enum, `` `name` (true or false) `` for a flag.
+fn legal(name: &str, def: &PropertyDef) -> String {
+    match (&def.prop_type, &def.values) {
+        (PropertyType::Enum, Some(values)) => format!("`{name}` ({})", values.join(", ")),
+        (PropertyType::Bool, _) => format!("`{name}` (true or false)"),
+        (t, _) => format!("`{name}` ({t:?})"),
+    }
+}
+
+/// Refuse a per-link property the relation does not declare with a default,
+/// or a value the schema does not allow for it. Each refusal names the
+/// property and what would have been legal.
+fn check_link_properties(schema: &Schema, l: &RelationLink) -> Result<(), DynoError> {
+    let takes = review_link_properties(schema, &l.relation);
+    for (name, value) in &l.properties {
+        let Some((_, def)) = takes.iter().find(|(n, _)| n == name) else {
+            let offered = if takes.is_empty() {
+                format!("{} takes none", l.relation)
+            } else {
+                format!(
+                    "{} takes {}",
+                    l.relation,
+                    takes
+                        .iter()
+                        .map(|(n, d)| legal(n, d))
+                        .collect::<Vec<_>>()
+                        .join(" and ")
+                )
+            };
+            return Err(DynoError::EdgeValidation {
+                edge_type: l.relation.clone(),
+                property: name.clone(),
+                message: format!(
+                    "the {rel} to '{other}' cannot set `{name}`: {rel} does not declare it with \
+                     a default. A link sets only the properties its relation would otherwise \
+                     default; {offered}.",
+                    rel = l.relation,
+                    other = l.other_id,
+                ),
+            });
+        };
+        let ok = match (&def.prop_type, value) {
+            (PropertyType::Enum, Value::String(s)) => def
+                .values
+                .as_ref()
+                .is_none_or(|values| values.iter().any(|v| v == s)),
+            (PropertyType::Bool, Value::Bool(_)) => true,
+            (PropertyType::String, Value::String(_)) => true,
+            _ => false,
+        };
+        if !ok {
+            return Err(DynoError::EdgeValidation {
+                edge_type: l.relation.clone(),
+                property: name.clone(),
+                message: format!(
+                    "'{}' is not a {} `{name}` (the link to '{}'): it takes {}.",
+                    shown(value),
+                    l.relation,
+                    l.other_id,
+                    legal(name, def)
+                ),
+            });
+        }
+    }
+    Ok(())
 }
 
 /// What a review did.
@@ -155,6 +276,10 @@ impl DesignGraph {
     /// - an unknown relation, naming the ones that exist;
     /// - a link with no evidence;
     /// - a link to a node that does not exist, or to itself;
+    /// - a link property its relation does not declare with a default, or a
+    ///   value the schema does not allow for it, naming the legal ones;
+    /// - a link property that differs from what an edge already stored for
+    ///   the same relation says — it is never dropped as "already present";
     /// - a node that does not exist.
     pub fn review_relations(
         &mut self,
@@ -224,6 +349,8 @@ impl DesignGraph {
                     node_id: l.other_id.clone(),
                 });
             }
+            check_link_properties(self.schema(), l)?;
+            self.check_against_stored(node_id, l)?;
         }
 
         let mut drawn = Vec::new();
@@ -261,14 +388,13 @@ impl DesignGraph {
                 already_present.push(label);
                 continue;
             }
-            self.create_edge(
-                &l.relation,
-                from_t,
-                from_i,
-                to_t,
-                to_i,
-                Props::new().set("evidence", l.evidence.trim()),
-            )?;
+            // The link's own properties, checked above; anything it does not
+            // say is left to the schema default, exactly as before.
+            let mut props = Props::new().set("evidence", l.evidence.trim());
+            for (k, v) in &l.properties {
+                props = props.set(k, v.clone());
+            }
+            self.create_edge(&l.relation, from_t, from_i, to_t, to_i, props)?;
             drawn.push(label);
         }
 
@@ -302,6 +428,64 @@ impl DesignGraph {
             drawn,
             already_present,
         })
+    }
+
+    /// A link that names a property value for an edge ALREADY STORED: the
+    /// same value is fine (the edge reads as already present); a different one
+    /// is refused, before anything is written.
+    ///
+    /// Reporting it `already_present` would tell a writer who said
+    /// `alignment: supporting` that their corroboration was recorded while
+    /// the stored edge still says `opposing` — the very misreading this field
+    /// exists to end. Revising it here would rewrite a stored judgement with
+    /// no record of what it said before. So the refusal names what is stored
+    /// and the route that restates it, which is deliberate and visible.
+    fn check_against_stored(&self, node_id: &str, l: &RelationLink) -> Result<(), DynoError> {
+        if l.properties.is_empty() {
+            return Ok(());
+        }
+        let (from_i, to_i) = if l.incoming {
+            (l.other_id.as_str(), node_id)
+        } else {
+            (node_id, l.other_id.as_str())
+        };
+        let Some(stored) = self
+            .outgoing(from_i, Some(&l.relation))?
+            .into_iter()
+            .find(|e| e.to_id == to_i)
+        else {
+            return Ok(());
+        };
+        let takes = review_link_properties(self.schema(), &l.relation);
+        for (name, want) in &l.properties {
+            // An edge written before the property existed carries nothing,
+            // and reads as the default — which is what every reader sees.
+            let have = stored.properties.get(name).cloned().or_else(|| {
+                takes
+                    .iter()
+                    .find(|(n, _)| n == name)
+                    .and_then(|(_, d)| d.default.clone())
+            });
+            if have.as_ref() == Some(want) {
+                continue;
+            }
+            let have = have.as_ref().map_or_else(|| "nothing".to_string(), shown);
+            return Err(DynoError::EdgeValidation {
+                edge_type: l.relation.clone(),
+                property: name.clone(),
+                message: format!(
+                    "'{from_i}' {rel} '{to_i}' is already stored with `{name}` {have}, and this \
+                     link says {want}. review_relations draws a relation and never revises one, \
+                     so it will not report this as already present. To restate the stored edge, \
+                     call create_edge with edge_type {rel}, the same two ends, and props \
+                     carrying `{name}` {want} AND the stored `evidence` again — create_edge \
+                     replaces the edge's properties, so evidence left out is lost.",
+                    rel = l.relation,
+                    want = shown(want),
+                ),
+            });
+        }
+        Ok(())
     }
 
     /// Does this node carry any relation from the review vocabulary, in either

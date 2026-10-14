@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9ad7e91d386ef1905362d5d9ff8f653badc83843b5ffedc665828d1099aa9d77",
+  "edge_type": "CHANGED",
+  "from_id": "chg:review-relations-can-say-a-contradiction-supports-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:98848c87ea51f24275779c0cbca66ea9d9ce0658669ef0beaf91dbca15eded7f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-review-relations"
+}

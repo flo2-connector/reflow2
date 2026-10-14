@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:97ad50f7eca0ece93178efd6133129267424fdfe2d0b9cc0d28dbbb8a8360a52",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:what-a-session-on-main-sees-of-in-flight-branches",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

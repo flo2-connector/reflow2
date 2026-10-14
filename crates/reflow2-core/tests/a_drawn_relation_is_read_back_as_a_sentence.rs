@@ -35,6 +35,7 @@ fn link(relation: &str, other_type: &str, other_id: &str, incoming: bool) -> Rel
         other_id: other_id.to_string(),
         evidence: "The store, as built, blocks the requirement.".to_string(),
         incoming,
+        properties: Default::default(),
     }
 }
 

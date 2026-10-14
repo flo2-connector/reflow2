@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:c079b51772703b2301c1d03c5c09ae4c5da218db6e4690823e03c554efc919f1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:intent-is-reinjected",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

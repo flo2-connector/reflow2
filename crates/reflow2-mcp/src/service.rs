@@ -4116,6 +4116,62 @@ pub struct RelationLinkReq {
     /// reference reads as more than an id.
     #[serde(default)]
     pub other_name: Option<String>,
+    /// CONTRADICTS only. `opposing`: the two conflict — and what an unsaid
+    /// alignment is STORED AS, which `detect_defects` reports as a
+    /// contradiction. `supporting`: they corroborate each other. Saying
+    /// "corroboration" in `evidence` does not set it; only this field does.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::contradicts_alignment_opt")]
+    pub alignment: Option<String>,
+    /// CAUSES: how strongly the link is grounded — `observed`,
+    /// `correlational` (stored when unsaid: a co-variation, not a cause),
+    /// `causal` (only with a mechanism) or `spurious`. DUPLICATES: who
+    /// decided the two cover the same ground — `asserted` (a person says so)
+    /// or `suspected` (stored when unsaid; never merged).
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::review_link_basis_opt")]
+    pub basis: Option<String>,
+    /// CAUSES only: how far the claim has been tested — `unvalidated` (stored
+    /// when unsaid), `hypothesis`, `validated` or `refuted`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::causes_validation_status_opt")]
+    pub validation_status: Option<String>,
+    /// DEPENDS_ON only: `true` when the source works without the target.
+    /// Unsaid, the dependency is stored as required (`false`).
+    #[serde(default)]
+    pub optional: Option<bool>,
+    /// DEPENDS_ON only: how the coupling weight was set — `estimated` (stored
+    /// when unsaid), `evidence` or `measured`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::depends_on_weight_basis_opt")]
+    pub weight_basis: Option<String>,
+}
+
+impl RelationLinkReq {
+    /// The per-link properties the caller SAID, by their schema names. Empty
+    /// when none was given, which stores each schema default exactly as
+    /// before these fields existed; the core refuses a property the link's
+    /// relation does not declare with a default, or a value it does not allow.
+    pub fn link_properties(
+        &self,
+    ) -> std::collections::BTreeMap<String, reflow2_core::foundation::core::Value> {
+        use reflow2_core::foundation::core::Value;
+        let mut out = std::collections::BTreeMap::new();
+        for (name, value) in [
+            ("alignment", &self.alignment),
+            ("basis", &self.basis),
+            ("validation_status", &self.validation_status),
+            ("weight_basis", &self.weight_basis),
+        ] {
+            if let Some(v) = value {
+                out.insert(name.to_string(), Value::String(v.clone()));
+            }
+        }
+        if let Some(b) = self.optional {
+            out.insert("optional".to_string(), Value::Bool(b));
+        }
+        out
+    }
 }
 
 /// How intent travels between designs (`send_to_design`, `receive_from_design`).

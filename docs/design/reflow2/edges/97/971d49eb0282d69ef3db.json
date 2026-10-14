@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:347de8e663df83d5596ba910e26a0ca12c474df4c9ed38508589844cf95335a3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:how-a-branchs-implementation-facts-are-held",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

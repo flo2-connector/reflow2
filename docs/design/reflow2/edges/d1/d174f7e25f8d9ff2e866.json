@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:3bf017275ec847fa4e434b2d497a58f5d8eb7586b2ffce3c48800f00a6f92757",
+  "content_hash": "sha256:68e5cae00991064b6e2e501692217d5b8c79cf1d76ddbe289d0c17078567c9d2",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-what-did-the-agent-infer-provenance-per-field-per-type-and-as-a-report",
+  "prev_item_hash": "sha256:3bf017275ec847fa4e434b2d497a58f5d8eb7586b2ffce3c48800f00a6f92757",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

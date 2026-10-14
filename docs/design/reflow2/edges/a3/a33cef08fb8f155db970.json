@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fa61d9afeac7162590054fcc51a715c0e124657f556196c2a7559db495891306",
+  "edge_type": "CAUSES",
+  "from_id": "art:heal",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "follow_through_exists (heal.rs) treats a Requirement as arrived only at `met`, which no requirement carries, and a finding only by EVOLVES_INTO, which is not how this design closes findings. It also disagrees with detect.rs's promotion detector on ChangeEvent and DesignRule targets. Together that raises 20 of unresolved_setup's 47 findings on acted-on setups.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-follow-through-reads-arrival-from-a-status-nothing-sets-and-misses-how-findings-close-2026-10-13"
+}

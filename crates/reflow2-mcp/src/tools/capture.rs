@@ -3180,7 +3180,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record what a node relates to — or that nothing does. Use it right after capturing an idea, decision or requirement, while the search you ran to check for duplicates is still in hand: those near-matches are the candidates, and today they are read once and thrown away. Draw the relations that are genuinely true (`CONTRADICTS`, `EVOLVES_INTO`, `DEPENDS_ON`, `CAUSES`, `TRIGGERS`, `BLOCKS`, `DUPLICATES`, `ANTICIPATES`, `OBSOLETES`, `RISKS`, `MITIGATES`, `MASKS`, `VIOLATES`), each with the reason in `evidence`. Two or three is a good outcome; ten is a smell, because relatedness is not similarity. If nothing is honestly related, pass `note` instead — that is a real answer, not a weaker one, and it is what tells a later reader this node was considered rather than never opened. NEVER invent a relation to have something to pass: a false neighbour is worse than a missing one, since anything that searches by neighbourhood repeats it forever. Refuses when you give neither.",
+        description = "Record what a node relates to — or that nothing does. Use it right after capturing an idea, decision or requirement, while the search you ran to check for duplicates is still in hand: those near-matches are the candidates, and today they are read once and thrown away. Draw the relations that are genuinely true (`CONTRADICTS`, `EVOLVES_INTO`, `DEPENDS_ON`, `CAUSES`, `TRIGGERS`, `BLOCKS`, `DUPLICATES`, `ANTICIPATES`, `OBSOLETES`, `RISKS`, `MITIGATES`, `MASKS`, `VIOLATES`), each with the reason in `evidence`. ⚠️ A CONTRADICTS is stored `alignment: opposing` — a conflict, which `detect_defects` reports — unless the link says `\"alignment\": \"supporting\"`: that field, not the evidence, is how a link records corroboration. A link overrides the other defaults the same way: CAUSES `basis` (stored `correlational` when unsaid) and `validation_status` (`unvalidated`), DUPLICATES `basis` (`suspected`), DEPENDS_ON `optional` (`false`) and `weight_basis` (`estimated`); one its relation does not declare is refused. Two or three is a good outcome; ten is a smell, because relatedness is not similarity. If nothing is honestly related, pass `note` instead — that is a real answer, not a weaker one, and it is what tells a later reader this node was considered rather than never opened. NEVER invent a relation to have something to pass: a false neighbour is worse than a missing one, since anything that searches by neighbourhood repeats it forever. Refuses when you give neither.",
         title = "Review a Node's Relations",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3201,12 +3201,14 @@ impl ReflowService {
             let other_type = self
                 .resolve_type(l.other_type.as_deref(), &l.other_id, "other_type")
                 .await?;
+            let properties = l.link_properties();
             links.push(RelationLink {
                 relation: l.relation,
                 other_type,
                 other_id: l.other_id,
                 evidence: l.evidence,
                 incoming: l.incoming.unwrap_or(false),
+                properties,
             });
         }
         let node_type = self
@@ -3485,12 +3487,14 @@ impl ReflowService {
                     &l.other_id,
                     "other_type",
                 )?;
+                let properties = l.link_properties();
                 links.push(RelationLink {
                     relation: l.relation,
                     other_type,
                     other_id: l.other_id,
                     evidence: l.evidence,
                     incoming: l.incoming.unwrap_or(false),
+                    properties,
                 });
             }
             // The outcome carries the subject-first sentences. It used to be
@@ -4211,12 +4215,14 @@ fn cross_design_links(
                 l.other_name.as_deref(),
             )
             .map_err(dyno_err)?;
+        let properties = l.link_properties();
         out.push(RelationLink {
             relation: l.relation,
             other_type: reflow2_core::nodes::node::RESOURCE.to_string(),
             other_id: id,
             evidence: l.evidence,
             incoming: l.incoming.unwrap_or(false),
+            properties,
         });
     }
     Ok(out)

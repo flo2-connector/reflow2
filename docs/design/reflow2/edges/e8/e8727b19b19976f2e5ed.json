@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b557a36363631bbf457f18acbfae780a77f56bb55e6a5da8741901533c077b53",
+  "edge_type": "CHANGED",
+  "from_id": "chg:review-relations-can-say-a-contradiction-supports-2026-10-13",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-review-link-can-say-a-contradiction-supports"
+}

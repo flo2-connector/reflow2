@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:408473051f224898db14c90c292fe85b1a428ceca939f0d175f5179b05942f73",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
+}

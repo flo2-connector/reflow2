@@ -24,6 +24,36 @@
         "additionalProperties": false,
         "description": "One relation for `review_relations`.",
         "properties": {
+          "alignment": {
+            "default": null,
+            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
+            "enum": [
+              "opposing",
+              "supporting",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "basis": {
+            "default": null,
+            "description": "CAUSES: how strongly the link is grounded — `observed`,\n`correlational` (stored when unsaid: a co-variation, not a cause),\n`causal` (only with a mechanism) or `spurious`. DUPLICATES: who\ndecided the two cover the same ground — `asserted` (a person says so)\nor `suspected` (stored when unsaid; never merged).",
+            "enum": [
+              "observed",
+              "correlational",
+              "causal",
+              "spurious",
+              "asserted",
+              "suspected",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "evidence": {
             "description": "WHY this relation is true, in a sentence. Required — a relation with no\nevidence is an assertion the next reader can neither check nor overturn.",
             "type": "string"
@@ -31,6 +61,14 @@
           "incoming": {
             "default": null,
             "description": "Draw the edge FROM the other node instead. Direction is part of the\nclaim: every one of these reads as a sentence, *from RELATION to*, and\nbackwards the same edge asserts something false with nothing to catch it.",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "optional": {
+            "default": null,
+            "description": "DEPENDS_ON only: `true` when the source works without the target.\nUnsaid, the dependency is stored as required (`false`).",
             "type": [
               "boolean",
               "null"
@@ -82,6 +120,35 @@
               "VIOLATES"
             ],
             "type": "string"
+          },
+          "validation_status": {
+            "default": null,
+            "description": "CAUSES only: how far the claim has been tested — `unvalidated` (stored\nwhen unsaid), `hypothesis`, `validated` or `refuted`.",
+            "enum": [
+              "unvalidated",
+              "hypothesis",
+              "validated",
+              "refuted",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "weight_basis": {
+            "default": null,
+            "description": "DEPENDS_ON only: how the coupling weight was set — `estimated` (stored\nwhen unsaid), `evidence` or `measured`.",
+            "enum": [
+              "estimated",
+              "evidence",
+              "measured",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [

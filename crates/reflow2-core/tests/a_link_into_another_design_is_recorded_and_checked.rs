@@ -33,6 +33,7 @@ fn link(g: &mut DesignGraph, relation: &str) -> String {
             other_id: id.clone(),
             evidence: "the same need, said in two designs".into(),
             incoming: false,
+            properties: Default::default(),
         }],
         None,
     )

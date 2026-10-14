@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1874667831bfe28998a81e512f1ee8b91d2e6beb2b717a2fb51dfcbf0cac686e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:review-relations-can-say-a-contradiction-supports-2026-10-13",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

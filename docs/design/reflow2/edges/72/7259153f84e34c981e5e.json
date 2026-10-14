@@ -1,10 +1,15 @@
 {
-  "content_hash": "sha256:18243d3bb94193518bcebbb0e225a1973058239c1c4aac0297ab60497cbac609",
+  "content_hash": "sha256:632e425e4b01cf3e7ca57a7b7fcd835d0ee2d4bb2a6739f0432ef7a61e41a55a",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:every-agent-working-a-design-is-its-own-claimant-subagents-included",
+  "prev_item_hash": "sha256:18243d3bb94193518bcebbb0e225a1973058239c1c4aac0297ab60497cbac609",
   "properties": {
     "approved_at": "2026-09-29",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
+      "author",
       "approver"
     ]
   },
