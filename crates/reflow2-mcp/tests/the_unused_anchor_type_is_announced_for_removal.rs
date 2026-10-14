@@ -357,7 +357,10 @@ async fn a_call_that_never_touches_anchor_carries_no_notice() {
         ("describe_schema", json!({"node_type": "Requirement"})),
         ("describe_schema", json!({})),
         ("search_design", json!({"query": "records"})),
-        ("find_tools", json!({"query": "record a baseline of the design"})),
+        (
+            "find_tools",
+            json!({"query": "record a baseline of the design"}),
+        ),
     ] {
         let r = ok(&c, tool, args.clone()).await;
         assert!(

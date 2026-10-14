@@ -109,10 +109,21 @@ schema:
         detected_at: { type: string }
         resolved: { type: bool, default: false, indexed: true }
       embedding_field: summary
+      # The hint said "between the design (graph/Anchor)" and "References the
+      # Anchor it diverged from via DEPENDS_ON" until 2026-10-14. No DriftEvent
+      # ever did: on reflow2's own design all 40 carry exactly one edge,
+      # DEPENDS_ON to an Artifact (drift.rs `write_drift_event`; fielded.rs
+      # draws it to the Environment and Release), and the Anchor type is
+      # deprecated (dec:anchor-retire-or-implement).
       extraction_hint: >
-        A recorded divergence between the design (graph/Anchor) and reality
-        (filesystem/build). Produced by drift detection, not extracted from
-        prose. References the Anchor it diverged from via DEPENDS_ON.
+        A recorded divergence between the design and reality — a file that no
+        longer matches what the design registered for it (or that the design
+        never registered), or a deployment that differs from what DEPLOYED_TO
+        declares. Produced by drift detection (reconcile_artifacts,
+        reconcile_deployment), not extracted from prose. It DEPENDS_ON what it
+        is about: the Artifact whose file drifted (none for an undocumented
+        addition, which has no Artifact yet), or the Environment and Release of
+        a deployment drift.
 
   edge_types:
 

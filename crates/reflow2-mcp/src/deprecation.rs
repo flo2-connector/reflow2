@@ -324,8 +324,7 @@ impl Deprecation {
     }
 }
 
-/// ⭐ THE REGISTRY: everything this build is retiring. EMPTY until the first
-/// real deprecation.
+/// ⭐ THE REGISTRY: everything this build is retiring.
 ///
 /// To deprecate something, add its entry here AND a `changelog.d/` fragment
 /// that names it under `### Deprecated` with a "What to do" line
@@ -334,7 +333,31 @@ impl Deprecation {
 /// that, remove the item. For a TOOL, keep its entry for that one release, so
 /// its old name is refused with what to do, and take the entry out in the
 /// release after; for anything else, take the entry out with the item.
-pub const REGISTRY: &[Deprecation] = &[];
+pub const REGISTRY: &[Deprecation] = &[
+    // THE FIRST REAL ENTRY (2026-10-14). On Anthony's word, 2026-10-13
+    // (dec:anchor-retire-or-implement): "Remove the unused Anchor type, but
+    // only after a rule for retiring things exists, because it would be the
+    // first thing ever taken off what Alex's MCP sees."
+    //
+    // Nothing in reflow2 creates or reads an Anchor (no tool, no
+    // `node::ANCHOR`; `preserve.rs` only classifies the type by name), and
+    // the seven designs these MCP servers serve held ZERO on 2026-10-14. ONE
+    // ENTRY FOR THE TYPE, none for its properties: `design_intent` and
+    // `key_decisions` are declared on no other type and leave with it, its
+    // `name`, `checksum` and `created_at` stay declared on the types that
+    // share them, no edge type names Anchor as an endpoint (it is reached
+    // only through `*`), and the surface check already lets a deprecated
+    // type take its properties with it. Separate property entries would only
+    // repeat the notice on every Anchor write.
+    Deprecation::node_type(
+        "Anchor",
+        "0.85.0",
+        "Nothing reads an Anchor; record a checksummed baseline with `add_epoch` \
+         (epoch_type `baseline`, with its `checksum`) and capture a node's state at it with \
+         `snapshot_before_change` (a Snapshot) instead.",
+        "dec:anchor-retire-or-implement",
+    ),
+];
 
 // ---- the mark ------------------------------------------------------------------------
 
