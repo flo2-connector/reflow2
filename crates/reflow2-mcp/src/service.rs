@@ -438,6 +438,13 @@ pub struct ReflowService {
     /// design never keeps its registry alive. A property of the SERVER, like
     /// `caller_rule`: inherited by every session, never reset.
     registry: Option<crate::registry_http::RegistryHandle>,
+    /// What this build is retiring (`crate::deprecation`): the build's
+    /// [`crate::deprecation::REGISTRY`], read where a client reads the surface —
+    /// tools/list, describe_schema, and the notice on a call that uses one.
+    /// A property of the BUILD, like the tool router; a field rather than the
+    /// constant only so a test can serve entries the build does not have
+    /// ([`ReflowService::with_deprecations_for_test`]).
+    pub(crate) deprecations: Arc<[crate::deprecation::Deprecation]>,
 }
 
 /// The served tools that write a FILE at a caller's `path` — annotated
@@ -7028,6 +7035,7 @@ impl ReflowService {
             caller_rule: Arc::new(crate::caller::CallerRule::Local),
             // A single design, until a registry says otherwise (`with_registry`).
             registry: None,
+            deprecations: Arc::from(crate::deprecation::REGISTRY),
         }
     }
 
@@ -7109,6 +7117,18 @@ impl ReflowService {
     /// name (`NotMeasured::NoTree`) rather than reporting files absent.
     pub fn without_tree(mut self) -> Self {
         self.tree_root = None;
+        self
+    }
+
+    /// Test seam: serve THESE deprecations instead of the build's registry,
+    /// so a test can watch the marks and the notice on entries no release
+    /// has made (the registry is empty until the first real one).
+    #[doc(hidden)]
+    pub fn with_deprecations_for_test(
+        mut self,
+        deprecations: Vec<crate::deprecation::Deprecation>,
+    ) -> Self {
+        self.deprecations = Arc::from(deprecations);
         self
     }
 
@@ -7290,6 +7310,8 @@ impl ReflowService {
             // A property of the SERVER, like the caller rule: every session on
             // a registry-served design has the same bounded way to another.
             registry: self.registry.clone(),
+            // A property of the BUILD: every session retires the same things.
+            deprecations: Arc::clone(&self.deprecations),
         }
     }
 

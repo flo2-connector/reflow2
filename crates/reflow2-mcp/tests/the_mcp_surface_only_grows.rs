@@ -1,5 +1,11 @@
-//! THE MCP SURFACE ONLY GROWS: what a client of the last release sent and read
-//! still works the same way on this build.
+//! THE MCP SURFACE SHRINKS ONLY THROUGH A DEPRECATING RELEASE: what a client of
+//! the last release sent and read still works the same way on this build,
+//! unless that release announced it was going.
+//!
+//! The file keeps its old name, `the_mcp_surface_only_grows`, so its history
+//! and every record that cites it (the design's Verification, AGENTS.md, the
+//! re-bless command in each cut's notes) still find it. What it checks moved
+//! on 2026-10-14, below.
 //!
 //! # Why this exists — the owner's constraint, verbatim
 //!
@@ -8,11 +14,19 @@
 //! likes using as is." (Anthony, 2026-10-05, approving stage 2 of the work-door
 //! increment.)
 //!
+//! And its amendment, on his word, 2026-10-13
+//! (`req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in`):
+//! "never removed" becomes "never removed WITHOUT A RELEASE OF NOTICE".
+//! Anything a client can call or read is retired in two releases — a
+//! DEPRECATING release, in which it still works and says it is going, then the
+//! NEXT release removes it — and "the check that the served surface only grows
+//! becomes a check that it shrinks only through a deprecating release."
+//!
 //! The toolsnap goldens (`tools/toolsnaps/`) make every surface change a
 //! reviewed diff, but they are re-blessed in the same pull request that
 //! changes the surface, so they say THAT the surface moved and never WHETHER
 //! it only grew. This compares the build against a frozen record of the LAST
-//! RELEASE and allows additions only:
+//! RELEASE:
 //!
 //! - every tool the release served is served, with the same read/write hint;
 //! - every argument it published is published at the same path, with no type
@@ -20,7 +34,31 @@
 //!   tighter minimum, and an open object not closed;
 //! - every reply in a fixed scenario of ordinary calls keeps every field it
 //!   had, at the same path and of the same JSON type, and no call the release
-//!   answered is refused.
+//!   answered is refused;
+//! - every node type, node property and edge type its describe_schema served
+//!   is served.
+//!
+//! # What may go: only what the last release announced
+//!
+//! The record also holds the release's DEPRECATIONS — its
+//! `deprecation::REGISTRY`, as its describe_schema listed them. Anything the
+//! record holds that this build no longer serves PASSES only when the record
+//! marks it deprecated, which means the release that record was taken from
+//! announced it; anything else missing fails exactly as before. An item the
+//! record marks deprecated that is still served passes too: removal is
+//! allowed, not forced. A deprecated tool may go whole, so any narrowing of it
+//! passes; a deprecated argument may take its sub-fields with it; a deprecated
+//! node type, edge type or property may leave the vocabulary, and an enum
+//! value naming that type, and the reply fields of a call the release itself
+//! told it used them.
+//!
+//! A TOOL is retired one step further, because the accepted tool rule says a
+//! removal "ships first as a stub under the old name that refuses and names
+//! the replacement — for one release"
+//! (`dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first`).
+//! So a deprecated tool this build no longer lists must still be ANSWERED by
+//! its old name, with a refusal carrying what the release said to do; its
+//! registry entry stays for that one release and comes out in the next.
 //!
 //! # The two narrowings a reader would otherwise mistake for breaks
 //!
@@ -38,8 +76,10 @@
 //! # Re-blessing, at a cut
 //!
 //! The record is `fixtures/mcp_surface_at_last_release.json`, taken by driving
-//! a real binary: `--list-tools --full` and the scenario through `--call`.
-//! After a release is tagged, take it from that release's binary:
+//! a real binary: `--list-tools --full`, the scenario through `--call`, and
+//! `describe_schema` for the vocabulary and the deprecations. After a release
+//! is tagged, take it from that release's binary — which writes that
+//! release's deprecations into the record, so the NEXT release may remove them:
 //!
 //! ```text
 //! REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp \
@@ -53,6 +93,7 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 use std::process::{Command, Output, Stdio};
 
+use reflow2_mcp::deprecation::{Deprecation, Item, used_by};
 use serde_json::{Map, Value, json};
 
 const RECORD: &str = concat!(
@@ -317,7 +358,8 @@ fn shape(v: &Value, path: &str, out: &mut BTreeSet<String>) {
     }
 }
 
-/// The surface of one binary: its tools and the scenario's answers.
+/// The surface of one binary: its tools, the scenario's answers, its
+/// vocabulary, and the deprecations it announces.
 fn take(bin: &str) -> Value {
     let dir = tempfile::tempdir().expect("tempdir");
     let version = String::from_utf8_lossy(&run(bin, dir.path(), &["--version"]).stdout)
@@ -372,6 +414,7 @@ fn take(bin: &str) -> Value {
         );
         let ok = o.status.success();
         let mut fields = BTreeSet::new();
+        let mut uses = Vec::new();
         if ok {
             let v: Value = serde_json::from_slice(&o.stdout).unwrap_or_else(|e| {
                 panic!(
@@ -380,66 +423,305 @@ fn take(bin: &str) -> Value {
                 )
             });
             shape(&v, "", &mut fields);
+            // What the binary itself told the client this call used that is
+            // going: its notice, read back as items.
+            for n in v["deprecation_notice"].as_array().into_iter().flatten() {
+                uses.push(n["item"].clone());
+            }
         }
-        replies.push(json!({
+        let mut reply = json!({
             "step": label,
             "tool": tool,
             "arguments": args,
             "answered": ok,
             "exit": o.status.code(),
             "shape": fields.into_iter().collect::<Vec<_>>(),
-        }));
+        });
+        // Only when there is something to say, so a release that announced
+        // nothing writes the line it always wrote.
+        if !uses.is_empty() {
+            reply["uses"] = Value::Array(uses);
+        }
+        replies.push(reply);
     }
-    json!({"taken_with": version, "tools": tools, "replies": replies})
+
+    // The vocabulary and the deprecations, from the binary's own
+    // describe_schema on the design the scenario made: every node type with
+    // its property names, every edge type, and the list of what is going. The
+    // budget is raised so nothing is trimmed; names never are, and this makes
+    // that not matter.
+    let o = run(
+        bin,
+        dir.path(),
+        &[
+            "--graph-path",
+            graph.to_str().unwrap(),
+            "--no-export",
+            "--call",
+            "describe_schema",
+            "--args",
+            r#"{"budget_chars": 100000000}"#,
+        ],
+    );
+    assert!(
+        o.status.success(),
+        "{bin} describe_schema: {}",
+        String::from_utf8_lossy(&o.stderr)
+    );
+    let schema: Value = serde_json::from_slice(&o.stdout).expect("describe_schema is JSON");
+    let mut node_types = Map::new();
+    for n in schema["node_types"].as_array().expect("node_types") {
+        let props: Vec<Value> = n["properties"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter_map(|p| p["name"].as_str().map(|s| json!(s)))
+            .collect();
+        node_types.insert(
+            n["node_type"].as_str().expect("node_type").to_string(),
+            Value::Array(props),
+        );
+    }
+    let edge_types: Vec<Value> = schema["edge_types"]
+        .as_array()
+        .expect("edge_types")
+        .iter()
+        .filter_map(|e| e["edge_type"].as_str().map(|s| json!(s)))
+        .collect();
+    // No `deprecations` key is a build that announces nothing: it has none, or
+    // it predates the rule (every release up to 0.84.0). Either way nothing it
+    // served may go in the release after it.
+    let deprecations: Vec<Value> = match schema.get("deprecations") {
+        None => Vec::new(),
+        Some(d) => {
+            let parsed: Vec<Deprecation> = serde_json::from_value(d.clone())
+                .unwrap_or_else(|e| panic!("{bin}'s deprecations do not read ({e}): {d}"));
+            parsed
+                .iter()
+                .map(|x| serde_json::to_value(x).expect("a deprecation serialises"))
+                .collect()
+        }
+    };
+
+    json!({
+        "taken_with": version,
+        "tools": tools,
+        "replies": replies,
+        "deprecations": deprecations,
+        "vocabulary": {"node_types": node_types, "edge_types": edge_types},
+    })
 }
 
-/// The record as committed: one tool and one reply per line, so a re-bless
-/// reads as a diff of what moved.
+/// The record as committed: one tool, one reply, one deprecation and one node
+/// type per line, so a re-bless reads as a diff of what moved.
 fn write_record(taken: &Value) {
     let mut s = String::from("{\n");
     s.push_str(&format!(
         "\"_what\": {},\n",
         json!(
             "The MCP surface of the LAST RELEASE, for tests/the_mcp_surface_only_grows.rs: each \
-             tool's read/write hint and input schema with its prose taken out, and the reply \
-             shape of a fixed scenario of ordinary calls. Taken by driving the release binary \
-             (--list-tools --full, and --call). Re-bless at a cut: REFLOW2_BLESS_SURFACE=<that \
-             release's binary> cargo test -p reflow2-mcp --test the_mcp_surface_only_grows."
+             tool's read/write hint and input schema with its prose taken out, the reply shape \
+             of a fixed scenario of ordinary calls, the vocabulary (node types with their \
+             properties, and edge types), and the deprecations the release announced — the only \
+             things the next release may remove. Taken by driving the release binary \
+             (--list-tools --full, --call, and describe_schema). Re-bless at a cut: \
+             REFLOW2_BLESS_SURFACE=<that release's binary> cargo test -p reflow2-mcp --test \
+             the_mcp_surface_only_grows."
         )
     ));
     s.push_str(&format!("\"taken_with\": {},\n", taken["taken_with"]));
+    let lines = |s: &mut String, items: Vec<String>| {
+        let n = items.len();
+        for (i, line) in items.into_iter().enumerate() {
+            s.push_str(&format!("{line}{}\n", if i + 1 < n { "," } else { "" }));
+        }
+    };
     s.push_str("\"tools\": {\n");
-    let tools = taken["tools"].as_object().unwrap();
-    let n = tools.len();
-    for (i, (name, t)) in tools.iter().enumerate() {
-        s.push_str(&format!(
-            "{}: {}{}\n",
-            json!(name),
-            t,
-            if i + 1 < n { "," } else { "" }
-        ));
-    }
+    lines(
+        &mut s,
+        taken["tools"]
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(name, t)| format!("{}: {t}", json!(name)))
+            .collect(),
+    );
     s.push_str("},\n\"replies\": [\n");
-    let replies = taken["replies"].as_array().unwrap();
-    for (i, r) in replies.iter().enumerate() {
-        s.push_str(&format!(
-            "{}{}\n",
-            r,
-            if i + 1 < replies.len() { "," } else { "" }
-        ));
-    }
-    s.push_str("]\n}\n");
+    lines(
+        &mut s,
+        taken["replies"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|r| r.to_string())
+            .collect(),
+    );
+    s.push_str("],\n\"deprecations\": [\n");
+    lines(
+        &mut s,
+        taken["deprecations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|d| d.to_string())
+            .collect(),
+    );
+    s.push_str("],\n\"vocabulary\": {\n\"edge_types\": ");
+    s.push_str(&taken["vocabulary"]["edge_types"].to_string());
+    s.push_str(",\n\"node_types\": {\n");
+    lines(
+        &mut s,
+        taken["vocabulary"]["node_types"]
+            .as_object()
+            .unwrap()
+            .iter()
+            .map(|(name, props)| format!("{}: {props}", json!(name)))
+            .collect(),
+    );
+    s.push_str("}\n}\n}\n");
     std::fs::write(RECORD, s).expect("write the record");
 }
 
 // ---- comparing ----------------------------------------------------------------------
 
+/// What the record says the last release announced it would remove, and the
+/// questions the comparison asks of it. Every answer is an excuse for one
+/// loss, and each excuse used is reported, so a pass is never silent about
+/// what it let go.
+struct Announced {
+    deprecations: Vec<Deprecation>,
+}
+
+/// Is `path` the deprecated `prefix` itself, or under it?
+fn under(path: &str, prefix: &str) -> bool {
+    path == prefix
+        || path
+            .strip_prefix(prefix)
+            .is_some_and(|rest| rest.starts_with('.') || rest.starts_with("[]"))
+}
+
+impl Announced {
+    fn from_record(record: &Value) -> Self {
+        let deprecations = match record.get("deprecations") {
+            None => Vec::new(),
+            Some(d) => serde_json::from_value(d.clone())
+                .unwrap_or_else(|e| panic!("the record's deprecations do not read ({e}): {d}")),
+        };
+        Self { deprecations }
+    }
+
+    fn find(&self, wanted: impl Fn(&Item) -> bool) -> Option<&Deprecation> {
+        self.deprecations.iter().find(|d| wanted(&d.item))
+    }
+
+    fn tool(&self, tool: &str) -> Option<&Deprecation> {
+        self.find(|i| matches!(i, Item::Tool { tool: t } if t == tool))
+    }
+
+    /// An argument at `path`, or anything of it, of `tool`.
+    fn argument(&self, tool: &str, path: &str) -> bool {
+        self.tool(tool).is_some()
+            || self
+                .find(|i| matches!(i, Item::Argument { tool: t, path: p } if t == tool && under(path, p)))
+                .is_some()
+    }
+
+    fn node_type(&self, name: &str) -> bool {
+        self.find(|i| matches!(i, Item::NodeType { node_type } if node_type == name))
+            .is_some()
+    }
+
+    fn edge_type(&self, name: &str) -> bool {
+        self.find(|i| matches!(i, Item::EdgeType { edge_type } if edge_type == name))
+            .is_some()
+    }
+
+    fn property(&self, node_type: &str, property: &str) -> bool {
+        self.node_type(node_type)
+            || self
+                .find(|i| {
+                    matches!(i, Item::NodeProperty { node_type: t, property: p }
+                        if t == node_type && p == property)
+                })
+                .is_some()
+    }
+
+    /// A value an enum may list that names a vocabulary item announced going.
+    fn names_vocabulary(&self, v: &Value) -> bool {
+        v.as_str()
+            .is_some_and(|s| self.node_type(s) || self.edge_type(s))
+    }
+
+    /// What a recorded scenario step used that the release announced going:
+    /// what its arguments name (the same rule a served call's notice follows,
+    /// `deprecation::used_by`), and what the release's own reply said it used.
+    fn used_by_step(&self, step: &Value) -> Vec<Item> {
+        let tool = step["tool"].as_str().unwrap_or("");
+        let mut used: Vec<Item> = used_by(&self.deprecations, tool, Some(&step["arguments"]), None)
+            .into_iter()
+            .map(|d| d.item.clone())
+            .collect();
+        for u in step["uses"].as_array().into_iter().flatten() {
+            let item: Item = serde_json::from_value(u.clone())
+                .unwrap_or_else(|e| panic!("a recorded use does not read ({e}): {u}"));
+            if !used.contains(&item) {
+                used.push(item);
+            }
+        }
+        used
+    }
+
+    /// Is a reply field the step lost one the release announced? Its tool
+    /// going takes everything; a deprecated reply field takes what is under
+    /// it; a node or edge type the call used takes the reply's fields with it;
+    /// a property the call used takes the fields named after it; and once the
+    /// item has gone, so has the notice about it.
+    fn reply_field(&self, step: &Value, used: &[Item], field: &str) -> bool {
+        let tool = step["tool"].as_str().unwrap_or("");
+        let path = field.rsplit_once(':').map(|(p, _)| p).unwrap_or(field);
+        if self.tool(tool).is_some() {
+            return true;
+        }
+        if self
+            .find(|i| matches!(i, Item::ReplyField { tool: t, path: p } if t == tool && under(path, p)))
+            .is_some()
+        {
+            return true;
+        }
+        if !used.is_empty() && under(path, "deprecation_notice") {
+            return true;
+        }
+        used.iter().any(|i| match i {
+            Item::NodeType { .. } | Item::EdgeType { .. } => true,
+            Item::NodeProperty { property, .. } => {
+                path.rsplit('.')
+                    .next()
+                    .map(|last| last.trim_end_matches("[]"))
+                    == Some(property)
+            }
+            _ => false,
+        })
+    }
+}
+
+/// What the comparison found: the breaks, the listed narrowings it allowed,
+/// the removals the last release announced, and the tools that went whose old
+/// names must still answer with a refusal saying what to do.
+#[derive(Default)]
+struct Verdict {
+    problems: Vec<String>,
+    allowed: BTreeSet<String>,
+    announced: BTreeSet<String>,
+    /// (tool, the version that deprecated it, what the release said to do).
+    stubs: Vec<(String, String, String)>,
+}
+
 struct Schemas<'a> {
     old_root: &'a Value,
     new_root: &'a Value,
     tool: &'a str,
-    problems: &'a mut Vec<String>,
-    allowed: &'a mut BTreeSet<String>,
+    announced: &'a Announced,
+    verdict: &'a mut Verdict,
 }
 
 fn resolve<'a>(root: &'a Value, mut s: &'a Value) -> &'a Value {
@@ -470,8 +752,15 @@ fn types(s: &Value) -> Option<BTreeSet<String>> {
 }
 
 impl Schemas<'_> {
+    /// A loss at `path`: a break, unless the last release announced the
+    /// argument (or its tool) was going.
     fn problem(&mut self, path: &str, what: String) {
-        self.problems.push(format!("{}.{path}: {what}", self.tool));
+        let line = format!("{}.{path}: {what}", self.tool);
+        if self.announced.argument(self.tool, path) {
+            self.verdict.announced.insert(line);
+        } else {
+            self.verdict.problems.push(line);
+        }
     }
 
     fn compare(&mut self, old: &Value, new: &Value, path: &str, depth: usize) {
@@ -500,6 +789,17 @@ impl Schemas<'_> {
                     .flatten()
                     .filter(|v| !n.contains(v))
                     .collect();
+                // A value naming a node or edge type the release announced
+                // going leaves the enum with it.
+                let (going, lost): (Vec<&Value>, Vec<&Value>) = lost
+                    .into_iter()
+                    .partition(|v| self.announced.names_vocabulary(v));
+                if !going.is_empty() {
+                    self.verdict.announced.insert(format!(
+                        "{}.{path}: allowed values of announced vocabulary taken away: {going:?}",
+                        self.tool
+                    ));
+                }
                 if !lost.is_empty() {
                     self.problem(path, format!("allowed values taken away: {lost:?}"));
                 }
@@ -509,7 +809,7 @@ impl Schemas<'_> {
                     .iter()
                     .any(|(t, p, _)| *t == self.tool && *p == path)
                 {
-                    self.allowed.insert(format!("{}.{path}", self.tool));
+                    self.verdict.allowed.insert(format!("{}.{path}", self.tool));
                 } else {
                     self.problem(
                         path,
@@ -568,7 +868,7 @@ impl Schemas<'_> {
                         .iter()
                         .any(|(t, f, ..)| *t == self.tool && *f == p)
                     {
-                        self.allowed.insert(format!("{}.{p}", self.tool));
+                        self.verdict.allowed.insert(format!("{}.{p}", self.tool));
                     } else {
                         self.problem(&p, "no longer published".into());
                     }
@@ -593,32 +893,113 @@ impl Schemas<'_> {
     }
 }
 
-fn compare(record: &Value, now: &Value) -> (Vec<String>, BTreeSet<String>) {
-    let mut problems = Vec::new();
-    let mut allowed = BTreeSet::new();
+/// The vocabulary the record holds, against this build's: a node type, a
+/// property or an edge type that is gone is a break unless announced.
+fn compare_vocabulary(record: &Value, now: &Value, announced: &Announced, verdict: &mut Verdict) {
+    let Some(old) = record.get("vocabulary") else {
+        return; // A record taken before the vocabulary was recorded holds none.
+    };
+    let Some(new) = now.get("vocabulary") else {
+        verdict
+            .problems
+            .push("the record holds a vocabulary and this build's was not read".into());
+        return;
+    };
+    let empty = Map::new();
+    let new_types = new["node_types"].as_object().unwrap_or(&empty);
+    for (t, props) in old["node_types"].as_object().unwrap_or(&empty) {
+        let Some(now_props) = new_types.get(t) else {
+            let line = format!("node type `{t}`: no longer served");
+            if announced.node_type(t) {
+                verdict.announced.insert(line);
+            } else {
+                verdict.problems.push(line);
+            }
+            continue;
+        };
+        for p in props.as_array().into_iter().flatten() {
+            let held = now_props
+                .as_array()
+                .is_some_and(|a| a.iter().any(|x| x == p));
+            if !held {
+                let p = p.as_str().unwrap_or_default();
+                let line = format!("node type `{t}`: property `{p}` no longer served");
+                if announced.property(t, p) {
+                    verdict.announced.insert(line);
+                } else {
+                    verdict.problems.push(line);
+                }
+            }
+        }
+    }
+    let new_edges: BTreeSet<&str> = new["edge_types"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+        .collect();
+    for e in old["edge_types"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+    {
+        if !new_edges.contains(e) {
+            let line = format!("edge type `{e}`: no longer served");
+            if announced.edge_type(e) {
+                verdict.announced.insert(line);
+            } else {
+                verdict.problems.push(line);
+            }
+        }
+    }
+}
+
+fn compare(record: &Value, now: &Value) -> Verdict {
+    let announced = Announced::from_record(record);
+    let mut verdict = Verdict::default();
     let old_tools = record["tools"].as_object().expect("record tools");
     let new_tools = now["tools"].as_object().expect("live tools");
     for (name, old) in old_tools {
         let Some(new) = new_tools.get(name) else {
-            problems.push(format!("{name}: no longer served"));
+            match announced.tool(name) {
+                Some(d) => {
+                    verdict
+                        .announced
+                        .insert(format!("{name}: no longer served"));
+                    verdict.stubs.push((
+                        name.clone(),
+                        d.deprecated_in.to_string(),
+                        d.what_to_do.to_string(),
+                    ));
+                }
+                None => verdict.problems.push(format!("{name}: no longer served")),
+            }
             continue;
         };
         if old["read_only"] != new["read_only"] {
-            problems.push(format!(
+            let line = format!(
                 "{name}: read_only {} became {} — `reflow2 read` approvals key on it",
                 old["read_only"], new["read_only"]
-            ));
+            );
+            if announced.tool(name).is_some() {
+                verdict.announced.insert(line);
+            } else {
+                verdict.problems.push(line);
+            }
         }
         let (o, n) = (&old["input_schema"], &new["input_schema"]);
         Schemas {
             old_root: o,
             new_root: n,
             tool: name,
-            problems: &mut problems,
-            allowed: &mut allowed,
+            announced: &announced,
+            verdict: &mut verdict,
         }
         .compare(o, n, "", 0);
     }
+
+    compare_vocabulary(record, now, &announced, &mut verdict);
 
     let new_replies: BTreeMap<&str, &Value> = now["replies"]
         .as_array()
@@ -629,14 +1010,22 @@ fn compare(record: &Value, now: &Value) -> (Vec<String>, BTreeSet<String>) {
     for old in record["replies"].as_array().expect("record replies") {
         let step = old["step"].as_str().unwrap();
         let Some(new) = new_replies.get(step) else {
-            problems.push(format!("scenario step `{step}` is no longer run"));
+            verdict
+                .problems
+                .push(format!("scenario step `{step}` is no longer run"));
             continue;
         };
+        let used = announced.used_by_step(old);
         if old["answered"] == true && new["answered"] != true {
-            problems.push(format!(
+            let line = format!(
                 "`{step}`: the release answered this call and this build refuses it (exit {})",
                 new["exit"]
-            ));
+            );
+            if used.is_empty() {
+                verdict.problems.push(line);
+            } else {
+                verdict.announced.insert(line);
+            }
             continue;
         }
         if old["answered"] == true {
@@ -646,29 +1035,61 @@ fn compare(record: &Value, now: &Value) -> (Vec<String>, BTreeSet<String>) {
                 .iter()
                 .filter_map(Value::as_str)
                 .collect();
-            let lost: Vec<&str> = old["shape"]
+            let (going, lost): (Vec<&str>, Vec<&str>) = old["shape"]
                 .as_array()
                 .unwrap()
                 .iter()
                 .filter_map(Value::as_str)
                 .filter(|f| !have.contains(f))
-                .collect();
+                .partition(|f| announced.reply_field(old, &used, f));
+            if !going.is_empty() {
+                verdict
+                    .announced
+                    .insert(format!("`{step}`: announced reply fields gone: {going:?}"));
+            }
             if !lost.is_empty() {
-                problems.push(format!(
+                verdict.problems.push(format!(
                     "`{step}`: the reply lost fields the release sent (path:type): {lost:?}"
                 ));
             }
         }
     }
-    (problems, allowed)
+    verdict
 }
 
 fn bin() -> &'static str {
     env!("CARGO_BIN_EXE_reflow2-mcp")
 }
 
+/// Call `tool` on `bin` in a fresh folder: whether it answered, and all it said.
+fn call_fresh(bin: &str, tool: &str, args: &str) -> (bool, String) {
+    let dir = tempfile::tempdir().expect("tempdir");
+    let graph = dir.path().join("graph");
+    let o = run(
+        bin,
+        dir.path(),
+        &[
+            "--graph-path",
+            graph.to_str().unwrap(),
+            "--no-export",
+            "--call",
+            tool,
+            "--args",
+            args,
+        ],
+    );
+    (
+        o.status.success(),
+        format!(
+            "{}{}",
+            String::from_utf8_lossy(&o.stdout),
+            String::from_utf8_lossy(&o.stderr)
+        ),
+    )
+}
+
 #[test]
-fn the_mcp_surface_only_grows_since_the_last_release() {
+fn the_mcp_surface_shrinks_only_through_a_deprecating_release() {
     if let Ok(release) = std::env::var("REFLOW2_BLESS_SURFACE") {
         write_record(&take(&release));
     }
@@ -677,16 +1098,32 @@ fn the_mcp_surface_only_grows_since_the_last_release() {
     )
     .expect("the record is JSON");
     let now = take(bin());
-    let (problems, allowed) = compare(&record, &now);
+    let verdict = compare(&record, &now);
     assert!(
-        problems.is_empty(),
-        "this build takes away from the MCP surface of {}:\n  {}\n\nAn MCP client of the last \
-         release breaks on each of these. Additions only — or the owner's approval, named.",
+        verdict.problems.is_empty(),
+        "this build takes away from the MCP surface of {} what that release did not announce:\n  \
+         {}\n\nAn MCP client of the last release breaks on each of these. Additions only — \
+         anything else goes through a release that deprecates it first (deprecation::REGISTRY), \
+         or the owner's approval, named.",
         record["taken_with"],
-        problems.join("\n  ")
+        verdict.problems.join("\n  ")
     );
+    if !verdict.announced.is_empty() {
+        eprintln!(
+            "removed after {} announced it:\n  {}",
+            record["taken_with"],
+            verdict
+                .announced
+                .iter()
+                .cloned()
+                .collect::<Vec<_>>()
+                .join("\n  ")
+        );
+    }
 
-    // NOT VACUOUS: the walk reached the surface and the scenario ran.
+    // NOT VACUOUS: the walk reached the surface and the scenario ran, and the
+    // record holds the vocabulary and says what it announced (an empty list
+    // is an answer; a missing key is not).
     assert!(record["tools"].as_object().unwrap().len() >= 190);
     let answered = record["replies"]
         .as_array()
@@ -698,32 +1135,38 @@ fn the_mcp_surface_only_grows_since_the_last_release() {
         answered >= 20,
         "only {answered} scenario calls were answered"
     );
+    assert!(
+        record["vocabulary"]["node_types"]
+            .as_object()
+            .is_some_and(|t| t.len() >= 28)
+            && record["vocabulary"]["edge_types"]
+                .as_array()
+                .is_some_and(|e| e.len() >= 66),
+        "the record holds the vocabulary its release served — re-bless from that release's binary"
+    );
+    assert!(
+        record["deprecations"].is_array(),
+        "the record says what its release announced, if only that it announced nothing"
+    );
+
+    // A TOOL THAT WENT STILL ANSWERS ITS OLD NAME, for the one release after
+    // its notice, with a refusal saying what the release said to do.
+    for (tool, version, what) in &verdict.stubs {
+        let (answered, said) = call_fresh(bin(), tool, "{}");
+        assert!(
+            !answered && said.contains(&format!("DEPRECATED in {version}")) && said.contains(what),
+            "`{tool}` was deprecated in {version} and is no longer served, so its old name must \
+             be refused with what to do ({what:?}) for one release — a removed door is never a \
+             silent absence. Got:\n{said}"
+        );
+    }
 
     // Every listed narrowing is real and carries its proof.
     for (tool, field, why, args, answer) in UNADVERTISED {
-        if !allowed.contains(&format!("{tool}.{field}")) {
+        if !verdict.allowed.contains(&format!("{tool}.{field}")) {
             continue; // Not yet taken out (a record taken after the cut).
         }
-        let dir = tempfile::tempdir().expect("tempdir");
-        let graph = dir.path().join("graph");
-        let o = run(
-            bin(),
-            dir.path(),
-            &[
-                "--graph-path",
-                graph.to_str().unwrap(),
-                "--no-export",
-                "--call",
-                tool,
-                "--args",
-                args,
-            ],
-        );
-        let said = format!(
-            "{}{}",
-            String::from_utf8_lossy(&o.stdout),
-            String::from_utf8_lossy(&o.stderr)
-        );
+        let (_, said) = call_fresh(bin(), tool, args);
         assert!(
             said.contains(answer) && !said.contains("is not a parameter"),
             "`{tool}.{field}` is unadvertised ({why}) and must still be ACCEPTED with the \
@@ -732,7 +1175,7 @@ fn the_mcp_surface_only_grows_since_the_last_release() {
     }
     let replies = record["replies"].as_array().unwrap();
     for (tool, field, step) in ENUM_ATTACHED {
-        if !allowed.contains(&format!("{tool}.{field}")) {
+        if !verdict.allowed.contains(&format!("{tool}.{field}")) {
             continue;
         }
         let r = replies
@@ -750,38 +1193,79 @@ fn the_mcp_surface_only_grows_since_the_last_release() {
 /// One way of taking something away from a recorded surface.
 type Breaks = Box<dyn Fn(&mut Value)>;
 
-/// The comparison itself, on hand-made surfaces: a removal, a narrowed type,
-/// a dropped value, a newly required field and a lost reply field are each
-/// caught; an addition is not.
-#[test]
-fn the_comparison_catches_each_way_of_taking_away() {
-    let record = json!({
+/// A hand-made surface: one tool with every kind of argument, one reply, and
+/// a small vocabulary.
+fn hand_made() -> Value {
+    json!({
         "tools": {"t": {"read_only": false, "input_schema": {
             "type": "object",
             "properties": {
                 "a": {"type": ["string", "null"]},
                 "b": {"type": "string", "enum": ["x", "y"]},
-                "c": {"type": "array", "items": {"$ref": "#/$defs/I"}}
+                "c": {"type": "array", "items": {"$ref": "#/$defs/I"}},
+                "r": {"type": "string", "enum": ["SATISFIES", "ANTICIPATES"]}
             },
             "required": ["a"],
             "$defs": {"I": {"type": "object", "properties": {"k": {"type": "integer"}}}}
-        }}},
-        "replies": [{"step": "s", "answered": true, "exit": 0,
-                     "shape": ["count:number", "items:array"]}]
-    });
-    let (p, _) = compare(&record, &record);
-    assert!(p.is_empty(), "{p:?}");
+        }}, "u": {"read_only": true, "input_schema": {}}},
+        "replies": [{"step": "s", "tool": "t", "arguments": {"a": "q"}, "answered": true,
+                     "exit": 0, "shape": ["count:number", "items:array", "items[].k:number"]},
+                    {"step": "read an anchor", "tool": "u", "arguments": {},
+                     "answered": true, "exit": 0,
+                     "shape": ["node:object", "node.properties:object",
+                               "node.properties.checksum:string"]}],
+        "vocabulary": {"node_types": {"Anchor": ["name", "checksum"],
+                                      "Requirement": ["name", "kind"]},
+                       "edge_types": ["SATISFIES", "ANTICIPATES"]},
+        "deprecations": []
+    })
+}
+
+/// The comparison itself, on hand-made surfaces: a removal, a narrowed type,
+/// a dropped value, a newly required field, a lost reply field and a lost
+/// vocabulary item are each caught; an addition is not.
+#[test]
+fn the_comparison_catches_each_way_of_taking_away() {
+    let record = hand_made();
+    let v = compare(&record, &record);
+    assert!(v.problems.is_empty(), "{:?}", v.problems);
 
     let mut grown = record.clone();
     grown["tools"]["t"]["input_schema"]["properties"]["z"] = json!({"type": "string"});
     grown["tools"]["t2"] = json!({"read_only": true, "input_schema": {}});
-    grown["replies"][0]["shape"] = json!(["count:number", "items:array", "new:string"]);
-    let (p, _) = compare(&record, &grown);
-    assert!(p.is_empty(), "additions are allowed: {p:?}");
+    grown["replies"][0]["shape"] = json!([
+        "count:number",
+        "items:array",
+        "items[].k:number",
+        "new:string"
+    ]);
+    grown["vocabulary"]["node_types"]["New"] = json!(["name"]);
+    grown["vocabulary"]["edge_types"] = json!(["SATISFIES", "ANTICIPATES", "NEW_EDGE"]);
+    let v = compare(&record, &grown);
+    assert!(
+        v.problems.is_empty(),
+        "additions are allowed: {:?}",
+        v.problems
+    );
 
-    let cases: Vec<(&str, Breaks)> = vec![
+    for (needle, break_it) in breaks() {
+        let mut broken = record.clone();
+        break_it(&mut broken);
+        let v = compare(&record, &broken);
+        assert!(
+            v.problems.iter().any(|x| x.contains(needle)),
+            "the comparison missed `{needle}`: {:?}",
+            v.problems
+        );
+    }
+}
+
+/// Every way of taking something away, each with the words its problem
+/// carries.
+fn breaks() -> Vec<(&'static str, Breaks)> {
+    vec![
         (
-            "no longer served",
+            "t: no longer served",
             Box::new(|v| {
                 v["tools"].as_object_mut().unwrap().remove("t");
             }),
@@ -810,6 +1294,12 @@ fn the_comparison_catches_each_way_of_taking_away() {
             Box::new(|v| v["tools"]["t"]["input_schema"]["properties"]["b"]["enum"] = json!(["x"])),
         ),
         (
+            "values taken away: [String(\"ANTICIPATES\")]",
+            Box::new(|v| {
+                v["tools"]["t"]["input_schema"]["properties"]["r"]["enum"] = json!(["SATISFIES"])
+            }),
+        ),
+        (
             "now publishes an enum",
             Box::new(|v| {
                 v["tools"]["t"]["input_schema"]["properties"]["a"]["enum"] = json!(["only"])
@@ -828,20 +1318,190 @@ fn the_comparison_catches_each_way_of_taking_away() {
         ),
         (
             "lost fields",
-            Box::new(|v| v["replies"][0]["shape"] = json!(["count:number"])),
+            Box::new(|v| v["replies"][0]["shape"] = json!(["count:number", "items:array"])),
         ),
         (
             "refuses it",
             Box::new(|v| v["replies"][0]["answered"] = json!(false)),
         ),
+        (
+            "node type `Anchor`: no longer served",
+            Box::new(|v| {
+                v["vocabulary"]["node_types"]
+                    .as_object_mut()
+                    .unwrap()
+                    .remove("Anchor");
+            }),
+        ),
+        (
+            "property `kind` no longer served",
+            Box::new(|v| v["vocabulary"]["node_types"]["Requirement"] = json!(["name"])),
+        ),
+        (
+            "edge type `ANTICIPATES`: no longer served",
+            Box::new(|v| v["vocabulary"]["edge_types"] = json!(["SATISFIES"])),
+        ),
+    ]
+}
+
+/// ⭐ THE RULE: a removal passes ONLY when the last release announced it. The
+/// same removals that fail above pass once the record marks each item
+/// deprecated, each is reported as announced rather than passed in silence,
+/// and an item marked deprecated and still served passes too.
+#[test]
+fn a_removal_passes_only_when_the_last_release_announced_it() {
+    let dec = "dec:test-only-a-retirement";
+    let announced = |items: Vec<Deprecation>| {
+        let mut r = hand_made();
+        r["deprecations"] = serde_json::to_value(items).unwrap();
+        r
+    };
+
+    // Each removal, and the deprecation that announces it.
+    let cases: Vec<(&str, Deprecation, Breaks)> = vec![
+        (
+            "a tool",
+            Deprecation::tool("t", "0.85.0", "Call t2.", dec),
+            Box::new(|v| {
+                v["tools"].as_object_mut().unwrap().remove("t");
+                // Its scenario call is refused now, and that goes with it.
+                v["replies"][0]["answered"] = json!(false);
+            }),
+        ),
+        (
+            "an argument",
+            Deprecation::argument("t", "a", "0.85.0", "Leave it out.", dec),
+            Box::new(|v| {
+                v["tools"]["t"]["input_schema"]["properties"]
+                    .as_object_mut()
+                    .unwrap()
+                    .remove("a");
+                v["tools"]["t"]["input_schema"]["required"] = json!([]);
+                // The step passed `a`, so this build refuses it.
+                v["replies"][0]["answered"] = json!(false);
+            }),
+        ),
+        (
+            "an argument's inner field",
+            Deprecation::argument("t", "c", "0.85.0", "Leave it out.", dec),
+            Box::new(|v| {
+                v["tools"]["t"]["input_schema"]["$defs"]["I"]["properties"]["k"]["type"] =
+                    json!("string")
+            }),
+        ),
+        (
+            "a reply field",
+            Deprecation::reply_field("t", "items", "0.85.0", "Read count.", dec),
+            Box::new(|v| v["replies"][0]["shape"] = json!(["count:number"])),
+        ),
+        (
+            "a node type",
+            Deprecation::node_type("Anchor", "0.85.0", "Record a Snapshot.", dec),
+            Box::new(|v| {
+                v["vocabulary"]["node_types"]
+                    .as_object_mut()
+                    .unwrap()
+                    .remove("Anchor");
+            }),
+        ),
+        (
+            "a node property",
+            Deprecation::node_property("Requirement", "kind", "0.85.0", "Say it.", dec),
+            Box::new(|v| v["vocabulary"]["node_types"]["Requirement"] = json!(["name"])),
+        ),
+        (
+            "an edge type, and the enum value naming it",
+            Deprecation::edge_type("ANTICIPATES", "0.85.0", "Draw ENABLES.", dec),
+            Box::new(|v| {
+                v["vocabulary"]["edge_types"] = json!(["SATISFIES"]);
+                v["tools"]["t"]["input_schema"]["properties"]["r"]["enum"] = json!(["SATISFIES"]);
+            }),
+        ),
     ];
-    for (needle, break_it) in cases {
-        let mut broken = record.clone();
+    for (what, deprecation, break_it) in cases {
+        let mut broken = hand_made();
         break_it(&mut broken);
-        let (p, _) = compare(&record, &broken);
+        let unannounced = compare(&hand_made(), &broken);
         assert!(
-            p.iter().any(|x| x.contains(needle)),
-            "the comparison missed `{needle}`: {p:?}"
+            !unannounced.problems.is_empty(),
+            "removing {what} with no release of notice must fail"
+        );
+        let record = announced(vec![deprecation.clone()]);
+        let v = compare(&record, &broken);
+        assert!(
+            v.problems.is_empty(),
+            "removing {what} after the last release announced it ({deprecation:?}) must pass: \
+             {:?}",
+            v.problems
+        );
+        assert!(
+            !v.announced.is_empty(),
+            "the pass names what it let go, for {what}"
+        );
+        // Removal is allowed, not forced: still served passes as well.
+        let kept = compare(&record, &hand_made());
+        assert!(
+            kept.problems.is_empty(),
+            "{what} still served: {:?}",
+            kept.problems
         );
     }
+
+    // Announcing one thing excuses nothing else.
+    let record = announced(vec![Deprecation::node_type(
+        "Anchor",
+        "0.85.0",
+        "Record a Snapshot.",
+        dec,
+    )]);
+    for (needle, break_it) in breaks() {
+        if needle.contains("Anchor") {
+            continue;
+        }
+        let mut broken = hand_made();
+        break_it(&mut broken);
+        let v = compare(&record, &broken);
+        assert!(
+            v.problems.iter().any(|x| x.contains(needle)),
+            "announcing `Anchor` must not excuse `{needle}`: {:?}",
+            v.problems
+        );
+    }
+
+    // A tool that went must still answer by its old name (checked against the
+    // binary in the main test): the comparison hands it over with what the
+    // release said to do.
+    let record = announced(vec![Deprecation::tool("t", "0.85.0", "Call t2.", dec)]);
+    let mut gone = hand_made();
+    gone["tools"].as_object_mut().unwrap().remove("t");
+    gone["replies"][0]["answered"] = json!(false);
+    let v = compare(&record, &gone);
+    assert_eq!(
+        v.stubs,
+        vec![(
+            "t".to_string(),
+            "0.85.0".to_string(),
+            "Call t2.".to_string()
+        )]
+    );
+
+    // A reply the release itself said used a deprecated node type: its fields
+    // may go with the type.
+    let mut record = announced(vec![Deprecation::node_property(
+        "Anchor",
+        "checksum",
+        "0.85.0",
+        "Leave it out.",
+        dec,
+    )]);
+    let mut lost = hand_made();
+    lost["replies"][1]["shape"] = json!(["node:object", "node.properties:object"]);
+    assert!(
+        !compare(&record, &lost).problems.is_empty(),
+        "a reply field the release did not say the call used is not excused by a property"
+    );
+    record["replies"][1]["uses"] =
+        json!([{"kind": "node_property", "node_type": "Anchor", "property": "checksum"}]);
+    let v = compare(&record, &lost);
+    assert!(v.problems.is_empty(), "{:?}", v.problems);
 }
