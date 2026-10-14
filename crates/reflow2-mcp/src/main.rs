@@ -940,11 +940,16 @@ async fn prepare_call(cli: &Cli, tool: &str) -> anyhow::Result<PreparedCall> {
     // (`--describe`, `--list-tools`, `describe_schema` with `tool`).
     let tools = ReflowService::served_tools();
     let Some(served) = tools.iter().find(|t| t.name == tool) else {
+        // A tool removed after its release of notice is refused here with what
+        // to do, as a session refuses it (`deprecation::removed_tool`).
         anyhow::bail!(
-            "{} --call takes a served tool name; `--call find_tools --args \
+            "{}{} --call takes a served tool name; `--call find_tools --args \
              '{{\"query\":\"…\"}}'` finds one from a sentence in your own words, and `--call \
              list_skills` names the skills.",
-            reflow2_mcp::revise_route::unknown_tool(tool, &tools)
+            reflow2_mcp::revise_route::unknown_tool(tool, &tools),
+            reflow2_mcp::deprecation::removed_tool(reflow2_mcp::deprecation::REGISTRY, tool)
+                .map(|s| format!(" {s}"))
+                .unwrap_or_default()
         );
     };
     let reads = served

@@ -73,3 +73,11 @@ input schema from the request struct. So a new tool is:
   touch the write path, and keep it failing loud: the rejection is better, not softer.
 - **`service.rs` is large and the macro forces one `impl` block** — but request structs, DTOs and
   error helpers do not have to live in it. Factor along that seam rather than growing the file.
+- **Nothing a client can call or read is removed without a release of notice.** A tool, an
+  argument, a reply field, a node type, an edge type or a property is retired in two releases:
+  an entry in `deprecation::REGISTRY` (`src/deprecation.rs`) plus a `### Deprecated` changelog
+  fragment with a **What to do:** line first, the removal in the release after. The registry
+  generates the marks in tools/list and describe_schema and the `deprecation_notice` on a call,
+  so never hand-write "deprecated" into a description. A tool keeps its entry for the release
+  that removes it, so its old name answers with what to do. `tests/the_mcp_surface_only_grows.rs`
+  fails a removal the last release did not announce. See the root AGENTS.md.

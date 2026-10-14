@@ -140,7 +140,7 @@ fn a_fragment_that_does_not_announce_it_fails() {
     let half = "### Deprecated\n\n- **`scan_nodes` changes.** **What to do:** pass `limit`.\n";
     assert_eq!(
         changelog_problems(
-            &[argument.clone()],
+            std::slice::from_ref(&argument),
             &[("x.md".into(), half.into())],
             "## [Unreleased]\n",
             "0.84.0"

@@ -20,7 +20,30 @@ sections — `### Added`, `### Changed`, `### Deprecated`, `### Removed`,
   it — every step a consumer must take goes here, while you still know it.
 ```
 
-Write it for a person, as the entries in `CHANGELOG.md` read. Check it with:
+Write it for a person, as the entries in `CHANGELOG.md` read.
+
+### Deprecating something a client uses
+
+Anything a client can call or read is removed only after a release that
+announced it (`crates/reflow2-mcp/src/deprecation.rs`). Each entry in
+`deprecation::REGISTRY` needs its own `### Deprecated` entry that names the item
+— every name in backticks: the tool; the tool and the argument's path; the tool
+and the reply field's path; the node type; the edge type; the node type and the
+property — and carries a **What to do:** line:
+
+```markdown
+### Deprecated
+
+- **The `Anchor` node type is going, in the release after this one.** Nothing
+  creates it, and a Snapshot records the same baseline. **What to do:** record a
+  Snapshot instead.
+```
+
+`tests/every_deprecation_is_announced_in_the_changelog.rs` fails without it,
+and, once the cut has assembled it, reads it from that release's section of
+`CHANGELOG.md`. The release that removes the item says so under `### Removed`.
+
+Check a fragment with:
 
 ```bash
 python3 tools/changelog_fragments.py --check     # CI runs this

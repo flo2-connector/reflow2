@@ -887,6 +887,16 @@ joined by *traceability* edges) for HEAL's topology detectors.
     stopped and no session loses MCP. The cut is a design PR like any other, so hold the design
     first. Measured 2026-10-10 on the real design: an export from 0.81.0, imported and exported by
     0.81.1, came back with the identical content hash.
+  - **The release notes say what is going and what has gone** (step 2, beside the changelog's
+    assembly; the retirement rule, `cap:a-served-item-is-removed-only-after-a-release-that-announced-it`).
+    Before tagging, the release's opening paragraph and its `### Deprecated` and `### Removed`
+    sections list every entry `deprecation::REGISTRY` deprecates in this release, each with its
+    **What to do:** line, and every item this release removes (a tool removed now answers its
+    old name with a refusal saying what to do, for this one release). Set each new entry's
+    `deprecated_in` to this release's version; `every_deprecation_is_announced_in_the_changelog`
+    checks the assembled section. **Telling the people who rely on the MCP server is owed before
+    the release ships** — a deprecation nobody hears about is a removal with extra steps. D3:
+    who tells Alex, and how, is Anthony's open decision; this step does not choose it.
 - **Structural topology detectors are selective.** A design's golden thread is tree-shaped,
   where every internal node is a naive articulation point — so `single_point_of_failure`
   only fires when a node separates ≥2 real subsystems (see `structure.rs`).
@@ -950,16 +960,37 @@ joined by *traceability* edges) for HEAL's topology detectors.
   a_schema_narrowing_ships_its_migration` — it refuses while anything is unaccounted for. Stored
   data is now re-judged by the same write rule on demand: `detect_defects` reports every stored
   item the current schema refuses, before the import that would fail.
-- **The MCP surface only grows** (Anthony, 2026-10-05: *"don't break it for how it was
-  originally used/designed as an mcp server"*). `tests/the_mcp_surface_only_grows.rs`
-  compares the build with the LAST RELEASE's tools, argument schemas and the reply shapes of
-  a fixed scenario (`tests/fixtures/mcp_surface_at_last_release.json`), and fails on anything
-  taken away: a tool, an argument, an allowed value or type, a reply field, or a call the
-  release answered. An argument un-advertised but still accepted, or a value set newly
+- **The MCP surface shrinks only through a deprecating release** (Anthony, 2026-10-05: *"don't
+  break it for how it was originally used/designed as an mcp server"*; amended on his word
+  2026-10-13: *"never removed" becomes "never removed WITHOUT A RELEASE OF NOTICE"*,
+  `req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in`).
+  `tests/the_mcp_surface_only_grows.rs` (name kept for its history) compares the build with
+  the LAST RELEASE's tools, argument schemas, the reply shapes of a fixed scenario, and its
+  vocabulary — node types, their properties, edge types
+  (`tests/fixtures/mcp_surface_at_last_release.json`). Anything taken away fails — a tool, an
+  argument, an allowed value or type, a reply field, a call the release answered, a node type,
+  a property or an edge type — **unless the record marks it deprecated**, which means that
+  release announced it. An argument un-advertised but still accepted, or a value set newly
   published where the release refused other values anyway, is listed there with its proof.
-  **At a cut, after the tag, re-bless it from the release binary**:
+  **At a cut, after the tag, re-bless it from the release binary**, which writes the release's
+  deprecations into the record so the next release may remove them:
   `REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp cargo test -p reflow2-mcp --test
   the_mcp_surface_only_grows`.
+  - **To retire anything a client can call or read, it takes two releases.** First add its
+    entry to `deprecation::REGISTRY` (`crates/reflow2-mcp/src/deprecation.rs`, the one place
+    a deprecation is declared: the item, the version that deprecates it, what to do instead
+    in one sentence, and the `dec:` that retires it) and a `changelog.d/` fragment that names
+    it under `### Deprecated` with a **What to do:** line —
+    `tests/every_deprecation_is_announced_in_the_changelog.rs` fails without it. That release
+    still serves it, and says it is going: the tool's or argument's description opens with
+    *"DEPRECATED in <version>, removed in the next release: <what to do>"*, describe_schema
+    marks a node type, property or edge type `deprecated` and lists every entry under
+    `deprecations`, and a call that uses it gets a `deprecation_notice` in its reply. Only the
+    NEXT release may remove it.
+  - **A tool goes one step further** (`dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first`):
+    in the release that removes it, keep its registry entry, so its old name is refused with
+    what to do, and take the entry out in the release after. The surface test asserts the
+    refusal. Anything else leaves the registry with the item.
 - **Deterministic ids.** Gap/heal issue ids are a stable FNV-1a hash of
   `source + sorted affected ids` (not `std` `DefaultHasher`) so they're reproducible for
   dedup/caching.
