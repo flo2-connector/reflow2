@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e58d86ccb4902fee2d1064c31025383a5c061e6e442513d8dc608682749d8864",
+  "node_id": "frag:art:awaiting",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered awaiting.rs"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:23b030a1d674bb219857f4013f2fc33d5db06ab048967ddee8408ffb0cca57b5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:derived-relations-are-served-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

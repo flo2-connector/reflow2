@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3001e64d54e9626dd5c6c3a81f13d40dbd7f8b20c580ebc81f1bd5fd1fe679b8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:awaiting",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7ce06ee7e3b4248c7b1269c965712f90a840476f2045b97188d69dcb121fccfe",
+  "node_id": "art:awaiting-the-owners-word-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins the owner's awaiting-word list (DesignGraph::awaiting_word, served on loop_status's scoped answer): a delivered proposed requirement is listed with what delivers it; a proposed idea whose promotion landed is listed with what it became, and the listed ideas are exactly what decision_overtaken_by_promotion reports; accepted ones and undelivered or unlanded ones are not listed; the scoped loop_status lists them, names them in next, keeps clean, leaves the unscoped list empty and moves no status.",
+    "location": "crates/reflow2-core/tests/awaiting_the_owners_word.rs",
+    "name": "tests/awaiting_the_owners_word.rs",
+    "status": "realized"
+  }
+}

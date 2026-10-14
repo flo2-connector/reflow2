@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7232339e6e86b8bbf2219ce712de07dc674a5908a566e59b2c2dbfc568748cc0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:built-work-reads-as-built-and-awaits-the-owners-word",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

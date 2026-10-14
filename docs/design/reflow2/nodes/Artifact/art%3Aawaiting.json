@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3fb9d359945a6a883ec0f78651f59248b288327fdb4ef43f4f0a88b4809c96a5",
+  "node_id": "art:awaiting",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "What awaits the owner's word: DesignGraph::awaiting_word lists built work whose record is still open, each item with what delivers it (evidence_ids, evidence) and the call that closes it. Two families: a proposed Requirement the shared arrival predicate reads as Delivered (with requirement_delivered_by's capabilities or delivered parts), and a proposed Decision whose promotion has landed (ideas_whose_promotion_landed, the promotion detector's own population). It rides loop_status's owner-scoped answer as awaiting_word, beside assigned_decisions and questions_put_to_them, and moves no status. Added 2026-10-13 for fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13.",
+    "location": "crates/reflow2-core/src/awaiting.rs",
+    "name": "awaiting.rs",
+    "status": "realized"
+  }
+}
