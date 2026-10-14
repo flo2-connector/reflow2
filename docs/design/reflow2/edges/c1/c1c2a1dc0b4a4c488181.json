@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7946952a9b05a6753842a0763bfd0ec95f41267a95aff1228637ba3df5e95b30",
+  "edge_type": "CHANGED",
+  "from_id": "chg:built-work-reads-as-built-and-the-ship-step-closes-the-idea-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:78c83b1910e89779f5c76ffba978c2226c965a1795eca03c642743148cd6a900",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:detect"
+}

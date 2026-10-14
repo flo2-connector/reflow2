@@ -1323,6 +1323,17 @@ fn default_suggested_depth() -> u8 {
     2
 }
 
+/// The open ideas whose promotion has landed
+/// ([`DesignGraph::ideas_whose_promotion_landed`]).
+#[derive(Debug, Clone)]
+pub struct PromotedIdeas {
+    /// Every live `proposed` Decision — the population the ideas below are a
+    /// fraction of.
+    pub proposed: usize,
+    /// Each idea, with what it became that has landed, as `(id, name)`.
+    pub open: Vec<(crate::foundation::store::StoredNode, Vec<(String, String)>)>,
+}
+
 /// A detected gap, ranked for surfacing (mirrors storyflow's `ScenarioCandidate`).
 ///
 /// The user-facing `GapPrompt` (context-setter + plain question + hints +
@@ -4797,7 +4808,11 @@ impl DesignGraph {
     /// looseness the `unverified_capability` exemption rejected. A Component
     /// additionally counts the live Capabilities at `realized`/`verified`
     /// allocated to it, because a part that hosts built function is built at
-    /// least in part. A Release counts a DEPLOYED_TO edge not itself marked
+    /// least in part. Since 2026-10-13 a Component's reads are
+    /// [`component_build`](Self::component_build) — the one computation
+    /// `get_node` and `scan_nodes` serve as `built_reading` — so this finding
+    /// names exactly the planned components whose reading is not `not_built`.
+    /// A Release counts a DEPLOYED_TO edge not itself marked
     /// `planned` (a planned deployment is intent, "to be deployed there").
     ///
     /// # Severity 0.40, and the evidence for it
@@ -4926,42 +4941,35 @@ impl DesignGraph {
         let components = self.scan_live_nodes(node::COMPONENT)?;
         let total = components.len();
         let mut kept = 0usize;
+        // What the evidence reads as across EVERY live component, whatever its
+        // status says: the count a reader of the stored statuses needs beside
+        // them, said where the statuses are counted.
+        let mut reads_built = 0usize;
+        let mut reads_partly = 0usize;
         let mut hits: Vec<Understated> = Vec::new();
         for cmp in &components {
+            // ONE READING, shared with what `get_node` and `scan_nodes` serve
+            // as `built_reading` (arrival.rs): this detector used to compute
+            // the same three reads by hand.
+            let build = self.component_build(&cmp.node_id)?;
+            match build.state() {
+                crate::arrival::BuildState::Built => reads_built += 1,
+                crate::arrival::BuildState::PartlyBuilt => reads_partly += 1,
+                crate::arrival::BuildState::NotBuilt => {}
+            }
             if !still_planned(cmp) {
                 kept += 1;
                 continue;
             }
-            let mut hosted = Vec::new();
-            for e in self.incoming(&cmp.node_id, Some(edge::ALLOCATED_TO))? {
-                if self.is_discontinued(&e.from_id)? {
-                    continue;
-                }
-                let built = self
-                    .get_node(node::CAPABILITY, &e.from_id)?
-                    .and_then(|c| {
-                        c.properties
-                            .get("status")
-                            .and_then(Value::as_str)
-                            .map(|s| matches!(s, "realized" | "verified"))
-                    })
-                    .unwrap_or(false);
-                if built {
-                    hosted.push(e.from_id);
-                }
-            }
-            hosted.sort();
-            hosted.dedup();
-            let (built_by, checked_by) = self.direct_build_evidence(&cmp.node_id)?;
-            if hosted.is_empty() && built_by.is_empty() && checked_by.is_empty() {
+            if !build.has_evidence() {
                 continue;
             }
             hits.push(Understated {
                 id: cmp.node_id.clone(),
                 name: node_name(cmp),
-                hosted,
-                built_by,
-                checked_by,
+                hosted: build.capabilities_built,
+                built_by: build.files_built,
+                checked_by: build.checks_passing,
             });
         }
         if !hits.is_empty() {
@@ -5059,7 +5067,10 @@ impl DesignGraph {
                 description: format!(
                     "{n} of {total} component(s) read `planned` — not started — while the design \
                      shows them built: a capability allocated to each is realized or verified, or \
-                     a realized file or a passing check is attached to it directly. Most built \
+                     a realized file or a passing check is attached to it directly. By that \
+                     evidence {reads_built} of {total} read built and {reads_partly} partly \
+                     built, whatever their status says: each one's `built_reading`, on get_node \
+                     and scan_nodes, says which. Most built \
                      first: {}{more}. {posture} Move each one with `add_component` — its id and \
                      `status`: `in_progress` while some of its function is still unbuilt, \
                      `realized` once it all is. If `planned` is deliberate for one, say why not \
@@ -5075,7 +5086,9 @@ impl DesignGraph {
                      one of: a live Capability at realized/verified ALLOCATED_TO it; an incoming \
                      REALIZES from an Artifact whose own status is realized/verified; an incoming \
                      VERIFIES from a Verification at passing. {kept} of {total} carry another \
-                     status. At most {CAPS_NAMED} capabilities are named per component, with the \
+                     status. Read from the evidence alone (DesignGraph::component_build, served \
+                     as built_reading), {reads_built} of {total} are built and {reads_partly} \
+                     partly built. At most {CAPS_NAMED} capabilities are named per component, with the \
                      count. Named: {}.",
                     named.join("; ")
                 ),
@@ -5141,22 +5154,20 @@ impl DesignGraph {
     /// writes only what it is told, and absence means nobody said
     /// (fact:a-planned-artifact-that-realizes-a-capability-is-counted-as-built-2026-09-28).
     /// One hop and no further: what realizes or checks a component the node is
-    /// allocated to is a different, coarser claim.
-    fn direct_build_evidence(&self, id: &str) -> Result<(Vec<String>, Vec<String>), DynoError> {
+    /// allocated to is a different, coarser claim. A file is built by the one
+    /// clause every arrival reads ([`crate::arrival::is_built_status`]).
+    pub(crate) fn direct_build_evidence(
+        &self,
+        id: &str,
+    ) -> Result<(Vec<String>, Vec<String>), DynoError> {
         let mut built_by = Vec::new();
         for e in self.incoming(id, Some(edge::REALIZES))? {
             if self.is_discontinued(&e.from_id)? {
                 continue;
             }
-            let built = self
-                .get_node(node::ARTIFACT, &e.from_id)?
-                .and_then(|a| {
-                    a.properties
-                        .get("status")
-                        .and_then(Value::as_str)
-                        .map(|s| matches!(s, "realized" | "verified"))
-                })
-                .unwrap_or(false);
+            let built = self.get_node(node::ARTIFACT, &e.from_id)?.is_some_and(|a| {
+                crate::arrival::is_built_status(a.properties.get("status").and_then(Value::as_str))
+            });
             if built {
                 built_by.push(e.from_id);
             }
@@ -6540,6 +6551,58 @@ impl DesignGraph {
         Ok((judged, decisions))
     }
 
+    /// Every open idea whose promotion has LANDED — the population
+    /// `decision_overtaken_by_promotion` reports, and the second family of
+    /// what awaits the owner's word (`awaiting.rs`). One function, so the
+    /// finding and the owner's list cannot disagree.
+    ///
+    /// A live Decision at `proposed`, not parked, with an `EVOLVES_INTO` to a
+    /// live target whose promotion has landed by arrival.rs's reading
+    /// ([`DesignGraph::promotion_has_landed`]). Each comes with what it became,
+    /// as `(id, name)` pairs sorted by id; the ideas are in scan order.
+    pub fn ideas_whose_promotion_landed(&self) -> Result<PromotedIdeas, DynoError> {
+        let index = self.node_type_index()?;
+        // The population the finding is a fraction of. A numerator with no
+        // denominator has said almost nothing — the same reasoning as
+        // `unreviewed_ideas`.
+        let mut proposed = 0usize;
+        let mut open: Vec<(crate::foundation::store::StoredNode, Vec<(String, String)>)> =
+            Vec::new();
+        for dec in self.scan_live_nodes(node::DECISION)? {
+            if dec.properties.get("status").and_then(Value::as_str) != Some("proposed") {
+                continue;
+            }
+            proposed += 1;
+            if self.is_parked(&dec.node_id)? {
+                continue;
+            }
+            let mut taken_up: Vec<(String, String)> = Vec::new();
+            for e in self.outgoing(&dec.node_id, Some(edge::EVOLVES_INTO))? {
+                let Some(ty) = index.get(&e.to_id) else {
+                    continue;
+                };
+                if self.is_discontinued(&e.to_id)? {
+                    continue;
+                }
+                let Some(target) = self.get_node(ty, &e.to_id)? else {
+                    continue;
+                };
+                // ONE READING OF "TAKEN UP", shared with the follow-through
+                // rule since 2026-10-13 (`arrival.rs`): this list used to be
+                // kept here by hand, and it disagreed with that rule's.
+                if self.promotion_has_landed(&index, &e.to_id)? {
+                    taken_up.push((e.to_id.clone(), node_name(&target)));
+                }
+            }
+            if !taken_up.is_empty() {
+                taken_up.sort();
+                taken_up.dedup();
+                open.push((dec, taken_up));
+            }
+        }
+        Ok(PromotedIdeas { proposed, open })
+    }
+
     /// An open question the design has already answered by building it
     /// (`GapSource::DecisionOvertakenByPromotion`).
     ///
@@ -6591,45 +6654,7 @@ impl DesignGraph {
         &self,
         gaps: &mut Vec<GapCandidate>,
     ) -> Result<(), DynoError> {
-        let index = self.node_type_index()?;
-        // The population the finding is a fraction of. A numerator with no
-        // denominator has said almost nothing — the same reasoning as
-        // `unreviewed_ideas`.
-        let mut proposed = 0usize;
-        let mut open: Vec<(crate::foundation::store::StoredNode, Vec<(String, String)>)> =
-            Vec::new();
-        for dec in self.scan_live_nodes(node::DECISION)? {
-            if dec.properties.get("status").and_then(Value::as_str) != Some("proposed") {
-                continue;
-            }
-            proposed += 1;
-            if self.is_parked(&dec.node_id)? {
-                continue;
-            }
-            let mut taken_up: Vec<(String, String)> = Vec::new();
-            for e in self.outgoing(&dec.node_id, Some(edge::EVOLVES_INTO))? {
-                let Some(ty) = index.get(&e.to_id) else {
-                    continue;
-                };
-                if self.is_discontinued(&e.to_id)? {
-                    continue;
-                }
-                let Some(target) = self.get_node(ty, &e.to_id)? else {
-                    continue;
-                };
-                // ONE READING OF "TAKEN UP", shared with the follow-through
-                // rule since 2026-10-13 (`arrival.rs`): this list used to be
-                // kept here by hand, and it disagreed with that rule's.
-                if self.promotion_has_landed(&index, &e.to_id)? {
-                    taken_up.push((e.to_id.clone(), node_name(&target)));
-                }
-            }
-            if !taken_up.is_empty() {
-                taken_up.sort();
-                taken_up.dedup();
-                open.push((dec, taken_up));
-            }
-        }
+        let PromotedIdeas { proposed, open } = self.ideas_whose_promotion_landed()?;
 
         // Fixed before the loop, not counted as it goes: every finding must
         // report the SAME numerator, or each one quietly contradicts the last.

@@ -69,6 +69,14 @@ whether the change was the fix; a fix the session recorded with no cause is what
 `fix_without_recorded_cause` counts — and the root-cause skill (`get_skill` root-cause) is where
 the cause gets written, before the fix rather than at session end.
 
+**A question answered by doing is the one thing test 7 does not close itself.** When the work
+this session shipped answers a recorded idea (a `proposed` exploratory Decision), draw
+`EVOLVES_INTO` from that idea to the requirement or capability it became (`review_relations`, the
+reason in `evidence`), and leave the idea's status for the owner: closing a Decision is their word
+however sure you are, and the edge is what lets `decision_overtaken_by_promotion` put it to them.
+Measured on reflow2's own design 2026-10-13: of 59 open ideas already built, 47 carried no such
+edge, so the design went on offering them as open questions and nothing could ask.
+
 **Test 2 is how it happens.** *"Did somebody measure something? … a number in the graph is evidence
 a later session can check."* That is right, and it is exactly how a measurement gets written and
 never closed. Measured on reflow2's own design, 2026-08-23: **274 TemporalFacts, every one
@@ -158,7 +166,7 @@ a near neighbour — use it rather than inventing a home:
 | A stretch of work whose *lesson* is the output | DesignEpoch, via `add_epoch` |
 | A standing rule the user stated | DesignRule |
 | New intent — something they want built | **Stop and use capture-intent.** Requirements are not session residue |
-| A finding this session **RETIRED** | Close it where it lives — `valid_to` on the TemporalFact, or the Decision's status — and say in the text **what** retired it. The only row here that does not create a node |
+| A finding this session **RETIRED** | Close it where it lives — `valid_to` on the TemporalFact, or the Decision's status — and say in the text **what** retired it. The only row here that does not create a node. An open idea the work answered is not yours to close: link it to what it became and leave its status, as test 7 says |
 
 Attribute it: `authored_by`. Someone's idea relayed by you is still theirs, and six weeks later
 nobody can tell from the prose.

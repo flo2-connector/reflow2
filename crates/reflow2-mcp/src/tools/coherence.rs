@@ -900,7 +900,22 @@ impl ReflowService {
                 }
             }
         }
-        ok_json(payload)
+        // HELD TO THE REPLY BUDGET, LAST, so the reply that has to fit is the
+        // one the caller receives. The scoped answer's `awaiting_word` grows
+        // with the design — measured 2026-10-14 at 27,951 of 38,939 characters
+        // on reflow2's own design, against the 30,000 flo2.io's gateway holds
+        // every reply to, replacing a larger one with a refusal. Its prose gives
+        // first, then its rows; `next` keeps the count and the debt lines, and
+        // an answer that fits is returned byte for byte as before.
+        ok_json(crate::reply_budget::bound_reply_list_first(
+            payload,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "awaiting_word",
+            "Every awaiting item keeps its node_id, the ids of what delivers it (evidence_ids) \
+             and the call that closes it, and `next` keeps the count; read one in full with \
+             get_node on its node_id, or pass a larger budget_chars to list every row.",
+        ))
     }
 
     #[tool(

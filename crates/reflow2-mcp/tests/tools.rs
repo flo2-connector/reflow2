@@ -3614,6 +3614,7 @@ async fn scan_nodes_filters_by_decomposition_level() {
         limit: None,
         offset: None,
         brief: Some(true),
+        budget_chars: None,
     })));
     assert_eq!(subs["total"], 2, "{subs}");
 
@@ -3623,6 +3624,7 @@ async fn scan_nodes_filters_by_decomposition_level() {
         limit: None,
         offset: None,
         brief: Some(true),
+        budget_chars: None,
     })));
     assert_eq!(
         comps["total"], 2,
@@ -3637,6 +3639,7 @@ async fn scan_nodes_filters_by_decomposition_level() {
         limit: None,
         offset: None,
         brief: Some(true),
+        budget_chars: None,
     })));
     assert_eq!(all["total"], 4, "{all}");
 }
@@ -3668,6 +3671,7 @@ async fn a_bad_level_is_refused_rather_than_answered_empty() {
             limit: None,
             offset: None,
             brief: Some(true),
+            budget_chars: None,
         }))
         .await;
     let err = bad_level
@@ -3684,6 +3688,7 @@ async fn a_bad_level_is_refused_rather_than_answered_empty() {
             limit: None,
             offset: None,
             brief: Some(true),
+            budget_chars: None,
         }))
         .await;
     let err = wrong_type

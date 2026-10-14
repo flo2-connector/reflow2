@@ -517,6 +517,18 @@ pub struct LoopStatus {
     /// nothing addressed to them to read
     /// (`fact:root-cause-an-owner-outside-the-chat-cannot-read-what-it-is-asked-to-approve-2026-09-29`).
     pub questions_put_to_them: Vec<QuestionPutTo>,
+    /// Built work whose record still awaits an owner's word: proposed
+    /// requirements already delivered, and open ideas whose promotion landed,
+    /// each with what delivers it and the call that closes it
+    /// ([`crate::awaiting`]). Empty when unscoped, as the two lists above are:
+    /// the every-session call stays as cheap as it was, and the owner-scoped
+    /// answer is the one an approval page reads
+    /// (`dec:idea-an-owner-reads-what-they-are-asked-to-approve-in-one-addressed-digest`).
+    ///
+    /// LISTED, NOT ATTRIBUTED, and never counted in `clean`: nothing in the
+    /// design records whose word closes one, so `next` says they are
+    /// design-wide. Nothing here moves a status.
+    pub awaiting_word: Vec<crate::awaiting::AwaitingWord>,
     /// Set when the report was narrowed to one contributor.
     pub scope: Option<LoopScope>,
     /// Every counter zero. **When `scope` is set this means "nothing is
@@ -1271,6 +1283,14 @@ impl DesignGraph {
             }
         });
 
+        // What awaits an owner's word — scoped answers only, so the call every
+        // session makes stays as cheap as it was. See `LoopStatus::awaiting_word`.
+        let awaiting_word = if contributor.is_some() {
+            self.awaiting_word()?
+        } else {
+            Vec::new()
+        };
+
         if let Some(s) = &scope {
             next.clear();
             if unsettled_assigned_decisions > 0 {
@@ -1301,6 +1321,27 @@ impl DesignGraph {
                      `gaps_on_owned_ground` with the owned nodes each one touches.",
                     gaps_on_owned_ground.len(),
                     s.contributor_id
+                ));
+            }
+            if !awaiting_word.is_empty() {
+                let requirements = awaiting_word
+                    .iter()
+                    .filter(|a| a.kind == crate::awaiting::AwaitingKind::DeliveredRequirement)
+                    .count();
+                next.push(format!(
+                    "{n} built item(s) await an owner's word to close: {requirements} proposed \
+                     requirement(s) already delivered and {ideas} open idea(s) whose promotion \
+                     landed — listed in `awaiting_word`, each with what delivers it and the call \
+                     that closes it. A requirement closes with set_requirement_status (`accepted` \
+                     if it is the need they want, `met`, or `dropped`; left `proposed` if what \
+                     was built does not answer it); an idea with set_decision_status `accepted`, \
+                     the owner as approver and what answered it in the rationale. They are \
+                     design-wide: nothing records whose word closes them, so they are not \
+                     counted as {who}'s and `clean` does not include them. Closing one is the \
+                     owner's act, never an agent's.",
+                    n = awaiting_word.len(),
+                    ideas = awaiting_word.len() - requirements,
+                    who = s.contributor_id
                 ));
             }
             if !s.not_attributable.is_empty() {
@@ -1366,6 +1407,7 @@ impl DesignGraph {
             assigned_decisions,
             gaps_on_owned_ground,
             questions_put_to_them,
+            awaiting_word,
             scope,
             clean,
             next,
@@ -1447,14 +1489,21 @@ impl DesignGraph {
     /// a well-formed tree terminates on its own; the bound exists for a graph
     /// that arrived by `import_graph` from somewhere less careful, where
     /// refusing to answer beats recursing forever.
-    fn requirement_is_delivered_within(
+    ///
+    /// `Some` names WHAT delivers it — the realized, checked capabilities
+    /// that satisfy it, sorted, or (when none does) its children, every one
+    /// delivered — so an owner asked to close it can see why in one look
+    /// (`awaiting.rs`). `None` is not delivered. One derivation either way:
+    /// [`Self::requirement_is_delivered`] is this, as a yes or no.
+    fn requirement_delivered_by_within(
         &self,
         requirement_id: &str,
         depth: usize,
-    ) -> Result<bool, DynoError> {
+    ) -> Result<Option<Vec<String>>, DynoError> {
         if depth == 0 {
-            return Ok(false);
+            return Ok(None);
         }
+        let mut by = Vec::new();
         for e in self.incoming(requirement_id, Some(edge::SATISFIES))? {
             let cap = &e.from_id;
             let checked = !matches!(
@@ -1462,25 +1511,46 @@ impl DesignGraph {
                 crate::verify::CapabilityVerification::Unchecked
             );
             if checked && self.capability_is_realized(cap)? {
-                return Ok(true);
+                by.push(cap.clone());
             }
+        }
+        if !by.is_empty() {
+            by.sort();
+            by.dedup();
+            return Ok(Some(by));
         }
         let children = self.decomposed_children(requirement_id)?;
         if children.is_empty() {
-            return Ok(false);
+            return Ok(None);
         }
         for child in &children {
-            if !self.requirement_is_delivered_within(child, depth - 1)? {
-                return Ok(false);
+            if self
+                .requirement_delivered_by_within(child, depth - 1)?
+                .is_none()
+            {
+                return Ok(None);
             }
         }
-        Ok(true)
+        let mut children = children;
+        children.sort();
+        children.dedup();
+        Ok(Some(children))
     }
 
     /// Whether one requirement is delivered, rolling up a decomposition tree.
     /// See [`DeliveryCoverage`].
     pub fn requirement_is_delivered(&self, requirement_id: &str) -> Result<bool, DynoError> {
-        self.requirement_is_delivered_within(requirement_id, 64)
+        Ok(self.requirement_delivered_by(requirement_id)?.is_some())
+    }
+
+    /// What delivers one requirement, when it is delivered: the realized,
+    /// checked capabilities that satisfy it, or its delivered children. See
+    /// [`Self::requirement_delivered_by_within`].
+    pub fn requirement_delivered_by(
+        &self,
+        requirement_id: &str,
+    ) -> Result<Option<Vec<String>>, DynoError> {
+        self.requirement_delivered_by_within(requirement_id, 64)
     }
 
     /// Work out how much intent has actually been delivered, from the thread

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:65954568a901284b1ff34a9ba4e69d36d08b4d66f5b5a7024af3aee46b1db54c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-set-aside-decision-is-not-debt-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

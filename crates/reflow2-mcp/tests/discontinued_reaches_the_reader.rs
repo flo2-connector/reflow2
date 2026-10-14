@@ -134,6 +134,7 @@ async fn scanned(s: &ReflowService, brief: bool) -> serde_json::Value {
         brief: Some(brief),
         limit: None,
         offset: None,
+        budget_chars: None,
     })))
 }
 

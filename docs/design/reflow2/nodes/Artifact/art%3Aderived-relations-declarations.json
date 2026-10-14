@@ -1,11 +1,12 @@
 {
-  "content_hash": "sha256:0ca25dd3ee3a76462c47e3916c8652abb2b92bf0779ecd89fad309a93c2f692a",
+  "content_hash": "sha256:d7832e222cc8daca2dbbc491c8aa524be4cf2ec6105152281c987e3567c31054",
   "node_id": "art:derived-relations-declarations",
   "node_type": "Artifact",
+  "prev_item_hash": "sha256:0ca25dd3ee3a76462c47e3916c8652abb2b92bf0779ecd89fad309a93c2f692a",
   "properties": {
     "artifact_type": "spec",
     "location": "schema/derived/relations.yaml",
-    "name": "schema/derived/relations.yaml — reflow2's 23 derived relations, declared",
+    "name": "schema/derived/relations.yaml — reflow2's 24 derived relations, declared",
     "status": "realized"
   }
 }

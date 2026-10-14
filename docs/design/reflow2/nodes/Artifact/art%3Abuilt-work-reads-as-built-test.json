@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e7d6ba0501abad58da925a5a2b72c0857decdb865ea34b1d0d149b3184133b3b",
+  "node_id": "art:built-work-reads-as-built-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins a Component's computed build reading (DesignGraph::component_build, served as built_reading) on in-memory designs: all allocated capabilities built reads built with the stored status unchanged; no built evidence reads not_built; part of the function built, or a file while a hosted capability is unbuilt, reads partly_built; a part with only a passing check of its own reads built; a withdrawn capability is not counted; and understated_status names exactly the planned components whose reading is not not_built.",
+    "location": "crates/reflow2-core/tests/built_work_reads_as_built.rs",
+    "name": "tests/built_work_reads_as_built.rs",
+    "status": "realized"
+  }
+}

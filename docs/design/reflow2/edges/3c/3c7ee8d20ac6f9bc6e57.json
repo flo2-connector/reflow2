@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:397af242d8abdf5aed393b34ec1eaa23c6dffb83f1e0445a97386d3e2b03b0f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:built-work-reads-as-built-and-the-ship-step-closes-the-idea-2026-10-13",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:2af2aa4cad63b407c22d03e46f1a39e656d7a3209735e45d493cc7804398c0b7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:264fbb19875b5536be8141c3ea3e9a903528af9558400beff278aa175651a237",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:replies-are-bounded-gate",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

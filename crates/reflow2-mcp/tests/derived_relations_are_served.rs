@@ -9,7 +9,7 @@
 //! derived relation — and reflow2 declared none. The declarations and their
 //! check against the code are pinned in reflow2-core's
 //! `derived_relations_are_declared_and_checked.rs`; this file pins the
-//! SURFACE: the tool exists, reports all 23, counts by the code, narrows, and
+//! SURFACE: the tool exists, reports all 24, counts by the code, narrows, and
 //! refuses an id nobody declared.
 //!
 //! OBSERVED FAILING on origin/main 72917f6 (clean build, under the shared
@@ -116,10 +116,10 @@ fn relation<'a>(report: &'a Value, id: &str) -> &'a Value {
 async fn every_declared_relation_is_reported_with_its_reading_and_count() {
     let s = session().await.seeded().await;
     let r = s.ok("derived_report", json!({})).await;
-    assert_eq!(r["declared"], 23, "{r}");
-    assert_eq!(r["relations"].as_array().unwrap().len(), 23);
+    assert_eq!(r["declared"], 24, "{r}");
+    assert_eq!(r["relations"].as_array().unwrap().len(), 24);
     assert_eq!(
-        r["counted"], 22,
+        r["counted"], 23,
         "the closure is declared and not counted: {r}"
     );
 

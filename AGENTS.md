@@ -517,7 +517,13 @@ store and write-through they describe are now the break-glass path at the end of
    Then claim it as it tells you: `claim_region` on `proj:reflow2`, depth 0, note
    `design PR: <your branch>`. While you hold it, every other branch's `hold` and `copy` refuse.
 2. **Write through flo2.io.** Your writes are live at once, before anyone reviews the PR. Undoing
-   one is a new write, not a closed PR.
+   one is a new write, not a closed PR. What a ship records: the capability's status, the new
+   files as Artifacts, the check that passed, the ChangeEvent. **And when the shipped work answers
+   a recorded idea** (a `proposed` exploratory Decision), draw `EVOLVES_INTO` from that idea to the
+   requirement or capability it became, and leave the idea's status for the owner: closing it is
+   Anthony's word, and the edge is what lets `decision_overtaken_by_promotion` put it to him.
+   Measured 2026-10-13, 47 of the 59 open ideas found already built carried no such edge
+   (`fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13`).
 3. **Copy last.** Run `git merge origin/main`, then `python3 tools/reflow2_design_copy.py copy`, and
    commit `docs/design/reflow2/`. It prints what your copy carries; read it.
    - It refuses while another branch holds the design.

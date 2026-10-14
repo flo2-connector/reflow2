@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:349c84f89f56e80d562f297fb4238dea0f98d072f52b19c3c148c642e91af37f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:built-work-reads-as-built-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

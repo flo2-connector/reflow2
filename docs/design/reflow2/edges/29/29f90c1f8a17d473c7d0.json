@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c944b3d2496215e1c9e3f8b08531e8e97502116b14e3dccf418aaa84cc4e38f",
+  "edge_type": "REALIZES",
+  "from_id": "art:awaiting",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:owed-to-a-contributor"
+}

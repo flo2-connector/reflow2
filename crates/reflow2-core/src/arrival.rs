@@ -27,6 +27,14 @@
 //!   rule does NOT count it — an accepted requirement is a need agreed, not a
 //!   need met — and `tests/follow_through_reads_one_arrival.rs` pins both sides.
 //!
+//! A COMPONENT'S BUILD READING lives here too ([`DesignGraph::component_build`]),
+//! since 2026-10-13: how much of a part has arrived, read from the same
+//! "built" clause ([`is_built_status`]) as a capability's or a file's own
+//! arrival. It is served beside the stored `status` and never writes it, and
+//! `understated_status` reads it, so the reading and the finding cannot
+//! disagree
+//! (`fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13`).
+//!
 //! Everything here is deterministic and reads only the graph.
 
 use std::collections::HashMap;
@@ -91,6 +99,107 @@ pub fn arrival_condition(node_type: Option<&str>) -> String {
     }
 }
 
+/// Is this the status of something BUILT — `realized` or `verified`? The one
+/// clause a Capability, Component or Artifact arrives by, shared by
+/// [`DesignGraph::arrival`], the direct build evidence `understated_status`
+/// reads, and [`DesignGraph::component_build`], so "built" is said once.
+pub fn is_built_status(status: Option<&str>) -> bool {
+    matches!(status, Some("realized" | "verified"))
+}
+
+/// What a Component's build evidence READS AS — the value of `built_reading`'s
+/// `reads_as`.
+///
+/// Deliberately NOT the stored status's words (`planned` / `in_progress` /
+/// `realized` / `verified`): this is computed, the status is the owner's
+/// record, and a reader must never mistake one for the other or copy one into
+/// the other. Snake_case on the wire, like `checked`'s `component_verified`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum BuildState {
+    /// There is built evidence, and every live capability allocated to it is
+    /// built (or it hosts none, and a realized file or a passing check of its
+    /// own shows it built).
+    Built,
+    /// There is built evidence, and a live capability allocated to it is not
+    /// built yet.
+    PartlyBuilt,
+    /// No built evidence at all.
+    NotBuilt,
+}
+
+impl BuildState {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            BuildState::Built => "built",
+            BuildState::PartlyBuilt => "partly_built",
+            BuildState::NotBuilt => "not_built",
+        }
+    }
+}
+
+/// The evidence behind a Component's build reading, by id, each list sorted.
+///
+/// Every list is ONE-HOP and DIRECT, exactly what `understated_status` has
+/// read since 2026-09-30: a capability counts by its own status, a file only
+/// when its own status says it exists, a check only when it passes. Nothing
+/// is read from a contained sub-component.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct ComponentBuild {
+    /// The live Capabilities `ALLOCATED_TO` it — its function. One an accepted
+    /// Decision has withdrawn is not counted.
+    pub capabilities_allocated: Vec<String>,
+    /// Of those, the ones that have arrived as built ([`is_built_status`]).
+    pub capabilities_built: Vec<String>,
+    /// Live Artifacts that `REALIZES` it whose own status is built.
+    pub files_built: Vec<String>,
+    /// Live Verifications at `passing` that `VERIFIES` it.
+    pub checks_passing: Vec<String>,
+}
+
+/// What a reader is served as `built_reading`: the reading and the evidence
+/// counted. Ids stay behind `get_node` with `include_edges`, so a listing of
+/// every component stays small.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+pub struct BuiltReading {
+    pub reads_as: BuildState,
+    pub capabilities_allocated: usize,
+    pub capabilities_built: usize,
+    pub files_built: usize,
+    pub checks_passing: usize,
+}
+
+impl ComponentBuild {
+    /// Is anything at all shown built?
+    pub fn has_evidence(&self) -> bool {
+        !(self.capabilities_built.is_empty()
+            && self.files_built.is_empty()
+            && self.checks_passing.is_empty())
+    }
+
+    /// The reading: built, partly built or not built.
+    pub fn state(&self) -> BuildState {
+        if !self.has_evidence() {
+            BuildState::NotBuilt
+        } else if self.capabilities_built.len() < self.capabilities_allocated.len() {
+            BuildState::PartlyBuilt
+        } else {
+            BuildState::Built
+        }
+    }
+
+    /// The reading with its evidence counted, as served.
+    pub fn reading(&self) -> BuiltReading {
+        BuiltReading {
+            reads_as: self.state(),
+            capabilities_allocated: self.capabilities_allocated.len(),
+            capabilities_built: self.capabilities_built.len(),
+            files_built: self.files_built.len(),
+            checks_passing: self.checks_passing.len(),
+        }
+    }
+}
+
 /// Does this CAUSES (or TRIGGERS) edge assert a link at all? A person who
 /// marked it `spurious`, or a test that `refuted` it, says no causal link
 /// holds — so it records neither that a change introduced a defect nor that a
@@ -120,7 +229,7 @@ impl DesignGraph {
         Ok(match node_type.as_str() {
             node::DECISION => (status == Some("accepted")).then_some(Arrival::Accepted),
             node::CAPABILITY | node::COMPONENT | node::ARTIFACT => {
-                matches!(status, Some("realized" | "verified")).then_some(Arrival::Built)
+                is_built_status(status).then_some(Arrival::Built)
             }
             node::REQUIREMENT => match status {
                 Some("met") => Some(Arrival::Met),
@@ -186,6 +295,47 @@ impl DesignGraph {
         Ok(self.get_node(node::REQUIREMENT, id)?.is_some_and(|n| {
             n.properties.get("status").and_then(Value::as_str) == Some("accepted")
         }))
+    }
+
+    /// How much of Component `component_id` the design shows BUILT — the
+    /// evidence behind its `built_reading`, computed on read and never stored.
+    ///
+    /// The truth a Component's `status` was meant to record, and on reflow2's
+    /// own design measured 2026-10-13 did not: 107 of 109 components read
+    /// `planned`, and 88 of them had a built capability allocated to them or a
+    /// realized file or passing check attached. A status kept by hand at a
+    /// not-done default falls behind; a reading computed from the evidence
+    /// cannot. It is served BESIDE the status, which stays the owner's record:
+    /// nothing here writes it.
+    ///
+    /// Three one-hop reads, each the one `understated_status` already made, so
+    /// that detector now reads this and the two cannot disagree: the live
+    /// Capabilities allocated to it, each built by [`is_built_status`] (the
+    /// clause [`Self::arrival`] reads); and its direct evidence, a realized file
+    /// or a passing check (`direct_build_evidence`). A withdrawn capability,
+    /// file or check is not counted. An unknown id reads as not built.
+    pub fn component_build(&self, component_id: &str) -> Result<ComponentBuild, DynoError> {
+        let mut build = ComponentBuild::default();
+        for e in self.incoming(component_id, Some(edge::ALLOCATED_TO))? {
+            if self.is_discontinued(&e.from_id)? {
+                continue;
+            }
+            let Some(cap) = self.get_node(node::CAPABILITY, &e.from_id)? else {
+                continue;
+            };
+            if is_built_status(cap.properties.get("status").and_then(Value::as_str)) {
+                build.capabilities_built.push(e.from_id.clone());
+            }
+            build.capabilities_allocated.push(e.from_id);
+        }
+        build.capabilities_allocated.sort();
+        build.capabilities_allocated.dedup();
+        build.capabilities_built.sort();
+        build.capabilities_built.dedup();
+        let (files_built, checks_passing) = self.direct_build_evidence(component_id)?;
+        build.files_built = files_built;
+        build.checks_passing = checks_passing;
+        Ok(build)
     }
 
     /// Is this finding CLOSED — a `valid_to`, or an INVALIDATES edge from

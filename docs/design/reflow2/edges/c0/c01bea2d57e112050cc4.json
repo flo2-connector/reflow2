@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b3f03aeb87bf7d8b61e814103b93533251f6148e12792301b6446d6432f71cbb",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:built-work-reads-as-built-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:built-work-reads-as-built-and-awaits-the-owners-word"
+}

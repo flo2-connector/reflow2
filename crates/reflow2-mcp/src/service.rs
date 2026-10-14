@@ -1086,13 +1086,16 @@ pub(crate) fn version_is_per_request(version: Option<ProtocolVersion>) -> bool {
     version.is_some_and(|v| v.as_str() >= ProtocolVersion::STANDARD_HEADERS.as_str())
 }
 
-/// How much rendered node JSON one `scan_nodes` reply will carry before it stops
-/// and says so. Not a memory limit — a *context* limit: past roughly this size
-/// the client truncates the reply, so the drop happens where reflow2 cannot name
-/// it. Deliberately generous enough that ordinary types come back whole (the
-/// design gate's 45 artifacts are nowhere near it) and only the genuinely large
-/// ones page.
-pub(crate) const SCAN_PAYLOAD_BUDGET_BYTES: usize = 40_000;
+/// What a `scan_nodes` reply keeps back from its `budget_chars` for everything
+/// that is not a node: the paging fields and the read-side `loop_hint` the
+/// reply may carry. The nodes get the rest.
+///
+/// The budget used to be a fixed 40,000 characters of nodes alone, which put
+/// every large type's reply over the 30,000 a host holds replies to (measured
+/// 2026-10-14 on reflow2's own design: 37,645 to 40,110 characters). Not a
+/// memory limit — a *context* limit: past it the client refuses or truncates
+/// the reply, so the drop happens where reflow2 cannot name it.
+pub(crate) const SCAN_REPLY_RESERVE_CHARS: usize = 2_000;
 
 /// Default matches returned by `find_tools`. Small on purpose: the point is to
 /// name the two or three candidates worth looking at, not to re-serve the
@@ -4831,6 +4834,16 @@ pub struct ScanReq {
     /// refused rather than silently returning nothing.
     #[serde(default)]
     pub level: Option<String>,
+    /// How many characters of JSON this reply may spend (default 30,000),
+    /// envelope included. Nodes are listed whole, in order, until the next
+    /// would pass it; `capped_by: size` and `next_offset` say where to resume.
+    ///
+    /// Until 2026-10-14 the cap was a fixed 40,000 characters of nodes alone,
+    /// so a scan of any large type answered 37,000-40,000 characters, over the
+    /// 30,000 a host such as flo2.io holds every reply to — which replaces a
+    /// larger one with a refusal. Raise it only if this client has the room.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5165,6 +5178,18 @@ pub struct LoopScopeReq {
     /// export. Bounded; `compare_designs` lists every change.
     #[serde(default)]
     pub since_export: bool,
+    /// How many characters of JSON this reply may spend (default 30,000).
+    ///
+    /// The owner-scoped answer lists everything awaiting an owner's word
+    /// (`awaiting_word`), which grows with the design: measured 2026-10-14 on
+    /// reflow2's own design it took that answer to 38,939 characters, and a
+    /// host holding replies to 30,000 refuses a larger one outright. Over the
+    /// budget, `awaiting_word`'s prose goes first (long names, the evidence
+    /// sentence), then its rows from the tail, and only then prose anywhere
+    /// else; every count, id and closing call stays, and `budget` says what
+    /// was withheld. Raise it only if this client has the room.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]

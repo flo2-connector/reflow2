@@ -195,6 +195,7 @@ async fn a_hand_edit_is_left_alone_and_loop_status_says_so() {
     let status = j!(s.loop_status(Parameters(LoopScopeReq {
         contributor_id: None,
         since_export: false,
+        budget_chars: None,
     })));
     let skipped = status
         .get("auto_export")

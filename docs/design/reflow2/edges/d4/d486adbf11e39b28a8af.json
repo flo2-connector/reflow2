@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:86901e7e93dba21b0e4f8dd461569083af201cce1690bfdfb9609edbc469edae",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-every-finding-that-reads-parking-names-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
