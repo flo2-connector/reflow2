@@ -1045,6 +1045,37 @@ DECISION_MATH_CONTRACT: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
+# The SHIP-STEP contract — every place that tells an agent what to record when
+# work ships, added 2026-10-13.
+#
+# fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13:
+# of 59 open ideas the 2026-10-13 judgement pass found already built, 47
+# carried no EVOLVES_INTO to what they became, so no query could tell they were
+# answered and the promotion detector could not put them to their owner. Every
+# ship instruction moved the capability and registered the file; none drew the
+# edge, and the skills that did name it (brainstorm, capture-intent) run at
+# promotion, not at the ship. So each ship step now says it, in one sentence:
+# draw the edge from the idea to what it became, and leave the idea's status
+# for the owner — closing it is their word, and the edge is what lets the
+# design ask them.
+#
+# The files are the served skills that record shipped work, the served
+# instructions' build step, and this repo's own design-record steps. Matched
+# like the decision-math contract: case-insensitively, whitespace collapsed.
+SHIP_STEP_FILES = (
+    "getting-started/skills/link-artifacts/SKILL.md",
+    "getting-started/skills/capture-session/SKILL.md",
+    "getting-started/AGENTS.md",
+    "AGENTS.md",
+)
+SHIP_STEP_CONTRACT: dict[str, str] = {
+    "names shipped work that answers a recorded idea": "answers a recorded idea",
+    "draws the edge from the idea": "`EVOLVES_INTO` from that idea",
+    "to what the idea became": "to the requirement or capability it became",
+    "leaves the idea's status for the owner": "leave the idea's status for the owner",
+}
+
+# ---------------------------------------------------------------------------
 # The OPTIMISATION contract — optimize/SKILL.md, added 2026-08-21.
 #
 # Same shape as ASK_CONTRACT and LINK_CONTRACT, and pinned for a reason
@@ -1710,6 +1741,19 @@ def main() -> int:
             check(
                 f"{skill_name} keeps a decision's math: {label}",
                 " ".join(phrase.lower().split()) in dm_text,
+                f"missing {phrase!r}",
+            )
+
+    print("== the ship-step contract ==")
+    for rel in SHIP_STEP_FILES:
+        ship_md = REPO / rel
+        ship_raw = ship_md.read_text(encoding="utf-8") if ship_md.exists() else ""
+        ship_text = " ".join(ship_raw.lower().split())
+        check(f"{rel} present", bool(ship_text))
+        for label, phrase in SHIP_STEP_CONTRACT.items():
+            check(
+                f"{rel} closes the idea a ship answers: {label}",
+                " ".join(phrase.lower().split()) in ship_text,
                 f"missing {phrase!r}",
             )
 
