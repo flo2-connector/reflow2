@@ -7,6 +7,15 @@
 #
 # The repository's Pages source must be "GitHub Actions" (Settings -> Pages) for the
 # deploy step to have a site to publish to.
+#
+# ⭐ MAIN IS THE ONLY REF THAT PUBLISHES, ON PURPOSE. The `github-pages` environment
+# admits deployments from `main` alone, and stays that way. So a release tag never
+# runs this: #741 tried (`tags: ["v*"]`), and v0.84.0's tag run 38555276998 was
+# refused with "Tag "v0.84.0" is not allowed to deploy to github-pages due to
+# environment protection rules." Instead release.yml's last job, `site`, dispatches
+# this workflow ON MAIN once the release is published. That run counts the release
+# just cut. Main's own run at a cut's merge cannot be relied on for it: the merge
+# comes before its tag, so that run can start before the tag exists.
 name: pages
 
 on:
@@ -16,9 +25,9 @@ on:
       - "site/**"
       - ".github/workflows/pages.yml"
       - "tools/site_counts.py"
-    # Each release tag republishes, so the counts of reflow2's own design on the
-    # home page take in the release just cut. (Path filters do not apply to tags.)
-    tags: ["v*"]
+  # Also how each release republishes the site: release.yml dispatches this on main
+  # after publishing (`gh workflow run pages.yml --ref main`), so the home page's
+  # counts take in the release just cut. Never add a tag trigger: see the header.
   workflow_dispatch:
 
 permissions:
@@ -43,6 +52,9 @@ jobs:
           # Every release tag, because the home page's counts of reflow2's own
           # design are read from the copy committed at each one
           # (req:the-site-shows-why-linked-decisions-are-more-than-a-record).
+          # 0 fetches all history for all branches and tags, on a push to main and
+          # on the release's dispatch alike; the dispatch comes after the release,
+          # so its tag is there to fetch.
           fetch-depth: 0
       - name: Count reflow2's own design at each release (site/counts.json)
         run: python3 tools/site_counts.py --out site/counts.json
