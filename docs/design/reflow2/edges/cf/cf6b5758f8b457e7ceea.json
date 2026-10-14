@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6338b72a7efc2d9db3b842877520069536e473284f24f9847554a3c06d7e93e6",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cmp:heal",
+  "properties": {
+    "note": "heal.rs's merge-survivor ranking (rank_merge_survivor) and apply_heal's acceptance of the person's pick implement this decision; it takes the place of dec:merge-survivor-provenance, which governed the same code."
+  },
+  "to_id": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor"
+}

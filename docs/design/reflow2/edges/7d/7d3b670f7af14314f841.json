@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8962281c1151a870791906ca163ec7a35f79ffce8911045759b7b5cad38711c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b3cbd22a320478d6",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b6858a790e45ca26eb4be4b293b33d62994aef32517b37c1befc830cf8c5d134",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-person-picks-the-merge-survivor-over-mcp-test"
+}

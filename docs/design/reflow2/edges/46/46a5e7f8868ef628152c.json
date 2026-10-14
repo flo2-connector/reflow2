@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7c0b2440affbe60d71cd8cefd5fb7288f6a2b638172d78a8e1672f737f1c315c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-a287ff607d51143c",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:478d8a2d06e8033dc2d5dd206cb7325c62f073b1d8936b59fe7afd7ae31e7248",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-test"
+}

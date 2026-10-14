@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c091509193fb3ee8cd763f4bd55ed6a5e89c16e68d521a76628bdd2ab1b1b98",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-test",
+  "properties": {
+    "covers": "partial",
+    "note": "The rule in the core: eleven cases over propose_heal and apply_heal, the proposal edited as JSON."
+  },
+  "to_id": "ver:a-person-picks-which-node-a-merge-keeps"
+}

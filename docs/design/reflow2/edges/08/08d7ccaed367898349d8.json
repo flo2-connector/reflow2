@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5a9d59642dd97bd93221894b87c1d2088313bb444cbddd53beb6049ac167d650",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-degree-tiebreak-decision-read-accepted-without-the-owners-word-2026-10-14",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98f2eba5465ec7ac3add804a56ec2dc205c718890a0087df24d6c150c19539fd",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-person-picks-the-merge-survivor-over-mcp-test",
+  "properties": {
+    "covers": "partial",
+    "note": "The served path: a swapped survivor and a tie's chosen_survivor through call_tool."
+  },
+  "to_id": "ver:a-person-picks-which-node-a-merge-keeps"
+}

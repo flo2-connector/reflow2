@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d223bb50960830d8918e9b729b9d036f0960c62b55b744f683686985c83f9d43",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:root-cause-a-merge-deletes-the-wrong-node-because-the-survivor-rule-is-blind-to-status-priority-and-connections-2026-10-14"
+}

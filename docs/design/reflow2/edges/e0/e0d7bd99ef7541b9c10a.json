@@ -1,9 +1,13 @@
 {
-  "content_hash": "sha256:afbcf4d1d38ed2801009c13ae08666dd256a6e830703b681672315207c867b18",
+  "content_hash": "sha256:13f1787980ea58c30bce54bbb87e1fee41a0f8776d597fa8fe383f08cecb1a68",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:a-tied-merge-breaks-by-degree-not-by-alphabet",
+  "prev_item_hash": "sha256:afbcf4d1d38ed2801009c13ae08666dd256a6e830703b681672315207c867b18",
   "properties": {
     "authored_at": "2026-08-10",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
       "author"
     ]

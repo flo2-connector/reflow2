@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7bd20d15314dafa54aed58b874b63f32c1131379cb80d5c57375b8c0213f2421",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-engine-proposes-a-merge-and-a-person-picks-the-survivor-2026-10-14",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

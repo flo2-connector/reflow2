@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a46a9563e257498a4d557a53b3d4051ac4b1a37bc9c371941e64d172b49071a5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:check-health-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

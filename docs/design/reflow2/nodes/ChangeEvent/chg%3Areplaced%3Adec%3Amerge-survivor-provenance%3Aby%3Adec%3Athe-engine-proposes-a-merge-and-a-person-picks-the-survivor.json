@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:32bde614b551e434227b8bd7b796b361be96f0718a6a50b641e6106c81cbad59",
+  "node_id": "chg:replaced:dec:merge-survivor-provenance:by:dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "deprecation",
+    "name": "dec:merge-survivor-provenance is replaced by dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor",
+    "summary": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor takes dec:merge-survivor-provenance's place, declared through `replaces` on add_decision. dec:merge-survivor-provenance's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor."
+  }
+}
