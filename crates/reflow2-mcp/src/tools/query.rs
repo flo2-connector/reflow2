@@ -648,6 +648,9 @@ impl ReflowService {
                        Carries `discontinued`: true when an ACCEPTED Decision has withdrawn this \
                        node (OBSOLETES). READ IT — the stored `status` still records what was \
                        BUILT, so a withdrawn capability goes on saying `realized`. \
+                       A Component also carries `built_reading`: what its evidence reads as \
+                       (`built`, `partly_built`, `not_built`) with the evidence counted, \
+                       computed beside its stored `status`, which it never moves. \
                        Ask for this when you want everything recorded about one item — pull up \
                        the full record for a requirement or any single node — or a node and its \
                        edges: what it is connected to, its neighbours, which nodes link to it. \
@@ -762,7 +765,12 @@ impl ReflowService {
         // and absent returned `{value: null}` (the scalar wrap) — two shapes,
         // so an agent branching on the result read the absent case wrong.
         let node = match node {
-            Some(stored) => decorate(&g, stored_to_value(stored.clone())?, &stored.node_id)?,
+            Some(stored) => decorate(
+                &g,
+                stored_to_value(stored.clone())?,
+                &node_type,
+                &stored.node_id,
+            )?,
             None => JsonValue::Null,
         };
         // `include_edges` (dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it):
@@ -836,7 +844,8 @@ impl ReflowService {
                        you actually need with get_node. Every node carries `discontinued` (brief included): \
                        true when an ACCEPTED Decision has withdrawn it. The stored `status` records what was \
                        BUILT and does not move on withdrawal, so filtering a list on `status` alone will count \
-                       things that no longer exist. PASS `level` TO ASK FOR ONE RUNG OF THE DECOMPOSITION \
+                       things that no longer exist. Every Component also carries `built_reading`: what its \
+                       evidence shows built, beside the stored `status`. PASS `level` TO ASK FOR ONE RUNG OF THE DECOMPOSITION \
                        LADDER — `component` / `subsystem` / `system` / `system_of_systems` / `enterprise`. That \
                        is how you ask for \"the top-level boxes\": deriving them from the CONTAINS spine \
                        instead returns leaves nobody wired to a parent, which is a different set and a \
@@ -927,7 +936,7 @@ impl ReflowService {
             // graph sitting within ~22 bytes per node of SCAN_PAYLOAD_BUDGET_BYTES.
             // The overrun it would cause is bounded and small (one short bool
             // per returned node), which is why this is a note and not a gate.
-            let rendered = decorate(&g, rendered, &node.node_id)?;
+            let rendered = decorate(&g, rendered, &req.node_type, &node.node_id)?;
             let size = rendered.to_string().len();
             // Always return at least one node: a single node larger than the
             // whole budget must still be readable, or a big node becomes
@@ -1272,14 +1281,35 @@ fn stored_to_value(node: StoredNode) -> Result<JsonValue, McpError> {
 /// Emitted on every node including live ones. "Not discontinued" and "this
 /// build does not report discontinuation" must not share one answer, which is
 /// the rule `severed_containment` and `not_observed_about` already follow.
+///
+/// # And a Component's `built_reading`, since 2026-10-13
+///
+/// The second fact a stored node cannot carry, for the same reason: the
+/// detectors computed it and no read said it. 107 of 109 components on
+/// reflow2's own design read `planned` while 88 had built work behind them
+/// (`fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13`),
+/// and a reader of this reply saw `planned` and nothing beside it. Computed
+/// on every read by [`DesignGraph::component_build`], the one computation
+/// `understated_status` reads too; `status` is never touched. Only on a
+/// Component: present on every one, absent on every other type.
 fn decorate(
     g: &DesignGraph,
     mut rendered: JsonValue,
+    node_type: &str,
     node_id: &str,
 ) -> Result<JsonValue, McpError> {
     let discontinued = g.is_discontinued(node_id).map_err(dyno_err)?;
+    let built_reading = if node_type == reflow2_core::nodes::node::COMPONENT {
+        let reading = g.component_build(node_id).map_err(dyno_err)?.reading();
+        Some(serde_json::to_value(reading).map_err(ser_err)?)
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
+        if let Some(reading) = built_reading {
+            obj.insert("built_reading".to_string(), reading);
+        }
     }
     Ok(rendered)
 }

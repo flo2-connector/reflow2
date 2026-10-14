@@ -60,7 +60,6 @@ readers:
   detect.rs::detect_artifact_standard: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
   detect.rs::detect_blocked_verifications: { kind: not_derived, edges: [VERIFIES], why: "A detector over one node's status: it reads a blocked check's VERIFIES targets one hop, only to name and anchor what the gap is about. It derives no relation." }
   detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
-  detect.rs::detect_decision_overtaken_by_promotion: { kind: unjudged, edges: [EVOLVES_INTO] }
   detect.rs::changes_that_may_have_fixed: { kind: not_derived, edges: [CAUSES, CHANGED, MITIGATES, REALIZES], why: "Ranks the changes that MAY have fixed one open defect — joined to it by CAUSES, MITIGATES or a repair CHANGED it, or a dated repair that CHANGED its subject or a file realizing that subject alone — so defect_overtaken_by_change can ASK which did. It asserts no relation: the answer is the owner's, recorded as INVALIDATES or an acknowledgement." }
   detect.rs::detect_encoding_undecided: { kind: unjudged, edges: [GOVERNED_BY] }
   detect.rs::detect_failing_verifications: { kind: unjudged, edges: [VERIFIES] }
@@ -77,7 +76,7 @@ readers:
   detect.rs::detect_suspected_duplicate_edges: { kind: unjudged, edges: [DUPLICATES] }
   detect.rs::detect_unallocated_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, PART_OF_FLOW] }
   detect.rs::detect_unallocated_components: { kind: unjudged, edges: [ALLOCATED_TO, CONTAINS] }
-  detect.rs::detect_understated_statuses: { kind: not_derived, edges: [ALLOCATED_TO, DEPLOYED_TO], why: "A detector: it compares a status still at `planned` with the node's own one-hop evidence — direct_build_evidence, the live Capabilities at realized/verified ALLOCATED_TO a Component, a DEPLOYED_TO not marked planned — and reports where the record claims less. It reports a disagreement between two records and composes nothing past those one-hop reads (understated_status)." }
+  detect.rs::detect_understated_statuses: { kind: not_derived, edges: [DEPLOYED_TO], why: "A detector: it compares a status still at `planned` with the node's own one-hop evidence — direct_build_evidence for a Capability, component_build (the built relation, which get_node serves as built_reading) for a Component, a DEPLOYED_TO not marked planned for a Release — and reports where the record claims less. It reports a disagreement between two records and composes nothing past those reads (understated_status)." }
   detect.rs::detect_unit_sweep: { kind: unjudged, edges: [CONSTRAINS] }
   detect.rs::detect_unmotivated_capabilities: { kind: unjudged, edges: [SATISFIES] }
   detect.rs::detect_unrealized_capabilities: { kind: unjudged, edges: [REALIZES] }
@@ -88,8 +87,8 @@ readers:
   detect.rs::detect_unverified_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, REALIZES, VERIFIES] }
   detect.rs::detect_unverified_enforced_rules: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_unverified_published_contracts: { kind: unjudged, edges: [VERIFIES] }
-  detect.rs::direct_build_evidence: { kind: not_derived, edges: [REALIZES, VERIFIES], why: "A read of a node's OWN one-hop evidence, returned as it lists it: the Artifacts that REALIZE it whose own status is realized/verified, and the passing Verifications that VERIFY it. One hop and no further — it composes nothing, and deliberately does not reach a component the node is allocated to." }
   detect.rs::fix_candidate: { kind: not_derived, edges: [CHANGED], why: "Reads one ChangeEvent's own record for the overtaken-defect question: its type, its date, and how many records it CHANGED (its breadth, a ranking tie-break). One node and its one-hop out-degree; it composes nothing." }
+  detect.rs::ideas_whose_promotion_landed: { kind: not_derived, edges: [EVOLVES_INTO], why: "A listing: each live, proposed, unparked Decision with the EVOLVES_INTO targets whose promotion has landed, one hop, as arrival.rs reads it (promotion_has_landed). It composes nothing past that shared predicate; it is the one population decision_overtaken_by_promotion reports and awaiting_word lists, so the two cannot disagree." }
   detect.rs::owner_claims_built: { kind: unjudged, edges: [ALLOCATED_TO] }
   detect.rs::open_questions_for: { kind: not_derived, edges: [ANSWERS, ASKS_ABOUT], why: "A read of each open Question's OWN one-hop links, returned as it lists them: the nodes it ASKS_ABOUT (its evidence, handed to an addressee as links) and the records that ANSWER it. It composes nothing past the Question's direct edges (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
   detect.rs::record_asked_question: { kind: unjudged, edges: [ASKS_ABOUT] }

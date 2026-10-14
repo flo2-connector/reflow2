@@ -44,8 +44,10 @@ const READING_FUNCTIONS: &[(&str, Option<&str>)] = &[
         "detect_defect_overtaken_by_change",
         Some("defect_overtaken_by_change"),
     ),
+    // The promotion detector's population since 2026-10-13, shared with the
+    // owner's `awaiting_word` list (awaiting.rs), which lists, never asks.
     (
-        "detect_decision_overtaken_by_promotion",
+        "ideas_whose_promotion_landed",
         Some("decision_overtaken_by_promotion"),
     ),
     ("detect_prohibitions_in_prose", Some("prohibition_in_prose")),

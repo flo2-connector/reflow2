@@ -108,7 +108,7 @@ fn a_component_whose_capabilities_are_all_realized_reads_built_and_its_status_is
     assert_eq!(reading.capabilities_built, 2);
     assert_eq!(reading.files_built, 0);
     assert_eq!(reading.checks_passing, 0);
-    let wire = serde_json::to_value(&reading).expect("serialises");
+    let wire = serde_json::to_value(reading).expect("serialises");
     assert_eq!(wire["reads_as"], "built", "snake_case on the wire: {wire}");
 
     assert_eq!(
@@ -140,7 +140,11 @@ fn a_component_with_no_built_evidence_reads_not_built() {
     assert!(build.capabilities_built.is_empty());
     assert!(build.files_built.is_empty());
     assert!(build.checks_passing.is_empty());
-    assert_eq!(stored_status(&g, "cmp:idle"), before, "the status is as it was");
+    assert_eq!(
+        stored_status(&g, "cmp:idle"),
+        before,
+        "the status is as it was"
+    );
 
     // And a component with nothing at all.
     component(&mut g, "cmp:empty", Some("planned"));
@@ -178,7 +182,13 @@ fn a_component_with_some_of_its_function_built_reads_partly_built() {
     // A part that hosts no function at all and has a passing check of its own
     // is built: nothing it hosts is waiting.
     component(&mut g, "cmp:checked", Some("planned"));
-    check(&mut g, "ver:green", node::COMPONENT, "cmp:checked", "passing");
+    check(
+        &mut g,
+        "ver:green",
+        node::COMPONENT,
+        "cmp:checked",
+        "passing",
+    );
     let build = g.component_build("cmp:checked").expect("reading");
     assert_eq!(build.state(), BuildState::Built, "{build:?}");
     assert_eq!(build.checks_passing, ["ver:green"]);

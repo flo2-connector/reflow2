@@ -33,6 +33,7 @@ pub mod alternatives;
 pub mod arrival;
 pub mod artifact;
 pub mod attribution;
+pub mod awaiting;
 pub mod balance;
 pub mod budget;
 pub mod bulk;

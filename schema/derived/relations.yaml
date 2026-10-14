@@ -73,7 +73,7 @@ relations:
     edges: [SATISFIES, DECOMPOSES, REALIZES, ALLOCATED_TO, VERIFIES, OBSOLETES]
     over: [realized, checked, discontinued]
     code:
-      - { file: report.rs, function: requirement_is_delivered_within, dedicated: true }
+      - { file: report.rs, function: requirement_delivered_by_within, dedicated: true }
       - { file: report.rs, function: delivery_coverage, dedicated: true }
       - { file: detect.rs, function: capability_is_realized, dedicated: false }
       - { file: verify.rs, function: capability_verification, dedicated: false }
@@ -108,6 +108,21 @@ relations:
       - { file: verify.rs, function: capability_verification, dedicated: true }
       - { file: verify.rs, function: has_passing_verification, dedicated: true }
     counts: "one capability Verified or ComponentVerified"
+    cost: bounded
+
+  built:
+    name: "built(component): built | partly_built | not_built"
+    reading: { form: composite, composition: "evidence(k) := [∃c: located-at(c, k) ∧ ¬discontinued(c) ∧ arrived(c)] ∨ [∃a: instance-of·realizes(a, k) ∧ arrived(a)] ∨ [∃v: norm·evaluates(v, k) ∧ verdict(v) = +]; built(k) := evidence(k) ∧ ∀c: located-at(c, k) ∧ ¬discontinued(c) → arrived(c); partly_built(k) := evidence(k) ∧ ¬built(k)", components: [located-at, instance-of, norm] }
+    rule: "A Component reads BUILT when there is built evidence and every live Capability ALLOCATED_TO it (located-at) has arrived as built; PARTLY_BUILT when there is evidence and one has not; NOT_BUILT with no evidence. Evidence is a built Capability allocated to it, a built Artifact that REALIZES it (instance-of·realizes), or a passing Verification that VERIFIES it (norm·evaluates). Served beside the stored status as built_reading; understated_status reads it (2026-10-13)."
+    stated_over_readings: partial
+    not_yet_stated: "arrival by status (a Capability or Artifact realized or verified) and the verdict (Verification.status = passing) are node properties no reading declares."
+    inference: deduced
+    edges: [ALLOCATED_TO, REALIZES, VERIFIES]
+    over: [discontinued]
+    code:
+      - { file: arrival.rs, function: component_build, dedicated: true }
+      - { file: detect.rs, function: direct_build_evidence, dedicated: false }
+    counts: "one component built or partly built by its evidence"
     cost: bounded
 
   discontinued:

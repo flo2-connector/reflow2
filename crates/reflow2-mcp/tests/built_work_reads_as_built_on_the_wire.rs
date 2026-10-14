@@ -118,7 +118,10 @@ async fn get_node_on_a_component_carries_its_built_reading_beside_the_status() {
     let r = s.ok("get_node", json!({"id": "cmp:engine"})).await;
     let node = &r["node"];
     assert_eq!(node["properties"]["status"], "planned", "untouched: {r}");
-    assert_eq!(node["discontinued"], false, "every key it carried is kept: {r}");
+    assert_eq!(
+        node["discontinued"], false,
+        "every key it carried is kept: {r}"
+    );
     let reading = &node["built_reading"];
     assert_eq!(reading["reads_as"], "built", "{r}");
     assert_eq!(reading["capabilities_allocated"], 1, "{r}");
@@ -127,7 +130,10 @@ async fn get_node_on_a_component_carries_its_built_reading_beside_the_status() {
     assert_eq!(reading["checks_passing"], 0, "{r}");
 
     let idle = s.ok("get_node", json!({"id": "cmp:idle"})).await;
-    assert_eq!(idle["node"]["built_reading"]["reads_as"], "not_built", "{idle}");
+    assert_eq!(
+        idle["node"]["built_reading"]["reads_as"], "not_built",
+        "{idle}"
+    );
 
     // Only a Component carries it: a capability's own status is what the ship
     // moves, and it already has its readings.
@@ -143,7 +149,10 @@ async fn scan_nodes_carries_it_on_every_component_brief_or_full() {
     let s = session().await.seeded().await;
     for brief in [true, false] {
         let r = s
-            .ok("scan_nodes", json!({"node_type": "Component", "brief": brief}))
+            .ok(
+                "scan_nodes",
+                json!({"node_type": "Component", "brief": brief}),
+            )
             .await;
         let items = r["items"].as_array().expect("items");
         assert_eq!(items.len(), 2, "{r}");
@@ -159,12 +168,23 @@ async fn scan_nodes_carries_it_on_every_component_brief_or_full() {
             .find(|i| i["node_id"] == "cmp:engine")
             .expect("engine");
         assert_eq!(engine["built_reading"]["reads_as"], "built", "{engine}");
-        for key in ["count", "total", "offset", "returned", "omitted", "capped_by", "brief"] {
+        for key in [
+            "count",
+            "total",
+            "offset",
+            "returned",
+            "omitted",
+            "capped_by",
+            "brief",
+        ] {
             assert!(r.get(key).is_some(), "the list keeps `{key}`: {r}");
         }
     }
     let caps = s
-        .ok("scan_nodes", json!({"node_type": "Capability", "brief": true}))
+        .ok(
+            "scan_nodes",
+            json!({"node_type": "Capability", "brief": true}),
+        )
         .await;
     for item in caps["items"].as_array().expect("items") {
         assert!(item.get("built_reading").is_none(), "{item}");

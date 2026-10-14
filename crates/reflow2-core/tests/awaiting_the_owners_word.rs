@@ -206,7 +206,11 @@ fn an_accepted_one_is_not_listed_and_neither_is_work_not_yet_delivered() {
             "{absent} does not await the owner's word: {ids:?}"
         );
     }
-    assert_eq!(ids, ["req:shipped", "dec:idea-promoted"], "requirements first");
+    assert_eq!(
+        ids,
+        ["req:shipped", "dec:idea-promoted"],
+        "requirements first"
+    );
 }
 
 #[test]

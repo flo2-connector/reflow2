@@ -49,10 +49,11 @@ const DECLARATIONS: &str = include_str!("../../../schema/derived/relations.yaml"
 /// The test holds this list and the declaration file to each other in both
 /// directions: a declaration nobody evaluates, or an evaluator nobody declared,
 /// fails it.
-pub const DERIVED_EVALUATORS: [&str; 23] = [
+pub const DERIVED_EVALUATORS: [&str; 24] = [
     "delivered",
     "realized",
     "checked",
+    "built",
     "discontinued",
     "contract_pair",
     "coupling",
@@ -346,6 +347,15 @@ impl DesignGraph {
                         crate::verify::CapabilityVerification::Unchecked
                     ) {
                         hits.push(c);
+                    }
+                }
+                Evaluated::of(hits.len(), take(hits, n))
+            }
+            "built" => {
+                let mut hits = Vec::new();
+                for k in live(node::COMPONENT)? {
+                    if self.component_build(&k)?.has_evidence() {
+                        hits.push(k);
                     }
                 }
                 Evaluated::of(hits.len(), take(hits, n))

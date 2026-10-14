@@ -264,6 +264,10 @@ loads it and it takes precedence over the served one of the same name.
    When you return to a project or suspect files changed outside the loop, hash them and call
    `reconcile_artifacts` — its `propagation_seeds` walk the change back up to the Capability and
    Requirement behind it. (See the **link-artifacts** skill.)
+   When the shipped work answers a recorded idea (a `proposed` exploratory Decision), draw
+   `EVOLVES_INTO` from that idea to the requirement or capability it became
+   (`review_relations`), and leave the idea's status for the owner: closing it is their word, and
+   the edge is what lets `detect_gaps` put it to them.
 4. **On ANY change or new idea, check impact first.** Record it with `add_change_event`, then
    `propagate_change` (or `propagate_from` for a speculative "what would this touch?"). Update
    **only** the impacted capabilities/components/tests the blast radius names — then re-run

@@ -738,7 +738,11 @@ fn primitives_of(r: &Reading) -> BTreeSet<String> {
 fn every_declaration_is_well_formed() {
     let g = graph();
     let decls = declarations();
-    assert_eq!(decls.len(), 23, "the study's 23 relations are all declared");
+    assert_eq!(
+        decls.len(),
+        24,
+        "the study's 23 relations are all declared, and built(component), added 2026-10-13"
+    );
     let ids: BTreeSet<&str> = decls.iter().map(|d| d.id.as_str()).collect();
     for d in &decls {
         let id = &d.id;
@@ -1040,7 +1044,7 @@ struct ListedReader {
 
 /// The unjudged entries the list may hold. It ONLY SHRINKS: judging an entry
 /// lowers it, and a new function is judged, never added as unjudged.
-const UNJUDGED_AT_MOST: usize = 128;
+const UNJUDGED_AT_MOST: usize = 127;
 
 fn reader_list() -> ReaderList {
     let p = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -1466,8 +1470,8 @@ fn the_served_read_counts_what_the_code_computes() {
             .unwrap_or_else(|| panic!("{id} in the report"))
             .count
     };
-    assert_eq!(r.declared, 23);
-    assert_eq!(r.relations.len(), 23, "every declared relation is reported");
+    assert_eq!(r.declared, 24);
+    assert_eq!(r.relations.len(), 24, "every declared relation is reported");
 
     // By hand: cap:a is realized directly, cap:b through cmp:x; cap:c is withdrawn.
     assert_eq!(count("realized"), Some(2));
@@ -1501,12 +1505,22 @@ fn the_served_read_counts_what_the_code_computes() {
         count("level_mismatch"),
         Some(g.hierarchy_issues().unwrap().len())
     );
+    assert_eq!(
+        count("built"),
+        Some(
+            g.scan_nodes(node::COMPONENT)
+                .unwrap()
+                .iter()
+                .filter(|k| g.component_build(&k.node_id).unwrap().has_evidence())
+                .count()
+        )
+    );
 
     // The closure is kept as a rule and not counted, and says why.
     let impact = r.relations.iter().find(|t| t.id == "impact").unwrap();
     assert_eq!(impact.count, None);
     assert!(impact.not_counted.is_some());
-    assert_eq!(r.counted, 22);
+    assert_eq!(r.counted, 23);
 
     // Nothing is stored: reading twice changes nothing and asserted facts hold.
     let again = g.derived_report(&[], 3).expect("second read");
