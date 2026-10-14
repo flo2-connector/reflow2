@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c8093b93029fed1700ab75b18a51a609fcd5fdb1b69e0df5e40ced4674cc0137",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:maturity-restructuring-delta",
+  "properties": {
+    "evidence": "A restructuring is certified to preserve function, and a design is located on the function-to-structure trajectory. Evidence: cap:maturity-profile is verified, ver:maturity passing, realized by art:maturity. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:maturity-profile"
+}

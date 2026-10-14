@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a73ec6a977dad620d7cdefd5509baeb97a9ac0aa739992287a64f86e49d32e58",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-design-is-composable-on-two-axes-authority-and-role",
+  "properties": {
+    "evidence": "Built as hubs whose members record whether each is part of the parent or a peer it uses, with the interfaces it crosses. Evidence: cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses is realized, ver:a-change-ripples-across-uses-and-up-part-of-in-three-designs passing, realized by art:depends. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-hub-member-records-its-relation-and-the-interfaces-it-crosses"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:868b4dcec6c4ccd7f2ef52ae15202eb77ed598aec61f518f561f8aa0f421bfbf",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-team-runs-one-reflow2-on-its-own-cloud-server-and-nobody-installs-it",
+  "properties": {
+    "evidence": "Alex's team runs one reflow2 on its own server: remote sessions are served on purpose, and an exposed server verifies bearer tokens to the OAuth 2.1 floor (art:github-issue-616-oauth-resource-server). Evidence: cap:remote-sessions is verified, ver:a-refused-host-is-told-which-flag-admits-it passing, realized by art:host-gate. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:remote-sessions"
+}

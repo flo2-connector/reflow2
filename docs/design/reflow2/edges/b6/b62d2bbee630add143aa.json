@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:f28be485c8fdb53b18493b3f0c0f5b2477f482eac3c86faff4c6b0455871b759",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-interop-as-a-game",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c9f7406f9cc152f6b6df2fcb56b2b7932c624eec060e080c9c3b044a180d346a",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:schedule-is-structural",
+  "properties": {
+    "evidence": "SCHEDULED_FOR is a traceability edge the impact walk reaches, and a test pins it. Evidence: cap:satisfaction-schedule is realized, ver:satisfaction-schedule passing, realized by art:nodes. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:satisfaction-schedule"
+}

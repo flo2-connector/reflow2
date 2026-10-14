@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65da9ef01e89d047e9e58df7267d83d3cbbe9a24f0b95b19bed2a8671ebbe519",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-scoping-exists-and-did-not-narrow-what-a-builder-sees",
+  "properties": {
+    "evidence": "A scoped read now says how much of the design it still holds, in words when that is most of it. Evidence: cap:a-scoped-answer-says-whether-it-narrowed is verified, ver:a-scoped-answer-actually-narrows passing, realized by art:scope. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:a-scoped-answer-says-whether-it-narrowed"
+}

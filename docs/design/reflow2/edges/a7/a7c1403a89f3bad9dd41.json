@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:085435bf2b1277f3dfa57aa81d5a151795aa5af1e4dc3c9012d042fc213be153",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:loop-status-cannot-say-it-never-looked",
+  "properties": {
+    "evidence": "Fixed at the root: loop_status runs gap detection itself, so its zero is computed. Evidence: cap:loop-status is verified, ver:loop-status passing, realized by art:export-standing. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:loop-status"
+}

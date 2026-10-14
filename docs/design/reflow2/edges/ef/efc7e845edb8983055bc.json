@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:79a36b77d002650400913dcb810324afafcc07c014cfcbc1a7db3eea78426fb1",
+  "content_hash": "sha256:8ae29b92b3bed44178e9f2237ad87bbbedbc45fb28ddc60020ecfab6ad5478e0",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-knot-reduction-supplies-the-invariant-question-the-core-reduction-idea-was-missing",
+  "prev_item_hash": "sha256:79a36b77d002650400913dcb810324afafcc07c014cfcbc1a7db3eea78426fb1",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

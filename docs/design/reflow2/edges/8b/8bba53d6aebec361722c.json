@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:694d94010e214be703bf1c2239ea5b1ffc066488b1c75b1fcc63ddad2a9c3edd",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-what-is-the-minimum-path-to-fork-ophyd-service-today",
+  "properties": {
+    "evidence": "Alternatives can be held and re-forked, a fork point is found in git, and reopening a choice is one call. Evidence: cap:fork-alternatives is realized, ver:a-fork-point-finds-its-address-in-git passing, realized by art:fork. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:fork-alternatives"
+}

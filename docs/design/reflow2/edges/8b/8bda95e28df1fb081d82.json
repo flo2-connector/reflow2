@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:15afc2e792a287613c698d5fa56de64bf0916e746fce74103f0eb18c69807e8c",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-how-does-a-test-result-get-back-in-when-the-tester-may-not-be-an-agent",
+  "properties": {
+    "evidence": "loop_status carries the loop-closure reading, whether a real result ever came back; the person's routes are req:a-person-feeds-results-back-by-upload-chat-or-folder, still proposed. Evidence: cap:the-loop-closure-reading is realized, ver:a-design-says-whether-a-result-ever-came-back passing, realized by art:loop-closure. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:the-loop-closure-reading"
+}

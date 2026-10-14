@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:dd859dc68e31bf86e5d156a31f9f8581174f3e24d86d6da8dedd62d830594d72",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-severability-cut",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

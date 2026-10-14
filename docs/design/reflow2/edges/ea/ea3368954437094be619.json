@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:0c72004912e7d83ae68c5d501a5ad9d13234023b99dcf4275a74058135871401",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-decision-is-required-to-say-nothing-where-pep-requires-nine-sections",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

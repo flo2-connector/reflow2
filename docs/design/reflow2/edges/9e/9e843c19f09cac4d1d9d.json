@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:291d0b8427156fb727a6f659abf84a2d131f06a5f8658b34a37816a0067aa139",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-distributional-thresholds",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

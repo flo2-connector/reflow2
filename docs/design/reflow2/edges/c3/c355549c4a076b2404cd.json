@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:066ea8e99ffbe0d80556eea95a5ce5ad1a23061a8c9f7898c94a43c1db737c64",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "coverage": "full",
+    "evidence": "Both halves are built under another name: the shipped binary describes any served tool with its full input schema (reflow2-mcp --describe / --list-tools, art:describe-tool), and describe_schema with `tool` serves the same answer inside a session. Evidence: cap:the-cli-describes-a-tool-with-its-schema-and-lessons is realized, ver:the-cli-describes-a-tool-with-its-schema-and-lessons passing, realized by art:describe-tool. Linked on the owner's word of 2026-10-13, 'undelivered accepted requirements: link those already built' (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "req:the-contract-ships-with-the-artifact-and-is-readable-from-a-session"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cf8526689ccb1b5aa098873fa02fe9ab799f7b96046d1eaa7a9d4ed8752dac8e",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:no-design-here-never-looked",
+  "properties": {
+    "evidence": "Design discovery looks before it says there is none: describe_design reports what design lives at a path without binding to it, the fix for the hxm_program third-graph case. Evidence: cap:describe-design-at-path is verified, ver:describing-changes-nothing passing, realized by art:discover. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
+  },
+  "to_id": "cap:describe-design-at-path"
+}
