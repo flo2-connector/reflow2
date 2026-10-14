@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6f98379dc9a356f409620acb78c839962b0defbe6b8e35d157fba8fb74c8e2a6",
+  "node_id": "chg:accept-a040611855a47959",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-14",
+    "name": "v0.84.0 cut, step 2: 'Checked against' moved 0.83.5 -> 0.84.0, and the line on reflow2's own counting adds what 0.84.0 counts: what was taken away beside what was added (changelog_view's balance, #742). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:73fbd61913293fc52edb302601675a164e20bab7913bb5ebd7ca22283b465eef",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0840",
+  "properties": {
+    "as_checksum": "sha256:3fd490ee61ac45a1b05f1aed840621d5b00fb960dccf2046e5047ff53b3eb491"
+  },
+  "to_id": "art:a-revised-affected-list-keeps-the-acceptances-test"
+}

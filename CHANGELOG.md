@@ -31,6 +31,150 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.84.0] — 2026-10-14
+
+**Minor. Built work reads as built, and the changelog shows what was taken away beside what was
+added.** It contains #745, #744, #743, #742 and #741; #740 re-blessed 0.83.5's surface record.
+The MCP surface only grows. `loop_status` and `scan_nodes` gain an optional `budget_chars`, and
+`review_relations` (and `add_decision`'s `related_to`) take `alignment` and the other properties
+a link's schema gives a default. Replies gain fields: a Component's `built_reading` on `get_node`
+and `scan_nodes`, `awaiting_word` on `loop_status`, `balance` on `changelog_view`, and
+`status_snapshot` on `release_includes_all`. No node or edge type moved, and the store needs no
+migration. `detect_defects` reports fewer `unresolved_setup` findings and `detect_gaps` a few more
+`decision_overtaken_by_promotion` gaps. **What to do:** nothing beyond the upgrade. A
+`scan_nodes` call that read a whole large type at once now pages one call sooner: follow
+`next_offset`, or pass a larger `budget_chars`.
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary: `reflow2 read get_node` and `scan_nodes` show a
+Component's `built_reading`, `reflow2 read loop_status` with your `contributor_id` lists
+`awaiting_word`, `reflow2 read changelog_view` carries the `balance`, and `reflow2 write
+review_relations` takes `alignment: "supporting"`, which 0.83.5 refuses. `reflow2 update` changes
+no file. **Still needs a hosted gateway such as flo2.io:** the same as in 0.83.5, the hub view
+(asking a hub and hearing from every member, the merged `search_design`, and cross-design reads
+by graph id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
+
+### Added
+
+- **A Component says what its evidence shows built: `built_reading` on `get_node` and
+  `scan_nodes`.** A component's `status` is kept by hand and starts at `planned`, and nothing
+  moves it when the work ships, so on reflow2's own design 107 of 109 components read `planned`
+  while most had built work behind them. Every Component now also carries `built_reading`:
+  `reads_as` is `built`, `partly_built` or `not_built`, with the evidence counted
+  (`capabilities_allocated`, `capabilities_built`, `files_built`, `checks_passing`). It is
+  computed on each read from what the design already records: the capabilities allocated to the
+  part and their status, a realized file, a passing check. The stored `status` is never touched;
+  moving it stays the owner's call. `understated_status` now reads the same computation, so the
+  finding and the reading always agree, and its message says how many components read as built
+  by their evidence. `derived_report` lists it as the `built` relation.
+- **`loop_status` with a `contributor_id` lists what awaits an owner's word: `awaiting_word`.**
+  Two kinds of built work whose record is still open: a `proposed` requirement its thread already
+  delivers, and an open idea whose promotion has landed (the ones `decision_overtaken_by_promotion`
+  reports). Each item names what delivers it (`evidence_ids`, `evidence`) and the call that
+  closes it (`closed_by`). The list is design-wide, so it is not counted in that person's `clean`,
+  and the scoped `next` says so. It moves no status. Unscoped, `awaiting_word` is an empty list,
+  as `gaps_on_owned_ground` and `questions_put_to_them` are, so the call every session makes costs
+  what it did.
+- **`loop_status` and `scan_nodes` take `budget_chars` and fit a 30,000-character reply by
+  default.** A host such as flo2.io holds every reply to 30,000 characters and refuses a larger
+  one; it asks a tool for less only when the tool takes `budget_chars`, and neither did. The
+  scoped `loop_status` would have answered 38,939 characters on reflow2's own design once
+  `awaiting_word` was added, and every `scan_nodes` of a large type already answered 37,000 to
+  40,000. Over its budget, `loop_status` cuts `awaiting_word`'s long names and evidence sentences
+  first, then withholds its last rows, and only then shortens prose elsewhere; every count, id and
+  closing call stays, and the reply's `budget` block says what was withheld and how to see the
+  rest. `scan_nodes` now counts its whole reply against the budget, and pages sooner: by default
+  about 30,000 characters per page instead of 40,000 characters of nodes. As before, `capped_by`
+  and `next_offset` say where to resume.
+
+- **The changelog now shows what was taken away beside what was added.** `changelog_view`'s draft
+  carries a `balance` between its two ends: requirements added against those dropped or deferred,
+  capabilities added against those removed or withdrawn, decisions accepted against those reversed,
+  checks that went from passing to failing, and the window's `test_failure_fix` changes as the
+  failures that came back. Each count says how it was counted. Read release after release, it shows
+  whether a design only grows. It never says a design does too much: scope stays your call.
+- **A cut keeps the release's status snapshot.** `release_includes_all` with `apply: true` now also
+  records the status of every requirement, capability, decision and check, and whether an accepted
+  decision has withdrawn it. It is stored on the release as a delta from the previous release's
+  snapshot, the first one whole. Its reply's new `status_snapshot` says it was written and how many
+  entries it holds. A re-run never rewrites one, and a release whose manifest was frozen before the
+  call gets none, because today's statuses are not what it saw.
+- **What the balance cannot see, it says.** An end that keeps no snapshot is named in
+  `balance.notes` and its counts are absent, never zero. The counts are the net move between the
+  two ends, so something added and dropped inside one window is in neither column. `[Unreleased]`
+  reads the last deployed release against the live design.
+
+  **What to do:** nothing to switch on. Your next cut keeps the first snapshot, so the balance
+  counts from the release after it. Releases cut before this keep none, and the balance names them.
+  Filling past releases in from the design copy committed at each tag is planned as a follow-up.
+  Both replies only gained a field; nothing an existing caller reads has moved.
+
+### Changed
+
+- **The ship step now closes the idea it answers.** The link-artifacts and capture-session skills,
+  and step 3 of the served instructions, now say: when the work you ship answers a recorded idea,
+  draw `EVOLVES_INTO` from that idea to the requirement or capability it became, and leave the
+  idea's status for its owner. Without that edge nothing can tell the idea was answered, and
+  `detect_gaps` cannot put it to the owner. On reflow2's own design, 47 of 59 ideas found already
+  built had no such edge.
+
+  **What to do:** nothing. Replies gained fields and no field changed or went away. A
+  `scan_nodes` caller that read a whole large type in one call now pages one call sooner: follow
+  `next_offset`, or pass a larger `budget_chars`.
+
+- **reflow2's site now says what the links in a design are for, and shows how small decisions add up.**
+  The home page used to read as though reflow2 only records decisions. It now says that each one is
+  linked to what it rests on and what it affects. It lists the questions those links answer that a
+  list of notes can't: what a change will reach, which needs nothing delivers yet, which decisions
+  rest on a result that just failed, and what nobody has asked yet. A new section, "It adds up", charts
+  reflow2's own design week by week, from 124 records on 2026-07-19 to over 7,000 now. The chart's
+  numbers are counted from the design committed at each release tag when the site is published
+  (`tools/site_counts.py`), never typed. The links each release lists for the files it ships are
+  counted apart, so the size is not inflated. The site is not part of the binary: **nothing to do.**
+
+### Fixed
+
+- **A relation drawn with `review_relations` can now say a contradiction supports.** Every
+  CONTRADICTS it drew was stored `alignment: opposing`, the schema default, because a link had no
+  field for anything else and the tool wrote only `evidence`. A writer who meant "these two
+  corroborate each other" wrote that into the evidence, and `detect_defects` reported the edge as a
+  contradiction. In reflow2's own design 10 edges said "supporting" in their evidence and stored
+  `opposing`; 9 were reported. A link now takes an optional `alignment` (`opposing` or
+  `supporting`), and the same goes for every other property a review relation's schema gives a
+  default: CAUSES `basis` and `validation_status`, DUPLICATES `basis`, DEPENDS_ON `optional` and
+  `weight_basis`. `add_decision`'s `related_to` takes the same fields. A value the schema does not
+  allow, or a property the link's relation does not declare, is refused, naming the legal ones. A
+  value that differs from an edge already stored is refused rather than reported as already
+  present. Nothing is read out of the evidence.
+
+  **What to do:** nothing, if your links say nothing new: a link without these fields stores the
+  same defaults as before, and every existing argument and reply is unchanged. To correct a
+  CONTRADICTS stored `opposing` that you meant as a corroboration, call `create_edge` with the same
+  ends and props carrying `alignment: "supporting"` AND the stored `evidence` again, because
+  `create_edge` replaces the edge's properties.
+
+- **`unresolved_setup` no longer reports a setup whose target was already acted on.** The rule
+  said "nothing follows through" while reading arrival from a list of its own: a Requirement only
+  at `met`, which almost no design sets, and a finding only by `EVOLVES_INTO`. So it went on
+  reporting a requirement whose thread already delivers it, a finding a change had closed
+  (`INVALIDATES` or a `valid_to`), a finding an accepted Decision answers (`MITIGATES`), a finding
+  that led to a decision, change or requirement (`CAUSES` or `TRIGGERS`), and a ChangeEvent or
+  DesignRule. On reflow2's own design that was 20 of its 47 findings; it now reports 27. The
+  message names what it checked: that the target evolved into nothing and has not arrived, and
+  what arriving means for that target's type.
+- **`decision_overtaken_by_promotion` and `unresolved_setup` now read "arrived" the same way.**
+  They kept two lists that disagreed. Both now read one, which also counts an arrived epoch and a
+  realized Artifact for both. The promotion detector now also finds an idea whose requirement is
+  delivered by its thread but still reads `proposed`: 4 more on reflow2's own design, 13 in all.
+  Each detector keeps the one clause its own definition adds: for the follow-through rule, a
+  target that evolved into something; for the promotion detector, a requirement the owner
+  accepted.
+
+  **What to do:** nothing. Fewer `unresolved_setup` findings and a few more
+  `decision_overtaken_by_promotion` gaps may appear on your next `detect_defects` and
+  `detect_gaps`. No reply changed shape. A link between two findings where the later one is
+  still open is reported as before.
+
 ## [0.83.5] — 2026-10-13
 
 **Patch. Search reads every prose field, and an index built over fewer fields rebuilds itself.**

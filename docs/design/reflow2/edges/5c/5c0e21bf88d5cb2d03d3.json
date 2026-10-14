@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6af8202deeda455afe7b07b9bfc8053dcb0b1bf4289b9f089c30f8f210a55b00",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0840",
+  "properties": {
+    "as_checksum": "sha256:ae3bc3ec58bce44a2599dbe377d2460d5a1a2f112c8b7aeacdb563edbd85a40d"
+  },
+  "to_id": "art:test-a-floating-root-part-is-told-the-cure"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:af0225d83915ba58268d39b827c346617f8f29f060e1dd37d8cc1c262e2609ad",
+  "node_id": "chg:accept-3c10a241a529f76f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-14",
+    "name": "v0.84.0 cut: re-blessed from the 0.84.0 build (11 passed); only reflow2_version moved. No narrowing: #742's status snapshot is a node of the existing Snapshot type, and #744 exposes properties the schema already declared with defaults. CORRECTS chg:accept-ea0100acb556c419, which asserted a checksum sent before the file was hashed; this is the file's sha256. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

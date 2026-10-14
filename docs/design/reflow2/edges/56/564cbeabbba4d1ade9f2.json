@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a46b44b8f7f4e1b07b8d7a436b63ce9d3ad35209e3bd576b09ded5be0134c4e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0840",
+  "properties": {
+    "as_checksum": "sha256:ab8e4741920d5cc225099ab0def5c2de0639951ea69e53c51e657280acbd7a96"
+  },
+  "to_id": "art:vision"
+}

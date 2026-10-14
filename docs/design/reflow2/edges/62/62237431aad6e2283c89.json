@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a2df3adfe1fb2bfe62509fc15d31c1d9a9f761bd0cdda12ac94c4356c983197",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0840",
+  "properties": {
+    "as_checksum": "sha256:6466478fa63bbc6982687e7c1d82680a0ec83df3593a99244fb68ee37741cf81"
+  },
+  "to_id": "art:maturity"
+}
