@@ -10,6 +10,12 @@ anything on the site that shows a real design is generated, never typed. So the
 numbers are counted here from the design committed at each release tag, when the
 site is published (.github/workflows/pages.yml), and the page draws them.
 
+WHEN THAT IS. The site is published from main and never from a tag: the
+github-pages environment admits main alone. pages.yml runs on a push to main that
+touches the site, and once more after each release, when release.yml's `site` job
+dispatches it on main, so the counts take in the release just cut. Its checkout's
+fetch-depth 0 brings every tag on both paths.
+
 ⚠️ A RELEASE'S MANIFEST IS COUNTED APART. Every cut lists the files it ships as
 INCLUDES links: 35,421 of the 53,466 links at v0.83.5. They are bookkeeping, not
 decisions linked to each other, so `links` leaves them out and `manifest_links`

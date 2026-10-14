@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:862ca2b2cc8d35e49b21bbb4303371303d2a66a4f686f9c23d895fc8ca60511f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-site-republishes-from-main-after-a-release-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:f0d028b9848acff41df6f06458c42f73ddd447f51e7ca1ff1d6a0683e111c9b4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:pages-workflow"
+}

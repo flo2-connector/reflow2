@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5339a752be9349b47df3b1a3809b12702fbd6d9c42a140bf79e6fee7ab57cd24",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-release-workflow",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

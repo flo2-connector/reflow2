@@ -28,7 +28,12 @@ otherwise be the first to test:
   - the image no longer says NO AUTHENTICATION, and names the flag that
     replaced it — a flag this checks the binary actually has;
   - tools/install.sh maps Linux aarch64 to the new asset — DRIVEN, with a
-    stand-in `uname` and `gh`, so no network is touched.
+    stand-in `uname` and `gh`, so no network is touched;
+  - the site is published from main and never from a tag: pages.yml has no tag
+    trigger, and release.yml dispatches it on main once the release is out, from
+    a job of its own that holds `actions: write` and nothing broader, and that a
+    dry run skips (pages run 38555276998 on v0.84.0 was refused: the
+    github-pages environment admits main alone).
 
 Hermetic: no network, no Docker, no registry. PyYAML is required (the CI job
 installs it for the schema step) and its absence is a FAILURE, never a skip.
@@ -48,6 +53,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 RELEASE = REPO / ".github/workflows/release.yml"
+PAGES = REPO / ".github/workflows/pages.yml"
 DOCKERFILE = REPO / "Dockerfile"
 BUILD_SH = REPO / "docker/build.sh"
 PUBLISH_INDEX = REPO / "docker/publish-index.sh"
@@ -67,12 +73,16 @@ except ImportError:  # pragma: no cover - the CI job installs it
     sys.exit(1)
 
 
-def workflow() -> dict:
-    doc = yaml.safe_load(RELEASE.read_text(encoding="utf-8"))
+def read_workflow(path: Path) -> dict:
+    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
     # YAML 1.1 reads the bare key `on` as the boolean True.
     if "on" not in doc and True in doc:
         doc["on"] = doc.pop(True)
     return doc
+
+
+def workflow() -> dict:
+    return read_workflow(RELEASE)
 
 
 def jobs() -> dict:
@@ -654,6 +664,88 @@ cp "$f" "$o"
         assert (tmp / "home" / ".local" / "bin" / "reflow2-mcp").exists(), both
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 10. the site is published from main, after the release — never from a tag
+# ─────────────────────────────────────────────────────────────────────────────
+
+# What GitHub said when a tag tried, 2026-10-14 (pages run 38555276998, v0.84.0).
+TAG_REFUSED = 'Tag "v0.84.0" is not allowed to deploy to github-pages due to environment protection rules.'
+
+
+def as_list(value) -> list:
+    if value is None:
+        return []
+    return [value] if isinstance(value, str) else list(value)
+
+
+def test_the_site_is_published_from_main_and_never_from_a_tag() -> None:
+    """The repository's `github-pages` environment admits deployments from `main`
+    ALONE, on purpose. #741 added `tags: ["v*"]` to pages.yml so each release
+    republished the site with its own counts, and the first tag after it was
+    refused: TAG_REFUSED. So no trigger of pages.yml may run on a tag, and the
+    manual trigger the release dispatches stays."""
+    on = read_workflow(PAGES)["on"]
+    push = on.get("push") or {}
+    for key in ("tags", "tags-ignore"):
+        assert key not in push, (
+            f"pages.yml triggers on `push.{key}`, and the github-pages environment refuses a tag: "
+            f"{TAG_REFUSED} Publish from main; release.yml dispatches it there after a release.")
+    assert as_list(push.get("branches")) == ["main"], f"pages.yml publishes from main only: {push}"
+    assert "workflow_dispatch" in on, (
+        "pages.yml must keep workflow_dispatch: it is how the release republishes the site on main")
+    assert set(on) <= {"push", "workflow_dispatch"}, (
+        f"pages.yml gained a trigger that may run off main: {sorted(set(on) - {'push', 'workflow_dispatch'})}")
+    # The dispatched run reads every release tag, as a push to main does: the counts
+    # are taken from the design committed at each one (tools/site_counts.py).
+    deploy = [s for j in read_workflow(PAGES)["jobs"].values() for s in steps(j)]
+    checkouts = [s for s in deploy if "actions/checkout" in str(s.get("uses", ""))]
+    assert checkouts and all((s.get("with") or {}).get("fetch-depth") == 0 for s in checkouts), (
+        "the site's checkout must keep fetch-depth: 0 — site_counts.py reads every release tag")
+
+
+def site_dispatch_jobs() -> list[tuple[str, dict]]:
+    return [(n, j) for n, j in jobs().items()
+            if any(re.search(r"\bgh\s+workflow\s+run\b", str(s.get("run", ""))) for s in steps(j))]
+
+
+def test_the_release_dispatches_the_site_on_main_after_publishing() -> None:
+    """Main's own pages run at a cut's merge starts BEFORE the tag exists, so it can
+    miss the release just cut. The release therefore dispatches pages.yml on main
+    once the release is published. A workflow_dispatch made with GITHUB_TOKEN does
+    create a run (GitHub's "Triggering a workflow from a workflow"). The dispatch
+    sits in a job of its own after `publish`: by the time it runs the release is
+    live, so its failure turns the run red without failing or undoing the release."""
+    found = site_dispatch_jobs()
+    assert len(found) == 1, (
+        f"exactly one release job must dispatch the site on main after publishing; found "
+        f"{[n for n, _ in found]}")
+    name, job = found[0]
+    assert name != "publish", (
+        "the dispatch must not live in `publish`: a failed dispatch there would fail the release itself")
+    assert "publish" in as_list(job.get("needs")), (
+        f"job `{name}` must need `publish`, so the release and its tag exist before the site is counted")
+    assert norm(job.get("if")) == PUBLISH_GATE, (
+        f"job `{name}` must carry exactly `if: {PUBLISH_GATE}`, so a dry run republishes nothing — "
+        f"got {job.get('if')!r}")
+    assert job.get("permissions") == {"actions": "write"}, (
+        f"job `{name}` must hold `actions: write` and nothing broader: {job.get('permissions')!r}")
+    assert not any(name in as_list(j.get("needs")) for j in jobs().values()), (
+        f"nothing may wait on `{name}`: the site dispatch must never hold back any part of the release")
+    run = "\n".join(str(s.get("run", "")) for s in steps(job))
+    assert re.search(r"\bgh\s+workflow\s+run\s+pages\.yml\b", run), f"`{name}` must dispatch pages.yml:\n{run}"
+    assert re.search(r"--ref\s+main\b", run), (
+        f"`{name}` must dispatch on main — the only ref the github-pages environment admits:\n{run}")
+    tokens = [norm((s.get("env") or {}).get("GH_TOKEN")) for s in steps(job)
+              if re.search(r"\bgh\s+workflow\s+run\b", str(s.get("run", "")))]
+    assert tokens and all(t in ("github.token", "secrets.GITHUB_TOKEN") for t in tokens), (
+        f"the dispatch must use the run's own GITHUB_TOKEN, scoped by the job's permissions: {tokens}")
+    top = workflow().get("permissions") or {}
+    assert "actions" not in top, f"`actions` must be granted to the dispatch job alone, not workflow-wide: {top}"
+    for n, j in jobs().items():
+        if n != name:
+            assert "actions" not in (j.get("permissions") or {}), f"job `{n}` holds `actions` it does not need"
+
+
 def main() -> int:
     tests = [
         test_the_kit_ships_the_design_reader_beside_the_gate,
@@ -667,6 +759,8 @@ def main() -> int:
         test_install_sh_maps_linux_aarch64,
         test_install_sh_keeps_the_binary_it_replaces,
         test_install_sh_falls_back_to_curl_when_gh_is_not_signed_in,
+        test_the_site_is_published_from_main_and_never_from_a_tag,
+        test_the_release_dispatches_the_site_on_main_after_publishing,
     ]
     failed = 0
     for t in tests:

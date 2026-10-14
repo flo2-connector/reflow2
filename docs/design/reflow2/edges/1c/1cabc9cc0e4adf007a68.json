@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b9bb58a1a8d32c62011381d6a3c0a0af681eaba7fee935fab6695d10d4d9c91",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-site-republishes-from-main-after-a-release-2026-10-14",
+  "properties": {
+    "at": "2026-10-14",
+    "note": "pages.yml no longer has a tag trigger, so no tag tries to deploy and no tag is refused; release.yml's `site` job dispatches pages.yml on main after publishing, so the release just cut is counted without depending on run order. A re-run is still owed: the next release's `site` job and the pages run it dispatches are the measurement that says it works."
+  },
+  "to_id": "fact:root-cause-a-release-tag-cannot-publish-the-site-because-the-github-pages-environment-admits-main-alone-2026-10-14"
+}

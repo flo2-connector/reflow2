@@ -30,8 +30,20 @@
 #
 # A tag push has no `inputs` at all, so the push case is named outright rather
 # than left to how an empty input compares, and a dispatch writes only when
-# dry_run is false. A rehearsal therefore cannot retag `latest` or a version.
+# dry_run is false. A rehearsal therefore cannot retag `latest` or a version,
+# nor republish the site.
 # tools/test_release_workflow.py fails if a writing step goes ungated.
+#
+# THE SITE REPUBLISHES FROM MAIN, AFTER THE RELEASE. The last job, `site`,
+# dispatches .github/workflows/pages.yml on main once `publish` has made the
+# release live, so the home page's counts (tools/site_counts.py, read from the
+# design committed at each release tag) take in the release just cut. It is a
+# dispatch on main and not a tag trigger because the `github-pages` environment
+# admits main alone, on purpose: v0.84.0's tag run was refused
+# (pages run 38555276998). It is a job of its own, after `publish`, holding only
+# `actions: write`, so a failed dispatch turns this run red and can neither fail
+# nor undo a release that is already out; re-run the job, or
+# `gh workflow run pages.yml --ref main`, to republish.
 
 name: release
 
@@ -463,3 +475,32 @@ jobs:
           if [ -n "$created_draft" ]; then
             gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false
           fi
+
+  site:
+    name: republish the site
+    # ⭐ AFTER `publish`, IN A JOB OF ITS OWN, AND NOTHING WAITS ON IT. When this
+    # starts the release is live and its tag exists, so the dispatched pages run
+    # (fetch-depth 0) counts it. Main's own pages run at the cut's merge started
+    # before the tag was pushed and may not have. If this job fails the run goes
+    # red here, beside a release that is already published and untouched.
+    needs: publish
+    if: github.event_name == 'push' || inputs.dry_run == false
+    runs-on: ubuntu-22.04
+    # Only what the dispatch needs: POST .../actions/workflows/{id}/dispatches
+    # takes Actions write. Job-level permissions replace the workflow's, so this
+    # job holds no `contents` or `packages` at all.
+    permissions:
+      actions: write
+    steps:
+      # A workflow_dispatch made with GITHUB_TOKEN DOES start a run. GitHub's
+      # "Triggering a workflow from a workflow": events by GITHUB_TOKEN create no
+      # new run, "with the exception of workflow_dispatch and repository_dispatch".
+      # --ref main: the github-pages environment admits main alone.
+      - name: Dispatch the pages workflow on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+        run: |
+          set -euo pipefail
+          gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo "dispatched pages.yml on main: the site republishes with ${TAG} counted"
