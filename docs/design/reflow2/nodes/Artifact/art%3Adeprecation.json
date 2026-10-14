@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a029febef352c2792f6f364b789a52e9287cf7ef1e3c55a6b213343ebc765cdc",
+  "node_id": "art:deprecation",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "REGISTRY (empty), the one place a deprecation is declared: item, deprecated_in, what_to_do, decision. mark_tools puts \"DEPRECATED in <version>, removed in the next release: <what to do>\" on a deprecated tool's, argument's or reply field's description; mark_vocabulary and listing mark describe_schema; used_by decides which deprecated items a call uses (shared with the surface check) and attach_notice adds `deprecation_notice`; removed_tool is a removed tool's one-release stub refusal; validate and changelog_problems are the registry's own checks. Every function is the identity on an empty registry.",
+    "location": "crates/reflow2-mcp/src/deprecation.rs",
+    "name": "deprecation.rs — the retirement rule: the one registry of deprecations, the mark, the notice, the tool stub and the changelog check",
+    "status": "realized"
+  }
+}

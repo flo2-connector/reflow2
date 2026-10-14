@@ -438,6 +438,13 @@ pub struct ReflowService {
     /// design never keeps its registry alive. A property of the SERVER, like
     /// `caller_rule`: inherited by every session, never reset.
     registry: Option<crate::registry_http::RegistryHandle>,
+    /// What this build is retiring (`crate::deprecation`): the build's
+    /// [`crate::deprecation::REGISTRY`], read where a client reads the surface —
+    /// tools/list, describe_schema, and the notice on a call that uses one.
+    /// A property of the BUILD, like the tool router; a field rather than the
+    /// constant only so a test can serve entries the build does not have
+    /// ([`ReflowService::with_deprecations_for_test`]).
+    pub(crate) deprecations: Arc<[crate::deprecation::Deprecation]>,
 }
 
 /// The served tools that write a FILE at a caller's `path` — annotated
@@ -7028,6 +7035,7 @@ impl ReflowService {
             caller_rule: Arc::new(crate::caller::CallerRule::Local),
             // A single design, until a registry says otherwise (`with_registry`).
             registry: None,
+            deprecations: Arc::from(crate::deprecation::REGISTRY),
         }
     }
 
@@ -7109,6 +7117,18 @@ impl ReflowService {
     /// name (`NotMeasured::NoTree`) rather than reporting files absent.
     pub fn without_tree(mut self) -> Self {
         self.tree_root = None;
+        self
+    }
+
+    /// Test seam: serve THESE deprecations instead of the build's registry,
+    /// so a test can watch the marks and the notice on entries no release
+    /// has made (the registry is empty until the first real one).
+    #[doc(hidden)]
+    pub fn with_deprecations_for_test(
+        mut self,
+        deprecations: Vec<crate::deprecation::Deprecation>,
+    ) -> Self {
+        self.deprecations = Arc::from(deprecations);
         self
     }
 
@@ -7290,6 +7310,8 @@ impl ReflowService {
             // A property of the SERVER, like the caller rule: every session on
             // a registry-served design has the same bounded way to another.
             registry: self.registry.clone(),
+            // A property of the BUILD: every session retires the same things.
+            deprecations: Arc::clone(&self.deprecations),
         }
     }
 
@@ -8185,9 +8207,16 @@ impl ReflowService {
         // copy), and every typed edge helper naming its bulk form (I24), added
         // at LIST time like the lessons so what `find_tools` ranks stays each
         // tool's own job.
-        crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
-            crate::lessons::enrich_tools(tools, by_step),
-        ))
+        //
+        // And last, THE RETIREMENT RULE's mark (`crate::deprecation`): a
+        // deprecated tool, argument or reply field says it is going, where the
+        // client reads it. An empty registry returns the list untouched.
+        crate::deprecation::mark_tools(
+            crate::bulk_edges::name_the_bulk_route(crate::settles::declare_on(
+                crate::lessons::enrich_tools(tools, by_step),
+            )),
+            &self.deprecations,
+        )
     }
 
     /// The served list of THIS design and the lessons it carries, from one read
@@ -8287,6 +8316,11 @@ impl ReflowService {
             }
             _ => Ok(crate::receipt::Echo::Node),
         };
+        // THE RETIREMENT RULE's notice (`crate::deprecation`) reads what the
+        // call passed, so it is kept before the request moves — and only when
+        // this build is retiring anything, so an empty registry costs nothing.
+        let arguments_for_notice = (!self.deprecations.is_empty())
+            .then(|| serde_json::Value::Object(request.arguments.clone().unwrap_or_default()));
         // THE USAGE LEDGER (`crate::usage`) reads the verb and never the
         // object: the tool, who connected, and — for `get_skill` alone, whose
         // argument is reflow2's own vocabulary — which skill. No other
@@ -8389,10 +8423,18 @@ impl ReflowService {
             // worked: the nearest served names, and, for a guessed setter
             // (`update_node`, `set_node`), the revise route
             // (`crate::revise_route`).
+            //
+            // A tool REMOVED AFTER ITS RELEASE OF NOTICE is that release's stub
+            // (`crate::deprecation::removed_tool`, the accepted tool rule): the
+            // same refusal, saying what to do instead.
             _ if self.tool_router.get(&tool_name).is_none() => Err(McpError::invalid_params(
                 format!(
-                    "tool not found: {} find_tools finds a tool from a sentence in your own words.",
-                    crate::revise_route::unknown_tool(&tool_name, &self.tool_router.list_all())
+                    "tool not found: {}{} find_tools finds a tool from a sentence in your own \
+                     words.",
+                    crate::revise_route::unknown_tool(&tool_name, &self.tool_router.list_all()),
+                    crate::deprecation::removed_tool(&self.deprecations, &tool_name)
+                        .map(|s| format!(" {s}"))
+                        .unwrap_or_default()
                 ),
                 None,
             )),
@@ -8488,7 +8530,7 @@ impl ReflowService {
         };
         // The receipt is cut from the reply the handler built, so `echo: "node"`
         // costs nothing and a refusal is never touched.
-        match (echo, answer) {
+        let answer = match (echo, answer) {
             (
                 Ok(crate::receipt::Echo::Receipt),
                 Ok(rmcp::model::CallToolResponse::Complete(mut r)),
@@ -8496,6 +8538,23 @@ impl ReflowService {
                 if let Some(v) = r.structured_content.take() {
                     r.structured_content = Some(crate::receipt::receipt(v));
                 }
+                Ok(rmcp::model::CallToolResponse::Complete(r))
+            }
+            (_, other) => other,
+        };
+        // THE NOTICE, last, on the reply the client will get: a call that used
+        // something this build is retiring is told so, with what to do
+        // (`crate::deprecation::attach_notice` says why this shape). Nothing
+        // is read or added when the registry is empty.
+        match (arguments_for_notice, answer) {
+            (Some(args), Ok(rmcp::model::CallToolResponse::Complete(mut r))) => {
+                let used = crate::deprecation::used_by(
+                    &self.deprecations,
+                    &tool_name,
+                    Some(&args),
+                    r.structured_content.as_ref(),
+                );
+                crate::deprecation::attach_notice(&mut r, &used);
                 Ok(rmcp::model::CallToolResponse::Complete(r))
             }
             (_, other) => other,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee43332036e7a291186c981e678780fd7249f4eac38626f0ad7a8351eaf74b13",
+  "edge_type": "PART_OF_FLOW",
+  "from_id": "cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone",
+  "properties": {
+    "step_order": 2,
+    "weight_basis": "estimated"
+  },
+  "to_id": "flow:release-cut"
+}

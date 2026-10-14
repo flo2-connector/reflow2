@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70fa83607a9ef9632add2d4c9df2ae2c80adeb22207a401f03a0ffa2ed0acf13",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-served-item-is-removed-only-after-a-release-that-announced-it-test",
+  "properties": {
+    "covers": "partial",
+    "note": "The served path: the marks, describe_schema, the notice, the removed tool's refusal, tools/list against the goldens, and the registry's validity."
+  },
+  "to_id": "ver:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}

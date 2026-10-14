@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:faa25c77146ca9fd2f426020bbc00b366dc90e07268a280b87062103d9de8dbd",
+  "node_id": "art:every-deprecation-is-announced-in-the-changelog-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The changelog check, on the real files in CI's workspace suite: every deprecation::REGISTRY entry is named (each name in backticks) under ### Deprecated with a What to do line, in a changelog.d fragment until its release is cut, then in that release's CHANGELOG.md section. Held to each way it fails with test-only entries: no fragment, the wrong heading, no What to do line, a partial name, a release already cut that never announced it, and a version that is not one.",
+    "location": "crates/reflow2-mcp/tests/every_deprecation_is_announced_in_the_changelog.rs",
+    "name": "tests/every_deprecation_is_announced_in_the_changelog.rs",
+    "status": "realized"
+  }
+}

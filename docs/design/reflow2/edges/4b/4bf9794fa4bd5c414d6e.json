@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5d80b130cc6abd20bcaf22a1cdd7d9df4b25ce87fff021cb8db85e13a595d6b4",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone",
+  "properties": {},
+  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
+}

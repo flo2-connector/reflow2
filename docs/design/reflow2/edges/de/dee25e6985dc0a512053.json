@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5fa37449f0f3d9f6ce28e4384a9b67770bce987acf1dfb7e12f0c1c99f6292c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-served-item-is-removed-only-after-a-release-that-announced-it-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:e7df75f65ec1b448b2050fbbda33c11ab88e8c6c1812417d7d4727b3e64e7cba",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:main"
+}

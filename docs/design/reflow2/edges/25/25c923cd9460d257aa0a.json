@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:682782e5ea59a1f353bc44e637b6ec57814964df96f18c928bad635531863299",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

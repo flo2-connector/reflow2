@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c9edb75b048e0ebd81a66cf8b1f6c7ac1c95c5b1855f4c455110bc7a95cc9d4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:every-deprecation-is-announced-in-the-changelog-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:44578d73fc88c68e1aa44974b831094995a28dfae47f251407a02c84d4edc36a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-served-item-is-removed-only-after-a-release-that-announced-it-2026-10-14",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}

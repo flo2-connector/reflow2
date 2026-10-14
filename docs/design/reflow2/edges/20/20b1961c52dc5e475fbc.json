@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7a12d56a7d031ab95aa851d14ff98f840e651ba85b836b486e62ebe9e09a2877",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b2840120131f9ca3",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:73de31b349f34160d36bdc247cb9cd6197dde8bbbb16a3bdc635d43cfc02b1b9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:deprecation"
+}

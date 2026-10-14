@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d625dd5f7291f25782a566f3d952b1833c7a8ee3ae86c311c057bd67cd24b601",
+  "node_id": "chg:baseline-dbc60467a311f8c5",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-14",
+    "name": "New test: what a client sees while something is going.",
+    "subject": "record"
+  }
+}

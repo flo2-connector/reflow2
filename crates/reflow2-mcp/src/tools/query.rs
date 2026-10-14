@@ -604,39 +604,56 @@ impl ReflowService {
                  and `to` together, to read one part's hints in full.",
             )
         };
-        match (&req.node_type, &req.from, &req.to) {
-            (None, None, None) => ok_json(bound(
-                serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?,
-            )),
+        let mut reply = match (&req.node_type, &req.from, &req.to) {
+            (None, None, None) => {
+                let mut v = bound(serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?);
+                // THE FULL ANSWER LISTS WHAT IS GOING (`crate::deprecation`):
+                // every deprecation with what to do, after bounding, like the
+                // writers below — and no key at all while nothing is.
+                if let (Some(list), Some(m)) = (
+                    crate::deprecation::listing(&self.deprecations),
+                    v.as_object_mut(),
+                ) {
+                    m.insert("deprecations".into(), list);
+                }
+                v
+            }
             // The writers are added AFTER bounding: they are a handful of tool
             // names and one short sentence, and a trimmed reply is exactly the
             // one whose reader most needs to be told which tool writes the type.
-            (Some(t), None, None) if req.required_only => ok_json(with_writers(
+            (Some(t), None, None) if req.required_only => with_writers(
                 t,
                 bound(
                     serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
                         .map_err(ser_err)?,
                 ),
-            )),
-            (Some(t), None, None) => ok_json(with_writers(
+            ),
+            (Some(t), None, None) => with_writers(
                 t,
                 bound(
                     serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
                         .map_err(ser_err)?,
                 ),
-            )),
-            (None, Some(f), Some(t)) => ok_json(with_drawn_by(bound(
+            ),
+            (None, Some(f), Some(t)) => with_drawn_by(bound(
                 serde_json::to_value(g.edge_types_between(f, t).map_err(params_err)?)
                     .map_err(ser_err)?,
-            ))),
-            // A half-given pair is a mistake, not a request for everything.
-            _ => Err(McpError::invalid_params(
-                "describe_schema takes no arguments (the full vocabulary), `node_type` alone, \
-                 or `from` and `to` together — not a mix."
-                    .to_string(),
-                None,
             )),
-        }
+            // A half-given pair is a mistake, not a request for everything.
+            _ => {
+                return Err(McpError::invalid_params(
+                    "describe_schema takes no arguments (the full vocabulary), `node_type` alone, \
+                     or `from` and `to` together — not a mix."
+                        .to_string(),
+                    None,
+                ));
+            }
+        };
+        // THE MARK on a deprecated node type, property and edge type, where
+        // the vocabulary is read (`crate::deprecation::mark_vocabulary`). An
+        // empty registry leaves the answer untouched.
+        crate::deprecation::mark_vocabulary(&mut reply, &self.deprecations);
+        ok_json(reply)
     }
 
     #[tool(
