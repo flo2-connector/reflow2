@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:1e025dc33f58876736bfb94c89710256fe1627693a09aa4ec3f662b17b6bb30c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-owner-reads-what-they-are-asked-to-approve-in-one-addressed-digest",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

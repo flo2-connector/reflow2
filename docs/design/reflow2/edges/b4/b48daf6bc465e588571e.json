@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:cb400ecb4b882c5194e06487adef5239eb89daa116259f8bc5b68cb3fa1c2cde",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-decision-states-what-it-binds",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

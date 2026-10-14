@@ -1,9 +1,13 @@
 {
-  "content_hash": "sha256:a0539aca46f3356d4d8d9876ae12d7499e51a1ee809f454dddf57f2b3b08e3ed",
+  "content_hash": "sha256:a3d942bba18b97361c3692be410934e873fe56facd0ed673a883f66ddd25c295",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
+  "prev_item_hash": "sha256:a0539aca46f3356d4d8d9876ae12d7499e51a1ee809f454dddf57f2b3b08e3ed",
   "properties": {
     "approved_at": "2026-09-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
       "author",
       "approver"

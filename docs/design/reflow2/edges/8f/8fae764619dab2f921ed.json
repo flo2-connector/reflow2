@@ -1,11 +1,20 @@
 {
-  "content_hash": "sha256:57eaa37e232c1dbba22236bbc77a0990fbe7b694e2adcc66583c53131309a16a",
+  "content_hash": "sha256:b76762feddab5a4821e275c50cee6cf6a1d5115f895a16b826dba3a09d6a6ac5",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-sme-augmentation-was-designed-and-never-built",
+  "prev_item_hash": "sha256:57eaa37e232c1dbba22236bbc77a0990fbe7b694e2adcc66583c53131309a16a",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_at": "2026-07-17",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

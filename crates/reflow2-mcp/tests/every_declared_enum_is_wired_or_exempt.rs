@@ -144,13 +144,36 @@ const WIRED: &[(&str, &str, &str, &str)] = &[
 
 /// The same, for a field nested inside a list parameter's item schema:
 /// `(tool, $defs entry, field, type, property)`.
-const WIRED_NESTED: &[(&str, &str, &str, &str, &str)] = &[(
-    "set_artifact_checksums",
-    "ChecksumAcceptReq",
-    "change_type",
-    "ChangeEvent",
-    "change_type",
-)];
+const WIRED_NESTED: &[(&str, &str, &str, &str, &str)] = &[
+    (
+        "set_artifact_checksums",
+        "ChecksumAcceptReq",
+        "change_type",
+        "ChangeEvent",
+        "change_type",
+    ),
+    (
+        "review_relations",
+        "RelationLinkReq",
+        "alignment",
+        "CONTRADICTS",
+        "alignment",
+    ),
+    (
+        "review_relations",
+        "RelationLinkReq",
+        "validation_status",
+        "CAUSES",
+        "validation_status",
+    ),
+    (
+        "review_relations",
+        "RelationLinkReq",
+        "weight_basis",
+        "DEPENDS_ON",
+        "weight_basis",
+    ),
+];
 
 /// `(type, property, why it must not publish that enum)`.
 ///
@@ -196,27 +219,14 @@ const EXEMPT: &[(&str, &str, &str)] = &[
     (
         "CAUSES",
         "basis",
-        "Edge property with no typed parameter anywhere on the surface: the only way to \
-         write it is create_edge's generic `props` map, which takes free JSON and has no \
-         schema to publish. Wiring would need a typed helper first.",
-    ),
-    (
-        "CAUSES",
-        "validation_status",
-        "Edge property with no typed parameter anywhere on the surface: the only way to \
-         write it is create_edge's generic `props` map, which takes free JSON and has no \
-         schema to publish. Wiring would need a typed helper first.",
+        "review_relations' per-link `basis` serves CAUSES and DUPLICATES at once, so it \
+         publishes the UNION of both sets (enum_schema::review_link_basis_opt), not this one \
+         alone; the core refuses a value the link's own relation does not declare. \
+         every_defaulted_edge_property_is_exposed_or_exempt.rs checks the union covers it.",
     ),
     (
         "CONSUMES",
         "weight_basis",
-        "Edge property with no typed parameter anywhere on the surface: the only way to \
-         write it is create_edge's generic `props` map, which takes free JSON and has no \
-         schema to publish. Wiring would need a typed helper first.",
-    ),
-    (
-        "CONTRADICTS",
-        "alignment",
         "Edge property with no typed parameter anywhere on the surface: the only way to \
          write it is create_edge's generic `props` map, which takes free JSON and has no \
          schema to publish. Wiring would need a typed helper first.",
@@ -261,18 +271,12 @@ const EXEMPT: &[(&str, &str, &str)] = &[
          schema to publish. Wiring would need a typed helper first.",
     ),
     (
-        "DEPENDS_ON",
-        "weight_basis",
-        "Edge property with no typed parameter anywhere on the surface: the only way to \
-         write it is create_edge's generic `props` map, which takes free JSON and has no \
-         schema to publish. Wiring would need a typed helper first.",
-    ),
-    (
         "DUPLICATES",
         "basis",
-        "Edge property with no typed parameter anywhere on the surface: the only way to \
-         write it is create_edge's generic `props` map, which takes free JSON and has no \
-         schema to publish. Wiring would need a typed helper first.",
+        "review_relations' per-link `basis` serves CAUSES and DUPLICATES at once, so it \
+         publishes the UNION of both sets (enum_schema::review_link_basis_opt), not this one \
+         alone; the core refuses a value the link's own relation does not declare. \
+         every_defaulted_edge_property_is_exposed_or_exempt.rs checks the union covers it.",
     ),
     (
         "DimensionObservation",

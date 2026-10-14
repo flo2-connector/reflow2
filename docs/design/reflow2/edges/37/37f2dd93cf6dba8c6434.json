@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:bfedec22d247b4eceb5b6943dbf167b1367d928f67c08fc264995825e7288ba0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:what-reflow2-does-when-a-server-does-not-rotate-refresh-tokens",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

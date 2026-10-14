@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6f3241b99d05bc20b821780d35ddc37800aff0c7bbbbaa790959235967f701d1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-drawn-relation-is-read-back-as-a-sentence-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:431ef7fe2430e64f40645097eb8b2470ab794efb79d79c2d87bf62c546443121",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:build-reflow2s-oauth-client-on-rmcps-auth-feature",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

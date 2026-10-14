@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:055443685a646046c5d05a7eb788751b0db98e9aae664d3909e05facad34d1ec",
+  "content_hash": "sha256:49875394a3ec6e3556085d240bb5ada43907b780d23aee97132372882d7c6386",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:every-relationship-reflow2-holds-says-what-it-means-not-only-its-edge-types",
+  "prev_item_hash": "sha256:055443685a646046c5d05a7eb788751b0db98e9aae664d3909e05facad34d1ec",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

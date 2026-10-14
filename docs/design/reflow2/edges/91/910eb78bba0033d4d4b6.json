@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:61973b347c8fc85a1c35b9fd7527f430e38848113323f61b4febc52b28a6389c",
+  "content_hash": "sha256:d88e2b93ffe332daed8058ac5d5862337ce9b1c5a246a9ca210d87dabf4e4e23",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:the-graph-engine-keeps-a-compact-index-per-primitive",
+  "prev_item_hash": "sha256:61973b347c8fc85a1c35b9fd7527f430e38848113323f61b4febc52b28a6389c",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

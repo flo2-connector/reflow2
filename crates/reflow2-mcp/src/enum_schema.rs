@@ -223,6 +223,37 @@ list_enum!(
 );
 schema_enum!(changed_action_opt, "CHANGED", "action", opt);
 schema_enum!(changed_action_req, "CHANGED", "action", req);
+// A review link's defaulted properties (`RelationLinkReq`): what a relation's
+// schema default would otherwise assert for the writer.
+schema_enum!(contradicts_alignment_opt, "CONTRADICTS", "alignment", opt);
+schema_enum!(
+    causes_validation_status_opt,
+    "CAUSES",
+    "validation_status",
+    opt
+);
+schema_enum!(
+    depends_on_weight_basis_opt,
+    "DEPENDS_ON",
+    "weight_basis",
+    opt
+);
+
+/// `basis` on a review link means one thing on CAUSES and another on
+/// DUPLICATES, so the field publishes the UNION of what the review relations
+/// declare for it; the core refuses a value the link's own relation does not
+/// allow, naming that relation's values.
+pub fn review_link_basis_opt(_: &mut SchemaGenerator) -> Schema {
+    let mut values: Vec<String> = Vec::new();
+    for relation in reflow2_core::relate::REVIEW_RELATIONS {
+        for v in reflow2_core::schema::enum_values(relation, "basis").unwrap_or_default() {
+            if !values.contains(&v) {
+                values.push(v);
+            }
+        }
+    }
+    enum_of(values, true)
+}
 // Sets that live only in code — the same const the handler enforces.
 list_enum!(
     review_relation_req,

@@ -1,10 +1,19 @@
 {
-  "content_hash": "sha256:014c958666392e82300faa84a41fca6bff44215fef046e3642ef3e995131be2f",
+  "content_hash": "sha256:95053d699660901d42ad92c32a79cdc2daee209cfa4bc8176c78af93da7f2a6d",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-who-owns-reflow2-and-what-an-accepted-contribution-becomes",
+  "prev_item_hash": "sha256:014c958666392e82300faa84a41fca6bff44215fef046e3642ef3e995131be2f",
   "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

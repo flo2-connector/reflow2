@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5aa052956405c0abb3162b64308d5a15d8e513a39e40dc0a398b8d9026a1f55f",
+  "node_id": "art:a-contradiction-drawn-as-corroboration-is-stored-supporting-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Over the MCP surface (the service's own tool handlers): a CONTRADICTS drawn through review_relations with alignment \"supporting\" is stored supporting with its evidence intact, and detect_defects reports no contradiction for it; one drawn with no alignment is still stored opposing and still reported; a value the schema does not allow (\"neutral\", or a DUPLICATES basis on a CAUSES link) is refused naming the property and its legal values, with nothing written; a property the link's relation does not declare (alignment on CAUSES, optional on BLOCKS) is refused naming what that relation takes; a value that differs from an edge already stored is refused naming create_edge, while the same value reads as already present; and add_decision's related_to carries the same fields. Five of its six cases failed on main c58305ba8 (\"unknown field `alignment`\").",
+    "location": "crates/reflow2-mcp/tests/a_contradiction_drawn_as_corroboration_is_stored_supporting.rs",
+    "name": "tests/a_contradiction_drawn_as_corroboration_is_stored_supporting.rs",
+    "status": "realized"
+  }
+}

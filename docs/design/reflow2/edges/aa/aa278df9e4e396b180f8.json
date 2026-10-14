@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:f0f00b5b59d0d5d93dae04612bdc28bc24b873809b8b0bda6cef8cb769834cb6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-rule-knows-where-else-it-is-written-down",
+  "properties": {
+    "approved_at": "2026-10-13",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
