@@ -119,7 +119,7 @@ async fn every_declared_relation_is_reported_with_its_reading_and_count() {
     assert_eq!(r["declared"], 24, "{r}");
     assert_eq!(r["relations"].as_array().unwrap().len(), 24);
     assert_eq!(
-        r["counted"], 22,
+        r["counted"], 23,
         "the closure is declared and not counted: {r}"
     );
 
