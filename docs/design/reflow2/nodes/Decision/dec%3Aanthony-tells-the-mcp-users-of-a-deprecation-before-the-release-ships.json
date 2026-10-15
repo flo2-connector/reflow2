@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:45fa1546c30692bf0508f4e08e9cf0b96a280d4bb666c439c66870b4f3c32ac4",
+  "node_id": "dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "D3 of the 2026-10-13 cleanup plan: who tells Alex, and how, when a release deprecates or removes something a client can call or read.\n\nChosen:\n- The agent cutting the release drafts a short note from that release's ### Deprecated and ### Removed entries and their What to do lines, in plain words, and gives it to Anthony.\n- Anthony sends it, however he normally reaches Alex. On his request the agent may put the note in his Gmail as a draft. The agent never sends it.\n- The release is not tagged until Anthony says he has told Alex.\n- A release that deprecates and removes nothing owes no note.\n\nConsidered and not chosen:\n- The release notes alone. Alex would have to go looking, and the 2026-10-13 amendment says the people who rely on the server hear first.\n- The in-band notice alone. It is built (#751) and stays, but it reaches a client only when it calls the deprecated item, which may be after the release that removes it.\n- The agent emailing Alex directly. That is an outward message to a third party in Anthony's name.",
+    "kind": "choice",
+    "name": "Anthony tells the people who rely on the MCP server about a deprecation or removal before its release ships; the cutting agent drafts the note, and the tag waits for his word",
+    "rationale": "Anthony, 2026-10-14: \"Merge 752 and go with your recommendation on D3\". The recommendation he accepted was given in this session just before:\n\"At each release that deprecates or removes something, I draft a short note from the changelog's 'What to do' lines. You send it to Alex however you normally reach him. I can put it in your Gmail as a draft if you like. The release waits until you say 'told'.\"\n\nWhy this way: the rule (req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in, amended 2026-10-13) exists so that Alex is never surprised. A note from his brother reaches him, where a changelog may not. Drafting from the changelog's own lines keeps the note and the release notes saying the same thing. Gating the tag on Anthony's word keeps the step from being skipped silently.\n\nThe first release it applies to is the one carrying #752 (the Anchor deprecation).\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "accepted"
+  }
+}

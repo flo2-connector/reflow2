@@ -91,8 +91,10 @@
 //! files by `tests/every_deprecation_is_announced_in_the_changelog.rs`). The
 //! release cut lists every deprecation and every removal in the release notes,
 //! and telling the people who rely on the MCP server is owed before the
-//! release ships (AGENTS.md, `flow:release-cut`). Who tells Alex, and how, is
-//! Anthony's open decision (D3); nothing here assumes an answer.
+//! release ships (AGENTS.md, `flow:release-cut`): the cutting agent drafts the
+//! note, Anthony sends it, and the release waits for his word that he has
+//! (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`).
+//! Nothing in this module sends anything.
 
 use std::borrow::Cow;
 
