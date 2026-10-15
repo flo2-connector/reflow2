@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:d6bc8a73f29b2dc8454fc6fdb5b7ad378c46027fd25fe2218d608ec6936fdf56",
+  "content_hash": "sha256:e58e2c67144b0bf65497500996a4166bfb3f8f87d15e6b29d1b840c26723a01b",
   "edge_type": "CHANGED",
   "from_id": "chg:the-vocabulary-is-served-in-a-fields-own-terms",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 3,
     "action": "modified",
-    "checksum_after": "sha256:1864258c348850a024177459748390803aee0c9e71b060eaa9a9b897e94e1e9f",
+    "checksum_after": "sha256:bddac39389c1ea926b288d15488aa355a0309c007307b08cab6320e8689131c9",
     "checksum_basis": "asserted"
   },
   "to_id": "art:schema-inference"
