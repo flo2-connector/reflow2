@@ -113,6 +113,24 @@ schema:
         confidence: { type: float, range: [0.0, 1.0] }
         evidence: { type: string }
         alignment: { type: enum, values: [opposing, supporting], default: opposing, description: "opposing = conflict; supporting = corroboration. Both stored here." }
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: counterexample
+            means: >-
+              An instance that makes a statement false: the counterexample is the source
+              of a CONTRADICTS edge and the statement it breaks is the target, with
+              `alignment` left at `opposing` (the default). With `alignment`
+              `supporting` the same edge is corroboration, the opposite. Drawing it
+              changes no status: the refuted statement's owner settles it.
+          - term: refutes
+            means: >-
+              A refutes B: A shows B false. Drawn as CONTRADICTS from A to B with
+              `alignment` `opposing` (the default); a CONTRADICTS edge marked
+              `supporting` corroborates instead. Drawing it changes no status: B's owner
+              settles it.
       extraction_hint: Two decisions/requirements/claims that conflict (or, with alignment=supporting, reinforce).
 
     # VALIDATES retired 2026-07-22 (dec:edge-orthogonality): orthogonal-in-name-

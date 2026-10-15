@@ -22,6 +22,7 @@ pub mod dto;
 pub mod enum_schema;
 pub mod export_standing;
 pub mod export_write;
+pub mod field_terms;
 pub mod git;
 pub mod handshake;
 pub mod host_gate;

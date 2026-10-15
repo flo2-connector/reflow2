@@ -286,3 +286,46 @@ fn what_was_judged_out_stays_out() {
         );
     }
 }
+
+/// A field name is one of the declared fields: `mathmatics` is a typo the
+/// table must not quietly grow a second field from.
+#[test]
+fn every_terms_field_is_a_declared_field() {
+    let all = declared();
+    nonempty(&all);
+    let known = reflow2_core::foundation::core::TERM_FIELDS;
+    let unknown: Vec<_> = all
+        .iter()
+        .filter(|(f, ..)| !known.contains(&f.as_str()))
+        .map(|(f, t, ty, _)| format!("{f}/{t} on {ty}"))
+        .collect();
+    assert!(
+        unknown.is_empty(),
+        "terms under a field TERM_FIELDS does not declare ({known:?}): {unknown:?}"
+    );
+}
+
+/// The lookup an agent reaches through `describe_schema`: each mathematics
+/// term finds its one home, whatever its case and spacing.
+#[test]
+fn every_mathematics_term_finds_its_home() {
+    let g = DesignGraph::open_in_memory().expect("graph");
+    for (term, home) in MATHEMATICS {
+        for asked in [
+            term.to_string(),
+            term.to_uppercase(),
+            format!("  {}  ", term.replace(' ', "   ")),
+        ] {
+            let found = g.types_called(&asked);
+            assert_eq!(found.len(), 1, "{asked:?}: {found:?}");
+            let h = &found[0];
+            assert_eq!(
+                h.node_type.as_deref().or(h.edge_type.as_deref()),
+                Some(*home),
+                "{asked:?}"
+            );
+            assert_eq!(h.field, "mathematics");
+            assert!(!h.means.is_empty());
+        }
+    }
+}

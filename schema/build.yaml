@@ -48,6 +48,26 @@ schema:
           deliberate (dec:a-dated-field-report-is-registered-and-parked). Giving it a
           DOCUMENTS edge would assert it must track the design, and a field report is
           correct precisely by NOT tracking it.
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: cited result
+            means: >-
+              A result this design uses on the authority of a published source instead
+              of showing it here, held as the Artifact that records the source:
+              `location` is its citation (a DOI, an arXiv id, a URL, or a book and page)
+              and `description` states the result. It comes from a cited source, never
+              from a model's memory. Registering it shows nothing: it is as sound as its
+              source.
+          - term: reference
+            means: >-
+              A cited work (a paper, a book, a standard), held as an Artifact whose
+              `location` says where to find it: a DOI, an arXiv id, a URL, or a book and
+              page. The reference is the source; what the design takes from it is a
+              cited result. Never written from a model's memory. Not reflow2's
+              cross-design reference, which names a node another design holds.
       extraction_hint: >
         A concrete, addressable deliverable that lives OUTSIDE the graph and is
         pointed to by `location` — a source file, an OpenAPI spec, a dataflow
