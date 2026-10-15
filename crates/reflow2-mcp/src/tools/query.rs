@@ -693,10 +693,7 @@ impl ReflowService {
                        A Component also carries `built_reading`: what its evidence reads as \
                        (`built`, `partly_built`, `not_built`) with the evidence counted, \
                        computed beside its stored `status`, which it never moves. \
-                       A node concluded by at least one Inference also carries `foundations`: \
-                       the terminal premises (axioms) its inference chain ultimately rests on, \
-                       each with its truth, and the honest limit — what the read says it does \
-                       and does not mean. Omitted when the node is not a conclusion. \
+                       A concluded node also carries `foundations`: the axioms it rests on. \
                        Ask for this when you want everything recorded about one item — pull up \
                        the full record for a requirement or any single node — or a node and its \
                        edges: what it is connected to, its neighbours, which nodes link to it. \
