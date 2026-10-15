@@ -69,6 +69,7 @@ pub mod heal;
 pub mod hierarchy;
 pub mod identity;
 pub mod ility;
+pub mod inference;
 pub mod ingest;
 pub mod intent;
 pub mod item_layout;
@@ -187,6 +188,10 @@ pub use heal::{
 };
 pub use hierarchy::{DEFAULT_RUNGS, HierarchyIssue, HierarchyIssueKind, Ladder};
 pub use ility::{AssertedScore, IlityEvidence, IlityReport, IlitySignal};
+pub use inference::{
+    InferenceImpact, InferenceReading, InferenceSpec, InferenceWritten, PremiseReading, Truth,
+    UnfollowedConclusion,
+};
 pub use ingest::{
     DroppedEdge, FuzzyMerge, IngestOptions, IngestReport, IngestStatus, IngestStep, MatchKind,
     MergeCandidate, PassError,

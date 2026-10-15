@@ -375,7 +375,14 @@ mod tests {
         // Measured, not assumed: a probe document with an undeclared type was
         // refused with "Unknown node type" and nothing was written. The upgrade
         // note is owed and says so.
-        assert_eq!(schema.node_types.len(), 28, "expected 28 node types");
+        // 28→29 on 2026-10-14 is Inference, and 66→68 below is its two links,
+        // PREMISE_OF and CONCLUDES
+        // (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows,
+        // dec:an-inference-is-a-record-between-premises-and-conclusion). Additive,
+        // so an older graph opens unchanged; it moves the stamp, so a store this
+        // build has opened is refused by an older reflow2, and the next release
+        // owes the upgrade note.
+        assert_eq!(schema.node_types.len(), 29, "expected 29 node types");
         // 65 since ANSWERS (2026-09-02) — a design record names the Question it
         // answered. The schema had DESCRIBED this edge for months without it
         // existing: `Question.answer` read "the design nodes it produced are
@@ -399,7 +406,7 @@ mod tests {
         // dec:design-authorship-identity, built for
         // req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for.
         // It moves the stamp; the upgrade note is owed at the next cut.
-        assert_eq!(schema.edge_types.len(), 66, "expected 66 edge types");
+        assert_eq!(schema.edge_types.len(), 68, "expected 68 edge types");
     }
 
     #[test]

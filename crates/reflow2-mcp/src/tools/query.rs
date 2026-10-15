@@ -1335,10 +1335,26 @@ fn decorate(
     } else {
         None
     };
+    // A STATED INFERENCE STEP CARRIES ITS VERDICT, computed on the read like
+    // `built_reading` (crate::inference): its rule over each premise's truth,
+    // holds / fails / unknown, with every premise and why. Only on an
+    // Inference; absent on every other type.
+    let inference_reading = if node_type == reflow2_core::nodes::node::INFERENCE {
+        g.inference_reading(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
         if let Some(reading) = built_reading {
             obj.insert("built_reading".to_string(), reading);
+        }
+        if let Some(reading) = inference_reading {
+            obj.insert("inference_reading".to_string(), reading);
         }
     }
     Ok(rendered)

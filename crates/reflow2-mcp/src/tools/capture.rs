@@ -2962,6 +2962,98 @@ impl ReflowService {
     }
 
     #[tool(
+        description = "Record an INFERENCE STEP in one call: how some premises support one \
+                       conclusion, and by which rule — `all` (every premise must hold; the AND \
+                       a decomposition has always rolled up by), `any` (one is enough: \
+                       redundant support, alternative grounds) or `k_of_n` with `k` (a quorum, \
+                       two-out-of-three). A named rule rides `rule_name` and is checked by its \
+                       combination: modus ponens is `all` over P and P → Q. `warrant` says why, \
+                       in words a person can challenge. Premises can be any record — a \
+                       requirement, a check, a decision, a constraint, another step. reflow2 \
+                       then CHECKS THAT THE CONCLUSION FOLLOWS, three-valued over each premise's \
+                       computed truth (a requirement delivered or met, a check passing, a \
+                       decision accepted, a constraint not violated; a type with none of these \
+                       is unknown, never guessed): a requirement the step concludes is \
+                       delivered when the step holds; every blast radius names each step a \
+                       changed premise reaches as BROKEN or WEAKENED; get_node on the step \
+                       reads its verdict; detect_gaps reports a conclusion whose status claims \
+                       more than its steps support. It checks the FORM, never the content: a \
+                       false premise passes. Refused, with nothing written: a rule outside the \
+                       three, a `k_of_n` without 1 ≤ k ≤ the number of premises, a `k` on \
+                       another rule, a premise or conclusion that does not exist, and a circle \
+                       (a closed chain of equivalences is still provable: make each implication \
+                       a statement of its own). One step concludes one node; a node concluded \
+                       by several steps stands while ANY holds. Calling again with the same id \
+                       revises the step and ADDS the premises given. \
+                       Ask for this to say that a claim follows from other things in the design.",
+        title = "Add an Inference Step",
+        annotations(read_only_hint = false, destructive_hint = false)
+    )]
+    pub async fn add_inference(
+        &self,
+        Parameters(req): Parameters<AddInferenceReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let mut g = self.write_lock().await?;
+        let spec = reflow2_core::InferenceSpec {
+            id: req.id.clone(),
+            rule: req.rule.clone(),
+            k: req.k,
+            premises: req.premises.clone(),
+            conclusion: req.conclusion.clone(),
+            rule_name: req.rule_name.clone(),
+            warrant: req.warrant.clone(),
+            name: req.name.clone(),
+        };
+        // Which links were there before the call, so the reply can say what it
+        // drew and what it found already drawn.
+        let mut was = Vec::new();
+        for p in &req.premises {
+            was.push((
+                p.clone(),
+                crate::drawn_edges::present(&g, p, reflow2_core::nodes::edge::PREMISE_OF, &req.id)
+                    .map_err(dyno_err)?,
+            ));
+        }
+        let concluded_before = crate::drawn_edges::present(
+            &g,
+            &req.id,
+            reflow2_core::nodes::edge::CONCLUDES,
+            &req.conclusion,
+        )
+        .map_err(dyno_err)?;
+        let written = g.add_inference(&spec).map_err(dyno_err)?;
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        for (p, present) in was {
+            edges.record(&p, reflow2_core::nodes::edge::PREMISE_OF, &req.id, present);
+        }
+        edges.record(
+            &req.id,
+            reflow2_core::nodes::edge::CONCLUDES,
+            &req.conclusion,
+            concluded_before,
+        );
+        let reading = g.inference_reading(&req.id).map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(NodeDto::from(written.node)).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        if let Some(obj) = reply.as_object_mut() {
+            obj.insert("revised".into(), json!(written.revised));
+            obj.insert(
+                "inference_reading".into(),
+                serde_json::to_value(reading).map_err(ser_err)?,
+            );
+            obj.insert(
+                "loop".into(),
+                json!(
+                    "the step is checked from now on: propagate_change from a changed premise \
+                     says whether it is BROKEN or WEAKENED, and detect_gaps reports a \
+                     conclusion whose status claims more than its steps support"
+                ),
+            );
+        }
+        ok_json(reply)
+    }
+
+    #[tool(
         description = "Declare WHAT KIND of thing delivers a capability — and never whether it \
                        was delivered, which stays COMPUTED from the golden thread. `artifact` \
                        (the default) means a file realizes it, and delivery needs BOTH the file \
@@ -4226,4 +4318,41 @@ fn cross_design_links(
         });
     }
     Ok(out)
+}
+
+/// `add_inference`: one stated inference step, written in one call.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct AddInferenceReq {
+    /// The step's id — `inf:<slug>` by convention. Calling again with an
+    /// EXISTING step's id revises it: the rule and fields you pass overwrite,
+    /// the premises you pass are ADDED (remove one with `delete_edge`), and the
+    /// conclusion must be the one it already has.
+    pub id: String,
+    /// HOW THE PREMISES SUPPORT THE CONCLUSION: `all` (every premise must hold),
+    /// `any` (one is enough) or `k_of_n` (at least `k` must hold). A named rule
+    /// such as modus ponens is `all` with `rule_name`.
+    #[schemars(schema_with = "crate::enum_schema::inference_rule_req")]
+    pub rule: String,
+    /// The premises, by id: any records the design holds — requirements,
+    /// checks, decisions, constraints, other steps. At least one.
+    pub premises: Vec<String>,
+    /// The ONE node this step concludes. A node may be concluded by several
+    /// steps (alternative derivations, read as ANY); a step concludes one.
+    pub conclusion: String,
+    /// For `k_of_n` only: how many premises must hold, 1 ≤ k ≤ the number of
+    /// premises. Refused on any other rule.
+    #[serde(default)]
+    pub k: Option<i64>,
+    /// The rule's own name — `modus ponens`, `induction`, `redundant sensors`.
+    /// A label: the step is checked by `rule`, never by this name.
+    #[serde(default)]
+    pub rule_name: Option<String>,
+    /// WHY these premises support this conclusion, in words a person can
+    /// challenge. Recorded, never judged.
+    #[serde(default)]
+    pub warrant: Option<String>,
+    /// A short handle. Composed from the rule and the conclusion when omitted.
+    #[serde(default)]
+    pub name: Option<String>,
 }

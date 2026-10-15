@@ -548,6 +548,20 @@ pub enum GapSource {
     /// free: derived requirements hang off the Decision that created them and
     /// carry no such edge.
     DecompositionCoverage,
+    /// A conclusion whose CLAIMED status is past what the stated steps that
+    /// conclude it support: a requirement marked `met`, a check `passing`, a
+    /// decision `accepted` or a capability `verified`, while every Inference
+    /// concluding it fails or cannot be shown to hold over its premises
+    /// (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows).
+    ///
+    /// REPORTED, NEVER REPAIRED (`dec:report-dont-judge`): the status is left as
+    /// it was claimed, and the finding names each step and the premises that
+    /// fail or are unknown. Either a premise needs work, the step is wrong, or
+    /// the status says more than is known; which, is the owner's call. It
+    /// replaces `status_contradiction` and `unsatisfied_requirement` for a node
+    /// a step concludes — those ask "what satisfies it?", which the step has
+    /// answered.
+    ConclusionDoesNotFollow,
     /// Recorded changes that never say WHICH AXIS they are on — whether the
     /// SYSTEM changed, or only the design's KNOWLEDGE of it did
     /// (`ChangeEvent.subject`).
@@ -884,6 +898,7 @@ impl GapSource {
             GapSource::ReleaseWithoutEpoch => "release_without_epoch",
             GapSource::ReleaseWithoutManifest => "release_without_manifest",
             GapSource::DecompositionCoverage => "decomposition_coverage",
+            GapSource::ConclusionDoesNotFollow => "conclusion_does_not_follow",
             GapSource::ChangeAxisUnstated => "change_axis_unstated",
             GapSource::InternalOnlyDelivery => "internal_only_delivery",
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
@@ -1154,7 +1169,11 @@ impl GapSource {
             // a claim about THESE children. Adding or removing one makes the
             // earlier answer an answer to a different question, so the id MUST
             // move with the child set and the question MUST be re-asked.
-            | GapSource::DecompositionCoverage => false,
+            | GapSource::DecompositionCoverage
+            // Per-conclusion, keyed on the conclusion AND the steps that
+            // conclude it: "the status stays, the premise is being fixed" is an
+            // answer about THESE steps, and a new derivation re-asks.
+            | GapSource::ConclusionDoesNotFollow => false,
         }
     }
 }
@@ -2663,6 +2682,9 @@ impl DesignGraph {
         // The roll-up's blind spot: delivery climbs a decomposition without
         // anything ever asking whether the children amount to the parent.
         self.detect_decomposition_coverage(&mut gaps)?;
+        // The stated steps: a conclusion whose claimed status is past what the
+        // Inferences concluding it support. Silent on a design with none.
+        self.detect_conclusions_that_do_not_follow(&mut gaps)?;
         // Absence, not consistency: fires loudest where the axis has NEVER
         // been stated, which is the case every other detector here misses.
         self.detect_change_axis_unstated(&mut gaps)?;
@@ -2878,6 +2900,14 @@ impl DesignGraph {
             // invisible to it unless it is read. That is why this must READ the
             // ruling rather than inherit a side-effect.
             if self.is_parked(&req.node_id)? {
+                continue;
+            }
+            // A STATED STEP CONCLUDES IT (crate::inference): its support is the
+            // step's premises, by the step's rule, and the roll-up reads it so.
+            // Asking "what satisfies it?" would ask a question the design has
+            // answered; whether the step holds is what the delivery figure and
+            // `conclusion_does_not_follow` say.
+            if self.is_concluded(&req.node_id)? {
                 continue;
             }
             // A DISCONTINUED capability is not a live satisfier, so a
@@ -3919,6 +3949,98 @@ impl DesignGraph {
         Ok(())
     }
 
+    /// A conclusion whose claimed status is past what its stated steps
+    /// support — see [`GapSource::ConclusionDoesNotFollow`]. Reads
+    /// `conclusions_that_do_not_follow` (crate::inference), the one computation
+    /// the change walk and the roll-up share, so the finding and the delivery
+    /// figure can never disagree about a step.
+    fn detect_conclusions_that_do_not_follow(
+        &self,
+        gaps: &mut Vec<GapCandidate>,
+    ) -> Result<(), DynoError> {
+        for c in self.conclusions_that_do_not_follow()? {
+            let mut affected = vec![c.node_id.clone()];
+            affected.extend(c.steps.iter().map(|s| s.inference.clone()));
+            affected.sort();
+            affected.dedup();
+            let fails = c.supported == crate::inference::Truth::Fails;
+            let steps: Vec<String> = c
+                .steps
+                .iter()
+                .map(|s| {
+                    let against: Vec<String> = s
+                        .premises
+                        .iter()
+                        .filter(|p| p.truth != crate::inference::Truth::Holds)
+                        .map(|p| format!("{} {} ({})", p.id, p.truth.as_str(), p.why))
+                        .collect();
+                    let rule = match (s.rule.as_str(), s.k) {
+                        ("k_of_n", Some(k)) => format!("{k} of {}", s.premises.len()),
+                        (r, _) => format!("{r} of {}", s.premises.len()),
+                    };
+                    let named = s
+                        .rule_name
+                        .as_deref()
+                        .map(|n| format!(", {n}"))
+                        .unwrap_or_default();
+                    let note = s
+                        .note
+                        .as_deref()
+                        .map(|n| format!(" — {n}"))
+                        .unwrap_or_default();
+                    format!(
+                        "{} ({rule}{named}) {}{note}{}",
+                        s.inference,
+                        s.verdict.as_str(),
+                        if against.is_empty() {
+                            String::new()
+                        } else {
+                            format!(": {}", against.join("; "))
+                        }
+                    )
+                })
+                .collect();
+            gaps.push(GapCandidate {
+                id: gap_id(GapSource::ConclusionDoesNotFollow, &affected),
+                gap_source: GapSource::ConclusionDoesNotFollow,
+                scope: GapScope::Capability,
+                severity: if fails { 0.70 } else { 0.40 },
+                title: if fails {
+                    format!(
+                        "“{}” claims `{}`, and the step that concludes it does not hold",
+                        c.name, c.claimed
+                    )
+                } else {
+                    format!(
+                        "“{}” claims `{}`, and its premises cannot show it",
+                        c.name, c.claimed
+                    )
+                },
+                description: format!(
+                    "“{}” has status `{}`, but {} — so the status says more than its stated                      support. Either a premise needs work, the step is wrong, or the status is                      ahead of what is known; reflow2 leaves the status as it is and asks which.",
+                    c.name,
+                    c.claimed,
+                    if fails {
+                        "every step that concludes it fails over its premises"
+                    } else {
+                        "no step that concludes it can be shown to hold: a premise's truth is                          unknown"
+                    }
+                ),
+                affected_ids: affected,
+                suggested_depth: 2,
+                evidence: format!(
+                    "{} '{}' has status={} and is concluded by {} step(s), ANY of which would                      support it: {}.",
+                    c.node_type,
+                    c.node_id,
+                    c.claimed,
+                    c.steps.len(),
+                    steps.join(" | ")
+                ),
+            });
+        }
+        Ok(())
+    }
+
     /// `req:decomposition-covers-its-parent` — the one question the roll-up
     /// never asks.
     ///
@@ -4724,6 +4846,11 @@ impl DesignGraph {
             {
                 continue;
             }
+            // A stated step concludes it: `conclusion_does_not_follow` checks
+            // the claim against the step, which says what proves it.
+            if self.is_concluded(&cap.node_id)? {
+                continue;
+            }
             let name = node_name(&cap);
             gaps.push(GapCandidate {
                 id: gap_id(
@@ -4758,6 +4885,11 @@ impl DesignGraph {
                 .incoming(&req.node_id, Some(edge::SATISFIES))?
                 .is_empty()
             {
+                continue;
+            }
+            // A stated step concludes it, so something does stand behind
+            // `met`: whether it holds is `conclusion_does_not_follow`'s question.
+            if self.is_concluded(&req.node_id)? {
                 continue;
             }
             let name = node_name(&req);

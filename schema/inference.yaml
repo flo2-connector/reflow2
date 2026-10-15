@@ -7,14 +7,110 @@
 #
 # Each edge carries `confidence` (0..1) and free-text `evidence` so extraction
 # can record how strongly the link is asserted and cite the source text.
+#
+# Since 2026-10-14 it also holds the STATED INFERENCE STEP — the `Inference`
+# node and its two links, PREMISE_OF and CONCLUDES — which say how premises
+# support a conclusion by a rule reflow2 checks. Those two links pin one end to
+# the step, and they carry no `inference_category` (see below).
 
 schema:
   name: inference
   version: 1
 
-  node_types: {}
+  node_types:
+
+    # A STATED INFERENCE STEP (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows,
+    # shaped by dec:an-inference-is-a-record-between-premises-and-conclusion, both
+    # Anthony's, 2026-10-14). A record of its own BETWEEN the premises and the
+    # conclusion — his picture's "Operation" box — so its warrant can itself be
+    # challenged, verified or go stale. Premises link in (PREMISE_OF), the one
+    # conclusion links out (CONCLUDES), and the rule says how they combine.
+    #
+    # NOT a setting on the conclusion (it could not name a rule or later record
+    # who confirmed the step) and NOT one on each link (any one and k of n belong
+    # to the group of premises, not to one link). A conclusion with no Inference
+    # reads exactly as it always has: delivery still rolls a decomposition up by
+    # an unwritten AND. The code is crates/reflow2-core/src/inference.rs.
+    Inference:
+      properties:
+        name: { type: string, indexed: true, fulltext: true, description: "A short handle for the step — what search_design and the reports render. Optional: add_inference composes one from the rule and the conclusion when none is given." }
+        rule: { type: enum, values: [all, any, k_of_n], default: all, indexed: true, description: "HOW THE PREMISES SUPPORT THE CONCLUSION, as a combination reflow2 checks over each premise's computed truth — holds, fails or unknown, evaluated three-valued: `all` — every premise must hold (AND: one failing premise fails the step, and with none failing an unknown one leaves it unknown); `any` — one holding premise is enough (OR: redundant support, alternative grounds); `k_of_n` — at least `k` of the premises must hold (a quorum, two-out-of-three voting). `all` is the default and says nothing new: it is the AND delivery has always applied to a decomposition, written down. A NAMED RULE IS CHECKED BY ITS COMBINATION: modus ponens is `all` over P and P → Q, with `rule_name: modus ponens`." }
+        k: { type: int, description: "For `k_of_n` only: how many premises must hold. Required with that rule and refused with any other; 1 ≤ k ≤ the number of premises, checked when the step is written with its premises (add_inference). A step whose premises were later removed below k reads `unknown` and says why, never `holds`." }
+        rule_name: { type: string, indexed: true, fulltext: true, description: "The rule's name in its own field, free text — `modus ponens`, `induction`, `redundant sensors`, `two-out-of-three voting`. A LABEL, NOT A CHECK: reflow2 checks the step by its `rule` (the combination) and never by this name." }
+        warrant: { type: string, fulltext: true, description: "WHY these premises support this conclusion, in the author's words — the part of the step a person can challenge. reflow2 records it and never judges it." }
+      embedding_field: warrant
+      resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
+      discrimination:
+        cues:
+          - "this follows from those"
+          - "it holds because A and B hold"
+          - "either one is enough"
+          - "two of the three must hold"
+        confused_with:
+          - type: Decision
+            why: >
+              A Decision records a CHOICE and why it was made; an Inference records
+              that a conclusion FOLLOWS from premises by a rule reflow2 can check. A
+              rationale in a Decision's prose is checked by nothing; a step recorded
+              as an Inference is read again whenever a premise changes.
+          - type: Requirement
+            why: >
+              DECOMPOSES splits one requirement into children that together are it,
+              rolled up by an unwritten AND. An Inference says how premises SUPPORT a
+              conclusion and by which rule — all, any one, or k of n — so redundant
+              support and a quorum can be said, and checked.
+        counter_example: >
+          "we chose Postgres because the team already knows it" is NOT an Inference:
+          it is a Decision with its rationale. The test is whether a conclusion's
+          truth is claimed to follow from other records' truth (Inference), or a
+          choice is being explained (Decision).
+      extraction_hint: >
+        A stated inference step: how some premises support one conclusion, and by
+        which rule — all of them, any one, or k of n (a named rule such as modus
+        ponens is carried in `rule_name`). Premises link in with PREMISE_OF and the
+        one conclusion links out with CONCLUDES; a node concluded by several
+        Inferences has alternative derivations and stands while ANY of them holds.
+        reflow2 CHECKS THE FORM, NEVER THE CONTENT: from each premise's computed
+        truth (a requirement delivered or met, a check passing, a decision
+        accepted and live, a constraint not violated, another step's verdict; a
+        type with none of these is unknown, never guessed) it computes whether the
+        rule holds, and reports a conclusion whose claimed status is past what the
+        step supports. Whether the rule was applied correctly to what the
+        statements SAY — whether Q really is what P → Q gives from P — is not
+        checked here, and a false premise passes the check. Written with
+        add_inference.
 
   edge_types:
+
+    # PREMISE_OF and CONCLUDES are the two links of a stated inference step. They
+    # are NOT inference edges in this file's other sense — no `inference_category`
+    # — so the extractor never emits them from prose and the impact walk does not
+    # read them as causal: they are traceability edges in nodes.rs's table, and
+    # the change walk reads them through the step's rule (crate::inference).
+    PREMISE_OF:
+      # TARGET PINNED, SOURCE DELIBERATELY OPEN: anything a design records can be
+      # a premise — a requirement, a check, a decision, a constraint, another
+      # step, or a record whose truth reflow2 cannot compute (it reads unknown).
+      from: "*"
+      to: Inference
+      reading: { form: "primitive", primitive: "part-of", sub: "premise", frame: "membership", note: "The premise is one of the grounds the step combines; the rule belongs to the group, not to this link.", basis: "classified" }
+      extraction_hint: >
+        Source is one of the premises the target Inference combines by its rule.
+        A cycle through PREMISE_OF and CONCLUDES is circular reasoning and is
+        refused when written. A closed chain of equivalences (A ⇒ B ⇒ C ⇒ A) is
+        still a valid proof: record each implication as a statement of its own
+        and make it a premise beside its antecedent, so the support stays acyclic.
+
+    CONCLUDES:
+      # SOURCE PINNED, TARGET DELIBERATELY OPEN. ONE INFERENCE CONCLUDES EXACTLY
+      # ONE NODE: a second CONCLUDES from the same step is refused. A node may be
+      # concluded by several Inferences — alternative derivations, read as ANY.
+      from: Inference
+      to: "*"
+      reading: { form: "primitive", primitive: "source-of", sub: "derived", note: "The conclusion comes from the step: it holds when the step's rule holds over its premises, or when another step concluding it does.", basis: "classified" }
+      extraction_hint: >
+        The source Inference concludes the target: the target holds when the
+        step's rule holds over its premises. One step, one conclusion.
 
     CAUSES:
       from: "*"
