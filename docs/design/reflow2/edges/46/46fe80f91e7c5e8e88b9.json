@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:45961ba91c4f64cfd3feec0b49769cc16db092ebab93573db01358d989d9873d",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:foundations-walk",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:inference"
+}

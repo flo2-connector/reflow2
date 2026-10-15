@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0c3ff1fa2f024d59af8567a1e3d4c246f8d4789e3ed606d985dea6e724c35ab2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-conclusion-shows-the-axioms-it-rests-on"
+}

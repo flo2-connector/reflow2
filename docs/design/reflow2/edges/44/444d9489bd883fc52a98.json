@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c605cc180d52e035a6c15a779aff793350b9a3fd2b974326dbac57453c32ea7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:foundations-walk-tests"
+}
