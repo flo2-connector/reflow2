@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8baa7a26ff5af07ee34ecb156987258940976e1d20437f8349d07321250ef157",
+  "node_id": "art:test-mcp-tools",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Tests of the served tools called in process, among them that describe_schema serves the whole vocabulary (every node and edge type discoverable).",
+    "location": "crates/reflow2-mcp/tests/tools.rs",
+    "name": "tools.rs (mcp tests)",
+    "status": "realized"
+  }
+}

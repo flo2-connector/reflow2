@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1441d2c2d65f3418ccfe7beefb2a7cfbffa7bf013f3e3d0f2095f28377f9fd36",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain",
+  "properties": {
+    "evidence": "Anthony chose option (a) on 2026-10-14: \"Let's go for the first option\"."
+  },
+  "to_id": "req:an-agent-records-a-consequential-recommendation-as-an-inference-chain"
+}

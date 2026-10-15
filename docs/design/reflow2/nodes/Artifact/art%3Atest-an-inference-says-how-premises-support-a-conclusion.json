@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85d6bbafd64768ae1708ae20434bb12cd47df80111a50e7cb1371f9e665c5aa1",
+  "node_id": "art:test-an-inference-says-how-premises-support-a-conclusion",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "MCP tests for requirement C over the served surface: add_inference writes a step in one call; a bad rule or k is refused with its legal values and nothing written; the SHOWN WHEN through propagate_from; the gap and the circle refusal; get_node's inference_reading; propagate_change's inferences.",
+    "location": "crates/reflow2-mcp/tests/an_inference_says_how_premises_support_a_conclusion.rs",
+    "name": "an_inference_says_how_premises_support_a_conclusion.rs (mcp)",
+    "status": "realized"
+  }
+}

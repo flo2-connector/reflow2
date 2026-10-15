@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fcd59378c5fd62b7c30acb8ea6bead4d5fcd8928e2b9ba2a04828c4172f56e8c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:core-lib"
+}

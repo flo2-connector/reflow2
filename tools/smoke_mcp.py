@@ -357,7 +357,7 @@ def run(binary: str, graph_path: str) -> int:
     # cargo tests: every other layer is a client we wrote.
     print("\n== schema discovery (BL-1) ==")
     vocab = s.call("describe_schema", {})
-    c.ok("every node type is discoverable", len(vocab.get("node_types", [])) == 28,
+    c.ok("every node type is discoverable", len(vocab.get("node_types", [])) == 29,
          len(vocab.get("node_types", [])))
     # 63 since IMPLEMENTS + COMPLEMENTS (2026-08-23, record-to-record relations);
     # 61 since OWNED_BY (2026-08-09, the third "who" axis); 60 since GATED_ON +
@@ -379,7 +379,10 @@ def run(binary: str, graph_path: str) -> int:
     # that naming the set matters more than warning about it.
     # 2026-09-29, ACTS_FOR: all four moved together this time — schema.rs,
     # vocabulary.rs, tests/tools.rs and here — found by grepping the old count.
-    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 66,
+    # 2026-10-14, Inference + PREMISE_OF + CONCLUDES: the same four, and the
+    # fourth was a surprise again — the Rust three moved first, this one only
+    # when the smoke test ran. 29 node types, 68 edge types.
+    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 68,
          len(vocab.get("edge_types", [])))
 
     exact = s.call("describe_schema", {"from": "Capability", "to": "Component"})

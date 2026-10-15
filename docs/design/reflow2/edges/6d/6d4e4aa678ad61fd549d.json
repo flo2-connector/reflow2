@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:be2c7b4cb34634f783535c8630f227514f26c871f70a335ce1dd5fd6b07577b0",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain",
+  "properties": {
+    "evidence": "Recording a recommendation as a chain needs the Inference record and its form check (C) to exist first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows"
+}

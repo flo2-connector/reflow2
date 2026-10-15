@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0d2bfb7c46f4923ba2934512b2aa6ab2af3f858329afb7a5a9df54658c97aa6f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cmp:inference",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

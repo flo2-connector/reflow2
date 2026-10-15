@@ -46,6 +46,9 @@
     "add_flow": [
       "Flow"
     ],
+    "add_inference": [
+      "Inference"
+    ],
     "add_interface": [
       "Interface"
     ],

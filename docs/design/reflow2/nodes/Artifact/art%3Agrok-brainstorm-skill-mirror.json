@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:993b251240a338ae4c9591a38e0c08bdd254ee85f82629fc054be065eae3bc27",
+  "node_id": "art:grok-brainstorm-skill-mirror",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The byte-identical copy of getting-started/skills/brainstorm/SKILL.md that Grok reads in this repository; skill_lint holds the two equal.",
+    "location": ".grok/skills/brainstorm/SKILL.md",
+    "name": "brainstorm SKILL.md (.grok mirror)",
+    "status": "realized"
+  }
+}

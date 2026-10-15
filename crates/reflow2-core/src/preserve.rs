@@ -211,6 +211,10 @@ const SUPPORTING_TYPES: &[&str] = &[
     node::TEMPORAL_FACT,
     node::SNAPSHOT,
     node::CHANGE_EVENT,
+    // A stated inference step is ASSURANCE, the reason `Verification` sits
+    // here: removing one changes how well anyone knows a conclusion holds, and
+    // what the design does stays what its requirements and capabilities say.
+    node::INFERENCE,
 ];
 
 /// Properties that cannot bear on function wherever they appear.

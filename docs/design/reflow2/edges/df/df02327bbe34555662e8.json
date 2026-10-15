@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:219d35ee42fc2d4a0a7d961e2f05387cdd42d157ef745e5e2b562108825ff9d2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-graph-as-proof-gives-design-anything-a-mathematical-backbone",
+  "properties": {
+    "evidence": "Reading a design as a proof needs the graph-as-proof machinery (inference steps, who confirmed, evidence kept apart from proof) to exist first.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-design-can-be-a-proof"
+}

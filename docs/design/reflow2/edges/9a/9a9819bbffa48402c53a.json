@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a2286c4b318777cfaea0d921e34d72115b66e5b6bbb72312bcdcb850c1e8514",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:inference"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8fb5d695fe56106d8ee7c5ef0a39654330d3dc35f4a40f294bee3e6761c89d08",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:a-conclusion-shows-the-axioms-it-rests-on",
+  "properties": {
+    "evidence": "A conclusion's foundations are read by walking its inferences down to the axioms, and changing an axiom is reported by C's broken/weakened change walk.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows"
+}

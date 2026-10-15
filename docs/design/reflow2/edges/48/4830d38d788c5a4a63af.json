@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:47fec3395ef9c39c0ef94ede93354e6d53b7dbbfb14c2865f06571525c244f84",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -706,7 +706,9 @@ mod tests {
     #[test]
     fn vocabulary_covers_the_whole_schema() {
         let v = graph().describe_vocabulary();
-        assert_eq!(v.node_types.len(), 28, "all node types are listed");
+        assert_eq!(v.node_types.len(), 29, "all node types are listed");
+        // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
+        // stated inference step, beside the Inference node type);
         // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
         // word it records — the deferred "who" rung);
         // 65 since ANSWERS (2026-09-02, a record names the Question it
@@ -715,7 +717,7 @@ mod tests {
         // relations); 61 since OWNED_BY (2026-08-09, the third "who" axis);
         // 60 since GATED_ON + HAS_READINESS (2026-08-02, BL-68); 58 before
         // that, since CALIBRATED_AGAINST (2026-08-01, req:a-fit-is-not-a-test).
-        assert_eq!(v.edge_types.len(), 66, "all edge types are listed");
+        assert_eq!(v.edge_types.len(), 68, "all edge types are listed");
     }
 
     #[test]

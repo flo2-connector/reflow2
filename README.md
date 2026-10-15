@@ -155,7 +155,7 @@ same way everything else here is: coverage is claimed only where a named mechani
 
 ## The design vocabulary
 
-Domain-neutral node types, layered by the phase they feed (28 node types and 66 edge types
+Domain-neutral node types, layered by the phase they feed (29 node types and 68 edge types
 across 11 schema domains; see [docs/overview.md](docs/overview.md) and `tools/validate_schema.py`):
 
 | Phase / layer | Nodes |
@@ -169,6 +169,7 @@ across 11 schema domains; see [docs/overview.md](docs/overview.md) and `tools/va
 | Operating environment | `EnvironmentRule` |
 | Axis Z · change over time | `DesignEpoch`, `TemporalFact`, `Snapshot`, `ChangeEvent` |
 | Cross-cutting | `DimensionAssessment`, `DimensionObservation`, `Question`, `Contributor` |
+| Reasoning | `Inference` — how premises support a conclusion (all, any one, k of n), checked |
 
 **Structural edges:** CONTAINS, PROVIDES, CONSUMES, ALLOCATED_TO, REALIZES,
 VERIFIES, DEPENDS_ON, SATISFIES, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE,
@@ -178,6 +179,9 @@ GOVERNED_BY, INCLUDES.
 TRIGGERS, CONTRADICTS, VALIDATES, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO,
 OBSOLETES, DUPLICATES, CONSTRAINS, ANTICIPATES, MASKS.
 
+**Inference step edges:** PREMISE_OF (premise → Inference), CONCLUDES (Inference → its one
+conclusion).
+
 ## Layout
 
 ```
@@ -185,7 +189,7 @@ reflow2/
   crates/
     reflow2-core/    # the deterministic, LLM-free coherence engine (59 modules)
     reflow2-mcp/     # the agent-native MCP server, stdio or HTTP (165 tools) — the binary you run
-  schema/            # 11 composable schema domains (28 node / 66 edge types)
+  schema/            # 11 composable schema domains (29 node / 68 edge types)
     core / functional / structure / build / verify / operate
     environment / temporal / inference / dimensions
   getting-started/   # the consumer kit installed into a project being designed

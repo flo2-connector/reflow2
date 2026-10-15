@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:96c866fc0fe89a552db8bb722f5b015de56edeb806f4bab166a3f1a483a6a0da",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:an-inference-says-how-premises-support-a-conclusion-and-reflow2-checks-it-follows",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:inference"
+}

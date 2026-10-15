@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:99e6ba7b6cc54d7700afa23f5a2916914f56a8c656d7c392340d1d791c654e96",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-bdff06e0beb3364f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:89484f888c1cb8f3d443046855aa2f480cccd21a52523e20a267545394db6624",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

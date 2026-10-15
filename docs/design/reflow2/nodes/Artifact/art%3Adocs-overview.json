@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6687f4077a6c1ef2d76298d64552ea66b8bf2628ee1122ba796bcee1a0646d5c",
+  "node_id": "art:docs-overview",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The map of reflow2's documents and their reading order; it states the schema's vocabulary counts, which check_doc_versions holds to the build.",
+    "location": "docs/overview.md",
+    "name": "overview.md",
+    "status": "realized"
+  }
+}

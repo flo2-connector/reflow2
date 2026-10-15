@@ -52,6 +52,11 @@ pub mod node {
     pub const CHANGE_EVENT: &str = "ChangeEvent";
     // Readiness · technology maturity as a GATING fact (readiness.yaml, BL-68)
     pub const READINESS_ASSESSMENT: &str = "ReadinessAssessment";
+    /// A stated inference step (inference.yaml, 2026-10-14): the rule by which
+    /// its premises (`PREMISE_OF`) support its one conclusion (`CONCLUDES`) —
+    /// `all`, `any` or `k_of_n` — checked by [`crate::inference`]. Supporting
+    /// structure, not design content: it says why a conclusion stands.
+    pub const INFERENCE: &str = "Inference";
 
     /// The node types that are DESIGN CONTENT, in lifecycle order, as opposed
     /// to the supporting layer around it — provenance, questions, history,
@@ -302,6 +307,13 @@ pub mod edge {
     pub const EVOLVES_INTO: &str = "EVOLVES_INTO";
     /// `* → *` — source hides target from view.
     pub const MASKS: &str = "MASKS";
+    /// `* → Inference` — source is one of the premises the step combines by
+    /// its rule. A traceability edge (in the impact table below): a changed
+    /// premise reaches the step and, through it, the conclusion.
+    pub const PREMISE_OF: &str = "PREMISE_OF";
+    /// `Inference → *` — the step concludes the target; one step, one
+    /// conclusion. A traceability edge, like `PREMISE_OF`.
+    pub const CONCLUDES: &str = "CONCLUDES";
 
     // Depth axis (dimensions.yaml)
     /// `DimensionAssessment → *` — links an assessment to the node it scores.
@@ -516,6 +528,19 @@ pub(crate) fn structural_rule(edge_type: &str) -> Option<EdgeRule> {
         // roadmap silently stale, which is the exact fiction the item exists to
         // end. `dec:schedule-is-structural` is the standing argument.
         "GATED_ON" => (Some(Upstream), Some(Downstream)),
+        // A STATED INFERENCE STEP: premise PREMISE_OF step, step CONCLUDES
+        // conclusion (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows).
+        // The premise is the source of truth and the conclusion rests on it
+        // through the step, so walked forward both links reach what the premise
+        // JUSTIFIED (downstream), and walked back they reach the grounds a
+        // conclusion stands on (upstream) — the shape of CONSTRAINS and
+        // DEPLOYED_TO. ASKED BEFORE A DETECTOR COMPLAINED, as GATED_ON was:
+        // absent from this table, a step and its conclusion would be an island
+        // beside the premises, and propagate_change from a failing premise would
+        // report nothing downstream. Which steps BREAK and which are only
+        // WEAKENED is not this table's to say — the walk reads each step's rule
+        // (crate::inference, `inference_walk`) and carries it on every radius.
+        "PREMISE_OF" | "CONCLUDES" => (Some(Downstream), Some(Upstream)),
         // HAS_READINESS is deliberately NOT here, and the omission is the same
         // call `HAS_OBSERVATION` and `ASSESSED_ON` already carry: an assessment
         // is a reading ABOUT a node, not a coupling BETWEEN two design nodes.

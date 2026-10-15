@@ -1495,7 +1495,19 @@ impl DesignGraph {
     /// delivered — so an owner asked to close it can see why in one look
     /// (`awaiting.rs`). `None` is not delivered. One derivation either way:
     /// [`Self::requirement_is_delivered`] is this, as a yes or no.
-    fn requirement_delivered_by_within(
+    ///
+    /// # A requirement an Inference concludes
+    ///
+    /// The AND over children below is the roll-up's unwritten rule
+    /// (req:decomposition-covers-its-parent). A requirement a stated step
+    /// CONCLUDES (crate::inference) rolls up by the step's own rule instead —
+    /// `all`, `any` or `k_of_n` over its premises — and is delivered when one
+    /// of its steps holds (several are alternative derivations, ANY); `Some`
+    /// then names the steps that hold. Its decomposition, if it has one, is
+    /// not read: the step says what supports it. A design that records no
+    /// Inference never takes that branch, so every other requirement rolls up
+    /// exactly as before.
+    pub(crate) fn requirement_delivered_by_within(
         &self,
         requirement_id: &str,
         depth: usize,
@@ -1503,21 +1515,17 @@ impl DesignGraph {
         if depth == 0 {
             return Ok(None);
         }
-        let mut by = Vec::new();
-        for e in self.incoming(requirement_id, Some(edge::SATISFIES))? {
-            let cap = &e.from_id;
-            let checked = !matches!(
-                self.capability_verification(cap)?,
-                crate::verify::CapabilityVerification::Unchecked
-            );
-            if checked && self.capability_is_realized(cap)? {
-                by.push(cap.clone());
-            }
-        }
+        let by = self.requirement_directly_delivered_by(requirement_id)?;
         if !by.is_empty() {
-            by.sort();
-            by.dedup();
             return Ok(Some(by));
+        }
+        if !self.inferences_concluding(requirement_id)?.is_empty() {
+            let holding = self.holding_inferences_within(requirement_id, depth - 1)?;
+            return Ok(if holding.is_empty() {
+                None
+            } else {
+                Some(holding)
+            });
         }
         let children = self.decomposed_children(requirement_id)?;
         if children.is_empty() {
@@ -1535,6 +1543,29 @@ impl DesignGraph {
         children.sort();
         children.dedup();
         Ok(Some(children))
+    }
+
+    /// The realized, checked capabilities that satisfy one requirement
+    /// directly, sorted — the first route of the roll-up, and the one a
+    /// requirement an Inference concludes still has.
+    pub(crate) fn requirement_directly_delivered_by(
+        &self,
+        requirement_id: &str,
+    ) -> Result<Vec<String>, DynoError> {
+        let mut by = Vec::new();
+        for e in self.incoming(requirement_id, Some(edge::SATISFIES))? {
+            let cap = &e.from_id;
+            let checked = !matches!(
+                self.capability_verification(cap)?,
+                crate::verify::CapabilityVerification::Unchecked
+            );
+            if checked && self.capability_is_realized(cap)? {
+                by.push(cap.clone());
+            }
+        }
+        by.sort();
+        by.dedup();
+        Ok(by)
     }
 
     /// Whether one requirement is delivered, rolling up a decomposition tree.
@@ -1618,9 +1649,13 @@ impl DesignGraph {
             // unsatisfied parents, which punishes exactly the practice
             // systems engineering asks for.
             let children = self.decomposed_children(&req.node_id)?;
-            let carried_by_children = !children.is_empty();
+            // A requirement a stated step concludes is carried by the step's
+            // rule instead of the AND over children (crate::inference). Never
+            // true on a design that records no Inference.
+            let carried_by_inference = !self.inferences_concluding(&req.node_id)?.is_empty();
+            let carried_by_children = !children.is_empty() && !carried_by_inference;
 
-            if satisfiers.is_empty() && !carried_by_children {
+            if satisfiers.is_empty() && !carried_by_children && !carried_by_inference {
                 continue;
             }
             d.satisfied += 1;
@@ -1635,6 +1670,9 @@ impl DesignGraph {
                     thread_complete = true;
                     break;
                 }
+            }
+            if !thread_complete && carried_by_inference {
+                thread_complete = !self.holding_inferences_within(&req.node_id, 64)?.is_empty();
             }
             // EVERY child, not any: a parent half-delivered is not delivered,
             // and "any" would let one finished slice of a checkout system

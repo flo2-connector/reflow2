@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ee6e21f6bafa9b86bf77e4d43c547b50bfee6e9cf64a80feb4fe7ca3526ab311",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:brainstorm-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

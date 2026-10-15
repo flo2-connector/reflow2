@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae89faceaba002095dd14bc06295aa422a7be14fb1990097e93572c233c92623",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-flo2-holds-a-proof-as-a-design-reflow2-records-the-equations-and-a-model-reasons-the-steps",
+  "properties": {
+    "evidence": "The proof idea's option (h), an inference-step node and a 'follows from' edge, is the vocabulary this question asks to generalise to every design."
+  },
+  "to_id": "dec:idea-an-explicit-inference-step-and-a-check-that-it-follows-improve-every-design"
+}

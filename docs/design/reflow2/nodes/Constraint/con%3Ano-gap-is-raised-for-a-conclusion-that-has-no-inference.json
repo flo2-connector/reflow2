@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eca42817a22cff9caddf25ea1b38737e460258b6f65d39535205134c4d1a8ece",
+  "node_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
+  "node_type": "Constraint",
+  "properties": {
+    "category": "technical",
+    "concern": "usability",
+    "direction": "maximum",
+    "name": "No gap or finding is raised for a conclusion that has no Inference; findings about inference steps fire only on steps someone drew",
+    "priority": "high",
+    "statement": "Anthony, 2026-10-14, asked: \"When we implement all this, will the reflow2 graph show a bunch of newly opened gaps (for instance, we don't gaps where no inference is shown)?\" He agreed to record this rule: \"Yes, record it.\"\n\nTHE RULE:\n1. A CONCLUSION WITH NO INFERENCE IS NOT A GAP. \"All of these\" stays the default and says nothing. A conclusion with no Inference is supported exactly as before, by its golden thread, its checks and its roll-up. No detector, report, count or loop debt may treat \"no inference shown\" as missing, for any node type, on any design.\n2. FINDINGS ABOUT INFERENCE STEPS FIRE ONLY ON STEPS SOMEONE DREW. Two are allowed:\n   - a conclusion whose claimed status is past what its drawn Inference supports (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows);\n   - a premise inside a drawn inference chain with no support of any kind: not an axiom, not concluded by another Inference, not confirmed by a check. That is a gap in a proof (req:a-design-can-be-a-proof).\n   A design that never draws an Inference sees neither.\n3. WHERE A FINDING COULD FIRE MANY TIMES, IT IS ONE AGGREGATE, LOW-KEY FINDING that names the cases, never one per node. That is the precedent of the unreviewed-ideas detector, which would have fired 115 times on reflow2's own design the day it shipped. It also follows req:detecting-is-not-asking.\n\nWHY: reflow2's own design already carries about 260 open gaps (measured 2026-10-14, after #750). A check that every claim show its inference would bury the gaps that matter and teach people to ignore the list. Job 3 of the few jobs asks for checks a person trusts, and a flood is the fastest way to lose that.\n\nHOW IT IS HELD: each build of C, B, A, E and F measures reflow2's own design on main and on its branch. The gap, defect and delivery counts must be identical wherever no Inference was drawn."
+  }
+}
