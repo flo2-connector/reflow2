@@ -605,7 +605,26 @@ impl ReflowService {
             )
         };
         let full = matches!((&req.node_type, &req.from, &req.to), (None, None, None));
+        // A FIELD'S WORD GIVEN AS `node_type` — "lemma", "hypothesis",
+        // "counterexample" — answers the type that holds it
+        // (req:the-vocabulary-is-served-in-a-fields-own-terms). Only when the
+        // name is no type of reflow2's own, so every declared type answers
+        // byte for byte as before; and only when some field uses the word, so
+        // anything else is refused exactly as before.
+        let by_term = match &req.node_type {
+            Some(t) if !g.schema().node_types.contains_key(t.as_str()) => g.types_called(t),
+            _ => Vec::new(),
+        };
         let mut reply = match (&req.node_type, &req.from, &req.to) {
+            (Some(word), None, None) if !by_term.is_empty() => {
+                let served: Vec<_> = self
+                    .tool_router
+                    .list_all()
+                    .into_iter()
+                    .map(crate::arguments::published)
+                    .collect();
+                describe_by_term(&g, word, by_term, req.required_only, &served, &bound)?
+            }
             (None, None, None) => {
                 bound(serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?)
             }
@@ -1004,8 +1023,8 @@ impl ReflowService {
         description = "Find the reflow2 tool for a job you can describe but cannot name — \
                        'how do I record that a file implements a capability?', 'what shows me \
                        the blast radius?'. Ranked over the served surface itself (name, \
-                       description and parameter names), so it can never drift from the tools \
-                       that actually exist. The whole surface is too large to hold in context at \
+                       description, parameter names, and a field's own words for the type a tool \
+                       writes), so it can never drift from the tools that actually exist. The whole surface is too large to hold in context at \
                        once; this is its catalogue. Descriptions come back trimmed; once you \
                        know the name, `describe_schema` with `tool` reads its whole input schema \
                        and the lessons this design holds for it (the reply's `describe` says \
@@ -1074,6 +1093,50 @@ impl ReflowService {
                 })
             })
             .collect();
+
+        // A QUERY IN A FIELD'S OWN WORDS — "record a lemma", "add a
+        // hypothesis" — ranks the tools that write the type the word means
+        // (`crate::field_terms`, req:the-vocabulary-is-served-in-a-fields-own-terms).
+        // Each such item says which word found it, and what the mapping
+        // means, under `also_called`. Nothing is added to any description:
+        // the terms live in the schema and reach find_tools' index only.
+        let index = crate::field_terms::index(&all);
+        for (tool, (raw, homes)) in crate::field_terms::hits(&terms, &index, &corpus) {
+            let Some(t) = all.iter().find(|t| t.name == tool.as_str()) else {
+                continue;
+            };
+            let description = t.description.as_deref().unwrap_or("");
+            let gain = raw / length_norm(description.to_lowercase().len());
+            if gain <= 0.0 {
+                continue;
+            }
+            let homes = json!(homes);
+            match scored.iter_mut().find(|(_, v)| v["tool"] == tool.as_str()) {
+                Some((score, v)) => {
+                    *score += gain;
+                    v["score"] = json!(*score);
+                    v["also_called"] = homes;
+                }
+                None => {
+                    let params = t
+                        .input_schema
+                        .get("properties")
+                        .and_then(JsonValue::as_object)
+                        .map(|p| p.keys().cloned().collect::<Vec<_>>())
+                        .unwrap_or_default();
+                    scored.push((
+                        gain,
+                        json!({
+                            "tool": tool,
+                            "score": gain,
+                            "summary": trim_summary(description),
+                            "parameters": params,
+                            "also_called": homes,
+                        }),
+                    ));
+                }
+            }
+        }
 
         // A QUERY THAT NAMES A NODE TYPE, spelled as the schema spells it
         // (`TemporalFact`, `Decision`), is answered first with the constructor
@@ -1375,6 +1438,108 @@ fn with_writers(node_type: &str, mut v: serde_json::Value) -> serde_json::Value 
         obj.insert("written_by".to_string(), serde_json::json!(writers));
     }
     v
+}
+
+/// `describe_schema`'s answer to a FIELD's word given as `node_type`: the type
+/// that holds it, answered exactly as its own name would be, with
+/// `found_by_term` naming where the word lives and what the mapping means and
+/// does not, and a `note` saying the answer is for that type.
+///
+/// WHY `node_type` AND NOT A NEW ARGUMENT. An agent holding "a lemma" that
+/// guesses at a type asks `describe_schema {"node_type": "Lemma"}` — and was
+/// refused "Unknown node type: Lemma". Answering that very call meets the agent
+/// where it already is, adds nothing to tools/list (whose schemas every client
+/// pays for on every session, and which the requirement keeps the terms out
+/// of), and turns a refusal into an answer, so no call that was answered
+/// changes. A term is never spelled as a type's name
+/// (`tests/a_fields_own_terms_have_one_home.rs`), so the lookup cannot shadow
+/// a type.
+///
+/// A word some field uses for an EDGE type answers that edge, whole, with the
+/// tools that draw it — its typed helpers, or the constructor of the record it
+/// is pinned to (`premise` → PREMISE_OF, drawn by `add_inference`; see
+/// `crate::field_terms::edge_tools`). A word that names different types in different fields
+/// answers none of them: every home is listed, to be asked for by name.
+fn describe_by_term(
+    g: &DesignGraph,
+    word: &str,
+    homes: Vec<reflow2_core::vocabulary::TermHome>,
+    required_only: bool,
+    served: &[rmcp::model::Tool],
+    bound: &dyn Fn(serde_json::Value) -> serde_json::Value,
+) -> Result<serde_json::Value, McpError> {
+    let node_types: std::collections::BTreeSet<&str> = homes
+        .iter()
+        .filter_map(|h| h.node_type.as_deref())
+        .collect();
+    let edge_types: std::collections::BTreeSet<&str> = homes
+        .iter()
+        .filter_map(|h| h.edge_type.as_deref())
+        .collect();
+    let word = word.trim();
+    let fields: Vec<&str> = {
+        let mut f: Vec<&str> = homes.iter().map(|h| h.field.as_str()).collect();
+        f.dedup();
+        f
+    };
+    let (mut reply, note) = match (
+        node_types.iter().next(),
+        edge_types.iter().next(),
+        node_types.len() + edge_types.len(),
+    ) {
+        (Some(t), None, 1) => {
+            let v = if required_only {
+                serde_json::to_value(g.describe_node_type_required(t).map_err(params_err)?)
+            } else {
+                serde_json::to_value(g.describe_node_type(t).map_err(params_err)?)
+            }
+            .map_err(ser_err)?;
+            (
+                with_writers(t, bound(v)),
+                format!(
+                    "`{word}` is not one of reflow2's type names. In {} it names what reflow2 \
+                     calls {t}, so this is {t}'s own answer. `found_by_term` says what that \
+                     mapping means and what it does not.",
+                    fields.join(" and ")
+                ),
+            )
+        }
+        (None, Some(e), 1) => {
+            let mut v = bound(
+                serde_json::to_value(g.describe_edge_type(e).map_err(params_err)?)
+                    .map_err(ser_err)?,
+            );
+            if let Some(m) = v.as_object_mut() {
+                m.insert(
+                    "drawn_by".into(),
+                    json!(crate::field_terms::edge_tools(g.schema(), e, served)),
+                );
+            }
+            (
+                v,
+                format!(
+                    "`{word}` is not one of reflow2's type names. In {} it names what reflow2 \
+                     draws as the edge type {e}, so this is {e}'s answer, whole, with the tools \
+                     that draw it. \
+                     `found_by_term` says what that mapping means and what it does not.",
+                    fields.join(" and ")
+                ),
+            )
+        }
+        _ => (
+            json!({}),
+            format!(
+                "`{word}` names different types in different fields, so no one type is \
+                 answered: each is listed in `found_by_term` with what it means there. Ask \
+                 again with the type's own name."
+            ),
+        ),
+    };
+    if let Some(m) = reply.as_object_mut() {
+        m.insert("found_by_term".into(), json!(homes));
+        m.insert("note".into(), json!(note));
+    }
+    Ok(reply)
 }
 
 /// Each edge that accepts a pair says which served tool draws it, so a caller

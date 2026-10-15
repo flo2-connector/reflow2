@@ -31,8 +31,8 @@ use std::collections::HashMap;
 
 use crate::foundation::core::Value;
 use crate::foundation::core::{
-    Discrimination, DynoError, EdgeEndpoint, EdgeReading, EdgeTypeDef, NodeTypeDef, PropertyDef,
-    Reading,
+    AlsoCalled, Discrimination, DynoError, EdgeEndpoint, EdgeReading, EdgeTypeDef, NodeTypeDef,
+    PropertyDef, Reading, Schema,
 };
 
 use crate::nodes::node;
@@ -98,6 +98,12 @@ pub struct NodeTypeSpec {
     /// could not see until 2026-09-22 (flo2 F24).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub discrimination: Option<Discrimination>,
+    /// What a FIELD calls this type, by field, each term with what the mapping
+    /// means and does not (`req:the-vocabulary-is-served-in-a-fields-own-terms`).
+    /// Absent when no field's word is declared, so a type without terms
+    /// answers byte for byte as it did.
+    #[serde(skip_serializing_if = "AlsoCalled::is_empty")]
+    pub also_called: AlsoCalled,
     pub properties: Vec<PropertySpec>,
 }
 
@@ -129,6 +135,11 @@ pub struct EdgeTypeSpec {
     /// their budget without it.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reading: Option<EdgeReading>,
+    /// What a FIELD calls this relation — see [`NodeTypeSpec::also_called`].
+    /// Served on every read, the listings included: a term is short, and the
+    /// listing is where an agent scans for the word it holds.
+    #[serde(skip_serializing_if = "AlsoCalled::is_empty")]
+    pub also_called: AlsoCalled,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub properties: Vec<PropertySpec>,
 }
@@ -313,6 +324,7 @@ fn edge_spec(name: &str, def: &EdgeTypeDef, detail: ReadingDetail) -> EdgeTypeSp
             ReadingDetail::Full => def.reading.clone(),
             ReadingDetail::OneLine => None,
         },
+        also_called: def.also_called.clone(),
         properties,
     }
 }
@@ -330,6 +342,7 @@ fn node_spec(name: &str, def: &NodeTypeDef) -> NodeTypeSpec {
         node_type: name.to_string(),
         hint: def.extraction_hint.as_ref().map(|h| h.trim().to_string()),
         discrimination: def.discrimination.clone(),
+        also_called: def.also_called.clone(),
         properties,
     }
 }
@@ -337,36 +350,122 @@ fn node_spec(name: &str, def: &NodeTypeDef) -> NodeTypeSpec {
 impl DesignGraph {
     /// Every node and edge type in the merged schema, sorted by name.
     pub fn describe_vocabulary(&self) -> Vocabulary {
-        let schema = self.schema();
+        vocabulary_in(self.schema())
+    }
 
-        let mut node_types: Vec<NodeTypeSpec> = schema
-            .node_types
-            .iter()
-            .map(|(n, d)| node_spec(n, d))
-            .collect();
-        node_types.sort_by(|a, b| a.node_type.cmp(&b.node_type));
+    /// Where a FIELD's word lives in this vocabulary: every node or edge type
+    /// whose `also_called` lists it, in any field — `lemma` → Requirement in
+    /// mathematics. Case and runs of whitespace do not count (`"Proof
+    /// strategy"` finds `proof strategy`). Empty when no field uses the word;
+    /// a type's own NAME is not a term and is not looked up here.
+    ///
+    /// Several homes come back only across fields: within one field a term has
+    /// one home, and `tests/a_fields_own_terms_have_one_home.rs` holds it.
+    pub fn types_called(&self, word: &str) -> Vec<TermHome> {
+        let word = normalise_term(word);
+        field_terms_in(self.schema())
+            .into_iter()
+            .filter(|h| normalise_term(&h.term) == word)
+            .collect()
+    }
 
-        let mut edge_types: Vec<EdgeTypeSpec> = schema
+    /// One edge type, read whole: its endpoints, hint, full reading and
+    /// properties — what a `from`/`to` query serves per match, for a caller
+    /// who has the edge's name (or a field's word for it) and no pair.
+    pub fn describe_edge_type(&self, edge_type: &str) -> Result<EdgeTypeSpec, DynoError> {
+        let def = self
+            .schema()
             .edge_types
-            .iter()
-            .map(|(n, d)| edge_spec(n, d, ReadingDetail::OneLine))
-            .collect();
-        edge_types.sort_by(|a, b| a.edge_type.cmp(&b.edge_type));
+            .get(edge_type)
+            .ok_or_else(|| DynoError::UnknownEdgeType(edge_type.to_string()))?;
+        Ok(edge_spec(edge_type, def, ReadingDetail::Full))
+    }
+}
 
-        let mut edge_readings_by_basis = std::collections::BTreeMap::new();
-        for def in schema.edge_types.values() {
-            if let Some(r) = &def.reading {
-                *edge_readings_by_basis.entry(r.basis.clone()).or_insert(0) += 1;
+/// Where one field's word lives: the field, the term as declared, the type
+/// that holds it (a node type or an edge type) and what the mapping means.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize)]
+pub struct TermHome {
+    pub field: String,
+    pub term: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub node_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub edge_type: Option<String>,
+    pub means: String,
+}
+
+/// How a field's word is compared: lowercased, runs of whitespace collapsed.
+pub fn normalise_term(word: &str) -> String {
+    word.split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+        .to_lowercase()
+}
+
+/// Every field's word any type in `schema` declares, sorted by field, then
+/// term, then type — the one list `describe_schema`'s lookup and
+/// `find_tools`' index are both built from.
+pub fn field_terms_in(schema: &Schema) -> Vec<TermHome> {
+    let mut out = Vec::new();
+    let homes = schema
+        .node_types
+        .iter()
+        .map(|(n, d)| (Some(n), None, &d.also_called))
+        .chain(
+            schema
+                .edge_types
+                .iter()
+                .map(|(n, d)| (None, Some(n), &d.also_called)),
+        );
+    for (node_type, edge_type, also_called) in homes {
+        for (field, terms) in also_called {
+            for t in terms {
+                out.push(TermHome {
+                    field: field.clone(),
+                    term: t.term.trim().to_string(),
+                    node_type: node_type.cloned(),
+                    edge_type: edge_type.cloned(),
+                    means: t.means.trim().to_string(),
+                });
             }
         }
+    }
+    out.sort();
+    out
+}
 
-        Vocabulary {
-            node_types,
-            edge_types,
-            edge_readings_by_basis,
+/// [`DesignGraph::describe_vocabulary`] over any schema.
+fn vocabulary_in(schema: &Schema) -> Vocabulary {
+    let mut node_types: Vec<NodeTypeSpec> = schema
+        .node_types
+        .iter()
+        .map(|(n, d)| node_spec(n, d))
+        .collect();
+    node_types.sort_by(|a, b| a.node_type.cmp(&b.node_type));
+
+    let mut edge_types: Vec<EdgeTypeSpec> = schema
+        .edge_types
+        .iter()
+        .map(|(n, d)| edge_spec(n, d, ReadingDetail::OneLine))
+        .collect();
+    edge_types.sort_by(|a, b| a.edge_type.cmp(&b.edge_type));
+
+    let mut edge_readings_by_basis = std::collections::BTreeMap::new();
+    for def in schema.edge_types.values() {
+        if let Some(r) = &def.reading {
+            *edge_readings_by_basis.entry(r.basis.clone()).or_insert(0) += 1;
         }
     }
 
+    Vocabulary {
+        node_types,
+        edge_types,
+        edge_readings_by_basis,
+    }
+}
+
+impl DesignGraph {
     /// The edge types whose declared reading USES `primitive` — as their one
     /// primitive, or as a component of their composition — optionally narrowed
     /// to one sign, split by whether EVERY edge of the type means it or only
@@ -476,42 +575,8 @@ impl DesignGraph {
     /// One node type's properties, plus every edge type that can leave or
     /// arrive at it.
     pub fn describe_node_type(&self, node_type: &str) -> Result<NodeTypeDetail, DynoError> {
-        let def = self.require_node_type(node_type)?;
-        let spec = node_spec(node_type, def);
-
-        let mut outgoing = Vec::new();
-        let mut incoming = Vec::new();
-        for (name, edge_def) in &self.schema().edge_types {
-            if let Some(from_match) = classify(&edge_def.from, node_type) {
-                // The far endpoint is unconstrained by this query, so report
-                // how it would match *itself* — i.e. whether it is a wildcard.
-                let to_match = wildcard_or_exact(&edge_def.to);
-                outgoing.push(EdgeTypeMatch {
-                    spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
-                    from_match,
-                    to_match,
-                    // A one-sided listing has no pair to declare for.
-                    declared_for_this_pair: false,
-                });
-            }
-            if let Some(to_match) = classify(&edge_def.to, node_type) {
-                let from_match = wildcard_or_exact(&edge_def.from);
-                incoming.push(EdgeTypeMatch {
-                    spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
-                    from_match,
-                    to_match,
-                    declared_for_this_pair: false,
-                });
-            }
-        }
-        outgoing.sort_by(EdgeTypeMatch::order);
-        incoming.sort_by(EdgeTypeMatch::order);
-
-        Ok(NodeTypeDetail {
-            spec,
-            outgoing,
-            incoming,
-        })
+        self.require_node_type(node_type)?;
+        node_type_detail_in(self.schema(), node_type)
     }
 
     /// The compact view of a node type: its hint and only the properties a
@@ -538,6 +603,55 @@ impl DesignGraph {
     ) -> Result<EdgeQuery, DynoError> {
         edge_query_in(self.schema(), from_type, to_type)
     }
+}
+
+/// [`DesignGraph::describe_node_type`] over any schema.
+fn node_type_detail_in(schema: &Schema, node_type: &str) -> Result<NodeTypeDetail, DynoError> {
+    let def = schema
+        .node_types
+        .get(node_type)
+        .ok_or_else(|| DynoError::UnknownNodeType(node_type.to_string()))?;
+    let spec = node_spec(node_type, def);
+
+    let mut outgoing = Vec::new();
+    let mut incoming = Vec::new();
+    for (name, edge_def) in &schema.edge_types {
+        if let Some(from_match) = classify(&edge_def.from, node_type) {
+            // The far endpoint is unconstrained by this query, so report
+            // how it would match *itself* — i.e. whether it is a wildcard.
+            let to_match = wildcard_or_exact(&edge_def.to);
+            outgoing.push(EdgeTypeMatch {
+                spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
+                from_match,
+                to_match,
+                // A one-sided listing has no pair to declare for.
+                declared_for_this_pair: false,
+            });
+        }
+        if let Some(to_match) = classify(&edge_def.to, node_type) {
+            let from_match = wildcard_or_exact(&edge_def.from);
+            incoming.push(EdgeTypeMatch {
+                spec: edge_spec(name, edge_def, ReadingDetail::OneLine),
+                from_match,
+                to_match,
+                declared_for_this_pair: false,
+            });
+        }
+    }
+    outgoing.sort_by(EdgeTypeMatch::order);
+    incoming.sort_by(EdgeTypeMatch::order);
+    // An edge's field terms are served where the EDGE is the subject — the
+    // whole listing, and a lookup by the term — not on a node's list of the
+    // edges it can carry. See `edge_query_in` for what it cost when they were.
+    for m in outgoing.iter_mut().chain(incoming.iter_mut()) {
+        m.spec.also_called.clear();
+    }
+
+    Ok(NodeTypeDetail {
+        spec,
+        outgoing,
+        incoming,
+    })
 }
 
 /// How an endpoint reads when the query does not constrain it.
@@ -652,6 +766,16 @@ pub(crate) fn edge_query_in(
         })
         .collect();
     matches.sort_by(EdgeTypeMatch::order);
+    // NOT HERE EITHER: an edge's field terms ride the whole listing and a
+    // lookup by the term, never a pair's candidates. Measured 2026-10-14 on
+    // every one of the 784 pairs: with `CONTRADICTS`' two terms on its match,
+    // five pairs that end at Contributor crossed the 30,000-character budget,
+    // and the budget then cut every hint in them to 240 characters where it had
+    // kept 800. An addition that shortens what a reply already said is not
+    // additive.
+    for m in &mut matches {
+        m.spec.also_called.clear();
+    }
 
     let exact_matches = matches.iter().filter(|m| m.is_exact()).count();
     let half_exact_matches = matches
@@ -701,6 +825,88 @@ mod tests {
 
     fn graph() -> DesignGraph {
         DesignGraph::open_in_memory().expect("schema loads")
+    }
+
+    /// Every `also_called` key removed, at any depth.
+    fn strip_also_called(v: &mut serde_json::Value) {
+        match v {
+            serde_json::Value::Object(m) => {
+                m.remove("also_called");
+                m.values_mut().for_each(strip_also_called);
+            }
+            serde_json::Value::Array(a) => a.iter_mut().for_each(strip_also_called),
+            _ => {}
+        }
+    }
+
+    /// WITH NOTHING ELSE CHANGED, EVERY ANSWER IS THE SAME BYTES BUT FOR ITS
+    /// `also_called` (`req:the-vocabulary-is-served-in-a-fields-own-terms`:
+    /// "the addition is additive to what clients see"). Asked of the whole
+    /// vocabulary, every node type's focus and every from/to pair, against
+    /// the same schema with every term taken out.
+    #[test]
+    fn a_fields_terms_add_a_key_and_change_nothing_else() {
+        let real = crate::schema::load_schema().expect("schema");
+        assert!(
+            !field_terms_in(&real).is_empty(),
+            "no field's term is declared, so this compared nothing"
+        );
+        let mut bare = real.clone();
+        bare.node_types
+            .values_mut()
+            .for_each(|d| d.also_called.clear());
+        bare.edge_types
+            .values_mut()
+            .for_each(|d| d.also_called.clear());
+        let same = |what: &str, with: serde_json::Value, without: serde_json::Value| {
+            let mut with = with;
+            strip_also_called(&mut with);
+            assert_eq!(
+                with.to_string(),
+                without.to_string(),
+                "{what}: the terms changed more than their own key"
+            );
+        };
+        same(
+            "the whole vocabulary",
+            j(&vocabulary_in(&real)),
+            j(&vocabulary_in(&bare)),
+        );
+        let types: Vec<String> = real.node_types.keys().cloned().collect();
+        for t in &types {
+            same(
+                t,
+                j(&node_type_detail_in(&real, t).expect("type")),
+                j(&node_type_detail_in(&bare, t).expect("type")),
+            );
+            for u in &types {
+                same(
+                    &format!("{t} -> {u}"),
+                    j(&edge_query_in(&real, t, u).expect("pair")),
+                    j(&edge_query_in(&bare, t, u).expect("pair")),
+                );
+            }
+        }
+    }
+
+    fn j<T: Serialize>(v: &T) -> serde_json::Value {
+        serde_json::to_value(v).expect("serializes")
+    }
+
+    #[test]
+    fn a_fields_word_finds_its_home_and_a_types_own_name_is_not_a_word() {
+        let g = graph();
+        let lemma = g.types_called("  LEMMA ");
+        assert_eq!(lemma.len(), 1, "{lemma:?}");
+        assert_eq!(lemma[0].node_type.as_deref(), Some("Requirement"));
+        assert_eq!(lemma[0].field, "mathematics");
+        let refutes = g.types_called("refutes");
+        assert_eq!(refutes[0].edge_type.as_deref(), Some("CONTRADICTS"));
+        assert!(g.types_called("proof    Strategy").len() == 1);
+        assert!(g.types_called("Requirement").is_empty());
+        assert!(g.types_called("assumption").is_empty());
+        assert!(g.describe_edge_type("CONTRADICTS").is_ok());
+        assert!(g.describe_edge_type("Contradicts").is_err());
     }
 
     #[test]

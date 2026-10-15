@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:326c3afbabedb77f1c0b3ae18763bfe11725a79f319f2fc1f86f7483646e5e30",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-fields-own-terms-have-one-home",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-vocabulary-is-served-in-a-fields-own-terms"
+}

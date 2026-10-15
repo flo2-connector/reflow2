@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a3ffcfd84bdf2fd55e80ae6c7748f35438896875d575b851a27753d22810404d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-vocabulary-is-served-in-a-fields-own-terms",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6d1391f7f64697c73f74341425532e465ee20a8bc42ae6a5991d9eeac9782f5f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-field-term-finds-the-type-that-holds-it"
+}

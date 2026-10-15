@@ -37,6 +37,20 @@ The Rust test beside the corpus is the authority; the replica can miss a tie-bro
 Description words count once (has_word is boolean) and a name match scores
 five times a description hit, so a tool beaten on a NAME match cannot be
 rescued by words; it belongs in the baseline with that reason.
+
+A FIELD'S TERM (req:the-vocabulary-is-served-in-a-fields-own-terms) is scored
+as find_tools scores it (crates/reflow2-mcp/src/field_terms.rs): each term in
+schema/*.yaml `also_called` indexes the tools that write its type — a node
+type's constructors (writers.json writers whose schema requires `id`), an edge
+type's drawers, else the constructors of the one type it is pinned to — and a
+query using the term's words, consecutive and whole, adds 8 x its
+discrimination to each, inside the length normalisation, exactly as an exact
+name match would. The terms are never in a description, so the
+toolsnaps cannot carry them; they are read from the schema (PyYAML, as
+vocabulary_reach.py does). `--validate` also asks the corpus's
+`in_a_fields_own_terms` phrasings and the `a_fields_terms_misroute_nothing`
+guards, so the replica is held to the live ranker on the queries the terms
+exist for and on those they must not take.
 """
 import functools, json, glob, math, os, re, sys
 
@@ -79,6 +93,79 @@ def load_tools(snapdir="tools/toolsnaps", overrides=None):
                 tools[k] = (v, tools[k][1])
     return tools
 
+TERM_HIT = 8.0  # field_terms.rs TERM_HIT: an exact name match's weight
+
+def load_terms(tools, snapdir="tools/toolsnaps"):
+    """[(words, [tool, …])] for every field's term, against the served tools
+    that write its type — field_terms.rs `index`."""
+    try:
+        import yaml
+    except ImportError:
+        print("PyYAML required (the field terms are read from schema/*.yaml)", file=sys.stderr)
+        raise SystemExit(2)
+    writers = json.load(open("crates/reflow2-mcp/writers.json"))
+    def inverted(m):
+        out = {}
+        for tool, names in m.items():
+            for n in names:
+                out.setdefault(n, set()).add(tool)
+        return out
+    writes, draws = inverted(writers["writes_node_type"]), inverted(writers["draws_edge_type"])
+    required = {}
+    for f in glob.glob(snapdir + "/*.json"):
+        d = json.load(open(f))
+        required[d["name"]] = (d.get("inputSchema", {}) or {}).get("required", []) or []
+    def constructors(node_type):
+        return sorted(w for w in writes.get(node_type, ()) if w in tools and "id" in required.get(w, []))
+    docs = [(yaml.safe_load(open(f)) or {}).get("schema") or {} for f in sorted(glob.glob("schema/*.yaml"))]
+    out = []
+    for doc in docs:
+        for kind in ("node_types", "edge_types"):
+            for name, spec in (doc.get(kind) or {}).items():
+                for terms in ((spec or {}).get("also_called") or {}).values():
+                    for t in terms:
+                        if kind == "node_types":
+                            served = constructors(name)
+                        else:
+                            # field_terms.rs edge_tools: the typed helpers, or the
+                            # constructors of the one type the edge is pinned to.
+                            served = sorted(w for w in draws.get(name, ()) if w in tools)
+                            if not served:
+                                pinned = [e for e in (spec.get("from"), spec.get("to"))
+                                          if isinstance(e, str) and e != "*"]
+                                served = sorted({c for e in pinned for c in constructors(e)})
+                        words = terms_of(t["term"])
+                        if served and words:
+                            out.append((words, served))
+    return out
+
+def _uses(words, phrase):
+    n = len(phrase)
+    return n > 0 and any(words[i:i + n] == phrase for i in range(len(words) - n + 1))
+
+def term_gains(query, tools, terms):
+    """Raw (pre-normalisation) gain per tool from the field terms a query uses."""
+    q = terms_of(query)
+    n = len(tools)
+    gains = {}
+    for words, served in terms:
+        if not _uses(q, words):
+            continue
+        df = sum(1 for name, (desc, _) in tools.items()
+                 if name in served or _uses([w for w in re.split(r"[^0-9a-zA-Z]", desc.lower()) if w], words))
+        w = max(math.log((n + 1) / (df + 1)), 0.0)
+        for tool in served:
+            gains[tool] = gains.get(tool, 0.0) + TERM_HIT * w
+    return gains
+
+_TERMS = {}
+
+def terms_for(tools):
+    key = id(tools)
+    if key not in _TERMS:
+        _TERMS[key] = load_terms(tools)
+    return _TERMS[key]
+
 def terms_of(query):
     return [t for t in re.split(r"[^0-9a-z_]", query.lower()) if t]
 
@@ -110,7 +197,9 @@ def score(name, desc, params, weighted):
 
 def rank(query, tools, limit=5):
     w = weights(terms_of(query), tools)
-    scored = [(score(n, d, p, w), n) for n, (d, p) in tools.items()]
+    gains = term_gains(query, tools, terms_for(tools))
+    scored = [(score(n, d, p, w) + gains.get(n, 0.0) / math.log(2.0 + len(d.lower()) / 200.0), n)
+              for n, (d, p) in tools.items()]
     scored = [(s, n) for s, n in scored if s > 0]
     scored.sort(key=lambda x: (-x[0], x[1]))
     return scored[:limit]
@@ -148,6 +237,19 @@ def report(baseline=False):
         doc["mutual"] = [list(m) for m in sorted(set(mutual) | set(kept))]
         json.dump(doc, open(path, "w"), indent=1); print("baseline rewritten:", path)
 
+def fields_queries():
+    """The corpus's phrasings in a field's own words, keyed like `queries`."""
+    doc = json.load(open("crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json"))
+    out = {}
+    for field, cases in (doc.get("in_a_fields_own_terms") or {}).items():
+        if field.startswith("_"):
+            continue
+        for c in cases:
+            out[f"{field}: {c['query']}"] = c["query"]
+    for c in (doc.get("a_fields_terms_misroute_nothing") or {}).get("not_first", []):
+        out[f"guard: {c['query']}"] = c["query"]
+    return out
+
 def live_rankings(binary, corpus):
     """Ask the live binary's find_tools every corpus query, in one session on
     an empty design (the toolsnaps are taken on one too, so no lessons)."""
@@ -169,6 +271,7 @@ def live_rankings(binary, corpus):
 def validate(binary):
     """Agreement with the live ranker. Returns the number of top-1 disagreements."""
     corpus = json.load(open("crates/reflow2-mcp/tests/fixtures/find_tools_corpus.json"))["queries"]
+    corpus = {**corpus, **fields_queries()}
     tools = load_tools()
     live = live_rankings(binary, corpus)
     top1, top5 = [], 0

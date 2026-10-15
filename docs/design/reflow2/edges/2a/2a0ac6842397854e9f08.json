@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:15448b9eaf3483a85834b7f7c6107269c96643ff0087c9cfb980d0c0c4dd7aa2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-fields-own-terms-have-one-home",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

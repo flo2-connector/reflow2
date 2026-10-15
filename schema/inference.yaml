@@ -64,6 +64,109 @@ schema:
           it is a Decision with its rationale. The test is whether a conclusion's
           truth is claimed to follow from other records' truth (Inference), or a
           choice is being explained (Decision).
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: inference step
+            means: >-
+              One step of reasoning, held as an Inference: its premises link in
+              (PREMISE_OF), its one conclusion links out (CONCLUDES), and `rule` says
+              how the premises combine: all, any one, or k of n. reflow2 checks the
+              FORM, whether the premises' computed truth gives the conclusion by that
+              rule, and never whether the statements really entail it.
+          - term: proof step
+            means: >-
+              A step of a proof, held as an Inference and read exactly as an inference
+              step. That the conclusion follows by form is computed; who confirmed the
+              step is not recorded yet, so a proof built of such steps reads as SHOWN,
+              never as PROVEN (req:a-design-can-be-a-proof).
+          - term: inference rule
+            means: >-
+              Another name for a rule of inference: the rule's name sits in the
+              Inference's `rule_name`, a label reflow2 never checks, and the combination
+              it does check in `rule` (all, any, k_of_n).
+          - term: rule of inference
+            means: >-
+              The rule a step applies, held on its Inference: the rule's name (modus
+              ponens, induction) in `rule_name`, a label reflow2 never checks, and the
+              combination reflow2 does check in `rule` (all, any, k_of_n). The rule is
+              part of the step, never a record of its own.
+          - term: two-column proof
+            means: >-
+              A proof written as rows of statement | reason. Each row is one Inference:
+              the statement is its conclusion, the reason its `rule_name` or `warrant`,
+              and the earlier rows it cites are its premises. The whole proof is the
+              chain of those Inferences.
+          - term: direct proof
+            means: >-
+              A chain of Inferences from the hypotheses to the statement, each with
+              `rule` all and each premise shown or taken. Nothing in it is assumed and
+              later discharged, which is what reflow2 can record today.
+          - term: follows from
+            means: >-
+              "Q follows from P" is one Inference: P its premise (PREMISE_OF), Q its
+              conclusion (CONCLUDES), and its `rule` saying how. reflow2 computes
+              whether Q follows by that rule from the premises' computed truth, never
+              whether P really entails Q.
+          - term: modus ponens
+            means: >-
+              A step with `rule` all and `rule_name` modus ponens: premises P and "P
+              implies Q", conclusion Q. reflow2 checks that both premises hold, never
+              that Q is what the implication gives.
+          - term: proof by induction
+            means: >-
+              A step with `rule_name` induction and `rule` all: its premises are the
+              base case and the inductive step, recorded as a statement of its own
+              ("P(k) implies P(k+1)"), and its conclusion is P(n) for all n. The
+              assumption P(k) is never a premise: it is local to the inductive step, and
+              reflow2 has no discharged assumptions yet (req:a-design-can-be-a-proof).
+          - term: mathematical induction
+            means: >-
+              The same record as a proof by induction: an Inference with `rule_name`
+              induction whose premises are the base case and the inductive step ("P(k)
+              implies P(k+1)", a statement of its own) and whose conclusion is P(n) for
+              all n. The inductive hypothesis P(k) is never a premise: reflow2 has no
+              discharged assumptions yet (req:a-design-can-be-a-proof).
+          - term: contraposition
+            means: >-
+              A step with `rule_name` contraposition: its premise is "not Q implies not
+              P" and its conclusion "P implies Q", each a statement of its own.
+          - term: proof by contradiction
+            means: >-
+              A step whose premise is the shown statement "assuming not-P leads to a
+              contradiction", recorded as a statement of its own, and whose conclusion
+              is P. The assumption not-P is never a premise: it is false, and as a
+              premise it would fail the step. reflow2 has no discharged assumptions yet
+              (req:a-design-can-be-a-proof).
+          - term: proof by construction
+            means: >-
+              A step whose premises are a constructed object and the shown statement
+              that it has the property, and whose conclusion is that such an object
+              exists.
+          - term: proof by exhaustion
+            means: >-
+              A step with `rule` all whose premises are every case, each shown, and the
+              statement that these cases are all the cases, as a premise of its own: the
+              one most often left out. Over a finite domain it proves the statement; the
+              same cases are only evidence for anything beyond them.
+          - term: case analysis
+            means: >-
+              The same record as a proof by exhaustion: an Inference whose premises are
+              each case and the statement that the cases cover every possibility. Not
+              DECOMPOSES, which rolls delivery up and has no place for that statement or
+              for the rule.
+          - term: proof by double counting
+            means: >-
+              A step whose premises are two counts of one set and whose conclusion is
+              that the two counts are equal (`rule_name` double counting). Named whole
+              on purpose: a cost counted twice in a budget is a mistake, not a proof.
+          - term: probabilistic method
+            means: >-
+              A step whose premise is a shown probability statement (a random object has
+              the property with probability above zero) and whose conclusion is that an
+              object with the property exists, with certainty.
       extraction_hint: >
         A stated inference step: how some premises support one conclusion, and by
         which rule — all of them, any one, or k of n (a named rule such as modus
@@ -94,6 +197,18 @@ schema:
       from: "*"
       to: Inference
       reading: { form: "primitive", primitive: "part-of", sub: "premise", frame: "membership", note: "The premise is one of the grounds the step combines; the rule belongs to the group, not to this link.", basis: "classified" }
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: premise
+            means: >-
+              The source of a PREMISE_OF edge is a premise of the Inference it points
+              to: one of the grounds the step combines by its rule. Written with
+              add_inference's `premises`. Under rule all a failing premise fails the
+              step and an unknown one leaves it unknown; a premise is never an
+              assumption the step discharges.
       extraction_hint: >
         Source is one of the premises the target Inference combines by its rule.
         A cycle through PREMISE_OF and CONCLUDES is circular reasoning and is
@@ -209,6 +324,24 @@ schema:
         confidence: { type: float, range: [0.0, 1.0] }
         evidence: { type: string }
         alignment: { type: enum, values: [opposing, supporting], default: opposing, description: "opposing = conflict; supporting = corroboration. Both stored here." }
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: counterexample
+            means: >-
+              An instance that makes a statement false: the counterexample is the source
+              of a CONTRADICTS edge and the statement it breaks is the target, with
+              `alignment` left at `opposing` (the default). With `alignment`
+              `supporting` the same edge is corroboration, the opposite. Drawing it
+              changes no status: the refuted statement's owner settles it.
+          - term: refutes
+            means: >-
+              A refutes B: A shows B false. Drawn as CONTRADICTS from A to B with
+              `alignment` `opposing` (the default); a CONTRADICTS edge marked
+              `supporting` corroborates instead. Drawing it changes no status: B's owner
+              settles it.
       extraction_hint: Two decisions/requirements/claims that conflict (or, with alignment=supporting, reinforce).
 
     # VALIDATES retired 2026-07-22 (dec:edge-orthogonality): orthogonal-in-name-

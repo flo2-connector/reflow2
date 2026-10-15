@@ -100,6 +100,45 @@ schema:
           numeric prohibition, so it is a Constraint. Filed as a Requirement on a live
           site on 2026-09-19 (flo2 F24), which is the misclassification this block
           exists to prevent.
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: theorem
+            means: >-
+              A statement the work sets out to show, held as a Requirement. It is SHOWN
+              when its status is `met` or it reads as delivered. It is PROVEN only when
+              every step it rests on is confirmed by a proof checker or a named person,
+              which reflow2 does not compute yet (req:a-design-can-be-a-proof). The
+              Requirement is the statement, never its proof.
+          - term: proposition
+            means: >-
+              A statement to be shown, usually of less weight than a theorem: a
+              Requirement, read exactly as a theorem is. SHOWN when its status is `met`
+              or it reads as delivered; PROVEN only when every step it rests on is
+              confirmed, which is not computed yet (req:a-design-can-be-a-proof).
+          - term: lemma
+            means: >-
+              An intermediate statement, shown so that another can rest on it: a
+              Requirement like any other. What it supports is recorded by the steps it
+              is a premise of (PREMISE_OF into an Inference), never by a different type.
+              SHOWN when its status is `met` or it reads as delivered; PROVEN only when
+              every step it rests on is confirmed, which is not computed yet
+              (req:a-design-can-be-a-proof).
+          - term: corollary
+            means: >-
+              A statement that follows readily from one already shown: a Requirement.
+              Following readily is not following automatically: it is SHOWN only by its
+              own status or delivery, never because the statement it follows from is
+              shown.
+          - term: conjecture
+            means: >-
+              A statement put forward and not yet shown: a Requirement whose status is
+              not `met` and that does not read as delivered. `proposed` says nobody has
+              taken it on, `accepted` that its owner has; neither says it holds. It is
+              not a hypothesis: a hypothesis is assumed, a conjecture is still to be
+              shown.
       extraction_hint: >
         A stated need or goal the design must satisfy — the bridge between raw
         intent and concrete Capabilities. Extract one per distinct need. A
@@ -153,6 +192,31 @@ schema:
           Constraint — nothing is bounded, a behaviour is required, so it is a
           Requirement. The test is whether the sentence forbids or limits (Constraint)
           or obliges (Requirement).
+      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
+      # Served in describe_schema and find_tools, never in tools/list. One term,
+      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
+      also_called:
+        mathematics:
+          - term: hypothesis
+            means: >-
+              What a statement assumes, held as a Constraint: it bounds the cases the
+              statement covers, and every step must respect it. It is TAKEN, never
+              shown: nothing in the design shows a hypothesis true, and a statement
+              resting on one holds only where the hypothesis does. A belief about the
+              world that can stop being true is a different thing, and whether that is
+              its own type is still open (req:assumptions-are-first-class).
+          - term: axiom
+            means: >-
+              A statement taken as true without proof, held as a Constraint that the
+              whole design must respect. Like a hypothesis it is TAKEN, never shown;
+              unlike one, it is not the assumption of a single statement. A rule about
+              how the people doing the work go about it is a DesignRule, not an axiom.
+          - term: definition
+            means: >-
+              A statement that fixes what a word or symbol means in this design, held as
+              a Constraint: every later statement must use it as defined. It asserts
+              nothing, so it is never SHOWN or PROVEN; whether anything meets the
+              definition is for the work to show.
       extraction_hint: >
         A limit or rule the design MUST respect (vs. a Requirement, which is a
         goal to achieve). "Must run offline", "budget under $5k", "no PII
