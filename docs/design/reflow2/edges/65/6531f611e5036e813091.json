@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:525edb3d4e3940bcf2ff79a22fb88d3c33312167206e96f6980ba84d0072cb83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5c7e14f3b4136cdbeca8f16b2ebcdcf6e4fe325fb7314e0c0fbb9d50130d5e82",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write"
+}

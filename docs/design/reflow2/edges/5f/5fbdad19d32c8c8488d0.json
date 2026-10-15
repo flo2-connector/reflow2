@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e67ceb95309f0cd0f725012c7d1050b3c277ffcb50e5e3ed8b6510bf2b97b0f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-886672b678b85353",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1126878b7b339fb10fa18d61a6bc989b6a6f3cd1cb7054ac2b01fc34c43dec1d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

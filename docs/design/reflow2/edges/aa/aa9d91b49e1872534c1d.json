@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5929fab2bd6d78c4201b2567d4b36502b372b045102d0aee907d9723caf5084e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-stored-twin-is-kept-by-the-store-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

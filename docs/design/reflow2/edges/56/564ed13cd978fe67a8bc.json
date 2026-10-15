@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:205a1637a5be98bedd114e5182b606e3eeef4504d5cad123b9ed4943337b3843",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:address-watch-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

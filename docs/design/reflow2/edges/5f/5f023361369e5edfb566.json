@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b49de440fff2f52fe767133f1980bbed3f44d67ed37bfff16403aa9942d9a32a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f395547cb06d129560a0b72912bd06cac663ada089dfaf24403fe3211e1b3604",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

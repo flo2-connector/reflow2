@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ccd3b5b856a46c3b79629fe94d7e90d90b30d685099fb1c855f0284c193c2ab4",
+  "node_id": "art:test-a-build-without-on-disk-storage-refuses-a-store-in-a-folder",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Written first and observed failing on main (4 of 4). Without the `rocksdb` feature: the library openers (new_reporting, new, reading_a_copy), the one-shot door (--export and a --call read of a real v0.76.0 store, --import and a --call write where none exists), a stdio server and a --shared client each refuse, name the build, the feature and the fix, serve no design from memory, and leave the folder byte for byte as it was. With the feature: the guard lets an open through and a real store opens.",
+    "location": "crates/reflow2-mcp/tests/a_build_without_on_disk_storage_refuses_a_store_in_a_folder.rs",
+    "name": "a_build_without_on_disk_storage_refuses_a_store_in_a_folder.rs",
+    "status": "realized"
+  }
+}

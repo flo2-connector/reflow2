@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:82fb301339fabe1ff987f9cc09d0f7e43293f2e30a5f5653c48f65d896313444",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-build-without-on-disk-storage-refuses-a-store-in-a-folder",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:everyday-builds-run-without-rocksdb-and-no-test-is-lost"
+}

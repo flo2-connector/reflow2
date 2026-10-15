@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c2bb6c9db4e6becc757c2838a5bae55c4551b659977558b103aae32687d818cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:cargo-aliases"
+}

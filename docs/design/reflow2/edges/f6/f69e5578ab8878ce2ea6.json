@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7596f377391479df18ebe09622ed9fd716b7fab5db566fadfc5f7e2e8fec7e00",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

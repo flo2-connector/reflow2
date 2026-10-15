@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:96a8fd6d7d35aa43cea8fe7866c33463f945d86df6568a071541ddd978b2c46a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:cargo-aliases",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

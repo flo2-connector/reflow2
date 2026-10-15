@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fc39966a3b7f630eff89a2ff934134ff266ca49cb252e2590ed9c4815adc80db",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-every-test-file-runs-in-exactly-one-program",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:everyday-builds-run-without-rocksdb-and-no-test-is-lost"
+}

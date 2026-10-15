@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:29ce295b5eeada201f3d83cd8e00a2ccde88008143e0d24901bc92e63a1d448f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-writing-call-keeps-the-committed-export-current",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

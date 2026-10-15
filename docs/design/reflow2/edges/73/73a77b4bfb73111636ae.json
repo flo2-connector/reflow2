@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:98fb6dd04d97798ec99add679ab26f91166a5f65027161e60fa492b3613f24c9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it",
+  "properties": {},
+  "to_id": "req:everyday-development-builds-and-tests-without-rocksdb-and-the-shipped-server-keeps-it"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:45734d832bb5e36faa40c1faca46e9517a7b64623b3564c93a1b0aa6026529c7",
+  "node_id": "chg:baseline-730708cd5a89d756",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "first baseline: a new file of this PR",
+    "subject": "record"
+  }
+}

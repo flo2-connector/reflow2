@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:eb7026d42d5077a3742ed50ab165befec13f1d47df1cec332e011f4ff6d9cabb",
+  "edge_type": "REALIZES",
+  "from_id": "art:opening",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it"
+}

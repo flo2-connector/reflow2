@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b31a891f4b006386d6ed0f1cebf2ee7f8fea294f60b2ba5ab2513a589b6948ca",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-e0a9cfbf0b1338cd",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:e308149faf7cac98fb3ece1411adc34a02579d4d5fd7a194f6d68c0b97a176a9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:cargo-aliases"
+}

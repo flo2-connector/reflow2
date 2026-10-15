@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0123a3bdd337c45049a0bfbda5e6576a6732208f58f65e9f227c8efbfe49facf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:40a78bab1c212d2b073a31d1f38373d8c10cd5bd1daac0c2796682a93a86cee8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}
