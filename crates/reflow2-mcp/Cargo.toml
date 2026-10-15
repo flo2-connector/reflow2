@@ -12,11 +12,31 @@ description = "Reflow 2.0 agent-native surface — an MCP stdio server exposing 
 name = "reflow2-mcp"
 path = "src/main.rs"
 
+[features]
+# ON-DISK STORAGE — a design store in a folder, through RocksDB — is ON BY
+# DEFAULT, because the design must survive across agent sessions
+# (surface-plan.md, repo-file shape). Every build anyone installs or runs has
+# it: a release (release.yml), `cargo install`, the Docker images
+# (docker/build.sh), the installer's source-build line and the launcher all
+# build with default features. It pulls the librocksdb-sys C++ compile.
+#
+# WITHOUT IT (`--no-default-features`, the everyday `cargo dev-test`) this
+# crate builds and tests on the in-memory backend and never compiles RocksDB
+# (Anthony, 2026-10-15: "for the vast majority of development, I don't think
+# it's necessary"). Every path that would open a store in a folder then
+# REFUSES, naming this feature and the fix, and never falls back to memory
+# (`opening::refuse_without_on_disk_storage`). It was turned on by the
+# dependency line below until then, which `--no-default-features` cannot
+# switch off.
+default = ["rocksdb"]
+rocksdb = ["reflow2-core/rocksdb"]
+
 [dependencies]
-# The deterministic core, with on-disk persistence on: the design must survive
-# across agent sessions (surface-plan.md, repo-file shape). This pulls the
-# librocksdb-sys C++ compile — a one-time, cached cost.
-reflow2-core = { path = "../reflow2-core", features = ["rocksdb", "fulltext"] }
+# The deterministic core. `fulltext` (BM25 search through Tantivy, pure Rust)
+# is on in both builds: search works on the in-memory backend too, and it is
+# about 3 MB of the server's 61 MB of code. On-disk storage comes through this
+# crate's own `rocksdb` feature above, not this line.
+reflow2-core = { path = "../reflow2-core", features = ["fulltext"] }
 
 # Official Rust MCP SDK. `server`+`macros` give the #[tool]/#[tool_router]
 # surface; `transport-io` gives the stdio transport grok build / claude code

@@ -6866,6 +6866,7 @@ impl ReflowService {
     /// `reflow2_core::provenance`) so the server never starts on a design it
     /// would only partly understand.
     pub fn new_reporting(path: &str) -> Result<(Self, Option<String>), DynoError> {
+        crate::opening::refuse_without_on_disk_storage(path)?;
         let (graph, provenance) = DesignGraph::open_rocksdb_with_provenance(path)?;
         say_identity_on_open(&graph);
         // The full-text index is a derived sidecar; a graph written by a

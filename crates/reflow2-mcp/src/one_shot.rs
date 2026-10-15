@@ -556,6 +556,7 @@ pub fn resolve_design(asked: &Asked<'_>) -> Result<(), String> {
 /// rewrote the newer stamp down without a word. A newer stamp is now kept
 /// ([`reflow2_core::DesignGraph::open_rocksdb_once`]). stderr, because stdout is the reply.
 pub fn open_store(path: &str) -> Result<reflow2_core::DesignGraph, reflow2_core::DynoError> {
+    crate::opening::refuse_without_on_disk_storage(path)?;
     let (graph, provenance) = reflow2_core::DesignGraph::open_rocksdb_once(path)?;
     let repaired = graph.repaired_on_open().summary();
     if let Some(line) = provenance.one_shot_note(repaired.as_deref()) {
