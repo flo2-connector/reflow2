@@ -7,6 +7,9 @@ license.workspace = true
 repository.workspace = true
 authors.workspace = true
 description = "Reflow 2.0 deterministic core — a schema-driven design graph, foundation included"
+# The files in tests/ are compiled into the few test PROGRAMS declared at the
+# end of this file, not one program each. See the note there.
+autotests = false
 
 [dependencies]
 rmp-serde = { workspace = true }
@@ -47,3 +50,51 @@ fulltext = ["dep:tantivy"]
 # and the engine tests write to real temp dirs.
 proptest = "1"
 tempfile = "3"
+# The guard test (`every_test_file_runs_in_exactly_one_program`) reads this
+# file's `[[test]]` targets.
+toml = { version = "1", default-features = false, features = ["parse", "serde"] }
+
+# ── Test programs ──────────────────────────────────────────────────────────
+#
+# THE ~225 FILES IN tests/ ARE COMPILED INTO THESE FEW PROGRAMS, not one program
+# each (2026-10-15). One per file made ~225 programs of ~22 MB each in a debug
+# build (no features), every one linking the whole crate and its dependencies
+# again, and cargo keeps every old copy. Each file stays where it was — the
+# design's artifacts and checks, the docs and the links name these paths — and
+# is a module of one program's root, so its tests are named `<file>::<test>`:
+#
+#     cargo test -p reflow2-core --test in_memory <file>::
+#
+# A FILE IN NO PROGRAM COMPILES NOWHERE AND RUNS NOWHERE, now that discovery is
+# off: declare a new file in tests/in_memory.rs, or in the feature-gated
+# program if the whole file needs that feature.
+# `every_test_file_runs_in_exactly_one_program` fails until it is.
+
+# Every test that needs no whole-file feature gate. Builds with whatever
+# features the user passes; per-test `#[cfg(feature = "...")]` gates inside
+# each file handle both configurations.
+[[test]]
+name = "in_memory"
+path = "tests/in_memory.rs"
+
+# Every test whose WHOLE FILE is gated on `rocksdb`: skipped by
+# `--no-default-features` and `cargo dev-test`, run by `cargo full-test` and
+# CI's full job.
+[[test]]
+name = "on_disk"
+path = "tests/every_open_store_shares_one_memory_budget.rs"
+required-features = ["rocksdb"]
+
+# Every test whose WHOLE FILE is gated on both `rocksdb` and `fulltext`.
+[[test]]
+name = "on_disk_fulltext"
+path = "tests/a_store_opened_without_its_search_index_rebuilds_it.rs"
+required-features = ["rocksdb", "fulltext"]
+
+# ⚠️ ITS OWN PROCESS. It compares the FIRST `DesignGraph::open_in_memory()`
+# in a process against a warm one: the schema's `LazyLock` must not have been
+# triggered yet. In a shared process, any other test that opens a graph warms
+# the cache first, and the cold/warm ratio collapses.
+[[test]]
+name = "the_schema_is_parsed_once"
+path = "tests/the_schema_is_parsed_once.rs"
