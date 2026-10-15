@@ -12,11 +12,12 @@
 //! do instead
 //! (`dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first`).
 //!
-//! `crate::deprecation::REGISTRY` is the one place a deprecation is declared,
-//! and it is EMPTY until the first real one. Every entry here is test-only,
-//! handed to an in-memory service through `with_deprecations_for_test`, and
-//! every call goes over the protocol (an in-process duplex), through
-//! `call_tool` and `list_tools` as a client's does.
+//! `crate::deprecation::REGISTRY` is the one place a deprecation is declared;
+//! its first real entry, the `Anchor` node type, has its own test
+//! (`the_unused_anchor_type_is_announced_for_removal.rs`). Every entry here is
+//! test-only, handed to an in-memory service through
+//! `with_deprecations_for_test`, and every call goes over the protocol (an
+//! in-process duplex), through `call_tool` and `list_tools` as a client's does.
 //!
 //! What is pinned:
 //!
@@ -31,8 +32,9 @@
 //!    notice; a call that uses none carries nothing new.
 //! 5. A tool removed after its release of notice answers its old name with a
 //!    refusal saying what to do.
-//! 6. With the registry as built (empty), tools/list is the reviewed toolsnap
-//!    goldens, tool for tool — byte-identical to main's surface.
+//! 6. With the registry as built, tools/list is the reviewed toolsnap goldens,
+//!    tool for tool. A node type's entry marks describe_schema, not tools/list,
+//!    so the Anchor entry leaves every golden as it was.
 //! 7. The registry names only what this build serves.
 
 use reflow2_mcp::deprecation::{Deprecation, Item, REGISTRY};

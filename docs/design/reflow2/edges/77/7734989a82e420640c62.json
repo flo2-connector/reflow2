@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8334e19834f25b646378d45df519a4510c12a727deef18c7f76a394d8f3673e3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:what-removing-the-anchor-type-does-to-a-graph-that-holds-one-measured-2026-10-14",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

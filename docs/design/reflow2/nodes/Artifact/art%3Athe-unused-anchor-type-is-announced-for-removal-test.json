@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:6725be4c453ab784ca0bccc13f918b658c7a7b1b6e36a0d9ba46af18edfa3032",
+  "node_id": "art:the-unused-anchor-type-is-announced-for-removal-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "What a client of the MCP server sees while the Anchor node type is going, with deprecation::REGISTRY as built (its first real entry), every call over the protocol: describe_schema marks Anchor `deprecated` with the what-to-do and lists it under `deprecations` with dec:anchor-retire-or-implement (the listed item unmarked), and the what-to-do names served tools (add_epoch, snapshot_before_change); create_node of an Anchor still works and answers exactly as the last release did but for `deprecation_notice`, and get_node and scan_nodes of it carry the notice too; DriftEvent's hint no longer names the Anchor and says it DEPENDS_ON the drifted Artifact, which a recorded reconcile_artifacts really draws, and Anchor's hint no longer claims DriftEvents reference it; nine common reads that never touch Anchor carry no notice. Written first: all four tests failed on main at 959436d80; the listed-item assertion failed on 3a24c4daa.",
+    "location": "crates/reflow2-mcp/tests/the_unused_anchor_type_is_announced_for_removal.rs",
+    "name": "tests/the_unused_anchor_type_is_announced_for_removal.rs",
+    "status": "realized"
+  }
+}

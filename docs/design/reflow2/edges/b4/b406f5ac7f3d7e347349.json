@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a98be4764b723ea4844b9517155588812c1431af49fb757ba6c043d45c02126a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:the-unused-anchor-type-is-announced-for-removal",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
