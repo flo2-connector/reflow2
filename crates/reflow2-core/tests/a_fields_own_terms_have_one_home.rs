@@ -38,21 +38,44 @@ use serde_json::Value;
 /// - Decision holds the choice of method: proof strategy, approach.
 /// - Artifact holds the cited source: cited result, reference.
 /// - CONTRADICTS joins a counterexample to what it refutes.
+/// - Inference holds a step and the method it applies: the methods of proof
+///   from "Mathematical proof" (Wikipedia, "Methods of proof"), each as the
+///   step it is recorded as, and the two-column proof as rows of steps.
+/// - PREMISE_OF joins a premise to its step; CONCLUDES says "therefore".
 const MATHEMATICS: &[(&str, &str)] = &[
     ("approach", "Decision"),
     ("axiom", "Constraint"),
+    ("case analysis", "Inference"),
     ("cited result", "Artifact"),
     ("conjecture", "Requirement"),
+    ("contraposition", "Inference"),
     ("corollary", "Requirement"),
     ("counterexample", "CONTRADICTS"),
     ("definition", "Constraint"),
+    ("direct proof", "Inference"),
+    ("follows from", "Inference"),
+    ("hence", "CONCLUDES"),
     ("hypothesis", "Constraint"),
+    ("induction", "Inference"),
+    ("inference rule", "Inference"),
+    ("inference step", "Inference"),
     ("lemma", "Requirement"),
+    ("modus ponens", "Inference"),
+    ("premise", "PREMISE_OF"),
+    ("probabilistic method", "Inference"),
+    ("proof by construction", "Inference"),
+    ("proof by contradiction", "Inference"),
+    ("proof by double counting", "Inference"),
+    ("proof by exhaustion", "Inference"),
+    ("proof step", "Inference"),
     ("proof strategy", "Decision"),
     ("proposition", "Requirement"),
     ("reference", "Artifact"),
     ("refutes", "CONTRADICTS"),
+    ("rule of inference", "Inference"),
     ("theorem", "Requirement"),
+    ("therefore", "CONCLUDES"),
+    ("two-column proof", "Inference"),
 ];
 
 /// Judged and LEFT OUT of mathematics, each for a reason:
@@ -64,7 +87,30 @@ const MATHEMATICS: &[(&str, &str)] = &[
 ///   English it is a preposition — the find_tools corpus asks "when can this
 ///   release ship GIVEN the technology maturity" — so as an index term it would
 ///   route ordinary sentences to add_constraint.
-const LEFT_OUT_OF_MATHEMATICS: &[&str] = &["assumption", "given"];
+/// - `used in`: offered for PREMISE_OF, but it is ordinary English ("used in
+///   production") and names no mathematical relation; `premise` is the word.
+/// - `combinatorial proof`: the article uses it for double counting, and
+///   Hughes's combinatorial proofs are a different formalism — one word, two
+///   meanings.
+/// - `contradiction`, `construction` and `double counting` BARE: each also
+///   means something else a design says — two claims in conflict (which is
+///   CONTRADICTS), a building, a cost counted twice — so each method is named
+///   whole, `proof by …`. Measured 2026-10-15 on the replica: "avoid double
+///   counting the mass in the budget" put add_inference above budget_report.
+///
+/// `induction` is KEPT bare although "induction motor" means something else,
+/// and that query ranks add_inference first with budget_report second
+/// (measured the same day): it is the word the requirement's own SHOWN WHEN
+/// sentence uses ("by induction"), and the item says what it means.
+const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
+    "assumption",
+    "given",
+    "used in",
+    "combinatorial proof",
+    "contradiction",
+    "construction",
+    "double counting",
+];
 
 /// Types that carry NO mathematics term, by judgement rather than oversight:
 ///
@@ -75,8 +121,8 @@ const LEFT_OUT_OF_MATHEMATICS: &[&str] = &["assumption", "given"];
 /// - `DECOMPOSES` is the nearest to a case split — satisfying every child
 ///   satisfies the parent — but a proof by cases is an INFERENCE whose
 ///   exhaustiveness is itself a premise, and DECOMPOSES has no place for that
-///   premise or for the rule. A term here would route a proof's case split past
-///   the record that can say its rule and who confirmed it.
+///   premise or for the rule. `case analysis` and `proof by exhaustion` are on
+///   Inference, where the rule and that premise can be said.
 const NO_MATHEMATICS_TERM: &[&str] = &["DEPENDS_ON", "DECOMPOSES"];
 
 /// One declared term: (field, term, home type, means).
@@ -112,9 +158,11 @@ fn declared() -> Vec<Declared> {
     out
 }
 
-/// How a term is matched: case and runs of whitespace do not count.
+/// How a term is matched: case and runs of whitespace do not count, and an
+/// underscore reads as a space, so `PREMISE_OF` and "premise of" compare alike.
 fn norm(s: &str) -> String {
-    s.split_whitespace()
+    s.replace('_', " ")
+        .split_whitespace()
         .collect::<Vec<_>>()
         .join(" ")
         .to_lowercase()

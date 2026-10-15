@@ -617,7 +617,13 @@ impl ReflowService {
         };
         let mut reply = match (&req.node_type, &req.from, &req.to) {
             (Some(word), None, None) if !by_term.is_empty() => {
-                describe_by_term(&g, word, by_term, req.required_only, &bound)?
+                let served: Vec<_> = self
+                    .tool_router
+                    .list_all()
+                    .into_iter()
+                    .map(crate::arguments::published)
+                    .collect();
+                describe_by_term(&g, word, by_term, req.required_only, &served, &bound)?
             }
             (None, None, None) => {
                 bound(serde_json::to_value(g.describe_vocabulary()).map_err(ser_err)?)
@@ -1017,8 +1023,8 @@ impl ReflowService {
         description = "Find the reflow2 tool for a job you can describe but cannot name — \
                        'how do I record that a file implements a capability?', 'what shows me \
                        the blast radius?'. Ranked over the served surface itself (name, \
-                       description and parameter names), so it can never drift from the tools \
-                       that actually exist. The whole surface is too large to hold in context at \
+                       description, parameter names, and a field's own words for the type a tool \
+                       writes), so it can never drift from the tools that actually exist. The whole surface is too large to hold in context at \
                        once; this is its catalogue. Descriptions come back trimmed; once you \
                        know the name, `describe_schema` with `tool` reads its whole input schema \
                        and the lessons this design holds for it (the reply's `describe` says \
@@ -1450,13 +1456,16 @@ fn with_writers(node_type: &str, mut v: serde_json::Value) -> serde_json::Value 
 /// a type.
 ///
 /// A word some field uses for an EDGE type answers that edge, whole, with the
-/// tools that draw it. A word that names different types in different fields
+/// tools that draw it — its typed helpers, or the constructor of the record it
+/// is pinned to (`premise` → PREMISE_OF, drawn by `add_inference`; see
+/// `crate::field_terms::edge_tools`). A word that names different types in different fields
 /// answers none of them: every home is listed, to be asked for by name.
 fn describe_by_term(
     g: &DesignGraph,
     word: &str,
     homes: Vec<reflow2_core::vocabulary::TermHome>,
     required_only: bool,
+    served: &[rmcp::model::Tool],
     bound: &dyn Fn(serde_json::Value) -> serde_json::Value,
 ) -> Result<serde_json::Value, McpError> {
     let node_types: std::collections::BTreeSet<&str> = homes
@@ -1503,7 +1512,7 @@ fn describe_by_term(
             if let Some(m) = v.as_object_mut() {
                 m.insert(
                     "drawn_by".into(),
-                    json!(crate::writers::edge_type_writers(e)),
+                    json!(crate::field_terms::edge_tools(g.schema(), e, served)),
                 );
             }
             (

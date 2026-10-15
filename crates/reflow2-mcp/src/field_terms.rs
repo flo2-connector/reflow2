@@ -29,7 +29,9 @@
 //! mathematical phrasings, main put every named tool in the top 5 for 1 and
 //! first for none; now all 15 have every named tool in the top 5 and one of
 //! them first. `tools/tool_confusability.py` scores the same way, and
-//! `--validate` held it to the live ranker on all 210 at top 1.
+//! `--validate` held it to the live ranker on all 210 at top 1. With the
+//! Inference terms (2026-10-15) the phrasings are 25, all pass, and the
+//! replica agreed with the live ranker on all 221 at top 1.
 
 use std::collections::BTreeMap;
 
@@ -91,16 +93,56 @@ pub(crate) fn index(served: &[rmcp::model::Tool]) -> Vec<Entry> {
         .filter_map(|home| {
             let tools: Vec<String> = match (&home.node_type, &home.edge_type) {
                 (Some(t), _) => crate::revise_route::constructors_of(t, served),
-                (None, Some(e)) => crate::writers::edge_type_writers(e)
-                    .into_iter()
-                    .filter(|w| served.iter().any(|t| t.name == w.as_str()))
-                    .collect(),
+                (None, Some(e)) => edge_tools(schema, e, served),
                 (None, None) => Vec::new(),
             };
             let words = words_of(&home.term);
             (!tools.is_empty() && !words.is_empty()).then_some(Entry { words, home, tools })
         })
         .collect()
+}
+
+/// The served tools that draw `edge_type`: its typed helpers (writers.json's
+/// `draws_edge_type`) or, when it has none, the constructors of the one type
+/// its edge is pinned to, which draw it as part of that record.
+///
+/// `PREMISE_OF` and `CONCLUDES` are the case: no typed helper draws them, and
+/// `add_inference` draws both with the step (`premises`, `conclusion`). The
+/// shared map lists typed edge helpers only, by its own rule, so it does not
+/// name `add_inference` for them, and an agent holding "premise" would
+/// otherwise be told nothing writes it. An edge open on both ends with no
+/// helper (`*` to `*`) has no record it belongs to, and answers none.
+pub(crate) fn edge_tools(
+    schema: &reflow2_core::foundation::core::Schema,
+    edge_type: &str,
+    served: &[rmcp::model::Tool],
+) -> Vec<String> {
+    let helpers: Vec<String> = crate::writers::edge_type_writers(edge_type)
+        .into_iter()
+        .filter(|w| served.iter().any(|t| t.name == w.as_str()))
+        .collect();
+    if !helpers.is_empty() {
+        return helpers;
+    }
+    let Some(def) = schema.edge_types.get(edge_type) else {
+        return Vec::new();
+    };
+    let pinned = |end: &reflow2_core::foundation::core::EdgeEndpoint| match end {
+        reflow2_core::foundation::core::EdgeEndpoint::Single(t)
+            if t != reflow2_core::foundation::core::EdgeEndpoint::WILDCARD =>
+        {
+            Some(t.clone())
+        }
+        _ => None,
+    };
+    let mut tools: Vec<String> = [pinned(&def.from), pinned(&def.to)]
+        .into_iter()
+        .flatten()
+        .flat_map(|t| crate::revise_route::constructors_of(&t, served))
+        .collect();
+    tools.sort();
+    tools.dedup();
+    tools
 }
 
 /// What the terms `query_words` use add to each tool, before the length
@@ -164,6 +206,10 @@ mod tests {
         assert_eq!(tools_of("proof strategy"), ["add_decision"]);
         assert_eq!(tools_of("cited result"), ["add_artifact"]);
         assert_eq!(tools_of("counterexample"), ["review_relations"]);
+        assert_eq!(tools_of("induction"), ["add_inference"]);
+        // No typed helper draws these; the step's constructor does.
+        assert_eq!(tools_of("premise"), ["add_inference"]);
+        assert_eq!(tools_of("therefore"), ["add_inference"]);
     }
 
     #[test]

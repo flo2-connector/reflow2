@@ -42,9 +42,10 @@ A FIELD'S TERM (req:the-vocabulary-is-served-in-a-fields-own-terms) is scored
 as find_tools scores it (crates/reflow2-mcp/src/field_terms.rs): each term in
 schema/*.yaml `also_called` indexes the tools that write its type — a node
 type's constructors (writers.json writers whose schema requires `id`), an edge
-type's drawers — and a query using the term's words, consecutive and whole,
-adds 8 x its discrimination to each, inside the length normalisation, exactly
-as an exact name match would. The terms are never in a description, so the
+type's drawers, else the constructors of the one type it is pinned to — and a
+query using the term's words, consecutive and whole, adds 8 x its
+discrimination to each, inside the length normalisation, exactly as an exact
+name match would. The terms are never in a description, so the
 toolsnaps cannot carry them; they are read from the schema (PyYAML, as
 vocabulary_reach.py does). `--validate` also asks the corpus's
 `in_a_fields_own_terms` phrasings, so the replica is held to the live ranker
@@ -113,17 +114,25 @@ def load_terms(tools, snapdir="tools/toolsnaps"):
     for f in glob.glob(snapdir + "/*.json"):
         d = json.load(open(f))
         required[d["name"]] = (d.get("inputSchema", {}) or {}).get("required", []) or []
+    def constructors(node_type):
+        return sorted(w for w in writes.get(node_type, ()) if w in tools and "id" in required.get(w, []))
+    docs = [(yaml.safe_load(open(f)) or {}).get("schema") or {} for f in sorted(glob.glob("schema/*.yaml"))]
     out = []
-    for f in sorted(glob.glob("schema/*.yaml")):
-        doc = (yaml.safe_load(open(f)) or {}).get("schema") or {}
+    for doc in docs:
         for kind in ("node_types", "edge_types"):
             for name, spec in (doc.get(kind) or {}).items():
                 for terms in ((spec or {}).get("also_called") or {}).values():
                     for t in terms:
                         if kind == "node_types":
-                            served = sorted(w for w in writes.get(name, ()) if w in tools and "id" in required.get(w, []))
+                            served = constructors(name)
                         else:
+                            # field_terms.rs edge_tools: the typed helpers, or the
+                            # constructors of the one type the edge is pinned to.
                             served = sorted(w for w in draws.get(name, ()) if w in tools)
+                            if not served:
+                                pinned = [e for e in (spec.get("from"), spec.get("to"))
+                                          if isinstance(e, str) and e != "*"]
+                                served = sorted({c for e in pinned for c in constructors(e)})
                         words = terms_of(t["term"])
                         if served and words:
                             out.append((words, served))

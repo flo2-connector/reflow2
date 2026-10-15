@@ -199,7 +199,7 @@
     "writes_for": "attribute the edits in this session to the person I am working for"
   },
   "in_a_fields_own_terms": {
-    "_what": "Queries in a FIELD's own words, never reflow2's (req:the-vocabulary-is-served-in-a-fields-own-terms). Each names the typed tool(s) that write the type its field words mean. A query passes when every named tool is in the default top 5, the first result is one of them, and each named tool's item carries `also_called` saying which word found it. Read by tests/a_field_term_finds_the_type_that_holds_it.rs and by tools/tool_confusability.py --validate. Written 2026-10-14 before the terms existed. Measured on main's find_tools that day: 1 of the 15 had every named tool in the top 5, and none ranked one first.",
+    "_what": "Queries in a FIELD's own words, never reflow2's (req:the-vocabulary-is-served-in-a-fields-own-terms). Each names the typed tool(s) that write the type its field words mean. A query passes when every named tool is in the default top 5, the first result is one of them, and each named tool's item carries `also_called` saying which word found it. Read by tests/a_field_term_finds_the_type_that_holds_it.rs and by tools/tool_confusability.py --validate. Written 2026-10-14 before the terms existed; the Inference rows on 2026-10-15, after #754 added the type. Measured on main's find_tools that day: 1 of the 15 had every named tool in the top 5, and none ranked one first.",
     "mathematics": [
       {
         "query": "record a lemma",
@@ -211,7 +211,8 @@
         "query": "record Lemma 2, which follows from the hypothesis by induction",
         "tools": [
           "add_requirement",
-          "add_constraint"
+          "add_constraint",
+          "add_inference"
         ]
       },
       {
@@ -290,6 +291,67 @@
         "query": "this example refutes the conjecture",
         "tools": [
           "review_relations",
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "record the inference step from these premises",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "write a two-column proof",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "prove it by induction on n",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "this follows by modus ponens",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "a proof by contradiction that root 2 is irrational",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "a proof by exhaustion over all 40 cases",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "case analysis on the parity of n",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "add a premise to this step",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "P and Q, therefore R",
+        "tools": [
+          "add_inference"
+        ]
+      },
+      {
+        "query": "this lemma follows from the axioms",
+        "tools": [
+          "add_inference",
           "add_requirement"
         ]
       }

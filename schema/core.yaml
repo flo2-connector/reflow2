@@ -121,10 +121,10 @@ schema:
           - term: lemma
             means: >-
               An intermediate statement, shown so that another can rest on it: a
-              Requirement like any other. What it supports is recorded by the links to
-              the statement that uses it, never by a different type. SHOWN when its
-              status is `met` or it reads as delivered; PROVEN only when every step it
-              rests on is confirmed, which is not computed yet
+              Requirement like any other. What it supports is recorded by the steps it
+              is a premise of (PREMISE_OF into an Inference), never by a different type.
+              SHOWN when its status is `met` or it reads as delivered; PROVEN only when
+              every step it rests on is confirmed, which is not computed yet
               (req:a-design-can-be-a-proof).
           - term: corollary
             means: >-

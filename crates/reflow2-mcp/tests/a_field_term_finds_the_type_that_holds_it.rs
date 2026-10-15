@@ -87,6 +87,9 @@ async fn describe_schema_finds_a_node_type_by_a_fields_word() {
         ("axiom", "axiom", "Constraint"),
         ("proof   strategy", "proof strategy", "Decision"),
         ("cited result", "cited result", "Artifact"),
+        ("induction", "induction", "Inference"),
+        ("Two-Column Proof", "two-column proof", "Inference"),
+        ("modus ponens", "modus ponens", "Inference"),
     ] {
         let v = describe(&s, json!({"node_type": asked}))
             .await
@@ -124,24 +127,33 @@ async fn describe_schema_finds_a_node_type_by_a_fields_word() {
 #[tokio::test]
 async fn describe_schema_finds_an_edge_type_by_a_fields_word() {
     let s = ReflowService::in_memory().expect("service");
-    for asked in ["counterexample", "refutes"] {
+    // PREMISE_OF and CONCLUDES have no typed helper: the step's constructor,
+    // add_inference, draws them, and the answer must say so rather than
+    // answer that nothing does.
+    for (asked, edge, tool) in [
+        ("counterexample", "CONTRADICTS", "review_relations"),
+        ("refutes", "CONTRADICTS", "review_relations"),
+        ("premise", "PREMISE_OF", "add_inference"),
+        ("therefore", "CONCLUDES", "add_inference"),
+        ("hence", "CONCLUDES", "add_inference"),
+    ] {
         let v = describe(&s, json!({"node_type": asked}))
             .await
             .unwrap_or_else(|e| panic!("{asked:?} was refused: {e}"));
-        assert_eq!(v["edge_type"], "CONTRADICTS", "{asked:?}: {v}");
+        assert_eq!(v["edge_type"], edge, "{asked:?}: {v}");
         assert_eq!(
             found(&v),
             [(
                 "mathematics".to_string(),
                 asked.to_string(),
-                "CONTRADICTS".to_string()
+                edge.to_string()
             )]
         );
         assert!(
             v["drawn_by"]
                 .as_array()
-                .is_some_and(|d| d.iter().any(|t| t == "review_relations")),
-            "the edge's answer names the tool that draws it: {v}"
+                .is_some_and(|d| d.iter().any(|t| t == tool)),
+            "the edge's answer names the tool that draws it, {tool}: {v}"
         );
         assert!(v["reading"].is_object(), "and its whole reading: {v}");
     }
@@ -262,6 +274,7 @@ async fn record_lemma_two_which_follows_from_the_hypothesis_by_induction() {
     for (tool, term, home) in [
         ("add_requirement", "lemma", "Requirement"),
         ("add_constraint", "hypothesis", "Constraint"),
+        ("add_inference", "induction", "Inference"),
     ] {
         let item = items
             .iter()
@@ -275,7 +288,12 @@ async fn record_lemma_two_which_follows_from_the_hypothesis_by_induction() {
     }
 
     // describe_schema, on the sentence's own words.
-    for (word, home) in [("Lemma", "Requirement"), ("hypothesis", "Constraint")] {
+    for (word, home) in [
+        ("Lemma", "Requirement"),
+        ("hypothesis", "Constraint"),
+        ("induction", "Inference"),
+        ("follows from", "Inference"),
+    ] {
         let v = describe(&s, json!({"node_type": word}))
             .await
             .unwrap_or_else(|e| panic!("{word:?} was refused: {e}"));
