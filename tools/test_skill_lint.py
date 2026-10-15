@@ -51,18 +51,44 @@ class TestGateIdentity(unittest.TestCase):
         core = skill_lint._gate_identity("cargo test -p reflow2-core --no-default-features")
         mcp = skill_lint._gate_identity("cargo clippy -p reflow2-mcp --all-targets -- -D warnings")
         self.assertEqual(ws, "cargo test --workspace")
-        self.assertEqual(core, "cargo test -p reflow2-core")
+        self.assertEqual(core, "cargo test -p reflow2-core --no-default-features")
         self.assertEqual(mcp, "cargo clippy -p reflow2-mcp")
         self.assertEqual(len({ws, core, mcp}), 3)
+
+    def test_a_feature_configuration_is_its_own_gate(self):
+        """The MCP crate builds with on-disk storage by default and without it
+        under --no-default-features, and CI runs both (2026-10-15). They are
+        different programs catching different breakage, so they are two gates:
+        folded into one, the first ci.yml listed would stand for both, and the
+        gate runner would run only that one."""
+        disk = skill_lint._gate_identity("cargo clippy -p reflow2-mcp --all-targets -- -D warnings")
+        memory = skill_lint._gate_identity(
+            "cargo clippy -p reflow2-mcp --no-default-features --all-targets -- -D warnings"
+        )
+        self.assertNotEqual(disk, memory)
+        self.assertEqual(memory, "cargo clippy -p reflow2-mcp --no-default-features")
+        self.assertEqual(
+            skill_lint._gate_identity("cargo test -p reflow2-core --features fulltext --test search"),
+            "cargo test -p reflow2-core --features fulltext",
+        )
+
+    def test_the_harness_arguments_are_not_cargos(self):
+        """After `--` the arguments are the test harness's: a test filter named
+        like a cargo flag must not change which gate this is."""
+        self.assertEqual(
+            skill_lint._gate_identity("cargo test --workspace -- --no-default-features"),
+            "cargo test --workspace",
+        )
 
     def test_flags_are_dropped_from_the_identity_on_purpose(self):
         """Identity answers "is this documented at all"; the fidelity check
         answers "is it documented correctly". They must be separate, because the
         defect that filed BL-159 was a flags difference on a gate that WAS
-        listed — folding flags into identity would report it as simply missing
-        and folding it out of both would miss it entirely."""
+        listed — the `-p reflow2-core` clippy line lacked `-D warnings` —
+        and folding flags into identity would report it as simply missing,
+        while folding it out of both would miss it entirely."""
         self.assertEqual(
-            skill_lint._gate_identity("cargo clippy -p reflow2-core --all-targets"),
+            skill_lint._gate_identity("cargo clippy -p reflow2-core --no-default-features --all-targets"),
             skill_lint._gate_identity(
                 "cargo clippy -p reflow2-core --no-default-features --all-targets -- -D warnings"
             ),

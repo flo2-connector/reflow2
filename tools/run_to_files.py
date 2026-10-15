@@ -16,6 +16,15 @@ Three sources, any mix, one JSON list out (worst outcome per file wins):
                     (no "Running" line: it did not compile) is reported as
                     `blocked`, not dropped and not `failed`; one that started
                     and printed no result (it crashed while running) is failed.
+                    A test PROGRAM whose root declares its files as modules
+                    (`mod one;`, `#[path = "..."] mod two;` — one program for
+                    many test files) is read per test instead: `test one::x
+                    ... ok` is an outcome of the file `one` names, so each file
+                    is still placed on its own. Such a program that did not
+                    compile leaves every file it declares `blocked`; one that
+                    crashed leaves each file `blocked` unless a test in it
+                    failed, and its root file `failed`, because which file the
+                    crash came from is not in the log.
   --junit FILE      JUnit XML — what pytest (--junitxml), cargo-nextest, jest,
                     go-junit-report and most CI runners write. Grouped by each
                     testcase's `file` attribute; testcases with none are
@@ -61,8 +70,14 @@ RANK = {"passed": 0, "skipped": 1, "blocked": 2, "failed": 3}
 # Matched at the start of the message, case-insensitively.
 NEVER_RAN = ("collection failure", "failed on setup")
 
-RUNNING = re.compile(r"^\s*Running (?:unittests )?(\S+) \((\S+)\)")
+RUNNING = re.compile(r"^\s*Running (unittests )?(\S+) \((\S+)\)")
 RESULT = re.compile(r"^test result: (ok|FAILED)\.")
+# One test's line, as libtest prints it: `test one::x ... ok`.
+TEST_LINE = re.compile(r"^test (\S+) \.\.\. (ok|FAILED)$")
+# A module a test program's root declares out of line, optionally with the
+# `#[path = "..."]` that says where its file is.
+MOD_DECL = re.compile(r'^\s*(?:#\[path\s*=\s*"([^"]+)"\]\s*)?(?:pub(?:\([^)]*\))?\s+)?mod\s+(\w+)\s*;')
+PATH_ATTR = re.compile(r'^\s*#\[path\s*=\s*"([^"]+)"\]\s*$')
 FAILED_TARGET = re.compile(r"^\s*`-p (\S+) --(test|lib|bin) ?(\S*)`")
 # CI runners colour cargo's output; a raw log carries the escapes.
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
@@ -107,24 +122,89 @@ def resolve_cargo_path(
     return str(candidates[0].resolve().relative_to(root.resolve()))
 
 
+def program_modules(program: pathlib.Path, root: pathlib.Path) -> dict[str, str]:
+    """The files a test program's root declares as modules: {module: file}.
+
+    A crate root resolves `mod one;` beside itself (`one.rs`, else
+    `one/mod.rs`), and `#[path = "p"] mod one;` at `p` relative to its own
+    directory — so a program can gather many test files that each keep their
+    own path, and their tests come out named `one::x`. Only declarations whose
+    file exists are returned; a root with none is an ordinary one-file target.
+    """
+    try:
+        lines = program.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return {}
+    found: dict[str, str] = {}
+    pending_path: str | None = None
+    for line in lines:
+        attr = PATH_ATTR.match(line)
+        if attr:
+            pending_path = attr.group(1)
+            continue
+        m = MOD_DECL.match(line)
+        if m:
+            given = m.group(1) or pending_path
+            name = m.group(2)
+            if given:
+                candidates = [program.parent / given]
+            else:
+                candidates = [program.parent / f"{name}.rs", program.parent / name / "mod.rs"]
+            for c in candidates:
+                if c.is_file():
+                    found[name] = str(c.resolve().relative_to(root.resolve()))
+                    break
+        if line.strip() and not line.lstrip().startswith(("#[", "//")):
+            pending_path = None
+    return found
+
+
 def from_cargo(text: str, root: pathlib.Path, out: dict[str, str]) -> list[str]:
     unresolved: list[str] = []
     current: str | None = None
+    modules: dict[str, str] = {}
+    failed_inside = False
     started: set[str] = set()
+    completed: set[str] = set()
+    # Each multi-file program's modules, by its root file, for the pass below.
+    programs: dict[str, dict[str, str]] = {}
     crates = crate_dirs(root)
     text = ANSI.sub("", text)
     for line in text.splitlines():
         m = RUNNING.match(line)
         if m:
-            current = resolve_cargo_path(m.group(1), m.group(2), crates, root)
+            current = resolve_cargo_path(m.group(2), m.group(3), crates, root)
+            modules, failed_inside = {}, False
             if current is None:
-                unresolved.append(m.group(1))
+                unresolved.append(m.group(2))
             else:
                 started.add(current)
+                # Unit tests name their crate's modules too, but are reported
+                # as the target they always were; only a test PROGRAM's
+                # modules are separate test files.
+                if not m.group(1):
+                    modules = program_modules(root / current, root)
+                    if modules:
+                        programs[current] = modules
+            continue
+        t = TEST_LINE.match(line.strip())
+        if t and current and modules:
+            # A multi-file program: each test's outcome is its own file's.
+            # `ignored` says nothing, as a target's ignored count never did.
+            owner = modules.get(t.group(1).split("::", 1)[0], current)
+            outcome = "passed" if t.group(2) == "ok" else "failed"
+            failed_inside = failed_inside or outcome == "failed"
+            worst(out, owner, outcome)
             continue
         r = RESULT.match(line.strip())
         if r and current:
-            worst(out, current, "passed" if r.group(1) == "ok" else "failed")
+            completed.add(current)
+            if not modules:
+                worst(out, current, "passed" if r.group(1) == "ok" else "failed")
+            elif r.group(1) == "FAILED" and not failed_inside:
+                # The program failed and no test line said which file: the
+                # failure is never dropped, so the program's root carries it.
+                worst(out, current, "failed")
             current = None
     # Targets cargo lists as failed after the run. One that STARTED (it has a
     # Running line) and printed no result crashed while running: failed. One
@@ -136,7 +216,21 @@ def from_cargo(text: str, root: pathlib.Path, out: dict[str, str]) -> list[str]:
                 p = c / "tests" / f"{f.group(3)}.rs"
                 if p.exists():
                     rel = str(p.resolve().relative_to(root.resolve()))
-                    worst(out, rel, "failed" if rel in started else "blocked")
+                    ran = rel in started
+                    declared = programs.get(rel) or program_modules(p, root)
+                    if not declared:
+                        worst(out, rel, "failed" if ran else "blocked")
+                    elif rel not in completed:
+                        # A multi-file program that did not compile ran none
+                        # of its files; one that crashed did not finish them,
+                        # and the log does not say which file the crash came
+                        # from. So each file is blocked unless a test in it
+                        # already failed, and the root carries the crash.
+                        worst(out, rel, "failed" if ran else "blocked")
+                        for module_file in declared.values():
+                            worst(out, module_file, "blocked")
+                    # A program that ran to its result line has already said,
+                    # test by test, which of its files failed.
     return unresolved
 
 

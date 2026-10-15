@@ -10,14 +10,14 @@ This repo already carries agent instructions in portable form. Read, in order:
    the non-negotiable rules for changing this project.
 3. **[../docs/backlog.md](../docs/backlog.md)** — what is open, and why.
 
-A change is done only when `cargo test --workspace`, `cargo clippy -p reflow2-core
---no-default-features --all-targets`, `cargo fmt --check`, `python3 tools/validate_schema.py`
-(after a schema edit) and `python3 tools/smoke_mcp.py` (after a tool-surface change) are clean.
+A change is done only when `cargo dev-test`, `cargo clippy --workspace --no-default-features
+--all-targets -- -D warnings`, `cargo fmt --check`, `python3 tools/validate_schema.py` (after a
+schema edit) and `python3 tools/smoke_mcp.py` (after a tool-surface change) are clean.
 
-For fast iteration use `cargo test -p reflow2-core --no-default-features`. The `-p` is
-load-bearing: `reflow2-mcp` enables the `rocksdb` feature on the dependency edge, which
-`--no-default-features` cannot switch off, so dropping it costs a ten-minute C++ build. The
-done-gate above is `--workspace` on purpose — the core-only command cannot see the MCP surface at
-all.
+`cargo dev-test` is a cargo alias (`.cargo/config.toml`) that builds and tests both crates
+WITHOUT RocksDB, on the in-memory backend, so it never pays the ten-minute C++ build. It skips
+only the MCP crate's `on_disk` test program; CI's full job runs that, with RocksDB, on every pull
+request, and `cargo full-test` runs it locally when a change touches the store on disk. For the
+fastest loop, `cargo test -p reflow2-core --no-default-features` tests the core alone.
 
 > **reflow2 is installed here.** The design graph is this project's memory — read [REFLOW2.md](REFLOW2.md) and consult it before writing or changing code.

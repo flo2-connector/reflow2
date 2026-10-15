@@ -82,6 +82,128 @@ class Cargo(unittest.TestCase):
         self.assertFalse(any(k.startswith("target/") for k in self.out))
 
 
+def programs_tree() -> pathlib.Path:
+    """A crate whose test files are gathered into test PROGRAMS: each program's
+    root declares the files it runs as modules, and every file keeps its path."""
+    root = tree()
+    t = root / "crates/alpha-mcp/tests"
+    (t / "in_memory.rs").write_text(
+        "//! one program, many files\n"
+        "mod one;\n"
+        "mod two;\n"
+        '#[path = "elsewhere/three.rs"]\n'
+        "mod three;\n"
+        "mod four;\n"
+    )
+    (t / "on_disk.rs").write_text("mod five;\nmod six;\n")
+    (t / "crashing.rs").write_text("mod seven;\nmod eight;\n")
+    (t / "elsewhere").mkdir()
+    for f in ("one.rs", "two.rs", "elsewhere/three.rs", "four.rs", "five.rs", "six.rs",
+              "seven.rs", "eight.rs"):
+        (t / f).write_text("")
+    return root
+
+
+PROGRAMS = """\
+     Running tests/in_memory.rs (target/debug/deps/in_memory-0123abcd)
+
+running 5 tests
+test one::a ... ok
+test two::b ... FAILED
+test two::c ... ok
+test three::deep::d ... ok
+test four::e ... ignored
+test result: FAILED. 3 passed; 1 failed; 1 ignored; 0 measured; 0 filtered out
+     Running tests/crashing.rs (target/debug/deps/crashing-0123abcd)
+test seven::a ... ok
+error: test failed, to rerun pass `-p alpha-mcp --test crashing`
+error: 3 targets failed:
+    `-p alpha-mcp --test in_memory`
+    `-p alpha-mcp --test on_disk`
+    `-p alpha-mcp --test crashing`
+"""
+
+
+class Programs(unittest.TestCase):
+    """One test program for many test files (autotests = false and explicit
+    [[test]] targets): the design still records its checks BY FILE, so each
+    file must still be placed on its own."""
+
+    def setUp(self):
+        self.root = programs_tree()
+        self.out: dict[str, str] = {}
+        conv.from_cargo(PROGRAMS, self.root, self.out)
+        self.t = "crates/alpha-mcp/tests/"
+
+    def test_each_file_takes_its_own_tests_outcome(self):
+        self.assertEqual(self.out[self.t + "one.rs"], "passed")
+        self.assertEqual(self.out[self.t + "two.rs"], "failed")
+
+    def test_a_path_attribute_places_the_file_where_it_says(self):
+        self.assertEqual(self.out[self.t + "elsewhere/three.rs"], "passed")
+
+    def test_a_file_whose_tests_were_all_ignored_is_not_placed(self):
+        # Nothing ran for it, so nothing is said about it — not a pass.
+        self.assertNotIn(self.t + "four.rs", self.out)
+
+    def test_the_program_itself_is_not_reported_as_a_file_that_failed(self):
+        # The failure belongs to two.rs, which says so; the root ran no test.
+        self.assertNotIn(self.t + "in_memory.rs", self.out)
+
+    def test_a_program_that_did_not_compile_blocks_every_file_it_declares(self):
+        self.assertEqual(self.out[self.t + "five.rs"], "blocked")
+        self.assertEqual(self.out[self.t + "six.rs"], "blocked")
+
+    def test_a_crashed_program_blocks_its_files_and_fails_its_root(self):
+        # The crash is a failure of SOMETHING in the program, and the log does
+        # not say which file: so the root carries the failure, and no file
+        # reads as passed when its tests did not finish.
+        self.assertEqual(self.out[self.t + "crashing.rs"], "failed")
+        self.assertEqual(self.out[self.t + "seven.rs"], "blocked")
+        self.assertEqual(self.out[self.t + "eight.rs"], "blocked")
+
+    def test_a_failed_program_with_no_failed_line_still_fails(self):
+        out: dict[str, str] = {}
+        conv.from_cargo(
+            "     Running tests/in_memory.rs (target/debug/deps/in_memory-0123abcd)\n"
+            "test one::a ... ok\n"
+            "test result: FAILED. 1 passed; 1 failed\n",
+            self.root,
+            out,
+        )
+        self.assertEqual(out[self.t + "in_memory.rs"], "failed")
+        self.assertEqual(out[self.t + "one.rs"], "passed")
+
+    def test_unit_tests_stay_one_target(self):
+        # src/lib.rs declares modules too, but unit tests were always read as
+        # the crate's lib target, and still are.
+        lib = self.root / "crates/alpha-mcp/src"
+        (lib / "lib.rs").write_text("mod inner;\n")
+        (lib / "inner.rs").write_text("")
+        out: dict[str, str] = {}
+        conv.from_cargo(
+            "     Running unittests src/lib.rs (target/debug/deps/alpha_mcp-4567abcd)\n"
+            "test inner::x ... ok\n"
+            "test result: ok. 1 passed; 0 failed\n",
+            self.root,
+            out,
+        )
+        self.assertEqual(out, {"crates/alpha-mcp/src/lib.rs": "passed"})
+
+    def test_the_real_mcp_programs_declare_files_that_exist(self):
+        # The converter reads the real roots the way it reads these: every
+        # module a program declares must resolve to a file it can place.
+        repo = pathlib.Path(__file__).resolve().parent.parent
+        tests = repo / "crates/reflow2-mcp/tests"
+        roots = [p for p in (tests / "in_memory.rs", tests / "on_disk.rs") if p.exists()]
+        self.assertTrue(roots, "the MCP crate's test programs moved or were renamed")
+        for p in roots:
+            declared = sum(1 for l in p.read_text().splitlines() if conv.MOD_DECL.match(l))
+            found = conv.program_modules(p, repo)
+            self.assertEqual(len(found), declared, f"{p.name}: a declared module has no file")
+            self.assertGreater(len(found), 10, p.name)
+
+
 class Junit(unittest.TestCase):
     def test_worst_outcome_per_file_and_unplaced_cases_are_counted(self):
         root = tree()
