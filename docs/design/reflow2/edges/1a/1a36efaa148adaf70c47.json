@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5a4747dcc649f334994eb1fc6a73e5b9faae14253b12e4d240cbbdca705c6fab",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:foundations-walk-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
