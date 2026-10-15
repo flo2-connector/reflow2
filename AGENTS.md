@@ -38,38 +38,57 @@ ten minutes of C++ compile:
 | Editing | Also read | Why it differs |
 |---|---|---|
 | `crates/reflow2-core/**` | [its AGENTS.md](crates/reflow2-core/AGENTS.md) | sub-second test path; core-only invariants |
-| `crates/reflow2-mcp/**` | [its AGENTS.md](crates/reflow2-mcp/AGENTS.md) | pays the RocksDB build; needs the smoke test |
+| `crates/reflow2-mcp/**` | [its AGENTS.md](crates/reflow2-mcp/AGENTS.md) | RocksDB is a default feature, off for development; four test programs; needs the smoke test |
 
 ## Commands
 
 Everything runs from the repo root. The core crate is `crates/reflow2-core`.
 
 ```bash
-# Build / test — for dev iteration ALWAYS scope to the core with -p AND pass
-# --no-default-features: that combination uses the in-memory backend and skips
-# the RocksDB C++ compile (~10 min). Runs in well under a second.
+# Build / test — THE EVERYDAY COMMAND, for development and every local gate:
+# both crates WITHOUT RocksDB, on the in-memory backend (a cargo alias in
+# .cargo/config.toml for `cargo test --workspace --no-default-features
+# --no-fail-fast`). It never compiles librocksdb-sys' C++ (10-19 min cold,
+# 2 GB on disk), and it skips only the MCP crate's `on_disk` test program —
+# the tests that need a store in a folder — which CI's full job runs on every
+# pull request. Anthony, 2026-10-15: "for the vast majority of development,
+# I don't think it's necessary".
 #
-# -p reflow2-core is load-bearing, not tidiness. Without it the workspace also
-# builds reflow2-mcp, which depends on reflow2-core with `features = ["rocksdb"]`
-# — an explicitly-enabled feature on a dependency edge, which --no-default-features
-# cannot switch off. Drop the -p and you get the C++ build you were avoiding.
-cargo test -p reflow2-core --no-default-features
+# IT LEAVES target/debug/reflow2-mcp BUILT WITHOUT ON-DISK STORAGE, which
+# refuses every store in a folder and says so. Before anything that drives the
+# binary on a store (smoke_mcp.py, toolsnap.py and the other instruments, the
+# installer from this checkout), run `cargo build -p reflow2-mcp`.
+cargo dev-test
 
+# The core alone, with no features at all (no Tantivy either): the sub-second
+# edit loop once built.
+cargo test -p reflow2-core --no-default-features
 cargo test -p reflow2-core --no-default-features --test heal          # one integration-test file
 cargo test -p reflow2-core --no-default-features golden_thread_round_trips  # one test by name
 cargo test -p reflow2-core --no-default-features --lib                # unit + doctests only
 
+# The MCP crate's ~170 test files are compiled into four test PROGRAMS, not one
+# each (tests/in_memory.rs, tests/on_disk.rs, and two that need a process of
+# their own — Cargo.toml says which and why). So one file's tests are its
+# program and its module:
+cargo test -p reflow2-mcp --no-default-features --test in_memory a_budget_says_how_it_composes::
+cargo test -p reflow2-mcp --test on_disk design_identity::            # needs RocksDB
+
 cargo clippy -p reflow2-core --no-default-features --all-targets      # keep clippy-clean
+cargo clippy -p reflow2-mcp --no-default-features --all-targets       # the MCP crate, in memory
 cargo fmt                                               # and fmt-clean (cargo fmt --check in CI)
 
-# The full workspace, including the MCP surface. Pays the RocksDB compile once,
-# then it is cached. Run before pushing — the core-only gate cannot see
-# reflow2-mcp, where the tool surface and its tests live.
+# THE FULL RUN, WITH RocksDB: every test program, `on_disk` included — the
+# alias for `cargo test --workspace --no-fail-fast`, exactly CI's full job.
+# CI runs it on every pull request, so run it locally only when your change
+# touches the store on disk: opening one, its identity file, its lock, its
+# version stamp, the shared daemon, importing or exporting a store. Pays the
+# RocksDB compile once, then it is cached.
 #
 # This is the heaviest command in the file. On a machine with ~8-12 GB of RAM it
 # is the one that gets your terminal killed — see "Building with limited RAM"
 # below, and prefer the memory-capped form there.
-cargo test --workspace
+cargo full-test
 
 # Schema validation (Python, no Rust toolchain needed). Must print "OK" after any
 # schema/*.yaml edit. Needs PyYAML; use whatever python3 has it.
@@ -207,9 +226,10 @@ whole scope and the symptom presents as "the terminal crashed". Find it with:
 journalctl --user --since "-3 days" | grep -iE 'oomd|vte-spawn'
 ```
 
-`cargo test --workspace` is what usually triggers it: RocksDB's C++ build plus parallel rustc
-jobs is the peak, and a full workspace run has been measured at **9.3 GB** on a 4-core/11 GiB
-box. Two mitigations that help but do **not** prevent a kill on their own — `[build] jobs = 2`
+`cargo test --workspace` (`cargo full-test`) is what usually triggers it: RocksDB's C++ build
+plus parallel rustc jobs is the peak, and a full workspace run has been measured at **9.3 GB** on
+a 4-core/11 GiB box. `cargo dev-test` never compiles RocksDB, so the C++ half of that peak is not
+in it. Two mitigations that help but do **not** prevent a kill on their own — `[build] jobs = 2`
 and `[profile.dev] debug = "line-tables-only"` — belong in your own `~/.cargo/config.toml`,
 **not in this repo**: they are properties of one machine, and committing them would slow builds
 and degrade debug info for every other developer and for CI.
@@ -232,9 +252,16 @@ neither; the capped scope alone is the more targeted of the two.
 
 Two habits worth keeping regardless. Write test output to a file and grep it, rather than
 running the suite twice to get failures and then a pass count — that doubling is pure peak for
-no information. And for dev iteration use the core-only command at the top of this section,
-which skips the RocksDB compile entirely; the workspace run is a pre-push gate, not an
-edit-loop command.
+no information. And for dev iteration use `cargo dev-test`, or the core-only command at the top
+of this section, which skip the RocksDB compile entirely; the full run is CI's, not an edit-loop
+command.
+
+**Disk.** cargo never deletes an old build: every rebuild mints a new copy of each test program
+and keeps the last one. Since 2026-10-15 the MCP crate's ~170 test files are four test programs
+rather than one program each, and `cargo dev-test` links no RocksDB into any of them; the core's
+test files are still one program each. When the disk gets tight, `rm -rf target/debug/incremental`
+and `cargo clean -p reflow2-core -p reflow2-mcp` — never a bare `cargo clean`, which also
+destroys the cached RocksDB build. The root `Cargo.toml`'s notes have the measurements.
 
 None of this affects people who merely *use* reflow2: `tools/install.sh` fetches a prebuilt,
 checksum-verified binary and never compiles. It matters for contributors, and for anyone on a
@@ -342,7 +369,8 @@ with `--ours`/`--theirs` without reading both sides**: for code that drops a hun
 it drops what someone wrote and nothing will tell you it is gone.
 
 > **`--no-fail-fast` is not optional and not a nicety.** `cargo test` ABORTS EVERY REMAINING TEST
-> BINARY the moment one fails, and this workspace has ~155 of them behind a ~13-minute run. So a
+> BINARY the moment one fails, and this workspace had ~155 of them behind a ~13-minute run (the
+> core's test files are still one program each; the MCP crate's are four programs since 2026-10-15). So a
 > change with three independent failures costs three full cycles — you fix one, wait, discover the
 > next, wait again — and on CI that is three push-and-wait rounds for information one run already
 > had. **Measured 2026-08-25 while adding one detector**: successive runs reached 31, then 47, then
@@ -366,13 +394,19 @@ the more reassuring of the two readings. The block below is the everyday subset 
 from; the runner is how you check the lot.
 
 **A change is done when all of these are clean** — the everyday subset, with the flags CI
-actually uses. **Both `-D warnings`, because that is what turns a local warning into a red build:**
+actually uses. **Every clippy line carries `-D warnings`, because that is what turns a local
+warning into a red build.** **Locally, `cargo dev-test` is the test gate** — both crates without RocksDB, one command. The two
+lines marked *with RocksDB* are CI's full job, which runs them on every pull request; run them
+locally (`cargo full-test`) only when your change touches the store on disk. Touched checks
+locally, everything once in CI.
 
 ```bash
-cargo test --workspace --no-fail-fast                    # both crates
+cargo test --workspace --no-fail-fast                    # both crates, with RocksDB — CI's full job
 cargo test -p reflow2-core --no-default-features --no-fail-fast   # the in-memory backend, alone
+cargo test -p reflow2-mcp --no-default-features --no-fail-fast    # the MCP crate in memory, no RocksDB
 cargo clippy -p reflow2-core --no-default-features --all-targets -- -D warnings
-cargo clippy -p reflow2-mcp --all-targets -- -D warnings
+cargo clippy -p reflow2-mcp --no-default-features --all-targets -- -D warnings
+cargo clippy -p reflow2-mcp --all-targets -- -D warnings          # with RocksDB — CI's full job
 cargo fmt --check
 python3 tools/validate_schema.py                         # after any schema/*.yaml edit
 python3 tools/check_discrimination_rules.py               # the schema's discrimination rules vs capture-intent's routing table — one contract, two records
@@ -983,8 +1017,8 @@ joined by *traceability* edges) for HEAL's topology detectors.
   published where the release refused other values anyway, is listed there with its proof.
   **At a cut, after the tag, re-bless it from the release binary**, which writes the release's
   deprecations into the record so the next release may remove them:
-  `REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp cargo test -p reflow2-mcp --test
-  the_mcp_surface_only_grows`.
+  `REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp cargo test -p reflow2-mcp --test in_memory
+  the_mcp_surface_only_grows::` (default features: it drives the release binary on a store).
   - **To retire anything a client can call or read, it takes two releases.** First add its
     entry to `deprecation::REGISTRY` (`crates/reflow2-mcp/src/deprecation.rs`, the one place
     a deprecation is declared: the item, the version that deprecates it, what to do instead
@@ -1101,7 +1135,8 @@ decision or assume the surface doesn't exist — it is the binary a consumer run
   `cargo test -p reflow2-core --no-default-features`.
 - `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs`, ~78 tools; `dto.rs`;
   `main.rs`). Thin: every tool locks the graph, calls one core op, returns. It carries the
-  `rocksdb` feature on its dependency edge, so it pays the C++ build; see its own AGENTS.md.
+  `rocksdb` feature ON BY DEFAULT, so every installed build has on-disk storage, and development
+  builds without it (`cargo dev-test`); see its own AGENTS.md.
 
 Still unbuilt (see "What's deliberately not here yet" above and the coverage matrix): external
 LLM provider backends (deferred — unneeded agent-native), SME, generative HEAL content, and the

@@ -11,6 +11,10 @@
 //! OBSERVED FAILING, 2026-09-29, all four, with the store's keep and the
 //! tools' refusal switched off: the generic writer left the finding edgeless,
 //! and each hand-drawn or hand-deleted copy was accepted.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::service::*;
 use rmcp::handler::server::wrapper::Parameters;
@@ -166,6 +170,7 @@ async fn deleting_the_copy_its_property_still_names_is_refused() {
 /// same file is not refused as "somebody else's work" for dropping the edges
 /// the import just reported moving. Found shipping this change: the branch's
 /// own export was refused until the moved edges were checked by hand.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn an_export_over_the_file_a_repairing_import_read_is_not_refused() {
     use reflow2_core::DesignGraph;

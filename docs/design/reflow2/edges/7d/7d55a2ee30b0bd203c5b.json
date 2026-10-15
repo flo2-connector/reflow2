@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1a9489b24291461cf9cf8451390faa8e285fcca995064d8317500ac600b995cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:b17a14068a96db41eec131fc68ebaaf59467d025ac2dde956e3c7b02231fe550",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:every-path-taking-read-takes-the-other-design-by-graph-id-test"
+}

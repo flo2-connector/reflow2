@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5f8d056b4070a2af89fb740a86483685a4a6c48780eb2ddfdb96bf748e9dd17c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-run-to-files",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

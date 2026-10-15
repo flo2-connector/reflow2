@@ -6,6 +6,10 @@
 //! store into every directory the user ever opens a session in. If it fires too
 //! eagerly, a real project silently loses its design surface — which is the
 //! `req:never-silently-absent` failure, arriving by a new route.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::latent::design_present;
 
@@ -83,6 +87,7 @@ fn a_bare_relative_path_does_not_read_as_present() {
 
 /// THE CASE. A real design is present now; `reflow2_start_design` must not
 /// offer to begin one, and must say a restart is what attaches it.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn start_design_refuses_once_a_design_has_arrived() {
     let dir = scratch("arrived");

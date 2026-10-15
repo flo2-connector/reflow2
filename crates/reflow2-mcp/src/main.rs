@@ -257,6 +257,9 @@ struct Cli {
     /// cached blocks are evicted and memtables flushed sooner — reads and writes
     /// still work, a little slower. It bounds RocksDB only: the full-text index
     /// and the process's own allocations come on top.
+    // Read only by a build with on-disk storage; accepted by every build, so a
+    // command line works the same against either.
+    #[cfg_attr(not(feature = "rocksdb"), allow(dead_code))]
     #[arg(long, value_name = "MB", default_value_t = 128)]
     store_memory: usize,
 
@@ -1559,6 +1562,10 @@ async fn main() -> anyhow::Result<()> {
         None
     };
     // Before anything can open a store: the budget is fixed once one does.
+    // It is RocksDB's block cache and write buffers, so a build without
+    // on-disk storage has nothing to budget; the flag is still accepted there,
+    // and every store it would govern is refused.
+    #[cfg(feature = "rocksdb")]
     reflow2_core::set_store_memory_budget(cli.store_memory.max(8) * 1024 * 1024);
 
     // ⭐ "WHERE IS THIS DESIGN?" — answered once, for EVERY one-shot mode that
@@ -2095,6 +2102,11 @@ async fn main() -> anyhow::Result<()> {
 
     // Export-a-snapshot-and-exit: the read a peer cannot otherwise get.
     if cli.export_snapshot {
+        // A build without on-disk storage cannot open the store OR a copy of
+        // it, and every open failure below reads as "held" — so it would copy
+        // the store and blame the copy. Say the real reason first.
+        reflow2_mcp::opening::refuse_without_on_disk_storage(&cli.graph_path)
+            .map_err(|e| explain_open_failure(&e.into(), &cli.graph_path))?;
         // Probe by actually taking the handle we would use — an earlier version
         // opened the graph to test it and then opened it AGAIN to read it, which
         // deadlocked against its own first handle ("lock hold by current
@@ -2553,6 +2565,14 @@ async fn main() -> anyhow::Result<()> {
                  or start one with a session that is not read-only.",
                 cli.graph_path
             );
+            eprintln!("reflow2: {why}");
+            return serve_degraded_stdio(why, &cli.graph_path).await;
+        }
+        // A build without on-disk storage would start a daemon that can only
+        // fail to open the store, and then wait for it as if it were held.
+        // Start nothing, and say why in band, as a refusal is said.
+        if let Err(e) = reflow2_mcp::opening::refuse_without_on_disk_storage(&cli.graph_path) {
+            let why = e.to_string();
             eprintln!("reflow2: {why}");
             return serve_degraded_stdio(why, &cli.graph_path).await;
         }

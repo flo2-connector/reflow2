@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f61d72988b3b67004b347b0657cff7448879c7e120638734970fcc48b71d68bd",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it",
+  "properties": {
+    "note": "Built in the shape that decision fixed: one PR, two changes — RocksDB a default-on feature of the server crate with an everyday command without it, and the server's tests compiled into a few programs with every file at its path."
+  },
+  "to_id": "dec:rocksdb-is-a-default-on-feature-of-the-server-crate-and-its-tests-share-a-few-programs"
+}

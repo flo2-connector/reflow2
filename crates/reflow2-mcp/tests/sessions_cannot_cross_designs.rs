@@ -50,6 +50,10 @@
 //!   design's `graph_id` does not get you its contents.
 //! - Reopening a store re-attaches to the same design, not to none and not to a
 //!   neighbour.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_core::DesignGraph;
 use reflow2_core::identity;
@@ -71,6 +75,7 @@ fn tmp(name: &str) -> std::path::PathBuf {
     dir
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn two_designs_open_at_once_and_neither_write_reaches_the_other() {
     // THE NAMED PROOF: "opening two graphs in one process, writing to each, and
@@ -162,6 +167,7 @@ fn two_designs_open_at_once_and_neither_write_reaches_the_other() {
     std::fs::remove_dir_all(&b_dir).ok();
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn knowing_another_designs_graph_id_does_not_get_you_its_contents() {
     // THE STORE IS THE BOUNDARY, NOT THE ID.
@@ -241,6 +247,7 @@ fn knowing_another_designs_graph_id_does_not_get_you_its_contents() {
     std::fs::remove_dir_all(&b_dir).ok();
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn reopening_re_attaches_to_the_same_design_not_to_a_neighbour() {
     // The reconnect clause, at the level it can be asked today: "a reconnect
@@ -304,6 +311,7 @@ fn reopening_re_attaches_to_the_same_design_not_to_a_neighbour() {
     std::fs::remove_dir_all(&other_dir).ok();
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_store_whose_identity_sidecar_is_lost_is_refused_rather_than_opened_empty() {
     // WRITTEN AGAINST THE REQUIREMENT, NOT AGAINST THE CODE.

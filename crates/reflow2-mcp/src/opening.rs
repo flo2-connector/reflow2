@@ -34,8 +34,14 @@
 //!
 //! A unit test below holds `src/` to it: no other code tests a graph path for a
 //! store, so a new mode asks this or is caught asking something else.
+//!
+//! AND "CAN THIS BUILD OPEN A STORE AT ALL?" — asked here too, by
+//! [`refuse_without_on_disk_storage`], first thing in both openers. A build
+//! without the crate's `rocksdb` feature refuses every store in a folder.
 
 use std::path::Path;
+
+use reflow2_core::DynoError;
 
 /// Whether a design store exists at `graph_path`, so that opening it creates
 /// no store. Asked of the path alone: nothing is opened, locked or written.
@@ -48,6 +54,51 @@ pub fn store_exists(graph_path: &str) -> bool {
 /// `--read-only` creates nothing; without it, opening may create the store.
 pub fn may_open(graph_path: &str, read_only: bool) -> bool {
     !read_only || store_exists(graph_path)
+}
+
+/// Whether this build can open a design store in a folder at all: the crate's
+/// `rocksdb` feature, which default features turn on.
+///
+/// EVERY BUILD ANYONE INSTALLS OR RUNS HAS IT — a release, `cargo install`, the
+/// Docker images, the installer's source-build instructions and the launcher
+/// all build with default features. A build without it is the everyday
+/// development build (`cargo dev-test`, Anthony, 2026-10-15: "for the vast
+/// majority of development, I don't think it's necessary"), which serves
+/// in-memory designs only and never compiles RocksDB's C++.
+pub const STORES_IN_A_FOLDER: bool = cfg!(feature = "rocksdb");
+
+/// The refusal a build without on-disk storage gives every path that would
+/// open a store in a folder — asked FIRST, before anything is opened, locked
+/// or written, so a refused open leaves the folder as it found it.
+///
+/// It NEVER falls back to memory: a design that silently stops persisting
+/// reads as a design that works, right up to the session that finds it empty.
+/// The core already fails loud when its own `rocksdb` feature is off
+/// (`StorageEngine::new_rocksdb`), and this is the same contract — the same
+/// error kind — said in this crate's terms, naming the build, the feature and
+/// the fix. It comes first because the core's open reads beside the store
+/// before it reaches its own refusal, and a store with an identity problem
+/// would otherwise be answered with that problem instead of the real one.
+///
+/// Asked by the two openers every mode goes through
+/// (`ReflowService::new_reporting`, `one_shot::open_store`), and by the
+/// `--shared` client, which would otherwise start a daemon that can only fail.
+pub fn refuse_without_on_disk_storage(graph_path: &str) -> Result<(), DynoError> {
+    if STORES_IN_A_FOLDER {
+        return Ok(());
+    }
+    Err(DynoError::Storage(without_on_disk_storage(graph_path)))
+}
+
+/// The words of that refusal, for a caller that says them itself.
+pub fn without_on_disk_storage(graph_path: &str) -> String {
+    format!(
+        "this reflow2-mcp was built without on-disk storage (the `rocksdb` feature), so it \
+         cannot open the design store at {graph_path}; nothing was opened or created there. \
+         Build it with default features (`cargo build -p reflow2-mcp`, or `--features \
+         rocksdb`) to open a store in a folder. A build without the feature serves \
+         in-memory designs only, for development and tests."
+    )
 }
 
 #[cfg(test)]

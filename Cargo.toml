@@ -117,6 +117,24 @@ rocksdb = "0.25"
 # This shrinks each NEW artifact. It does not collect old ones — cargo has no
 # GC, so a periodic sweep of target/debug/deps (keep the newest artifact per
 # name, delete the rest) is still worth running when the disk gets tight.
+#
+# ⭐ THE SHAPE CHANGED ON 2026-10-15 (Anthony: "for the vast majority of
+# development, I don't think [RocksDB is] necessary"). The MCP crate's 171 test
+# files are four test programs (crates/reflow2-mcp/Cargo.toml), and RocksDB is
+# that crate's default feature, which `cargo dev-test` leaves off. Measured on
+# this box, one run each from `cargo clean -p reflow2-core -p reflow2-mcp`
+# (dependencies cached, 2 rustc jobs, executables counted with the server):
+#
+#   cargo test -p reflow2-mcp, before          173 programs  56.8 GB  42.7 min
+#   cargo test -p reflow2-mcp, after             6 programs   2.7 GB  17.0 min
+#   cargo test -p reflow2-mcp --no-default-features  5        0.9 GB  10.6 min
+#   cargo dev-test (both crates, no RocksDB)   230 programs  12.2 GB  24.6 min
+#
+# ROCKSDB IS MOST OF EVERY TEST PROGRAM THAT LINKS IT, though its own artifact
+# is small beside the whole: an MCP test program is ~390 MB with it and ~139 MB
+# without; a core one ~271 MB, ~50 MB with Tantivy alone, ~22 MB with neither.
+# The core's 224 test files are still one program each: 61 GB per build with
+# RocksDB, 11 GB as `cargo dev-test` builds them.
 [profile.dev]
 debug = "line-tables-only"
 # Kept, but it earned far less than predicted and the numbers are recorded so

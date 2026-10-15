@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:56161f62663c49dfeefd721e34bf96787006c7aad942fae14b753e13adce5346",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:692b5c2f4cbe120c6c20837224e3a10eec8c11bbc62d47ee1032dfefa68101ac",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-report-test"
+}

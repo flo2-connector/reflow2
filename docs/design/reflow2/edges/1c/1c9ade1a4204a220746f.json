@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:030d315542c4c7c26465d8cb52fd58f3cf5a31d3f7f8a9ab0dbafb5a0082cd2f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-every-test-file-runs-in-exactly-one-program",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

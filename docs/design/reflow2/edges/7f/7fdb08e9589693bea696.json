@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5f668be00ecf5b7b31e1784b98a40263f0622248bf76a6dbe66a3f8e2e6208ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:56c6f0373a2cd3e5925d5db207ab9c2a0ed462bf61b699198999535016bd8ff3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-client-mode-honours-read-only"
+}

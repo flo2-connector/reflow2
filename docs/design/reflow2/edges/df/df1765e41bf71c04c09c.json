@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:e7b9695efe7e3c436a9e3433b83e17be9e75ecd86e0b88e1a4c85537493e4a7b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:everyday-development-builds-and-tests-without-rocksdb-and-the-shipped-server-keeps-it",
+  "properties": {
+    "approved_at": "2026-10-15",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

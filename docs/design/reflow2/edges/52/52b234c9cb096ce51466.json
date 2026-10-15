@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:26592563d0ff953b9a1f56f6e7cb491772a20b6f21ee1499bc292817421e6f20",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

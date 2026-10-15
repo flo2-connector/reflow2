@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:113eb3ea17c8759346feb486105601a21c7f711867827ca86b28e3a350d955a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-every-client-mode-honours-read-only",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

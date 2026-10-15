@@ -2,8 +2,9 @@
 # every agent remembering. Two jobs by cost:
 #
 # - `core` needs no RocksDB: the core crate's fast path (in-memory backend),
-#   fmt/clippy, the schema validator, the installer suite, and the skill lint.
-#   Feedback in a couple of minutes.
+#   the MCP crate built and tested WITHOUT its `rocksdb` feature (the build
+#   `cargo dev-test` runs locally, so it cannot rot unseen), fmt/clippy, the
+#   schema validator, the installer suite, and the skill lint.
 # - `full` pays the RocksDB C++ compile once (then rust-cache carries it): the
 #   whole workspace including the MCP surface, then the instruments that drive
 #   the REAL binary over stdio — smoke_mcp (the only layer that catches what
@@ -28,7 +29,12 @@ jobs:
   core:
     name: core gates (no RocksDB)
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    # 20 until 2026-10-15, when this job took on the MCP crate in memory. Its
+    # test step measured 10.6 minutes locally (4 cores, 2 rustc jobs) from a
+    # cache holding only the dependencies, and the first run after the change
+    # also compiles the MCP crate's dependencies, which this job's cache did not
+    # hold. The margin is kept rather than spent.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
         with:
@@ -48,6 +54,16 @@ jobs:
         run: cargo test -p reflow2-core --no-default-features --no-fail-fast
       - name: Clippy (core)
         run: cargo clippy -p reflow2-core --no-default-features --all-targets -- -D warnings
+      - name: MCP tests in memory (no RocksDB — the everyday build)
+        # Anthony, 2026-10-15: "for the vast majority of development, I don't
+        # think it's necessary". The MCP crate without its `rocksdb` feature is
+        # what `cargo dev-test` builds locally, so it is built and tested here
+        # on every push or it would rot where nobody looks. Its `on_disk` test
+        # program needs the feature and is skipped here; the full job runs it,
+        # and every other test, with RocksDB.
+        run: cargo test -p reflow2-mcp --no-default-features --no-fail-fast
+      - name: Clippy (mcp, no RocksDB)
+        run: cargo clippy -p reflow2-mcp --no-default-features --all-targets -- -D warnings
       - name: Format
         run: cargo fmt --check
       - name: Schema validates

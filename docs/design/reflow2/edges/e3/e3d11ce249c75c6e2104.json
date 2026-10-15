@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f79555078849ad4a5b21a4eede7b8b3ba1d8ea9d39740d7adc2e24a4ce28fcdf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

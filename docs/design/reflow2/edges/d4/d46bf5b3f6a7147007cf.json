@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f4818b09e7792ba8b9cedfbb97bf0e9dd59b411da14478f18988b64bf65154d1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-build-without-on-disk-storage-refuses-a-store-in-a-folder"
+}

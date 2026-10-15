@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:25ddfbc8f7671aa4620c40998395f2f4655fd1a99d2737059257696abd9e3dca",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-refused-write-stores-nothing",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

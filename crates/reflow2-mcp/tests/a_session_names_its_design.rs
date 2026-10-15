@@ -41,6 +41,10 @@
 //! distinction — *"multi-tenant isolation is not the same as composition"* — and
 //! it is unanswered. Nothing here forecloses it: a per-tenant registry, or a
 //! filtered listing, both remain open.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::registry::{AttachError, Registry};
 
@@ -84,6 +88,7 @@ impl Drop for Root {
 // WHAT ANTHONY ASKED FOR, 2026-08-05: "can a reflow2 tool be to simply return
 // all graph_ids to the agent and the agent then can choose whichever graph_id
 // the user specifies to use for the project?"
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_registry_lists_the_designs_under_its_root_by_id() {
     let root = Root::new("list");
@@ -100,6 +105,7 @@ fn the_registry_lists_the_designs_under_its_root_by_id() {
 
 // SELECTION IS BY ID. The path is the server's storage detail and never
 // travels — `rule:a-design-is-named-by-an-id-not-a-path`.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn attaching_by_id_resolves_to_that_designs_store() {
     let root = Root::new("attach");
@@ -118,6 +124,7 @@ fn attaching_by_id_resolves_to_that_designs_store() {
 
 // 🛑 CLAUSE 1, and the reason the tripwire existed: an id this registry does not
 // hold is REFUSED, not served, and not silently substituted with anything.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn an_id_the_registry_does_not_hold_is_refused() {
     let root = Root::new("unknown");
@@ -135,6 +142,7 @@ fn an_id_the_registry_does_not_hold_is_refused() {
 // 🛑 CLAUSE 1, the case that actually matters: a design that EXISTS on this
 // machine but is NOT in this registry's root is refused exactly like a made-up
 // one. Knowing a real graph_id must not be a way in.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_real_design_outside_the_root_is_refused_like_any_other() {
     let inside = Root::new("inside");
@@ -153,6 +161,7 @@ fn a_real_design_outside_the_root_is_refused_like_any_other() {
 // and nothing else, so a caller holding a filesystem path has no way to spend
 // it. Pinned as a REFUSAL rather than left to the type system, because a future
 // convenience overload is exactly how this would be lost.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_filesystem_path_is_not_an_alternative_route_in() {
     let root = Root::new("path-route");
@@ -170,6 +179,7 @@ fn a_filesystem_path_is_not_an_alternative_route_in() {
 // A BINDING IS THE CAPABILITY. Once attached, there is no operation that takes
 // another id — so "cannot name another design" holds by construction and not by
 // a check somebody must remember to keep.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_binding_carries_one_design_and_offers_no_way_to_ask_for_a_second() {
     let root = Root::new("binding");
@@ -222,6 +232,7 @@ fn a_store_with_no_identity_is_not_nameable() {
 // it is kept with why, so every surface can say it is here and not served.
 // And an identity whose store is gone is not registered: opening it would
 // create an empty store under the old id.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_store_found_and_not_served_is_kept_with_why_and_never_registered() {
     use reflow2_mcp::registry::UnservedKind;

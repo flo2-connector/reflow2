@@ -12,6 +12,10 @@
 //! same and usage is recorded the same; it prints the reply's JSON on stdout;
 //! and a read-only tool still answers while a server holds the graph, from the
 //! best-effort snapshot `--export-snapshot` already uses.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::process::{Command, Output};
 
@@ -43,6 +47,7 @@ fn stdout_json(o: &Output) -> serde_json::Value {
     })
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_write_then_a_report_from_the_shell_and_the_reply_is_json_on_stdout() {
     let dir = tempfile::tempdir().expect("tempdir");
@@ -62,6 +67,7 @@ fn a_write_then_a_report_from_the_shell_and_the_reply_is_json_on_stdout() {
     assert!(v.is_object(), "{v}");
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_refusal_goes_to_stderr_with_exit_one_and_names_what_the_tool_wants() {
     let dir = tempfile::tempdir().expect("tempdir");
@@ -107,6 +113,7 @@ fn an_unknown_tool_and_non_object_args_are_refused_before_the_graph_is_touched()
     );
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn args_can_come_from_stdin() {
     use std::io::Write;
@@ -140,6 +147,7 @@ fn args_can_come_from_stdin() {
 /// A read-only tool answers while another process holds the graph; a writer
 /// refuses. Measured against a REAL held lock: a server on stdio whose stdin we
 /// keep open.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn while_a_server_holds_the_graph_a_read_answers_from_a_snapshot_and_a_write_refuses() {
     use std::io::{BufRead, Write};

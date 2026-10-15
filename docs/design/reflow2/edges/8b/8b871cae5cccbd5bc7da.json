@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e180ad86d9687531165b0b9420eb7b3797af94301352cba85b4b56569dcfb52d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-ephemeral-says-so",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

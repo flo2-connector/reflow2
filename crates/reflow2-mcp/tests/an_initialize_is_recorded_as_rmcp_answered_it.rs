@@ -15,6 +15,10 @@
 //! So this compares the record with the wire, over the real binary, for every
 //! revision rmcp knows plus one on each side of them: if rmcp's rule moves
 //! again, the two disagree here instead of in a field report.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::{BufRead, BufReader, Write};
 use std::path::Path;
@@ -108,6 +112,7 @@ fn every_request() -> Vec<String> {
     all
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_handshake_record_names_the_version_rmcp_sent() {
     for requested in every_request() {
@@ -214,6 +219,7 @@ const SESSIONLESS_REFUSAL: &str = "the transport has no sessions";
 /// session-scoped call is served instead of refused as sessionless. The
 /// negative control is the same call on a sessionless 2026-07-28 request,
 /// which must be refused, or the probe could not tell the two apart.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_client_asking_for_2026_07_28_through_initialize_keeps_a_session() {
     let dir = tempfile::tempdir().unwrap();

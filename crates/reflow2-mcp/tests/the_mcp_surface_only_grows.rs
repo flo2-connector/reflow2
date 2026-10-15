@@ -83,11 +83,15 @@
 //!
 //! ```text
 //! REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp \
-//!     cargo test -p reflow2-mcp --test the_mcp_surface_only_grows
+//!     cargo test -p reflow2-mcp --test in_memory the_mcp_surface_only_grows::
 //! ```
 //!
 //! A deliberate break the owner approved is the only other reason to touch it,
 //! and it goes in with the approval named in the commit.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
@@ -526,7 +530,7 @@ fn write_record(taken: &Value) {
              things the next release may remove. Taken by driving the release binary \
              (--list-tools --full, --call, and describe_schema). Re-bless at a cut: \
              REFLOW2_BLESS_SURFACE=<that release's binary> cargo test -p reflow2-mcp --test \
-             the_mcp_surface_only_grows."
+             in_memory the_mcp_surface_only_grows::."
         )
     ));
     s.push_str(&format!("\"taken_with\": {},\n", taken["taken_with"]));
@@ -1088,6 +1092,7 @@ fn call_fresh(bin: &str, tool: &str, args: &str) -> (bool, String) {
     )
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_mcp_surface_shrinks_only_through_a_deprecating_release() {
     if let Ok(release) = std::env::var("REFLOW2_BLESS_SURFACE") {

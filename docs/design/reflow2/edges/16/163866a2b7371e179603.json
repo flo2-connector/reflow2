@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c05037f4919d3c07da97e09add2cd5496c93c2ab3ae0352dc19dc9946cafb5be",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:packaging"
+}

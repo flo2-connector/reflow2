@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:792dfe840edcb1f962176dccb5858ed65e4bce1b2c856f3447f0fadd8c61cace",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:7073d262a18c4e8c0baa6068c88fc2cb25be7a14f7a8539c2df11a4e19ef741c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-one-shot-mode-resolves-its-design-first"
+}

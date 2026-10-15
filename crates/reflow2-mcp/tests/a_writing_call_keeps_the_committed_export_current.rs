@@ -22,6 +22,10 @@
 //!
 //! Each test that depends on the new behaviour was run against main c4e1cbd
 //! before the fix and failed there.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::Read;
 use std::path::{Path, PathBuf};
@@ -232,6 +236,7 @@ fn identical(p: &Project, base: &Path, other: Option<&Path>) -> bool {
 /// The whole feature: a write through the door in a project that configures
 /// its export leaves that export current — the live design and a fresh export
 /// both compare `identical` with it — and one line on stderr says where.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_writing_call_in_a_configured_project_keeps_its_export_current() {
     let p = Project::configured();
@@ -290,6 +295,7 @@ fn a_writing_call_in_a_configured_project_keeps_its_export_current() {
 /// A read writes no export, and a write the tool REFUSED writes none either
 /// (its write unit discarded what it staged, so there is nothing new to carry),
 /// nor does a reply the tool marked an error.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_read_or_a_refused_write_leaves_the_export_untouched() {
     let p = Project::configured();
@@ -341,6 +347,7 @@ fn a_read_or_a_refused_write_leaves_the_export_untouched() {
 
 /// `--export-to` with `--call` is HONOURED now: the file it names is written,
 /// and it wins over what the configuration names, which is left alone.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn export_to_names_the_file_a_writing_call_keeps_and_wins_over_the_configuration() {
     let p = Project::configured();
@@ -383,6 +390,7 @@ fn export_to_names_the_file_a_writing_call_keeps_and_wins_over_the_configuration
 /// `--no-export` asks a writing call for no export — for a script making many
 /// writes to a large design — and the run says the export is now behind rather
 /// than leaving that to be noticed. It cannot be combined with `--export-to`.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn no_export_writes_none_and_says_the_export_is_behind() {
     let p = Project::configured();
@@ -423,6 +431,7 @@ fn no_export_writes_none_and_says_the_export_is_behind() {
 
 /// VS Code's own MCP file is read too, with its `${workspaceFolder}`: an agent
 /// whose org blocks MCP still has the file `reflow2 init` wrote for it.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_vscode_configuration_names_the_export_too() {
     let p = Project::bare();
@@ -443,6 +452,7 @@ fn the_vscode_configuration_names_the_export_too() {
 /// No `--export-to` and no configuration naming one: the write lands, nothing
 /// is guessed, and one line says no export was kept current and how to name
 /// one — never silence.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn with_no_export_named_anywhere_a_write_says_so_and_writes_none() {
     let p = Project::bare();
@@ -493,6 +503,7 @@ fn configurations_that_disagree_are_refused_before_anything_is_opened() {
 /// that leaves the stamp in place is not seen — by the server's write-through
 /// either, which runs the same function. Measured while writing this test and
 /// recorded on its own; it is not this test's case to paper over.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_hand_edited_export_is_left_alone_and_the_run_says_the_write_landed() {
     let p = Project::configured();
@@ -525,6 +536,7 @@ fn a_hand_edited_export_is_left_alone_and_the_run_says_the_write_landed() {
 
 /// An export that cannot be written at all — here, its folder does not exist —
 /// is reported the same way: the write landed, the export did not, exit 3.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn an_export_that_cannot_be_written_is_reported_and_the_run_ends_3() {
     let p = Project::configured_without_the_folder();
@@ -547,6 +559,7 @@ fn an_export_that_cannot_be_written_is_reported_and_the_run_ends_3() {
 /// every export a writing call makes chains from the export as committed, not
 /// from the file the last call wrote — so any number of door writes on a
 /// branch land one hop on a squash-merge.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn every_export_a_writing_call_makes_chains_from_the_committed_record() {
     let p = Project::configured();
@@ -616,6 +629,7 @@ fn in_a_pointer_folder_a_writing_call_still_refuses_and_writes_no_export() {
 /// `.reflow2.toml` `[export] path` is the one record they all read: a project
 /// that names its export there gets it kept by every writing call, and a file
 /// with no `[design]` table still leaves the folder a LOCAL design.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_recorded_export_in_reflow2_toml_is_the_file_a_writing_call_keeps() {
     let p = Project::bare();

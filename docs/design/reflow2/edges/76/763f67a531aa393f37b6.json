@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a41e69f498b10b7402eff200819a6e617d32be33ae08b9167b98a6c2291d6a9c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it"
+}

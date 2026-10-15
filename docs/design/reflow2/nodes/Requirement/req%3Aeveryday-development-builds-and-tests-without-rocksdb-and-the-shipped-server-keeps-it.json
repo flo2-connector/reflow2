@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:042d78e73023d6f2d33d8282af031b62c4d3296b0eab9e9423b15fb1c00161f0",
+  "node_id": "req:everyday-development-builds-and-tests-without-rocksdb-and-the-shipped-server-keeps-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "cost",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "Everyday development builds and tests reflow2 without RocksDB; the server anyone installs or runs keeps it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony (who:ajs), 2026-10-15",
+    "statement": "Everyday development and agent work build and test reflow2, the MCP server included, on the in-memory backend without compiling or linking RocksDB. The server anyone installs or runs (a release, `cargo install`, the Docker images, the launcher) is built with RocksDB exactly as before. A build without RocksDB refuses a design kept in a folder, saying so; it never falls back silently to memory. Every test still runs on every pull request, the disk-bound ones in CI's full build with RocksDB. And the server crate's tests compile into a few test programs instead of one per file, so a test run stops minting ~170 programs of ~390 MB each.\n\nSHOWN WHEN: the everyday command builds and tests the workspace without librocksdb-sys compiling; a release build still opens a store in a folder; a build without the feature refuses one with a message naming the fix; the list of test names before and after matches one to one (with RocksDB), and without RocksDB it lacks exactly the listed disk-bound tests; the number of MCP test programs and the target directory's size are measured before and after.\n\nAnthony, 2026-10-15, verbatim: \"Why are we building with rocksdb? Not only does it fill up the storage on this computer, I don't know what it gives us in development that running kv_backend with btreemaps doesn't? Yes, we agreed for production that we need rocksdb, but for the vast majority of development, I don't think it's necessary\". On the proposal (one PR: RocksDB a default-on feature of the server crate with an everyday command without it; the server's tests compiled into a few programs): \"Go with your 1 PR and two changes\".",
+    "status": "accepted"
+  }
+}

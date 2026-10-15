@@ -21,6 +21,10 @@
 //! Driven over a served session (the path a client takes: the argument check,
 //! the receipt, the refusal words) and, for the shell door, over the real
 //! binary.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::process::{Command, Output, Stdio};
 
@@ -160,6 +164,7 @@ fn stderr(o: &Output) -> String {
 // ---- 1. `--args @file` ---------------------------------------------------------------
 // dec:idea-the-door-reads-its-arguments-from-a-named-file
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_door_reads_its_arguments_from_a_named_file_for_call_read_and_write() {
     let dir = tempfile::tempdir().expect("tempdir");

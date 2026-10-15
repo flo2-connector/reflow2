@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ea72f63b378f0078141213b3be3cc20b3bee67cd1726cb6b27881835b38434e9",
+  "node_id": "cap:everyday-builds-and-tests-run-without-rocksdb-and-every-installed-server-keeps-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "reflow2-mcp has its own `rocksdb` feature (on-disk storage, a design store in a folder), ON BY DEFAULT, so every build anyone installs or runs has it: a release (release.yml), `cargo install`, the Docker images (docker/build.sh), the installer's source-build line and the launcher all build with default features. `cargo dev-test`, a cargo alias in .cargo/config.toml, builds and tests both crates without it on the in-memory backend; librocksdb-sys is not in that build's dependency graph at all. `cargo full-test` is CI's full run.\n\nA build without the feature REFUSES every store in a folder, first and before anything is opened, locked or written, naming the build, the feature and the fix (`opening::refuse_without_on_disk_storage`, the core's fail-loud contract and error kind in this crate's terms). It is asked by the two openers every mode goes through (ReflowService::new_reporting, one_shot::open_store), by `--shared` (which would otherwise start a daemon that can only fail) and by `--export-snapshot`. A server says it in band on the degraded surface; nothing falls back to memory.\n\nThe crate's test files are compiled into four test programs instead of one each (`autotests = false`): `in_memory` (every file whose tests need no store; a disk test inside one is marked `#[cfg(feature = \"rocksdb\")]`), `on_disk` (every file all of whose tests open a store; `required-features = [\"rocksdb\"]`), and two that need a process of their own (mint_seat_liveness: a one-way process-wide latch; a_design_is_watched_at_the_server_that_holds_it: it sets REFLOW2_CONFIG_DIR process-wide). Every file keeps its path and is a module, so its tests are `<file>::<test>`. `every_test_file_runs_in_exactly_one_program` fails a file declared in no program. tools/run_to_files.py reads such a program per test, so each file is still reported on its own.\n\nCI's core job (no RocksDB) builds, tests and lints the crate without the feature so that configuration cannot rot; the full job is unchanged and runs every test, with RocksDB, on every pull request.",
+    "name": "Everyday builds and tests run without RocksDB, every installed server keeps it, and the server's tests are four test programs",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

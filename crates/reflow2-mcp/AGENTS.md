@@ -9,25 +9,45 @@ project-wide rules. This file covers only what differs when you are editing *thi
 
 ## Commands — read this before you start
 
-**Building this crate compiles RocksDB: ~10 minutes cold, then cached.** It depends on
-`reflow2-core` with `features = ["rocksdb"]`, because a design must survive across agent
-sessions. That feature is enabled on the dependency edge, so `--no-default-features` cannot turn
-it off — the core crate's fast path does not apply here and there is no way to make it.
+**This crate has a `rocksdb` feature, ON by default** — on-disk storage, a design store in a
+folder — because a design must survive across agent sessions. Every build anyone installs or runs
+has it (a release, `cargo install`, the Docker images, the launcher), and with it the crate pays
+the RocksDB C++ build: ~10 minutes cold, then cached.
 
-Budget for it. Start the build before you need it, and do not kill it halfway: the C++ objects
-are cached per-file, so a killed build resumes, but a fresh checkout pays full price.
+**For development, build without it** (Anthony, 2026-10-15). `--no-default-features` builds and
+tests this crate on the in-memory backend and never compiles RocksDB; `cargo dev-test` does that
+for both crates. A build without the feature refuses every store in a folder, naming the feature
+and the fix (`opening::refuse_without_on_disk_storage`) — it never serves memory in a store's
+place.
+
+**The ~170 files in `tests/` are compiled into four test programs**, not one each:
+`tests/in_memory.rs` (everything that needs no store in a folder), `tests/on_disk.rs` (everything
+that does; `required-features = ["rocksdb"]`, so a build without the feature skips it whole), and
+two files that need a process of their own (Cargo.toml says why). Each file stays where it was and
+is a module, so name the program and filter by the file:
 
 ```bash
-cargo test -p reflow2-mcp                 # links RocksDB — slow first time
-cargo check -p reflow2-mcp --all-targets  # type-check only, no link: much faster while iterating
-cargo clippy -p reflow2-mcp --all-targets
+cargo test -p reflow2-mcp --no-default-features              # in memory: everything but on_disk
+cargo test -p reflow2-mcp --no-default-features --test in_memory a_budget_says_how_it_composes::
+cargo test -p reflow2-mcp                                    # with RocksDB: every program
+cargo test -p reflow2-mcp --test on_disk design_identity::   # one on-disk file
+cargo check -p reflow2-mcp --no-default-features --all-targets   # type-check only, no link
+cargo clippy -p reflow2-mcp --no-default-features --all-targets -- -D warnings
+cargo clippy -p reflow2-mcp --all-targets -- -D warnings     # with RocksDB, as CI's full job
 
 # End-to-end over the real stdio JSON-RPC binary, against a real RocksDB graph.
 # Covers what cargo test cannot: the shipped surface, the tool schemas, and the
 # JSON an agent actually receives. Stdlib-only Python; non-zero exit on failure.
+# The binary it drives is the default build, with RocksDB.
 cargo build -p reflow2-mcp
 python3 ../../tools/smoke_mcp.py
 ```
+
+**A new test file goes into one program's root** (`mod <file>;` in `tests/in_memory.rs`, or in
+`tests/on_disk.rs` if its tests open a store in a folder): with automatic discovery off, a file
+declared nowhere compiles nowhere, and `every_test_file_runs_in_exactly_one_program` fails until
+it is declared. **The tests in a program share one process**, on its threads: a test that sets an
+environment variable or the current directory, or flips process-wide state, is its own program.
 
 **Run `smoke_mcp.py` for any change to the tool surface.** The Grok trial found a bug that three
 home-grown test layers missed — every one of them was a client we wrote, so all three agreed with

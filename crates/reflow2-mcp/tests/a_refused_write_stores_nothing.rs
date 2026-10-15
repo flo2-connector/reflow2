@@ -34,6 +34,10 @@
 //! receipt use), synthesises arguments from each tool's own input schema that
 //! pass deserialisation and fail a later check, and asserts the stored design
 //! is node-for-node and edge-for-edge identical after every refusal.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::service::ReflowService;
 use rmcp::ServiceExt;
@@ -355,6 +359,7 @@ async fn a_successful_write_is_committed_and_its_receipt_names_it() {
 /// A REFUSED CALL SETS OFF NOTHING. The write-through export is rung only by a
 /// write that was committed: a refusal that rang it would export a design the
 /// call never changed, and claim a write took place.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_refused_write_triggers_no_export_and_a_committed_one_does() {
     let dir = std::env::temp_dir().join(format!(

@@ -11,6 +11,10 @@
 //! exactly what ephemeral means. `share()` copies `graph_path`, so the warning
 //! reaches per-session services too — which is the case that actually matters,
 //! since every HTTP session gets one of those rather than the original.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::service::ReflowService;
 use rmcp::ServerHandler;
@@ -53,6 +57,7 @@ fn the_warning_survives_being_shared_into_a_session() {
     );
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_design_on_disk_is_not_labelled_ephemeral() {
     // The other half: the warning must not fire on an ordinary design, or it

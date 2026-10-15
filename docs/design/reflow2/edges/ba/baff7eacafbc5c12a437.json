@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f0fff3754aa7e08a316190552d65add22d2b29892fd9ac7dd8b512be2bf80ae8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:mcp-test-program-in-memory",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -25,6 +25,10 @@
 //! only reads, and a call it cannot classify is refused as a write.
 //!
 //! Each test here was run against main before the fix and failed there.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::net::TcpListener;
@@ -514,6 +518,7 @@ fn rig_pointer(home: &Path) -> Rig {
 /// one-shot modes): `--read-only` against every mode that forwards calls to a
 /// server. In each, a write is refused by the client with nothing sent, a read
 /// passes through and is answered, and the design is unchanged afterwards.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn read_only_is_honoured_by_every_client_mode() {
     let home_dir = scratch("home");
@@ -582,6 +587,7 @@ fn read_only_is_honoured_by_every_client_mode() {
 }
 
 /// The shape of the refusal an agent reads, and that the session goes on.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_remote_read_only_refusal_is_a_tool_error_that_names_the_flag_and_the_session_goes_on() {
     let home_dir = scratch("home-shape");
@@ -619,6 +625,7 @@ fn a_remote_read_only_refusal_is_a_tool_error_that_names_the_flag_and_the_sessio
 /// A `--shared` call whose arguments hold the word "initialize" is a tool
 /// call, not a handshake: it is answered, and so is the next one. On main it
 /// got no reply and broke the session (422 on every later call).
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_shared_call_that_mentions_initialize_is_not_taken_for_a_handshake() {
     let home_dir = scratch("home-init");
@@ -699,6 +706,7 @@ fn a_shared_read_only_client_starts_no_server_where_there_is_no_store() {
 /// The latent surface — what a machine-wide entry serves where no design has
 /// been started — starts no design under `--read-only`, and a design that
 /// appears later is served read-only.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_latent_surface_starts_no_design_under_read_only() {
     let home_dir = scratch("home-latent");

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3ed379661811e01e34ad8d8bb15b0847f08d563d5c383b48e5e9ce7c00c90178",
+  "edge_type": "CHANGED",
+  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:c9b8e95528df566acd9d342ca8740350d8ce5e9f31a1085c5f20e9519193cbef",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-init"
+}

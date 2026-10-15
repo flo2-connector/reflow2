@@ -41,7 +41,8 @@
 //! rather than the race. Re-run them deliberately:
 //!
 //! ```text
-//! cargo test -p reflow2-mcp --test probe_export_ordering -- --ignored --nocapture
+//! cargo test -p reflow2-mcp --test in_memory the_export_can_be_ordered_before_its_writes:: \
+//!     -- --ignored --nocapture
 //! ```
 
 use reflow2_mcp::service::*;

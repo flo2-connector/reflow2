@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1588f309e4189a25af02f221160487db4c947d130608015de5795505df3cd5fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:one-shot",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

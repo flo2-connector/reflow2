@@ -1,0 +1,19 @@
+# Cargo aliases for working ON reflow2. Nothing here changes what a build
+# produces: a release, `cargo install`, the Docker images, the installer's
+# source build and the launcher all build `reflow2-mcp` with its default
+# features, which include on-disk storage (RocksDB). Settings that belong to
+# one machine (`jobs`, debug info) go in your own ~/.cargo/config.toml, not
+# here — AGENTS.md, "Building with limited RAM", says why.
+
+[alias]
+# THE EVERYDAY COMMAND. Both crates, built and tested WITHOUT RocksDB, on the
+# in-memory backend: it never compiles librocksdb-sys' C++, and it skips only
+# the MCP crate's `on_disk` test program — the tests that need a store in a
+# folder — which CI's full job runs on every pull request. Anthony,
+# 2026-10-15: "for the vast majority of development, I don't think it's
+# necessary".
+dev-test = "test --workspace --no-default-features --no-fail-fast"
+
+# The full run, exactly as CI's full job runs it: with RocksDB, every test
+# program. For a change that touches the store on disk; CI runs it anyway.
+full-test = "test --workspace --no-fail-fast"

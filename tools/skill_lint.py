@@ -716,6 +716,14 @@ def _gate_identity(cmd: str) -> str | None:
     check below — identity answers "is this gate documented at all", fidelity
     answers "is it documented correctly". The BL-159 trigger was a FLAGS
     difference, so collapsing the two would miss the very defect that filed it.
+
+    EXCEPT THE FEATURE CONFIGURATION, which is part of the identity the way the
+    package is. `cargo test -p reflow2-mcp` (on-disk storage, the default) and
+    `cargo test -p reflow2-mcp --no-default-features` (in memory, no RocksDB)
+    build different programs and catch different breakage, and CI runs both
+    (2026-10-15). Folded together, the first one ci.yml listed would stand for
+    both: this check would watch one of them, and `run_ci_gates.py`, which runs
+    this dict, would run one of them.
     """
     cmd = cmd.strip()
     if any(cmd.startswith(p) for p in NOT_A_GATE):
@@ -729,11 +737,18 @@ def _gate_identity(cmd: str) -> str | None:
                 return pathlib.Path(p).stem
         return None
     if parts[0] == "cargo" and len(parts) > 1:
-        ident = f"cargo {parts[1]}"
-        if "--workspace" in parts:
+        # cargo's own arguments only: after `--` they are the test harness's.
+        own = parts[: parts.index("--")] if "--" in parts else parts
+        ident = f"cargo {own[1]}"
+        if "--workspace" in own:
             ident += " --workspace"
-        if "-p" in parts:
-            ident += f" -p {parts[parts.index('-p') + 1]}"
+        if "-p" in own:
+            ident += f" -p {own[own.index('-p') + 1]}"
+        for flag in ("--no-default-features", "--all-features"):
+            if flag in own:
+                ident += f" {flag}"
+        if "--features" in own:
+            ident += f" --features {own[own.index('--features') + 1]}"
         return ident
     return None
 

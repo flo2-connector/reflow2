@@ -24,6 +24,10 @@
 //!
 //! And in-process, a stdio-shaped server (no registry) refuses `other_graph_id`
 //! on each widened read with the sentence that says where it IS served.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::path::{Path, PathBuf};
@@ -373,6 +377,7 @@ const WIDENED: [&str; 4] = [
     "seam_report",
 ];
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn every_widened_read_answers_from_the_other_design_inside_the_readable_set() {
     let (root, ids) = designs("allowed", &["alpha", "beta", "gamma"]);
@@ -454,6 +459,7 @@ fn every_widened_read_answers_from_the_other_design_inside_the_readable_set() {
     );
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn every_widened_read_refuses_a_design_outside_the_readable_set() {
     let (root, ids) = designs("outside", &["alpha", "beta", "gamma"]);
@@ -510,6 +516,7 @@ fn every_widened_read_refuses_a_design_outside_the_readable_set() {
     assert!(!text.contains("only-in-gamma"), "leaks nothing: {text}");
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_registry_server_refuses_every_path_a_call_names() {
     let (root, ids) = designs("path", &["alpha", "beta"]);

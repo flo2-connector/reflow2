@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a79466f2a60ed3c00179a22d2a76ba8f3f270ec6a0db16d836859de7230cc8eb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-every-one-shot-mode-resolves-its-design-first",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
