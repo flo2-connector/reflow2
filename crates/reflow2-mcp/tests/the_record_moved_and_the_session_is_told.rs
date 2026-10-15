@@ -30,6 +30,10 @@
 //! - NOT a refusal (option C): a refusal on READ is heavy-handed, and a
 //!   session deliberately working from an older design would meet it every
 //!   time. These findings carry a remedy, never a block.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::Write;
 
@@ -497,6 +501,7 @@ async fn hint_from_a_read(svc: &ReflowService) -> Option<String> {
         .map(str::to_string)
 }
 
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_moved_record_reaches_an_ordinary_read_without_anyone_calling_loop_status() {
     let (scratch, svc, graph_path) = service_on_disk("hint-behind");
@@ -518,6 +523,7 @@ async fn a_moved_record_reaches_an_ordinary_read_without_anyone_calling_loop_sta
     );
 }
 
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn an_untouched_record_says_nothing_which_is_the_whole_gate() {
     // The gate IS the design: silent whenever the file has not moved, which is
@@ -714,6 +720,7 @@ fn the_counts_do_not_mask_a_record_that_moved_ahead() {
 // `live_nodes: 2899`, verdict `in_step`, read and passed over.
 // ---------------------------------------------------------------------------
 
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn loop_status_puts_unexported_work_in_the_list_a_session_reads() {
     use rmcp::handler::server::wrapper::Parameters;
@@ -781,6 +788,7 @@ async fn loop_status_puts_unexported_work_in_the_list_a_session_reads() {
     );
 }
 
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_fully_exported_graph_adds_nothing_to_next() {
     use rmcp::handler::server::wrapper::Parameters;

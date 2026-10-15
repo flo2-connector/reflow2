@@ -16,6 +16,10 @@
 //!    is refused with the shape it wanted.
 //! 4. `never_called` is measured against the surface this server actually
 //!    serves, so a 181st tool joins the denominator the day it is served.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use reflow2_mcp::service::*;
 use reflow2_mcp::tools::skills_tools::UsageReportReq;
@@ -71,6 +75,7 @@ async fn an_in_memory_design_reports_no_ledger_in_words() {
 }
 
 /// The window closes behind a report and stays open behind a peek.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_report_closes_its_window_and_a_peek_does_not() {
     let d = tmpdir("window");
@@ -118,6 +123,7 @@ async fn a_report_closes_its_window_and_a_peek_does_not() {
 }
 
 /// A named date wins over the marker, and a bad one is refused with its shape.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_named_date_reaches_back_and_a_bad_one_is_refused() {
     let d = tmpdir("since");
@@ -154,6 +160,7 @@ async fn a_named_date_reaches_back_and_a_bad_one_is_refused() {
 }
 
 /// The denominator of `never_called` is the served surface, read live.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn never_called_is_measured_against_the_served_surface() {
     let d = tmpdir("surface");

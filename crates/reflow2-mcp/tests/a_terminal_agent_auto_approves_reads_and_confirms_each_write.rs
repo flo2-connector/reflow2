@@ -33,6 +33,10 @@
 //! RocksDB's own files and the records beside it (version stamp, handshake
 //! record, usage ledger) — `BOOKKEEPING` below — and nothing else may move:
 //! not the folder, not HOME, not TMPDIR.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::collections::BTreeMap;
 use std::hash::{Hash, Hasher};
@@ -337,6 +341,7 @@ fn required_args(t: &rmcp::model::Tool) -> String {
 /// through plain `--call`, unguarded, and changes nothing there either: the
 /// annotation that decides what a terminal approves is true, not only
 /// enforced.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn every_served_tool_through_read_runs_if_it_changes_nothing_and_is_refused_otherwise() {
     let s = Scratch::seeded();
@@ -462,6 +467,7 @@ fn read_creates_nothing_where_there_is_no_design() {
 /// Item 1's file rule, through the verb: `export_graph` and `export_surface`
 /// only read without `path`; with one they write a file, so `read` refuses them
 /// before anything is opened, and `write` runs them.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn export_with_a_path_through_read_is_refused_and_through_write_is_written() {
     let s = Scratch::seeded();
@@ -516,6 +522,7 @@ fn export_with_a_path_through_read_is_refused_and_through_write_is_written() {
 
 /// `write` runs any tool — a write lands, and a read answers through it too —
 /// and takes its arguments as a positional object, as `--args`, or from stdin.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn write_runs_a_write_and_any_other_tool() {
     let s = Scratch::seeded();
@@ -567,6 +574,7 @@ fn write_runs_a_write_and_any_other_tool() {
 
 /// `--read-only` asks for the opposite of `write`, so the two are refused
 /// together, by name, with nothing opened.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn write_with_read_only_is_refused() {
     let s = Scratch::seeded();
@@ -580,6 +588,7 @@ fn write_with_read_only_is_refused() {
 
 /// The read set is LISTED, from the served annotations plus the file rule —
 /// every served tool exactly once — and listing opens nothing.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_read_set_is_listed_from_the_served_annotations_and_the_file_rule() {
     let s = Scratch::seeded();
@@ -632,6 +641,7 @@ fn the_read_set_is_listed_from_the_served_annotations_and_the_file_rule() {
 /// `read` and `write` keep logging quiet: a read that answers prints nothing on
 /// stderr, and a refusal prints the refusal — no INFO line on every call, no
 /// WARN line repeating the refusal.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_verbs_keep_logging_quiet() {
     let s = Scratch::seeded();
@@ -697,6 +707,7 @@ fn every_flag() -> Vec<(String, Option<String>)> {
 /// refused by the parser, refused by the one-shot table, or one `read`
 /// honours; and in every case the design and the disk outside bookkeeping are
 /// unchanged and the writer never runs.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn nothing_typed_after_read_can_make_it_change_anything() {
     let s = Scratch::seeded();
@@ -765,6 +776,7 @@ fn nothing_typed_after_read_can_make_it_change_anything() {
 
 /// `--graph-path` may follow the verb, so a design elsewhere is readable
 /// without leaving the rule's prefix.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn graph_path_may_follow_the_verb() {
     let s = Scratch::seeded();

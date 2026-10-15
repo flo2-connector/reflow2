@@ -921,14 +921,21 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::{GraphRouter, Refusal, refused};
+    // The lifecycle tests open real stores in a folder, so they and their
+    // helpers need on-disk storage (the `rocksdb` feature, on by default).
+    use super::GraphRouter;
+    #[cfg(feature = "rocksdb")]
+    use super::{Refusal, refused};
+    #[cfg(feature = "rocksdb")]
     use std::path::{Path, PathBuf};
+    #[cfg(feature = "rocksdb")]
     use std::time::{Duration, Instant};
 
     /// A registry root holding `n` real designs, and their ids in order.
     ///
     /// Each design is minted by opening its store once and letting go, which is
     /// what writes the identity sidecar `Registry::discover` reads.
+    #[cfg(feature = "rocksdb")]
     fn root_with(n: usize) -> (PathBuf, Vec<String>) {
         let root = std::env::temp_dir().join(format!(
             "reflow2-registry-lifecycle-{}-{}",
@@ -952,6 +959,7 @@ mod tests {
         (root, ids)
     }
 
+    #[cfg(feature = "rocksdb")]
     fn graph_id_of(dir: &Path) -> String {
         let raw = std::fs::read_to_string(dir.join(".reflow2").join("graph.id.json"))
             .expect("an opened design has an identity sidecar");
@@ -959,6 +967,7 @@ mod tests {
         v["graph_id"].as_str().unwrap().to_string()
     }
 
+    #[cfg(feature = "rocksdb")]
     fn router(root: &Path, max_open: usize, idle: Option<Duration>) -> GraphRouter {
         GraphRouter::new(
             root.to_str().unwrap().to_string(),
@@ -969,10 +978,12 @@ mod tests {
         )
     }
 
+    #[cfg(feature = "rocksdb")]
     async fn holds(router: &GraphRouter, id: &str) -> bool {
         router.inner.open.lock().await.contains_key(id)
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn a_full_router_closes_the_least_recently_used_design_instead_of_refusing() {
         let (root, ids) = root_with(3);
@@ -1004,6 +1015,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn busy_is_said_only_when_every_open_design_is_serving_a_request() {
         let (root, ids) = root_with(2);
@@ -1035,6 +1047,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn a_design_is_not_reopened_until_its_previous_copy_lets_go() {
         let (root, ids) = root_with(2);
@@ -1067,6 +1080,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn an_idle_design_is_closed_and_one_serving_a_request_is_not() {
         let (root, ids) = root_with(2);
@@ -1083,6 +1097,7 @@ mod tests {
         drop(busy);
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn a_stopping_router_closes_every_design_and_opens_no_more() {
         let (root, ids) = root_with(2);
@@ -1119,6 +1134,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn no_idle_timeout_means_nothing_is_closed_for_idleness() {
         let (root, ids) = root_with(1);
@@ -1129,6 +1145,7 @@ mod tests {
         assert!(holds(&r, &ids[0]).await);
     }
 
+    #[cfg(feature = "rocksdb")]
     #[tokio::test]
     async fn a_name_that_is_no_design_takes_no_place_and_is_not_found() {
         let (root, ids) = root_with(1);

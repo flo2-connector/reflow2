@@ -88,6 +88,10 @@
 //!
 //! A deliberate break the owner approved is the only other reason to touch it,
 //! and it goes in with the approval named in the commit.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
@@ -1088,6 +1092,7 @@ fn call_fresh(bin: &str, tool: &str, args: &str) -> (bool, String) {
     )
 }
 
+#[cfg(feature = "rocksdb")]
 #[test]
 fn the_mcp_surface_shrinks_only_through_a_deprecating_release() {
     if let Ok(release) = std::env::var("REFLOW2_BLESS_SURFACE") {

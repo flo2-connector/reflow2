@@ -25,6 +25,10 @@
 //! The judgement itself is pinned in the core
 //! (`an_upstream_design_is_watched_not_imported.rs`); these cover the half only
 //! a network can answer.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::net::TcpListener;
@@ -248,6 +252,7 @@ fn finding<'a>(report: &'a Value, dependency: &str) -> &'a Value {
 /// HTTP; this design declares a watch at its address, sees it unchanged, sees a
 /// real change as `moved`, takes none of its nodes in, and — once the server is
 /// gone — says UNKNOWN rather than unchanged.
+#[cfg(feature = "rocksdb")]
 #[tokio::test]
 async fn a_real_server_is_asked_and_a_real_change_is_seen_and_an_outage_is_never_unchanged() {
     hermetic_settings();

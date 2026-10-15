@@ -1,0 +1,178 @@
+//! The `in_memory` test program: every test file of this crate that needs no
+//! store in a folder, compiled and linked as ONE program.
+//!
+//! WHY ONE PROGRAM. Until 2026-10-15 each file in `tests/` was its own test
+//! program: ~170 of them, each ~390 MB in a debug build, each linking the
+//! whole crate and every dependency again — and cargo keeps every old copy
+//! (`fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries`).
+//! Each file now stays exactly where it was (the design's artifacts, checks and
+//! docs name these paths) and is a module here, so its tests are named
+//! `<file>::<test>`:
+//!
+//!     cargo test -p reflow2-mcp --test in_memory <file>::     # one file's tests
+//!
+//! THIS PROGRAM BUILDS WITHOUT ROCKSDB. `cargo dev-test` and CI's core job run
+//! it with `--no-default-features`, on the in-memory backend. A file whose
+//! tests open a store in a folder belongs in `on_disk.rs` instead.
+//!
+//! ⚠️ THESE TESTS SHARE ONE PROCESS, on its threads. A file that changes
+//! process-wide state — an environment variable, the current directory, a
+//! one-way latch — or needs a process of its own is its own program in
+//! Cargo.toml, not a module here.
+//!
+//! ADD A NEW TEST FILE HERE (or to `on_disk.rs`): with `autotests = false`, a
+//! file declared in no program compiles nowhere and runs nowhere.
+//! `every_test_file_runs_in_exactly_one_program` fails until it is declared.
+
+mod a_budget_says_how_it_composes;
+mod a_build_can_call_one_tool_from_the_shell;
+mod a_build_without_on_disk_storage_refuses_a_store_in_a_folder;
+mod a_bulk_edge_write_keeps_each_helpers_checks;
+mod a_by_hand_report_names_a_real_tool;
+mod a_capability_carries_its_thread_in_one_call;
+mod a_capture_that_replaces_a_node_says_so;
+mod a_change_says_how_its_reason_is_known;
+mod a_closure_criterion_is_declared_on_the_served_surface;
+mod a_composed_prompt_serves_its_pieces;
+mod a_constructor_accepts_the_owners_word_in_one_call;
+mod a_constructor_names_every_edge_it_drew;
+mod a_constructor_says_what_it_replaced;
+mod a_contradiction_drawn_as_corroboration_is_stored_supporting;
+mod a_convention_reaches_the_skill_it_bears_on;
+mod a_cross_design_read_takes_the_other_design_by_graph_id;
+mod a_dependency_declaration_replies_with_a_receipt;
+mod a_dependent_write_in_a_parallel_batch;
+mod a_design_holds_acceptance_says_why_the_code_moved;
+mod a_finding_or_refusal_names_the_route_that_works;
+mod a_fork_point_finds_its_address_in_git;
+mod a_hub_member_states_its_relation_through_the_tools;
+mod a_lesson_is_served_at_the_step_it_concerns;
+mod a_levied_requirement_is_recordable_in_one_call;
+mod a_local_client_works_against_a_remote_server;
+mod a_loop_hint_says_where_the_node_landed;
+mod a_loop_status_reply_says_whose_words_to_use;
+mod a_missing_argument_names_the_tool_and_what_it_wants;
+mod a_near_match_of_another_type_is_named_as_a_layer;
+mod a_node_is_named_by_its_id_and_the_type_is_optional;
+mod a_node_is_named_by_the_key_the_last_tool_used;
+mod a_number_names_its_source;
+mod a_parks_writer_says_whether_it_takes_effect;
+mod a_person_picks_the_merge_survivor_over_mcp;
+mod a_plain_get_instructions_returns_the_whole_document_and_the_root_cause_rule_rides_it;
+mod a_prescribed_layer_pair_no_longer_refuses;
+mod a_prose_field_that_swallowed_a_parameter_says_so;
+mod a_question_is_put_to_a_person_and_records_who_answered;
+mod a_read_only_surface_refuses_every_write;
+mod a_refused_host_is_told_which_flag_admits_it;
+mod a_refused_write_stores_nothing;
+mod a_registered_artifact_asserts_nothing_it_was_not_told;
+mod a_relation_reaches_into_another_design;
+mod a_relation_tool_accepts_the_other_familys_names;
+mod a_replaced_value_is_kept_when_it_would_be_lost;
+mod a_report_is_not_a_list_of_every_check;
+mod a_requirement_is_sent_down_and_received_through_the_tools;
+mod a_revise_keeps_what_it_was_not_passed;
+mod a_revised_affected_list_keeps_the_acceptances_on_its_changed_edges;
+mod a_revising_write_says_what_it_removed;
+mod a_revising_write_says_whether_the_state_survived;
+mod a_ripple_is_carried_on_with_arriving_from;
+mod a_root_cause_looks_across_the_family_and_a_new_piece_is_asked_for_its_whole;
+mod a_scoped_loop_status_fits_its_budget;
+mod a_search_hit_carries_its_linked_records;
+mod a_served_item_is_removed_only_after_a_release_that_announced_it;
+mod a_session_names_its_design;
+mod a_session_names_who_it_writes_for;
+mod a_session_that_reads_and_never_writes_is_seen;
+mod a_set_aside_decision_is_not_debt;
+mod a_settled_decision_names_prose_that_still_says_open;
+mod a_settled_decisions_name_stops_asking;
+mod a_setup_command_chooses_local_or_remote_once;
+mod a_skill_response_says_who_it_is_for;
+mod a_stale_write_is_refused_at_the_tool;
+mod a_status_question_in_the_askers_words_finds_the_read;
+mod a_status_that_outruns_its_prose_says_so;
+mod a_stored_twin_is_kept_by_the_store;
+mod a_terminal_agent_auto_approves_reads_and_confirms_each_write;
+mod a_topic_report_says_what_it_holds_and_what_it_did_not_find;
+mod a_write_records_the_agent_beside_the_principal;
+mod a_write_replies_with_a_receipt;
+mod a_writing_call_keeps_the_committed_export_current;
+mod add_artifact_takes_the_first_checksum;
+mod an_empty_orientation_read_is_not_an_all_clear;
+mod an_enum_field_publishes_its_legal_values;
+mod an_ephemeral_design_says_so_in_its_handshake;
+mod an_export_says_whether_it_changed_anything;
+mod an_export_says_which_tree_it_was_taken_in;
+mod an_idea_is_a_declared_kind;
+mod an_import_from_a_newer_reflow2_is_refused;
+mod an_inference_says_how_premises_support_a_conclusion;
+mod an_initialize_is_recorded_as_rmcp_answered_it;
+mod an_undated_change_event_says_so;
+mod an_unknown_field_refusal_names_the_nearest_parameter;
+mod an_upstream_export_is_read_without_being_imported;
+mod built_work_reads_as_built_on_the_wire;
+mod derived_relations_are_served;
+mod discontinued_reaches_the_reader;
+mod every_argument_refusal_names_the_tool_and_the_field_path;
+mod every_client_mode_honours_read_only;
+mod every_constructor_can_say_what_the_thing_is;
+mod every_declared_enum_is_wired_or_exempt;
+mod every_defaulted_edge_property_is_exposed_or_exempt;
+mod every_deprecation_is_announced_in_the_changelog;
+mod every_one_shot_mode_resolves_its_design_first;
+mod every_path_taking_read_takes_the_other_design_by_graph_id;
+mod every_reference_parameter_names_its_type;
+mod every_required_parameter_is_described;
+mod every_settling_call_declares_what_settles_it;
+mod every_skill_is_found_by_a_query_in_the_users_words;
+mod every_test_file_runs_in_exactly_one_program;
+mod every_tool_is_found_by_a_query_in_the_users_words;
+mod every_tool_list_carries_the_cache_hints_its_protocol_requires;
+mod every_writer_settles_through_one_rule;
+mod feedback_is_a_computed_tally;
+mod find_tools_ranks_what_the_query_means;
+mod get_node_reads_its_edges;
+mod latent_mode;
+mod no_per_design_process_globals;
+mod no_served_text_writes_a_readers_persona_into_the_design;
+mod one_status_contract_across_sibling_constructors;
+mod one_tool_declares_its_output_contract;
+mod orientation_needs_nothing_to_start;
+mod record_change_carries_the_axis;
+mod recording_a_finding_is_a_tool_call_that_demands_the_skill;
+mod reflow2_measures_a_registered_file_and_never_reads_it;
+mod replace_text_moves_one_sentence_without_resending_the_field;
+mod reply_is_sent_once;
+mod required_to_create_optional_to_revise;
+mod revising_an_epochs_prose_keeps_its_status;
+mod search_first_fires_at_the_tool;
+mod served_skills;
+mod sessions_cannot_cross_designs;
+mod settling_a_decision_records_which_option_won;
+mod the_argument_check_agrees_with_the_deserialiser;
+mod the_changelog_balance_only_adds_to_the_reply;
+mod the_cli_describes_a_tool_with_its_schema_and_lessons;
+mod the_command_surface_answers_for_itself;
+mod the_commonest_edge_has_a_typed_helper;
+mod the_design_is_saved_one_file_per_item;
+mod the_export_can_be_ordered_before_its_writes;
+mod the_export_chains_from_main;
+mod the_fourteen_holes_are_writable;
+mod the_frontier_is_served_and_a_deferral_is_a_recorded_finding;
+mod the_guard_reads_the_request_before_refusing;
+mod the_lens_names_the_person_beside_the_id;
+mod the_mcp_surface_only_grows;
+mod the_near_match_report_is_not_cut_at_three;
+mod the_record_moved_and_the_session_is_told;
+mod the_relatedness_judgement_rides_the_refusal;
+mod the_rollup_stays_cheap_to_read;
+mod the_same_paragraph_fifty_times;
+mod the_server_says_when_it_is_stale;
+mod the_sync_roll_is_bounded_and_says_so;
+mod the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface;
+mod the_tool_surface_tells_the_truth;
+mod the_two_reported_fields_can_be_set;
+mod the_unused_anchor_type_is_announced_for_removal;
+mod the_v0510_field_feedback_fixes_land;
+mod tools;
+mod wall_check_is_served_and_findable;

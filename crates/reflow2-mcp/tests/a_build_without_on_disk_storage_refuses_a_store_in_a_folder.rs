@@ -381,14 +381,19 @@ mod without_the_feature {
     }
 }
 
-/// The default build opens stores in folders: the feature is on, and the
-/// guard every opener asks first lets the open through.
+/// The default build opens stores in folders: the guard every opener asks
+/// first lets the open through, and a real store opens.
 #[cfg(feature = "rocksdb")]
 #[test]
 fn the_default_build_opens_a_store_in_a_folder() {
-    assert!(reflow2_mcp::opening::STORES_IN_A_FOLDER);
     assert!(
         reflow2_mcp::opening::refuse_without_on_disk_storage("/any/where/graph").is_ok(),
         "the guard refuses nothing in a build with the feature"
     );
+    let dir = tempfile::tempdir().expect("tempdir");
+    let graph = dir.path().join("graph");
+    reflow2_mcp::service::ReflowService::new_reporting(graph.to_str().unwrap())
+        .map(drop)
+        .expect("a build with the feature opens a store in a folder");
+    assert!(graph.is_dir(), "and the store is there");
 }

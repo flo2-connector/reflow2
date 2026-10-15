@@ -25,6 +25,10 @@
 //!
 //! Each real-binary test here was run against main (293f957) before the fix
 //! and failed there.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::path::Path;
@@ -224,6 +228,7 @@ fn lesson_ids(v: &Value) -> Vec<String> {
 /// The report's case: a Decision with one link took four calls because the
 /// link item's shape and the relation names were learned by refusal. The
 /// default (brief) description shows both, under the reply budget.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn describe_add_decision_shows_the_link_item_shape_and_the_relation_enum() {
     let s = Scratch::seeded();
@@ -282,6 +287,7 @@ fn describe_add_decision_shows_the_link_item_shape_and_the_relation_enum() {
 /// design arrives with the tool's description; on a design that holds none,
 /// none arrive and the reply says so. Through `--describe`, `--list-tools`, and
 /// the served route through the `--call` door.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_lesson_the_design_holds_for_a_tool_arrives_and_a_design_holding_none_says_so() {
     let s = Scratch::seeded();
@@ -447,6 +453,7 @@ impl Drop for Session {
 /// same design, entry by entry and as a whole. And while that session HOLDS
 /// the design, the describe still reads it (from a snapshot copy), lessons
 /// included.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn full_is_exactly_what_tools_list_serves_on_that_design_even_while_it_is_held() {
     let s = Scratch::seeded();
@@ -557,6 +564,7 @@ fn in_a_folder_that_names_its_design_on_a_server_it_refuses_and_names_the_design
 }
 
 /// A name nothing serves: exit 1, the nearest served names, and find_tools.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn an_unknown_tool_is_refused_with_the_nearest_names() {
     let s = Scratch::seeded();

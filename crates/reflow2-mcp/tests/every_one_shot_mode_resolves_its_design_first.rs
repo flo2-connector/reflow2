@@ -25,6 +25,10 @@
 //! binary's own `--help` lists, against every one-shot mode.
 //!
 //! Each test was run against main (9ecb405) before the fix and failed there.
+// Some tests here open a design store in a folder: each is marked
+// `#[cfg(feature = "rocksdb")]`, and a build without on-disk storage compiles
+// them out — and with them helpers only they use, which is all this allows.
+#![cfg_attr(not(feature = "rocksdb"), allow(dead_code, unused_imports))]
 
 use std::io::Read;
 use std::path::{Path, PathBuf};
@@ -227,6 +231,7 @@ fn node_is_absent(s: &Scratch, id: &str) {
 /// Every mode that opens the store, for a tool that reads, a tool that reads
 /// no design at all, and a tool that writes: refused, exit 1, the design's id
 /// and address named, and the folder exactly as it was.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn in_a_folder_that_names_its_design_on_a_server_every_mode_that_opens_the_store_refuses_and_creates_nothing()
  {
@@ -283,6 +288,7 @@ fn in_a_folder_that_names_its_design_on_a_server_every_mode_that_opens_the_store
 
 /// A store left behind by a move, beside the pointer: neither read nor
 /// written, and the refusal says the store is not the design.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn a_store_left_beside_a_pointer_is_neither_opened_nor_written() {
     let s = Scratch::seeded();
@@ -304,6 +310,7 @@ fn a_store_left_beside_a_pointer_is_neither_opened_nor_written() {
 
 /// Where there is no design, a READ refuses and creates nothing — including
 /// the discovery calls an agent is told to run first — and a WRITE creates it.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn where_there_is_no_design_a_read_refuses_and_creates_nothing_and_a_write_creates_it() {
     let s = Scratch::new();
@@ -356,6 +363,7 @@ fn where_there_is_no_design_a_read_refuses_and_creates_nothing_and_a_write_creat
 
 /// A folder that opted in (`.reflow2/` there, empty) holds an empty design,
 /// and reading it is how the installer mints the design's id.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn an_opted_in_folder_reads_as_the_empty_design_it_is() {
     let s = Scratch::opted_in();
@@ -368,6 +376,7 @@ fn an_opted_in_folder_reads_as_the_empty_design_it_is() {
 
 /// `--only-if-present` means for a one-shot mode what it means for a session:
 /// where nobody opted in, nothing is created.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn only_if_present_is_honoured_by_one_shot_modes() {
     let s = Scratch::new();
@@ -406,6 +415,7 @@ fn only_if_present_is_honoured_by_one_shot_modes() {
 
 /// `--read-only` beside `--call` changes nothing, graph or disk: a writer is
 /// refused, and so is a tool marked read-only that would write a FILE.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn read_only_with_call_refuses_a_graph_write_and_a_file_write_and_still_answers_reads() {
     let s = Scratch::seeded();
@@ -493,6 +503,7 @@ fn read_only_with_call_refuses_a_graph_write_and_a_file_write_and_still_answers_
 /// `--export-to` beside `--call` was refused by name in step 1, and step 2 of
 /// the door plan HONOURS it: a writing call writes the file before it exits —
 /// never accepted and quietly not written.
+#[cfg(feature = "rocksdb")]
 #[test]
 fn export_to_with_call_is_honoured_and_a_writing_call_writes_the_file() {
     let s = Scratch::seeded();
