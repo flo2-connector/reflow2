@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:30cf66335457fc08d8c47844f57bed13b2799085ad6a78db1dc2bc16b629e7d2",
+  "node_id": "req:a-design-holds-a-line-of-reasoning",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A design can hold a line of reasoning meant to convey thought (an argument for and against, an experiment, a research paper or thesis, a legal case) with reflow2's own vocabulary",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-14, in conversation",
+    "statement": "Anthony, 2026-10-14: \"I want to expand reflow2/flo2 to be able to do lines of reasoning, the graph is the proof, and inference steps for every design.\" From the brainstorm earlier that day: designing experiments, a research paper, a thesis or dissertation, or a legal case, which \"all share the kind of the same idea of 'conveying thought' in a logical, coherent manner\".\n\nWHAT MUST BE TRUE:\n1. THE PARTS ARE RECORDED WITH TYPES REFLOW2 ALREADY HAS:\n   - the claim to establish;\n   - its premises and assumptions;\n   - its sources and evidence;\n   - competing readings, objections and replies.\n   The mapping is in dec:idea-reflow2-designs-a-line-of-reasoning-an-argument-an-experiment-a-paper-a-legal-case. Each step of support states its rule (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows).\n2. NO DOMAIN SEED TEMPLATE. A design is never started pre-filled with an argument's shape (dec:idea-a-domain-seed-template-starts-a-design-in-the-fields-own-shape, rejected 2026-10-13).\n3. \"CONTESTED, BY DESIGN\" CAN BE SAID. An argument for and against may keep both sides with no verdict, and the counts do not read that as unfinished work.\n4. THE DESIGN SAYS WHAT ITS CHECKS MEAN. Structure is not truth: every claim citing evidence and every objection having a reply does not make an argument sound.\n5. A CITATION COMES FROM A CITED SOURCE, never from a model's memory. A legal case never presents as legal advice.\n\nSHOWN WHEN: a real line of reasoning, such as an argument for and against or a paper's chain of claims, is recorded end to end in a design. Read back, it shows its claims, their support, the points still contested, and any claim with no support.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cd77f4e666d61a96249a626aab689a36953204db52d36705cbf057c88bb14a83",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
+  "properties": {
+    "note": "An argument's 'claim with no support' is shown in its read-back, never raised design-wide."
+  },
+  "to_id": "req:a-design-holds-a-line-of-reasoning"
+}

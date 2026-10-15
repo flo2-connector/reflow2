@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:075c4336b32a6857c6c0b12c507320f877e294b69c6d684c04236e85502c7201",
+  "node_id": "art:grok-capture-intent-skill-mirror",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The byte-identical copy of getting-started/skills/capture-intent/SKILL.md that Grok reads in this repository; skill_lint holds the two equal.",
+    "location": ".grok/skills/capture-intent/SKILL.md",
+    "name": "capture-intent SKILL.md (.grok mirror)",
+    "status": "realized"
+  }
+}

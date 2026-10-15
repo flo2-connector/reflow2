@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4170f6ea437aaca3655782dd097613ba89e37eba2dd76d8f1e61dc57e3c3a867",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-cd0c73326188aef2",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7057dafe6eef2bfe541b9b1805017deac82b06fcc918706593562da21aa3e926",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}

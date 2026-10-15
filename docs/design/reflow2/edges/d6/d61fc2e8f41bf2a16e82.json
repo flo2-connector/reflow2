@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d7d7d55fc742afedb8a2721bb86058004dd52679f24928ce196c7b9ac0036d6",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-reflow2-designs-a-line-of-reasoning-an-argument-an-experiment-a-paper-a-legal-case",
+  "properties": {
+    "evidence": "Anthony promoted the idea on 2026-10-14: \"I want to expand reflow2/flo2 to be able to do lines of reasoning ...\""
+  },
+  "to_id": "req:a-design-holds-a-line-of-reasoning"
+}

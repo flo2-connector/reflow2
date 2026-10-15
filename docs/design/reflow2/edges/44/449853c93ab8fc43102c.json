@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:97500bdf5df520e27fe280fcf37b79c571508f0ba7c86268297140042ab0921a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:skills-and-tools",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

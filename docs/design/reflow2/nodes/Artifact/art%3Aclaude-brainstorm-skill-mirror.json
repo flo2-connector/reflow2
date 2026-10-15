@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:55dc91dc26f3a8247a0fbd5f50bd91910be631b35cff4af86cae90447e4360a2",
+  "node_id": "art:claude-brainstorm-skill-mirror",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The byte-identical copy of getting-started/skills/brainstorm/SKILL.md that Claude Code reads in this repository; skill_lint holds the two equal.",
+    "location": ".claude/skills/brainstorm/SKILL.md",
+    "name": "brainstorm SKILL.md (.claude mirror)",
+    "status": "realized"
+  }
+}

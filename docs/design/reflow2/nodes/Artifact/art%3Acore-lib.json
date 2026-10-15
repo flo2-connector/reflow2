@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a065e32c0ac3314394a40fc7d72290bf899b5f644eb1546578ead5d7d6563e9e",
+  "node_id": "art:core-lib",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The reflow2-core crate root: declares every module of the deterministic engine and re-exports its public types.",
+    "location": "crates/reflow2-core/src/lib.rs",
+    "name": "lib.rs (reflow2-core)",
+    "status": "realized"
+  }
+}

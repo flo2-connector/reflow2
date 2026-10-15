@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:af25df68b0d7630dff7f3852c1bb269e2707f9f29b948727fce53c723b598ec8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:f12fb0d99e91c3db69f5bffdcba874781f451108ad39102a6df8c38d4a9dd67e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

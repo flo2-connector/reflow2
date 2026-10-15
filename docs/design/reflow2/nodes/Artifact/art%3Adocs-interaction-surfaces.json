@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:4318267aaed01f8429be8202dcca0fbcf957dff040548aff33ac4011e5832905",
+  "node_id": "art:docs-interaction-surfaces",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "How a human drives reflow2 and the LLM-sourcing trade-off; it states the schema's vocabulary counts, which check_doc_versions holds to the build.",
+    "location": "docs/interaction-surfaces.md",
+    "name": "interaction-surfaces.md",
+    "status": "realized"
+  }
+}

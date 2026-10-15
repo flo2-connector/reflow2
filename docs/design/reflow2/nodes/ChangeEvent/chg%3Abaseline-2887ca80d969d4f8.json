@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1ef1aa16524f27fb2d343f1c970f9ed817e7b7ca26bf84da577954aec7d711d3",
+  "node_id": "chg:baseline-2887ca80d969d4f8",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-15",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:claude-capture-intent-skill-mirror' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: new file in the Inference PR, measured at 05df969",
+    "subject": "record"
+  }
+}

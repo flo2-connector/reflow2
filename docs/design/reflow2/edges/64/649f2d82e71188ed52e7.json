@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a25edd78ec8e3ea1af655c0853674f66a5e23a7a8197f66aacefd94c35a4a1f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:grok-capture-intent-skill-mirror"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7c2f9a274ab1055217f19c539dda037910c65cb93389130dd072ebf2b5b896f9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:claude-brainstorm-skill-mirror"
+}

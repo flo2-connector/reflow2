@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9942b862ea4e188439a092ae16a71918d2064b08bb48c280b0692550154697db",
+  "edge_type": "CONSTRAINS",
+  "from_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
+  "properties": {
+    "note": "The served text asks for chains; no detector reports a recommendation recorded without one."
+  },
+  "to_id": "req:an-agent-records-a-consequential-recommendation-as-an-inference-chain"
+}

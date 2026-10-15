@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:664b6f97f155b490cf1175270ce1dd64a56b0b4f11ba569b0dae5a82d66a9cb8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-agent-records-a-consequential-recommendation-as-an-inference-chain",
+  "properties": {
+    "approved_at": "2026-10-14",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

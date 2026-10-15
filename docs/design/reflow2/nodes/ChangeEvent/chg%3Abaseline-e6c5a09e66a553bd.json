@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:dadf4782f13d980c17446ce5e1417c596ce0bfc482b74b9f61f115b94e7ffffa",
+  "node_id": "chg:baseline-e6c5a09e66a553bd",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-15",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:reports-without-an-inference-fixture' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: new file in the Inference PR, measured at 05df969",
+    "subject": "record"
+  }
+}

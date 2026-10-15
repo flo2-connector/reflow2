@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a2a01eff407cb8b6c343a0c60cfceeedc7400c26bb67023129ce87bc4d8b8575",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:toolsnap-add-inference",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

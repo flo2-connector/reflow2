@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:419926f12507571e8504a1f0e9fdefc65e2318d8f8e26cac9f2e7676d45b5bbd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows"
+}

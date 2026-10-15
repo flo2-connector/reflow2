@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f40913cf8e6241538804d14cfd9e793f92621a7a93da11b0f0df38d904fd2d70",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:54b97604185950756405a2c5bdbc114cfcc03f388f4d637ea528c973443be45c",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:the-vocabulary-is-served-in-a-fields-own-terms",
+  "properties": {
+    "evidence": "D already lets a requirement be read as a lemma or theorem in a field's own terms without renaming it, which is the settled half of 'requirement could be replaced by lemma'."
+  },
+  "to_id": "dec:idea-the-graph-as-proof-gives-design-anything-a-mathematical-backbone"
+}

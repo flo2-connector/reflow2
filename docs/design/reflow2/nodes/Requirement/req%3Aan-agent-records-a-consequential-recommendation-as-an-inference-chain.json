@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:59874c5d170e9e7864b4b1aefb5a5044c7f49ea4b2c1088b4726a1495f6f3af2",
+  "node_id": "req:an-agent-records-a-consequential-recommendation-as-an-inference-chain",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The served instructions ask an agent to record a consequential recommendation as an inference chain (premises, rule, conclusion), so its reasoning can be checked step by step",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-14, in conversation",
+    "statement": "Anthony, 2026-10-14: \"Let's go for the first option\". That is option (a) of dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain: the served instructions ask for it on consequential recommendations, and everything else stays prose. It came from his: \"the AI agent can put down its thought process in something that can be critically analyzed.\"\n\nWHAT MUST BE TRUE:\n1. WHEN: on a CONSEQUENTIAL recommendation only. That means a decision the person will act on, a cause written down (the root-cause skill), or a recommendation that settles a choice. Ordinary remarks and rationale stay prose, so the chains that matter are not buried.\n2. WHAT: the agent records its argument as Inference records (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows). The premises it rests on, each one a record a person can point at. The rule by which they support the conclusion. The conclusion itself. A short rationale paragraph may stay beside it for the reader.\n3. WHERE IT IS SAID: in the served instructions and in the skills where such recommendations are made, such as capture-intent's decisions that keep their math, root-cause and the brainstorm's settling step. It is said where the agent's hands are, never in one far-off document. The skill lint holds it.\n4. HONEST WORDING, in the served text itself: the chain is the agent's STATED ARGUMENT, made checkable. It is not a transcript of how the model reached it. The claim made to a person is \"every step can be checked\", never \"this is how the AI thought\".\n5. DEPENDS ON C. Served text only, once the Inference record exists. No new tool.\n\nSHOWN WHEN: a session following the served text makes a consequential recommendation and records it as a chain. The person can then name the one premise they disagree with, and reflow2 shows what else rests on it.",
+    "status": "accepted"
+  }
+}
