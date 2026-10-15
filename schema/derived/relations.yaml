@@ -116,10 +116,10 @@ relations:
     name: "foundations(conclusion) — the terminal premises (axioms) a conclusion rests on"
     reading: { form: composite, composition: "foundations(c) := {p : ¬∃i: source-of·derived(i, p), p reachable from c by walking backward through source-of·derived(i, c) → part-of·premise(p, i), recursively}", components: [part-of, source-of] }
     rule: "A conclusion's foundations are its terminal premises — nodes not concluded by any Inference — found by walking backward through the inference chain: the conclusion's concluding Inferences, their premises, and when a premise is itself concluded, its concluding Inferences in turn, until every path ends at a node no Inference concludes. These are the axioms: the chosen principles the conclusion ultimately rests on. The walk handles multiple inference chains (alternative derivations) by taking the union, and guards against cycles. A node with no concluding Inference has no foundations (it IS terminal), and nothing fires (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference). The design-wide view lists every node that is a foundation of at least one conclusion."
-    stated_over_readings: partial
-    not_yet_stated: "each foundation's truth is a derived relation (delivered, checked, etc.) and the 'terminal' predicate is the absence of a CONCLUDES edge into the node, a structural condition no reading declares as algebra."
+    stated_over_readings: none
+    not_yet_stated: "each foundation's truth is a derived relation (delivered, checked, etc.) and the 'terminal' predicate is the absence of a CONCLUDES edge into the node, a structural condition no reading declares as algebra. The rule itself reads no edge directly — it walks through the follows relation's functions (inferences_concluding, premises_of), which are declared on follows."
     inference: deduced
-    edges: [PREMISE_OF, CONCLUDES]
+    edges: []
     over: [follows]
     code:
       - { file: inference.rs, function: foundations_of, dedicated: true }
