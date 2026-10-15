@@ -83,7 +83,7 @@
 //!
 //! ```text
 //! REFLOW2_BLESS_SURFACE=target/release/reflow2-mcp \
-//!     cargo test -p reflow2-mcp --test the_mcp_surface_only_grows
+//!     cargo test -p reflow2-mcp --test in_memory the_mcp_surface_only_grows::
 //! ```
 //!
 //! A deliberate break the owner approved is the only other reason to touch it,
@@ -530,7 +530,7 @@ fn write_record(taken: &Value) {
              things the next release may remove. Taken by driving the release binary \
              (--list-tools --full, --call, and describe_schema). Re-bless at a cut: \
              REFLOW2_BLESS_SURFACE=<that release's binary> cargo test -p reflow2-mcp --test \
-             the_mcp_surface_only_grows."
+             in_memory the_mcp_surface_only_grows::."
         )
     ));
     s.push_str(&format!("\"taken_with\": {},\n", taken["taken_with"]));
