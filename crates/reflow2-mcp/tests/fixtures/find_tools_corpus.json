@@ -196,5 +196,102 @@
     "withdraw_gap_acknowledgement": "reopen a gap I previously accepted",
     "withdraw_question": "retract a question that was asked",
     "writes_for": "attribute the edits in this session to the person I am working for"
+  },
+  "in_a_fields_own_terms": {
+    "_what": "Queries in a FIELD's own words, never reflow2's (req:the-vocabulary-is-served-in-a-fields-own-terms). Each names the typed tool(s) that write the type its field words mean. A query passes when every named tool is in the default top 5, the first result is one of them, and each named tool's item carries `also_called` saying which word found it. Read by tests/a_field_term_finds_the_type_that_holds_it.rs and by tools/tool_confusability.py --validate. Written 2026-10-14 before the terms existed. Measured on main's find_tools that day: 1 of the 15 had every named tool in the top 5, and none ranked one first.",
+    "mathematics": [
+      {
+        "query": "record a lemma",
+        "tools": [
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "record Lemma 2, which follows from the hypothesis by induction",
+        "tools": [
+          "add_requirement",
+          "add_constraint"
+        ]
+      },
+      {
+        "query": "state the theorem we want to prove",
+        "tools": [
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "add a corollary of the main theorem",
+        "tools": [
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "write down a conjecture we have not proved yet",
+        "tools": [
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "a proposition the proof needs",
+        "tools": [
+          "add_requirement"
+        ]
+      },
+      {
+        "query": "add a hypothesis",
+        "tools": [
+          "add_constraint"
+        ]
+      },
+      {
+        "query": "record an axiom we take as true",
+        "tools": [
+          "add_constraint"
+        ]
+      },
+      {
+        "query": "add the definition of a prime number",
+        "tools": [
+          "add_constraint"
+        ]
+      },
+      {
+        "query": "choose the proof strategy, induction or contradiction",
+        "tools": [
+          "add_decision"
+        ]
+      },
+      {
+        "query": "record the approach we chose for the proof",
+        "tools": [
+          "add_decision"
+        ]
+      },
+      {
+        "query": "register a cited result from a paper",
+        "tools": [
+          "add_artifact"
+        ]
+      },
+      {
+        "query": "add a reference to the paper we cite",
+        "tools": [
+          "add_artifact"
+        ]
+      },
+      {
+        "query": "record a counterexample to this claim",
+        "tools": [
+          "review_relations"
+        ]
+      },
+      {
+        "query": "this example refutes the conjecture",
+        "tools": [
+          "review_relations",
+          "add_requirement"
+        ]
+      }
+    ]
   }
 }
