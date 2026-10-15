@@ -868,6 +868,33 @@ class SecondUserFirstRun(unittest.TestCase):
         self.assertEqual(doc["nodes"], [], "an empty design is still a real document")
         self.assertIn("content_hash", doc, "and it seeds the lineage chain")
 
+    def test_a_binary_that_refuses_says_why_rather_than_send_the_agent_to_fail_too(self):
+        # 2026-10-15: a reflow2-mcp built without on-disk storage (`cargo
+        # dev-test`, CI's core job) refuses every store in a folder, naming the
+        # build and the fix. The record step swallowed that and told the person
+        # to "ask your agent to `export_graph`", through the same binary, which
+        # refuses the same way. The binary's own reason is what they can act on.
+        sh = shutil.which("sh")
+        if sh is None:
+            self.skipTest("no POSIX sh on this machine")
+        d = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-refusing-binary-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        stub = d / "reflow2-mcp"
+        stub.write_text(
+            "#!/bin/sh\n"
+            "echo 'INFO reflow2_mcp: opening reflow2 design graph' >&2\n"
+            "echo 'Error: failed to open design graph at x: this reflow2-mcp was built "
+            "without on-disk storage (the `rocksdb` feature); build it with default "
+            "features' >&2\n"
+            "exit 1\n")
+        stub.chmod(0o755)
+        p = self.project()
+        note = init.ensure_design_record(p, stub)
+        self.assertFalse(init.design_record_path(p).exists(), "nothing was made")
+        self.assertIn("built without on-disk storage", note or "",
+                      f"the binary's own reason must reach the person: {note}")
+        self.assertIn("default features", note or "", note)
+
     def test_the_record_is_not_swept_up_by_the_ignore_rules(self):
         # The defect in one line: init's other export lands in .reflow2/backups/,
         # inside the very directory this same installer ignores.
