@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:995949d81560a49a2f3fcc8b3b9f57cad914bef30dfb40158bda35820d008693",
+  "content_hash": "sha256:65508882f7d9d935da8bfff99236ed90308567d8c9b9fa476e1d5f0a28d66e9e",
   "edge_type": "CHANGED",
   "from_id": "chg:the-vocabulary-is-served-in-a-fields-own-terms",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 2,
     "action": "modified",
-    "checksum_after": "sha256:2e1a12134322f4069a60ae8423d3b1434536c45056c3c93e98322422e93f8d4d",
+    "checksum_after": "sha256:c753b1353479156dcd1de0a67f47e74e6584e875d465c296c9cfbb5b2d7b8ee0",
     "checksum_basis": "asserted"
   },
   "to_id": "art:tool-confusability"
