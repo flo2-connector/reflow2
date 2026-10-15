@@ -861,6 +861,12 @@ class SecondUserFirstRun(unittest.TestCase):
 
         note = init.ensure_design_record(p, binary)
         dest = init.design_record_path(p)
+        if note and "built without on-disk storage" in note:
+            # The same as having no binary to export with: a build without the
+            # `rocksdb` feature (`cargo dev-test`, CI's core job) refuses every
+            # store in a folder, and says so in the note — pinned by the test
+            # below. A build that can make a store still has to make the record.
+            self.skipTest(f"the binary found cannot make a store: {note}")
 
         self.assertIsNotNone(note, "a fresh project must still get its record")
         self.assertTrue(dest.exists(), f"{dest} must exist: {note}")

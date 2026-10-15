@@ -1611,6 +1611,16 @@ def record_export(project: Path) -> str | None:
     return f"{'update' if existing else 'create'}  .reflow2.toml  ([export] path = \"{rel}\" — {why})"
 
 
+def binary_said(out: subprocess.CompletedProcess) -> str:
+    """The reason a reflow2-mcp run gave for failing: the last line of its
+    stderr that says anything, without the `Error: ` / `reflow2: ` prefix."""
+    for line in reversed((out.stderr or "").splitlines()):
+        line = line.strip()
+        if line:
+            return line.removeprefix("Error: ").removeprefix("reflow2: ")
+    return ""
+
+
 def ensure_design_record(project: Path, binary: Path) -> str | None:
     """Write the shareable export — ALWAYS, even on a brand-new project.
 
@@ -1667,6 +1677,7 @@ def ensure_design_record(project: Path, binary: Path) -> str | None:
             [str(binary), "--graph-path", str(graph), "--export"],
             capture_output=True, text=True, timeout=120,
         )
+        first = out
         if out.returncode != 0:
             out = subprocess.run(
                 [str(binary), "--graph-path", str(graph), "--export-snapshot"],
@@ -1675,6 +1686,14 @@ def ensure_design_record(project: Path, binary: Path) -> str | None:
     except (OSError, subprocess.SubprocessError):
         return manually
     if out.returncode != 0:
+        # SAY WHY, IN THE BINARY'S OWN WORDS. "Ask your agent to export_graph"
+        # is wrong advice when the binary itself refuses: the agent's server
+        # refuses the same way. Measured 2026-10-15 with a reflow2-mcp built
+        # without on-disk storage (`cargo dev-test`), which refuses every store
+        # in a folder and names the fix; this line used to drop that reason.
+        why = binary_said(first)
+        if why:
+            return f"{rel}  NOT created — {binary} refused it: {why}"
         return manually
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(out.stdout)

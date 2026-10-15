@@ -53,6 +53,11 @@ Everything runs from the repo root. The core crate is `crates/reflow2-core`.
 # the tests that need a store in a folder — which CI's full job runs on every
 # pull request. Anthony, 2026-10-15: "for the vast majority of development,
 # I don't think it's necessary".
+#
+# IT LEAVES target/debug/reflow2-mcp BUILT WITHOUT ON-DISK STORAGE, which
+# refuses every store in a folder and says so. Before anything that drives the
+# binary on a store (smoke_mcp.py, toolsnap.py and the other instruments, the
+# installer from this checkout), run `cargo build -p reflow2-mcp`.
 cargo dev-test
 
 # The core alone, with no features at all (no Tantivy either): the sub-second

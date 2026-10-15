@@ -12,3 +12,11 @@
   need a process of their own, so one file's tests run with
   `cargo test -p reflow2-mcp --test in_memory <file>::`; `tools/run_to_files.py` still reports
   each file on its own. Nothing changes for anyone using reflow2.
+
+### Fixed
+
+- **The installer says why it could not make your project's design record.** When the
+  reflow2 binary refused to export a fresh project's design, `reflow2_init.py` printed
+  "NOT created — ask your agent to `export_graph` to that path", although the agent's
+  server is that same binary and refuses the same way. It now prints the binary's own
+  reason, such as a build without on-disk storage and how to get one that has it.
