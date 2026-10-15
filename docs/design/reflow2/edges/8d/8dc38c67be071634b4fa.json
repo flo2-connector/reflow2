@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:61b8dde8d39e3fdcd84270fc950b8c980821a059d1ec0b5e4175c39ece96f7f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships-2026-10-14",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 27,
+    "action": "modified",
+    "checksum_after": "sha256:4e7eb112b7021a5e08413279724b722f1cd8bc664e68f95a78a52167b4f48e69",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}
