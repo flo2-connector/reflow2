@@ -144,6 +144,9 @@ readers:
   ingest.rs::link_fragment_epoch: { kind: unjudged, edges: [OCCURS_DURING] }
   ingest.rs::suspect_duplicate: { kind: unjudged, edges: [DUPLICATES] }
   ingest.rs::yield_edge: { kind: unjudged, edges: [YIELDED] }
+  inference.rs::add_inference: { kind: not_derived, edges: [CONCLUDES, PREMISE_OF], why: "A writer: records one stated step — the Inference, a PREMISE_OF from each premise and its one CONCLUDES — after refusing a bad rule or k, a missing endpoint and a circle. It reads the step's own stored links only to revise it; it derives no relation." }
+  inference.rs::refuse_an_unsound_step_link: { kind: not_derived, edges: [CONCLUDES, PREMISE_OF], why: "A guard on the store's one edge write: refuses a link of a stated step that would close a circle, and a second CONCLUDES from one step. It answers one write and derives no relation." }
+  inference.rs::support_path: { kind: not_derived, edges: [CONCLUDES, PREMISE_OF], why: "The two guards' search: is there already a path from one node to another along stored PREMISE_OF and CONCLUDES links? It answers one write's question about a circle, and derives no relation." }
   intent.rs::check_signature_removal: { kind: not_derived, edges: [AUTHORED_BY], why: "A guard: may the call now writing remove this one AUTHORED_BY? Asked by the store's edge delete; it answers one edge, it derives no relation." }
   intent.rs::has_approver: { kind: not_derived, edges: [AUTHORED_BY], why: "A guard: does this node carry an AUTHORED_BY whose roles hold approver? Read by the generic writers to name a settle that carries nobody's name; it answers one node, it derives no relation." }
   intent.rs::nobody_signs: { kind: not_derived, edges: [AUTHORED_BY], why: "Builds the refusal text for a write no caller may sign; names the edge type in the error only." }

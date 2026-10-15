@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:2d980ff56b9a518517cdaeff33f6ba91dcddf4bf0c25bb2fafee7bc4b1bcad34",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-design-can-be-a-proof",
+  "properties": {
+    "approved_at": "2026-10-14",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

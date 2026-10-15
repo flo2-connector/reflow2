@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5faab9a6a5177d9be7b8c55ecb6cfa6ff6457f3c4e2d2204effd99212c6c9d33",
+  "node_id": "chg:baseline-c2d92ef07776ca00",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-15",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:docs-overview' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: new file in the Inference PR, measured at 05df969",
+    "subject": "record"
+  }
+}

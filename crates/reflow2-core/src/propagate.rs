@@ -162,6 +162,15 @@ pub struct BlastRadius {
     /// The member designs to carry the radius on in, from this design's pins.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub continue_in: Vec<Continuation>,
+    /// THE STATED STEPS THE CHANGE REACHES, read by their rules
+    /// (crate::inference): each Inference resting on a seed — and on any
+    /// conclusion that falls with it — is `broken` (its rule no longer holds
+    /// with the seeds counted lost), `weakened` (it still holds on its other
+    /// premises) or `unknown`. A weakened step's conclusion still stands, so
+    /// the walk stops there. Absent when no seed is a premise of anything,
+    /// which is every radius of a design that records no Inference.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub inferences: Vec<crate::inference::InferenceImpact>,
 }
 
 impl BlastRadius {
@@ -227,6 +236,7 @@ impl BlastRadius {
             design: self.design.clone(),
             interfaces_reached: self.interfaces_reached.clone(),
             continue_in: self.continue_in.clone(),
+            inferences: self.inferences.clone(),
         }
     }
 }
@@ -295,6 +305,10 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::continue_in`].
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub continue_in: Vec<Continuation>,
+    /// See [`BlastRadius::inferences`]. Carried whole in the summary: a step
+    /// broken or weakened is the answer a session acts on, not detail.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub inferences: Vec<crate::inference::InferenceImpact>,
 }
 
 /// Options for a propagation run.
@@ -602,6 +616,11 @@ impl DesignGraph {
             }
         }
 
+        // The stated steps the change reaches, read by their rules. Not
+        // bounded by `max_depth`: a step's verdict is not a distance, and the
+        // walk ends where a conclusion still stands.
+        let inferences = self.inference_walk(seed_ids)?;
+
         Ok(BlastRadius {
             seeds,
             unknown_seeds,
@@ -612,6 +631,7 @@ impl DesignGraph {
             design: here,
             interfaces_reached,
             continue_in,
+            inferences,
         })
     }
 

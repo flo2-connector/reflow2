@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a51d1c64740cf0776cc37e23e3b0e5ef7ca96637c3790defa59595515ee4e7a4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:e95ac6872848fd3fa6792654632382730f9f3a1ed738c5e80bf91462946c0cf0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}

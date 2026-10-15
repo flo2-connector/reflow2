@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6d634ed4b5b172053b86f7e97efe799e162d1f1304fff69b91e370e520ffe0c6",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-mcp-tools",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-tool-surface-tells-the-truth-and-only-grows"
+}

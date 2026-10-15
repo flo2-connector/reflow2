@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:13c4c683a948cfcd9379a4d7658f5b54127df144ecf4621115250412f16b58c2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:writers-map",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

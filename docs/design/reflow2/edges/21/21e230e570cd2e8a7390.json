@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b6470b13ac9bc87d6a056a0acabb57624b96d2428b672130a602ac1a1d8723ce",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-56e1ed601bc9c569",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5f0105641db255278fa1c6cbdb756d3a1b62fca9d5c1521374203ded451fda1b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:toolsnap-add-inference"
+}

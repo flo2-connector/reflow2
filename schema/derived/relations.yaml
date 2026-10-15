@@ -65,15 +65,16 @@ relations:
 
   delivered:
     name: "delivered(requirement)"
-    reading: { form: composite, composition: "delivered(r) := [∃c: norm·meets(+)(c, r) ∧ ¬discontinued(c) ∧ realized(c) ∧ checked(c)] ∨ [∃k: part-of(k, r) ∧ ∀k part-of(k, r): delivered(k)]", components: [norm, part-of] }
-    rule: "A requirement is delivered when a capability that SATISFIES it (norm·meets) is realized and currently checked and not discontinued, or when it is decomposed (part-of) and every child is delivered. Dropped requirements and inferred ones are counted apart."
+    reading: { form: composite, composition: "delivered(r) := [∃c: norm·meets(+)(c, r) ∧ ¬discontinued(c) ∧ realized(c) ∧ checked(c)] ∨ [∃i: source-of·derived(i, r) ∧ follows-by(i)] ∨ [¬∃i: source-of·derived(i, r) ∧ ∃k: part-of(k, r) ∧ ∀k part-of(k, r): delivered(k)]", components: [norm, part-of, source-of] }
+    rule: "A requirement is delivered when a capability that SATISFIES it (norm·meets) is realized and currently checked and not discontinued; or, when a stated step CONCLUDES it (source-of·derived), when one of those steps holds by its own rule (the `follows` relation); or, when none does and it is decomposed (part-of), when every child is delivered — the AND the roll-up applied before steps could be stated, and still applies to every requirement no step concludes. Dropped requirements and inferred ones are counted apart."
     stated_over_readings: partial
     not_yet_stated: "SATISFIES.coverage (partial/planned) is a modifier with no primitive of its own, and a requirement's `dropped` status and `inferred` provenance are node properties no reading declares."
     inference: deduced
     edges: [SATISFIES, DECOMPOSES, REALIZES, ALLOCATED_TO, VERIFIES, OBSOLETES]
-    over: [realized, checked, discontinued]
+    over: [realized, checked, discontinued, follows]
     code:
       - { file: report.rs, function: requirement_delivered_by_within, dedicated: true }
+      - { file: report.rs, function: requirement_directly_delivered_by, dedicated: true }
       - { file: report.rs, function: delivery_coverage, dedicated: true }
       - { file: detect.rs, function: capability_is_realized, dedicated: false }
       - { file: verify.rs, function: capability_verification, dedicated: false }
@@ -81,6 +82,34 @@ relations:
       - { file: graph.rs, function: decomposed_children, dedicated: true }
       - { file: detect.rs, function: is_discontinued, dedicated: false }
     counts: "one requirement delivered"
+    cost: bounded
+
+  follows:
+    name: "follows(conclusion) — a stated step's rule holds over its premises"
+    reading: { form: composite, composition: "holds(i) := rule(i) over {truth(p) : part-of·premise(p, i)}, three-valued (Kleene) — all, any, or at least k; follows(c) := ∃i: source-of·derived(i, c) ∧ holds(i); truth(p) := delivered or met for a requirement (fails when dropped), passing for a check, accepted for a decision, ¬norm·meets(−)(x, p) and a budget not exceeded for a constraint, realized ∧ checked for a capability, fails when discontinued, follows(p) when p is itself concluded, unknown otherwise", components: [part-of, source-of, norm] }
+    rule: "A conclusion follows when one of the Inferences that CONCLUDE it (source-of·derived) holds: its rule — all, any, or k_of_n with its k — applied three-valued to the truth of each premise linked PREMISE_OF (part-of·premise). A premise's truth is what reflow2 already computes for its type — a requirement delivered by the roll-up or `met` (fails when `dropped`), a check `passing` (fails when `failing`), a decision `accepted` (fails when rejected or superseded), a constraint nothing VIOLATES and whose budget is not exceeded (unknown while the budget cannot be judged), a capability realized and checked, fails when discontinued, another step's verdict, and unknown for any type with none of these. The change walk counts its seeds as lost and reads each step downstream BROKEN or WEAKENED, carrying on past a conclusion that falls. A conclusion whose claimed status (met, passing, accepted, verified) is past what its steps support is the finding conclusion_does_not_follow."
+    stated_over_readings: partial
+    not_yet_stated: "the rule, k, and each premise's truth (a status, a delivered or realized or checked reading, a budget verdict) are node properties and derived relations no edge reading declares, and the three-valued combination is arithmetic over them. VIOLATES is read as norm·meets(−) only for a Constraint premise."
+    inference: deduced
+    edges: [PREMISE_OF, CONCLUDES, VIOLATES]
+    over: [delivered, realized, checked, discontinued, budget_rollup]
+    code:
+      - { file: inference.rs, function: inferences_concluding, dedicated: true }
+      - { file: inference.rs, function: premises_of, dedicated: true }
+      - { file: inference.rs, function: conclusion_of, dedicated: true }
+      - { file: inference.rs, function: steps_resting_on, dedicated: true }
+      - { file: inference.rs, function: premise_truth, dedicated: true }
+      - { file: inference.rs, function: truth_of, dedicated: true }
+      - { file: inference.rs, function: truth_uncached, dedicated: true }
+      - { file: inference.rs, function: constraint_truth, dedicated: true }
+      - { file: inference.rs, function: inference_reading, dedicated: true }
+      - { file: inference.rs, function: step_reading, dedicated: true }
+      - { file: inference.rs, function: holding_inferences_within, dedicated: true }
+      - { file: inference.rs, function: inference_walk, dedicated: true }
+      - { file: inference.rs, function: conclusions_that_do_not_follow, dedicated: true }
+      - { file: inference.rs, function: conclusions_that_follow, dedicated: true }
+      - { file: inference.rs, function: is_concluded, dedicated: true }
+    counts: "one conclusion that follows"
     cost: bounded
 
   realized:
@@ -181,12 +210,13 @@ relations:
 
   impact:
     name: "impact / blast radius"
-    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST only) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
-    rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, and along every edge type of the schema's inference module as causal, transitively. Crossing a risk edge (RISK_EDGES: RISKS, BLOCKS, CONTRADICTS, VIOLATES, MASKS) marks the hop as a risk."
+    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW, PREMISE_OF only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST, CONCLUDES only) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
+    rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, and along every edge type of the schema's inference module as causal, transitively. Crossing a risk edge (RISK_EDGES: RISKS, BLOCKS, CONTRADICTS, VIOLATES, MASKS) marks the hop as a risk. Every radius also carries the stated steps its seeds are premises of, each read BROKEN or WEAKENED by its own rule (the `follows` relation's walk)."
     stated_over_readings: partial
     not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the inference edges are chosen by their schema MODULE, not their reading; the closure needs transitivity, which no reading declares as algebra yet."
     inference: deduced
-    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS]
+    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS]
+    over: [follows]
     code:
       - { file: nodes.rs, function: structural_rule, dedicated: true }
       - { file: propagate.rs, function: propagate_from, dedicated: true }

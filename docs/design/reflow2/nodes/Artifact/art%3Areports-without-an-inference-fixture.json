@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a2660185d24184e705f156da6043d643ea5b090a3814dfccaec3313a027ed1f5",
+  "node_id": "art:reports-without-an-inference-fixture",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "Recorded on main (b19b49d) with REFLOW2_BLESS_NO_INFERENCE=1: delivery, requirement_delivered_by, gaps, defects, a blast radius and graph_report for a design that records no Inference, which the core test compares byte for byte.",
+    "location": "crates/reflow2-core/tests/fixtures/reports_without_an_inference.json",
+    "name": "reports_without_an_inference.json",
+    "status": "realized"
+  }
+}

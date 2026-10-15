@@ -190,6 +190,7 @@ When the thinking is done, ask which ideas the user wants to keep as intent. The
   And when a sentence in the prose really must change — the line `Options, none chosen` after
   one was — `replace_text` moves that one sentence (or appends a dated note) under the same
   revision guard, without re-sending the body.
+- **A promoted "this follows from those"** — a claim the person says stands because other records hold — is recorded as an **Inference** step (`add_inference`: its premises, its conclusion, and whether all, any one or k of them must hold), not as prose in the idea. capture-intent's routing table has the row.
 - **Everything else stays exactly where it is.** Recorded as considered, never deleted — the roads
   not taken are part of the design's memory, and a later session that finds an old idea knows both
   that it was thought of and that it was not chosen.

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d0334c94155d350d975ff7b11a69706ecfbc8246c62ddc404729a60d823b6a6b",
+  "node_id": "art:inference",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The inference module: a stated step's rule (all, any, k_of_n) over each premise's computed truth, three-valued; the roll-up's route for a concluded requirement, the change walk carried on every blast radius, the finding conclusion_does_not_follow, the circle guard on every edge write, and add_inference.",
+    "location": "crates/reflow2-core/src/inference.rs",
+    "name": "inference.rs",
+    "status": "realized"
+  }
+}

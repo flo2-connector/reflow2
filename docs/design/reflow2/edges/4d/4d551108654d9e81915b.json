@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:812abe23f7fac08ffc05c1a6a54845268ff94029c5f545e2153e31abe49ec9ca",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-navier-stokes-as-a-trial-of-designing-a-proof",
+  "properties": {
+    "approved_at": "2026-10-14",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

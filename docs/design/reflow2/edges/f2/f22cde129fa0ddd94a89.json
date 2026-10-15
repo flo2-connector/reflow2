@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd5484651d97661db230d8e3283be57ce1f8eae7e7573f6cbab4978e7f61e4b9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:docs-interaction-surfaces"
+}

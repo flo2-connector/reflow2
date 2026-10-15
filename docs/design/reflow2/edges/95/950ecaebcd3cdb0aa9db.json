@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1ce3f51412bdca428487ced8c582e3b4c67048d074fccf7eec526e6d8a08d447",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-inference-says-how-premises-support-a-conclusion",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:1161b85e731d2094e53134e018e22145116ff11f8484d357477c21f3600debb9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1a681d827354b3f07ddaa52bec78f228cc6bbdb67ee4e3e45e096d4453b466e5",
+  "node_id": "chg:baseline-56e1ed601bc9c569",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-15",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:toolsnap-add-inference' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: new file in the Inference PR, measured at 05df969",
+    "subject": "record"
+  }
+}

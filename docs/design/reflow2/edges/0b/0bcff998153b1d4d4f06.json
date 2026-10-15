@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:672a7d0fcce833e03efb0efe51299eced0c06154495f9960874e541165ea558b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:design-anything",
+  "properties": {
+    "evidence": "\"Software, hardware, a document, a process — the vocabulary stays neutral\": a reasoned argument, paper or case is inside that intent."
+  },
+  "to_id": "req:a-design-holds-a-line-of-reasoning"
+}

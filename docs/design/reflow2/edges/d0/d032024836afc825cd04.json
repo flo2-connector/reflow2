@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:748b1fa780e362f63467385d6f334812771107a5ea8f53f8a243e3cc17667316",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:grok-brainstorm-skill-mirror",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:eea396db74195215057aa7eb7ef5802f60bb044c0fbc0ff6391862af12e307f9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-inference-is-a-record-between-premises-and-conclusion",
+  "properties": {
+    "approved_at": "2026-10-14",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

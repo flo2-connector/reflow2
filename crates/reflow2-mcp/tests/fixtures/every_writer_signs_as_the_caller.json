@@ -428,6 +428,16 @@
       "id": "flow:new",
       "name": "Shipping flow"
     },
+    "add_inference": {
+      "id": "inf:new",
+      "rule": "any",
+      "premises": [
+        "req:r2",
+        "cap:c"
+      ],
+      "conclusion": "req:r3",
+      "warrant": "Either supports it."
+    },
     "add_interface": {
       "id": "ifc:new",
       "name": "Ship API"

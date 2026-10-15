@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:85ba513d99ddecfc95ab80b56ed3cf4af8bd8200f1d1ef826a50faea541722f3",
+  "node_id": "art:test-an-inference-says-how-premises-support-a-conclusion-core",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Core tests for requirement C, against scratch stores through the generic write path: AND by default, the SHOWN WHEN literally, k of n at its boundary, Kleene unknown, modus ponens, the claimed-met finding both ways, a cycle refused, a chain, two derivations, and a design with no Inference reporting byte for byte as main did.",
+    "location": "crates/reflow2-core/tests/an_inference_says_how_premises_support_a_conclusion.rs",
+    "name": "an_inference_says_how_premises_support_a_conclusion.rs (core)",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c897afe4983039c5cf04b05e2a911ce68b35ad80c9fbcf97d847d9ef848c4fb1",
+  "node_id": "req:a-conclusion-shows-the-axioms-it-rests-on",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A conclusion shows the axioms (the chosen principles and givens) it ultimately rests on, and changing one shows what falls",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-14, in conversation",
+    "statement": "Anthony, 2026-10-14: \"let's keep (d) and (e)\". Option (d) of dec:idea-the-graph-as-proof-gives-design-anything-a-mathematical-backbone: \"VALUE AXIOMS MADE EXPLICIT\". In an abstract design (a government, a policy), the chosen principles are recorded as axioms, premises nobody proves. Every conclusion then shows which values it rests on, and changing a value shows what falls.\n\nWHAT MUST BE TRUE:\n1. A PREMISE CAN BE MARKED AS AN AXIOM: taken as given, never proven within the design. In mathematics that is an axiom, hypothesis or definition. In an abstract design it is a chosen principle or value. An axiom holds because the owner chose it, and that choice is recorded with its approver, like any accepted decision.\n2. A CONCLUSION'S FOUNDATIONS CAN BE READ. Walking down its inferences gives the set of axioms it ultimately rests on, and which of them each path needs. \"This provision follows from liberty and equal treatment, not from efficiency\" becomes a computed answer.\n3. CHANGING OR DROPPING AN AXIOM IS A CHANGE LIKE ANY OTHER. The change walk from req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows reports which conclusions break and which are only weakened.\n4. HONEST LIMIT, said by the read itself: it shows what a conclusion follows FROM. It never says the axioms are right. In an abstract design they are values, and may be contested by design (req:a-design-holds-a-line-of-reasoning).\n\nDEPENDS ON C (the Inference record). Almost nothing new is needed beyond it: an axiom is a premise, and its \"holds\" is the owner's recorded choice.\n\nSHOWN WHEN: in a small abstract design, such as a voting rule, a conclusion's foundations list exactly the chosen principles it rests on. Dropping one principle reports the conclusions that fall, and a person working by hand agrees.",
+    "status": "accepted"
+  }
+}

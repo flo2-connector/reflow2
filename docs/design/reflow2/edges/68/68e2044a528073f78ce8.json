@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b3e1060c21b27b2187024178665d64c8fe4c4ea1a827cbb9bf85b86bcfcf061f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:0bee0c00b35845f6:dec:idea-flo2-calc-builds-and-checks-a-proof",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

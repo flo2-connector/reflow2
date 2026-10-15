@@ -1,0 +1,620 @@
+{
+  "defects": {
+    "defects": [],
+    "swept": {
+      "coupling_by_level": [],
+      "coverage_note": "6 rule(s) had NOTHING TO EXAMINE and their silence means only that: contradiction, duplicate, unresolved_setup, circular_dependency, dangling_reference, untriaged_report. Read `rule_populations` and `coupling_by_level` for what was actually walked.",
+      "design_network_nodes": 9,
+      "expected_at_this_phase": [],
+      "isolated_in_walk": 1,
+      "nodes": 10,
+      "parked": [],
+      "rule_populations": [
+        {
+          "examined": 10,
+          "rule": "orphan_node",
+          "unit": "nodes in the graph"
+        },
+        {
+          "examined": 0,
+          "rule": "contradiction",
+          "unit": "CONTRADICTS edges"
+        },
+        {
+          "examined": 0,
+          "rule": "duplicate",
+          "unit": "DUPLICATES edges"
+        },
+        {
+          "examined": 0,
+          "rule": "unresolved_setup",
+          "unit": "ANTICIPATES edges"
+        },
+        {
+          "examined": 9,
+          "rule": "unthreaded_cluster",
+          "unit": "nodes in the design network"
+        },
+        {
+          "examined": 9,
+          "rule": "single_point_of_failure",
+          "unit": "nodes in the design network"
+        },
+        {
+          "examined": 9,
+          "rule": "dead_end",
+          "unit": "nodes in the design network"
+        },
+        {
+          "examined": 0,
+          "rule": "circular_dependency",
+          "unit": "dependency pairs"
+        },
+        {
+          "examined": 0,
+          "rule": "dangling_reference",
+          "unit": "declared node references"
+        },
+        {
+          "examined": 0,
+          "rule": "untriaged_report",
+          "unit": "documents governed by a methodology rule"
+        },
+        {
+          "examined": 21,
+          "rule": "refused_by_schema",
+          "unit": "stored nodes and edges judged by the current schema"
+        }
+      ],
+      "rules": [
+        "orphan_node",
+        "contradiction",
+        "duplicate",
+        "unresolved_setup",
+        "unthreaded_cluster",
+        "single_point_of_failure",
+        "dead_end",
+        "circular_dependency",
+        "dangling_reference",
+        "untriaged_report",
+        "refused_by_schema"
+      ],
+      "suppressed_by_parked_idea": {},
+      "suppressed_by_resolution": {}
+    }
+  },
+  "delivered": {
+    "req:card": null,
+    "req:orphan": null,
+    "req:parent": null,
+    "req:receipt": null
+  },
+  "delivery": {
+    "delivered": 0,
+    "inferred_only": 0,
+    "partially_satisfied": 0,
+    "requirements": 4,
+    "satisfied": 3,
+    "satisfied_only_by_discontinued": 0
+  },
+  "gaps": [
+    {
+      "affected_ids": [
+        "cap:receipt",
+        "ver:receipt"
+      ],
+      "description": "The check “check ver:receipt” was failing when it last ran, at 2026-10-14, so “Prints a receipt” did not work as designed then. Re-run it before treating that as current — a status is a measurement at an instant, not a standing property — then fix the build or fix the design.",
+      "evidence": "Verification 'ver:receipt' has status=failing, last_run_at=2026-10-14. A failing check is reality contradicting the design rather than absence of a check — but only as of that run; if code has landed since, the gap may be stale rather than real.",
+      "gap_source": "failing_verification",
+      "id": "gap:c138033b9ca0197e",
+      "scope": "capability",
+      "severity": 0.8,
+      "suggested_depth": 2,
+      "title": "“check ver:receipt” is failing (last run 2026-10-14)"
+    },
+    {
+      "affected_ids": [
+        "req:orphan"
+      ],
+      "description": "“Nothing meets this” has status `met`, but no capability satisfies it — and `met` silences the unsatisfied-requirement check, so nothing else can catch this. Link what meets it, or the status is a claim with nothing behind it.",
+      "evidence": "Requirement 'req:orphan' has status=met and 0 incoming SATISFIES; `met` suppresses unsatisfied_requirement by design, so this is the only detector that can see it.",
+      "gap_source": "status_contradiction",
+      "id": "gap:cba9e0fe00c62973",
+      "scope": "project",
+      "severity": 0.7,
+      "suggested_depth": 2,
+      "title": "“Nothing meets this” claims met, and nothing satisfies it"
+    },
+    {
+      "affected_ids": [
+        "req:parent"
+      ],
+      "description": "The requirement “Checkout” has no capability delivering it — is it covered, deferred, or dropped?",
+      "evidence": "Requirement 'req:parent' (status=proposed, priority=medium) has 0 incoming SATISFIES; project has 2 capability(ies).",
+      "gap_source": "unsatisfied_requirement",
+      "id": "gap:13b87c38af6639b4",
+      "scope": "project",
+      "severity": 0.6,
+      "suggested_depth": 2,
+      "title": "Nothing satisfies requirement “Checkout”"
+    },
+    {
+      "affected_ids": [
+        "cap:receipt"
+      ],
+      "description": "“Prints a receipt” has no verification proving it works — how will you confirm it?",
+      "evidence": "Capability 'cap:receipt' has 1 incoming VERIFIES, none of them passing; a check that has not passed is not proof.",
+      "gap_source": "unverified_capability",
+      "id": "gap:69c36181a5925b7b",
+      "scope": "capability",
+      "severity": 0.55,
+      "suggested_depth": 2,
+      "title": "Nothing verifies “Prints a receipt”"
+    },
+    {
+      "affected_ids": [
+        "req:card",
+        "req:parent",
+        "req:receipt"
+      ],
+      "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gap with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
+      "evidence": "Requirement carrying incoming DECOMPOSES edge(s), with no coverage answer on record: req:parent <- req:card, req:receipt. Rolled-up delivery: not yet delivered.",
+      "gap_source": "decomposition_coverage",
+      "id": "gap:da440f116a9528cb",
+      "scope": "capability",
+      "severity": 0.5,
+      "suggested_depth": 3,
+      "title": "'Checkout' was split into 2 — nothing has checked that they cover it"
+    },
+    {
+      "affected_ids": [
+        "proj:p"
+      ],
+      "description": "Ask the owner what closure means for this design and record it with set_closure_criterion: which legs count — traceability (every live requirement traced to a built, passing capability), budgets (every limit met with its declared margin), seams (every coupling specified on both sides), decisions (no scheduled work governed by an open decision), provenance (no number without a source) — and the share of each that must close. 100 is a legal answer and so is 'traceability and budgets only'. Until then closure_report reads 'no closure criterion stated' and offers no verdict; it never closes on silence and never supplies a default. Closure is a report, not a gate.",
+      "evidence": "4 live requirement(s); 1 Project(s), none carrying closure_legs and closure_threshold.",
+      "gap_source": "closure_criterion_undeclared",
+      "id": "gap:370522915672b06d",
+      "scope": "project",
+      "severity": 0.4,
+      "suggested_depth": 1,
+      "title": "This design carries 4 live requirement(s) and has not said what DONE means"
+    },
+    {
+      "affected_ids": [
+        "cap:card"
+      ],
+      "description": "1 capability is proven against spec, but no validation check confirms it meet the operational intent — built right, but the right thing? Add a Verification of kind=validation, or acknowledge that validation is tracked elsewhere.",
+      "evidence": "Capabilities with a passing verification-kind VERIFIES and no passing validation-kind VERIFIES: Takes a card.",
+      "gap_source": "unvalidated_capability",
+      "id": "gap:0a77650b58242054",
+      "scope": "project",
+      "severity": 0.35,
+      "suggested_depth": 2,
+      "title": "1 verified capability not validated"
+    },
+    {
+      "affected_ids": [
+        "proj:p"
+      ],
+      "description": "Nothing in the design says what form its drawings, models or part files must take, and the answer decides the pipeline before anyone draws. Ask what recognized standard the domain exchanges and checks its design artifacts in — IFC for a building model, STEP for a machined part, Gerber for a board, SysML for a systems model — who issues it, and what tool checks a file against it. Record it with add_environment_rule (rule_type `standard`, with `authority`, `reference` and `checker`) and say the Project complies_with it. 🛑 “THERE IS NO RECOGNIZED STANDARD FOR THIS” IS A REAL ANSWER: record it by acknowledging this finding with that reason. Silence is the one thing that must not stand in for it — a design that never said is one where whatever the agent produces is, by default, the standard.",
+      "evidence": "Project 'proj:p' has 0 outgoing COMPLIES_WITH to an EnvironmentRule with rule_type=standard (0 such rule(s) exist in the design); 0 live Artifact(s) of type drawing/model.",
+      "gap_source": "artifact_standard_undeclared",
+      "id": "gap:81889cc809ef9540",
+      "scope": "project",
+      "severity": 0.35,
+      "suggested_depth": 2,
+      "title": "“A project” has not said what standard its design artifacts must be in"
+    },
+    {
+      "affected_ids": [
+        "dec:card-first"
+      ],
+      "description": "1 proposed decision(s) carry no relation to any other node and no note saying the relations were reviewed — so a search that lands on one returns it alone, and the reasoning it belongs to is not reachable from it. Relate the ones that are genuinely related with review_relations, and use the same call to record a note where nothing is honestly related. Do NOT draw an edge to clear this finding: a false neighbour is worse than a missing one, because anything that searches by neighbourhood repeats it.",
+      "evidence": "1 of 1 proposed Decision(s) have no inference-layer relation in either direction and no `no_relation_note`; decision points with 2+ registered alternatives and parked nodes are excluded.",
+      "gap_source": "unreviewed_ideas",
+      "id": "gap:baa3d7b03a08dedb",
+      "scope": "project",
+      "severity": 0.3,
+      "suggested_depth": 2,
+      "title": "1 of 1 open idea(s) connect to nothing"
+    },
+    {
+      "affected_ids": [],
+      "description": "You've defined what it does, but nothing about how it's structured into buildable parts.",
+      "evidence": "4 requirement(s) + 2 capability(ies) exist; 0 Components, 0 Flows.",
+      "gap_source": "concept_without_design",
+      "id": "gap:2d737d76ea63d8f1",
+      "scope": "phase",
+      "severity": 0.7,
+      "suggested_depth": 3,
+      "title": "Concept defined, but no structure yet"
+    },
+    {
+      "affected_ids": [],
+      "description": "No accepted decision records which quality attribute this system is built for, and the answer changes how it should be structured. Ask it EARLY — asking is cheap, and the cost of asking late is reworking services that are already built. The four pull apart: performance wants the least chatter across boundaries; reliability wants no single part everything depends on, and may deliberately put the same function in two places; maintainability wants the things that change together to live together; security wants boundaries that follow trust and data classification rather than coupling. Grouping the parts without answering this silently optimises for performance. Record the answer with `set_quality_target` on the decision that says so, accept that decision, and link what it shapes with `governed_by`. 🛑 NOT KNOWING YET IS A FINE ANSWER, and the way to record it is a PROPOSED decision naming the candidate you lean toward — never `acknowledge_gap`, which silences this permanently and for every capability added afterwards, so a deferral accepted that way never comes back.",
+      "evidence": "0 accepted Decision(s) carry a `quality_target`; 0 proposed one(s) do. Project has 2 capability(ies) and 4 requirement(s). The property has NO DEFAULT, so absence counts designs nobody asked rather than designs that answered; a proposed target counts as WEIGHED BUT NOT SETTLED, which is why this reads differently from silence.",
+      "gap_source": "quality_target_unstated",
+      "id": "gap:5e690a94ea4c365c",
+      "scope": "project",
+      "severity": 0.55,
+      "suggested_depth": 3,
+      "title": "Nothing says what this design is FOR — the quality attribute is unstated"
+    }
+  ],
+  "graph_report": {
+    "allocation": null,
+    "confirmation": null,
+    "declining": [],
+    "declining_truncated": 0,
+    "defect_count": 0,
+    "delivery": {
+      "delivered": 0,
+      "inferred_only": 0,
+      "partially_satisfied": 0,
+      "requirements": 4,
+      "satisfied": 3,
+      "satisfied_only_by_discontinued": 0
+    },
+    "design_nodes": 10,
+    "gap_count": 11,
+    "gaps_truncated": 6,
+    "granularity": [],
+    "granularity_median": 0.0,
+    "maturity": {
+      "ahead_of_frontier": [
+        "assurance"
+      ],
+      "bands": [
+        {
+          "name": "intent",
+          "order": 1,
+          "population": 4,
+          "present": 1,
+          "question": "Of the requirements still live, how many carry the user's own word — accepted or met rather than merely asserted?",
+          "ratio": 0.25
+        },
+        {
+          "name": "function",
+          "order": 2,
+          "population": 4,
+          "present": 2,
+          "question": "Of the requirements still live, how many have a Capability that SATISFIES them?",
+          "ratio": 0.5
+        },
+        {
+          "name": "allocation",
+          "order": 3,
+          "population": 2,
+          "present": 0,
+          "question": "Of the capabilities, how many are placed in a Component?",
+          "ratio": 0.0
+        },
+        {
+          "caveat": "Answered at MODULE level. A design that declares its contracts at a HIGHER boundary — subsystem, system — reads low here and may be fully covered one altitude up. `seam_coverage` with an `altitude` asks that question; this band does not.",
+          "name": "seams",
+          "note": "no two Components depend on each other, so there is no seam to declare — an absence, not a deficiency",
+          "order": 4,
+          "population": 0,
+          "present": 0,
+          "question": "Of the couplings between two Components, how many run through a declared Interface that one provides and the other consumes?",
+          "ratio": null
+        },
+        {
+          "caveat": "Counts only capabilities some Artifact points at. A file nobody has REGISTERED is invisible here, so a design that is fully built and has never run link-artifacts reads low. `coverage_report` names the files no Artifact points at.",
+          "name": "realization",
+          "order": 5,
+          "population": 2,
+          "present": 0,
+          "question": "Of the capabilities, how many have an Artifact that REALIZES them?",
+          "ratio": 0.0
+        },
+        {
+          "caveat": "Counts a capability's OWN passing check. One proven only at its COMPONENT's granularity is not counted, so a design that deliberately checks at the component boundary reads low while being checked.",
+          "name": "assurance",
+          "order": 6,
+          "population": 2,
+          "present": 1,
+          "question": "Of the capabilities, how many carry a Verification that is actually PASSING?",
+          "ratio": 0.5
+        },
+        {
+          "caveat": "Counts releases with a DEPLOYED_TO edge to a declared Environment. A design that has never modelled an Environment reads zero here however much of it is actually running.",
+          "name": "operation",
+          "note": "no Release is recorded, so nothing has had the chance to reach an environment",
+          "order": 7,
+          "population": 0,
+          "present": 0,
+          "question": "Of the releases, how many reached an Environment?",
+          "ratio": null
+        }
+      ],
+      "frontier": "allocation",
+      "not_observed_about": [
+        "Where this design SHOULD be. A demonstrator may sit at function-first forever and be exactly right; a fielded increment may not. That is a judgement about what the design is for, and reflow2 refuses to default it — the same rule `dec:readiness-is-an-observation-the-threshold-is-the-judgement` holds for TRL.",
+        "Whether these are the right seven questions. The bands are a claim about how designs mature, not a measurement of one.",
+        "Anything unrecorded. A seam that exists in the code but was never declared is invisible here, and so is a requirement nobody wrote down — this reads the design, never the subject system.",
+        "Quality. Every band counts whether something EXISTS, not whether it is any good: a confirmed requirement may be vague, and a passing check may be weak."
+      ],
+      "notes": [
+        "The frontier is `allocation` — the lowest-scoring band. It is a RELATIVE reading: there is no threshold here to default, because where this design SHOULD be is not reflow2's to say.",
+        "1 band(s) score above the frontier: assurance. That is NORMAL and is the pattern this reading exists to show — designs get function right first and structure later, iteratively and organically. It is not work done out of order."
+      ]
+    },
+    "node_counts": [
+      [
+        "Project",
+        1
+      ],
+      [
+        "Requirement",
+        4
+      ],
+      [
+        "Capability",
+        2
+      ],
+      [
+        "Decision",
+        1
+      ],
+      [
+        "Verification",
+        2
+      ]
+    ],
+    "other_counts": [],
+    "realization": {
+      "built_but_unmodelled": 0,
+      "capabilities": 2,
+      "realized": 0
+    },
+    "requirement_certainty": {
+      "asserted": 3,
+      "recovered": 0,
+      "settled_out": 0,
+      "user_confirmed": 1
+    },
+    "surprising": [],
+    "surprising_truncated": 0,
+    "top_gaps": [
+      {
+        "affected_ids": [
+          "cap:receipt",
+          "ver:receipt"
+        ],
+        "description": "The check “check ver:receipt” was failing when it last ran, at 2026-10-14, so “Prints a receipt” did not work as designed then. Re-run it before treating that as current — a status is a measurement at an instant, not a standing property — then fix the build or fix the design.",
+        "evidence": "Verification 'ver:receipt' has status=failing, last_run_at=2026-10-14. A failing check is reality contradicting the design rather than absence of a check — but only as of that run; if code has landed since, the gap may be stale rather than real.",
+        "gap_source": "failing_verification",
+        "id": "gap:c138033b9ca0197e",
+        "scope": "capability",
+        "severity": 0.8,
+        "suggested_depth": 2,
+        "title": "“check ver:receipt” is failing (last run 2026-10-14)"
+      },
+      {
+        "affected_ids": [
+          "req:orphan"
+        ],
+        "description": "“Nothing meets this” has status `met`, but no capability satisfies it — and `met` silences the unsatisfied-requirement check, so nothing else can catch this. Link what meets it, or the status is a claim with nothing behind it.",
+        "evidence": "Requirement 'req:orphan' has status=met and 0 incoming SATISFIES; `met` suppresses unsatisfied_requirement by design, so this is the only detector that can see it.",
+        "gap_source": "status_contradiction",
+        "id": "gap:cba9e0fe00c62973",
+        "scope": "project",
+        "severity": 0.7,
+        "suggested_depth": 2,
+        "title": "“Nothing meets this” claims met, and nothing satisfies it"
+      },
+      {
+        "affected_ids": [
+          "req:parent"
+        ],
+        "description": "The requirement “Checkout” has no capability delivering it — is it covered, deferred, or dropped?",
+        "evidence": "Requirement 'req:parent' (status=proposed, priority=medium) has 0 incoming SATISFIES; project has 2 capability(ies).",
+        "gap_source": "unsatisfied_requirement",
+        "id": "gap:13b87c38af6639b4",
+        "scope": "project",
+        "severity": 0.6,
+        "suggested_depth": 2,
+        "title": "Nothing satisfies requirement “Checkout”"
+      },
+      {
+        "affected_ids": [
+          "cap:receipt"
+        ],
+        "description": "“Prints a receipt” has no verification proving it works — how will you confirm it?",
+        "evidence": "Capability 'cap:receipt' has 1 incoming VERIFIES, none of them passing; a check that has not passed is not proof.",
+        "gap_source": "unverified_capability",
+        "id": "gap:69c36181a5925b7b",
+        "scope": "capability",
+        "severity": 0.55,
+        "suggested_depth": 2,
+        "title": "Nothing verifies “Prints a receipt”"
+      },
+      {
+        "affected_ids": [
+          "req:card",
+          "req:parent",
+          "req:receipt"
+        ],
+        "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gap with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
+        "evidence": "Requirement carrying incoming DECOMPOSES edge(s), with no coverage answer on record: req:parent <- req:card, req:receipt. Rolled-up delivery: not yet delivered.",
+        "gap_source": "decomposition_coverage",
+        "id": "gap:da440f116a9528cb",
+        "scope": "capability",
+        "severity": 0.5,
+        "suggested_depth": 3,
+        "title": "'Checkout' was split into 2 — nothing has checked that they cover it"
+      }
+    ],
+    "total_nodes": 10,
+    "verification": {
+      "artifacts": 0,
+      "artifacts_verified": 0,
+      "capabilities": 2,
+      "capabilities_component_verified": 0,
+      "capabilities_verified": 1,
+      "capabilities_verified_by_runnable_check": 0
+    },
+    "verifications": [
+      {
+        "has_executable_form": false,
+        "last_run_at": "2026-10-14",
+        "name": "check ver:receipt",
+        "status": "failing",
+        "verification_id": "ver:receipt",
+        "verifies": 1
+      },
+      {
+        "has_executable_form": false,
+        "last_run_at": "2026-10-14",
+        "name": "check ver:card",
+        "status": "passing",
+        "verification_id": "ver:card",
+        "verifies": 1
+      }
+    ]
+  },
+  "radius": {
+    "boundary_crossings": [],
+    "design": "reflow2",
+    "impacted": [
+      {
+        "centrality": 0.42857142857142855,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "upstream",
+        "distance": 1,
+        "node_id": "req:parent",
+        "node_type": "Requirement",
+        "via": [
+          {
+            "direction": "upstream",
+            "edge_type": "DECOMPOSES",
+            "from_id": "req:card",
+            "is_risk": false,
+            "to_id": "req:parent"
+          }
+        ]
+      },
+      {
+        "centrality": 0.39285714285714285,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "downstream",
+        "distance": 1,
+        "node_id": "cap:card",
+        "node_type": "Capability",
+        "via": [
+          {
+            "direction": "downstream",
+            "edge_type": "SATISFIES",
+            "from_id": "cap:card",
+            "is_risk": false,
+            "to_id": "req:card"
+          }
+        ]
+      },
+      {
+        "centrality": 0.21428571428571427,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "upstream",
+        "distance": 1,
+        "node_id": "cap:receipt",
+        "node_type": "Capability",
+        "via": [
+          {
+            "direction": "upstream",
+            "edge_type": "VERIFIES",
+            "from_id": "ver:receipt",
+            "is_risk": false,
+            "to_id": "cap:receipt"
+          }
+        ]
+      },
+      {
+        "centrality": 0.3571428571428571,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "upstream",
+        "distance": 2,
+        "node_id": "req:receipt",
+        "node_type": "Requirement",
+        "via": [
+          {
+            "direction": "upstream",
+            "edge_type": "VERIFIES",
+            "from_id": "ver:receipt",
+            "is_risk": false,
+            "to_id": "cap:receipt"
+          },
+          {
+            "direction": "upstream",
+            "edge_type": "SATISFIES",
+            "from_id": "cap:receipt",
+            "is_risk": false,
+            "to_id": "req:receipt"
+          }
+        ]
+      },
+      {
+        "centrality": 0.0,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "upstream",
+        "distance": 2,
+        "node_id": "dec:card-first",
+        "node_type": "Decision",
+        "via": [
+          {
+            "direction": "downstream",
+            "edge_type": "SATISFIES",
+            "from_id": "cap:card",
+            "is_risk": false,
+            "to_id": "req:card"
+          },
+          {
+            "direction": "upstream",
+            "edge_type": "GOVERNED_BY",
+            "from_id": "cap:card",
+            "is_risk": false,
+            "to_id": "dec:card-first"
+          }
+        ]
+      },
+      {
+        "centrality": 0.0,
+        "crosses_published_boundary": false,
+        "crosses_risk_edge": false,
+        "direction": "downstream",
+        "distance": 2,
+        "node_id": "ver:card",
+        "node_type": "Verification",
+        "via": [
+          {
+            "direction": "downstream",
+            "edge_type": "SATISFIES",
+            "from_id": "cap:card",
+            "is_risk": false,
+            "to_id": "req:card"
+          },
+          {
+            "direction": "downstream",
+            "edge_type": "VERIFIES",
+            "from_id": "ver:card",
+            "is_risk": false,
+            "to_id": "cap:card"
+          }
+        ]
+      }
+    ],
+    "interfaces_reached": [],
+    "max_depth": 5,
+    "seeds": [
+      "ver:receipt",
+      "req:card"
+    ],
+    "truncated_beyond_depth": 0,
+    "unknown_seeds": []
+  }
+}

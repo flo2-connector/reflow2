@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6f37235509efa62e9ac0cea0411776ad3714b26749be2d6d1a0dcec73621abf6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-2887ca80d969d4f8",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7975d52df771c4ff4e6ba1b9ffeacf0e18ca68792b229ea093ccd3eb38045c63",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-capture-intent-skill-mirror"
+}

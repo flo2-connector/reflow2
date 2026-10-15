@@ -740,8 +740,9 @@ fn every_declaration_is_well_formed() {
     let decls = declarations();
     assert_eq!(
         decls.len(),
-        24,
-        "the study's 23 relations are all declared, and built(component), added 2026-10-13"
+        25,
+        "the study's 23 relations are all declared, and built(component), added 2026-10-13, \
+         and follows(conclusion), added 2026-10-14"
     );
     let ids: BTreeSet<&str> = decls.iter().map(|d| d.id.as_str()).collect();
     for d in &decls {
@@ -1470,8 +1471,8 @@ fn the_served_read_counts_what_the_code_computes() {
             .unwrap_or_else(|| panic!("{id} in the report"))
             .count
     };
-    assert_eq!(r.declared, 24);
-    assert_eq!(r.relations.len(), 24, "every declared relation is reported");
+    assert_eq!(r.declared, 25);
+    assert_eq!(r.relations.len(), 25, "every declared relation is reported");
 
     // By hand: cap:a is realized directly, cap:b through cmp:x; cap:c is withdrawn.
     assert_eq!(count("realized"), Some(2));
@@ -1520,7 +1521,9 @@ fn the_served_read_counts_what_the_code_computes() {
     let impact = r.relations.iter().find(|t| t.id == "impact").unwrap();
     assert_eq!(impact.count, None);
     assert!(impact.not_counted.is_some());
-    assert_eq!(r.counted, 23);
+    assert_eq!(r.counted, 24);
+    // A design that states no inference step has no conclusion that follows.
+    assert_eq!(count("follows"), Some(0));
 
     // Nothing is stored: reading twice changes nothing and asserted facts hold.
     let again = g.derived_report(&[], 3).expect("second read");

@@ -1301,6 +1301,11 @@ impl DesignGraph {
         if edge_type == edge::AUTHORED_BY {
             self.check_signature_write(from_id, to_id, &props)?;
         }
+        // CIRCULAR REASONING IS REFUSED WHERE IT IS WRITTEN, on every door
+        // (crate::inference): a link of a stated step that would close a circle,
+        // or a second conclusion for one step. Answers nothing for any other
+        // edge type.
+        self.refuse_an_unsound_step_link(edge_type, from_id, to_id)?;
         self.engine.create_edge(
             &self.graph_id,
             edge_type,
