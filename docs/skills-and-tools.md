@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 197 tools
+# What reflow2 offers: 32 skills and 198 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 197 tools
+## The 198 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -158,6 +158,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `replace_text` | **write** | Replace ONE piece of a node's text without re-sending the field: `old` must occur exactly once in `field` and is replaced by `new` (absent or repeated is refused, naming the count); omit `old` to append `new` after a blank line. |
 | `receive_from_design` | **write** | YOU WERE SENT A REQUIREMENT FROM ANOTHER PROJECT: record it here as your own, waiting until your owner accepts it (a parent's handed down to this part, or a customer's levied on this supplier). |
 | `send_to_design` | **write** | HAND A REQUIREMENT DOWN TO ONE OF THE PARTS, or a decision, and record here where it went: the parent's side of an allocation, or a customer's side of a request to a supplier. |
+| `add_inference` | **write** | Record an INFERENCE STEP in one call: how premises support one conclusion, and by which rule — `all` (every premise must hold, the AND a decomposition has always rolled up by), `any` (one is enough: redundant support) or `k_of_n` with `k` (a quorum). |
 
 ### Coherence — what the design says about itself
 

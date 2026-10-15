@@ -2962,29 +2962,24 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record an INFERENCE STEP in one call: how some premises support one \
-                       conclusion, and by which rule — `all` (every premise must hold; the AND \
-                       a decomposition has always rolled up by), `any` (one is enough: \
-                       redundant support, alternative grounds) or `k_of_n` with `k` (a quorum, \
-                       two-out-of-three). A named rule rides `rule_name` and is checked by its \
-                       combination: modus ponens is `all` over P and P → Q. `warrant` says why, \
-                       in words a person can challenge. Premises can be any record — a \
-                       requirement, a check, a decision, a constraint, another step. reflow2 \
-                       then CHECKS THAT THE CONCLUSION FOLLOWS, three-valued over each premise's \
-                       computed truth (a requirement delivered or met, a check passing, a \
-                       decision accepted, a constraint not violated; a type with none of these \
-                       is unknown, never guessed): a requirement the step concludes is \
-                       delivered when the step holds; every blast radius names each step a \
-                       changed premise reaches as BROKEN or WEAKENED; get_node on the step \
-                       reads its verdict; detect_gaps reports a conclusion whose status claims \
-                       more than its steps support. It checks the FORM, never the content: a \
-                       false premise passes. Refused, with nothing written: a rule outside the \
-                       three, a `k_of_n` without 1 ≤ k ≤ the number of premises, a `k` on \
-                       another rule, a premise or conclusion that does not exist, and a circle \
-                       (a closed chain of equivalences is still provable: make each implication \
-                       a statement of its own). One step concludes one node; a node concluded \
-                       by several steps stands while ANY holds. Calling again with the same id \
-                       revises the step and ADDS the premises given. \
+        description = "Record an INFERENCE STEP in one call: how premises support one conclusion, \
+                       and by which rule — `all` (every premise must hold, the AND a \
+                       decomposition has always rolled up by), `any` (one is enough: redundant \
+                       support) or `k_of_n` with `k` (a quorum). A named rule rides `rule_name` \
+                       and is checked by its combination: modus ponens is `all` over P and P → Q. \
+                       `warrant` says why. Premises can be any record. reflow2 then CHECKS THAT \
+                       THE CONCLUSION FOLLOWS, three-valued over each premise's computed truth (a \
+                       requirement delivered or met, a check passing, a decision accepted, a \
+                       constraint not violated; any other type is unknown, never guessed): a \
+                       requirement it concludes is delivered when the step holds; a blast radius \
+                       names each step a changed premise reaches BROKEN or WEAKENED; get_node on \
+                       the step reads its verdict; detect_gaps reports a status that claims more \
+                       than its steps support. It checks the FORM, never the content. Refused, \
+                       with nothing written: a rule outside the three, a `k_of_n` without \
+                       1 ≤ k ≤ the number of premises, a `k` on another rule, a missing premise or \
+                       conclusion, and a circle. One step concludes one node; several steps \
+                       concluding a node are alternatives, read as ANY. The same id again revises \
+                       the step and ADDS the premises given. \
                        Ask for this to say that a claim follows from other things in the design.",
         title = "Add an Inference Step",
         annotations(read_only_hint = false, destructive_hint = false)
