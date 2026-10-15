@@ -115,13 +115,20 @@ schema:
               A step with `rule` all and `rule_name` modus ponens: premises P and "P
               implies Q", conclusion Q. reflow2 checks that both premises hold, never
               that Q is what the implication gives.
-          - term: induction
+          - term: proof by induction
             means: >-
               A step with `rule_name` induction and `rule` all: its premises are the
               base case and the inductive step, recorded as a statement of its own
               ("P(k) implies P(k+1)"), and its conclusion is P(n) for all n. The
               assumption P(k) is never a premise: it is local to the inductive step, and
               reflow2 has no discharged assumptions yet (req:a-design-can-be-a-proof).
+          - term: mathematical induction
+            means: >-
+              The same record as a proof by induction: an Inference with `rule_name`
+              induction whose premises are the base case and the inductive step ("P(k)
+              implies P(k+1)", a statement of its own) and whose conclusion is P(n) for
+              all n. The inductive hypothesis P(k) is never a premise: reflow2 has no
+              discharged assumptions yet (req:a-design-can-be-a-proof).
           - term: contraposition
             means: >-
               A step with `rule_name` contraposition: its premise is "not Q implies not

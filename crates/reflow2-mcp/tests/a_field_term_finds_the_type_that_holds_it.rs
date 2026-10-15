@@ -87,7 +87,12 @@ async fn describe_schema_finds_a_node_type_by_a_fields_word() {
         ("axiom", "axiom", "Constraint"),
         ("proof   strategy", "proof strategy", "Decision"),
         ("cited result", "cited result", "Artifact"),
-        ("induction", "induction", "Inference"),
+        ("proof by induction", "proof by induction", "Inference"),
+        (
+            "Mathematical Induction",
+            "mathematical induction",
+            "Inference",
+        ),
         ("Two-Column Proof", "two-column proof", "Inference"),
         ("modus ponens", "modus ponens", "Inference"),
     ] {
@@ -268,13 +273,23 @@ async fn record_lemma_two_which_follows_from_the_hypothesis_by_induction() {
     const SENTENCE: &str = "record Lemma 2, which follows from the hypothesis by induction";
     let s = ReflowService::in_memory().expect("service");
 
-    // find_tools, on the sentence alone.
+    // find_tools, on the sentence alone: the three tools that write the three
+    // types are its top three. "by induction" is not a term (a bare
+    // "induction" misrouted engineering queries); "follows from" finds the
+    // Inference.
     let items = find(&s, SENTENCE).await;
     let got = names(&items);
+    let mut top3: Vec<&str> = got.iter().take(3).map(String::as_str).collect();
+    top3.sort_unstable();
+    assert_eq!(
+        top3,
+        ["add_constraint", "add_inference", "add_requirement"],
+        "the sentence's three types must be its top three: {got:?}"
+    );
     for (tool, term, home) in [
         ("add_requirement", "lemma", "Requirement"),
         ("add_constraint", "hypothesis", "Constraint"),
-        ("add_inference", "induction", "Inference"),
+        ("add_inference", "follows from", "Inference"),
     ] {
         let item = items
             .iter()
@@ -291,14 +306,38 @@ async fn record_lemma_two_which_follows_from_the_hypothesis_by_induction() {
     for (word, home) in [
         ("Lemma", "Requirement"),
         ("hypothesis", "Constraint"),
-        ("induction", "Inference"),
         ("follows from", "Inference"),
+        ("proof by induction", "Inference"),
     ] {
         let v = describe(&s, json!({"node_type": word}))
             .await
             .unwrap_or_else(|e| panic!("{word:?} was refused: {e}"));
         assert_eq!(v["node_type"], home, "{word:?}: {v}");
     }
+}
+
+/// A field's word must not take an engineer's ordinary query: in each guard
+/// the named tool is not the first result. Bare "induction" did exactly that
+/// ("record the induction motor power budget" ranked add_inference first,
+/// measured 2026-10-15), which is why the method is named whole.
+#[tokio::test]
+async fn a_fields_word_does_not_take_an_ordinary_query() {
+    let corpus: Value = serde_json::from_str(CORPUS).expect("corpus");
+    let guards = corpus["a_fields_terms_misroute_nothing"]["not_first"]
+        .as_array()
+        .expect("the corpus carries misrouting guards");
+    assert!(!guards.is_empty());
+    let s = ReflowService::in_memory().expect("service");
+    let mut wrong = Vec::new();
+    for g in guards {
+        let q = g["query"].as_str().expect("query");
+        let not_first = g["tool"].as_str().expect("tool");
+        let got = names(&find(&s, q).await);
+        if got.first().map(String::as_str) == Some(not_first) {
+            wrong.push(format!("{q:?} ranks {not_first} first: {got:?}"));
+        }
+    }
+    assert!(wrong.is_empty(), "{wrong:#?}");
 }
 
 /// A query in reflow2's own words is answered as before: no item carries a

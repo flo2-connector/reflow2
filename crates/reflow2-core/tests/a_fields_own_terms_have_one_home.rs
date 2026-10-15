@@ -56,10 +56,10 @@ const MATHEMATICS: &[(&str, &str)] = &[
     ("follows from", "Inference"),
     ("hence", "CONCLUDES"),
     ("hypothesis", "Constraint"),
-    ("induction", "Inference"),
     ("inference rule", "Inference"),
     ("inference step", "Inference"),
     ("lemma", "Requirement"),
+    ("mathematical induction", "Inference"),
     ("modus ponens", "Inference"),
     ("premise", "PREMISE_OF"),
     ("probabilistic method", "Inference"),
@@ -67,6 +67,7 @@ const MATHEMATICS: &[(&str, &str)] = &[
     ("proof by contradiction", "Inference"),
     ("proof by double counting", "Inference"),
     ("proof by exhaustion", "Inference"),
+    ("proof by induction", "Inference"),
     ("proof step", "Inference"),
     ("proof strategy", "Decision"),
     ("proposition", "Requirement"),
@@ -92,16 +93,15 @@ const MATHEMATICS: &[(&str, &str)] = &[
 /// - `combinatorial proof`: the article uses it for double counting, and
 ///   Hughes's combinatorial proofs are a different formalism — one word, two
 ///   meanings.
-/// - `contradiction`, `construction` and `double counting` BARE: each also
-///   means something else a design says — two claims in conflict (which is
-///   CONTRADICTS), a building, a cost counted twice — so each method is named
-///   whole, `proof by …`. Measured 2026-10-15 on the replica: "avoid double
-///   counting the mass in the budget" put add_inference above budget_report.
-///
-/// `induction` is KEPT bare although "induction motor" means something else,
-/// and that query ranks add_inference first with budget_report second
-/// (measured the same day): it is the word the requirement's own SHOWN WHEN
-/// sentence uses ("by induction"), and the item says what it means.
+/// - `contradiction`, `construction`, `double counting` and `induction` BARE:
+///   each also means something else a design says — two claims in conflict
+///   (which is CONTRADICTS), a building, a cost counted twice, an induction
+///   motor, heating coil or loop — so each method is named whole, `proof by …`
+///   (and `mathematical induction`). Measured 2026-10-15 on the replica:
+///   "avoid double counting the mass in the budget" put add_inference above
+///   budget_report, and "record the induction motor power budget" put it first.
+///   The corpus's `a_fields_terms_misroute_nothing` guards hold the induction
+///   cases.
 const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
     "assumption",
     "given",
@@ -110,6 +110,7 @@ const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
     "contradiction",
     "construction",
     "double counting",
+    "induction",
 ];
 
 /// Types that carry NO mathematics term, by judgement rather than oversight:

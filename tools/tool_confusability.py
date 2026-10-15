@@ -48,8 +48,9 @@ discrimination to each, inside the length normalisation, exactly as an exact
 name match would. The terms are never in a description, so the
 toolsnaps cannot carry them; they are read from the schema (PyYAML, as
 vocabulary_reach.py does). `--validate` also asks the corpus's
-`in_a_fields_own_terms` phrasings, so the replica is held to the live ranker
-on the queries the terms exist for.
+`in_a_fields_own_terms` phrasings and the `a_fields_terms_misroute_nothing`
+guards, so the replica is held to the live ranker on the queries the terms
+exist for and on those they must not take.
 """
 import functools, json, glob, math, os, re, sys
 
@@ -245,6 +246,8 @@ def fields_queries():
             continue
         for c in cases:
             out[f"{field}: {c['query']}"] = c["query"]
+    for c in (doc.get("a_fields_terms_misroute_nothing") or {}).get("not_first", []):
+        out[f"guard: {c['query']}"] = c["query"]
     return out
 
 def live_rankings(binary, corpus):

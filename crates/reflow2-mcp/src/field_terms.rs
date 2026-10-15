@@ -30,8 +30,9 @@
 //! first for none; now all 15 have every named tool in the top 5 and one of
 //! them first. `tools/tool_confusability.py` scores the same way, and
 //! `--validate` held it to the live ranker on all 210 at top 1. With the
-//! Inference terms (2026-10-15) the phrasings are 25, all pass, and the
-//! replica agreed with the live ranker on all 221 at top 1.
+//! Inference terms (2026-10-15) the phrasings are 26, all pass; three guards
+//! hold that an engineer's "induction motor" is not taken for mathematics; and
+//! the replica agreed with the live ranker on all 225 at top 1.
 
 use std::collections::BTreeMap;
 
@@ -206,7 +207,7 @@ mod tests {
         assert_eq!(tools_of("proof strategy"), ["add_decision"]);
         assert_eq!(tools_of("cited result"), ["add_artifact"]);
         assert_eq!(tools_of("counterexample"), ["review_relations"]);
-        assert_eq!(tools_of("induction"), ["add_inference"]);
+        assert_eq!(tools_of("proof by induction"), ["add_inference"]);
         // No typed helper draws these; the step's constructor does.
         assert_eq!(tools_of("premise"), ["add_inference"]);
         assert_eq!(tools_of("therefore"), ["add_inference"]);
