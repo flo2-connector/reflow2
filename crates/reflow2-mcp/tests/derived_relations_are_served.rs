@@ -116,10 +116,10 @@ fn relation<'a>(report: &'a Value, id: &str) -> &'a Value {
 async fn every_declared_relation_is_reported_with_its_reading_and_count() {
     let s = session().await.seeded().await;
     let r = s.ok("derived_report", json!({})).await;
-    assert_eq!(r["declared"], 24, "{r}");
-    assert_eq!(r["relations"].as_array().unwrap().len(), 24);
+    assert_eq!(r["declared"], 25, "{r}");
+    assert_eq!(r["relations"].as_array().unwrap().len(), 25);
     assert_eq!(
-        r["counted"], 23,
+        r["counted"], 24,
         "the closure is declared and not counted: {r}"
     );
 

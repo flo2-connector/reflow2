@@ -1001,11 +1001,13 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     })));
     assert_eq!(
         v["node_types"].as_array().unwrap().len(),
-        28,
+        29,
         "every node type is discoverable"
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
+        // stated inference step);
         // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
         // word it records — the deferred "who" rung);
         // 65 since ANSWERS (2026-09-02, a record names the Question it
@@ -1019,7 +1021,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        66,
+        68,
         "every edge type is discoverable"
     );
 }

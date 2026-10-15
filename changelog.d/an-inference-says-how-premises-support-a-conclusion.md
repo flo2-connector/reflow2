@@ -19,9 +19,10 @@
     each step a changed premise reaches as `broken`, `weakened` (it still stands on its other
     premises) or `unknown`;
   - **`get_node`** on a step: its verdict, as `inference_reading`;
-  - **`detect_gaps`:** a new finding, `conclusion_does_not_follow`, for a requirement marked
-    `met` (or a check `passing`, a decision `accepted`, a capability `verified`) that its steps
-    do not support. The status is reported, never changed.
+  - **`detect_gaps`:** a new finding, `conclusion_does_not_follow`, names every requirement
+    marked `met` (or check `passing`, decision `accepted`, capability `verified`) that the steps
+    concluding it do not support. It is one low-key finding however many cases there are, it
+    looks only at steps someone drew, and it reports a status without changing it.
 
   It checks the form, never the content: a false premise passes.
   **Nothing changes for a design that records no `Inference`.** Delivery, every blast radius,

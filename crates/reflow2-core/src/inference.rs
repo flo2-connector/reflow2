@@ -637,12 +637,18 @@ impl DesignGraph {
             reading.note = Some("the step itself is counted as lost by this change".to_string());
             return Ok(reading);
         }
-        if ev.path.contains(inference_id) || depth == 0 {
+        if ev.path.contains(inference_id) {
             reading.note = Some(
                 "it rests, through its premises, on its own conclusion: circular reasoning has \
                  no verdict"
                     .to_string(),
             );
+            return Ok(reading);
+        }
+        if depth == 0 {
+            reading.note = Some(format!(
+                "the chain of steps under it is deeper than {INFERENCE_DEPTH}"
+            ));
             return Ok(reading);
         }
         if self.is_discontinued(inference_id)? {

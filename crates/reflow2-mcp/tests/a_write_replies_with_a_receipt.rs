@@ -441,6 +441,7 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "add_environment_rule",
         "add_epoch",
         "add_flow",
+        "add_inference",
         "add_interface",
         "add_project",
         "add_readiness",

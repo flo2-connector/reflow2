@@ -548,11 +548,13 @@ pub enum GapSource {
     /// free: derived requirements hang off the Decision that created them and
     /// carry no such edge.
     DecompositionCoverage,
-    /// A conclusion whose CLAIMED status is past what the stated steps that
-    /// conclude it support: a requirement marked `met`, a check `passing`, a
+    /// Conclusions whose CLAIMED status is past what the stated steps that
+    /// conclude them support: a requirement marked `met`, a check `passing`, a
     /// decision `accepted` or a capability `verified`, while every Inference
     /// concluding it fails or cannot be shown to hold over its premises
     /// (req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows).
+    /// ONE finding naming every case, low-key, and only ever about a step
+    /// somebody drew (`con:no-gap-is-raised-for-a-conclusion-that-has-no-inference`).
     ///
     /// REPORTED, NEVER REPAIRED (`dec:report-dont-judge`): the status is left as
     /// it was claimed, and the finding names each step and the premises that
@@ -1170,9 +1172,11 @@ impl GapSource {
             // earlier answer an answer to a different question, so the id MUST
             // move with the child set and the question MUST be re-asked.
             | GapSource::DecompositionCoverage
-            // Per-conclusion, keyed on the conclusion AND the steps that
-            // conclude it: "the status stays, the premise is being fixed" is an
-            // answer about THESE steps, and a new derivation re-asks.
+            // ONE finding keyed on the SET of conclusions and their steps (the
+            // understated components' shape): "these statuses stay, the
+            // premises are being fixed" is an answer about THESE cases, so a new
+            // case, or a new step under an old one, asks again. A stable id
+            // would let one acknowledgement silence every later claim.
             | GapSource::ConclusionDoesNotFollow => false,
         }
     }
@@ -3949,21 +3953,42 @@ impl DesignGraph {
         Ok(())
     }
 
-    /// A conclusion whose claimed status is past what its stated steps
-    /// support — see [`GapSource::ConclusionDoesNotFollow`]. Reads
-    /// `conclusions_that_do_not_follow` (crate::inference), the one computation
-    /// the change walk and the roll-up share, so the finding and the delivery
-    /// figure can never disagree about a step.
+    /// The conclusions whose claimed status is past what their stated steps
+    /// support — see [`GapSource::ConclusionDoesNotFollow`] — as ONE finding
+    /// naming every case, never one per node
+    /// (`con:no-gap-is-raised-for-a-conclusion-that-has-no-inference`, rule 3).
+    /// Reads `conclusions_that_do_not_follow` (crate::inference), the one
+    /// computation the change walk and the roll-up share, so the finding and the
+    /// delivery figure can never disagree about a step. Only a node a drawn
+    /// Inference concludes can appear: a design that draws none sees nothing.
     fn detect_conclusions_that_do_not_follow(
         &self,
         gaps: &mut Vec<GapCandidate>,
     ) -> Result<(), DynoError> {
-        for c in self.conclusions_that_do_not_follow()? {
-            let mut affected = vec![c.node_id.clone()];
+        let cases = self.conclusions_that_do_not_follow()?;
+        if cases.is_empty() {
+            return Ok(());
+        }
+        let mut affected: Vec<String> = Vec::new();
+        let mut named: Vec<String> = Vec::new();
+        let mut evidence: Vec<String> = Vec::new();
+        let mut failing = 0usize;
+        for c in &cases {
+            affected.push(c.node_id.clone());
             affected.extend(c.steps.iter().map(|s| s.inference.clone()));
-            affected.sort();
-            affected.dedup();
-            let fails = c.supported == crate::inference::Truth::Fails;
+            if c.supported == crate::inference::Truth::Fails {
+                failing += 1;
+            }
+            named.push(format!(
+                "“{}” claims `{}` and its steps {}",
+                c.name,
+                c.claimed,
+                if c.supported == crate::inference::Truth::Fails {
+                    "fail"
+                } else {
+                    "cannot show it (a premise is unknown)"
+                }
+            ));
             let steps: Vec<String> = c
                 .steps
                 .iter()
@@ -3978,7 +4003,7 @@ impl DesignGraph {
                         ("k_of_n", Some(k)) => format!("{k} of {}", s.premises.len()),
                         (r, _) => format!("{r} of {}", s.premises.len()),
                     };
-                    let named = s
+                    let named_rule = s
                         .rule_name
                         .as_deref()
                         .map(|n| format!(", {n}"))
@@ -3989,7 +4014,7 @@ impl DesignGraph {
                         .map(|n| format!(" — {n}"))
                         .unwrap_or_default();
                     format!(
-                        "{} ({rule}{named}) {}{note}{}",
+                        "{} ({rule}{named_rule}) {}{note}{}",
                         s.inference,
                         s.verdict.as_str(),
                         if against.is_empty() {
@@ -4000,44 +4025,42 @@ impl DesignGraph {
                     )
                 })
                 .collect();
-            gaps.push(GapCandidate {
-                id: gap_id(GapSource::ConclusionDoesNotFollow, &affected),
-                gap_source: GapSource::ConclusionDoesNotFollow,
-                scope: GapScope::Capability,
-                severity: if fails { 0.70 } else { 0.40 },
-                title: if fails {
-                    format!(
-                        "“{}” claims `{}`, and the step that concludes it does not hold",
-                        c.name, c.claimed
-                    )
-                } else {
-                    format!(
-                        "“{}” claims `{}`, and its premises cannot show it",
-                        c.name, c.claimed
-                    )
-                },
-                description: format!(
-                    "“{}” has status `{}`, but {} — so the status says more than its stated                      support. Either a premise needs work, the step is wrong, or the status is                      ahead of what is known; reflow2 leaves the status as it is and asks which.",
-                    c.name,
-                    c.claimed,
-                    if fails {
-                        "every step that concludes it fails over its premises"
-                    } else {
-                        "no step that concludes it can be shown to hold: a premise's truth is                          unknown"
-                    }
-                ),
-                affected_ids: affected,
-                suggested_depth: 2,
-                evidence: format!(
-                    "{} '{}' has status={} and is concluded by {} step(s), ANY of which would                      support it: {}.",
-                    c.node_type,
-                    c.node_id,
-                    c.claimed,
-                    c.steps.len(),
-                    steps.join(" | ")
-                ),
-            });
+            evidence.push(format!(
+                "{} '{}' status={}, concluded by {}",
+                c.node_type,
+                c.node_id,
+                c.claimed,
+                steps.join(" | ")
+            ));
         }
+        affected.sort();
+        affected.dedup();
+        let n = cases.len();
+        gaps.push(GapCandidate {
+            id: gap_id(GapSource::ConclusionDoesNotFollow, &affected),
+            gap_source: GapSource::ConclusionDoesNotFollow,
+            scope: GapScope::Project,
+            // LOW-KEY ON PURPOSE (the constraint's rule 3): it asks, it never
+            // judges. Higher when a step is computed to FAIL than when a premise
+            // is only unknown.
+            severity: if failing > 0 { 0.4 } else { 0.3 },
+            title: format!(
+                "{n} conclusion(s) claim more than the steps that conclude them support"
+            ),
+            description: format!(
+                "{}. Each status says more than its stated support: either a premise needs \
+                 work, the step is wrong, or the status is ahead of what is known. reflow2 \
+                 leaves every status as it is and asks which.",
+                named.join("; ")
+            ),
+            affected_ids: affected,
+            suggested_depth: 2,
+            evidence: format!(
+                "{n} node(s) whose status claims they hold, where no drawn Inference \
+                 concluding them holds (ANY of them would do): {}.",
+                evidence.join(" || ")
+            ),
+        });
         Ok(())
     }
 
