@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:26ffa901b687ba60621ecdcdb136fa7cf8fb63349b77b5b76c3ee7cd11604cfb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:bdfe4d9ece09202972c9cdd0ec33571322b1c935c67d2e9d43b65dd4eaa24858",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:inference"
+}

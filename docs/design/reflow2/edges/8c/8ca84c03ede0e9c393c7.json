@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3abca27c2f5a12f8984ba39b07308a256737043ab09142f97c9a8c1f39ae27d7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:ranking-fix-for-foundations-description",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

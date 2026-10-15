@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:72097ad28e10736734095b44509016c15d60992596820e13bea7f6b73fde2c91",
+  "node_id": "chg:ranking-fix-for-foundations-description",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "70041be6033daefabd1fb0d937d9c2516e2e2a62",
+    "detected_at": "2026-10-15",
+    "name": "Trim the foundations description and reclassify a find_tools query to restore ranking",
+    "rationale": "BM25 document length normalization penalises each matching term when a document grows. A tool's NAME matches score 5x a description match; no description wording can outweigh a name match. The fix is two-part: keep the description short, and classify queries honestly by whether another tool's name carries the query's key word. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "The foundations walk's ~40-word get_node description diluted BM25 per-term scores, dropping get_node out of first place for 3 of 10 queries. Fix: trimmed description to 11 words; moved 'pull up the full record for a requirement' from GET_NODE_FIRST to GET_NODE_FOUND because set_requirement_lineage owns 'requirement' in its NAME (5x weight)."
+  }
+}

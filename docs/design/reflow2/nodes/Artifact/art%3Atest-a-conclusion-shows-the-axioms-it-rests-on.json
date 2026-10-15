@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:9e108b23e70e8aa1044d8f12ea628d9d4e902c32828ecc6f8df9b176809a8ba3",
+  "content_hash": "sha256:590a687071768fef9c5809b63a220aaba51f66dae2be42312fa9b52cdc912e42",
   "node_id": "art:test-a-conclusion-shows-the-axioms-it-rests-on",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "test",
-    "checksum": "sha256:0f9610de6ac3c473f725467fc3465be86ef17df629dead51ee8c6c52a20ac35c",
     "description": "Integration test for the foundations walk (requirement E): three-layer chain, alternative derivations, no-inference, voting rules SHOWN WHEN, derived relation, honest limit -- six tests pinning the foundations walk and its reading.",
     "location": "crates/reflow2-core/tests/a_conclusion_shows_the_axioms_it_rests_on.rs",
     "name": "Test: a conclusion shows the axioms it rests on",
