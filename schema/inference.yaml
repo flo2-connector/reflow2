@@ -223,22 +223,6 @@ schema:
       from: Inference
       to: "*"
       reading: { form: "primitive", primitive: "source-of", sub: "derived", note: "The conclusion comes from the step: it holds when the step's rule holds over its premises, or when another step concluding it does.", basis: "classified" }
-      # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
-      # Served in describe_schema and find_tools, never in tools/list. One term,
-      # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
-      also_called:
-        mathematics:
-          - term: therefore
-            means: >-
-              "P, therefore Q": the Inference whose premise is P concludes Q, drawn as
-              CONCLUDES from the step to Q and written with add_inference's
-              `conclusion`. One step concludes exactly one statement. Saying it does not
-              make Q hold: Q holds when the step's rule holds over its premises.
-          - term: hence
-            means: >-
-              Read as therefore: CONCLUDES from the step to the statement it gives, one
-              statement per step. Q is given only while the step's rule holds over its
-              premises.
       extraction_hint: >
         The source Inference concludes the target: the target holds when the
         step's rule holds over its premises. One step, one conclusion.

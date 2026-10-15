@@ -343,12 +343,6 @@
         ]
       },
       {
-        "query": "P and Q, therefore R",
-        "tools": [
-          "add_inference"
-        ]
-      },
-      {
         "query": "this lemma follows from the axioms",
         "tools": [
           "add_inference",
@@ -364,7 +358,7 @@
     ]
   },
   "a_fields_terms_misroute_nothing": {
-    "_what": "An engineer's ordinary query that shares a word with a field's term: the named tool must NOT rank first. Added 2026-10-15 after bare \"induction\" put add_inference first for \"record the induction motor power budget\". Read by tests/a_field_term_finds_the_type_that_holds_it.rs and tools/tool_confusability.py --validate.",
+    "_what": "An engineer's ordinary query that shares a word with a field's term: the named tool must NOT rank first. Added 2026-10-15 after bare \"induction\" put add_inference first for \"record the induction motor power budget\". Read by tests/a_field_term_finds_the_type_that_holds_it.rs and tools/tool_confusability.py --validate. The connective guards came the same day, after \"therefore\" and \"hence\" (then terms for CONCLUDES) ranked add_inference first; where `first` is given, that tool must rank first.",
     "not_first": [
       {
         "query": "size the induction motor",
@@ -377,6 +371,16 @@
       {
         "query": "add an induction loop detector",
         "tool": "add_inference"
+      },
+      {
+        "query": "the load is high, therefore add a requirement for cooling",
+        "tool": "add_inference",
+        "first": "add_requirement"
+      },
+      {
+        "query": "the bus is shared, hence add an interface for arbitration",
+        "tool": "add_inference",
+        "first": "add_interface"
       }
     ]
   }

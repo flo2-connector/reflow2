@@ -132,15 +132,13 @@ async fn describe_schema_finds_a_node_type_by_a_fields_word() {
 #[tokio::test]
 async fn describe_schema_finds_an_edge_type_by_a_fields_word() {
     let s = ReflowService::in_memory().expect("service");
-    // PREMISE_OF and CONCLUDES have no typed helper: the step's constructor,
-    // add_inference, draws them, and the answer must say so rather than
-    // answer that nothing does.
+    // PREMISE_OF has no typed helper: the step's constructor, add_inference,
+    // draws it, and the answer must say so rather than answer that nothing
+    // does.
     for (asked, edge, tool) in [
         ("counterexample", "CONTRADICTS", "review_relations"),
         ("refutes", "CONTRADICTS", "review_relations"),
         ("premise", "PREMISE_OF", "add_inference"),
-        ("therefore", "CONCLUDES", "add_inference"),
-        ("hence", "CONCLUDES", "add_inference"),
     ] {
         let v = describe(&s, json!({"node_type": asked}))
             .await
@@ -335,6 +333,13 @@ async fn a_fields_word_does_not_take_an_ordinary_query() {
         let got = names(&find(&s, q).await);
         if got.first().map(String::as_str) == Some(not_first) {
             wrong.push(format!("{q:?} ranks {not_first} first: {got:?}"));
+        }
+        // Where the guard names the tool the sentence is really about, that
+        // tool ranks first.
+        if let Some(first) = g["first"].as_str()
+            && got.first().map(String::as_str) != Some(first)
+        {
+            wrong.push(format!("{q:?} should rank {first} first: {got:?}"));
         }
     }
     assert!(wrong.is_empty(), "{wrong:#?}");

@@ -10,7 +10,7 @@
   ponens, proof by induction or mathematical induction, contraposition, proof by contradiction,
   construction, exhaustion or double counting, case analysis, the probabilistic method) are an
   Inference, with each premise a
-  PREMISE_OF edge and "therefore" a CONCLUDES edge. A lemma held as a
+  PREMISE_OF edge. A lemma held as a
   Requirement whose status is `met` has been SHOWN. It is PROVEN only when every step it rests on
   is confirmed, which reflow2 does not compute yet.
   - `describe_schema` with `node_type` set to a field's word answers the type that holds it:
@@ -23,8 +23,9 @@
     full listing.
   - `find_tools` indexes each term against the tools that write its type, so "record a lemma"
     ranks `add_requirement` first, "add a hypothesis" ranks `add_constraint` first and "a proof
-    by induction on n" ranks `add_inference` first. A method is named whole, so "size the
-    induction motor" is not taken for mathematics. Each item a term found carries
+    by induction on n" ranks `add_inference` first. A method is named whole, and everyday
+    connectives ("therefore", "hence") are not terms, so "size the induction motor" and "the
+    load is high, therefore add a requirement" are not taken for mathematics. Each item a term found carries
     `also_called`, saying which word found it. Its description now says it searches a field's
     words too.
 

@@ -41,7 +41,8 @@ use serde_json::Value;
 /// - Inference holds a step and the method it applies: the methods of proof
 ///   from "Mathematical proof" (Wikipedia, "Methods of proof"), each as the
 ///   step it is recorded as, and the two-column proof as rows of steps.
-/// - PREMISE_OF joins a premise to its step; CONCLUDES says "therefore".
+/// - PREMISE_OF joins a premise to its step. CONCLUDES carries no term (see
+///   NO_MATHEMATICS_TERM).
 const MATHEMATICS: &[(&str, &str)] = &[
     ("approach", "Decision"),
     ("axiom", "Constraint"),
@@ -54,7 +55,6 @@ const MATHEMATICS: &[(&str, &str)] = &[
     ("definition", "Constraint"),
     ("direct proof", "Inference"),
     ("follows from", "Inference"),
-    ("hence", "CONCLUDES"),
     ("hypothesis", "Constraint"),
     ("inference rule", "Inference"),
     ("inference step", "Inference"),
@@ -75,7 +75,6 @@ const MATHEMATICS: &[(&str, &str)] = &[
     ("refutes", "CONTRADICTS"),
     ("rule of inference", "Inference"),
     ("theorem", "Requirement"),
-    ("therefore", "CONCLUDES"),
     ("two-column proof", "Inference"),
 ];
 
@@ -102,6 +101,14 @@ const MATHEMATICS: &[(&str, &str)] = &[
 ///   budget_report, and "record the induction motor power budget" put it first.
 ///   The corpus's `a_fields_terms_misroute_nothing` guards hold the induction
 ///   cases.
+/// - `therefore` and `hence`: offered for CONCLUDES, and ordinary connectives
+///   in an engineer's sentence. Measured 2026-10-15 on the live binary: "the
+///   load is high, therefore add a requirement for cooling" ranked
+///   add_inference first and add_requirement second, and "the bus is shared,
+///   hence add an interface for arbitration" ranked add_inference first and
+///   add_interface second. Without the terms add_requirement and add_interface
+///   rank first; both sentences are corpus guards. The noun `conclusion`
+///   misroutes the same way ("record the conclusion of the review").
 const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
     "assumption",
     "given",
@@ -111,6 +118,9 @@ const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
     "construction",
     "double counting",
     "induction",
+    "therefore",
+    "hence",
+    "conclusion",
 ];
 
 /// Types that carry NO mathematics term, by judgement rather than oversight:
@@ -124,7 +134,10 @@ const LEFT_OUT_OF_MATHEMATICS: &[&str] = &[
 ///   exhaustiveness is itself a premise, and DECOMPOSES has no place for that
 ///   premise or for the rule. `case analysis` and `proof by exhaustion` are on
 ///   Inference, where the rule and that premise can be said.
-const NO_MATHEMATICS_TERM: &[&str] = &["DEPENDS_ON", "DECOMPOSES"];
+/// - `CONCLUDES`: its words ("therefore", "hence", "conclusion") are everyday
+///   connectives that took engineers' sentences (see LEFT_OUT_OF_MATHEMATICS);
+///   "follows from" already finds the Inference whose conclusion it draws.
+const NO_MATHEMATICS_TERM: &[&str] = &["DEPENDS_ON", "DECOMPOSES", "CONCLUDES"];
 
 /// One declared term: (field, term, home type, means).
 type Declared = (String, String, String, String);
