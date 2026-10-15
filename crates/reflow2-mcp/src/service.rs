@@ -1215,11 +1215,18 @@ pub(crate) fn score_tool(
             score += 1.0 * weight;
         }
     }
-    // Length normalisation: a 1,500-char description accumulates whole-word
-    // hits a 200-char one cannot, and on the corpus that alone crowded tools
-    // out of their own top 5. A heuristic, not an invariant — kept because
-    // the corpus measured it (see tests/find_tools_ranks_what_the_query_means).
-    score / (2.0 + desc_lc.len() as f64 / 200.0).ln()
+    score / length_norm(desc_lc.len())
+}
+
+/// What a tool's raw score is divided by. Length normalisation: a 1,500-char
+/// description accumulates whole-word hits a 200-char one cannot, and on the
+/// corpus that alone crowded tools out of their own top 5. A heuristic, not an
+/// invariant — kept because the corpus measured it (see
+/// tests/find_tools_ranks_what_the_query_means). A field's term
+/// (`crate::field_terms`) is divided by the same, so it weighs exactly as a
+/// name match on that tool would.
+pub(crate) fn length_norm(description_lc_len: usize) -> f64 {
+    (2.0 + description_lc_len as f64 / 200.0).ln()
 }
 
 /// First sentence (or the first 200 characters) of a tool description. The whole

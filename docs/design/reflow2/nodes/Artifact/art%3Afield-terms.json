@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:68b96b72de72db1498a8ae433711f6713e25dba79a149596e1b9c022f342cd15",
+  "node_id": "art:field-terms",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "find_tools' index of a field's own words for reflow2's types (req:the-vocabulary-is-served-in-a-fields-own-terms): each term in schema/*.yaml `also_called` indexes the served tools that write its type (a node type's constructors; an edge type's typed helpers, else the constructors of the one type it is pinned to, so PREMISE_OF and CONCLUDES name add_inference). A query that uses a term's words, consecutive and whole, adds what an exact name match adds (8 x discrimination, inside the length normalisation). Holds edge_tools, which describe_schema's term lookup reads for `drawn_by`.",
+    "location": "crates/reflow2-mcp/src/field_terms.rs",
+    "name": "field_terms.rs",
+    "status": "realized"
+  }
+}

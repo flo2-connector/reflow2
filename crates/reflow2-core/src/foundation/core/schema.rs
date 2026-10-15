@@ -43,7 +43,50 @@ pub struct NodeTypeDef {
     /// What tells this type apart from the one it is confused with.
     #[serde(default)]
     pub discrimination: Option<Discrimination>,
+    /// What a FIELD calls this type, in its own words — see [`FieldTerm`].
+    #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    pub also_called: AlsoCalled,
 }
+
+/// A field's own words for one type, by field: `mathematics` → `lemma`,
+/// `theorem` … Every node type and edge type may carry one, beside its hint.
+pub type AlsoCalled = std::collections::BTreeMap<String, Vec<FieldTerm>>;
+
+/// One word a FIELD uses for what this type holds, and what that mapping
+/// means and does not mean.
+///
+/// ⭐ WHY THIS LIVES IN THE SCHEMA (`req:the-vocabulary-is-served-in-a-fields-own-terms`).
+/// reflow2's names are abstract on purpose, so they span a house, a spacecraft
+/// and a proof — which leaves an agent holding "a lemma" or "a hypothesis" to
+/// guess that reflow2 calls them a Requirement and a Constraint. The terms are
+/// served where an agent looks when it chooses where something goes: in
+/// `describe_schema`'s answer, and in `find_tools`' index. Never in a tool's
+/// description, which every client pays for on every session.
+///
+/// 🛑 NOT A DESIGN'S OWN WORDS. `Requirement.aliases` (`record_alias`) holds what
+/// ONE design's user calls ONE node. This holds what a whole field calls a
+/// TYPE, and it lives in the code, so it is reviewed, tested and corrected by
+/// pull request like the code — the answer to the recorded objection that a
+/// stored term table keeps an early mistake where nobody revisits it.
+///
+/// Advisory like `reading`: it never validates a write and renames nothing.
+/// `tests/a_fields_own_terms_have_one_home.rs` holds every term to one home
+/// within its field, a non-empty `means`, a field on [`TERM_FIELDS`], and no
+/// spelling that is already a type's own name.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FieldTerm {
+    /// The field's word, as the field writes it: `lemma`, `proof strategy`.
+    pub term: String,
+    /// What the mapping MEANS and what it does NOT: a lemma held as a
+    /// Requirement whose status is `met` has been SHOWN, and is PROVEN only
+    /// when every step it rests on is confirmed.
+    pub means: String,
+}
+
+/// The fields a type's `also_called` may name. Mathematics is filled first;
+/// argument, law and science come as they are needed. A field not listed here
+/// is a typo the term-table test refuses, not a new field.
+pub const TERM_FIELDS: [&str; 4] = ["mathematics", "argument", "law", "science"];
 
 /// The rules that DISTINGUISH one node type from its neighbour — the half of
 /// the vocabulary that decides a hard case.
@@ -149,6 +192,9 @@ pub struct EdgeTypeDef {
     /// what an edge is, instead of keeping its own list of names.
     #[serde(default)]
     pub reading: Option<EdgeReading>,
+    /// What a FIELD calls this relation, in its own words — see [`FieldTerm`].
+    #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    pub also_called: AlsoCalled,
 }
 
 /// One reading of one relation: the primitive it is an instance of, or the
@@ -782,8 +828,10 @@ impl Schema {
     ///   conflict). Optional fields (`embedding_field`, `resolution`,
     ///   `extraction_hint`) on the overlay override the base when the
     ///   overlay has `Some(_)`.
+    ///   `discrimination` and a non-empty `also_called` override the same way.
     /// - **Edge types**: properties merge additively (existing wins).
-    ///   `extraction_hint` overrides on overlay-`Some`.
+    ///   `extraction_hint` overrides on overlay-`Some`, and a non-empty
+    ///   `also_called` on the overlay replaces the base's.
     ///   `inference_category` overrides when the overlay sets one.
     ///   `pass_1_extractable` overrides only when the overlay sets it
     ///   `true` — `false` is the serde default and so treated as unset.
@@ -815,6 +863,11 @@ impl Schema {
                     if node_def.discrimination.is_some() {
                         existing.discrimination = node_def.discrimination.clone();
                     }
+                    // Overlay-wins too, and for the same reason: what a field
+                    // calls a type belongs with the description of what it is.
+                    if !node_def.also_called.is_empty() {
+                        existing.also_called = node_def.also_called.clone();
+                    }
                 })
                 .or_insert(node_def);
         }
@@ -836,6 +889,9 @@ impl Schema {
                     }
                     if edge_def.pass_1_extractable {
                         existing.pass_1_extractable = true;
+                    }
+                    if !edge_def.also_called.is_empty() {
+                        existing.also_called = edge_def.also_called.clone();
                     }
                 })
                 .or_insert(edge_def);
