@@ -931,13 +931,11 @@ impl DesignGraph {
                  has no verdict. {EQUIVALENCES}"
             )));
         }
-        if conclusion_link {
-            if let Some(other) = self.conclusion_of(from_id)? {
-                return Err(refuse(format!(
-                    "'{from_id}' already concludes '{other}'. One Inference concludes exactly \
-                     one node; to support '{to_id}' too, record a second step (add_inference)"
-                )));
-            }
+        if conclusion_link && let Some(other) = self.conclusion_of(from_id)? {
+            return Err(refuse(format!(
+                "'{from_id}' already concludes '{other}'. One Inference concludes exactly one \
+                 node; to support '{to_id}' too, record a second step (add_inference)"
+            )));
         }
         // The new link runs from → to; a path back from `to` to `from` along
         // the links already stored closes a circle.
