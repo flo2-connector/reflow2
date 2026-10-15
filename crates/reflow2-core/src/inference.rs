@@ -269,8 +269,7 @@ pub const FOUNDATIONS_CAP: usize = 100;
 /// THE HONEST LIMIT. The foundations tell what a conclusion follows from. They
 /// never say the axioms are right. In an abstract design they are values, and
 /// may be contested by design.
-pub const FOUNDATIONS_HONEST_LIMIT: &str =
-    "These foundations show what this conclusion follows from — the terminal \
+pub const FOUNDATIONS_HONEST_LIMIT: &str = "These foundations show what this conclusion follows from — the terminal \
      premises (axioms) its inference chain ultimately rests on. They never say \
      the axioms are right: in an abstract design they are chosen principles or \
      values, and they may be contested by design.";
@@ -1003,10 +1002,7 @@ impl DesignGraph {
     /// The full foundations reading for a node: its axioms, the honest limit,
     /// and whether the list was capped. `None` when the node is not concluded
     /// by any Inference (no foundations to show — it IS terminal).
-    pub fn foundations_reading(
-        &self,
-        id: &str,
-    ) -> Result<Option<FoundationsReading>, DynoError> {
+    pub fn foundations_reading(&self, id: &str) -> Result<Option<FoundationsReading>, DynoError> {
         let steps = self.inferences_concluding(id)?;
         if steps.is_empty() {
             return Ok(None);

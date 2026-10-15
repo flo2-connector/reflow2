@@ -130,8 +130,7 @@ fn a_three_layer_chain_finds_the_axioms_not_the_intermediates() {
     let foundations = g
         .foundations_of("req:theorem-t")
         .expect("foundations_of works");
-    let ids: std::collections::BTreeSet<&str> =
-        foundations.iter().map(|f| f.id.as_str()).collect();
+    let ids: std::collections::BTreeSet<&str> = foundations.iter().map(|f| f.id.as_str()).collect();
     assert_eq!(
         ids,
         ["con:axiom-a1", "con:axiom-a2"]
@@ -179,8 +178,7 @@ fn alternative_derivations_give_the_union_of_axioms() {
     );
 
     let foundations = g.foundations_of("req:theorem").expect("foundations_of");
-    let ids: std::collections::BTreeSet<&str> =
-        foundations.iter().map(|f| f.id.as_str()).collect();
+    let ids: std::collections::BTreeSet<&str> = foundations.iter().map(|f| f.id.as_str()).collect();
     assert_eq!(
         ids,
         ["con:a1", "con:a2", "con:a3"]
@@ -197,9 +195,7 @@ fn a_node_with_no_inference_has_no_foundations() {
     let mut g = graph();
     requirement(&mut g, "req:standalone");
 
-    let foundations = g
-        .foundations_of("req:standalone")
-        .expect("foundations_of");
+    let foundations = g.foundations_of("req:standalone").expect("foundations_of");
     assert!(
         foundations.is_empty(),
         "a node with no concluding Inference has no foundations (it IS terminal)"
@@ -237,8 +233,7 @@ fn a_voting_rules_conclusion_lists_the_principles_and_dropping_one_breaks_it() {
     let foundations = g
         .foundations_of("req:legitimate-result")
         .expect("foundations");
-    let ids: std::collections::BTreeSet<&str> =
-        foundations.iter().map(|f| f.id.as_str()).collect();
+    let ids: std::collections::BTreeSet<&str> = foundations.iter().map(|f| f.id.as_str()).collect();
     assert_eq!(
         ids,
         ["dec:majority-decides", "dec:one-person-one-vote"]
@@ -268,9 +263,7 @@ fn a_voting_rules_conclusion_lists_the_principles_and_dropping_one_breaks_it() {
     .unwrap();
 
     // The change walk from the dropped principle reports the conclusion broken.
-    let walk = g
-        .inference_walk(&["dec:majority-decides"])
-        .expect("walk");
+    let walk = g.inference_walk(&["dec:majority-decides"]).expect("walk");
     assert!(
         !walk.is_empty(),
         "dropping a principle must show what falls"
@@ -307,8 +300,7 @@ fn the_derived_relation_foundations_lists_the_designs_axioms() {
 
     // The derived relation: nodes that are foundations of at least one conclusion.
     let axioms = g.design_foundations().expect("design_foundations");
-    let ids: std::collections::BTreeSet<&str> =
-        axioms.iter().map(|s| s.as_str()).collect();
+    let ids: std::collections::BTreeSet<&str> = axioms.iter().map(|s| s.as_str()).collect();
     assert!(ids.contains("con:principle-x"));
     assert!(ids.contains("con:principle-y"));
     assert!(
@@ -341,7 +333,10 @@ fn the_honest_limit_text_is_present_on_foundations() {
     let reading = g
         .foundations_reading("req:derived")
         .expect("foundations_reading");
-    assert!(reading.is_some(), "a concluded node has a foundations reading");
+    assert!(
+        reading.is_some(),
+        "a concluded node has a foundations reading"
+    );
     let reading = reading.unwrap();
     assert!(
         reading.honest_limit.contains("follows from"),
