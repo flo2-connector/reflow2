@@ -693,6 +693,10 @@ impl ReflowService {
                        A Component also carries `built_reading`: what its evidence reads as \
                        (`built`, `partly_built`, `not_built`) with the evidence counted, \
                        computed beside its stored `status`, which it never moves. \
+                       A node concluded by at least one Inference also carries `foundations`: \
+                       the terminal premises (axioms) its inference chain ultimately rests on, \
+                       each with its truth, and the honest limit — what the read says it does \
+                       and does not mean. Omitted when the node is not a conclusion. \
                        Ask for this when you want everything recorded about one item — pull up \
                        the full record for a requirement or any single node — or a node and its \
                        edges: what it is connected to, its neighbours, which nodes link to it. \
@@ -1411,6 +1415,16 @@ fn decorate(
     } else {
         None
     };
+    // FOUNDATIONS (requirement E): a concluded node's terminal premises — the
+    // axioms its inference chain ultimately rests on. Omitted when the node is
+    // not concluded by any Inference (no foundations to show, and an absent
+    // field is "not a conclusion", not "rests on nothing").
+    let foundations = g
+        .foundations_reading(node_id)
+        .map_err(dyno_err)?
+        .map(serde_json::to_value)
+        .transpose()
+        .map_err(ser_err)?;
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
         if let Some(reading) = built_reading {
@@ -1418,6 +1432,9 @@ fn decorate(
         }
         if let Some(reading) = inference_reading {
             obj.insert("inference_reading".to_string(), reading);
+        }
+        if let Some(f) = foundations {
+            obj.insert("foundations".to_string(), f);
         }
     }
     Ok(rendered)

@@ -49,9 +49,10 @@ const DECLARATIONS: &str = include_str!("../../../schema/derived/relations.yaml"
 /// The test holds this list and the declaration file to each other in both
 /// directions: a declaration nobody evaluates, or an evaluator nobody declared,
 /// fails it.
-pub const DERIVED_EVALUATORS: [&str; 25] = [
+pub const DERIVED_EVALUATORS: [&str; 26] = [
     "delivered",
     "follows",
+    "foundations",
     "realized",
     "checked",
     "built",
@@ -333,6 +334,10 @@ impl DesignGraph {
             }
             "follows" => {
                 let hits = self.conclusions_that_follow()?;
+                Evaluated::of(hits.len(), take(hits, n))
+            }
+            "foundations" => {
+                let hits = self.design_foundations()?;
                 Evaluated::of(hits.len(), take(hits, n))
             }
             "realized" => {

@@ -235,6 +235,46 @@ pub struct InferenceImpact {
     pub premises: Vec<PremiseReading>,
 }
 
+/// One axiom a conclusion ultimately rests on (a terminal premise — not
+/// concluded by any Inference). Requirement E.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct Foundation {
+    /// The axiom's id.
+    pub id: String,
+    /// Its type, or `None` when no node holds it.
+    pub node_type: Option<String>,
+    /// Its computed truth (same as `premise_truth`).
+    pub truth: Truth,
+    /// Why, in a sentence.
+    pub why: String,
+}
+
+/// A node's foundations: the axioms it rests on, the honest limit, and whether
+/// the list was capped.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct FoundationsReading {
+    /// The axioms this conclusion rests on.
+    pub foundations: Vec<Foundation>,
+    /// How many axioms in total (before capping).
+    pub total: usize,
+    /// Whether the list was capped.
+    pub capped: bool,
+    /// The honest limit: what the read says it does and does not mean.
+    pub honest_limit: String,
+}
+
+/// How many axioms the foundations list shows before saying "capped".
+pub const FOUNDATIONS_CAP: usize = 100;
+
+/// THE HONEST LIMIT. The foundations tell what a conclusion follows from. They
+/// never say the axioms are right. In an abstract design they are values, and
+/// may be contested by design.
+pub const FOUNDATIONS_HONEST_LIMIT: &str =
+    "These foundations show what this conclusion follows from — the terminal \
+     premises (axioms) its inference chain ultimately rests on. They never say \
+     the axioms are right: in an abstract design they are chosen principles or \
+     values, and they may be contested by design.";
+
 /// A conclusion whose claimed status is past what its steps support.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct UnfollowedConclusion {
@@ -889,6 +929,121 @@ impl DesignGraph {
     /// checks ask before speaking about a conclusion this module owns.
     pub fn is_concluded(&self, id: &str) -> Result<bool, DynoError> {
         Ok(!self.inferences_concluding(id)?.is_empty())
+    }
+
+    // ─── Foundations (requirement E) ──────────────────────────────────────
+
+    /// THE FOUNDATIONS WALK. Given a node id, walk backward through the
+    /// inference chain (the node's concluding Inferences → their premises →
+    /// if a premise is itself concluded, recurse) to find TERMINAL PREMISES —
+    /// nodes not concluded by any Inference. These are the axioms: the chosen
+    /// principles the conclusion ultimately rests on.
+    ///
+    /// A node not concluded by any Inference has no foundations (it IS a
+    /// terminal node); returns empty, raises nothing
+    /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
+    ///
+    /// Handles multiple inference chains: a node concluded by more than one
+    /// Inference has alternative derivations; reports the foundations of all
+    /// (the union). Guards against cycles (C refuses them at write time, but
+    /// an import might introduce one).
+    pub fn foundations_of(&self, id: &str) -> Result<Vec<Foundation>, DynoError> {
+        let steps = self.inferences_concluding(id)?;
+        if steps.is_empty() {
+            return Ok(Vec::new());
+        }
+        let mut axioms: BTreeMap<String, Foundation> = BTreeMap::new();
+        let mut visited: BTreeSet<String> = BTreeSet::new();
+        visited.insert(id.to_string());
+        self.foundations_walk(&steps, &mut axioms, &mut visited)?;
+        Ok(axioms.into_values().collect())
+    }
+
+    /// Recursive walk: for each step, read its premises; terminal premises
+    /// are axioms, concluded premises are walked further.
+    fn foundations_walk(
+        &self,
+        steps: &[String],
+        axioms: &mut BTreeMap<String, Foundation>,
+        visited: &mut BTreeSet<String>,
+    ) -> Result<(), DynoError> {
+        for step_id in steps {
+            if !visited.insert(step_id.clone()) {
+                continue; // cycle guard
+            }
+            for premise_id in self.premises_of(step_id)? {
+                if !visited.insert(premise_id.clone()) {
+                    continue; // cycle guard on premises too
+                }
+                let concluding = self.inferences_concluding(&premise_id)?;
+                if concluding.is_empty() {
+                    // TERMINAL PREMISE — an axiom.
+                    if !axioms.contains_key(&premise_id) {
+                        let (truth, why) = self.premise_truth(&premise_id)?;
+                        let node_type = self.type_holding(&premise_id)?;
+                        axioms.insert(
+                            premise_id.clone(),
+                            Foundation {
+                                id: premise_id,
+                                node_type,
+                                truth,
+                                why,
+                            },
+                        );
+                    }
+                } else {
+                    // Intermediate — recurse through its concluding steps.
+                    self.foundations_walk(&concluding, axioms, visited)?;
+                }
+            }
+        }
+        Ok(())
+    }
+
+    /// The full foundations reading for a node: its axioms, the honest limit,
+    /// and whether the list was capped. `None` when the node is not concluded
+    /// by any Inference (no foundations to show — it IS terminal).
+    pub fn foundations_reading(
+        &self,
+        id: &str,
+    ) -> Result<Option<FoundationsReading>, DynoError> {
+        let steps = self.inferences_concluding(id)?;
+        if steps.is_empty() {
+            return Ok(None);
+        }
+        let foundations = self.foundations_of(id)?;
+        let total = foundations.len();
+        let capped = total > FOUNDATIONS_CAP;
+        let shown = if capped {
+            foundations.into_iter().take(FOUNDATIONS_CAP).collect()
+        } else {
+            foundations
+        };
+        Ok(Some(FoundationsReading {
+            foundations: shown,
+            total,
+            capped,
+            honest_limit: FOUNDATIONS_HONEST_LIMIT.to_string(),
+        }))
+    }
+
+    /// Every node in this design that is a foundation (a terminal premise) of
+    /// at least one conclusion. The design-wide view: "which nodes are axioms
+    /// that something rests on?"
+    pub fn design_foundations(&self) -> Result<Vec<String>, DynoError> {
+        let mut conclusions: BTreeSet<String> = BTreeSet::new();
+        for i in self.scan_nodes(node::INFERENCE)? {
+            if let Some(c) = self.conclusion_of(&i.node_id)? {
+                conclusions.insert(c);
+            }
+        }
+        let mut all_axioms: BTreeSet<String> = BTreeSet::new();
+        for c in conclusions {
+            for f in self.foundations_of(&c)? {
+                all_axioms.insert(f.id);
+            }
+        }
+        Ok(all_axioms.into_iter().collect())
     }
 
     // ─── Writing a step ────────────────────────────────────────────────────
