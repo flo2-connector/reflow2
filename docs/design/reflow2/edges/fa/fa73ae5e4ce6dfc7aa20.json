@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3577bc6d7a850774968ff624c88dddebf21861b9f3541d8f1c452f0a2d2728bd",
+  "edge_type": "REALIZES",
+  "from_id": "art:field-terms",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-vocabulary-is-served-in-a-fields-own-terms"
+}

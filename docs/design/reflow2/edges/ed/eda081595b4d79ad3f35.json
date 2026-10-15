@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c11bce33f67c0c706cb40db1995acbc40562e6c1c670bca8a5d20bd7c3bc0237",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:tool-confusability",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

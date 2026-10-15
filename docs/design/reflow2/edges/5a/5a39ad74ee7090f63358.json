@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5488fa2ed982118da452dd3d46bc804670ca822db37422f8f0bc75163d5df07d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-vocabulary-is-served-in-a-fields-own-terms",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:483b55bfcd9fdd8dfdd65afa988d2132ebde14e86df1cf591ea8763fa233dfcf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

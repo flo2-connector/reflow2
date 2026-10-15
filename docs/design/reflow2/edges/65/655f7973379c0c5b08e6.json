@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c24a91613edefc3e0138ebf6ac13463f2b95b73a5543e96aaa9f0aa5db581fc4",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-field-term-finds-the-type-that-holds-it",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-vocabulary-is-served-in-a-fields-own-terms"
+}

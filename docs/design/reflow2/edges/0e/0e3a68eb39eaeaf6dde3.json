@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea8f0dfe6fd37f62049176e215ab426f9035da99b7fcfb0c8a6714d9e18c2b99",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-vocabulary-is-served-in-a-fields-own-terms",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:the-vocabulary-is-served-in-a-fields-own-terms"
+}

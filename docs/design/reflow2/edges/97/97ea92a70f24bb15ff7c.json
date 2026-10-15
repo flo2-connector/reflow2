@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:043ae601022d2b1ec568e641f406a271b6169a6b409208e1043c4751153d8dcd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:the-vocabulary-is-served-in-a-fields-own-terms",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
