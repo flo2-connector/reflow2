@@ -29,7 +29,12 @@ jobs:
   core:
     name: core gates (no RocksDB)
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    # 20 until 2026-10-15, when this job took on the MCP crate in memory. Its
+    # test step measured 10.6 minutes locally (4 cores, 2 rustc jobs) from a
+    # cache holding only the dependencies, and the first run after the change
+    # also compiles the MCP crate's dependencies, which this job's cache did not
+    # hold. The margin is kept rather than spent.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
         with:
