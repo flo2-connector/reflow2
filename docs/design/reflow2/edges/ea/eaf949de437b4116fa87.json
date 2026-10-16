@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ec852c4b78be51e5081fd6404d32d9d3d2ad30b332a72f1aa0d99d655578062c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consolidate-reflow2-core-225-test-files-into-4-programs",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:fc3c3ba5228506536fc2fbf6ec7efe668a8dfc3208cf229129479a385de3de9f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

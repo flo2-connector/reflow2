@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:343be327fe057d7572b64bfc595d39d94236e9eab9a01767132ea55f29a32361",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:core-test-program-in-memory",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
