@@ -191,6 +191,11 @@ When the thinking is done, ask which ideas the user wants to keep as intent. The
   one was — `replace_text` moves that one sentence (or appends a dated note) under the same
   revision guard, without re-sending the body.
 - **A promoted "this follows from those"** — a claim the person says stands because other records hold — is recorded as an **Inference** step (`add_inference`: its premises, its conclusion, and whether all, any one or k of them must hold), not as prose in the idea. capture-intent's routing table has the row.
+- **When the promotion is consequential** — a decision the person will act on now — and the
+  reasoning has premises worth checking, record it as an inference chain (`add_inference`): the
+  premises considered, the rule, and the chosen option as the conclusion. The chain is the
+  stated argument for the choice, not a summary of the brainstorm — every step can be checked.
+  Everything else from the thinking stays in the brainstorm's own record.
 - **Everything else stays exactly where it is.** Recorded as considered, never deleted — the roads
   not taken are part of the design's memory, and a later session that finds an old idea knows both
   that it was thought of and that it was not chosen.
