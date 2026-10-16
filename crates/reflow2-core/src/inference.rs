@@ -47,6 +47,19 @@
 //! no Inference reads exactly as it did: every one of those paths asks one
 //! adjacency question first and finds nothing.
 //!
+//! # Who confirmed the step (requirement B)
+//!
+//! `req:a-design-can-be-a-proof` (Anthony, 2026-10-14): each step records
+//! `confirmed_by` (who), `confirmed_how` (`person`, `checker`, or
+//! `unconfirmed`) and `confirmed_at` (when). A conclusion reads as **proven**
+//! only when every step in at least one holding derivation chain is confirmed;
+//! otherwise it reads as **shown** (holds but unconfirmed) or **unproven** (no
+//! derivation holds). Served as `proof_status` on `get_node` for a concluded
+//! node.
+//!
+//! An opposing CONTRADICTS edge (a counterexample) makes the target's truth
+//! `fails`, and every step resting on it is reported broken.
+//!
 //! # What it does not check
 //!
 //! The CONTENT of the statements. Whether Q really is what P → Q gives from P
@@ -170,6 +183,67 @@ pub struct PremiseReading {
     pub why: String,
 }
 
+/// Who confirmed a step: a person, a checker, or nobody.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct Confirmation {
+    /// `unconfirmed`, `person` or `checker`.
+    pub confirmed_how: String,
+    /// Who: a contributor id (`who:ajs`) or a checker's name.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub confirmed_by: Option<String>,
+    /// When, as an ISO 8601 timestamp.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub confirmed_at: Option<String>,
+}
+
+impl Default for Confirmation {
+    fn default() -> Self {
+        Confirmation {
+            confirmed_how: "unconfirmed".to_string(),
+            confirmed_by: None,
+            confirmed_at: None,
+        }
+    }
+}
+
+impl Confirmation {
+    pub fn is_confirmed(&self) -> bool {
+        self.confirmed_how == "person" || self.confirmed_how == "checker"
+    }
+}
+
+/// Whether a conclusion reads as proven, shown, or unproven.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ProofStatus {
+    /// Every step in at least one holding derivation chain is confirmed.
+    Proven,
+    /// At least one derivation holds, but one or more steps are unconfirmed.
+    Shown,
+    /// No derivation holds (the conclusion does not follow).
+    Unproven,
+}
+
+impl ProofStatus {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            ProofStatus::Proven => "proven",
+            ProofStatus::Shown => "shown",
+            ProofStatus::Unproven => "unproven",
+        }
+    }
+}
+
+/// A conclusion's proof status: proven, shown, or unproven, with why.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ProofReading {
+    pub status: ProofStatus,
+    pub why: String,
+    pub total_steps: usize,
+    pub confirmed_steps: usize,
+    pub unconfirmed_steps: usize,
+}
+
 /// What a step's rule gives over its premises, read now. Served on
 /// `get_node` for an Inference as `inference_reading`.
 #[derive(Debug, Clone, serde::Serialize)]
@@ -198,6 +272,8 @@ pub struct InferenceReading {
     /// (no premises, a `k` outside its range, an unknown rule, a circle).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
+    /// Who confirmed this step, how, and when.
+    pub confirmation: Confirmation,
 }
 
 /// What losing a premise does to one step: the change walk's row.
@@ -315,6 +391,7 @@ struct StepRecord {
     parsed: Result<InferenceRule, String>,
     k: Option<i64>,
     rule_name: Option<String>,
+    confirmation: Confirmation,
 }
 
 fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
@@ -401,11 +478,19 @@ impl DesignGraph {
                 INFERENCE_RULES.join(", ")
             )),
         };
+        let confirmation = Confirmation {
+            confirmed_how: prop(&n.properties, "confirmed_how")
+                .unwrap_or("unconfirmed")
+                .to_string(),
+            confirmed_by: prop(&n.properties, "confirmed_by").map(str::to_string),
+            confirmed_at: prop(&n.properties, "confirmed_at").map(str::to_string),
+        };
         Ok(Some(StepRecord {
             rule,
             parsed,
             k,
             rule_name: prop(&n.properties, "rule_name").map(str::to_string),
+            confirmation,
         }))
     }
 
@@ -476,6 +561,28 @@ impl DesignGraph {
             return Ok((
                 Truth::Fails,
                 "discontinued by an accepted decision".to_string(),
+            ));
+        }
+        // A COUNTEREXAMPLE CONTRADICTS the claim it refutes, and the claims
+        // resting on it are reported broken (req:a-design-can-be-a-proof). An
+        // opposing CONTRADICTS makes the target fail, like VIOLATES on a
+        // Constraint; `supporting` (corroboration) does not.
+        let contradictors: Vec<String> = self
+            .incoming(id, Some(edge::CONTRADICTS))?
+            .into_iter()
+            .filter(|e| {
+                e.properties
+                    .get("alignment")
+                    .and_then(Value::as_str)
+                    .unwrap_or("opposing")
+                    != "supporting"
+            })
+            .map(|e| e.from_id)
+            .collect();
+        if !contradictors.is_empty() {
+            return Ok((
+                Truth::Fails,
+                format!("contradicted by {}", contradictors.join(", ")),
             ));
         }
         let Some(n) = self.get_node(&node_type, id)? else {
@@ -656,6 +763,7 @@ impl DesignGraph {
                 unknown: 0,
                 premises: Vec::new(),
                 note: Some("no Inference holds this id".to_string()),
+                confirmation: Confirmation::default(),
             });
         };
         let mut reading = InferenceReading {
@@ -670,6 +778,7 @@ impl DesignGraph {
             unknown: 0,
             premises: Vec::new(),
             note: None,
+            confirmation: rec.confirmation,
         };
         if ev.lost.contains(inference_id) {
             reading.verdict = Truth::Fails;
@@ -1023,6 +1132,124 @@ impl DesignGraph {
         }))
     }
 
+    /// The proof status of a concluded node: proven, shown, or unproven.
+    /// `None` when the node is not concluded by any Inference.
+    ///
+    /// - **Proven**: at least one derivation chain holds AND every step in it
+    ///   is confirmed (`confirmed_how` is `person` or `checker`).
+    /// - **Shown**: at least one derivation holds, but one or more steps in
+    ///   every holding chain are unconfirmed.
+    /// - **Unproven**: no derivation holds.
+    pub fn proof_reading(&self, id: &str) -> Result<Option<ProofReading>, DynoError> {
+        let top_steps = self.inferences_concluding(id)?;
+        if top_steps.is_empty() {
+            return Ok(None);
+        }
+        // A conclusion contradicted by an opposing CONTRADICTS is unproven
+        // regardless of its steps — a counterexample overrides derivation.
+        let (conclusion_truth, why) = self.premise_truth(id)?;
+        if conclusion_truth == Truth::Fails {
+            return Ok(Some(ProofReading {
+                status: ProofStatus::Unproven,
+                why,
+                total_steps: 0,
+                confirmed_steps: 0,
+                unconfirmed_steps: 0,
+            }));
+        }
+        let lost = BTreeSet::new();
+        let mut ev = Eval::new(&lost);
+        let mut any_holds = false;
+        let mut any_proven_chain = false;
+        let mut total = 0usize;
+        let mut confirmed = 0usize;
+        let mut visited: BTreeSet<String> = BTreeSet::new();
+        visited.insert(id.to_string());
+        for s in &top_steps {
+            let reading = self.step_reading(s, &mut ev, INFERENCE_DEPTH)?;
+            if reading.verdict == Truth::Holds {
+                any_holds = true;
+                let mut chain_confirmed = true;
+                let mut chain_total = 0usize;
+                let mut chain_confirmed_count = 0usize;
+                self.proof_chain_walk(
+                    s,
+                    &mut chain_confirmed,
+                    &mut chain_total,
+                    &mut chain_confirmed_count,
+                    &mut visited.clone(),
+                )?;
+                total += chain_total;
+                confirmed += chain_confirmed_count;
+                if chain_confirmed {
+                    any_proven_chain = true;
+                }
+            }
+        }
+        let unconfirmed = total.saturating_sub(confirmed);
+        if any_proven_chain {
+            Ok(Some(ProofReading {
+                status: ProofStatus::Proven,
+                why: "every step in at least one holding derivation is confirmed".to_string(),
+                total_steps: total,
+                confirmed_steps: confirmed,
+                unconfirmed_steps: unconfirmed,
+            }))
+        } else if any_holds {
+            Ok(Some(ProofReading {
+                status: ProofStatus::Shown,
+                why: format!(
+                    "at least one derivation holds, but {unconfirmed} step(s) are unconfirmed"
+                ),
+                total_steps: total,
+                confirmed_steps: confirmed,
+                unconfirmed_steps: unconfirmed,
+            }))
+        } else {
+            Ok(Some(ProofReading {
+                status: ProofStatus::Unproven,
+                why: "no derivation holds".to_string(),
+                total_steps: total,
+                confirmed_steps: confirmed,
+                unconfirmed_steps: unconfirmed,
+            }))
+        }
+    }
+
+    fn proof_chain_walk(
+        &self,
+        step_id: &str,
+        chain_confirmed: &mut bool,
+        chain_total: &mut usize,
+        chain_confirmed_count: &mut usize,
+        visited: &mut BTreeSet<String>,
+    ) -> Result<(), DynoError> {
+        if !visited.insert(step_id.to_string()) {
+            return Ok(());
+        }
+        if let Some(rec) = self.step_record(step_id)? {
+            *chain_total += 1;
+            if rec.confirmation.is_confirmed() {
+                *chain_confirmed_count += 1;
+            } else {
+                *chain_confirmed = false;
+            }
+        }
+        for premise_id in self.premises_of(step_id)? {
+            let concluding = self.inferences_concluding(&premise_id)?;
+            for sub_step in &concluding {
+                self.proof_chain_walk(
+                    sub_step,
+                    chain_confirmed,
+                    chain_total,
+                    chain_confirmed_count,
+                    visited,
+                )?;
+            }
+        }
+        Ok(())
+    }
+
     /// Every node in this design that is a foundation (a terminal premise) of
     /// at least one conclusion. The design-wide view: "which nodes are axioms
     /// that something rests on?"
@@ -1307,6 +1534,27 @@ impl DesignGraph {
         if let Some(w) = &spec.warrant {
             props.insert("warrant".into(), Value::String(w.clone()));
         }
+        if let Some(by) = &spec.confirmed_by {
+            props.insert("confirmed_by".into(), Value::String(by.clone()));
+        }
+        if let Some(how) = &spec.confirmed_how {
+            let valid = ["unconfirmed", "person", "checker"];
+            if !valid.contains(&how.as_str()) {
+                return Err(invalid(
+                    "confirmed_how",
+                    format!(
+                        "'{}' is not a valid confirmation: the legal values are `person` \
+                         (a named human), `checker` (a proof-checking program) and \
+                         `unconfirmed` (nobody has)",
+                        how
+                    ),
+                ));
+            }
+            props.insert("confirmed_how".into(), Value::String(how.clone()));
+        }
+        if let Some(at) = &spec.confirmed_at {
+            props.insert("confirmed_at".into(), Value::String(at.clone()));
+        }
         let mut builder = Props::new();
         for (k, v) in props {
             builder = builder.set(&k, v);
@@ -1388,6 +1636,12 @@ pub struct InferenceSpec {
     pub warrant: Option<String>,
     /// A short handle; composed from the rule and conclusion when absent.
     pub name: Option<String>,
+    /// Who confirmed this step: a contributor id or a checker's name.
+    pub confirmed_by: Option<String>,
+    /// How: `person`, `checker`, or absent (unconfirmed).
+    pub confirmed_how: Option<String>,
+    /// When, as an ISO 8601 timestamp.
+    pub confirmed_at: Option<String>,
 }
 
 /// What [`DesignGraph::add_inference`] wrote.

@@ -2998,6 +2998,9 @@ impl ReflowService {
             rule_name: req.rule_name.clone(),
             warrant: req.warrant.clone(),
             name: req.name.clone(),
+            confirmed_by: req.confirmed_by.clone(),
+            confirmed_how: req.confirmed_how.clone(),
+            confirmed_at: req.confirmed_at.clone(),
         };
         // Which links were there before the call, so the reply can say what it
         // drew and what it found already drawn.
@@ -4350,4 +4353,17 @@ pub struct AddInferenceReq {
     /// A short handle. Composed from the rule and the conclusion when omitted.
     #[serde(default)]
     pub name: Option<String>,
+    /// WHO confirmed this step: a contributor id (`who:ajs`) or a proof
+    /// checker's name. Absent means unconfirmed.
+    #[serde(default)]
+    pub confirmed_by: Option<String>,
+    /// HOW: `person` (a named human), `checker` (a proof-checking program), or
+    /// omit for `unconfirmed`. A proof reads PROVEN only when every step is
+    /// confirmed.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::inference_confirmed_how_opt")]
+    pub confirmed_how: Option<String>,
+    /// WHEN, as an ISO 8601 timestamp. Absent when unconfirmed.
+    #[serde(default)]
+    pub confirmed_at: Option<String>,
 }

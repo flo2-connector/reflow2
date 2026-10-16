@@ -352,3 +352,192 @@ async fn a_claimed_met_past_its_inference_is_a_gap_and_a_cycle_is_refused() {
         "a refused step stores nothing: {node:#}"
     );
 }
+
+#[tokio::test]
+async fn confirmation_is_recorded_and_read_on_the_step() {
+    let s = session().await;
+    s.requirement("req:p").await;
+    s.check("ver:passing", "passing").await;
+
+    // An unconfirmed step reads confirmed_how: unconfirmed.
+    let reply = s
+        .ok(
+            "add_inference",
+            json!({
+                "id": "inf:unconfirmed",
+                "rule": "all",
+                "premises": ["ver:passing"],
+                "conclusion": "req:p"
+            }),
+        )
+        .await;
+    let reading = &reply["inference_reading"];
+    assert_eq!(reading["confirmation"]["confirmed_how"], "unconfirmed");
+    assert!(reading["confirmation"]["confirmed_by"].is_null());
+
+    // A confirmed step records who, how, and when.
+    s.requirement("req:q").await;
+    let reply = s
+        .ok(
+            "add_inference",
+            json!({
+                "id": "inf:confirmed",
+                "rule": "all",
+                "premises": ["ver:passing"],
+                "conclusion": "req:q",
+                "confirmed_by": "who:ajs",
+                "confirmed_how": "person",
+                "confirmed_at": "2026-10-16T12:00:00Z"
+            }),
+        )
+        .await;
+    let reading = &reply["inference_reading"];
+    assert_eq!(reading["confirmation"]["confirmed_how"], "person");
+    assert_eq!(reading["confirmation"]["confirmed_by"], "who:ajs");
+    assert_eq!(
+        reading["confirmation"]["confirmed_at"],
+        "2026-10-16T12:00:00Z"
+    );
+
+    // get_node on the step also carries confirmation.
+    let node = s.ok("get_node", json!({"id": "inf:confirmed"})).await;
+    assert_eq!(
+        node["node"]["inference_reading"]["confirmation"]["confirmed_how"],
+        "person"
+    );
+}
+
+#[tokio::test]
+async fn proof_status_is_shown_when_unconfirmed_and_proven_when_confirmed() {
+    let s = session().await;
+    s.requirement("req:theorem").await;
+    s.check("ver:base-case", "passing").await;
+
+    // One unconfirmed step: conclusion is shown, not proven.
+    s.ok(
+        "add_inference",
+        json!({
+            "id": "inf:step-1",
+            "rule": "all",
+            "premises": ["ver:base-case"],
+            "conclusion": "req:theorem"
+        }),
+    )
+    .await;
+    let node = s.ok("get_node", json!({"id": "req:theorem"})).await;
+    let ps = &node["node"]["proof_status"];
+    assert_eq!(ps["status"], "shown", "unconfirmed step → shown: {ps:#}");
+    assert!(
+        ps["unconfirmed_steps"].as_u64().unwrap() > 0,
+        "at least one unconfirmed: {ps:#}"
+    );
+
+    // Confirm the step: conclusion becomes proven.
+    s.ok(
+        "add_inference",
+        json!({
+            "id": "inf:step-1",
+            "rule": "all",
+            "premises": [],
+            "conclusion": "req:theorem",
+            "confirmed_by": "who:ajs",
+            "confirmed_how": "person",
+            "confirmed_at": "2026-10-16T12:00:00Z"
+        }),
+    )
+    .await;
+    let node = s.ok("get_node", json!({"id": "req:theorem"})).await;
+    let ps = &node["node"]["proof_status"];
+    assert_eq!(ps["status"], "proven", "all confirmed → proven: {ps:#}");
+    assert_eq!(ps["unconfirmed_steps"], 0);
+}
+
+#[tokio::test]
+async fn a_counterexample_contradicts_and_breaks_downstream_steps() {
+    let s = session().await;
+    // req:false-claim is concluded by a step resting on ver:evidence.
+    s.requirement("req:false-claim").await;
+    s.check("ver:evidence", "passing").await;
+    s.ok(
+        "add_inference",
+        json!({
+            "id": "inf:deduction",
+            "rule": "all",
+            "premises": ["ver:evidence"],
+            "conclusion": "req:false-claim"
+        }),
+    )
+    .await;
+
+    // Before the counterexample, the claim holds.
+    let node = s.ok("get_node", json!({"id": "req:false-claim"})).await;
+    assert_eq!(
+        node["node"]["proof_status"]["status"], "shown",
+        "before: {:#}",
+        node["node"]["proof_status"]
+    );
+
+    // Record a counterexample that contradicts it.
+    s.requirement("req:counterexample").await;
+    s.ok(
+        "create_edge",
+        json!({
+            "edge_type": "CONTRADICTS",
+            "from_type": "Requirement",
+            "from_id": "req:counterexample",
+            "to_type": "Requirement",
+            "to_id": "req:false-claim"
+        }),
+    )
+    .await;
+
+    // Now the claim reads as failing (contradicted) and the proof is unproven.
+    let node = s.ok("get_node", json!({"id": "req:false-claim"})).await;
+    assert_eq!(
+        node["node"]["proof_status"]["status"], "unproven",
+        "contradicted → unproven: {:#}",
+        node["node"]["proof_status"]
+    );
+
+    // req:downstream rests on req:false-claim; the blast radius reports it.
+    s.requirement("req:downstream").await;
+    s.ok(
+        "add_inference",
+        json!({
+            "id": "inf:uses-claim",
+            "rule": "all",
+            "premises": ["req:false-claim"],
+            "conclusion": "req:downstream"
+        }),
+    )
+    .await;
+    let reading = s.ok("get_node", json!({"id": "inf:uses-claim"})).await;
+    assert_eq!(
+        reading["node"]["inference_reading"]["verdict"], "fails",
+        "downstream step fails: {:#}",
+        reading["node"]["inference_reading"]
+    );
+}
+
+#[tokio::test]
+async fn a_bad_confirmed_how_is_refused() {
+    let s = session().await;
+    s.requirement("req:p").await;
+    s.check("ver:c", "passing").await;
+    let err = s
+        .refused(
+            "add_inference",
+            json!({
+                "id": "inf:bad",
+                "rule": "all",
+                "premises": ["ver:c"],
+                "conclusion": "req:p",
+                "confirmed_how": "robot"
+            }),
+        )
+        .await;
+    assert!(
+        err.contains("person") && err.contains("checker"),
+        "refused with legal values: {err}"
+    );
+}
