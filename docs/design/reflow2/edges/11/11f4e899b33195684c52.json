@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e9adaddbeedc76ba7a1905fb6f9436e139e1c5a921c223b2184658a1a671a101",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:core-test-every-test-file-runs-in-exactly-one-program",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:no-test-lost-in-core-consolidation"
+}
