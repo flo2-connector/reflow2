@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9baac3223683de97d82bfbf29b6fd260abc3942875ea3df4330354ac13395905",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:served-text-tells-agents-when-to-record-inference-chains",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

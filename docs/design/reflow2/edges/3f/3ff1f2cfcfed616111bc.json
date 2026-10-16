@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4a58ee80513ab9ffb6ad8f34eea7a8582f2197ff18976ef2f72e06ae53ea54ab",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-4e75a7deeaa87fa9",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:cfc622310298786ec38c2c9f7491c3e118992317e19a9ed57c0d651043787578",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:grok-capture-intent-skill-mirror"
+}

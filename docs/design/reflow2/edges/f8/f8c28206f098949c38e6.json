@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7cff02ac10ec7ef769bf01f6c788ce13d9f834c85cc17efe799ae2f0e4f89df4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:served-text-tells-agents-when-to-record-inference-chains",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:b396dc31554d1cadad36f40f8dc7409981be9a7b5e47bf69a34115853a7f07fb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kit-instructions"
+}

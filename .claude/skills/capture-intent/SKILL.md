@@ -167,6 +167,11 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
    the approver is the signature on it. When the word is already in hand as you capture, pass
    `status: "accepted"` and `approver` to `add_requirement` itself: one call, and a settling
    status without an approver is refused rather than recorded with nobody's name.
+
+   When a decision or requirement is consequential — the person will act on it now — and the
+   reasoning has premises worth checking, record it as an inference chain (`add_inference`): the
+   premises, the rule, and the conclusion. This is the capture-time instruction; **root-cause**
+   and **brainstorm** add it at their own decision points.
 3. **If you captured from a DOCUMENT, register it — now, while the file is still in front of you.**
    When the intent came out of something you read (a brief, a feedback log, a handover note, a spec
    someone sent), `add_artifact` with `artifact_type: document` and `location` set to the path, then

@@ -232,6 +232,15 @@ loads it and it takes precedence over the served one of the same name.
      attach each spender with `constrains` (+ its `contribution` and `basis`). `budget_report`
      answers whether it fits — honestly: an unstated contribution makes the verdict
      `incomplete`, never a quietly partial sum.
+   - **When you make a consequential recommendation** — a decision the person will act on, a
+     cause you pin down, a choice you settle — record it as an inference chain (`add_inference`):
+     the premises (each one a record the person can point at), the rule (all, any one, or k of
+     n), and the conclusion. Everything else stays prose — the chains that matter are not buried
+     among chains that don't. The chain is your stated argument, made so that every step can be
+     checked; it is not a transcript of how you reached it. Never say "this is how the AI
+     thought" — say "every step can be checked." A short rationale paragraph may stay beside the
+     chain for the reader. The three skills that produce the most consequential recommendations
+     — **root-cause**, **brainstorm** and **capture-intent** — each name their own moment.
 2. **DETECT gaps and ask.** Run `detect_gaps`. For each gap, call `gap_to_prompt` to turn it
    into a plain question (see the handshake below), ask the **user**, then write their answer
    back as a Requirement or a node property. Do this **before** building. If the user judges a
