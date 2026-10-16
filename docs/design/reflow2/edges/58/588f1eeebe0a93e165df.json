@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:490b3fe8a09328df4d0b121eeeaa7efe14afb666bef3f286e638f49719eb0c32",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-line-of-reasoning-reads-back-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

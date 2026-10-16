@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b16fb25d533dd63f9bf3c45ac6c8631f7fabdb104a5577b36cf618d019d5e710",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-line-of-reasoning-reads-back-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-line-of-reasoning-reads-back-tests"
+}

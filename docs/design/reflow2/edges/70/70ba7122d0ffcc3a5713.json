@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3a8ec75a11cc0254fc00007bc36e23e209399af5a813b8f2bee76c04c0d107c5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:toolsnap-reasoning-report",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

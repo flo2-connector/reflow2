@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b4cb1a9cfc86fa54ca67d568fb1af9655c2af9f3f18a0b7c6e1323bbd992fbc5",
+  "node_id": "dec:contested-by-design-is-a-decision-status",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "A new Decision status, `contested`: a question kept open on purpose, both sides on the record, no verdict owed. The nodes of the dispute are GOVERNED_BY it. Like `deferred`, it is the owner's word, carries an approver, and is not debt: it settles intent, so loop_status and what_next do not count it as owed. detect_defects does not report a contradiction between two nodes it governs and counts them in swept.suppressed_by_held_open instead. Its own truth reads unknown, never guessed.",
+    "kind": "choice",
+    "name": "\"Contested, by design\" is said with a Decision set to `contested` that governs both sides of the dispute",
+    "rationale": "Anthony chose \"Decision status\" on 2026-10-16, at the start of requirement A. Part 3 of the requirement: an argument for and against may keep both sides with no verdict, and the counts must not read that as unfinished work. Holding a question open is itself a decision, so it should carry who decided and why, which a Decision already does. The `deferred` precedent (2026-09-12) says a status earns its place when something reads it; three things read this one: the contradiction defect, the settle rule and the truth reading. Not chosen: a flag on the objection link, which is one write but carries no rationale and no approver. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4f7885321fb4b437c728fa4e99448fa79fe4bf91e47c55326ec9f15a72e79a7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:7e53ed90258f173e5262ac6bb0e53497e83f9233f1bac146355aa0bb460d37c2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-inference-says-how-premises-support-a-conclusion"
+}

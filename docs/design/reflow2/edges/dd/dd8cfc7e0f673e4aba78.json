@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f56690bb8249775e48e982e69db68cb8149810fc82115732a9bad2ad378b6249",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-owners-choice-of-a-recommendation-is-recorded-as-a-line-of-reasoning",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

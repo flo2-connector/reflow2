@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cc3fa93b30fb0bb179bcf1a103075f450fd9dc9ad66d0d309ab922c6ed955f7f",
+  "node_id": "art:reasoning-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The reasoning_report walk and read: roots (a claim, or every top conclusion and contested Decision), the walk over premises, objections and the sides a contested Decision governs, each node's reading (truth, proof status, support with warrants, objections and how each stands, cited sources), and the summary lists: rests_on, uncited_premises, still_contested, contested_by_design, unsupported. Carries WHAT_THIS_MEANS.",
+    "location": "crates/reflow2-core/src/reasoning.rs",
+    "name": "crates/reflow2-core/src/reasoning.rs — a line of reasoning, read back",
+    "status": "realized"
+  }
+}

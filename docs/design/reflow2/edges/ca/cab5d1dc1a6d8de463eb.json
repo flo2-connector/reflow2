@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:36a3681fe0229b9a3c2edf8b2a0668c397a01bea7bc0e16b9614adbaaf9863b0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:alternatives",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

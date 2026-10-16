@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:54ac384b43a44ffb3d2834c589a4893b1eebc91172bfdafd21bd6202dd823dcc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a1a6917c6724d680a70168a1de75c8b3806a0ec2bb50b36609b369b3781ba125",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reports-without-an-inference-fixture"
+}

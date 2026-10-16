@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3ba2ebfeb81728525208a63d8c6435a61096f0ddacf7eed6d65aa15c84142d5b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:two-files-each-carry-two-artifacts-since-the-proof-who-confirmed-record-2026-10-16",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

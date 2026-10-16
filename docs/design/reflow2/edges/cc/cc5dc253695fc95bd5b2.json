@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3dfa1c3d5ea7a8bee940247581858875551da06c14cf1066e8765d9995f02fcd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:settles",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

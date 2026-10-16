@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:bb4208dfbdaffba352c97ba01be330366fb356e02f1dadc3d2d49f29cbce9c91",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:contested-by-design-is-a-decision-status",
+  "properties": {
+    "approved_at": "2026-10-16",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
