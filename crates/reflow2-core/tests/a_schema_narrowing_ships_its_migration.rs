@@ -32,7 +32,7 @@
 //!
 //! ```text
 //! REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features \
-//!     --test a_schema_narrowing_ships_its_migration
+//!     --test in_memory a_schema_narrowing_ships_its_migration
 //! ```
 
 use std::path::PathBuf;

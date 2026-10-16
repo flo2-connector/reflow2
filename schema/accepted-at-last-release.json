@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.84.0",
+  "reflow2_version": "0.85.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -480,6 +480,7 @@
         "type": "enum",
         "values": [
           "accepted",
+          "contested",
           "deferred",
           "proposed",
           "rejected",
@@ -861,6 +862,42 @@
         "type": "string",
         "required": true,
         "refuses_null": true
+      }
+    },
+    "Inference": {
+      "confirmed_at": {
+        "type": "string"
+      },
+      "confirmed_by": {
+        "type": "string"
+      },
+      "confirmed_how": {
+        "type": "enum",
+        "values": [
+          "checker",
+          "person",
+          "unconfirmed"
+        ]
+      },
+      "k": {
+        "type": "int"
+      },
+      "name": {
+        "type": "string"
+      },
+      "rule": {
+        "type": "enum",
+        "values": [
+          "all",
+          "any",
+          "k_of_n"
+        ]
+      },
+      "rule_name": {
+        "type": "string"
+      },
+      "warrant": {
+        "type": "string"
       }
     },
     "Interface": {
@@ -1752,6 +1789,14 @@
         }
       }
     },
+    "CONCLUDES": {
+      "from": [
+        "Inference"
+      ],
+      "to": [
+        "*"
+      ]
+    },
     "CONSTRAINS": {
       "from": [
         "Constraint",
@@ -2291,6 +2336,14 @@
       ],
       "to": [
         "DesignEpoch"
+      ]
+    },
+    "PREMISE_OF": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "Inference"
       ]
     },
     "PRODUCES": {
