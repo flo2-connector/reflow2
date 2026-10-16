@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01d205160667e4cafb7dec40aa6848dfd83c6a34bd9b34c49fac374f2698825f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:1a49d64c2485923daf4e089632fb3dfa7bdac4cd6397f78ac2cd519bc8f6d5d8"
+  },
+  "to_id": "art:test-a-ripple-is-carried-on-with-arriving-from"
+}

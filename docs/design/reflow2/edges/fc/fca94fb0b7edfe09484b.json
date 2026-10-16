@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aa47779d1cb9ff820af98ed0b773721ba06f7c1556f09c736ff5ba7dfba2c160",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:0998f786ebd93deb0dd264f16e67201a1ce9d4f9a628c71a5102e67368e060d5"
+  },
+  "to_id": "art:grok-brainstorm-skill-mirror"
+}

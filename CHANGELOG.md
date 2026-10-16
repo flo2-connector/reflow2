@@ -31,6 +31,303 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.85.0] — 2026-10-16
+
+**Minor. A design can hold a line of reasoning: a stated step from premises to a conclusion,
+checked for form, with what it rests on, who confirmed each step, and a read-back of the whole
+argument.** It contains #747 to #761 (#750 was a design record only):
+- the `Inference` record and its check (#754);
+- the axioms a conclusion rests on (#757);
+- proof status and who confirmed each step (#760);
+- the line-of-reasoning read-back, objections that count as far as they hold, and the
+  `contested` decision status (#761);
+- mathematics' own words served for reflow2's types (#755);
+- served instructions that ask an agent to record a consequential recommendation as an inference
+  chain (#759);
+- a merge's survivor picked by a person (#749);
+- the deprecation registry (#751) and its first entry, the unused `Anchor` type (#752), told to
+  the MCP users before the release ships (#753);
+- the site republished from main (#748);
+- everyday builds without RocksDB and fewer test programs, for contributors (#756, #758);
+- #747, which re-blessed 0.84.0's surface record.
+
+The MCP surface only grows, by two tools: `add_inference` and `reasoning_report` (199, from 197).
+- Replies gain fields: `inference_reading`, `foundations` and `proof_status` on `get_node`, an
+  `inferences` list on every blast radius, `swept.suppressed_by_held_open` on `detect_defects`,
+  and a merge's `survivor` block on `propose_heal`.
+- `detect_gaps` gains one finding, `conclusion_does_not_follow`, which looks only at steps
+  someone drew.
+- **The schema stamp moves:** one node type, two edge types, and `Decision.status` gains
+  `contested`. Measured at this cut, 0.84.0 refuses both a store 0.85.0 has opened and an export
+  0.85.0 wrote.
+
+**What to do:**
+- Upgrade every seat together, after snapshotting any shared server's store
+  ([docs/upgrading-to-v0.85.0.md](docs/upgrading-to-v0.85.0.md)).
+- A script that hands `propose_heal`'s proposal straight to `apply_heal` must now ask the person
+  which node to keep when a merge needs a pick.
+- The `Anchor` type is removed in the next release.
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary:
+- `reflow2 write add_inference` records a step;
+- `reflow2 read get_node` shows a step's verdict and a conclusion's foundations and proof status;
+- `reflow2 read reasoning_report` reads a line of reasoning back.
+
+**Still needs a hosted gateway such as flo2.io:** the same as in 0.84.0, the hub view (asking a
+hub and hearing from every member, the merged `search_design`, and cross-design reads by graph
+id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
+
+### Added
+
+- **A design can now say how its premises support a conclusion, and reflow2 checks that the
+  conclusion follows.** A new record, an `Inference`, sits between the premises and the one
+  conclusion they support, and holds the rule: `all` (every premise must hold), `any` (one is
+  enough, for redundant support) or `k_of_n` with its `k` (a quorum). A named rule such as modus
+  ponens is `all` with `rule_name: modus ponens`, and `warrant` says why, in words a person can
+  challenge. `add_inference` writes the step in one call: the rule, the premises, the conclusion
+  and those optional fields. It refuses a bad rule or `k` with the legal values, a premise or
+  conclusion that does not exist, and a circle, before anything is written. Premises link in with
+  the new `PREMISE_OF` edge, and the conclusion links out with `CONCLUDES`.
+  reflow2 then reads each premise's truth from what it already computes. A requirement holds when
+  it is delivered or `met`, and fails when `dropped`. A check holds when `passing`, a decision
+  when `accepted`, and a constraint when nothing violates it. Any other record is `unknown`, never
+  guessed. reflow2 evaluates the rule over holds, fails and unknown, and the result shows in four
+  reads that already exist:
+  - **delivery:** a requirement a step concludes is delivered when the step holds;
+  - **every blast radius** (`propagate_change`, `propagate_from`): a new `inferences` list names
+    each step a changed premise reaches as `broken`, `weakened` (it still stands on its other
+    premises) or `unknown`;
+  - **`get_node`** on a step: its verdict, as `inference_reading`;
+  - **`detect_gaps`:** a new finding, `conclusion_does_not_follow`, names every requirement
+    marked `met` (or check `passing`, decision `accepted`, capability `verified`) that the steps
+    concluding it do not support. It is one low-key finding however many cases there are, it
+    looks only at steps someone drew, and it reports a status without changing it.
+
+  It checks the form, never the content: a false premise passes.
+  **Nothing changes for a design that records no `Inference`.** Delivery, every blast radius,
+  `get_node`, the gaps and the defects read exactly as before. One addition reaches every
+  design: `derived_report` lists one more declared relation, `follows`, with a count of 0.
+  **What to do to see the new tool:** a session started before the upgrade has the old tool
+  list, so restart it, or reconnect with `/mcp` once the server it reaches runs this release (a
+  local shared daemon needs `--stop-shared` first, as AGENTS.md says). A design hosted on
+  flo2.io serves the new tool only after flo2.io runs this release and flo2 regenerates its list
+  of offered tools: both its doors offer only the tools on that list. Its MCP endpoint also
+  declares that its tool list never changes, so after that a Claude Code session on a hosted
+  design must reconnect (`/mcp`) to see `add_inference`.
+  **Upgrade note:** the schema gains one node type and two edge types. A store this release has
+  opened is stamped with them, and an older reflow2 then refuses to open it, as for every
+  vocabulary addition before it.
+
+- **A conclusion now shows the axioms it ultimately rests on.** When a node is concluded by at
+  least one Inference, `get_node` includes a `foundations` field beside `inference_reading`: the
+  list of terminal premises (nodes not concluded by any Inference) that the conclusion's inference
+  chain rests on, each with its id, type, truth value, and why. The walk follows every
+  alternative derivation and takes the union, so a theorem supported two ways shows all the
+  axioms both paths need. The field carries an honest limit: "These foundations show what this
+  conclusion follows from. They never say the axioms are right: in an abstract design they are
+  chosen principles or values, and they may be contested by design."
+  When a node is not concluded by any Inference the field is omitted (no foundations to show, and
+  an absent field is "not a conclusion", not "rests on nothing"). No gap or finding fires.
+  A new declared derived relation, `foundations`, lists every node in the design that is a
+  foundation (an axiom) of at least one conclusion: the design-wide view.
+  **Nothing changes for a design that records no Inference.** The field is absent, the derived
+  relation counts 0, and every other read is unchanged.
+
+- **A conclusion says whether it is proven, and each step says who confirmed it.**
+  `add_inference` takes three optional fields:
+  - `confirmed_by`: who confirmed the step, as a contributor id or a proof checker's name;
+  - `confirmed_how`: `person`, `checker`, or `unconfirmed` when omitted;
+  - `confirmed_at`: when, as an ISO 8601 timestamp.
+
+  `get_node` on a step shows them in `inference_reading.confirmation`. On a node a step
+  concludes, `get_node` adds `proof_status`:
+  - `proven`: every step in at least one holding derivation is confirmed;
+  - `shown`: a derivation holds but a step in it is unconfirmed;
+  - `contested`: a derivation holds but an objection stands against the conclusion;
+  - `unproven`: no derivation holds, or an objection that holds refutes the conclusion.
+
+  A counterexample is a `CONTRADICTS` from the counterexample to the statement it breaks.
+  **Nothing changes for a design that records no `Inference`:** `proof_status` is absent.
+  **Upgrade note:** the schema gains three `Inference` properties, so a store this release has
+  opened is stamped with them.
+
+- **An objection counts as far as it holds.** An opposing `CONTRADICTS`, whether an objection or
+  a counterexample, is weighed by its own truth:
+  - one that holds (a passing check, a met requirement) refutes its target, and every step
+    resting on the target is reported broken;
+  - one not yet established leaves the target `unknown`, and its `proof_status` reads
+    `contested`;
+  - one that fails no longer counts. It fails when a reply that holds answers it, or when it is
+    rejected.
+
+  A reply is recorded the way the objection was: a `CONTRADICTS` from the reply to the objection.
+  Two claims that object to each other, with nothing else to settle it, both read `unknown`.
+  **What to do:** a counterexample meant to refute must itself hold, so record it as a check
+  that passes or a requirement that is met.
+- **A line of reasoning reads back in one call: `reasoning_report`.** An argument for and
+  against, an experiment's case, a paper's chain of claims or a legal case is recorded with
+  reflow2's own vocabulary:
+  - the claims, and the steps that support them (`add_inference`);
+  - premises taken as given (a Constraint);
+  - sources (an Artifact that `DOCUMENTS` a claim, with its `location`);
+  - objections and replies (`CONTRADICTS`).
+
+  For each claim, `reasoning_report` gives its computed truth, its steps with their rule, warrant
+  and who confirmed them, its objections and how each stands, and its cited sources. Then it
+  lists:
+  - `rests_on`: the premises the reasoning rests on;
+  - `uncited_premises`: those premises that cite no source;
+  - `still_contested`: the points still in dispute;
+  - `contested_by_design`: the disputes kept open on purpose;
+  - `unsupported`: every claim with no support.
+
+  Pass `claim` to read the reasoning under one claim, or omit it to read every top conclusion and
+  every contested decision. Every reply carries `what_this_means`: structure is not truth, a
+  source counts only when the design names it, and nothing in the reply is legal, medical or
+  other professional advice. A claim with no support is listed here and raises no gap.
+- **A Decision can be kept open on purpose: status `contested`.** Both sides stay on the record
+  and no verdict is owed, as in an argument for and against that is meant to stay one. Govern
+  each side of the dispute by the decision (`governed_by`). Like `deferred`, it is the owner's
+  word and not debt:
+  - the loop does not count it as owed;
+  - `detect_defects` does not report a contradiction between two nodes it governs, and counts
+    them in `swept.suppressed_by_held_open` instead;
+  - its own truth reads `unknown`.
+
+  **Upgrade note:** `Decision.status` gains a value, so the schema stamp moves. An older binary
+  opening a store that holds a `contested` decision does not know that value.
+
+- **An agent can find reflow2's type for a word from mathematics: "lemma", "hypothesis",
+  "proof by induction", "counterexample".** Each type now carries an `also_called` list by
+  field, with what each mapping means and what it does not. Mathematics is the first field: a theorem, proposition,
+  lemma, corollary or conjecture is a Requirement; a hypothesis, axiom or definition is a
+  Constraint; a proof strategy or approach is a Decision; a cited result or reference is an
+  Artifact; a counterexample (A refutes B) is a CONTRADICTS edge. An inference step, a proof step,
+  a rule of inference, a two-column proof's row and the methods of proof (direct proof, modus
+  ponens, proof by induction or mathematical induction, contraposition, proof by contradiction,
+  construction, exhaustion or double counting, case analysis, the probabilistic method) are an
+  Inference, with each premise a
+  PREMISE_OF edge. A lemma held as a
+  Requirement whose status is `met` has been SHOWN. It is PROVEN only when every step it rests on
+  is confirmed, which `get_node` reports as `proof_status`.
+  - `describe_schema` with `node_type` set to a field's word answers the type that holds it:
+    `{"node_type": "lemma"}` answers Requirement, as `{"node_type": "Requirement"}` does, plus
+    `found_by_term` (the field, the term and what it means) and a `note`. Case and spacing do not
+    count. A word for an edge type, such as `counterexample` or `premise`, answers that edge
+    whole, with its `drawn_by` tools (for PREMISE_OF and CONCLUDES, `add_inference`, which
+    draws them with the step). Until now these calls were refused with "Unknown node type".
+  - Every node type's answer carries its `also_called` list, and so does every edge type in the
+    full listing.
+  - `find_tools` indexes each term against the tools that write its type, so "record a lemma"
+    ranks `add_requirement` first, "add a hypothesis" ranks `add_constraint` first and "a proof
+    by induction on n" ranks `add_inference` first. A method is named whole, and everyday
+    connectives ("therefore", "hence") are not terms, so "size the induction motor" and "the
+    load is high, therefore add a requirement" are not taken for mathematics. Each item a term found carries
+    `also_called`, saying which word found it. Its description now says it searches a field's
+    words too.
+
+  **Nothing a client already uses changes.** In tools/list only `find_tools`' description
+  changes, by the clause that says it searches a field's words; no tool's description or schema
+  carries a term. Every type's own name answers as before, a word that is
+  neither a type nor a term is refused as before, and a query in reflow2's own words ranks as
+  before. The only difference in any existing answer is the added `also_called` key, and, in an
+  answer already over its reply budget, the `budget` block's counts, which now include it.
+- **Anything a client can call or read is removed only after a release that
+  announced it.** reflow2 now has one place that declares a deprecation, and
+  what a client sees while something is going: a deprecated tool's or argument's
+  description opens with "DEPRECATED in <version>, removed in the next release:
+  <what to do>", `describe_schema` marks a deprecated node type, property or edge
+  type with `deprecated` and lists every deprecation under `deprecations`, and a
+  call that uses a deprecated item gets a `deprecation_notice` in its reply. The
+  item still works exactly as before; only the next release may remove it, and a
+  tool removed then still answers its old name with what to do, for that one
+  release. Nothing is deprecated yet, so tools/list and every reply are unchanged.
+  **What to do:** nothing now. When a release deprecates something, its
+  changelog says so under "Deprecated", with what to do.
+
+
+### Changed
+
+- **For contributors to reflow2: everyday builds and tests run without RocksDB, and the MCP
+  crate's tests are four test programs instead of one per file.** `reflow2-mcp` has a `rocksdb`
+  feature, on by default, so a release, `cargo install`, the Docker images, the installer and the
+  launcher build exactly as before. `cargo dev-test`, a cargo alias, builds and tests both crates
+  without it, on the in-memory backend: it never compiles RocksDB's C++, and it skips only the
+  `on_disk` test program, which CI's full job runs on every pull request (`cargo full-test` runs
+  it locally). A `reflow2-mcp` built without the feature refuses every store in a folder, naming
+  the feature and the fix, and never serves an in-memory design in its place. The crate's test
+  files stay where they were and are modules of `in_memory`, `on_disk`, and two programs that
+  need a process of their own, so one file's tests run with
+  `cargo test -p reflow2-mcp --test in_memory <file>::`; `tools/run_to_files.py` still reports
+  each file on its own. Nothing changes for anyone using reflow2.
+
+- **Which node a merge keeps is now a person's choice: `propose_heal` recommends, and `apply_heal`
+  keeps the node the person picks.** The old rule picked the survivor by provenance and then by
+  node id, and read nothing of status, priority or connections. On reflow2's own design the id
+  decided all 11 same-type pairs. It kept `ctr:anthony` (10 edges) over `who:ajs` (1,353), and a
+  medium, accepted requirement over a critical, proposed one, and `apply_heal` refused the
+  swapped operation a person would have used to correct it. Now each merge in a proposal carries
+  a `survivor` block beside its existing fields: both `candidates`, each with its `reasons`
+  (provenance, standing, priority, status, connections, and which is newer), a `recommendation`,
+  the signal that `decided_by` it, and a `reason`. The merge's `keep_id` is the recommendation,
+  and it is given only when a real difference separates the two. The ladder is provenance, then
+  live over withdrawn, then priority, then settled over open status, then connections. Which is
+  newer is shown and never weighed, and the node id is never a signal. **To keep the other node,**
+  swap the merge's keep and remove, or set the operation's new `chosen_survivor` to the id to
+  keep. Both are accepted, and everything `apply_heal` refused before is still refused.
+- **A merge that nothing in the design separates is no longer applied on the alphabet.** Its
+  `survivor.needs_choice` is `true`, its reason begins "no recommendation: a person must pick",
+  and `apply_heal` refuses the whole proposal, before any write, until that operation carries
+  `chosen_survivor`. **What to do:** a client that passes `propose_heal`'s proposal straight back
+  will be refused when such a merge is in it. Ask the person which node to keep, set
+  `chosen_survivor`, and apply again. To keep both nodes, take the operation out.
+  `would_destroy` no longer says "THE ALPHABET CHOSE THE VICTIM". A recommended merge's entry
+  says why that node is the one kept. A merge that needs a pick names both nodes, with the issue
+  id as its `reference`, and says what keeping each would lose.
+
+### Deprecated
+
+- **The `Anchor` node type is going: this release still serves it, and the
+  next release removes it.** It was a checksummed baseline taken when leaving
+  P2 for a build round, carried over from the original reflow. Nothing in
+  reflow2 has ever created one or read one, and none of the seven designs
+  measured on 2026-10-14 holds one. `describe_schema` now marks it
+  `deprecated` and lists it under `deprecations`, and a call that writes or
+  reads an Anchor gets a `deprecation_notice` in its reply. Nothing breaks in
+  this release: an Anchor is still created, read and exported exactly as
+  before (`dec:anchor-retire-or-implement`). **What to do:** record a
+  checksummed baseline with `add_epoch` (`epoch_type` `baseline`, with its
+  `checksum`), and capture a node's state at it with `snapshot_before_change`,
+  which records a Snapshot.
+
+### Fixed
+
+- **The installer says why it could not make your project's design record.** When the
+  reflow2 binary refused to export a fresh project's design, `reflow2_init.py` printed
+  "NOT created — ask your agent to `export_graph` to that path", although the agent's
+  server is that same binary and refuses the same way. It now prints the binary's own
+  reason, such as a build without on-disk storage and how to get one that has it.
+
+- **The site republishes from main after each release, instead of trying from the
+  release tag and being refused.** 0.84.0 made each `v*` tag republish the site, so
+  the home page's counts of reflow2's own design would take in the release just
+  cut. The `github-pages` environment admits deployments from `main` alone, on
+  purpose, so the v0.84.0 tag's run failed: "Tag "v0.84.0" is not allowed to deploy
+  to github-pages due to environment protection rules." The counts came out right
+  that once only because main's run at the cut's merge started six seconds before
+  the tag was pushed. Now `pages.yml` has no tag trigger, and the release workflow's
+  last job, `site`, dispatches it on `main` once the release is published. That job
+  holds only `actions: write`, a dry run skips it, and a failure in it cannot fail
+  or undo the release. Nothing to do for anyone who uses reflow2.
+
+- **Two schema hints no longer describe a link nothing makes.** `DriftEvent`'s
+  hint said a drift event "References the Anchor it diverged from via
+  DEPENDS_ON", and Anchor's said drift events reference it. No code drew that
+  link. A drift event DEPENDS_ON the Artifact whose file drifted, or the
+  Environment and Release of a deployment drift, and the hint now says so.
+  **What to do:** nothing.
+
 ## [0.84.0] — 2026-10-14
 
 **Minor. Built work reads as built, and the changelog shows what was taken away beside what was

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e184716cfcc3181f92e526b8cb6f7eea90116d1641fbb82fa07825e84f76386a",
+  "node_id": "rel:v0850",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-16 on Anthony's word (\"Cut 0.85.0 now\"). A minor carrying #747 to #761 (#750 a design record only):\n- #754: the Inference record and its check;\n- #757: the axioms a conclusion rests on;\n- #760: proof status and who confirmed each step;\n- #761: the line-of-reasoning read-back, objections that count as far as they hold, and Decision.status contested;\n- #755: mathematics' words for reflow2's types;\n- #759: served text asking for an inference chain behind a consequential recommendation;\n- #749: a person picks a merge's survivor;\n- #751, #752, #753: the deprecation registry and the Anchor type's announcement;\n- #748: the site republished from main;\n- #756, #758: everyday builds without RocksDB and fewer test programs;\n- #747: re-blessed 0.84.0's surface record.\n\n199 tools (197 in 0.84.0); the two new are add_inference and reasoning_report. The stamp moves: one node type (Inference), two edge types (PREMISE_OF, CONCLUDES), and Decision.status gains contested. Measured at the cut with the published 0.84.0 binary: it refuses a store 0.85.0 has opened, even a plain one, and refuses 0.85.0's export (docs/upgrading-to-v0.85.0.md). The Anchor type is deprecated, and Alex is told before the tag. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.85.0 — a design can hold a line of reasoning",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.85.0"
+  }
+}

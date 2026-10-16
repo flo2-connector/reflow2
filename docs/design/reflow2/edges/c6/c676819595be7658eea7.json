@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:72e4bc0df94a64845656d0d4876965a96c02d09ec8f4d07617253058b83f6412",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-requirement-carries-the-reasoning-that-brought-it-into-existence",
+  "properties": {
+    "evidence": "Anthony kept option (b) on 2026-10-16 (\"Keep both, build after A2\"); this requirement is that option, promoted."
+  },
+  "to_id": "req:a-derived-requirement-inherits-its-reasoning-from-the-decision-that-created-it"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ab75fa024fa5b9a7d00a39207cce96a9bc2db8ca8514011e30e0452664694bde",
+  "node_id": "chg:accept-4afa8dd956fc1af7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.85.0 cut: the header's bless command names the in_memory program the test moved into with #758; the test itself is unchanged.",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9c5456e6ec237bbd4cfbe4db9272fc658c6d1365aea36968a3df572b99485617",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:7934835206ad6d3307d2ef6e31dff477fd55a28c44bb33cc08dd3543e840cc01"
+  },
+  "to_id": "art:link-artifacts-skill"
+}

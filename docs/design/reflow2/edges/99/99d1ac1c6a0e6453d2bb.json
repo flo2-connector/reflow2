@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:70fa7edc1f69b16bd10795198e471c72fefb8649035a6ee0cd12e531fa21b169",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:an-objection-counts-as-far-as-it-holds-and-a-dispute-can-be-kept-open"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:56d1bfff77bca978f4d961d580eb967e691481177578569d22647e893da39d96",
+  "node_id": "req:a-derived-requirement-inherits-its-reasoning-from-the-decision-that-created-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "distinct_from": [
+      "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A derived requirement's line of reasoning lives on the Decision that created it: the Decision is concluded by its chain, the requirement stays GOVERNED_BY it, and a broken or reopened Decision reaches every requirement it governs",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-16, in conversation",
+    "statement": "Anthony, 2026-10-16, keeping option (b) of dec:idea-a-requirement-carries-the-reasoning-that-brought-it-into-existence (\"Keep both, build after A2\").\n\nWHAT MUST BE TRUE:\n1. A derived requirement's \"how and why it came into existence\" is read from the Decision that created it: its lineage is `derived` and it is GOVERNED_BY that Decision. The Decision's reasons are a stated chain where they are checkable (req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain).\n2. The requirement is never the conclusion of that chain. Why it exists and whether it is met stay two claims, because a step's conclusion reads as delivered once the step holds.\n3. When the Decision's support breaks, or the Decision is re-opened, the requirements it governs are reached from it and named, so a fork or a revision can say which requirements lose their reason to exist.\n\nBuilt after A2 (the line-of-reasoning skill and its demonstration).",
+    "status": "accepted"
+  }
+}

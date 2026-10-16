@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2c132cd85131dda2fe597be3413035eb58688e247d2b7cb175c696ad1afb8e9b",
+  "node_id": "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "When the owner's choice rests on things reflow2 can check (a passing check, a limit, a computation record, a proof), it is recorded as a stated step concluding the Decision; a plain preference stays a sentence",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-16, in conversation",
+    "statement": "Anthony, 2026-10-16, keeping option (c) of dec:idea-the-owners-choice-of-a-recommendation-is-recorded-as-a-line-of-reasoning (\"Keep both, build after A2\").\n\nWHAT MUST BE TRUE:\n1. When a choice rests on premises reflow2 computes a truth for, the settling step records a stated step. Such premises are a passing check, a constraint, an accepted decision, a met requirement, a kept computation record or a confirmed proof. The step's premises are those records, its warrant is the owner's words, and its conclusion is the Decision.\n2. A choice that rests on a preference stays the `chose` text. A step over premises reflow2 cannot evaluate would read the decision as unsupported.\n3. Once recorded, a premise that stops holding makes the decision's support visibly broken (conclusion_does_not_follow), so a choice whose basis disappeared is noticed.\n\nThe acceptance itself stays the owner's word: status and approver, unchanged. Built after A2 (the line-of-reasoning skill and its demonstration).",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aac0ee000df7adc39ef951112869a0747b8d8a3b77a03b9cf7b62a97070116be",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:39189b65f1195f749b95e6ab8014e5632d396c07d8f7db4cda200fe4f0e13847"
+  },
+  "to_id": "art:establish-taxonomy-skill"
+}

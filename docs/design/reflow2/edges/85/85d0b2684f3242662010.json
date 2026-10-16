@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:79ab6bebcfdd17182934e067a7f0fd69e779002c557a555de208137fd28a6f4d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:55246a51aa02d8694794f52a67cb2b1e4b8095d0067449a6725b60344c7ebb3b"
+  },
+  "to_id": "art:a-claimed-check-is-counted-apart-from-a-runnable-one-test"
+}

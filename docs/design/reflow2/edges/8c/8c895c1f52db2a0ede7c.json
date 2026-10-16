@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:41143437a7ed201a00da2336f42618c7322761ee50a762bf424601341e97e0ca",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:1f17a14eb07bff006f8bceb417a0af50ec1f205b49f3515c36de99bb550ad4b9"
+  },
+  "to_id": "art:test-a-design-says-whether-a-result-ever-came-back"
+}

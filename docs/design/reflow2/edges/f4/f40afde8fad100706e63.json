@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c286eb71e5d561c7e119805cc3e3e13087c6fbe93bd6d5edfcbbc3e6f7dc815",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-schema-narrowing-ships-its-migration",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
