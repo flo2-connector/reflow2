@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbf9cadb0c627e24bdd5914ccd10c2d782255d1830017890ae3c986af7411cd1",
+  "node_id": "chg:accept-4e75a7deeaa87fa9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "Mirror copied from getting-started/skills/capture-intent/SKILL.md after inference-chain text was added",
+    "subject": "system"
+  }
+}
