@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7bf89e64854edf6343dbcae43a3c685b0e5aa781e960a676815bb92b9c84c6b7",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:proof-who-confirmed-tests",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:proof-who-confirmed-tests"
+}
