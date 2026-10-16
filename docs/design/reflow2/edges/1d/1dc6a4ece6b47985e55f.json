@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:91414160e8c302b712f5803f351b38b0f89ba0812dcc8037cf4ba18f19bb22af",
+  "content_hash": "sha256:97936511937d8fff2d13af2ba81b08b7e7fff2cccf53643ee69a71a9b4529d3a",
   "edge_type": "CHANGED",
   "from_id": "chg:proof-who-confirmed-pr760",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:57c2acaa14fe1182a7dede6641ab00b0050757a4b78dd577104892db3e0afb5e",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:proof-who-confirmed-tests"
 }

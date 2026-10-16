@@ -1,11 +1,9 @@
 {
-  "content_hash": "sha256:18da8341a395fedc8ea9a0de5bce9a2ba922c540fcd565c8f8ded1cb65e7532b",
+  "content_hash": "sha256:ad83085d814b7770f2eb39d833976c04ee1691054d5f3836d50613887560ff47",
   "node_id": "art:inference-rs",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "code",
-    "checksum": "sha256:21449e2e3d77d22e548d1a0c856c7a5fc87eae248bb67923f97518fe6fee3cfe",
-    "checksum_basis": "asserted",
     "description": "Core inference module: Confirmation struct, ProofStatus enum, ProofReading struct, proof_reading() method, proof_chain_walk() helper, CONTRADICTS truth check in truth_uncached()",
     "location": "crates/reflow2-core/src/inference.rs",
     "name": "crates/reflow2-core/src/inference.rs",

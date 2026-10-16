@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:0723dc8214e29949b4c750b3ff1d6de1a79ce78d99dc94665957820f70847670",
+  "content_hash": "sha256:9d1343f95763574b715c4123ca04380bdf5c48aae786d653efd472a7b0efa74d",
   "edge_type": "CHANGED",
   "from_id": "chg:proof-who-confirmed-pr760",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 6,
     "action": "modified",
-    "checksum_after": "sha256:dffb9363cdb5589a085522411d850f2f59fafd9dc738706b747476ddc7bb8fbc",
+    "checksum_after": "sha256:f8b213b8c82b62c8f08daf4698bd774eb79312aa14c690a2cb53ff7a48f9820e",
     "checksum_basis": "asserted"
   },
   "to_id": "art:enum-schema"
