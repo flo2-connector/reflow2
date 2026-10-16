@@ -477,21 +477,23 @@ async fn a_counterexample_contradicts_and_breaks_downstream_steps() {
         node["node"]["proof_status"]
     );
 
-    // Record a counterexample that contradicts it.
-    s.requirement("req:counterexample").await;
+    // Record a counterexample that contradicts it: a check that HOLDS. An
+    // objection refutes only once it is established (requirement A); an
+    // unestablished one contests, which a_line_of_reasoning_reads_back covers.
+    s.check("ver:counterexample", "passing").await;
     s.ok(
         "create_edge",
         json!({
             "edge_type": "CONTRADICTS",
-            "from_type": "Requirement",
-            "from_id": "req:counterexample",
+            "from_type": "Verification",
+            "from_id": "ver:counterexample",
             "to_type": "Requirement",
             "to_id": "req:false-claim"
         }),
     )
     .await;
 
-    // Now the claim reads as failing (contradicted) and the proof is unproven.
+    // Now the claim reads as refuted and the proof is unproven.
     let node = s.ok("get_node", json!({"id": "req:false-claim"})).await;
     assert_eq!(
         node["node"]["proof_status"]["status"], "unproven",

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a3d183619532324c9f768b694381ab1976ede6ae45eec5fa97555a294cefbbfe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1294,6 +1294,44 @@ impl ReflowService {
     }
 
     #[tool(
+        description = "READ BACK A LINE OF REASONING, read-only: an argument for and against, an \
+                       experiment's case, a paper's chain of claims, a legal case. Each claim \
+                       comes with its COMPUTED truth (holds, fails or unknown), the steps that \
+                       support it (rule, warrant, who confirmed them), the objections against it \
+                       and how each stands (`refutes`, `stands`, `answered`), and its cited \
+                       sources. Then: what the reasoning rests on and which premises cite no \
+                       source, the points still contested, the disputes a Decision set to \
+                       `contested` keeps open on purpose, and every claim with no support. \
+                       `claim` reads under one claim; omitted, every top conclusion and \
+                       contested decision. `what_this_means`: structure is not truth. Shown \
+                       here, never raised as a gap. Bounded by `budget_chars`. Writes nothing. \
+                       Ask for this to check an argument point by point: what backs each claim, \
+                       what is disputed, and what has no evidence behind it.",
+        title = "Reasoning Report",
+        annotations(read_only_hint = true)
+    )]
+    pub async fn reasoning_report(
+        &self,
+        Parameters(req): Parameters<ReasoningReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let g = self.graph.read().await;
+        let report = g
+            .reasoning_report(req.claim.as_deref(), req.limit)
+            .map_err(dyno_err)?;
+        let full = serde_json::to_value(report).map_err(ser_err)?;
+        // The weight is the claims list; the summary lists are ids.
+        let bounded = crate::reply_budget::bound_reply_list_first(
+            full,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "claims",
+            "Every summary list keeps its ids; read one claim in full with reasoning_report on \
+             its id, or pass a larger budget_chars.",
+        );
+        self.ok_read(&g, bounded)
+    }
+
+    #[tool(
         description = "Delete a node by type and id, returning whether it existed. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, record_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
         title = "Delete a Node",
         annotations(read_only_hint = false, destructive_hint = true)

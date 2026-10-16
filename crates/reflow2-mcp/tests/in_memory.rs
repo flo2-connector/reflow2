@@ -49,6 +49,7 @@ mod a_fork_point_finds_its_address_in_git;
 mod a_hub_member_states_its_relation_through_the_tools;
 mod a_lesson_is_served_at_the_step_it_concerns;
 mod a_levied_requirement_is_recordable_in_one_call;
+mod a_line_of_reasoning_reads_back;
 mod a_local_client_works_against_a_remote_server;
 mod a_loop_hint_says_where_the_node_landed;
 mod a_loop_status_reply_says_whose_words_to_use;

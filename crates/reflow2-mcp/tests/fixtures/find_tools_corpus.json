@@ -130,6 +130,7 @@
     "provides": "record that this component offers that interface",
     "readiness_report": "when can this release ship given the technology maturity it depends on",
     "realizes": "record that this artifact implements that capability",
+    "reasoning_report": "walk me through my argument: what backs each point, what is still disputed, and what has nothing behind it",
     "recall_resolutions": "how did we resolve this same merge conflict last time",
     "receive_from_design": "another project sent me a requirement, record it here for my owner to accept",
     "reconcile_artifacts": "these source files changed on disk — which registered artifacts drifted from their baseline",

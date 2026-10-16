@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:08dcb1cf9252ba93a0f6bfc6b13ba6bfe2fb3b79d33bfe16ddf207b4f56164f2",
+  "node_id": "fact:two-files-each-carry-two-artifacts-since-the-proof-who-confirmed-record-2026-10-16",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "OBSERVED 2026-10-16: since #760's design record, two files each carry two Artifacts. crates/reflow2-core/src/inference.rs is art:inference and art:inference-rs; the MCP inference test file is art:test-an-inference-says-how-premises-support-a-conclusion and art:proof-who-confirmed-tests",
+    "statement": "Read from the committed design copy on main (b711000f5), 2026-10-16. #760's design record (chg:proof-who-confirmed-pr760) registered art:inference-rs at crates/reflow2-core/src/inference.rs, which art:inference already registered. It also registered art:proof-who-confirmed-tests at crates/reflow2-mcp/tests/an_inference_says_how_premises_support_a_conclusion.rs, which art:test-an-inference-says-how-premises-support-a-conclusion already registered. The two new Artifacts carry #760's REALIZES (to cap:proof-who-confirmed), its IMPLEMENTS (to ver:proof-who-confirmed-tests) and its accepted checksums; the older two carry none of those. So each file's drift baseline lives on two nodes, and a later change to either file owes two acceptances. Folding each pair into one is a merge (DUPLICATES asserted, then apply_heal), which deletes a node and cannot be undone, so it waits for the owner's word.",
+    "subject_id": "chg:proof-who-confirmed-pr760",
+    "valid_from": "2026-10-16"
+  }
+}

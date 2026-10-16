@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a8453cdc9c9c830e77881e6b2ad09ee46835c1cca55ea0cf1e390d9b08111a01",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b698c4ff60fb4dece862763ee5fcb2868e67a4915a3c38c85eb0d0ea92c4dc67",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:toolsnap-reasoning-report"
+}

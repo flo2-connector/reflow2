@@ -929,6 +929,7 @@ UNROUTED_REPORTS: dict[str, str] = {
     # (dec:idea-which-derived-results-are-kept-and-by-what-rule). Naming it in
     # check-health or where-am-i now would invent a use to satisfy this check.
     "derived_report": "GAP: no skill owns reading what the design derives — the declared relations are served, the step that reads them waits on the keep-policy decision",
+    "reasoning_report": "GAP: no skill owns reading a line of reasoning back yet; the skill for recording one (an argument, an experiment, a paper, a case) is the second half of req:a-design-holds-a-line-of-reasoning, and it names this report",
 }
 
 

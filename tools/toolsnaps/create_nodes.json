@@ -19,7 +19,8 @@
           "when": {
             "in": [
               "accepted",
-              "deferred"
+              "deferred",
+              "contested"
             ]
           }
         },

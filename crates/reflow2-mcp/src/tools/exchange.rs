@@ -1047,10 +1047,12 @@ impl ReflowService {
 
     #[tool(
         description = "Set a Decision's lifecycle status — proposed / accepted / deferred / \
-                       superseded / rejected (BL-70). Setting it to `proposed` opens it as a decision \
-                       point: an undecided fork you can register alternatives under. `deferred` SETS \
-                       IT ASIDE — sound but untimely — and it stops counting as debt in loop_status \
-                       and what_next; it is the owner's word and wants `approver`, like `accepted`. \
+                       contested / superseded / rejected (BL-70). Setting it to `proposed` opens it \
+                       as a decision point: an undecided fork you can register alternatives under. \
+                       `deferred` SETS IT ASIDE — sound but untimely — and it stops counting as debt \
+                       in loop_status and what_next; it is the owner's word and wants `approver`, \
+                       like `accepted`. `contested` KEEPS IT OPEN ON PURPOSE: both sides kept, no \
+                       verdict owed, also the owner's word and no debt. \
                        Every other property is preserved. CARRIES `settled_question_prose` WHEN A DECISION REACHES \
                        `accepted` AND SOMETHING IT GOVERNS STILL SAYS THE QUESTION IS OPEN: the \
                        block names each such node, the phrase that matched, and quotes the prose \

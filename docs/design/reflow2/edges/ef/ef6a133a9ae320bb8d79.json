@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:557b843b879dc30810f6265f2d66274fe8666f96b15d2f5d1dc6304970a9f2a8",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-objection-counts-as-far-as-it-holds-and-a-dispute-can-be-kept-open",
+  "properties": {
+    "coverage": "partial"
+  },
+  "to_id": "req:a-design-holds-a-line-of-reasoning"
+}

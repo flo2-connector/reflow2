@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a1308b06c7a2feae780b0c9c320518d64f8f406ef66e96e8b45fa6abd30f358f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 15,
+    "action": "modified",
+    "checksum_after": "sha256:63bcd32ae8e52de4f07489b2fbfe0700343aee9f4e591d617cd03eff34d9d794",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

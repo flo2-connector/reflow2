@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dec5e027bf5a5118c77462237e3daf41e12cb4ce70993d9bfcd8658621319cc2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:ca5fd29a6d6d614227697ab6fb4ef74d5e89b77c4167ae739c9237f821014ab7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skills-and-tools"
+}

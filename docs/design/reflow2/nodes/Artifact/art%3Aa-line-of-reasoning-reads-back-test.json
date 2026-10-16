@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:3e68c44e57dcc1e93dbd74a9d01bede02de10416f9f65f9af22d4292b48e2f69",
+  "node_id": "art:a-line-of-reasoning-reads-back-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Eight MCP tests for requirement A. An unestablished objection contests rather than refutes. A reply that holds answers it. An established objection refutes. Two claims that object to each other are both contested. A contested Decision keeps a dispute open and is not a defect. reasoning_report reads an argument end to end, and one claim reads only what is under it. A design with no reasoning says so, and a missing claim is refused.",
+    "location": "crates/reflow2-mcp/tests/a_line_of_reasoning_reads_back.rs",
+    "name": "crates/reflow2-mcp/tests/a_line_of_reasoning_reads_back.rs",
+    "status": "realized"
+  }
+}

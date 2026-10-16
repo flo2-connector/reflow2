@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b76101baf2fabcb5271099b08ae39ec17ff8df1f22342bf5f16bc1016a712cc4",
+  "node_id": "cap:an-objection-counts-as-far-as-it-holds-and-a-dispute-can-be-kept-open",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Requirement A, part 3, built 2026-10-16. Truth weighs each opposing CONTRADICTS by the objection's own computed truth: holds refutes, unknown contests (proof status `contested`), fails is answered. A circle of objections reads unknown on both sides. Decision.status gains `contested`. It settles intent like `deferred`; detect_defects counts a contradiction between two nodes it governs as held open (swept.suppressed_by_held_open), and its own truth reads unknown.",
+    "name": "An objection counts as far as it holds (it refutes, contests or is answered), and a Decision set to `contested` keeps a dispute open on purpose without counting as a defect or as debt",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

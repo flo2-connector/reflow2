@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:210f66ed61c1d41cf59dcd72a8834b02ba7e7dd4de2803d7f3bcd5be699679de",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:requirement-lineage",
+  "properties": {
+    "evidence": "Its derived tier already says a derived requirement is GOVERNED_BY the Decision that created it and may lose its reason to exist if that decision is re-opened; this asks for the how and why behind that, recorded as reasoning."
+  },
+  "to_id": "dec:idea-a-requirement-carries-the-reasoning-that-brought-it-into-existence"
+}

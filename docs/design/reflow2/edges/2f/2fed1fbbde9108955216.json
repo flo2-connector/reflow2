@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01fa7bc707898b6e76586bb53b66744a568cc857f229b7d0c9775538c7e606a9",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them",
+  "properties": {
+    "evidence": "It named the reader this needs (which requirements lose their reason when the decision that created them is re-opened) and measured the derived tier at 0% used on 2026-08-31."
+  },
+  "to_id": "dec:idea-a-requirement-carries-the-reasoning-that-brought-it-into-existence"
+}

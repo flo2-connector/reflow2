@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e8b762c46d89b5923ba617bf8be00eaddef2b74a16e6ded98a6d879937c6c9dd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 25,
+    "action": "modified",
+    "checksum_after": "sha256:0ad36c9b77f9e18b979b9dc4cfc43e54aa229da82e4489b5d735181696cb8742",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

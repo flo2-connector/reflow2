@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4f080f669cbe0e3c758cc1a657fc4a1b1cd1ca92a2e0cc51ba3cb4c15c54eeee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

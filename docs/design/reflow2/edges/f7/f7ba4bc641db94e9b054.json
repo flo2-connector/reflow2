@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:85bc2615572e3120d74f1582170e877045713f8ab319bcb2b7c3ed7ea0f20443",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:ea57250891e809553f801a9e395aa1c5978998e6e5dfe0b389123f9183b320be",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:heal"
+}

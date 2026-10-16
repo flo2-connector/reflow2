@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f0ed698187c205d57a2679f3617be4087488ecb97ff7e2c47060c93ce739fe1a",
+  "node_id": "art:toolsnap-reasoning-report",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "description": "The committed golden of reasoning_report's served schema and description; tools/toolsnap.py diffs the live surface against it.",
+    "location": "tools/toolsnaps/reasoning_report.json",
+    "name": "reasoning_report.json (toolsnap)",
+    "status": "realized"
+  }
+}

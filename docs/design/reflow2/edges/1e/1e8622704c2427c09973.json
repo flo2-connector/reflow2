@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3638119710bea2f1158d41d9673964c0dd1e0a8574a31c6932cb62e0df9ca3bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-line-of-reasoning-reads-back-2026-10-16",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0efc47b1ff6cf92db51d3f9439738b3818fd2893556b9daa11f04a430117d609",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

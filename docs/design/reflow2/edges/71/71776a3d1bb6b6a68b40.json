@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ede18ff5ec6b4687f68993c9d70e0be209abe75e178b5d65324eab27a6846c8",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-line-of-reasoning-reads-back",
+  "properties": {
+    "note": "The read-back reports each objection as refutes, stands or answered by this rule."
+  },
+  "to_id": "dec:an-objection-counts-as-far-as-it-holds"
+}

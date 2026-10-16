@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:76f4c253122a1c655849ebd14148736b7e8091818cc4a629db66103c950e6fd0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-line-of-reasoning-reads-back-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

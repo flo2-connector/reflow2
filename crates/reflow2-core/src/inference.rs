@@ -57,8 +57,26 @@
 //! derivation holds). Served as `proof_status` on `get_node` for a concluded
 //! node.
 //!
-//! An opposing CONTRADICTS edge (a counterexample) makes the target's truth
-//! `fails`, and every step resting on it is reported broken.
+//! # An objection counts as far as it holds (requirement A)
+//!
+//! `req:a-design-holds-a-line-of-reasoning` (Anthony, 2026-10-16: "contest
+//! until established"). An opposing CONTRADICTS — a counterexample, or an
+//! objection in an argument for and against — counts against its target by
+//! the objection's OWN computed truth:
+//!
+//! - one that **holds** refutes it: the target `fails`, and every step resting
+//!   on it is reported broken (a checked counterexample);
+//! - one that is **unknown** — raised, neither established nor answered —
+//!   leaves the target at most `unknown`: contested, never refuted by being
+//!   said;
+//! - one that **fails** — answered by a reply that holds, or rejected — no
+//!   longer counts.
+//!
+//! So a reply is recorded the way the objection was: a CONTRADICTS from the
+//! reply to the objection. Two claims that object to each other, with nothing
+//! else to settle it, both read `unknown`: a circle of objections has no
+//! verdict. A dispute its owner keeps open on purpose is a Decision set to
+//! `contested` that governs both sides; its own truth is `unknown`.
 //!
 //! # What it does not check
 //!
@@ -220,7 +238,11 @@ pub enum ProofStatus {
     Proven,
     /// At least one derivation holds, but one or more steps are unconfirmed.
     Shown,
-    /// No derivation holds (the conclusion does not follow).
+    /// A derivation holds, but an objection stands against the conclusion:
+    /// neither established nor answered (requirement A).
+    Contested,
+    /// No derivation holds (the conclusion does not follow), or an objection
+    /// that holds refutes it.
     Unproven,
 }
 
@@ -229,6 +251,7 @@ impl ProofStatus {
         match self {
             ProofStatus::Proven => "proven",
             ProofStatus::Shown => "shown",
+            ProofStatus::Contested => "contested",
             ProofStatus::Unproven => "unproven",
         }
     }
@@ -367,12 +390,19 @@ pub struct UnfollowedConclusion {
 }
 
 /// One evaluation: the premises counted as lost, what has been computed, and
-/// the steps on the current path (a step met again on its own path is a
+/// the steps and nodes on the current path (one met again on its own path is a
 /// circle, read as unknown).
 struct Eval<'l> {
     lost: &'l BTreeSet<String>,
     memo: HashMap<String, (Truth, String)>,
     path: BTreeSet<String>,
+    /// Nodes whose truth is being computed. Objections may form circles (A
+    /// objects to B, B to A), which the write never refuses.
+    nodes: BTreeSet<String>,
+    /// How many times a circle was cut. A truth computed while a cut happened
+    /// beneath it rests on a provisional `unknown`, so it is not memoized:
+    /// asked again from elsewhere, it is computed again.
+    cuts: usize,
 }
 
 impl<'l> Eval<'l> {
@@ -381,7 +411,36 @@ impl<'l> Eval<'l> {
             lost,
             memo: HashMap::new(),
             path: BTreeSet::new(),
+            nodes: BTreeSet::new(),
+            cuts: 0,
         }
+    }
+}
+
+/// One objection against a node, as the node's truth reads it.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ObjectionReading {
+    /// The objecting node: the source of an opposing CONTRADICTS.
+    pub id: String,
+    /// Its type, or `None` when no node holds the id.
+    pub node_type: Option<String>,
+    /// Its computed truth.
+    pub truth: Truth,
+    /// Why, in a sentence.
+    pub why: String,
+    /// `refutes` (it holds), `stands` (neither established nor answered) or
+    /// `answered` (it fails, so it no longer counts).
+    pub standing: &'static str,
+    /// The edge's own `evidence`, when it carries one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub evidence: Option<String>,
+}
+
+fn standing_of(truth: Truth) -> &'static str {
+    match truth {
+        Truth::Holds => "refutes",
+        Truth::Unknown => "stands",
+        Truth::Fails => "answered",
     }
 }
 
@@ -495,7 +554,7 @@ impl DesignGraph {
     }
 
     /// The one type holding `id`, when exactly one does.
-    fn type_holding(&self, id: &str) -> Result<Option<String>, DynoError> {
+    pub(crate) fn type_holding(&self, id: &str) -> Result<Option<String>, DynoError> {
         let held = self.node_types_holding(id)?;
         Ok(if held.len() == 1 {
             held.into_iter().next()
@@ -526,8 +585,23 @@ impl DesignGraph {
         if let Some(hit) = ev.memo.get(id) {
             return Ok(hit.clone());
         }
-        let answer = self.truth_uncached(id, ev, depth)?;
-        ev.memo.insert(id.to_string(), answer.clone());
+        if ev.nodes.contains(id) {
+            ev.cuts += 1;
+            return Ok((
+                Truth::Unknown,
+                "it comes back to itself, through its support or a circle of objections, and a \
+                 circle has no verdict"
+                    .to_string(),
+            ));
+        }
+        ev.nodes.insert(id.to_string());
+        let cuts_before = ev.cuts;
+        let answer = self.truth_uncached(id, ev, depth);
+        ev.nodes.remove(id);
+        let answer = answer?;
+        if ev.cuts == cuts_before {
+            ev.memo.insert(id.to_string(), answer.clone());
+        }
         Ok(answer)
     }
 
@@ -563,29 +637,98 @@ impl DesignGraph {
                 "discontinued by an accepted decision".to_string(),
             ));
         }
-        // A COUNTEREXAMPLE CONTRADICTS the claim it refutes, and the claims
-        // resting on it are reported broken (req:a-design-can-be-a-proof). An
-        // opposing CONTRADICTS makes the target fail, like VIOLATES on a
-        // Constraint; `supporting` (corroboration) does not.
-        let contradictors: Vec<String> = self
-            .incoming(id, Some(edge::CONTRADICTS))?
-            .into_iter()
-            .filter(|e| {
-                e.properties
-                    .get("alignment")
-                    .and_then(Value::as_str)
-                    .unwrap_or("opposing")
-                    != "supporting"
-            })
-            .map(|e| e.from_id)
+        // AN OBJECTION COUNTS AS FAR AS IT HOLDS (requirement A; the module
+        // documentation has the rule). One that holds refutes the node, and
+        // every step resting on it is reported broken; one that is unknown
+        // contests it; one that fails is answered. `supporting` (corroboration)
+        // is never an objection.
+        let objections = self.objections_within(id, ev, depth)?;
+        let refuting: Vec<&str> = objections
+            .iter()
+            .filter(|o| o.truth == Truth::Holds)
+            .map(|o| o.id.as_str())
             .collect();
-        if !contradictors.is_empty() {
+        if !refuting.is_empty() {
             return Ok((
                 Truth::Fails,
-                format!("contradicted by {}", contradictors.join(", ")),
+                format!("refuted by {}, which holds", refuting.join(", ")),
             ));
         }
-        let Some(n) = self.get_node(&node_type, id)? else {
+        let (own, own_why) = self.own_truth(id, &node_type, ev, depth)?;
+        let standing: Vec<&str> = objections
+            .iter()
+            .filter(|o| o.truth == Truth::Unknown)
+            .map(|o| o.id.as_str())
+            .collect();
+        if standing.is_empty() || own == Truth::Fails {
+            return Ok((own, own_why));
+        }
+        Ok((
+            Truth::Unknown,
+            format!(
+                "contested: {} stand(s) against it, neither established nor answered; on its own, \
+                 {own_why}",
+                standing.join(", ")
+            ),
+        ))
+    }
+
+    /// Every opposing CONTRADICTS against `id`, each with the objection's own
+    /// truth and how it stands: `refutes`, `stands` or `answered`. Sorted by
+    /// the objection's id; empty when nothing objects.
+    pub fn objections_to(&self, id: &str) -> Result<Vec<ObjectionReading>, DynoError> {
+        let lost = BTreeSet::new();
+        let mut ev = Eval::new(&lost);
+        // `id` is on the path, so an objection that comes back to it reads
+        // the way its truth reads it: unknown.
+        ev.nodes.insert(id.to_string());
+        self.objections_within(id, &mut ev, INFERENCE_DEPTH)
+    }
+
+    fn objections_within(
+        &self,
+        id: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Vec<ObjectionReading>, DynoError> {
+        let mut out = Vec::new();
+        for e in self.incoming(id, Some(edge::CONTRADICTS))? {
+            let alignment = e
+                .properties
+                .get("alignment")
+                .and_then(Value::as_str)
+                .unwrap_or("opposing");
+            if alignment == "supporting" {
+                continue;
+            }
+            let (truth, why) = self.truth_of(&e.from_id, ev, depth.saturating_sub(1))?;
+            out.push(ObjectionReading {
+                node_type: self.type_holding(&e.from_id)?,
+                standing: standing_of(truth),
+                evidence: e
+                    .properties
+                    .get("evidence")
+                    .and_then(Value::as_str)
+                    .map(str::to_string),
+                id: e.from_id,
+                truth,
+                why,
+            });
+        }
+        out.sort_by(|a, b| a.id.cmp(&b.id));
+        Ok(out)
+    }
+
+    /// What a node's own type and status say about it, before any objection
+    /// is counted: the predicate per type in the module documentation.
+    fn own_truth(
+        &self,
+        id: &str,
+        node_type: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<(Truth, String), DynoError> {
+        let Some(n) = self.get_node(node_type, id)? else {
             return Ok((Truth::Unknown, "the node is not there".to_string()));
         };
         let status = prop(&n.properties, "status").map(str::to_string);
@@ -624,7 +767,7 @@ impl DesignGraph {
             return Ok((truth, format!("concluded by {}", said.join("; "))));
         }
 
-        Ok(match node_type.as_str() {
+        Ok(match node_type {
             node::REQUIREMENT => {
                 if self.requirement_delivered_by_within(id, depth)?.is_some() {
                     (Truth::Holds, "delivered by the roll-up".to_string())
@@ -656,6 +799,12 @@ impl DesignGraph {
                 Some(s @ ("rejected" | "superseded")) => {
                     (Truth::Fails, format!("the decision is {s}"))
                 }
+                Some("contested") => (
+                    Truth::Unknown,
+                    "the decision is contested, by design: both sides are kept and no verdict \
+                     is owed"
+                        .to_string(),
+                ),
                 other => (
                     Truth::Unknown,
                     format!(
@@ -786,6 +935,7 @@ impl DesignGraph {
             return Ok(reading);
         }
         if ev.path.contains(inference_id) {
+            ev.cuts += 1;
             reading.note = Some(
                 "it rests, through its premises, on its own conclusion: circular reasoning has \
                  no verdict"
@@ -1139,14 +1289,18 @@ impl DesignGraph {
     ///   is confirmed (`confirmed_how` is `person` or `checker`).
     /// - **Shown**: at least one derivation holds, but one or more steps in
     ///   every holding chain are unconfirmed.
-    /// - **Unproven**: no derivation holds.
+    /// - **Contested**: a derivation holds, but an objection stands against
+    ///   the conclusion, neither established nor answered (requirement A).
+    /// - **Unproven**: no derivation holds, or an objection that holds
+    ///   refutes the conclusion.
     pub fn proof_reading(&self, id: &str) -> Result<Option<ProofReading>, DynoError> {
         let top_steps = self.inferences_concluding(id)?;
         if top_steps.is_empty() {
             return Ok(None);
         }
-        // A conclusion contradicted by an opposing CONTRADICTS is unproven
-        // regardless of its steps — a counterexample overrides derivation.
+        // A conclusion refuted by an objection that holds is unproven
+        // regardless of its steps — a checked counterexample overrides
+        // derivation.
         let (conclusion_truth, why) = self.premise_truth(id)?;
         if conclusion_truth == Truth::Fails {
             return Ok(Some(ProofReading {
@@ -1187,6 +1341,17 @@ impl DesignGraph {
             }
         }
         let unconfirmed = total.saturating_sub(confirmed);
+        // A derivation holds, so only a standing objection leaves the
+        // conclusion unknown: it is contested, neither proven nor shown.
+        if any_holds && conclusion_truth == Truth::Unknown {
+            return Ok(Some(ProofReading {
+                status: ProofStatus::Contested,
+                why,
+                total_steps: total,
+                confirmed_steps: confirmed,
+                unconfirmed_steps: unconfirmed,
+            }));
+        }
         if any_proven_chain {
             Ok(Some(ProofReading {
                 status: ProofStatus::Proven,
