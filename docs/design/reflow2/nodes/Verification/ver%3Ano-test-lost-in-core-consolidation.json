@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3533c4f9fa3c0531c8d232f327750f8cec022add1366bbf55893fac32e5db30b",
+  "node_id": "ver:no-test-lost-in-core-consolidation",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Verifies that reflow2-core's test consolidation from 225 files into 4 programs lost no tests. 1909 integration tests before = 1909 after (plus 3 guard tests). Guard test every_test_file_runs_in_exactly_one_program.rs reads Cargo.toml's [[test]] targets and fails if a file in tests/ is missing from all programs, appears in two programs, or if a declared module has no file.",
+    "findings": "1909 integration tests before = 1909 after (plus 3 guard tests). Guard test every_test_file_runs_in_exactly_one_program.rs reads Cargo.toml's [[test]] targets and fails if a file in tests/ is missing from all programs.",
+    "kind": "verification",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/every_test_file_runs_in_exactly_one_program.rs",
+    "method": "test",
+    "name": "No test lost in core consolidation",
+    "status": "passing"
+  }
+}

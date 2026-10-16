@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cec58edbf233247aa44707c93e7a8fdae5313c01034e223b19214b79b2de58ca",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:reflow2-core-tests-compile-into-a-few-programs-not-one-each",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

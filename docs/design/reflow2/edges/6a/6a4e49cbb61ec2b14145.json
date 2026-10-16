@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0d721a29b7fa1f637358a8b4529338df97b89199e9404f038e070e7d0ad8dded",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:no-test-lost-in-core-consolidation",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bc98df239792c74123363bf93124791b7b762472663b0b7051590bb5669039d4",
+  "node_id": "art:core-test-program-in-memory",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The main test program for reflow2-core: 223 former standalone test files compiled as modules of one binary. Every test runs against the in-memory BTreeMap backend, no RocksDB needed. Test discovery is off; each file is a mod statement in this root.",
+    "location": "crates/reflow2-core/tests/in_memory.rs",
+    "name": "crates/reflow2-core/tests/in_memory.rs — the core crate's in-memory test program (223 test files as modules)",
+    "status": "realized"
+  }
+}

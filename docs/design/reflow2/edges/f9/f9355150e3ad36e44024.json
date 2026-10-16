@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:28225cb98b8f71f1a88d4033db04f58e1708f19d9e4415707de786aa358991ae",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:reflow2-core-tests-compile-into-a-few-programs-not-one-each",
+  "properties": {},
+  "to_id": "req:everyday-development-builds-and-tests-without-rocksdb-and-the-shipped-server-keeps-it"
+}

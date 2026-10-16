@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c02dc33cb66162b70bdd56cedbf87b98e61bb6d5f58984e4e9106b16f549ba4a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consolidate-reflow2-core-225-test-files-into-4-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:no-test-lost-in-core-consolidation"
+}

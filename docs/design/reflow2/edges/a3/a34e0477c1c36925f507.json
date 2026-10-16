@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:846d4401cbfbdad31deed48425738a350fb9109a873b005310f8cbe09e55c702",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:reflow2-core-tests-compile-into-a-few-programs-not-one-each",
+  "properties": {
+    "note": "Anthony's decision names consolidating into a few programs; this capability realizes the core crate's share of that."
+  },
+  "to_id": "dec:rocksdb-is-a-default-on-feature-of-the-server-crate-and-its-tests-share-a-few-programs"
+}

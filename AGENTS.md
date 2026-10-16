@@ -63,14 +63,14 @@ cargo dev-test
 # The core alone, with no features at all (no Tantivy either): the sub-second
 # edit loop once built.
 cargo test -p reflow2-core --no-default-features
-cargo test -p reflow2-core --no-default-features --test heal          # one integration-test file
+cargo test -p reflow2-core --no-default-features --test in_memory heal::  # one integration-test file
 cargo test -p reflow2-core --no-default-features golden_thread_round_trips  # one test by name
 cargo test -p reflow2-core --no-default-features --lib                # unit + doctests only
 
-# The MCP crate's ~170 test files are compiled into four test PROGRAMS, not one
-# each (tests/in_memory.rs, tests/on_disk.rs, and two that need a process of
-# their own — Cargo.toml says which and why). So one file's tests are its
-# program and its module:
+# BOTH CRATES' test files are compiled into a few test PROGRAMS, not one each
+# (tests/in_memory.rs, plus feature-gated programs — Cargo.toml in each crate
+# says which and why). So one file's tests are its program and its module:
+cargo test -p reflow2-core --no-default-features --test in_memory heal::
 cargo test -p reflow2-mcp --no-default-features --test in_memory a_budget_says_how_it_composes::
 cargo test -p reflow2-mcp --test on_disk design_identity::            # needs RocksDB
 
