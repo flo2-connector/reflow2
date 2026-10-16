@@ -82,6 +82,8 @@ const NOT_PROSE: &[(&str, NotProse)] = &[
     ("Fragment.content_ref", Which),
     ("Fragment.created_at", When),
     ("Fragment.created_by", Which),
+    ("Inference.confirmed_at", When),
+    ("Inference.confirmed_by", Which),
     ("Project.created_at", When),
     ("Project.domain", Category),
     ("Project.mirror_content_hash", Hash),
