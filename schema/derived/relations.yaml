@@ -91,7 +91,7 @@ relations:
     stated_over_readings: partial
     not_yet_stated: "the rule, k, and each premise's truth (a status, a delivered or realized or checked reading, a budget verdict) are node properties and derived relations no edge reading declares, and the three-valued combination is arithmetic over them. VIOLATES is read as norm·meets(−) only for a Constraint premise."
     inference: deduced
-    edges: [PREMISE_OF, CONCLUDES, VIOLATES]
+    edges: [PREMISE_OF, CONCLUDES, VIOLATES, CONTRADICTS]
     over: [delivered, realized, checked, discontinued, budget_rollup]
     code:
       - { file: inference.rs, function: inferences_concluding, dedicated: true }

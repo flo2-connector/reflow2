@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a5560c4ec4f723b1b18c6d124bfab9fa8a38209239033e775a382d08f1884e62",
+  "node_id": "frag:art:inference-rs",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/src/inference.rs"
+  }
+}

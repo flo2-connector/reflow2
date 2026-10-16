@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:986b709c366988ec0e5a8dd57cd1a50ad604d974241522ed0dda1260b69f3cef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:70775d94dbdf12c3ae38fc0f8b06c42461d95fe18a5b69ba38ac503b71f7ad08",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-inference"
+}

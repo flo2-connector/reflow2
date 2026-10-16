@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ad83085d814b7770f2eb39d833976c04ee1691054d5f3836d50613887560ff47",
+  "node_id": "art:inference-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Core inference module: Confirmation struct, ProofStatus enum, ProofReading struct, proof_reading() method, proof_chain_walk() helper, CONTRADICTS truth check in truth_uncached()",
+    "location": "crates/reflow2-core/src/inference.rs",
+    "name": "crates/reflow2-core/src/inference.rs",
+    "status": "realized"
+  }
+}

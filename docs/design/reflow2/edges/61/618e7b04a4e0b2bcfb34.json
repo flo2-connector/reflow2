@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ecf067da464d0d3e3d1f565fa9aecd72502a0a733cc075e871a335c2852060cf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:4bc60363fcde8d71f94f9cd6b63dae7e9a3e2448ed5f190adf01dd8b7675dcdc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-relations-declarations"
+}

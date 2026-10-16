@@ -38,6 +38,9 @@ schema:
         k: { type: int, description: "For `k_of_n` only: how many premises must hold. Required with that rule and refused with any other; 1 ≤ k ≤ the number of premises, checked when the step is written with its premises (add_inference). A step whose premises were later removed below k reads `unknown` and says why, never `holds`." }
         rule_name: { type: string, indexed: true, fulltext: true, description: "The rule's name in its own field, free text — `modus ponens`, `induction`, `redundant sensors`, `two-out-of-three voting`. A LABEL, NOT A CHECK: reflow2 checks the step by its `rule` (the combination) and never by this name." }
         warrant: { type: string, fulltext: true, description: "WHY these premises support this conclusion, in the author's words — the part of the step a person can challenge. reflow2 records it and never judges it." }
+        confirmed_by: { type: string, indexed: true, description: "WHO confirmed this step: a contributor id (`who:jane`) or a proof checker's name. Absent means unconfirmed — a model's narration, not yet checked by a person or a program." }
+        confirmed_how: { type: enum, values: [unconfirmed, person, checker], default: unconfirmed, indexed: true, description: "HOW the step was confirmed: `person` — a named human checked it; `checker` — a proof-checking program verified it; `unconfirmed` (the default) — nobody has, so a proof built on it reads SHOWN, never PROVEN (req:a-design-can-be-a-proof)." }
+        confirmed_at: { type: string, description: "WHEN the step was confirmed, as an ISO 8601 timestamp. Absent when unconfirmed." }
       embedding_field: warrant
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
       discrimination:
@@ -79,9 +82,10 @@ schema:
           - term: proof step
             means: >-
               A step of a proof, held as an Inference and read exactly as an inference
-              step. That the conclusion follows by form is computed; who confirmed the
-              step is not recorded yet, so a proof built of such steps reads as SHOWN,
-              never as PROVEN (req:a-design-can-be-a-proof).
+              step. That the conclusion follows by form is computed; who confirmed it
+              is recorded in `confirmed_by` and `confirmed_how` (person, checker or
+              unconfirmed). A proof reads as PROVEN only when every step it rests on
+              is confirmed; otherwise it reads as SHOWN (req:a-design-can-be-a-proof).
           - term: inference rule
             means: >-
               Another name for a rule of inference: the rule's name sits in the
@@ -334,14 +338,17 @@ schema:
               An instance that makes a statement false: the counterexample is the source
               of a CONTRADICTS edge and the statement it breaks is the target, with
               `alignment` left at `opposing` (the default). With `alignment`
-              `supporting` the same edge is corroboration, the opposite. Drawing it
-              changes no status: the refuted statement's owner settles it.
+              `supporting` the same edge is corroboration, the opposite. An opposing
+              CONTRADICTS makes the target's computed truth `fails`, so every inference
+              step resting on it is reported broken (req:a-design-can-be-a-proof); the
+              target's own `status` does not move — the owner settles that.
           - term: refutes
             means: >-
               A refutes B: A shows B false. Drawn as CONTRADICTS from A to B with
               `alignment` `opposing` (the default); a CONTRADICTS edge marked
-              `supporting` corroborates instead. Drawing it changes no status: B's owner
-              settles it.
+              `supporting` corroborates instead. An opposing CONTRADICTS makes B's
+              computed truth `fails` and reports every step resting on B as broken; B's
+              own `status` does not move — its owner settles that.
       extraction_hint: Two decisions/requirements/claims that conflict (or, with alignment=supporting, reinforce).
 
     # VALIDATES retired 2026-07-22 (dec:edge-orthogonality): orthogonal-in-name-

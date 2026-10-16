@@ -1422,6 +1422,17 @@ fn decorate(
         .map(serde_json::to_value)
         .transpose()
         .map_err(ser_err)?;
+    // PROOF STATUS (requirement B): proven, shown, or unproven. Omitted when
+    // the node is not concluded by any Inference. A conclusion is PROVEN only
+    // when every step in at least one holding derivation is confirmed
+    // (confirmed_how is person or checker); SHOWN when it holds but some
+    // steps are unconfirmed; UNPROVEN when no derivation holds.
+    let proof_status = g
+        .proof_reading(node_id)
+        .map_err(dyno_err)?
+        .map(serde_json::to_value)
+        .transpose()
+        .map_err(ser_err)?;
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
         if let Some(reading) = built_reading {
@@ -1432,6 +1443,9 @@ fn decorate(
         }
         if let Some(f) = foundations {
             obj.insert("foundations".to_string(), f);
+        }
+        if let Some(ps) = proof_status {
+            obj.insert("proof_status".to_string(), ps);
         }
     }
     Ok(rendered)

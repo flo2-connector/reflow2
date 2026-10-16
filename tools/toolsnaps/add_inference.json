@@ -12,6 +12,36 @@
         "description": "The ONE node this step concludes. A node may be concluded by several\nsteps (alternative derivations, read as ANY); a step concludes one.",
         "type": "string"
       },
+      "confirmed_at": {
+        "default": null,
+        "description": "WHEN, as an ISO 8601 timestamp. Absent when unconfirmed.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "confirmed_by": {
+        "default": null,
+        "description": "WHO confirmed this step: a contributor id (`who:jane`) or a proof\nchecker's name. Absent means unconfirmed.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "confirmed_how": {
+        "default": null,
+        "description": "HOW: `person` (a named human), `checker` (a proof-checking program), or\nomit for `unconfirmed`. A proof reads PROVEN only when every step is\nconfirmed.",
+        "enum": [
+          "unconfirmed",
+          "person",
+          "checker",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",

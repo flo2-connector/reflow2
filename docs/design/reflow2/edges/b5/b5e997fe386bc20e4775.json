@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7c79b252c8525ea18a4e1f93ac1442cf562e18efde6cb666b965878ff11bc650",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:8df50ece33d77bbaa70a18dd045172bcfc5bcddf229231a09804a0f64d1c8038",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:toolsnap-add-inference"
+}

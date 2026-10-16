@@ -189,8 +189,8 @@ pub use heal::{
 pub use hierarchy::{DEFAULT_RUNGS, HierarchyIssue, HierarchyIssueKind, Ladder};
 pub use ility::{AssertedScore, IlityEvidence, IlityReport, IlitySignal};
 pub use inference::{
-    InferenceImpact, InferenceReading, InferenceSpec, InferenceWritten, PremiseReading, Truth,
-    UnfollowedConclusion,
+    Confirmation, InferenceImpact, InferenceReading, InferenceSpec, InferenceWritten,
+    PremiseReading, ProofReading, ProofStatus, Truth, UnfollowedConclusion,
 };
 pub use ingest::{
     DroppedEdge, FuzzyMerge, IngestOptions, IngestReport, IngestStatus, IngestStep, MatchKind,

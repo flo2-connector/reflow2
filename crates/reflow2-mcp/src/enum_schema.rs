@@ -115,6 +115,12 @@ schema_enum!(component_status_opt, "Component", "status", opt);
 schema_enum!(constraint_concern_opt, "Constraint", "concern", opt);
 schema_enum!(constraint_composition_opt, "Constraint", "composition", opt);
 schema_enum!(inference_rule_req, "Inference", "rule", req);
+schema_enum!(
+    inference_confirmed_how_opt,
+    "Inference",
+    "confirmed_how",
+    opt
+);
 schema_enum!(constraint_direction_opt, "Constraint", "direction", opt);
 schema_enum!(constraint_priority_opt, "Constraint", "priority", opt);
 schema_enum!(decision_kind_opt, "Decision", "kind", opt);
