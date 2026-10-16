@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6ea622c9ca7b37e22c75e431eb2693f0595216d2c0f34f327ea3525f173c8edb",
+  "node_id": "ver:foundations-walk-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Six integration tests for requirement E: three-layer chain finds axioms not intermediates, alternative derivations give the union, no-inference node has no foundations, voting rules SHOWN WHEN (dropping a principle breaks the conclusion), derived relation lists the design's axioms, and the honest limit text is present.",
+    "findings": "All 6 tests pass on the branch. The three-layer chain correctly finds only terminal premises; alternative derivations produce the union of axioms; nodes with no inference return empty; the SHOWN WHEN test confirms dropping a principle breaks the conclusion; design_foundations lists all axioms; and the honest limit text is served.",
+    "kind": "verification",
+    "last_run_at": "2026-10-15",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_conclusion_shows_the_axioms_it_rests_on.rs",
+    "method": "test",
+    "name": "Foundations walk tests",
+    "status": "passing"
+  }
+}

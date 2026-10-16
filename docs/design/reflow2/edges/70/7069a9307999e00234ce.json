@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4304517657e07cb3ebb62c6d753969087aaaf828699e9dbf5255b5ecd2afc52b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:9b01ca759ae816a7bb54cc85e80e38184a06a9b285761971525ce81fa97c5c17",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-relations-are-declared-and-checked-test"
+}

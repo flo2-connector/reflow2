@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77f1c90155f7dda9cbfc63af10fffc1ab978054ad1af2bfcd819569696864568",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-conclusion-shows-the-axioms-it-rests-on",
+  "properties": {
+    "covers": "whole",
+    "evidence": "The test file crates/reflow2-core/tests/a_conclusion_shows_the_axioms_it_rests_on.rs contains the 6 integration tests the Verification describes. Running `cargo test -p reflow2-core --test in_memory a_conclusion_shows_the_axioms_it_rests_on::` re-runs the check."
+  },
+  "to_id": "ver:foundations-walk-tests"
+}

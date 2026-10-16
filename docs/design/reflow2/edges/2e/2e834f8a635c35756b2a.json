@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:02561d684c3265fd887f45129c7644c8ee4f1556452bc4eaf21b657f6dc7a1a3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0f9610de6ac3c473f725467fc3465be86ef17df629dead51ee8c6c52a20ac35c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-conclusion-shows-the-axioms-it-rests-on"
+}

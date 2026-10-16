@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5d4f232ec113d96753609d8846adb29cc6915aa40f8d60aed83116f49f507056",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:foundations-walk-requirement-e",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

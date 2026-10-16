@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b1f185dcfd62a1f036720e93032112708bceee0fb0cf37797658fa06c1526656",
+  "node_id": "cap:foundations-walk",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Given a concluded node, walk backward through its inference chains to find the terminal premises (axioms) it ultimately rests on. Served on get_node as a foundations field beside inference_reading, with the honest limit that foundations show what follows FROM, never that the axioms are right.",
+    "name": "Foundations walk",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

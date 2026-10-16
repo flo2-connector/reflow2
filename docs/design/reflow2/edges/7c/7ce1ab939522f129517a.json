@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e04d52ec99b3bd2fc9c35510cd6755840488f1c9a4e14f78f571137df12809ce",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:foundations-walk",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

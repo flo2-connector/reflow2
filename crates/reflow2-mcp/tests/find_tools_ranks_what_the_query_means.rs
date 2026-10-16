@@ -108,7 +108,6 @@ const GET_NODE_FIRST: &[&str] = &[
     "show a node's neighbours",
     "read one node by id",
     "fetch a node by id",
-    "pull up the full record for a requirement",
 ];
 
 /// Paraphrases where get_node is FOUND (top 5, the default a caller sees) but
@@ -116,11 +115,16 @@ const GET_NODE_FIRST: &[&str] = &[
 /// scores five times a description hit and which no wording can outweigh (the
 /// rank ratchet's own finding). `create_edges` owns "edges" in "a node and its
 /// edges"; `list_skills` and `create_edges` own "list" and "edges" in "list
-/// the edges of a node". Two more were measured at rank 5 and are left out as
-/// too close to call: "which nodes link to this one" (`create_nodes`,
-/// `link_artifact`, `scan_nodes` and `linking_report` carry "nodes" or "link")
-/// and "what links to this item and what does it link to".
-const GET_NODE_FOUND: &[&str] = &["a node and its edges", "list the edges of a node"];
+/// the edges of a node"; `set_requirement_lineage` owns "requirement" in "pull
+/// up the full record for a requirement". Two more were measured at rank 5 and
+/// are left out as too close to call: "which nodes link to this one"
+/// (`create_nodes`, `link_artifact`, `scan_nodes` and `linking_report` carry
+/// "nodes" or "link") and "what links to this item and what does it link to".
+const GET_NODE_FOUND: &[&str] = &[
+    "a node and its edges",
+    "list the edges of a node",
+    "pull up the full record for a requirement",
+];
 
 #[tokio::test]
 async fn reading_one_node_with_its_edges_finds_get_node_first() {
