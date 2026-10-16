@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4ef106154f785f87eddeb3e7901bd32dfae4ccad8c95b2f406dc4364f309e82c",
+  "node_id": "chg:accept-d8abc91b2dd7de2b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "Mirror copied from getting-started/skills/brainstorm/SKILL.md after inference-chain text was added",
+    "subject": "system"
+  }
+}

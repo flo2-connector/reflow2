@@ -213,6 +213,12 @@ Then write the cause down where a later session will meet it:
   2026-09-07, when it was skipped on a field report by an agent that had recorded the rule
   requiring it hours earlier.
 
+  ⭐ **WHEN THE CAUSE IS CONSEQUENTIAL — one the person will act on — record the reasoning as
+  an inference chain** (`add_inference`): the observations that led to the cause as premises,
+  the rule, and the cause as the conclusion. Every step can be checked; a later reader can
+  name the one premise they disagree with. The chain is your stated argument for the cause,
+  not a transcript — the investigation stays in its own record.
+
 - The **repair's own record**: `snapshot_before_change` takes `repair` — `corrected_cause` when the class
   should not recur, `contained_symptom` when it can and something is standing in the way. A
   containment must also carry `stands_in_for`: the sentence naming what the proper fix would be.
