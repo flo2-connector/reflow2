@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0b0d807ebef3cbe4489ae4226447d99612b4e95e77bbedd3837738deb4f9d584",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0fd94bf0e3e85d5d966fcd5536716a583810cb75f427bfeefd258fb1cb026fd7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}

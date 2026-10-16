@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:042965790ca2d1b8ce761608561eeeb3f7737b9b5542226926bb2ee4fa098e4b",
+  "node_id": "art:proof-who-confirmed-tests",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "checksum": "sha256:57c2acaa14fe1182a7dede6641ab00b0050757a4b78dd577104892db3e0afb5e",
+    "checksum_basis": "asserted",
+    "description": "Four new tests: confirmation_is_recorded_and_read_on_the_step, proof_status_is_shown_when_unconfirmed_and_proven_when_confirmed, a_counterexample_contradicts_and_breaks_downstream_steps, a_bad_confirmed_how_is_refused",
+    "location": "crates/reflow2-mcp/tests/an_inference_says_how_premises_support_a_conclusion.rs",
+    "name": "an_inference_says_how_premises_support_a_conclusion.rs (proof tests)",
+    "status": "realized"
+  }
+}

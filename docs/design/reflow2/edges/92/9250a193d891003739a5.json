@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4acaa97a6369fd85488659b809e2e0c1a553ec3ba45da39b89355d4533d54eb7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:57c2acaa14fe1182a7dede6641ab00b0050757a4b78dd577104892db3e0afb5e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-inference-says-how-premises-support-a-conclusion"
+}

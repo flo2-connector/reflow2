@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4a6b70ca0bb86c9221b7c50cc8b013190e57c4e552743f38f2aa570c3db90bb",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:proof-who-confirmed-tests",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:proof-who-confirmed-tests"
+}

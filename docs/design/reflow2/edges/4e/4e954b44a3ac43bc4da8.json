@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d8411664b8cf657098a65a97721e4bf0cf7f8837287bb010d99814b47b81d5e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:caecfd58d516c11ff97a846afe5f0a898251118f90432fbd5234112c515bf840",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-capture"
+}

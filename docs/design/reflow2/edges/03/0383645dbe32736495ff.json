@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ef019b4f1777af2c5ffa5dd5ef00ddd662a8a99ad86fe4db891249ace3ca170a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proof-who-confirmed-pr760",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:inference-rs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:41af4019198bf288f5bc3f7c0fe8f73235743bf34dea144cf7fd6f7c46d9506b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:proof-who-confirmed-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
