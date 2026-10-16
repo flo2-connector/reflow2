@@ -39,6 +39,7 @@ mod a_choice_is_not_a_musing;
 mod a_claim_carries_its_age;
 mod a_claim_is_not_hidden_by_its_parent;
 mod a_claimed_check_is_counted_apart_from_a_runnable_one;
+mod a_conclusion_shows_the_axioms_it_rests_on;
 mod a_dangling_reference_is_found_whatever_its_degree;
 mod a_deliberate_state_is_not_a_defect;
 mod a_deliberately_open_edge_declares_what_it_is_for;
