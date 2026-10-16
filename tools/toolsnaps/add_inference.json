@@ -22,7 +22,7 @@
       },
       "confirmed_by": {
         "default": null,
-        "description": "WHO confirmed this step: a contributor id (`who:ajs`) or a proof\nchecker's name. Absent means unconfirmed.",
+        "description": "WHO confirmed this step: a contributor id (`who:jane`) or a proof\nchecker's name. Absent means unconfirmed.",
         "type": [
           "string",
           "null"

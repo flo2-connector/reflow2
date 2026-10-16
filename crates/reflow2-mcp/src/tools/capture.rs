@@ -4353,7 +4353,7 @@ pub struct AddInferenceReq {
     /// A short handle. Composed from the rule and the conclusion when omitted.
     #[serde(default)]
     pub name: Option<String>,
-    /// WHO confirmed this step: a contributor id (`who:ajs`) or a proof
+    /// WHO confirmed this step: a contributor id (`who:jane`) or a proof
     /// checker's name. Absent means unconfirmed.
     #[serde(default)]
     pub confirmed_by: Option<String>,

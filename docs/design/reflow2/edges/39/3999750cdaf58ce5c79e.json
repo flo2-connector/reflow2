@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:45e698b60a4fc2587376f07a95ac84acabf4c0aa83ede140b24f6f6a46572532",
+  "content_hash": "sha256:986b709c366988ec0e5a8dd57cd1a50ad604d974241522ed0dda1260b69f3cef",
   "edge_type": "CHANGED",
   "from_id": "chg:proof-who-confirmed-pr760",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 4,
     "action": "modified",
-    "checksum_after": "sha256:7a2f2d1b20de8ab8853561530f4601121eeb7a544b72c8b0838d2056c41cc6ea",
+    "checksum_after": "sha256:70775d94dbdf12c3ae38fc0f8b06c42461d95fe18a5b69ba38ac503b71f7ad08",
     "checksum_basis": "asserted"
   },
   "to_id": "art:schema-inference"
