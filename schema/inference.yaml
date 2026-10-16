@@ -339,16 +339,22 @@ schema:
               of a CONTRADICTS edge and the statement it breaks is the target, with
               `alignment` left at `opposing` (the default). With `alignment`
               `supporting` the same edge is corroboration, the opposite. An opposing
-              CONTRADICTS makes the target's computed truth `fails`, so every inference
-              step resting on it is reported broken (req:a-design-can-be-a-proof); the
-              target's own `status` does not move — the owner settles that.
+              CONTRADICTS counts as far as its source HOLDS: a counterexample that holds
+              (a passing check, a met requirement) makes the target's computed truth
+              `fails`, so every inference step resting on it is reported broken
+              (req:a-design-can-be-a-proof); one not yet established leaves the target
+              `unknown`, contested; one that fails no longer counts
+              (req:a-design-holds-a-line-of-reasoning). The target's own `status` does
+              not move — the owner settles that.
           - term: refutes
             means: >-
               A refutes B: A shows B false. Drawn as CONTRADICTS from A to B with
               `alignment` `opposing` (the default); a CONTRADICTS edge marked
-              `supporting` corroborates instead. An opposing CONTRADICTS makes B's
-              computed truth `fails` and reports every step resting on B as broken; B's
-              own `status` does not move — its owner settles that.
+              `supporting` corroborates instead. When A holds, B's computed truth is
+              `fails` and every step resting on B is reported broken; while A is not
+              yet established, B reads `unknown` (contested); once A fails (answered by
+              a reply, a CONTRADICTS against A), it no longer counts. B's own `status`
+              does not move — its owner settles that.
       extraction_hint: Two decisions/requirements/claims that conflict (or, with alignment=supporting, reinforce).
 
     # VALIDATES retired 2026-07-22 (dec:edge-orthogonality): orthogonal-in-name-

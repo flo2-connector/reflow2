@@ -79,6 +79,7 @@
         "untriaged_report",
         "refused_by_schema"
       ],
+      "suppressed_by_held_open": {},
       "suppressed_by_parked_idea": {},
       "suppressed_by_resolution": {}
     }

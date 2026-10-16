@@ -63,7 +63,9 @@ pub struct SettlingProperty {
 /// THE TABLE — the rule's three cases, as `check_intent_authority.py` reads
 /// them. `deferred` settles a Decision since 2026-09-12: setting a question
 /// aside is the owner's act exactly as accepting one is; superseded and
-/// rejected retire rather than decide.
+/// rejected retire rather than decide. `contested` since 2026-10-16: keeping a
+/// question open on purpose, both sides on the record, is the owner's act too
+/// (req:a-design-holds-a-line-of-reasoning).
 pub const SETTLING: &[SettlingProperty] = &[
     SettlingProperty {
         node_type: node::REQUIREMENT,
@@ -73,7 +75,7 @@ pub const SETTLING: &[SettlingProperty] = &[
     SettlingProperty {
         node_type: node::DECISION,
         property: "status",
-        when: SettleWhen::In(&["accepted", "deferred"]),
+        when: SettleWhen::In(&["accepted", "deferred", "contested"]),
     },
     SettlingProperty {
         node_type: node::DESIGN_RULE,
@@ -459,6 +461,7 @@ mod tests {
             ("proposed", false),
             ("accepted", true),
             ("deferred", true),
+            ("contested", true),
             ("rejected", false),
             ("superseded", false),
         ] {

@@ -2706,6 +2706,27 @@ pub struct TopicReportReq {
     pub budget_chars: Option<usize>,
 }
 
+/// A line of reasoning, read back — `reasoning_report`.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ReasoningReportReq {
+    /// The claim to read the reasoning under: its support, what it rests on
+    /// and what stands against it, all the way down. Omitted: every top
+    /// conclusion (a node a step concludes that supports nothing further) and
+    /// every Decision set to `contested`.
+    #[serde(default)]
+    pub claim: Option<String>,
+    /// How many nodes to read (default 60, at most 500). `capped: true` in
+    /// the reply means the walk stopped before reaching everything.
+    #[serde(default)]
+    pub limit: Option<usize>,
+    /// Characters the reply may spend (default 30,000). Over it, the claims'
+    /// prose gives first, then claims from the end of the walk; every summary
+    /// list keeps its ids, and the `budget` block says what was withheld.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
+}
+
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct DescribeSchemaReq {
@@ -4503,8 +4524,10 @@ pub struct DecisionReq {
     #[serde(default)]
     pub no_relation_note: Option<String>,
     /// The status to LAND IN when the owner's word is already in hand:
-    /// `proposed` (the default) / `accepted` / `deferred` / `superseded` / `rejected`.
-    /// `deferred` is set aside and NOT debt — the loop stops counting it as owed.
+    /// `proposed` (the default) / `accepted` / `deferred` / `contested` / `superseded` /
+    /// `rejected`. `deferred` is set aside and NOT debt — the loop stops counting
+    /// it as owed. `contested` keeps a question open on purpose, both sides on
+    /// the record, and is not debt either.
     /// A status past `proposed` is REFUSED unless `approver` is named — one
     /// call, with the signature present rather than assumed
     /// (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
@@ -6563,8 +6586,9 @@ pub struct SetDecisionStatusReq {
     #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub decision_id: String,
     /// `proposed` (opens a decision point) / `accepted` / `deferred` (set aside,
-    /// not debt — carries an approver like `accepted`) / `superseded` /
-    /// `rejected`.
+    /// not debt — carries an approver like `accepted`) / `contested` (kept open
+    /// on purpose, both sides on the record, no verdict owed — also the owner's
+    /// word, also not debt) / `superseded` / `rejected`.
     #[schemars(schema_with = "crate::enum_schema::decision_status_req")]
     pub status: String,
     /// The Contributor whose word moves it — draws `AUTHORED_BY role=approver`

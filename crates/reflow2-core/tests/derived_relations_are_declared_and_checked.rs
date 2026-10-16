@@ -1045,7 +1045,7 @@ struct ListedReader {
 
 /// The unjudged entries the list may hold. It ONLY SHRINKS: judging an entry
 /// lowers it, and a new function is judged, never added as unjudged.
-const UNJUDGED_AT_MOST: usize = 127;
+const UNJUDGED_AT_MOST: usize = 126;
 
 fn reader_list() -> ReaderList {
     let p = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))

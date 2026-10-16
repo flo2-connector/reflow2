@@ -109,7 +109,18 @@ pub fn analyze_alternatives(
 // It is the one status here that neither opens a decision point nor closes
 // one — a deferred choice cannot have alternatives registered under it, which
 // `register_alternative` enforces by asking for `proposed` and nothing else.
-const DECISION_STATUSES: [&str; 5] = ["proposed", "accepted", "deferred", "superseded", "rejected"];
+// `contested` since 2026-10-16: kept open on purpose, both sides on the record
+// and no verdict owed (req:a-design-holds-a-line-of-reasoning). Like `deferred`
+// it neither opens a decision point nor closes one: register the alternatives
+// while the Decision is `proposed`, then keep them all by contesting it.
+const DECISION_STATUSES: [&str; 6] = [
+    "proposed",
+    "accepted",
+    "deferred",
+    "contested",
+    "superseded",
+    "rejected",
+];
 
 /// The quality axes a design can declare itself built FOR.
 ///

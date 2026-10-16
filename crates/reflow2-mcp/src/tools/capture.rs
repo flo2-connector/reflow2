@@ -1061,6 +1061,11 @@ pub(crate) fn decision_landing_hint(status: Option<&str>) -> String {
         Some("deferred") => "loop: this Decision stands `deferred` — set aside by the owner's \
                              word, so it counts as no debt until someone takes it up"
             .to_string(),
+        Some("contested") => "loop: this Decision stands `contested` — kept open on purpose by \
+                              the owner's word: both sides stay on the record, no verdict is \
+                              owed, and it counts as no debt; govern each side of the dispute by \
+                              it (governed_by)"
+            .to_string(),
         Some(other) => format!(
             "loop: this Decision stands `{other}` — retired rather than settled; say what \
              replaced it (OBSOLETES / EVOLVES_INTO) so a reader can follow the road"

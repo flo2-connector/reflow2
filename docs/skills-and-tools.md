@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 198 tools
+# What reflow2 offers: 32 skills and 199 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 198 tools
+## The 199 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -247,6 +247,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `search_design` | **read** | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
 | `topic_report` | **read** | WHAT THE DESIGN HOLDS ABOUT ONE SUBJECT, read-only, in one call — the /topic view: 'show me something about X'. |
 | `draw_edges` | **write** | The bulk form of the typed edge tools. |
+| `reasoning_report` | **read** | READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. |
 
 ### Assurance — checks, evidence and confirmation
 
@@ -360,7 +361,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `recall_resolutions` | read | Recall recorded conflict resolutions (rerere) by their content keys — the advisory half of merge (BL-80 #5) |
 | `register_alternative` | **write** | Register an alternative under a proposed decision point (BL-70): a lightweight Artifact pointer that names where the alternative's design export lives (branch-by-file), GOVERNED_BY the Decision and CONTRADICTS its siblings. |
 | `seam_report` | read | Compare paired boundaries across a seam and say where two designs DISAGREE — the check the ordinary detectors cannot do, because they reason about structure and a contract mismatch is a comparison of PROPERTIES ACROSS A PAIR |
-| `set_decision_status` | **write** | Set a Decision's lifecycle status — proposed / accepted / deferred / superseded / rejected (BL-70). |
+| `set_decision_status` | **write** | Set a Decision's lifecycle status — proposed / accepted / deferred / contested / superseded / rejected (BL-70). |
 | `alternatives_for` | **read** | List the alternatives registered under a decision point (BL-70) — the Artifact pointers GOVERNED_BY the Decision, each with its export location, ready to feed to analyze_alternatives. |
 | `analyze_alternatives` | **read** | Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70). |
 | `certify_preservation` | **read** | Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling. |

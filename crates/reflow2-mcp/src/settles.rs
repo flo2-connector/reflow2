@@ -46,7 +46,7 @@
 //!   "when": "node_settles_intent",
 //!   "node_rule": [
 //!     {"node_type": "Requirement", "property": "status",   "when": {"not_in": ["proposed"]}},
-//!     {"node_type": "Decision",    "property": "status",   "when": {"in": ["accepted", "deferred"]}},
+//!     {"node_type": "Decision",    "property": "status",   "when": {"in": ["accepted", "deferred", "contested"]}},
 //!     {"node_type": "DesignRule",  "property": "enforced", "when": "present"}
 //!   ],
 //!   "approver": "approver",                // "nodes[].approver" for create_nodes
@@ -146,13 +146,13 @@ pub const SETTLES: &[Settles] = &[
         unsigned: Unsigned::Refused,
     },
     // Held to the core table like every status row: a Decision settles at
-    // `accepted` or `deferred`; recording one already `rejected` retires an
+    // `accepted`, `deferred` or `contested`; recording one already `rejected` retires an
     // option, it decides nothing. This row read NotIn(proposed) until
     // 2026-09-29 and refused an unsigned `rejected` the gate never asks about.
     Settles {
         tool: "add_decision",
         argument: Some("status"),
-        when: When::In(&["accepted", "deferred"]),
+        when: When::In(&["accepted", "deferred", "contested"]),
         approver: "approver",
         unsigned: Unsigned::Refused,
     },
@@ -175,7 +175,7 @@ pub const SETTLES: &[Settles] = &[
     Settles {
         tool: "set_decision_status",
         argument: Some("status"),
-        when: When::In(&["accepted", "deferred"]),
+        when: When::In(&["accepted", "deferred", "contested"]),
         approver: "approver",
         unsigned: Unsigned::RecordedWithNote,
     },
@@ -522,6 +522,7 @@ mod tests {
         );
         let ds = rule("set_decision_status");
         assert!(ds.settles_str(Some("deferred")));
+        assert!(ds.settles_str(Some("contested")));
         assert!(
             !ds.settles_str(Some("rejected")),
             "rejecting retires, it does not decide"

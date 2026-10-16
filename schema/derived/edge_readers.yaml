@@ -131,12 +131,12 @@ readers:
   graph.rs::owned_by: { kind: unjudged, edges: [OWNED_BY] }
   graph.rs::provides: { kind: unjudged, edges: [PROVIDES] }
   graph.rs::satisfies_between: { kind: unjudged, edges: [SATISFIES] }
+  heal.rs::common_governor: { kind: not_derived, edges: [GOVERNED_BY], why: "The contradiction sweep's lookup: a Decision of one status that both ends of a disagreement are GOVERNED_BY. `accepted` resolves it; `contested` keeps it open on purpose (req:a-design-holds-a-line-of-reasoning). One hop and a status read." }
   heal.rs::complementary_pairs: { kind: unjudged, edges: [COMPLEMENTS] }
   heal.rs::detect_structural_defects: { kind: unjudged, edges: [CONTAINS] }
   heal.rs::governed_by_a_methodology_rule: { kind: unjudged, edges: [GOVERNED_BY] }
   heal.rs::island_attached_by_containment: { kind: unjudged, edges: [CONTAINS] }
   heal.rs::merge_repoint: { kind: unjudged, edges: [DUPLICATES] }
-  heal.rs::resolving_decision: { kind: unjudged, edges: [GOVERNED_BY] }
   heal.rs::rule_populations: { kind: unjudged, edges: [ANTICIPATES, CONTRADICTS, DUPLICATES] }
   heal.rs::survivor_reading: { kind: not_derived, edges: [AUTHORED_BY, DUPLICATES], why: "Reads one merge candidate for the survivor ranking: counts its edges leaving DUPLICATES out (a redundancy claim is not the design using the node) and takes its earliest authored_at as a date. One node's own record, one hop; it composes no relation." }
   hierarchy.rs::move_component: { kind: unjudged, edges: [CONTAINS] }
@@ -179,6 +179,12 @@ readers:
   readiness.rs::add_readiness: { kind: not_derived, edges: [HAS_READINESS], why: "A writer: records a ReadinessAssessment and its HAS_READINESS edge, which readiness_gate reads." }
   readiness.rs::forecast_readiness: { kind: not_derived, edges: [HAS_TEMPORAL_FACT, VALID_FROM], why: "A writer: records a dated forecast (HAS_TEMPORAL_FACT, VALID_FROM) that readiness_gate reads. #631 named it as readiness_gate's code; it computes nothing." }
   readiness.rs::gate_on: { kind: not_derived, edges: [GATED_ON], why: "A writer: draws the GATED_ON threshold readiness_gate reads." }
+  reasoning.rs::cited_sources: { kind: not_derived, edges: [DOCUMENTS], why: "Lists the Artifacts that DOCUMENT one node, with where to open each: a one-hop projection for the reasoning read-back." }
+  reasoning.rs::claim_reading: { kind: not_derived, edges: [CONTRADICTS], why: "Reads one node for the reasoning read-back: what it stands against and what corroborates it, one hop each. Its truth and its objections come from the follows relation's own code." }
+  reasoning.rs::contested_governor: { kind: not_derived, edges: [GOVERNED_BY], why: "Finds the Decision set to `contested` that governs one node: one hop and a status read." }
+  reasoning.rs::governed_by_decision: { kind: not_derived, edges: [GOVERNED_BY], why: "Lists what one Decision governs, the sides a contested dispute keeps: one hop." }
+  reasoning.rs::reasoning_neighbours: { kind: not_derived, edges: [CONTRADICTS], why: "The reasoning read-back's walk: which nodes to read next (a step's premises, the objections against a node, the sides of a contested decision). It lists; it derives nothing." }
+  reasoning.rs::reasoning_roots: { kind: not_derived, edges: [PREMISE_OF], why: "Where the reasoning read-back starts: each conclusion no step rests on, and each Decision set to `contested`. A projection, not a relation." }
   relate.rs::has_review_relation: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   relate.rs::review_relations: { kind: unjudged, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES] }
   relate.rs::unlinked_intent: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A detector filter: it lists the requirements and accepted decisions with no review relation and no DECOMPOSES or GOVERNED_BY edge in either direction, one hop, only to say which carry none. It derives no relation and asserts none: a node it lists is asked about, never linked." }

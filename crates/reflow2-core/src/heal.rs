@@ -280,6 +280,9 @@ fn defect_ack_decision_id(defect_id: &str) -> String {
 pub struct Suppressed {
     pub parked: BTreeMap<&'static str, usize>,
     pub resolved: BTreeMap<&'static str, usize>,
+    /// Looked at and kept open ON PURPOSE: a contradiction both of whose
+    /// sides a `contested` Decision governs. Neither resolved nor unread.
+    pub held_open: BTreeMap<&'static str, usize>,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -376,6 +379,13 @@ pub struct SweepScope {
     /// for the same reason: a finding that vanishes without a trace is a zero
     /// nobody can check (2026-09-15, `fact:two-heal-rules-assert-a-condition-they-never-test`).
     pub suppressed_by_resolution: BTreeMap<&'static str, usize>,
+    /// Findings NOT REPORTED because the owner keeps the disagreement open ON
+    /// PURPOSE, by category: a `contradiction` both of whose endpoints are
+    /// governed by a Decision set to `contested` — an argument for and against
+    /// that is meant to stay one (req:a-design-holds-a-line-of-reasoning).
+    /// Kept apart from `suppressed_by_resolution` because nothing was
+    /// resolved: both sides stand, by design, and no verdict is owed.
+    pub suppressed_by_held_open: BTreeMap<&'static str, usize>,
     /// Said in WORDS when the sweep could not have found anything — an empty
     /// graph. `None` when the sweep was real, so its presence is the signal.
     #[serde(skip_serializing_if = "Option::is_none", default)]
@@ -1829,6 +1839,7 @@ impl DesignGraph {
             expected_at_this_phase: self.genesis_phase_islands()?,
             suppressed_by_parked_idea: suppressed.parked,
             suppressed_by_resolution: suppressed.resolved,
+            suppressed_by_held_open: suppressed.held_open,
             rules: HealCategory::ALL.iter().map(|c| c.as_str()).collect(),
             note: (nodes == 0).then(|| {
                 "this graph holds no nodes, so an empty result is VACUOUS rather than clean — \
@@ -2733,6 +2744,22 @@ impl DesignGraph {
                     .or_default() += 1;
                 continue;
             }
+            // AND A DISPUTE KEPT OPEN ON PURPOSE. A Decision set to `contested`
+            // that governs both endpoints is the owner's word that this
+            // disagreement stays: an argument for and against that is meant to
+            // stay one (req:a-design-holds-a-line-of-reasoning, Anthony
+            // 2026-10-16). Counted as held open, never as resolved, because
+            // nothing was settled; the edge and both sides stay as they are.
+            if self
+                .common_governor(&index, &e.from_id, &e.to_id, "contested")
+                .is_some()
+            {
+                *suppressed
+                    .held_open
+                    .entry(HealCategory::Contradiction.as_str())
+                    .or_default() += 1;
+                continue;
+            }
             let affected = vec![e.from_id.clone(), e.to_id.clone()];
             issues.push(HealIssue {
                 id: issue_id(HealCategory::Contradiction, &affected),
@@ -3021,7 +3048,20 @@ impl DesignGraph {
         a: &str,
         b: &str,
     ) -> Option<String> {
-        let accepted_governors = |id: &str| -> Vec<String> {
+        self.common_governor(index, a, b, "accepted")
+    }
+
+    /// The Decision with this `status` that both `a` and `b` are
+    /// `GOVERNED_BY`, if one exists: `accepted` resolves a disagreement,
+    /// `contested` keeps it open on purpose.
+    fn common_governor(
+        &self,
+        index: &HashMap<String, String>,
+        a: &str,
+        b: &str,
+        status: &str,
+    ) -> Option<String> {
+        let governors = |id: &str| -> Vec<String> {
             self.outgoing(id, Some(edge::GOVERNED_BY))
                 .unwrap_or_default()
                 .into_iter()
@@ -3036,14 +3076,14 @@ impl DesignGraph {
                                 n.properties
                                     .get("status")
                                     .and_then(Value::as_str)
-                                    .map(|s| s == "accepted")
+                                    .map(|s| s == status)
                             })
                             .unwrap_or(false)
                 })
                 .collect()
         };
-        let of_b = accepted_governors(b);
-        accepted_governors(a).into_iter().find(|d| of_b.contains(d))
+        let of_b = governors(b);
+        governors(a).into_iter().find(|d| of_b.contains(d))
     }
 
     /// Graph-topology defects over the design network (via `dynograph-graph`):
