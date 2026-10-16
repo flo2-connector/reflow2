@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:3c3569acc4e0200541f8357dac19aa553ecb815246805940f4b2a626033f7fd7",
+  "content_hash": "sha256:a9610540f04b34b0dcf0e3a56845465d2726856355e71a9188a30dcd1d9f12c4",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-requirement-carries-the-reasoning-that-brought-it-into-existence",
+  "prev_item_hash": "sha256:3c3569acc4e0200541f8357dac19aa553ecb815246805940f4b2a626033f7fd7",
   "properties": {
+    "approved_at": "2026-10-16",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3db338b13f8422f7c9076b3eefca38f63636f9fa506a6fec479a548f78766aff",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-structure",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:an-objection-counts-as-far-as-it-holds-and-a-dispute-can-be-kept-open"
+}

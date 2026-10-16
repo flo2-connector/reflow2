@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a47f6bf7e6e1c9e27b6705a6dcd6b8813005410426083de0fcf581591e61d5df",
+  "node_id": "chg:accept-ed78d5336cb07c1a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.85.0 cut: the release line moves to v0.85.0, and the list of questions the links answer gains whether a conclusion follows and who checked each step.",
+    "subject": "system"
+  }
+}

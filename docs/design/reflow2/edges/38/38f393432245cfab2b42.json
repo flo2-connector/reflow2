@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c85276ab6132f3de431da7395d453264ec8f9192440e33b3504d1f543bbc2af4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:3489bed4575740549db69a02b52d7f678d0d031d4b7b759c5c1ca16e8f1077fe"
+  },
+  "to_id": "art:an-undated-change-event-says-so-test"
+}

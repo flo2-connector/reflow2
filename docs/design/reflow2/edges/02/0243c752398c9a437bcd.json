@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f699f9d1d24fc140af11d9bbaebbec74b42070169c9054e79d0664894c2cdfd",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:b640190d3778cecb7882777f4829696a806251860f53c43ce5a131324e7313ef"
+  },
+  "to_id": "art:every-defaulted-edge-property-is-exposed-or-exempt-test"
+}

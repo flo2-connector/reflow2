@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a00c144ccdc7efa27d947ccee2462deb2e3bf42731003489c978fc08e1bc9b5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:02cdfb61f2fb5565ce7ed521e3ee67a00ee4aacf0bae06578c323135f011cedb"
+  },
+  "to_id": "art:test-an-inference-says-how-premises-support-a-conclusion-core"
+}

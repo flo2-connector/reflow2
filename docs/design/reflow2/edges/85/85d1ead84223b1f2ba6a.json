@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f091ed5b7b86500cd13cd39a75472f9460f8c38a1d3b6410031eacdec8382dd7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0850",
+  "properties": {
+    "as_checksum": "sha256:7fa9f08828e65dcffb9792ee0322503188f30a8b38ed27985588ee74dad000e9"
+  },
+  "to_id": "art:derived-relations-are-served-test"
+}

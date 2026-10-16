@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:f3531812184a557f0e8bb8cc355a2761ddd7732bc46c6594f4c0d88257a4a493",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain",
+  "properties": {
+    "approved_at": "2026-10-16",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

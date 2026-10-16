@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b1a436ba0a6500331036ad4e3a6d8a6ede62fad4a5889cd2bc357f80e40b278",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:an-objection-counts-as-far-as-it-holds-and-a-dispute-can-be-kept-open"
+}
