@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:213fd2c2a51efb58ab5adf2ac09f926112cb4558382f2a7ce17e70814b85cd79",
+  "edge_type": "CHANGED",
+  "from_id": "chg:consolidate-reflow2-core-225-test-files-into-4-programs",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:core-test-every-test-file-runs-in-exactly-one-program"
+}
