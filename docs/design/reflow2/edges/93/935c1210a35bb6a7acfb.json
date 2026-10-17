@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3513f403447eb8edc31698e640196ed7eefd80c83ba5974d91fd160f60c0c702",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:0ff3d7b6d2fcad7dd4d0c24a2c08f2652a85279638492214062372acbb84a206"
+  },
+  "to_id": "art:check-consumer-reach"
+}

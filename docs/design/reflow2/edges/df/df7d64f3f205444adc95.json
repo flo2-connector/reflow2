@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5eeeb8d14075c2d53470784b733e8f28250c0d990ce605167b46b99e9d302a9b",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-computed-fact-counts-only-through-its-kept-record",
+  "properties": {
+    "evidence": "The primes trial's evidence-versus-proof line, made mechanical for computed checks, is what option (f) extends to sampled checks with a stated confidence bound."
+  },
+  "to_id": "dec:idea-what-reflow2-can-learn-from-evaluator-guided-llm-circuit-design"
+}

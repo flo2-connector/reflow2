@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:47c3a80ecd70636f1cd555a450fe5b64ccf2e098a1a6711031e3180bf197b255",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:dc88dfbc4e1aacbc"
+  },
+  "to_id": "art:sanitize"
+}

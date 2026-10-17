@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:cee1d85f9b4b4256aec6f27d71ae49dfcba2312ca491caca32d5b9d47ae4683f",
+  "node_id": "rel:v0860",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-17 on Anthony's word (\"Merge 765 and cut 0.86.0\"). A minor carrying #763 to #765, the primes trial's fixes:\n- #763: a proof counts what it should (a computed check holds a premise only through its kept record; a claim that loses its support reads unsupported, never false; a what-if stays inside the reasoning it affects; a refutation reads as refuted, not as a defect);\n- #764: a proof says what it assumes and asks (assumed and discharges; generalizes_over with variables and fixes; independent_of and independent_except; the statement_kind enum; ask_question; the design-a-proof skill);\n- #765: corollary and proposition as statement kinds.\n\n200 tools (199 in 0.85.0); the new one is ask_question. The stamp moves by vocabulary, not by type: statement_kind on Requirement and Constraint, plus optional properties; no node or edge type is added. Measured at the cut with the published 0.85.0 binary: it opens a store 0.86.0 wrote and warns, misreads a proof that assumes something (unproven where 0.86.0 reads shown), and refuses 0.86.0's export; 0.86.0 opens 0.85.0's stores and exports unchanged (docs/upgrading-to-v0.86.0.md). Nothing is deprecated or removed; the Anchor type, which 0.85.0 deprecated, is not removed in 0.86.0 and stays deprecated. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.86.0 — a proof says what it assumes, and an agent asks",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.86.0"
+  }
+}

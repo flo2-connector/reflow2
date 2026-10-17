@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:65c37b9764b3338346fbc66d219e91ccf70b3996b9ff45f0f1e6728c0cb054b4",
+  "node_id": "chg:accept-38c9a3370f158285",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-17",
+    "name": "v0.86.0 cut, step 2: the release line moves to v0.86.0; the conclusion question adds what a step assumes until a later step discharges it, and the asking question adds that an agent can put its own question to a named person. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

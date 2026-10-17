@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:803cf047e116ff2ecfd6b69fd0a566b591cd1bb785e36b5501c010c1873883d2",
+  "node_id": "epoch:v0860-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The minor in which a proof says what it assumes, counts only what it should, and an agent can ask a person its own question. It carries the primes trial's fixes:\n- a proof counts what it should (#763);\n- a proof says what it assumes and asks: assumed and discharges, generalizations over declared variables, stated independence, statement_kind, ask_question and the design-a-proof skill (#764);\n- corollary and proposition as statement kinds (#765).\n\nPinned here: rel:v0860, the increment's 7 ChangeEvents (found by diffing ids against the v0.85.0 tag's committed copy), and the cut's eight drift acceptances.",
+    "epoch_type": "release_cut",
+    "name": "v0.86.0 release cut (2026-10-17)",
+    "sequence": 744,
+    "status": "arrived"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0393d4f741c1802d2a831dd2fc8017ce8674dc567e91b9c65b76c24b6243926d",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:13990122a58b5e5fc6dc6dbe405bec631ea9cc5f6989d25a76f8d7c35dd2cd06"
+  },
+  "to_id": "art:kept-record-rs"
+}

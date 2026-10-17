@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c23a203fdeba6b77467beb88d538c41a4f53dc1e71fd41600798ab00490be608",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:c41205362d816b0ab071a83f19b00544c885747e4ac620a94fb5c21db2ebbe76"
+  },
+  "to_id": "art:a-proof-counts-what-it-should-test"
+}
