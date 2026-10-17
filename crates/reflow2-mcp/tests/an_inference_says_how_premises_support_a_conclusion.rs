@@ -277,7 +277,7 @@ async fn a_bad_rule_or_k_is_refused_with_its_legal_values() {
 
 /// The requirement's SHOWN WHEN, through the surface: a claim with redundant
 /// support is marked `any`; remove one support and it is WEAKENED and still
-/// standing; remove the last and it is BROKEN.
+/// standing; remove the last and it is UNSUPPORTED.
 #[tokio::test]
 async fn redundant_support_is_weakened_then_broken_over_the_surface() {
     let s = session().await;
@@ -312,8 +312,11 @@ async fn redundant_support_is_weakened_then_broken_over_the_surface() {
         .ok("propagate_from", json!({"seed_ids": ["ver:baro"]}))
         .await;
     let r = Session::row(&radius, "inf:redundant-altitude");
-    assert_eq!(r["impact"], "broken", "{r:#}");
-    assert_eq!(r["conclusion_after"], "fails", "{r:#}");
+    // Losing the last support leaves the claim UNSUPPORTED, never false
+    // (req:unsupported-is-not-refuted, 2026-10-17).
+    assert_eq!(r["impact"], "unsupported", "{r:#}");
+    assert_eq!(r["conclusion_after"], "unknown", "{r:#}");
+    assert_eq!(r["conclusion_reads"], "unsupported", "{r:#}");
 }
 
 #[tokio::test]

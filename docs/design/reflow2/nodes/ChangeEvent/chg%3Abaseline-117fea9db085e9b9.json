@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ea563013ac5c1562b57be8e19d7e1ae9f05a72861141a0b579c69396197091c6",
+  "node_id": "chg:baseline-117fea9db085e9b9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-17",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:a-proof-counts-what-it-should-on-the-wire-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: first baseline: new in PR #763",
+    "subject": "record"
+  }
+}

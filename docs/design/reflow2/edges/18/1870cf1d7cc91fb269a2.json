@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:61a78a03c2b9519e981002db6771e5186f02ce5ed6fda054dc9a13e71cf62443",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-computed-check-holds-a-premise-only-through-its-kept-record",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

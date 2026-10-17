@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9ec05ada96d1b38b675b68a94bb18d437f790ba8afcec9f0e80996f7b37591f9",
+  "node_id": "req:a-computed-fact-counts-only-through-its-kept-record",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A computed fact supports a claim only through its kept computation record, never through a check someone set passing by hand",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "who:ajs, 2026-10-17, after the primes trial",
+    "statement": "A check made by computation names its kept calc record: an Artifact with its checksum. Then:\n- it reads passing as a premise only while that record exists, its checksum matches, and the record states the result;\n- with no record, it reads \"asserted\", not passing.\n\nA host such as flo2 can re-run the record on request.\n\nFrom the primes trial (fact:the-primes-trial-rung-1-ran-on-flo2-io-and-its-friction-names-what-counts-2026-10-17, item 1). @ajs, 2026-10-17: \"I want to fix all 7…\", choosing \"Bound to its record\".",
+    "status": "accepted"
+  }
+}

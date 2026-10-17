@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2bd36460850ab1fcae82f46fd61940213d672c5c3ef480b8e2371811c1c1c543",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-that-loses-its-support-reads-unsupported-and-the-what-if-says-which-of-three"
+}

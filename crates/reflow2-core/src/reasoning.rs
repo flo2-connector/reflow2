@@ -71,6 +71,49 @@ const NOTHING_TO_READ: &str = "This design records no inference step and no cont
      dispute kept open on purpose is a Decision set to `contested` that governs both sides. Pass \
      `claim` to read one node and what stands against it.";
 
+/// How many ids each list of [`ReasoningDebt`] names; the counts are whole.
+pub const REASONING_DEBT_LIST_CAP: usize = 20;
+
+/// What a [`ReasoningDebt`] means, carried with it.
+pub const REASONING_DEBT_NOTE: &str = "What the reasoning still owes. An UNCONFIRMED step is one \
+     no person or checker has confirmed (`confirmed_how`); an UNCITED premise is one the \
+     reasoning rests on that cites no source and is not marked taken as given; a claim SHOWN BUT \
+     NOT PROVEN holds through steps not all of which are confirmed. Confirming a step is the \
+     owner's word, never an agent's. reasoning_report reads each one in full.";
+
+/// What the reasoning of a design still owes: counted by `loop_status` and
+/// raised as one low-severity `unconfirmed_reasoning` gap.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ReasoningDebt {
+    /// How many Inference steps the design holds.
+    pub steps: usize,
+    /// Steps no person or checker has confirmed.
+    pub unconfirmed_steps: usize,
+    /// Premises the reasoning rests on that cite no source and are not taken
+    /// as given.
+    pub uncited_premises: usize,
+    /// Claims that read `shown`: they hold, and a step under them is
+    /// unconfirmed.
+    pub shown_not_proven: usize,
+    /// Premises marked taken as given: stated foundations.
+    pub stated_foundations: usize,
+    /// The first [`REASONING_DEBT_LIST_CAP`] of each, by id.
+    pub unconfirmed_step_ids: Vec<String>,
+    pub uncited_premise_ids: Vec<String>,
+    pub shown_not_proven_ids: Vec<String>,
+    /// How many ids each list may name.
+    pub list_cap: usize,
+    /// What these counts mean.
+    pub note: &'static str,
+}
+
+impl ReasoningDebt {
+    /// Whether anything is owed.
+    pub fn is_owed(&self) -> bool {
+        self.unconfirmed_steps + self.uncited_premises + self.shown_not_proven > 0
+    }
+}
+
 /// One step that supports a claim, with its warrant.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct SupportStep {
@@ -131,9 +174,13 @@ pub struct ClaimReading {
     /// counted as support.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub corroborated_by: Vec<String>,
-    /// Sources cited for it.
+    /// Sources cited for it. For a Verification, its kept records count too:
+    /// an Artifact its `location` names, or that it PRODUCES.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub sources: Vec<CitedSource>,
+    /// Marked TAKEN AS GIVEN: a stated foundation, never an uncited premise.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub taken_as_given: bool,
     /// The `contested` Decision that keeps its dispute open on purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
@@ -196,8 +243,12 @@ pub struct ReasoningReport {
     /// step in it that no step concludes. Each is read in `claims`.
     pub rests_on: Vec<String>,
     /// Premises that cite no source: they rest on someone's word. Fine for a
-    /// value or a premise stated as given; a factual one needs a source.
+    /// value; a factual one needs a source. A premise marked TAKEN AS GIVEN is
+    /// not here: it is in `stated_foundations`.
     pub uncited_premises: Vec<String>,
+    /// Premises marked TAKEN AS GIVEN: definitions and axioms the reasoning
+    /// states as its starting point.
+    pub stated_foundations: Vec<String>,
     /// Points still contested.
     pub still_contested: Vec<StillContested>,
     /// Disputes kept open on purpose.
@@ -291,10 +342,17 @@ impl DesignGraph {
         let uncited_premises: Vec<String> = rests_on
             .iter()
             .filter(|p| match by_id.get(p.as_str()) {
-                Some(c) => c.node_type != node::ARTIFACT && c.sources.is_empty(),
+                Some(c) => {
+                    c.node_type != node::ARTIFACT && c.sources.is_empty() && !c.taken_as_given
+                }
                 // A premise past the cap is not read here; nothing is said of it.
                 None => false,
             })
+            .cloned()
+            .collect();
+        let stated_foundations: Vec<String> = rests_on
+            .iter()
+            .filter(|p| by_id.get(p.as_str()).is_some_and(|c| c.taken_as_given))
             .cloned()
             .collect();
 
@@ -354,6 +412,7 @@ impl DesignGraph {
             claims,
             rests_on: rests_on.into_iter().collect(),
             uncited_premises,
+            stated_foundations,
             still_contested,
             contested_by_design,
             unsupported,
@@ -443,6 +502,7 @@ impl DesignGraph {
             provenance: prop(&props, "provenance"),
             objections: self.objections_to(id)?,
             sources: self.cited_sources(id)?,
+            taken_as_given: crate::inference::is_taken_as_given(&props),
             contested_by_design: self.contested_governor(id)?,
             node_type,
             truth,
@@ -453,8 +513,23 @@ impl DesignGraph {
         })
     }
 
-    /// The Artifacts that DOCUMENT `id`, sorted.
+    /// The Artifacts that DOCUMENT `id`, sorted — and for a Verification,
+    /// every record it names: one its `location` names, or that it PRODUCES
+    /// (req:the-primes-trials-small-tool-snags-are-fixed, F21: a kept record
+    /// counted as cited only with an explicit `documents` link).
     fn cited_sources(&self, id: &str) -> Result<Vec<CitedSource>, DynoError> {
+        if self.get_node(node::VERIFICATION, id)?.is_some() {
+            return Ok(self
+                .records_of_check(id)?
+                .into_iter()
+                .map(|r| CitedSource {
+                    pinned: r.pinned,
+                    id: r.id,
+                    name: r.name,
+                    location: r.location,
+                })
+                .collect());
+        }
         let mut out = Vec::new();
         for e in self.incoming(id, Some(edge::DOCUMENTS))? {
             let Some(a) = self.get_node(node::ARTIFACT, &e.from_id)? else {
@@ -473,6 +548,88 @@ impl DesignGraph {
         }
         out.sort_by(|a, b| a.id.cmp(&b.id));
         Ok(out)
+    }
+
+    /// WHAT THE REASONING STILL OWES, design-wide — what `loop_status` and
+    /// `detect_gaps` count (req:the-loop-sees-unconfirmed-steps-and-uncited-
+    /// premises, Anthony 2026-10-17). `None` for a design holding no
+    /// Inference, so nothing is said where there is no reasoning
+    /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
+    pub fn reasoning_debt(&self) -> Result<Option<ReasoningDebt>, DynoError> {
+        let steps = self.scan_nodes(node::INFERENCE)?;
+        if steps.is_empty() {
+            return Ok(None);
+        }
+        let mut unconfirmed: Vec<String> = Vec::new();
+        let mut conclusions: BTreeSet<String> = BTreeSet::new();
+        let mut terminal: BTreeSet<String> = BTreeSet::new();
+        for s in &steps {
+            let how = s
+                .properties
+                .get("confirmed_how")
+                .and_then(Value::as_str)
+                .unwrap_or("unconfirmed");
+            if how != "person" && how != "checker" {
+                unconfirmed.push(s.node_id.clone());
+            }
+            if let Some(c) = self.conclusion_of(&s.node_id)? {
+                conclusions.insert(c);
+            }
+            for p in self.premises_of(&s.node_id)? {
+                if self.inferences_concluding(&p)?.is_empty() {
+                    terminal.insert(p);
+                }
+            }
+        }
+        unconfirmed.sort();
+        let mut uncited: Vec<String> = Vec::new();
+        let mut given: Vec<String> = Vec::new();
+        for p in &terminal {
+            let Some(ty) = self.type_holding(p)? else {
+                continue;
+            };
+            if ty == node::ARTIFACT {
+                continue;
+            }
+            let props = self
+                .get_node(&ty, p)?
+                .map(|n| n.properties)
+                .unwrap_or_default();
+            if crate::inference::is_taken_as_given(&props) {
+                given.push(p.clone());
+            } else if self.cited_sources(p)?.is_empty() {
+                uncited.push(p.clone());
+            }
+        }
+        let mut shown: Vec<String> = Vec::new();
+        for c in &conclusions {
+            if self
+                .proof_reading(c)?
+                .is_some_and(|r| r.status == ProofStatus::Shown)
+            {
+                shown.push(c.clone());
+            }
+        }
+        let cap = |mut v: Vec<String>| -> (usize, Vec<String>) {
+            let n = v.len();
+            v.truncate(REASONING_DEBT_LIST_CAP);
+            (n, v)
+        };
+        let (unconfirmed_steps, unconfirmed_ids) = cap(unconfirmed);
+        let (uncited_premises, uncited_ids) = cap(uncited);
+        let (shown_not_proven, shown_ids) = cap(shown);
+        Ok(Some(ReasoningDebt {
+            steps: steps.len(),
+            unconfirmed_steps,
+            uncited_premises,
+            shown_not_proven,
+            stated_foundations: given.len(),
+            unconfirmed_step_ids: unconfirmed_ids,
+            uncited_premise_ids: uncited_ids,
+            shown_not_proven_ids: shown_ids,
+            list_cap: REASONING_DEBT_LIST_CAP,
+            note: REASONING_DEBT_NOTE,
+        }))
     }
 
     fn is_contested_decision(&self, id: &str) -> Result<bool, DynoError> {

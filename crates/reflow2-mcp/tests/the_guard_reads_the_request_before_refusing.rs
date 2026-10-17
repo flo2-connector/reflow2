@@ -104,6 +104,7 @@ async fn a_part_that_meets_a_requirement_reads_like_it_and_is_not_refused() {
         priority: None,
         concern: None,
         kind: None,
+        taken_as_given: None,
     })));
     let out = j!(s.add_component(Parameters(component(
         "cmp:focusing-mirror",

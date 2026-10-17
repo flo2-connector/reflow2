@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:106924c70027539654bb37bc0dfa9e569fc4cebc0fd5201c62dbb91620fbe0df",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-computed-fact-counts-only-through-its-kept-record",
+  "properties": {
+    "approved_at": "2026-10-17",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

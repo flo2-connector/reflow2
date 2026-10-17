@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:dc41cb2ea4975fa283fd488d23390efb678522f9ec2e3d374478ecd8f7286cdb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:ddc1c6842527f48a119e526bda93ee9f335585ba23dec2b272ccff48e6a7cc00",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

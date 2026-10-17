@@ -314,6 +314,23 @@ nothing to gate. Its conditions are now computed continuously by `detect_gaps` a
 what they evaluate — so a stored `passed` would be the weaker of the two. The decision records the
 condition under which it should come back.
 
+## Lines of reasoning — a proof counts what it should (phase 1, 2026-10-17)
+
+Phase 1 of the fixes accepted after the primes proof trial
+(`fact:the-primes-trial-rung-1-ran-on-flo2-io-and-its-friction-names-what-counts-2026-10-17`).
+Tests: `crates/reflow2-core/tests/a_proof_counts_what_it_should.rs` and
+`crates/reflow2-mcp/tests/a_proof_counts_what_it_should_on_the_wire.rs`.
+
+| Requirement | Status | Evidence / note |
+|---|---|---|
+| `req:a-computed-fact-counts-only-through-its-kept-record` | ✅ | `kept_record.rs`; computed = `computed: true` or a `.calc.json` location/record (no `computation` method: that would move the schema stamp). **Deferred:** a host re-running the record on request (flo2's side). |
+| `req:unsupported-is-not-refuted` | ✅ | a concluded node is `holds` or `unknown`, never `fails` from its steps; the walk's `conclusion_reads` / `still_supported_by` |
+| `req:a-refutation-reads-as-refuted-not-as-a-defect` | ✅ | `is_a_standing_refutation`; `swept.suppressed_by_refutation` |
+| `req:the-loop-sees-unconfirmed-steps-and-uncited-premises` | 🟡 | `loop_status.reasoning`, the `unconfirmed_reasoning` gap, `taken_as_given`. **Deferred:** "it carries no budget fields such as direction" — `Constraint.direction` keeps its schema default (`maximum`) on a taken-as-given axiom; dropping a default changes every existing store's round trip, so it waits for the statement-kinds work. |
+| `req:a-proof-is-designed-with-a-skill-and-the-tools-fit-mathematics` | 🟡 | phase 1: reasoning designs skip `concept_without_design` / `quality_target_unstated`; `unlinked_intent` counts PREMISE_OF/CONCLUDES; reasoning single points of failure; a what-if that never turns along reasoning. **Deferred to phase 2:** the proof skill, statement kinds, conjecture status, independent lines. |
+| `req:the-primes-trials-small-tool-snags-are-fixed` | ✅ | gaps_to_prompts by id, describe_schema budget, `verifies` shape, location-named record cited, first instructions section under a cap |
+| `req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable`, `req:an-agent-asks-the-owner-its-own-question-about-a-node` | ⬜ | Deferred: not in phase 1, by the brief. |
+
 ## Dormant schema scaffolding — vocabulary with no code path yet (BL-82)
 
 A 2026-07-22 usage sweep (the "does a computation read or write it?" test that retired the
@@ -334,8 +351,9 @@ not-redundant → defer, and say so here.*
 | Reserved anchor | `Anchor` | ⬜ Deferred — zero references anywhere. |
 
 **Not on this list, and not deferred:** the inference "why" edges (`CAUSES`, `EVOLVES_INTO`,
-`MITIGATES`, `MASKS`, `ANTICIPATES`, `SUPPLEMENTS`, `ANNOTATES`, `SPECIFIES`, `PRODUCES`, …). They
-have no *specific* reader by design — they are agent-populated via `create_edge` and traversed
+`MITIGATES`, `MASKS`, `ANTICIPATES`, `SUPPLEMENTS`, `ANNOTATES`, `SPECIFIES`, …). They
+have no *specific* reader by design (`PRODUCES` has one since 2026-10-17: a computed check's kept
+record, `kept_record.rs`) — they are agent-populated via `create_edge` and traversed
 generically by PROPAGATE. "Nothing computes on them" is the intended contract, not a gap.
 
 ## Cross-cutting project rules — [AGENTS.md](../AGENTS.md)

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:363c72567611ca36b78384d70370b7ed9546a65cdb2bf2107d0aa522e11a954e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:schema-budget-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:62e5c4686faaab2836ef9e7a3b9dc4f6ce958e23239d2726bc804f59ea3a11da",
+  "node_id": "req:the-primes-trials-small-tool-snags-are-fixed",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The primes trial's tool snags are fixed: gaps_to_prompts, describe_schema's size, add_verification's described shape, citing a kept record, and the first get_instructions call",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "who:ajs, 2026-10-17, after the primes trial",
+    "statement": "- gaps_to_prompts reads only what its description says, an id (F8).\n- describe_schema holds a requested budget (F3).\n- add_verification's describe shows the `verifies` object shape (F20).\n- A check whose location names a kept record counts that record as cited (F21).\n- A first get_instructions call from a capped client returns a usable first section, not only a manifest (F1).\n\n@ajs, 2026-10-17: \"and any other that you did not list\".",
+    "status": "accepted"
+  }
+}

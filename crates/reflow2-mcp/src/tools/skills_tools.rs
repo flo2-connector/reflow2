@@ -392,7 +392,13 @@ impl ReflowService {
             .budget_chars
             .filter(|b| returned_section.is_none() && body.len() > *b)
         {
-            return structured(json!({
+            // THE FIRST SECTION RIDES WITH THE MANIFEST WHEN IT FITS
+            // (req:the-primes-trials-small-tool-snags-are-fixed, F1). A capped
+            // client's first call used to get the manifest alone, so every
+            // session paid a second round trip before reading a word. The
+            // first section is WHOLE or absent — never cut — so the document is
+            // still never shortened by a character limit.
+            let mut reply = json!({
                 "instructions": null,
                 "section": null,
                 "sections": manifest,
@@ -413,7 +419,37 @@ impl ReflowService {
                         body.len()
                     ),
                 },
-            }));
+            });
+            if let Some(first) = sections.first() {
+                let mut with_first = reply.clone();
+                with_first["instructions"] = json!(first.body);
+                with_first["section"] = json!(first.slug);
+                with_first["returned_bytes"] = json!(first.body.len());
+                with_first["budget"]["detail"] = json!("first_section_only");
+                with_first["budget"]["note"] = json!(format!(
+                    "THE FIRST SECTION, WHOLE, AND THE MANIFEST. The full instructions are {} \
+                     characters against a budget of {budget}, so they come a section at a time: \
+                     `instructions` holds section `{}` in full, and \
+                     get_instructions {{\"section\": \"<slug>\"}} returns each of the others{}. \
+                     Nothing was trimmed. Raise `budget_chars` if this client really has the \
+                     room.",
+                    body.len(),
+                    first.slug,
+                    sections
+                        .get(1)
+                        .map(|n| format!(", starting with `{}`", n.slug))
+                        .unwrap_or_default()
+                ));
+                if let Some(next) = sections.get(1) {
+                    with_first["next_section"] = json!(next.slug);
+                }
+                if serde_json::to_string(&with_first).map_or(usize::MAX, |t| t.chars().count())
+                    <= budget
+                {
+                    reply = with_first;
+                }
+            }
+            return structured(reply);
         }
 
         structured(json!({

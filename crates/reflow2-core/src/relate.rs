@@ -582,7 +582,8 @@ impl DesignGraph {
     }
 
     /// Requirements and ACCEPTED decisions linked to no other intent: no review
-    /// relation, no DECOMPOSES or GOVERNED_BY either way, and no note saying
+    /// relation, no DECOMPOSES or GOVERNED_BY either way, no part in a line of
+    /// reasoning (PREMISE_OF or CONCLUDES), and no note saying
     /// the relations were reviewed (F1 of
     /// `req:the-pieces-of-one-picture-are-found-together`). A capability
     /// satisfying a requirement is build, not related intent, so it does not
@@ -600,6 +601,13 @@ impl DesignGraph {
                 {
                     return Ok(true);
                 }
+            }
+            // A STATEMENT IN A LINE OF REASONING IS LINKED: a premise of a
+            // step, or a step's conclusion, is related to the intent the step
+            // joins it to (the primes trial's F12: a proof's lemmas read as
+            // unlinked intent).
+            if self.takes_part_in_reasoning(id)? {
+                return Ok(true);
             }
             Ok(false)
         };

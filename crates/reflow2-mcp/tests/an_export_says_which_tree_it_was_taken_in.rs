@@ -79,6 +79,7 @@ fn req(id: &str) -> RequirementReq {
         priority: None,
         concern: None,
         kind: None,
+        taken_as_given: None,
     }
 }
 

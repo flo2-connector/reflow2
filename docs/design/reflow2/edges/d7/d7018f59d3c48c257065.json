@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2ab622d5a2c8f747b7ee72437ff3dd42371286d5899dba477c635c940a5d88f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-claim-that-loses-its-support-reads-unsupported-and-the-what-if-says-which-of-three"
+}

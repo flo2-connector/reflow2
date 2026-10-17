@@ -494,6 +494,16 @@ pub struct LoopStatus {
     /// fed a run back can still be clean. It is in `next` rather than only
     /// here because a field beside the list is measured not to be read.
     pub loop_closure: crate::loop_closure::LoopClosure,
+    /// WHAT THE REASONING STILL OWES, on a design that holds Inference steps:
+    /// its unconfirmed steps, its uncited premises, and its claims that read
+    /// `shown` but not `proven` (req:the-loop-sees-unconfirmed-steps-and-
+    /// uncited-premises, Anthony 2026-10-17). Absent on a design holding no
+    /// Inference. Said in `next` when anything is owed and, like
+    /// `loop_closure`, never counted in `clean`: confirming a step is the
+    /// owner's word, and the `unconfirmed_reasoning` gap is what puts it to
+    /// them.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reasoning: Option<crate::reasoning::ReasoningDebt>,
     /// The assigned decisions THEMSELVES, not only how many.
     ///
     /// `unsettled_assigned_decisions` counted them and nothing listed them, so
@@ -1388,7 +1398,23 @@ impl DesignGraph {
             ));
         }
 
+        // AFTER `clean`, like `loop_closure`: what the reasoning owes waits on
+        // the owner's word, and the gap is what puts it to them.
+        let reasoning = self.reasoning_debt()?;
+        if scope.is_none()
+            && let Some(r) = reasoning.as_ref().filter(|r| r.is_owed())
+        {
+            next.push(format!(
+                "THE REASONING OWES: {} unconfirmed step(s) of {}, {} uncited premise(s), {} \
+                 claim(s) shown but not proven. Not counted against `clean` — confirming a step \
+                 is the owner's word — but say it when reporting status; reasoning_report reads \
+                 each one.",
+                r.unconfirmed_steps, r.steps, r.uncited_premises, r.shown_not_proven
+            ));
+        }
+
         Ok(LoopStatus {
+            reasoning,
             unsurfaced_gaps,
             unanswered_questions,
             answered_with_open_gap,

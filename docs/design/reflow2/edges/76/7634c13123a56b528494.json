@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ee3c53786f9c884e9d6dd616e866be0d92656b2856e3e5bc433ae82f2540ad1",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-proof-counts-what-it-should-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-proof-counts-what-it-should-on-the-wire-tests"
+}

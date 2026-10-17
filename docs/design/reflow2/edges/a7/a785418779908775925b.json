@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd21369795b7dc8af195cf0d266cc23c78bb4d512bb67fb08080825483c861e2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

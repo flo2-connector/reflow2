@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77628bc44a82de5400236b70afcb71b5befdf42230df9a49013ea6a87138b152",
+  "edge_type": "REALIZES",
+  "from_id": "art:heal",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-standing-refutation-is-not-a-contradiction-defect"
+}

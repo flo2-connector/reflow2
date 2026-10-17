@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:72e8674c1533ac60f51fce2a481cb24934d267d49137648e2742b238bff8b471",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-budget-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-primes-trials-tool-snags-are-fixed"
+}

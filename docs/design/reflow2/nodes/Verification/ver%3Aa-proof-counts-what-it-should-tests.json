@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9c07bd0948eaec1422f9163307497d46f9a167a30ab595ba908d459cfa25ec05",
+  "node_id": "ver:a-proof-counts-what-it-should-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "cargo test -p reflow2-core --no-default-features --test in_memory a_proof_counts_what_it_should:: — the primes trial's shapes: computed checks with and without kept records, two proofs sharing Lemma 5, the refuted n²+n+41 conjecture, reasoning debt, gap fit, reasoning single points of failure and a what-if that stays inside the reasoning.",
+    "findings": "16 passed locally on branch feat/a-proof-counts-what-it-should; 13 of the 16 observed failing on main's source (the other 3 pin behaviour that must not change). Full reflow2-core suite green (1933 tests in in_memory).",
+    "kind": "verification",
+    "last_run_at": "2026-10-17",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_proof_counts_what_it_should.rs",
+    "method": "test",
+    "name": "A proof counts what it should (16 core tests)",
+    "status": "passing"
+  }
+}

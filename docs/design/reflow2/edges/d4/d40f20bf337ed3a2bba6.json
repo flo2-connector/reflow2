@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7b0267718e121f7849e1bfbf7ac9ac57297cb2862b4c104323edc1faf9410caf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-loop-counts-what-a-reasoning-owes",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

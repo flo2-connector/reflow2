@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e01563ba0aba6c246108e4c5f39d525e90243d384dc3121f4854cbbd09bf2940",
+  "node_id": "art:kept-record-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Which records a Verification names (DOCUMENTS, PRODUCES, its location), whether each is kept (checksum, no open drift), whether a check is computed, and a computed passing check's truth as a premise.",
+    "location": "crates/reflow2-core/src/kept_record.rs",
+    "name": "crates/reflow2-core/src/kept_record.rs — a computed fact counts only through its kept record",
+    "status": "realized"
+  }
+}

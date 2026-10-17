@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e114051744b6484e8475389180ac8b22c727920cda71372dc826cdfb289662c8",
+  "edge_type": "REALIZES",
+  "from_id": "art:report",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-loop-counts-what-a-reasoning-owes"
+}

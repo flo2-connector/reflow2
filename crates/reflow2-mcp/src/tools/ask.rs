@@ -87,14 +87,11 @@ impl ReflowService {
                 None,
             ));
         }
-        let mut gaps = Vec::with_capacity(req.gaps.len());
-        for g in &req.gaps {
-            gaps.push(parse_struct_param::<GapCandidate>(
-                g.gap.clone(),
-                "GapCandidate",
-            )?);
+        let mut ids = Vec::with_capacity(req.gaps.len());
+        for (i, g) in req.gaps.iter().enumerate() {
+            ids.push(replayed_gap_id(&g.gap, &format!("gaps[{i}].gap"))?);
         }
-        let gaps = self.rehydrate_gaps(gaps).await?;
+        let gaps = self.rehydrate_gaps(ids).await?;
 
         let answered = req.gaps.iter().filter(|g| !g.answers.is_empty()).count();
         if answered != 0 && answered != req.gaps.len() {
@@ -218,8 +215,9 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<GapToPromptReq>,
     ) -> Result<CallToolResult, McpError> {
-        let gap: GapCandidate = parse_struct_param(req.gap, "GapCandidate")?;
-        let gap = self.rehydrate_gap(gap).await?;
+        let gap = self
+            .rehydrate_gap(replayed_gap_id(&req.gap, "gap")?)
+            .await?;
 
         if req.answers.is_empty() {
             // Prepare pass: harvest the prompt the op would issue.
@@ -474,8 +472,8 @@ impl ReflowService {
     /// asked about. It means the gap closed between the two calls, and phrasing
     /// a question about a gap that is gone — from a row with no content in it —
     /// is not something to do quietly.
-    pub(crate) async fn rehydrate_gap(&self, gap: GapCandidate) -> Result<GapCandidate, McpError> {
-        Ok(self.rehydrate_gaps(vec![gap]).await?.remove(0))
+    pub(crate) async fn rehydrate_gap(&self, gap_id: String) -> Result<GapCandidate, McpError> {
+        Ok(self.rehydrate_gaps(vec![gap_id]).await?.remove(0))
     }
 
     /// [`rehydrate_gap`](Self::rehydrate_gap) for a batch, detecting ONCE.
@@ -485,7 +483,7 @@ impl ReflowService {
     /// recomputed, for every row of one batch.
     pub(crate) async fn rehydrate_gaps(
         &self,
-        gaps: Vec<GapCandidate>,
+        gaps: Vec<String>,
     ) -> Result<Vec<GapCandidate>, McpError> {
         // THE REPLAYED GAP IS AN ECHO, NOT AN INPUT
         // (dec:idea-is-a-replayed-gap-an-input-or-an-echo, 2026-09-02).
@@ -509,19 +507,19 @@ impl ReflowService {
         // from a stale copy; recording a question against a finding nobody has
         // is the worse outcome, and that trade is the settled part.
         if gaps.is_empty() {
-            return Ok(gaps);
+            return Ok(Vec::new());
         }
         let open = {
             let g = self.graph.read().await;
             g.detect_gaps().map_err(dyno_err)?
         };
         gaps.into_iter()
-            .map(|gap| {
+            .map(|gap_id| {
                 open.iter()
-                    .find(|candidate| candidate.id == gap.id)
+                    .find(|candidate| candidate.id == gap_id)
                     .cloned()
                     .map(with_parks_route)
-                    .ok_or_else(|| Self::gap_is_gone(&gap.id))
+                    .ok_or_else(|| Self::gap_is_gone(&gap_id))
             })
             .collect()
     }
@@ -561,4 +559,24 @@ fn with_parks_route(mut gap: GapCandidate) -> GapCandidate {
         gap.description = format!("{} {}", gap.description, reflow2_core::heal::parks_route());
     }
     gap
+}
+
+/// THE ONE FIELD OF A REPLAYED GAP THAT IS READ: its `id`
+/// (req:the-primes-trials-small-tool-snags-are-fixed, F8). The descriptions
+/// have said "only its `id` is read" since 2026-09-02, while the call parsed
+/// the whole GapCandidate and refused a row without `gap_source` and `scope`
+/// — fields it then threw away. So `{"id": "gap:…"}` is enough, and a whole
+/// row from `detect_gaps` still works exactly as before.
+fn replayed_gap_id(gap: &JsonMap<String, JsonValue>, field: &str) -> Result<String, McpError> {
+    match gap.get("id").and_then(JsonValue::as_str) {
+        Some(id) if !id.trim().is_empty() => Ok(id.to_string()),
+        _ => Err(McpError::invalid_params(
+            format!(
+                "`{field}` needs the gap's `id` (`gap:…`, as detect_gaps returned it) — it is the \
+                 only field read; the server resolves the rest afresh. Pass the row as \
+                 detect_gaps gave it, or just {{\"id\": \"gap:…\"}}."
+            ),
+            None,
+        )),
+    }
 }

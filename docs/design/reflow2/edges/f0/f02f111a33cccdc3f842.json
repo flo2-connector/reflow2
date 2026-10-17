@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d676c1a90442348f498d755befc08fab8cca5310e369fbd588805d37cfc60c12",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-claim-that-loses-its-support-reads-unsupported-and-the-what-if-says-which-of-three",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

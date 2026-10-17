@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:86ce62efe475034bf8c97ad348ee0f8ebdf45fe3089ccda823183b67ef699649",
+  "node_id": "art:schema-budget-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Compacts a describe_schema reply still over a named budget_chars: detail withheld first, then lists shortened with every name kept in all_names.",
+    "location": "crates/reflow2-mcp/src/schema_budget.rs",
+    "name": "crates/reflow2-mcp/src/schema_budget.rs — describe_schema keeps to a requested budget",
+    "status": "realized"
+  }
+}

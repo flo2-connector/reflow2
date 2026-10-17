@@ -167,6 +167,13 @@ impl ReflowService {
             &req.id,
             &[("location", req.location.as_deref())],
         )?;
+        crate::tools::capture::set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::VERIFICATION,
+            &req.id,
+            "computed",
+            req.computed,
+        )?;
         let node = g
             .get_node(reflow2_core::nodes::node::VERIFICATION, &req.id)
             .map_err(dyno_err)?

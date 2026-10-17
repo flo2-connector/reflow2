@@ -283,6 +283,10 @@ pub struct Suppressed {
     /// Looked at and kept open ON PURPOSE: a contradiction both of whose
     /// sides a `contested` Decision governs. Neither resolved nor unread.
     pub held_open: BTreeMap<&'static str, usize>,
+    /// Looked at and found to be a REFUTATION: an opposing CONTRADICTS in a
+    /// line of reasoning whose source holds, so its target reads refuted —
+    /// the correct state of the record, not a disagreement to heal.
+    pub refuted: BTreeMap<&'static str, usize>,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -386,6 +390,18 @@ pub struct SweepScope {
     /// Kept apart from `suppressed_by_resolution` because nothing was
     /// resolved: both sides stand, by design, and no verdict is owed.
     pub suppressed_by_held_open: BTreeMap<&'static str, usize>,
+    /// Findings NOT REPORTED because the disagreement is a REFUTATION that
+    /// stands, by category: an opposing CONTRADICTS in a line of reasoning
+    /// (one side is a premise or a conclusion of an Inference) whose source
+    /// holds, so its target reads refuted — a counterexample doing its job
+    /// (req:a-refutation-reads-as-refuted-not-as-a-defect, Anthony 2026-10-17).
+    /// Kept apart from `suppressed_by_resolution` because no Decision ruled:
+    /// the reasoning did. A contradiction whose sides both hold, or are
+    /// unknown, is still reported. Left out of the reply while nothing was
+    /// suppressed this way, so a design with no line of reasoning reads byte
+    /// for byte as it did.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty", default)]
+    pub suppressed_by_refutation: BTreeMap<&'static str, usize>,
     /// Said in WORDS when the sweep could not have found anything — an empty
     /// graph. `None` when the sweep was real, so its presence is the signal.
     #[serde(skip_serializing_if = "Option::is_none", default)]
@@ -1840,6 +1856,7 @@ impl DesignGraph {
             suppressed_by_parked_idea: suppressed.parked,
             suppressed_by_resolution: suppressed.resolved,
             suppressed_by_held_open: suppressed.held_open,
+            suppressed_by_refutation: suppressed.refuted,
             rules: HealCategory::ALL.iter().map(|c| c.as_str()).collect(),
             note: (nodes == 0).then(|| {
                 "this graph holds no nodes, so an empty result is VACUOUS rather than clean — \
@@ -2760,6 +2777,24 @@ impl DesignGraph {
                     .or_default() += 1;
                 continue;
             }
+            // AND A REFUTATION THAT STANDS (req:a-refutation-reads-as-refuted-
+            // not-as-a-defect, Anthony 2026-10-17, after the primes trial: a
+            // conjecture refuted by a computed counterexample was reported as a
+            // defect to heal). In a line of reasoning, an opposing CONTRADICTS
+            // whose source HOLDS refutes its target (crate::inference, "an
+            // objection counts as far as it holds"), and the target reads
+            // refuted. That is the record working. Only in a line of reasoning
+            // — one side a premise or a conclusion of an Inference — because
+            // elsewhere an accepted Decision contradicting a proposed one is a
+            // live question to settle (`a_proposed_decision_is_not_treated_as_
+            // withdrawn`). Counted, never silenced.
+            if self.is_a_standing_refutation(&e.from_id, &e.to_id)? {
+                *suppressed
+                    .refuted
+                    .entry(HealCategory::Contradiction.as_str())
+                    .or_default() += 1;
+                continue;
+            }
             let affected = vec![e.from_id.clone(), e.to_id.clone()];
             issues.push(HealIssue {
                 id: issue_id(HealCategory::Contradiction, &affected),
@@ -3350,6 +3385,40 @@ impl DesignGraph {
                     refusal: None,
                 });
             }
+        }
+
+        // single_point_of_failure IN A LINE OF REASONING. The topology rule
+        // above walks only the operational network, so a lemma both proofs of
+        // a theorem rest on was never named (the primes trial's F25, req:a-
+        // proof-is-designed-with-a-skill-and-the-tools-fit-mathematics). Here
+        // the walk is the inference chain: a lemma every holding line of a
+        // claim rests on, so losing it leaves the claim unsupported — checked
+        // by counting it lost, never inferred from shape. Silent on a design
+        // with no Inference.
+        for sp in self.reasoning_single_points()? {
+            let affected = vec![sp.node.clone(), sp.claim.clone()];
+            issues.push(HealIssue {
+                id: issue_id(HealCategory::SinglePointOfFailure, &affected),
+                category: HealCategory::SinglePointOfFailure,
+                severity: HealSeverity::Warning,
+                message: format!(
+                    "every line of reasoning concluding '{}' ({}) rests on '{}' — losing it \
+                     leaves '{}' unsupported: a single point of failure in the reasoning",
+                    sp.claim,
+                    sp.lines.join(", "),
+                    sp.node,
+                    sp.claim
+                ),
+                suggested_fix_type: None,
+                repair_is_a_judgement: Some(
+                    "No mechanical repair. A line that does not rest on it is new reasoning, \
+                     or the shared step is the foundation every line needs — which only the \
+                     owner can say.",
+                ),
+                affected_ids: affected,
+                hubs: Vec::new(),
+                refusal: None,
+            });
         }
 
         // circular_dependency — parts that depend on each other in a loop, via

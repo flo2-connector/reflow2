@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7a51fc6f1109bddedd5720a2fd6f367ac22ad66946b119d1e1441e545b38990d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:schema-budget-rs"
+}

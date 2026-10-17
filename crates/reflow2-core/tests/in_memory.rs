@@ -68,6 +68,7 @@ mod a_parked_report_that_produced_nothing_is_reported;
 mod a_procedural_boundary_has_a_word;
 mod a_project_declares_its_unit_system_and_the_sweep_reports;
 mod a_project_is_asked_what_its_artifacts_must_be_in;
+mod a_proof_counts_what_it_should;
 mod a_property_that_names_a_node_is_guarded;
 mod a_published_promise_carries_its_evidence;
 mod a_quantity_says_how_it_was_obtained;

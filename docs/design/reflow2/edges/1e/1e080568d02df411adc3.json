@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6baa43daf2047be42e8a67f4efac9e71950f862b58c84af24bc1794436f5c6e1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-an-export-says-which-tree-it-was-taken-in",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

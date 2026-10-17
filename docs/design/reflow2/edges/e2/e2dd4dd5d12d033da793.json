@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b077b7578bde8b648f0224890280bcb259a8a1b614b2e85c933caa4d9df14e2a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-standing-refutation-is-not-a-contradiction-defect",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

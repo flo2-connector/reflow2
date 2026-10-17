@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:089050e952c75ec9a58af87ae51e67a4d40a6f2490bdcf68a752221ddfe0e165",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:kept-record-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

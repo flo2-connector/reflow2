@@ -1964,6 +1964,12 @@ pub struct RequirementReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_provenance_opt")]
     pub provenance: Option<String>,
+    /// TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and
+    /// does not argue for. It then reads as a stated foundation, never as an
+    /// uncited premise, in reasoning_report, loop_status and detect_gaps.
+    /// Omitted: nothing is written, and the node reads as it always did.
+    #[serde(default)]
+    pub taken_as_given: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -2955,8 +2961,10 @@ pub struct VerificationReq {
     /// set_verification_status.
     #[serde(default)]
     pub description: Option<String>,
-    /// What this check VERIFIES, drawn in the same call — one VERIFIES edge per
-    /// entry. `target_type` may be omitted (resolved from the id). Recording
+    /// What this check VERIFIES, as a list of objects shaped
+    /// `{"target_id": "cap:x", "target_type": "Capability"}` with `target_type`
+    /// optional, drawn in the same call — one VERIFIES edge per entry.
+    /// `target_type` may be omitted (resolved from the id). Recording
     /// one check used to take four to six calls
     /// (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
     #[serde(default)]
@@ -2981,6 +2989,15 @@ pub struct VerificationReq {
     /// `description` or through the generic escape hatch.
     #[serde(default)]
     pub location: Option<String>,
+    /// MADE BY COMPUTATION: a calculator, a script or a solver produced the
+    /// result. Then, as a premise of an Inference, a `passing` check holds
+    /// only through its KEPT RECORD — an Artifact with a checksum that
+    /// DOCUMENTS the check, that it PRODUCES, or that `location` names — and
+    /// with none it reads `asserted` (unknown). A `location` naming a
+    /// `.calc.json` record makes it computed without this. Omitted: nothing is
+    /// written.
+    #[serde(default)]
+    pub computed: Option<bool>,
 }
 
 /// One target of a Verification, for `add_verification`'s `verifies` list.
@@ -3971,6 +3988,12 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_limit_basis_opt")]
     pub limit_basis: Option<String>,
+    /// TAKEN AS GIVEN: a definition or axiom the reasoning starts from and
+    /// does not argue for. It then reads as a stated foundation, never as an
+    /// uncited premise, in reasoning_report, loop_status and detect_gaps.
+    /// Omitted: nothing is written, and the node reads as it always did.
+    #[serde(default)]
+    pub taken_as_given: Option<bool>,
     /// WHO OR WHAT the number came from — an id where one exists: the Artifact or tool that
     /// measured it, the Verification that computed it, the Contributor who asserted it.
     #[serde(default)]

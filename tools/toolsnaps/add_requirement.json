@@ -179,6 +179,14 @@
           "string",
           "null"
         ]
+      },
+      "taken_as_given": {
+        "default": null,
+        "description": "TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and\ndoes not argue for. It then reads as a stated foundation, never as an\nuncited premise, in reasoning_report, loop_status and detect_gaps.\nOmitted: nothing is written, and the node reads as it always did.",
+        "type": [
+          "boolean",
+          "null"
+        ]
       }
     },
     "required": [
