@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4991a2b0c7ac3f35ee6ad7afc0979ce5617fe86df921eea60346d6506497a2ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:corollary-and-proposition-are-statement-kinds-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 28,
+    "action": "modified",
+    "checksum_after": "sha256:61ee81a3ab31f4c0dd70e88e8b99a3e5814ecd00fa2557ba189994d1fbe54415",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

@@ -410,10 +410,11 @@ pub struct AssumptionReading {
 /// What a statement says it is (`statement_kind`) and how it reads now.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct StatementReading {
-    /// `theorem`, `lemma`, `definition`, `axiom` or `conjecture`.
+    /// `theorem`, `lemma`, `corollary`, `proposition`, `definition`, `axiom`
+    /// or `conjecture`.
     pub kind: String,
     /// How it reads: `taken_as_given` (a definition or axiom), `stated` (a
-    /// theorem or lemma no step concludes yet), `open` (a conjecture nothing
+    /// theorem, lemma, corollary or proposition no step concludes yet), `open` (a conjecture nothing
     /// shows or refutes), `refuted` (an objection that holds refutes it), or
     /// the proof status of a concluded one: `proven`, `shown`, `conditional`,
     /// `contested`, `unproven`.
@@ -655,7 +656,15 @@ pub fn fixed_variable(entry: &str) -> &str {
 }
 
 /// The statement kinds `statement_kind` may say.
-pub const STATEMENT_KINDS: [&str; 5] = ["theorem", "lemma", "definition", "axiom", "conjecture"];
+pub const STATEMENT_KINDS: [&str; 7] = [
+    "theorem",
+    "lemma",
+    "corollary",
+    "proposition",
+    "definition",
+    "axiom",
+    "conjecture",
+];
 
 fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
     props.get(key).and_then(Value::as_str)

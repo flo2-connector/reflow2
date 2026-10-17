@@ -20,11 +20,12 @@
   verdict reads `unknown` with the reason, so its conclusion is unsupported, never
   refuted. Structural, not a logic: the same name is the same variable.
 - **A statement can say what it is.** `statement_kind` on `add_requirement` and
-  `add_constraint`: `theorem`, `lemma`, `definition`, `axiom` or `conjecture`, a
-  field of its own beside `kind`, whose values stay software's. A definition or
-  axiom reads taken as given. Reads carry `statement_reading`: a conjecture reads
-  `open`, then `refuted` once an objection that holds refutes it; a theorem reads
-  `stated` until a step concludes it.
+  `add_constraint`: `theorem`, `lemma`, `corollary`, `proposition`,
+  `definition`, `axiom` or `conjecture`, a field of its own beside `kind`, whose
+  values stay software's. A definition or axiom reads taken as given. Reads carry
+  `statement_reading`: a conjecture reads `open`, then `refuted` once an
+  objection that holds refutes it; a theorem, lemma, corollary or proposition
+  reads `stated` until a step concludes it, and none of them is taken as given.
 - **Two lines of reasoning can be stated independent, and the statement is
   checked.** `independent_of` (the other step) and `independent_except` (the
   lemmas both may share) on `add_inference`. The lines may share no step other

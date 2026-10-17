@@ -1971,11 +1971,12 @@ pub struct RequirementReq {
     #[serde(default)]
     pub taken_as_given: Option<bool>,
     /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
-    /// `definition`, `axiom` or `conjecture` — a field of its own, leaving
-    /// `kind`'s software values alone. A definition or axiom reads taken as
-    /// given; a conjecture reads `open`, then `refuted` once an objection
-    /// that holds refutes it; a theorem reads `stated` until a step concludes
-    /// it. Omitted: nothing is written.
+    /// `corollary`, `proposition`, `definition`, `axiom` or `conjecture` — a
+    /// field of its own, leaving `kind`'s software values alone. A definition
+    /// or axiom reads taken as given; a conjecture reads `open`, then
+    /// `refuted` once an objection that holds refutes it; a theorem, lemma,
+    /// corollary or proposition reads `stated` until a step concludes it.
+    /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
     pub statement_kind: Option<String>,
@@ -4025,11 +4026,12 @@ pub struct AddConstraintReq {
     #[serde(default)]
     pub taken_as_given: Option<bool>,
     /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
-    /// `definition`, `axiom` or `conjecture` — a field of its own, leaving
-    /// `kind`'s software values alone. A definition or axiom reads taken as
-    /// given; a conjecture reads `open`, then `refuted` once an objection
-    /// that holds refutes it; a theorem reads `stated` until a step concludes
-    /// it. Omitted: nothing is written.
+    /// `corollary`, `proposition`, `definition`, `axiom` or `conjecture` — a
+    /// field of its own, leaving `kind`'s software values alone. A definition
+    /// or axiom reads taken as given; a conjecture reads `open`, then
+    /// `refuted` once an objection that holds refutes it; a theorem, lemma,
+    /// corollary or proposition reads `stated` until a step concludes it.
+    /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_statement_kind_opt")]
     pub statement_kind: Option<String>,

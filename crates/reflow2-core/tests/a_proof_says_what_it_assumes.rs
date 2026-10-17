@@ -614,6 +614,63 @@ fn a_statement_says_what_it_is_and_a_conjecture_reads_open_then_refuted() {
     );
 }
 
+/// A corollary and a proposition read as a theorem or lemma does: `stated`
+/// until a step concludes them, then the conclusion's proof status. Neither
+/// is taken as given, and both are values `statement_kind` may say (Anthony,
+/// 2026-10-17: "Add corollary and proposition").
+#[test]
+fn a_corollary_and_a_proposition_read_stated_until_a_step_concludes_them() {
+    for kind in ["corollary", "proposition"] {
+        assert!(
+            reflow2_core::inference::STATEMENT_KINDS.contains(&kind),
+            "{kind} is a statement kind"
+        );
+        let mut g = graph();
+        axiom(&mut g, "con:def");
+        g.upsert_node(
+            "Constraint",
+            "con:def",
+            Props::new().set("statement_kind", "definition"),
+        )
+        .unwrap();
+        statement(&mut g, "req:result");
+        g.upsert_node(
+            "Requirement",
+            "req:result",
+            Props::new().set("statement_kind", kind),
+        )
+        .unwrap_or_else(|e| panic!("statement_kind {kind}: {e}"));
+
+        let read = json(g.statement_reading("req:result").unwrap().unwrap());
+        assert_eq!(read["kind"], kind, "{read:#}");
+        assert_eq!(read["reads"], "stated", "{read:#}");
+        assert_eq!(
+            read["why"],
+            format!("a {kind} no step concludes yet: stated, not shown")
+        );
+
+        step(&mut g, "inf:result", &["con:def"], "req:result");
+        let read = json(g.statement_reading("req:result").unwrap().unwrap());
+        assert_eq!(read["kind"], kind, "{read:#}");
+        assert_eq!(read["reads"], "shown", "{read:#}");
+        let r = report(&g, None);
+        let claim = claim_in(&r, "req:result");
+        assert!(claim.get("taken_as_given").is_none(), "{kind}: {r:#}");
+        assert_eq!(claim["statement"]["reads"], "shown", "{kind}: {r:#}");
+
+        // Used as a premise of a further step, it is never a stated
+        // foundation: only a definition or an axiom is taken as given.
+        statement(&mut g, "req:next");
+        step(&mut g, "inf:next", &["req:result"], "req:next");
+        let r = report(&g, None);
+        assert_eq!(
+            r["stated_foundations"],
+            serde_json::json!(["con:def"]),
+            "{kind}: {r:#}"
+        );
+    }
+}
+
 /// The trial's two proofs of the theorem — Euclid's and Goldbach's — sharing
 /// Lemma 5 (and Lemma 4 and Lemma 1 under it) and Lemma 2.
 fn two_proofs(g: &mut DesignGraph) {
