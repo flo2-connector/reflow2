@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a7b8d9ccbf503bd880da4b53d67957bd00eee00d9f04f799a652cdb3c158696",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:narrowing",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

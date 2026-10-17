@@ -116,8 +116,8 @@ schema:
       # Anchor it diverged from via DEPENDS_ON" until 2026-10-14. No DriftEvent
       # ever did: on reflow2's own design all 40 carry exactly one edge,
       # DEPENDS_ON to an Artifact (drift.rs `write_drift_event`; fielded.rs
-      # draws it to the Environment and Release), and the Anchor type is
-      # deprecated (dec:anchor-retire-or-implement).
+      # draws it to the Environment and Release), and the Anchor type was
+      # deprecated in 0.85.0 and removed in 0.86.0 (dec:anchor-retire-or-implement).
       extraction_hint: >
         A recorded divergence between the design and reality — a file that no
         longer matches what the design registered for it (or that the design

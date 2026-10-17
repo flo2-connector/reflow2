@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:955c7d578c645ab422bd81a82b516ce808307f627aff16ec9959d0304d73a8dc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:48d5ec906c54bb83b9ac94600d1d4ca6ae13cd0fe5b69171b157fb24e4f2f2d4"
+  },
+  "to_id": "art:drawn-edges"
+}

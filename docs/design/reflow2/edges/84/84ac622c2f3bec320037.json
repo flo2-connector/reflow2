@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9eb244094117da8a2ce4b279a689113b5e37d14e72b4c6cd0594a003fcf85493",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:51415a76216e563cc934a221d1567b48e04ea639a15f6e52687e43f97d48342a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

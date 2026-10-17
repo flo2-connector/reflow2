@@ -123,7 +123,7 @@ fn every_narrowing_entry_holds_today() {
 /// QualityGate removal shipped with only one of the two edits it needed.
 #[test]
 fn the_provenance_guards_retired_types_are_the_tables() {
-    assert_eq!(retired_node_types(), ["QualityGate"]);
+    assert_eq!(retired_node_types(), ["QualityGate", "Anchor"]);
     let mut edges = retired_edge_types();
     edges.sort();
     assert_eq!(edges, ["ENABLES", "VALIDATES"]);

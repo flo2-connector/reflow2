@@ -519,3 +519,80 @@ fn an_upgrade_records_where_it_came_from_in_keys_an_older_reader_ignores() {
     assert_eq!(as_stamp, GraphStamp::current(&schema));
     std::fs::remove_dir_all(&d).ok();
 }
+
+// ─── Anchor, retired in 0.86.0 (dec:anchor-retire-or-implement) ─────────────
+//
+// Every store written by 0.85.0 or earlier carries a stamp naming `Anchor`,
+// and nothing ever created one. Measured on 0.86.0 with stores the published
+// 0.85.0 binary wrote: one holding none opened; one holding a single Anchor was
+// refused naming it, and the refusal's recipe until this release said "Any
+// retired type is dropped and named on import" — false, because the import is
+// all or nothing and refuses an export that holds one.
+
+/// A store holding NO Anchor opens, and its note says what it names and that
+/// it holds none — not "additive only".
+#[test]
+fn a_store_from_before_the_anchor_retirement_holding_none_opens_and_says_why() {
+    let d = tmpdir("anchor-zero");
+    let g = d.join("graph");
+    let schema = load_schema().unwrap();
+    std::fs::create_dir_all(&g).unwrap();
+    let mut was = stamp_naming("Anchor", &schema);
+    was.reflow2_version = "0.85.0".into();
+    std::fs::write(
+        stamp_path(g.to_str().unwrap()),
+        serde_json::to_string(&was).unwrap(),
+    )
+    .unwrap();
+    let v = check_and_stamp(
+        g.to_str().unwrap(),
+        &schema,
+        holds_none,
+        stores_no_unknown_values,
+    )
+    .expect("a graph holding no Anchor opens");
+    let note = v.note().expect("an older graph is remarked on");
+    assert!(
+        note.contains("Anchor") && note.contains("retired") && note.contains("holds none"),
+        "the note names the retired type and says the graph holds none: {note}"
+    );
+    assert!(!note.contains("Additive only"), "{note}");
+    std::fs::remove_dir_all(&d).ok();
+}
+
+/// A store HOLDING an Anchor is refused by name, and the way through it names
+/// is one that works: delete them with the reflow2 that wrote it. It no longer
+/// promises an import that drops them.
+#[test]
+fn a_store_holding_an_anchor_is_refused_with_a_recipe_that_works() {
+    let d = tmpdir("anchor-held");
+    let g = d.join("graph");
+    let schema = load_schema().unwrap();
+    std::fs::create_dir_all(&g).unwrap();
+    std::fs::write(
+        stamp_path(g.to_str().unwrap()),
+        serde_json::to_string(&stamp_naming("Anchor", &schema)).unwrap(),
+    )
+    .unwrap();
+    let err = check_and_stamp(
+        g.to_str().unwrap(),
+        &schema,
+        |types| Ok(types.to_vec()),
+        stores_no_unknown_values,
+    )
+    .expect_err("a graph that holds an Anchor is refused");
+    let msg = err.to_string();
+    assert!(
+        msg.contains("ACTUALLY HOLDS") && msg.contains("Anchor") && msg.contains("RETIRED"),
+        "{msg}"
+    );
+    assert!(
+        msg.contains("delete_node") && msg.contains("holds no node of a retired type opens"),
+        "the recipe is the one that works: {msg}"
+    );
+    assert!(
+        !msg.contains("dropped and named on import"),
+        "and it no longer promises an import that drops them: {msg}"
+    );
+    std::fs::remove_dir_all(&d).ok();
+}

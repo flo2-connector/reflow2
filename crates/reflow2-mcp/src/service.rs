@@ -6017,8 +6017,8 @@ pub struct AddEpochReq {
     /// written by the tool that makes one.
     #[serde(default)]
     pub description: Option<String>,
-    /// Optional hash over the anchored spec set at this epoch — an Anchor is a
-    /// checksummed baseline epoch, and until 2026-09-07 nothing on the surface
+    /// Optional hash over the spec set at this epoch — a `baseline` epoch with
+    /// a checksum is the frozen design, and until 2026-09-07 nothing on the surface
     /// could write the field that makes one. Same class as `description` above:
     /// declared, never offered, and invisible while the reachability instrument
     /// fused reach with adoption.

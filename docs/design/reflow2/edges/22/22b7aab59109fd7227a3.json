@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:35d3d35ff4c27caab986379e7300c764c3357b63dfb219fbde6f6ce0b0ccb2ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:09d1e6179c1abf719fcd742353840bf2b4a5a7b36b1f860897de62af3d466fab",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

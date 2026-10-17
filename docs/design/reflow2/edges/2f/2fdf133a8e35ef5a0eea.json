@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1d4d9a3c66d5c677847205aca1ee23e139733a9acffffbcbf8af68fb02428c9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:85af7077a1c8d85624e46ab320c9a8beea7cc857f2e41a25f9866ffe8d6f073e"
+  },
+  "to_id": "art:built-work-reads-as-built-on-the-wire-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:69043a6fdb22b77a0a83cb54a5a5277fa201f2af8d4f35b546ec6d5247f4bcdc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:af8cb8117c86da1d776ef9beebc31ac2c7c505e9d01c0aea6ed2870cbaffb07f"
+  },
+  "to_id": "art:a-check-that-could-not-run-is-blocked-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9889cc01e221901b4c08789604a0c393dd463400e6c5a9333cd7ecb48fb28aa3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "ver:the-unused-anchor-type-is-removed",
+  "properties": {
+    "note": "A check on the ruling's removing half (0.86.0): the type is gone from the served surface, a write or an import of one is refused naming it, and a store holding none still opens."
+  },
+  "to_id": "dec:anchor-retire-or-implement"
+}

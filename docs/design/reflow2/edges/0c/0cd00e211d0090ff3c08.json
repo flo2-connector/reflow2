@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:1588d7f8cfa3dc163cde7d91126442cd54ba886716c908d70e01e9e2602632f0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-reflow2-can-learn-from-evaluator-guided-llm-circuit-design",
+  "properties": {
+    "approved_at": "2026-10-17",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0a1551e86b7bd84ccc48bf2a8ee1a802e6c70a554bf4eb034bd3563572151647",
+  "node_id": "chg:accept-b89c447a739ff1a7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-17",
+    "name": "v0.86.0 cut, step 1: AGENTS.md's two version lines move 0.85.0 -> 0.86.0; content otherwise unaffected. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

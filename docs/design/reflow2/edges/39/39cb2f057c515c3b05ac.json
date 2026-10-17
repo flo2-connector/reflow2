@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:89ae4fe84fa7aa73ff5c59db9c5537701010f39a207d042f357a23d739eb8c42",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:7245343c020918cd177b2d3c4a861ee7ae824adfcfcd492bcb3d277d944236f0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-schema-narrowing-ships-its-migration"
+}

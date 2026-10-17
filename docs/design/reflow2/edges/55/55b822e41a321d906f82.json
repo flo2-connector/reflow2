@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:453a3697c8ce41a5d4a49190048e2e1da65223651c6957853694e08bee3f607d",
+  "edge_type": "OBSOLETES",
+  "from_id": "dec:anchor-retire-or-implement",
+  "properties": {
+    "note": "The deprecating half's check retires with the type it checked (2026-10-17); ver:the-unused-anchor-type-is-removed checks the removal."
+  },
+  "to_id": "ver:the-unused-anchor-type-is-announced-for-removal"
+}

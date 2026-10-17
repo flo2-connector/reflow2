@@ -18,7 +18,7 @@ schema:
         sequence: { type: int, indexed: true, description: "Monotonic ordering key across epochs." }
         status: { type: enum, values: [planned, arrived], default: arrived, indexed: true, description: "Whether this epoch HAS HAPPENED (`arrived`) or is a claim about one that has not (`planned`) — the forward half of the time axis (req:epochs-can-be-planned). DELIBERATELY SEPARATE FROM `epoch_type`, which says what KIND of epoch it is: kind and tense are orthogonal, and folding `planned` into the type enum would make a planned milestone unsayable. Mirrors `Release.status`, which already carries `planned` for the capability view — one word for one idea. THE DEFAULT IS `arrived` AND THAT IS A RECORD, NOT A CHOICE (req:defaults-do-not-assert): `add_epoch` has only ever created points that already exist, so every epoch written before this property did arrive, and the default states what the operation has always meant rather than inventing a claim. Planning is the deliberate act, exactly as publishing is for Interface.designation. READ, not merely stored: `record_change` REFUSES to record history into a `planned` epoch, because a snapshot of the present cannot belong to a point that has not happened." }
         description: { type: string, fulltext: true }
-        checksum: { type: string, description: "Optional hash over the anchored spec set at this epoch (an Anchor is a checksummed baseline epoch)." }
+        checksum: { type: string, description: "Optional hash over the spec set at this epoch: a `baseline` epoch with a checksum is the frozen design taken before a build round." }
         created_at: { type: string }
       embedding_field: description
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
@@ -26,7 +26,9 @@ schema:
         A named version or milestone of the design — "v1 baseline",
         "v1.1 requirements creep", "post-load-test hardening". The unit the Z
         (time) axis is built on. Usually authored at a phase/version transition,
-        not extracted from prose. Generalizes the P2→P3 Anchor.
+        not extracted from prose. A `baseline` epoch with a `checksum` is the
+        frozen design taken before a build round (the original reflow's
+        architecture anchor).
 
     TemporalFact:
       properties:

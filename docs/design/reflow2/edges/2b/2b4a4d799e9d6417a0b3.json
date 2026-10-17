@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a284d314ab41c511b2440500a3d1d8949f38cdd1c9e91d4794433d84dde75e3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "ver:the-unused-anchor-type-is-announced-for-removal"
+}

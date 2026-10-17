@@ -588,7 +588,14 @@ impl DesignGraph {
                             }
                         }
                     }
-                    Err(e) => faults.push(format!("nodes[{index}] {}: {e}", n.node_id)),
+                    Err(e) => {
+                        // A type this reflow2 RETIRED is named as retired, with the
+                        // way through, rather than left as an unknown name.
+                        let hint = crate::narrowing::retired_node_type_hint(&n.node_type)
+                            .map(|h| format!(" — {h}"))
+                            .unwrap_or_default();
+                        faults.push(format!("nodes[{index}] {}: {e}{hint}", n.node_id))
+                    }
                 }
             }
 

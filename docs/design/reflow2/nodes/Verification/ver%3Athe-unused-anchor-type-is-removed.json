@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cd903cce6c3186dce8d301f6b2a2db4caf023dd4b102fe41e4374cb646dd5410",
+  "node_id": "ver:the-unused-anchor-type-is-removed",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The removing half of dec:anchor-retire-or-implement, checked as a client of the MCP server sees it: (1) describe_schema holds 28 node types and no Anchor, lists no deprecations, and answers Anchor as any unknown type; (2) no served text (tools/list, describe_schema) says something is removed in the next release, carries a DEPRECATED mark, or names Anchor; (3) create_node of an Anchor is refused naming it and writes nothing; (4) an export holding one is refused by the import naming it as retired with the decision, all or nothing; (5) DriftEvent's hint and what drift detection draws agree. With reflow2-core/tests/provenance.rs's two Anchor tests: a store holding none opens with a note naming the retired type, and one holding an Anchor is refused with a recipe that works.",
+    "findings": "Run 2026-10-17 on cut/v0.86.0 at 6b503671f (cargo dev-test, no RocksDB): 5/5 here and the two core provenance tests pass; whole suite 3,240 passed, 0 failed. NOT run first against the build that still served Anchor: there 1-4 cannot pass by construction. MEASURED with the release build against stores the published 0.85.0 binary wrote (tarball sha256 d8eb4c65… = checksums.txt): a store with no Anchor opens (\"It names Anchor, which this reflow2 retired, and holds none\"); one holding an Anchor is refused (\"THE GRAPH ACTUALLY HOLDS Anchor\") with the corrected recipe; its export is refused by --import naming it as retired; after 0.85.0 deleted the Anchor, 0.86.0 opened the store; 0.85.0 reopens a store 0.86.0 opened, warning it is behind. the_mcp_surface_only_grows 3/3 against the re-blessed 0.85.0 record (RocksDB build).",
+    "kind": "verification",
+    "last_run_at": "2026-10-17",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_unused_anchor_type_is_removed.rs",
+    "method": "test",
+    "name": "The unused Anchor type is removed",
+    "status": "passing"
+  }
+}

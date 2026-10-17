@@ -382,7 +382,12 @@ mod tests {
         // so an older graph opens unchanged; it moves the stamp, so a store this
         // build has opened is refused by an older reflow2, and the next release
         // owes the upgrade note.
-        assert_eq!(schema.node_types.len(), 29, "expected 29 node types");
+        // 29→28 on 2026-10-17 is the SECOND removal, and the first under the
+        // retirement rule: Anchor, announced in 0.85.0 and removed in 0.86.0
+        // (dec:anchor-retire-or-implement, narrowing::NARROWINGS). Nothing ever
+        // created one. A store holding none opens; one holding any is refused
+        // naming them, and an export carrying one does not import.
+        assert_eq!(schema.node_types.len(), 28, "expected 28 node types");
         // 65 since ANSWERS (2026-09-02) — a design record names the Question it
         // answered. The schema had DESCRIBED this edge for months without it
         // existing: `Question.answer` read "the design nodes it produced are

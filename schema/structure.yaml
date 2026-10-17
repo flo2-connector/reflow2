@@ -255,28 +255,6 @@ schema:
         A design decision with its rationale and the alternatives weighed (an
         ADR, in software terms). Other nodes are GOVERNED_BY a Decision.
 
-    Anchor:
-      properties:
-        name: { type: string, fulltext: true, required: true, indexed: true }
-        design_intent: { type: string, fulltext: true, description: "Summary of the frozen design intent." }
-        key_decisions: { type: string, description: "JSON array of decision ids/summaries in the snapshot." }
-        checksum: { type: string, description: "Hash over the anchored spec set, for drift detection." }
-        created_at: { type: string }
-      # DEPRECATED in 0.85.0, removed in the release after
-      # (dec:anchor-retire-or-implement; crates/reflow2-mcp/src/deprecation.rs
-      # carries the entry, and describe_schema serves the mark beside this hint).
-      # The hint used to end "DriftEvents reference the Anchor they diverged
-      # from." No code ever drew that link and no DriftEvent carries one: drift
-      # detection links an event to the Artifact (or the Environment and Release)
-      # it is about, and DriftEvent's own hint in verify.yaml says so now.
-      extraction_hint: >
-        A checksummed baseline of the design taken when leaving P2 for a build
-        round (P3), modelled on the original reflow's architecture_anchor. Not
-        extracted from prose. Nothing in reflow2 creates or reads one and no
-        other record refers to one: a baseline is a DesignEpoch with epoch_type
-        `baseline` and a `checksum` (add_epoch), and a node's state at it is a
-        Snapshot (snapshot_before_change).
-
   edge_types:
 
     ALLOCATED_TO:

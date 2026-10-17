@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a1aee10b90ef017db08bbe22a76248575dfaef2835d58d774c18c7bdd2e4f7ec",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0860",
+  "properties": {
+    "as_checksum": "sha256:98520529c34049639c0ee453cd47c50f86fdad67c356e5cc271d73ef63513881"
+  },
+  "to_id": "art:check-command-surface"
+}

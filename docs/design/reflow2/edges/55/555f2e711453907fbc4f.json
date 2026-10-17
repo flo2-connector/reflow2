@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c8f7b81359b15bc368585adada367fc5c96e42bd542baf98359d5c3307722715",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:a-cut-refreshed-before-its-tag-keeps-the-manifests-old-frozen-checksums-2026-10-17",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

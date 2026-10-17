@@ -222,7 +222,7 @@ pub struct ArrivalDelta {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum EpochType {
-    /// A checksummed baseline (generalizes the P2→P3 Anchor).
+    /// A checksummed baseline (the original reflow's P2→P3 architecture anchor).
     Baseline,
     /// An ordinary forward revision (the schema default).
     Revision,
