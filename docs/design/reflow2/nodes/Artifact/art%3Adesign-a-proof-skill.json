@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:f2fa5a524a662ea9a2d75b7ef0eec57833824e777caa6c42f528d5ac3b5220f7",
+  "content_hash": "sha256:a30490409755f313143a64fc7bcabbbe08b40e93f4bb385dcf1434cb7a01da75",
   "node_id": "art:design-a-proof-skill",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "document",
-    "checksum": "sha256:8239651de6fba75f7e329032598e6406059150f4a2d9a4cf669d756fbed6ee49",
     "description": "The design-a-proof skill, served by the binary (mirrored byte for byte in .claude/skills and .grok/skills): find tools by the mathematical word, statements with statement_kind, steps with rule_name and warrant, assumptions and discharges, generalizes_over, independent lines, computed facts through kept records, questions to the owner, never confirming for the owner, and reading back with reasoning_report.",
     "location": "getting-started/skills/design-a-proof/SKILL.md",
     "name": "getting-started/skills/design-a-proof/SKILL.md — the served skill for designing a proof",

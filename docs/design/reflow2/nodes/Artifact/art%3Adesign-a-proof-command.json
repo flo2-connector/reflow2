@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:7767238cb86ebfc7037c847ca0a8032c96a9d17271913b14da2b751250beaae1",
+  "content_hash": "sha256:15d3f67444f358b3773a8af1387420e59ff6c47c76bab4d97d328f6810ad6bcc",
   "node_id": "art:design-a-proof-command",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "document",
-    "checksum": "sha256:24c5de8ac7b2a98f75a0159523a618bf512b3e899acc8409b97355e590a01a1d",
     "description": "The /design-a-proof command that invokes the skill; its in-repo copy is .claude/commands/design-a-proof.md, byte-identical (check_command_surface.py).",
     "location": "getting-started/commands/design-a-proof.md",
     "name": "getting-started/commands/design-a-proof.md — the /design-a-proof command",

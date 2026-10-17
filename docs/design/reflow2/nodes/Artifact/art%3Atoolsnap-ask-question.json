@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:8138598c16d338b63b881afb4ead8b89f050a36a4f4eccb6d47e93d5bdf94f5b",
+  "content_hash": "sha256:a573fe072dbd0e1266a2eed5f78a968807b24438b3e99607163a50086da2324c",
   "node_id": "art:toolsnap-ask-question",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "spec",
-    "checksum": "sha256:0a54babb1e19da0fe67b353fc07d25f05de24a38cd4a2ad5a0ad95bdda6affd2",
     "description": "The golden of ask_question's served schema and description (toolsnap.py).",
     "location": "tools/toolsnaps/ask_question.json",
     "name": "tools/toolsnaps/ask_question.json",

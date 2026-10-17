@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:791f4a59d4f481d9322114b93d2c35707ed19245ba75fbdf939c5c05a508107d",
+  "content_hash": "sha256:1669574cb62b364bac99b3de22f2d5dda98e8ed1cb35789f7c32f50f3ab51c59",
   "edge_type": "CHANGED",
   "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:50eceae020219079ed2e67ca311c89deb71a393056281254881c2c34d41e7f63",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:a-proof-says-what-it-assumes-on-the-wire-test"
 }
