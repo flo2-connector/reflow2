@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:533a149f7137b79fac0233b92e5383265f864546892dd782fd3703a6808195b9",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-claim-that-loses-its-support-reads-unsupported-and-the-what-if-says-which-of-three",
+  "properties": {},
+  "to_id": "req:unsupported-is-not-refuted"
+}

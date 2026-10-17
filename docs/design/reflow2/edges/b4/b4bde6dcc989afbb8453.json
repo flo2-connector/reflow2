@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8ffd000eedddbeed8765bc14cf681d43c5bf86cbb871911e503dccd36c255555",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:4003615e6a29215a03398fc5ce0da385d402adb3ab212a8edaa3e08b3b5f9239",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-skills"
+}

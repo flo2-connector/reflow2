@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3ae2165a4df49f23afb65124ecb948fa1860ce1d9934064f596b0ff55468fb45",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-proof-counts-what-it-should-test"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:55d256e447ec172f1640c78910e712ecaf8763a0c4fa8791ce9f960083b8ccd8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-levied-requirement-is-recordable-in-one-call-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

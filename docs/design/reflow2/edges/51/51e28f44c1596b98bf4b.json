@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a78f3d164aede0bf6ab7c6e74d080e153a8b74d4de8ef2bc5568bc15873cb980",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:55cbfa78dca251b98a1ad13a7ee3f3c3ea876d649cbd210eac74671ffde61641",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-core"
+}

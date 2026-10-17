@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1501bc72b20f3abec8ff261cfd901a4d8a531534253c4c96dee22632158e004a",
+  "node_id": "cap:a-computed-check-holds-a-premise-only-through-its-kept-record",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17 in reflow2-core's kept_record module (PR #763). A Verification made by computation — `computed: true`, or a location or record naming a `.calc.json` file — reads `passing` as a premise only while it names a kept record: an Artifact with a checksum that DOCUMENTS the check, that the check PRODUCES, or that its `location` names (by art: id or by the Artifact's own location), with no unresolved checksum_change or missing_artifact drift, that states the result (the PRODUCES edge's outcome, else the check's findings). With no record it reads unknown, its why saying \"asserted, not passing\" and naming the missing record; a record whose outcome is fail makes it fail. Every other check reads as in 0.85.0. The server never opens the record; a host re-running it on request is not built.",
+    "name": "A computed check holds an inference premise only through its kept record; with none it reads asserted",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

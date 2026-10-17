@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c068ce7d8addd53d2ae25ff4ded3797d2ad944a92be306483cb275eaf3c5fa1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:e9364a76ce887e73a06d5ed842f251129ff053e70d2b7e0ff033dab6069f14b8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-inference-says-how-premises-support-a-conclusion"
+}

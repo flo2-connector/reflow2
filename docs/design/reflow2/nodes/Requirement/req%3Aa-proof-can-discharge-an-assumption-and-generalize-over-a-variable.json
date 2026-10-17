@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:75e9eb8336da9c4ce6dbfbe29af11c91bb9ddb75ff6c20abe18e020c89c4cec1",
+  "node_id": "req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A proof step can assume and later discharge a premise, and generalize over a declared variable that reflow2 checks no premise fixes",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "who:ajs, 2026-10-17, after the primes trial",
+    "statement": "DISCHARGED ASSUMPTIONS, as a premise role (@ajs's choice):\n- a PREMISE_OF link can be marked `assumed`;\n- the step that discharges it (a contradiction or an induction step) says so;\n- the conclusion then no longer depends on that assumption;\n- the read-back shows \"assumed, discharged by …\".\n\nARBITRARY VARIABLES, declared and checked (@ajs's choice):\n- a step declares the variables it generalizes over;\n- reflow2 checks that no premise in the chain fixes them, i.e. names a specific value for them.\nThis is a structural check, not a full logic.\n\nFrom the primes trial, item 5 (F6, F7), and fact:the-methods-of-proof-mostly-fit-an-inference-and-three-need-more-2026-10-14. @ajs, 2026-10-17.",
+    "status": "accepted"
+  }
+}

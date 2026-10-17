@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ffa906307daa90215dd2bdc0e6abf25eb84f0706e56450653865d15f12c896d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:bf9233c1b5761edc6efe2fbc934d4ebd29e76ce103f032d4d58f3c50ac7e5238",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-server-keeps-the-export-current-test"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6cb598619acfca815dbb6687850073a424313e039b692798202632e26baf9657",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-63214e3baa33523b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:13990122a58b5e5fc6dc6dbe405bec631ea9cc5f6989d25a76f8d7c35dd2cd06",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kept-record-rs"
+}

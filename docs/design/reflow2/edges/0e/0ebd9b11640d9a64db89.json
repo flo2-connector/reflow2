@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f95cf1b391f3dce7eca1032e98e65d774031151e51f0c975be62b6f6920c3cd4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-primes-trials-tool-snags-are-fixed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

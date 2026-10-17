@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e309f5456c61e2a7e4275bb4b11af7b7a21e275a904e3470981b24e10a342650",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f676e3c6a608ab42e451fb957fe1744492bb472b7863a90fe383e0c3e8639810",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

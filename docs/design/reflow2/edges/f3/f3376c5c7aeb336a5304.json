@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:34aebcb98067c94fc6e974929ddf12ab37765219d20b837c9fa376f96d8c1d5d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 16,
+    "action": "modified",
+    "checksum_after": "sha256:4023cbf0b5b21764bb041cc7a9ed0c7f0218b755357405ae66d58ecf6e59a080",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1bb65f169d35a815f645a07d798b1a7b4f99fb14056e867e8570585593bde9d9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-counts-what-it-should-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:4a9fe500ecad647470d79387c18095f971210e45077c79278192d92450b8a841",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

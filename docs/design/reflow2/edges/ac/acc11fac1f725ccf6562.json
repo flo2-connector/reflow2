@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2f456b161d4acc1dbd74b5d9e946c68bd596b2740ae1e677ed49a053002cccb",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-primes-trial-rung-1-ran-on-flo2-io-and-its-friction-names-what-counts-2026-10-17",
+  "properties": {
+    "evidence": "Friction item 1, accepted as a fix on 2026-10-17 (\"Bound to its record\")."
+  },
+  "to_id": "req:a-computed-fact-counts-only-through-its-kept-record"
+}

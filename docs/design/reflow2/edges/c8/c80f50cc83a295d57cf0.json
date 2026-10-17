@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5589fd530564bc1e1d84f838321a7d838f804c3fce94a7b27342a6355fac508",
+  "edge_type": "REALIZES",
+  "from_id": "art:kept-record-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-computed-check-holds-a-premise-only-through-its-kept-record"
+}

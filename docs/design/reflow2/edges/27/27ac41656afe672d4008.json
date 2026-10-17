@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3c3f821151978bf8468dcc9cf7cfa9396665e2bd444256091b52ee29d4cfe5b7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:the-export-chains-from-main-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
