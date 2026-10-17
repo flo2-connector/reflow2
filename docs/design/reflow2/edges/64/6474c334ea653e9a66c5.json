@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:abdcf54519f7597428508ab0184f8c80cb22154dd5d228b54bd68704f25f5f9a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:corollary-and-proposition-are-statement-kinds-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5e99228ff2e80a441abf8c05eb91099aa8e37d8f9b66ad79c8535af84f8c3bcf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-skill"
+}
