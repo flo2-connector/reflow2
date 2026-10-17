@@ -1476,6 +1476,21 @@ pub(crate) fn set_optional_props(
     Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
 }
 
+/// [`set_optional_props`] for one boolean: written only when the caller said.
+pub(crate) fn set_optional_bool(
+    g: &mut reflow2_core::graph::DesignGraph,
+    node_type: &str,
+    id: &str,
+    key: &str,
+    value: Option<bool>,
+) -> Result<Option<reflow2_core::StoredNode>, McpError> {
+    let Some(v) = value else {
+        return Ok(None);
+    };
+    let props = reflow2_core::nodes::Props::new().set(key, v);
+    Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
+}
+
 #[tool_router(router = capture_router, vis = "pub")]
 impl ReflowService {
     // ---- GENESIS (bootstrap the graph from a brief) ----
@@ -1847,6 +1862,13 @@ impl ReflowService {
                 ("source", req.source.as_deref()),
                 ("provenance", req.provenance.as_deref()),
             ],
+        )?;
+        set_optional_bool(
+            &mut g,
+            node_ty,
+            &req.id,
+            "taken_as_given",
+            req.taken_as_given,
         )?;
         sign_as_approver(
             &mut g,
@@ -2916,6 +2938,14 @@ impl ReflowService {
                 ("limit_source", req.limit_source.as_deref()),
                 ("limit_measured_at", req.limit_measured_at.as_deref()),
             ],
+        )?
+        .unwrap_or(stored);
+        let stored = set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::CONSTRAINT,
+            &req.id,
+            "taken_as_given",
+            req.taken_as_given,
         )?
         .unwrap_or(stored);
         let stored = match req.margin {

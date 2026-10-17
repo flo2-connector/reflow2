@@ -45,6 +45,7 @@ pub mod registry_http;
 pub mod reply_budget;
 pub mod revise_route;
 pub mod saved_design;
+pub mod schema_budget;
 pub mod service;
 pub mod settles;
 pub mod shared;

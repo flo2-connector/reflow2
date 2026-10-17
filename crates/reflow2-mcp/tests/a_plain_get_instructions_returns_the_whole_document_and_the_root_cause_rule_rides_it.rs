@@ -56,11 +56,21 @@ async fn a_plain_call_returns_the_whole_document_however_long_it_grows() {
 async fn a_caller_that_names_its_cap_still_gets_the_manifest_not_half_a_document() {
     let svc = ReflowService::in_memory().expect("an in-memory design opens");
     let reply = get_instructions(&svc, json!({"budget_chars": 20_000})).await;
-    assert!(
-        reply["instructions"].is_null(),
-        "a document longer than the caller's cap is withheld whole, never trimmed"
+    // Since 2026-10-17 (req:the-primes-trials-small-tool-snags-are-fixed, F1)
+    // the FIRST SECTION rides with the manifest, WHOLE — never a trimmed
+    // document: it is exactly that section's text.
+    let first = reflow2_mcp::skills::instruction_sections()
+        .into_iter()
+        .next()
+        .expect("a first section");
+    assert_eq!(
+        reply["instructions"].as_str(),
+        Some(first.body.as_str()),
+        "a document longer than the caller's cap is never trimmed: what comes is the first \
+         section, whole"
     );
-    assert_eq!(reply["budget"]["detail"], json!("whole_document_withheld"));
+    assert_eq!(reply["section"], json!(first.slug));
+    assert_eq!(reply["budget"]["detail"], json!("first_section_only"));
     assert!(
         reply["sections"].as_array().is_some_and(|s| !s.is_empty()),
         "and the manifest comes back, so it can be fetched a section at a time"

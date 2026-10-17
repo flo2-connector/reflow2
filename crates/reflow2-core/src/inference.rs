@@ -17,7 +17,10 @@
 //!
 //! - a **Requirement** holds when the existing roll-up delivers it or its status
 //!   is `met`, and fails when it is `dropped`;
-//! - a **Verification** holds when `passing` and fails when `failing`;
+//! - a **Verification** holds when `passing` and fails when `failing` — and a
+//!   check made by COMPUTATION holds only through its kept record
+//!   ([`crate::kept_record`]): with no record it reads `asserted`, so it is
+//!   unknown (`req:a-computed-fact-counts-only-through-its-kept-record`);
 //! - a **Decision** holds when `accepted`, and fails when `rejected` or
 //!   `superseded`;
 //! - a **Constraint** fails when something VIOLATES it or its budget is
@@ -26,8 +29,11 @@
 //! - a **Capability** holds when it is realized and checked (the leaf of the
 //!   delivery roll-up);
 //! - anything discontinued by an accepted decision fails;
-//! - a node concluded by an Inference is whatever its steps yield (ANY of them:
-//!   two steps concluding one node are alternative derivations);
+//! - a node concluded by an Inference HOLDS when one of its steps holds (two
+//!   steps concluding one node are alternative derivations), and is otherwise
+//!   UNSUPPORTED — unknown, never `fails`. Losing its support does not make a
+//!   claim false; only an objection that holds refutes it
+//!   (`req:unsupported-is-not-refuted`, Anthony 2026-10-17);
 //! - an Inference used as a premise is its own verdict;
 //! - every other type is UNKNOWN, and says so.
 //!
@@ -41,9 +47,10 @@
 //! Nowhere new. The roll-up (`report.rs`, `requirement_delivered_by_within`)
 //! delivers a requirement an Inference concludes when one of its steps holds;
 //! the change walk ([`DesignGraph::inference_walk`], carried on every blast
-//! radius) reports each step downstream of a lost premise as BROKEN or
-//! WEAKENED; and `detect_gaps` reports a conclusion whose claimed status is past
-//! what its steps support (`conclusion_does_not_follow`). A design that records
+//! radius) reports each step downstream of a lost premise as UNSUPPORTED or
+//! WEAKENED, and each claim it reaches as still supported (by which steps),
+//! unsupported, or refuted; and `detect_gaps` reports a conclusion whose
+//! claimed status is past what its steps support (`conclusion_does_not_follow`). A design that records
 //! no Inference reads exactly as it did: every one of those paths asks one
 //! adjacency question first and finds nothing.
 //!
@@ -64,8 +71,10 @@
 //! objection in an argument for and against — counts against its target by
 //! the objection's OWN computed truth:
 //!
-//! - one that **holds** refutes it: the target `fails`, and every step resting
-//!   on it is reported broken (a checked counterexample);
+//! - one that **holds** refutes it: the target `fails` — it is REFUTED, the
+//!   one way a claim reads false — and every step resting on it is reported
+//!   broken (a checked counterexample); what those steps conclude is left
+//!   unsupported, not refuted;
 //! - one that is **unknown** — raised, neither established nor answered —
 //!   leaves the target at most `unknown`: contested, never refuted by being
 //!   said;
@@ -304,8 +313,12 @@ pub struct InferenceReading {
 pub struct InferenceImpact {
     /// The step reached.
     pub inference: String,
-    /// `broken` (the rule no longer holds), `weakened` (it still holds on its
-    /// other premises), or `unknown` (what is left cannot say either way).
+    /// `weakened` (it still holds on its other premises), `unsupported` (it
+    /// held, and with the loss its rule no longer holds — a lost premise reads
+    /// unsupported, never false), `broken` (its rule FAILS: a premise it rests
+    /// on really fails or is refuted, which a loss alone never makes), or
+    /// `unknown` (it did not hold before the loss either). A step's word,
+    /// never a claim's: what the CLAIM is left with is `conclusion_reads`.
     pub impact: &'static str,
     /// The step's rule (`all` when it never said).
     pub rule: String,
@@ -318,18 +331,27 @@ pub struct InferenceImpact {
     /// The node it concludes.
     pub conclusion: Option<String>,
     /// How many steps from a seed: 1 when a seed is its premise, one more per
-    /// broken conclusion the walk carried on through.
+    /// conclusion the walk carried on through (one left unsupported).
     pub distance: usize,
     /// The verdict before the loss, as the design stands.
     pub before: Truth,
-    /// The verdict with every lost premise counted as failing.
+    /// The verdict with every lost premise counted as no longer holding:
+    /// unknown (unsupported), or failing where it already fails.
     pub after: Truth,
     /// Its premises the walk counts as lost: the seeds, and conclusions it
-    /// found broken on the way.
+    /// found left unsupported on the way.
     pub lost_premises: Vec<String>,
     /// Whether the CONCLUSION still stands with the losses counted, across
     /// every step that concludes it (alternative derivations are ANY).
     pub conclusion_after: Truth,
+    /// WHICH OF THREE IS TRUE OF THE CLAIM (req:unsupported-is-not-refuted):
+    /// `still_supported` (another line holds it: `still_supported_by`),
+    /// `unsupported` (nothing left holds it — it is not thereby false), or
+    /// `refuted` (an objection that holds refutes it).
+    pub conclusion_reads: &'static str,
+    /// The steps concluding the claim that still hold with the losses counted.
+    /// Empty unless `conclusion_reads` is `still_supported`.
+    pub still_supported_by: Vec<String>,
     /// Every premise with its truth after the loss.
     pub premises: Vec<PremiseReading>,
 }
@@ -372,6 +394,18 @@ pub const FOUNDATIONS_HONEST_LIMIT: &str = "These foundations show what this con
      premises (axioms) its inference chain ultimately rests on. They never say \
      the axioms are right: in an abstract design they are chosen principles or \
      values, and they may be contested by design.";
+
+/// A node every holding line of a claim rests on: see
+/// [`DesignGraph::reasoning_single_points`].
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ReasoningSinglePoint {
+    /// The claim with two or more lines.
+    pub claim: String,
+    /// The node all of them rest on.
+    pub node: String,
+    /// The steps concluding the claim that hold: its lines.
+    pub lines: Vec<String>,
+}
 
 /// A conclusion whose claimed status is past what its steps support.
 #[derive(Debug, Clone, serde::Serialize)]
@@ -455,6 +489,14 @@ struct StepRecord {
 
 fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
     props.get(key).and_then(Value::as_str)
+}
+
+/// Whether a node is marked TAKEN AS GIVEN (`taken_as_given: true`): a
+/// definition or axiom the reasoning starts from, read as a stated foundation
+/// and never as an uncited premise
+/// (req:the-loop-sees-unconfirmed-steps-and-uncited-premises).
+pub fn is_taken_as_given(props: &HashMap<String, Value>) -> bool {
+    props.get("taken_as_given").and_then(Value::as_bool) == Some(true)
 }
 
 /// The status values that CLAIM a node holds, per type — what the finding
@@ -573,6 +615,21 @@ impl DesignGraph {
         self.truth_of(id, &mut ev, INFERENCE_DEPTH)
     }
 
+    /// What a node counted LOST by a change reads as: UNSUPPORTED (unknown) —
+    /// "what if this no longer held?" — never false. A node that already
+    /// fails on its own keeps failing, so a what-if never reads better than
+    /// the design does (req:unsupported-is-not-refuted).
+    fn lost_truth(&self, id: &str) -> Result<(Truth, String), DynoError> {
+        let (now, why) = self.premise_truth(id)?;
+        if now == Truth::Fails {
+            return Ok((now, why));
+        }
+        Ok((
+            Truth::Unknown,
+            "unsupported: counted as no longer holding by this change".to_string(),
+        ))
+    }
+
     fn truth_of(
         &self,
         id: &str,
@@ -580,7 +637,7 @@ impl DesignGraph {
         depth: usize,
     ) -> Result<(Truth, String), DynoError> {
         if ev.lost.contains(id) {
-            return Ok((Truth::Fails, "counted as lost by this change".to_string()));
+            return self.lost_truth(id);
         }
         if let Some(hit) = ev.memo.get(id) {
             return Ok(hit.clone());
@@ -755,21 +812,36 @@ impl DesignGraph {
             for s in &steps {
                 verdicts.push((s.clone(), self.step_reading(s, ev, depth)?.verdict));
             }
-            let truth = combine(
-                InferenceRule::Any,
-                &verdicts.iter().map(|(_, v)| *v).collect::<Vec<_>>(),
-            )
-            .unwrap_or(Truth::Unknown);
             let said: Vec<String> = verdicts
                 .iter()
                 .map(|(s, v)| format!("{s} {}", v.as_str()))
                 .collect();
-            return Ok((truth, format!("concluded by {}", said.join("; "))));
+            // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
+            // step that fails or cannot be read leaves its conclusion without
+            // that line of support; it never makes the conclusion false. So a
+            // concluded node holds when one step holds and is otherwise
+            // unknown: only an objection that holds refutes it.
+            if verdicts.iter().any(|(_, v)| *v == Truth::Holds) {
+                return Ok((Truth::Holds, format!("concluded by {}", said.join("; "))));
+            }
+            return Ok((
+                Truth::Unknown,
+                format!(
+                    "unsupported: no step concluding it holds ({}); losing its support does not \
+                     make it false",
+                    said.join("; ")
+                ),
+            ));
         }
 
         Ok(match node_type {
             node::REQUIREMENT => {
-                if self.requirement_delivered_by_within(id, depth)?.is_some() {
+                if is_taken_as_given(&n.properties) {
+                    (
+                        Truth::Holds,
+                        "taken as given: a stated foundation the reasoning starts from".to_string(),
+                    )
+                } else if self.requirement_delivered_by_within(id, depth)?.is_some() {
                     (Truth::Holds, "delivered by the roll-up".to_string())
                 } else if status.as_deref() == Some("met") {
                     (Truth::Holds, "its status is met".to_string())
@@ -784,7 +856,10 @@ impl DesignGraph {
                 }
             }
             node::VERIFICATION => match status.as_deref() {
-                Some("passing") => (Truth::Holds, "the check is passing".to_string()),
+                Some("passing") => match self.computed_check_truth(id, &n.properties)? {
+                    Some(computed) => computed,
+                    None => (Truth::Holds, "the check is passing".to_string()),
+                },
                 Some("failing") => (Truth::Fails, "the check is failing".to_string()),
                 other => (
                     Truth::Unknown,
@@ -813,7 +888,14 @@ impl DesignGraph {
                     ),
                 ),
             },
-            node::CONSTRAINT => self.constraint_truth(id, &n.properties)?,
+            node::CONSTRAINT => {
+                let (truth, why) = self.constraint_truth(id, &n.properties)?;
+                if is_taken_as_given(&n.properties) {
+                    (truth, format!("taken as given, a stated foundation; {why}"))
+                } else {
+                    (truth, why)
+                }
+            }
             node::CAPABILITY => {
                 let checked = !matches!(
                     self.capability_verification(id)?,
@@ -930,8 +1012,9 @@ impl DesignGraph {
             confirmation: rec.confirmation,
         };
         if ev.lost.contains(inference_id) {
-            reading.verdict = Truth::Fails;
-            reading.note = Some("the step itself is counted as lost by this change".to_string());
+            let (truth, why) = self.lost_truth(inference_id)?;
+            reading.verdict = truth;
+            reading.note = Some(why);
             return Ok(reading);
         }
         if ev.path.contains(inference_id) {
@@ -1003,14 +1086,18 @@ impl DesignGraph {
 
     // ─── The change walk ───────────────────────────────────────────────────
 
-    /// What losing `seeds` does to the steps that rest on them. Each step a
-    /// lost premise reaches reads BROKEN (its rule no longer holds), WEAKENED
-    /// (it still holds on its other premises) or UNKNOWN. The walk carries on
-    /// past a conclusion that no longer stands — counting it lost in turn — and
-    /// stops at one that still stands, so a weakened conclusion's dependents
-    /// are never made broken. A seed is counted lost whatever it is: the walk
-    /// answers "what if this premise no longer held?", the question to ask
-    /// BEFORE the edit (propagate_change, then edit).
+    /// What losing `seeds` does to the steps that rest on them. A lost node
+    /// reads UNSUPPORTED (unknown), never false (req:unsupported-is-not-refuted).
+    /// Each step a lost premise reaches reads UNSUPPORTED (it held and its rule
+    /// no longer holds), WEAKENED (it still holds on its other premises),
+    /// BROKEN (its rule fails, because a premise really fails) or UNKNOWN; and
+    /// each row says what its CLAIM is left with — `still_supported` (by
+    /// `still_supported_by`), `unsupported` or `refuted`. The walk carries on
+    /// past a conclusion that held and no longer does — counting it lost in
+    /// turn — and stops at one that still stands, so a weakened conclusion's
+    /// dependents never lose their support. A seed is counted lost whatever it
+    /// is: the walk answers "what if this premise no longer held?", the
+    /// question to ask BEFORE the edit (propagate_change, then edit).
     ///
     /// Empty when no seed is a premise of anything — the whole cost for a
     /// design that records no Inference is one adjacency read per seed.
@@ -1030,9 +1117,10 @@ impl DesignGraph {
                     reached.entry(s).or_insert(distance);
                 }
             }
-            // Carry on past every conclusion that no longer stands. Losses only
-            // grow, so a conclusion that stood a round ago may fall now:
-            // re-read until nothing new is lost.
+            // Carry on past every conclusion that held and no longer does — it
+            // is left UNSUPPORTED, and what rests on it loses its support in
+            // turn. Losses only grow, so a conclusion that stood a round ago
+            // may fall now: re-read until nothing new is lost.
             let mut ev = Eval::new(&lost);
             let mut newly: Vec<(String, usize)> = Vec::new();
             for (s, distance) in &reached {
@@ -1042,7 +1130,9 @@ impl DesignGraph {
                 if lost.contains(&c) || newly.iter().any(|(n, _)| *n == c) {
                     continue;
                 }
-                if self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0 == Truth::Fails {
+                if self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0 != Truth::Holds
+                    && self.premise_truth(&c)?.0 == Truth::Holds
+                {
                     newly.push((c, distance + 1));
                 }
             }
@@ -1068,8 +1158,9 @@ impl DesignGraph {
                     lost.iter().filter(|x| *x != s).cloned().collect();
                 let mut ev = Eval::new(&without_itself);
                 let mut r = self.step_reading(s, &mut ev, INFERENCE_DEPTH)?;
-                r.verdict = Truth::Fails;
-                r.note = Some("the step itself is counted as lost by this change".to_string());
+                let (truth, why) = self.lost_truth(s)?;
+                r.verdict = truth;
+                r.note = Some(why);
                 r
             } else {
                 self.step_reading(s, &mut after_ev, INFERENCE_DEPTH)?
@@ -1077,6 +1168,30 @@ impl DesignGraph {
             let conclusion_after = match &after.conclusion {
                 Some(c) => self.truth_of(c, &mut after_ev, INFERENCE_DEPTH)?.0,
                 None => Truth::Unknown,
+            };
+            // The other lines: every step concluding the claim that still
+            // holds with the losses counted.
+            let mut still_supported_by = Vec::new();
+            if conclusion_after == Truth::Holds
+                && let Some(c) = &after.conclusion
+            {
+                for other in self.inferences_concluding(c)? {
+                    if lost.contains(&other) {
+                        continue;
+                    }
+                    if self
+                        .step_reading(&other, &mut after_ev, INFERENCE_DEPTH)?
+                        .verdict
+                        == Truth::Holds
+                    {
+                        still_supported_by.push(other);
+                    }
+                }
+            }
+            let conclusion_reads = match conclusion_after {
+                Truth::Holds => "still_supported",
+                Truth::Fails => "refuted",
+                Truth::Unknown => "unsupported",
             };
             let lost_premises: Vec<String> = after
                 .premises
@@ -1086,10 +1201,11 @@ impl DesignGraph {
                 .collect();
             rows.push(InferenceImpact {
                 inference: s.clone(),
-                impact: match after.verdict {
-                    Truth::Fails => "broken",
-                    Truth::Holds => "weakened",
-                    Truth::Unknown => "unknown",
+                impact: match (before.verdict, after.verdict) {
+                    (_, Truth::Holds) => "weakened",
+                    (_, Truth::Fails) => "broken",
+                    (Truth::Holds, Truth::Unknown) => "unsupported",
+                    (_, Truth::Unknown) => "unknown",
                 },
                 rule: after.rule,
                 k: after.k,
@@ -1100,6 +1216,8 @@ impl DesignGraph {
                 after: after.verdict,
                 lost_premises,
                 conclusion_after,
+                conclusion_reads,
+                still_supported_by,
                 premises: after.premises,
             });
         }
@@ -1183,10 +1301,145 @@ impl DesignGraph {
         Ok(out)
     }
 
+    /// Whether `id` takes part in a line of reasoning: a step concludes it, or
+    /// it is a premise of one.
+    pub fn takes_part_in_reasoning(&self, id: &str) -> Result<bool, DynoError> {
+        Ok(!self.inferences_concluding(id)?.is_empty() || !self.steps_resting_on(id)?.is_empty())
+    }
+
+    /// An opposing CONTRADICTS from `objection` to `target` that REFUTES it, in
+    /// a line of reasoning: one side takes part in an Inference, the objection
+    /// holds, and so the target reads `fails` (refuted).
+    pub fn is_a_standing_refutation(
+        &self,
+        objection: &str,
+        target: &str,
+    ) -> Result<bool, DynoError> {
+        if !self.takes_part_in_reasoning(objection)? && !self.takes_part_in_reasoning(target)? {
+            return Ok(false);
+        }
+        if self.premise_truth(objection)?.0 != Truth::Holds {
+            return Ok(false);
+        }
+        Ok(self.premise_truth(target)?.0 == Truth::Fails)
+    }
+
     /// Whether a step concludes `id` — the one question the older status
     /// checks ask before speaking about a conclusion this module owns.
     pub fn is_concluded(&self, id: &str) -> Result<bool, DynoError> {
         Ok(!self.inferences_concluding(id)?.is_empty())
+    }
+
+    // ─── Single points of failure in a line of reasoning ──────────────────
+
+    /// Every node that EVERY holding line of a claim rests on, so losing it
+    /// leaves a claim with two or more lines unsupported — a single point of
+    /// failure in the reasoning (req:a-proof-is-designed-with-a-skill-and-the-
+    /// tools-fit-mathematics; the primes trial's F25: Lemma 5 carried both
+    /// proofs of the theorem and nothing said so).
+    ///
+    /// Only claims with at least two holding steps are asked (one line is not
+    /// redundancy, the same selectivity the topology rule keeps), and only a
+    /// node a step concludes — a lemma — is a candidate: a definition or
+    /// axiom every line starts from is the foundation, not a weak point. Of a
+    /// chain of such lemmas, the one nearest the claim is named: a lemma under
+    /// it falls with it. Checked, not inferred: each candidate is counted lost
+    /// and the claim read again.
+    pub fn reasoning_single_points(&self) -> Result<Vec<ReasoningSinglePoint>, DynoError> {
+        let mut conclusions: BTreeSet<String> = BTreeSet::new();
+        for i in self.scan_nodes(node::INFERENCE)? {
+            if let Some(c) = self.conclusion_of(&i.node_id)? {
+                conclusions.insert(c);
+            }
+        }
+        let mut out = Vec::new();
+        for c in conclusions {
+            let steps = self.inferences_concluding(&c)?;
+            if steps.len() < 2 || self.premise_truth(&c)?.0 != Truth::Holds {
+                continue;
+            }
+            let none = BTreeSet::new();
+            let mut ev = Eval::new(&none);
+            let mut lines: Vec<String> = Vec::new();
+            for st in &steps {
+                if self.step_reading(st, &mut ev, INFERENCE_DEPTH)?.verdict == Truth::Holds {
+                    lines.push(st.clone());
+                }
+            }
+            if lines.len() < 2 {
+                continue;
+            }
+            // What each line rests on, all the way down.
+            let mut shared: Option<BTreeSet<String>> = None;
+            for st in &lines {
+                let rests = self.rests_on_closure(st)?;
+                shared = Some(match shared {
+                    None => rests,
+                    Some(acc) => acc.intersection(&rests).cloned().collect(),
+                });
+            }
+            let mut points: Vec<String> = Vec::new();
+            for x in shared.unwrap_or_default() {
+                if x == c || self.inferences_concluding(&x)?.is_empty() {
+                    continue;
+                }
+                let lost = BTreeSet::from([x.clone()]);
+                let mut ev = Eval::new(&lost);
+                if self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0 != Truth::Holds {
+                    points.push(x);
+                }
+            }
+            // The nearest of a chain: drop a point another point rests on.
+            let mut nearest: Vec<String> = Vec::new();
+            for x in &points {
+                let mut under_another = false;
+                for y in &points {
+                    if y != x && self.rests_on_closure_of_node(y)?.contains(x) {
+                        under_another = true;
+                        break;
+                    }
+                }
+                if !under_another {
+                    nearest.push(x.clone());
+                }
+            }
+            for x in nearest {
+                out.push(ReasoningSinglePoint {
+                    claim: c.clone(),
+                    node: x,
+                    lines: lines.clone(),
+                });
+            }
+        }
+        Ok(out)
+    }
+
+    /// Every node a step rests on, transitively: its premises, and for a
+    /// premise a step concludes, what each of those steps rests on.
+    fn rests_on_closure(&self, step: &str) -> Result<BTreeSet<String>, DynoError> {
+        let mut seen: BTreeSet<String> = BTreeSet::new();
+        let mut steps_seen: BTreeSet<String> = BTreeSet::new();
+        let mut queue: Vec<String> = vec![step.to_string()];
+        while let Some(s) = queue.pop() {
+            if !steps_seen.insert(s.clone()) {
+                continue;
+            }
+            for p in self.premises_of(&s)? {
+                if seen.insert(p.clone()) {
+                    queue.extend(self.inferences_concluding(&p)?);
+                }
+            }
+        }
+        Ok(seen)
+    }
+
+    /// What a NODE rests on through every step concluding it.
+    fn rests_on_closure_of_node(&self, id: &str) -> Result<BTreeSet<String>, DynoError> {
+        let mut all = BTreeSet::new();
+        for st in self.inferences_concluding(id)? {
+            all.extend(self.rests_on_closure(&st)?);
+        }
+        Ok(all)
     }
 
     // ─── Foundations (requirement E) ──────────────────────────────────────

@@ -12,9 +12,11 @@
 //! - THE ROLL-UP: a requirement concluded by an Inference is delivered when the
 //!   rule holds over its premises; every other requirement rolls up as before.
 //! - THE CHANGE WALK: from a changed or failing premise, each Inference
-//!   downstream reads BROKEN (the rule no longer holds) or WEAKENED (it still
-//!   holds on the other premises), and the walk carries on past a broken
-//!   conclusion only.
+//!   downstream reads UNSUPPORTED (the rule no longer holds; since 2026-10-17,
+//!   req:unsupported-is-not-refuted, a loss is never read as false), BROKEN
+//!   (a premise really fails) or WEAKENED (it still holds on the other
+//!   premises), and the walk carries on past a conclusion left unsupported
+//!   only.
 //! - A FINDING: a conclusion whose claimed status is past what its Inference
 //!   supports (`conclusion_does_not_follow`).
 //!
@@ -190,11 +192,12 @@ fn redundant_support_marked_any_is_weakened_by_one_loss_and_broken_by_the_last()
         "one support left still delivers an `any` claim"
     );
 
-    // Remove the last: BROKEN.
+    // Remove the last: UNSUPPORTED, never false (req:unsupported-is-not-refuted).
     let rows = walk(&g, &["ver:baro"]);
     let r = row(&rows, "inf:redundant-altitude");
-    assert_eq!(r["impact"], "broken", "{r:#}");
-    assert_eq!(r["after"], "fails", "{r:#}");
+    assert_eq!(r["impact"], "unsupported", "{r:#}");
+    assert_eq!(r["after"], "unknown", "{r:#}");
+    assert_eq!(r["conclusion_reads"], "unsupported", "{r:#}");
     g.set_verification_status("ver:baro", "failing", Some("2026-10-14"), None)
         .unwrap();
     assert!(!g.requirement_is_delivered("req:altitude-known").unwrap());
@@ -222,12 +225,14 @@ fn k_of_n_holds_at_k_and_not_at_k_minus_one() {
         g.requirement_is_delivered("req:quorum").unwrap(),
         "2 of 3 holding meets k = 2"
     );
-    // Lose one of the two: k - 1 holding, and the third fails, so it fails.
+    // Lose one of the two: k - 1 holding, and the lost one reads
+    // unsupported (unknown), never false — so the step no longer holds, and is
+    // not thereby broken (req:unsupported-is-not-refuted).
     let rows = walk(&g, &["ver:2"]);
     let r = row(&rows, "inf:two-of-three");
     assert_eq!(r["before"], "holds", "{r:#}");
-    assert_eq!(r["after"], "fails", "{r:#}");
-    assert_eq!(r["impact"], "broken", "{r:#}");
+    assert_eq!(r["after"], "unknown", "{r:#}");
+    assert_eq!(r["impact"], "unsupported", "{r:#}");
 
     g.set_verification_status("ver:2", "failing", Some("2026-10-14"), None)
         .unwrap();
@@ -294,9 +299,11 @@ fn an_unknown_premise_makes_the_rule_unknown_unless_another_premise_decides_it()
     assert_eq!(row(&rows, "inf:any-holds")["before"], "holds");
     assert_eq!(row(&rows, "inf:all-fails")["before"], "fails");
     // Losing the one holding premise of an `any` whose other premise is
-    // unknown leaves it unknown — neither weakened nor broken.
+    // unknown leaves it unsupported — neither weakened nor broken.
     assert_eq!(row(&rows, "inf:any-holds")["after"], "unknown");
-    assert_eq!(row(&rows, "inf:any-holds")["impact"], "unknown");
+    assert_eq!(row(&rows, "inf:any-holds")["impact"], "unsupported");
+    // A step that did not hold before the loss reads unknown.
+    assert_eq!(row(&rows, "inf:all-unknown")["impact"], "unknown");
     // The premise with no predicate says why it is unknown.
     let premises = row(&rows, "inf:all-unknown")["premises"]
         .as_array()
@@ -554,10 +561,14 @@ fn a_chain_breaks_through_a_broken_conclusion_and_stops_at_a_weakened_one() {
     assert!(g.requirement_is_delivered("req:above-redundant").unwrap());
 
     let rows = walk(&g, &["ver:root"]);
-    // The walk continues past a broken conclusion…
-    assert_eq!(row(&rows, "inf:root-middle")["impact"], "broken");
-    assert_eq!(row(&rows, "inf:middle-top")["impact"], "broken");
-    // …and reports a weakened one without making its dependents broken.
+    // The walk continues past a conclusion left unsupported…
+    assert_eq!(row(&rows, "inf:root-middle")["impact"], "unsupported");
+    assert_eq!(row(&rows, "inf:middle-top")["impact"], "unsupported");
+    assert_eq!(
+        row(&rows, "inf:middle-top")["conclusion_reads"],
+        "unsupported"
+    );
+    // …and reports a weakened one without making its dependents lose support.
     assert_eq!(row(&rows, "inf:either")["impact"], "weakened");
     assert!(
         rows.iter().all(|r| r["inference"] != "inf:above"),
@@ -598,19 +609,27 @@ fn a_node_concluded_twice_stands_while_either_derivation_holds() {
     );
     let rows = walk(&g, &["ver:first"]);
     let r = row(&rows, "inf:first");
-    assert_eq!(r["impact"], "broken", "{r:#}");
+    assert_eq!(r["impact"], "unsupported", "{r:#}");
     assert_eq!(
-        r["conclusion_after"], "fails",
-        "with the first broken and the second failing, nothing derives it: {r:#}"
+        r["conclusion_after"], "unknown",
+        "with the first lost and the second failing, nothing derives it — and it is \
+         unsupported, never refuted: {r:#}"
     );
+    assert_eq!(r["conclusion_reads"], "unsupported", "{r:#}");
     g.set_verification_status("ver:second", "passing", Some("2026-10-14"), None)
         .unwrap();
     let rows = walk(&g, &["ver:first"]);
     let r = row(&rows, "inf:first");
-    assert_eq!(r["impact"], "broken", "{r:#}");
+    assert_eq!(r["impact"], "unsupported", "{r:#}");
     assert_eq!(
         r["conclusion_after"], "holds",
         "the other derivation still holds: {r:#}"
+    );
+    assert_eq!(r["conclusion_reads"], "still_supported", "{r:#}");
+    assert_eq!(
+        r["still_supported_by"],
+        serde_json::json!(["inf:second"]),
+        "{r:#}"
     );
 }
 

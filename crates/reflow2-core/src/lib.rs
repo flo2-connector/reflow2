@@ -73,6 +73,7 @@ pub mod inference;
 pub mod ingest;
 pub mod intent;
 pub mod item_layout;
+pub mod kept_record;
 pub mod llm;
 pub mod loop_closure;
 pub mod manual_work;

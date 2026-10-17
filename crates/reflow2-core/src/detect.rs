@@ -564,6 +564,16 @@ pub enum GapSource {
     /// a step concludes — those ask "what satisfies it?", which the step has
     /// answered.
     ConclusionDoesNotFollow,
+    /// WHAT THE REASONING STILL OWES, on a design that holds Inference steps:
+    /// steps no person or checker has confirmed, premises it rests on that
+    /// cite no source and are not marked taken as given, and claims that read
+    /// `shown` but not `proven` (req:the-loop-sees-unconfirmed-steps-and-
+    /// uncited-premises, Anthony 2026-10-17, after the primes trial, where
+    /// only reasoning_report showed them). ONE aggregate, low-severity
+    /// finding: it is about the practice of confirming and citing, not about
+    /// any one step. Silent on a design holding no Inference
+    /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
+    UnconfirmedReasoning,
     /// Recorded changes that never say WHICH AXIS they are on — whether the
     /// SYSTEM changed, or only the design's KNOWLEDGE of it did
     /// (`ChangeEvent.subject`).
@@ -901,6 +911,7 @@ impl GapSource {
             GapSource::ReleaseWithoutManifest => "release_without_manifest",
             GapSource::DecompositionCoverage => "decomposition_coverage",
             GapSource::ConclusionDoesNotFollow => "conclusion_does_not_follow",
+            GapSource::UnconfirmedReasoning => "unconfirmed_reasoning",
             GapSource::ChangeAxisUnstated => "change_axis_unstated",
             GapSource::InternalOnlyDelivery => "internal_only_delivery",
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
@@ -979,6 +990,11 @@ impl GapSource {
             GapSource::UnreviewedIdeas => true,
             // Aggregate for the practice reason UnreviewedIdeas gives.
             GapSource::UnlinkedIntent => true,
+            // Aggregate: the finding is about the practice of confirming and
+            // citing a line of reasoning, and per-step keying would expire the
+            // owner's standing answer ("I confirm these at the end") on every
+            // step recorded.
+            GapSource::UnconfirmedReasoning => true,
             // Aggregate, and the reason is the same practice argument: the
             // finding is about a design that does not record the axis, not
             // about any one change. Per-event keying would expire the standing
@@ -1873,11 +1889,74 @@ struct Population {
     /// about — every other rule detector fires on a rule that already exists,
     /// which cannot surface the case where nobody wrote one down.
     design_rules: usize,
+    /// A REASONING DESIGN: its intent is all statements in a line of
+    /// reasoning — a proof, an argument — with nothing to build. See
+    /// [`DesignGraph::is_a_reasoning_design`]. The software-shaped phase
+    /// questions (`concept_without_design`, `quality_target_unstated`) are not
+    /// asked of it (req:a-proof-is-designed-with-a-skill-and-the-tools-fit-mathematics).
+    reasoning_only: bool,
 }
 
 impl DesignGraph {
+    /// Whether this design is a REASONING DESIGN — a proof or an argument with
+    /// nothing to build — decided from its structure alone, never from a label:
+    ///
+    /// - it holds at least one Inference;
+    /// - it holds no Capability, Component or Flow (nothing it does or is
+    ///   built from);
+    /// - every live Requirement (not dropped) takes part in the reasoning: a
+    ///   step concludes it, it is a premise of one, or a CONTRADICTS joins it
+    ///   to a node that does (a conjecture a counterexample refutes).
+    ///
+    /// One statement outside the reasoning makes it an ordinary design again,
+    /// so the phase questions come back the moment there is something to build.
+    pub fn is_a_reasoning_design(&self) -> Result<bool, DynoError> {
+        if self.count_nodes(node::INFERENCE)? == 0
+            || self.count_nodes(node::CAPABILITY)? > 0
+            || self.count_nodes(node::COMPONENT)? > 0
+            || self.count_nodes(node::FLOW)? > 0
+        {
+            return Ok(false);
+        }
+        let mut any = false;
+        for r in self.scan_live_nodes(node::REQUIREMENT)? {
+            if r.properties
+                .get("status")
+                .and_then(crate::foundation::core::Value::as_str)
+                == Some("dropped")
+            {
+                continue;
+            }
+            any = true;
+            if self.takes_part_in_reasoning(&r.node_id)? {
+                continue;
+            }
+            let mut joined = false;
+            for e in self
+                .incoming(&r.node_id, Some(edge::CONTRADICTS))?
+                .into_iter()
+                .map(|e| e.from_id)
+                .chain(
+                    self.outgoing(&r.node_id, Some(edge::CONTRADICTS))?
+                        .into_iter()
+                        .map(|e| e.to_id),
+                )
+            {
+                if self.takes_part_in_reasoning(&e)? {
+                    joined = true;
+                    break;
+                }
+            }
+            if !joined {
+                return Ok(false);
+            }
+        }
+        Ok(any)
+    }
+
     fn population(&self) -> Result<Population, DynoError> {
         Ok(Population {
+            reasoning_only: self.is_a_reasoning_design()?,
             requirements: self.count_nodes(node::REQUIREMENT)?,
             capabilities: self.count_nodes(node::CAPABILITY)?,
             components: self.count_nodes(node::COMPONENT)?,
@@ -2689,6 +2768,9 @@ impl DesignGraph {
         // The stated steps: a conclusion whose claimed status is past what the
         // Inferences concluding it support. Silent on a design with none.
         self.detect_conclusions_that_do_not_follow(&mut gaps)?;
+        // What the reasoning still owes: unconfirmed steps, uncited premises,
+        // claims shown but not proven. Silent on a design with no Inference.
+        self.detect_unconfirmed_reasoning(&mut gaps)?;
         // Absence, not consistency: fires loudest where the axis has NEVER
         // been stated, which is the case every other detector here misses.
         self.detect_change_axis_unstated(&mut gaps)?;
@@ -2793,7 +2875,15 @@ impl DesignGraph {
         // this, modelling reflow2's own coherence loop raised "no structure
         // yet" over a fully-structured process — the phase detectors assuming
         // every subject is a product (BL-37; the wider question is BL-16).
-        if pop.requirements + pop.capabilities > 0 && pop.components == 0 && pop.flows == 0 {
+        // NOT ASKED OF A REASONING DESIGN (a proof, an argument): it has no
+        // parts to build, and "no structure yet" reads a sound proof as
+        // unfinished (req:a-proof-is-designed-with-a-skill-and-the-tools-fit-
+        // mathematics, the primes trial's F12).
+        if pop.requirements + pop.capabilities > 0
+            && pop.components == 0
+            && pop.flows == 0
+            && !pop.reasoning_only
+        {
             push(
                 gaps,
                 GapSource::ConceptWithoutDesign,
@@ -3679,6 +3769,11 @@ impl DesignGraph {
         if pop.capabilities == 0 && pop.requirements == 0 {
             return Ok(());
         }
+        // Nor of a reasoning design: a proof has no structure for a quality
+        // attribute to shape (the primes trial's F12).
+        if pop.reasoning_only {
+            return Ok(());
+        }
 
         // THREE STATES, NOT TWO, and the middle one is the point (Anthony,
         // 2026-08-25: "a user may not know at genesis, so should be able to
@@ -3976,17 +4071,26 @@ impl DesignGraph {
         for c in &cases {
             affected.push(c.node_id.clone());
             affected.extend(c.steps.iter().map(|s| s.inference.clone()));
-            if c.supported == crate::inference::Truth::Fails {
+            // A step that FAILS (a premise really fails) leaves the claim
+            // unsupported, never refuted (req:unsupported-is-not-refuted); a
+            // claim reads `fails` only when an objection refutes it.
+            let a_step_fails = c
+                .steps
+                .iter()
+                .any(|s| s.verdict == crate::inference::Truth::Fails);
+            if a_step_fails || c.supported == crate::inference::Truth::Fails {
                 failing += 1;
             }
             named.push(format!(
-                "“{}” claims `{}` and its steps {}",
+                "“{}” claims `{}` and {}",
                 c.name,
                 c.claimed,
                 if c.supported == crate::inference::Truth::Fails {
-                    "fail"
+                    "an objection that holds refutes it"
+                } else if a_step_fails {
+                    "its steps fail, so it is unsupported"
                 } else {
-                    "cannot show it (a premise is unknown)"
+                    "its steps cannot show it (a premise is unknown)"
                 }
             ));
             let steps: Vec<String> = c
@@ -4059,6 +4163,63 @@ impl DesignGraph {
                 "{n} node(s) whose status claims they hold, where no drawn Inference \
                  concluding them holds (ANY of them would do): {}.",
                 evidence.join(" || ")
+            ),
+        });
+        Ok(())
+    }
+
+    /// See [`GapSource::UnconfirmedReasoning`].
+    fn detect_unconfirmed_reasoning(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let Some(debt) = self.reasoning_debt()? else {
+            return Ok(());
+        };
+        if !debt.is_owed() {
+            return Ok(());
+        }
+        let mut affected: Vec<String> = debt
+            .unconfirmed_step_ids
+            .iter()
+            .chain(debt.uncited_premise_ids.iter())
+            .chain(debt.shown_not_proven_ids.iter())
+            .cloned()
+            .collect();
+        affected.sort();
+        affected.dedup();
+        gaps.push(GapCandidate {
+            id: gap_id(GapSource::UnconfirmedReasoning, &affected),
+            gap_source: GapSource::UnconfirmedReasoning,
+            scope: GapScope::Project,
+            // LOW: a reasoning that is recorded and holds is not broken; this
+            // asks the owner to confirm and cite it, which only they can do.
+            severity: 0.2,
+            title: format!(
+                "The reasoning owes: {} unconfirmed step(s), {} uncited premise(s), {} claim(s) \
+                 shown but not proven",
+                debt.unconfirmed_steps, debt.uncited_premises, debt.shown_not_proven
+            ),
+            description: "A line of reasoning is recorded, and parts of it rest on nobody's \
+                 word yet. Each step is confirmed by a person or a checker (add_inference with \
+                 `confirmed_by` and `confirmed_how` — the owner's word, never an agent's); each \
+                 premise it rests on cites its source (an Artifact that DOCUMENTS it) or, for a \
+                 definition or axiom, is marked taken as given (`taken_as_given`). A claim reads \
+                 `proven` only when every step under one holding line is confirmed. \
+                 reasoning_report reads each one."
+                .to_string(),
+            affected_ids: affected,
+            suggested_depth: 2,
+            evidence: format!(
+                "{} of {} step(s) unconfirmed ({}); {} uncited premise(s) ({}); {} claim(s) \
+                 shown but not proven ({}); {} premise(s) taken as given. Lists name at most {} \
+                 id(s) each.",
+                debt.unconfirmed_steps,
+                debt.steps,
+                debt.unconfirmed_step_ids.join(", "),
+                debt.uncited_premises,
+                debt.uncited_premise_ids.join(", "),
+                debt.shown_not_proven,
+                debt.shown_not_proven_ids.join(", "),
+                debt.stated_foundations,
+                debt.list_cap
             ),
         });
         Ok(())
@@ -5954,7 +6115,8 @@ impl DesignGraph {
             ),
             description: format!(
                 "{n} requirement(s) and accepted decision(s) carry no relation to any other \
-                 requirement or idea (no review relation, no DECOMPOSES, no GOVERNED_BY) and no \
+                 requirement or idea (no review relation, no DECOMPOSES, no GOVERNED_BY, no \
+                 part in a line of reasoning) and no \
                  note saying their relations were reviewed. A search that lands on one returns it \
                  alone, and the larger aim it is a facet of does not come back with it. Work them \
                  a few at a time with the link-ideas skill (relation_candidates, then \
@@ -5965,7 +6127,8 @@ impl DesignGraph {
             suggested_depth: 2,
             evidence: format!(
                 "{n} of {total} live requirement(s) (not dropped or met) and accepted decision(s) \
-                 have no review relation, DECOMPOSES or GOVERNED_BY in either direction and no \
+                 have no review relation, DECOMPOSES or GOVERNED_BY in either direction, no \
+                 PREMISE_OF or CONCLUDES, and no \
                  `no_relation_note`; parked nodes and decision points with 2+ alternatives are \
                  excluded. A capability satisfying a requirement does not count."
             ),

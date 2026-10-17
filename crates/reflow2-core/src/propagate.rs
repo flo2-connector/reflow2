@@ -405,7 +405,13 @@ impl DesignGraph {
 
         // BFS. `visited` maps id -> its best (shortest, first-found) impact.
         let mut visited: HashMap<String, ImpactedNode> = HashMap::new();
-        let mut queue: VecDeque<(String, usize, Vec<Hop>, bool, bool)> = VecDeque::new();
+        // The last field: which way this path has gone along a line of
+        // reasoning, if at all. See the walk below.
+        let mut queue: VecDeque<(String, usize, Vec<Hop>, bool, bool, ReasoningWay)> =
+            VecDeque::new();
+        // The ways each node has been walked on from, so a node reached first
+        // one way is walked on again when another way reaches it.
+        let mut walked_ways: HashMap<String, Vec<ReasoningWay>> = HashMap::new();
         let mut beyond_depth: HashSet<String> = HashSet::new();
 
         for s in &seeds {
@@ -413,11 +419,18 @@ impl DesignGraph {
             if index.contains_key(s) {
                 // A seed that IS a published boundary does not count as crossing
                 // itself — you are standing on it, not passing through it.
-                queue.push_back((s.clone(), 0, Vec::new(), false, false));
+                queue.push_back((
+                    s.clone(),
+                    0,
+                    Vec::new(),
+                    false,
+                    false,
+                    ReasoningWay::Neither,
+                ));
             }
         }
 
-        while let Some((id, depth, via, crosses_risk, crosses_boundary)) = queue.pop_front() {
+        while let Some((id, depth, via, crosses_risk, crosses_boundary, way)) = queue.pop_front() {
             let neighbors = self.impact_neighbors(&id, &inference_edges, &adjacency)?;
             for nb in neighbors {
                 // Skip edges to nodes that don't exist, and back to seeds.
@@ -427,8 +440,52 @@ impl DesignGraph {
                 if seed_set.contains(nb.id.as_str()) {
                     continue;
                 }
+                // A WHAT-IF STAYS INSIDE THE REASONING IT AFFECTS (req:a-proof-
+                // is-designed-with-a-skill-and-the-tools-fit-mathematics; the
+                // primes trial's F23: losing one lemma listed 58 nodes and an
+                // unrelated conjecture as a risk crossing). Along a line of
+                // reasoning a change reaches two things: DOWN, what rests on the
+                // changed statement (and the objections those statements make);
+                // UP, the grounds the changed statement itself rests on. A path
+                // that went one way never turns the other: back down from a
+                // shared definition reaches statements that merely use it too,
+                // and up from a step the change reached reaches the grounds of
+                // its OTHER premises, neither of which the change touches. Only
+                // PREMISE_OF and CONCLUDES set the way, so a design with no
+                // Inference walks exactly as before.
+                let reasoning_hop =
+                    nb.hop.edge_type == edge::PREMISE_OF || nb.hop.edge_type == edge::CONCLUDES;
+                let next_way = if reasoning_hop {
+                    match (way, nb.hop.direction) {
+                        (ReasoningWay::Up, ImpactDirection::Downstream)
+                        | (ReasoningWay::Down, ImpactDirection::Upstream) => continue,
+                        (_, ImpactDirection::Upstream) => ReasoningWay::Up,
+                        (_, _) => ReasoningWay::Down,
+                    }
+                } else if nb.hop.edge_type == edge::CONTRADICTS && way == ReasoningWay::Up {
+                    continue;
+                } else {
+                    way
+                };
                 if visited.contains_key(&nb.id) {
-                    continue; // BFS: first visit is the shortest path.
+                    // BFS: first visit is the shortest path. A node reached
+                    // first one way is walked on again the first time another
+                    // way reaches it, so the rule never hides what lies on the
+                    // other side of it.
+                    let ways = walked_ways.entry(nb.id.clone()).or_default();
+                    if !ways.contains(&next_way) {
+                        ways.push(next_way);
+                        let seen = &visited[&nb.id];
+                        queue.push_back((
+                            nb.id.clone(),
+                            seen.distance,
+                            seen.via.clone(),
+                            seen.crosses_risk_edge,
+                            seen.crosses_published_boundary,
+                            next_way,
+                        ));
+                    }
+                    continue;
                 }
 
                 let next_depth = depth + 1;
@@ -470,7 +527,15 @@ impl DesignGraph {
                         design: None,    // filled in below
                     },
                 );
-                queue.push_back((nb.id, next_depth, next_via, next_crosses, next_boundary));
+                walked_ways.entry(nb.id.clone()).or_default().push(next_way);
+                queue.push_back((
+                    nb.id,
+                    next_depth,
+                    next_via,
+                    next_crosses,
+                    next_boundary,
+                    next_way,
+                ));
             }
         }
 
@@ -817,6 +882,16 @@ impl DesignGraph {
         let seed_refs: Vec<&str> = seeds.iter().map(String::as_str).collect();
         self.propagate_from(&seed_refs, opts)
     }
+}
+
+/// Which way a propagation path has gone along a line of reasoning
+/// (PREMISE_OF / CONCLUDES): not at all, up to the grounds, or down to what
+/// rests on them. A path never turns from one to the other.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum ReasoningWay {
+    Neither,
+    Up,
+    Down,
 }
 
 /// Resolve the impact direction for an edge walked forward/backward, treating

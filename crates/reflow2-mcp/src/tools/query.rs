@@ -678,6 +678,22 @@ impl ReflowService {
         {
             m.insert("deprecations".into(), list);
         }
+        // AND THE WHOLE REPLY KEEPS TO THE BUDGET (crate::schema_budget). The
+        // prose bound above cannot shorten the structure, and the writers and
+        // deprecations ride after it, so a 4,000-character budget answered
+        // up to 99,494 (the primes trial's F3).
+        //
+        // ONLY A BUDGET THE CALLER NAMES: with none, the reply is bounded as it
+        // always was, so a plain call answers byte for byte as before.
+        let reply = match req.budget_chars {
+            None => reply,
+            Some(budget) => crate::schema_budget::keep_to_budget(
+                reply,
+                budget,
+                "Every name is listed; narrow with `node_type`, or `from` and `to` together, to \
+                 read one part in full.",
+            ),
+        };
         ok_json(reply)
     }
 

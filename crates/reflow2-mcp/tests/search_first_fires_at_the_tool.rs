@@ -69,6 +69,7 @@ fn req(
         priority: None,
         concern: None,
         kind: None,
+        taken_as_given: None,
     }
 }
 
