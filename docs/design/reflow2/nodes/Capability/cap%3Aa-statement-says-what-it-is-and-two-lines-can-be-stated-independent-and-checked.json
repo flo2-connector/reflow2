@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f2318e3414c540d34647ea6ec69f45d621bce44e13e604c30dab76335be6512d",
+  "node_id": "cap:a-statement-says-what-it-is-and-two-lines-can-be-stated-independent-and-checked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17. `statement_kind` on Requirement and Constraint (add_requirement, add_constraint): a field of its own, so Requirement.kind keeps its software values. A definition or axiom reads taken as given. Reads carry `statement_reading` (kind, reads, why): `taken_as_given`, `stated` (a theorem or lemma no step concludes), `open` (a conjecture nothing shows or refutes), `refuted`, or the proof status. Two lines stated independent: `independent_of` (the other step) and `independent_except` (the lemmas both may share) on an Inference; checked — the lines may share no step other than those under the named lemmas — and read as the step's `independence`, reasoning_report's `independence`, and a `reasoning_not_as_stated` gap when false. The Phase 1 deferral: Constraint.direction has no schema default; add_constraint writes `maximum` only beside a `limit`, so a definition carries no budget words and every stored constraint keeps what it has.",
+    "name": "A statement says what it is (theorem, lemma, definition, axiom, conjecture), a conjecture reads refuted, and two lines can be stated independent and checked",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

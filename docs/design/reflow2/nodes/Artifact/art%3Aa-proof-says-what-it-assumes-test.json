@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:276c670e92d9a3fcb9ae59a3be479e2a2023c673b9fd4a8eed04562780f0ca9f",
+  "node_id": "art:a-proof-says-what-it-assumes-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "9 core tests on the primes trial's shapes: Euclid's reductio with its supposition assumed and discharged (and not), the what-if past a discharged assumption, an induction step discharging its hypothesis and generalizing over k, inf:euclid generalizing over L until a premise fixes L, a computation at n = 40 that cannot carry a generalization, statement kinds and a conjecture reading open then refuted, two proofs stated independent and checked, and a definition with no budget direction that round-trips.",
+    "location": "crates/reflow2-core/tests/a_proof_says_what_it_assumes.rs",
+    "name": "crates/reflow2-core/tests/a_proof_says_what_it_assumes.rs",
+    "status": "realized"
+  }
+}

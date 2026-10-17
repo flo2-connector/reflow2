@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:189c420cc4034b386c3403cd7aa05baa8fc75d5afa05948c8420665c2ff786e2",
+  "edge_type": "REALIZES",
+  "from_id": "art:budget",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-statement-says-what-it-is-and-two-lines-can-be-stated-independent-and-checked"
+}

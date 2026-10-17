@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0beff7b814b43f35f2dba64aec6854fb6d447a3b07c78b52ffdf4c3e44cbf62d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:c4d50bb75a83126c98d4ae1246cbb2cca349a45f77fa13ff64eb703d5a0e63d1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

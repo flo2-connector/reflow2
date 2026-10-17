@@ -514,6 +514,9 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "acknowledge_defect",
         "acknowledge_gap",
         "answer_question",
+        // 2026-10-17: names the Question it wrote, whom it was put to and the
+        // ids it is about — what the caller sent, never the design's growth.
+        "ask_question",
         "complies_with",
         "delete_edge",
         "delete_node",

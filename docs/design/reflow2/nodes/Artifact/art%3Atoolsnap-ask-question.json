@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a573fe072dbd0e1266a2eed5f78a968807b24438b3e99607163a50086da2324c",
+  "node_id": "art:toolsnap-ask-question",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "spec",
+    "description": "The golden of ask_question's served schema and description (toolsnap.py).",
+    "location": "tools/toolsnaps/ask_question.json",
+    "name": "tools/toolsnaps/ask_question.json",
+    "status": "realized"
+  }
+}

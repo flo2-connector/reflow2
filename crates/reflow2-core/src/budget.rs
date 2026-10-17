@@ -55,6 +55,21 @@ impl DesignGraph {
         objective: Option<f64>,
         direction: Option<&str>,
     ) -> Result<StoredNode, DynoError> {
+        // A BUDGET'S DIRECTION, AND ONLY A BUDGET'S. `direction` lost its
+        // schema default on 2026-10-17, so a definition or an axiom recorded
+        // as a Constraint no longer reads `direction: maximum` (the primes
+        // trial). A constraint given a `limit` and no direction is written
+        // `maximum` here, exactly what the default wrote before, so a budget
+        // reads and exports as it did. Revising a stored constraint never
+        // adds one: a constraint already holding a direction keeps it.
+        let had_direction = self
+            .get_node(node::CONSTRAINT, id)?
+            .is_some_and(|n| n.properties.contains_key("direction"));
+        let direction = match (direction, limit) {
+            (Some(d), _) => Some(d),
+            (None, Some(_)) if !had_direction => Some("maximum"),
+            _ => None,
+        };
         self.upsert_node(
             node::CONSTRAINT,
             id,

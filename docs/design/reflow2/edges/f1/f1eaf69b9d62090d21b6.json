@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2f7d3190efef0d5e205441314237cf8e1eef7fa8b64b08ad159a9824e4129225",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:an-agent-puts-its-own-question-to-a-named-person-about-the-nodes-it-concerns",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

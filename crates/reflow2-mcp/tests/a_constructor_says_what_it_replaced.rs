@@ -69,6 +69,9 @@ fn req(id: &str, name: &str, statement: &str) -> RequirementReq {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     }
 }
 

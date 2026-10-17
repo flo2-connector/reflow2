@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1e41fec4b3488376645089646eb47595b29052186fcc68425c4457b7de49c1ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

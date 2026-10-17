@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:aa99297ebd34b0615d9e420b689e25da89f18ab82b29fc6185351a9750fd2241",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it"
+}

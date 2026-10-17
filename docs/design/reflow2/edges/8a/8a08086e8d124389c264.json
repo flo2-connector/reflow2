@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:344cb386d4125a68875df1de3736f753fd9d42a30415a5232424196cfb1ee8b4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:1f84ea95d7485a8e6c1a282880ba6d71c7fe41c00a542bf5a644899cee38f795",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

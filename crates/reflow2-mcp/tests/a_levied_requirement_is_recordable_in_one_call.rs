@@ -58,6 +58,9 @@ async fn the_documented_path_for_a_levied_requirement_needs_no_escape_hatch() {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     })));
 
     let props = &out["properties"];
@@ -102,6 +105,9 @@ async fn omitting_them_leaves_the_default_exactly_as_it_was() {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     })));
     assert_eq!(out["properties"]["provenance"], "authored");
     assert!(out["properties"].get("source").is_none_or(|v| v.is_null()));

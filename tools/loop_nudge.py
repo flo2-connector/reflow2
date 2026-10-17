@@ -591,6 +591,7 @@ WRITE_OPS = frozenset({
     "add_decision", "add_design_rule", "add_environment", "add_environment_rule", "add_epoch",
     "add_flow", "add_interface", "add_project", "add_readiness", "add_release",
     "add_requirement", "add_resource", "add_verification", "allocate", "answer_question",
+    "ask_question",
     "answers", "apply_heal", "apply_merge", "authored_by", "calibrated_against",
     "claim_region", "collapse_decision", "complies_with", "constrains", "consumes",
     "contain_component", "contains", "create_edge", "create_edges", "create_node",

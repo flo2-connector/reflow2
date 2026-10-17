@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3abd2341804b0fc628bafbfee59d88dd108b682e853d1f07bba2c4579efedfd3",
+  "node_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17 in reflow2-core's inference and reasoning modules (PR on branch feat/a-proof-says-what-it-assumes-and-asks). A PREMISE_OF edge can carry `role: assumed` (add_inference's `assumed`): the premise holds inside the argument whatever its own truth, and every node resting on the step carries it as an open assumption. `Inference.discharges` (add_inference's `discharges`, refused unless something beneath the step assumes it) removes it: the conclusion's truth, its foundations (an assumption is never a foundation) and the what-if (an assumed link is not walked) read without it. A claim holding only under an undischarged assumption reads proof_status `conditional`; FoundationsReading lists `assumes`; reasoning_report lists `assumptions`, each read \"assumed, discharged by <step>\" or \"assumed, never discharged\", and an undischarged one is a `reasoning_not_as_stated` gap and counted in loop_status.reasoning. Trial shape: Euclid's reductio, \"suppose the primes are finite\", recorded honestly.",
+    "name": "A proof step takes a premise up as an assumption, and a later step discharges it: the conclusion then rests on it nowhere",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

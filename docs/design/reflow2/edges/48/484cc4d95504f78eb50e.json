@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c6e9ab7507fccbbccd298199b6312e314d021863f03f698234d443605a6787e8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:find-skills-corpus",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

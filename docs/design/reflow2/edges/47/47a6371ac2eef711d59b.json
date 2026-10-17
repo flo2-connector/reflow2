@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fbbf3052bef8167be14edef9b1e70a20e28bd7492b580e8e923c89182da85589",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-inference",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it"
+}

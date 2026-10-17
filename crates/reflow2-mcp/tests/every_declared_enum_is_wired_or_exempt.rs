@@ -180,6 +180,14 @@ const WIRED_NESTED: &[(&str, &str, &str, &str, &str)] = &[
 /// Each of these shares a NAME with a declared enum and means something else.
 const EXEMPT: &[(&str, &str, &str)] = &[
     (
+        "PREMISE_OF",
+        "role",
+        "WRITTEN BY WHICH LIST A PREMISE IS IN, never by a value a caller types: \
+         add_inference draws a premise named in `assumed` with `role: assumed` and one in \
+         `premises` with no role (absent reads `premise`). A `role` parameter would be a \
+         second way to say the same thing, and one that could disagree with the lists.",
+    ),
+    (
         "Verification",
         "last_reconciled_outcome",
         "A STAMP, never a parameter: reconcile_verification writes it from each observed \

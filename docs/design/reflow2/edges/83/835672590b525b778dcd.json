@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:acaa6c7325013ca59d1a6ea57997ec7efb6f3f02415cd4016326ac66f70620db",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 17,
+    "action": "modified",
+    "checksum_after": "sha256:77f07178172b706858ae47fcbdb18933173c0d89ed852e8e90dbd2e2988c62b1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

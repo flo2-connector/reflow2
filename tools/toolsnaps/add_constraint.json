@@ -95,6 +95,17 @@
         ],
         "type": "string"
       },
+      "fixes": {
+        "default": null,
+        "description": "THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all\nthe primes`) or a bare name. A step that generalizes over a variable\ndoes not hold while anything it rests on fixes it. Omitted: nothing is\nwritten.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "id": {
         "description": "The constraint's id — `con:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
@@ -193,6 +204,22 @@
           "null"
         ]
       },
+      "statement_kind": {
+        "default": null,
+        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`definition`, `axiom` or `conjecture` — a field of its own, leaving\n`kind`'s software values alone. A definition or axiom reads taken as\ngiven; a conjecture reads `open`, then `refuted` once an objection\nthat holds refutes it; a theorem reads `stated` until a step concludes\nit. Omitted: nothing is written.",
+        "enum": [
+          "theorem",
+          "lemma",
+          "definition",
+          "axiom",
+          "conjecture",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "taken_as_given": {
         "default": null,
         "description": "TAKEN AS GIVEN: a definition or axiom the reasoning starts from and\ndoes not argue for. It then reads as a stated foundation, never as an\nuncited premise, in reasoning_report, loop_status and detect_gaps.\nOmitted: nothing is written, and the node reads as it always did.",
@@ -206,6 +233,17 @@
         "description": "THE UNIT `limit` IS IN — `kg`, `ms`, `N·s`, `USD` — stated explicitly rather than read\noff a suffix of `quantity`. budget_report adds a contribution only when its unit matches\nthis one and reports the rest; the unit sweep reports a limit with none (2026-09-16).",
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "variables": {
+        "default": null,
+        "description": "THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as \"every\nn ≥ 2 has a prime divisor\" mentions n. Shown on a step that\ngeneralizes over one. Omitted: nothing is written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
           "null"
         ]
       }

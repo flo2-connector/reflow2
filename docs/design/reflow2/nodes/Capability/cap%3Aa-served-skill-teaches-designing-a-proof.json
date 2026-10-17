@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fe0ba22a9448cab81148562af410d41504efb8ba3d9f7cee504db203783afd2c",
+  "node_id": "cap:a-served-skill-teaches-designing-a-proof",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17: getting-started/skills/design-a-proof/SKILL.md, served by the binary, with the /design-a-proof command. Written from the primes trial: find_tools by the mathematical word and describe_schema's also_called; statements as Requirements or Constraints with statement_kind; steps as add_inference with rule_name and warrant; assumed premises and discharges; generalizes_over with variables/fixes; independent lines; computed facts only through kept calc records; a counterexample through review_relations; ask_question for what only the owner settles; never confirming a step on the owner's behalf; reading back with reasoning_report and saying what proven, shown, conditional and unproven mean; loop_status last. It routes reasoning_report, which no skill named before.",
+    "name": "A served skill teaches designing a proof (design-a-proof), found from \"design a proof\" and \"prove a theorem\"",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:15d3f67444f358b3773a8af1387420e59ff6c47c76bab4d97d328f6810ad6bcc",
+  "node_id": "art:design-a-proof-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The /design-a-proof command that invokes the skill; its in-repo copy is .claude/commands/design-a-proof.md, byte-identical (check_command_surface.py).",
+    "location": "getting-started/commands/design-a-proof.md",
+    "name": "getting-started/commands/design-a-proof.md — the /design-a-proof command",
+    "status": "realized"
+  }
+}

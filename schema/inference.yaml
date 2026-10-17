@@ -41,6 +41,10 @@ schema:
         confirmed_by: { type: string, indexed: true, description: "WHO confirmed this step: a contributor id (`who:jane`) or a proof checker's name. Absent means unconfirmed — a model's narration, not yet checked by a person or a program." }
         confirmed_how: { type: enum, values: [unconfirmed, person, checker], default: unconfirmed, indexed: true, description: "HOW the step was confirmed: `person` — a named human checked it; `checker` — a proof-checking program verified it; `unconfirmed` (the default) — nobody has, so a proof built on it reads SHOWN, never PROVEN (req:a-design-can-be-a-proof)." }
         confirmed_at: { type: string, description: "WHEN the step was confirmed, as an ISO 8601 timestamp. Absent when unconfirmed." }
+        discharges: { type: "list:string", description: "THE ASSUMPTIONS THIS STEP DISCHARGES, by id (req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable, Anthony 2026-10-17): each names a node some step this one rests on takes as an `assumed` premise (PREMISE_OF with `role: assumed`). A reductio discharges its supposition; an induction step discharges its hypothesis. Once discharged, this step's conclusion no longer rests on the assumption: its truth, its foundations and the what-if read without it, and reasoning_report shows it \"assumed, discharged by\" this step. An assumption that no step discharges is reported (the `reasoning_not_as_stated` gap). Written by add_inference's `discharges`, refused unless the step really rests on it as an assumption. ABSENT MEANS IT DISCHARGES NOTHING; no default." }
+        generalizes_over: { type: "list:string", description: "THE VARIABLES THIS STEP GENERALIZES OVER, by name (`L`, `n`) — \"for an arbitrary finite list L\" made checkable (Anthony's choice, 2026-10-17: declared and checked). reflow2 checks that NO premise in the step's chain FIXES one of them: no node the step rests on, at any depth, lists the variable in its `fixes`. A violation makes the step NOT HOLD — its verdict reads `unknown` with the reason, so its conclusion reads unsupported, never refuted. A STRUCTURAL check, not a logic: a variable is the same variable wherever the same name is used, and what the statements say is never read. Written by add_inference's `generalizes_over`. ABSENT MEANS IT GENERALIZES OVER NOTHING." }
+        independent_of: { type: "list:string", description: "OTHER STEPS THIS LINE OF REASONING IS STATED INDEPENDENT OF, by id — typically another step concluding the same claim (a second proof). reflow2 CHECKS THE STATEMENT: the two lines may share no step other than those under the lemmas named in `independent_except`; definitions and axioms the lines start from share no step, so they never count against it. A statement the structure does not bear out is reported (the `reasoning_not_as_stated` gap) and read on the step's `independence`. Written by add_inference's `independent_of`. ABSENT MEANS NO SUCH STATEMENT." }
+        independent_except: { type: "list:string", description: "THE LEMMAS THE LINES MAY SHARE, by id, when this step is stated independent of others (`independent_of`): a step under one of these — the steps concluding it, and everything they rest on — does not count against the statement. Written by add_inference's `independent_except`. ABSENT MEANS THEY MAY SHARE NO STEP AT ALL." }
       embedding_field: warrant
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
       discrimination:
@@ -107,7 +111,8 @@ schema:
             means: >-
               A chain of Inferences from the hypotheses to the statement, each with
               `rule` all and each premise shown or taken. Nothing in it is assumed and
-              later discharged, which is what reflow2 can record today.
+              later discharged; a proof that does assume something marks it `assumed`
+              and names the step that discharges it.
           - term: follows from
             means: >-
               "Q follows from P" is one Inference: P its premise (PREMISE_OF), Q its
@@ -123,27 +128,29 @@ schema:
             means: >-
               A step with `rule_name` induction and `rule` all: its premises are the
               base case and the inductive step, recorded as a statement of its own
-              ("P(k) implies P(k+1)"), and its conclusion is P(n) for all n. The
-              assumption P(k) is never a premise: it is local to the inductive step, and
-              reflow2 has no discharged assumptions yet (req:a-design-can-be-a-proof).
+              ("P(k) implies P(k+1)"), and its conclusion is P(n) for all n. Inside the
+              inductive step the hypothesis P(k) is an `assumed` premise (add_inference's
+              `assumed`) of the steps that use it, and the step concluding "P(k) implies
+              P(k+1)" names it in `discharges` and `generalizes_over` k, so no premise
+              may fix k.
           - term: mathematical induction
             means: >-
               The same record as a proof by induction: an Inference with `rule_name`
               induction whose premises are the base case and the inductive step ("P(k)
               implies P(k+1)", a statement of its own) and whose conclusion is P(n) for
-              all n. The inductive hypothesis P(k) is never a premise: reflow2 has no
-              discharged assumptions yet (req:a-design-can-be-a-proof).
+              all n. The inductive hypothesis P(k) is an `assumed` premise inside the
+              inductive step, discharged by the step concluding "P(k) implies P(k+1)".
           - term: contraposition
             means: >-
               A step with `rule_name` contraposition: its premise is "not Q implies not
               P" and its conclusion "P implies Q", each a statement of its own.
           - term: proof by contradiction
             means: >-
-              A step whose premise is the shown statement "assuming not-P leads to a
-              contradiction", recorded as a statement of its own, and whose conclusion
-              is P. The assumption not-P is never a premise: it is false, and as a
-              premise it would fail the step. reflow2 has no discharged assumptions yet
-              (req:a-design-can-be-a-proof).
+              The supposition not-P is a statement of its own, an `assumed` premise
+              (add_inference's `assumed`) of the steps that derive a contradiction from
+              it; the step concluding P names it in `discharges` (a reductio). Assumed,
+              it holds inside the argument whatever its own truth, so its falsity never
+              fails a step; discharged, P no longer rests on it.
           - term: proof by construction
             means: >-
               A step whose premises are a constructed object and the shown statement
@@ -200,7 +207,9 @@ schema:
       # step, or a record whose truth reflow2 cannot compute (it reads unknown).
       from: "*"
       to: Inference
-      reading: { form: "primitive", primitive: "part-of", sub: "premise", frame: "membership", note: "The premise is one of the grounds the step combines; the rule belongs to the group, not to this link.", basis: "classified" }
+      reading: { form: "primitive", primitive: "part-of", sub: "premise", frame: "membership", note: "The premise is one of the grounds the step combines; the rule belongs to the group, not to this link. An `assumed` one is a ground held hypothetically, inside the argument, until a later step discharges it.", modifiers: { role: "modality" }, basis: "classified" }
+      properties:
+        role: { type: enum, values: [premise, assumed], indexed: true, description: "WHAT THE SOURCE IS TO THE STEP (Anthony's choice, 2026-10-17: discharged assumptions as a premise role). `premise` (the reading when absent): one of the grounds the step combines, read by its computed truth. `assumed`: a HYPOTHESIS the step takes up for the sake of argument — \"suppose the primes are finite\", an induction hypothesis — read as holding inside the argument whatever its own truth, and carried by every conclusion that rests on it until a step DISCHARGES it (`Inference.discharges`). Losing or refuting an assumption never weakens a step that assumes it. Written by add_inference's `assumed`. NO DEFAULT: absent means a premise, as every link written before this did." }
       # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
       # Served in describe_schema and find_tools, never in tools/list. One term,
       # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.
@@ -211,8 +220,7 @@ schema:
               The source of a PREMISE_OF edge is a premise of the Inference it points
               to: one of the grounds the step combines by its rule. Written with
               add_inference's `premises`. Under rule all a failing premise fails the
-              step and an unknown one leaves it unknown; a premise is never an
-              assumption the step discharges.
+              step and an unknown one leaves it unknown.
       extraction_hint: >
         Source is one of the premises the target Inference combines by its rule.
         A cycle through PREMISE_OF and CONCLUDES is circular reasoning and is

@@ -42,7 +42,10 @@ use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
 use crate::foundation::core::{DynoError, Value};
 use crate::graph::DesignGraph;
-use crate::inference::{InferenceReading, ObjectionReading, ProofStatus, Truth};
+use crate::inference::{
+    AssumptionReading, IndependenceReading, InferenceReading, ObjectionReading, ProofStatus,
+    StatementReading, Truth,
+};
 use crate::nodes::{edge, node};
 
 /// How many nodes the walk reads when the caller does not say.
@@ -78,8 +81,12 @@ pub const REASONING_DEBT_LIST_CAP: usize = 20;
 pub const REASONING_DEBT_NOTE: &str = "What the reasoning still owes. An UNCONFIRMED step is one \
      no person or checker has confirmed (`confirmed_how`); an UNCITED premise is one the \
      reasoning rests on that cites no source and is not marked taken as given; a claim SHOWN BUT \
-     NOT PROVEN holds through steps not all of which are confirmed. Confirming a step is the \
-     owner's word, never an agent's. reasoning_report reads each one in full.";
+     NOT PROVEN holds through steps not all of which are confirmed. And where the reasoning is \
+     NOT AS STATED: an ASSUMPTION NO STEP DISCHARGES (what rests on it holds only under it), a \
+     GENERALIZATION over a variable something beneath it fixes (the step does not hold), and a \
+     STATED INDEPENDENCE the lines do not bear out (they share a step no named lemma accounts \
+     for). Confirming a step is the owner's word, never an agent's. reasoning_report reads each \
+     one in full.";
 
 /// What the reasoning of a design still owes: counted by `loop_status` and
 /// raised as one low-severity `unconfirmed_reasoning` gap.
@@ -101,6 +108,16 @@ pub struct ReasoningDebt {
     pub unconfirmed_step_ids: Vec<String>,
     pub uncited_premise_ids: Vec<String>,
     pub shown_not_proven_ids: Vec<String>,
+    /// Assumptions some step takes up that no step discharges.
+    pub undischarged_assumptions: usize,
+    pub undischarged_assumption_ids: Vec<String>,
+    /// Steps generalizing over a variable something they rest on fixes: each
+    /// does not hold.
+    pub generalizations_not_holding: usize,
+    pub generalization_not_holding_ids: Vec<String>,
+    /// Steps whose stated independence the structure does not bear out.
+    pub independence_not_borne_out: usize,
+    pub independence_not_borne_out_ids: Vec<String>,
     /// How many ids each list may name.
     pub list_cap: usize,
     /// What these counts mean.
@@ -111,6 +128,23 @@ impl ReasoningDebt {
     /// Whether anything is owed.
     pub fn is_owed(&self) -> bool {
         self.unconfirmed_steps + self.uncited_premises + self.shown_not_proven > 0
+            || self.not_as_stated()
+    }
+
+    /// Whether confirming or citing is owed: an unconfirmed step, an uncited
+    /// premise, or a claim shown but not proven.
+    pub fn confirmation_owed(&self) -> bool {
+        self.unconfirmed_steps + self.uncited_premises + self.shown_not_proven > 0
+    }
+
+    /// Whether the reasoning is NOT AS STATED somewhere: an undischarged
+    /// assumption, a generalization that does not hold, or a stated
+    /// independence the lines do not bear out.
+    pub fn not_as_stated(&self) -> bool {
+        self.undischarged_assumptions
+            + self.generalizations_not_holding
+            + self.independence_not_borne_out
+            > 0
     }
 }
 
@@ -181,6 +215,15 @@ pub struct ClaimReading {
     /// Marked TAKEN AS GIVEN: a stated foundation, never an uncited premise.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub taken_as_given: bool,
+    /// What the statement says it is (`statement_kind`) and how it reads:
+    /// a conjecture reads `open` or `refuted`, a theorem `stated` until a
+    /// step concludes it. Absent when it says nothing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub statement: Option<StatementReading>,
+    /// The assumptions it holds under: `assumed` premises beneath it that no
+    /// step on the way discharges.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumes: Vec<String>,
     /// The `contested` Decision that keeps its dispute open on purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
@@ -256,6 +299,19 @@ pub struct ReasoningReport {
     /// Claims with no support: no step concludes them, no source is cited,
     /// and on their own they are unknown.
     pub unsupported: Vec<Unsupported>,
+    /// THE ASSUMPTIONS the reasoning makes, each with the steps that take it
+    /// up and the steps that discharge it, and how it reads: "assumed,
+    /// discharged by …" or "assumed, never discharged". Only those the walk
+    /// reached; absent when it assumes nothing.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumptions: Vec<AssumptionRead>,
+    /// Every stated independence among the steps the walk reached, checked.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub independence: Vec<IndependenceReading>,
+    /// Steps the walk reached that generalize over a variable something
+    /// beneath them fixes: each does not hold (its reading says which).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub generalizations_not_holding: Vec<String>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether `limit` stopped the walk before it reached everything.
@@ -265,6 +321,32 @@ pub struct ReasoningReport {
     pub note: Option<String>,
     /// What these checks mean, and what they do not.
     pub what_this_means: &'static str,
+}
+
+/// One assumption, as the read-back says it.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct AssumptionRead {
+    #[serde(flatten)]
+    pub assumption: AssumptionReading,
+    /// "assumed, discharged by inf:…", or "assumed, never discharged: …".
+    pub reads: String,
+}
+
+impl AssumptionRead {
+    fn of(a: AssumptionReading) -> Self {
+        let reads = if a.discharged_by.is_empty() {
+            format!(
+                "assumed, never discharged: what rests on it holds only under it (assumed in {})",
+                a.assumed_in.join(", ")
+            )
+        } else {
+            format!("assumed, discharged by {}", a.discharged_by.join(", "))
+        };
+        AssumptionRead {
+            assumption: a,
+            reads,
+        }
+    }
 }
 
 fn prop(props: &std::collections::HashMap<String, Value>, key: &str) -> Option<String> {
@@ -325,13 +407,54 @@ impl DesignGraph {
             claims.push(self.claim_reading(id)?);
         }
 
+        // THE ASSUMPTIONS the walked steps take up, each read "assumed,
+        // discharged by …" — on the list, and on every premise that is one.
+        let walked_steps: BTreeSet<String> = claims
+            .iter()
+            .flat_map(|c| c.support.iter().map(|s| s.reading.inference.clone()))
+            .collect();
+        let assumptions: Vec<AssumptionRead> = self
+            .assumptions()?
+            .into_iter()
+            .filter(|a| a.assumed_in.iter().any(|s| walked_steps.contains(s)))
+            .map(AssumptionRead::of)
+            .collect();
+        let reads_of: BTreeMap<String, String> = assumptions
+            .iter()
+            .map(|a| (a.assumption.id.clone(), a.reads.clone()))
+            .collect();
+        for c in &mut claims {
+            for s in &mut c.support {
+                for p in &mut s.reading.premises {
+                    if p.role == Some("assumed")
+                        && let Some(r) = reads_of.get(&p.id)
+                    {
+                        p.why = format!("{r}; {}", p.why);
+                    }
+                }
+            }
+        }
+        let mut independence = Vec::new();
+        let mut generalizations_not_holding = Vec::new();
+        for c in &claims {
+            for s in &c.support {
+                independence.extend(self.independence_of(&s.reading.inference)?);
+                if s.reading.generalization.as_ref().is_some_and(|g| !g.holds) {
+                    generalizations_not_holding.push(s.reading.inference.clone());
+                }
+            }
+        }
+        generalizations_not_holding.sort();
+        generalizations_not_holding.dedup();
+
         // WHAT IT RESTS ON: premises of steps in the reasoning that no step
-        // concludes.
+        // concludes. An ASSUMED premise is not something the reasoning rests
+        // on: it is in `assumptions`.
         let mut rests_on: BTreeSet<String> = BTreeSet::new();
         for c in &claims {
             for s in &c.support {
                 for p in &s.reading.premises {
-                    if self.inferences_concluding(&p.id)?.is_empty() {
+                    if p.role != Some("assumed") && self.inferences_concluding(&p.id)?.is_empty() {
                         rests_on.insert(p.id.clone());
                     }
                 }
@@ -416,6 +539,9 @@ impl DesignGraph {
             still_contested,
             contested_by_design,
             unsupported,
+            assumptions,
+            independence,
+            generalizations_not_holding,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,
@@ -503,6 +629,8 @@ impl DesignGraph {
             objections: self.objections_to(id)?,
             sources: self.cited_sources(id)?,
             taken_as_given: crate::inference::is_taken_as_given(&props),
+            statement: self.statement_reading(id)?,
+            assumes: self.assumptions_under(id)?,
             contested_by_design: self.contested_governor(id)?,
             node_type,
             truth,
@@ -575,8 +703,8 @@ impl DesignGraph {
             if let Some(c) = self.conclusion_of(&s.node_id)? {
                 conclusions.insert(c);
             }
-            for p in self.premises_of(&s.node_id)? {
-                if self.inferences_concluding(&p)?.is_empty() {
+            for (p, assumed) in self.premise_links(&s.node_id)? {
+                if !assumed && self.inferences_concluding(&p)?.is_empty() {
                     terminal.insert(p);
                 }
             }
@@ -618,6 +746,28 @@ impl DesignGraph {
         let (unconfirmed_steps, unconfirmed_ids) = cap(unconfirmed);
         let (uncited_premises, uncited_ids) = cap(uncited);
         let (shown_not_proven, shown_ids) = cap(shown);
+        let undischarged: Vec<String> = self
+            .assumptions()?
+            .into_iter()
+            .filter(|a| a.discharged_by.is_empty())
+            .map(|a| a.id)
+            .collect();
+        let (undischarged_assumptions, undischarged_ids) = cap(undischarged);
+        let general: Vec<String> = self
+            .generalizations_that_do_not_hold()?
+            .into_iter()
+            .map(|(s, _)| s)
+            .collect();
+        let (generalizations_not_holding, general_ids) = cap(general);
+        let mut indep: Vec<String> = self
+            .stated_independence()?
+            .into_iter()
+            .filter(|i| !i.holds)
+            .map(|i| i.step)
+            .collect();
+        indep.sort();
+        indep.dedup();
+        let (independence_not_borne_out, indep_ids) = cap(indep);
         Ok(Some(ReasoningDebt {
             steps: steps.len(),
             unconfirmed_steps,
@@ -627,6 +777,12 @@ impl DesignGraph {
             unconfirmed_step_ids: unconfirmed_ids,
             uncited_premise_ids: uncited_ids,
             shown_not_proven_ids: shown_ids,
+            undischarged_assumptions,
+            undischarged_assumption_ids: undischarged_ids,
+            generalizations_not_holding,
+            generalization_not_holding_ids: general_ids,
+            independence_not_borne_out,
+            independence_not_borne_out_ids: indep_ids,
             list_cap: REASONING_DEBT_LIST_CAP,
             note: REASONING_DEBT_NOTE,
         }))

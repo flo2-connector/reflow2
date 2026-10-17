@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4f9f616e7f3dfc7bd4e429a6c33628e18f7621c590b463e67701178603a090e",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-a-proof-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-served-skill-teaches-designing-a-proof"
+}

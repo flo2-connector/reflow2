@@ -88,6 +88,18 @@ schema_enum!(requirement_status_opt, "Requirement", "status", opt);
 schema_enum!(requirement_lineage_req, "Requirement", "lineage", req);
 schema_enum!(requirement_provenance_req, "Requirement", "provenance", req);
 schema_enum!(requirement_provenance_opt, "Requirement", "provenance", opt);
+schema_enum!(
+    requirement_statement_kind_opt,
+    "Requirement",
+    "statement_kind",
+    opt
+);
+schema_enum!(
+    constraint_statement_kind_opt,
+    "Constraint",
+    "statement_kind",
+    opt
+);
 schema_enum!(requirement_priority_opt, "Requirement", "priority", opt);
 schema_enum!(requirement_concern_opt, "Requirement", "concern", opt);
 schema_enum!(requirement_kind_opt, "Requirement", "kind", opt);

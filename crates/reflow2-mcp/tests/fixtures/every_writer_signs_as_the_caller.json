@@ -486,6 +486,13 @@
       "from_id": "dec:d",
       "question_id": "$QUESTION"
     },
+    "ask_question": {
+      "question": "Which foundations do you take as given?",
+      "asked_of": "who:alice",
+      "about": [
+        "cap:c"
+      ]
+    },
     "apply_heal": {
       "proposal": "$PROPOSAL"
     },

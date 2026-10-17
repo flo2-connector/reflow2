@@ -334,6 +334,9 @@ async fn it_is_not_a_capability_only_field() {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     })));
     j!(s.add_decision(Parameters(DecisionReq {
         id: "dec:drop".into(),

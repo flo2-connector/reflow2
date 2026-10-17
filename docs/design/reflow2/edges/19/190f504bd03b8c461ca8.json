@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a6627adb8118fa127e11094f980cee4b4b9e5628c82218a0678b050d58177fa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-statement-says-what-it-is-and-two-lines-can-be-stated-independent-and-checked",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

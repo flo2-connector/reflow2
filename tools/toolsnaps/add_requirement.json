@@ -79,6 +79,17 @@
         ],
         "type": "string"
       },
+      "fixes": {
+        "default": null,
+        "description": "THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all\nthe primes`) or a bare name. A step that generalizes over a variable\ndoes not hold while anything it rests on fixes it. Omitted: nothing is\nwritten.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "id": {
         "description": "The requirement's id — `req:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
@@ -164,6 +175,22 @@
           "null"
         ]
       },
+      "statement_kind": {
+        "default": null,
+        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`definition`, `axiom` or `conjecture` — a field of its own, leaving\n`kind`'s software values alone. A definition or axiom reads taken as\ngiven; a conjecture reads `open`, then `refuted` once an objection\nthat holds refutes it; a theorem reads `stated` until a step concludes\nit. Omitted: nothing is written.",
+        "enum": [
+          "theorem",
+          "lemma",
+          "definition",
+          "axiom",
+          "conjecture",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "status": {
         "default": null,
         "description": "The status to LAND IN when the owner's word is already in hand:\n`proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`.\nA status past `proposed` is REFUSED unless `approver` is named.",
@@ -185,6 +212,17 @@
         "description": "TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and\ndoes not argue for. It then reads as a stated foundation, never as an\nuncited premise, in reasoning_report, loop_status and detect_gaps.\nOmitted: nothing is written, and the node reads as it always did.",
         "type": [
           "boolean",
+          "null"
+        ]
+      },
+      "variables": {
+        "default": null,
+        "description": "THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as \"every\nn ≥ 2 has a prime divisor\" mentions n. Shown on a step that\ngeneralizes over one. Omitted: nothing is written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
           "null"
         ]
       }

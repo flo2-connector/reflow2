@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d393768b43f51c400fa4248c73475cbf23dca2c29d0d897cec1cea7e9d192019",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:design-a-proof-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
