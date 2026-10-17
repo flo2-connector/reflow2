@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4618df7deee5a4e3b06424e1a483a721fda758c533069b3668a3e8870e7a5135",
+  "node_id": "art:a-proof-says-what-it-assumes-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:50eceae020219079ed2e67ca311c89deb71a393056281254881c2c34d41e7f63",
+    "description": "6 MCP tests over the wire: add_inference's assumed / discharges (and the refused discharge), generalizes_over with a fixed variable, independent_of / independent_except, statement_kind and statement_reading, a definition with no direction, ask_question through open_questions, loop_status and answer_question, and find_skills ranking design-a-proof first for \"design a proof\" and \"prove a theorem\".",
+    "location": "crates/reflow2-mcp/tests/a_proof_says_what_it_assumes_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/a_proof_says_what_it_assumes_on_the_wire.rs",
+    "status": "realized"
+  }
+}

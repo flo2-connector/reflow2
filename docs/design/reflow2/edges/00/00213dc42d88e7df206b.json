@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8413d63b48308a9687ee95caa6b42ab514d956a057eb2b2a33e61872282571fa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:82bfa1008962c91f59f382035610351ccdf219e4129b66b07f107e73719504de",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

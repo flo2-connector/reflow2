@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3e13578836cf9b55b5b9cbf257dece67450a502b299744c751d525842590dbbf",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-proof-says-what-it-assumes-tests",
+  "properties": {},
+  "to_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it"
+}

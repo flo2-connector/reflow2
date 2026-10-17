@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fab88f6e451566fdc8e3b90ee30cbdb1806398699e399e6b53d4ee6b1ad4336",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:73dc7be5813d5830221227e66f117dec2ffc559dbd82b57e5fc607e0a253d95d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-near-match-of-another-type-is-named-as-a-layer"
+}

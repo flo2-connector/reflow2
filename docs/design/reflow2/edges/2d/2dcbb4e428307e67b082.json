@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3380ff878e458ef5c970b73216638d5e7848e746ae4b2d070e53024bb5d321cd",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-step-generalizes-over-a-declared-variable-that-no-premise-beneath-it-fixes",
+  "properties": {},
+  "to_id": "req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable"
+}

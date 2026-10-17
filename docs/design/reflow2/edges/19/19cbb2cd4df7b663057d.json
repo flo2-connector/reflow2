@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:10b045983375a82e69b0cd9ca01555a1c71d7109975b9f501c9c4f75a601775b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:an-agent-puts-its-own-question-to-a-named-person-about-the-nodes-it-concerns"
+}

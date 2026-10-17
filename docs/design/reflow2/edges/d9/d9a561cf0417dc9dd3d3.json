@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f8cdf79f4bddc6467958951b0a57b0aa37175e14e190632a62e04cc34d8226f5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-proof-says-what-it-assumes-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

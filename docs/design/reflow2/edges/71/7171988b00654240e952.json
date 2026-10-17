@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d30cd023310ca347e7b00de54bc418f46e6b84c249ba32914f7607e87e28978f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:535bb8242764b353186595aa85f00160326f4c02b3408bb9ffbf20f6b63143cb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-server-keeps-the-export-current-test"
+}

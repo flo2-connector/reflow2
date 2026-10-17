@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ae31d3c575452480baf0d84f44aaea4769ee45ee78abe95db6efc50d8e18a682",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:5df03b591f7760c23b47c3ac32c8f793f61b00c296099efb7a74e9262b8b4432",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

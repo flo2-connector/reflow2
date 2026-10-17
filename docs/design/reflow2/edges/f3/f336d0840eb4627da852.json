@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5bab915b84ed0faf91451d966e9ca6c2334e1a01733be33b4701de2d2664947e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:47e57f55fee6f3f7f78d764be03fc9903ff249d5da36ac23b67aa959bcd660dc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

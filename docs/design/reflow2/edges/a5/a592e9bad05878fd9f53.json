@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:766c67d8dd616c19e2683507b6d9fbd8f2755a6d2abbb80e494fe9a28941ec7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:74d2cefe68fe76c9ff1256e8795e312780eec71ad2f877ceff006329e11652ac",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:report"
+}

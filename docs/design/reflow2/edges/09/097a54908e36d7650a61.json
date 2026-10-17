@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:faf59641604584cc5a4de498d6c964421cecad9ae0a9254f0a17be642d6e00d3",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-query",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-statement-says-what-it-is-and-two-lines-can-be-stated-independent-and-checked"
+}

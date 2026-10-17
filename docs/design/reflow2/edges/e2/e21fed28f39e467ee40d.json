@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:97f995bd4b39fddcb06449eba8a5f121e24054bebeaca9798efe6236864d6f88",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:4136ac5e25fd1f81887c1a81f32961885bbe72f4aa5fae5766153b6eb413fc80",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

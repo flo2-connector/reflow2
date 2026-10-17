@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e60fc88cd94bbbe4bbdcc7ecdfcaf4de64cf8db496a99ccc396fb9d8c5ba04a0",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-core",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-step-generalizes-over-a-declared-variable-that-no-premise-beneath-it-fixes"
+}

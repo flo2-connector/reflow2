@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2cc9edde9e4a7a2aafd177601d8d8f2b7e9f4578cbd35702a5b09e93af5f109a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it"
+}

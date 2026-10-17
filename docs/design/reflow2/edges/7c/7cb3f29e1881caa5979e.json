@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bc04c577858d0d9cfa57dff5d9928c2d54b5a74321bd9b42ed53c1b9d02f694f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:toolsnap-ask-question",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

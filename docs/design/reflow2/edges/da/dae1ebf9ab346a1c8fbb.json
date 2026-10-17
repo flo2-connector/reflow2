@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b263efe106f1954a9da625c5a49d278a41ac94e1400baf6d341fc3e3b5216c7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-says-what-it-assumes-and-asks-2026-10-17",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-step-generalizes-over-a-declared-variable-that-no-premise-beneath-it-fixes"
+}

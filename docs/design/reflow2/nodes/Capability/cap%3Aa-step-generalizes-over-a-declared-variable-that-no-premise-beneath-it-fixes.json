@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:073afd7855dd17434e3481a03c0773cc036cb903edfe8095fbe3bbeef291e68f",
+  "node_id": "cap:a-step-generalizes-over-a-declared-variable-that-no-premise-beneath-it-fixes",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17 in reflow2-core's inference module. `Inference.generalizes_over` (add_inference) names the variables a step generalizes over; Requirement, Constraint and Verification carry `variables` (what a record mentions) and `fixes` (what it binds to one value, as `name=value` or a bare name). FIXES, concretely: a record fixes v when its `fixes` lists v. A step generalizing over v does not hold while any record it rests on, at any depth (assumed premises included), fixes v: its verdict reads `unknown` with the reason, so its conclusion is unsupported, never refuted; the step's reading carries `generalization` (over, holds, fixed_by, mentioned_by), and each such step is a `reasoning_not_as_stated` gap. Structural, not a logic: the same name is the same variable. Trial shape: Euclid's \"for an arbitrary finite list L\", generalized in inf:euclid.",
+    "name": "A step generalizes over a declared variable, and reflow2 checks that no premise beneath it fixes the variable",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

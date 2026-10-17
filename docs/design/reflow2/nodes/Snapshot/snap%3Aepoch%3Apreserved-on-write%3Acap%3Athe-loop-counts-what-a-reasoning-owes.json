@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8363195ed2c97512399df086d88540a3c8ec8879131f93c976e089eb1c53567",
+  "node_id": "snap:epoch:preserved-on-write:cap:the-loop-counts-what-a-reasoning-owes",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:reasoning-rs\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"REALIZES\",\"other_type\":\"Artifact\",\"other_id\":\"art:report\",\"properties\":{\"completeness\":\"complete\",\"conformance\":\"unchecked\"}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:a-proof-counts-what-it-should-on-the-wire-tests\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:a-proof-counts-what-it-should-tests\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"SATISFIES\",\"other_type\":\"Requirement\",\"other_id\":\"req:the-loop-sees-unconfirmed-steps-and-uncited-premises\",\"properties\":{}}]",
+    "state": "{\"description\":\"Built 2026-10-17 in reflow2-core's reasoning, report and detect modules (PR #763). On a design holding Inferences, loop_status carries `reasoning` (counts, and ids up to 20 each), said in `next` and never counted against `clean`; detect_gaps raises one aggregate low-severity `unconfirmed_reasoning` gap. `taken_as_given: true` (add_constraint, add_requirement) marks a stated foundation: not an uncited premise, listed in reasoning_report's stated_foundations; a Requirement taken as given holds. A design with no Inference reads byte for byte as before. Not built: dropping the Constraint `direction` default on a taken-as-given axiom.\",\"name\":\"loop_status and detect_gaps count a reasoning's unconfirmed steps, uncited premises and claims shown but not proven, and a definition or axiom can be taken as given\",\"provenance\":\"authored\",\"status\":\"realized\"}",
+    "target_id": "cap:the-loop-counts-what-a-reasoning-owes",
+    "target_type": "Capability"
+  }
+}

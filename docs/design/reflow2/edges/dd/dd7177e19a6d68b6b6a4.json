@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bfb860739c57ddf140a7be73ae15be71badd611ddefd8497ab2f428a5bf87d46",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-proof-says-what-it-assumes-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-proof-says-what-it-assumes-on-the-wire-tests"
+}
