@@ -155,14 +155,14 @@ same way everything else here is: coverage is claimed only where a named mechani
 
 ## The design vocabulary
 
-Domain-neutral node types, layered by the phase they feed (29 node types and 68 edge types
+Domain-neutral node types, layered by the phase they feed (28 node types and 68 edge types
 across 11 schema domains; see [docs/overview.md](docs/overview.md) and `tools/validate_schema.py`):
 
 | Phase / layer | Nodes |
 |-------|-------|
 | P0 · Intent | `Project`, `Requirement`, `Constraint`, `DesignRule` |
 | P1 · Function (WHAT) | `Capability`, `Flow`, `Actor` |
-| P2 · Structure (WHERE) | `Component`, `Interface`, `Decision`, `Anchor` |
+| P2 · Structure (WHERE) | `Component`, `Interface`, `Decision` |
 | P3 · Realization (BUILD) | `Artifact`, `Fragment` |
 | P4 · Verification | `Verification`, `DriftEvent` |
 | P5 · Operation | `Release`, `Environment`, `Resource` |
@@ -189,7 +189,7 @@ reflow2/
   crates/
     reflow2-core/    # the deterministic, LLM-free coherence engine (59 modules)
     reflow2-mcp/     # the agent-native MCP server, stdio or HTTP (165 tools) — the binary you run
-  schema/            # 11 composable schema domains (29 node / 68 edge types)
+  schema/            # 11 composable schema domains (28 node / 68 edge types)
     core / functional / structure / build / verify / operate
     environment / temporal / inference / dimensions
   getting-started/   # the consumer kit installed into a project being designed

@@ -176,7 +176,7 @@ mod the_sync_roll_is_bounded_and_says_so;
 mod the_taxonomy_skill_is_served_and_the_finding_reaches_the_surface;
 mod the_tool_surface_tells_the_truth;
 mod the_two_reported_fields_can_be_set;
-mod the_unused_anchor_type_is_announced_for_removal;
+mod the_unused_anchor_type_is_removed;
 mod the_v0510_field_feedback_fixes_land;
 mod tools;
 mod wall_check_is_served_and_findable;

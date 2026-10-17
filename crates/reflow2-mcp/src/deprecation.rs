@@ -336,29 +336,13 @@ impl Deprecation {
 /// its old name is refused with what to do, and take the entry out in the
 /// release after; for anything else, take the entry out with the item.
 pub const REGISTRY: &[Deprecation] = &[
-    // THE FIRST REAL ENTRY (2026-10-14). On Anthony's word, 2026-10-13
-    // (dec:anchor-retire-or-implement): "Remove the unused Anchor type, but
-    // only after a rule for retiring things exists, because it would be the
-    // first thing ever taken off what Alex's MCP sees."
-    //
-    // Nothing in reflow2 creates or reads an Anchor (no tool, no
-    // `node::ANCHOR`; `preserve.rs` only classifies the type by name), and
-    // the seven designs these MCP servers serve held ZERO on 2026-10-14. ONE
-    // ENTRY FOR THE TYPE, none for its properties: `design_intent` and
-    // `key_decisions` are declared on no other type and leave with it, its
-    // `name`, `checksum` and `created_at` stay declared on the types that
-    // share them, no edge type names Anchor as an endpoint (it is reached
-    // only through `*`), and the surface check already lets a deprecated
-    // type take its properties with it. Separate property entries would only
-    // repeat the notice on every Anchor write.
-    Deprecation::node_type(
-        "Anchor",
-        "0.85.0",
-        "Nothing reads an Anchor; record a checksummed baseline with `add_epoch` \
-         (epoch_type `baseline`, with its `checksum`) and capture a node's state at it with \
-         `snapshot_before_change` (a Snapshot) instead.",
-        "dec:anchor-retire-or-implement",
-    ),
+    // EMPTY SINCE 0.86.0. Its first real entry, the `Anchor` node type
+    // (dec:anchor-retire-or-implement, Anthony 2026-10-13: "Remove the unused
+    // Anchor type, but only after a rule for retiring things exists"), was
+    // announced in 0.85.0 and removed in 0.86.0. A node type is not a tool, so
+    // its entry left with it, as the rule above says; the removal itself is
+    // `reflow2_core::narrowing::NARROWINGS` (`Retired`), and what a store or an
+    // export still holding one does is in docs/upgrading-to-v0.86.0.md.
 ];
 
 // ---- the mark ------------------------------------------------------------------------

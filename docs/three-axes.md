@@ -33,7 +33,8 @@ doesn't overwrite the past; it remembers it." We adopt the same, design-neutral,
 
 - **`DesignEpoch`** — a named version/milestone of the design ("v1 baseline",
   "v1.1 requirements creep", "post-load-test hardening"). Generalizes the P2→P3
-  `Anchor` (which becomes *one kind of* epoch snapshot).
+  anchor: a `baseline` epoch with a `checksum` is the frozen design. (The separate
+  `Anchor` node type, never created by anything, was removed in 0.86.0.)
 - **`TemporalFact`** — a time-bounded assertion: an edge/fact true only between two
   epochs. Requirement creep = a `SATISFIES` fact whose `valid_from` is a later epoch; a
   dropped requirement = a fact with `valid_to` set.

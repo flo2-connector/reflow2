@@ -295,7 +295,7 @@ pub struct Narrowing {
 /// `tests/a_schema_narrowing_ships_its_migration.rs`, and so does an entry
 /// whose migration does not do what it says.
 ///
-/// The five below predate the gate and are written from their records.
+/// The entries before Anchor's predate the gate and are written from their records.
 /// Narrowings older than these, if any, are not reconstructed: the gate's
 /// baseline is the last release, and inventing a history would be worse than
 /// stating where it starts.
@@ -354,6 +354,21 @@ pub const NARROWINGS: &[Narrowing] = &[
         record: "dec:realizes-is-restricted-to-capability-component-and-interface",
         migration: Migration::RefusedByName,
     },
+    // The first removal made under the retirement rule
+    // (cap:a-served-item-is-removed-only-after-a-release-that-announced-it):
+    // announced in 0.85.0 through `deprecation::REGISTRY`, removed in 0.86.0.
+    // Nothing in reflow2 ever created or read an Anchor. A store holding none
+    // opens (the provenance guard counts a retired type's instances); one that
+    // holds any is refused by name until they are deleted with 0.85.0, and an
+    // export carrying one is refused by its import, naming the type.
+    Narrowing {
+        narrowed: Narrowed::NodeType {
+            node_type: "Anchor",
+        },
+        on: "2026-10-17",
+        record: "dec:anchor-retire-or-implement",
+        migration: Migration::Retired,
+    },
 ];
 
 /// Node types this reflow2 retired — read by the provenance guard, so a type
@@ -368,6 +383,21 @@ pub fn retired_node_types() -> Vec<&'static str> {
             _ => None,
         })
         .collect()
+}
+
+/// What to say about a stored node of a type this reflow2 RETIRED, or `None`
+/// for any other type: when it went, the record that says why, and the way
+/// through — read by the import's refusal, so an export carrying one is told
+/// more than "Unknown node type".
+pub fn retired_node_type_hint(node_type: &str) -> Option<String> {
+    NARROWINGS.iter().find_map(|n| match n.narrowed {
+        Narrowed::NodeType { node_type: t } if t == node_type => Some(format!(
+            "`{t}` was retired from the schema on {} ({}); delete it with the reflow2 that wrote \
+             this document, re-expressing what it recorded, and export again",
+            n.on, n.record
+        )),
+        _ => None,
+    })
 }
 
 /// Edge types this reflow2 retired. See [`retired_node_types`].

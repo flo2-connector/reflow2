@@ -42,18 +42,22 @@ a question of its own.** It contains #763 to #765, the fixes the primes trial as
   discharge it, a step can generalize over a declared variable, two lines can be stated
   independent, a statement can say what kind it is, and `ask_question` puts an agent's own
   question to a named person, with the `design-a-proof` skill to teach it;
-- corollary and proposition as statement kinds (#765).
+- corollary and proposition as statement kinds (#765);
+- the unused `Anchor` node type removed, as 0.85.0 announced, and full-text search on Tantivy 0.27.
 
-The MCP surface only grows, by one tool: `ask_question` (200, from 199).
+The MCP surface grows by one tool, `ask_question` (200, from 199), and loses one thing: **the
+`Anchor` node type, which 0.85.0 announced would go.** It is the first item ever taken off the
+served surface, and it goes by the retirement rule: one release of notice, then removal.
 - `add_inference`, `add_requirement`, `add_constraint` and `add_verification` gain optional
   arguments; reads gain `statement_reading`, a `reasoning` block on `loop_status`, and
   `conclusion_reads` on each row of a what-if.
 - `detect_gaps` gains `unconfirmed_reasoning` and `reasoning_not_as_stated`, and `open_questions`
   rows carry `origin`.
-- **The schema stamp moves, by vocabulary rather than by type:** `statement_kind` on Requirement
-  and Constraint, and new optional properties; no node or edge type is added. Measured at this cut,
-  0.85.0 still opens a store 0.86.0 wrote, warns, and misreads a proof that assumes something; it
-  refuses 0.86.0's export.
+- **The schema stamp moves:** `statement_kind` on Requirement and Constraint, new optional
+  properties, and one node type fewer (29 to 28, `Anchor`); no node or edge type is added. Measured
+  at this cut, 0.85.0 still opens a store 0.86.0 wrote, warns, and misreads a proof that assumes
+  something; it refuses 0.86.0's export. 0.86.0 opens a store 0.85.0 wrote unless it holds an
+  Anchor, which nothing ever created.
 
 **What to do:**
 - Upgrade every seat together, after snapshotting any shared server's store
@@ -62,12 +66,11 @@ The MCP surface only grows, by one tool: `ask_question` (200, from 199).
   an Artifact with its checksum and name it in the check's `location`.
 - A client reading a what-if's `impact` should expect `unsupported` where a lost premise used to
   read `broken`, and no `conclusion_after: "fails"` from a loss alone.
+- If a design holds an `Anchor` (none of the seven designs measured on 2026-10-14 did), delete it
+  with 0.85.0 before upgrading; see `### Removed`.
 
-**Nothing is deprecated or removed in this release. The `Anchor` node type is NOT removed in
-0.86.0**, although 0.85.0 said the next release would remove it. It stays deprecated and served,
-with the same notice, and its removal waits for a later release. Nothing needs doing now; record
-a checksummed baseline with `add_epoch` and a node's state with `snapshot_before_change`, as
-before.
+**Removed in this release: the `Anchor` node type** (`### Removed` below), as 0.85.0 announced.
+Nothing is deprecated in this release.
 
 **The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
 is blocked) gets all of it with the binary, checked on the 0.86.0 release build:
@@ -76,7 +79,9 @@ is blocked) gets all of it with the binary, checked on the 0.86.0 release build:
 - `reflow2 write ask_question` puts a question to a named person (`reflow2 read ask_question` is
   refused, since it writes), and `reflow2 read open_questions` lists it with its `origin`;
 - `reflow2 read reasoning_report` reads each assumption "assumed, discharged by …", and
-  `reflow2 read get_node` shows a statement's `statement_reading`.
+  `reflow2 read get_node` shows a statement's `statement_reading`;
+- the `Anchor` removal applies there too: `reflow2 write create_node` refuses an `Anchor`, and a
+  store holding one is refused on open, naming it.
 
 **Still needs a hosted gateway such as flo2.io:** the same as in 0.85.0, the hub view (asking a
 hub and hearing from every member, the merged `search_design`, and cross-design reads by graph
@@ -236,6 +241,31 @@ id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
   0.26 build with every hit, so rolling back loses no search. The lock also
   moves `zstd-sys` (2.1.0 to 2.1.2), which rebuilds RocksDB's C++ once on a
   machine building from source.
+
+### Removed
+
+- **The `Anchor` node type is removed**, as 0.85.0 announced
+  (`dec:anchor-retire-or-implement`). It was a checksummed baseline taken when
+  leaving P2 for a build round, carried over from the original reflow; nothing
+  in reflow2 ever created or read one, and none of the seven designs measured on
+  2026-10-14 held one. The schema has 28 node types (from 29), `describe_schema`
+  no longer lists it, and with nothing left to retire it lists no
+  `deprecations` and no served text carries a deprecation mark. **What changes
+  for a design that never had one: nothing.** A store written by 0.85.0 opens
+  and says it names a type this release retired and holds none. MEASURED with
+  stores the published 0.85.0 binary wrote:
+  - `create_node` of an `Anchor` is refused, naming the type, and writes nothing;
+  - a store holding an Anchor is refused on open, naming it ("THE GRAPH
+    ACTUALLY HOLDS Anchor");
+  - an export holding one is refused by the import, all or nothing, naming it as
+    retired with the decision, and nothing is written.
+  The open refusal's recipe used to say a retired type "is dropped and named on
+  import", which is not what the import does (measured 2026-10-14 and again
+  here); it now gives the way through that was measured to work. **What to do:** if a design holds an Anchor, with 0.85.0
+  re-express what it recorded (a baseline is `add_epoch` with `epoch_type`
+  `baseline` and its `checksum`; a node's state at it is a Snapshot from
+  `snapshot_before_change`), delete it with `delete_node`, and then upgrade. A
+  design without one needs nothing.
 
 ### Fixed
 

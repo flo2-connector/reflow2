@@ -351,7 +351,7 @@ not-redundant → defer, and say so here.*
 | Actor interaction | `Actor` + `INTERACTS_WITH` / `OPERATES_IN` | ◐ Partly — `add_actor` shipped 2026-09-07 (one of the fourteen reachability holes), so the type has a typed path; the interaction edges are still unused. |
 | Quality gates | ~~`QualityGate`~~ (WS-5) | ⛔ **Retired 2026-09-07** — the gate dissolved into the detectors and nothing recorded a phase. See `dec:qualitygate-is-retired-the-phase-gate-dissolved-into-the-detectors`. |
 | Epoch nesting | `CONTAINS_EPOCH` | ⬜ Deferred — a hotfix epoch within a release epoch; unused. |
-| Reserved anchor | `Anchor` | ⬜ Deferred — zero references anywhere. |
+| Reserved anchor | ~~`Anchor`~~ | ⛔ **Removed in 0.86.0** after 0.85.0 announced it — nothing ever created one; a `baseline` epoch with a `checksum` and a Snapshot record the same thing. See `dec:anchor-retire-or-implement`. |
 
 **Not on this list, and not deferred:** the inference "why" edges (`CAUSES`, `EVOLVES_INTO`,
 `MITIGATES`, `MASKS`, `ANTICIPATES`, `SUPPLEMENTS`, `ANNOTATES`, `SPECIFIES`, …). They

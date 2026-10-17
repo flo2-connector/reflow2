@@ -10,7 +10,7 @@
     "properties": {
       "checksum": {
         "default": null,
-        "description": "Optional hash over the anchored spec set at this epoch — an Anchor is a\nchecksummed baseline epoch, and until 2026-09-07 nothing on the surface\ncould write the field that makes one. Same class as `description` above:\ndeclared, never offered, and invisible while the reachability instrument\nfused reach with adoption.",
+        "description": "Optional hash over the spec set at this epoch — a `baseline` epoch with\na checksum is the frozen design, and until 2026-09-07 nothing on the surface\ncould write the field that makes one. Same class as `description` above:\ndeclared, never offered, and invisible while the reachability instrument\nfused reach with adoption.",
         "type": [
           "string",
           "null"

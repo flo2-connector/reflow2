@@ -244,6 +244,18 @@ impl GraphStamp {
         out
     }
 
+    /// The node types this stamp names that `now` does not, and that this
+    /// reflow2 RETIRED. Empty for a legacy count-only stamp.
+    pub fn retired_names_since(&self, now: &Self) -> Vec<String> {
+        let (Some(was), Some(now)) = (&self.node_type_names, &now.node_type_names) else {
+            return Vec::new();
+        };
+        was.iter()
+            .filter(|t| !now.contains(t) && retired_node_types().contains(&t.as_str()))
+            .cloned()
+            .collect()
+    }
+
     fn vocabulary_gap(&self, now: &Self) -> VocabularyGap {
         match (
             &self.node_type_names,
@@ -361,10 +373,22 @@ enum VocabularyGap {
 }
 
 /// The recovery recipe for a graph that predates a type retirement.
+///
+/// CORRECTED 2026-10-17, when `Anchor` was retired. Until then it ended "Any
+/// retired type is dropped and named on import", which is not what the import
+/// does: measured 2026-10-14
+/// (`fact:what-removing-the-anchor-type-does-to-a-graph-that-holds-one-measured-2026-10-14`)
+/// and again on 0.86.0, an export holding one Anchor is refused whole
+/// ("Unknown node type: Anchor") and nothing is written. A graph that holds
+/// NONE of a retired type opens (`VocabularyGap::Retired`), and deleting them
+/// with the reflow2 that still knows the type was measured to work.
 fn migrate_recipe() -> &'static str {
-    "migrate the graph: import a committed export into a fresh graph, or export it \
-     with the reflow2 that wrote it and import it here. Any retired type is dropped \
-     and named on import, so re-express it if the design used it"
+    "migrate the graph: with the reflow2 that wrote it (it still knows the type), re-express \
+     what the retired items recorded and delete them (`scan_nodes` lists nodes, `delete_node` \
+     and `delete_edge` remove them). A graph that then holds no node of a retired type opens \
+     here; for a retired edge type, export it with that reflow2 and import the export here into \
+     a fresh graph. An export that still holds a retired item is refused by the import, all or \
+     nothing, naming each"
 }
 
 /// Refusal message when the graph's stamp names its types (BL-86): say exactly
@@ -517,16 +541,30 @@ impl Provenance {
                  ({} node types, {} edge types) from now on",
                 stamped_now.reflow2_version, stamped_now.node_types, stamped_now.edge_types
             )),
-            Provenance::OlderGraph { was, now } => Some(format!(
-                "this graph was written by reflow2 {} ({} node types, {} edge types); \
-                 you are running {} ({}, {}). Additive only — everything in it still reads.",
-                was.reflow2_version,
-                was.node_types,
-                was.edge_types,
-                now.reflow2_version,
-                now.node_types,
-                now.edge_types
-            )),
+            Provenance::OlderGraph { was, now } => {
+                // A stamp naming a type this binary RETIRED only opens when the
+                // store holds none of it, so "additive only" would misdescribe it.
+                let retired = was.retired_names_since(now);
+                let how = if retired.is_empty() {
+                    "Additive only — everything in it still reads.".to_string()
+                } else {
+                    format!(
+                        "It names {}, which this reflow2 retired, and holds none — everything \
+                         in it still reads.",
+                        retired.join(", ")
+                    )
+                };
+                Some(format!(
+                    "this graph was written by reflow2 {} ({} node types, {} edge types); \
+                     you are running {} ({}, {}). {how}",
+                    was.reflow2_version,
+                    was.node_types,
+                    was.edge_types,
+                    now.reflow2_version,
+                    now.node_types,
+                    now.edge_types
+                ))
+            }
             Provenance::NewerWriter { was, now } => Some(format!(
                 "THIS GRAPH WAS LAST WRITTEN BY reflow2 {}; you are running {}, which is BEHIND \
                  it. {}",

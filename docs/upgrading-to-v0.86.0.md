@@ -1,8 +1,8 @@
 # Upgrading to v0.86.0
 
 🛑 **Upgrade every seat together, before anyone records a proof with this release's new fields.**
-This release's schema stamp moves, but by vocabulary rather than by type. No node or edge type is
-added, so an older binary does not refuse the store. It reads the design, and it MISREADS a proof
+This release's schema stamp moves by vocabulary, and by one node type fewer: `Anchor`, announced in
+v0.85.0, is removed. No node or edge type is added, so an older binary does not refuse the store. It reads the design, and it MISREADS a proof
 that uses the new fields. The schema gains:
 - a new enum property, `statement_kind`, on `Requirement` and `Constraint` (the stamp's
   `enum_values` gain both);
@@ -16,7 +16,7 @@ own has none), and `Constraint.direction` has no schema default any more.
 
 | | v0.85.0 | v0.86.0 |
 | --- | --- | --- |
-| Node types | 29 | 29 |
+| Node types | 29 | 28 (`Anchor` removed) |
 | Edge types | 68 | 68 |
 | `statement_kind` (Requirement, Constraint) | — | theorem, lemma, corollary, proposition, definition, axiom, conjecture |
 | `PREMISE_OF.role` | — | premise, assumed |
@@ -67,6 +67,25 @@ discharged by the next, a theorem and a corollary, and one question put to a nam
   migrating. Opening the store does record that v0.86.0 last wrote it, so v0.85.0 warns on it
   afterwards (above).
 
+## The `Anchor` node type is gone
+
+v0.85.0 announced it; this release removes it (`dec:anchor-retire-or-implement`). Nothing in
+reflow2 ever created or read one. Measured with stores the published v0.85.0 binary wrote and this
+release's build:
+
+| | v0.86.0 does |
+| --- | --- |
+| a store holding no Anchor (every store we know of) | opens, and says once: "It names Anchor, which this reflow2 retired, and holds none — everything in it still reads." |
+| a store holding one Anchor | refuses to open, naming it: "THE GRAPH ACTUALLY HOLDS Anchor", with the way through below |
+| an export holding one | refuses the import, all or nothing, naming `Anchor` as retired with the decision; nothing is written |
+| `create_node` with `node_type: "Anchor"` | refuses, naming the type; nothing is written |
+
+**If a design holds an Anchor**, with v0.85.0: re-express what it recorded (a baseline is
+`add_epoch` with `epoch_type` `baseline` and its `checksum`; a node's state at it is a Snapshot from
+`snapshot_before_change`), then `delete_node` it. Measured: after v0.85.0 deleted the one Anchor in a
+store, this release opened that store. v0.85.0 still opens a store this release has opened (with the
+warning above), so the order can be undone.
+
 ## What you do
 
 1. **Snapshot the store of any server that other people or machines reach** before upgrading it.
@@ -77,7 +96,8 @@ discharged by the next, a theorem and a corollary, and one question put to a nam
    uses the new fields wrongly, so do not leave one behind.
 3. **Stop any shared server still running the old binary:**
    `reflow2-mcp --graph-path <path> --stop-shared`. A reconnect alone does not replace it.
-4. **Open the design.** Nothing needs migrating, and no export or import is required.
+4. **Open the design.** Nothing needs migrating, and no export or import is required, unless the
+   design holds an `Anchor`: delete it with v0.85.0 first (above).
 
 ## Rolling back to v0.85.0
 
@@ -102,7 +122,4 @@ The CHANGELOG's `[0.86.0]` section has the full list.
 - **A claim that loses its support reads unsupported, never false.** `conclusion_after: "fails"`
   from a lost premise alone no longer occurs. A client reading `impact` should read the new
   `unsupported` value and each row's `conclusion_reads`.
-- **The `Anchor` node type is still here.** v0.85.0 announced that the next release would remove
-  it. This release does not remove it: it stays deprecated and served, with the same notice, and
-  its removal waits for a later release. Nothing needs doing now. Record a checksummed baseline
-  with `add_epoch` (`epoch_type` `baseline`, with its `checksum`), as before.
+- **The `Anchor` node type is removed** (above). A design that never had one needs nothing.

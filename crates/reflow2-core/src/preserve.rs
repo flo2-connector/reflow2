@@ -183,7 +183,7 @@ const FUNCTION_TYPES: &[&str] = &[
 /// `Artifact` is structural rather than supporting on purpose: re-packaging
 /// moves files, and a restructuring that splits one module into three is
 /// visible here and nowhere else.
-const STRUCTURE_TYPES: &[&str] = &[node::COMPONENT, node::INTERFACE, node::ARTIFACT, "Anchor"];
+const STRUCTURE_TYPES: &[&str] = &[node::COMPONENT, node::INTERFACE, node::ARTIFACT];
 
 /// Provenance, history, governance and assurance. Allowed to move freely, and
 /// listed in full so "allowed" never means "hidden".

@@ -22,25 +22,6 @@
         "refuses_null": true
       }
     },
-    "Anchor": {
-      "checksum": {
-        "type": "string"
-      },
-      "created_at": {
-        "type": "string"
-      },
-      "design_intent": {
-        "type": "string"
-      },
-      "key_decisions": {
-        "type": "string"
-      },
-      "name": {
-        "type": "string",
-        "required": true,
-        "refuses_null": true
-      }
-    },
     "Artifact": {
       "artifact_type": {
         "type": "enum",

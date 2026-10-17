@@ -357,7 +357,8 @@ def run(binary: str, graph_path: str) -> int:
     # cargo tests: every other layer is a client we wrote.
     print("\n== schema discovery (BL-1) ==")
     vocab = s.call("describe_schema", {})
-    c.ok("every node type is discoverable", len(vocab.get("node_types", [])) == 29,
+    # 28 since Anchor was removed in 0.86.0 (dec:anchor-retire-or-implement).
+    c.ok("every node type is discoverable", len(vocab.get("node_types", [])) == 28,
          len(vocab.get("node_types", [])))
     # 63 since IMPLEMENTS + COMPLEMENTS (2026-08-23, record-to-record relations);
     # 61 since OWNED_BY (2026-08-09, the third "who" axis); 60 since GATED_ON +
@@ -382,6 +383,8 @@ def run(binary: str, graph_path: str) -> int:
     # 2026-10-14, Inference + PREMISE_OF + CONCLUDES: the same four, and the
     # fourth was a surprise again — the Rust three moved first, this one only
     # when the smoke test ran. 29 node types, 68 edge types.
+    # 2026-10-17, Anchor removed: 29 -> 28 node types, and once more this
+    # file was found last, by running it.
     c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 68,
          len(vocab.get("edge_types", [])))
 

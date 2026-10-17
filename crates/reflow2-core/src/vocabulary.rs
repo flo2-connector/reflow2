@@ -912,7 +912,8 @@ mod tests {
     #[test]
     fn vocabulary_covers_the_whole_schema() {
         let v = graph().describe_vocabulary();
-        assert_eq!(v.node_types.len(), 29, "all node types are listed");
+        // 28 since Anchor was removed in 0.86.0 (dec:anchor-retire-or-implement).
+        assert_eq!(v.node_types.len(), 28, "all node types are listed");
         // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
         // stated inference step, beside the Inference node type);
         // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose

@@ -42,9 +42,6 @@ enum NotProse {
 use NotProse::*;
 
 const NOT_PROSE: &[(&str, NotProse)] = &[
-    ("Anchor.checksum", Hash),
-    ("Anchor.created_at", When),
-    ("Anchor.key_decisions", Payload),
     ("Artifact.checksum", Hash),
     ("Artifact.checksum_basis", Category),
     ("Artifact.created_at", When),

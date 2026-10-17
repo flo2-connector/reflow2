@@ -13,8 +13,10 @@
 //! (`dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first`).
 //!
 //! `crate::deprecation::REGISTRY` is the one place a deprecation is declared;
-//! its first real entry, the `Anchor` node type, has its own test
-//! (`the_unused_anchor_type_is_announced_for_removal.rs`). Every entry here is
+//! its first real entry, the `Anchor` node type, was announced in 0.85.0 and
+//! removed in 0.86.0 (`the_unused_anchor_type_is_removed.rs`), and the node
+//! type the entries below deprecate for the test is `Actor`, which this build
+//! still serves. Every entry here is
 //! test-only, handed to an in-memory service through
 //! `with_deprecations_for_test`, and every call goes over the protocol (an
 //! in-process duplex), through `call_tool` and `list_tools` as a client's does.
@@ -34,7 +36,7 @@
 //!    refusal saying what to do.
 //! 6. With the registry as built, tools/list is the reviewed toolsnap goldens,
 //!    tool for tool. A node type's entry marks describe_schema, not tools/list,
-//!    so the Anchor entry leaves every golden as it was.
+//!    so a node type's entry would leave every golden as it was.
 //! 7. The registry names only what this build serves.
 
 use reflow2_mcp::deprecation::{Deprecation, Item, REGISTRY};
@@ -72,7 +74,7 @@ fn entries() -> Vec<Deprecation> {
             DEC,
         ),
         Deprecation::node_type(
-            "Anchor",
+            "Actor",
             "0.99.0",
             "Record a Snapshot, which a cut already takes.",
             DEC,
@@ -294,12 +296,12 @@ async fn describe_schema_marks_a_deprecated_node_type_property_and_edge_type() {
             .cloned()
             .unwrap_or_else(|| panic!("{t} is not in the vocabulary"))
     };
-    let anchor = node("Anchor");
+    let actor = node("Actor");
     assert!(
-        anchor["deprecated"]
+        actor["deprecated"]
             .as_str()
             .is_some_and(|s| s.starts_with(MARK) && s.contains("Record a Snapshot")),
-        "the node type is marked: {anchor}"
+        "the node type is marked: {actor}"
     );
     assert!(
         node("Snapshot").get("deprecated").is_none(),
@@ -348,7 +350,7 @@ async fn describe_schema_marks_a_deprecated_node_type_property_and_edge_type() {
         "each listed with its item, version, what to do and decision: {listing:?}"
     );
 
-    let one = ok(&c, "describe_schema", json!({"node_type": "Anchor"})).await;
+    let one = ok(&c, "describe_schema", json!({"node_type": "Actor"})).await;
     assert!(
         one["deprecated"]
             .as_str()
@@ -397,12 +399,12 @@ async fn a_call_that_uses_a_deprecated_item_gets_the_notice() {
     let r = ok(
         &c,
         "create_node",
-        json!({"node_type": "Anchor", "id": "anchor:a", "props": {"name": "A"}}),
+        json!({"node_type": "Actor", "id": "actor:a", "props": {"name": "A"}}),
     )
     .await;
-    assert_eq!(noticed(&r), vec!["node_type:Anchor".to_string()]);
-    let r = ok(&c, "scan_nodes", json!({"node_type": "Anchor"})).await;
-    assert_eq!(noticed(&r), vec!["node_type:Anchor".to_string()]);
+    assert_eq!(noticed(&r), vec!["node_type:Actor".to_string()]);
+    let r = ok(&c, "scan_nodes", json!({"node_type": "Actor"})).await;
+    assert_eq!(noticed(&r), vec!["node_type:Actor".to_string()]);
 
     // A property is used by writing it through the type's own tool, and by
     // reading it back on a node of that type.
