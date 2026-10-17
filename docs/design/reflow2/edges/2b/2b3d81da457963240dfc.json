@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:942be1af9b7d9bc17fef520c4eec44566665e4b4c90afd0f30aa23d61bbc32d7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:loop-nudge",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
