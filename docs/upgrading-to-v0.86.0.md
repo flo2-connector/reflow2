@@ -94,6 +94,11 @@ The CHANGELOG's `[0.86.0]` section has the full list.
   computation reads `passing` as a premise only while it names a kept record with a checksum. A
   hand-set computed check now reads `unknown` ("asserted, not passing"). Register the
   calculator's record as an Artifact with its checksum and name it in the check's `location`.
+- **The search index needs nothing.** Full-text search moves to Tantivy 0.27, whose index format
+  is the one 0.26 wrote. A store opened by this release keeps its index as it is (every file
+  byte-identical, measured on a 7,513-node design), searches answer with the same hits and
+  scores, and `loop_status` reports no `search_index_rebuilt_on_open`. An index this release has
+  written to is read in full by v0.85.0, so rolling back loses no search.
 - **A claim that loses its support reads unsupported, never false.** `conclusion_after: "fails"`
   from a lost premise alone no longer occurs. A client reading `impact` should read the new
   `unsupported` value and each row's `conclusion_reads`.

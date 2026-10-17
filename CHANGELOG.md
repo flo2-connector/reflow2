@@ -223,6 +223,19 @@ id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
     definition recorded as a Constraint.
   - **This build opens and imports v0.85.0's stores and exports unchanged**
     (identical content hashes).
+- **Full-text search runs on Tantivy 0.27** (from 0.26), the new 0.x series
+  published on 2026-10-17, in its own commit of this release. reflow2's code
+  needed no change: none of the 0.27 API breaks touch what it calls. **The
+  search index is not rebuilt and needs nothing:** Tantivy's on-disk index
+  format is unchanged (version 7 in both), and the rebuild-on-open check
+  (`search_index_rebuilt_on_open`) compares the index with the store, not the
+  library, so it does not fire. Measured on a store whose index Tantivy 0.26
+  built (reflow2's own design, 7,513 nodes): this build opened it, left every
+  index file byte-identical, and answered four searches with the same hits and
+  scores as the 0.26 build; an index this build then wrote to was read by the
+  0.26 build with every hit, so rolling back loses no search. The lock also
+  moves `zstd-sys` (2.1.0 to 2.1.2), which rebuilds RocksDB's C++ once on a
+  machine building from source.
 
 ### Fixed
 
