@@ -320,10 +320,34 @@ async fn a_statement_says_its_kind_and_a_definition_carries_no_budget_direction(
         "{c:#}"
     );
     assert_eq!(c["node"]["statement_reading"]["reads"], "open", "{c:#}");
+    // A corollary and a proposition are statement kinds, and read `stated`
+    // until a step concludes them; neither is taken as given.
+    for (id, kind) in [
+        ("req:corollary", "corollary"),
+        ("con:proposition", "proposition"),
+    ] {
+        let tool = if id.starts_with("con:") {
+            "add_constraint"
+        } else {
+            "add_requirement"
+        };
+        s.ok(
+            tool,
+            json!({"id": id, "name": kind, "statement": kind, "statement_kind": kind}),
+        )
+        .await;
+        let n = s.ok("get_node", json!({"id": id})).await;
+        assert_eq!(n["node"]["statement_reading"]["kind"], kind, "{n:#}");
+        assert_eq!(n["node"]["statement_reading"]["reads"], "stated", "{n:#}");
+        assert!(
+            n["node"]["properties"].get("taken_as_given").is_none(),
+            "{n:#}"
+        );
+    }
     let why = s
         .refused(
             "add_requirement",
-            json!({"id": "req:x", "name": "x", "statement": "x", "statement_kind": "corollary"}),
+            json!({"id": "req:x", "name": "x", "statement": "x", "statement_kind": "remark"}),
         )
         .await;
     assert!(why.contains("statement_kind"), "{why}");

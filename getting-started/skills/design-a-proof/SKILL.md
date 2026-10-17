@@ -1,6 +1,6 @@
 ---
 name: design-a-proof
-description: Use when the design IS an argument that a statement is true — "design a proof", "prove a theorem", "show this mathematical claim follows", "record this proof step by step", "is this conjecture refuted?", "two independent proofs of the same result", or a proof by contradiction, by induction, by exhaustion or by construction. Records each statement with what it is (theorem, lemma, definition, axiom, conjecture), each step with its rule and warrant, assumptions the proof discharges, the variables a step generalizes over, computed facts only through their kept records, and lines stated independent; then reads the proof back and says what it shows and what it does not. Never confirms a step on the owner's behalf. Not for an argument for and against a choice (that is a Decision), and not for software requirements.
+description: Use when the design IS an argument that a statement is true — "design a proof", "prove a theorem", "show this mathematical claim follows", "record this proof step by step", "is this conjecture refuted?", "two independent proofs of the same result", or a proof by contradiction, by induction, by exhaustion or by construction. Records each statement with what it is (theorem, lemma, corollary, proposition, definition, axiom, conjecture), each step with its rule and warrant, assumptions the proof discharges, the variables a step generalizes over, computed facts only through their kept records, and lines stated independent; then reads the proof back and says what it shows and what it does not. Never confirms a step on the owner's behalf. Not for an argument for and against a choice (that is a Decision), and not for software requirements.
 metadata: {composes: [STANDING, WRITES, MINTS, REPORTS, MEASURES], audience: anyone, summary: "Record a mathematical proof step by step, then read back what it shows and what it does not."}
 ---
 
@@ -31,8 +31,10 @@ mapping was found by luck; start with it.
 Search before you add one: `search_design` with the statement's own words, because the lemma may
 already exist under another name.
 
-- **A theorem, a lemma or a conjecture** is a Requirement (`add_requirement`), with
-  `statement_kind` saying which. Leave its `kind` alone: those values describe software.
+- **A theorem, a lemma, a corollary, a proposition or a conjecture** is a Requirement
+  (`add_requirement`), with `statement_kind` saying which. Leave its `kind` alone: those values
+  describe software. A theorem, lemma, corollary or proposition reads stated until a step
+  concludes it; a conjecture reads open. None of them is taken as given.
 - **A definition or an axiom** is a Constraint (`add_constraint`) with `statement_kind`
   `definition` or `axiom`. It then reads taken as given: a stated foundation, never an uncited
   premise. It carries no budget words; give it no `limit`.
