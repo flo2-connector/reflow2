@@ -83,7 +83,9 @@ def main() -> int:
     # it. `Actor.actor_type` is populated ONLY because it declares a schema
     # default, and `Capability.tier` only through generic create_node — the two
     # ways a property looks adopted while nothing on the surface can set it.
-    for prop in ("Question.question", "Snapshot.state"):
+    # `Question.question` was the other live member until 2026-10-17, when
+    # ask_question gave the wording a parameter of its own; it moved below.
+    for prop in ("Snapshot.state",):
         check(
             f"{prop} is reported as unreachable though it is populated",
             prop in out,
@@ -105,6 +107,7 @@ def main() -> int:
         "Capability.tier",
         "Project.decomposition_levels",
         "Requirement.concern",
+        "Question.question",
     ):
         check(
             f"{prop} is NO LONGER unreachable — its constructor takes it",

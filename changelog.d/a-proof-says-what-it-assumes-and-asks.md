@@ -55,11 +55,22 @@
   client creating a Constraint with no `limit` through `add_constraint` or
   `create_node` no longer sees `direction: maximum` on it.
 - **`Question.gap_id` is optional**: a question an agent put of its own has none.
-
-### Upgrading
-
-- **The schema stamp moves, by vocabulary an older binary does not police.** It
-  gains the enum `statement_kind` on Requirement and Constraint (a new property,
-  not a new value of an old one). No node or edge type is added. MEASURED with
-  the published v0.85.0 binary on a store this build wrote: see the PR. Write
-  `ask_question` and `statement_kind` only once every seat is upgraded.
+- **Upgrade every seat together before recording a proof with these fields.**
+  The schema stamp moves by vocabulary an older binary does not police: the new
+  enum property `statement_kind` (Requirement, Constraint), plus edge and
+  `list:string` properties; no node or edge type is added. MEASURED with the
+  published v0.85.0 binary (checksum verified) on a store this build wrote:
+  - **v0.85.0 opens the store with no warning** ("additive only") and re-stamps
+    it, dropping the new keys from the stamp, so nothing records that it holds
+    vocabulary v0.85.0 does not know.
+  - **It then MISREADS a proof that assumes something**: it ignores `role:
+    assumed` and `discharges`, so Euclid's reductio reads `unproven` ("no
+    derivation holds") where this build reads `shown`, and it does not check a
+    generalization or a stated independence. Nothing is lost: v0.85.0 keeps
+    every property and its export carries them back.
+  - **v0.85.0 refuses to import an export holding an `ask_question` question**
+    (`Question.gap_id: required property is missing`), all or nothing; a
+    release also refuses any newer document by version unless `accept_newer`,
+    and v0.85.0 would then write `direction: maximum` onto each definition
+    recorded as a Constraint.
+  - **This build opens and imports v0.85.0's stores and exports unchanged.**
