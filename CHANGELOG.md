@@ -31,6 +31,217 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.86.0] — 2026-10-17
+
+**Minor. A proof says what it assumes, counts only what it should, and an agent can ask a person
+a question of its own.** It contains #763 to #765, the fixes the primes trial asked for:
+- a proof counts what it should (#763): a computed check holds a premise only through its kept
+  record, a claim that loses its support reads unsupported rather than false, a what-if stays
+  inside the reasoning it affects, and a refutation reads as refuted rather than as a defect;
+- a proof says what it assumes and asks (#764): a step can assume something and a later step
+  discharge it, a step can generalize over a declared variable, two lines can be stated
+  independent, a statement can say what kind it is, and `ask_question` puts an agent's own
+  question to a named person, with the `design-a-proof` skill to teach it;
+- corollary and proposition as statement kinds (#765).
+
+The MCP surface only grows, by one tool: `ask_question` (200, from 199).
+- `add_inference`, `add_requirement`, `add_constraint` and `add_verification` gain optional
+  arguments; reads gain `statement_reading`, a `reasoning` block on `loop_status`, and
+  `conclusion_reads` on each row of a what-if.
+- `detect_gaps` gains `unconfirmed_reasoning` and `reasoning_not_as_stated`, and `open_questions`
+  rows carry `origin`.
+- **The schema stamp moves, by vocabulary rather than by type:** `statement_kind` on Requirement
+  and Constraint, and new optional properties; no node or edge type is added. Measured at this cut,
+  0.85.0 still opens a store 0.86.0 wrote, warns, and misreads a proof that assumes something; it
+  refuses 0.86.0's export.
+
+**What to do:**
+- Upgrade every seat together, after snapshotting any shared server's store
+  ([docs/upgrading-to-v0.86.0.md](docs/upgrading-to-v0.86.0.md)).
+- A computed check that feeds a proof needs its record kept: register the calculator's record as
+  an Artifact with its checksum and name it in the check's `location`.
+- A client reading a what-if's `impact` should expect `unsupported` where a lost premise used to
+  read `broken`, and no `conclusion_after: "fails"` from a loss alone.
+
+**Nothing is deprecated or removed in this release. The `Anchor` node type is NOT removed in
+0.86.0**, although 0.85.0 said the next release would remove it. It stays deprecated and served,
+with the same notice, and its removal waits for a later release. Nothing needs doing now; record
+a checksummed baseline with `add_epoch` and a node's state with `snapshot_before_change`, as
+before.
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary, checked on the 0.86.0 release build:
+- `reflow2 write add_inference` takes `assumed` and `discharges`, and `add_requirement` and
+  `add_constraint` take `statement_kind`;
+- `reflow2 write ask_question` puts a question to a named person (`reflow2 read ask_question` is
+  refused, since it writes), and `reflow2 read open_questions` lists it with its `origin`;
+- `reflow2 read reasoning_report` reads each assumption "assumed, discharged by …", and
+  `reflow2 read get_node` shows a statement's `statement_reading`.
+
+**Still needs a hosted gateway such as flo2.io:** the same as in 0.85.0, the hub view (asking a
+hub and hearing from every member, the merged `search_design`, and cross-design reads by graph
+id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
+
+### Added
+
+- **A refutation reads as refuted, not as a defect.** In a line of reasoning, an
+  opposing CONTRADICTS whose source holds — a counterexample doing its job — is
+  no longer a `contradiction` defect and no longer counts in `loop_status`'s
+  `structural_defects`. It is counted in `detect_defects`'
+  `swept.suppressed_by_refutation` (present only when non-zero). A contradiction
+  between two claims that hold, or are unknown, is still reported.
+- **The loop sees what a reasoning owes.** On a design holding Inferences,
+  `loop_status` carries `reasoning`: unconfirmed steps, uncited premises, claims
+  that read `shown` but not `proven`, and premises taken as given, with their ids
+  (at most 20 each); `next` says it, and it is never counted against `clean`.
+  `detect_gaps` raises one low-severity `unconfirmed_reasoning` gap. A design
+  with no Inference reads byte for byte as before.
+- **A definition or axiom can be taken as given.** `taken_as_given: true` on
+  `add_constraint` and `add_requirement` marks a stated foundation:
+  `reasoning_report` lists it under `stated_foundations`, not `uncited_premises`.
+  A Requirement taken as given holds as a premise.
+- **A single point of failure in a line of reasoning is named.**
+  `detect_defects` reports `single_point_of_failure` for a lemma every holding
+  line of a claim rests on (the nearest such lemma, never a definition or axiom),
+  checked by counting it lost.
+
+- **A proof step can assume something and later discharge it.** `add_inference`
+  takes `assumed`: premises the step takes up as hypotheses — a reductio's
+  "suppose the primes are finite", an induction hypothesis — drawn as PREMISE_OF
+  with `role: assumed`. An assumed premise holds inside the argument whatever its
+  own truth, and everything resting on the step carries it until a later step
+  names it in `discharges` (refused unless something beneath that step assumes
+  it). A discharged assumption is gone from the conclusion's truth, its
+  `foundations` and the what-if: losing it reaches no step. A claim that holds
+  only under an undischarged assumption reads `conditional` (a new
+  `proof_status`), and `reasoning_report` reads each assumption "assumed,
+  discharged by …" or "assumed, never discharged". **Who notices:** nobody whose
+  design records no `assumed` premise; every existing PREMISE_OF reads as before.
+- **A step can generalize over a declared variable, and reflow2 checks it.**
+  `add_inference` takes `generalizes_over` (`L`, `n`), and `add_requirement`,
+  `add_constraint` and `add_verification` take `variables` (what a record
+  mentions) and `fixes` (what it binds to one value, as `n=40`). A step
+  generalizing over a variable that anything beneath it fixes does not hold: its
+  verdict reads `unknown` with the reason, so its conclusion is unsupported, never
+  refuted. Structural, not a logic: the same name is the same variable.
+- **A statement can say what it is.** `statement_kind` on `add_requirement` and
+  `add_constraint`: `theorem`, `lemma`, `corollary`, `proposition`,
+  `definition`, `axiom` or `conjecture`, a field of its own beside `kind`, whose
+  values stay software's. A definition or axiom reads taken as given. Reads carry
+  `statement_reading`: a conjecture reads `open`, then `refuted` once an
+  objection that holds refutes it; a theorem, lemma, corollary or proposition
+  reads `stated` until a step concludes it, and none of them is taken as given.
+- **Two lines of reasoning can be stated independent, and the statement is
+  checked.** `independent_of` (the other step) and `independent_except` (the
+  lemmas both may share) on `add_inference`. The lines may share no step other
+  than those under the named lemmas; a step's reading carries `independence`.
+- **The reasoning says where it is not as stated.** A new gap source,
+  `reasoning_not_as_stated`, one finding per assumption no step discharges, per
+  generalization over a fixed variable, and per stated independence the lines do
+  not bear out. `loop_status.reasoning` counts each (`undischarged_assumptions`,
+  `generalizations_not_holding`, `independence_not_borne_out`, with ids), and
+  `next` says it. The `unconfirmed_reasoning` gap is unchanged.
+- **An agent can put its own question to a person.** `ask_question`: a question
+  no detected gap raised, `asked_of` a named Contributor and linked (ASKS_ABOUT)
+  to the nodes it is `about`, every name checked before anything is written. It
+  waits like any question: `open_questions` lists it (rows now carry `origin`,
+  `gap` or `asker`), `loop_status` counts it and lists it for the person it was
+  put to, and `answer_question` records who answered. Its wording never changes
+  once asked.
+- **A served skill teaches designing a proof**: `design-a-proof` (`/design-a-proof`),
+  which `find_skills` finds from "design a proof" and "prove a theorem".
+
+### Changed
+
+- **A computed check holds an inference premise only through its kept record.**
+  A Verification made by computation — `computed: true` on `add_verification`
+  (new), or a check whose `location` or record names a `.calc.json` file — reads
+  `passing` as a premise only while it names a kept record: an Artifact with a
+  checksum that DOCUMENTS the check, that the check PRODUCES, or that its
+  `location` names (by `art:` id or by the Artifact's own location), with no open
+  drift on it, that states the result (the PRODUCES edge's `outcome`, else the
+  check's `findings`). With no such record the premise reads `unknown`, and its
+  `why` says the check is **asserted, not passing** and names the missing record.
+  A record whose `outcome` is `fail` makes the check fail. **Who notices:** a
+  proof or argument whose premise is a hand-set computed check. **Every other
+  check reads exactly as in 0.85.0**, and nothing changes for a design with no
+  Inference. **What to do:** register the calculator's record as an Artifact with
+  its checksum and name it in the check's `location` (or link it).
+- **A claim that loses its support reads unsupported, never false.** A node an
+  Inference concludes now holds when one of its steps holds and is otherwise
+  `unknown` ("unsupported: …") — a failing step no longer makes its conclusion
+  `fails`. Only an objection that holds refutes a claim. In the what-if
+  (`propagate_from`, `propagate_change`), a lost premise counts as unsupported:
+  a step that loses its support reads `unsupported` (new value) rather than
+  `broken`, which is kept for a step whose premise really fails; and each row
+  says what its claim is left with — `conclusion_reads`: `still_supported`
+  (with `still_supported_by`, the other lines), `unsupported` or `refuted`.
+  **Who notices:** a client reading `impact` or `conclusion_after` on a
+  design with Inferences; `conclusion_after: "fails"` from a loss alone no
+  longer occurs.
+- **A what-if stays inside the reasoning it affects.** Along PREMISE_OF and
+  CONCLUDES a radius walks down to what rests on the changed statement and up to
+  its own grounds, and never turns: it no longer reaches every statement that
+  shares a definition with it, nor an unrelated conjecture as a risk crossing.
+  Nothing changes for a design with no Inference.
+- **The software-shaped phase questions are not asked of a proof.**
+  `concept_without_design` and `quality_target_unstated` stay silent on a
+  REASONING DESIGN: one holding at least one Inference, no Capability, Component
+  or Flow, and whose every live Requirement takes part in the reasoning (a
+  premise or conclusion of a step, or joined by CONTRADICTS to one). One
+  statement outside the reasoning brings them back. `unlinked_intent` counts a
+  PREMISE_OF or CONCLUDES as a relation.
+
+- **A definition or axiom recorded as a Constraint carries no budget words.**
+  `Constraint.direction` has no schema default any more: `add_constraint` writes
+  `maximum` itself when it is given a `limit` and no direction, so a budget reads
+  and exports exactly as before, and every reader still reads an absent direction
+  as `maximum`. A Constraint stored with a direction keeps it. **Who notices:** a
+  client creating a Constraint with no `limit` through `add_constraint` or
+  `create_node` no longer sees `direction: maximum` on it.
+- **`Question.gap_id` is optional**: a question an agent put of its own has none.
+- **Upgrade every seat together before recording a proof with these fields.**
+  The schema stamp moves by vocabulary, not by type: the new enum property
+  `statement_kind` (Requirement, Constraint), plus edge and `list:string`
+  properties; no node or edge type is added. MEASURED at the cut with the
+  published v0.85.0 binary (checksum verified) on a store this build wrote
+  ([docs/upgrading-to-v0.86.0.md](docs/upgrading-to-v0.86.0.md)):
+  - **v0.85.0 opens the store and warns** that 0.86.0 last wrote it and that
+    it should be updated before writing. A one-shot `--call` leaves the stamp
+    alone; an MCP server on v0.85.0 re-stamps the store as its own, after which
+    nothing records that it holds vocabulary v0.85.0 does not know.
+  - **It then MISREADS a proof that assumes something**: it ignores `role:
+    assumed` and `discharges`, so Euclid's reductio reads `unproven` where this
+    build reads `shown`, and lists the discharged supposition among the
+    theorem's foundations. It does not check a generalization or a stated
+    independence. Nothing is lost: v0.85.0 keeps every property and its export
+    carries them back.
+  - **v0.85.0 refuses to import this build's export** by version, writing
+    nothing. With `accept_newer` it still refuses, all or nothing, an export
+    holding an `ask_question` question (`Question.gap_id: required property is
+    missing`); without one it imports, and writes `direction: maximum` onto each
+    definition recorded as a Constraint.
+  - **This build opens and imports v0.85.0's stores and exports unchanged**
+    (identical content hashes).
+
+### Fixed
+
+- **`gaps_to_prompts` and `gap_to_prompt` need only the gap's `id`,** as their
+  descriptions said: `{"gap": {"id": "gap:…"}}` works, and a row with no `id` is
+  refused naming the field.
+- **`describe_schema` keeps to the `budget_chars` it is given.** A reply still
+  over it after its prose is cut keeps every edge's type and endpoints and every
+  property's name, type and values, and, if need be, shortens its lists while
+  `all_names` keeps every name; `budget.compacted` says which. With no
+  `budget_chars` it answers as before.
+- **A capped `get_instructions` returns its first section whole** with the
+  manifest (`budget.detail: first_section_only`, `next_section`), instead of the
+  manifest alone, whenever that section fits.
+- **A check whose `location` names a kept record counts it as cited** in
+  `reasoning_report`, with no `documents` link needed.
+- **`add_verification`'s `verifies` field states its shape in its first
+  sentence** (`{"target_id": …, "target_type": …}`), so a short describe shows it.
+
 ## [0.85.0] — 2026-10-16
 
 **Minor. A design can hold a line of reasoning: a stated step from premises to a conclusion,

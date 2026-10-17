@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.85.0",
+  "reflow2_version": "0.86.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -356,6 +356,9 @@
       "distinct_from": {
         "type": "list:string"
       },
+      "fixes": {
+        "type": "list:string"
+      },
       "limit": {
         "type": "float"
       },
@@ -404,8 +407,26 @@
         "required": true,
         "refuses_null": true
       },
+      "statement_kind": {
+        "type": "enum",
+        "values": [
+          "axiom",
+          "conjecture",
+          "corollary",
+          "definition",
+          "lemma",
+          "proposition",
+          "theorem"
+        ]
+      },
+      "taken_as_given": {
+        "type": "bool"
+      },
       "unit": {
         "type": "string"
+      },
+      "variables": {
+        "type": "list:string"
       }
     },
     "Contributor": {
@@ -879,6 +900,18 @@
           "unconfirmed"
         ]
       },
+      "discharges": {
+        "type": "list:string"
+      },
+      "generalizes_over": {
+        "type": "list:string"
+      },
+      "independent_except": {
+        "type": "list:string"
+      },
+      "independent_of": {
+        "type": "list:string"
+      },
       "k": {
         "type": "int"
       },
@@ -1107,9 +1140,7 @@
         "type": "string"
       },
       "gap_id": {
-        "type": "string",
-        "required": true,
-        "refuses_null": true
+        "type": "string"
       },
       "prompt_id": {
         "type": "string"
@@ -1227,6 +1258,9 @@
       "distinct_from": {
         "type": "list:string"
       },
+      "fixes": {
+        "type": "list:string"
+      },
       "kind": {
         "type": "enum",
         "values": [
@@ -1280,6 +1314,18 @@
         "required": true,
         "refuses_null": true
       },
+      "statement_kind": {
+        "type": "enum",
+        "values": [
+          "axiom",
+          "conjecture",
+          "corollary",
+          "definition",
+          "lemma",
+          "proposition",
+          "theorem"
+        ]
+      },
       "status": {
         "type": "enum",
         "values": [
@@ -1289,6 +1335,12 @@
           "met",
           "proposed"
         ]
+      },
+      "taken_as_given": {
+        "type": "bool"
+      },
+      "variables": {
+        "type": "list:string"
       }
     },
     "Resource": {
@@ -1384,11 +1436,17 @@
       }
     },
     "Verification": {
+      "computed": {
+        "type": "bool"
+      },
       "description": {
         "type": "string"
       },
       "findings": {
         "type": "string"
+      },
+      "fixes": {
+        "type": "list:string"
       },
       "kind": {
         "type": "enum",
@@ -1455,6 +1513,9 @@
           "skipped",
           "superseded"
         ]
+      },
+      "variables": {
+        "type": "list:string"
       }
     }
   },
@@ -2344,7 +2405,16 @@
       ],
       "to": [
         "Inference"
-      ]
+      ],
+      "properties": {
+        "role": {
+          "type": "enum",
+          "values": [
+            "assumed",
+            "premise"
+          ]
+        }
+      }
     },
     "PRODUCES": {
       "from": [
