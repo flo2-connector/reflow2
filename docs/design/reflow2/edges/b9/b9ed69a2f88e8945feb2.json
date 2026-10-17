@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e03403c8fedf74e3d07bd5fb2770fdd3ce102aef5f1b0740b063e81e973cefbb",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-proof-counts-what-it-should-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-proof-counts-what-it-should-tests"
+}
