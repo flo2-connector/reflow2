@@ -1,4 +1,4 @@
-# What reflow2 offers: 32 skills and 199 tools
+# What reflow2 offers: 33 skills and 200 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -51,7 +51,7 @@ procedure behind them. Every other command names a skill.
 
 ---
 
-## The 32 skills
+## The 33 skills
 
 Each is a procedure, not a tool call: it says what to do, in what order, and what *not* to do.
 Read one in full with `get_skill` before doing the work it covers.
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 199 tools
+## The 200 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -387,6 +387,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `open_questions` | read | Questions already put to the user that still bear on something open, with the wording they saw |
 | `withdraw_question` | **write** | Withdraw a question asked in error or overtaken by events. |
 | `open_questions` | **read** | Questions already put to the user that still bear on something open, with the wording they saw. |
+| `ask_question` | **write** | Put a QUESTION OF YOUR OWN to a named person — the owner, a colleague — about the nodes it concerns, when no detected gap raised it: which foundations they take as given, what a word means here, whether to keep a proof's last step. |
 
 ### Coordination — who holds which region
 

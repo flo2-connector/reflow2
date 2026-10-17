@@ -339,6 +339,59 @@ impl ReflowService {
     }
 
     #[tool(
+        description = "Put a QUESTION OF YOUR OWN to a named person \u{2014} the owner, a \
+                       colleague \u{2014} about the nodes it concerns, when no detected gap \
+                       raised it: which foundations they take as given, what a word means \
+                       here, whether to keep a proof's last step. `asked_of` (a Contributor) \
+                       and `about` (one or more node ids) are required, and each is checked \
+                       before anything is written. It then waits like any question put to a \
+                       person: listed with `origin: asker`, counted by loop_status, and listed \
+                       for that person by loop_status(contributor_id) until they reply, with \
+                       whoever replied recorded. Its wording never changes; the same id again \
+                       re-puts it. Never park one as a Decision with no edges. \
+                       Ask for this to ask the owner something yourself and keep the question \
+                       in the design.",
+        title = "Ask a Question of Your Own",
+        annotations(read_only_hint = false, destructive_hint = false)
+    )]
+    pub async fn ask_question(
+        &self,
+        Parameters(req): Parameters<AskQuestionReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let mut g = self.write_lock().await?;
+        let id = g
+            .ask_own_question(&reflow2_core::OwnQuestion {
+                id: req.id.as_deref(),
+                question: &req.question,
+                asked_of: &req.asked_of,
+                about: &req.about,
+                context_setter: req.context_setter.as_deref(),
+                batch: req.batch.as_deref(),
+                asked_at: req.asked_at.as_deref(),
+            })
+            .map_err(dyno_err)?;
+        let stored = g
+            .get_node(reflow2_core::nodes::node::QUESTION, &id)
+            .map_err(dyno_err)?;
+        let mut reply = json!({
+            "question_id": id,
+            "asked_of": req.asked_of,
+            "about": req.about,
+            "origin": "asker",
+            "loop": "it waits like any question put to a person: open_questions lists it, \
+                     loop_status counts it, and answer_question with `answered_by` closes it",
+        });
+        if let Some(n) = stored {
+            for k in ["status", "batch", "batch_position", "answer", "answered_by"] {
+                if let Some(v) = n.properties.get(k) {
+                    reply[k] = serde_json::to_value(v).map_err(ser_err)?;
+                }
+            }
+        }
+        ok_json(reply)
+    }
+
+    #[tool(
         description = "Record what someone said in reply to a question, closing it \u{2014} and in \
                        the same call WHO said it (`answered_by`, a Contributor: the person it was \
                        put to, their delegate, or the chat user) and the node that now holds it \
@@ -579,4 +632,35 @@ fn replayed_gap_id(gap: &JsonMap<String, JsonValue>, field: &str) -> Result<Stri
             None,
         )),
     }
+}
+
+/// `ask_question`: a question of the asker's own, put to a named person.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct AskQuestionReq {
+    /// The question, in the words the person will read. It never changes once
+    /// asked: its answer is given to these words.
+    pub question: String,
+    /// The Contributor it is put to (`who:jane`). Required, and refused unless
+    /// it names a Contributor.
+    pub asked_of: String,
+    /// The nodes it is about, by id — at least one. Each is linked
+    /// (ASKS_ABOUT), so the person opens what the question concerns and the
+    /// question is found from it. An id the design does not hold is refused.
+    pub about: Vec<String>,
+    /// Its id. Omitted, one is derived from the wording
+    /// (`question:asked-<words>-<hash>`). The same id again re-puts the same
+    /// question; different wording under it is refused.
+    #[serde(default)]
+    pub id: Option<String>,
+    /// One or two sentences that place the person back in the design.
+    #[serde(default)]
+    pub context_setter: Option<String>,
+    /// The batch it travels in, as you name it (`round-2`); numbered in the
+    /// order put.
+    #[serde(default)]
+    pub batch: Option<String>,
+    /// When it was put, as an ISO 8601 timestamp.
+    #[serde(default)]
+    pub asked_at: Option<String>,
 }

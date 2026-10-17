@@ -7,6 +7,7 @@
     "capture-session": "save what we decided in this conversation before I close it",
     "check-health": "we changed the structure, is anything now broken or inconsistent",
     "ci-gate": "make the build fail when the code no longer matches what we designed",
+    "design-a-proof": "I want to show step by step that a statement in number theory is true, from definitions, the way a mathematician would",
     "detect-and-ask": "what open questions do I still need to answer",
     "establish-taxonomy": "before we add fifty of these, decide how each kind gets recorded",
     "feedback": "what should I send upstream about how this tool behaved for us",

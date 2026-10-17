@@ -274,6 +274,9 @@ async fn the_handoff_lands_end_to_end() {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     })));
     j!(s.add_capability(Parameters(CapabilityReq {
         satisfies: None,

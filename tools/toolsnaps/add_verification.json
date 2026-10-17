@@ -65,6 +65,17 @@
           "null"
         ]
       },
+      "fixes": {
+        "default": null,
+        "description": "THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all\nthe primes`) or a bare name. A step that generalizes over a variable\ndoes not hold while anything it rests on fixes it. Omitted: nothing is\nwritten.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "id": {
         "description": "The verification's id — `ver:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
@@ -140,6 +151,17 @@
         ],
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "variables": {
+        "default": null,
+        "description": "THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in what it checks. Shown on a step that\ngeneralizes over one. Omitted: nothing is written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

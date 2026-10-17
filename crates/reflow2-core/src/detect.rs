@@ -574,6 +574,17 @@ pub enum GapSource {
     /// any one step. Silent on a design holding no Inference
     /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
     UnconfirmedReasoning,
+    /// THE REASONING IS NOT AS STATED (req:a-proof-can-discharge-an-
+    /// assumption-and-generalize-over-a-variable and req:a-proof-is-designed-
+    /// with-a-skill-and-the-tools-fit-mathematics, Anthony 2026-10-17): one
+    /// finding per occurrence of three things a design SAYS about its own
+    /// reasoning that its structure does not bear out — an ASSUMPTION some
+    /// step takes up that no step discharges (what rests on it holds only
+    /// under it); a GENERALIZATION over a variable something beneath the step
+    /// fixes (the step does not hold); and a STATED INDEPENDENCE of two lines
+    /// that share a step no named lemma accounts for. Silent on a design with
+    /// no Inference.
+    ReasoningNotAsStated,
     /// Recorded changes that never say WHICH AXIS they are on — whether the
     /// SYSTEM changed, or only the design's KNOWLEDGE of it did
     /// (`ChangeEvent.subject`).
@@ -912,6 +923,7 @@ impl GapSource {
             GapSource::DecompositionCoverage => "decomposition_coverage",
             GapSource::ConclusionDoesNotFollow => "conclusion_does_not_follow",
             GapSource::UnconfirmedReasoning => "unconfirmed_reasoning",
+            GapSource::ReasoningNotAsStated => "reasoning_not_as_stated",
             GapSource::ChangeAxisUnstated => "change_axis_unstated",
             GapSource::InternalOnlyDelivery => "internal_only_delivery",
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
@@ -1193,7 +1205,11 @@ impl GapSource {
             // premises are being fixed" is an answer about THESE cases, so a new
             // case, or a new step under an old one, asks again. A stable id
             // would let one acknowledgement silence every later claim.
-            | GapSource::ConclusionDoesNotFollow => false,
+            | GapSource::ConclusionDoesNotFollow
+            // Per occurrence: "this supposition is discharged elsewhere" or
+            // "these lines do share Lemma 5" is an answer about ONE
+            // assumption, step or statement.
+            | GapSource::ReasoningNotAsStated => false,
         }
     }
 }
@@ -1274,6 +1290,49 @@ pub struct AskedQuestion<'a> {
     pub evidence: &'a [String],
 }
 
+/// A question the asker puts of its OWN, with no gap behind it — what
+/// [`DesignGraph::ask_own_question`] records.
+#[derive(Debug, Clone)]
+pub struct OwnQuestion<'a> {
+    /// Its id; derived from the wording when absent.
+    pub id: Option<&'a str>,
+    /// The question, in the words the person will read. Immutable once asked.
+    pub question: &'a str,
+    /// The Contributor it is put to. Required: a question of one's own is
+    /// always put to someone by name.
+    pub asked_of: &'a str,
+    /// The nodes it is about. At least one; each must resolve.
+    pub about: &'a [String],
+    /// One or two sentences that place the person back in the design.
+    pub context_setter: Option<&'a str>,
+    /// The batch it is put in, as the asker names it.
+    pub batch: Option<&'a str>,
+    /// When it was put.
+    pub asked_at: Option<&'a str>,
+}
+
+/// The id of a question the asker put of its own: `question:asked-` and a
+/// slug of its first words, with a short hash of the whole wording so two
+/// questions that begin alike get two ids.
+fn own_question_id(question: &str) -> String {
+    let slug: String = question
+        .to_lowercase()
+        .chars()
+        .map(|c| if c.is_ascii_alphanumeric() { c } else { '-' })
+        .collect::<String>()
+        .split('-')
+        .filter(|w| !w.is_empty())
+        .take(8)
+        .collect::<Vec<_>>()
+        .join("-");
+    let mut h: u64 = 0xcbf2_9ce4_8422_2325;
+    for b in question.bytes() {
+        h ^= u64::from(b);
+        h = h.wrapping_mul(0x0100_0000_01b3);
+    }
+    format!("question:asked-{slug}-{:06x}", h & 0xff_ffff)
+}
+
 /// Who answered a question, and what record the answer became — the rest of
 /// [`DesignGraph::answer_question_by`]. All optional, and none of it guessed:
 /// an answer naming nobody is recorded as naming nobody.
@@ -1306,7 +1365,13 @@ pub struct EvidenceLink {
 pub struct AskedRecord {
     pub question_id: String,
     /// The gap it was asked about. Re-derivable, so it survives a restart.
+    /// Absent on a question an agent put of its own (`origin: asker`).
+    #[serde(skip_serializing_if = "String::is_empty")]
     pub gap_id: String,
+    /// WHERE THE QUESTION CAME FROM: `gap` (a detected gap raised it) or
+    /// `asker` (the asker put it of its own, with no gap behind it —
+    /// ask_question).
+    pub origin: &'static str,
     /// The wording the user actually saw.
     pub question: String,
     pub context_setter: String,
@@ -2216,6 +2281,152 @@ impl DesignGraph {
         Ok(question_id)
     }
 
+    /// Put a question of the asker's OWN to a named person, about the nodes
+    /// it concerns, with no detected gap behind it
+    /// (req:an-agent-asks-the-owner-its-own-question-about-a-node, Anthony
+    /// 2026-10-17: in the primes trial the designer parked three questions for
+    /// the owner as edgeless Decisions, because a Question needed a gap).
+    ///
+    /// The Question carries no `gap_id`; it is `asked_of` the Contributor
+    /// named, `ASKS_ABOUT` each node in `about`, and is counted and listed by
+    /// `open_questions` and `loop_status` like any waiting question until it
+    /// is answered (`answer_question`, which records who answered). Everything
+    /// is checked before anything is written: an addressee that is not a
+    /// Contributor, a node in `about` the design does not hold, an empty
+    /// question or no `about` at all. The id is `id` when given, else derived
+    /// from the wording. ASKED AGAIN with the same id it is re-put — its batch
+    /// and time may change and an answer is kept — but its WORDING never
+    /// changes (Question.question is immutable): a different question needs
+    /// its own id.
+    pub fn ask_own_question(&mut self, q: &OwnQuestion<'_>) -> Result<String, DynoError> {
+        let invalid = |property: &str, message: String| DynoError::Validation {
+            node_type: node::QUESTION.into(),
+            property: property.into(),
+            message,
+        };
+        let question = q.question.trim();
+        if question.is_empty() {
+            return Err(invalid(
+                "question",
+                "the question is empty: say what you are asking, in the words the person will \
+                 read"
+                    .to_string(),
+            ));
+        }
+        self.require_contributor(q.asked_of, "ask_question", "put the question to")?;
+        if q.about.is_empty() {
+            return Err(invalid(
+                "about",
+                "a question of your own is ABOUT something in the design: name at least one \
+                 node it concerns, so the person can open what it asks about and the question \
+                 is found from that node"
+                    .to_string(),
+            ));
+        }
+        let index = self.node_type_index()?;
+        for id in q.about {
+            if !index.contains_key(id) {
+                return Err(invalid(
+                    "about",
+                    format!(
+                        "'{id}' names no node in this design, so the question cannot be linked \
+                         to it. Check the id (search_design finds a node by what it says). \
+                         Nothing was recorded."
+                    ),
+                ));
+            }
+        }
+        let question_id = match q.id {
+            Some(id) if !id.trim().is_empty() => id.trim().to_string(),
+            _ => own_question_id(question),
+        };
+        let existing = self.get_node(node::QUESTION, &question_id)?;
+        if let Some(n) = &existing {
+            let said = n
+                .properties
+                .get("question")
+                .and_then(|v| v.as_str())
+                .unwrap_or_default();
+            if n.properties
+                .get("gap_id")
+                .and_then(|v| v.as_str())
+                .is_some()
+            {
+                return Err(invalid(
+                    "id",
+                    format!(
+                        "'{question_id}' is a question a gap raised; give your own question an \
+                         id of its own"
+                    ),
+                ));
+            }
+            if said != question {
+                return Err(invalid(
+                    "question",
+                    format!(
+                        "'{question_id}' was put in other words (\"{said}\"), and a question's \
+                         wording never changes once asked — its answer was given to those words. \
+                         Ask the new question under an id of its own, and withdraw the old one \
+                         (withdraw_question) if events overtook it."
+                    ),
+                ));
+            }
+        }
+        let kept = |k: &str| {
+            existing
+                .as_ref()
+                .and_then(|n| n.properties.get(k))
+                .filter(|v| !matches!(v, crate::foundation::core::Value::Null))
+                .cloned()
+        };
+        let mut props = crate::nodes::Props::new()
+            .set("question", question)
+            .set("asked_of", q.asked_of)
+            .set("rephrase_degraded", false)
+            .set_opt("context_setter", q.context_setter)
+            .set_opt(
+                "asked_at",
+                q.asked_at
+                    .map(crate::foundation::core::Value::from)
+                    .or_else(|| kept("asked_at")),
+            );
+        props = match kept("status") {
+            Some(v) if v.as_str() == Some("answered") => props
+                .set("status", "answered")
+                .set_opt("answer", kept("answer"))
+                .set_opt("answered_by", kept("answered_by"))
+                .set_opt("answered_at", kept("answered_at"))
+                .set_opt("answered_via", kept("answered_via")),
+            _ => props.set("status", "asked"),
+        };
+        let old_batch = kept("batch").and_then(|v| v.as_str().map(str::to_string));
+        let batch = q.batch.map(str::to_string).or(old_batch.clone());
+        if let Some(b) = &batch {
+            let position = match (kept("batch_position").and_then(|v| v.as_i64()), &old_batch) {
+                (Some(p), Some(ob)) if ob == b => p,
+                _ => self.next_batch_position(b)?,
+            };
+            props = props
+                .set("batch", b.as_str())
+                .set("batch_position", position);
+        }
+        self.create_node(node::QUESTION, &question_id, props)?;
+        for id in q.about {
+            if let Some(node_type) = index.get(id) {
+                self.create_edge(
+                    edge::ASKS_ABOUT,
+                    node::QUESTION,
+                    &question_id,
+                    node_type,
+                    id,
+                    crate::nodes::Props::new()
+                        .set("note", "what the asker's own question is about"),
+                )?;
+            }
+        }
+        Ok(question_id)
+    }
+
     /// Record what the user said, closing an asked question.
     ///
     /// The answer text is kept verbatim. Whatever design nodes it produces are
@@ -2503,6 +2714,7 @@ impl DesignGraph {
             answered_in.sort();
             out.push(AskedRecord {
                 question_id: n.node_id.clone(),
+                origin: if gap_id.is_empty() { "asker" } else { "gap" },
                 gap_id,
                 question: get("question"),
                 context_setter: get("context_setter"),
@@ -2771,6 +2983,10 @@ impl DesignGraph {
         // What the reasoning still owes: unconfirmed steps, uncited premises,
         // claims shown but not proven. Silent on a design with no Inference.
         self.detect_unconfirmed_reasoning(&mut gaps)?;
+        // What the reasoning says of itself that its structure does not bear
+        // out: an undischarged assumption, a generalization over a fixed
+        // variable, a stated independence that fails.
+        self.detect_reasoning_not_as_stated(&mut gaps)?;
         // Absence, not consistency: fires loudest where the axis has NEVER
         // been stated, which is the case every other detector here misses.
         self.detect_change_axis_unstated(&mut gaps)?;
@@ -4173,7 +4389,7 @@ impl DesignGraph {
         let Some(debt) = self.reasoning_debt()? else {
             return Ok(());
         };
-        if !debt.is_owed() {
+        if !debt.confirmation_owed() {
             return Ok(());
         }
         let mut affected: Vec<String> = debt
@@ -4222,6 +4438,105 @@ impl DesignGraph {
                 debt.list_cap
             ),
         });
+        Ok(())
+    }
+
+    /// See [`GapSource::ReasoningNotAsStated`].
+    fn detect_reasoning_not_as_stated(
+        &self,
+        gaps: &mut Vec<GapCandidate>,
+    ) -> Result<(), DynoError> {
+        if self.scan_nodes(node::INFERENCE)?.is_empty() {
+            return Ok(());
+        }
+        let mut push =
+            |affected: Vec<String>, title: String, description: String, evidence: String| {
+                let mut affected = affected;
+                affected.sort();
+                affected.dedup();
+                gaps.push(GapCandidate {
+                    id: gap_id(GapSource::ReasoningNotAsStated, &affected),
+                    gap_source: GapSource::ReasoningNotAsStated,
+                    scope: GapScope::Project,
+                    // MEDIUM: the design says something of its own reasoning that
+                    // its structure does not bear out — more than a confirmation
+                    // owed, less than a broken build.
+                    severity: 0.5,
+                    title,
+                    description,
+                    affected_ids: affected,
+                    suggested_depth: 2,
+                    evidence,
+                });
+            };
+        for a in self.assumptions()? {
+            if !a.discharged_by.is_empty() {
+                continue;
+            }
+            let mut affected = vec![a.id.clone()];
+            affected.extend(a.assumed_in.iter().cloned());
+            push(
+                affected,
+                format!(
+                    "'{}' is assumed and never discharged: what rests on it holds only under it",
+                    a.id
+                ),
+                "A step takes this up as an assumption (a supposition for the sake of argument, \
+                 an induction hypothesis), and no step resting on it discharges it, so every \
+                 claim above it reads `conditional`, never proven. Either the step that closes \
+                 the argument names it in `discharges` (add_inference — a reductio concluding \
+                 the negation, an induction step concluding the implication), or it is not an \
+                 assumption but a premise the reasoning really rests on."
+                    .to_string(),
+                format!(
+                    "assumed in {}; discharged by no step",
+                    a.assumed_in.join(", ")
+                ),
+            );
+        }
+        for (step, g) in self.generalizations_that_do_not_hold()? {
+            let mut affected = vec![step.clone()];
+            affected.extend(g.fixed_by.iter().map(|f| f.id.clone()));
+            let fixed: Vec<String> = g
+                .fixed_by
+                .iter()
+                .map(|f| format!("{} fixes {}", f.id, f.fixes.join(", ")))
+                .collect();
+            push(
+                affected,
+                format!(
+                    "'{step}' generalizes over {}, which something it rests on fixes",
+                    g.over.join(", ")
+                ),
+                "A step that generalizes over a variable holds only when nothing it rests on \
+                 fixes that variable — a record about one value proves nothing for an arbitrary \
+                 one. The step reads unknown, and its conclusion unsupported, until either the \
+                 premise is replaced by one about an arbitrary value or the step stops \
+                 generalizing over it."
+                    .to_string(),
+                fixed.join("; "),
+            );
+        }
+        for i in self.stated_independence()? {
+            if i.holds {
+                continue;
+            }
+            let mut affected = vec![i.step.clone(), i.of.clone()];
+            affected.extend(i.shared_steps.iter().cloned());
+            push(
+                affected,
+                format!(
+                    "'{}' is stated independent of '{}', and the two lines share a step",
+                    i.step, i.of
+                ),
+                "Two lines of reasoning are stated independent, and the structure does not bear \
+                 it out: they rest on a common step that no lemma named in `independent_except` \
+                 accounts for. Name the shared lemma there (the lines are independent apart from \
+                 it), or withdraw the statement."
+                    .to_string(),
+                i.why.clone(),
+            );
+        }
         Ok(())
     }
 

@@ -68,6 +68,9 @@ fn req(id: &str) -> RequirementReq {
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     }
 }
 

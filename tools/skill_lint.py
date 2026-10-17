@@ -71,6 +71,21 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # design-a-proof (2026-10-17): the fields a proof is recorded with —
+    # add_inference's `assumed`, `discharges`, `generalizes_over`,
+    # `independent_of`, `independent_except`, `rule`, `rule_name`, `warrant`,
+    # `confirmed_by`, `confirmed_how`; a statement's `statement_kind`,
+    # `variables`, `fixes`, `kind`, `limit`; a check's `computed`;
+    # ask_question's `asked_of`, `about`; answer_question's `answered_by`;
+    # describe_schema's `node_type` and `also_called`; the proof statuses
+    # `proven`, `shown`, `conditional`, `unproven`; the reasoning rule's
+    # values `all`, `definition`, `axiom`; and the gap source
+    # `reasoning_not_as_stated` (detect.rs).
+    "assumed", "discharges", "generalizes_over", "independent_of", "independent_except",
+    "rule_name", "warrant", "confirmed_by", "confirmed_how", "statement_kind",
+    "variables", "fixes", "computed", "asked_of", "about", "answered_by",
+    "also_called", "proven", "shown", "conditional", "unproven",
+    "reasoning_not_as_stated", "definition", "axiom", "all", "node_type", "rule",
     # hub (2026-10-06): a member's RELATION on its pin — external_dependency's
     # `relation` (`part_of` / `uses`) and `interfaces` fields, and the two
     # upstream_status finding kinds that report a member linked by nothing
@@ -929,7 +944,6 @@ UNROUTED_REPORTS: dict[str, str] = {
     # (dec:idea-which-derived-results-are-kept-and-by-what-rule). Naming it in
     # check-health or where-am-i now would invent a use to satisfy this check.
     "derived_report": "GAP: no skill owns reading what the design derives — the declared relations are served, the step that reads them waits on the keep-policy decision",
-    "reasoning_report": "GAP: no skill owns reading a line of reasoning back yet; the skill for recording one (an argument, an experiment, a paper, a case) is the second half of req:a-design-holds-a-line-of-reasoning, and it names this report",
 }
 
 

@@ -1487,8 +1487,27 @@ fn decorate(
         .map(serde_json::to_value)
         .transpose()
         .map_err(ser_err)?;
+    // WHAT A STATEMENT SAYS IT IS (`statement_kind`) and how it reads now —
+    // a conjecture `open` or `refuted`, a theorem `stated` until a step
+    // concludes it. Omitted when the node says nothing.
+    let says_its_kind = rendered
+        .get("properties")
+        .and_then(|p| p.get("statement_kind"))
+        .is_some();
+    let statement_reading = if says_its_kind {
+        g.statement_reading(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
+        if let Some(sr) = statement_reading {
+            obj.insert("statement_reading".to_string(), sr);
+        }
         if let Some(reading) = built_reading {
             obj.insert("built_reading".to_string(), reading);
         }

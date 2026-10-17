@@ -319,17 +319,20 @@ condition under which it should come back.
 Phase 1 of the fixes accepted after the primes proof trial
 (`fact:the-primes-trial-rung-1-ran-on-flo2-io-and-its-friction-names-what-counts-2026-10-17`).
 Tests: `crates/reflow2-core/tests/a_proof_counts_what_it_should.rs` and
-`crates/reflow2-mcp/tests/a_proof_counts_what_it_should_on_the_wire.rs`.
+`crates/reflow2-mcp/tests/a_proof_counts_what_it_should_on_the_wire.rs`; phase 2 (a proof says
+what it assumes, and an agent asks): `crates/reflow2-core/tests/a_proof_says_what_it_assumes.rs`
+and `crates/reflow2-mcp/tests/a_proof_says_what_it_assumes_on_the_wire.rs`.
 
 | Requirement | Status | Evidence / note |
 |---|---|---|
 | `req:a-computed-fact-counts-only-through-its-kept-record` | ✅ | `kept_record.rs`; computed = `computed: true` or a `.calc.json` location/record (no `computation` method: that would move the schema stamp). **Deferred:** a host re-running the record on request (flo2's side). |
 | `req:unsupported-is-not-refuted` | ✅ | a concluded node is `holds` or `unknown`, never `fails` from its steps; the walk's `conclusion_reads` / `still_supported_by` |
 | `req:a-refutation-reads-as-refuted-not-as-a-defect` | ✅ | `is_a_standing_refutation`; `swept.suppressed_by_refutation` |
-| `req:the-loop-sees-unconfirmed-steps-and-uncited-premises` | 🟡 | `loop_status.reasoning`, the `unconfirmed_reasoning` gap, `taken_as_given`. **Deferred:** "it carries no budget fields such as direction" — `Constraint.direction` keeps its schema default (`maximum`) on a taken-as-given axiom; dropping a default changes every existing store's round trip, so it waits for the statement-kinds work. |
-| `req:a-proof-is-designed-with-a-skill-and-the-tools-fit-mathematics` | 🟡 | phase 1: reasoning designs skip `concept_without_design` / `quality_target_unstated`; `unlinked_intent` counts PREMISE_OF/CONCLUDES; reasoning single points of failure; a what-if that never turns along reasoning. **Deferred to phase 2:** the proof skill, statement kinds, conjecture status, independent lines. |
+| `req:the-loop-sees-unconfirmed-steps-and-uncited-premises` | ✅ | `loop_status.reasoning`, the `unconfirmed_reasoning` gap, `taken_as_given`. Phase 2: `Constraint.direction` has no schema default; `add_constraint` writes `maximum` only beside a `limit`, so a definition or axiom carries no budget words and a stored constraint keeps what it has (round trip unchanged; an older binary importing such a definition fills in its default). |
+| `req:a-proof-is-designed-with-a-skill-and-the-tools-fit-mathematics` | ✅ | phase 1: reasoning designs skip `concept_without_design` / `quality_target_unstated`; `unlinked_intent` counts PREMISE_OF/CONCLUDES; reasoning single points of failure; a what-if that never turns along reasoning. Phase 2: the served `design-a-proof` skill; `statement_kind` (theorem, lemma, definition, axiom, conjecture) on Requirement and Constraint, read as `statement_reading` (a conjecture reads `open` / `refuted`); `independent_of` / `independent_except` on an Inference, checked (`independence`, the `reasoning_not_as_stated` gap). |
 | `req:the-primes-trials-small-tool-snags-are-fixed` | ✅ | gaps_to_prompts by id, describe_schema budget, `verifies` shape, location-named record cited, first instructions section under a cap |
-| `req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable`, `req:an-agent-asks-the-owner-its-own-question-about-a-node` | ⬜ | Deferred: not in phase 1, by the brief. |
+| `req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable` | ✅ | phase 2: PREMISE_OF `role: assumed` and `Inference.discharges` (truth, foundations and the what-if read the conclusion without a discharged assumption; an undischarged one makes its claims `conditional` and is a `reasoning_not_as_stated` gap; reasoning_report reads "assumed, discharged by …"); `Inference.generalizes_over` checked against `fixes` on every record beneath. Structural, not a logic: the same name is the same variable. |
+| `req:an-agent-asks-the-owner-its-own-question-about-a-node` | ✅ | phase 2: `ask_question` — a Question with no `gap_id`, `asked_of` a Contributor, ASKS_ABOUT its nodes; `open_questions` rows carry `origin` (`gap` / `asker`); counted by `loop_status` and answered with `answered_by` like any other. |
 
 ## Dormant schema scaffolding — vocabulary with no code path yet (BL-82)
 

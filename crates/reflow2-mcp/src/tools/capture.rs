@@ -1491,6 +1491,41 @@ pub(crate) fn set_optional_bool(
     Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
 }
 
+/// [`set_optional_props`] for lists of names: each one given is written,
+/// trimmed, sorted and deduplicated; an empty list clears the property.
+pub(crate) fn set_optional_lists(
+    g: &mut reflow2_core::graph::DesignGraph,
+    node_type: &str,
+    id: &str,
+    values: &[(&str, Option<&Vec<String>>)],
+) -> Result<Option<reflow2_core::StoredNode>, McpError> {
+    let mut props = reflow2_core::nodes::Props::new();
+    let mut any = false;
+    for (k, v) in values {
+        let Some(items) = v else {
+            continue;
+        };
+        if items.iter().any(|x| x.trim().is_empty()) {
+            return Err(McpError::invalid_params(
+                format!("`{k}` holds an empty name; give each entry, or leave `{k}` out"),
+                None,
+            ));
+        }
+        let mut items: Vec<String> = items.iter().map(|x| x.trim().to_string()).collect();
+        items.sort();
+        items.dedup();
+        props = props.set(
+            k,
+            reflow2_core::Value::List(items.into_iter().map(reflow2_core::Value::String).collect()),
+        );
+        any = true;
+    }
+    if !any {
+        return Ok(None);
+    }
+    Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
+}
+
 #[tool_router(router = capture_router, vis = "pub")]
 impl ReflowService {
     // ---- GENESIS (bootstrap the graph from a brief) ----
@@ -1869,6 +1904,21 @@ impl ReflowService {
             &req.id,
             "taken_as_given",
             req.taken_as_given,
+        )?;
+        set_optional_props(
+            &mut g,
+            node_ty,
+            &req.id,
+            &[("statement_kind", req.statement_kind.as_deref())],
+        )?;
+        set_optional_lists(
+            &mut g,
+            node_ty,
+            &req.id,
+            &[
+                ("variables", req.variables.as_ref()),
+                ("fixes", req.fixes.as_ref()),
+            ],
         )?;
         sign_as_approver(
             &mut g,
@@ -2948,6 +2998,23 @@ impl ReflowService {
             req.taken_as_given,
         )?
         .unwrap_or(stored);
+        let stored = set_optional_props(
+            &mut g,
+            reflow2_core::nodes::node::CONSTRAINT,
+            &req.id,
+            &[("statement_kind", req.statement_kind.as_deref())],
+        )?
+        .unwrap_or(stored);
+        let stored = set_optional_lists(
+            &mut g,
+            reflow2_core::nodes::node::CONSTRAINT,
+            &req.id,
+            &[
+                ("variables", req.variables.as_ref()),
+                ("fixes", req.fixes.as_ref()),
+            ],
+        )?
+        .unwrap_or(stored);
         let stored = match req.margin {
             Some(m) => g.set_constraint_margin(&req.id, m).map_err(dyno_err)?,
             None => stored,
@@ -3014,7 +3081,9 @@ impl ReflowService {
                        1 ≤ k ≤ the number of premises, a `k` on another rule, a missing premise or \
                        conclusion, and a circle. One step concludes one node; several steps \
                        concluding a node are alternatives, read as ANY. The same id again revises \
-                       the step and ADDS the premises given. \
+                       the step and ADDS the premises given. For a proof: `assumed` premises \
+                       hold as hypotheses until a later step `discharges` them; \
+                       `generalizes_over` and `independent_of` are checked. \
                        Ask for this to say that a claim follows from other things in the design.",
         title = "Add an Inference Step",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -3036,11 +3105,20 @@ impl ReflowService {
             confirmed_by: req.confirmed_by.clone(),
             confirmed_how: req.confirmed_how.clone(),
             confirmed_at: req.confirmed_at.clone(),
+            assumed: req.assumed.clone().unwrap_or_default(),
+            discharges: req.discharges.clone(),
+            generalizes_over: req.generalizes_over.clone(),
+            independent_of: req.independent_of.clone(),
+            independent_except: req.independent_except.clone(),
         };
         // Which links were there before the call, so the reply can say what it
         // drew and what it found already drawn.
         let mut was = Vec::new();
-        for p in &req.premises {
+        let mut linked: Vec<String> = req.premises.clone();
+        linked.extend(req.assumed.iter().flatten().cloned());
+        linked.sort();
+        linked.dedup();
+        for p in &linked {
             was.push((
                 p.clone(),
                 crate::drawn_edges::present(&g, p, reflow2_core::nodes::edge::PREMISE_OF, &req.id)
@@ -4401,4 +4479,31 @@ pub struct AddInferenceReq {
     /// WHEN, as an ISO 8601 timestamp. Absent when unconfirmed.
     #[serde(default)]
     pub confirmed_at: Option<String>,
+    /// ASSUMPTIONS this step takes up, by id — a reductio's "suppose the
+    /// primes are finite", an induction hypothesis. Each is linked as a
+    /// premise with `role: assumed`: it holds inside the argument whatever its
+    /// own truth, and everything resting on this step holds only under it
+    /// until a later step names it in `discharges`. A premise named here and
+    /// in `premises` is assumed.
+    #[serde(default)]
+    pub assumed: Option<Vec<String>>,
+    /// The assumptions this step DISCHARGES, by id: each must be assumed by
+    /// this step or by a step it rests on, or the call is refused naming what
+    /// is assumed beneath it. Its conclusion then no longer rests on them.
+    /// Overwrites what the step had.
+    #[serde(default)]
+    pub discharges: Option<Vec<String>>,
+    /// The VARIABLES this step generalizes over, by name (`L`, `n`) — "for an
+    /// arbitrary list L". Checked: the step does not hold while anything it
+    /// rests on, at any depth, lists the variable in its `fixes`. Overwrites.
+    #[serde(default)]
+    pub generalizes_over: Option<Vec<String>>,
+    /// Other STEPS this line is stated independent of (Inference ids), e.g. a
+    /// second proof of the same claim. Checked: the lines may share no step
+    /// other than those under the lemmas in `independent_except`. Overwrites.
+    #[serde(default)]
+    pub independent_of: Option<Vec<String>>,
+    /// The lemmas the independent lines may share, by id. Overwrites.
+    #[serde(default)]
+    pub independent_except: Option<Vec<String>>,
 }

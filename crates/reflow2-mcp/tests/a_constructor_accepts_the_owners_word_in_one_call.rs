@@ -119,6 +119,9 @@ fn requirement(id: &str, status: Option<&str>, approver: Option<&str>) -> Requir
         concern: None,
         kind: None,
         taken_as_given: None,
+        statement_kind: None,
+        variables: None,
+        fixes: None,
     }
 }
 
@@ -342,6 +345,8 @@ async fn a_check_records_its_targets_and_the_run_it_just_had_in_one_call() {
         last_run_at: Some("2026-09-06".into()),
         location: None,
         computed: None,
+        variables: None,
+        fixes: None,
     })));
     assert_eq!(out["properties"]["status"], "passing");
     assert_eq!(out["properties"]["findings"], "12 of 12 passed");
@@ -375,6 +380,8 @@ async fn a_finding_without_a_run_is_refused_and_an_unknown_target_refuses_the_wh
         last_run_at: None,
         location: None,
         computed: None,
+        variables: None,
+        fixes: None,
     };
     let mut r = base();
     r.findings = Some("12 of 12".into());

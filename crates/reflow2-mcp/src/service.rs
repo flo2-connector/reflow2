@@ -1970,6 +1970,26 @@ pub struct RequirementReq {
     /// Omitted: nothing is written, and the node reads as it always did.
     #[serde(default)]
     pub taken_as_given: Option<bool>,
+    /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
+    /// `definition`, `axiom` or `conjecture` — a field of its own, leaving
+    /// `kind`'s software values alone. A definition or axiom reads taken as
+    /// given; a conjecture reads `open`, then `refuted` once an objection
+    /// that holds refutes it; a theorem reads `stated` until a step concludes
+    /// it. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
+    pub statement_kind: Option<String>,
+    /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
+    /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
+    /// generalizes over one. Omitted: nothing is written.
+    #[serde(default)]
+    pub variables: Option<Vec<String>>,
+    /// THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all
+    /// the primes`) or a bare name. A step that generalizes over a variable
+    /// does not hold while anything it rests on fixes it. Omitted: nothing is
+    /// written.
+    #[serde(default)]
+    pub fixes: Option<Vec<String>>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -2998,6 +3018,16 @@ pub struct VerificationReq {
     /// written.
     #[serde(default)]
     pub computed: Option<bool>,
+    /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in what it checks. Shown on a step that
+    /// generalizes over one. Omitted: nothing is written.
+    #[serde(default)]
+    pub variables: Option<Vec<String>>,
+    /// THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all
+    /// the primes`) or a bare name. A step that generalizes over a variable
+    /// does not hold while anything it rests on fixes it. Omitted: nothing is
+    /// written.
+    #[serde(default)]
+    pub fixes: Option<Vec<String>>,
 }
 
 /// One target of a Verification, for `add_verification`'s `verifies` list.
@@ -3994,6 +4024,26 @@ pub struct AddConstraintReq {
     /// Omitted: nothing is written, and the node reads as it always did.
     #[serde(default)]
     pub taken_as_given: Option<bool>,
+    /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
+    /// `definition`, `axiom` or `conjecture` — a field of its own, leaving
+    /// `kind`'s software values alone. A definition or axiom reads taken as
+    /// given; a conjecture reads `open`, then `refuted` once an objection
+    /// that holds refutes it; a theorem reads `stated` until a step concludes
+    /// it. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_statement_kind_opt")]
+    pub statement_kind: Option<String>,
+    /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
+    /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
+    /// generalizes over one. Omitted: nothing is written.
+    #[serde(default)]
+    pub variables: Option<Vec<String>>,
+    /// THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all
+    /// the primes`) or a bare name. A step that generalizes over a variable
+    /// does not hold while anything it rests on fixes it. Omitted: nothing is
+    /// written.
+    #[serde(default)]
+    pub fixes: Option<Vec<String>>,
     /// WHO OR WHAT the number came from — an id where one exists: the Artifact or tool that
     /// measured it, the Verification that computed it, the Contributor who asserted it.
     #[serde(default)]

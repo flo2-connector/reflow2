@@ -174,6 +174,15 @@ impl ReflowService {
             "computed",
             req.computed,
         )?;
+        crate::tools::capture::set_optional_lists(
+            &mut g,
+            reflow2_core::nodes::node::VERIFICATION,
+            &req.id,
+            &[
+                ("variables", req.variables.as_ref()),
+                ("fixes", req.fixes.as_ref()),
+            ],
+        )?;
         let node = g
             .get_node(reflow2_core::nodes::node::VERIFICATION, &req.id)
             .map_err(dyno_err)?

@@ -208,6 +208,11 @@ pub struct PremiseReading {
     pub truth: Truth,
     /// Why, in a sentence: the predicate that decided it.
     pub why: String,
+    /// `assumed` when the step takes this premise up as a HYPOTHESIS
+    /// (PREMISE_OF `role: assumed`): read as holding inside the argument,
+    /// whatever its own truth. Absent for an ordinary premise.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role: Option<&'static str>,
 }
 
 /// Who confirmed a step: a person, a checker, or nobody.
@@ -247,6 +252,11 @@ pub enum ProofStatus {
     Proven,
     /// At least one derivation holds, but one or more steps are unconfirmed.
     Shown,
+    /// A derivation holds, but only UNDER AN ASSUMPTION it does not
+    /// discharge (an `assumed` premise under it that no step on the way
+    /// discharges): a result inside a hypothetical argument, never a proof of
+    /// the claim on its own.
+    Conditional,
     /// A derivation holds, but an objection stands against the conclusion:
     /// neither established nor answered (requirement A).
     Contested,
@@ -260,6 +270,7 @@ impl ProofStatus {
         match self {
             ProofStatus::Proven => "proven",
             ProofStatus::Shown => "shown",
+            ProofStatus::Conditional => "conditional",
             ProofStatus::Contested => "contested",
             ProofStatus::Unproven => "unproven",
         }
@@ -306,6 +317,109 @@ pub struct InferenceReading {
     pub note: Option<String>,
     /// Who confirmed this step, how, and when.
     pub confirmation: Confirmation,
+    /// THE ASSUMPTIONS THIS STEP'S VERDICT STILL RESTS ON: every `assumed`
+    /// premise under it, at any depth, that neither it nor a step between
+    /// discharges. Empty for a step that rests on no assumption, or whose
+    /// every assumption is discharged.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumes: Vec<String>,
+    /// The assumptions this step DISCHARGES, as it records them
+    /// (`discharges`): a reductio's supposition, an induction hypothesis.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub discharges: Vec<String>,
+    /// The variables it generalizes over, and whether anything it rests on
+    /// fixes one (`generalizes_over`, checked). Absent when it declares none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub generalization: Option<GeneralizationReading>,
+    /// Each line it is STATED independent of (`independent_of`), checked.
+    /// Read only on the step itself (get_node, add_inference), never inside
+    /// another step's reading.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub independence: Vec<IndependenceReading>,
+}
+
+/// A step's generalization over its declared variables, checked
+/// (req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable).
+///
+/// # What "fixes" means
+///
+/// A record FIXES a variable when its `fixes` lists it — as `name=value`
+/// (`n=40`, `L=all the primes`) or a bare name: the record is about that one
+/// value, not an arbitrary one. A step that generalizes over `v` HOLDS ONLY
+/// WHEN NOTHING IT RESTS ON, AT ANY DEPTH, FIXES `v` (assumed premises
+/// included). `variables` (what a record mentions) is read only to show which
+/// records the variable runs through. Structural, not a logic: the same name
+/// is the same variable, and what a statement says is never read.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct GeneralizationReading {
+    /// The variables the step generalizes over.
+    pub over: Vec<String>,
+    /// Whether the check passes: nothing in the chain fixes any of them.
+    pub holds: bool,
+    /// Every record in the chain that fixes one, with what it fixes.
+    pub fixed_by: Vec<FixedBy>,
+    /// Records in the chain that mention one of them (`variables`).
+    pub mentioned_by: Vec<String>,
+}
+
+/// One record that fixes a variable a step generalizes over.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct FixedBy {
+    /// The record.
+    pub id: String,
+    /// What it fixes, as it says (`n=40`).
+    pub fixes: Vec<String>,
+}
+
+/// A stated independence between two lines of reasoning, checked: the lines
+/// share no step other than those under the lemmas the statement names.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct IndependenceReading {
+    /// The step stating it.
+    pub step: String,
+    /// The other line, as the statement names it.
+    pub of: String,
+    /// Whether the structure bears the statement out.
+    pub holds: bool,
+    /// Steps both lines rest on that no named lemma accounts for: what makes
+    /// the statement false. Empty when it holds.
+    pub shared_steps: Vec<String>,
+    /// The named lemmas both lines do rest on.
+    pub shares_named: Vec<String>,
+    /// The lemmas the statement names (`independent_except`).
+    pub except: Vec<String>,
+    /// Why, in a sentence.
+    pub why: String,
+}
+
+/// One assumption of the design: where it is assumed and what discharges it.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct AssumptionReading {
+    /// The assumed node.
+    pub id: String,
+    /// Its name, when it has one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    /// The steps that take it up as an `assumed` premise.
+    pub assumed_in: Vec<String>,
+    /// The steps that discharge it, resting on one of those. Empty means it is
+    /// NEVER DISCHARGED: whatever rests on it holds only under it.
+    pub discharged_by: Vec<String>,
+}
+
+/// What a statement says it is (`statement_kind`) and how it reads now.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct StatementReading {
+    /// `theorem`, `lemma`, `definition`, `axiom` or `conjecture`.
+    pub kind: String,
+    /// How it reads: `taken_as_given` (a definition or axiom), `stated` (a
+    /// theorem or lemma no step concludes yet), `open` (a conjecture nothing
+    /// shows or refutes), `refuted` (an objection that holds refutes it), or
+    /// the proof status of a concluded one: `proven`, `shown`, `conditional`,
+    /// `contested`, `unproven`.
+    pub reads: &'static str,
+    /// Why, in a sentence.
+    pub why: String,
 }
 
 /// What losing a premise does to one step: the change walk's row.
@@ -382,6 +496,12 @@ pub struct FoundationsReading {
     pub capped: bool,
     /// The honest limit: what the read says it does and does not mean.
     pub honest_limit: String,
+    /// THE ASSUMPTIONS IT HOLDS UNDER: `assumed` premises beneath it that no
+    /// step on the way discharges. An assumption is never a foundation — it is
+    /// taken up for the sake of argument — so it is listed here, apart, and a
+    /// discharged one is in neither list.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumes: Vec<String>,
 }
 
 /// How many axioms the foundations list shows before saying "capped".
@@ -428,7 +548,7 @@ pub struct UnfollowedConclusion {
 /// circle, read as unknown).
 struct Eval<'l> {
     lost: &'l BTreeSet<String>,
-    memo: HashMap<String, (Truth, String)>,
+    memo: HashMap<String, Read>,
     path: BTreeSet<String>,
     /// Nodes whose truth is being computed. Objections may form circles (A
     /// objects to B, B to A), which the write never refuses.
@@ -448,6 +568,30 @@ impl<'l> Eval<'l> {
             nodes: BTreeSet::new(),
             cuts: 0,
         }
+    }
+}
+
+/// A node's truth as one evaluation reads it: the value, why, and the
+/// ASSUMPTIONS it holds under — every `assumed` premise beneath it that no
+/// step on the way discharges (empty for almost every node).
+#[derive(Debug, Clone)]
+struct Read {
+    truth: Truth,
+    why: String,
+    assumes: BTreeSet<String>,
+}
+
+impl Read {
+    fn plain(truth: Truth, why: String) -> Self {
+        Read {
+            truth,
+            why,
+            assumes: BTreeSet::new(),
+        }
+    }
+
+    fn pair(self) -> (Truth, String) {
+        (self.truth, self.why)
     }
 }
 
@@ -485,7 +629,33 @@ struct StepRecord {
     k: Option<i64>,
     rule_name: Option<String>,
     confirmation: Confirmation,
+    discharges: Vec<String>,
+    generalizes_over: Vec<String>,
 }
+
+/// A `list:string` property as a sorted, deduplicated list; empty when absent.
+pub(crate) fn list_prop(props: &HashMap<String, Value>, key: &str) -> Vec<String> {
+    let mut out: Vec<String> = match props.get(key) {
+        Some(Value::List(items)) => items
+            .iter()
+            .filter_map(|v| v.as_str().map(|s| s.trim().to_string()))
+            .filter(|s| !s.is_empty())
+            .collect(),
+        Some(Value::String(s)) if !s.trim().is_empty() => vec![s.trim().to_string()],
+        _ => Vec::new(),
+    };
+    out.sort();
+    out.dedup();
+    out
+}
+
+/// The variable a `fixes` entry names: the part before `=`, trimmed.
+pub fn fixed_variable(entry: &str) -> &str {
+    entry.split_once('=').map_or(entry, |(name, _)| name).trim()
+}
+
+/// The statement kinds `statement_kind` may say.
+pub const STATEMENT_KINDS: [&str; 5] = ["theorem", "lemma", "definition", "axiom", "conjecture"];
 
 fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
     props.get(key).and_then(Value::as_str)
@@ -495,8 +665,14 @@ fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
 /// definition or axiom the reasoning starts from, read as a stated foundation
 /// and never as an uncited premise
 /// (req:the-loop-sees-unconfirmed-steps-and-uncited-premises).
+///
+/// A statement whose `statement_kind` is `definition` or `axiom` is taken as
+/// given too, unless it says `taken_as_given: false` in so many words.
 pub fn is_taken_as_given(props: &HashMap<String, Value>) -> bool {
-    props.get("taken_as_given").and_then(Value::as_bool) == Some(true)
+    match props.get("taken_as_given").and_then(Value::as_bool) {
+        Some(said) => said,
+        None => matches!(prop(props, "statement_kind"), Some("definition" | "axiom")),
+    }
 }
 
 /// The status values that CLAIM a node holds, per type — what the finding
@@ -549,11 +725,31 @@ impl DesignGraph {
             .min())
     }
 
-    /// The steps `id` is a premise of, sorted.
+    /// The premises of one step with whether each is ASSUMED (PREMISE_OF
+    /// `role: assumed`), sorted by id.
+    pub fn premise_links(&self, inference_id: &str) -> Result<Vec<(String, bool)>, DynoError> {
+        let mut links: Vec<(String, bool)> = self
+            .incoming(inference_id, Some(edge::PREMISE_OF))?
+            .into_iter()
+            .map(|e| {
+                let assumed = e.properties.get("role").and_then(Value::as_str) == Some("assumed");
+                (e.from_id, assumed)
+            })
+            .collect();
+        links.sort();
+        links.dedup_by(|a, b| a.0 == b.0);
+        Ok(links)
+    }
+
+    /// The steps `id` is an ORDINARY premise of, sorted — what a change to
+    /// `id` reaches. A step that takes `id` up as an assumption is not here:
+    /// it holds `id` as a hypothesis whatever `id`'s own truth, so losing it
+    /// costs that step nothing.
     fn steps_resting_on(&self, id: &str) -> Result<Vec<String>, DynoError> {
         let mut steps: Vec<String> = self
             .outgoing(id, Some(edge::PREMISE_OF))?
             .into_iter()
+            .filter(|e| e.properties.get("role").and_then(Value::as_str) != Some("assumed"))
             .map(|e| e.to_id)
             .collect();
         steps.sort();
@@ -592,6 +788,8 @@ impl DesignGraph {
             k,
             rule_name: prop(&n.properties, "rule_name").map(str::to_string),
             confirmation,
+            discharges: list_prop(&n.properties, "discharges"),
+            generalizes_over: list_prop(&n.properties, "generalizes_over"),
         }))
     }
 
@@ -610,9 +808,22 @@ impl DesignGraph {
     /// What reflow2 computes about whether `id` holds, and why. See the module
     /// documentation for the predicate each type gets.
     pub fn premise_truth(&self, id: &str) -> Result<(Truth, String), DynoError> {
+        Ok(self.premise_reading(id)?.pair())
+    }
+
+    /// [`Self::premise_truth`] with the assumptions it holds under.
+    fn premise_reading(&self, id: &str) -> Result<Read, DynoError> {
         let lost = BTreeSet::new();
         let mut ev = Eval::new(&lost);
-        self.truth_of(id, &mut ev, INFERENCE_DEPTH)
+        self.truth_full(id, &mut ev, INFERENCE_DEPTH)
+    }
+
+    /// The ASSUMPTIONS `id` holds under, as the design stands: every `assumed`
+    /// premise beneath it that no step on the way discharges, sorted. Empty
+    /// for a node that rests on no assumption, or whose every assumption is
+    /// discharged on the way to it.
+    pub fn assumptions_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        Ok(self.premise_reading(id)?.assumes.into_iter().collect())
     }
 
     /// What a node counted LOST by a change reads as: UNSUPPORTED (unknown) —
@@ -636,15 +847,20 @@ impl DesignGraph {
         ev: &mut Eval<'_>,
         depth: usize,
     ) -> Result<(Truth, String), DynoError> {
+        Ok(self.truth_full(id, ev, depth)?.pair())
+    }
+
+    fn truth_full(&self, id: &str, ev: &mut Eval<'_>, depth: usize) -> Result<Read, DynoError> {
         if ev.lost.contains(id) {
-            return self.lost_truth(id);
+            let (t, why) = self.lost_truth(id)?;
+            return Ok(Read::plain(t, why));
         }
         if let Some(hit) = ev.memo.get(id) {
             return Ok(hit.clone());
         }
         if ev.nodes.contains(id) {
             ev.cuts += 1;
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Unknown,
                 "it comes back to itself, through its support or a circle of objections, and a \
                  circle has no verdict"
@@ -662,20 +878,15 @@ impl DesignGraph {
         Ok(answer)
     }
 
-    fn truth_uncached(
-        &self,
-        id: &str,
-        ev: &mut Eval<'_>,
-        depth: usize,
-    ) -> Result<(Truth, String), DynoError> {
+    fn truth_uncached(&self, id: &str, ev: &mut Eval<'_>, depth: usize) -> Result<Read, DynoError> {
         if depth == 0 {
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Unknown,
                 format!("the chain of steps is deeper than {INFERENCE_DEPTH}"),
             ));
         }
         let Some(node_type) = self.type_holding(id)? else {
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Unknown,
                 "no single node of the design holds this id".to_string(),
             ));
@@ -683,13 +894,19 @@ impl DesignGraph {
         if node_type == node::INFERENCE {
             let r = self.step_reading(id, ev, depth)?;
             let why = match &r.note {
-                Some(note) => format!("a step whose verdict is unknown: {note}"),
-                None => format!("a step whose rule `{}` {}", r.rule, r.verdict.as_str()),
+                Some(note) if r.verdict == Truth::Unknown => {
+                    format!("a step whose verdict is unknown: {note}")
+                }
+                _ => format!("a step whose rule `{}` {}", r.rule, r.verdict.as_str()),
             };
-            return Ok((r.verdict, why));
+            return Ok(Read {
+                truth: r.verdict,
+                why,
+                assumes: r.assumes.into_iter().collect(),
+            });
         }
         if self.is_discontinued(id)? {
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Fails,
                 "discontinued by an accepted decision".to_string(),
             ));
@@ -706,28 +923,30 @@ impl DesignGraph {
             .map(|o| o.id.as_str())
             .collect();
         if !refuting.is_empty() {
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Fails,
                 format!("refuted by {}, which holds", refuting.join(", ")),
             ));
         }
-        let (own, own_why) = self.own_truth(id, &node_type, ev, depth)?;
+        let own = self.own_truth(id, &node_type, ev, depth)?;
         let standing: Vec<&str> = objections
             .iter()
             .filter(|o| o.truth == Truth::Unknown)
             .map(|o| o.id.as_str())
             .collect();
-        if standing.is_empty() || own == Truth::Fails {
-            return Ok((own, own_why));
+        if standing.is_empty() || own.truth == Truth::Fails {
+            return Ok(own);
         }
-        Ok((
-            Truth::Unknown,
-            format!(
+        Ok(Read {
+            truth: Truth::Unknown,
+            why: format!(
                 "contested: {} stand(s) against it, neither established nor answered; on its own, \
-                 {own_why}",
-                standing.join(", ")
+                 {}",
+                standing.join(", "),
+                own.why
             ),
-        ))
+            assumes: own.assumes,
+        })
     }
 
     /// Every opposing CONTRADICTS against `id`, each with the objection's own
@@ -784,13 +1003,19 @@ impl DesignGraph {
         node_type: &str,
         ev: &mut Eval<'_>,
         depth: usize,
-    ) -> Result<(Truth, String), DynoError> {
+    ) -> Result<Read, DynoError> {
         let Some(n) = self.get_node(node_type, id)? else {
-            return Ok((Truth::Unknown, "the node is not there".to_string()));
+            return Ok(Read::plain(
+                Truth::Unknown,
+                "the node is not there".to_string(),
+            ));
         };
         let status = prop(&n.properties, "status").map(str::to_string);
         if node_type == node::REQUIREMENT && status.as_deref() == Some("dropped") {
-            return Ok((Truth::Fails, "the requirement is dropped".to_string()));
+            return Ok(Read::plain(
+                Truth::Fails,
+                "the requirement is dropped".to_string(),
+            ));
         }
 
         // A CONCLUSION IS WHATEVER ITS STEPS YIELD. For a requirement a
@@ -802,7 +1027,7 @@ impl DesignGraph {
             if node_type == node::REQUIREMENT {
                 let by = self.requirement_directly_delivered_by(id)?;
                 if !by.is_empty() {
-                    return Ok((
+                    return Ok(Read::plain(
                         Truth::Holds,
                         format!("delivered directly by {}", by.join(", ")),
                     ));
@@ -810,21 +1035,45 @@ impl DesignGraph {
             }
             let mut verdicts = Vec::new();
             for s in &steps {
-                verdicts.push((s.clone(), self.step_reading(s, ev, depth)?.verdict));
+                let r = self.step_reading(s, ev, depth)?;
+                verdicts.push((s.clone(), r.verdict, r.assumes));
             }
             let said: Vec<String> = verdicts
                 .iter()
-                .map(|(s, v)| format!("{s} {}", v.as_str()))
+                .map(|(s, v, _)| format!("{s} {}", v.as_str()))
                 .collect();
             // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
             // step that fails or cannot be read leaves its conclusion without
             // that line of support; it never makes the conclusion false. So a
             // concluded node holds when one step holds and is otherwise
             // unknown: only an objection that holds refutes it.
-            if verdicts.iter().any(|(_, v)| *v == Truth::Holds) {
-                return Ok((Truth::Holds, format!("concluded by {}", said.join("; "))));
+            //
+            // Of the holding steps, the one resting on the FEWEST open
+            // assumptions decides what the node holds under: a line that needs
+            // no assumption beats one that does (alternatives are ANY).
+            let best = verdicts
+                .iter()
+                .filter(|(_, v, _)| *v == Truth::Holds)
+                .min_by_key(|(_, _, a)| a.len());
+            if let Some((_, _, assumes)) = best {
+                let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
+                let why = if assumes.is_empty() {
+                    format!("concluded by {}", said.join("; "))
+                } else {
+                    format!(
+                        "concluded by {}, under the assumption(s) {}, which no step on the way \
+                         discharges",
+                        said.join("; "),
+                        assumes.iter().cloned().collect::<Vec<_>>().join(", ")
+                    )
+                };
+                return Ok(Read {
+                    truth: Truth::Holds,
+                    why,
+                    assumes,
+                });
             }
-            return Ok((
+            return Ok(Read::plain(
                 Truth::Unknown,
                 format!(
                     "unsupported: no step concluding it holds ({}); losing its support does not \
@@ -834,7 +1083,7 @@ impl DesignGraph {
             ));
         }
 
-        Ok(match node_type {
+        let (truth, why) = match node_type {
             node::REQUIREMENT => {
                 if is_taken_as_given(&n.properties) {
                     (
@@ -917,7 +1166,8 @@ impl DesignGraph {
                 Truth::Unknown,
                 format!("reflow2 computes no truth for a {other}, so it is unknown, never guessed"),
             ),
-        })
+        };
+        Ok(Read::plain(truth, why))
     }
 
     /// A Constraint holds while nothing records it violated: it FAILS when a
@@ -967,11 +1217,258 @@ impl DesignGraph {
         }
         let lost = BTreeSet::new();
         let mut ev = Eval::new(&lost);
-        Ok(Some(self.step_reading(
-            inference_id,
-            &mut ev,
-            INFERENCE_DEPTH,
-        )?))
+        let mut reading = self.step_reading(inference_id, &mut ev, INFERENCE_DEPTH)?;
+        reading.independence = self.independence_of(inference_id)?;
+        Ok(Some(reading))
+    }
+
+    // ─── Assumptions, independence and statement kinds ────────────────────
+
+    /// Every ASSUMPTION the design makes: each node some step takes up as an
+    /// `assumed` premise, with those steps and the steps that discharge it
+    /// (a step naming it in `discharges` that rests on one of them). Sorted
+    /// by id; empty for a design that assumes nothing.
+    pub fn assumptions(&self) -> Result<Vec<AssumptionReading>, DynoError> {
+        let mut assumed_in: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+        let steps = self.scan_nodes(node::INFERENCE)?;
+        for st in &steps {
+            for (p, assumed) in self.premise_links(&st.node_id)? {
+                if assumed {
+                    assumed_in.entry(p).or_default().insert(st.node_id.clone());
+                }
+            }
+        }
+        if assumed_in.is_empty() {
+            return Ok(Vec::new());
+        }
+        let mut out = Vec::new();
+        for (a, in_steps) in assumed_in {
+            let mut discharged_by = Vec::new();
+            for d in &steps {
+                if !list_prop(&d.properties, "discharges").contains(&a) {
+                    continue;
+                }
+                let under = self.steps_under(&d.node_id)?;
+                if in_steps.iter().any(|s| under.contains(s)) {
+                    discharged_by.push(d.node_id.clone());
+                }
+            }
+            discharged_by.sort();
+            let name = match self.type_holding(&a)? {
+                Some(ty) => self
+                    .get_node(&ty, &a)?
+                    .and_then(|n| prop(&n.properties, "name").map(str::to_string)),
+                None => None,
+            };
+            out.push(AssumptionReading {
+                id: a,
+                name,
+                assumed_in: in_steps.into_iter().collect(),
+                discharged_by,
+            });
+        }
+        Ok(out)
+    }
+
+    /// Every step a step rests on, itself included: its premises' concluding
+    /// steps, theirs, and so on (assumed premises too).
+    pub fn steps_under(&self, step: &str) -> Result<BTreeSet<String>, DynoError> {
+        let mut seen: BTreeSet<String> = BTreeSet::new();
+        let mut queue: Vec<String> = vec![step.to_string()];
+        while let Some(s) = queue.pop() {
+            if !seen.insert(s.clone()) {
+                continue;
+            }
+            for p in self.premises_of(&s)? {
+                queue.extend(self.inferences_concluding(&p)?);
+                // A premise that is itself a step is a step under it.
+                if self.get_node(node::INFERENCE, &p)?.is_some() {
+                    queue.push(p);
+                }
+            }
+        }
+        Ok(seen)
+    }
+
+    /// The assumptions a step being written would rest on through `premises`:
+    /// those it takes up itself (`assumed`) and every `assumed` premise under
+    /// an ordinary one. What `discharges` may name.
+    fn assumptions_beneath(
+        &self,
+        premises: &[String],
+        assumed: &[String],
+    ) -> Result<BTreeSet<String>, DynoError> {
+        let mut out: BTreeSet<String> = assumed.iter().cloned().collect();
+        let mut steps: Vec<String> = Vec::new();
+        for p in premises {
+            steps.extend(self.inferences_concluding(p)?);
+            if self.get_node(node::INFERENCE, p)?.is_some() {
+                steps.push(p.clone());
+            }
+        }
+        let mut seen: BTreeSet<String> = BTreeSet::new();
+        while let Some(s) = steps.pop() {
+            if !seen.insert(s.clone()) {
+                continue;
+            }
+            for (p, is_assumed) in self.premise_links(&s)? {
+                if is_assumed {
+                    out.insert(p.clone());
+                }
+                steps.extend(self.inferences_concluding(&p)?);
+            }
+        }
+        Ok(out)
+    }
+
+    /// Each stated independence of one step (`independent_of`), checked: the
+    /// two lines may share no step other than those under the lemmas named
+    /// in `independent_except` (a step concluding one, and every step under
+    /// that). Definitions and axioms share no step, so they never count.
+    pub fn independence_of(&self, step: &str) -> Result<Vec<IndependenceReading>, DynoError> {
+        let Some(n) = self.get_node(node::INFERENCE, step)? else {
+            return Ok(Vec::new());
+        };
+        let others = list_prop(&n.properties, "independent_of");
+        if others.is_empty() {
+            return Ok(Vec::new());
+        }
+        let except = list_prop(&n.properties, "independent_except");
+        let mine = self.steps_under(step)?;
+        let mut allowed: BTreeSet<String> = BTreeSet::new();
+        for lemma in &except {
+            for s in self.inferences_concluding(lemma)? {
+                allowed.extend(self.steps_under(&s)?);
+            }
+        }
+        let my_nodes = self.rests_on_closure(step)?;
+        let mut out = Vec::new();
+        for other in others {
+            if other == step || self.get_node(node::INFERENCE, &other)?.is_none() {
+                out.push(IndependenceReading {
+                    step: step.to_string(),
+                    of: other.clone(),
+                    holds: false,
+                    shared_steps: Vec::new(),
+                    shares_named: Vec::new(),
+                    except: except.clone(),
+                    why: format!(
+                        "'{other}' is not another step of the design, so there is no second line \
+                         to be independent of"
+                    ),
+                });
+                continue;
+            }
+            let theirs = self.steps_under(&other)?;
+            let their_nodes = self.rests_on_closure(&other)?;
+            let shared_steps: Vec<String> = mine
+                .intersection(&theirs)
+                .filter(|s| !allowed.contains(*s))
+                .cloned()
+                .collect();
+            let shares_named: Vec<String> = except
+                .iter()
+                .filter(|l| my_nodes.contains(*l) && their_nodes.contains(*l))
+                .cloned()
+                .collect();
+            let holds = shared_steps.is_empty();
+            let why = if holds {
+                if shares_named.is_empty() {
+                    format!("the two lines share no step: {step} and {other} are independent")
+                } else {
+                    format!(
+                        "the two lines share no step beyond the named lemma(s) {}",
+                        shares_named.join(", ")
+                    )
+                }
+            } else {
+                format!(
+                    "the two lines both rest on {} — step(s) under no lemma the statement names, \
+                     so they are not independent as stated: name the shared lemma in \
+                     `independent_except`, or the lines are one argument",
+                    shared_steps.join(", ")
+                )
+            };
+            out.push(IndependenceReading {
+                step: step.to_string(),
+                of: other,
+                holds,
+                shared_steps,
+                shares_named,
+                except: except.clone(),
+                why,
+            });
+        }
+        Ok(out)
+    }
+
+    /// Every stated independence in the design, checked, by step.
+    pub fn stated_independence(&self) -> Result<Vec<IndependenceReading>, DynoError> {
+        let mut out = Vec::new();
+        for st in self.scan_nodes(node::INFERENCE)? {
+            if list_prop(&st.properties, "independent_of").is_empty() {
+                continue;
+            }
+            out.extend(self.independence_of(&st.node_id)?);
+        }
+        Ok(out)
+    }
+
+    /// Every step that generalizes over a variable something it rests on
+    /// fixes — each one does not hold. Sorted by step id.
+    pub fn generalizations_that_do_not_hold(
+        &self,
+    ) -> Result<Vec<(String, GeneralizationReading)>, DynoError> {
+        let mut out = Vec::new();
+        for st in self.scan_nodes(node::INFERENCE)? {
+            let over = list_prop(&st.properties, "generalizes_over");
+            if over.is_empty() {
+                continue;
+            }
+            let g = self.generalization_reading(&st.node_id, &over)?;
+            if !g.holds {
+                out.push((st.node_id.clone(), g));
+            }
+        }
+        out.sort_by(|a, b| a.0.cmp(&b.0));
+        Ok(out)
+    }
+
+    /// What a statement says it is (`statement_kind`) and how it reads now;
+    /// `None` when it says nothing.
+    pub fn statement_reading(&self, id: &str) -> Result<Option<StatementReading>, DynoError> {
+        let Some(ty) = self.type_holding(id)? else {
+            return Ok(None);
+        };
+        let Some(n) = self.get_node(&ty, id)? else {
+            return Ok(None);
+        };
+        let Some(kind) = prop(&n.properties, "statement_kind").map(str::to_string) else {
+            return Ok(None);
+        };
+        let (truth, why) = self.premise_truth(id)?;
+        let proof = self.proof_reading(id)?;
+        let (reads, why): (&'static str, String) = if truth == Truth::Fails {
+            ("refuted", why)
+        } else if matches!(kind.as_str(), "definition" | "axiom") {
+            (
+                "taken_as_given",
+                format!("a {kind}: what the reasoning starts from, a stated foundation"),
+            )
+        } else if let Some(p) = proof {
+            (p.status.as_str(), p.why)
+        } else if kind == "conjecture" {
+            (
+                "open",
+                "a conjecture no step shows and nothing that holds refutes".to_string(),
+            )
+        } else {
+            (
+                "stated",
+                format!("a {kind} no step concludes yet: stated, not shown"),
+            )
+        };
+        Ok(Some(StatementReading { kind, reads, why }))
     }
 
     fn step_reading(
@@ -995,6 +1492,10 @@ impl DesignGraph {
                 premises: Vec::new(),
                 note: Some("no Inference holds this id".to_string()),
                 confirmation: Confirmation::default(),
+                assumes: Vec::new(),
+                discharges: Vec::new(),
+                generalization: None,
+                independence: Vec::new(),
             });
         };
         let mut reading = InferenceReading {
@@ -1010,6 +1511,10 @@ impl DesignGraph {
             premises: Vec::new(),
             note: None,
             confirmation: rec.confirmation,
+            assumes: Vec::new(),
+            discharges: rec.discharges.clone(),
+            generalization: None,
+            independence: Vec::new(),
         };
         if ev.lost.contains(inference_id) {
             let (truth, why) = self.lost_truth(inference_id)?;
@@ -1038,23 +1543,47 @@ impl DesignGraph {
             return Ok(reading);
         }
         ev.path.insert(inference_id.to_string());
-        // EVERY PREMISE_OF COUNTS TODAY. Room is left on purpose for a ROLE on
-        // the link (req:a-design-can-be-a-proof: a hypothesis assumed and
-        // discharged inside a proof by contradiction or an induction step, which
-        // the final conclusion does not rest on): an optional edge property,
-        // added later, read here, with absent meaning what it means now.
+        // A PREMISE HAS A ROLE (req:a-proof-can-discharge-an-assumption-and-
+        // generalize-over-a-variable, Anthony's choice of 2026-10-17: a
+        // premise role). An ordinary premise is read by its computed truth. An
+        // ASSUMED one is a hypothesis taken up for the sake of argument — the
+        // reductio's "suppose the primes are finite", an induction hypothesis
+        // — and holds inside the argument whatever its own truth, so its
+        // falsity never fails the step; it is carried, as an assumption, by
+        // everything that rests on the step until a step DISCHARGES it.
         let mut values = Vec::new();
-        for p in self.premises_of(inference_id)? {
-            let (truth, why) = self.truth_of(&p, ev, depth - 1)?;
-            values.push(truth);
+        let mut assumes: BTreeSet<String> = BTreeSet::new();
+        for (p, assumed) in self.premise_links(inference_id)? {
+            if assumed {
+                values.push(Truth::Holds);
+                assumes.insert(p.clone());
+                reading.premises.push(PremiseReading {
+                    node_type: self.type_holding(&p)?,
+                    id: p,
+                    truth: Truth::Holds,
+                    why: "assumed: taken up by this step for the sake of argument, and held \
+                          inside it whatever its own truth"
+                        .to_string(),
+                    role: Some("assumed"),
+                });
+                continue;
+            }
+            let r = self.truth_full(&p, ev, depth - 1)?;
+            values.push(r.truth);
+            assumes.extend(r.assumes);
             reading.premises.push(PremiseReading {
                 node_type: self.type_holding(&p)?,
                 id: p,
-                truth,
-                why,
+                truth: r.truth,
+                why: r.why,
+                role: None,
             });
         }
         ev.path.remove(inference_id);
+        for d in &rec.discharges {
+            assumes.remove(d);
+        }
+        reading.assumes = assumes.into_iter().collect();
         reading.holding = values.iter().filter(|v| **v == Truth::Holds).count();
         reading.failing = values.iter().filter(|v| **v == Truth::Fails).count();
         reading.unknown = values.len() - reading.holding - reading.failing;
@@ -1062,7 +1591,79 @@ impl DesignGraph {
             Ok(v) => reading.verdict = v,
             Err(why) => reading.note = Some(why),
         }
+        // A GENERALIZATION IS CHECKED (Anthony's choice of 2026-10-17:
+        // declared and checked). A step generalizing over a variable that
+        // something it rests on FIXES does not hold: its verdict reads
+        // unknown with the reason, so its conclusion is unsupported, never
+        // refuted.
+        if !rec.generalizes_over.is_empty() {
+            let g = self.generalization_reading(inference_id, &rec.generalizes_over)?;
+            if !g.holds {
+                let fixed: Vec<String> = g
+                    .fixed_by
+                    .iter()
+                    .map(|f| format!("{} fixes {}", f.id, f.fixes.join(", ")))
+                    .collect();
+                let why = format!(
+                    "it generalizes over {}, and {}: a step generalizes only over a variable \
+                     nothing it rests on fixes",
+                    g.over.join(", "),
+                    fixed.join("; ")
+                );
+                if reading.verdict == Truth::Holds {
+                    reading.verdict = Truth::Unknown;
+                }
+                reading.note = Some(match reading.note.take() {
+                    Some(n) => format!("{n}; {why}"),
+                    None => why,
+                });
+            }
+            reading.generalization = Some(g);
+        }
         Ok(reading)
+    }
+
+    /// The generalization check for one step over `over`: every record it
+    /// rests on, at any depth, that fixes one of the variables (the step does
+    /// not hold), and every one that mentions one (shown only).
+    fn generalization_reading(
+        &self,
+        step: &str,
+        over: &[String],
+    ) -> Result<GeneralizationReading, DynoError> {
+        let wanted: BTreeSet<&str> = over.iter().map(String::as_str).collect();
+        let mut fixed_by = Vec::new();
+        let mut mentioned_by = Vec::new();
+        for id in self.rests_on_closure(step)? {
+            let Some(ty) = self.type_holding(&id)? else {
+                continue;
+            };
+            let Some(n) = self.get_node(&ty, &id)? else {
+                continue;
+            };
+            let fixes: Vec<String> = list_prop(&n.properties, "fixes")
+                .into_iter()
+                .filter(|f| wanted.contains(fixed_variable(f)))
+                .collect();
+            if !fixes.is_empty() {
+                fixed_by.push(FixedBy {
+                    id: id.clone(),
+                    fixes,
+                });
+            }
+            if list_prop(&n.properties, "variables")
+                .iter()
+                .any(|v| wanted.contains(v.as_str()))
+            {
+                mentioned_by.push(id);
+            }
+        }
+        Ok(GeneralizationReading {
+            over: over.to_vec(),
+            holds: fixed_by.is_empty(),
+            fixed_by,
+            mentioned_by,
+        })
     }
 
     /// The steps concluding `id` whose rule holds, sorted — what delivers a
@@ -1482,7 +2083,14 @@ impl DesignGraph {
             if !visited.insert(step_id.clone()) {
                 continue; // cycle guard
             }
-            for premise_id in self.premises_of(step_id)? {
+            for (premise_id, assumed) in self.premise_links(step_id)? {
+                // AN ASSUMPTION IS NEVER A FOUNDATION: it is taken up for the
+                // sake of argument, and either discharged on the way (the
+                // conclusion does not rest on it) or listed apart as what the
+                // conclusion holds under (`FoundationsReading.assumes`).
+                if assumed {
+                    continue;
+                }
                 if !visited.insert(premise_id.clone()) {
                     continue; // cycle guard on premises too
                 }
@@ -1532,6 +2140,7 @@ impl DesignGraph {
             total,
             capped,
             honest_limit: FOUNDATIONS_HONEST_LIMIT.to_string(),
+            assumes: self.assumptions_under(id)?,
         }))
     }
 
@@ -1594,6 +2203,24 @@ impl DesignGraph {
             }
         }
         let unconfirmed = total.saturating_sub(confirmed);
+        // A derivation holds only UNDER AN ASSUMPTION no step on the way
+        // discharges: a result inside a hypothetical argument, never a proof.
+        if any_holds && conclusion_truth == Truth::Holds {
+            let assumes = self.assumptions_under(id)?;
+            if !assumes.is_empty() {
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Conditional,
+                    why: format!(
+                        "it holds only under the assumption(s) {}, which no step on the way to it \
+                         discharges: a result inside an argument, not a proof of it",
+                        assumes.join(", ")
+                    ),
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                }));
+            }
+        }
         // A derivation holds, so only a standing objection leaves the
         // conclusion unknown: it is contested, neither proven nor shown.
         if any_holds && conclusion_truth == Truth::Unknown {
@@ -1845,10 +2472,12 @@ impl DesignGraph {
                 ),
             ));
         }
-        // The premises.
+        // The premises, ordinary and assumed.
         let mut given: Vec<String> = spec.premises.clone();
+        given.extend(spec.assumed.iter().cloned());
         given.sort();
         given.dedup();
+        let assumed_given: BTreeSet<&String> = spec.assumed.iter().collect();
         let stored = if existing.is_some() {
             self.premises_of(&spec.id)?
         } else {
@@ -1919,6 +2548,87 @@ impl DesignGraph {
             }
         }
 
+        // What it discharges: an assumption it, or a step it rests on, takes
+        // up. A discharge of anything else would say a supposition was closed
+        // that was never opened.
+        let stored_links: Vec<(String, bool)> = if existing.is_some() {
+            self.premise_links(&spec.id)?
+        } else {
+            Vec::new()
+        };
+        if let Some(discharges) = &spec.discharges {
+            let mut assumed_here: Vec<String> = spec.assumed.clone();
+            assumed_here.extend(
+                stored_links
+                    .iter()
+                    .filter(|(_, a)| *a)
+                    .map(|(p, _)| p.clone()),
+            );
+            let ordinary: Vec<String> = all_premises
+                .iter()
+                .filter(|p| !assumed_here.contains(p))
+                .map(|p| p.to_string())
+                .collect();
+            let open = self.assumptions_beneath(&ordinary, &assumed_here)?;
+            for d in discharges {
+                if !open.contains(d) {
+                    return Err(invalid(
+                        "discharges",
+                        format!(
+                            "'{d}' is not assumed anywhere this step rests on, so there is \
+                             nothing to discharge: mark it `assumed` on the step that supposes \
+                             it (add_inference's `assumed`), then name it here. Assumed beneath \
+                             this step: {}",
+                            if open.is_empty() {
+                                "nothing".to_string()
+                            } else {
+                                open.iter().cloned().collect::<Vec<_>>().join(", ")
+                            }
+                        ),
+                    ));
+                }
+            }
+        }
+        for (field, list) in [
+            ("generalizes_over", &spec.generalizes_over),
+            ("discharges", &spec.discharges),
+            ("independent_of", &spec.independent_of),
+            ("independent_except", &spec.independent_except),
+        ] {
+            if let Some(items) = list
+                && items.iter().any(|v| v.trim().is_empty())
+            {
+                return Err(invalid(
+                    field,
+                    format!("`{field}` holds an empty name; give each entry, or leave it out"),
+                ));
+            }
+        }
+        if let Some(others) = &spec.independent_of {
+            for o in others {
+                if *o == spec.id || self.get_node(node::INFERENCE, o)?.is_none() {
+                    return Err(invalid(
+                        "independent_of",
+                        format!(
+                            "'{o}' is not another step of this design: a line is stated \
+                             independent of another STEP (an Inference id), typically a second \
+                             step concluding the same claim"
+                        ),
+                    ));
+                }
+            }
+        }
+        if let Some(lemmas) = &spec.independent_except {
+            for l in lemmas {
+                if self.node_types_holding(l)?.is_empty() {
+                    return Err(invalid(
+                        "independent_except",
+                        format!("no node '{l}' exists to be a lemma the lines may share"),
+                    ));
+                }
+            }
+        }
+
         // ── Write. ────────────────────────────────────────────────────────
         let mut props: HashMap<String, Value> = existing
             .as_ref()
@@ -1973,6 +2683,26 @@ impl DesignGraph {
         if let Some(at) = &spec.confirmed_at {
             props.insert("confirmed_at".into(), Value::String(at.clone()));
         }
+        for (key, list) in [
+            ("discharges", &spec.discharges),
+            ("generalizes_over", &spec.generalizes_over),
+            ("independent_of", &spec.independent_of),
+            ("independent_except", &spec.independent_except),
+        ] {
+            if let Some(items) = list {
+                let mut items: Vec<String> = items.iter().map(|v| v.trim().to_string()).collect();
+                items.sort();
+                items.dedup();
+                if items.is_empty() {
+                    props.remove(key);
+                } else {
+                    props.insert(
+                        key.into(),
+                        Value::List(items.into_iter().map(Value::String).collect()),
+                    );
+                }
+            }
+        }
         let mut builder = Props::new();
         for (k, v) in props {
             builder = builder.set(&k, v);
@@ -1980,17 +2710,19 @@ impl DesignGraph {
         let stored_node = self.upsert_node(node::INFERENCE, &spec.id, builder)?;
         let mut drawn = Vec::new();
         for (p, ty) in &typed {
-            if stored.contains(p) {
+            let assumed = assumed_given.contains(p);
+            let stored_as = stored_links.iter().find(|(s, _)| s == p).map(|(_, a)| *a);
+            // Already drawn in the role asked for: nothing to write. A
+            // premise newly named as assumed is re-drawn with its role.
+            if stored_as == Some(assumed) || (stored_as.is_some() && !assumed) {
                 continue;
             }
-            self.create_edge(
-                edge::PREMISE_OF,
-                ty,
-                p,
-                node::INFERENCE,
-                &spec.id,
-                Props::new(),
-            )?;
+            let props = if assumed {
+                Props::new().set("role", "assumed")
+            } else {
+                Props::new()
+            };
+            self.create_edge(edge::PREMISE_OF, ty, p, node::INFERENCE, &spec.id, props)?;
             drawn.push(format!("{p} PREMISE_OF {}", spec.id));
         }
         if self.conclusion_of(&spec.id)?.is_none() {
@@ -2060,6 +2792,19 @@ pub struct InferenceSpec {
     pub confirmed_how: Option<String>,
     /// When, as an ISO 8601 timestamp.
     pub confirmed_at: Option<String>,
+    /// Premises the step takes up as ASSUMPTIONS (PREMISE_OF `role:
+    /// assumed`): hypotheses held inside the argument whatever their own
+    /// truth. Drawn beside `premises`; a premise named in both is assumed.
+    pub assumed: Vec<String>,
+    /// The assumptions this step discharges. Each must be assumed by this
+    /// step or by a step it rests on. Overwrites what is stored.
+    pub discharges: Option<Vec<String>>,
+    /// The variables this step generalizes over. Overwrites what is stored.
+    pub generalizes_over: Option<Vec<String>>,
+    /// Other steps this line is stated independent of. Overwrites.
+    pub independent_of: Option<Vec<String>>,
+    /// The lemmas the independent lines may share. Overwrites.
+    pub independent_except: Option<Vec<String>>,
 }
 
 /// What [`DesignGraph::add_inference`] wrote.

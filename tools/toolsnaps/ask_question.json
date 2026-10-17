@@ -1,0 +1,77 @@
+{
+  "annotations": {
+    "destructiveHint": false,
+    "readOnlyHint": false
+  },
+  "description": "Put a QUESTION OF YOUR OWN to a named person — the owner, a colleague — about the nodes it concerns, when no detected gap raised it: which foundations they take as given, what a word means here, whether to keep a proof's last step. `asked_of` (a Contributor) and `about` (one or more node ids) are required, and each is checked before anything is written. It then waits like any question put to a person: listed with `origin: asker`, counted by loop_status, and listed for that person by loop_status(contributor_id) until they reply, with whoever replied recorded. Its wording never changes; the same id again re-puts it. Never park one as a Decision with no edges. Ask for this to ask the owner something yourself and keep the question in the design.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "about": {
+        "description": "The nodes it is about, by id — at least one. Each is linked\n(ASKS_ABOUT), so the person opens what the question concerns and the\nquestion is found from it. An id the design does not hold is refused.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "asked_at": {
+        "default": null,
+        "description": "When it was put, as an ISO 8601 timestamp.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "asked_of": {
+        "description": "The Contributor it is put to (`who:jane`). Required, and refused unless\nit names a Contributor.",
+        "type": "string"
+      },
+      "batch": {
+        "default": null,
+        "description": "The batch it travels in, as you name it (`round-2`); numbered in the\norder put.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "context_setter": {
+        "default": null,
+        "description": "One or two sentences that place the person back in the design.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "id": {
+        "default": null,
+        "description": "Its id. Omitted, one is derived from the wording\n(`question:asked-<words>-<hash>`). The same id again re-puts the same\nquestion; different wording under it is refused.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "question": {
+        "description": "The question, in the words the person will read. It never changes once\nasked: its answer is given to these words.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "question",
+      "asked_of",
+      "about"
+    ],
+    "type": "object"
+  },
+  "name": "ask_question",
+  "title": "Ask a Question of Your Own"
+}
