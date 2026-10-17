@@ -1,9 +1,9 @@
 {
-  "content_hash": "sha256:356a4f9b13c272048da7680b1bc84d56f0f1111a30cf59f0a5975ae1d4b93c80",
+  "content_hash": "sha256:50200457ee06eed9decdef95f14c17e227393296f2a9bb75d1887ee38f832fee",
   "edge_type": "INCLUDES",
   "from_id": "rel:v0860",
   "properties": {
-    "as_checksum": "sha256:14320613328ceae86e28b1c54fbb1fa62c023c484f3a6cfd978cb1704b1dd5ce"
+    "as_checksum": "sha256:bdd116e6fc4ac47db1c499f8bf82db6f8d14c1f2ad51b430f307cb58b85fc5ff"
   },
   "to_id": "art:vocabulary"
 }

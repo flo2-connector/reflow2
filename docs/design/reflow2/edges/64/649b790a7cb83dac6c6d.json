@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a40e8da7a9ef3b7479d0e8fb208abd58ef418c1e83ddb3cf2fc6854bd0c7abad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:a1a2b34f64e76416e8058db5e24489f126408332d70d1e4b0cd2d8491f575b39",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:readme"
+}

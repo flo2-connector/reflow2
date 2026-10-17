@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:159fb0aefd06124d8319dcfdafa9120bfdc478d8d383862012c8117c0ebf72c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:ff1bc9503cea994e7886ee12f4d51ecb31abd4a3847ee19d751789a07c0a6e9d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:preserve"
+}

@@ -1,9 +1,9 @@
 {
-  "content_hash": "sha256:0f9b23a7601e541c79351e8e88d4f90427d2d475bbffb6f125c436854a373108",
+  "content_hash": "sha256:f75e609c7ac75d4dd6f59c9014e8656f31e8415d8ff72c9cd6449fc5dd37a164",
   "edge_type": "INCLUDES",
   "from_id": "rel:v0860",
   "properties": {
-    "as_checksum": "sha256:c231fce0ad6175609bb2bb076c3b1730827dfbad06b820a2acde6ded296a9f36"
+    "as_checksum": "sha256:afdebd6ab99f8ea78a80b39b423d700415c1669118cab822bf39898d56883f89"
   },
   "to_id": "art:every-prose-field-is-searched-test"
 }

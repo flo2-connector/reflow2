@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4ae1cef7d3f6d1aba740cb6fbfecf46a17cdea9aa19fce9738fa840205d109f7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:e731942aed40345928913e71709eb6e8a4b1153d4c0c07a95e782d1d675d9a17",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:smoke-mcp"
+}

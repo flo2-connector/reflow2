@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:379e14b1d17615c0d1fda43e4cf0b710d933b27f82648bc999d3c29124612e97",
+  "node_id": "chg:tantivy-0-27-2026-10-17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "environment_change",
+    "commits": "fafb2067f",
+    "detected_at": "2026-10-17",
+    "name": "Full-text search moves to Tantivy 0.27, with no code change and no index rebuild",
+    "rationale": "Under req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases a new 0.x series gets its own change that adapts the code; on Anthony's word 2026-10-17 (\"Bump PR first\") it is its own commit inside the v0.86.0 cut (PR #766) rather than its own PR, because only one design PR can hold reflow2's design at a time. MEASURED, not assumed: cargo dev-test with 0.27, 3,237 passed and 0 failed; a store whose index tantivy 0.26 built (reflow2's own design imported by the 0.86.0 cut build, 7,513 nodes) was opened by the 0.27 release build, every index file stayed byte-identical, loop_status reported no search_index_rebuilt_on_open, and four searches returned the same hits with the same scores on both builds; a small store written to by 0.27 (adding a second segment) was then read in full by the 0.26 build, so rollback loses no search. dependency_currency.py after the bump: OK. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system",
+    "summary": "tantivy 0.26 -> 0.27 (the new 0.x series published 2026-10-17 at 11:17 UTC, which turned the v0.86.0 cut's dependency-currency check red). No reflow2 code changed: none of 0.27's API breaks touch what foundation/text.rs calls. The index format is unchanged (INDEX_FORMAT_VERSION 7 in both), so the rebuild-on-open check does not fire and a store's index is kept as it is. The lock also moves zstd-sys 2.1.0 -> 2.1.2 through zstd 0.14."
+  }
+}

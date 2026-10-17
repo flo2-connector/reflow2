@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:eec654ac623abb8019678cddcebbaa7ff4fa7ea9291efb2de6c5424bdaad1c7e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-unused-anchor-type-is-removed-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:b4e9a4f29ac34ea624fd2ab33ffc04645ab8ac3415f99fac9a18380fced2ca9d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-served-item-is-removed-only-after-a-release-that-announced-it-test"
+}

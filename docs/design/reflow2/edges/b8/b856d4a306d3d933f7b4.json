@@ -1,9 +1,9 @@
 {
-  "content_hash": "sha256:14b7d52e900755d21db68695a9823df05db59c196370fec1835d9fcd1fe022e8",
+  "content_hash": "sha256:ed7caa2a2f13b41c5576b21261705cfc25df20290ea49274322690ccc615e106",
   "edge_type": "INCLUDES",
   "from_id": "rel:v0860",
   "properties": {
-    "as_checksum": "sha256:8e7babb647a754bdcc089b31500108a3e34d81649110a7442f48e6a4ee892e30"
+    "as_checksum": "sha256:d88a265d74e656ebb68f83e1973eec58eca8fbeffd3ccfb249a247649fa5765d"
   },
   "to_id": "art:docs-interaction-surfaces"
 }

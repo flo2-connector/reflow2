@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6f2c9f38c5a53b6009f5f72f2ecdc3c45496ab3aa79cdee386d032cf40f2091e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:the-unused-anchor-type-is-removed-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

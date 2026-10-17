@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:65c4a191abeda7e1f4b27508ec85cf6cc4ae7ba6eea46c60e91b32a0bdfb9a5f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:provenance",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

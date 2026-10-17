@@ -1,9 +1,9 @@
 {
-  "content_hash": "sha256:6ef10c91a3c4ea33816bf19707b42f1a92173b3bb21d817eaa93c02c23fa9680",
+  "content_hash": "sha256:ec9cde46096af21d40dcfbed841d56ec4dae6b3caccc8ceed64d17ef73a7c9e1",
   "edge_type": "INCLUDES",
   "from_id": "rel:v0860",
   "properties": {
-    "as_checksum": "sha256:433bb588c681866e966689eaf7c8ca264e609508528b2aef23d4c70127a9a373"
+    "as_checksum": "sha256:e8619bdacf3c53b4f81fe819fb0f6267d0007a5ec929b0a3a76bde5ba0e46dbc"
   },
   "to_id": "art:provenance"
 }

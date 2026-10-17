@@ -1,9 +1,9 @@
 {
-  "content_hash": "sha256:5dd7a8d6565c6789906f56fcfbcb67ff1138dcabe2ff66a5bf5e09889cf281d4",
+  "content_hash": "sha256:725ee10192c7a6861a9874ffef34be3eac2e09ebbfd8115f7f09e384a0cc81c5",
   "edge_type": "INCLUDES",
   "from_id": "rel:v0860",
   "properties": {
-    "as_checksum": "sha256:1792ce920acacac0ea198266c8a1bebac1b312964c42bb5dfc70e9db0e0df872"
+    "as_checksum": "sha256:7245343c020918cd177b2d3c4a861ee7ae824adfcfcd492bcb3d277d944236f0"
   },
   "to_id": "art:test-a-schema-narrowing-ships-its-migration"
 }
