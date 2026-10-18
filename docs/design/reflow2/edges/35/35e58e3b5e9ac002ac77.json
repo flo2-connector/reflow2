@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1bf1bf5e850e2e850e4fa3fbf661545384f8ecdb9c0d9389376963a0261729a1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-3bf3ac7b5fd5ab3f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:9ecea52e0454a79fbb494d17f0e353ec37c2cad87a8e0d5fe495374c08a69104",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-near-match-across-types-or-within-reasoning-is-a-note"
+}

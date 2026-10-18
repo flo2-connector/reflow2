@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ebfe54a5d8abb45ea288eceb75b5567c777524f9ec942e62ed449de86defc719",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-near-match-across-types-or-within-reasoning-is-a-note-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:29ea3d3903c83139764a300f1a02d054db5e03a198def2ebfd974c15e6b21371",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kit-instructions"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:35626025b4230e19b3eeebfc2ae7b8219ce9ce141df0dab9e02dca37ead2af89",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal",
+  "properties": {
+    "approved_at": "2026-10-17",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

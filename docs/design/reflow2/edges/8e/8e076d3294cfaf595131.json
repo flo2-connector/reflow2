@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:929566a64e2e6a10f1c863ac33528ea4648b99ac9dcc6df8066b86b04f077bd5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:the-reasoning-read-back-keeps-its-words-and-pages-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:f752d16d9e85bb3da68e57a3d5b60764fa1af725c0035d79856e7ef067086e55",
+  "node_id": "req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A near-match across types, or between two records of a line of reasoning, is a note on a successful write, never a refusal",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-17: \"do 1, 2 and 6 first\" (fix 1), with his choices \"Note, never refuse\" for cross-type and for within a proof",
+    "statement": "When a create or revise finds an existing record whose wording is close, reflow2 handles it as follows:\n- WRITES and reports the match beside the result (search_first.near_matches, naming each match and its type) when the match is of a different node type, or when both records belong to a line of reasoning (a statement carrying a statement_kind, or an Inference).\n- REFUSES, as today, only for a same-type match outside a line of reasoning, with the same three answers: sharpen, distinct_from, replaces.\n- The hand-kept list of exempt cross-type pairs is replaced by this rule, and a class test pins the rule.\nMeasured case to carry over: proof-trial rung 2 on design bbcd344a71ff1cbd, where about 19 creates were refused. A statement there was refused three times against three different nodes, and distinct_from lists of 15–18 ids were needed. Under this rule, recording the same proof needs no distinct_from at all.",
+    "status": "accepted"
+  }
+}

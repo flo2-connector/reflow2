@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:691c80ad50309e68899556b660c71ecdea2376e06e3761567fe6e54e72a6e91e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reasoning-read-back-keeps-its-words-and-pages-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:404a40102cd045ff9892bdeee23fd48a50eee94f1450352dda3b071c6dfa4c30",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-skill"
+}

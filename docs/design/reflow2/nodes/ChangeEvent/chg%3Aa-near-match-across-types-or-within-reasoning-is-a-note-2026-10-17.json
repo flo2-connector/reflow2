@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e77f7487f8b475c810db8b7396df177d1cb3119507c1be196d2d2ff6bd12d48e",
+  "node_id": "chg:a-near-match-across-types-or-within-reasoning-is-a-note-2026-10-17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "3127bd360",
+    "detected_at": "2026-10-17",
+    "name": "A near-match of another type, or within a line of reasoning, is a note, not a refusal",
+    "rationale": "Anthony's choice on dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses (2026-10-17, \"Note, never refuse\", for cross-type and within a proof), for req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal. Measured case, proof trial rung 2: replayed against the rest of its design, 45 of its 49 statements were refused on 0.86.0's code (34 with a same-type statement match, 11 cross-type only). 42 of the 49 had been recorded with distinct_from lists of up to 18 ids. Under the rule all 49 are written with none. The class test found 26 of 45 constructor × seed-type pairs refusing before. A list could not be pinned as a class, and it grew five times for field reports. The rule can be pinned, and the report survives on every write, so a cross-layer restatement gets a note rather than a stop: the counter-argument the decision weighed and accepted. No cause is asserted here beyond the decision's own record. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "refuse_unless_deliberate in crates/reflow2-mcp/src/tools/capture.rs now refuses only for a same-type near-match outside a line of reasoning (may_refuse). A cross-type match, or a same-type match between two records of a line of reasoning (a statement carrying a statement_kind, or an Inference), is written and named with its type in search_first.near_matches. PRESCRIBED_LAYER_PAIRS and the cross-type refusal wording are removed; NearMatch carries the hit's statement_kind; the exploratory-decision exemption stays. A class test pins the rule, and proof trial rung 2's design is a committed fixture. The capture-intent skill (three copies) and the consumer guide say when the check refuses. PR #767."
+  }
+}
