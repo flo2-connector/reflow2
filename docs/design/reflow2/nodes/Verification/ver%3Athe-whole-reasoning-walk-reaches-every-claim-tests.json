@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:5f126e10adae9db16f9d07441894d6adc1a3daf3839b0057ae2868ffa75fb988",
+  "node_id": "ver:the-whole-reasoning-walk-reaches-every-claim-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/the_whole_reasoning_walk_reaches_every_claim.rs, in the in_memory program. The class invariant, run over proof trial rung 2 and rung 1 imported from their fixtures: reasoning_report with no claim, read through all its pages, walks every node with a statement_reading or a proof_status and both ends of every opposing CONTRADICTS. Named: req:conj-h-unique-factorization, req:conj-h-euclid (rung 2), req:conjecture-euler-polynomial (rung 1). Read again in smaller pages, each claim comes back once and roots, rests_on, uncited_premises, stated_foundations, unsupported and still_contested are the whole walk's on every page. A bare conjecture refuted by a bare counterexample, and an open conjecture nothing touches, are read, the walk rooted at the conjectures.",
+    "findings": "3 passed in cargo dev-test (in_memory program), branch fix/a-claim-counts-each-step-once-and-the-walk-reaches-refuted-claims, commit d15132325; the existing reasoning tests (a_line_of_reasoning_reads_back, a_reasoning_read_back_keeps_its_words_and_pages) stay green. All three FAILED first on main 5a94e83: rung 2 \"never read 2 of the 57 claims ... req:conj-h-euclid, req:conj-h-unique-factorization\"; rung 1 \"never read 1 of the 25 ... req:conjecture-euler-polynomial\"; the bare case read no claims at all and said the design records no reasoning.",
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_whole_reasoning_walk_reaches_every_claim.rs",
+    "method": "test",
+    "name": "The whole reasoning walk reaches every claim (3 MCP tests, both proof trials)",
+    "status": "passing"
+  }
+}

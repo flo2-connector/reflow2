@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a6bb2d85c9d135acebdbe7de421c5d73e3bfdbc79dee67c564600f2b7c08033d",
+  "node_id": "chg:a-claim-counts-each-step-under-it-once-2026-10-18",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "d15132325",
+    "detected_at": "2026-10-18",
+    "name": "A claim's proof_status.total_steps counts each step under its holding lines once",
+    "rationale": "Fixes fact:root-cause-a-claims-step-count-sums-its-lines-so-a-shared-step-counts-twice-2026-10-18 at its cause: one walk served \"is this line wholly confirmed?\" and \"how many steps are under this claim?\", and the total inherited the per-line walk because nothing ever said what it counted. Now the meaning is written on ProofReading and in the served text, and the pin is the CLASS invariant run over both proof trials: for every concluded claim, total_steps equals the distinct Inferences reachable below it through its holding lines, computed independently from the export's edges, and never exceeds the design's Inference count. Each of its tests failed on main 5a94e83 before the fix (47 vs 40, 26 vs 21, 4 vs 3 on the hand case). Anthony, 2026-10-18: \"Yes, build the fixes. Do in one reflow2 PR\". After this ships, flo2's #169 real-engine test that pins the summed 47 must move to 40. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "proof_reading (crates/reflow2-core/src/inference.rs) now answers its two questions apart. Each holding line still walks from its own visited set, so whether THAT line is wholly confirmed (proven) is judged on all of its own steps, shared ones included. The steps every line reaches go into one set, and total_steps, confirmed_steps and unconfirmed_steps are that set's size and split: a step two lines share counts once. A refuted claim that a step concludes now counts its steps too (it read 0). ProofReading's doc and fields say what the counts mean, and every served proof_status carries a new `counts` sentence (PROOF_COUNTS_MEAN) saying so beside the numbers. get_node's description was left as it was: lengthening it pushed get_node out of first place for \"show a node's edges\" and \"read one node by id\" (find_tools_ranks_what_the_query_means). The design-a-proof skill (three copies) says what the count means; skill_lint's NON_TOOL_TERMS learn the field names. Measured: rung 2's req:prop-uniqueness 47 -> 40, the theorem stays 41; rung 1's theorem 26 -> 21 in a design of 25 steps. New test crates/reflow2-mcp/tests/a_claims_step_count_counts_each_step_once.rs and fixture proof_trial_rung_1_primes.json."
+  }
+}

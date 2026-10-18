@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3bf4763cc22e36d00f8343abdefb409fa6acc821e6a47494bbc01e56984950b6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-the-reasoning-walk-never-reaches-a-claim-only-an-objection-points-to-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

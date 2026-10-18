@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:85f84190d624e87c6f0de972644c25c584a302ed6c6fc8d92524423934a1b661",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-claims-step-count-counts-each-step-once",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-claims-step-count-counts-each-step-once-tests"
+}

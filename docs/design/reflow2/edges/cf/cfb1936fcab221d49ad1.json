@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fa1c7a10d8647290fc3cd554424d4fbe0fa5f13092dcfb007b7b14907f082b55",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-claims-step-count-counts-each-step-once-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

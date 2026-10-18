@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:07b76563a5185875b808eea6f09b0a18fcb8bdf546b27f35b3857a862ed9575b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-claim-counts-each-step-under-it-once-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 16,
+    "action": "modified",
+    "checksum_after": "sha256:e2563494def5b335d81882825b27857935b452c67e1aaa7abf8ecb737a0e3d63",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

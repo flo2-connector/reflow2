@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b099c18ae13ecc7d6db128503c5c999685e5b1ea340fea1d233fb3b1c40a92a0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-whole-reasoning-walk-reaches-refuted-claims-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
