@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0237bf0f95195743c946f12af2fb16f63a36b7b0d7667bef6132d0009e587d90",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:07e744b39924fc25aab936783b622768d1680a8f2cf05e6fc11edb94ad237d35"
+  },
+  "to_id": "art:test-a-store-an-older-reflow2-wrote-is-rechecked"
+}

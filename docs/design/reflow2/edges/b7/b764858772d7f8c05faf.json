@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ecbd8d132c8d657d5c6853c4884e31127e6ac90d69c4b66b762ccb606f4e8d99",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:2aeefbad79cfcbd292147a391e3adecbed2a48c9fed3de7eeef22b99bb8f4577"
+  },
+  "to_id": "art:loop-closure"
+}

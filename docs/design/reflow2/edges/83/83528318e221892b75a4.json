@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b6fb228dd275bbbcf2c3c312f7eb8f369754f0d81f52e06498b3a52c58069ba3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:763fe697166ca1e1e871fda75bd683e9e6c457e655f24125c7c57bd3986adda2"
+  },
+  "to_id": "art:test-a-rule-tests-the-condition-its-message-names"
+}

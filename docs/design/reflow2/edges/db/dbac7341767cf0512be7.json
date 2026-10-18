@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5746fb209fdaacb74fd9cfae5765f9c7cba1ea43fa4340f5c0dc2636de55986e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:7eadd954b9aeab79b6003bd3a2a853c9d9c0bd99e2668245084cf4699b8a8418"
+  },
+  "to_id": "art:test-a-root-cause-looks-across-the-family-and-a-new-piece-is-asked-for-its-whole"
+}

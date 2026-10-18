@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6d3c622d5f930474df47844a45903b47104197e6ee9efa6ac0118339daafa618",
+  "node_id": "snap:release-status:rel:v0870",
+  "node_type": "Snapshot",
+  "properties": {
+    "state": "{\"kind\":\"release_status_snapshot\",\"format\":1,\"release_id\":\"rel:v0870\",\"stored_as\":\"delta\",\"base_release\":\"rel:v0860\",\"base_snapshot\":\"snap:release-status:rel:v0860\",\"covers\":[\"Capability\",\"Decision\",\"Requirement\",\"Verification\"],\"set\":{\"Capability\":{\"cap:a-near-match-across-types-or-within-reasoning-is-a-note\":{\"status\":\"realized\"},\"cap:the-reasoning-read-back-keeps-its-words-and-pages\":{\"status\":\"realized\"}},\"Decision\":{\"dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses\":{\"status\":\"accepted\"},\"dec:idea-philosophical-arguments-as-trials-of-a-line-of-reasoning\":{\"status\":\"accepted\"},\"dec:idea-what-reflow2-can-learn-from-evaluator-guided-llm-circuit-design\":{\"status\":\"accepted\"},\"dec:idea-what-reflow2-takes-from-the-argumentation-frameworks\":{\"status\":\"accepted\"}},\"Requirement\":{\"req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal\":{\"status\":\"accepted\"},\"req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns\":{\"status\":\"accepted\"}},\"Verification\":{\"ver:a-claims-step-count-counts-each-step-once-tests\":{\"status\":\"passing\"},\"ver:a-near-match-across-types-or-within-reasoning-is-a-note-tests\":{\"status\":\"passing\"},\"ver:the-reasoning-read-back-keeps-its-words-and-pages-tests\":{\"status\":\"passing\"},\"ver:the-unused-anchor-type-is-announced-for-removal\":{\"status\":\"superseded\",\"discontinued\":true},\"ver:the-unused-anchor-type-is-removed\":{\"status\":\"passing\"},\"ver:the-whole-reasoning-walk-reaches-every-claim-tests\":{\"status\":\"passing\"}}}}",
+    "target_id": "rel:v0870",
+    "target_type": "Release"
+  }
+}

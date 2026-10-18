@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7a9d4e39d8ec6295bfe64caacc80d6522c5990e6e1d6dfd0b045ab561f236426",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:06ebf7e3f464a5e9856eb13aed533f9a44c59541b61f23f4589ebbfc75d72071"
+  },
+  "to_id": "art:built-work-reads-as-built-test"
+}
