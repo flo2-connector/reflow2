@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:24997d895222b8ed2229ab411860bdc41a5a73fd090fb4f33c13056ac3ddec35",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:fixture-proof-trial-brocard",
+  "properties": {
+    "authored_at": "2026-10-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

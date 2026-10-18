@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:050f76a07928ea40f6826bd93cc49c7bcd060fddf2815c3e60dc2a8119561b29",
+  "node_id": "cap:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims",
+  "node_type": "Capability",
+  "properties": {
+    "description": "reasoning.rs: reasoning_report lists an assumption a step discharges (and that is no ordinary premise anywhere) under `assumptions` only, never `unsupported`; a claim that holds only under an undischarged assumption reads `truth: conditional`, naming it. heal.rs + inference.rs: in a line of reasoning (a step's premise or conclusion, or a statement with statement_kind or taken_as_given), an opposing CONTRADICTS whose objection is answered, or that stands undecided (a lone objection, a mutual attack, an odd cycle) and states its reason in evidence, is counted under swept.suppressed_as_objection and never reported by detect_defects or counted by loop_status; one that refutes stays under suppressed_by_refutation. A CONTRADICTS outside any line of reasoning, or a standing one that states no reason, is still reported.",
+    "name": "A correct proof reads correct: discharged assumptions are not unsupported, settled or argued objections are not defects, conditional claims read conditional",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "tactical"
+  }
+}

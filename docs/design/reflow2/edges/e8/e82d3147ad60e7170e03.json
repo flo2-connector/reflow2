@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:18405dbc9137a30329190a071301ac84dd333485f7b203177941df0780cfdc8c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 18,
+    "action": "modified",
+    "checksum_after": "sha256:afefe0989695f65330cfaf5a1855785f4be342a50734267fc1506156deae3c61",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-query"
+}

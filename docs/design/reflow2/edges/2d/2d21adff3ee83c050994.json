@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48125fc688cf8f2c9aecbd50c6446564e30eb778dda51dce34ef65bb5945db5c",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "req:a-conclusion-shows-the-axioms-it-rests-on",
+  "properties": {
+    "evidence": "That accepted requirement says changing one axiom shows what falls; cut sets extend it to sets of premises through every step."
+  },
+  "to_id": "dec:idea-reflow2-computes-a-conclusions-minimal-cut-sets-of-premises"
+}

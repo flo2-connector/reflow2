@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bb80d0336667f4f301dfaeac17b8277c1d8c2fb973d0d87a32f373a6eff5a72e",
+  "node_id": "art:fixture-poc-case-1-a-decision-concluded-by-its-chain",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:db2740c80b7ef5212cc279975696faedafd0f937c80c03c842d7ea3ab6511e48",
+    "description": "17 nodes and 23 edges cut from reflow2's live design on flo2.io on 2026-10-18 (read-only, through the droplet's engine): dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses, its two concluding Inferences, their premises (the passing check and the rung-2 measured finding), the objection carried on chg:a-cross-type-near-match-is-named-as-a-layer with its reply, and their one-hop neighbours (facts whose subject was cut away dropped). It keeps the proof of concept's state as measured, before the counter-argument was re-expressed as its own statement.",
+    "location": "crates/reflow2-core/tests/fixtures/poc_case_1_a_decision_concluded_by_its_chain.json",
+    "name": "poc_case_1_a_decision_concluded_by_its_chain.json — a slice of reflow2's own design around the proof of concept's case 1",
+    "status": "realized"
+  }
+}

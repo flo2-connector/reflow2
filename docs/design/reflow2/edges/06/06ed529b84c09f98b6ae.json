@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd92df1e0533bfcc6f26543f19f2c4b118f1fbe125360bcabc71ed08bed8ad4a",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-premise-has-a-truth-and-a-proof-reads-correct",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-premise-has-a-truth-and-a-proof-reads-correct-tests"
+}

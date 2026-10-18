@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:712f0ddb92fa7351b4bca01b7abba9e025b07773bcc1fc057d48929dcdd68ce8",
+  "node_id": "req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A proof can state what it really does: a contradiction (falsum) reads false, a case split is checked exhaustive, a supposition has its own kind, and a cited theorem (verified or not) differs from an axiom",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18, choosing D (the rest) of the build list",
+    "statement": "From the 2026-10-17/18 proof trials:\n1. A falsum statement (a contradiction derived inside a reductio) reads as false, not \"holds\".\n2. A proof-by-cases step can name its cases, and reflow2 says whether they are declared exhaustive. The exhaustiveness itself is the owner's or a checker's word.\n3. statement_kind gains a value for a supposition or hypothesis.\n4. A theorem cited from elsewhere reads \"cited, not proved here\", distinct from an axiom or definition. A citation recalled but not checked against its source reads \"cited, unverified\", never plain \"holds\".\n5. The design-a-proof skill gains a recipe for each of these, and agrees with the tools.\nThe schema stamp is expected to move: every seat upgrades together.",
+    "status": "accepted"
+  }
+}

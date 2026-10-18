@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:b7c6c20e01903c00fe6ee71c329568713b6474ed717d8252eff15911e1a6890f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

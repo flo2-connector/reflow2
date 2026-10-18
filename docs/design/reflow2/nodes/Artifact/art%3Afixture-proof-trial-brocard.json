@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:32ac69c816e7ff2fe8aae576ae9fd1a9594212805f76307b72294bed39d2a164",
+  "node_id": "art:fixture-proof-trial-brocard",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:b3365e489ac347107fdd11842ee9b14f18bf72f9348201305af62160015141f1",
+    "description": "Design dd55db78c7cccda8 on flo2.io (reflow2 0.87.0), 48 nodes and 101 edges, exported read-only on 2026-10-18 through the droplet's engine over ssh. req:conj-finitely-many holds only under the abc conjecture (read `truth: holds` beside `proof_status: conditional` on 0.87.0), and the deliberate objection req:objection-scholze-stix was a detect_defects contradiction.",
+    "location": "crates/reflow2-core/tests/fixtures/proof_trial_brocard.json",
+    "name": "proof_trial_brocard.json — the Brocard's problem proof trial, exported read-only from flo2.io",
+    "status": "realized"
+  }
+}

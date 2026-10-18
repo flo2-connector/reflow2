@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fcf487615c392c7c5f6479b019c326d8a28d7660857bfeeb46467280adc17507",
+  "edge_type": "REALIZES",
+  "from_id": "art:capture-intent-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement"
+}

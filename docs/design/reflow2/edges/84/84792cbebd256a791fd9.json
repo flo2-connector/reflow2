@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6e0f25b8803d42ed687c2314e0d05ec7c1877792ea6b716ad6cf36775ef7c2d7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
+  "properties": {
+    "authored_at": "2026-10-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

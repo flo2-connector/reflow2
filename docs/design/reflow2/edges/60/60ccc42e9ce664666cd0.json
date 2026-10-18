@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:0589408e5d5522f76ee7f5b1ca050921fa3fdd42678f5e378284b2f135c9c03a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims",
+  "properties": {
+    "authored_at": "2026-10-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

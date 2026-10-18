@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:39b8fd6d3f56e4485951a1ccfd10c694a49eb31b1a909536e649c3fc59aafa18",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "inf:the-near-match-note-capability-satisfies-its-requirement",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

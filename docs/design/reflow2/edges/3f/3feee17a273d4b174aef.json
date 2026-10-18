@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2e8e4be2677682131d77eb35ef27d0b8ca5649c294c7fdfb9269c8d5d8f91962",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:fixture-proof-trial-pi-plus-e"
+}
