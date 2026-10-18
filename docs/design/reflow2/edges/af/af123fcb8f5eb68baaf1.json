@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:87062d7f50e0f006f0dc8dbd3a44d7b4264895d21b844a69cd6aeb2741e0f00f",
+  "content_hash": "sha256:eb06bdecded52d36828ab9d331aec347c93759e2dc48cab8d30808fa282aed59",
   "edge_type": "CHANGED",
   "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:db2740c80b7ef5212cc279975696faedafd0f937c80c03c842d7ea3ab6511e48",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:fixture-poc-case-1-a-decision-concluded-by-its-chain"
 }

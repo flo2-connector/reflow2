@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:a9f800e9f17da36ecba8d4a96475fc7d6c078a9abe90ea48bd7a093355c5f029",
+  "content_hash": "sha256:ea5317305c3e68ff5980784b03fd20831ad7f1a18a2c81b1b2a570fc55934203",
   "node_id": "art:fixture-proof-trial-arrow",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "data",
-    "checksum": "sha256:fc856414a2d4ef0a7b87cd4e092c52c3572dd64b6d5f1b28da86c10362e7c0e1",
     "description": "Design 6308149cf93f7723 on flo2.io (reflow2 0.87.0), 108 nodes and 290 edges, exported read-only on 2026-10-18 through the droplet's engine over ssh. 8 assumptions, each discharged, all listed `unsupported` on 0.87.0; req:f-is-dictatorship reads conditional; two counterexamples refute two conjectures.",
     "location": "crates/reflow2-core/tests/fixtures/proof_trial_arrow.json",
     "name": "proof_trial_arrow.json — the Arrow's theorem proof trial, exported read-only from flo2.io",

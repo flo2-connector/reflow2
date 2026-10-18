@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:b9a9c666c4a507b491d4aaf27b9ef77456be5b97da3e10c0c5b66dca9488cf53",
+  "content_hash": "sha256:de362661d20cdf9854b1810631d8d5234fa838ed5224653f05995bec25ac26f4",
   "edge_type": "CHANGED",
   "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:fc856414a2d4ef0a7b87cd4e092c52c3572dd64b6d5f1b28da86c10362e7c0e1",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:fixture-proof-trial-arrow"
 }

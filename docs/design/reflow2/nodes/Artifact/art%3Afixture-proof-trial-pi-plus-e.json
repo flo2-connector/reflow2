@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:da58d8cbb51ae9e89dba8ed24b8dac5efd6847b91b575cd81466c7f60b3171cf",
+  "content_hash": "sha256:a3e80f00f61a8b8da0b044ff0c1c64c3214589715a047231128d4efe4e61fc98",
   "node_id": "art:fixture-proof-trial-pi-plus-e",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "data",
-    "checksum": "sha256:b6151e231672bdc1414c4186585dfb21236238204e2b083ba2ddb51745905a5a",
     "description": "Design 082888103637f0e7 on flo2.io (reflow2 0.87.0), 21 nodes and 39 edges, exported read-only on 2026-10-18 through the droplet's engine over ssh (the read tools/reflow2_design_copy.py makes). A reductio whose supposition req:suppose-both-algebraic is discharged by inf:reductio, listed `unsupported` on 0.87.0; two claims read conditional.",
     "location": "crates/reflow2-core/tests/fixtures/proof_trial_pi_plus_e.json",
     "name": "proof_trial_pi_plus_e.json — the π+e proof trial, exported read-only from flo2.io",

@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:7d06aa7183be52671fe4e388d812a4efbb7f04accd8c75c5618ffac1ce425945",
+  "content_hash": "sha256:f53cf638898deaaac8b89777454d5b1e18701791888bc46106571af8afa42ab9",
   "node_id": "art:test-a-premise-has-a-truth-and-a-proof-reads-correct",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "test",
-    "checksum": "sha256:e78990c5707e5bb3f1ebca3bc7afb48252416018fab4a469adeaaafa5d674f3b",
     "description": "Class invariants over every node of six designs (π+e, Arrow, Brocard, the proof of concept's case 1 slice of reflow2, and proof-trial rungs 1 and 2): every standing measured TemporalFact holds and one made superseded, invalidated or a forecast reads unknown; no ChangeEvent reads false; a counter-argument recorded as its own statement is answered there; every accepted Decision a step concludes reads its acceptance beside its chain and says its `chose`; a first incomplete chain never reads the decision unsupported and the walk shows `accepted_without_a_holding_chain`; no discharged assumption is unsupported; no deliberate objection is a contradiction and an accidental one still is; a settled reinstatement chain is not a defect while an unargued mutual attack or odd cycle is; every conditional claim reads `truth: conditional`; the served skills agree a Decision may be a chain's conclusion.",
     "location": "crates/reflow2-core/tests/a_premise_has_a_truth_and_a_proof_reads_correct.rs",
     "name": "a_premise_has_a_truth_and_a_proof_reads_correct.rs — the records a choice rests on carry a truth, and a correct proof reads correct, on six designs",
