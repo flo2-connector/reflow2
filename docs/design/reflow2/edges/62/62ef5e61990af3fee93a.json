@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4c7fbe1e963523a1bd8678f50d8843a7726e559c9004104a3b4f51775c734a6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-philosophical-arguments-as-trials-of-a-line-of-reasoning",
+  "properties": {
+    "evidence": "The trials run on flo2.io through the connector, and their read-back step reads each design through flo2's read-back of a line of reasoning.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "xref:1a97fc1f1de4d5d2:cap:a-chat-reads-a-proof-design-as-a-proof"
+}
