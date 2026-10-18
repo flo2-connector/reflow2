@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77c2154db5112efdba654274ab4e4622a33cd8c9f291f7e5e1a71ceae948e83a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:graph-report-takes-a-reply-budget-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

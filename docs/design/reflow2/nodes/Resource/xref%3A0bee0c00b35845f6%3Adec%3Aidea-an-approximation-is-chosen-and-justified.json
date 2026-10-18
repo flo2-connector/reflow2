@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c8cf4838e408cf78eac6c706b9b584a245dc85fd9a4fc35b89002154eee4425e",
+  "node_id": "xref:0bee0c00b35845f6:dec:idea-an-approximation-is-chosen-and-justified",
+  "node_type": "Resource",
+  "properties": {
+    "design_graph_id": "0bee0c00b35845f6",
+    "design_node_id": "dec:idea-an-approximation-is-chosen-and-justified",
+    "name": "whether an approximation holds is the agent's and the person's judgement; flo2-calc computes the validity metric and the error",
+    "resource_type": "design-node-reference"
+  }
+}

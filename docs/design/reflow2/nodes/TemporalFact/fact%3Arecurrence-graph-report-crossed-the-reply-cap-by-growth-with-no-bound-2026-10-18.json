@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8b04a76f7439bfc1805d2dda9ded0ff93c8f6b94a76b2cf6064c523f6146918b",
+  "node_id": "fact:recurrence-graph-report-crossed-the-reply-cap-by-growth-with-no-bound-2026-10-18",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "RECURRENCE (the third known, after ility_report 2026-09-20 and manual_work_ledger 2026-09-28): graph_report crossed the 30,000 reply cap by the design's growth, with no bound",
+    "source": "CI run 39167702126 on PR #770, tools/replies_are_bounded.py against the committed copy (7,593 nodes, 58,393 edges)",
+    "statement": "RECURRENCE of fact:a-report-with-no-way-to-narrow-itself-crossed-its-cap-because-the-design-grew-not-because-anything-changed, counted, not re-derived. MEASURED 2026-10-18: \"31137  graph_report  OVER BUDGET AND UNBOUNDED\", the only unbounded overflow of 57 no-argument reads. Main's copy answered under the cap; this PR's copy (the adopted live writes and its own capabilities, whose REALIZES edges grew the `granularity` section from 14,050 to 16,339 characters) pushed it over. Nothing about the report changed. FIXED IN THE SAME PR at the class's known remedy: graph_report takes `budget_chars` and bounds through reply_budget::bound_reply (prose first, no list sampled); the gate then measured 29,242, fits. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject_id": "cap:every-oversized-reply-offers-a-bound",
+    "valid_from": "2026-10-18"
+  }
+}

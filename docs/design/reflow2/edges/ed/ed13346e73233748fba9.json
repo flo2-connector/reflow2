@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0f3b2d629afafd4c4a2307f1648cef3e7c66bc3c1fc3d8f2c553d8fd83193310",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-can-rest-on-an-approximation-with-its-regime-and-error-stated",
+  "properties": {
+    "evidence": "An approximation is an assumption that can stop being true; option (a) adds the regime in which it holds.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:assumptions-are-first-class"
+}

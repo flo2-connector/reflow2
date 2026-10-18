@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6191098871e048194c848c8ad33c395fbeab09ee29925168f30857aa1a8b87b3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:graph-report-takes-a-reply-budget-2026-10-18",
+  "properties": {
+    "authored_at": "2026-10-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
