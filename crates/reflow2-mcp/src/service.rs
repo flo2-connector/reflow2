@@ -2738,9 +2738,12 @@ pub struct TopicReportReq {
 #[serde(deny_unknown_fields)]
 pub struct ReasoningReportReq {
     /// The claim to read the reasoning under: its support, what it rests on
-    /// and what stands against it, all the way down. Omitted: every top
-    /// conclusion (a node a step concludes that supports nothing further) and
-    /// every Decision set to `contested`.
+    /// and what stands against it, all the way down. Omitted: the whole
+    /// design, from every top conclusion (a node a step concludes that
+    /// supports nothing further) and every Decision set to `contested`, and
+    /// reaching every claim of the reasoning: each concluded node, each
+    /// statement, and both ends of each objection, so a refuted conjecture is
+    /// read too.
     #[serde(default)]
     pub claim: Option<String>,
     /// How many claims one page returns at most (default 60, at most 500).

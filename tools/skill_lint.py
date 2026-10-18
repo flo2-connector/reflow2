@@ -653,6 +653,14 @@ NON_TOOL_TERMS = {
     "omitted",
     "next_offset",
     "capped_by",
+    # get_node's proof reading on a concluded claim (design-a-proof): its
+    # status and the distinct steps under it, each counted once
+    # (fact:root-cause-a-claims-step-count-sums-its-lines-so-a-shared-step-counts-twice-2026-10-18).
+    "proof_status",
+    "total_steps",
+    "confirmed_steps",
+    "unconfirmed_steps",
+    "counts",
     # The merge driver's per-conflict decisions (parallel-work skill): each
     # conflict id maps to one of these three sides.
     "base",

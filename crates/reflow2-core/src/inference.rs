@@ -282,14 +282,37 @@ impl ProofStatus {
 }
 
 /// A conclusion's proof status: proven, shown, or unproven, with why.
+///
+/// THE COUNTS ARE OF ONE SET: the distinct steps (Inferences) under the claim,
+/// reached through every one of its HOLDING lines (a concluding step whose
+/// rule holds over its premises) and on down through each premise's own
+/// concluding steps. A step two lines share is counted ONCE, so a claim never
+/// counts more steps than the design holds, and a theorem resting on a claim
+/// counts at least that claim's steps.
+/// `fact:root-cause-a-claims-step-count-sums-its-lines-so-a-shared-step-counts-twice-2026-10-18`:
+/// until 2026-10-18 the counts were the SUM of the lines, and a step two lines
+/// shared counted twice. `proven` is still judged line by line: a line is
+/// proven only when every one of ITS steps, shared ones included, is confirmed.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct ProofReading {
     pub status: ProofStatus,
     pub why: String,
+    /// The distinct steps under the claim's holding lines, each once.
     pub total_steps: usize,
+    /// Of those, the steps a person or a checker confirmed.
     pub confirmed_steps: usize,
+    /// Of those, the steps nobody confirmed: `total_steps - confirmed_steps`.
     pub unconfirmed_steps: usize,
+    /// What the three counts mean, carried beside them on every reading
+    /// ([`PROOF_COUNTS_MEAN`]), so the number is never read without it.
+    pub counts: &'static str,
 }
+
+/// What a [`ProofReading`]'s counts mean: served on every `proof_status`.
+pub const PROOF_COUNTS_MEAN: &str = "total_steps is the distinct steps under this claim's \
+     holding lines, each counted once however many lines share it; confirmed_steps and \
+     unconfirmed_steps split those. The status is judged line by line: proven when every step \
+     of one holding line, shared ones included, is confirmed.";
 
 /// What a step's rule gives over its premises, read now. Served on
 /// `get_node` for an Inference as `inference_reading`.
@@ -2175,47 +2198,51 @@ impl DesignGraph {
         if top_steps.is_empty() {
             return Ok(None);
         }
-        // A conclusion refuted by an objection that holds is unproven
-        // regardless of its steps — a checked counterexample overrides
-        // derivation.
-        let (conclusion_truth, why) = self.premise_truth(id)?;
-        if conclusion_truth == Truth::Fails {
-            return Ok(Some(ProofReading {
-                status: ProofStatus::Unproven,
-                why,
-                total_steps: 0,
-                confirmed_steps: 0,
-                unconfirmed_steps: 0,
-            }));
-        }
+        // TWO QUESTIONS, ANSWERED APART. Whether a line is wholly confirmed is
+        // judged per line, so each line walks from its own empty visited set
+        // and sees every one of its steps, shared ones included. How many
+        // steps are under the claim is the size of the UNION of those lines:
+        // a step two lines share is one step.
         let lost = BTreeSet::new();
         let mut ev = Eval::new(&lost);
         let mut any_holds = false;
         let mut any_proven_chain = false;
-        let mut total = 0usize;
-        let mut confirmed = 0usize;
-        let mut visited: BTreeSet<String> = BTreeSet::new();
-        visited.insert(id.to_string());
+        let mut under: BTreeSet<String> = BTreeSet::new();
+        let mut confirmed_under: BTreeSet<String> = BTreeSet::new();
         for s in &top_steps {
             let reading = self.step_reading(s, &mut ev, INFERENCE_DEPTH)?;
             if reading.verdict == Truth::Holds {
                 any_holds = true;
                 let mut chain_confirmed = true;
-                let mut chain_total = 0usize;
-                let mut chain_confirmed_count = 0usize;
+                let mut visited: BTreeSet<String> = BTreeSet::from([id.to_string()]);
                 self.proof_chain_walk(
                     s,
                     &mut chain_confirmed,
-                    &mut chain_total,
-                    &mut chain_confirmed_count,
-                    &mut visited.clone(),
+                    &mut under,
+                    &mut confirmed_under,
+                    &mut visited,
                 )?;
-                total += chain_total;
-                confirmed += chain_confirmed_count;
                 if chain_confirmed {
                     any_proven_chain = true;
                 }
             }
+        }
+        let total = under.len();
+        let confirmed = confirmed_under.len();
+        // A conclusion refuted by an objection that holds is unproven
+        // regardless of its steps — a checked counterexample overrides
+        // derivation. Its steps are still counted: the count says what is
+        // under the claim, not whether it stands.
+        let (conclusion_truth, why) = self.premise_truth(id)?;
+        if conclusion_truth == Truth::Fails {
+            return Ok(Some(ProofReading {
+                status: ProofStatus::Unproven,
+                why,
+                total_steps: total,
+                confirmed_steps: confirmed,
+                unconfirmed_steps: total.saturating_sub(confirmed),
+                counts: PROOF_COUNTS_MEAN,
+            }));
         }
         let unconfirmed = total.saturating_sub(confirmed);
         // A derivation holds only UNDER AN ASSUMPTION no step on the way
@@ -2233,6 +2260,7 @@ impl DesignGraph {
                     total_steps: total,
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
                 }));
             }
         }
@@ -2245,6 +2273,7 @@ impl DesignGraph {
                 total_steps: total,
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
+                counts: PROOF_COUNTS_MEAN,
             }));
         }
         if any_proven_chain {
@@ -2254,6 +2283,7 @@ impl DesignGraph {
                 total_steps: total,
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
+                counts: PROOF_COUNTS_MEAN,
             }))
         } else if any_holds {
             Ok(Some(ProofReading {
@@ -2264,6 +2294,7 @@ impl DesignGraph {
                 total_steps: total,
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
+                counts: PROOF_COUNTS_MEAN,
             }))
         } else {
             Ok(Some(ProofReading {
@@ -2272,25 +2303,31 @@ impl DesignGraph {
                 total_steps: total,
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
+                counts: PROOF_COUNTS_MEAN,
             }))
         }
     }
 
+    /// One line, walked from `step_id` down: every step on it goes into
+    /// `under` (and, when confirmed, `confirmed_under`), the sets shared by
+    /// all of a claim's lines, and `chain_confirmed` turns false at the
+    /// line's first unconfirmed step. `visited` is THIS line's, so a step an
+    /// earlier line already counted is still judged on this one.
     fn proof_chain_walk(
         &self,
         step_id: &str,
         chain_confirmed: &mut bool,
-        chain_total: &mut usize,
-        chain_confirmed_count: &mut usize,
+        under: &mut BTreeSet<String>,
+        confirmed_under: &mut BTreeSet<String>,
         visited: &mut BTreeSet<String>,
     ) -> Result<(), DynoError> {
         if !visited.insert(step_id.to_string()) {
             return Ok(());
         }
         if let Some(rec) = self.step_record(step_id)? {
-            *chain_total += 1;
+            under.insert(step_id.to_string());
             if rec.confirmation.is_confirmed() {
-                *chain_confirmed_count += 1;
+                confirmed_under.insert(step_id.to_string());
             } else {
                 *chain_confirmed = false;
             }
@@ -2298,13 +2335,7 @@ impl DesignGraph {
         for premise_id in self.premises_of(step_id)? {
             let concluding = self.inferences_concluding(&premise_id)?;
             for sub_step in &concluding {
-                self.proof_chain_walk(
-                    sub_step,
-                    chain_confirmed,
-                    chain_total,
-                    chain_confirmed_count,
-                    visited,
-                )?;
+                self.proof_chain_walk(sub_step, chain_confirmed, under, confirmed_under, visited)?;
             }
         }
         Ok(())

@@ -1,0 +1,3678 @@
+{
+ "content_hash": "sha256:0fcb5b437c26f48cb14bcd8d3eb5836510b3ec0f9a566f8d5464b1e854388546",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:370522915672b06d",
+   "properties": {},
+   "to_id": "proj:infinitely-many-primes"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:370522915672b06d",
+   "properties": {
+    "note": "evidence the asker attached"
+   },
+   "to_id": "req:theorem-infinitely-many-primes"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:aab240d9a04eb148",
+   "properties": {},
+   "to_id": "proj:infinitely-many-primes"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-euclid-number-at-least-2"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-finitely-many-is-absurd"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-divide-p"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-n-has-prime-divisor"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:claim-q-not-listed"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-divides-difference"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-divides-transitive"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-divisor-bounded"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-euclid"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-least-divisor-exists"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:lemma-prime-divisor"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {},
+   "to_id": "req:theorem-infinitely-many-primes"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-euler-polynomial-counterexample-n40-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-euler-polynomial-n0-to-39-trial-division-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-fermat-product-base-case-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-euler-polynomial-counterexample-n40-calc-json-20261017t011238623-0faa",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-euler-polynomial-n0-to-39-trial-division-calc-json-20261017t011237547-3136",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-fermat-product-base-case-calc-json-20261017t011239692-d6f5",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:axiom-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:axiom-pigeonhole",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:axiom-well-ordering",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-divides",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-fermat-number",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-finite-set",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:encoding-of-proof-records",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:question-contradiction-or-direct",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:question-foundations",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:question-meaning-of-infinitely-many",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:divides-difference",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:divides-transitive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:divisor-bounded",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:euclid",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:euclid-number-at-least-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:euler-counterexample-n40",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:euler-fails-at-multiples-of-41",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:euler-values-0-to-39",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-common-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-coprime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-distinct-primes",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-odd-at-least-3",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-product-base",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-product-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fermat-product-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:finitely-many-is-absurd",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:least-divisor-exists",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:least-divisor-is-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:listed-primes-divide-p",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:listed-primes-dont-divide-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:n-has-prime-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:q-not-listed",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:small-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:theorem-by-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:theorem-by-fermat-numbers",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:370522915672b06d",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:aab240d9a04eb148",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:c324b38ba39ad80d",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-euclid-number-at-least-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-euler-counterexample-n40",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-euler-values-0-to-39-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-fermat-common-divisor-divides-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-fermat-distinct-primes",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-fermat-odd-at-least-3",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-fermat-product-base",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-fermat-product-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-finitely-many-is-absurd",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-listed-primes-divide-p",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-listed-primes-dont-divide-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-n-has-prime-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-q-not-listed",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conjecture-euler-polynomial",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-divides-difference",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-divides-transitive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-euclid",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-euler-fails-at-multiples-of-41",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-fermat-coprime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-fermat-product",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-least-divisor-exists",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-prime-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-small-divisor",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:theorem-infinitely-many-primes",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-euler-0-to-39",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-euler-n40",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-fermat-base-case",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-euler-polynomial-counterexample-n40-calc-json-20261017t011238623-0faa",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-euler-polynomial-counterexample-n40-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-euler-polynomial-n0-to-39-trial-division-calc-json-20261017t011237547-3136",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-euler-polynomial-n0-to-39-trial-division-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-fermat-product-base-case-calc-json-20261017t011239692-d6f5",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-fermat-product-base-case-calc-json"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:divides-difference",
+   "properties": {},
+   "to_id": "req:lemma-divides-difference"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:divides-transitive",
+   "properties": {},
+   "to_id": "req:lemma-divides-transitive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:divisor-bounded",
+   "properties": {},
+   "to_id": "req:lemma-divisor-bounded"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:euclid",
+   "properties": {},
+   "to_id": "req:lemma-euclid"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:euclid-number-at-least-2",
+   "properties": {},
+   "to_id": "req:claim-euclid-number-at-least-2"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:euler-counterexample-n40",
+   "properties": {},
+   "to_id": "req:claim-euler-counterexample-n40"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:euler-fails-at-multiples-of-41",
+   "properties": {},
+   "to_id": "req:lemma-euler-fails-at-multiples-of-41"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:euler-values-0-to-39",
+   "properties": {},
+   "to_id": "req:claim-euler-values-0-to-39-prime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-common-divisor",
+   "properties": {},
+   "to_id": "req:claim-fermat-common-divisor-divides-2"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-coprime",
+   "properties": {},
+   "to_id": "req:lemma-fermat-coprime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-distinct-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-distinct-primes"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-odd-at-least-3",
+   "properties": {},
+   "to_id": "req:claim-fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-product-base",
+   "properties": {},
+   "to_id": "req:claim-fermat-product-base"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-product-induction",
+   "properties": {},
+   "to_id": "req:lemma-fermat-product"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fermat-product-step",
+   "properties": {},
+   "to_id": "req:claim-fermat-product-step"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:finitely-many-is-absurd",
+   "properties": {},
+   "to_id": "req:claim-finitely-many-is-absurd"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:least-divisor-exists",
+   "properties": {},
+   "to_id": "req:lemma-least-divisor-exists"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:least-divisor-is-prime",
+   "properties": {},
+   "to_id": "req:lemma-prime-divisor"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:listed-primes-divide-p",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-divide-p"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:listed-primes-dont-divide-n",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:n-has-prime-divisor",
+   "properties": {},
+   "to_id": "req:claim-n-has-prime-divisor"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:q-not-listed",
+   "properties": {},
+   "to_id": "req:claim-q-not-listed"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:small-divisor",
+   "properties": {},
+   "to_id": "req:lemma-small-divisor"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:theorem-by-contradiction",
+   "properties": {},
+   "to_id": "req:theorem-infinitely-many-primes"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:theorem-by-fermat-numbers",
+   "properties": {},
+   "to_id": "req:theorem-infinitely-many-primes"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:axiom-induction"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:axiom-integer-arithmetic"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:axiom-pigeonhole"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:axiom-well-ordering"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:def-divides"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:def-fermat-number"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:def-finite-set"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "con:def-prime"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-euclid-number-at-least-2"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-euler-counterexample-n40"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-euler-values-0-to-39-prime"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-common-divisor-divides-2"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-distinct-primes"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-product-base"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-fermat-product-step"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-finitely-many-is-absurd"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-divide-p"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-n-has-prime-divisor"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:claim-q-not-listed"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:conjecture-euler-polynomial"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-divides-difference"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-divides-transitive"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-divisor-bounded"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-euclid"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-euler-fails-at-multiples-of-41"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-fermat-coprime"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-fermat-product"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-least-divisor-exists"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-prime-divisor"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:lemma-small-divisor"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:infinitely-many-primes",
+   "properties": {},
+   "to_id": "req:theorem-infinitely-many-primes"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:claim-euler-counterexample-n40",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "n = 40 is an integer >= 0 at which n^2 + n + 41 = 1681 = 41\u00b741 is not prime, so 'prime for every n >= 0' is false."
+   },
+   "to_id": "req:conjecture-euler-polynomial"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:claim-euler-values-0-to-39-prime",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "EVIDENCE ONLY: the first 40 cases (n = 0..39) agree with the conjecture. Agreement in finitely many cases does not prove a statement about every n, and n = 40 shows it is false."
+   },
+   "to_id": "req:conjecture-euler-polynomial"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:lemma-euler-fails-at-multiples-of-41",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Every n = 41m with m >= 1 gives a value divisible by 41 and larger than 41, so the conjecture fails at infinitely many n (n = 41 is the first)."
+   },
+   "to_id": "req:conjecture-euler-polynomial"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-euler-polynomial-counterexample-n40-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-euler-n40"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-euler-polynomial-n0-to-39-trial-division-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-euler-0-to-39"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-fermat-product-base-case-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-fermat-base-case"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:axiom-induction",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:axiom-pigeonhole",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:axiom-well-ordering",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:def-fermat-number",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:def-finite-set",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-euclid-number-at-least-2",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-euler-counterexample-n40",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-euler-values-0-to-39-prime",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-fermat-common-divisor-divides-2",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-fermat-distinct-primes",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-fermat-odd-at-least-3",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-fermat-product-base",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-fermat-product-step",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-finitely-many-is-absurd",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-listed-primes-divide-p",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-listed-primes-dont-divide-n",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-n-has-prime-divisor",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:claim-q-not-listed",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:conjecture-euler-polynomial",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-divides-difference",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-divides-transitive",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-euclid",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-euler-fails-at-multiples-of-41",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-fermat-coprime",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-fermat-product",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-least-divisor-exists",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-prime-divisor",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:lemma-small-divisor",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:theorem-infinitely-many-primes",
+   "properties": {},
+   "to_id": "dec:encoding-of-proof-records"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-induction",
+   "properties": {},
+   "to_id": "inf:fermat-product-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:divides-difference"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:divides-transitive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:divisor-bounded"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:euclid-number-at-least-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:euler-fails-at-multiples-of-41"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:fermat-product-step"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:least-divisor-exists"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:listed-primes-divide-p"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:small-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-pigeonhole",
+   "properties": {},
+   "to_id": "inf:theorem-by-fermat-numbers"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:axiom-well-ordering",
+   "properties": {},
+   "to_id": "inf:least-divisor-exists"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:divides-difference"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:divides-transitive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:divisor-bounded"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:euler-counterexample-n40"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:euler-fails-at-multiples-of-41"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:fermat-common-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:least-divisor-exists"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:listed-primes-divide-p"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:small-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-fermat-number",
+   "properties": {},
+   "to_id": "inf:fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-fermat-number",
+   "properties": {},
+   "to_id": "inf:fermat-product-base"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-fermat-number",
+   "properties": {},
+   "to_id": "inf:fermat-product-step"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-finite-set",
+   "properties": {},
+   "to_id": "inf:finitely-many-is-absurd"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-finite-set",
+   "properties": {},
+   "to_id": "inf:theorem-by-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-finite-set",
+   "properties": {},
+   "to_id": "inf:theorem-by-fermat-numbers"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:euclid-number-at-least-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:euler-counterexample-n40"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:euler-fails-at-multiples-of-41"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:euler-values-0-to-39"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:fermat-coprime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:least-divisor-is-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:small-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-euclid-number-at-least-2",
+   "properties": {},
+   "to_id": "inf:n-has-prime-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-common-divisor-divides-2",
+   "properties": {},
+   "to_id": "inf:fermat-coprime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-distinct-primes",
+   "properties": {},
+   "to_id": "inf:theorem-by-fermat-numbers"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-odd-at-least-3",
+   "properties": {},
+   "to_id": "inf:fermat-coprime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-odd-at-least-3",
+   "properties": {},
+   "to_id": "inf:fermat-distinct-primes"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-product-base",
+   "properties": {},
+   "to_id": "inf:fermat-product-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-fermat-product-step",
+   "properties": {},
+   "to_id": "inf:fermat-product-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-finitely-many-is-absurd",
+   "properties": {},
+   "to_id": "inf:theorem-by-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-listed-primes-divide-p",
+   "properties": {},
+   "to_id": "inf:listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-listed-primes-dont-divide-n",
+   "properties": {},
+   "to_id": "inf:q-not-listed"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-n-has-prime-divisor",
+   "properties": {},
+   "to_id": "inf:euclid"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-n-has-prime-divisor",
+   "properties": {},
+   "to_id": "inf:q-not-listed"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-q-not-listed",
+   "properties": {},
+   "to_id": "inf:euclid"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divides-difference",
+   "properties": {},
+   "to_id": "inf:fermat-common-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divides-difference",
+   "properties": {},
+   "to_id": "inf:fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divides-difference",
+   "properties": {},
+   "to_id": "inf:listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divides-transitive",
+   "properties": {},
+   "to_id": "inf:fermat-common-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divides-transitive",
+   "properties": {},
+   "to_id": "inf:least-divisor-is-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {},
+   "to_id": "inf:fermat-coprime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {},
+   "to_id": "inf:fermat-odd-at-least-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {},
+   "to_id": "inf:least-divisor-is-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-divisor-bounded",
+   "properties": {},
+   "to_id": "inf:listed-primes-dont-divide-n"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-euclid",
+   "properties": {},
+   "to_id": "inf:finitely-many-is-absurd"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-fermat-coprime",
+   "properties": {},
+   "to_id": "inf:fermat-distinct-primes"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-fermat-product",
+   "properties": {},
+   "to_id": "inf:fermat-common-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-least-divisor-exists",
+   "properties": {},
+   "to_id": "inf:least-divisor-is-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-prime-divisor",
+   "properties": {},
+   "to_id": "inf:fermat-distinct-primes"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-prime-divisor",
+   "properties": {},
+   "to_id": "inf:n-has-prime-divisor"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-small-divisor",
+   "properties": {},
+   "to_id": "inf:euler-values-0-to-39"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-euler-0-to-39",
+   "properties": {},
+   "to_id": "inf:euler-values-0-to-39"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-euler-n40",
+   "properties": {},
+   "to_id": "inf:euler-counterexample-n40"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-fermat-base-case",
+   "properties": {},
+   "to_id": "inf:fermat-product-base"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-euler-0-to-39",
+   "properties": {},
+   "to_id": "req:claim-euler-values-0-to-39-prime"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-euler-n40",
+   "properties": {},
+   "to_id": "req:claim-euler-counterexample-n40"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-fermat-base-case",
+   "properties": {},
+   "to_id": "req:claim-fermat-product-base"
+  }
+ ],
+ "graph_id": "d2ea1acfee6090c8",
+ "nodes": [
+  {
+   "node_id": "art:file-euler-polynomial-counterexample-n40-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:b2faea9b1904b0259e74ee37ac17acd7e9361c9b3f2c60cd277cb3d5915c74a0",
+    "description": "Made by Anthony Sligar on 2026-10-17 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "euler-polynomial-counterexample-n40.calc.json",
+    "name": "euler-polynomial-counterexample-n40.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-euler-polynomial-n0-to-39-trial-division-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:1bf7858e5017bb4e2d53f293551287ca98fd1a77bb367a45f2dfcf1a0c52c98d",
+    "description": "Made by Anthony Sligar on 2026-10-17 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "euler-polynomial-n0-to-39-trial-division.calc.json",
+    "name": "euler-polynomial-n0-to-39-trial-division.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-fermat-product-base-case-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:628f0c8914ed1e6d29e6c239d81a5f1565db780daec74e3be19ebbe4449b4062",
+    "description": "Made by Anthony Sligar on 2026-10-17 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "fermat-product-base-case.calc.json",
+    "name": "fermat-product-base-case.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:file-euler-polynomial-counterexample-n40-calc-json-20261017t011238623-0faa",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-17",
+    "name": "euler-polynomial-counterexample-n40.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made euler-polynomial-counterexample-n40.calc.json (8856 bytes, sha256 b2faea9b1904b0259e74ee37ac17acd7e9361c9b3f2c60cd277cb3d5915c74a0) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-euler-polynomial-counterexample-n40-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-euler-polynomial-n0-to-39-trial-division-calc-json-20261017t011237547-3136",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-17",
+    "name": "euler-polynomial-n0-to-39-trial-division.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made euler-polynomial-n0-to-39-trial-division.calc.json (25854 bytes, sha256 1bf7858e5017bb4e2d53f293551287ca98fd1a77bb367a45f2dfcf1a0c52c98d) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-euler-polynomial-n0-to-39-trial-division-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-fermat-product-base-case-calc-json-20261017t011239692-d6f5",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-17",
+    "name": "fermat-product-base-case.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made fermat-product-base-case.calc.json (7548 bytes, sha256 628f0c8914ed1e6d29e6c239d81a5f1565db780daec74e3be19ebbe4449b4062) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-fermat-product-base-case-calc-json."
+   }
+  },
+  {
+   "node_id": "con:axiom-induction",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Axiom: mathematical induction",
+    "priority": "medium",
+    "statement": "If a statement S(n) holds for n = 1, and for every n >= 1 S(n) implies S(n+1), then S(n) holds for every integer n >= 1."
+   }
+  },
+  {
+   "node_id": "con:axiom-integer-arithmetic",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Axiom: arithmetic and order of the integers",
+    "priority": "medium",
+    "statement": "The integers with + and \u00b7 form a commutative ring with 1 (associative, commutative, distributive, including over subtraction). They are totally ordered, compatibly with + and \u00b7: the sum and product of positive integers are positive, 1 is the least positive integer, and if x <= y and 0 < z then x\u00b7z <= y\u00b7z. The product of an empty list of integers is 1."
+   }
+  },
+  {
+   "node_id": "con:axiom-pigeonhole",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Axiom: pigeonhole principle",
+    "priority": "medium",
+    "statement": "A complete list x1, ..., xk of k elements (k >= 0) cannot contain k + 1 pairwise different values."
+   }
+  },
+  {
+   "node_id": "con:axiom-well-ordering",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Axiom: well-ordering of the positive integers",
+    "priority": "medium",
+    "statement": "Every nonempty set of positive integers has a least element."
+   }
+  },
+  {
+   "node_id": "con:def-divides",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Definition: divides",
+    "priority": "medium",
+    "statement": "For integers a and b, a divides b (written a | b) when b = a\u00b7c for some integer c. A divisor of b is an integer that divides b."
+   }
+  },
+  {
+   "node_id": "con:def-fermat-number",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Definition: Fermat number",
+    "priority": "medium",
+    "statement": "For each integer n >= 0, the n-th Fermat number is F_n = 2^(2^n) + 1."
+   }
+  },
+  {
+   "node_id": "con:def-finite-set",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Definition: finite and infinite set",
+    "priority": "medium",
+    "statement": "A set is finite when its elements can be listed completely as x1, ..., xk for some integer k >= 0 (k = 0 is the empty set). A set is infinite when it is not finite. 'There are infinitely many primes' means: the set of primes is infinite."
+   }
+  },
+  {
+   "node_id": "con:def-prime",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "name": "Definition: prime",
+    "priority": "medium",
+    "statement": "A prime is an integer p > 1 whose only positive divisors are 1 and p."
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "dec:encoding-of-proof-records",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "Every statement to be shown (the theorem, Lemmas 1-6, Claims E1-E5 and C) is a Requirement named 'Theorem: ...', 'Lemma n: ...' or 'Claim ...: ...', with no `kind` (none of functional/nonfunctional/quality/business fits a mathematical statement). Every definition and axiom is a Constraint named 'Definition: ...' or 'Axiom: ...'. Every proof step is an Inference (add_inference) with rule `all`, a rule_name naming the logical rule, and a warrant; steps are left unconfirmed for the owner.",
+    "kind": "choice",
+    "name": "How this proof is recorded (proposed for the owner to accept)",
+    "no_relation_note": "The encoding decision governs every statement, definition and axiom of the proof through GOVERNED_BY edges; it relates to no other idea in this design.",
+    "rationale": "Follows the mathematics vocabulary reflow2 itself serves (theorem/lemma = Requirement, definition/axiom = Constraint, proof step = Inference). Recorded once so each later statement cites this instead of re-deciding.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "dec:question-contradiction-or-direct",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "QUESTION FOR ANTHONY: The heart of the proof (Lemma 6, Euclid) is direct: any finite list of primes misses a prime. The design then closes by contradiction (Claim C, then the theorem), because the textbook form is a reductio and reflow2 cannot hold a discharged assumption, so the supposition 'finitely many primes' lives only inside Claim C's statement and the warrants. Keep this two-step contradiction ending, or conclude the theorem directly from Lemma 6 and the definition of finite in one step?",
+    "kind": "exploratory",
+    "name": "Open question for the owner: keep the final step as proof by contradiction?",
+    "no_relation_note": "This is an open question for the owner about inf:finitely-many-is-absurd, inf:theorem-by-contradiction and req:claim-finitely-many-is-absurd. None of the offered relations means 'is a question about', so none is drawn.",
+    "rationale": "Both are valid; the choice is about which reads better to a checker and how faithfully the design shows the reductio.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "dec:question-foundations",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "QUESTION FOR ANTHONY: The proof takes as axioms (unproved) the ring and order facts of the integers (con:axiom-integer-arithmetic) and the well-ordering of the positive integers (con:axiom-well-ordering). Is that an acceptable floor, or should these be derived from the Peano axioms (or another base) so that fewer statements are taken on trust?",
+    "kind": "exploratory",
+    "name": "Open question for the owner: which foundations are taken as given",
+    "no_relation_note": "This is an open question for the owner about con:axiom-integer-arithmetic and con:axiom-well-ordering. None of the offered relations means 'is a question about', so none is drawn.",
+    "rationale": "reasoning_report lists these as what the proof rests on and as premises citing no source; the owner decides whether they stay the floor.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "dec:question-meaning-of-infinitely-many",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "QUESTION FOR ANTHONY: The design reads 'there are infinitely many primes' as 'the set of primes is not finite' (con:def-finite-set). An equivalent and common reading is 'for every integer n there is a prime greater than n'. Is the not-finite reading the one you want shown, or should the second reading be added as a corollary?",
+    "kind": "exploratory",
+    "name": "Open question for the owner: what 'infinitely many' means here",
+    "no_relation_note": "This is an open question for the owner about con:def-finite-set and req:theorem-infinitely-many-primes. None of the offered relations (CONTRADICTS, EVOLVES_INTO, DEPENDS_ON, CAUSES, TRIGGERS, BLOCKS, DUPLICATES, ANTICIPATES, OBSOLETES, RISKS, MITIGATES, MASKS, VIOLATES) means 'is a question about', so none is drawn.",
+    "rationale": "The theorem's wording is all the designer was given; the reading chosen fixes what the final step must conclude.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:divides-difference",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 2",
+    "rule": "all",
+    "rule_name": "direct proof (unfold the definition)",
+    "warrant": "d | a gives a = d\u00b7x and d | b gives b = d\u00b7y for integers x, y. Then b - a = d\u00b7y - d\u00b7x = d\u00b7(y - x) by distributivity over subtraction, and y - x is an integer, so d | (b - a)."
+   }
+  },
+  {
+   "node_id": "inf:divides-transitive",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 1",
+    "rule": "all",
+    "rule_name": "direct proof (unfold the definition)",
+    "warrant": "a | b gives b = a\u00b7x and b | c gives c = b\u00b7y for integers x, y. Then c = (a\u00b7x)\u00b7y = a\u00b7(x\u00b7y) by associativity, and x\u00b7y is an integer, so a | c by the definition of divides."
+   }
+  },
+  {
+   "node_id": "inf:divisor-bounded",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 3",
+    "rule": "all",
+    "rule_name": "direct proof (unfold the definition, then order facts)",
+    "warrant": "d | n gives n = d\u00b7c for an integer c. Since d > 0 and n > 0, c > 0 (if c <= 0 then d\u00b7c <= 0). As 1 is the least positive integer, c >= 1, and multiplying by d > 0 gives n = d\u00b7c >= d\u00b71 = d."
+   }
+  },
+  {
+   "node_id": "inf:euclid",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 6 (Euclid)",
+    "rule": "all",
+    "rule_name": "universal generalization (the list was arbitrary)",
+    "warrant": "Claims E1 to E5 were shown for an arbitrary finite list of primes, using nothing about the list except that its members are prime (k = 0 included: then N = 2 and q = 2). Claim E4 gives a prime q and Claim E5 says it is not on the list. Since the list was arbitrary, every finite list of primes misses some prime."
+   }
+  },
+  {
+   "node_id": "inf:euclid-number-at-least-2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim E1",
+    "rule": "all",
+    "rule_name": "direct proof (order facts)",
+    "warrant": "Each listed pi is prime, so pi > 1 > 0 by definition. A product of positive integers is positive, and the empty product is 1, so P > 0, hence P >= 1 (1 is the least positive integer). Therefore N = P + 1 >= 2."
+   }
+  },
+  {
+   "node_id": "inf:euler-counterexample-n40",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim X (the counterexample)",
+    "rule": "all",
+    "rule_name": "exact computation, then the definition",
+    "warrant": "The kept computation gives 40^2 + 40 + 41 = 1681 = 41\u00b741, so 41 | 1681 by the definition of divides, with 1 < 41 < 1681. So 1681 has a positive divisor other than 1 and itself and is not prime."
+   }
+  },
+  {
+   "node_id": "inf:euler-fails-at-multiples-of-41",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma M",
+    "rule": "all",
+    "rule_name": "direct proof (factor out 41)",
+    "warrant": "With n = 41m: n^2 + n + 41 = 41^2\u00b7m^2 + 41\u00b7m + 41 = 41\u00b7(41m^2 + m + 1) by distributivity, so 41 divides it. For m >= 1, 41m^2 + m + 1 > 1, so the value is greater than 41; and 41 > 1. So 41 is a positive divisor other than 1 and the value itself, and the value is not prime."
+   }
+  },
+  {
+   "node_id": "inf:euler-values-0-to-39",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim P (exhaustive check)",
+    "rule": "all",
+    "rule_name": "exhaustive finite check (trial division)",
+    "warrant": "The kept computation shows each value v = n^2 + n + 41 (n = 0..39) satisfies 41 <= v <= 1601 < 41\u00b741 and has no divisor d with 2 <= d <= 40. If such v were not prime, Lemma S would give a divisor d >= 2 with d\u00b7d <= v < 41\u00b741, so d <= 40, a contradiction. And v > 1. So each v is prime. This proves the 40 cases only."
+   }
+  },
+  {
+   "node_id": "inf:fermat-common-divisor",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim F3",
+    "rule": "all",
+    "rule_name": "direct proof",
+    "warrant": "Let m < n and d > 0 divide both F_m and F_n. F_m is one factor of F_0\u00b7...\u00b7F_(n-1), which equals F_n - 2 by Lemma F2, so F_m | (F_n - 2) by the definition. From d | F_m, Lemma 1 gives d | (F_n - 2). With d | F_n, Lemma 2 gives d | (F_n - (F_n - 2)) = 2."
+   }
+  },
+  {
+   "node_id": "inf:fermat-coprime",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma F4",
+    "rule": "all",
+    "rule_name": "modus tollens",
+    "warrant": "Take m different from n, say m < n. If a prime p divided both, Claim F3 gives p | 2, so p <= 2 (Lemma 3), and p > 1 (prime), so p = 2. But 2 does not divide F_m (Claim F1). So no prime divides both."
+   }
+  },
+  {
+   "node_id": "inf:fermat-distinct-primes",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim F5",
+    "rule": "all",
+    "rule_name": "universal instantiation, then substitution of equals",
+    "warrant": "Each F_n >= 3 >= 2 (Claim F1), so Lemma 5 gives it a prime divisor q_n. If q_m = q_n for m different from n, that prime would divide both F_m and F_n, which Lemma F4 rules out. So q_0, ..., q_k are pairwise different primes."
+   }
+  },
+  {
+   "node_id": "inf:fermat-odd-at-least-3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim F1",
+    "rule": "all",
+    "rule_name": "direct proof, then modus tollens for oddness",
+    "warrant": "2^n >= 1, so x = 2^(2^n) = 2\u00b72^(2^n - 1) is a multiple of 2 and x >= 2; hence F_n = x + 1 >= 3. If 2 divided F_n, then as 2 | x, Lemma 2 gives 2 | (F_n - x) = 1, and Lemma 3 gives 2 <= 1, which is false. So 2 does not divide F_n."
+   }
+  },
+  {
+   "node_id": "inf:fermat-product-base",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim F2a",
+    "rule": "all",
+    "rule_name": "exact computation",
+    "warrant": "By the definition, F_0 = 2^1 + 1 and F_1 = 2^2 + 1; the kept computation fermat-product-base-case.calc.json evaluates them exactly as 3 and 5, and F_1 - 2 = 3 = F_0. The product of the single earlier Fermat number F_0 is F_0 itself."
+   }
+  },
+  {
+   "node_id": "inf:fermat-product-induction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma F2",
+    "rule": "all",
+    "rule_name": "mathematical induction",
+    "warrant": "S(n): F_0\u00b7...\u00b7F_(n-1) = F_n - 2. Claim F2a is S(1), Claim F2b is 'S(n) implies S(n+1)' for every n >= 1, so by induction S(n) holds for every n >= 1."
+   }
+  },
+  {
+   "node_id": "inf:fermat-product-step",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim F2b",
+    "rule": "all",
+    "rule_name": "direct proof (difference of squares)",
+    "warrant": "Write x = 2^(2^n), so F_n = x + 1 and F_n - 2 = x - 1. Assuming F_0\u00b7...\u00b7F_(n-1) = F_n - 2, multiply both sides by F_n: F_0\u00b7...\u00b7F_n = (x - 1)(x + 1) = x^2 - 1. And x^2 = 2^(2\u00b72^n) = 2^(2^(n+1)), so x^2 - 1 = F_(n+1) - 2."
+   }
+  },
+  {
+   "node_id": "inf:finitely-many-is-absurd",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim C",
+    "rule": "all",
+    "rule_name": "universal instantiation (the list := all the primes)",
+    "warrant": "Suppose, for the sake of argument, the set of primes is finite. By the definition of finite it can be listed completely as p1, ..., pk. Lemma 6 applied to this list gives a prime not on it, while the list contains every prime. These two cannot both hold: the supposition leads to a contradiction."
+   }
+  },
+  {
+   "node_id": "inf:least-divisor-exists",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 4",
+    "rule": "all",
+    "rule_name": "well-ordering principle",
+    "warrant": "D(n) = {d : d > 1 and d | n} is a set of positive integers. It is nonempty: n = n\u00b71 so n | n, and n > 1 because n >= 2, so n is in D(n). By well-ordering D(n) has a least element m(n)."
+   }
+  },
+  {
+   "node_id": "inf:least-divisor-is-prime",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma 5",
+    "rule": "all",
+    "rule_name": "direct proof from minimality",
+    "warrant": "Let m = m(n) (Lemma 4), so m > 1 and m | n. Let a be any positive divisor of m with a > 1. From a | m and m | n, Lemma 1 gives a | n, so a is in D(n) and, m being least, a >= m. Lemma 3 gives a <= m. So a = m. Hence the only positive divisors of m are 1 and m, and m > 1, so m is prime by definition; and m divides n."
+   }
+  },
+  {
+   "node_id": "inf:listed-primes-divide-p",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim E2",
+    "rule": "all",
+    "rule_name": "direct proof (unfold the definition)",
+    "warrant": "By commutativity and associativity, P = pi\u00b7c where c is the product of the other listed primes (c = 1 if there are none), an integer. So pi | P by the definition of divides."
+   }
+  },
+  {
+   "node_id": "inf:listed-primes-dont-divide-n",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim E3",
+    "rule": "all",
+    "rule_name": "modus tollens",
+    "warrant": "Fix a listed prime pi. If pi | N, then since pi | P (Claim E2), Lemma 2 gives pi | (N - P) = 1. pi and 1 are positive, so Lemma 3 gives pi <= 1. But pi > 1 because pi is prime. So the implication 'pi | N implies pi <= 1' has a false consequent, and pi does not divide N."
+   }
+  },
+  {
+   "node_id": "inf:n-has-prime-divisor",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim E4",
+    "rule": "all",
+    "rule_name": "universal instantiation (n := N), then modus ponens",
+    "warrant": "Lemma 5 holds for every integer n >= 2; Claim E1 says N >= 2; so N has a prime divisor q."
+   }
+  },
+  {
+   "node_id": "inf:q-not-listed",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Claim E5",
+    "rule": "all",
+    "rule_name": "substitution of equals (Leibniz's law)",
+    "warrant": "q divides N (Claim E4). If q were equal to some listed pi, then pi would divide N, which Claim E3 rules out. So q differs from every listed prime."
+   }
+  },
+  {
+   "node_id": "inf:small-divisor",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of Lemma S",
+    "rule": "all",
+    "rule_name": "direct proof (case on the smaller factor)",
+    "warrant": "v >= 2 not prime means v has a positive divisor a with a different from 1 and v, so 1 < a < v and v = a\u00b7b with b an integer; b > 1 since a < v. Let d be the smaller of a and b. Then d >= 2, d | v, and d\u00b7d <= a\u00b7b = v."
+   }
+  },
+  {
+   "node_id": "inf:theorem-by-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proof of the theorem",
+    "rule": "all",
+    "rule_name": "proof by contradiction (reductio ad absurdum)",
+    "warrant": "Claim C shows that supposing the set of primes finite leads to a contradiction, so that supposition is false: the set of primes is not finite. By the definition, a set that is not finite is infinite. So there are infinitely many primes. (The supposition itself is never a premise here; only the shown statement Claim C is.)"
+   }
+  },
+  {
+   "node_id": "inf:theorem-by-fermat-numbers",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof of the theorem (Goldbach, via Fermat numbers)",
+    "rule": "all",
+    "rule_name": "proof by contradiction (pigeonhole)",
+    "warrant": "Suppose the set of primes were finite, listed completely as p1, ..., pk. Claim F5 with this k gives k + 1 pairwise different primes q_0, ..., q_k, all of which are on the list of k, which the pigeonhole principle forbids. So the set of primes is not finite, that is, infinite. (Independent of the first proof: it uses none of Claims E1-E5, Lemma 6 or Claim C; it shares only the general Lemmas 1, 2, 3, 5 and the definitions and axioms.)"
+   }
+  },
+  {
+   "node_id": "proj:infinitely-many-primes",
+   "node_type": "Project",
+   "properties": {
+    "domain": "mathematical proof",
+    "mode": "flexible",
+    "name": "infinitely many primes (proof trial)",
+    "objective": "A proof that there are infinitely many prime numbers, laid out claim by claim and step by step so a person can read and check the argument and the tool can check its form.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:370522915672b06d",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-trial-designer-round-1",
+    "batch_position": 1,
+    "context_setter": "This design carries 13 live requirement(s) and has not said what DONE means",
+    "gap_id": "gap:370522915672b06d",
+    "question": "When should this proof count as finished: when every step reads as following from its premises (shown), or only when you have confirmed every step yourself (proven), and should the definitions and axioms it rests on also have to cite a source?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:aab240d9a04eb148",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-trial-designer-round-1",
+    "batch_position": 2,
+    "context_setter": "\u201cinfinitely many primes (proof trial)\u201d (mathematical proof) has not said what standard its design artifacts must be in",
+    "gap_id": "gap:aab240d9a04eb148",
+    "question": "Should this proof also be written in a machine-checkable form (for example Lean 4 with mathlib, Coq or Isabelle) and checked by that proof checker, or is a careful human-readable proof checked by a person the standard here?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:c324b38ba39ad80d",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-trial-designer-round-1",
+    "batch_position": 3,
+    "context_setter": "13 Requirement(s) and none says what kind of need it is, under no encoding decision",
+    "gap_id": "gap:c324b38ba39ad80d",
+    "question": "The proof records every statement to be shown (theorem, lemmas, intermediate claims) the same way, with definitions and axioms recorded as fixed rules and each proof step as a separate step with its premises; do you accept that one encoding for every statement in this proof, with the name telling theorem, lemma and claim apart?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "req:claim-euclid-number-at-least-2",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim E1: N = P + 1 is at least 2",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let p1, ..., pk (k >= 0) be any finite list of primes, P = p1\u00b7p2\u00b7...\u00b7pk (P = 1 when k = 0) and N = P + 1. Then N >= 2.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-euler-counterexample-n40",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim X (counterexample): at n = 40 the value is 41 x 41",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "At n = 40, n^2 + n + 41 = 1681 = 41\u00b741, which is not prime.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-euler-values-0-to-39-prime",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim P (proven, finite): n^2 + n + 41 is prime for n = 0 to 39",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n with 0 <= n <= 39, n^2 + n + 41 is prime. This is a finite statement shown by exhaustive check; as support for the Conjecture it is EVIDENCE only, never a proof of it.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-fermat-common-divisor-divides-2",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim F3: a common divisor of two Fermat numbers divides 2",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For 0 <= m < n, every positive common divisor of F_m and F_n divides 2.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-fermat-distinct-primes",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim F5: k + 1 Fermat numbers give k + 1 different primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every k >= 0, choosing for each n = 0, ..., k a prime divisor q_n of F_n gives k + 1 pairwise different primes q_0, ..., q_k.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-fermat-odd-at-least-3",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim F1: every Fermat number is odd and at least 3",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n >= 0, F_n >= 3 and 2 does not divide F_n.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-fermat-product-base",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim F2a: product formula, base case",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "F_0 = F_1 - 2 (both equal 3): the product formula of Lemma F2 holds for n = 1.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-fermat-product-step",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim F2b: product formula, inductive step",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n >= 1: if F_0\u00b7F_1\u00b7...\u00b7F_(n-1) = F_n - 2, then F_0\u00b7F_1\u00b7...\u00b7F_n = F_(n+1) - 2.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-finitely-many-is-absurd",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim C: assuming finitely many primes leads to a contradiction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If the set of primes were finite, a contradiction would follow: list all primes as p1, ..., pk; Lemma 6 gives a prime not on that list, yet the list holds every prime.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-listed-primes-divide-p",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim E2: each listed prime divides P",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For the list p1, ..., pk and P = p1\u00b7...\u00b7pk of Claim E1: each listed prime pi divides P.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-listed-primes-dont-divide-n",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim E3: no listed prime divides N",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For the list p1, ..., pk and N = P + 1 of Claim E1: no listed prime pi divides N.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-n-has-prime-divisor",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim E4: N has a prime divisor q",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For N = P + 1 of Claim E1: N has a prime divisor q.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-q-not-listed",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim E5: q is not on the list",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The prime divisor q of N (Claim E4) is none of p1, ..., pk.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conjecture-euler-polynomial",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Conjecture: n^2 + n + 41 is always prime",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n >= 0, n^2 + n + 41 is prime.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-divides-difference",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 2: a common divisor divides the difference",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For integers d, a, b: if d | a and d | b, then d | (b - a).",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-divides-transitive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1: divisibility is transitive",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For integers a, b, c: if a | b and b | c, then a | c.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-divisor-bounded",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3: a positive divisor is at most the number",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If d and n are positive integers and d | n, then d <= n.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-euclid",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 6 (Euclid): no finite list holds every prime",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every finite list of primes p1, ..., pk (k >= 0) there is a prime that is not on the list.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-euler-fails-at-multiples-of-41",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma M: the value is not prime whenever n is a positive multiple of 41",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer m >= 1, at n = 41m the value n^2 + n + 41 equals 41\u00b7(41m^2 + m + 1) and is not prime; so the Conjecture fails for infinitely many n.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-fermat-coprime",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F4 (Goldbach): distinct Fermat numbers share no prime divisor",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For m different from n, no prime divides both F_m and F_n.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-fermat-product",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F2: product of the earlier Fermat numbers",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n >= 1, F_0\u00b7F_1\u00b7...\u00b7F_(n-1) = F_n - 2.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-least-divisor-exists",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4: least divisor above 1 exists",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n >= 2, the set D(n) of integers greater than 1 that divide n has a least element; call it m(n).",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-prime-divisor",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 5: every integer n >= 2 has a prime divisor",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n >= 2, the least divisor m(n) of n greater than 1 is prime; so n has a prime divisor.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lemma-small-divisor",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma S: a non-prime has a divisor at most its square root",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If an integer v >= 2 is not prime, it has a divisor d with d >= 2 and d\u00b7d <= v.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:theorem-infinitely-many-primes",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem: there are infinitely many primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There are infinitely many prime numbers: the set of primes is infinite (in the sense of con:def-finite-set).",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "ver:calc-euler-0-to-39",
+   "node_type": "Verification",
+   "properties": {
+    "description": "flo2-calc computes v = n^2 + n + 41 for n = 0..39 and tests, exactly, whether any integer d from 2 to 40 divides v (v/d equal to floor(v/d)).",
+    "findings": "No d in 2..40 divides any of the 40 values (composite_count = 0); the values run from 41 to 1601, and 1601 < 1681 = 41\u00b741; every value exceeds 40 (exact).",
+    "kind": "verification",
+    "location": "euler-polynomial-n0-to-39-trial-division.calc.json (art:file-euler-polynomial-n0-to-39-trial-division-calc-json)",
+    "method": "analysis",
+    "name": "Computation: trial division of n^2 + n + 41 for n = 0 to 39",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:calc-euler-n40",
+   "node_type": "Verification",
+   "properties": {
+    "description": "flo2-calc computes 40^2 + 40 + 41 exactly and compares it with 41\u00b741, and checks 1 < 41 < the value.",
+    "findings": "v = 1681 = 41\u00b741; 41 > 1 and 41 < 1681; nontrivial_factor = true (exact).",
+    "kind": "verification",
+    "location": "euler-polynomial-counterexample-n40.calc.json (art:file-euler-polynomial-counterexample-n40-calc-json)",
+    "method": "analysis",
+    "name": "Computation: n^2 + n + 41 at n = 40",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:calc-fermat-base-case",
+   "node_type": "Verification",
+   "properties": {
+    "description": "flo2-calc evaluates F_0 = 2^(2^0)+1 and F_1 = 2^(2^1)+1 exactly and compares F_0 with F_1 - 2.",
+    "findings": "F0 = 3, F1 = 5, F1 - 2 = 3, base_case_holds = true (exact).",
+    "kind": "verification",
+    "location": "fermat-product-base-case.calc.json (art:file-fermat-product-base-case-calc-json)",
+    "method": "analysis",
+    "name": "Computation: F_0 = F_1 - 2",
+    "status": "passing"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.86.0",
+  "schema_version": 1
+ }
+}
