@@ -48,9 +48,10 @@ use crate::inference::{
 };
 use crate::nodes::{edge, node};
 
-/// How many nodes the walk reads when the caller does not say.
+/// How many claims one page returns when the caller does not say.
 pub const REASONING_DEFAULT_LIMIT: usize = 60;
-/// The most it reads, whatever the caller says.
+/// The most one page returns, whatever the caller says, and the most records
+/// the walk reads: past it, what is left is named in `not_walked`.
 pub const REASONING_MAX_LIMIT: usize = 500;
 
 /// WHAT THESE CHECKS MEAN, AND WHAT THEY DO NOT. Carried on every read-back
@@ -184,6 +185,12 @@ pub struct ClaimReading {
     /// Its name, when it has one.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    /// WHAT IT SAYS, in its own words: a statement's `statement`, a
+    /// Decision's `decision`, otherwise its `description` or a change's
+    /// `summary`. Never cut: a claim read back without its words is not read
+    /// back (req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub says: Option<String>,
     /// Computed — holds, fails or unknown — never the node's own status.
     pub truth: Truth,
     /// Why, in a sentence.
@@ -280,10 +287,23 @@ pub struct ReasoningReport {
     pub claim: Option<String>,
     /// Where the walk started.
     pub roots: Vec<String>,
-    /// Every node of the reasoning, in the order the walk reached it.
+    /// ONE PAGE of the reasoning's nodes, each WHOLE, in proof order: the
+    /// order the walk reached them, breadth first from the roots. `offset`
+    /// says where the page starts, `next_offset` where to read on.
     pub claims: Vec<ClaimReading>,
+    /// Where in the walk this page starts (0 is the roots).
+    pub offset: usize,
+    /// How many nodes the whole walk holds: every page together.
+    pub total_claims: usize,
+    /// How many come after this page.
+    pub remaining: usize,
+    /// Pass it as `offset` to read the next page; absent on the last.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub next_offset: Option<usize>,
     /// What the reasoning rests on without showing it: every premise of a
-    /// step in it that no step concludes. Each is read in `claims`.
+    /// step in the WALK (not only this page) that no step concludes. The
+    /// summary lists below cover the whole walk the same way, so a short page
+    /// never reads as a reasoning that rests on nothing.
     pub rests_on: Vec<String>,
     /// Premises that cite no source: they rest on someone's word. Fine for a
     /// value; a factual one needs a source. A premise marked TAKEN AS GIVEN is
@@ -314,8 +334,19 @@ pub struct ReasoningReport {
     pub generalizations_not_holding: Vec<String>,
     /// How many nodes the walk read.
     pub walked: usize,
-    /// Whether `limit` stopped the walk before it reached everything.
+    /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
+    /// reached everything. A page's `limit` never caps the walk: it only says
+    /// how many of the walked nodes this reply returns.
     pub capped: bool,
+    /// NOT WALKED: the nodes the walk reached and did not read, because it
+    /// stopped at its cap. What rests under them is in none of the summary
+    /// lists, and the lists say nothing about it either way. Empty unless
+    /// `capped`.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub not_walked: Vec<String>,
+    /// What `not_walked` means, in a sentence; present only with it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub not_walked_note: Option<String>,
     /// Why there is nothing to read, and how reasoning is recorded.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
@@ -360,16 +391,43 @@ fn is_supporting(props: &std::collections::HashMap<String, Value>) -> bool {
 impl DesignGraph {
     /// Read a line of reasoning back: from `claim`, or from every top
     /// conclusion and every `contested` Decision when `claim` is `None`.
-    /// `limit` bounds the walk (default [`REASONING_DEFAULT_LIMIT`], at most
-    /// [`REASONING_MAX_LIMIT`]). Refused when `claim` names no node.
+    /// `limit` bounds the page (default [`REASONING_DEFAULT_LIMIT`], at most
+    /// [`REASONING_MAX_LIMIT`]), from the start of the walk. Refused when
+    /// `claim` names no node. [`Self::reasoning_report_from`] reads on.
     pub fn reasoning_report(
         &self,
         claim: Option<&str>,
         limit: Option<usize>,
     ) -> Result<ReasoningReport, DynoError> {
+        self.reasoning_report_from(claim, limit, None)
+    }
+
+    /// [`Self::reasoning_report`], from `offset` in the walk: the page a
+    /// reply's `next_offset` names.
+    pub fn reasoning_report_from(
+        &self,
+        claim: Option<&str>,
+        limit: Option<usize>,
+        offset: Option<usize>,
+    ) -> Result<ReasoningReport, DynoError> {
+        self.reasoning_report_walking(claim, limit, offset, REASONING_MAX_LIMIT)
+    }
+
+    /// The read-back with the walk's cap stated, so a test can reach it
+    /// without a design of 500 records. Callers use
+    /// [`Self::reasoning_report_from`].
+    #[doc(hidden)]
+    pub fn reasoning_report_walking(
+        &self,
+        claim: Option<&str>,
+        limit: Option<usize>,
+        offset: Option<usize>,
+        walk_cap: usize,
+    ) -> Result<ReasoningReport, DynoError> {
         let limit = limit
             .unwrap_or(REASONING_DEFAULT_LIMIT)
             .clamp(1, REASONING_MAX_LIMIT);
+        let walk_cap = walk_cap.max(1);
         let roots = match claim {
             Some(id) => {
                 if self.type_holding(id)?.is_none() {
@@ -383,15 +441,18 @@ impl DesignGraph {
             None => self.reasoning_roots()?,
         };
 
-        // THE WALK, breadth first from the roots, each level in id order.
+        // THE WALK, breadth first from the roots, each level in id order. It
+        // reads the whole reasoning up to its cap, whatever one page returns,
+        // so every summary list below is the walk's and never the page's.
         let mut order: Vec<String> = Vec::new();
         let mut seen: BTreeSet<String> = BTreeSet::new();
         let mut queue: VecDeque<String> = roots.iter().cloned().collect();
         seen.extend(roots.iter().cloned());
         let mut capped = false;
         while let Some(id) = queue.pop_front() {
-            if order.len() == limit {
+            if order.len() == walk_cap {
                 capped = true;
+                queue.push_front(id);
                 break;
             }
             order.push(id.clone());
@@ -401,10 +462,34 @@ impl DesignGraph {
                 }
             }
         }
+        let not_walked: Vec<String> = if capped {
+            queue.into_iter().collect()
+        } else {
+            Vec::new()
+        };
 
         let mut claims = Vec::with_capacity(order.len());
         for id in &order {
             claims.push(self.claim_reading(id)?);
+        }
+        // Each premise by its name, so a step reads with the words of what it
+        // rests on, not ids alone.
+        let mut names: BTreeMap<String, Option<String>> = BTreeMap::new();
+        for c in &mut claims {
+            for st in &mut c.support {
+                for p in &mut st.reading.premises {
+                    if !names.contains_key(&p.id) {
+                        let name = match &p.node_type {
+                            Some(ty) => self
+                                .get_node(ty, &p.id)?
+                                .and_then(|n| prop(&n.properties, "name")),
+                            None => None,
+                        };
+                        names.insert(p.id.clone(), name);
+                    }
+                    p.name = names[&p.id].clone();
+                }
+            }
         }
 
         // THE ASSUMPTIONS the walked steps take up, each read "assumed,
@@ -528,11 +613,34 @@ impl DesignGraph {
         }
 
         let note = roots.is_empty().then(|| NOTHING_TO_READ.to_string());
+        let not_walked_note = (!not_walked.is_empty()).then(|| {
+            format!(
+                "NOT WALKED: the walk stopped at {walk_cap} records, so these {} were reached \
+                 and not read. What rests under them is in none of `rests_on`, \
+                 `stated_foundations` and `uncited_premises`, and those lists say nothing about \
+                 it either way: not walked is not resting on nothing. Read one with \
+                 reasoning_report on its id as `claim`.",
+                not_walked.len()
+            )
+        });
+
+        // THE PAGE: whole claims from `offset`, at most `limit` of them.
+        let total_claims = claims.len();
+        let start = offset.unwrap_or(0).min(total_claims);
+        let end = start.saturating_add(limit).min(total_claims);
+        let walked = claims.len();
+        let claims: Vec<ClaimReading> = claims.into_iter().skip(start).take(end - start).collect();
         Ok(ReasoningReport {
             claim: claim.map(str::to_string),
             roots,
-            walked: claims.len(),
+            walked,
             claims,
+            offset: start,
+            total_claims,
+            remaining: total_claims - end,
+            next_offset: (end < total_claims).then_some(end),
+            not_walked,
+            not_walked_note,
             rests_on: rests_on.into_iter().collect(),
             uncited_premises,
             stated_foundations,
@@ -621,9 +729,13 @@ impl DesignGraph {
             }
         }
         corroborated_by.sort();
+        let says = ["statement", "decision", "description", "summary"]
+            .iter()
+            .find_map(|k| prop(&props, k));
         Ok(ClaimReading {
             id: id.to_string(),
             name: prop(&props, "name"),
+            says,
             proof_status: self.proof_reading(id)?.map(|p| p.status),
             provenance: prop(&props, "provenance"),
             objections: self.objections_to(id)?,
@@ -817,5 +929,101 @@ impl DesignGraph {
         sides.sort();
         sides.dedup();
         Ok(sides)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::inference::InferenceSpec;
+
+    /// One claim concluded by one step from `n` premises.
+    fn fan(n: usize) -> DesignGraph {
+        let mut g = DesignGraph::open_in_memory().expect("in-memory graph");
+        g.add_requirement("req:top", "The claim", "What the step concludes.")
+            .unwrap();
+        let mut premises = Vec::new();
+        for i in 0..n {
+            let id = format!("req:p{i:02}");
+            g.add_requirement(&id, &format!("Premise {i}"), "A premise, uncited.")
+                .unwrap();
+            premises.push(id);
+        }
+        g.add_inference(&InferenceSpec {
+            id: "inf:top".into(),
+            rule: "all".into(),
+            premises,
+            conclusion: "req:top".into(),
+            ..Default::default()
+        })
+        .unwrap();
+        g
+    }
+
+    /// A page's `limit` never caps the walk: the summary lists are the walk's,
+    /// so a one-claim page still says what the claim rests on.
+    #[test]
+    fn a_small_page_keeps_the_whole_walks_summary() {
+        let g = fan(5);
+        let r = g
+            .reasoning_report_from(Some("req:top"), Some(1), None)
+            .unwrap();
+        assert_eq!(r.claims.len(), 1);
+        assert_eq!(r.total_claims, 6);
+        assert_eq!(r.next_offset, Some(1));
+        assert_eq!(r.remaining, 5);
+        assert_eq!(r.rests_on.len(), 5, "{:?}", r.rests_on);
+        assert_eq!(r.uncited_premises.len(), 5, "{:?}", r.uncited_premises);
+        assert!(!r.capped && r.not_walked.is_empty());
+        // Read on: the last page says so.
+        let last = g
+            .reasoning_report_from(Some("req:top"), Some(10), Some(1))
+            .unwrap();
+        assert_eq!(last.claims.len(), 5);
+        assert_eq!(last.next_offset, None);
+        assert_eq!(last.remaining, 0);
+    }
+
+    /// When the WALK stops at its cap, what it reached and did not read is
+    /// named as not walked, and never read as resting on nothing.
+    #[test]
+    fn a_capped_walk_names_what_it_did_not_walk() {
+        let g = fan(5);
+        let r = g
+            .reasoning_report_walking(Some("req:top"), None, None, 3)
+            .unwrap();
+        assert!(r.capped);
+        assert_eq!(r.walked, 3);
+        assert_eq!(r.not_walked, vec!["req:p02", "req:p03", "req:p04"]);
+        assert!(
+            r.not_walked_note
+                .as_deref()
+                .is_some_and(|n| n.contains("not walked is not resting on nothing")),
+            "{:?}",
+            r.not_walked_note
+        );
+        // The two premises it read are uncited; the three it did not read are
+        // not claimed either way.
+        assert_eq!(r.uncited_premises, vec!["req:p00", "req:p01"]);
+    }
+
+    /// Each premise of a returned step carries its name, and each claim its
+    /// own words.
+    #[test]
+    fn a_claim_carries_its_words_and_its_premises_names() {
+        let g = fan(2);
+        let r = g.reasoning_report(Some("req:top"), None).unwrap();
+        let top = &r.claims[0];
+        assert_eq!(top.says.as_deref(), Some("What the step concludes."));
+        let names: Vec<_> = top.support[0]
+            .reading
+            .premises
+            .iter()
+            .map(|p| p.name.clone())
+            .collect();
+        assert_eq!(
+            names,
+            vec![Some("Premise 0".to_string()), Some("Premise 1".to_string())]
+        );
     }
 }

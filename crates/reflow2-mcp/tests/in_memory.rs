@@ -68,6 +68,7 @@ mod a_proof_says_what_it_assumes_on_the_wire;
 mod a_prose_field_that_swallowed_a_parameter_says_so;
 mod a_question_is_put_to_a_person_and_records_who_answered;
 mod a_read_only_surface_refuses_every_write;
+mod a_reasoning_read_back_keeps_its_words_and_pages;
 mod a_refused_host_is_told_which_flag_admits_it;
 mod a_refused_write_stores_nothing;
 mod a_registered_artifact_asserts_nothing_it_was_not_told;

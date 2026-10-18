@@ -2,14 +2,14 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), and its cited sources. Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every top conclusion and contested decision. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
+  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), and its cited sources. Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every top conclusion and contested decision. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "budget_chars": {
         "default": null,
-        "description": "Characters the reply may spend (default 30,000). Over it, the claims'\nprose gives first, then claims from the end of the walk; every summary\nlist keeps its ids, and the `budget` block says what was withheld.",
+        "description": "Characters the reply may spend (default 30,000). Over it, the page\nreturns FEWER claims, each WHOLE, never every claim with its words cut:\n`next_offset` reads on, and `page` names the budget it was held to.",
         "format": "uint",
         "minimum": 0,
         "type": [
@@ -27,7 +27,17 @@
       },
       "limit": {
         "default": null,
-        "description": "How many nodes to read (default 60, at most 500). `capped: true` in\nthe reply means the walk stopped before reaching everything.",
+        "description": "How many claims one page returns at most (default 60, at most 500).\nThe walk itself always reads the whole reasoning, up to 500 records,\nso the summary lists are never one page's; `capped: true` means the\nWALK stopped there, and `not_walked` names what it did not read.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "offset": {
+        "default": null,
+        "description": "Where in the walk the page starts (default 0, the roots): pass the\nreply's `next_offset` to read on. The walk's order is proof order,\nbreadth first from the claim asked about.",
         "format": "uint",
         "minimum": 0,
         "type": [
