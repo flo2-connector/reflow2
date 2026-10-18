@@ -22,7 +22,24 @@
 //!   ([`crate::kept_record`]): with no record it reads `asserted`, so it is
 //!   unknown (`req:a-computed-fact-counts-only-through-its-kept-record`);
 //! - a **Decision** holds when `accepted`, and fails when `rejected` or
-//!   `superseded`;
+//!   `superseded`. An ACCEPTED Decision a step concludes holds on its owner's
+//!   acceptance, and the chain's own verdict is read beside it
+//!   ([`DesignGraph::chain_reading`]), so a first, incomplete chain never reads
+//!   as the decision being unsupported, and a lost chain still shows in the
+//!   change walk (`accepted_without_a_holding_chain`);
+//! - a **TemporalFact** (a dated finding) holds when it is MEASURED and still
+//!   STANDING: nothing INVALIDATES it, it states no end (`valid_to`, or a
+//!   `VALID_TO` epoch), and no accepted decision discontinues it. A `forecast`
+//!   projects what is expected and is evidence of nothing that happened, so it
+//!   is unknown; so is a finding that ended or was invalidated (stale, which is
+//!   unsupported, never refuted). `basis` unstated is `measured`, the schema's
+//!   default for every fact written before the property existed. A fact's
+//!   `confidence` is the author's weight and changes nothing here;
+//! - a **ChangeEvent** is HISTORY: it records that something happened, so
+//!   reflow2 computes no truth for it, and an objection to it never makes it
+//!   read false. A counter-argument it once carried is recorded as a statement
+//!   of its own that opposes the claim, and answered there
+//!   (`req:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement`);
 //! - a **Constraint** fails when something VIOLATES it or its budget is
 //!   exceeded, is unknown while its budget cannot be judged, and holds
 //!   otherwise;
@@ -486,10 +503,12 @@ pub struct InferenceImpact {
     /// Whether the CONCLUSION still stands with the losses counted, across
     /// every step that concludes it (alternative derivations are ANY).
     pub conclusion_after: Truth,
-    /// WHICH OF THREE IS TRUE OF THE CLAIM (req:unsupported-is-not-refuted):
+    /// WHICH IS TRUE OF THE CLAIM (req:unsupported-is-not-refuted):
     /// `still_supported` (another line holds it: `still_supported_by`),
-    /// `unsupported` (nothing left holds it — it is not thereby false), or
-    /// `refuted` (an objection that holds refutes it).
+    /// `unsupported` (nothing left holds it — it is not thereby false),
+    /// `refuted` (an objection that holds refutes it), or, for an accepted
+    /// Decision, `accepted_without_a_holding_chain` (it stands on its owner's
+    /// acceptance, and no line of its chain holds any more).
     pub conclusion_reads: &'static str,
     /// The steps concluding the claim that still hold with the losses counted.
     /// Empty unless `conclusion_reads` is `still_supported`.
@@ -947,6 +966,22 @@ impl DesignGraph {
                 "discontinued by an accepted decision".to_string(),
             ));
         }
+        // HISTORY IS NEVER REFUTED (req:the-records-a-choice-rests-on-carry-a-
+        // truth-and-a-counter-argument-is-its-own-statement, Anthony
+        // 2026-10-18). A ChangeEvent records that something happened; a reply
+        // answers an ARGUMENT, never the event. Measured on reflow2's own
+        // design: a reply to the counter-argument a ChangeEvent carried read
+        // that ChangeEvent "refuted", i.e. false history.
+        if node_type == node::CHANGE_EVENT {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                "a ChangeEvent is history: it records that something happened, so reflow2 \
+                 computes no truth for it and an objection never makes it false. An argument it \
+                 carried is recorded as a statement of its own (a Requirement with \
+                 `statement_kind`) that CONTRADICTS the claim, and answered there"
+                    .to_string(),
+            ));
+        }
         // AN OBJECTION COUNTS AS FAR AS IT HOLDS (requirement A; the module
         // documentation has the rule). One that holds refutes the node, and
         // every step resting on it is reported broken; one that is unknown
@@ -1031,6 +1066,171 @@ impl DesignGraph {
         Ok(out)
     }
 
+    /// What the steps concluding `id` yield, ANY across them: `holds` when one
+    /// holds (under the fewest open assumptions), otherwise UNSUPPORTED
+    /// (unknown, never `fails`). For a requirement a realized, checked
+    /// satisfier delivers it directly first. `None` when no step concludes it.
+    fn concluded_by_steps(
+        &self,
+        id: &str,
+        node_type: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Option<Read>, DynoError> {
+        let steps = self.inferences_concluding(id)?;
+        if steps.is_empty() {
+            return Ok(None);
+        }
+        if node_type == node::REQUIREMENT {
+            let by = self.requirement_directly_delivered_by(id)?;
+            if !by.is_empty() {
+                return Ok(Some(Read::plain(
+                    Truth::Holds,
+                    format!("delivered directly by {}", by.join(", ")),
+                )));
+            }
+        }
+        let mut verdicts = Vec::new();
+        for s in &steps {
+            let r = self.step_reading(s, ev, depth)?;
+            verdicts.push((s.clone(), r.verdict, r.assumes));
+        }
+        let said: Vec<String> = verdicts
+            .iter()
+            .map(|(s, v, _)| format!("{s} {}", v.as_str()))
+            .collect();
+        // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
+        // step that fails or cannot be read leaves its conclusion without
+        // that line of support; it never makes the conclusion false. So a
+        // concluded node holds when one step holds and is otherwise
+        // unknown: only an objection that holds refutes it.
+        //
+        // Of the holding steps, the one resting on the FEWEST open
+        // assumptions decides what the node holds under: a line that needs
+        // no assumption beats one that does (alternatives are ANY).
+        let best = verdicts
+            .iter()
+            .filter(|(_, v, _)| *v == Truth::Holds)
+            .min_by_key(|(_, _, a)| a.len());
+        if let Some((_, _, assumes)) = best {
+            let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
+            let why = if assumes.is_empty() {
+                format!("concluded by {}", said.join("; "))
+            } else {
+                format!(
+                    "concluded by {}, under the assumption(s) {}, which no step on the way \
+                     discharges",
+                    said.join("; "),
+                    assumes.iter().cloned().collect::<Vec<_>>().join(", ")
+                )
+            };
+            return Ok(Some(Read {
+                truth: Truth::Holds,
+                why,
+                assumes,
+            }));
+        }
+        Ok(Some(Read::plain(
+            Truth::Unknown,
+            format!(
+                "unsupported: no step concluding it holds ({}); losing its support does not \
+                 make it false",
+                said.join("; ")
+            ),
+        )))
+    }
+
+    /// THE CHAIN'S OWN VERDICT for a node steps conclude: what its steps yield,
+    /// ANY across them, read apart from its status. For an accepted Decision
+    /// this is the verdict read BESIDE its owner's acceptance. `None` when no
+    /// step concludes it.
+    pub fn chain_reading(&self, id: &str) -> Result<Option<(Truth, String)>, DynoError> {
+        let Some(node_type) = self.type_holding(id)? else {
+            return Ok(None);
+        };
+        let lost = BTreeSet::new();
+        let mut ev = Eval::new(&lost);
+        ev.nodes.insert(id.to_string());
+        Ok(self
+            .concluded_by_steps(id, &node_type, &mut ev, INFERENCE_DEPTH)?
+            .map(Read::pair))
+    }
+
+    /// Whether `id` is an ACCEPTED Decision: one that holds on its owner's
+    /// word whatever its chain says.
+    pub fn is_accepted_decision(&self, id: &str) -> Result<bool, DynoError> {
+        Ok(self
+            .get_node(node::DECISION, id)?
+            .is_some_and(|n| prop(&n.properties, "status") == Some("accepted")))
+    }
+
+    /// A TemporalFact's truth: a MEASURED finding that still STANDS holds; a
+    /// forecast, an ended or an invalidated one is unknown (the module
+    /// documentation has the rule).
+    fn finding_truth(
+        &self,
+        id: &str,
+        props: &HashMap<String, Value>,
+    ) -> Result<(Truth, String), DynoError> {
+        let invalidated: Vec<String> = self
+            .incoming(id, Some(edge::INVALIDATES))?
+            .into_iter()
+            .map(|e| e.from_id)
+            .collect();
+        if !invalidated.is_empty() {
+            return Ok((
+                Truth::Unknown,
+                format!(
+                    "invalidated by {}: a later record says this finding is stale, so it is not \
+                     read as standing until it is measured again (stale is unsupported, never \
+                     refuted)",
+                    invalidated.join(", ")
+                ),
+            ));
+        }
+        let ended_at: Option<String> = match prop(props, "valid_to").filter(|v| !v.is_empty()) {
+            Some(date) => Some(format!("valid_to {date}")),
+            None => self
+                .outgoing(id, Some(edge::VALID_TO))?
+                .into_iter()
+                .map(|e| format!("VALID_TO {}", e.to_id))
+                .next(),
+        };
+        if let Some(at) = ended_at {
+            return Ok((
+                Truth::Unknown,
+                format!(
+                    "superseded: it records when it stopped being true ({at}), so it no longer \
+                     stands as a premise"
+                ),
+            ));
+        }
+        match prop(props, "basis") {
+            Some("forecast") => Ok((
+                Truth::Unknown,
+                "a forecast: it projects what is expected and is evidence of nothing that \
+                 happened, so it is unknown"
+                    .to_string(),
+            )),
+            Some("measured") => Ok((
+                Truth::Holds,
+                "a measured finding that still stands: nothing invalidates it and it states no \
+                 end"
+                .to_string(),
+            )),
+            None => Ok((
+                Truth::Holds,
+                "a measured finding (its basis is unstated, which the schema reads as measured) \
+                 that still stands: nothing invalidates it and it states no end"
+                    .to_string(),
+            )),
+            Some(other) => Ok((
+                Truth::Unknown,
+                format!("its basis `{other}` is neither measured nor forecast"),
+            )),
+        }
+    }
+
     /// What a node's own type and status say about it, before any objection
     /// is counted: the predicate per type in the module documentation.
     fn own_truth(
@@ -1058,65 +1258,27 @@ impl DesignGraph {
         // realized, checked satisfier still delivers it directly, as it always
         // has; its own `met` is a claim the steps are checked against, never a
         // reason to believe them.
-        let steps = self.inferences_concluding(id)?;
-        if !steps.is_empty() {
-            if node_type == node::REQUIREMENT {
-                let by = self.requirement_directly_delivered_by(id)?;
-                if !by.is_empty() {
-                    return Ok(Read::plain(
-                        Truth::Holds,
-                        format!("delivered directly by {}", by.join(", ")),
-                    ));
-                }
-            }
-            let mut verdicts = Vec::new();
-            for s in &steps {
-                let r = self.step_reading(s, ev, depth)?;
-                verdicts.push((s.clone(), r.verdict, r.assumes));
-            }
-            let said: Vec<String> = verdicts
-                .iter()
-                .map(|(s, v, _)| format!("{s} {}", v.as_str()))
-                .collect();
-            // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
-            // step that fails or cannot be read leaves its conclusion without
-            // that line of support; it never makes the conclusion false. So a
-            // concluded node holds when one step holds and is otherwise
-            // unknown: only an objection that holds refutes it.
-            //
-            // Of the holding steps, the one resting on the FEWEST open
-            // assumptions decides what the node holds under: a line that needs
-            // no assumption beats one that does (alternatives are ANY).
-            let best = verdicts
-                .iter()
-                .filter(|(_, v, _)| *v == Truth::Holds)
-                .min_by_key(|(_, _, a)| a.len());
-            if let Some((_, _, assumes)) = best {
-                let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
-                let why = if assumes.is_empty() {
-                    format!("concluded by {}", said.join("; "))
-                } else {
+        if let Some(chain) = self.concluded_by_steps(id, node_type, ev, depth)? {
+            // AN ACCEPTED DECISION READS ITS OWNER'S ACCEPTANCE AND ITS CHAIN
+            // SIDE BY SIDE (req:the-records-a-choice-rests-on-carry-a-truth-
+            // and-a-counter-argument-is-its-own-statement, part 3). The owner
+            // accepted it; the chain is the stated argument for it, read beside
+            // the acceptance and never in its place, so a first, incomplete
+            // chain does not read as the decision being unsupported. A lost
+            // chain still shows: in `chain_reading`, in the change walk
+            // (`accepted_without_a_holding_chain`) and in the
+            // `conclusion_does_not_follow` finding.
+            if node_type == node::DECISION && status.as_deref() == Some("accepted") {
+                return Ok(Read::plain(
+                    Truth::Holds,
                     format!(
-                        "concluded by {}, under the assumption(s) {}, which no step on the way \
-                         discharges",
-                        said.join("; "),
-                        assumes.iter().cloned().collect::<Vec<_>>().join(", ")
-                    )
-                };
-                return Ok(Read {
-                    truth: Truth::Holds,
-                    why,
-                    assumes,
-                });
+                        "the decision is accepted (its owner's word); beside it, its chain {}: {}",
+                        chain.truth.as_str(),
+                        chain.why
+                    ),
+                ));
             }
-            return Ok(Read::plain(
-                Truth::Unknown,
-                format!(
-                    "unsupported: no step concluding it holds ({}); losing its support does not \
-                     make it false",
-                    said.join("; ")
-                ),
-            ));
+            return Ok(chain);
         }
 
         let (truth, why) = match node_type {
@@ -1198,6 +1360,7 @@ impl DesignGraph {
                     )
                 }
             }
+            node::TEMPORAL_FACT => self.finding_truth(id, &n.properties)?,
             other => (
                 Truth::Unknown,
                 format!("reflow2 computes no truth for a {other}, so it is unknown, never guessed"),
@@ -1827,7 +1990,17 @@ impl DesignGraph {
                     }
                 }
             }
+            // An accepted Decision stands on its owner's acceptance whatever
+            // its chain does; when no line of its chain holds any more, the
+            // row says THAT, never that another line still supports it.
+            let held_by_acceptance_alone = conclusion_after == Truth::Holds
+                && still_supported_by.is_empty()
+                && match &after.conclusion {
+                    Some(c) => self.is_accepted_decision(c)?,
+                    None => false,
+                };
             let conclusion_reads = match conclusion_after {
+                Truth::Holds if held_by_acceptance_alone => "accepted_without_a_holding_chain",
                 Truth::Holds => "still_supported",
                 Truth::Fails => "refuted",
                 Truth::Unknown => "unsupported",
@@ -1897,7 +2070,16 @@ impl DesignGraph {
             if self.is_discontinued(&c)? {
                 continue;
             }
-            let supported = self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0;
+            let mut supported = self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0;
+            // An accepted Decision holds on its owner's word; what this
+            // finding asks is whether its CHAIN supports it, read beside the
+            // acceptance (req:the-records-a-choice-rests-on-carry-a-truth-and-
+            // a-counter-argument-is-its-own-statement, part 3).
+            if supported == Truth::Holds && node_type == node::DECISION && claimed == "accepted" {
+                supported = self
+                    .concluded_by_steps(&c, &node_type, &mut ev, INFERENCE_DEPTH)?
+                    .map_or(Truth::Holds, |r| r.truth);
+            }
             if supported == Truth::Holds {
                 continue;
             }
@@ -1946,15 +2128,49 @@ impl DesignGraph {
         Ok(!self.inferences_concluding(id)?.is_empty() || !self.steps_resting_on(id)?.is_empty())
     }
 
+    /// Whether `id` belongs to a line of reasoning: a step concludes it, it is
+    /// a premise of one, or it is a statement (`statement_kind`, or marked
+    /// `taken_as_given`).
+    pub fn is_in_a_line_of_reasoning(&self, id: &str) -> Result<bool, DynoError> {
+        if self.takes_part_in_reasoning(id)? {
+            return Ok(true);
+        }
+        let Some(ty) = self.type_holding(id)? else {
+            return Ok(false);
+        };
+        Ok(self.get_node(&ty, id)?.is_some_and(|n| {
+            n.properties.contains_key("statement_kind")
+                || n.properties.contains_key("taken_as_given")
+        }))
+    }
+
+    /// How an opposing CONTRADICTS from `objection` to `target` stands, as
+    /// an attack in a line of reasoning: `refutes` (the objection holds),
+    /// `answered` (it fails) or `stands` (neither: a lone objection, or one
+    /// side of a mutual attack or a cycle, undecided). `None` when neither
+    /// side is in a line of reasoning, where it is no attack but a plain
+    /// contradiction.
+    pub fn attack_standing(
+        &self,
+        objection: &str,
+        target: &str,
+    ) -> Result<Option<&'static str>, DynoError> {
+        if !self.is_in_a_line_of_reasoning(objection)? && !self.is_in_a_line_of_reasoning(target)? {
+            return Ok(None);
+        }
+        Ok(Some(standing_of(self.premise_truth(objection)?.0)))
+    }
+
     /// An opposing CONTRADICTS from `objection` to `target` that REFUTES it, in
-    /// a line of reasoning: one side takes part in an Inference, the objection
-    /// holds, and so the target reads `fails` (refuted).
+    /// a line of reasoning: one side is in a line of reasoning
+    /// ([`Self::is_in_a_line_of_reasoning`]), the objection holds, and so the
+    /// target reads `fails` (refuted).
     pub fn is_a_standing_refutation(
         &self,
         objection: &str,
         target: &str,
     ) -> Result<bool, DynoError> {
-        if !self.takes_part_in_reasoning(objection)? && !self.takes_part_in_reasoning(target)? {
+        if !self.is_in_a_line_of_reasoning(objection)? && !self.is_in_a_line_of_reasoning(target)? {
             return Ok(false);
         }
         if self.premise_truth(objection)?.0 != Truth::Holds {

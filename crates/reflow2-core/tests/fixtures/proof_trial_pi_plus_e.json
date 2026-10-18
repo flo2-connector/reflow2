@@ -1,0 +1,1309 @@
+{
+ "content_hash": "sha256:ed0ed39ec3d31bb8dca567747b84b7fbe0ea4033315914a20f6b8e880c712098",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "inf:reductio",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer."
+   },
+   "to_id": "q:contradiction-inside-the-last-step"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:algebraic-numbers-closed",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer."
+   },
+   "to_id": "q:take-cited-results-as-given"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:contradiction-inside-the-last-step",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:reductio"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:contradiction-inside-the-last-step",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:suppose-both-algebraic"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:take-cited-results-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:algebraic-numbers-closed"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:take-cited-results-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lindemann-pi-transcendental"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:ax-complex-field",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-transcendental",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:coefficients-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:expand-p",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:pi-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:pi-plus-e-and-pi-times-e",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:contradiction-inside-the-last-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:take-cited-results-as-given",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:algebraic-numbers-closed",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-pi-root-of-p",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lindemann-pi-transcendental",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:p-coefficients-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:pi-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:suppose-both-algebraic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:theorem-pi-plus-e-or-pi-times-e",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:coefficients-algebraic",
+   "properties": {},
+   "to_id": "req:p-coefficients-algebraic"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:expand-p",
+   "properties": {},
+   "to_id": "req:lemma-pi-root-of-p"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:pi-algebraic",
+   "properties": {},
+   "to_id": "req:pi-algebraic"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:reductio",
+   "properties": {},
+   "to_id": "req:theorem-pi-plus-e-or-pi-times-e"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-complex-field",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:expand-p"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-algebraic",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:coefficients-algebraic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-transcendental",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:algebraic-numbers-closed",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:pi-algebraic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-pi-root-of-p",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:pi-algebraic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lindemann-pi-transcendental",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:p-coefficients-algebraic",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:pi-algebraic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:pi-algebraic",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:suppose-both-algebraic",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:coefficients-algebraic"
+  }
+ ],
+ "graph_id": "082888103637f0e7",
+ "nodes": [
+  {
+   "node_id": "con:ax-complex-field",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Axiom: the complex numbers form a field",
+    "priority": "medium",
+    "statement": "The complex numbers form a field: addition and multiplication are associative and commutative, multiplication distributes over addition, with 0, 1, negatives and inverses of nonzero elements. \u03c0 and e are real, hence complex, numbers. (The ordinary laws of arithmetic used to expand a product of two binomials.)",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-algebraic",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: algebraic number",
+    "priority": "medium",
+    "statement": "A complex number \u03b1 is ALGEBRAIC when it is a root of some nonzero polynomial with rational coefficients: there are rationals c0, ..., cn, not all zero, with c0 + c1\u00b7\u03b1 + ... + cn\u00b7\u03b1\u207f = 0. (Clearing denominators, integer coefficients give the same notion.)",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "\u03b1"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-transcendental",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: transcendental number",
+    "priority": "medium",
+    "statement": "A complex number is TRANSCENDENTAL when it is not algebraic. So 'at least one of a, b is transcendental' says exactly 'not both a and b are algebraic'.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:coefficients-algebraic",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Step 2: under the supposition, p's coefficients are algebraic",
+    "rule": "all",
+    "rule_name": "unfolding the definition (with the supposition assumed)",
+    "warrant": "The coefficient 1 is algebraic: it is the root of x \u2212 1. The coefficient \u03c0\u00b7e is algebraic by the supposition. The coefficient \u2212(\u03c0+e) is algebraic: by the supposition \u03c0+e is a root of some nonzero rational polynomial f, and then g(x) = f(\u2212x) is a nonzero rational polynomial with g(\u2212(\u03c0+e)) = 0. (The cited field property gives the same at once.)"
+   }
+  },
+  {
+   "node_id": "inf:expand-p",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Step 1: expand (x \u2212 \u03c0)(x \u2212 e)",
+    "rule": "all",
+    "rule_name": "direct computation (expanding a product by the field laws)",
+    "warrant": "By distributivity and commutativity in the complex numbers, (x \u2212 \u03c0)(x \u2212 e) = x\u00b2 \u2212 e\u00b7x \u2212 \u03c0\u00b7x + \u03c0\u00b7e = x\u00b2 \u2212 (\u03c0+e)\u00b7x + \u03c0\u00b7e for every complex x. Putting x = \u03c0 makes the left side 0, so p(\u03c0) = 0; and p is monic of degree 2, so it is not the zero polynomial. Uses nothing about \u03c0 or e except that they are complex numbers."
+   }
+  },
+  {
+   "node_id": "inf:pi-algebraic",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Step 3: \u03c0 is a root of a polynomial with algebraic coefficients, so \u03c0 is algebraic",
+    "rule": "all",
+    "rule_name": "modus ponens (instance of the cited closure theorem)",
+    "warrant": "The cited theorem says: any complex root of a nonzero polynomial whose coefficients are algebraic numbers is algebraic. Lemma 1 gives that p is nonzero and p(\u03c0) = 0; Lemma 2 gives that p's coefficients are algebraic (under the supposition). So, under the supposition, \u03c0 is algebraic."
+   }
+  },
+  {
+   "node_id": "inf:reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:suppose-both-algebraic"
+    ],
+    "name": "Step 4: reductio, discharging the supposition",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (negation introduction), then De Morgan through the definition of transcendental",
+    "warrant": "Under the supposition \u03c0 is algebraic (Lemma 3), yet Lindemann's theorem says \u03c0 is not algebraic: a contradiction. So the supposition is false: \u03c0 + e and \u03c0\u00b7e are not both algebraic. By the definition of transcendental (= not algebraic), at least one of them is transcendental, which is the theorem. The contradiction is drawn inside this step; it is not recorded as a statement of its own."
+   }
+  },
+  {
+   "node_id": "proj:pi-plus-e-and-pi-times-e",
+   "node_type": "Project",
+   "properties": {
+    "domain": "mathematics: transcendental numbers, a proof",
+    "mode": "flexible",
+    "name": "pi + e and pi times e (proof trial)",
+    "objective": "A proof that at least one of pi + e and pi times e is transcendental, a person can read and check, with every step's form checked by the tool",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "q:contradiction-inside-the-last-step",
+   "node_type": "Question",
+   "properties": {
+    "answer": "One step is fine: keep the contradiction drawn inside the reductio step. The missing way to state a contradiction goes on reflow2's fix list.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "context_setter": "Step 4 (the reductio) draws the contradiction 'pi is algebraic and not algebraic' inside the step and concludes the theorem directly, discharging the supposition that both numbers are algebraic.",
+    "question": "Is the last step acceptable as one step (contradiction, then 'not both algebraic', then 'at least one transcendental' by the definition)? Or do you want it split into a recorded contradiction statement and a separate reductio step, so each move can be challenged on its own?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:take-cited-results-as-given",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Take both as given: Lindemann (1882) and the algebraic closure of the algebraic numbers (Dedekind 1871; Lang), each with its source as recorded.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "context_setter": "The proof that pi + e or pi*e is transcendental rests on two results it cites without proving: Lindemann's 1882 theorem that pi is transcendental, and the standard fact that the algebraic numbers form an algebraically closed field.",
+    "question": "Do you take both cited results as given, as recorded? Or should the closure fact (a root of a polynomial with algebraic coefficients is algebraic) be proved inside this design from the tower law, so the proof rests only on Lindemann? And is a textbook (e.g. Lang, Algebra, ch. V) an acceptable source for it, or do you want the original (Dedekind 1871)?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:algebraic-numbers-closed",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: the algebraic numbers are a field, and algebraically closed",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Standard algebraic number theory. Field property: R. Dedekind, supplements to Dirichlet's 'Vorlesungen uber Zahlentheorie' (2nd ed., 1871). Root-of-algebraic-coefficients: finite-extension (tower law) argument, e.g. S. Lang, 'Algebra', Ch. V (Algebraic extensions). Cited, not proved here.",
+    "statement": "The algebraic numbers form a subfield of the complex numbers (sums, differences, products and quotients of algebraic numbers are algebraic), and any complex root of a nonzero polynomial whose coefficients are algebraic numbers is itself algebraic.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:lemma-pi-root-of-p",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1: \u03c0 is a root of x\u00b2 \u2212 (\u03c0+e)x + \u03c0e",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every complex x, x\u00b2 \u2212 (\u03c0+e)\u00b7x + \u03c0\u00b7e = (x \u2212 \u03c0)(x \u2212 e). Hence the polynomial p(x) = x\u00b2 \u2212 (\u03c0+e)\u00b7x + \u03c0\u00b7e is nonzero (it is monic, of degree 2) and p(\u03c0) = 0. (This holds unconditionally: it does not use the supposition.)",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lindemann-pi-transcendental",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: Lindemann's theorem, \u03c0 is transcendental",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Ferdinand von Lindemann, 'Uber die Zahl \u03c0', Mathematische Annalen 20 (1882), 213-225. Cited, not proved here. (Hermite proved e transcendental in 1873; that is not needed.)",
+    "statement": "\u03c0 is transcendental: it is the root of no nonzero polynomial with rational coefficients.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:p-coefficients-algebraic",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lemma-pi-root-of-p"
+    ],
+    "lineage": "original",
+    "name": "Lemma 2 (under the supposition): p has algebraic coefficients",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Under the supposition, the coefficients of p(x) = x\u00b2 \u2212 (\u03c0+e)\u00b7x + \u03c0\u00b7e, namely 1, \u2212(\u03c0+e) and \u03c0\u00b7e, are all algebraic numbers.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:pi-algebraic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3 (under the supposition): \u03c0 is algebraic",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Under the supposition, \u03c0 is an algebraic number.",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:suppose-both-algebraic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition (for contradiction): \u03c0 + e and \u03c0\u00b7e are both algebraic",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "The proof's own supposition: the negation of the theorem, by the definition of transcendental.",
+    "statement": "Suppose, for contradiction, that both \u03c0 + e and \u03c0\u00b7e are algebraic. Write a = \u03c0 + e and b = \u03c0\u00b7e.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:theorem-pi-plus-e-or-pi-times-e",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem: \u03c0 + e or \u03c0\u00b7e is transcendental",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Given to the designer as the theorem to prove (proof trial, 2026-10-18).",
+    "statement": "At least one of the two numbers \u03c0 + e and \u03c0\u00b7e is transcendental.",
+    "statement_kind": "theorem",
+    "status": "proposed"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.87.0",
+  "schema_version": 1
+ }
+}

@@ -191,6 +191,46 @@ pub struct CitedSource {
     pub pinned: bool,
 }
 
+/// A claim's truth as the read-back serves it: the three values, and
+/// `conditional` for a claim that holds only under an assumption no step on
+/// the way discharges
+/// (req:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims,
+/// part 3). Inside the argument such a claim holds, and the steps resting on
+/// it read it so; a READER is never told it holds on its own.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ClaimTruth {
+    /// Computed to hold, resting on no open assumption.
+    Holds,
+    /// Holds only under the assumption(s) in `assumes`, which no step on the
+    /// way to it discharges.
+    Conditional,
+    /// Computed to fail: refuted.
+    Fails,
+    /// Nothing reflow2 computes says either way.
+    Unknown,
+}
+
+impl ClaimTruth {
+    fn of(truth: Truth, assumes: &[String]) -> Self {
+        match truth {
+            Truth::Holds if !assumes.is_empty() => ClaimTruth::Conditional,
+            Truth::Holds => ClaimTruth::Holds,
+            Truth::Fails => ClaimTruth::Fails,
+            Truth::Unknown => ClaimTruth::Unknown,
+        }
+    }
+}
+
+/// A chain's own verdict, read beside an accepted Decision's acceptance.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ChainVerdict {
+    /// What the steps concluding it yield, ANY across them.
+    pub verdict: Truth,
+    /// Why, in a sentence.
+    pub why: String,
+}
+
 /// One node of the reasoning, read.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct ClaimReading {
@@ -202,18 +242,31 @@ pub struct ClaimReading {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// WHAT IT SAYS, in its own words: a statement's `statement`, a
-    /// Decision's `decision`, otherwise its `description` or a change's
-    /// `summary`. Never cut: a claim read back without its words is not read
+    /// Decision's `chose` once it records one (what was decided, not the
+    /// deliberation's "options, none chosen"), else its `decision`, otherwise
+    /// its `description` or a change's `summary`. Never cut: a claim read back without its words is not read
     /// back (req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub says: Option<String>,
-    /// Computed — holds, fails or unknown — never the node's own status.
-    pub truth: Truth,
+    /// Computed — holds, conditional, fails or unknown — never the node's own
+    /// status. `conditional` when it holds only under an assumption no step
+    /// on the way discharges (named in `assumes` and in `why`).
+    pub truth: ClaimTruth,
     /// Why, in a sentence.
     pub why: String,
     /// For a node a step concludes: proven, shown, contested or unproven.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub proof_status: Option<ProofStatus>,
+    /// For a Decision a step concludes: its status as its OWNER set it
+    /// (`accepted`, `proposed` ...), read beside `chain`. An accepted one
+    /// holds on that word, whatever its chain says.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub acceptance: Option<String>,
+    /// For a Decision a step concludes: what its CHAIN yields on its own,
+    /// beside the owner's `acceptance`, so a first, incomplete chain reads as
+    /// an incomplete chain and never as the decision being unsupported.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chain: Option<ChainVerdict>,
     /// Where the record came from, as it says (`authored`, `inferred` ...).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub provenance: Option<String>,
@@ -583,6 +636,19 @@ impl DesignGraph {
             .cloned()
             .collect();
 
+        let mut discharged_only: BTreeSet<String> = BTreeSet::new();
+        for a in &assumptions {
+            if a.assumption.discharged_by.is_empty() {
+                continue;
+            }
+            let relied_on = self
+                .outgoing(&a.assumption.id, Some(edge::PREMISE_OF))?
+                .iter()
+                .any(|e| e.properties.get("role").and_then(Value::as_str) != Some("assumed"));
+            if !relied_on {
+                discharged_only.insert(a.assumption.id.clone());
+            }
+        }
         let mut still_contested = Vec::new();
         let mut contested_by_design = Vec::new();
         let mut unsupported = Vec::new();
@@ -613,7 +679,17 @@ impl DesignGraph {
                 });
                 continue;
             }
-            if c.truth == Truth::Unknown
+            // A DISCHARGED ASSUMPTION IS NOT UNSUPPORTED (req:a-correct-proof-
+            // reads-correct-assumptions-objections-and-conditional-claims,
+            // part 1): it is a supposition taken up for the sake of argument
+            // and closed, read under `assumptions` as "assumed, discharged by
+            // …". Measured: π+e's supposition and all 8 of Arrow's read here.
+            // One that is also an ordinary premise somewhere is relied on, and
+            // stays.
+            if discharged_only.contains(&c.id) {
+                continue;
+            }
+            if c.truth == ClaimTruth::Unknown
                 && c.support.is_empty()
                 && c.sources.is_empty()
                 && c.node_type != node::ARTIFACT
@@ -811,6 +887,28 @@ impl DesignGraph {
                 .unwrap_or_default(),
         };
         let (truth, why) = self.premise_truth(id)?;
+        let assumes = self.assumptions_under(id)?;
+        let claim_truth = ClaimTruth::of(truth, &assumes);
+        let why = if claim_truth == ClaimTruth::Conditional {
+            format!(
+                "conditional: it holds only under the assumption(s) {}, which no step on the way \
+                 to it discharges, never on its own; {why}",
+                assumes.join(", ")
+            )
+        } else {
+            why
+        };
+        let concluded_decision =
+            node_type == node::DECISION && !self.inferences_concluding(id)?.is_empty();
+        let (acceptance, chain) = if concluded_decision {
+            (
+                prop(&props, "status").or_else(|| Some("proposed".to_string())),
+                self.chain_reading(id)?
+                    .map(|(verdict, why)| ChainVerdict { verdict, why }),
+            )
+        } else {
+            (None, None)
+        };
         let mut support = Vec::new();
         for s in self.inferences_concluding(id)? {
             if let Some(reading) = self.inference_reading(&s)? {
@@ -834,9 +932,9 @@ impl DesignGraph {
             }
         }
         corroborated_by.sort();
-        let says = ["statement", "decision", "description", "summary"]
+        let says = ["statement", "chose", "decision", "description", "summary"]
             .iter()
-            .find_map(|k| prop(&props, k));
+            .find_map(|k| prop(&props, k).filter(|v| !v.trim().is_empty()));
         Ok(ClaimReading {
             id: id.to_string(),
             name: prop(&props, "name"),
@@ -847,10 +945,12 @@ impl DesignGraph {
             sources: self.cited_sources(id)?,
             taken_as_given: crate::inference::is_taken_as_given(&props),
             statement: self.statement_reading(id)?,
-            assumes: self.assumptions_under(id)?,
+            assumes,
             contested_by_design: self.contested_governor(id)?,
+            acceptance,
+            chain,
             node_type,
-            truth,
+            truth: claim_truth,
             why,
             support,
             objects_to,

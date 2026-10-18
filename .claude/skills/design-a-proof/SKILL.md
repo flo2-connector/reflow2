@@ -77,7 +77,11 @@ never a premise.
 
 A counterexample is a statement shown by its own step, with a CONTRADICTS from it to the
 conjecture (`review_relations`, with the reason in its evidence): once it holds, the conjecture
-reads refuted. Anything you need the owner to settle —
+reads refuted. An objection that is an argument rather than a computed case (a reviewer's gap in
+a claimed proof) is drawn the same way, as a statement of its own: until something establishes or
+answers it, the claim reads contested and `reasoning_report` lists it among the points still contested. A
+deliberate objection that states its reason is never a contradiction for `detect_defects` to
+heal. Anything you need the owner to settle —
 which foundations they take as given, what a word means here, whether to keep a step — is a
 question of your own: `ask_question` with `asked_of` the owner and `about` the statements it
 concerns. Never park it as a Decision with no edges; `answer_question` with `answered_by` records
@@ -98,7 +102,8 @@ the statuses exactly:
 
 - `proven`: every step of one line under the claim is confirmed by a person or a checker.
 - `shown`: a line holds, but some step on it is unconfirmed — the usual state of a recorded proof.
-- `conditional`: it holds only under an assumption nothing on the way discharges.
+- `conditional`: it holds only under an assumption nothing on the way discharges. Its truth in the
+  read-back says `conditional` too, never holds, and names the assumption.
 - `unproven`: no line holds, or a counterexample that holds refutes it.
 
 `proof_status` on `get_node` also counts the steps under the claim, and its `counts` says what the

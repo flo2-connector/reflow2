@@ -60,7 +60,12 @@ would have found them.
   what they deliberately left soft, which teaches them that thinking out loud has a cost.
 - **Do not argue an idea down.** If there is a real counter-argument, record it *beside* the idea —
   that is what a rationale is for. An idea killed in conversation loses its reasoning; an idea
-  recorded with its objection keeps both.
+  recorded with its objection keeps both. When the idea becomes a choice argued by a chain, the
+  counter-argument becomes a **statement of its own**: a Requirement with `statement_kind`
+  (a proposition) saying the objection, drawn CONTRADICTS to the Decision with its reason in
+  `evidence`, and naming where it was first made in `source`. A reply is a CONTRADICTS from the
+  reply to that statement. Never make a ChangeEvent the objection: a ChangeEvent is history, and
+  reflow2 never reads history as answered or false.
 
 ## 3. Record it as an open question, not as an answer
 
@@ -193,7 +198,10 @@ When the thinking is done, ask which ideas the user wants to keep as intent. The
 - **A promoted "this follows from those"** — a claim the person says stands because other records hold — is recorded as an **Inference** step (`add_inference`: its premises, its conclusion, and whether all, any one or k of them must hold), not as prose in the idea. capture-intent's routing table has the row.
 - **When the promotion is consequential** — a decision the person will act on now — and the
   reasoning has premises worth checking, record it as an inference chain (`add_inference`): the
-  premises considered, the rule, and the chosen option as the conclusion. The chain is the
+  premises considered, the rule, and the chosen option as the conclusion.
+  A Decision may be a chain's conclusion when its premises are checkable; once the owner accepts
+  it, reflow2 reads the acceptance and the chain's own verdict side by side, so a first,
+  incomplete chain never makes the decision read unsupported. The chain is the
   stated argument for the choice, not a summary of the brainstorm — every step can be checked.
   Everything else from the thinking stays in the brainstorm's own record.
 - **Everything else stays exactly where it is.** Recorded as considered, never deleted — the roads

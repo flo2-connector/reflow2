@@ -65,6 +65,7 @@ mod a_link_into_another_design_is_recorded_and_checked;
 mod a_mirror_can_be_refreshed;
 mod a_node_records_what_the_user_calls_it;
 mod a_parked_report_that_produced_nothing_is_reported;
+mod a_premise_has_a_truth_and_a_proof_reads_correct;
 mod a_procedural_boundary_has_a_word;
 mod a_project_declares_its_unit_system_and_the_sweep_reports;
 mod a_project_is_asked_what_its_artifacts_must_be_in;
