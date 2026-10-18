@@ -1,0 +1,5852 @@
+{
+ "content_hash": "sha256:a9537c4b7a4975fec9c8def4020ca0a473b51c41cee493b56620f4702ba28829",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:ax-well-ordering",
+   "properties": {
+    "note": "Anthony's choice, given in Claude Code and relayed by the observer: well-ordering and the integer axioms stay as stated foundations."
+   },
+   "to_id": "q:foundations-taken-as-given"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {
+    "note": "Anthony's choice, given in Claude Code and relayed by the observer; it confirms both definitions as written."
+   },
+   "to_id": "q:reading-of-the-theorem"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:prop-uniqueness",
+   "properties": {
+    "note": "Anthony's choice, given in Claude Code and relayed by the observer; this starts round 2."
+   },
+   "to_id": "q:second-proof-of-uniqueness"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:compressed-steps",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:bz-2-d-divides-both"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:compressed-steps",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:l1-composite-splits"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:compressed-steps",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:l2-division-algorithm"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:compressed-steps",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:l7-product-exceeds-one"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:foundations-taken-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:ax-integer-arithmetic"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:foundations-taken-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:ax-well-ordering"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:reading-of-the-theorem",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:def-product-of-primes"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:reading-of-the-theorem",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:def-same-up-to-order"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:reading-of-the-theorem",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-fundamental-theorem-of-arithmetic"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:second-proof-of-uniqueness",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lem-euclid"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:second-proof-of-uniqueness",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:prop-uniqueness"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:con:def-divides",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-hilbert-441-counterexample-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-hilbert-441-counterexample-calc-json-20261017t231209698-9bb3",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:ax-well-ordering",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-divides",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-h-irreducible",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-hilbert-numbers",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-product-of-primes",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-bz",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-e-ih",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-eu",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-eu-not-a",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-l5-ih",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-si-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-si-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-u-ih",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-u-two",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:hyp-u2-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bz-1-least-combination",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bz-2-d-divides-both",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bz-3-d-is-one",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bz-4-conditional-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:e-1-prime-case",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:e-2-composite-case",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:e-3-cases",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:e-4-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:e-5-strong-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:eu-1-bezout-instance",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:eu-2-p-divides-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:eu-3-cases",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:eu-4-conditional-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-441",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-answer",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-closed",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-euclid-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-existence",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-line1-breaks",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-line2-breaks",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l1-composite-splits",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l2-division-algorithm",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l5-1-at-k",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l5-2-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l5-3-strong-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l6-prime-divides-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l7-product-exceeds-one",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:si-1-least-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:si-2-n0-satisfies",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:si-3-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:si-4-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:si-5-conditional-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:thm-conjunction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-1-p1-is-some-qj",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-2-cancel",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-3-case-m-is-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-4-case-m-gt-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-5-cases",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-6-any-two",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-7-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u-8-strong-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-1-least-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-2-disjoint",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-3-smaller-number",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-4-two-factorizations",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-5-p1-divides-q1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-6-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:u2-7-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:fundamental-theorem-of-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:compressed-steps",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:foundations-taken-as-given",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:reading-of-the-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:second-proof-of-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bz-d-divides-both",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bz-d-is-one",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bz-least-combination",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-h-euclid",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-h-unique-factorization",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:e-at-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:e-composite-case",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:e-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:e-prime-case",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:eu-bezout-instance",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:eu-disjunction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:eu-p-divides-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-441-two-factorizations",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-answer",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-euclid-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-existence",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-where-line1-breaks",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:h-where-line2-breaks",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l5-at-k",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l5-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-bezout-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-composite-splits",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-division-algorithm",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-euclid",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-h-closed",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-prime-divides-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-prime-divides-product",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-product-of-primes-exceeds-one",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-strong-induction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-existence",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:si-all-satisfy",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:si-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:si-least-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:si-n0-satisfies-p",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-fundamental-theorem-of-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-any-two-at-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-at-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-cancel",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-case-m-gt-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-case-m-is-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-inductive-step",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u-p1-is-some-qj",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-disjoint",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-least-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-p1-divides-q1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-smaller-number-n-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:u2-two-factorizations-of-n-prime",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:h-441-computation",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-hilbert-441-counterexample-calc-json-20261017t231209698-9bb3",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-hilbert-441-counterexample-calc-json"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bz-1-least-combination",
+   "properties": {},
+   "to_id": "req:bz-least-combination"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bz-2-d-divides-both",
+   "properties": {},
+   "to_id": "req:bz-d-divides-both"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bz-3-d-is-one",
+   "properties": {},
+   "to_id": "req:bz-d-is-one"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bz-4-conditional-proof",
+   "properties": {},
+   "to_id": "req:lem-bezout-prime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:e-1-prime-case",
+   "properties": {},
+   "to_id": "req:e-prime-case"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:e-2-composite-case",
+   "properties": {},
+   "to_id": "req:e-composite-case"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:e-3-cases",
+   "properties": {},
+   "to_id": "req:e-at-n"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:e-4-inductive-step",
+   "properties": {},
+   "to_id": "req:e-inductive-step"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:e-5-strong-induction",
+   "properties": {},
+   "to_id": "req:prop-existence"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:eu-1-bezout-instance",
+   "properties": {},
+   "to_id": "req:eu-bezout-instance"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:eu-2-p-divides-b",
+   "properties": {},
+   "to_id": "req:eu-p-divides-b"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:eu-3-cases",
+   "properties": {},
+   "to_id": "req:eu-disjunction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:eu-4-conditional-proof",
+   "properties": {},
+   "to_id": "req:lem-euclid"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-441",
+   "properties": {},
+   "to_id": "req:h-441-two-factorizations"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-answer",
+   "properties": {},
+   "to_id": "req:h-answer"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-closed",
+   "properties": {},
+   "to_id": "req:lem-h-closed"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-euclid-counterexample",
+   "properties": {},
+   "to_id": "req:h-euclid-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-existence",
+   "properties": {},
+   "to_id": "req:h-existence"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-line1-breaks",
+   "properties": {},
+   "to_id": "req:h-where-line1-breaks"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-line2-breaks",
+   "properties": {},
+   "to_id": "req:h-where-line2-breaks"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l1-composite-splits",
+   "properties": {},
+   "to_id": "req:lem-composite-splits"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l2-division-algorithm",
+   "properties": {},
+   "to_id": "req:lem-division-algorithm"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l5-1-at-k",
+   "properties": {},
+   "to_id": "req:l5-at-k"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l5-2-inductive-step",
+   "properties": {},
+   "to_id": "req:l5-inductive-step"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l5-3-strong-induction",
+   "properties": {},
+   "to_id": "req:lem-prime-divides-product"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l6-prime-divides-prime",
+   "properties": {},
+   "to_id": "req:lem-prime-divides-prime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l7-product-exceeds-one",
+   "properties": {},
+   "to_id": "req:lem-product-of-primes-exceeds-one"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:si-1-least-counterexample",
+   "properties": {},
+   "to_id": "req:si-least-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:si-2-n0-satisfies",
+   "properties": {},
+   "to_id": "req:si-n0-satisfies-p"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:si-3-contradiction",
+   "properties": {},
+   "to_id": "req:si-contradiction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:si-4-reductio",
+   "properties": {},
+   "to_id": "req:si-all-satisfy"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:si-5-conditional-proof",
+   "properties": {},
+   "to_id": "req:lem-strong-induction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:thm-conjunction",
+   "properties": {},
+   "to_id": "req:thm-fundamental-theorem-of-arithmetic"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-1-p1-is-some-qj",
+   "properties": {},
+   "to_id": "req:u-p1-is-some-qj"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-2-cancel",
+   "properties": {},
+   "to_id": "req:u-cancel"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-3-case-m-is-1",
+   "properties": {},
+   "to_id": "req:u-case-m-is-1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-4-case-m-gt-1",
+   "properties": {},
+   "to_id": "req:u-case-m-gt-1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-5-cases",
+   "properties": {},
+   "to_id": "req:u-at-n"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-6-any-two",
+   "properties": {},
+   "to_id": "req:u-any-two-at-n"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-7-inductive-step",
+   "properties": {},
+   "to_id": "req:u-inductive-step"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u-8-strong-induction",
+   "properties": {},
+   "to_id": "req:prop-uniqueness"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-1-least-counterexample",
+   "properties": {},
+   "to_id": "req:u2-least-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-2-disjoint",
+   "properties": {},
+   "to_id": "req:u2-disjoint"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-3-smaller-number",
+   "properties": {},
+   "to_id": "req:u2-smaller-number-n-prime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-4-two-factorizations",
+   "properties": {},
+   "to_id": "req:u2-two-factorizations-of-n-prime"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-5-p1-divides-q1",
+   "properties": {},
+   "to_id": "req:u2-p1-divides-q1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-6-contradiction",
+   "properties": {},
+   "to_id": "req:u2-contradiction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:u2-7-reductio",
+   "properties": {},
+   "to_id": "req:prop-uniqueness"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:fundamental-theorem-of-arithmetic",
+   "properties": {},
+   "to_id": "req:h-answer"
+  },
+  {
+   "edge_type": "CONTAINS",
+   "from_id": "proj:fundamental-theorem-of-arithmetic",
+   "properties": {},
+   "to_id": "req:thm-fundamental-theorem-of-arithmetic"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:h-441-two-factorizations",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "441 is an element of H with two factorizations into H-irreducibles, (9, 49) and (21, 21), that are not the same up to order; the conjecture says every element of H above 1 has only one. Computed in hilbert-441-counterexample.calc.json (ver:h-441-computation)."
+   },
+   "to_id": "req:conj-h-unique-factorization"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:h-euclid-counterexample",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The H-irreducible 21 divides 9·49 with 9 and 49 in H, but divides neither 9 nor 49; the conjecture says it must divide one of them. Computed in hilbert-441-counterexample.calc.json (ver:h-441-computation)."
+   },
+   "to_id": "req:conj-h-euclid"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-hilbert-441-counterexample-calc-json",
+   "properties": {},
+   "to_id": "ver:h-441-computation"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:con:def-divides"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:bz-1-least-combination"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:bz-2-d-divides-both"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:e-2-composite-case"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:eu-2-p-divides-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:h-closed"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:h-existence"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:h-line2-breaks"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:l1-composite-splits"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:l2-division-algorithm"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:l5-1-at-k"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:l7-product-exceeds-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u-2-cancel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u-5-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u2-2-disjoint"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u2-3-smaller-number"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-integer-arithmetic",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-well-ordering",
+   "properties": {},
+   "to_id": "inf:bz-1-least-combination"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-well-ordering",
+   "properties": {},
+   "to_id": "inf:l2-division-algorithm"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-well-ordering",
+   "properties": {},
+   "to_id": "inf:si-1-least-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:ax-well-ordering",
+   "properties": {},
+   "to_id": "inf:u2-1-least-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:bz-2-d-divides-both"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:eu-2-p-divides-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:h-euclid-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:l1-composite-splits"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:l6-prime-divides-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:u-1-p1-is-some-qj"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-divides",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-h-irreducible",
+   "properties": {},
+   "to_id": "inf:h-441"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-h-irreducible",
+   "properties": {},
+   "to_id": "inf:h-euclid-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-h-irreducible",
+   "properties": {},
+   "to_id": "inf:h-existence"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-h-irreducible",
+   "properties": {},
+   "to_id": "inf:h-line1-breaks"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-hilbert-numbers",
+   "properties": {},
+   "to_id": "inf:h-441"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-hilbert-numbers",
+   "properties": {},
+   "to_id": "inf:h-closed"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-hilbert-numbers",
+   "properties": {},
+   "to_id": "inf:h-existence"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-hilbert-numbers",
+   "properties": {},
+   "to_id": "inf:h-line2-breaks"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:bz-3-d-is-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:l1-composite-splits"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:l6-prime-divides-prime"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:l7-product-exceeds-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-prime",
+   "properties": {},
+   "to_id": "inf:u2-3-smaller-number"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-product-of-primes",
+   "properties": {},
+   "to_id": "inf:e-1-prime-case"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-product-of-primes",
+   "properties": {},
+   "to_id": "inf:e-2-composite-case"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-product-of-primes",
+   "properties": {},
+   "to_id": "inf:l7-product-exceeds-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-product-of-primes",
+   "properties": {},
+   "to_id": "inf:u2-4-two-factorizations"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {},
+   "to_id": "inf:h-441"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {},
+   "to_id": "inf:u-3-case-m-is-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {},
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {},
+   "to_id": "inf:u2-2-disjoint"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-same-up-to-order",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-bz",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:bz-1-least-combination"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-bz",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:bz-3-d-is-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-e-ih",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:e-2-composite-case"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-eu",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:eu-1-bezout-instance"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-eu",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:eu-2-p-divides-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-eu-not-a",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:eu-1-bezout-instance"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-l5-ih",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l5-1-at-k"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-si-counterexample",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:si-1-least-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-si-step",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:si-2-n0-satisfies"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-u-ih",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-u-two",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:u-1-p1-is-some-qj"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-u-two",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:u-2-cancel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:hyp-u2-counterexample",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:u2-1-least-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:bz-d-divides-both",
+   "properties": {},
+   "to_id": "inf:bz-3-d-is-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:bz-d-is-one",
+   "properties": {},
+   "to_id": "inf:bz-4-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:bz-least-combination",
+   "properties": {},
+   "to_id": "inf:bz-2-d-divides-both"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:e-at-n",
+   "properties": {},
+   "to_id": "inf:e-4-inductive-step"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:e-composite-case",
+   "properties": {},
+   "to_id": "inf:e-3-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:e-inductive-step",
+   "properties": {},
+   "to_id": "inf:e-5-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:e-prime-case",
+   "properties": {},
+   "to_id": "inf:e-3-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:eu-bezout-instance",
+   "properties": {},
+   "to_id": "inf:eu-2-p-divides-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:eu-disjunction",
+   "properties": {},
+   "to_id": "inf:eu-4-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:eu-p-divides-b",
+   "properties": {},
+   "to_id": "inf:eu-3-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:h-441-two-factorizations",
+   "properties": {},
+   "to_id": "inf:h-answer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:h-euclid-counterexample",
+   "properties": {},
+   "to_id": "inf:h-line1-breaks"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:h-existence",
+   "properties": {},
+   "to_id": "inf:h-answer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l5-at-k",
+   "properties": {},
+   "to_id": "inf:l5-2-inductive-step"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l5-inductive-step",
+   "properties": {},
+   "to_id": "inf:l5-3-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-bezout-prime",
+   "properties": {},
+   "to_id": "inf:eu-1-bezout-instance"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-composite-splits",
+   "properties": {},
+   "to_id": "inf:e-2-composite-case"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-division-algorithm",
+   "properties": {},
+   "to_id": "inf:bz-2-d-divides-both"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-euclid",
+   "properties": {},
+   "to_id": "inf:l5-1-at-k"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-h-closed",
+   "properties": {},
+   "to_id": "inf:h-existence"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-prime-divides-prime",
+   "properties": {},
+   "to_id": "inf:u-1-p1-is-some-qj"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-prime-divides-prime",
+   "properties": {},
+   "to_id": "inf:u2-6-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-prime-divides-product",
+   "properties": {},
+   "to_id": "inf:u-1-p1-is-some-qj"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-product-of-primes-exceeds-one",
+   "properties": {},
+   "to_id": "inf:u-3-case-m-is-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-product-of-primes-exceeds-one",
+   "properties": {},
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-product-of-primes-exceeds-one",
+   "properties": {},
+   "to_id": "inf:u2-2-disjoint"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-strong-induction",
+   "properties": {},
+   "to_id": "inf:e-5-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-strong-induction",
+   "properties": {},
+   "to_id": "inf:h-existence"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-strong-induction",
+   "properties": {},
+   "to_id": "inf:l5-3-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-strong-induction",
+   "properties": {},
+   "to_id": "inf:l7-product-exceeds-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-strong-induction",
+   "properties": {},
+   "to_id": "inf:u-8-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-existence",
+   "properties": {},
+   "to_id": "inf:thm-conjunction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-existence",
+   "properties": {},
+   "to_id": "inf:u2-4-two-factorizations"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-uniqueness",
+   "properties": {},
+   "to_id": "inf:thm-conjunction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:si-all-satisfy",
+   "properties": {},
+   "to_id": "inf:si-5-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:si-contradiction",
+   "properties": {},
+   "to_id": "inf:si-4-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:si-least-counterexample",
+   "properties": {},
+   "to_id": "inf:si-2-n0-satisfies"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:si-least-counterexample",
+   "properties": {},
+   "to_id": "inf:si-3-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:si-n0-satisfies-p",
+   "properties": {},
+   "to_id": "inf:si-3-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-any-two-at-n",
+   "properties": {},
+   "to_id": "inf:u-7-inductive-step"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-at-n",
+   "properties": {},
+   "to_id": "inf:u-6-any-two"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-cancel",
+   "properties": {},
+   "to_id": "inf:u-3-case-m-is-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-cancel",
+   "properties": {},
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-cancel",
+   "properties": {},
+   "to_id": "inf:u-5-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-case-m-gt-1",
+   "properties": {},
+   "to_id": "inf:u-5-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-case-m-is-1",
+   "properties": {},
+   "to_id": "inf:u-5-cases"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-inductive-step",
+   "properties": {},
+   "to_id": "inf:u-8-strong-induction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-p1-is-some-qj",
+   "properties": {},
+   "to_id": "inf:u-2-cancel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-p1-is-some-qj",
+   "properties": {},
+   "to_id": "inf:u-3-case-m-is-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u-p1-is-some-qj",
+   "properties": {},
+   "to_id": "inf:u-4-case-m-gt-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-contradiction",
+   "properties": {},
+   "to_id": "inf:u2-7-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-disjoint",
+   "properties": {},
+   "to_id": "inf:u2-3-smaller-number"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-disjoint",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-disjoint",
+   "properties": {},
+   "to_id": "inf:u2-6-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-least-counterexample",
+   "properties": {},
+   "to_id": "inf:u2-2-disjoint"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-least-counterexample",
+   "properties": {},
+   "to_id": "inf:u2-3-smaller-number"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-least-counterexample",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-p1-divides-q1",
+   "properties": {},
+   "to_id": "inf:u2-6-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-smaller-number-n-prime",
+   "properties": {},
+   "to_id": "inf:u2-4-two-factorizations"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-smaller-number-n-prime",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:u2-two-factorizations-of-n-prime",
+   "properties": {},
+   "to_id": "inf:u2-5-p1-divides-q1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "inf:h-441"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "inf:h-euclid-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "inf:h-line1-breaks"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "inf:h-line2-breaks"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "req:h-441-two-factorizations"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "req:h-euclid-counterexample"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "req:h-where-line1-breaks"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:h-441-computation",
+   "properties": {},
+   "to_id": "req:h-where-line2-breaks"
+  }
+ ],
+ "graph_id": "bbcd344a71ff1cbd",
+ "nodes": [
+  {
+   "node_id": "art:file-hilbert-441-counterexample-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:17e6b5481d21f8464fcf2b9028d315ae7d737b90ac5d71814da688070e1b204d",
+    "description": "Made by Anthony Sligar on 2026-10-17 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "hilbert-441-counterexample.calc.json",
+    "name": "hilbert-441-counterexample.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:file-hilbert-441-counterexample-calc-json-20261017t231209698-9bb3",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-17",
+    "name": "hilbert-441-counterexample.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made hilbert-441-counterexample.calc.json (47782 bytes, sha256 17e6b5481d21f8464fcf2b9028d315ae7d737b90ac5d71814da688070e1b204d) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-hilbert-441-counterexample-calc-json."
+   }
+  },
+  {
+   "node_id": "con:ax-integer-arithmetic",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Axiom: the arithmetic and order of the integers",
+    "priority": "medium",
+    "statement": "The integers with + and · form a commutative ring with 1 ≠ 0 (addition and multiplication are associative and commutative, multiplication distributes over addition, 0 and 1 are identities, every integer has a negative), with no zero divisors, so ab = ac and a ≠ 0 give b = c (cancellation). They are totally ordered by <, compatibly with the operations: a < b gives a + c < b + c, and a < b with c > 0 gives ac < bc. There is no integer strictly between 0 and 1.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:ax-well-ordering",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Axiom: the well-ordering principle",
+    "priority": "medium",
+    "statement": "Every nonempty set of integers that is bounded below (in particular every nonempty set of positive integers, or of integers >= b for a fixed b) has a least element.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-divides",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: divides",
+    "priority": "medium",
+    "statement": "For integers a and b, a divides b (written a | b) when b = a·c for some integer c.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "a",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-h-irreducible",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "con:def-prime",
+     "con:def-product-of-primes",
+     "con:def-same-up-to-order",
+     "con:def-hilbert-numbers"
+    ],
+    "name": "Definition: H-irreducible, and factorization within H",
+    "priority": "medium",
+    "statement": "An element h > 1 of H is H-irreducible when no element d of H with 1 < d < h divides h (equivalently, h is not a product of two elements of H that are both greater than 1). A factorization of h within H is a list of one or more H-irreducibles whose product is h; two such factorizations are the same up to order as in the definition for primes.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "h"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-hilbert-numbers",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "con:def-prime",
+     "con:def-product-of-primes",
+     "con:ax-integer-arithmetic"
+    ],
+    "name": "Definition: the set H = {1, 5, 9, 13, ...}",
+    "priority": "medium",
+    "statement": "H is the set of positive integers one more than a multiple of 4: h is in H when h >= 1 and h mod 4 = 1. So H = {1, 5, 9, 13, 17, 21, ...}.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "h"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-prime",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: prime",
+    "priority": "medium",
+    "statement": "An integer p is prime when p > 1 and the only positive integers dividing p are 1 and p.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-product-of-primes",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: written as a product of primes",
+    "priority": "medium",
+    "statement": "An integer n is written as a product of primes when there is a finite list p_1, ..., p_r of primes, with r >= 1 and repetitions allowed, such that n = p_1 · p_2 · ... · p_r. The list is a (prime) factorization of n; r is its length. A single prime p is the product of the one-element list (p). The empty product (r = 0) is 1 and is not a factorization.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-same-up-to-order",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the same up to the order of the factors",
+    "priority": "medium",
+    "statement": "Two factorizations p_1...p_r and q_1...q_s are the same up to the order of the factors when r = s and there is a one-to-one correspondence (a permutation) σ of {1, ..., r} with q_σ(i) = p_i for every i; equivalently, every prime occurs the same number of times in both lists.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:hyp-bz",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-bezout-prime"
+    ],
+    "name": "Hypothesis (Lemma 3, for conditional proof): p is prime and p does not divide a",
+    "priority": "medium",
+    "statement": "Assume p is prime and p does not divide the integer a.",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-e-ih",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:prop-existence",
+     "con:def-product-of-primes",
+     "con:hyp-l5-ih",
+     "con:hyp-si-step",
+     "req:thm-fundamental-theorem-of-arithmetic"
+    ],
+    "name": "Induction hypothesis (existence, at n): every m with 2 <= m < n is a product of primes",
+    "priority": "medium",
+    "statement": "Assume (strong induction hypothesis, for an integer n >= 2): every integer m with 2 <= m < n can be written as a product of primes.",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-eu",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-euclid",
+     "con:hyp-bz"
+    ],
+    "name": "Hypothesis (Lemma 4, for conditional proof): p is prime and p divides a·b",
+    "priority": "medium",
+    "statement": "Assume p is prime and p divides a·b.",
+    "variables": [
+     "a",
+     "b",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-eu-not-a",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-euclid",
+     "con:hyp-bz",
+     "con:hyp-eu"
+    ],
+    "name": "Case supposition (Lemma 4): p does not divide a",
+    "priority": "medium",
+    "statement": "Suppose (the case to be handled) that p does not divide a.",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-l5-ih",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-prime-divides-product",
+     "req:lem-strong-induction",
+     "con:hyp-si-step"
+    ],
+    "name": "Induction hypothesis (Lemma 5, at k): the statement holds for every shorter product",
+    "priority": "medium",
+    "statement": "Assume (strong induction hypothesis, for a fixed prime p and an integer k >= 1): for every j with 1 <= j < k and all integers a_1, ..., a_j, if p divides a_1·...·a_j then p divides some a_i.",
+    "variables": [
+     "k",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-si-counterexample",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-strong-induction",
+     "con:hyp-si-step"
+    ],
+    "name": "Supposition (SI, for contradiction): some n >= b fails P",
+    "priority": "medium",
+    "statement": "Suppose, for contradiction, that there is an integer n >= b for which P(n) fails.",
+    "variables": [
+     "P",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-si-step",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:lem-strong-induction"
+    ],
+    "name": "Hypothesis (SI, for conditional proof): the inductive step holds for P",
+    "priority": "medium",
+    "statement": "Assume: for every integer n >= b, if P(m) holds for every m with b <= m < n, then P(n) holds.",
+    "variables": [
+     "P",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-u-ih",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:def-same-up-to-order",
+     "con:hyp-e-ih",
+     "con:hyp-l5-ih",
+     "con:hyp-si-step",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "req:e-inductive-step"
+    ],
+    "name": "Induction hypothesis (uniqueness, at n): factorization is unique below n",
+    "priority": "medium",
+    "statement": "Assume (strong induction hypothesis, for an integer n >= 2): for every integer m with 2 <= m < n, any two factorizations of m into primes are the same up to the order of the factors.",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-u-two",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:def-same-up-to-order",
+     "con:def-product-of-primes",
+     "con:hyp-u-ih",
+     "req:thm-fundamental-theorem-of-arithmetic"
+    ],
+    "name": "Hypothesis (uniqueness, for conditional proof): two factorizations of n",
+    "priority": "medium",
+    "statement": "Let n = p_1·p_2·...·p_r = q_1·q_2·...·q_s, where r, s >= 1 and every p_i and q_j is prime.",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "con:hyp-u2-counterexample",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "con:hyp-si-counterexample",
+     "con:def-same-up-to-order"
+    ],
+    "name": "Supposition (second uniqueness proof, for contradiction): some n has two different factorizations",
+    "priority": "medium",
+    "statement": "Suppose, for contradiction, that some integer n >= 2 has two factorizations into primes that are NOT the same up to the order of the factors."
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:bz-1-least-combination",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3 step 1 by well-ordering",
+    "rule": "all",
+    "rule_name": "well-ordering principle (existence of a least element)",
+    "warrant": "S is a set of positive integers. It is nonempty: p is prime so p > 0, and p = p·1 + a·0 is in S. By well-ordering S has a least element d, and being in S, d = p·x0 + a·y0 for some integers x0, y0."
+   }
+  },
+  {
+   "node_id": "inf:bz-2-d-divides-both",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3 step 2: the remainder on dividing by d is a smaller combination, so it is 0",
+    "rule": "all",
+    "rule_name": "division algorithm, then leastness (embedded reductio)",
+    "warrant": "Divide p by d (Lemma 2): p = t·d + r with 0 <= r < d. Then r = p - t·(p·x0 + a·y0) = p·(1 - t·x0) + a·(-t·y0) is a combination of p and a. If r > 0, r would be an element of S smaller than d, contradicting leastness; so r = 0 and d | p. The same argument with a in place of p (a = t'·d + r', r' = a·(1 - t'·y0) + p·(-t'·x0)) gives d | a."
+   }
+  },
+  {
+   "node_id": "inf:bz-3-d-is-one",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3 step 3: d is a positive divisor of the prime p, and d = p is excluded",
+    "rule": "all",
+    "rule_name": "definition of prime, then elimination of a case",
+    "warrant": "d is positive and d | p, and p is prime, so d = 1 or d = p. If d = p then p = d divides a, contradicting the hypothesis that p does not divide a. Hence d = 1, i.e. p·x0 + a·y0 = 1."
+   }
+  },
+  {
+   "node_id": "inf:bz-4-conditional-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-bz"
+    ],
+    "generalizes_over": [
+     "a",
+     "p"
+    ],
+    "name": "Lemma 3 by conditional proof",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the hypothesis; universal generalization over p and a",
+    "warrant": "Under the hypothesis (p prime, p does not divide a) we found x = x0, y = y0 with p·x + a·y = 1. Discharging the hypothesis gives the implication, and p and a were arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:e-1-prime-case",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n"
+    ],
+    "name": "Existence step 1: a prime is its own one-factor product",
+    "rule": "all",
+    "rule_name": "unfolding the definition of a product of primes",
+    "warrant": "If n is prime, the list (n) of length r = 1 is a list of primes whose product is n, so n is a product of primes by definition."
+   }
+  },
+  {
+   "node_id": "inf:e-2-composite-case",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Existence step 2: split n = a·b, factor both by the induction hypothesis, join the lists",
+    "rule": "all",
+    "rule_name": "Lemma 1, the induction hypothesis at m = a and m = b, and concatenation of factorizations",
+    "warrant": "If n >= 2 is not prime, Lemma 1 gives n = a·b with 1 < a < n and 1 < b < n, so 2 <= a < n and 2 <= b < n. By the induction hypothesis a = p_1·...·p_r and b = q_1·...·q_s with all factors prime. Then n = p_1·...·p_r·q_1·...·q_s (associativity), and the joined list of r + s >= 2 primes is a factorization of n."
+   }
+  },
+  {
+   "node_id": "inf:e-3-cases",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Existence step 3: n is prime or it is not",
+    "rule": "all",
+    "rule_name": "proof by cases (law of excluded middle: n prime or n not prime)",
+    "warrant": "Every n >= 2 is either prime or not prime. In the first case step 1, in the second case step 2, shows n is a product of primes."
+   }
+  },
+  {
+   "node_id": "inf:e-4-inductive-step",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-e-ih"
+    ],
+    "generalizes_over": [
+     "n"
+    ],
+    "name": "Existence step 4: discharge the induction hypothesis; n was arbitrary",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the induction hypothesis; universal generalization over n",
+    "warrant": "Step 3 derived 'n is a product of primes' from the induction hypothesis for n, assuming nothing else about n beyond n >= 2. So for every n >= 2 the hypothesis implies the conclusion."
+   }
+  },
+  {
+   "node_id": "inf:e-5-strong-induction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proposition E by strong induction on n (b = 2)",
+    "rule": "all",
+    "rule_name": "strong induction (Lemma SI with b = 2)",
+    "warrant": "Take P(n) = 'n is a product of primes' and b = 2. Step 4 is the hypothesis of Lemma SI for this P, so P(n) holds for every n >= 2, i.e. every integer n > 1. (No separate base case is needed: at n = 2 the induction hypothesis is vacuous, and 2 is handled by the prime case.)"
+   }
+  },
+  {
+   "node_id": "inf:eu-1-bezout-instance",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 4 step 1: apply Lemma 3 to p and a",
+    "rule": "all",
+    "rule_name": "instantiation of Lemma 3, then modus ponens",
+    "warrant": "p is prime (hypothesis) and p does not divide a (case supposition), which is exactly the hypothesis of Lemma 3 for these p and a; so there are x, y with p·x + a·y = 1."
+   }
+  },
+  {
+   "node_id": "inf:eu-2-p-divides-b",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 4 step 2: multiply the Bézout identity by b",
+    "rule": "all",
+    "rule_name": "algebra in the ring of integers (distributivity), definition of divides",
+    "warrant": "From p·x + a·y = 1, multiplying by b: b = p·(b·x) + (a·b)·y. By hypothesis p | a·b, say a·b = p·c. Then b = p·(b·x + c·y), so p | b."
+   }
+  },
+  {
+   "node_id": "inf:eu-3-cases",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-eu-not-a"
+    ],
+    "name": "Lemma 4 step 3: either p divides a, or (case) it does not and then p divides b",
+    "rule": "all",
+    "rule_name": "proof by cases on 'p divides a' (law of excluded middle), discharging the case supposition",
+    "warrant": "Either p divides a or it does not. If it does, 'p | a or p | b' holds at once. If it does not, step 2 gives p | b. In both cases p | a or p | b. The case supposition 'p does not divide a' is discharged here; the hypothesis of Lemma 4 is still in force."
+   }
+  },
+  {
+   "node_id": "inf:eu-4-conditional-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-eu"
+    ],
+    "generalizes_over": [
+     "a",
+     "b",
+     "p"
+    ],
+    "name": "Lemma 4 (Euclid's lemma) by conditional proof",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the hypothesis; universal generalization over p, a, b",
+    "warrant": "Under the hypothesis (p prime, p | a·b) we derived p | a or p | b. Discharging it gives the implication, for arbitrary p, a, b."
+   }
+  },
+  {
+   "node_id": "inf:h-441",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "The counterexample 441, from the kept computation",
+    "rule": "all",
+    "rule_name": "computed check (flo2-calc record) read through the definitions",
+    "warrant": "The record computes 9·49 = 441 = 21·21, that 9, 21, 49 are in H, and that none has a divisor in H strictly between 1 and itself, so each is H-irreducible by definition. (9, 49) and (21, 21) are lists of equal length, but 21 equals neither 9 nor 49 (also computed), so no matching of equal factors exists: they are not the same up to order."
+   }
+  },
+  {
+   "node_id": "inf:h-answer",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Answer to (b): existence holds, uniqueness fails",
+    "rule": "all",
+    "rule_name": "conjunction of a proved statement and a counterexample",
+    "warrant": "Proposition H-E gives existence in H; the computed counterexample 441 = 9·49 = 21·21 shows two factorizations into H-irreducibles that are not the same up to order, so uniqueness fails."
+   }
+  },
+  {
+   "node_id": "inf:h-closed",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "h",
+     "k"
+    ],
+    "name": "Lemma H1 by algebra",
+    "rule": "all",
+    "rule_name": "algebra in the integers",
+    "warrant": "Write h = 4a + 1 and k = 4b + 1 with a, b >= 0. Then h·k = 16ab + 4a + 4b + 1 = 4(4ab + a + b) + 1, which is one more than a multiple of 4, and positive."
+   }
+  },
+  {
+   "node_id": "inf:h-euclid-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "21 divides 441 but not 9 or 49, from the kept computation",
+    "rule": "all",
+    "rule_name": "computed check (flo2-calc record)",
+    "warrant": "The record computes divides(21, 441) = true, divides(21, 9) = false, divides(21, 49) = false, and that 21 is H-irreducible."
+   }
+  },
+  {
+   "node_id": "inf:h-existence",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "h"
+    ],
+    "name": "Proposition H-E: the existence proof carries over to H",
+    "rule": "all",
+    "rule_name": "strong induction (Lemma SI, b = 2, P(n) = 'if n is in H then n is a product of H-irreducibles'), compressed into one step",
+    "warrant": "This is the existence line inf:e-1 to inf:e-5 read in H. inf:e-1 carries: an H-irreducible is its own one-factor product. inf:e-2 carries with Lemma 1 replaced by the definition of H-irreducible: if h > 1 in H is not H-irreducible, some d in H with 1 < d < h divides h; write h = d·e. Then e is in H (d ≡ 1 mod 4 gives h ≡ e mod 4, so e ≡ 1), and 1 < e < h. By the induction hypothesis d and e are products of H-irreducibles; join the lists (the product stays in H by Lemma H1). inf:e-3 to inf:e-5 carry unchanged. Nothing in the existence line uses subtraction or Bézout."
+   }
+  },
+  {
+   "node_id": "inf:h-line1-breaks",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Where line 1 breaks in H, from the kept computation",
+    "rule": "all",
+    "rule_name": "computed check read against the step it tests",
+    "warrant": "The record computes gcd(21, 9) = 3, 3 | 21, 1 < 3 < 21 and 3 not in H. So in H the move of inf:bz-3-d-is-one ('a positive divisor of an irreducible p is 1 or p') is false for p = 21, and the lemma it feeds, Euclid's, has the computed counterexample 21 | 9·49."
+   }
+  },
+  {
+   "node_id": "inf:h-line2-breaks",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Where line 2 breaks in H, from the kept computation",
+    "rule": "all",
+    "rule_name": "computed check, and algebra mod 4",
+    "warrant": "In general (4a + 1) - (4b + 1) = 4(a - b), a multiple of 4, never 1 mod 4. In the computed instance P = (9, 49), Q = (21, 21): q_1 - p_1 = 12 and 12 mod 4 = 0, so 12 is not in H and has no factorization within H."
+   }
+  },
+  {
+   "node_id": "inf:l1-composite-splits",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n"
+    ],
+    "name": "Lemma 1 from the definition of prime and the order of the integers",
+    "rule": "all",
+    "rule_name": "direct proof, for an arbitrary n",
+    "warrant": "Let n > 1 be not prime. By the definition of prime, n has a positive divisor a with a ≠ 1 and a ≠ n; write n = a·b (definition of divides). Since n > 0 and a > 0, b > 0. As positive integers, a >= 1 and b >= 1 (no integer lies strictly between 0 and 1), so a > 1. If b = 1 then a = n, excluded; so b > 1, i.e. b >= 2. Then n = a·b >= 2a > a, so a < n; symmetrically a >= 2 gives n >= 2b > b, so b < n."
+   }
+  },
+  {
+   "node_id": "inf:l2-division-algorithm",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "a",
+     "d"
+    ],
+    "name": "Lemma 2 (division algorithm) by well-ordering",
+    "rule": "all",
+    "rule_name": "least-element argument (well-ordering), with a short embedded reductio",
+    "warrant": "Let a be any integer and d > 0. The set S = {a - q·d : q an integer, a - q·d >= 0} is nonempty (q = -|a| gives a + |a|·d >= a + |a| >= 0) and bounded below by 0, so by well-ordering it has a least element r = a - q·d >= 0. If r >= d then r - d = a - (q+1)·d is in S and smaller than r, contradicting leastness; so 0 <= r < d and a = q·d + r. (The embedded reductio is recorded inside this one step, not as its own supposition.)"
+   }
+  },
+  {
+   "node_id": "inf:l5-1-at-k",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 5 step 1: split off the last factor and apply Euclid's lemma",
+    "rule": "all",
+    "rule_name": "proof by cases (k = 1, k > 1); Euclid's lemma; the induction hypothesis at j = k - 1",
+    "warrant": "If k = 1 the product is a_1 and p | a_1 is the conclusion with i = 1. If k > 1, write a_1·...·a_k = (a_1·...·a_(k-1))·a_k (associativity). By Euclid's lemma p divides a_1·...·a_(k-1) or p divides a_k. In the second case take i = k. In the first, the induction hypothesis at j = k - 1 (1 <= k - 1 < k) gives some i <= k - 1 with p | a_i."
+   }
+  },
+  {
+   "node_id": "inf:l5-2-inductive-step",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-l5-ih"
+    ],
+    "generalizes_over": [
+     "k"
+    ],
+    "name": "Lemma 5 step 2: discharge the induction hypothesis; k was arbitrary",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the induction hypothesis; universal generalization over k",
+    "warrant": "Step 1 derived the statement for length k from the induction hypothesis for all shorter lengths, with nothing assumed about k beyond k >= 1. So for every k >= 1 the hypothesis implies the statement at k."
+   }
+  },
+  {
+   "node_id": "inf:l5-3-strong-induction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "p"
+    ],
+    "name": "Lemma 5 by strong induction on k (b = 1)",
+    "rule": "all",
+    "rule_name": "strong induction (Lemma SI with b = 1), then universal generalization over the prime p",
+    "warrant": "Take P(k) = 'for all integers a_1..a_k, p | a_1·...·a_k implies p | a_i for some i <= k' and b = 1. Step 2 is the hypothesis of Lemma SI for this P, so P(k) holds for every k >= 1. The prime p was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:l6-prime-divides-prime",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "p",
+     "q"
+    ],
+    "name": "Lemma 6 from the definition of prime",
+    "rule": "all",
+    "rule_name": "direct proof (unfolding a definition), for arbitrary primes p and q",
+    "warrant": "Let p and q be arbitrary primes with p | q. Since q is prime, its only positive divisors are 1 and q; p is positive (p > 1), so p = 1 or p = q. Since p is prime, p > 1, so p ≠ 1. Hence p = q."
+   }
+  },
+  {
+   "node_id": "inf:l7-product-exceeds-one",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "r"
+    ],
+    "name": "Lemma 7 by induction on the number of factors",
+    "rule": "all",
+    "rule_name": "induction on r (compressed into one step)",
+    "warrant": "Every prime is >= 2. For r = 1 the product is a prime, so >= 2 > 1. If a product of r primes is >= 2, multiplying by one more prime p >= 2 gives a product >= 2·2 >= 2 (order compatible with multiplication by a positive number). By induction on r (Lemma SI with b = 1), every product of r >= 1 primes is >= 2 > 1. So a product of primes equal to 1 has no factors (r = 0). The induction is recorded here as one step rather than with its own hypothesis node."
+   }
+  },
+  {
+   "node_id": "inf:si-1-least-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "SI step 1: well-ordering gives a least counterexample",
+    "rule": "all",
+    "rule_name": "well-ordering principle (existence of a least element)",
+    "warrant": "By the supposition, the set C = {n >= b : P(n) fails} is nonempty, and it is bounded below by b. By well-ordering it has a least element n0. Every m with b <= m < n0 is not in C (n0 is least), so P(m) holds for each such m."
+   }
+  },
+  {
+   "node_id": "inf:si-2-n0-satisfies",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "SI step 2: the step hypothesis at n0 gives P(n0)",
+    "rule": "all",
+    "rule_name": "instantiation of a universal hypothesis, then modus ponens",
+    "warrant": "Step 1 gives n0 >= b with P(m) for every m with b <= m < n0. The step hypothesis, taken at n = n0, says exactly that this gives P(n0)."
+   }
+  },
+  {
+   "node_id": "inf:si-3-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "SI step 3: P(n0) fails and holds",
+    "rule": "all",
+    "rule_name": "conjunction of contradictory statements (⊥ introduction)",
+    "warrant": "Step 1 says P(n0) fails; step 2 says P(n0) holds. Both cannot be true."
+   }
+  },
+  {
+   "node_id": "inf:si-4-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-si-counterexample"
+    ],
+    "name": "SI step 4: reductio, so no counterexample exists",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (¬ introduction), discharging the supposition",
+    "warrant": "Supposing a counterexample exists led (with the step hypothesis) to a contradiction, so no integer n >= b fails P: P(n) holds for every n >= b. The step hypothesis is still in force here."
+   }
+  },
+  {
+   "node_id": "inf:si-5-conditional-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-si-step"
+    ],
+    "generalizes_over": [
+     "P",
+     "b"
+    ],
+    "name": "SI step 5: conditional proof gives the principle of strong induction",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the step hypothesis; universal generalization over P and b",
+    "warrant": "Under the step hypothesis we derived P(n) for every n >= b. Discharging it gives: if the step hypothesis holds then P(n) for all n >= b. Nothing was assumed about P or b beyond that hypothesis, so the implication holds for every property P and every integer b."
+   }
+  },
+  {
+   "node_id": "inf:thm-conjunction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "The theorem: existence and uniqueness together",
+    "rule": "all",
+    "rule_name": "conjunction introduction",
+    "warrant": "The theorem says two things about every integer greater than 1: that it is a product of primes (Proposition E) and that any two such products agree up to the order of the factors (Proposition U, with 'unique up to order' read as in the definition 'the same up to the order of the factors')."
+   }
+  },
+  {
+   "node_id": "inf:u-1-p1-is-some-qj",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Uniqueness step 1: p_1 divides the q-product, so equals one of its factors",
+    "rule": "all",
+    "rule_name": "Lemma 5 then Lemma 6 (instantiation and modus ponens)",
+    "warrant": "n = p_1·(p_2·...·p_r), so p_1 | n = q_1·...·q_s (definition of divides; when r = 1 the cofactor is 1). By Lemma 5 with k = s, p_1 | q_j for some j. Since p_1 and q_j are both prime, Lemma 6 gives p_1 = q_j."
+   }
+  },
+  {
+   "node_id": "inf:u-2-cancel",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Uniqueness step 2: reorder the q's and cancel the common prime",
+    "rule": "all",
+    "rule_name": "commutativity and associativity, then cancellation (p_1 ≠ 0)",
+    "warrant": "Moving q_j to the front (commutativity, associativity), p_1·(p_2·...·p_r) = n = q_j·(product of the other q's) = p_1·(product of the other q's). Since p_1 > 1, p_1 ≠ 0, and cancellation gives p_2·...·p_r = product of the q's other than q_j. Call this common value m; then n = p_1·m. An empty product (r = 1 or s = 1) counts as 1."
+   }
+  },
+  {
+   "node_id": "inf:u-3-case-m-is-1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Uniqueness step 3: if m = 1 both remainders are empty",
+    "rule": "all",
+    "rule_name": "Lemma 7 (a nonempty product of primes exceeds 1), applied to both remainders",
+    "warrant": "If m = 1, then p_2·...·p_r = 1 and the product of the q's other than q_j is 1. By Lemma 7 neither remainder has any factor, so r - 1 = 0 and s - 1 = 0: r = s = 1, j = 1, and p_1 = q_1 by step 1. The one-element lists (p_1) and (q_1) are equal, hence the same up to order (identity permutation)."
+   }
+  },
+  {
+   "node_id": "inf:u-4-case-m-gt-1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Uniqueness step 4: if m > 1 the induction hypothesis matches the remainders; put p_1 = q_j back",
+    "rule": "all",
+    "rule_name": "the induction hypothesis at m (2 <= m < n), then extending the matching permutation",
+    "warrant": "If m > 1, both remainders are nonempty (an empty product is 1), so (p_2, ..., p_r) and (the q's other than q_j) are two factorizations of m. Since p_1 >= 2 and m >= 1, n = p_1·m >= 2m > m; so 2 <= m < n and the induction hypothesis says the two remainder lists are the same up to order: r - 1 = s - 1 and some one-to-one matching pairs each p_i (i >= 2) with an equal q. Extending that matching by p_1 ↦ q_j (equal by step 1) gives r = s and a one-to-one matching of the whole lists, i.e. the two factorizations of n are the same up to order."
+   }
+  },
+  {
+   "node_id": "inf:u-5-cases",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Uniqueness step 5: m = 1 or m > 1",
+    "rule": "all",
+    "rule_name": "proof by cases (m is a positive integer, so m = 1 or m > 1)",
+    "warrant": "m is a product of primes or the empty product, so m is a positive integer (n = p_1·m with n, p_1 > 0); since no integer lies strictly between 0 and 1, m = 1 or m > 1. Steps 3 and 4 settle the two cases."
+   }
+  },
+  {
+   "node_id": "inf:u-6-any-two",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-u-two"
+    ],
+    "generalizes_over": [
+     "p",
+     "q",
+     "r",
+     "s"
+    ],
+    "name": "Uniqueness step 6: the two factorizations were arbitrary",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the two-factorization hypothesis; universal generalization over the lists p, q and their lengths r, s",
+    "warrant": "Step 5 showed that any two prime factorizations of n, given by the hypothesis, agree up to order, with nothing assumed about the lists beyond that they are prime factorizations of n. Discharging the hypothesis gives the statement for every pair of factorizations of n. The induction hypothesis for n is still in force."
+   }
+  },
+  {
+   "node_id": "inf:u-7-inductive-step",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-u-ih"
+    ],
+    "generalizes_over": [
+     "n"
+    ],
+    "name": "Uniqueness step 7: discharge the induction hypothesis; n was arbitrary",
+    "rule": "all",
+    "rule_name": "conditional proof (→ introduction), discharging the induction hypothesis; universal generalization over n",
+    "warrant": "Step 6 derived uniqueness for n from uniqueness for every m with 2 <= m < n, assuming nothing else about n beyond n >= 2."
+   }
+  },
+  {
+   "node_id": "inf:u-8-strong-induction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Proposition U by strong induction on n (b = 2)",
+    "rule": "all",
+    "rule_name": "strong induction (Lemma SI with b = 2)",
+    "warrant": "Take P(n) = 'any two prime factorizations of n are the same up to order' and b = 2. Step 7 is the hypothesis of Lemma SI for this P, so P(n) holds for every n >= 2."
+   }
+  },
+  {
+   "node_id": "inf:u2-1-least-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 1: well-ordering gives a least counterexample",
+    "rule": "all",
+    "rule_name": "well-ordering principle (existence of a least element)",
+    "warrant": "By the supposition, the set of integers n >= 2 having two factorizations that are not the same up to order is nonempty and bounded below, so it has a least element n; fix two such factorizations P and Q of it. Every m with 2 <= m < n is outside the set, so all factorizations of m agree up to order."
+   }
+  },
+  {
+   "node_id": "inf:u2-2-disjoint",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 2: a shared prime would give a smaller counterexample",
+    "rule": "all",
+    "rule_name": "cancellation, then leastness (embedded reductio)",
+    "warrant": "If p_i = q_j, cancel it (p_i ≠ 0): m = n / p_i has the two remainder lists as factorizations, and they are not the same up to order (otherwise adding p_i = q_j back would match P with Q). Both remainders cannot be empty (then P = (p_i) and Q = (q_j) would match), and if one were empty its product 1 would equal a nonempty product of primes, against Lemma 7; so m >= 2, and m = n / p_i < n. That contradicts the leastness of n. Hence no p_i equals any q_j. (The reductio is recorded inside this step.)"
+   }
+  },
+  {
+   "node_id": "inf:u2-3-smaller-number",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 3: build N' = n - p_1·q_2·...·q_s and bound it",
+    "rule": "all",
+    "rule_name": "algebra and order in the integers (distributivity, cancellation-free)",
+    "warrant": "p_1 ≠ q_1 by step 2; swap the names P and Q if needed so that p_1 < q_1. Then N' = q_1·q_2·...·q_s - p_1·q_2·...·q_s = (q_1 - p_1)·q_2·...·q_s > 0, and N' < n because p_1·q_2·...·q_s >= 2. Also N' = p_1·p_2·...·p_r - p_1·q_2·...·q_s = p_1·c with c = p_2·...·p_r - q_2·...·q_s; since N' > 0 and p_1 > 0, c >= 1, so N' >= p_1 >= 2. (Empty products are 1.)"
+   }
+  },
+  {
+   "node_id": "inf:u2-4-two-factorizations",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 4: factor c and q_1 - p_1 by existence",
+    "rule": "all",
+    "rule_name": "Proposition E (existence) applied to c and to q_1 - p_1, then joining lists",
+    "warrant": "If c >= 2, existence factors c, and (p_1, factors of c) is a factorization of N' = p_1·c; if c = 1, (p_1) is. If q_1 - p_1 >= 2, existence factors it, and (factors of q_1 - p_1, q_2, ..., q_s) is a factorization of N' = (q_1 - p_1)·q_2·...·q_s; if q_1 - p_1 = 1, (q_2, ..., q_s) is (nonempty, since N' >= 2)."
+   }
+  },
+  {
+   "node_id": "inf:u2-5-p1-divides-q1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 5: uniqueness below n puts p_1 among the factors of q_1 - p_1",
+    "rule": "all",
+    "rule_name": "leastness of n (uniqueness for N' < n), then the definition of divides",
+    "warrant": "2 <= N' < n, so by the leastness of n the two factorizations of N' from step 4 are the same up to order. The first contains p_1, so the second does. p_1 is none of q_2, ..., q_s (step 2), so p_1 is one of the factors of q_1 - p_1 (and q_1 - p_1 >= 2). A factor of a product divides it, so p_1 | q_1 - p_1; then q_1 = (q_1 - p_1) + p_1 gives p_1 | q_1."
+   }
+  },
+  {
+   "node_id": "inf:u2-6-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Second proof step 6: p_1 = q_1, against step 2",
+    "rule": "all",
+    "rule_name": "Lemma 6, then ⊥ introduction",
+    "warrant": "p_1 and q_1 are primes and p_1 | q_1, so p_1 = q_1 by Lemma 6. Step 2 says no p_i equals any q_j. Both cannot hold."
+   }
+  },
+  {
+   "node_id": "inf:u2-7-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:hyp-u2-counterexample"
+    ],
+    "independent_except": [
+     "req:lem-prime-divides-prime",
+     "req:lem-product-of-primes-exceeds-one",
+     "req:lem-strong-induction"
+    ],
+    "independent_of": [
+     "inf:u-8-strong-induction"
+    ],
+    "name": "Second proof of Proposition U: reductio from a least counterexample (no Euclid's lemma)",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (least counterexample), discharging the supposition",
+    "warrant": "Supposing some n >= 2 has two factorizations that differ led to a contradiction, so every n >= 2 has all its factorizations the same up to order. WHAT THE TWO LINES SHARE: the six foundations (integer arithmetic and order, well-ordering, the definitions of divides, prime, product of primes, same up to order) and three lemmas: Lemma 6 (prime divides prime), Lemma 7 (nonempty product exceeds 1) and Lemma SI (strong induction; line 1 uses it directly, line 2 through Lemma 7 and existence). ONLY LINE 1 uses Lemma 2 (division algorithm), Lemma 3 (Bézout), Lemma 4 (Euclid) and Lemma 5. ONLY LINE 2 uses Proposition E (existence), and through it Lemma 1."
+   }
+  },
+  {
+   "node_id": "proj:fundamental-theorem-of-arithmetic",
+   "node_type": "Project",
+   "properties": {
+    "domain": "mathematics",
+    "mode": "flexible",
+    "name": "fundamental theorem of arithmetic (proof trial)",
+    "objective": "A proof, readable and checkable step by step, that every integer greater than 1 is a product of primes, unique up to the order of the factors.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "q:compressed-steps",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Detailed enough: the four compressed steps (division algorithm, Bézout step 2, Lemma 1, Lemma 7) can stay as single steps.",
+    "answered_at": "2026-10-17",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 2,
+    "context_setter": "Most of the argument is recorded one move per step, with every supposition and induction hypothesis as its own record that a later step discharges. Four steps still pack a small argument inside one warrant: the division algorithm and Bézout step 2 each contain a short 'otherwise there would be a smaller element' reductio, Lemma 7 is an induction on the number of factors written as one step, and Lemma 1 does its order reasoning inline.",
+    "question": "Is that level of detail enough for you to check these four, or should I split them into separate steps with their own suppositions, as the rest of the proof does?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:foundations-taken-as-given",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Accept as the start: the well-ordering principle and the arithmetic and order rules of the integers are the starting point, taken as given.",
+    "answered_at": "2026-10-17",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 1,
+    "context_setter": "The proof starts from two foundations it does not argue for: the well-ordering principle and the ring-and-order axioms of the integers (including cancellation and 'nothing between 0 and 1').",
+    "question": "Do you accept these two as the starting point, or do you want the proof to go further down (for example, derive them from the Peano axioms, or take the principle of induction as the axiom and prove well-ordering from it)?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:reading-of-the-theorem",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Yes, that reading: a product of primes is a list of one or more primes (a prime is its own one-element product), and unique up to order means the two lists have the same length and pair up one-to-one into equal primes.",
+    "answered_at": "2026-10-17",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 3,
+    "context_setter": "The theorem's words need two readings fixed before it can be proved: what counts as 'a product of primes', and what 'unique up to the order of its factors' means.",
+    "question": "I read 'a product of primes' as a list of one or more primes, so a prime such as 7 is the product of the one-element list (7), and 'unique up to order' as: any two such lists have the same length and can be matched one-to-one into equal primes (the same primes, each the same number of times). Is that the theorem you mean?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:second-proof-of-uniqueness",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Yes: record the second, independent proof of uniqueness (the least-counterexample proof that avoids Euclid's lemma), and have the design check that the two lines really are independent.",
+    "answered_at": "2026-10-17",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 4,
+    "context_setter": "Uniqueness is proved through Euclid's lemma, which in turn rests on Bézout's identity. There is a well-known second route that avoids both: take the least number with two different factorizations and build a smaller one.",
+    "question": "Do you want that second, independent proof of uniqueness recorded as well (the design can check that the two lines really are independent), or is one line enough?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:bz-d-divides-both",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-bezout-prime",
+     "req:bz-least-combination"
+    ],
+    "lineage": "original",
+    "name": "Lemma 3 step 2: d divides p and d divides a",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The least positive combination d divides p and divides a.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:bz-d-is-one",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-bezout-prime",
+     "req:bz-least-combination",
+     "req:bz-d-divides-both"
+    ],
+    "lineage": "original",
+    "name": "Lemma 3 step 3: d = 1",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The least positive combination d equals 1, so p·x0 + a·y0 = 1.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:bz-least-combination",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-bezout-prime"
+    ],
+    "lineage": "original",
+    "name": "Lemma 3 step 1: a least positive combination d of p and a",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The set S = {p·x + a·y : x, y integers, p·x + a·y > 0} has a least element d = p·x0 + a·y0.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-h-euclid",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-euclid",
+     "req:conj-h-unique-factorization",
+     "con:def-h-irreducible",
+     "req:eu-disjunction",
+     "con:hyp-eu"
+    ],
+    "lineage": "original",
+    "name": "Conjecture H-4: Euclid's lemma for H-irreducibles",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If an H-irreducible p divides a product a·b of elements a, b of H, then p divides a or p divides b. (The analogue in H of Lemma 4, req:lem-euclid.)",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-h-unique-factorization",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "con:def-h-irreducible",
+     "con:def-hilbert-numbers",
+     "con:def-same-up-to-order"
+    ],
+    "lineage": "original",
+    "name": "Conjecture H-U: factorization into H-irreducibles is unique in H",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony's question, trial round 2",
+    "statement": "Every element of H = {1, 5, 9, 13, ...} greater than 1 has, up to the order of the factors, only one factorization into H-irreducibles.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "h"
+    ]
+   }
+  },
+  {
+   "node_id": "req:e-at-n",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-existence",
+     "con:def-product-of-primes",
+     "con:hyp-e-ih",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "req:e-prime-case",
+     "req:e-composite-case",
+     "inf:l7-product-exceeds-one",
+     "req:lem-product-of-primes-exceeds-one"
+    ],
+    "lineage": "original",
+    "name": "Existence step 3: n is a product of primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "n is a product of primes (for the n >= 2 of the induction hypothesis).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:e-composite-case",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-existence",
+     "con:def-product-of-primes",
+     "con:hyp-e-ih",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "req:e-prime-case",
+     "req:lem-composite-splits",
+     "inf:l7-product-exceeds-one",
+     "req:lem-product-of-primes-exceeds-one",
+     "inf:l1-composite-splits"
+    ],
+    "lineage": "original",
+    "name": "Existence step 2 (case n not prime): n is a product of primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If n >= 2 is not prime, then n is a product of primes (under the induction hypothesis).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:e-inductive-step",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-existence",
+     "con:def-product-of-primes",
+     "con:hyp-e-ih",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "req:e-at-n",
+     "req:l5-inductive-step",
+     "req:lem-strong-induction",
+     "con:hyp-si-step",
+     "req:e-prime-case",
+     "req:e-composite-case"
+    ],
+    "lineage": "original",
+    "name": "Existence step 4: the inductive step, for every n >= 2",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n >= 2: if every m with 2 <= m < n is a product of primes, then so is n.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:e-prime-case",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-existence",
+     "con:def-product-of-primes",
+     "con:hyp-e-ih",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "con:def-prime"
+    ],
+    "lineage": "original",
+    "name": "Existence step 1 (case n prime): n is a product of primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If n is prime, then n is a product of primes: the one-element list (n).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:eu-bezout-instance",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-euclid",
+     "req:lem-bezout-prime",
+     "req:bz-d-is-one",
+     "req:bz-least-combination",
+     "inf:bz-4-conditional-proof",
+     "inf:bz-3-d-is-one",
+     "inf:bz-1-least-combination"
+    ],
+    "lineage": "original",
+    "name": "Lemma 4 step 1: p·x + a·y = 1 for some x, y",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There are integers x and y with p·x + a·y = 1.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:eu-disjunction",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-euclid",
+     "con:hyp-eu",
+     "con:hyp-eu-not-a",
+     "req:eu-p-divides-b",
+     "req:bz-d-divides-both",
+     "inf:bz-2-d-divides-both"
+    ],
+    "lineage": "original",
+    "name": "Lemma 4 step 3: p divides a or p divides b",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "p divides a or p divides b.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:eu-p-divides-b",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-euclid",
+     "con:hyp-eu"
+    ],
+    "lineage": "original",
+    "name": "Lemma 4 step 2: p divides b",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "p divides b.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "b",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:h-441-two-factorizations",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:conj-h-unique-factorization",
+     "con:def-h-irreducible",
+     "con:def-hilbert-numbers",
+     "req:prop-uniqueness"
+    ],
+    "fixes": [
+     "h=441"
+    ],
+    "lineage": "original",
+    "name": "Counterexample: 441 = 9·49 = 21·21 in H",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "441 is in H and has two factorizations into H-irreducibles that are not the same up to order: 441 = 9·49 = 21·21, where 9, 21 and 49 are each in H and H-irreducible (9 = 3·3, 21 = 3·7, 49 = 7·7, and 3, 7 are not in H). Computed in hilbert-441-counterexample.calc.json.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:h-answer",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:conj-h-unique-factorization",
+     "req:h-existence",
+     "req:h-441-two-factorizations",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "con:def-hilbert-numbers",
+     "ver:h-441-computation",
+     "req:h-euclid-counterexample",
+     "req:h-where-line1-breaks",
+     "req:h-where-line2-breaks",
+     "req:conj-h-euclid"
+    ],
+    "lineage": "original",
+    "name": "Answer to (b): in H, factorizations exist but are not unique",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "No. In H = {1, 5, 9, 13, ...}, every element greater than 1 is a product of H-irreducibles (existence carries over), but not uniquely up to order: 441 = 9·49 = 21·21 with 9, 21, 49 all H-irreducible.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:h-euclid-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:conj-h-euclid",
+     "req:h-441-two-factorizations",
+     "req:lem-euclid",
+     "con:def-h-irreducible",
+     "ver:h-441-computation"
+    ],
+    "fixes": [
+     "a=9",
+     "b=49",
+     "p=21"
+    ],
+    "lineage": "original",
+    "name": "Counterexample: 21 divides 9·49 but neither 9 nor 49",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "21 is H-irreducible and divides 9·49 = 441, but 21 divides neither 9 nor 49. Computed in hilbert-441-counterexample.calc.json.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:h-existence",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-existence",
+     "req:conj-h-unique-factorization",
+     "con:def-h-irreducible",
+     "con:def-hilbert-numbers",
+     "req:lem-h-closed",
+     "req:h-441-two-factorizations"
+    ],
+    "lineage": "original",
+    "name": "Proposition H-E: every element of H above 1 factors into H-irreducibles",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every element h > 1 of H can be written as a product of H-irreducibles.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "h"
+    ]
+   }
+  },
+  {
+   "node_id": "req:h-where-line1-breaks",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-bezout-prime",
+     "req:bz-d-is-one",
+     "inf:bz-3-d-is-one",
+     "req:conj-h-euclid",
+     "req:h-euclid-counterexample",
+     "ver:h-441-computation",
+     "req:h-441-two-factorizations"
+    ],
+    "fixes": [
+     "a=9",
+     "p=21"
+    ],
+    "lineage": "original",
+    "name": "Where proof line 1 stops working in H: Bézout step 3 (inf:bz-3-d-is-one)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Carried into H (prime read as H-irreducible), the first uniqueness proof breaks at inf:bz-3-d-is-one: it infers from 'd is a positive divisor of the prime p' that d = 1 or d = p, using the definition of prime. In H that inference fails: for p = 21 and a = 9 the least positive combination is d = gcd(21, 9) = 3, which divides 21 and lies strictly between 1 and 21, yet 21 is H-irreducible because 3 is not in H. So the analogue of Lemma 3 fails, then Euclid's lemma (req:conj-h-euclid is refuted), Lemma 5, and inf:u-1-p1-is-some-qj. (Steps bz-1 and bz-2 still hold as statements about integers, but the d they produce is an integer outside H.)",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:h-where-line2-breaks",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:u2-smaller-number-n-prime",
+     "req:u2-two-factorizations-of-n-prime",
+     "inf:u2-3-smaller-number",
+     "inf:u2-4-two-factorizations",
+     "req:h-where-line1-breaks",
+     "ver:h-441-computation",
+     "req:h-441-two-factorizations",
+     "req:lem-h-closed"
+    ],
+    "fixes": [
+     "p=9",
+     "q=21"
+    ],
+    "lineage": "original",
+    "name": "Where proof line 2 stops working in H: forming N' (inf:u2-3-smaller-number, inf:u2-4-two-factorizations)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Carried into H, the second uniqueness proof breaks where it forms N' = (q_1 - p_1)·q_2·...·q_s and factors q_1 - p_1 (inf:u2-3-smaller-number, inf:u2-4-two-factorizations). The difference of two elements of H is a multiple of 4, never in H: with P = (9, 49) and Q = (21, 21), q_1 - p_1 = 21 - 9 = 12, which is not in H, so it has no factorization within H and step 4 has nothing to factor. H is closed under multiplication but not under subtraction.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:l5-at-k",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-prime-divides-product",
+     "con:hyp-l5-ih",
+     "req:lem-euclid"
+    ],
+    "lineage": "original",
+    "name": "Lemma 5 step 1: the statement for products of k factors",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For all integers a_1, ..., a_k: if p divides a_1·...·a_k then p divides a_i for some i <= k.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "k",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l5-inductive-step",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-prime-divides-product",
+     "con:hyp-l5-ih",
+     "req:l5-at-k",
+     "req:lem-strong-induction",
+     "con:hyp-si-step"
+    ],
+    "lineage": "original",
+    "name": "Lemma 5 step 2: the inductive step, for every k",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every k >= 1: if the Lemma 5 statement holds for products of every length j with 1 <= j < k, it holds for products of length k.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-bezout-prime",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3: Bézout for a prime not dividing a",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If p is prime and p does not divide the integer a, then there are integers x and y with p·x + a·y = 1.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-composite-splits",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1: a number > 1 that is not prime splits into two smaller factors",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If n > 1 is not prime, then n = a·b for integers a, b with 1 < a < n and 1 < b < n.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-division-algorithm",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 2: the division algorithm",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For integers a and d with d > 0 there are integers q and r with a = q·d + r and 0 <= r < d.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "d"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-euclid",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4: Euclid's lemma",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If p is prime and p divides a·b, then p divides a or p divides b.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-h-closed",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "con:def-hilbert-numbers",
+     "req:conj-h-unique-factorization",
+     "req:h-441-two-factorizations"
+    ],
+    "lineage": "original",
+    "name": "Lemma H1: H is closed under multiplication",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If h and k are in H, then h·k is in H.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "h",
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-prime-divides-prime",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 6: a prime dividing a prime equals it",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If p and q are primes and p divides q, then p = q.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-prime-divides-product",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 5: a prime dividing a product divides a factor",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If p is prime, k >= 1, and p divides a_1·a_2·...·a_k, then p divides a_i for some i with 1 <= i <= k.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "k",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-product-of-primes-exceeds-one",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "con:def-product-of-primes"
+    ],
+    "lineage": "original",
+    "name": "Lemma 7: a nonempty product of primes exceeds 1",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "A product of r >= 1 primes is greater than 1; equivalently, a product of primes equal to 1 is the empty product (r = 0).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "r"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-strong-induction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma SI: the principle of strong induction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let b be an integer and P a property of integers. If, for every integer n >= b, P(m) holding for every m with b <= m < n implies P(n), then P(n) holds for every integer n >= b.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "P",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:prop-existence",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "con:def-product-of-primes",
+     "req:thm-fundamental-theorem-of-arithmetic"
+    ],
+    "lineage": "original",
+    "name": "Proposition E (existence): every n > 1 is a product of primes",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every integer n > 1 can be written as a product of primes.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:prop-uniqueness",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "con:def-same-up-to-order"
+    ],
+    "lineage": "original",
+    "name": "Proposition U (uniqueness): any two factorizations agree up to order",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If n > 1 and n = p_1·...·p_r = q_1·...·q_s with every p_i and q_j prime, then the two factorizations are the same up to the order of the factors.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:si-all-satisfy",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-strong-induction",
+     "req:si-least-counterexample",
+     "req:si-n0-satisfies-p",
+     "req:si-contradiction",
+     "con:hyp-si-step",
+     "con:hyp-si-counterexample"
+    ],
+    "lineage": "original",
+    "name": "SI step 4: P(n) for every n >= b (under the step hypothesis)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "P(n) holds for every integer n >= b.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "P",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:si-contradiction",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-strong-induction",
+     "req:si-least-counterexample",
+     "req:si-n0-satisfies-p"
+    ],
+    "lineage": "original",
+    "name": "SI step 3: contradiction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Contradiction: P(n0) both fails (step 1) and holds (step 2).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "P"
+    ]
+   }
+  },
+  {
+   "node_id": "req:si-least-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-strong-induction"
+    ],
+    "lineage": "original",
+    "name": "SI step 1: there is a least counterexample n0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There is a least integer n0 >= b for which P(n0) fails; so P(m) holds for every m with b <= m < n0.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "P",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:si-n0-satisfies-p",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:lem-strong-induction",
+     "req:si-least-counterexample"
+    ],
+    "lineage": "original",
+    "name": "SI step 2: P(n0) holds after all",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "P(n0) holds.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "P"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-fundamental-theorem-of-arithmetic",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "proj:fundamental-theorem-of-arithmetic"
+    ],
+    "lineage": "original",
+    "name": "Theorem: the fundamental theorem of arithmetic",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "the trial brief (the theorem as given)",
+    "statement": "Every integer greater than 1 can be written as a product of primes, and that product is unique up to the order of its factors.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-any-two-at-n",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:u-at-n",
+     "req:u-case-m-gt-1",
+     "req:u-case-m-is-1",
+     "con:def-same-up-to-order",
+     "req:thm-fundamental-theorem-of-arithmetic"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 6: any two factorizations of n agree up to order",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Any two factorizations of n into primes are the same up to the order of the factors (under the induction hypothesis for n).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-at-n",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:u-case-m-is-1",
+     "req:u-case-m-gt-1",
+     "con:def-same-up-to-order",
+     "req:thm-fundamental-theorem-of-arithmetic"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 5: these two factorizations of n agree up to order",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The two factorizations p_1·...·p_r and q_1·...·q_s of n are the same up to the order of the factors.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-cancel",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "con:def-same-up-to-order",
+     "con:ax-integer-arithmetic",
+     "inf:e-2-composite-case",
+     "req:e-composite-case",
+     "req:u-case-m-is-1",
+     "req:u-case-m-gt-1",
+     "req:u-at-n"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 2: cancel p_1 = q_j from both sides",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "With m = n / p_1: m = p_2·...·p_r = the product of the q's with q_j left out, and n = p_1·m.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-case-m-gt-1",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:u-case-m-is-1",
+     "con:def-same-up-to-order",
+     "req:lem-product-of-primes-exceeds-one",
+     "inf:l7-product-exceeds-one"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 4 (case m > 1): the induction hypothesis matches the rest",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If m > 1, then the two factorizations of n are the same up to the order of the factors (under the induction hypothesis).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-case-m-is-1",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:lem-product-of-primes-exceeds-one",
+     "inf:l7-product-exceeds-one",
+     "con:def-same-up-to-order"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 3 (case m = 1): both factorizations are the single prime p_1",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If m = 1, then r = s = 1 and the two factorizations are (p_1) and (q_1) with p_1 = q_1, so they are the same up to order.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u-inductive-step",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:u-any-two-at-n",
+     "req:u-at-n",
+     "con:def-same-up-to-order",
+     "req:thm-fundamental-theorem-of-arithmetic",
+     "req:e-inductive-step",
+     "req:l5-inductive-step",
+     "con:hyp-si-step",
+     "req:lem-strong-induction",
+     "con:hyp-e-ih"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 7: the inductive step, for every n >= 2",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n >= 2: if factorization into primes is unique up to order for every m with 2 <= m < n, then it is unique up to order for n.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:u-p1-is-some-qj",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:lem-prime-divides-product",
+     "req:lem-prime-divides-prime",
+     "inf:l6-prime-divides-prime",
+     "inf:l5-3-strong-induction",
+     "con:def-same-up-to-order",
+     "con:hyp-l5-ih",
+     "req:l5-at-k",
+     "req:u-case-m-is-1"
+    ],
+    "lineage": "original",
+    "name": "Uniqueness step 1: p_1 equals some q_j",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "p_1 = q_j for some j with 1 <= j <= s.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-contradiction",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "req:u2-disjoint",
+     "req:si-contradiction",
+     "req:u-p1-is-some-qj",
+     "req:lem-prime-divides-prime",
+     "req:u-case-m-is-1"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 6: contradiction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Contradiction: p_1 = q_1 (from step 5 and Lemma 6), yet no p_i equals any q_j (step 2).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-disjoint",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u2-counterexample",
+     "req:u-p1-is-some-qj",
+     "req:u-cancel",
+     "con:hyp-u-two",
+     "req:lem-prime-divides-prime"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 2: no prime appears in both P and Q",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "No p_i equals any q_j.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-least-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u2-counterexample",
+     "con:hyp-u-two",
+     "con:hyp-u-ih",
+     "req:si-least-counterexample",
+     "req:u-p1-is-some-qj",
+     "req:u-at-n",
+     "req:u-any-two-at-n",
+     "req:u-inductive-step",
+     "con:def-same-up-to-order",
+     "inf:si-1-least-counterexample",
+     "inf:u-4-case-m-gt-1",
+     "req:u-case-m-is-1",
+     "req:u-case-m-gt-1",
+     "req:u2-disjoint",
+     "inf:u-1-p1-is-some-qj",
+     "inf:u-3-case-m-is-1"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 1: a least counterexample n with factorizations P and Q",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There is a least integer n >= 2 with two factorizations P = (p_1, ..., p_r) and Q = (q_1, ..., q_s) that are not the same up to order; and every m with 2 <= m < n has factorizations that are all the same up to order.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "r",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-p1-divides-q1",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "req:u2-two-factorizations-of-n-prime",
+     "req:u2-disjoint",
+     "req:u-p1-is-some-qj",
+     "req:lem-prime-divides-prime",
+     "req:eu-p-divides-b",
+     "req:lem-prime-divides-product",
+     "inf:u-1-p1-is-some-qj",
+     "inf:l6-prime-divides-prime",
+     "req:u2-contradiction",
+     "inf:eu-2-p-divides-b",
+     "inf:l5-1-at-k",
+     "req:l5-at-k",
+     "req:u2-least-counterexample",
+     "req:eu-disjunction",
+     "req:lem-euclid",
+     "req:u2-smaller-number-n-prime"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 5: p_1 divides q_1",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "p_1 divides q_1 - p_1, and hence p_1 divides q_1.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-smaller-number-n-prime",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u2-counterexample",
+     "req:u2-disjoint",
+     "req:u-cancel",
+     "con:hyp-u-two",
+     "req:u-p1-is-some-qj",
+     "req:u-case-m-gt-1",
+     "inf:u-2-cancel",
+     "inf:e-2-composite-case",
+     "inf:u-4-case-m-gt-1",
+     "inf:u-1-p1-is-some-qj",
+     "req:u2-two-factorizations-of-n-prime",
+     "req:u2-contradiction",
+     "inf:u-3-case-m-is-1",
+     "req:u-case-m-is-1",
+     "req:u2-least-counterexample",
+     "req:u-at-n",
+     "req:l5-at-k"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 3: the smaller number N' = n - p_1·q_2·...·q_s",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Naming the two lists so that p_1 < q_1, the integer N' = n - p_1·q_2·...·q_s satisfies N' = (q_1 - p_1)·q_2·...·q_s = p_1·c for a positive integer c, and 2 <= N' < n.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p",
+     "q",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:u2-two-factorizations-of-n-prime",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:prop-uniqueness",
+     "con:hyp-u2-counterexample",
+     "req:u2-disjoint",
+     "con:def-product-of-primes",
+     "req:prop-existence",
+     "req:e-composite-case",
+     "inf:e-2-composite-case",
+     "con:hyp-u-two"
+    ],
+    "lineage": "original",
+    "name": "Second proof step 4: two factorizations of N'",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "N' has a factorization that contains p_1 (p_1 followed by a factorization of c, or just (p_1) if c = 1), and a factorization made of a factorization of q_1 - p_1 (nothing, if q_1 - p_1 = 1) followed by q_2, ..., q_s.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "p",
+     "q",
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:con:def-divides",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"category\":\"technical\",\"concern\":\"core\",\"name\":\"Definition: divides\",\"priority\":\"medium\",\"statement\":\"For integers a and b, a divides b (written a | b) when b = a·c for some integer c.\",\"statement_kind\":\"definition\",\"taken_as_given\":true,\"variables\":[\"a\",\"b\",\"c\"]}",
+    "target_id": "con:def-divides",
+    "target_type": "Constraint"
+   }
+  },
+  {
+   "node_id": "ver:h-441-computation",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "flo2-calc record hilbert-441-counterexample.calc.json (kept in the design as art:file-hilbert-441-counterexample-calc-json, sha256 17e6b548...204d). It computes 9·49 = 441 and 21·21 = 441; that 9, 21, 49 and 441 are 1 mod 4; that none of 9, 21, 49 has a divisor d in H with 1 < d < itself (every d from 2 to n-1 checked with divides and mod); that 21 equals neither 9 nor 49, so the lists (9, 49) and (21, 21) are not the same up to order; that 21 divides 441 but neither 9 nor 49; that gcd(21, 9) = 3 divides 21, lies strictly between 1 and 21, and is not in H; and that 21 - 9 = 12 is not in H.",
+    "findings": "counterexample_holds = true; euclid_analogue_fails = true; gcd(21, 9) = 3, in H: false; 21 - 9 = 12, in H: false.",
+    "fixes": [
+     "h=441"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-17T23:12:09Z",
+    "location": "art:file-hilbert-441-counterexample-calc-json (hilbert-441-counterexample.calc.json)",
+    "method": "analysis",
+    "name": "Computed: 441 = 9·49 = 21·21 with 9, 21, 49 H-irreducible; Euclid's and Bézout's analogues fail in H",
+    "status": "passing"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.86.0",
+  "schema_version": 1
+ }
+}

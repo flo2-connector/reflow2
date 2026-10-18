@@ -428,8 +428,10 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   (name, statement, description, a rationale, a change's summary ...), for when you don't know the id: mapping the user's words to their node, and checking
   whether a requirement like the one you are about to add already exists. Finding by content
   is the graph's job; do not scan whole types into context to eyeball them.
-- **When a constructor refuses a near-match**, there are three answers and the one you give is
-  kept: SHARPEN (call again with the existing node's id), `distinct_from` (a different thing —
+- **When a constructor refuses a near-match** (only ever a match of the same type outside a line
+  of reasoning; a match of another type, or between two statements of a proof, is a note in
+  `search_first.near_matches` on a write that succeeded), there are three answers and the one
+  you give is kept: SHARPEN (call again with the existing node's id), `distinct_from` (a different thing —
   the ids stay on the new node, so "was the older one seen?" has an answer), or `replaces` (it
   takes an older node's place — the old node's ending is recorded with its edges, the thread
   that says what it was for moves across, and the new node `OBSOLETES` it). Answering

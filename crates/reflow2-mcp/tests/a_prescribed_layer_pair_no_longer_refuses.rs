@@ -45,9 +45,11 @@
 //! test below pins it — without that assertion this change would be
 //! indistinguishable from deleting the check.
 //!
-//! The suppressed set is the pairs with EVIDENCE behind them, not every pair
-//! that could be argued for. Anything else still refuses, which is what the
-//! last two tests exist to hold.
+//! The suppressed set was the pairs with EVIDENCE behind them until
+//! 2026-10-17, when the list gave way to a rule: every cross-type match is a
+//! note (`dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses`).
+//! A same-type duplicate still refuses, which is what `a_same_type_duplicate_is_still_refused`
+//! holds.
 
 use reflow2_mcp::service::*;
 use rmcp::handler::server::wrapper::Parameters;
@@ -249,13 +251,15 @@ async fn a_same_type_duplicate_is_still_refused() {
     );
 }
 
-/// 🛑 THE SECOND COUNTERWEIGHT. Only the pairings with evidence behind them are
-/// suppressed. A cross-type pair nobody has measured still refuses, and still
-/// refuses with the LAYER wording rather than the duplicate wording — so the
-/// 2026-08-29 repair survives underneath this one rather than being replaced
-/// by it.
+/// ⭐ SINCE 2026-10-17 THERE IS NO UNMEASURED PAIR LEFT TO REFUSE. The list
+/// of measured pairs gave way to a rule
+/// (`dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses`):
+/// every cross-type match is a note on the successful write. Component↔DesignRule,
+/// the pair this test held as still refusing, is now written, and the match is
+/// still reported. The rule's own class test is
+/// `a_near_match_across_types_or_within_reasoning_is_a_note.rs`.
 #[tokio::test]
-async fn an_unmeasured_cross_type_pair_still_refuses_with_the_layer_wording() {
+async fn a_once_unmeasured_cross_type_pair_is_written_with_the_match_reported() {
     let s = svc().await;
     s.add_component(Parameters(ComponentReq {
         id: "cmp:outdoor-unit".into(),
@@ -271,31 +275,25 @@ async fn an_unmeasured_cross_type_pair_still_refuses_with_the_layer_wording() {
     .await
     .expect("the component lands");
 
-    // Requirement↔Component WAS the unmeasured pair here until 2026-09-16, when
-    // the xrt-demo genesis measured it (7 refusals, 0 duplicates) and it joined
-    // the prescribed set. Component↔DesignRule has no measurement behind it.
-    let err = s
-        .add_design_rule(Parameters(DesignRuleReq {
-            id: "rule:cumulative-totals".into(),
-            name: Some("Cumulative totals, not deltas".into()),
-            statement: Some(IDEA.into()),
-            category: None,
-            enforced: None,
-            units: None,
-            distinct_from: None,
-            replaces: None,
-            approver: None,
-            acted_at: None,
-            steps: None,
-        }))
-        .await
-        .expect_err("DesignRule against Component is not a measured layer pair, so it refuses");
-
-    let msg = err.message.to_string();
-    assert!(
-        msg.to_lowercase().contains("different kind of record"),
-        "an unmeasured cross-type match keeps the 2026-08-29 layer wording: {msg}"
-    );
+    let reply = j!(s.add_design_rule(Parameters(DesignRuleReq {
+        id: "rule:cumulative-totals".into(),
+        name: Some("Cumulative totals, not deltas".into()),
+        statement: Some(IDEA.into()),
+        category: None,
+        enforced: None,
+        units: None,
+        distinct_from: None,
+        replaces: None,
+        approver: None,
+        acted_at: None,
+        steps: None,
+    })));
+    let named = reply["search_first"]["near_matches"]
+        .as_array()
+        .expect("the match is still reported on the write")
+        .iter()
+        .any(|m| m["node_id"] == "cmp:outdoor-unit" && m["node_type"] == "Component");
+    assert!(named, "the report names the match and its type: {reply}");
 }
 
 // ---- Two more prescribed pairs, from dev_storyflow 2026-09-05 (9 fires, 0 duplicates) ----
