@@ -40,7 +40,8 @@ for:
   reply, not a refusal; and `reasoning_report` returns every claim whole and pages a long proof
   (#767);
 - a claim's step count counts each step under it once, and the whole-design reasoning walk reaches
-  refuted claims (#768).
+  refuted claims (#768);
+- the read cache on lru 0.19.
 
 The MCP surface stays at 200 tools. `reasoning_report` gains one argument, `offset`, and its reply
 gains `offset`, `total_claims`, `remaining`, `next_offset`, `page` and `not_walked`; each claim
@@ -77,6 +78,12 @@ id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
 
 ### Changed
 
+- **The store's read cache runs on lru 0.19** (from 0.18), the new 0.x series
+  published on 2026-10-18, in its own commit of this release. reflow2's code
+  needed no change: 0.19's one change requires `Sync` for its shared
+  iterators to be sent between threads, and the cache's keys and values
+  already are. **Nothing to do, and nothing an older seat sees:** the cache
+  lives in memory only, so no store, index or export changes.
 - **A near-match of another type, or between two statements of a proof, no
   longer refuses a write.** `add_requirement`, `add_capability`,
   `add_component`, `add_design_rule` and `add_decision` write the node and name
