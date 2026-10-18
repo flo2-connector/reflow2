@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3b863ee0ed9b3e4fa8164bcf72ab53a382d2fce1099c4e1d169344723af441f3",
+  "node_id": "cap:the-reasoning-read-back-keeps-its-words-and-pages",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17 for req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns. In crates/reflow2-core/src/reasoning.rs the walk reads the whole reasoning, breadth first from the claim asked about, up to REASONING_MAX_LIMIT (500) records, whatever one page returns. So rests_on, stated_foundations, uncited_premises and the other summary lists are the walk's, never the page's. `limit` sets the page size and the new `offset` argument says where it starts; the reply carries offset, total_claims, remaining and next_offset. A walk that stops at its cap names what it reached and did not read in `not_walked`, with a note: not walked is not resting on nothing. Each claim carries `says` (its statement, a Decision's decision, or a description or summary), and each premise of a step its `name` (PremiseReading.name, filled by this reader only). In crates/reflow2-mcp/src/tools/query.rs (`reasoning_page`), a reply over budget_chars returns FEWER claims, each whole, from the tail of the page, never every claim with its words cut. A `page` block names the budget_chars it was held to, so a budget lowered on the way shows in the result. Prose is cut only outside the claims, and only if one claim and the summary still do not fit. Measured on proof trial rung 2's design at flo2.io's 27,267 characters: before, 152 text fields were cut to \"…\" and 25 of the 60 walked claims came back; now 14 of 66 come back whole, and 66 arrive in 4 pages at 30,000.",
+    "name": "reasoning_report returns every claim whole (its words, each step's rule and warrant, each premise's name) and pages through a long proof with next_offset; its summary lists cover the whole walk",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

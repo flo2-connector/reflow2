@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a377356451225be0cdc1cc2e3ea322619a8694af4ce4d6aa48a03363f75b49da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reasoning-read-back-keeps-its-words-and-pages-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:46ce7957379eaf8b974b91986b2f548473227e6f1307f7efa559bca2bf3cda58",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reasoning-rs"
+}

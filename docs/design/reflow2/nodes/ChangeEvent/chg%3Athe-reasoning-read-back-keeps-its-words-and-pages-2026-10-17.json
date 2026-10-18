@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:40203e652d5bc21fe6d2f8f1bcc5ae2f040e1d2c9854b8babb878c02f4380d26",
+  "node_id": "chg:the-reasoning-read-back-keeps-its-words-and-pages-2026-10-17",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "7063bd08f",
+    "detected_at": "2026-10-17",
+    "name": "The reasoning read-back keeps the words of every claim it returns, and pages",
+    "rationale": "req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns (Anthony, 2026-10-17, fix 2), from proof trial rung 2's friction items 2 and 7. Re-measured on flo2.io the same day: at the 27,267 characters flo2.io lowered the trial's 120,000 to, the read-back cut 152 text fields of the claims to \"…\" and showed 25 of the 60 claims it walked. With a small limit, rests_on and stated_foundations came back [] because the summaries were computed over the capped walk. Now, on the same design: 14 of 66 claims come back whole at 27,267, 16 at 30,000, and all 66 in 4 pages; a one-claim page lists the foundations. The lowering itself is flo2.io's, not reflow2's: its gateway (src/budget.ts, withEngineBudget) lowers a larger budget_chars to the connector's own and says so in its wrapper's `note`, observed today (\"budget_chars 120000 was lowered to 27267\"). reflow2 cannot see the number asked for, so it names the budget it was given in `page`, inside the result itself. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "reasoning_report walks the whole reasoning (up to 500 records) whatever one page returns. limit sets the page size, and a new `offset` argument pages it in proof order, with offset, total_claims, remaining and next_offset on the reply; the summary lists cover the walk. A capped walk names not_walked. Each claim carries `says` (its own words) and each premise its `name` (PremiseReading.name, filled by this reader). The MCP layer (reasoning_page in tools/query.rs) holds a reply to budget_chars by returning fewer claims, each whole, and a `page` block names the budget it was held to; prose is cut only outside the claims, and only as a last resort. bound_reply_list_first is no longer used here. Toolsnap: reasoning_report's description, its limit and budget_chars docs, and the new offset. design-a-proof skill (three copies) says to read on with next_offset. PR #767."
+  }
+}

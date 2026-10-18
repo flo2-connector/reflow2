@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e5fccf217b70bf3947bf690d9fc5262335b9d3aef5c8ae543d3e634681549093",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-near-match-across-types-or-within-reasoning-is-a-note",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

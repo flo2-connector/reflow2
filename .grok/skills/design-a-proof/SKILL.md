@@ -90,7 +90,9 @@ word or a checker's, never yours. Recording a proof does not prove it.
 
 `reasoning_report` on the theorem reads the proof back: each claim with its computed truth, the
 steps under it, what it rests on, which premises cite no source, the assumptions ("assumed,
-discharged by …"), each stated independence and each generalization. Tell the reader, in the
+discharged by …"), each stated independence and each generalization. Every claim comes back
+whole, in proof order; a long proof comes in pages, so read on with the reply's `next_offset`
+until there is none. Tell the reader, in the
 words of their mathematics rather than reflow2's, what the proof shows and what it does not, using
 the statuses exactly:
 

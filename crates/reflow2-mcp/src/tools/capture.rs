@@ -127,76 +127,23 @@ pub(crate) struct NearMatch {
     /// it did before this existed.
     #[serde(skip_serializing_if = "Option::is_none")]
     kind: Option<String>,
+    /// The hit's `statement_kind`, when it is a statement of a line of
+    /// reasoning (`theorem`, `lemma`, `definition` ...). Read because two
+    /// statements of one proof share their words by construction, so a
+    /// near-match between them is a note, never a refusal. Serialised only
+    /// when present.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    statement_kind: Option<String>,
 }
 
-/// Type pairs the capture loop PRESCRIBES, which therefore must not be refused
-/// as near-duplicates of each other.
-///
-/// # Why these and not every cross-type pair
-///
-/// `chg:a-cross-type-near-match-is-named-as-a-layer` (2026-08-29) rejected
-/// blanket cross-type suppression for one stated reason: nobody had counted how
-/// often a cross-type hit is a REAL duplicate. That count now exists
-/// (`fact:twelve-near-match-refusals-across-two-designs-and-not-one-was-a-duplicate`)
-/// — 12 field refusals across two designs whose sessions could not see each
-/// other, plus 3 incurred by the triage session itself, and not one was a
-/// duplicate.
-///
-/// 🛑 SO THE SET IS THE PAIRS WITH EVIDENCE, NOT EVERY PAIR THAT COULD BE
-/// ARGUED FOR. Requirement↔Component, for instance, is plausibly a layer pair
-/// and is deliberately absent: nobody has measured it, and adding it would be
-/// the same unmeasured assumption the 2026-08-29 repair refused to make in the
-/// other direction. When a new pairing is measured, add it here with its
-/// evidence and not before.
-///
-/// Order does not matter — the pair is matched both ways, because which side is
-/// being created is an accident of the session's sequence.
-const PRESCRIBED_LAYER_PAIRS: &[(&str, &str)] = &[
-    // The golden thread. bhome ×4, musicjug ×1. The served instructions ask for
-    // both records, and a Capability is SUPPOSED to read like the Requirement
-    // it satisfies.
-    ("Requirement", "Capability"),
-    // The change loop: record what shipped, then what must stay true / why.
-    // bhome ×3 (ChangeEvent↔Decision); Alex 2026-08-29 (ChangeEvent↔Requirement,
-    // and Decision↔Capability).
-    ("ChangeEvent", "Requirement"),
-    ("ChangeEvent", "Decision"),
-    ("ChangeEvent", "Capability"),
-    ("Decision", "Capability"),
-    // A decision about a part reads like the part. musicjug ×1
-    // (dec:one-clock vs comp:clock).
-    ("Decision", "Component"),
-    // A measurement and the decision it informs. Incurred ×3 by the session
-    // that recorded the count — the only refusals in the whole set NOT
-    // self-reported by an agent grading its own work.
-    ("TemporalFact", "Decision"),
-    // A check and the ruling it tests read alike on purpose; a requirement
-    // promoted FROM a brainstorm idea reads like the idea (brainstorm step 5,
-    // EVOLVES_INTO). dev_storyflow 2026-09-05: nine fires, zero duplicates,
-    // clustered on these two (plus one n=1 Decision-DesignEpoch, watched, not
-    // added). fact:defect-two-prescribed-layer-pairs-are-missing-so-a-check-
-    // beside-its-ruling-is-refused-as-a-duplicate.
-    ("Decision", "Verification"),
-    ("Requirement", "Decision"),
-    // The capability that ANSWERS a check's finding, beside the Verification
-    // that found the need: dev_storyflow 2026-09-06, refused four times in one
-    // evening (recurrence #3 of fact:the-duplicate-guard-cannot-tell-a-second-
-    // layer-from-a-second-copy).
-    ("Capability", "Verification"),
-    // 2026-09-16, on the xrt-demo genesis count (7 refusals on these pairs, 7
-    // distinct, 0 duplicates; 19/0 across three designs): a capability and the
-    // part it is allocated to, a requirement and the part that meets it, a
-    // capability and the rule or limit that binds it — thread pairs by
-    // construction. Component↔Component (a grouping and its member) is
-    // deliberately NOT here: measured once, and a same-type near match is the
-    // one case the guard was built for.
-    ("Capability", "Component"),
-    ("Requirement", "Component"),
-    ("Capability", "DesignRule"),
-    ("Capability", "Constraint"),
-];
+impl NearMatch {
+    /// Whether the hit is a record of a line of reasoning: an Inference, or a
+    /// statement carrying a `statement_kind`.
+    fn in_reasoning(&self) -> bool {
+        self.node_type == reflow2_core::nodes::node::INFERENCE || self.statement_kind.is_some()
+    }
+}
 
-/// Is this pair one the capture loop prescribes, in either direction?
 /// The ids a write names as its own relation targets (`satisfies`,
 /// `allocated_to`, `related_to`). A near-match on one of these is not a
 /// duplicate to refuse: the request has already said how the two relate.
@@ -206,24 +153,52 @@ fn declared_targets<'a>(ids: &[Option<&'a str>]) -> Vec<&'a str> {
     ids.iter().flatten().copied().collect()
 }
 
-fn is_prescribed_layer(creating: &str, hit: &NearMatch) -> bool {
-    // The one SAME-TYPE exemption, and it needs the `kind` rather than the
-    // type: step 5 of the brainstorm skill promotes an `exploratory` Decision
-    // into a settled one via EVOLVES_INTO, so the idea and the decision that
-    // answers it are supposed to read alike. bhome ×1, musicjug ×2.
-    //
-    // Deliberately one-directional on the HIT: an exploratory idea recorded
-    // against an existing settled decision is not the promotion path, and there
-    // is no measurement saying it should be exempt.
-    if creating == "Decision"
-        && hit.node_type == "Decision"
-        && hit.kind.as_deref() == Some("exploratory")
-    {
-        return true;
+/// Whether a near-match can REFUSE this write, or is only a note on it.
+///
+/// # The rule (Anthony, 2026-10-17)
+///
+/// `dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses`,
+/// for `req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal`:
+///
+/// - a match of ANOTHER TYPE never refuses. It is reported beside the result
+///   (`search_first.near_matches`, with its type) and the write stands;
+/// - a same-type match between two records of a LINE OF REASONING (each a
+///   statement carrying a `statement_kind`, or an Inference) never refuses
+///   either: a proof's steps share their words with their neighbours by
+///   construction;
+/// - every other same-type match refuses, with its three answers.
+///
+/// # What it replaced
+///
+/// A hand-kept list of fourteen exempt type pairs (`PRESCRIBED_LAYER_PAIRS`),
+/// which grew five times for field reports (08-31, 09-01, 09-05, 09-06, 09-16)
+/// and could not be pinned as a class, because it was a list. Every other
+/// cross-type pair refused: on proof trial rung 2 (design bbcd344a71ff1cbd,
+/// 0.86.0), a statement was refused against an Inference, the Project and a
+/// definition, and 42 of 49 statements needed `distinct_from` lists of up to
+/// 18 ids. Replayed against that design, 45 of the 49 refused; under this
+/// rule none does.
+///
+/// # What was weighed
+///
+/// `chg:a-cross-type-near-match-is-named-as-a-layer` (2026-08-29) rejected
+/// blanket cross-type suppression as trading a false alarm for a silent miss.
+/// The decision accepts that cost knowingly: the match is still REPORTED on
+/// the write and stays readable afterwards, so a cross-layer restatement gets
+/// a note rather than a stop, never silence.
+fn may_refuse(creating: &str, creating_reasons: bool, hit: &NearMatch) -> bool {
+    if hit.node_type != creating {
+        return false;
     }
-    PRESCRIBED_LAYER_PAIRS.iter().any(|(a, b)| {
-        (creating == *a && hit.node_type == *b) || (creating == *b && hit.node_type == *a)
-    })
+    if creating_reasons && hit.in_reasoning() {
+        return false;
+    }
+    // The one same-type exemption kept from before, and it needs the `kind`
+    // rather than the type: step 5 of the brainstorm skill promotes an
+    // `exploratory` Decision into a settled one via EVOLVES_INTO, so the idea
+    // and the decision that answers it are supposed to read alike. bhome ×1,
+    // musicjug ×2. One-directional on the HIT, as it always was.
+    !(creating == "Decision" && hit.kind.as_deref() == Some("exploratory"))
 }
 
 /// The advisory attached to a newly-created capture node: what already looked
@@ -321,28 +296,28 @@ pub(crate) fn search_first(
         .iter()
         .filter(|h| h.node_id != node_id && h.score >= floor)
         .take(NEAR_MATCH_LIMIT)
-        .map(|h| NearMatch {
-            node_id: h.node_id.clone(),
-            node_type: h.node_type.clone(),
-            name: h.name.clone(),
-            // Read only for Decisions, which is the only type whose `kind`
-            // decides a pairing. A failed or absent lookup is `None`, which
-            // means the pair is NOT exempted — the conservative direction, so
+        .map(|h| {
+            // The hit's own record, read once for the two fields a pairing
+            // can turn on. A failed or absent lookup leaves both `None`, which
+            // means the match is NOT exempted: the conservative direction, so
             // a read error can only ever cost a round trip, never a silent
             // suppression.
-            kind: (h.node_type == "Decision")
-                .then(|| {
-                    g.get_node(&h.node_type, &h.node_id)
-                        .ok()
-                        .flatten()
-                        .and_then(|n| {
-                            n.properties
-                                .get("kind")
-                                .and_then(|v| v.as_str())
-                                .map(str::to_string)
-                        })
-                })
-                .flatten(),
+            let props = g
+                .get_node(&h.node_type, &h.node_id)
+                .ok()
+                .flatten()
+                .map(|n| n.properties)
+                .unwrap_or_default();
+            let text = |key: &str| props.get(key).and_then(|v| v.as_str()).map(str::to_string);
+            NearMatch {
+                node_id: h.node_id.clone(),
+                node_type: h.node_type.clone(),
+                name: h.name.clone(),
+                // Read only for Decisions, the only type whose `kind` decides
+                // a pairing (an exploratory idea and its settled decision).
+                kind: (h.node_type == "Decision").then(|| text("kind")).flatten(),
+                statement_kind: text("statement_kind"),
+            }
         })
         .collect();
     let note = (!near.is_empty()).then(|| {
@@ -1187,12 +1162,20 @@ pub(crate) fn with_capture_notes<T: serde::Serialize>(
 /// not clear it during development, which is the behaviour wanted — a check
 /// that refused often would be routed around, and a rule people route around
 /// is worse than no rule.
+///
+/// # What can refuse at all
+///
+/// Only a SAME-TYPE match outside a line of reasoning ([`may_refuse`]). A match
+/// of another type, or between two records of a line of reasoning, is a note
+/// on the successful write: it stays in `search_first.near_matches`, named
+/// with its type, and nothing is refused.
 fn refuse_unless_deliberate(
     found: &Option<SearchFirst>,
     distinct_from: Option<&Vec<String>>,
     replaces: Option<&Vec<String>>,
     node_id: &str,
     creating: &str,
+    creating_reasons: bool,
     declared: &[&str],
 ) -> Result<(), McpError> {
     let Some(sf) = found else { return Ok(()) };
@@ -1206,88 +1189,33 @@ fn refuse_unless_deliberate(
         .chain(replaces)
         .flat_map(|v| v.iter().map(String::as_str))
         .collect();
-    // ⭐ A PRESCRIBED LAYER PAIR IS REPORTED, NOT REFUSED — and the distinction
-    // is the whole design of this change. The match stays in
+    // ⭐ A MATCH THAT CANNOT REFUSE IS REPORTED, NOT DROPPED. It stays in
     // `sf.near_matches`, so the caller still sees what it matched and a later
-    // reader can still find it; only the REFUSAL is dropped. Narrowing a guard
-    // and blinding it look identical unless the evidence survives, so it does.
-    //
-    // Anthony, 2026-08-31, on the measured count. Before this, following the
-    // documented loop tripped the guard every time, and the mitigation agents
-    // reached for — pre-declaring `distinct_from` on every write — had already
-    // produced the silent miss that blanket suppression was rejected to avoid,
-    // while leaving no record of the trade.
-    let unacknowledged: Vec<&NearMatch> = sf
+    // reader can still find it; only the REFUSAL is withheld. Narrowing a
+    // guard and blinding it look identical unless the evidence survives, so it
+    // does.
+    let same_type: Vec<&NearMatch> = sf
         .near_matches
         .iter()
         .filter(|m| !acknowledged.contains(m.node_id.as_str()))
-        .filter(|m| !is_prescribed_layer(creating, m))
+        .filter(|m| may_refuse(creating, creating_reasons, m))
         // The request's own relation targets are read, not allow-listed.
         .filter(|m| !declared.contains(&m.node_id.as_str()))
         .collect();
-    if unacknowledged.is_empty() {
+    if same_type.is_empty() {
         return Ok(());
     }
-    let listed = unacknowledged
+    let listed = same_type
         .iter()
         .map(|m| format!("  {} ({}) — {}", m.node_id, m.node_type, m.name))
         .collect::<Vec<_>>()
         .join("\n");
-    let ids = unacknowledged
+    let ids = same_type
         .iter()
         .map(|m| format!("\"{}\"", m.node_id))
         .collect::<Vec<_>>()
         .join(", ");
 
-    // ⭐ THE TYPE RELATIONSHIP DECIDES THE WORDING, because it decides what the
-    // agent should do next. A same-type hit may be the same record written
-    // twice — sharpening is the right move. A hit of ANOTHER type usually is
-    // not a duplicate at all: it is the same work recorded at a different
-    // layer, which is the sequence the served instructions ASK for (record what
-    // shipped as a ChangeEvent, then what must stay true as a Requirement).
-    //
-    // Reported by Alex 2026-08-29: following that loop honestly tripped this
-    // guard every time, and the refusal presented his ChangeEvent as a possible
-    // duplicate. The nodes really did match on words; what was wrong was
-    // calling that a duplicate.
-    //
-    // 🛑 THE REFUSAL STAYS. Excluding cross-type pairs from the filter was the
-    // other available repair and was rejected: it trades a false alarm for a
-    // silent miss, and a silent miss is the failure this guard exists to stop.
-    // Nobody has counted how often a cross-type hit IS a real duplicate, so
-    // suppressing the check would be acting on an unmeasured assumption.
-    let same_type: Vec<&&NearMatch> = unacknowledged
-        .iter()
-        .filter(|m| m.node_type == creating)
-        .collect();
-
-    if same_type.is_empty() {
-        // Every match is of another type. Sharpening is not offered, because
-        // calling this constructor with another type's id is not a route that
-        // exists — offering it would send the agent somewhere it cannot go.
-        return Err(McpError::invalid_params(
-            format!(
-                "The design already holds a DIFFERENT KIND OF RECORD saying something close to \
-                 this, so `{node_id}` was NOT created. Nothing here is a near-duplicate of a \
-                 {creating}:\n\n{listed}\n\nUSUALLY THIS IS THE LOOP WORKING. Recording what \
-                 shipped and recording what must stay true are different acts on the same work, \
-                 and they are supposed to read alike — if that is what this is, call again with \
-                 `distinct_from: [{ids}]` and carry on.\n\nWORTH ONE LOOK FIRST: if the idea \
-                 really belongs on the record above rather than beside it, put it there instead \
-                 — a second node that only restates the first is the thing this check exists to \
-                 catch, and it can wear a different type."
-            ),
-            None,
-        ));
-    }
-
-    // The third route names only the SAME-type matches: a record at another
-    // layer is not a predecessor, and `replaces` refuses one.
-    let same_ids = same_type
-        .iter()
-        .map(|m| format!("\"{}\"", m.node_id))
-        .collect::<Vec<_>>()
-        .join(", ");
     // What moves is the type's inherited thread — said here, from the one
     // table the core reads, so the promise and the write cannot disagree.
     let moved: Vec<String> = reflow2_core::supersede::inherited_edges(creating)
@@ -1318,7 +1246,7 @@ fn refuse_unless_deliberate(
              START A NEW ONE — call again with `distinct_from: [{ids}]`. The new node keeps \
              them as the ones you read and judged a different thing.\n  REPLACE AN OLD ONE — \
              if this one TAKES THE PLACE of a {creating} above (rebuilt, re-scoped or renamed \
-             under a new node), call again with `replaces: [{same_ids}]`. The old node's ending \
+             under a new node), call again with `replaces: [{ids}]`. The old node's ending \
              is recorded{moves}, and this one OBSOLETES it — so the old node no longer reads as \
              work nobody replaced.\n\nThis is not a duplicate accusation. Saying the same thing \
              twice in different words is sometimes real signal, which is why more than one route \
@@ -1857,6 +1785,7 @@ impl ReflowService {
             req.replaces.as_ref(),
             &req.id,
             "Requirement",
+            req.statement_kind.is_some(),
             &[],
         ) {
             // Roll back the node we just wrote. The check needs the node in the
@@ -2061,6 +1990,7 @@ impl ReflowService {
             req.replaces.as_ref(),
             &req.id,
             "DesignRule",
+            false,
             &[],
         ) {
             if !existed {
@@ -2200,6 +2130,7 @@ impl ReflowService {
             req.replaces.as_ref(),
             &req.id,
             "Capability",
+            false,
             &declared_targets(&[req.satisfies.as_deref(), req.allocated_to.as_deref()]),
         ) {
             // Roll back the node we just wrote. The check needs the node in the
@@ -2561,6 +2492,7 @@ impl ReflowService {
             req.replaces.as_ref(),
             &req.id,
             "Component",
+            false,
             &[],
         ) {
             // Roll back the node we just wrote. The check needs the node in the
@@ -3592,6 +3524,7 @@ impl ReflowService {
             req.replaces.as_ref(),
             &req.id,
             "Decision",
+            false,
             &req.related_to
                 .as_ref()
                 .map(|v| v.iter().map(|r| r.other_id.as_str()).collect::<Vec<_>>())

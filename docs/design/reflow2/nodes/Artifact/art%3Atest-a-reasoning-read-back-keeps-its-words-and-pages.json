@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1d9de8cf054976e856b4c83ba150cb69283c5f24a86bc5c3385a5990a16223c7",
+  "node_id": "art:test-a-reasoning-read-back-keeps-its-words-and-pages",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns on proof trial rung 2's design. At the default budget every returned claim is whole: its `says`, each step's rule and warrant, each premise's name, and no text cut. The pages, read on with next_offset, return every claim of the walk once, in the order an unbounded read gives. At flo2.io's 27,267 the page names the budget_chars it was held to, and the claims are still whole. A one-claim page still lists the foundations in rests_on and stated_foundations.",
+    "location": "crates/reflow2-mcp/tests/a_reasoning_read_back_keeps_its_words_and_pages.rs",
+    "name": "a_reasoning_read_back_keeps_its_words_and_pages.rs — whole claims, paging in proof order, the named budget, on the proof trial's design",
+    "status": "realized"
+  }
+}

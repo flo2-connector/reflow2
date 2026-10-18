@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8faf72237be860273dbc8ac9b111defb5337fe97c846a50a86ed7cb31119513f",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-reasoning-read-back-keeps-its-words-and-pages"
+}

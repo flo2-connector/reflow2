@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48389e08d1a9c430adc2fdd0e2c9a3d0e92309431ce99deb5dbace9cf37aa9ad",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-reasoning-read-back-keeps-its-words-and-pages",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-reasoning-read-back-keeps-its-words-and-pages-tests"
+}

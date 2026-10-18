@@ -1,5 +1,11 @@
 //! A near-match of a DIFFERENT NODE TYPE is not a duplicate accusation.
 //!
+//! ⭐ SINCE 2026-10-17 IT IS NOT A REFUSAL AT ALL. Every cross-type match is a
+//! note on the successful write
+//! (`dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses`),
+//! so the layer wording below is history: ② gave way to ① for every pair, and
+//! the rule's class test is `a_near_match_across_types_or_within_reasoning_is_a_note.rs`.
+//!
 //! # The report
 //!
 //! Alex, 2026-08-29 (`art:grok-shell-feedback-2026-08-29`): after recording a
@@ -120,20 +126,18 @@ async fn seed_change_event(s: &ReflowService) {
     .expect("the change event records what shipped");
 }
 
-/// ⭐ THE WORDING, ON A PAIR THAT STILL REFUSES.
-///
-/// This was Alex's ChangeEvent→Requirement case until 2026-08-31, when the
-/// measured count moved that pair into `PRESCRIBED_LAYER_PAIRS` and it stopped
-/// refusing entirely. The wording still has to be pinned for everything else,
-/// so the test moved to ChangeEvent→Component: a pair nobody has measured,
-/// which therefore still refuses and must still be described as a different
-/// KIND of record rather than as a near-duplicate.
+/// ⭐ SINCE 2026-10-17 NO CROSS-TYPE PAIR REFUSES
+/// (`dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses`,
+/// option ①, now for every pair rather than a measured list). ChangeEvent→Component,
+/// the last pair this test held as refusing with the layer wording, is written,
+/// and the match is still REPORTED with its type, so the agent can still tell a
+/// layer from a copy.
 #[tokio::test]
-async fn a_cross_type_near_match_names_the_layering_not_a_duplicate() {
+async fn a_cross_type_near_match_is_written_and_named_with_its_type() {
     let s = svc().await;
     seed_change_event(&s).await;
 
-    let err = s
+    let reply = s
         .add_component(Parameters(ComponentReq {
             id: "cmp:client-elector".into(),
             name: Some("Client elector".into()),
@@ -146,46 +150,27 @@ async fn a_cross_type_near_match_names_the_layering_not_a_duplicate() {
             status: None,
         }))
         .await
-        .expect_err("an unmeasured cross-type pair still refuses, because ② survives");
+        .expect("a cross-type near-match is a note, never a refusal")
+        .structured_content
+        .expect("structured");
 
-    let msg = err.message.to_string();
-
-    // It must still do its job: name what it found, and both ways on.
+    let named = reply["search_first"]["near_matches"]
+        .as_array()
+        .expect("the match is still reported on the write")
+        .iter()
+        .any(|m| {
+            m["node_id"] == "chg:client-elects-its-own-build" && m["node_type"] == "ChangeEvent"
+        });
     assert!(
-        msg.contains("chg:client-elects-its-own-build"),
-        "the refusal must still NAME what it matched: {msg}"
-    );
-    assert!(
-        msg.contains("distinct_from"),
-        "the refusal must still name the way through: {msg}"
-    );
-
-    // ⭐ And it must say what KIND of match this is. The agent's next action
-    // differs: a same-type hit invites sharpening the existing node, a
-    // cross-type hit invites recording the second layer and moving on.
-    assert!(
-        msg.contains("ChangeEvent"),
-        "the refusal must name the OTHER TYPE, or the agent cannot tell a layer from a copy: \
-         {msg}"
-    );
-    assert!(
-        msg.to_lowercase().contains("different kind of record"),
-        "a cross-type match must be described as a different KIND of record rather than as a \
-         near-duplicate: {msg}"
-    );
-
-    // 🛑 And it must NOT tell the agent to sharpen the ChangeEvent. Calling
-    // add_requirement with a ChangeEvent's id is not a route that exists, and
-    // offering it sends the agent somewhere it cannot go.
-    assert!(
-        !msg.contains("SHARPEN"),
-        "sharpening is a same-type route and must not be offered across types: {msg}"
+        named,
+        "the report must NAME what it matched and its TYPE, or the agent cannot tell a layer \
+         from a copy: {reply}"
     );
 }
 
-/// 🛑 THE COUNTERWEIGHT, and the reason this file has two tests. If the
-/// same-type wording drifted into the layered phrasing, the first test would
-/// still pass while the guard stopped distinguishing anything at all.
+/// 🛑 THE COUNTERWEIGHT, and the reason this file has two tests. A same-type
+/// match is the one the guard was built for, and it still refuses with
+/// sharpening offered.
 #[tokio::test]
 async fn a_same_type_near_match_is_still_a_duplicate_and_still_offers_sharpening() {
     let s = svc().await;

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a39358433895a9a543dd599fece36dbef77a0d838962dd1291f32f50e3bb43d0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses",
+  "properties": {
+    "approved_at": "2026-10-17",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

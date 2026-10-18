@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:94d85d8af061725b5536e36e009abb7e58f39e2c5b0bcbb4a4f6579b83b8e328",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns",
+  "properties": {
+    "approved_at": "2026-10-17",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

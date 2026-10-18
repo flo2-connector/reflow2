@@ -2743,13 +2743,20 @@ pub struct ReasoningReportReq {
     /// every Decision set to `contested`.
     #[serde(default)]
     pub claim: Option<String>,
-    /// How many nodes to read (default 60, at most 500). `capped: true` in
-    /// the reply means the walk stopped before reaching everything.
+    /// How many claims one page returns at most (default 60, at most 500).
+    /// The walk itself always reads the whole reasoning, up to 500 records,
+    /// so the summary lists are never one page's; `capped: true` means the
+    /// WALK stopped there, and `not_walked` names what it did not read.
     #[serde(default)]
     pub limit: Option<usize>,
-    /// Characters the reply may spend (default 30,000). Over it, the claims'
-    /// prose gives first, then claims from the end of the walk; every summary
-    /// list keeps its ids, and the `budget` block says what was withheld.
+    /// Where in the walk the page starts (default 0, the roots): pass the
+    /// reply's `next_offset` to read on. The walk's order is proof order,
+    /// breadth first from the claim asked about.
+    #[serde(default)]
+    pub offset: Option<usize>,
+    /// Characters the reply may spend (default 30,000). Over it, the page
+    /// returns FEWER claims, each WHOLE, never every claim with its words cut:
+    /// `next_offset` reads on, and `page` names the budget it was held to.
     #[serde(default)]
     pub budget_chars: Option<usize>,
 }

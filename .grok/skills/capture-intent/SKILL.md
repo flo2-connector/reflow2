@@ -102,7 +102,11 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
    from the record: prior values and roads not taken stay. It is a question, not a gate.
 
    ⭐ **WHEN A CONSTRUCTOR REFUSES A NEAR-MATCH, THERE ARE THREE ANSWERS, AND THE ONE YOU
-   GIVE IS KEPT.** The refusal lists what it matched; read those nodes, then:
+   GIVE IS KEPT.** It refuses only for a match of the SAME type, and never between two
+   statements of a line of reasoning (each carrying a `statement_kind`). A match of another
+   type, or within a proof, is a note on a write that succeeded: it comes back in
+   `search_first.near_matches`, each with its type. Read it, and link or revise if it covers
+   the same need. The refusal lists what it matched; read those nodes, then:
    - **SHARPEN** — the new words belong on the existing node: call the same tool with ITS id.
    - **DISTINCT** — it is a different thing: call again with `distinct_from: [<ids>]`. The new
      node keeps those ids, so a later reader can tell a node you compared from one nobody did.

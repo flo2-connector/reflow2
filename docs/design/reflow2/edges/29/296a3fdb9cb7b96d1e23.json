@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c10e8e5663eaec2eb113937abf75d939677b1db7eb017368d5bac56b74c15294",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-near-match-across-types-or-within-reasoning-is-a-note-2026-10-17",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:5bbffb33756ac5c0ac355cc8e1ba1c9d397f78ca139c1b2fa79d040f4cce05e4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-prescribed-layer-pair-no-longer-refuses"
+}

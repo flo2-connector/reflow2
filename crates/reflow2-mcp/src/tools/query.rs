@@ -1320,7 +1320,9 @@ impl ReflowService {
                        `contested` keeps open on purpose, and every claim with no support. \
                        `claim` reads under one claim; omitted, every top conclusion and \
                        contested decision. `what_this_means`: structure is not truth. Shown \
-                       here, never raised as a gap. Bounded by `budget_chars`. Writes nothing. \
+                       here, never raised as a gap. Bounded by `budget_chars`: every claim \
+                       comes back whole, and a long proof pages with `next_offset`. Writes \
+                       nothing. \
                        Ask for this to check an argument point by point: what backs each claim, \
                        what is disputed, and what has no evidence behind it.",
         title = "Reasoning Report",
@@ -1332,17 +1334,14 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
         let report = g
-            .reasoning_report(req.claim.as_deref(), req.limit)
+            .reasoning_report_from(req.claim.as_deref(), req.limit, req.offset)
             .map_err(dyno_err)?;
         let full = serde_json::to_value(report).map_err(ser_err)?;
-        // The weight is the claims list; the summary lists are ids.
-        let bounded = crate::reply_budget::bound_reply_list_first(
+        let bounded = reasoning_page(
             full,
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
-            "claims",
-            "Every summary list keeps its ids; read one claim in full with reasoning_report on \
-             its id, or pass a larger budget_chars.",
+            req.budget_chars.is_none(),
         );
         self.ok_read(&g, bounded)
     }
@@ -1685,4 +1684,116 @@ pub(crate) fn generic_settle(
         after.remove(k);
     }
     reflow2_core::intent::newly_settles(node_type, id, prior.map(|p| &p.properties), &after)
+}
+
+/// Hold one page of `reasoning_report` to `budget` characters by returning
+/// FEWER CLAIMS, each WHOLE, never every claim with its words cut
+/// (req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns).
+///
+/// MEASURED BEFORE, proof trial rung 2 on flo2.io (0.86.0, held to 27,267
+/// characters): 152 text fields of the claims cut to "…", then 25 of the 60
+/// claims shown, so the statements and warrants, which are the proof, were
+/// readable only through scan_nodes.
+///
+/// The claims give from the tail of the page, whole, to a floor of one; the
+/// reply's `next_offset` and `remaining` then say where the next page starts,
+/// and `page` names the budget it was held to, so a budget lowered on the way
+/// shows in the result itself. Only if ONE claim and the summary still pass
+/// the budget is prose cut, and then only outside `claims`.
+fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> JsonValue {
+    use crate::reply_budget::chars_of;
+    let rows: Vec<JsonValue> = full
+        .get_mut("claims")
+        .and_then(|c| c.as_array_mut())
+        .map(std::mem::take)
+        .unwrap_or_default();
+    let offset = full["offset"].as_u64().unwrap_or(0) as usize;
+    let total = full["total_claims"].as_u64().unwrap_or(rows.len() as u64) as usize;
+    let page_len = rows.len();
+    let held = if default_budget {
+        format!("budget_chars {budget} (the default)")
+    } else {
+        format!("budget_chars {budget}")
+    };
+    let build = |keep: usize| -> JsonValue {
+        let mut v = full.clone();
+        let end = offset + keep;
+        let remaining = total.saturating_sub(end);
+        let next = (end < total).then_some(end);
+        let fewer = if keep < page_len {
+            format!(
+                " To fit, it returns {keep} of the {page_len} this page's `limit` allows; no \
+                 claim is cut."
+            )
+        } else {
+            String::new()
+        };
+        let on = match next {
+            Some(n) => format!(" {remaining} remain: read on with `offset: {n}`."),
+            None => " This is the last page.".to_string(),
+        };
+        let reads = format!(
+            "{keep} of {total} claims, from offset {offset}, each WHOLE (its words in `says`, \
+             each step's rule and warrant, each premise's name), in proof order.{on} This reply \
+             was held to {held}.{fewer} The summary lists cover the whole walk, not this page."
+        );
+        if let Some(o) = v.as_object_mut() {
+            o.insert("claims".into(), JsonValue::Array(rows[..keep].to_vec()));
+            o.insert("remaining".into(), json!(remaining));
+            match next {
+                Some(n) => o.insert("next_offset".into(), json!(n)),
+                None => o.remove("next_offset"),
+            };
+            o.insert(
+                "page".into(),
+                json!({
+                    "offset": offset,
+                    "returned": keep,
+                    "total": total,
+                    "remaining": remaining,
+                    "next_offset": next,
+                    "budget_chars": budget,
+                    "reads": reads,
+                }),
+            );
+        }
+        v
+    };
+    // Estimate from what each claim costs, then confirm on the real reply:
+    // the page block's numbers move its own size by a few characters.
+    let costs: Vec<usize> = rows.iter().map(chars_of).collect();
+    let base = chars_of(&build(0));
+    let mut keep = page_len;
+    let mut spent: usize = costs.iter().sum::<usize>() + page_len.saturating_sub(1);
+    while keep > 1 && base + spent > budget {
+        keep -= 1;
+        spent -= costs[keep] + usize::from(keep > 0);
+    }
+    let mut out = build(keep);
+    while keep > 1 && chars_of(&out) > budget {
+        keep -= 1;
+        out = build(keep);
+    }
+    if chars_of(&out) <= budget {
+        return out;
+    }
+    // One whole claim and the summary still pass the budget: cut prose
+    // OUTSIDE the claims, and say so in the usual budget block.
+    let Some(o) = out.as_object_mut() else {
+        return out;
+    };
+    let claims = o.remove("claims").unwrap_or(JsonValue::Null);
+    let page = o.remove("page").unwrap_or(JsonValue::Null);
+    let room = budget.saturating_sub(chars_of(&claims) + chars_of(&page) + 32);
+    let mut rest = crate::reply_budget::bound_reply(
+        JsonValue::Object(std::mem::take(o)),
+        room,
+        "The claims are whole; what was cut is outside them. Read one claim with \
+         reasoning_report on its id, or pass a larger budget_chars.",
+    );
+    if let Some(r) = rest.as_object_mut() {
+        r.insert("claims".into(), claims);
+        r.insert("page".into(), page);
+    }
+    rest
 }

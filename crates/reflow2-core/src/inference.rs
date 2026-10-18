@@ -208,6 +208,10 @@ pub struct PremiseReading {
     pub truth: Truth,
     /// Why, in a sentence: the predicate that decided it.
     pub why: String,
+    /// Its name, when the reader filled it in: `reasoning_report` does, so a
+    /// step reads with the words of what it rests on. Absent elsewhere.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// `assumed` when the step takes this premise up as a HYPOTHESIS
     /// (PREMISE_OF `role: assumed`): read as holding inside the argument,
     /// whatever its own truth. Absent for an ordinary premise.
@@ -1574,6 +1578,7 @@ impl DesignGraph {
                           inside it whatever its own truth"
                         .to_string(),
                     role: Some("assumed"),
+                    name: None,
                 });
                 continue;
             }
@@ -1586,6 +1591,7 @@ impl DesignGraph {
                 truth: r.truth,
                 why: r.why,
                 role: None,
+                name: None,
             });
         }
         ev.path.remove(inference_id);

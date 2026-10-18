@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9426cfee740e16ba3145a5f4727534dcc363370fba838272fab2b24f6863c0cc",
+  "node_id": "cap:a-near-match-across-types-or-within-reasoning-is-a-note",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-17 for req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal, by the rule dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses settled. In crates/reflow2-mcp/src/tools/capture.rs, `may_refuse` decides whether a near-match can refuse add_requirement, add_design_rule, add_capability, add_component or add_decision. A match of another type never refuses. A same-type match between two records of a line of reasoning never refuses either: a statement carrying a statement_kind, or an Inference. Every other same-type match refuses, with the three answers (sharpen, distinct_from, replaces). The one same-type exemption kept is an exploratory Decision met by the Decision that settles it. Every match, refused or not, is named with its node_type in search_first.near_matches on the reply, and NearMatch carries the hit's statement_kind. The hand-kept PRESCRIBED_LAYER_PAIRS list (14 pairs, grown five times) and the cross-type refusal wording are gone. A class test pins the rule: every checking constructor against nine other seed types. Before: 26 of the 45 pairs refused. Replayed on proof trial rung 2's design (bbcd344a71ff1cbd), 45 of 49 statements were refused before and 0 after, with no distinct_from.",
+    "distinct_from": [
+      "fact:root-cause-a-dated-finding-blocks-four-intent-constructors-because-an-unlisted-cross-type-pair-refuses-2026-09-28"
+    ],
+    "name": "A near-match of another type, or between two statements of a line of reasoning, is a note on a successful write; only a same-type match outside a line of reasoning refuses",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}
