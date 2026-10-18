@@ -7,6 +7,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend before prose is\nwithheld to make it fit (default 30,000). Counts and ids are never\nbudgeted away, and a trimmed reply says what it withheld at `budget`.\n\nBOUNDED since 2026-10-18: on reflow2's own design the report grew past\nthe 30,000-character default (31,137, its `granularity` section the\nlargest), and the reply-budget gate (tools/replies_are_bounded.py)\nfailed on it, the class manual_work_ledger met on 2026-09-28.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "include_verifications": {
         "default": false,
         "description": "Return EVERY check with its status and last run, instead of the digest.\n\nOff by default because the roll was 152,803 of this report's 166,934\ncharacters — 91.5% of the one read a session makes to decide what to look\nat, spent on a list whose content is \"196 passing, 1 planned\". Ask for it\nwhen you actually want the roll; `loop_status`'s `full_list` points here.",

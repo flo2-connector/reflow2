@@ -26,6 +26,11 @@
   its premises are checkable. `capture-intent` used to say an Inference never
   concludes a Decision, while `brainstorm` and the served instructions said it
   could.
+- **`graph_report` takes `budget_chars`** (default 30,000) and trims prose to
+  fit, every count and id kept, with a budget block saying what it withheld. On
+  reflow2's own design the report had grown to 31,137 characters with no way
+  to narrow it. **What to do:** pass a larger `budget_chars` if your client has
+  the room and you want every word.
 
 ### Fixed
 
