@@ -31,6 +31,114 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.87.0] — 2026-10-18
+
+**Minor. A proof is recorded without fighting the duplicate guard, and reads back whole.** It
+contains #767 and #768, the fixes proof trial rung 2 (the fundamental theorem of arithmetic) asked
+for:
+- a near-match of another type, or between two statements of a line of reasoning, is a note on the
+  reply, not a refusal; and `reasoning_report` returns every claim whole and pages a long proof
+  (#767);
+- a claim's step count counts each step under it once, and the whole-design reasoning walk reaches
+  refuted claims (#768).
+
+The MCP surface stays at 200 tools. `reasoning_report` gains one argument, `offset`, and its reply
+gains `offset`, `total_claims`, `remaining`, `next_offset`, `page` and `not_walked`; each claim
+gains `says`, each premise `name`, and every `proof_status` gains `counts`. A reasoning read's
+`limit` now sets a page's size, and `capped` now means the walk itself stopped.
+- **The schema stamp does not move.** No node type, edge type, property or enum value changes,
+  so no upgrade note is owed. Measured at this cut with the published 0.86.0 binary: its stamp and
+  0.87.0's agree on every type, edge type and enum value (28, 68, 73), and differ only in the
+  version; 0.86.0 opens a store 0.87.0 wrote, with its usual warning that it is behind, and imports
+  0.87.0's export.
+
+**What to do:**
+- A reader that pinned `proof_status.total_steps` gets the smaller, distinct count (on proof trial
+  rung 2, 47 becomes 40).
+- To read a whole proof with `reasoning_report`, call again with `offset` set to `next_offset`
+  until it is absent.
+
+**Nothing is deprecated or removed in this release.**
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary, checked on the 0.87.0 release build:
+- `reflow2 write add_requirement` writes a requirement whose words match a capability's and names
+  the capability in `search_first.near_matches`; a match of the same type outside a line of
+  reasoning is still refused (exit 1);
+- `reflow2 read reasoning_report` returns each claim whole with `says`, and pages: with
+  `budget_chars` 12000 on proof trial rung 2 it returned 3 of 68 claims with `next_offset: 3`, and
+  passing `offset: 3` read the next page;
+- `reflow2 read get_node` shows a claim's `proof_status` with `counts` and the distinct
+  `total_steps` (rung 2's uniqueness claim reads 40).
+
+**Still needs a hosted gateway such as flo2.io:** the same as in 0.86.0, the hub view (asking a
+hub and hearing from every member, the merged `search_design`, and cross-design reads by graph
+id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
+
+### Changed
+
+- **A near-match of another type, or between two statements of a proof, no
+  longer refuses a write.** `add_requirement`, `add_capability`,
+  `add_component`, `add_design_rule` and `add_decision` write the node and name
+  each match, with its type, in `search_first.near_matches` on the reply. They
+  refuse only for a match of the same type outside a line of reasoning, with
+  the same three answers as before (sharpen, `distinct_from`, `replaces`). A
+  line of reasoning means a statement carrying a `statement_kind`, or an
+  Inference. The hand-kept list of fourteen exempt type pairs is gone, and a
+  class test pins the rule. Measured on proof trial rung 2 (the fundamental
+  theorem of arithmetic, 0.86.0): replayed against the rest of its design, 45
+  of its 49 statements were refused, and 42 had been recorded with
+  `distinct_from` lists of up to 18 ids; now all 49 are written with none.
+  **What to do:** nothing. A `distinct_from` you pass is still kept on the node.
+  Read the `search_first` note on a write; if a match covers the same need,
+  revise or link it.
+- **`reasoning_report` returns every claim whole, and pages through a long
+  proof.** Each claim now carries its own words (`says`), each step its rule
+  and warrant, and each premise its `name`; no text in a claim is cut. A reply
+  over `budget_chars` returns fewer claims, in proof order, instead of every
+  claim with its words blanked. The reply says where the page starts
+  (`offset`), how many claims the walk holds (`total_claims`), how many are
+  left (`remaining`) and where to read on (`next_offset`, passed back as the
+  new `offset` argument). A `page` block names the `budget_chars` the reply
+  was held to, so a budget lowered on the way shows in the result. The walk
+  always reads the whole reasoning, up to 500 records, so `rests_on`,
+  `stated_foundations` and the other summary lists are never one page's: a
+  small `limit` no longer reads as resting on nothing. A walk that stops at
+  500 names what it did not read in `not_walked`. `limit` now sets the page
+  size, and `capped` now means the walk itself stopped. Measured on proof
+  trial rung 2: at flo2.io's 27,267 characters the read-back cut 152 text
+  fields to "…" and showed 25 of the 60 claims it walked; now it shows 14 of
+  66 claims whole and reads on in pages. **What to do:** to read a whole
+  proof, call again with `offset` set to `next_offset` until it is absent.
+
+### Fixed
+
+- **A claim's `proof_status.total_steps` counts each step under it once.** A
+  claim with two lines of proof that share steps used to report the SUM of its
+  lines, so a shared step counted twice: on proof trial rung 2 the uniqueness
+  claim read 47 steps while the theorem built on it read 41, and on rung 1 the
+  theorem read 26 steps in a design holding 25. `total_steps` is now the number
+  of distinct steps under the claim's holding lines, and `confirmed_steps` and
+  `unconfirmed_steps` split that same set (uniqueness reads 40, rung 1's theorem
+  21). `proven` is still judged line by line: a line is proven only when every
+  one of its own steps, shared ones included, is confirmed. A refuted claim that
+  a step concludes now counts its steps too, where it used to read 0. Every
+  `proof_status` now carries `counts`, a sentence saying what the numbers mean.
+  **What to do:** nothing, unless you
+  pinned a summed number; a reader of `total_steps` gets the smaller, distinct
+  count.
+- **`reasoning_report` with no `claim` reads every claim of the reasoning,
+  refuted ones included.** A conjecture that only a counterexample points to was
+  never read in the whole-design walk, because the walk followed an objection
+  only from the claim it is against. Read over the whole design, the walk now
+  also follows an objection to its target, and any claim the walk from the top
+  conclusions does not reach (a concluded node, a statement with a
+  `statement_kind`, or either end of an objection) becomes a root of its own, so
+  a bare conjecture refuted by a bare counterexample is read from the
+  conjecture. A read under one `claim` is unchanged: it reads what is under that
+  claim. **What to do:** a client that asked about each objected-to claim one at
+  a time to find refuted ones can read them from the whole-design reply.
+
 ## [0.86.0] — 2026-10-17
 
 **Minor. A proof says what it assumes, counts only what it should, and an agent can ask a person
