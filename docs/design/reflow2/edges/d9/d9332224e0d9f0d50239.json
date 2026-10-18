@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e90fcab70e9436c7c813eb137572bb302d4dde81a3524b7b605cb6a3b9ca9ab",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:76249aa0debd02f3ead4f8f98d3400bd98be95508ef545bc2b600bc8436c7d0e"
+  },
+  "to_id": "art:gap-surfacing-doc"
+}

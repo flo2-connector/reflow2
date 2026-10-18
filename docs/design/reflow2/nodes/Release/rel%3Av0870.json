@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5c8bb259a6ab018eadf60c98a3a0df46a16046970b1949dcb36d5bab919ec788",
+  "node_id": "rel:v0870",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-18 on Anthony's word (\"Merge when green, then cut 0.87.0\"). A minor carrying #767 and #768, the fixes proof trial rung 2 (the fundamental theorem of arithmetic) asked for:\n- #767: a near-match of another type, or between two statements of a line of reasoning, is a note on the reply (search_first.near_matches), not a refusal; reasoning_report returns every claim whole (says, each step's rule and warrant, each premise's name) and pages a long proof (offset, total_claims, remaining, next_offset, page, not_walked);\n- #768: a claim's proof_status.total_steps counts each step under its holding lines once, with a new `counts` sentence; the whole-design reasoning walk reaches refuted claims.\n\n200 tools, as in 0.86.0; reasoning_report gains the `offset` argument. The schema stamp does not move: no schema/*.yaml file changed except schema/derived/edge_readers.yaml, which the stamp does not read. Nothing is deprecated or removed (deprecation::REGISTRY empty; the served-surface fixture unchanged). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.87.0 — a proof records without fighting the duplicate guard, and reads back whole",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.87.0"
+  }
+}

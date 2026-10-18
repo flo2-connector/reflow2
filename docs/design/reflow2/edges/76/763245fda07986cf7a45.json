@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e920a267a5bff18aa083bbc495321482aab9702f4e15b008892eb61d1677efce",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:63c0611112d944e03d51571982e4b26541683e6400461aec38c9fc0d665f188a"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

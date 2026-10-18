@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3b6f8d96891ce7534fe45278a9fe0f328df818af587ba1dd54c8341880c36c4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:293bbdbc632fe7b33ac407133c10ceadae01bc9a825222a95cafc03bfe0a9315"
+  },
+  "to_id": "art:shared-attach-from-another-folder-gate"
+}

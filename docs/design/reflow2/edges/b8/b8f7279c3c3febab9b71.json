@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:84746b8b54decac9fc574a8ebabec2e3173096a0659d74cd42498e8576531d77",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:4be87ece6d5f10230f1da2857389de9c5b361e6594a76c4a41faf9c1046b8630"
+  },
+  "to_id": "art:vocabulary-reach-baseline"
+}

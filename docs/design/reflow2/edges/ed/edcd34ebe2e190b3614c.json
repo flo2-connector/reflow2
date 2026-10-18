@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:39ad8da3fc8d977953b69ef2bacd6acefa222c1813e7f07cf9dc2f190c8ae98a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0870",
+  "properties": {
+    "as_checksum": "sha256:dc80fe824925b47c744ad15c4ffb0e4c8acd0e87542c1a9b5ad240186fcb4632"
+  },
+  "to_id": "art:derived-relations-declarations"
+}
