@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b041eb9c4a01b61cdf0c345a89e21028a2f799a6c5f769a76743a4c8038fcecf",
+  "edge_type": "CAUSES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "crates/reflow2-core/src/reasoning.rs (main 5a94e83): reasoning_roots inserts the conclusion of every Inference that is a premise of none, plus every contested Decision. reasoning_neighbours follows a claim's concluding steps to their premises, INCOMING opposing CONTRADICTS (objections against this claim), and contested governance. Nothing follows an OUTGOING opposing CONTRADICTS from an objection to its target. A conjecture is concluded by no step and is no step's premise, so neither rule reaches it.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-reasoning-walk-never-reaches-a-claim-only-an-objection-points-to-2026-10-18"
+}

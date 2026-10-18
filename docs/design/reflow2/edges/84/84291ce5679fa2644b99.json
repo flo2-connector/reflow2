@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3fc745a5b5707b8698da2e9e4900294503ddbf62c87eff55814c1ffa42d67a96",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-reflow2-takes-from-the-argumentation-frameworks",
+  "properties": {
+    "evidence": "Whether ideas (a)–(g) are needed is what these trials would show, the real use the rule on ideas from reading asks for.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-philosophical-arguments-as-trials-of-a-line-of-reasoning"
+}

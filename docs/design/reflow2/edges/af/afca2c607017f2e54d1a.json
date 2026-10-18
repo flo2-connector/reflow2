@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a40bd6ce5b81c0a5f35d09a705f179601e4a3966698ca0ae75e0c9b69469c82f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-reflow2-takes-from-the-argumentation-frameworks",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4262dd758dd3e3dc711be88466b346aea4742f0e5377d55d937b06f05e7da32e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-claim-counts-each-step-under-it-once-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

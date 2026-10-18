@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ef5dd1d698d6bacc3cdf739f31d3baea56538125a036fd7059a004fa455317f1",
+  "node_id": "art:fixture-proof-trial-rung-1-primes",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "Design d2ea1acfee6090c8 on flo2.io (reflow2 0.86.0), 78 nodes and 264 edges, exported read-only on 2026-10-18 through the droplet's engine over ssh (the read tools/reflow2_design_copy.py makes). Its theorem has two lines (Euclid's argument and the Fermat numbers') sharing steps, 25 Inferences in all, and a conjecture (req:conjecture-euler-polynomial) refuted by two counterexamples. Read by the step-count and walk-reach invariant tests.",
+    "location": "crates/reflow2-mcp/tests/fixtures/proof_trial_rung_1_primes.json",
+    "name": "proof_trial_rung_1_primes.json — proof trial rung 1 (infinitely many primes), exported read-only from flo2.io",
+    "status": "realized"
+  }
+}

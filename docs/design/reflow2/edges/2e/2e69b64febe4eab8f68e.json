@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bf1092aec281d4b6ba719376934aa1003dc805a9500481abd200447749b6b4f8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-claim-counts-each-step-under-it-once-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:4ec726ef7f78cca84af72b117a8d80cfb68b92d6e3a8ce2dc4ae0d411f0bf850",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

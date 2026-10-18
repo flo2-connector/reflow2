@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:888a113b408d39fd06a3d1428f00600d9e54d62004095f9047d0303df9af9fd6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-the-whole-reasoning-walk-reaches-every-claim",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

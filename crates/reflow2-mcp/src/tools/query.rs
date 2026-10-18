@@ -1318,8 +1318,8 @@ impl ReflowService {
                        sources. Then: what the reasoning rests on and which premises cite no \
                        source, the points still contested, the disputes a Decision set to \
                        `contested` keeps open on purpose, and every claim with no support. \
-                       `claim` reads under one claim; omitted, every top conclusion and \
-                       contested decision. `what_this_means`: structure is not truth. Shown \
+                       `claim` reads under one claim; omitted, every claim, refuted ones \
+                       included. `what_this_means`: structure is not truth. Shown \
                        here, never raised as a gap. Bounded by `budget_chars`: every claim \
                        comes back whole, and a long proof pages with `next_offset`. Writes \
                        nothing. \
@@ -1479,7 +1479,9 @@ fn decorate(
     // the node is not concluded by any Inference. A conclusion is PROVEN only
     // when every step in at least one holding derivation is confirmed
     // (confirmed_how is person or checker); SHOWN when it holds but some
-    // steps are unconfirmed; UNPROVEN when no derivation holds.
+    // steps are unconfirmed; UNPROVEN when no derivation holds. Its
+    // `total_steps` counts the distinct steps under the holding lines, each
+    // once, and its `counts` says so on every reply (`ProofReading`).
     let proof_status = g
         .proof_reading(node_id)
         .map_err(dyno_err)?

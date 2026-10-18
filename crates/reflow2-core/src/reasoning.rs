@@ -22,13 +22,28 @@
 //!
 //! A walk from the ROOTS: the claim asked about or, when none is, every top
 //! conclusion (a node a step concludes that is a premise of no step) and every
-//! `contested` Decision. From each node it follows:
+//! `contested` Decision, and then every claim of the reasoning those do not
+//! reach (below). From each node it follows:
 //!
 //! - the steps that conclude it, and their premises;
 //! - the objections against it (opposing CONTRADICTS), whose own objections
 //!   are the replies;
+//! - read over the whole design, also the claim an objection is AGAINST, so a
+//!   claim only an objection points to (a refuted conjecture) is read;
 //! - for a `contested` Decision, the nodes it governs, and for a node one
 //!   governs, that Decision.
+//!
+//! A whole-design read covers EVERY claim of the reasoning: every node a step
+//! concludes, every statement (`statement_kind`), and both ends of every
+//! opposing CONTRADICTS. One the walk from the top conclusions does not reach
+//! becomes a root of its own, an objection's target before the objection, so a
+//! bare conjecture refuted by a bare counterexample is read from the
+//! conjecture.
+//! `fact:root-cause-the-reasoning-walk-never-reaches-a-claim-only-an-objection-points-to-2026-10-18`:
+//! until 2026-10-18 the walk followed an objection only from its target's
+//! side, and a refuted conjecture was never read. A read under one `claim`
+//! still reads only what is under it: the claim's support and what stands
+//! against it, never what the claim itself objects to.
 //!
 //! Corroboration (CONTRADICTS marked `supporting`) and cited sources are
 //! listed on the node and never walked.
@@ -68,8 +83,9 @@ pub const WHAT_THIS_MEANS: &str = "This read-back shows the STRUCTURE of the rea
      sides, not unfinished work. Nothing here is legal, medical or other professional advice.";
 
 /// What the report says when the design records no reasoning to read.
-const NOTHING_TO_READ: &str = "This design records no inference step and no contested decision, \
-     so there is no line of reasoning to read back. A claim's support is recorded with \
+const NOTHING_TO_READ: &str = "This design records no inference step, no statement \
+     (`statement_kind`), no objection and no contested decision, so there is no line of reasoning \
+     to read back. A claim's support is recorded with \
      add_inference (its premises, its rule and its warrant); an objection is a CONTRADICTS from \
      the objection to the claim, and a reply a CONTRADICTS from the reply to the objection; a \
      dispute kept open on purpose is a Decision set to `contested` that governs both sides. Pass \
@@ -440,6 +456,9 @@ impl DesignGraph {
             }
             None => self.reasoning_roots()?,
         };
+        // Over the whole design an objection also leads to its target; under
+        // one claim the read stays below that claim.
+        let whole = claim.is_none();
 
         // THE WALK, breadth first from the roots, each level in id order. It
         // reads the whole reasoning up to its cap, whatever one page returns,
@@ -456,7 +475,7 @@ impl DesignGraph {
                 break;
             }
             order.push(id.clone());
-            for next in self.reasoning_neighbours(&id)? {
+            for next in self.reasoning_neighbours(&id, whole)? {
                 if seen.insert(next.clone()) {
                     queue.push_back(next);
                 }
@@ -656,8 +675,10 @@ impl DesignGraph {
         })
     }
 
-    /// Every top conclusion — concluded by a step, a premise of none — and
-    /// every `contested` Decision, sorted.
+    /// The roots of the whole-design walk, sorted: every top conclusion
+    /// (concluded by a step, a premise of none) and every `contested`
+    /// Decision; then every claim of the reasoning the walk from those does
+    /// not reach, each a root of its own (see [`Self::reasoning_claims`]).
     fn reasoning_roots(&self) -> Result<Vec<String>, DynoError> {
         let mut roots: BTreeSet<String> = BTreeSet::new();
         for i in self.scan_nodes(node::INFERENCE)? {
@@ -672,11 +693,88 @@ impl DesignGraph {
                 roots.insert(d.node_id);
             }
         }
+        let mut reached: BTreeSet<String> = BTreeSet::new();
+        for r in &roots {
+            self.reasoning_reach(r, &mut reached)?;
+        }
+        for c in self.reasoning_claims()? {
+            if !reached.contains(&c) {
+                self.reasoning_reach(&c, &mut reached)?;
+                roots.insert(c);
+            }
+        }
         Ok(roots.into_iter().collect())
     }
 
-    /// What the walk follows from one node, in id order.
-    fn reasoning_neighbours(&self, id: &str) -> Result<Vec<String>, DynoError> {
+    /// EVERY CLAIM OF THE REASONING, the set a whole-design read must cover:
+    /// every node a step concludes, every statement (`statement_kind`, on
+    /// whichever types the schema gives it), and both ends of every opposing
+    /// CONTRADICTS. In the order they are taken as roots: an objection's
+    /// target that objects to nothing first, then any other target, then the
+    /// rest, each group by id, so a refuted claim is read from the claim and
+    /// not from what refutes it.
+    fn reasoning_claims(&self) -> Result<Vec<String>, DynoError> {
+        let mut targets: BTreeSet<String> = BTreeSet::new();
+        let mut objectors: BTreeSet<String> = BTreeSet::new();
+        let index = self.node_type_index()?;
+        for e in self.all_edges_of_type(edge::CONTRADICTS, &index)? {
+            if !is_supporting(&e.properties) {
+                objectors.insert(e.from_id);
+                targets.insert(e.to_id);
+            }
+        }
+        let mut rest: BTreeSet<String> = objectors.clone();
+        for i in self.scan_nodes(node::INFERENCE)? {
+            if let Some(c) = self.conclusion_of(&i.node_id)? {
+                rest.insert(c);
+            }
+        }
+        let mut stated_on: Vec<&String> = self
+            .schema()
+            .node_types
+            .iter()
+            .filter(|(_, def)| def.properties.contains_key("statement_kind"))
+            .map(|(t, _)| t)
+            .collect();
+        stated_on.sort();
+        for t in stated_on {
+            for n in self.scan_nodes(t)? {
+                if n.properties.contains_key("statement_kind") {
+                    rest.insert(n.node_id);
+                }
+            }
+        }
+        let (first, then): (Vec<String>, Vec<String>) = targets
+            .iter()
+            .cloned()
+            .partition(|t| !objectors.contains(t));
+        let mut order = first;
+        order.extend(then);
+        order.extend(rest.into_iter().filter(|c| !targets.contains(c)));
+        Ok(order)
+    }
+
+    /// Everything the whole-design walk reaches from `from`, added to
+    /// `reached`. It reads no record, so it costs only the links.
+    fn reasoning_reach(&self, from: &str, reached: &mut BTreeSet<String>) -> Result<(), DynoError> {
+        if !reached.insert(from.to_string()) {
+            return Ok(());
+        }
+        let mut queue = VecDeque::from([from.to_string()]);
+        while let Some(id) = queue.pop_front() {
+            for next in self.reasoning_neighbours(&id, true)? {
+                if reached.insert(next.clone()) {
+                    queue.push_back(next);
+                }
+            }
+        }
+        Ok(())
+    }
+
+    /// What the walk follows from one node, in id order. `both_ways` — the
+    /// whole-design read — also follows an objection to the claim it is
+    /// against.
+    fn reasoning_neighbours(&self, id: &str, both_ways: bool) -> Result<Vec<String>, DynoError> {
         let mut next: BTreeSet<String> = BTreeSet::new();
         for s in self.inferences_concluding(id)? {
             next.extend(self.premises_of(&s)?);
@@ -684,6 +782,13 @@ impl DesignGraph {
         for e in self.incoming(id, Some(edge::CONTRADICTS))? {
             if !is_supporting(&e.properties) {
                 next.insert(e.from_id);
+            }
+        }
+        if both_ways {
+            for e in self.outgoing(id, Some(edge::CONTRADICTS))? {
+                if !is_supporting(&e.properties) {
+                    next.insert(e.to_id);
+                }
             }
         }
         if self.is_contested_decision(id)? {

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3bc0d5335b37f8512d0a3632c734b719c45198333f02e8abdce70c4f05297581",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-navier-stokes-as-a-trial-of-designing-a-proof",
+  "properties": {
+    "evidence": "The ladder's computed facts (rung 2's 441 = 9·49 = 21·21, the Brocard–Ramanujan search for n ≤ N) are flo2-calc records using these integer operators.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "xref:0bee0c00b35845f6:req:integer-arithmetic-has-remainder-divisibility-and-primality"
+}

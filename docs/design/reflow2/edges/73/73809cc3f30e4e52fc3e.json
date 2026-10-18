@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:22394bfed12f8bbf41a7dabc597d1a725ae8a809b6d961f696d84eb15f0da34a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-whole-reasoning-walk-reaches-refuted-claims-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 19,
+    "action": "modified",
+    "checksum_after": "sha256:11b9122df3622adf391a7e6834a0249d1a55527fc45e126dbc6d5f8e346eadb0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

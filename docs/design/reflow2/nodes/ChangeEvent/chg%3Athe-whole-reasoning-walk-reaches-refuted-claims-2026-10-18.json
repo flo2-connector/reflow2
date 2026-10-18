@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8d5fb0d15111936ba9c85aa2e265e1a92d22e0f079f789f61fb25c3d9a5cecb9",
+  "node_id": "chg:the-whole-reasoning-walk-reaches-refuted-claims-2026-10-18",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "d15132325",
+    "detected_at": "2026-10-18",
+    "name": "The whole-design reasoning walk reaches every claim, a refuted conjecture included",
+    "rationale": "Fixes fact:root-cause-the-reasoning-walk-never-reaches-a-claim-only-an-objection-points-to-2026-10-18 at its cause: the walk's reach was a hand-kept list of edges, and a new kind of claim (an unconcluded statement only an objection reaches) arrived without the list learning it. The roots now come from the same predicates the invariant checks (concluded, a statement, an end of an objection), so a further kind of claim marked by any of them is reached without the list changing. One step past the fact's proposed fix, chosen so the invariant holds as a class: a statement nothing touches (an open conjecture) is also a root, since it has a statement_reading. The outgoing direction is followed only over the whole design, so a one-claim read keeps its pinned meaning (one_claim_reads_only_what_is_under_it). The pin is the CLASS invariant, run over both proof trials, plus the bare conjecture and an untouched one; each failed on main 5a94e83 before the fix. Anthony, 2026-10-18: \"Yes, build the fixes. Do in one reflow2 PR\". After this ships, flo2's #169 per-claim calls for refuted claims can go. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "reasoning_report with no claim (crates/reflow2-core/src/reasoning.rs) now covers every claim of the reasoning. Read over the whole design the walk also follows an opposing CONTRADICTS from an objection to its target. Its roots are still every top conclusion and every contested Decision, and then every claim of the reasoning the walk from those does not reach becomes a root of its own: each node a step concludes, each node with a statement_kind (on whichever types the schema gives it), and both ends of each opposing CONTRADICTS, an objection's target before the objection. So a bare conjecture refuted by a bare counterexample is read from the conjecture. The reach is computed over links only, before the capped walk, so a root past the cap lands in not_walked rather than being dropped; paging, proof order and the summary lists are unchanged in kind. A read under one claim still reads only what is under it. Measured: rung 2's req:conj-h-unique-factorization and req:conj-h-euclid and rung 1's req:conjecture-euler-polynomial are walked (rung 2's roots stay the same four). The reasoning_report description and its `claim` argument say so (toolsnap reasoning_report.json), and NOTHING_TO_READ names statements and objections. New test crates/reflow2-mcp/tests/the_whole_reasoning_walk_reaches_every_claim.rs."
+  }
+}

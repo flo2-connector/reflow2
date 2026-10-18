@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), and its cited sources. Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every top conclusion and contested decision. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
+  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), and its cited sources. Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every claim, refuted ones included. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -19,7 +19,7 @@
       },
       "claim": {
         "default": null,
-        "description": "The claim to read the reasoning under: its support, what it rests on\nand what stands against it, all the way down. Omitted: every top\nconclusion (a node a step concludes that supports nothing further) and\nevery Decision set to `contested`.",
+        "description": "The claim to read the reasoning under: its support, what it rests on\nand what stands against it, all the way down. Omitted: the whole\ndesign, from every top conclusion (a node a step concludes that\nsupports nothing further) and every Decision set to `contested`, and\nreaching every claim of the reasoning: each concluded node, each\nstatement, and both ends of each objection, so a refuted conjecture is\nread too.",
         "type": [
           "string",
           "null"

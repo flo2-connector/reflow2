@@ -101,6 +101,11 @@ the statuses exactly:
 - `conditional`: it holds only under an assumption nothing on the way discharges.
 - `unproven`: no line holds, or a counterexample that holds refutes it.
 
+`proof_status` on `get_node` also counts the steps under the claim, and its `counts` says what the
+numbers mean: `total_steps` is the distinct steps under its holding lines, a step two lines share
+counted once, split into `confirmed_steps` and `unconfirmed_steps`. A theorem therefore never counts
+fewer steps than a claim it rests on.
+
 Then run `loop_status` and say what the reasoning owes: unconfirmed steps, uncited premises,
 anything not as stated. `detect_gaps` puts each to the owner.
 

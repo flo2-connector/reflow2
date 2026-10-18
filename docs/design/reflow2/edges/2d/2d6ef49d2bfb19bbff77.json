@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:bda4c432fc97363f4f6cff9882974afd67ce26dd51e41d859185f61881e9d43f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-philosophical-arguments-as-trials-of-a-line-of-reasoning",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

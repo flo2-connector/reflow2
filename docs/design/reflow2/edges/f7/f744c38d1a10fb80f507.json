@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2de88d51c6d6cd5683633890fc7541d34037a6f9d3aa771f592ee6f78251794a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-claim-counts-each-step-under-it-once-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:proof-who-confirmed"
+}

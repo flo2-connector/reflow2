@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1074ec78d936c7e1309717133bdf0b4ddbd0448ea833e596f8c8a281f4a9bcd1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-claims-step-count-counts-each-step-once",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
