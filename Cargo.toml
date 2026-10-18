@@ -45,7 +45,7 @@ repository = "https://github.com/flo2-connector/reflow2"
 # THE CRATES THEY BROUGHT WITH THEM, now declared here directly:
 rmp-serde = "1"
 tracing = "0.1"
-lru = "0.18"
+lru = "0.19"
 # serde_yaml 0.9 is archived by its author (0.9.34+deprecated). serde_yaml_ng
 # is the maintained fork with the same API — a rename, not a rewrite
 # (Anthony, 2026-09-14: replace it).
