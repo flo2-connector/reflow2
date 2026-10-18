@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:7c448795c6d253fb1b0bac3611a50350ebd9304d8b1c74e5aec3c1d42a781024",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:6d8f9421b29605db44dab3013ffab9c8e442e10d5ab1813c208a87f204d720e7",
+  "node_id": "req:objection-a-cross-type-near-match-note-trades-a-false-alarm-for-a-silent-miss",
+  "node_type": "Requirement",
+  "properties": {
+    "lineage": "original",
+    "name": "Objection: making a cross-type near-match a note trades a false alarm for a silent miss",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "chg:a-cross-type-near-match-is-named-as-a-layer (2026-08-29), which considered option (a) and rejected it in these words. Recorded as a statement of its own on 2026-10-18 under req:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement, so answering it never reads that ChangeEvent (history) as false. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "statement": "OBJECTION to dec:idea-a-cross-type-near-match-is-a-note-and-only-a-same-type-one-refuses: excluding cross-type pairs from the near-match refusal would remove the friction and also remove a real catch when an agent genuinely duplicates an idea across layers, trading a false alarm for a silent miss.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+  }
+}

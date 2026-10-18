@@ -235,7 +235,10 @@ loads it and it takes precedence over the served one of the same name.
    - **When you make a consequential recommendation** — a decision the person will act on, a
      cause you pin down, a choice you settle — record it as an inference chain (`add_inference`):
      the premises (each one a record the person can point at), the rule (all, any one, or k of
-     n), and the conclusion. Everything else stays prose — the chains that matter are not buried
+     n), and the conclusion. A Decision may be a chain's conclusion when its premises are
+     checkable; once the owner accepts it, the acceptance and the chain's own verdict read side by
+     side. A counter-argument is a statement of its own that CONTRADICTS the claim, never a
+     ChangeEvent. Everything else stays prose — the chains that matter are not buried
      among chains that don't. The chain is your stated argument, made so that every step can be
      checked; it is not a transcript of how you reached it. Never say "this is how the AI
      thought" — say "every step can be checked." A short rationale paragraph may stay beside the

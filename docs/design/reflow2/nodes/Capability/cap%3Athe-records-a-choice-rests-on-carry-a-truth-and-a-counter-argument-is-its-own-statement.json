@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:92f1414d5ba98d5468ae332bab98928e9643823916cfc91333a437421fc35182",
+  "node_id": "cap:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement",
+  "node_type": "Capability",
+  "properties": {
+    "description": "inference.rs: a TemporalFact premise holds when measured (or unstated, read as measured) and still standing — nothing INVALIDATES it, it states no end (valid_to, or a VALID_TO epoch), no accepted decision discontinues it; a forecast, ended or invalidated one is unknown. A ChangeEvent is history: an objection never makes it read false, so a counter-argument is recorded as a statement of its own (a Requirement with statement_kind) that CONTRADICTS the claim and is answered there. An accepted Decision a step concludes holds on its owner's acceptance, with the chain's own verdict read beside it (chain_reading; reasoning_report `acceptance` and `chain`; the change walk's `accepted_without_a_holding_chain`; conclusion_does_not_follow still asks about the chain), and its read-back `says` its `chose`. capture-intent, brainstorm and the served instructions agree a Decision may be a chain's conclusion when its premises are checkable.",
+    "name": "A measured finding holds as a premise, history never reads false, and an accepted Decision reads its acceptance beside its chain",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "tactical"
+  }
+}

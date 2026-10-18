@@ -1,0 +1,4838 @@
+{
+ "content_hash": "sha256:83df22455e4fbd490c164cdc9c05fbb81c2a40010b72b948ec79716464444b58",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer through the hub."
+   },
+   "to_id": "question:unrestricted-domain"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:def-ranking",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer through the hub."
+   },
+   "to_id": "question:rankings-complete"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:def-three-or-more-alternatives",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer."
+   },
+   "to_id": "question:three-alternatives-as-hypothesis"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "con:def-voters-and-alternatives",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer through the hub."
+   },
+   "to_id": "question:finite-voters"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer through the hub."
+   },
+   "to_id": "question:lemma-0-granularity"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:finite-voters",
+   "properties": {},
+   "to_id": "con:def-voters-and-alternatives"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:finite-voters",
+   "properties": {},
+   "to_id": "inf:lemma-2"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:finite-voters",
+   "properties": {},
+   "to_id": "req:thm-arrow"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:lemma-0-granularity",
+   "properties": {},
+   "to_id": "inf:lemma-0"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:lemma-0-granularity",
+   "properties": {},
+   "to_id": "req:lemma-0-moving-one-alternative"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:rankings-complete",
+   "properties": {},
+   "to_id": "con:def-ranking"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:rankings-complete",
+   "properties": {},
+   "to_id": "req:l1-supposition"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:three-alternatives-as-hypothesis",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:def-three-or-more-alternatives"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:three-alternatives-as-hypothesis",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:answer-two-alternatives"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:three-alternatives-as-hypothesis",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-arrow"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:unrestricted-domain",
+   "properties": {},
+   "to_id": "con:def-profile-and-constitution"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:unrestricted-domain",
+   "properties": {},
+   "to_id": "req:lemma-0-moving-one-alternative"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:con:def-three-or-more-alternatives",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:con:def-voters-and-alternatives",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:inf:lemma-3",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:inf:lemma-3:r2",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:answer-two-alternatives",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:thm-arrow",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-condorcet-majority-tallies-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-condorcet-majority-tallies-calc-json-20261018t190815088-eb44",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-dictator",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-iia",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-majority-rule",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-ranking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-three-or-more-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-unanimity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-voters-and-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476",
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:answer-majority",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:answer-two-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:condorcet-profile",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:f-is-dictatorship",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:f-is-dictatorship-by-decisive-sets",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fe-decisive-xz",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fe-decisive-zy",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fe-moves",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:gc-profile-s",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:gc-under-case-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:gc-under-case-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l1-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l1-moved-profile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476",
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l2-ends",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l3-a-over-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l3-a-over-c-at-iii",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l3-a-over-c-at-iv",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l3-b-over-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l4-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l4-nb-swings-ab",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l4-nc-dictates-ab",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476",
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:l4-nc-equals-nb",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-0",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-1-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-6",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lemma-7",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:majority-meets-conditions",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:s-empty-not-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:s-n-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476",
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:two-alt-majority-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:arrows-impossibility-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:finite-voters",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:lemma-0-granularity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:rankings-complete",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:three-alternatives-as-hypothesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:unrestricted-domain",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:answer-majority-not-transitive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:answer-two-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:condorcet-profile",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-arrow-two-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-majority-transitive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:f-is-dictatorship",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:fe-decisive-xz",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:fe-decisive-zy",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:fe-hyp-almost-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:fe-moves",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-case-1-hyp",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-case-2-hyp",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-hyp-g-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-profile-s",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-under-case-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:gc-under-case-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l1-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l1-moved-profile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l1-supposition",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l2-unanimous-ends",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l3-iii-a-over-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l3-iv-a-over-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l3-iv-a-over-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l3-iv-b-over-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l4-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l4-nb-swings-ab",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l4-nc-dictates-ab",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l4-nc-equals-nb",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:l4-supposition",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-1-extremal",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-2-pivotal-voter",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-3-dictates-off-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-4-dictates-on-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-5-field-expansion",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-6-contraction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lemma-7-decisive-voter",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:majority-meets-conditions",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:s-empty-not-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:s-n-decisive",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-arrow",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476",
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:two-alt-majority-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:condorcet-tallies",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-condorcet-majority-tallies-calc-json-20261018t190815088-eb44",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-condorcet-majority-tallies-calc-json"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:answer-majority",
+   "properties": {},
+   "to_id": "req:answer-majority-not-transitive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:answer-two-alternatives",
+   "properties": {},
+   "to_id": "req:answer-two-alternatives"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:condorcet-profile",
+   "properties": {},
+   "to_id": "req:condorcet-profile"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:f-is-dictatorship",
+   "properties": {},
+   "to_id": "req:f-is-dictatorship"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:f-is-dictatorship-by-decisive-sets",
+   "properties": {},
+   "to_id": "req:f-is-dictatorship"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fe-decisive-xz",
+   "properties": {},
+   "to_id": "req:fe-decisive-xz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fe-decisive-zy",
+   "properties": {},
+   "to_id": "req:fe-decisive-zy"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fe-moves",
+   "properties": {},
+   "to_id": "req:fe-moves"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:gc-profile-s",
+   "properties": {},
+   "to_id": "req:gc-profile-s"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:gc-under-case-1",
+   "properties": {},
+   "to_id": "req:gc-under-case-1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:gc-under-case-2",
+   "properties": {},
+   "to_id": "req:gc-under-case-2"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l1-contradiction",
+   "properties": {},
+   "to_id": "req:l1-contradiction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l1-moved-profile",
+   "properties": {},
+   "to_id": "req:l1-moved-profile"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l2-ends",
+   "properties": {},
+   "to_id": "req:l2-unanimous-ends"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l3-a-over-b",
+   "properties": {},
+   "to_id": "req:l3-iv-a-over-b"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l3-a-over-c-at-iii",
+   "properties": {},
+   "to_id": "req:l3-iii-a-over-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l3-a-over-c-at-iv",
+   "properties": {},
+   "to_id": "req:l3-iv-a-over-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l3-b-over-c",
+   "properties": {},
+   "to_id": "req:l3-iv-b-over-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l4-contradiction",
+   "properties": {},
+   "to_id": "req:l4-contradiction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l4-nb-swings-ab",
+   "properties": {},
+   "to_id": "req:l4-nb-swings-ab"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l4-nc-dictates-ab",
+   "properties": {},
+   "to_id": "req:l4-nc-dictates-ab"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:l4-nc-equals-nb",
+   "properties": {},
+   "to_id": "req:l4-nc-equals-nb"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-0",
+   "properties": {},
+   "to_id": "req:lemma-0-moving-one-alternative"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-1-reductio",
+   "properties": {},
+   "to_id": "req:lemma-1-extremal"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-2",
+   "properties": {},
+   "to_id": "req:lemma-2-pivotal-voter"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-3",
+   "properties": {},
+   "to_id": "req:lemma-3-dictates-off-b"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-4",
+   "properties": {},
+   "to_id": "req:lemma-4-dictates-on-b"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-5",
+   "properties": {},
+   "to_id": "req:lemma-5-field-expansion"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-6",
+   "properties": {},
+   "to_id": "req:lemma-6-contraction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lemma-7",
+   "properties": {},
+   "to_id": "req:lemma-7-decisive-voter"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:majority-meets-conditions",
+   "properties": {},
+   "to_id": "req:majority-meets-conditions"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:s-empty-not-decisive",
+   "properties": {},
+   "to_id": "req:s-empty-not-decisive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:s-n-decisive",
+   "properties": {},
+   "to_id": "req:s-n-decisive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:theorem",
+   "properties": {},
+   "to_id": "req:thm-arrow"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:two-alt-majority-counterexample",
+   "properties": {},
+   "to_id": "req:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:condorcet-profile",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "At the Condorcet profile (3 voters, computed tallies 2-1 on each pair, kept record condorcet-majority-tallies.calc.json) majority gives a P b, b P c, c P a, which no transitive relation allows; the conjecture says majority is transitive at every profile."
+   },
+   "to_id": "req:conj-majority-transitive"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:two-alt-majority-counterexample",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "With A = {a, b} and n >= 2, majority rule is a constitution respecting unanimity and IIA with no dictator, so not every such constitution is a dictatorship."
+   },
+   "to_id": "req:conj-arrow-two-alternatives"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-condorcet-majority-tallies-calc-json",
+   "properties": {},
+   "to_id": "ver:condorcet-tallies"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "con:def-three-or-more-alternatives",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:con:def-three-or-more-alternatives"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "con:def-voters-and-alternatives",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:con:def-voters-and-alternatives"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "inf:lemma-3",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:inf:lemma-3"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "inf:lemma-3",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:inf:lemma-3:r2"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:answer-two-alternatives",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:answer-two-alternatives"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:thm-arrow",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:thm-arrow"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:f-is-dictatorship-by-decisive-sets"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:gc-profile-s"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:lemma-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:s-empty-not-decisive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-decisive",
+   "properties": {},
+   "to_id": "inf:s-n-decisive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:f-is-dictatorship"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {},
+   "to_id": "inf:f-is-dictatorship-by-decisive-sets"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-dictator",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-c-at-iii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-b-over-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-iia",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-majority-rule",
+   "properties": {},
+   "to_id": "inf:condorcet-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-majority-rule",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-majority-rule",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {},
+   "to_id": "inf:gc-profile-s"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-0"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-profile-and-constitution",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:condorcet-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:gc-profile-s"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-c-at-iv"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-0"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:lemma-6"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:s-empty-not-decisive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ranking",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {},
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {},
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l2-ends"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {},
+   "to_id": "inf:s-n-decisive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-unanimity",
+   "properties": {},
+   "to_id": "inf:two-alt-majority-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-voters-and-alternatives",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-voters-and-alternatives",
+   "properties": {},
+   "to_id": "inf:lemma-7"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:condorcet-profile",
+   "properties": {},
+   "to_id": "inf:answer-majority"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:condorcet-profile",
+   "properties": {},
+   "to_id": "inf:majority-meets-conditions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:f-is-dictatorship",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:theorem"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:fe-decisive-xz",
+   "properties": {},
+   "to_id": "inf:fe-moves"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:fe-decisive-zy",
+   "properties": {},
+   "to_id": "inf:fe-moves"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:fe-hyp-almost-decisive",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:fe-hyp-almost-decisive",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:fe-moves",
+   "properties": {},
+   "to_id": "inf:lemma-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-case-1-hyp",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-case-2-hyp",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-hyp-g-decisive",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-profile-s"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-profile-s",
+   "properties": {},
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-profile-s",
+   "properties": {},
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-under-case-1",
+   "properties": {},
+   "to_id": "inf:lemma-6"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:gc-under-case-2",
+   "properties": {},
+   "to_id": "inf:lemma-6"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l2-ends"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l3-a-over-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l3-a-over-c-at-iii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l3-b-over-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-f-unanimous-and-iia",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:s-n-decisive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:gc-profile-s"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l4-nc-dictates-ab"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-three-or-more-alternatives",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:lemma-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l1-contradiction",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-1-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l1-moved-profile",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l1-supposition",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l2-unanimous-ends",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l3-iii-a-over-c",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l3-iv-a-over-b",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-c-at-iv"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l3-iv-a-over-c",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-c-at-iii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l3-iv-b-over-c",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-c-at-iv"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-contradiction",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-nc-equals-nb"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-nb-swings-ab",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-nc-dictates-ab",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-nc-dictates-ab",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-nc-equals-nb",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:l4-supposition",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:l4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {},
+   "to_id": "inf:fe-decisive-xz"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {},
+   "to_id": "inf:fe-decisive-zy"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l1-moved-profile"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l2-ends"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-b-over-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-0-moving-one-alternative",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-1-extremal",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:lemma-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-2-pivotal-voter",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-a-over-b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-2-pivotal-voter",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l3-b-over-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-2-pivotal-voter",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-nb-swings-ab"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-3-dictates-off-b",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:f-is-dictatorship"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-3-dictates-off-b",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:l4-nc-dictates-ab"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-4-dictates-on-b",
+   "properties": {
+    "role": "premise"
+   },
+   "to_id": "inf:f-is-dictatorship"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-5-field-expansion",
+   "properties": {},
+   "to_id": "inf:gc-under-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-5-field-expansion",
+   "properties": {},
+   "to_id": "inf:gc-under-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-6-contraction",
+   "properties": {},
+   "to_id": "inf:lemma-7"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lemma-7-decisive-voter",
+   "properties": {},
+   "to_id": "inf:f-is-dictatorship-by-decisive-sets"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:majority-meets-conditions",
+   "properties": {},
+   "to_id": "inf:answer-majority"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:s-empty-not-decisive",
+   "properties": {},
+   "to_id": "inf:lemma-7"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:s-n-decisive",
+   "properties": {},
+   "to_id": "inf:lemma-7"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:two-alt-majority-counterexample",
+   "properties": {},
+   "to_id": "inf:answer-two-alternatives"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:condorcet-tallies",
+   "properties": {},
+   "to_id": "inf:condorcet-profile"
+  }
+ ],
+ "graph_id": "6308149cf93f7723",
+ "nodes": [
+  {
+   "node_id": "art:file-condorcet-majority-tallies-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:7665d21dbbecea1c9be89ce0ed873a146cde51f24944e5b274bfe13bf2c4be5c",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "condorcet-majority-tallies.calc.json",
+    "name": "condorcet-majority-tallies.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:file-condorcet-majority-tallies-calc-json-20261018t190815088-eb44",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "condorcet-majority-tallies.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made condorcet-majority-tallies.calc.json (15095 bytes, sha256 7665d21dbbecea1c9be89ce0ed873a146cde51f24944e5b274bfe13bf2c4be5c) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-condorcet-majority-tallies-calc-json."
+   }
+  },
+  {
+   "node_id": "con:def-decisive",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 7: decisive and almost decisive coalitions",
+    "priority": "medium",
+    "statement": "A coalition G (a set of voters) is decisive over the ordered pair (x, y) when, at every profile where every member of G has x P_i y, society has x P y. G is almost decisive over (x, y) when, at every profile where every member of G has x P_i y and every voter outside G has y P_j x, society has x P y. G is decisive when it is decisive over every ordered pair of distinct alternatives. A decisive G is almost decisive over every pair. A single voter d is a dictator exactly when {d} is decisive (Definition 6).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-dictator",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 6: dictator",
+    "priority": "medium",
+    "statement": "Voter d dictates over the pair {x, y} when, at every profile, x P_d y implies x P y and y P_d x implies y P x. Voter d is a dictator of F when d dictates over every pair of distinct alternatives; F is a dictatorship when it has a dictator.",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "con:def-iia",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 5: independence of irrelevant alternatives (IIA)",
+    "priority": "medium",
+    "statement": "F respects IIA when, for every pair x, y and any two profiles in which every voter ranks x against y the same way (x R_i y in one iff x R_i y in the other, and likewise y R_i x), society ranks x against y the same way at both profiles.",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "con:def-majority-rule",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 8: pairwise majority rule",
+    "priority": "medium",
+    "statement": "Pairwise majority rule sets x R y exactly when at least as many voters strictly prefer x to y as strictly prefer y to x. So x P y exactly when more voters strictly prefer x to y than y to x.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-profile-and-constitution",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 3: profile and constitution",
+    "priority": "medium",
+    "statement": "A profile is a list (R_1, ..., R_n) of rankings, one per voter. A constitution F assigns to EVERY profile (unrestricted domain) a social ranking R = F(R_1, ..., R_n), itself a ranking in the sense of Definition 2 (complete and transitive); P denotes its strict part.",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "con:def-ranking",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 2: ranking",
+    "priority": "medium",
+    "statement": "A ranking of A is a binary relation R (\"at least as good as\") on A that is complete (for all x, y: xRy or yRx) and transitive (xRy and yRz imply xRz). Ties are allowed. Strict preference: x P y iff xRy and not yRx. Consequences used throughout: P is transitive, and xRy, yPz (or xPy, yRz) give xPz.",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "con:def-three-or-more-alternatives",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 1b: the three-alternative condition",
+    "priority": "medium",
+    "statement": "'At least three alternatives' means |A| >= 3. It is NOT taken as given: the theorem assumes it as a hypothesis (req:hyp-three-or-more-alternatives) and discharges it, so a setting with two alternatives is not ruled out by the design's foundations.",
+    "statement_kind": "definition",
+    "taken_as_given": false
+   }
+  },
+  {
+   "node_id": "con:def-unanimity",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 4: unanimity (weak Pareto)",
+    "priority": "medium",
+    "statement": "F respects unanimity when, for every profile and every pair of alternatives x, y: if every voter strictly prefers x to y (x P_i y for all i), then society strictly prefers x to y (x P y).",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "con:def-voters-and-alternatives",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition 1: voters (finite) and alternatives",
+    "priority": "medium",
+    "statement": "N = {1, ..., n} is a finite, non-empty set of voters (n >= 1), and A is a finite set of alternatives. (That A has at least three members is stated separately, as Definition 1b, so the steps that need it can be named.)",
+    "statement_kind": "definition"
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:answer-majority",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:answer-majority-not-transitive",
+    "rule": "all",
+    "rule_name": "counterexample to a universal claim",
+    "warrant": "One profile at which the majority relation is not transitive refutes 'always transitive'. Majority rule meets unanimity, IIA and non-dictatorship, so the only condition of the theorem it misses is that the social relation be a ranking; it is consistent with Arrow, not a counterexample to it."
+   }
+  },
+  {
+   "node_id": "inf:answer-two-alternatives",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:answer-two-alternatives",
+    "rule": "all",
+    "rule_name": "counterexample to a universal claim",
+    "warrant": "A non-dictatorial constitution respecting unanimity and IIA on two alternatives refutes the two-alternative version for every n >= 2. The steps that fail without a third alternative are exactly those whose premises include Definition 1b; propagate_from on con:def-three-or-more-alternatives lists them."
+   }
+  },
+  {
+   "node_id": "inf:condorcet-profile",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:condorcet-profile",
+    "rule": "all",
+    "rule_name": "computed tallies read through the definition of majority rule",
+    "warrant": "The kept calc record counts 2 of 3 voters for a over b, b over c and c over a, each more than half; by Definition 8 that is a P b, b P c, c P a. A transitive relation with a P b and b P c has a R c (Definition 2), which c P a denies."
+   }
+  },
+  {
+   "node_id": "inf:f-is-dictatorship",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "F has a dictator: n(b0)",
+    "rule": "all",
+    "rule_name": "case analysis on whether a pair contains b0, then existential introduction",
+    "warrant": "Fix any alternative b0. Every pair of distinct alternatives either contains b0 (Lemma 4 at b0) or does not (Lemma 3 at b0), and in both cases n(b0) dictates over it; by Definition 6, n(b0) is a dictator, so F is a dictatorship."
+   }
+  },
+  {
+   "node_id": "inf:f-is-dictatorship-by-decisive-sets",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "independent_except": [
+     "req:lemma-0-moving-one-alternative"
+    ],
+    "independent_of": [
+     "inf:f-is-dictatorship"
+    ],
+    "name": "F has a dictator: the decisive single voter (line 2, decisive sets)",
+    "rule": "all",
+    "rule_name": "definition of dictator applied to a decisive singleton",
+    "warrant": "{d} decisive means: at every profile, whenever d has x P_d y, society has x P y, for every ordered pair; that is Definition 6, so d is a dictator and F is a dictatorship. This second line never uses the extremal lemma or the pivotal voter; it shares with the first line only Lemma 0, the definitions and the hypothesis on F."
+   }
+  },
+  {
+   "node_id": "inf:fe-decisive-xz",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 8 premise(s) support req:fe-decisive-xz",
+    "rule": "all",
+    "rule_name": "IIA, unanimity and transitivity at a profile built by moving y",
+    "warrant": "A third alternative z exists (Definition 1b). The profile with y moved exists (Lemma 0). There G has x over y and everyone else y over x, so almost decisiveness gives x P y; everyone has y over z, so unanimity gives y P z; transitivity gives x P z. Moving y changed nobody's x-against-z comparison, so IIA returns x P z to the arbitrary starting profile."
+   }
+  },
+  {
+   "node_id": "inf:fe-decisive-zy",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 8 premise(s) support req:fe-decisive-zy",
+    "rule": "all",
+    "rule_name": "IIA, unanimity and transitivity at a profile built by moving x",
+    "warrant": "A third alternative z exists (Definition 1b). Move x alone (Lemma 0): between z and y for G, to the bottom for everyone else. Everyone has z over x, so unanimity gives z P x; G has x over y and everyone else y over x, so almost decisiveness gives x P y; transitivity gives z P y; IIA returns it to the starting profile, where nobody's z-against-y comparison moved."
+   }
+  },
+  {
+   "node_id": "inf:fe-moves",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:fe-hyp-almost-decisive"
+    ],
+    "generalizes_over": [
+     "G",
+     "x",
+     "y",
+     "z"
+    ],
+    "name": "all of 2 premise(s) support req:fe-moves",
+    "rule": "all",
+    "rule_name": "conditional proof (implication introduction), then generalization over G, x, y and z",
+    "warrant": "Under the assumption that G is almost decisive over (x, y), both moves were shown for an arbitrary z outside {x, y}; discharging the assumption gives the implication, and G, x, y, z were arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:gc-profile-s",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:gc-profile-s",
+    "rule": "all",
+    "rule_name": "decisiveness of G at a constructed profile",
+    "warrant": "Three distinct alternatives exist (Definition 1b); each voter's ordering of x, y, z with the rest below is a ranking (Definition 2) and S is a profile F must rank (unrestricted domain, Definition 3). All of G = G1 together with G2 has x over y at S, and G is decisive, so x P y."
+   }
+  },
+  {
+   "node_id": "inf:gc-under-case-1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 6 premise(s) support req:gc-under-case-1",
+    "rule": "all",
+    "rule_name": "IIA, then field expansion (Lemma 5)",
+    "warrant": "At S exactly the members of G1 have x over z and every other voter has z over x. In case 1 society has x P z at S, so by IIA it has x P z at every profile with that x-against-z pattern: G1 is almost decisive over (x, z). Lemma 5 makes G1 decisive; G1 is a proper non-empty part of G because G2 is non-empty."
+   }
+  },
+  {
+   "node_id": "inf:gc-under-case-2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 7 premise(s) support req:gc-under-case-2",
+    "rule": "all",
+    "rule_name": "transitivity, IIA, then field expansion (Lemma 5)",
+    "warrant": "In case 2, z R x and x P y give z P y at S (Definition 2). At S exactly the members of G2 have z over y (G1 and the rest have y over z), so by IIA G2 is almost decisive over (z, y); Lemma 5 makes G2 decisive, a proper non-empty part of G because G1 is non-empty."
+   }
+  },
+  {
+   "node_id": "inf:l1-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 1: transitivity contradicts c P a",
+    "rule": "all",
+    "rule_name": "transitivity of the social ranking",
+    "warrant": "F(Q') is a ranking (Definition 3), so it is transitive (Definition 2): a R b and b R c give a R c, which contradicts c P a."
+   }
+  },
+  {
+   "node_id": "inf:l1-moved-profile",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 1: IIA and unanimity at the moved profile Q'",
+    "rule": "all",
+    "rule_name": "universal instantiation of IIA and of unanimity",
+    "warrant": "Q' exists by Lemma 0. Moving c just above a changes no voter's a-against-b or b-against-c comparison because b is at an extreme for each voter, so IIA carries a R b and b R c from F(Q) to F(Q'); every voter has c over a at Q', so unanimity gives c P a. Uses the supposition and the hypothesis on F."
+   }
+  },
+  {
+   "node_id": "inf:l2-ends",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 2: the unanimous ends",
+    "rule": "all",
+    "rule_name": "universal instantiation of unanimity",
+    "warrant": "At P_0 every voter has x P_i b for each x other than b, so unanimity gives x P b for each x: b is strictly bottom. At P_n symmetrically b is strictly top. P_0 and P_n exist by Lemma 0."
+   }
+  },
+  {
+   "node_id": "inf:l3-a-over-b",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3: IIA from I_b to IV on {a, b}",
+    "rule": "all",
+    "rule_name": "universal instantiation of IIA",
+    "warrant": "IV exists by Lemma 0. Voter by voter, the a-against-b comparison at IV equals that at I_b: before n(b), b over a in both; n(b), a over b in both (b bottom at I_b, a P b P c at IV); after n(b), a over b in both. Society has b strictly bottom at I_b (Lemma 2), so a P b there and, by IIA, at IV."
+   }
+  },
+  {
+   "node_id": "inf:l3-a-over-c-at-iii",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3: IIA from IV back to III on {a, c}",
+    "rule": "all",
+    "rule_name": "universal instantiation of IIA",
+    "warrant": "IV was made from III by moving b only, so every voter's a-against-c comparison is the same at III and IV; IIA gives society's a-against-c comparison the same at both, hence a P c at F(III)."
+   }
+  },
+  {
+   "node_id": "inf:l3-a-over-c-at-iv",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3: transitivity at IV",
+    "rule": "all",
+    "rule_name": "transitivity of strict social preference",
+    "warrant": "F(IV) is a ranking, and the strict part of a ranking is transitive (Definition 2): a P b and b P c give a P c."
+   }
+  },
+  {
+   "node_id": "inf:l3-b-over-c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 3: IIA from II_b to IV on {b, c}",
+    "rule": "all",
+    "rule_name": "universal instantiation of IIA",
+    "warrant": "Voter by voter, the b-against-c comparison at IV equals that at II_b: before n(b), b over c in both; n(b), b over c in both (b top at II_b, b P c at IV); after n(b), c over b in both. Society has b strictly top at II_b (Lemma 2), so b P c there and, by IIA, at IV."
+   }
+  },
+  {
+   "node_id": "inf:l4-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 4: a dictator over {a, b} other than n(b) cannot coexist with the swing",
+    "rule": "all",
+    "rule_name": "definition of dictating, applied at I_b and II_b",
+    "warrant": "Under the supposition n(c) is not n(b), so n(c)'s strict a-against-b comparison is the same at I_b and II_b; dictating over {a, b} (Definition 6), it makes society's comparison the same at both, contradicting a P b at I_b and b P a at II_b."
+   }
+  },
+  {
+   "node_id": "inf:l4-nb-swings-ab",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 4: read the swing off Lemma 2",
+    "rule": "all",
+    "rule_name": "direct from Lemma 2",
+    "warrant": "Lemma 2: between I_b and II_b only n(b) moves, and only b; each voter has b strictly at an extreme, so ranks a against b strictly; society has b strictly bottom at I_b (a P b) and strictly top at II_b (b P a)."
+   }
+  },
+  {
+   "node_id": "inf:l4-nc-dictates-ab",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 4: instantiate Lemma 3 at a third alternative c",
+    "rule": "all",
+    "rule_name": "universal instantiation",
+    "warrant": "Under the hypothesis |A| >= 3 there is an alternative c outside {a, b}; Lemma 3 at c says n(c) dictates over every pair not containing c, in particular {a, b}."
+   }
+  },
+  {
+   "node_id": "inf:l4-nc-equals-nb",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:l4-supposition"
+    ],
+    "name": "Lemma 4: n(c) = n(b) by reductio",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum",
+    "warrant": "The supposition that n(c) differs from n(b) led to a contradiction, so n(c) = n(b)."
+   }
+  },
+  {
+   "node_id": "inf:lemma-0",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Lemma 0 by construction",
+    "rule": "all",
+    "rule_name": "direct proof (construction)",
+    "warrant": "Moving b alone keeps every comparison among the other alternatives, and places b by a rule that is complete and transitive with them (b above all, below all, or below exactly those x with x R a-and-above and above the rest); a direct check of completeness and transitivity on triples containing b. Unrestricted domain (Definition 3) makes the new profile one F ranks."
+   }
+  },
+  {
+   "node_id": "inf:lemma-1-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:l1-supposition"
+    ],
+    "generalizes_over": [
+     "b",
+     "Q"
+    ],
+    "name": "Lemma 1 by reductio",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum, then generalization over b and Q",
+    "warrant": "The supposition (b extreme for every voter at Q, but not for society) led to a contradiction, so it is false for this b and Q; since b and Q were arbitrary, Lemma 1 holds for every b and every such profile."
+   }
+  },
+  {
+   "node_id": "inf:lemma-2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "b"
+    ],
+    "name": "Lemma 2: least index where society moves b to the top",
+    "rule": "all",
+    "rule_name": "least-number principle over the finite chain P_0, ..., P_n",
+    "warrant": "Each P_k exists (Lemma 0) and has b at an extreme for every voter, so by Lemma 1 society has b strictly top or strictly bottom at each. It is bottom at P_0 and top at P_n, and n is finite (Definition 1), so a least k with b top exists; set n(b) = k, I_b = P_(k-1), II_b = P_k. Between them only voter k moved, and only b. b was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:lemma-3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "III",
+     "a",
+     "c",
+     "b"
+    ],
+    "name": "Lemma 3 by generalization over III, a, c and b",
+    "rule": "all",
+    "rule_name": "universal generalization (arbitrary profile III, arbitrary pair a, c, arbitrary b)",
+    "warrant": "III was any profile with a P_n(b) c, and a, c any two alternatives other than b; nothing about them was assumed beyond that, so n(b) dictates over every pair not containing b (Definition 6; the case c P_n(b) a is the same argument with a and c swapped). b was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:lemma-4",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "a",
+     "b"
+    ],
+    "name": "Lemma 4 by substitution and generalization over a and b",
+    "rule": "all",
+    "rule_name": "substitution of equals, then universal generalization",
+    "warrant": "n(c) dictates over {a, b} and n(c) = n(b), so n(b) dictates over {a, b}. a and b were arbitrary distinct alternatives (c only a witness, not in the conclusion)."
+   }
+  },
+  {
+   "node_id": "inf:lemma-5",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lemma-5-field-expansion",
+    "rule": "all",
+    "rule_name": "repeated application of the two moves (chaining)",
+    "warrant": "Decisive over a pair implies almost decisive over it, so each move can be applied again from its result. From (x, y): (x, w) and (w, y) for every w outside {x, y}. From (x, z) with third alternative y: (x, y) and (y, z). From (y, z) with third x: (y, x). From (z, y) with third x: (z, x). For a pair (v, w) avoiding x: (x, w) from the start, then (v, w) from (x, w) with third v. So G is decisive over every ordered pair. Needs a third alternative at every move."
+   }
+  },
+  {
+   "node_id": "inf:lemma-6",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:gc-case-1-hyp",
+     "req:gc-case-2-hyp",
+     "req:gc-hyp-g-decisive"
+    ],
+    "generalizes_over": [
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ],
+    "name": "all of 3 premise(s) support req:lemma-6-contraction",
+    "rule": "all",
+    "rule_name": "proof by cases (x P z or z R x, by completeness), then conditional proof and generalization over G, G1, G2, x, y, z",
+    "warrant": "F(S) is complete, so either x P z or z R x: the two cases are exhaustive, and each yields a proper non-empty decisive part of G. That discharges both case assumptions; discharging the assumption that G is decisive with at least two members gives the lemma, for an arbitrary G, split and triple."
+   }
+  },
+  {
+   "node_id": "inf:lemma-7",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lemma-7-decisive-voter",
+    "rule": "all",
+    "rule_name": "least-number principle over the sizes of decisive coalitions",
+    "warrant": "N is decisive and N is finite, so among the decisive coalitions there is one, D, of least size. D is not empty (the empty coalition is not decisive). If D had two or more members, Lemma 6 would give a smaller decisive coalition, contradicting minimality. So D = {d} for one voter d."
+   }
+  },
+  {
+   "node_id": "inf:majority-meets-conditions",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:majority-meets-conditions",
+    "rule": "all",
+    "rule_name": "direct proof from the definitions",
+    "warrant": "Unanimity: all n votes on one side gives a strict majority. IIA: the x-against-y verdict is a function of the voters' x-against-y comparisons alone. Completeness: one of the two counts is at least the other. No dictator for n >= 2: d alone against at least one other voter gets at most a tie. Failure of transitivity is the Condorcet counterexample."
+   }
+  },
+  {
+   "node_id": "inf:s-empty-not-decisive",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:s-empty-not-decisive",
+    "rule": "all",
+    "rule_name": "reading the definitions",
+    "warrant": "Every profile vacuously has all members of the empty coalition preferring x to y, and also y to x. If the empty coalition were decisive over both (x, y) and (y, x), society would have x P y and y P x at once, which contradicts the definition of strict preference. Two distinct alternatives exist because there are at least three."
+   }
+  },
+  {
+   "node_id": "inf:s-n-decisive",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:s-n-decisive",
+    "rule": "all",
+    "rule_name": "unanimity restated",
+    "warrant": "Decisive for N over (x, y) says: whenever every voter has x P_i y, society has x P y. That is exactly unanimity (Definition 4), which F respects by the hypothesis."
+   }
+  },
+  {
+   "node_id": "inf:theorem",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-f-unanimous-and-iia",
+     "req:hyp-three-or-more-alternatives"
+    ],
+    "generalizes_over": [
+     "A",
+     "F"
+    ],
+    "name": "Arrow's theorem by conditional proof and generalization over F",
+    "rule": "all",
+    "rule_name": "conditional proof (implication introduction) on both hypotheses, then generalization over F and A",
+    "warrant": "Under the hypotheses that A has at least three alternatives and F respects unanimity and IIA, F is a dictatorship (by either proof). Discharging both gives: if |A| >= 3 and F respects unanimity and IIA, then F is a dictatorship. F and A were arbitrary. This is the last step of both proofs."
+   }
+  },
+  {
+   "node_id": "inf:two-alt-majority-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 6 premise(s) support req:two-alt-majority-counterexample",
+    "rule": "all",
+    "rule_name": "direct proof from the definitions, with A = {a, b}",
+    "warrant": "On two alternatives a complete relation cannot violate transitivity, so majority rule maps every profile to a ranking: a constitution. Unanimity and IIA hold as for majority rule in general; with n >= 2 any voter can be outvoted or tied, so none dictates."
+   }
+  },
+  {
+   "node_id": "proj:arrows-impossibility-theorem",
+   "node_type": "Project",
+   "properties": {
+    "domain": "mathematics: social choice theory, a proof",
+    "mode": "flexible",
+    "name": "Arrow's impossibility theorem (proof trial)",
+    "objective": "A proof of Arrow's impossibility theorem a person can read and check, with every step's form checked by the tool",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:finite-voters",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Finite voters: the theorem as usually stated, with N individuals as in the reference.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-18",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "arrow-round-1",
+    "batch_position": 1,
+    "context_setter": "Arrow proof trial: Definition 1 fixes the setting the whole proof rests on.",
+    "question": "The theorem says \"any number of voters\". I read that as any FINITE number n >= 1, and the proof needs it: Lemma 2 takes the first voter whose move flips society, which exists because the chain of profiles is finite. With infinitely many voters the statement is false (constitutions built from a non-principal ultrafilter respect unanimity and IIA and have no dictator). Do you accept 'finitely many voters' as the theorem's setting?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:lemma-0-granularity",
+   "node_type": "Question",
+   "properties": {
+    "answer": "One step is enough for Lemma 0.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-18",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "arrow-round-1",
+    "batch_position": 4,
+    "context_setter": "Arrow proof trial: every profile the proof builds relies on Lemma 0.",
+    "question": "Lemma 0 (moving one alternative to the top, the bottom, or between two others leaves a valid ranking) is argued in a single step's warrant, not broken into steps. Is that enough for you to check it, or should it be split into its own small proof?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:rankings-complete",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Complete and transitive: every two alternatives are compared, ties allowed.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-18",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "arrow-round-1",
+    "batch_position": 2,
+    "context_setter": "Arrow proof trial: Definition 2 (ranking) is a foundation taken as given.",
+    "question": "\"Each with a transitive ranking (ties allowed)\": I took a ranking to be complete as well as transitive (any two alternatives are compared, possibly tied), for the voters and for society. The proof uses completeness, e.g. 'b is not strictly top' gives some a with a R b. Is completeness part of what you meant by a ranking?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:three-alternatives-as-hypothesis",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Make it a hypothesis: 'at least three alternatives' is assumed and discharged like unanimity and IIA, so the theorem reads IF three or more alternatives THEN dictatorship, and the two-alternative counterexample no longer contradicts a foundation.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "arrow-round-2",
+    "batch_position": 1,
+    "context_setter": "Arrow proof trial, round 2: your question (c), whether the theorem needs three alternatives.",
+    "question": "Answering (c) I split 'at least three alternatives' into its own Definition 1b, taken as given. Since the theorem is false without it, would you rather it be a hypothesis of the theorem, assumed and discharged like unanimity and IIA, so the design states the theorem as 'if |A| >= 3 and ... then dictatorship'? Taken as given, the two-alternative counterexample sits beside a foundation it contradicts, and the tool does not flag that.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:unrestricted-domain",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Yes, unrestricted: every combination of rankings is an allowed profile.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-18",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "arrow-round-1",
+    "batch_position": 3,
+    "context_setter": "Arrow proof trial: Definition 3 and Lemma 0 rest on this reading.",
+    "question": "\"A constitution turns every profile of individual rankings into a transitive social ranking\": I read 'every profile' as the unrestricted domain, so the proof may build any profile it likes (profiles I, II, III, IV and the moved profile Q'). Is that the reading you intend?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:answer-majority-not-transitive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Answer (b): no, majority rule can fail transitivity",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "No. With three or more alternatives, pairwise majority rule does not always give a transitive social ranking: at the Condorcet profile it cycles. So majority rule is not a constitution in the theorem's sense, and Arrow's theorem does not apply to it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:answer-two-alternatives",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Answer (c): no, the theorem fails with two alternatives",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "No, for n >= 2 voters (with one voter the conclusion holds trivially): majority rule on two alternatives is a counterexample. The theorem's hypothesis req:hyp-three-or-more-alternatives is exactly what fails. In both proofs, exactly the steps that assume it need a third alternative. Line 1: inf:l1-moved-profile (c is moved above a, so a, b, c must be distinct) and inf:l4-nc-dictates-ab (Lemma 3 at a third alternative c outside {a, b}). Line 2: inf:fe-decisive-xz and inf:fe-decisive-zy (each move goes through a third alternative), inf:lemma-5 (the chaining) and inf:gc-profile-s (the profile S needs x, y, z). With two alternatives Lemma 1 itself is false (two voters disagreeing on a and b give a social tie).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:condorcet-profile",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "n=3",
+     "profile=a>b>c, b>c>a, c>a>b"
+    ],
+    "lineage": "original",
+    "name": "Counterexample: the Condorcet profile gives a majority cycle",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Take three voters ranking a > b > c, b > c > a and c > a > b (any further alternatives below c, in the same order for everyone). Majority gives a P b, b P c and c P a, each by 2 votes to 1. Transitivity would give a R c from a P b and b P c, contradicting c P a. So the majority relation at this profile is not transitive.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conj-arrow-two-alternatives",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Conjecture (owner's question c): the theorem holds with two alternatives",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "With exactly two alternatives and n >= 2 voters, every constitution that respects unanimity and IIA is a dictatorship.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conj-majority-transitive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Conjecture (owner's question b): majority rule always gives a transitive social ranking",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "With three or more alternatives, pairwise majority rule gives a transitive social ranking at every profile.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:f-is-dictatorship",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "b0"
+    ],
+    "lineage": "original",
+    "name": "F is a dictatorship",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Choose any alternative b0. Voter d = n(b0) dictates over every pair of distinct alternatives (a pair either contains b0, Lemma 4, or not, Lemma 3), so d is a dictator of F and F is a dictatorship.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:fe-decisive-xz",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Field expansion, step: G decisive over (x, z)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Then G is decisive over (x, z) for every z outside {x, y}. Take any profile where every member of G has x P_i z. Move y alone (Lemma 0): for members of G strictly between x and z (x P_i y P_i z), for everyone else to the strict top (y over x and y over z). Almost decisiveness gives x P y; unanimity gives y P z; transitivity gives x P z. Nobody's x-against-z comparison moved, so by IIA society has x P z at the original profile too.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:fe-decisive-zy",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Field expansion, step: G decisive over (z, y)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Then G is decisive over (z, y) for every z outside {x, y}. Take any profile where every member of G has z P_i y. Move x alone (Lemma 0): for members of G strictly between z and y (z P_i x P_i y), for everyone else to the strict bottom (z over x and y over x). Unanimity gives z P x; almost decisiveness gives x P y; transitivity gives z P y; by IIA, z P y at the original profile.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:fe-hyp-almost-decisive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Field expansion, assumption: G almost decisive over (x, y)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose coalition G is almost decisive over the ordered pair (x, y).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "x",
+     "y"
+    ]
+   }
+  },
+  {
+   "node_id": "req:fe-moves",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Field expansion, the two moves",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every coalition G and ordered pair (x, y): if G is almost decisive over (x, y), then G is decisive over (x, z) and over (z, y) for every alternative z outside {x, y}.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-case-1-hyp",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, case 1: society has x P z at S",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Case 1: society has x P z at F(S).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-case-2-hyp",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, case 2: society has z R x at S",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Case 2: society has z R x at F(S).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-hyp-g-decisive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, assumption: G decisive with at least two members",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose coalition G is decisive and has at least two members; split it into two disjoint non-empty parts G1 and G2, and pick three distinct alternatives x, y, z.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-profile-s",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, step: at profile S society has x P y",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let S be the profile where members of G1 rank x > y > z, members of G2 rank z > x > y, and every other voter ranks y > z > x (all other alternatives below, in one fixed order). Every member of G has x over y, and G is decisive, so society has x P y at S.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-under-case-1",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, case 1 result: G1 is decisive",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "In case 1, G1 is decisive. At S, only members of G1 have x over z; everyone else has z over x. By IIA society has x P z at every profile with that x-against-z pattern, so G1 is almost decisive over (x, z), and by Lemma 5 decisive.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:gc-under-case-2",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Group contraction, case 2 result: G2 is decisive",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "In case 2, G2 is decisive. z R x and x P y give z P y at F(S). At S, only members of G2 have z over y; everyone else has y over z. By IIA, G2 is almost decisive over (z, y), and by Lemma 5 decisive.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "G",
+     "G1",
+     "G2",
+     "x",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-f-unanimous-and-iia",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis: F is a constitution respecting unanimity and IIA",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let F be an arbitrary constitution (Definition 3) that respects unanimity (Definition 4) and IIA (Definition 5). This is the theorem's antecedent, taken up as an assumption and discharged by the final step (conditional proof).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-three-or-more-alternatives",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "question:three-alternatives-as-hypothesis"
+    ],
+    "lineage": "original",
+    "name": "Hypothesis: there are at least three alternatives",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose A has at least three alternatives (|A| >= 3, the condition Definition 1b names). This is part of the theorem's antecedent: assumed by every step that picks a third alternative, and discharged by the final step, so the theorem reads 'if there are three or more alternatives and F respects unanimity and IIA, then F is a dictatorship'.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "A"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l1-contradiction",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:l1-moved-profile",
+     "req:l1-supposition"
+    ],
+    "lineage": "original",
+    "name": "Lemma 1, contradiction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "At F(Q'), a R b and b R c give a R c by transitivity, while c P a says not a R c. Contradiction.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "Q",
+     "a",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l1-moved-profile",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:l1-supposition"
+    ],
+    "lineage": "original",
+    "name": "Lemma 1, step: in the moved profile Q', society has a R b, b R c and c P a",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let Q' be Q with c moved, for every voter, to just above a (strictly above a, and in the same position relative to b as before, which is possible because b is strictly top or bottom for each voter). Then every voter ranks a against b and b against c exactly as at Q, so by IIA society still has a R b and b R c at F(Q'); and every voter has c P_i a, so by unanimity society has c P a at F(Q').",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "Q",
+     "a",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l1-supposition",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1, supposition for contradiction: b extreme for every voter but not for society",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose, for some alternative b and some profile Q in which every voter ranks b strictly top or strictly bottom, society's ranking F(Q) puts b neither strictly top nor strictly bottom. Then there are alternatives a, c, both different from b and from each other, with a R b and b R c at F(Q). (a and c can be chosen distinct: if the only a with a R b were also the only c with b R c, then b P x for every other x, and |A| >= 3 gives such an x with b R x to serve as c.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "Q",
+     "a",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l2-unanimous-ends",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 2, step: the two unanimous ends",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For an alternative b: at the profile P_0 where every voter ranks b strictly bottom (other pairs as any fixed rankings), society ranks b strictly bottom; at P_n, where every voter ranks b strictly top, society ranks b strictly top. Both by unanimity, applied to b against each other alternative.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l3-iii-a-over-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3, step: back at profile III society has a P c",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "IV differs from III only in where b sits, so every voter ranks a against c identically at III and IV; by IIA society ranks a against c at III as at IV: a P c at F(III).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "a",
+     "c",
+     "III"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l3-iv-a-over-b",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3, step: at profile IV society has a P b",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Fix b, take a, c both different from b, and any profile III at which voter n(b) has a P c. Let IV be III with b moved (Lemma 0): to the strict top for voters before n(b), to the strict bottom for voters after n(b), and strictly between a and c for n(b) (a P b P c). Every voter ranks a against b at IV as at I_b (before n(b): b over a; n(b): a over b; after: a over b), and society has a P b at I_b (b strictly bottom), so by IIA society has a P b at IV.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "a",
+     "c",
+     "III"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l3-iv-a-over-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3, step: at profile IV society has a P c",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "From a P b and b P c at F(IV), transitivity of strict preference gives a P c at F(IV).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "a",
+     "c",
+     "III"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l3-iv-b-over-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3, step: at profile IV society has b P c",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every voter ranks b against c at IV as at II_b (voters up to and including n(b): b over c; after n(b): c over b), and society has b P c at II_b (b strictly top), so by IIA society has b P c at IV.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b",
+     "a",
+     "c",
+     "III"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l4-contradiction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4, contradiction",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If n(c) is not n(b), n(c) ranks a against b strictly and identically at I_b and II_b, so, dictating over {a, b}, it forces society's a-against-b ranking to be the same at both; but society has a P b at I_b and b P a at II_b. Contradiction.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "a",
+     "b",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l4-nb-swings-ab",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4, step: n(b) alone swings society's a-against-b ranking",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "At I_b and II_b every voter other than n(b) ranks a against b identically and strictly (b is strictly top or bottom for each), while society has a P b at I_b and b P a at II_b (Lemma 2).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "a",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l4-nc-dictates-ab",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4, step: n(c) dictates over {a, b}",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Take distinct alternatives a, b and (|A| >= 3) a third alternative c not in {a, b}. By Lemma 3 applied to c, voter n(c) dictates over the pair {a, b}.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "a",
+     "b",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l4-nc-equals-nb",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4, step: n(c) = n(b)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The voter n(c) is the voter n(b).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "a",
+     "b",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:l4-supposition",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4, supposition for contradiction: n(c) is not n(b)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose n(c) differs from n(b).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "a",
+     "b",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-0-moving-one-alternative",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 0: one alternative can be moved alone",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Given a ranking R and an alternative b, the relation obtained by moving b to the strict top, to the strict bottom, or strictly between two alternatives x P y (b strictly below x and strictly above y), while keeping R on every pair not containing b, is again a ranking. So (unrestricted domain) any profile changed this way, voter by voter, is a profile F must rank.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-1-extremal",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1 (extremal lemma)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every alternative b and every profile in which each voter ranks b strictly top or strictly bottom, society (F) also ranks b strictly top or strictly bottom.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-2-pivotal-voter",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 2 (a pivotal voter exists)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every alternative b there are a voter n(b) and two profiles I_b and II_b such that: (i) at both, every voter ranks b strictly top or strictly bottom; voters before n(b) rank b top and voters after n(b) rank b bottom; n(b) ranks b bottom at I_b and top at II_b; every voter ranks every pair not containing b identically at I_b and II_b; (ii) society ranks b strictly bottom at I_b and strictly top at II_b. Construction: P_k is P_0 with voters 1..k moving b to the top (Lemma 0); by Lemma 1 society ranks b strictly top or bottom at every P_k; it is bottom at P_0 and top at P_n; n(b) is the least k at which it is top, I_b = P_(k-1), II_b = P_k.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-3-dictates-off-b",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3 (n(b) dictates over every pair not containing b)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every alternative b, voter n(b) of Lemma 2 dictates over every pair {a, c} with a, c both different from b: at every profile, a P_n(b) c implies a P c.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-4-dictates-on-b",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4 (n(b) also dictates over every pair containing b)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every alternative b, voter n(b) dictates over every pair {a, b} with a different from b.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-5-field-expansion",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 5 (field expansion)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If a coalition G is almost decisive over some ordered pair (x, y), then G is decisive (over every ordered pair of distinct alternatives).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-6-contraction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 6 (group contraction)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Every decisive coalition with at least two members has a proper, non-empty subset that is decisive.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lemma-7-decisive-voter",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 7 (a decisive single voter)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There is a voter d such that the coalition {d} is decisive.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:majority-meets-conditions",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Majority rule meets unanimity and IIA and has no dictator",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For n >= 2 voters, pairwise majority rule respects unanimity (if every voter strictly prefers x to y, x has n votes and y none), respects IIA (its x-against-y verdict counts only the voters' x-against-y comparisons), is complete at every profile, and has no dictator (if voter d prefers x to y and every other voter, at least one, prefers y to x, then y R x, so not x P y). The one condition it fails is that the social relation be transitive.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:s-empty-not-decisive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Line 2, step: the empty coalition is not decisive",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The empty coalition is not decisive: if it were, society would have x P y and y P x at every profile for two distinct alternatives x, y, which no ranking allows.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:s-n-decisive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Line 2, step: the whole electorate is decisive",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The coalition N of all voters is decisive: if every voter has x P_i y then x P y, which is unanimity.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "F"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-arrow",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem (Arrow): with three or more alternatives, unanimity and IIA force a dictatorship",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Finitely many voters (n >= 1), each with a ranking (complete, transitive, ties allowed). IF there are at least three alternatives AND a constitution F respects unanimity and independence of irrelevant alternatives, THEN F is a dictatorship: there is a voter d such that, at every profile and for every pair x, y, x P_d y implies x P y.",
+    "statement_kind": "theorem",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:two-alt-majority-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "A={a,b}"
+    ],
+    "lineage": "original",
+    "name": "Counterexample: with two alternatives majority rule is a non-dictatorial constitution",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let A = {a, b} and n >= 2. Majority rule gives a complete relation on {a, b} at every profile, and any complete relation on two alternatives is transitive (a triple x, y, z from {a, b} repeats an alternative). It respects unanimity and IIA, and voter d is not a dictator: if d has a P_d b and every other voter has b over a, majority gives b R a. So it is a constitution respecting unanimity and IIA with no dictator.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:con:def-three-or-more-alternatives",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:fe-decisive-xz\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:fe-decisive-zy\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:gc-profile-s\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:l1-moved-profile\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:l4-nc-dictates-ab\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:lemma-5\",\"properties\":{}}]",
+    "state": "{\"category\":\"technical\",\"concern\":\"core\",\"name\":\"Definition 1b: at least three alternatives\",\"priority\":\"medium\",\"statement\":\"A has at least three members (|A| >= 3). The theorem assumes it; every step that picks a third alternative rests on it.\",\"statement_kind\":\"definition\",\"taken_as_given\":true}",
+    "target_id": "con:def-three-or-more-alternatives",
+    "target_type": "Constraint"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:con:def-voters-and-alternatives",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:l4-nc-dictates-ab\",\"properties\":{\"role\":\"premise\"}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:lemma-2\",\"properties\":{\"role\":\"premise\"}}]",
+    "state": "{\"category\":\"technical\",\"concern\":\"core\",\"name\":\"Definition 1: voters and alternatives\",\"priority\":\"medium\",\"statement\":\"N = {1, ..., n} is a finite, non-empty set of voters (n >= 1), and A is a set of alternatives with at least three members (|A| >= 3).\",\"statement_kind\":\"definition\"}",
+    "target_id": "con:def-voters-and-alternatives",
+    "target_type": "Constraint"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:inf:lemma-3",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Constraint\",\"other_id\":\"con:def-dictator\",\"properties\":{\"role\":\"premise\"}},{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Requirement\",\"other_id\":\"req:l3-iii-a-over-c\",\"properties\":{\"role\":\"premise\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Requirement\",\"other_id\":\"req:lemma-3-dictates-off-b\",\"properties\":{}}]",
+    "state": "{\"confirmed_how\":\"unconfirmed\",\"generalizes_over\":[\"III\",\"a\",\"c\",\"b\"],\"name\":\"Lemma 3 by generalization over III, a, c and b\",\"rule\":\"all\",\"rule_name\":\"universal generalization (arbitrary profile III, arbitrary pair a, c, arbitrary b)\",\"warrant\":\"III was any profile with a P_n(b) c, and a, c any two alternatives other than b; nothing about them was assumed beyond that, so n(b) dictates over every pair not containing b (Definition 6; the case c P_n(b) a is the same argument with a and c swapped). b was arbitrary.\"}",
+    "target_id": "inf:lemma-3",
+    "target_type": "Inference"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:inf:lemma-3:r2",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Constraint\",\"other_id\":\"con:def-dictator\",\"properties\":{\"role\":\"premise\"}},{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Requirement\",\"other_id\":\"req:l3-iii-a-over-c\",\"properties\":{\"role\":\"premise\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Requirement\",\"other_id\":\"req:lemma-3-dictates-off-b\",\"properties\":{}}]",
+    "state": "{\"confirmed_how\":\"unconfirmed\",\"generalizes_over\":[\"III\",\"a\",\"c\",\"b\",\"F\"],\"name\":\"Lemma 3 by generalization over III, a, c and b\",\"rule\":\"all\",\"rule_name\":\"universal generalization (arbitrary profile III, arbitrary pair a, c, arbitrary b)\",\"warrant\":\"III was any profile with a P_n(b) c, and a, c any two alternatives other than b; nothing about them was assumed beyond that, so n(b) dictates over every pair not containing b (Definition 6; the case c P_n(b) a is the same argument with a and c swapped). b was arbitrary.\"}",
+    "target_id": "inf:lemma-3",
+    "target_type": "Inference"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:answer-two-alternatives",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:answer-two-alternatives\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Answer (c): no, the theorem fails with two alternatives\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"No, for n >= 2 voters (with one voter the conclusion holds trivially): majority rule on two alternatives is a counterexample. In both proofs, exactly the steps resting on Definition 1b need a third alternative. Line 1: inf:l1-moved-profile (c is moved above a, so a, b, c must be distinct; the supposition's choice of a different from c also uses it) and inf:l4-nc-dictates-ab (Lemma 3 is applied at a third alternative c outside {a, b}). Line 2: inf:fe-decisive-xz and inf:fe-decisive-zy (each move goes through a third alternative), inf:lemma-5 (the chaining) and inf:gc-profile-s (the profile S needs x, y, z). With two alternatives Lemma 1 itself is false (two voters disagreeing on a and b give a social tie).\",\"statement_kind\":\"proposition\",\"status\":\"proposed\"}",
+    "target_id": "req:answer-two-alternatives",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:thm-arrow",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:theorem\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Theorem (Arrow): unanimity and IIA force a dictatorship\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"Let there be at least three alternatives and finitely many voters (n >= 1), each with a ranking (complete, transitive, ties allowed). Every constitution F that respects unanimity and independence of irrelevant alternatives is a dictatorship: there is a voter d such that, at every profile and for every pair x, y, x P_d y implies x P y.\",\"statement_kind\":\"theorem\",\"status\":\"proposed\"}",
+    "target_id": "req:thm-arrow",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "ver:condorcet-tallies",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "Counts, at the profile voter 1 a>b>c, voter 2 b>c>a, voter 3 c>a>b, how many voters strictly prefer a to b, b to c and c to a, and whether each count is a strict majority of n = 3.",
+    "findings": "a over b: 2 of 3; b over c: 2 of 3; c over a: 2 of 3; each is more than n/2 = 1.5, so majority gives a P b, b P c and c P a: cycle = true (exact, flo2 calc record condorcet-majority-tallies.calc.json, sha256 7665d21dbbecea1c9be89ce0ed873a146cde51f24944e5b274bfe13bf2c4be5c).",
+    "fixes": [
+     "n=3",
+     "profile=a>b>c, b>c>a, c>a>b"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "condorcet-majority-tallies.calc.json",
+    "method": "analysis",
+    "name": "Majority tallies at the Condorcet profile (computed)",
+    "status": "passing"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.87.0",
+  "schema_version": 1
+ }
+}

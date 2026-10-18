@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2441cb47c4e75711c586c6f0fdb8f0a22a6b7a8f3781300d4b4c939942c253ad",
+  "node_id": "req:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The records a choice actually rests on carry a truth, a counter-argument is its own statement, and a settled decision shows its acceptance and its chain side by side",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18, choosing A of the build list after the embedding proof of concept",
+    "statement": "From the 2026-10-18 proof of concept (fact:reasoning-embedded-in-a-traditional-design-works-within-one-design-and-stops-at-premises-with-no-truth-and-at-design-borders-2026-10-18, case 1):\n1. A measured, unsuperseded finding (TemporalFact) used as a premise reads `holds`; superseded or invalidated, it does not.\n2. A counter-argument is recorded as a statement of its own that opposes the claim, so answering it never marks a historical record (a ChangeEvent) false.\n3. An accepted Decision concluded by a chain reads the owner's acceptance AND the chain's verdict side by side, so a first, incomplete chain never reads as the decision being unsupported. Its read-back shows `chose`, not the deliberation's \"options, none chosen\".\n4. The served skills agree on whether an Inference may conclude a Decision (capture-intent vs brainstorm/AGENTS.md).",
+    "status": "accepted"
+  }
+}

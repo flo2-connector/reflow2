@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:efeff4827f3a3e13d6fac84155b31bf3114c3afd14ae9dfb1e595b06b7cb801c",
+  "edge_type": "CAUSES",
+  "from_id": "art:inference",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "inference.rs's premise-truth predicate (own_truth) had no arm for a TemporalFact or a ChangeEvent, applied objections to history, read a concluded Decision by its chain alone, and is_a_standing_refutation counted only Inference endpoints as reasoning; reasoning.rs served that walk-internal truth to the reader. Each mechanism is pinned by a test in a_premise_has_a_truth_and_a_proof_reads_correct.rs that failed on main c9e6ca4.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-truth-computed-for-the-walk-was-served-to-the-reader-and-reasoning-was-told-by-inference-edges-alone-2026-10-18"
+}

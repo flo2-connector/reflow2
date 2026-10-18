@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:92d21330851f90ac124c4a007bce6d14de1494d26e2cf7a86001f836dbbcad9f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-design-can-rest-on-an-approximation-with-its-regime-and-error-stated",
+  "properties": {
+    "evidence": "flo2-calc's settled rule bounds every option: the judgement stays with the person, and calc only computes the checkable parts.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "xref:0bee0c00b35845f6:dec:idea-an-approximation-is-chosen-and-justified"
+}

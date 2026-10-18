@@ -1,7 +1,10 @@
 {
-  "content_hash": "sha256:77204432b3af5b642380415592f1cd62b1ebd5392b1c6589d72216628a337def",
+  "content_hash": "sha256:4d2117a22d7042a4647c13bb584eced9c59c373a217a17d528763e2fab6f7441",
   "edge_type": "SATISFIES",
   "from_id": "cap:a-near-match-across-types-or-within-reasoning-is-a-note",
-  "properties": {},
+  "prev_item_hash": "sha256:77204432b3af5b642380415592f1cd62b1ebd5392b1c6589d72216628a337def",
+  "properties": {
+    "evidence": "The argument for this edge is recorded as a claim: req:claim-the-near-match-note-capability-satisfies-the-near-match-note-requirement, concluded by inf:the-near-match-note-capability-satisfies-its-requirement. PROOF OF CONCEPT 2026-10-18, case 4. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq"
+  },
   "to_id": "req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal"
 }

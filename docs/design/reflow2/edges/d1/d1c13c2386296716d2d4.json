@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:d598787928b679afa06ae239a6abb9adc87a24e4ec649fda6d3f3e9891560f2f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

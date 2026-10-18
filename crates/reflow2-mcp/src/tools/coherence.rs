@@ -1186,6 +1186,14 @@ impl ReflowService {
         if let Some(standing) = self.export_standing(&g, None) {
             report["export_standing"] = serde_json::to_value(&standing).map_err(ser_err)?;
         }
+        // BOUNDED, prose first and no list sampled: every count and id survives,
+        // and the budget block names what was withheld.
+        let report = crate::reply_budget::bound_reply(
+            report,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "Every count and id survives trimming; read a section's subject in full with get_node, or pass a larger budget_chars.",
+        );
         self.ok_read(&g, report)
     }
 

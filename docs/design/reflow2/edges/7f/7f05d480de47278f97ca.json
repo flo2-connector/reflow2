@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e542bfd62755000d1b686f2c151f974e4c43887ba4edf324a0731e2731d96b1f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-has-a-truth-and-a-proof-reads-correct-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:b9e647cfc27d0d0099042bd87f028fb20ee6f28339ebb9078e7fed8d95b379d3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-capture-intent-skill-mirror"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b64e63ca88792ba952a6a43a2fcf2384235e5d8121ff40332666f7f335b933d",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-premise-has-a-truth-and-a-proof-reads-correct",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-records-a-choice-rests-on-carry-a-truth-and-a-counter-argument-is-its-own-statement"
+}

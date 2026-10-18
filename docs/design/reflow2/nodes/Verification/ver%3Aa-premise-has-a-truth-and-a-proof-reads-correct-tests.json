@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:566757a4918eaf0652f626d60a4dc5586c38f6894c444a1e947859f39894d255",
+  "node_id": "ver:a-premise-has-a-truth-and-a-proof-reads-correct-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_premise_has_a_truth_and_a_proof_reads_correct.rs, in the core in_memory program. Class invariants asked of every node of six designs imported from fixtures (π+e, Arrow, Brocard, the proof of concept's case 1 slice, proof-trial rungs 1 and 2) plus hand-built variants: a standing measured finding holds, a superseded / invalidated / forecast one reads unknown; no ChangeEvent reads false; a counter-argument recorded as its own statement is answered there; every accepted Decision a step concludes carries `acceptance` and `chain` and says its `chose`; an incomplete first chain never reads the decision unsupported, and the walk reads `accepted_without_a_holding_chain`; no discharged assumption is unsupported; no deliberate objection is a contradiction, an accidental one still is, a settled reinstatement chain is not, an unargued mutual attack or odd cycle is; every conditional claim reads `truth: conditional`; capture-intent, brainstorm and the served instructions agree a Decision may be a chain's conclusion.",
+    "findings": "12 passed (cargo test -p reflow2-core --no-default-features --test in_memory a_premise_has), and the whole core suite green, branch feat/premises-with-a-truth-and-honest-proof-readings. OBSERVED FAILING FIRST on main c9e6ca4: 10 of 12 failed (the measured finding read unknown, the ChangeEvent read fails, `acceptance` was null, the chain test read unknown, 9 discharged assumptions unsupported, Brocard's objection a contradiction, all 7 argumentation attacks reported, conditional claims read holds, capture-intent said \"Not a Decision\"). The two that passed on main pin what must not regress: an argument recorded as its own statement is answered there, and an accidental contradiction is still reported.",
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/a_premise_has_a_truth_and_a_proof_reads_correct.rs",
+    "method": "test",
+    "name": "The records a choice rests on carry a truth, and a correct proof reads correct (12 core tests, six designs)",
+    "status": "passing"
+  }
+}

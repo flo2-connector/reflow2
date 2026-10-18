@@ -1,0 +1,2271 @@
+{
+ "content_hash": "sha256:87769188c00091dddaeb73a1162dadcec8c20d70ffd6cd734c1ae14240b50b18",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:conj-abc",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer."
+   },
+   "to_id": "q:abc-status"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:prop-bounded-search-807",
+   "properties": {
+    "note": "Anthony's choice in Claude Code, relayed by the observer."
+   },
+   "to_id": "q:extend-search"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:thm-overholt-abc-implies-finite",
+   "properties": {
+    "note": "Anthony's choice in Claude Code; the check was done by the observer."
+   },
+   "to_id": "q:cited-results-as-given"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:abc-status",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:claim-abc-proved-iut"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:abc-status",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:conj-abc"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:abc-status",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:conj-finitely-many"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:abc-status",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:objection-scholze-stix"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:cited-results-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-berend-osgood-density-zero"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:cited-results-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-fermat-little"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:cited-results-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-overholt-abc-implies-finite"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "q:extend-search",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:prop-bounded-search-807",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:thm-berend-osgood-density-zero",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:thm-overholt-abc-implies-finite",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-known-solutions-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-search-ceiling-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-search-part1-n1-202-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-search-part2-n203-404-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-search-part3-n405-606-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-brocard-search-part4-n607-807-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-known-solutions-calc-json-20261018t192642747-8886",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-search-ceiling-calc-json-20261018t193554444-eb77",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-search-part1-n1-202-calc-json-20261018t193446994-c870",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-search-part2-n203-404-calc-json-20261018t193510110-ac55",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-search-part3-n405-606-calc-json-20261018t193550754-5e61",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-brocard-search-part4-n607-807-calc-json-20261018t193553823-bbf7",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-brocard-solution",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:abc-implies-finitely-many",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bounded-search-807",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:known-solutions",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:no-small-prime-obstruction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:nonresidue-certificate",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:brocard-ramanujan",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:abc-status",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:cited-results-as-given",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "q:extend-search",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-abc-proved-iut",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-abc",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-brocard",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-finitely-many",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-no-small-prime-obstruction",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-nonresidue-certificate",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:objection-scholze-stix",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-bounded-search-807",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-known-solutions",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-literature-search-bound",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-berend-osgood-density-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-fermat-little",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-overholt-abc-implies-finite",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-known-solutions",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-search-part1",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-search-part2",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-search-part3",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:calc-search-part4",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-known-solutions-calc-json-20261018t192642747-8886",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-known-solutions-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-search-ceiling-calc-json-20261018t193554444-eb77",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-search-ceiling-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-search-part1-n1-202-calc-json-20261018t193446994-c870",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-search-part1-n1-202-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-search-part2-n203-404-calc-json-20261018t193510110-ac55",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-search-part2-n203-404-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-search-part3-n405-606-calc-json-20261018t193550754-5e61",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-search-part3-n405-606-calc-json"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-brocard-search-part4-n607-807-calc-json-20261018t193553823-bbf7",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-brocard-search-part4-n607-807-calc-json"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:abc-implies-finitely-many",
+   "properties": {},
+   "to_id": "req:conj-finitely-many"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bounded-search-807",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:known-solutions",
+   "properties": {},
+   "to_id": "req:prop-known-solutions"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:no-small-prime-obstruction",
+   "properties": {},
+   "to_id": "req:lem-no-small-prime-obstruction"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:nonresidue-certificate",
+   "properties": {},
+   "to_id": "req:lem-nonresidue-certificate"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:claim-abc-proved-iut",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "If accepted, this claim would establish the abc conjecture (and so, through Overholt, finiteness). It is contested (req:objection-scholze-stix), so this design keeps abc as an undischarged assumption."
+   },
+   "to_id": "req:conj-abc"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:objection-scholze-stix",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Scholze and Stix (2018) argue the proof of Corollary 3.12 in IUT III has a gap, so the claimed proof of abc does not stand; Mochizuki disputes this. Recorded as an objection, not adjudicated."
+   },
+   "to_id": "req:claim-abc-proved-iut"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:prop-bounded-search-807",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only, never a premise: Brocard's conjecture predicts exactly n = 4, 5, 7, and the certified search finds exactly these for n <= 807. It says nothing about n > 807."
+   },
+   "to_id": "req:conj-brocard"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:prop-literature-search-bound",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only: the cited searches (recalled, bounds uncertain) found no further solution up to at least 10^9; finitely many cases never prove the conjecture."
+   },
+   "to_id": "req:conj-brocard"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:thm-berend-osgood-density-zero",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Weak unconditional corroboration: density zero is consistent with, but strictly weaker than, finiteness; it does not prove req:conj-finitely-many."
+   },
+   "to_id": "req:conj-finitely-many"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-known-solutions-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-known-solutions"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-search-ceiling-calc-json",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-search-part1-n1-202-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-search-part1"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-search-part2-n203-404-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-search-part2"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-search-part3-n405-606-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-search-part3"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-brocard-search-part4-n607-807-calc-json",
+   "properties": {},
+   "to_id": "ver:calc-search-part4"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:prop-bounded-search-807",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:thm-berend-osgood-density-zero",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:thm-berend-osgood-density-zero"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:thm-overholt-abc-implies-finite",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:thm-overholt-abc-implies-finite"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-brocard-solution",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-brocard-solution",
+   "properties": {},
+   "to_id": "inf:known-solutions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-brocard-solution",
+   "properties": {},
+   "to_id": "inf:no-small-prime-obstruction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:conj-abc",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:abc-implies-finitely-many"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-nonresidue-certificate",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-known-solutions",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thm-fermat-little",
+   "properties": {},
+   "to_id": "inf:nonresidue-certificate"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thm-overholt-abc-implies-finite",
+   "properties": {},
+   "to_id": "inf:abc-implies-finitely-many"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-known-solutions",
+   "properties": {},
+   "to_id": "inf:known-solutions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-search-part1",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-search-part2",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-search-part3",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:calc-search-part4",
+   "properties": {},
+   "to_id": "inf:bounded-search-807"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-known-solutions",
+   "properties": {},
+   "to_id": "req:prop-known-solutions"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-search-part1",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-search-part2",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-search-part3",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:calc-search-part4",
+   "properties": {},
+   "to_id": "req:prop-bounded-search-807"
+  }
+ ],
+ "graph_id": "dd55db78c7cccda8",
+ "nodes": [
+  {
+   "node_id": "art:file-brocard-known-solutions-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:e6fd0392d7da5eb77143ef0ac75b73c3faa713d394232f83e18b2aa8a2ea8fd3",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-known-solutions.calc.json",
+    "name": "brocard-known-solutions.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-brocard-search-ceiling-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:ef084d97d7f86cac71d32ed70b711a267b011fb0e79f58add422aafbe62b9526",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-search-ceiling.calc.json",
+    "name": "brocard-search-ceiling.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-brocard-search-part1-n1-202-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:27276b19e1835ed5760e013a904084745fd6818ca74bbe009c24d7586c1b3806",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-search-part1-n1-202.calc.json",
+    "name": "brocard-search-part1-n1-202.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-brocard-search-part2-n203-404-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:8bf310eb7b620efd291529cb5854fe94d12e3b3de7709e82fc8dcdf691c94cb1",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-search-part2-n203-404.calc.json",
+    "name": "brocard-search-part2-n203-404.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-brocard-search-part3-n405-606-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:b3debd5d8c3b9bd79c8ad9fd0f7c49a6f848e380452b59f766333a49b43de805",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-search-part3-n405-606.calc.json",
+    "name": "brocard-search-part3-n405-606.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:file-brocard-search-part4-n607-807-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:7431ebe0f516748b476e0d9dbf7f5cf8d7b2e62df97ed650e53e2d3e2a3b8726",
+    "description": "Made by Anthony Sligar on 2026-10-18 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "brocard-search-part4-n607-807.calc.json",
+    "name": "brocard-search-part4-n607-807.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-known-solutions-calc-json-20261018t192642747-8886",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-known-solutions.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-known-solutions.calc.json (11933 bytes, sha256 e6fd0392d7da5eb77143ef0ac75b73c3faa713d394232f83e18b2aa8a2ea8fd3) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-known-solutions-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-search-ceiling-calc-json-20261018t193554444-eb77",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-search-ceiling.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-search-ceiling.calc.json (3869 bytes, sha256 ef084d97d7f86cac71d32ed70b711a267b011fb0e79f58add422aafbe62b9526) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-search-ceiling-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-search-part1-n1-202-calc-json-20261018t193446994-c870",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-search-part1-n1-202.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-search-part1-n1-202.calc.json (55919 bytes, sha256 27276b19e1835ed5760e013a904084745fd6818ca74bbe009c24d7586c1b3806) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-search-part1-n1-202-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-search-part2-n203-404-calc-json-20261018t193510110-ac55",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-search-part2-n203-404.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-search-part2-n203-404.calc.json (61276 bytes, sha256 8bf310eb7b620efd291529cb5854fe94d12e3b3de7709e82fc8dcdf691c94cb1) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-search-part2-n203-404-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-search-part3-n405-606-calc-json-20261018t193550754-5e61",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-search-part3-n405-606.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-search-part3-n405-606.calc.json (71353 bytes, sha256 b3debd5d8c3b9bd79c8ad9fd0f7c49a6f848e380452b59f766333a49b43de805) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-search-part3-n405-606-calc-json."
+   }
+  },
+  {
+   "node_id": "chg:file-brocard-search-part4-n607-807-calc-json-20261018t193553823-bbf7",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-18",
+    "name": "brocard-search-part4-n607-807.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made brocard-search-part4-n607-807.calc.json (82156 bytes, sha256 7431ebe0f516748b476e0d9dbf7f5cf8d7b2e62df97ed650e53e2d3e2a3b8726) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-brocard-search-part4-n607-807-calc-json."
+   }
+  },
+  {
+   "node_id": "con:def-brocard-solution",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: a solution of n! + 1 = m^2",
+    "priority": "medium",
+    "statement": "A solution is a pair of positive integers (n, m) with n! + 1 = m^2, where n! = 1 * 2 * ... * n. Equivalently, n is a solution index when n! + 1 is a perfect square. (Solutions are often called Brown numbers; that name is recalled, not checked.)",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "m",
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:abc-implies-finitely-many",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "IF abc holds THEN finitely many solutions (Overholt)",
+    "rule": "all",
+    "rule_name": "modus ponens under an assumption that is never discharged",
+    "warrant": "Overholt's cited implication says abc (in a weak form) implies finiteness. This step takes abc up as an ASSUMPTION; nothing in this design proves abc, so the conclusion holds only conditionally and stays open unconditionally."
+   }
+  },
+  {
+   "node_id": "inf:bounded-search-807",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Exhaustion over n = 1..807 with certificates",
+    "rule": "all",
+    "rule_name": "proof by exhaustion over a finite range (computer-assisted, every case certified)",
+    "warrant": "The four kept records together cover n = 1..807 (202 + 202 + 202 + 201 values, ranges 1-202, 203-404, 405-606, 607-807). For each n they test 20 primes q, each proven prime and odd. Every n other than 4, 5, 7 has some q with (n!+1)^((q-1)/2) = -1 mod q, so by the lemma n!+1 is not a square. n = 4, 5, 7 are squares by the known-solutions proposition. The range stops at 807 by the host's digit budget, not by any mathematical reason; nothing here concerns n > 807."
+   }
+  },
+  {
+   "node_id": "inf:known-solutions",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Exhibit the three solutions by exact computation",
+    "rule": "all",
+    "rule_name": "proof by construction (exhibiting witnesses), checked by exact computation",
+    "warrant": "By the definition, (n, m) is a solution when n! + 1 = m^2. The kept calc record computes 4!+1, 5!+1, 7!+1 exactly as 25, 121, 5041, returns their square roots exactly as 5, 11, 71 (not rounded), and checks m*m == n!+1 for each."
+   }
+  },
+  {
+   "node_id": "inf:no-small-prime-obstruction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n",
+     "p"
+    ],
+    "name": "n! is divisible by every prime up to n",
+    "rule": "all",
+    "rule_name": "direct proof from the definition of n!",
+    "warrant": "If p <= n then p is one of the factors 1, 2, ..., n, so p divides n! and n! + 1 is 1 mod p; 1 = 1^2 is a nonzero square mod p. Hence every congruence condition modulo such p is satisfied by n! + 1, and cannot exclude it from being a square."
+   }
+  },
+  {
+   "node_id": "inf:nonresidue-certificate",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "q",
+     "v"
+    ],
+    "name": "Fermat gives the non-residue certificate",
+    "rule": "all",
+    "rule_name": "direct proof by cases (q divides v / q does not divide v), from Fermat's little theorem",
+    "warrant": "Suppose v = m^2. If q divides v then v^((q-1)/2) is 0 mod q. Otherwise q does not divide m, so v^((q-1)/2) = m^(q-1), which is 1 mod q by Fermat's little theorem (a = m). Since q is odd, q > 2 and 1 is not congruent to -1 mod q. So in neither case is v^((q-1)/2) congruent to -1; contrapositively, a value -1 rules out a square. q and v are arbitrary: nothing beneath fixes them."
+   }
+  },
+  {
+   "node_id": "proj:brocard-ramanujan",
+   "node_type": "Project",
+   "properties": {
+    "domain": "mathematics: an open Diophantine problem, what is proven, computed and conjectured",
+    "mode": "flexible",
+    "name": "Brocard-Ramanujan n!+1=m^2 (open problem trial)",
+    "objective": "State honestly what is known about n! + 1 = m^2: what is proven, what is computed and only for which n, what is conditional on an unproven conjecture, and what is open",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "q:abc-status",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Keep abc as an open, undischarged assumption, so 'finitely many solutions' stays conditional; Mochizuki's claimed proof stays contested with the Scholze\u2013Stix objection standing.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "context_setter": "Finiteness of the solutions is reached here only by assuming the abc conjecture. Mochizuki claims a proof of abc; Scholze and Stix object to it.",
+    "question": "Should the design keep abc as an open, undischarged assumption (the mainstream position as I understand it), so that 'finitely many solutions' stays conditional - or do you want Mochizuki's claimed proof treated differently? I have not adjudicated the dispute and do not propose to.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:cited-results-as-given",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Check Overholt and Berend\u2013Osgood against their sources first; Fermat's little theorem is textbook. Done 2026-10-18: both citations confirmed (Overholt, Bull. LMS 25 (1993) 104, a WEAK form of abc; Berend\u2013Osgood, J. Number Theory 42 (1992) 189\u2013193, density zero unconditionally) and written into each node's source; all three stay taken as given.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "context_setter": "Three results from the literature are recorded as 'taken as given' so the reasoning can rest on them; none is proven in this design, and all three citations were written from memory.",
+    "question": "Do you accept these three cited theorems as given foundations (Fermat's little theorem; Overholt 1993, abc implies finitely many solutions; Berend-Osgood 1992, solutions have density zero)? Or should each be checked against its source first - and if so, can you supply the references so they can be recorded as reference documents? Until you answer, the bounded result and the conditional result lean on them as cited, not as proven here.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "q:extend-search",
+   "node_type": "Question",
+   "properties": {
+    "answer": "n <= 807 is enough: the trial's point is honest scoping, not a record; published searches went far higher and are recorded as evidence.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-d82ad83a71",
+    "asked_of": "who:acct-23984879ca",
+    "context_setter": "The certified search stops at n = 807 because flo2.io's calculator holds at most 2,000 digits per exact number (808! has 2,001). The record brocard-search-ceiling.calc.json is kept as not yet computed.",
+    "question": "Do you want the search extended on a flo2-calc with a higher digit limit on your own machine (the kept records can be re-run and widened there), or is n <= 807 enough for this design, given that published searches are recalled as reaching 10^9 or more?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:claim-abc-proved-iut",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Claim: the abc conjecture is proven (Mochizuki, IUT) - CONTESTED",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED: Mochizuki posted the papers in 2012; they were published in Publications of the RIMS in 2021 (recalled). Objection: Peter Scholze and Jakob Stix (2018 report) argue that Corollary 3.12 has a gap. The mainstream view, as I recall it, is that abc remains open.",
+    "statement": "CONTESTED CLAIM, not accepted here: Shinichi Mochizuki's inter-universal Teichmuller theory proves the abc conjecture. If it were accepted, req:conj-finitely-many would follow unconditionally through Overholt's implication. This design does not use it as a premise.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "c"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-abc",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The abc conjecture (OPEN; assumed only where stated)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED: formulated by Joseph Oesterle and David Masser (1985). A claimed proof by Shinichi Mochizuki (inter-universal Teichmuller theory, posted 2012, published 2021 in Publ. RIMS) is not accepted by most number theorists; see req:claim-abc-proved-iut and its objection.",
+    "statement": "OPEN CONJECTURE (assumption). For every epsilon > 0 there is a constant K(epsilon) such that for all coprime positive integers a, b, c with a + b = c, c < K(epsilon) * rad(abc)^(1 + epsilon), where rad(x) is the product of the distinct primes dividing x. Overholt's argument is recalled as needing only a weaker form; the exact weak form used is not recalled.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "c",
+     "epsilon"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-brocard",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Brocard's problem: the only solutions are n = 4, 5, 7 (OPEN)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED: posed by Henri Brocard (1876, and again 1885 - years recalled, not checked) and independently by Srinivasa Ramanujan (1913, as a problem in the Journal of the Indian Mathematical Society - question number not recalled). Its status as open is my recollection; the observer holds the sources.",
+    "statement": "OPEN CONJECTURE. The only positive-integer solutions of n! + 1 = m^2 are (n, m) = (4, 5), (5, 11) and (7, 71). Nobody has proven or refuted this.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "m",
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-finitely-many",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Only finitely many solutions (OPEN unconditionally)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Weaker than Brocard's conjecture (req:conj-brocard implies it). Known only conditionally (Overholt 1993, cited at req:thm-overholt-abc-implies-finite).",
+    "statement": "OPEN unconditionally. The equation n! + 1 = m^2 has only finitely many solutions in positive integers. It is not known to hold without assuming an unproven conjecture; in this design it is reached only on the assumption of the abc conjecture.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "m",
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-no-small-prime-obstruction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma: primes up to n can never rule a solution out",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Elementary; argued in this design from the definition (step inf:no-small-prime-obstruction). The remark about why the problem is hard is my gloss, not a cited result.",
+    "statement": "For every n and every prime p <= n, n! + 1 is congruent to 1 modulo p, which is a nonzero square modulo p. So no congruence modulo a prime p <= n can show that n! + 1 is not a square; any modular certificate for a given n must use a prime q > n. This is one reason elementary congruence arguments cannot settle the problem for all n at once.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "n",
+     "p"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-nonresidue-certificate",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma: a Fermat non-residue certificate rules out a square",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Elementary; argued in this design from Fermat's little theorem (step inf:nonresidue-certificate).",
+    "statement": "Let q be an odd prime and v an integer. If v^((q-1)/2) is congruent to -1 modulo q, then v is not a perfect square. (If v = m^2: when q divides v, v^((q-1)/2) is 0 mod q, not -1; otherwise q does not divide m and v^((q-1)/2) = m^(q-1) is 1 mod q by Fermat's little theorem, and 1 is not -1 mod q because q > 2.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "q",
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:objection-scholze-stix",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Scholze-Stix gap in IUT Corollary 3.12",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED: Peter Scholze and Jakob Stix, 'Why abc is still a conjecture' (2018 report, recalled from memory). Mochizuki disputes the objection. Not adjudicated here.",
+    "statement": "OBJECTION to req:claim-abc-proved-iut: the argument for Corollary 3.12 of inter-universal Teichmuller theory III is said to contain a gap, so the claimed proof of abc is not established.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:prop-bounded-search-807",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "N=807"
+    ],
+    "lineage": "original",
+    "name": "Bounded result: for n <= 807 the only solutions are n = 4, 5, 7",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Computed in this design: brocard-search-part1-n1-202, part2-n203-404, part3-n405-606, part4-n607-807 (.calc.json), combined with the lemma.",
+    "statement": "FOR A BOUNDED RANGE ONLY (computer-certified; the steps await the owner's or a checker's confirmation): for 1 <= n <= 807, n! + 1 is a perfect square exactly when n = 4, 5 or 7. For every other n in that range, one of 20 primes q between 1031 and 1171 (each proven prime by calc) gives (n! + 1)^((q-1)/2) congruent to -1 mod q, a certificate that n! + 1 is not a square (req:lem-nonresidue-certificate). Exactly 3 of the 807 values survive all 20 tests: n = 4, 5, 7, which are squares (req:prop-known-solutions). Says NOTHING about n > 807. Stopped at 807 because 808! has 2,001 digits, past the flo2.io calc host's 2,000-digit budget for an exact number (record brocard-search-ceiling.calc.json, not computed).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:prop-known-solutions",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "n=4",
+     "n=5",
+     "n=7"
+    ],
+    "lineage": "original",
+    "name": "The three known solutions: (4,5), (5,11), (7,71)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Computed in this design with flo2 calc; the values were also given in the literature (Brocard, Ramanujan) but are checked here, not assumed.",
+    "statement": "(n, m) = (4, 5), (5, 11) and (7, 71) are solutions: 4! + 1 = 25 = 5^2, 5! + 1 = 121 = 11^2, 7! + 1 = 5041 = 71^2. Shown by exact computation (record brocard-known-solutions.calc.json: the square roots come back exact, 5, 11 and 71, and each squared equals n! + 1).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:prop-literature-search-bound",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "N=10^9 (at least)"
+    ],
+    "lineage": "original",
+    "name": "Published computer searches: no new solutions far beyond 807 (cited, evidence only)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED with uncertainty: Bruce C. Berndt and William F. Galway, Ramanujan Journal, 2000 - no new solutions for n up to 10^9 (recalled). Later: Robert Matson (around 2017, up to about 10^12?) and Ethan Epstein and Kevin Glickman (around 2020, up to about 10^15?) - names, bounds and years recalled with low confidence. Earlier small searches (e.g. Gupta, 1935, to n = 63) also recalled with low confidence.",
+    "statement": "CITED COMPUTATIONAL CLAIM, not reproduced here, evidence only: published searches found no solution other than n = 4, 5, 7 for n up to at least 10^9; later searches are recalled as extending this to about 10^12 and then 10^15. The exact bounds and years beyond the first are uncertain. Like the search in this design, it covers finitely many n and proves nothing about larger n.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-berend-osgood-density-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Unconditional: solutions have density zero (Berend\u2013Osgood 1992, citation checked)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CHECKED 2026-10-18 against the literature (search results citing it): D. Berend and C. F. Osgood, \"On the equation P(x) = n! and a question of Erd\u0151s\", J. Number Theory 42 (1992), 189\u2013193 \u2014 without assuming abc, for any polynomial P of degree >= 2 the set of n with an integer solution of P(x) = n! has density zero. Paper itself not read.",
+    "statement": "CITED, unconditional, proven in the literature, not here: the set of n for which n! + 1 is a perfect square has natural density zero. This is the special case P(x) = x^2 - 1 of a result on P(x) = n! for polynomials P of degree at least 2. It does NOT give finiteness: a density-zero set can still be infinite.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-fermat-little",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Fermat's little theorem (cited)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CITED, not proven in this design: stated by Pierre de Fermat (1640, in a letter); a proof was published by Euler (1736 is my recollection of the year). Standard in any elementary number theory text. Recalled from memory; the owner is asked whether to take it as given.",
+    "statement": "For every prime q and every integer a not divisible by q, a^(q-1) is congruent to 1 modulo q.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "a",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-overholt-abc-implies-finite",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Overholt: abc implies finitely many solutions (cited implication)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "CHECKED 2026-10-18 against the literature (search results citing it): M. Overholt, \"The diophantine equation n! + 1 = m^2\", Bull. London Math. Soc. 25 (1993), p. 104 \u2014 a WEAK form of the abc conjecture implies finitely many solutions. Paper itself not read.",
+    "statement": "CITED IMPLICATION, proven in the literature, not here: if the abc conjecture holds (Overholt is recalled as needing only a weak form of it), then n! + 1 = m^2 has only finitely many solutions. It gives no explicit bound on n, so even granting abc it does not settle Brocard's conjecture.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "m",
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:prop-bounded-search-807",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:bounded-search-807\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"DOCUMENTS\",\"other_type\":\"Artifact\",\"other_id\":\"art:file-brocard-search-ceiling-calc-json\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:calc-search-part1\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:calc-search-part2\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:calc-search-part3\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:calc-search-part4\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:conj-brocard\",\"properties\":{\"alignment\":\"supporting\",\"evidence\":\"Corroboration only, never a premise: Brocard's conjecture predicts exactly n = 4, 5, 7, and the certified search finds exactly these for n <= 807. It says nothing about n > 807.\"}}]",
+    "state": "{\"fixes\":[\"N=807\"],\"lineage\":\"original\",\"name\":\"Bounded result: for n <= 807 the only solutions are n = 4, 5, 7\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Computed in this design: brocard-search-part1-n1-202, part2-n203-404, part3-n405-606, part4-n607-807 (.calc.json), combined with the lemma.\",\"statement\":\"PROVEN FOR A BOUNDED RANGE ONLY: for 1 <= n <= 807, n! + 1 is a perfect square exactly when n = 4, 5 or 7. For every other n in that range, one of 20 primes q between 1031 and 1171 (each proven prime by calc) gives (n! + 1)^((q-1)/2) congruent to -1 mod q, a certificate that n! + 1 is not a square (req:lem-nonresidue-certificate). Exactly 3 of the 807 values survive all 20 tests: n = 4, 5, 7, which are squares (req:prop-known-solutions). Says NOTHING about n > 807. Stopped at 807 because 808! has 2,001 digits, past the flo2.io calc host's 2,000-digit budget for an exact number (record brocard-search-ceiling.calc.json, not computed).\",\"statement_kind\":\"proposition\",\"status\":\"proposed\",\"variables\":[\"n\"]}",
+    "target_id": "req:prop-bounded-search-807",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:thm-berend-osgood-density-zero",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:conj-finitely-many\",\"properties\":{\"alignment\":\"supporting\",\"evidence\":\"Weak unconditional corroboration: density zero is consistent with, but strictly weaker than, finiteness; it does not prove req:conj-finitely-many.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Unconditional: solutions have density zero (cited, details uncertain)\",\"priority\":\"medium\",\"provenance\":\"imported\",\"source\":\"CITED with uncertainty: Daniel Berend and Charles F. Osgood, 'On the equation P(x) = n! and a question of Erdos', Journal of Number Theory, 1992 (authors, title, journal and year recalled from memory; I am fairly but not fully sure that the density-zero statement is theirs and applies to x^2 - 1 as stated). To be checked against the source by the observer or owner.\",\"statement\":\"CITED, unconditional, proven in the literature, not here: the set of n for which n! + 1 is a perfect square has natural density zero. This is the special case P(x) = x^2 - 1 of a result on P(x) = n! for polynomials P of degree at least 2. It does NOT give finiteness: a density-zero set can still be infinite.\",\"statement_kind\":\"theorem\",\"status\":\"proposed\",\"taken_as_given\":true,\"variables\":[\"n\"]}",
+    "target_id": "req:thm-berend-osgood-density-zero",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:thm-overholt-abc-implies-finite",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-d82ad83a71\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:abc-implies-finitely-many\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Overholt: abc implies finitely many solutions (cited implication)\",\"priority\":\"medium\",\"provenance\":\"imported\",\"source\":\"CITED: Marius Overholt, 'The Diophantine equation n! + 1 = m^2', Bulletin of the London Mathematical Society, 1993 (title, journal and year recalled from memory, not checked). I also recall a generalisation to n! + A = m^2 by Andrzej Dabrowski (1996) but not its exact statement, so it is not recorded as a claim.\",\"statement\":\"CITED IMPLICATION, proven in the literature, not here: if the abc conjecture holds (Overholt is recalled as needing only a weak form of it), then n! + 1 = m^2 has only finitely many solutions. It gives no explicit bound on n, so even granting abc it does not settle Brocard's conjecture.\",\"statement_kind\":\"theorem\",\"status\":\"proposed\",\"taken_as_given\":true,\"variables\":[\"m\",\"n\"]}",
+    "target_id": "req:thm-overholt-abc-implies-finite",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "ver:calc-known-solutions",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "Exact computation in flo2 calc: factorial(n) + 1 for n = 4, 5, 7 gives 25, 121, 5041; sqrt comes back EXACT (5, 11, 71), not labelled rounded; and m*m == n!+1 is true for all three.",
+    "findings": "m = 5, 11, 71 exactly; all_ok = true.",
+    "fixes": [
+     "n=4",
+     "n=5",
+     "n=7"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "brocard-known-solutions.calc.json (art:file-brocard-known-solutions-calc-json, sha256 e6fd0392d7da5eb77143ef0ac75b73c3faa713d394232f83e18b2aa8a2ea8fd3)",
+    "method": "analysis",
+    "name": "calc: n!+1 is an exact square at n = 4, 5, 7",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:calc-search-part1",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "For each n in 1..202 and each of 20 primes q (1031..1171, all proven prime by calc, all > 202), computes r = (n!+1) mod q and r^((q-1)/2) mod q exactly (exponent split as 32*d1 + d0 with a reduction mod q after each power). n 'survives' when no q gives q-1 (i.e. -1). Every non-survivor has a non-residue certificate.",
+    "findings": "all_q_prime = true, all_q_above_N = true, survivor_count = 3, survivors include n = 4, 5, 7 (indices checked), n_count = 202.",
+    "fixes": [
+     "N=202"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "brocard-search-part1-n1-202.calc.json (art:file-brocard-search-part1-n1-202-calc-json, sha256 27276b19e1835ed5760e013a904084745fd6818ca74bbe009c24d7586c1b3806)",
+    "method": "analysis",
+    "name": "calc: n = 1..202, survivors of 20 Fermat tests are exactly 4, 5, 7",
+    "status": "passing",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "ver:calc-search-part2",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "Same computation as ver:calc-search-part1 for n = 203..404 with the same 20 primes.",
+    "findings": "all_q_prime = true, all_q_above_N = true, survivor_count = 0, n_first = 203, n_last = 404, n_count = 202. (The reply was too large to show in chat; values read from the kept record.)",
+    "fixes": [
+     "N=404"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "brocard-search-part2-n203-404.calc.json (art:file-brocard-search-part2-n203-404-calc-json, sha256 8bf310eb7b620efd291529cb5854fe94d12e3b3de7709e82fc8dcdf691c94cb1)",
+    "method": "analysis",
+    "name": "calc: n = 203..404, no survivors of 20 Fermat tests",
+    "status": "passing",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "ver:calc-search-part3",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "Same computation as ver:calc-search-part1 for n = 405..606 with the same 20 primes.",
+    "findings": "all_q_prime = true, all_q_above_N = true, survivor_count = 0, n_first = 405, n_last = 606, n_count = 202. (Values read from the kept record; the chat reply was withheld for size.)",
+    "fixes": [
+     "N=606"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "brocard-search-part3-n405-606.calc.json (art:file-brocard-search-part3-n405-606-calc-json, sha256 b3debd5d8c3b9bd79c8ad9fd0f7c49a6f848e380452b59f766333a49b43de805)",
+    "method": "analysis",
+    "name": "calc: n = 405..606, no survivors of 20 Fermat tests",
+    "status": "passing",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "ver:calc-search-part4",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "Same computation as ver:calc-search-part1 for n = 607..807 with the same 20 primes. 807 is the last n whose n!+1 fits the host's 2,000-digit budget.",
+    "findings": "all_q_prime = true, all_q_above_N = true, survivor_count = 0, n_first = 607, n_last = 807, n_count = 201. (Values read from the kept record; the chat reply was withheld for size.)",
+    "fixes": [
+     "N=807"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "location": "brocard-search-part4-n607-807.calc.json (art:file-brocard-search-part4-n607-807-calc-json, sha256 7431ebe0f516748b476e0d9dbf7f5cf8d7b2e62df97ed650e53e2d3e2a3b8726)",
+    "method": "analysis",
+    "name": "calc: n = 607..807, no survivors of 20 Fermat tests",
+    "status": "passing",
+    "variables": [
+     "n"
+    ]
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.87.0",
+  "schema_version": 1
+ }
+}

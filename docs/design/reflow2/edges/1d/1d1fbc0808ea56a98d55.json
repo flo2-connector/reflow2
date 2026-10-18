@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ed3eba7a6731283fbe3445c0196c2f898ad3cb882f695c1c3aa2a6b856b961a4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:reflow2-reads-an-attack-graph-by-grounded-semantics-reinstatement-works-and-cycles-stay-undecided-unnamed-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

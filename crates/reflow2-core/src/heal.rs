@@ -287,6 +287,11 @@ pub struct Suppressed {
     /// line of reasoning whose source holds, so its target reads refuted —
     /// the correct state of the record, not a disagreement to heal.
     pub refuted: BTreeMap<&'static str, usize>,
+    /// Looked at and found to be an ANSWERED or a DELIBERATE objection: an
+    /// opposing CONTRADICTS in a line of reasoning whose objection is
+    /// answered, or that stands and states its reason — read in
+    /// reasoning_report (answered, or still contested), never a defect.
+    pub objection: BTreeMap<&'static str, usize>,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -402,6 +407,22 @@ pub struct SweepScope {
     /// for byte as it did.
     #[serde(skip_serializing_if = "BTreeMap::is_empty", default)]
     pub suppressed_by_refutation: BTreeMap<&'static str, usize>,
+    /// Findings NOT REPORTED because the disagreement is an ANSWERED or a
+    /// DELIBERATE OBJECTION, by category: an opposing CONTRADICTS in a line of
+    /// reasoning (one side a premise or a conclusion of an Inference, or a
+    /// statement: `statement_kind` or `taken_as_given`) whose objection is
+    /// answered, or that stands undecided (a lone objection, a mutual attack,
+    /// an odd cycle) and states its reason in `evidence`. It counts against
+    /// its target as far as it holds, and reasoning_report reads it: a point
+    /// still contested, or an objection answered
+    /// (req:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims,
+    /// Anthony 2026-10-18; measured on the Brocard trial, whose Scholze-Stix
+    /// objection was reported as a contradiction to heal). A CONTRADICTS
+    /// outside any line of reasoning, or one in it that states no reason, is
+    /// still reported, and so is a standing one that states no reason. Left
+    /// out of the reply while nothing was suppressed this way.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty", default)]
+    pub suppressed_as_objection: BTreeMap<&'static str, usize>,
     /// Said in WORDS when the sweep could not have found anything — an empty
     /// graph. `None` when the sweep was real, so its presence is the signal.
     #[serde(skip_serializing_if = "Option::is_none", default)]
@@ -1857,6 +1878,7 @@ impl DesignGraph {
             suppressed_by_resolution: suppressed.resolved,
             suppressed_by_held_open: suppressed.held_open,
             suppressed_by_refutation: suppressed.refuted,
+            suppressed_as_objection: suppressed.objection,
             rules: HealCategory::ALL.iter().map(|c| c.as_str()).collect(),
             note: (nodes == 0).then(|| {
                 "this graph holds no nodes, so an empty result is VACUOUS rather than clean — \
@@ -2794,6 +2816,38 @@ impl DesignGraph {
                     .entry(HealCategory::Contradiction.as_str())
                     .or_default() += 1;
                 continue;
+            }
+            // AND AN OBJECTION THAT IS SETTLED OR DELIBERATE
+            // (req:a-correct-proof-reads-correct-assumptions-objections-and-
+            // conditional-claims, Anthony 2026-10-18, after the Brocard trial:
+            // the Scholze-Stix objection to a claimed proof was reported as a
+            // contradiction to heal; and a scratch argumentation graph on
+            // 0.87.0 reported all 7 of its attacks, a settled reinstatement
+            // chain included). In a line of reasoning an opposing CONTRADICTS
+            // is an ATTACK that counts as far as it holds (crate::inference):
+            // - ANSWERED (the objection fails): settled, nothing to heal;
+            // - STANDING (neither established nor answered: a lone objection,
+            //   a mutual attack, an odd cycle — undecided) and stating its
+            //   reason in `evidence`: a deliberate objection, read by
+            //   reasoning_report as still contested, never a defect;
+            // - standing and stating NO reason: a conflict nobody argued, still
+            //   reported (`a_contradiction_between_two_unknown_claims_is_still_
+            //   reported`), as is every CONTRADICTS outside a line of reasoning.
+            // (One that holds refutes its target and was counted just above.)
+            // Counted, never silenced.
+            if let Some(standing) = self.attack_standing(&e.from_id, &e.to_id)? {
+                let states_its_reason = e
+                    .properties
+                    .get("evidence")
+                    .and_then(Value::as_str)
+                    .is_some_and(|s| !s.trim().is_empty());
+                if standing != "stands" || states_its_reason {
+                    *suppressed
+                        .objection
+                        .entry(HealCategory::Contradiction.as_str())
+                        .or_default() += 1;
+                    continue;
+                }
             }
             let affected = vec![e.from_id.clone(), e.to_id.clone()];
             issues.push(HealIssue {

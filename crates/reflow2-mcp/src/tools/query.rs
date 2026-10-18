@@ -1312,7 +1312,7 @@ impl ReflowService {
     #[tool(
         description = "READ BACK A LINE OF REASONING, read-only: an argument for and against, an \
                        experiment's case, a paper's chain of claims, a legal case. Each claim \
-                       comes with its COMPUTED truth (holds, fails or unknown), the steps that \
+                       comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that \
                        support it (rule, warrant, who confirmed them), the objections against it \
                        and how each stands (`refutes`, `stands`, `answered`), and its cited \
                        sources. Then: what the reasoning rests on and which premises cite no \

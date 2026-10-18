@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7af232e11398ff225125c0a57f49aa7effd8bd53a9214edd1c80478cf8530d33",
+  "edge_type": "CHANGED",
+  "from_id": "chg:graph-report-takes-a-reply-budget-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 14,
+    "action": "modified",
+    "checksum_after": "sha256:25864bc17aec7320e1385490cacf2f6e9d2b22ddac2d570a1aaa23bb163af180",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

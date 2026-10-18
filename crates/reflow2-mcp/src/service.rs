@@ -5380,6 +5380,16 @@ pub struct GraphReportReq {
     /// when you actually want the roll; `loop_status`'s `full_list` points here.
     #[serde(default)]
     pub include_verifications: bool,
+    /// How many characters of JSON this reply may spend before prose is
+    /// withheld to make it fit (default 30,000). Counts and ids are never
+    /// budgeted away, and a trimmed reply says what it withheld at `budget`.
+    ///
+    /// BOUNDED since 2026-10-18: on reflow2's own design the report grew past
+    /// the 30,000-character default (31,137, its `granularity` section the
+    /// largest), and the reply-budget gate (tools/replies_are_bounded.py)
+    /// failed on it, the class manual_work_ledger met on 2026-09-28.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 /// `detect_gaps`'s arguments: a scope, and a ceiling on the reply.

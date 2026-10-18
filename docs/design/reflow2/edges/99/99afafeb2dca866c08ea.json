@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:16b78614303aec1b261ac067d1a2a501992dd3ca9d296c375d704bd9435fa592",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:fixture-proof-trial-pi-plus-e",
+  "properties": {
+    "authored_at": "2026-10-18",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
