@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5dadbfdba7905e76be0d6f98a29371265e40519abde6d8a9ae9bf0f9a6138075",
+  "edge_type": "CHANGED",
+  "from_id": "chg:through-a-hub-every-tool-runs-on-one-named-member-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-hubs-address-serves-a-view-over-its-members"
+}

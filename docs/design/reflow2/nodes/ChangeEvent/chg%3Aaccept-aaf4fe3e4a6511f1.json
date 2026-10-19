@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc4120a67a8e4e81f67a60b2454b04c17a0a3f1af830a8a685a0e3af1087a21d",
+  "node_id": "chg:accept-aaf4fe3e4a6511f1",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "helpers made pub(super) for the sibling test; header sentence updated",
+    "subject": "system"
+  }
+}

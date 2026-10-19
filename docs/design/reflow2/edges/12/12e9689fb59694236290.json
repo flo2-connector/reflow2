@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4266828f63ae0abe70686431aef3a69f471082eaf6a151d589759e2665c37caf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:through-a-hub-every-tool-runs-on-one-named-member-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:cf5f8ee0890c286dffe5039915d9ce0af4b8494b9a33d076e5f196cace20f2ab",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service-view"
+}

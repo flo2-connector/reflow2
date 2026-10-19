@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:76e7835ebc6d77a28596cf9cf66fd8c50a9cb99153d7064deaa83d4bb517cd19",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:through-a-hub-every-tool-runs-on-one-named-member",
+  "properties": {},
+  "to_id": "req:through-a-hub-every-tool-can-run-on-one-named-member"
+}

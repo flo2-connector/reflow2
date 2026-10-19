@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:99b048d9959d820a41727bdb99f0be162622701e308f848153ec44ca6a5a1f4f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-aaf4fe3e4a6511f1",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:832c667dd08f73abb248f0630d704c4b395d2194dd922901990ba42d97b1bcb1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-hubs-address-serves-a-view"
+}
