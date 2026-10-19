@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:82fea04e674c0a748332511d0164fbca3c9ade452b63b052a0ae18258de6cf09",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

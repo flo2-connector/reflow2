@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cb3ae40e1c77b7b54bf94989fabb3d03b0b9d992517e907d6c8ba1517797e561",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

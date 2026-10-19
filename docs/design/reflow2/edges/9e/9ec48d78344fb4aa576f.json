@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c5f0334ab38527f192665af5dfd5431365591f9dff8c4104c2ed1f9271da98cc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:an-objection-holding-only-under-an-open-supposition-contests-and-never-refutes-outside-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

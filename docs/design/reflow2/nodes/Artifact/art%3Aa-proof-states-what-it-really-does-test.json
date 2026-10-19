@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b7b737ef86fdb7959a7ce986ec2f5118ccdcfeef64bd47952a6a751b8151ab4e",
+  "node_id": "art:a-proof-states-what-it-really-does-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Phase 3's core class tests over the trial fixtures (π+e, Arrow, Brocard, primes, FTA): the eigenvariable rule (item 0), a conditional claim never refuting outside its supposition, a conditional result neither delivered nor supporting a claimed status (0b), falsum, cases, hypothesis, cited results, and the skill agreeing with the tools.",
+    "location": "crates/reflow2-core/tests/a_proof_states_what_it_really_does.rs",
+    "name": "crates/reflow2-core/tests/a_proof_states_what_it_really_does.rs",
+    "status": "realized"
+  }
+}

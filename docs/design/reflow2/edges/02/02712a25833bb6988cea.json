@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3456ee8b55cae4bbe4c1784742bd98b40d7efd090a556f7913f229e1f933d35f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

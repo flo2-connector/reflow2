@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9c6c8524054f1866df3f2080699003e6cc9f9d46f9535c456d2c87d61e980d8e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-falsum-reads-false-and-the-reductio-resting-on-it-holds",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

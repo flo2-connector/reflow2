@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:211e07b1524633ba9048d6ee31bd9d7d1375a7114f5ca6b973e9d59e51bc4952",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-conclusion-whose-every-route-is-contested-reads-contested",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

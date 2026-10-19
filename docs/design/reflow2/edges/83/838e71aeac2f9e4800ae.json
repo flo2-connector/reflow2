@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4066c790999eee090248282a4d25d08612dd82a1f187117de806eb7a66e98b31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:d0986ea03afb50c382ce9d4bdbc73a68d8aeec9a066b0df3a9bda2b7f9855b15",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

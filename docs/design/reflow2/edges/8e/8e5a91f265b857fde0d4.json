@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac4a481d1d02a5b296ba5bbe5802db31d077952b68ea4be7a7f69cbf98d764da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-hypothesis-reads-assumed-or-discharged"
+}

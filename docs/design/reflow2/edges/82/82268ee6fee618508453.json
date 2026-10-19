@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:30ec94c16e5cdcc92bf0af76838d2e95d24e89ca7fabb79c963193561805edd2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-hypothesis-reads-assumed-or-discharged",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

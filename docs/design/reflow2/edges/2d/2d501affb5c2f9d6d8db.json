@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b97bd669e6076ad877d1a05d754f1a97d574ac033d41a4b75020fee0b372ac36",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:root-cause-a-conditional-result-counted-as-holding-wherever-a-reader-tested-truth-without-its-open-assumptions-2026-10-18"
+}

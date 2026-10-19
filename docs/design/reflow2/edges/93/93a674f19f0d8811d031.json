@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e0a23725113a7959e1d6eee5cdd0b5fa585cece701ed0235c3b2c61cf2257646",
+  "edge_type": "CAUSES",
+  "from_id": "req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Its statement specifies the generalization check as \"no premise in the chain fixes them\" and nothing about open assumptions; generalization_reading implemented exactly that (holds = fixed_by.is_empty()), and the phase-2 tests pinned only the fixes half, so the eigenvariable condition on open assumptions was never stated, built or tested.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-generalization-check-read-only-fixes-and-never-the-assumptions-open-at-the-step-2026-10-18"
+}

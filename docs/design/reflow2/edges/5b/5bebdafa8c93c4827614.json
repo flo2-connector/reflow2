@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:905579f459e2fa0634e807f76cf1c00e1f89943ae05c641ae92c75efb7020b14",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hypothesis-reads-assumed-or-discharged"
+}

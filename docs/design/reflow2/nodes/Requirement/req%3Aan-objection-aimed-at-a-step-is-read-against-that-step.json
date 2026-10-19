@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:65d96ca6fe0cfc6092251a43c43e9eaa58b29caf1804a682f46409b5ca4c80c3",
+  "node_id": "req:an-objection-aimed-at-a-step-is-read-against-that-step",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An objection aimed at an inference step (an undercutter) is read against that step: the step reads contested or defeated, and the read-back lists it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial, fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18)",
+    "statement": "An objection can attack the STEP itself (its warrant or rule) rather than a premise or the conclusion. Such an objection is read against the step: while it stands, the step reads contested; when it holds unanswered, the step is defeated and does not support its conclusion; reasoning_report lists it under the step; a reply to it reinstates the step.\nObserved in the cogito trial (2026-10-18, flo2.io 989598dd02246a81, reflow2 0.87.0), reported by the designer: a CONTRADICTS edge into inf:cogito-as-intuition was stored, and the step still read `holds`, unlisted. The workaround was to write each challenged warrant as a taken-as-given premise for the objection to aim at, which put four extra claims in the design.\nThis is idea (b), \"an objection against a step\", of dec:idea-what-reflow2-takes-from-the-argumentation-frameworks, now with a measured need.",
+    "status": "proposed"
+  }
+}

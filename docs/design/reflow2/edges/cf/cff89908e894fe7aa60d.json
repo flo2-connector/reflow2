@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:92bf099b8a5e2358a1bccf5610b1e0eec8da4e5628ab170747d2ecf3eb0f7bc0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

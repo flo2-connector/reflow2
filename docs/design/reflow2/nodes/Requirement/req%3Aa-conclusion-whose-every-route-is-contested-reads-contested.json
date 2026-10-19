@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:a6bb904a4b47f6e8805842ab7628389767499ae10e927b3d1a2653db69883eb7",
+  "node_id": "req:a-conclusion-whose-every-route-is-contested-reads-contested",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A conclusion whose every route is contested reads `contested`, not `unproven`, a word that also means refuted",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial)",
+    "statement": "When every line of support for a claim is held up only by standing objections or contested premises, its proof status reads `contested` and names what stands against each route. `unproven` is kept for a claim with no holding route for another reason. The read-back never lets a reader take a contested conclusion for a refuted one.\nObserved in the cogito trial (2026-10-18): req:i-exist read proof_status `unproven`, \"no derivation holds\", while all three routes were only contested. Meanwhile req:whatever-thinks-exists, in the same state, read `contested`, so the two labels disagree.",
+    "status": "proposed"
+  }
+}

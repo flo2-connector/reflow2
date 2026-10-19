@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6f9832798c74b9cf6f961f42b8d7345c25c69226a9562aedc046e5be1493cd50",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "properties": {
+    "evidence": "The trial's 'also seen' statement_kind finding, captured as a requirement."
+  },
+  "to_id": "req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule"
+}

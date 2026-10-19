@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:11846183618e5893134912aa0170d61e09b5ac424354003e4677aef757b06c75",
+  "node_id": "chg:baseline-dc635c819831956e",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "first baseline: phase 3's new test file",
+    "subject": "record"
+  }
+}

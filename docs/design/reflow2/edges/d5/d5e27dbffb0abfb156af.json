@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:97d86c4e9abe1a32f89ddc4ae00575633c81cd0f99fdc628d8a861abf721d873",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-case-split-names-its-cases-and-holds-only-when-they-are-declared-exhaustive",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

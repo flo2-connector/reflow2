@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2f16ef2629d2359e3c0b785f5c58e95cf2cdf05a9e746469d6287a69f482394d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

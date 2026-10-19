@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f065e5478d436058beaccbbe804cde43743c78bd87db7daf9f8bca911daf060",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-falsum-reads-false-and-the-reductio-resting-on-it-holds"
+}

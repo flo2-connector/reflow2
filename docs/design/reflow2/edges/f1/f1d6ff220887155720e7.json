@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b08068f88768d67ac914c958f15a538e21e6feaa25a61ce0fbda92371e3d3c4d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-reply-can-concede-an-objection-against-one-reading-and-move-to-another",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

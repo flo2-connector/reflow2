@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d1ed0dd14976600b56f95657e0ce7e0b8b4be7013f947d132af8f0146f2d0a48",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-proof-states-what-it-really-does-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-proof-states-what-it-really-does-on-the-wire-tests"
+}

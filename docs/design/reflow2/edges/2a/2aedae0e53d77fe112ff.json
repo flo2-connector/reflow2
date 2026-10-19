@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:77461d645cf74d7647441cfe88c889ec103397b4b3096c7769a6ff8f8410b616",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-proof-states-what-it-really-does-tests"
+}
