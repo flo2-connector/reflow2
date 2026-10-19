@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:aead051bd711e9d1e8b069d768c101696c039c6e9123708bae06f0dac85cd9cf",
+  "content_hash": "sha256:d98229c054e20e5333de1fa03f17646339755543275307a0b71452b597d598de",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-the-no-export-line-names-every-source-the-resolver-reads-reflow2-toml-first",
+  "prev_item_hash": "sha256:aead051bd711e9d1e8b069d768c101696c039c6e9123708bae06f0dac85cd9cf",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

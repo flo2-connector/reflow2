@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f81366f409af675fd1daf18bb1338a9acaaaa2b602d5b645540d7bd5198d826c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-id-prefix-table-covers-every-stated-convention",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type"
+}

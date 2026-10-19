@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b4657fac1a1676fe7c1f0872f077ae7122ec328d053aafd72b7ac8efc6ffd6d5",
+  "node_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type",
+  "node_type": "Capability",
+  "properties": {
+    "description": "node_type is optional on delete_node. Omitted, the id's prefix (nodes::node::ID_PREFIXES, the one table of the typed-id convention, held to the served descriptions by the_id_prefix_table_covers_every_stated_convention) is the caller's stated type: one holder of that type is deleted and the reply names node_type; a holder of another type, two holders, or a prefix naming no type is refused, nothing is deleted, and the refusal names what the id holds, its edge count and the node_type to pass. A missing id answers deleted: false. A passed node_type behaves as before. Reopens ruling #3b (2026-09-06) for delete_node only.",
+    "name": "delete_node with no node_type deletes only when the one type holding the id is the type its prefix names, and otherwise refuses naming what the id holds",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

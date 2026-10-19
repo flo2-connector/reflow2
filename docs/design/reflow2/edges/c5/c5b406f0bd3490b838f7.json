@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:91a7dbc5d6ab3c25b21ae53b4fa81c82e1c3a31ce9c8665caaf89951ee0b6141",
+  "content_hash": "sha256:44160dc1e723f7988c90608f8dc3cc872d09b775b5b45aad0d2bff25c8abd85a",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
+  "prev_item_hash": "sha256:91a7dbc5d6ab3c25b21ae53b4fa81c82e1c3a31ce9c8665caaf89951ee0b6141",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

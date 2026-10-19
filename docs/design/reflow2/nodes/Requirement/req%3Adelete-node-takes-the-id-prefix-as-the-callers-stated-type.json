@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8dbf6a46e669a9f6252013ad48cf6cc34743524e80616625c7ef31cc61a94cda",
+  "node_id": "req:delete-node-takes-the-id-prefix-as-the-callers-stated-type",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "delete_node's node_type is optional: the id's prefix stands as the caller's stated type, and the delete proceeds only when the node's type matches it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-19 (field limitation 23, VS Code --call run on 0.87.0)",
+    "statement": "delete_node accepts an id without node_type. It then deletes only when exactly one type holds the id AND that type is the one the id's prefix names by convention (req: → Requirement, dec: → Decision …). Otherwise it refuses and deletes nothing, naming what the id holds: a prefix with no conventional type, a holder whose type differs from the prefix's, or an id held by two types. A passed node_type behaves exactly as today. This reopens ruling #3b (2026-09-06) for delete_node only.",
+    "status": "accepted"
+  }
+}

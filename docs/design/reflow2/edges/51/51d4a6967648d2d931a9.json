@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f6411acdd224d59891f634ece25a2b7dee1827214e80a1eea413919a478d749f",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-reasoning-crosses-designs-within-a-hub",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-premise-in-another-design-reads-as-it-reads-there-and-a-walk-continues-through-a-hub"
+}

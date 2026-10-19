@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4791dc6f311179e1abb64de00ae4ec8ab9074bf8e8ab2c593ed47cb9a918eed2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-far-premise-reads-its-live-truth-and-stale-means-the-far-node-is-gone",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

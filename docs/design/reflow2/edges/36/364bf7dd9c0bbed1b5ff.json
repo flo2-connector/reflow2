@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d2125b92a9c926b74706ca0ffefb1013b17196f6dba2071c4363b1874085a618",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-a-premise-in-another-design-reads-as-it-reads-there",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

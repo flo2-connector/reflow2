@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:0c8db6770e1f1b3e8f28f95e3047c53a1bcec82d89926a984a65393dd39213c1",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type",
+  "properties": {},
+  "to_id": "req:delete-node-takes-the-id-prefix-as-the-callers-stated-type"
+}

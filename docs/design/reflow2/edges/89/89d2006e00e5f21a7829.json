@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:2e4d446bdc120d3b662c9a90706b857cac5a32527da6697e05e5a9b1fb75341a",
+  "content_hash": "sha256:849cabcb80980227a292ffe9a0d837ce2801a5aed2bcf324413074398f323013",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-describe-schema-brief-form-inlines-nested-shapes-and-both-forms-share-one-key-path",
+  "prev_item_hash": "sha256:2e4d446bdc120d3b662c9a90706b857cac5a32527da6697e05e5a9b1fb75341a",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

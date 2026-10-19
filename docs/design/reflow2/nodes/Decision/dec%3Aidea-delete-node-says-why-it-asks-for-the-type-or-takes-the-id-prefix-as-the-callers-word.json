@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:ce95702e04025d5107b30f76fd7231ffd7defc876cbe41c7e681a83961f32e71",
+  "content_hash": "sha256:7ea64fa7ca2632a9f556939de22a30f038e982e9458c112c0b6dd54f21c01331",
   "node_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:ce95702e04025d5107b30f76fd7231ffd7defc876cbe41c7e681a83961f32e71",
   "properties": {
+    "chose": "Option (b), Anthony 2026-10-19, reopening ruling #3b for delete_node: node_type becomes optional; when omitted, the delete proceeds only if the one type holding the id is the type its prefix names by convention, and is refused otherwise or on a collision, naming what the id holds. A passed node_type works as today. (a), (c), (d) stay considered.",
     "decision": "Options, from the 2026-10-19 root cause: (a) SMALL, keeps ruling #3b: the refusal says the type is asked for on purpose as a confirmation, and names what the id holds (\"req:one is a Requirement with N edges; pass node_type: \\\"Requirement\\\" to delete it\"). (b) MEDIUM, reopens #3b: node_type optional; when omitted, delete only if the holder's type is the one the id's prefix names by convention (req: → Requirement), refuse otherwise or on collision — the prefix becomes the caller's stated belief. (c) SMALL, reopens #3b: optional and resolved exactly like every other tool. (d) LARGER: an omitted type returns a preview (the node, its edge count, what loses a link) and a confirm step.",
     "kind": "exploratory",
-    "name": "OPEN — field limitation 23: keep delete_node's required type and say why (naming the type the id resolves to), or let the id's prefix stand as the caller's stated type?",
+    "name": "SETTLED 2026-10-19 — option (b): delete_node takes the id's prefix as the caller's stated type, deleting only when the holder's type matches it",
     "rationale": "The strict form was Anthony's ruling (2026-09-06) and is pinned by a test, so it is not a defect; the field met it with no reason given. Counter-argument to (b)/(c): delete is the one irreversible call, and a ruling stands until he reopens it. Counter-argument to (a): an agent copies the type the refusal names, so (a) adds a round trip and almost no check; (b) keeps a real check (prefix vs holder) without the round trip. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

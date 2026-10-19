@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2cc70d3dae2acbe68f363643b20a02b82b04c029d84d9a6cde7cb76f7a562581",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:the-no-export-line-names-every-source-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
