@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9cec9dac080827d0565384559f38dadbd1fffb681959f495d72c80085d3be674",
+  "node_id": "ver:reasoning-is-attached-to-the-structure-it-justifies-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/reasoning_is_attached_to_the_structure_it_justifies.rs, in the MCP crate's in_memory program, over the served surface. Class invariants asked of six designs imported from fixtures (π+e, Arrow, Brocard, the proof of concept's slice of reflow2, proof-trial rungs 1 and 2) plus hand-built variants: every governed requirement reads reason_to_exist naming exactly its governing Decisions, with acceptance and the chain verdict iff a step concludes the Decision; on the measured case the reason moves (stands → stands_on_acceptance_alone) while delivery does not; a parks ruling is no reason, a withdrawn Decision is one lost; seeding a governing Decision, or a premise whose loss breaks its chain, names every requirement it governs; satisfies sets evidence and argued_by, keeps coverage, refuses a claim naming nothing, and the walk names the argued edge; every SATISFIES/DEPENDS_ON given argued_by reads the claim's verdict beside it; a deleted claim reads missing and is a dangling_reference; a claim resting on delivery along its own edge reads circular exactly when the target fails without the edge (oracle: delete the edge and read again); a premise that stops holding makes the Decision's support visibly broken (conclusion_does_not_follow); derived lineage covers the owner's words chosen through a Decision; the served skills say how.",
+    "findings": "12 passed (cargo test -p reflow2-mcp --no-default-features --test in_memory reasoning_is_attached), and cargo dev-test green across both crates (core in_memory 1969, MCP in_memory 793), branch feat/reasoning-attached-to-the-structure-it-justifies at a2c8fe8. OBSERVED FAILING FIRST on main b639be8: 11 of 11 then written failed (no reason_to_exist on get_node or reasoning_report; seeding the Decision or losing the check named no requirement; satisfies refused argued_by and evidence as outside its schema; no circular reading; the schema's lineage did not cover the owner's words; the skills did not say). The twelfth, item 3 of req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain (conclusion_does_not_follow names the accepted Decision once its premise stops holding), was built by #770 and is pinned here.",
+    "kind": "verification",
+    "last_run_at": "2026-10-18",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/reasoning_is_attached_to_the_structure_it_justifies.rs",
+    "method": "test",
+    "name": "Reasons to exist and edge arguments read, named and checked (12 MCP tests, six designs)",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:44b3bf291e95c93bcb374bf6d6f9909ae293d3155a270d26b5975f6889eb2e2f",
+  "node_id": "dec:idea-read-the-whole-design-as-of-a-point-in-one-log",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS AN IDEA, NOT A PRIORITY (@ajs, 2026-10-18: \"let's record [it] as ideas for now, but it is not a priority\").\n\nWHERE IT CAME FROM: NSA's open-source LemonGraph (github.com/NationalSecurityAgency/lemongraph; README read 2026-10-18). It is a graph database on LMDB with one writer and many readers. Every write goes into one append-only log, so the whole graph can be read as of any earlier position in that log, and a streaming query picks up from the log position it last read.\n\nTHE OVERLAP: reflow2 keeps prior revisions PER NODE (snapshots per revision, dec:snapshot-id-per-revision; replace_text and revise keep the earlier text). It has no single log position for the whole design, so \"the design as it stood on date X\" is not one read.\n\nWHAT IT WOULD GIVE: an as-of read of the whole design, and a \"what changed since position N\" feed (a watcher, a hub, a dashboard).\n\nNOT CHOSEN; nothing to build.",
+    "kind": "exploratory",
+    "name": "IDEA, NOT A PRIORITY — read the whole design as it stood at one point, from a single replayable log (as NSA's LemonGraph does), rather than from per-node revisions",
+    "no_relation_note": "Searched the hub (all 13 designs) for an as-of / history / log / snapshot read. The nearest are reflow2:dec:snapshot-id-per-revision (the per-node mechanism this idea contrasts with, not a related idea), req:roads-not-taken (forkable alternatives, a different subject) and the held-design snapshot facts (a read copy while another process holds the store, a different subject). None is an earlier form of this idea.",
+    "rationale": "Captured through the hub at his word; it belongs in reflow2's design because it concerns reflow2's store. It is deferred, not proposed, because he said it is not a priority. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "deferred"
+  }
+}

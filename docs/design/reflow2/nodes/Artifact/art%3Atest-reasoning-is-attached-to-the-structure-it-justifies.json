@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:67d73f24a4e32222534d5a6da9833a1cab31686f2e1a69d8e71738fdaa2c5db5",
+  "node_id": "art:test-reasoning-is-attached-to-the-structure-it-justifies",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Class tests over the served surface, on six designs (π+e, Arrow, Brocard, the proof of concept's slice of reflow2, proof-trial rungs 1 and 2) plus hand-built variants: every governed requirement reads its reason_to_exist (get_node and reasoning_report) apart from delivery; seeding any governing Decision, or any premise whose loss breaks its chain, names every requirement it governs under reasons_to_exist_lost; every SATISFIES/DEPENDS_ON given argued_by reads the claim's verdict beside it and the claim lists it under argues_for; a dangling argued_by reads missing and is a dangling_reference; a claim resting on delivery along its own edge reads circular exactly when the target would not hold without the edge; derived lineage covers the owner's words chosen through a Decision with the value set unchanged; the served skills say how.",
+    "location": "crates/reflow2-mcp/tests/reasoning_is_attached_to_the_structure_it_justifies.rs",
+    "name": "reasoning_is_attached_to_the_structure_it_justifies.rs — reasons to exist and edge arguments, on six designs",
+    "status": "realized"
+  }
+}

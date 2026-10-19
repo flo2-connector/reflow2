@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b990fff13f44528d18f59ff1e3206e7f3988e2b36c57b8db3ba7eebfde7752f3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:reasoning-is-attached-to-the-structure-it-justifies-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

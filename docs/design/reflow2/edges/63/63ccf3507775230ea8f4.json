@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:886d39d4d3834aea178f8761dfdf51ae9566aaf87f0f79a8d7647ac3de03eeae",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-adopt-takes-from-rea-reverse-engineer-anything",
+  "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

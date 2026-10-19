@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f0b5b908fe5d6b10838da2e010b837804785747e8c9b2cacb5cdc4edef77f037",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-the-requirement-tiers-exist-and-nothing-reads-them",
+  "properties": {
+    "evidence": "Option ③ of this idea, the reader — which requirements lose their reason when a decision is re-opened — is built here: reason_to_exist on a governed requirement, and reasons_to_exist_lost on a change walk seeded at (or breaking) the Decision. The other options (② the default, ④ populating lineage, ⑤ the detector) are not built, and the idea's status is left for Anthony. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq"
+  },
+  "to_id": "cap:reasoning-is-attached-to-the-structure-it-justifies"
+}

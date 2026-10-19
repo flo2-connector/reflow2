@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:03725df6936b084ad7e650a54468e75b99ba59892cfcebb1fba124d4202c76e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-attached-to-the-structure-it-justifies-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:4679bcab869a249b3cc46135cf49168b06e23ee23b8c543afeebcca80d539a41",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:capture-intent-skill"
+}
