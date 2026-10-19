@@ -39,7 +39,8 @@ v0.78.0 also shipped the fixes the report's triage asked for outside the plan. A
 honours `--read-only`. A read of a design another session holds is as true as a read of the design itself.
 `external_dependency` replies with a receipt. Each is under [Fixed since the report](#fixed-since-the-report).
 
-Still open: a call joining a running shared server (idea 2), a hub address book (idea 13), and a warning for
+Still open: a call joining a running shared server (idea 2), a hub address book (idea 13), the hub view on
+one machine (idea 20), and a warning for
 a design that was never exported (idea 14). [The last section](#every-idea-and-where-it-is-recorded) lists every
 idea with the record that holds it.
 
@@ -328,3 +329,4 @@ them on 2026-10-05
 | 17 | Re-check stored data on a schema change | `dec:idea-stored-data-is-rechecked-against-the-current-schema` | Shipped in v0.78.0 |
 | 18 | An edge reader | `dec:idea-an-edge-reader-returns-one-nodes-edges-and-find-tools-finds-it` | Shipped in v0.78.0 |
 | 19 | Receipts everywhere | answered as a finding on `cap:a-write-replies-with-a-receipt` (`fact:root-cause-external-dependency-replies-with-the-whole-manifest-because-the-receipt-shapes-only-node-and-edge-records-2026-10-02`) | Shipped in v0.78.0 for `external_dependency` |
+| 20 | The hub view on one machine: open a hub and its members' local stores (or committed exports) as one read view through the door, so a requirement or an issue that spans several designs reads as one design (field ask, 2026-10-19: "in a hub, reflow2 should allow you to view all key:value pairs for each design as sort of one design") | The view itself is accepted and realized on a hosted registry: `req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design`, `dec:how-a-session-opens-a-view-over-several-designs`, `cap:a-hubs-address-serves-a-view-over-its-members`. The nearest local piece is `cap:search-design-reaches-the-designs-a-hub-tracks` (planned; reads exports from disk). Not yet recorded for the door; it needs idea 13 to know where each member's store is | Open |
