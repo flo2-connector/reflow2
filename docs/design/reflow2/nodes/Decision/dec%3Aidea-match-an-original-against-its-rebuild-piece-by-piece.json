@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d5c6c55997dcca0ea8d0215961d6f3edadc774deb9cfb17e43d809519f62d8fc",
+  "node_id": "dec:idea-match-an-original-against-its-rebuild-piece-by-piece",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS AN IDEA (@ajs, 2026-10-18: \"Record h, i and j as ideas\").\n\nFROM GHIDRA (clone at /home/ajs7/project/ghidra): Version Tracking correlates the functions and data of two programs (two versions of one binary) and carries names and annotations across the matches. This is from my knowledge of the tool; the 2026-10-18 survey did NOT read its code, so it is cited as recalled.\nFROM REA: a reconstruction obligation is discharged by a binding (the owner module and symbol in the rebuild) plus a verifier whose authority matches the original's (docs/reconstruction-obligation-ledgers.md).\n\nTHE IDEA FOR REFLOW2: when a system is ported or rebuilt, every recovered part of the original (a component, a function, an interface) is matched to the part of the rebuild that replaces it. Each match carries its evidence that the two behave the same, at a level that reaches the claim (option (g)). The read-back names the parts not yet matched, the matches without evidence, and the matches whose evidence is too weak.\n\nA TRIAL THAT WOULD TEST IT (raised 2026-10-18, not chosen): Super Mario Bros. from the annotated disassembly (6502bench SourceGen project at /home/ajs7/Downloads/nes-smb: 1,991 labels, 7,771 comments; the ROM itself is not included). One feature at a time is rebuilt in another language and compared frame by frame against the original 6502 code. Private only: it is Nintendo's copyrighted program, and the ROM must be one he is entitled to.\n\nSIZE, as a finding: medium to large.\n\nNOT CHOSEN; nothing to build.",
+    "kind": "exploratory",
+    "name": "OPEN (j) — can reflow2 match an original against its rebuild piece by piece (each original part to the part that replaces it, with the evidence that they behave the same), the way Ghidra's Version Tracking matches functions between two builds?",
+    "rationale": "Captured through the hub at his word, in reflow2's design next to the automated-translation idea that foresaw a port as a two-design comparison. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

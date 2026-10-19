@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:def95614dd8e3a4f5f72c2bcc919508e09ff4d9a87a4d54f513d21f494e58141",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-match-an-original-against-its-rebuild-piece-by-piece",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
