@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8296a475bf104e7cdb1e7da8156c7c7a625cee4ed0004fb340e486c6e9475795",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

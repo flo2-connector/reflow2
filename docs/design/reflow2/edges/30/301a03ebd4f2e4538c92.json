@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a03885607559a2fff2815b31794bc5814dbac6eb394dfb518eaa269619ca15e5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-capstone-trial-ran-on-0-88-0-and-reasons-to-exist-follow-an-intelligence-update-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

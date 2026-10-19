@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a9829ff1423012b6801f3f9ecc759e36bd734b3835e5c878c331677eb024dcb9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-site-shows-the-capstone-as-a-worked-demo",
+  "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

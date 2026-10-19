@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3c2f4a852432956e9d16fdc7c374dbc230feaeff46d3830b59a14322c89f15f1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-can-remove-its-kit-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:a12c38e17cea496e34a220df5691ea08111f9e2965b9d0637e4078fcdee7478b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:machine-install"
+}

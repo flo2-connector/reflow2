@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:445e4388042a8338fbfbd3b3764e993488ab6dbe15ffd6657b64867e5688b211",
+  "content_hash": "sha256:7f261dd269d45543c4ab8c11a1129a8688d50877ffcbeb6b2fb0031b81dc11a9",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:a-served-skill-designs-an-argument-for-and-against",
+  "prev_item_hash": "sha256:445e4388042a8338fbfbd3b3764e993488ab6dbe15ffd6657b64867e5688b211",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

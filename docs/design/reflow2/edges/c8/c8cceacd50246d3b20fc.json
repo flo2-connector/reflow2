@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1063aa850a994e6adf12c6636b62343bb03a26524512dbd176b055844ad8cc79",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design",
+  "properties": {
+    "evidence": "The accepted view requirement already says a hub opens as one view over its members; this asks for it on a local hub through the door."
+  },
+  "to_id": "dec:idea-a-hub-on-one-machine-opens-as-one-view-through-the-door"
+}

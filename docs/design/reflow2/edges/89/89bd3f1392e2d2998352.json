@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:b7f541144823c1cf46a8bad6f0e43ff7429f67e684f281e803bec49df5fa7b07",
+  "content_hash": "sha256:0149d17c246a0aadf2c0e4ae49c3e58aa1b544c07c71161e3771dc4c6c2447d2",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:an-objection-aimed-at-a-step-is-read-against-that-step",
+  "prev_item_hash": "sha256:b7f541144823c1cf46a8bad6f0e43ff7429f67e684f281e803bec49df5fa7b07",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

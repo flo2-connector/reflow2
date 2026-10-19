@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02cec074cbc62491befb5335554274a07db0d55eb154512cf178e7884903d095",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:defect-a-stale-kit-receipt-silently-decides-whether-the-loop-nudge-is-owed",
+  "properties": {
+    "evidence": "That defect named the class on 2026-08-15: .reflow2/kit-version.json, a receipt of an install event, read by code as a live fact about the project (there nudge.rs). This finding is the same class in reflow2_init.py: receipt presence is read as 'a kit is installed here' after the kit was deleted."
+  },
+  "to_id": "fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19"
+}

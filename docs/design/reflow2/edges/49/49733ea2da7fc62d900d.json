@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:beffe3a2af858c1228a41cbdc69d611fc3d468d601ae5747236c4ae0a7567a17",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-shown",
+  "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:a9b43bf16d0ef4cad27ec0da3c2ee251e0830c522c73567305891a1561c224fe",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent",
+  "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

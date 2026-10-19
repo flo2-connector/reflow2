@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:23883f9dae43cac0d9911022cf63d8c2618da046101d10d2da5ea445ce5f40e4",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-served-skill-designs-an-argument-for-and-against",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

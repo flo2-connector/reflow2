@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5193ac0bee3b8416c207eebda0c643339d419f1f89149c2af4d02a7be60a0ed8",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:req:small-read-back-faults-from-the-cogito-trial-are-fixed:r2"
+}

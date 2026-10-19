@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:8bd917796d5ca2b1e27ac556a217b51d0f2447dc3afb9851a19126828dbc7644",
+  "content_hash": "sha256:6ee479df412a974cc87bd225cd1a912a808c2a748ef792d5b164677181abcccb",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:a-claim-with-several-lines-reads-each-lines-assumptions",
+  "prev_item_hash": "sha256:8bd917796d5ca2b1e27ac556a217b51d0f2447dc3afb9851a19126828dbc7644",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

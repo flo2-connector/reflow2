@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:2e3ef5171bd7038c4809136fba832492185464de64dbc1232b970b5e9b894eed",
+  "content_hash": "sha256:aa3936ba4f95fee39fad425f76c75079c6e4f8137daec3eb2f057d107e99df6d",
   "node_id": "req:a-served-skill-designs-an-argument-for-and-against",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:2e3ef5171bd7038c4809136fba832492185464de64dbc1232b970b5e9b894eed",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -10,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-19: \"Let's keep pressing on the phases and fixes\" (trolley trial, fact:the-trolley-trial-ran-on-flo2-io-and-rival-positions-have-no-honest-form-but-a-contested-decision-2026-10-19)",
     "statement": "reflow2 serves a skill for designing an argument:\n- cases or situations as given;\n- principles as chosen foundations;\n- each position derived from a principle;\n- objections aimed at what they attack (claim, premise or step) and replies;\n- rival positions kept as an open dispute, never drawn as a one-way CONTRADICTS that refutes one side;\n- a read-back per question.\nIt agrees with the tools, and find_skills finds it from \"argument\", \"line of reasoning\" or \"for and against\".\nMEASURED 2026-10-19 in the trolley trial: no served skill covers this. design-a-proof says it is \"Not for an argument for and against a choice (that is a Decision)\", so the designer followed it anyway. In the cogito AI branch, a chat that read no skill drew rival verdicts as one CONTRADICTS, and one side silently read refuted.",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

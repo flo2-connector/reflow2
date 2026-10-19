@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:484fc107af4f1e9849a0888a65a31d9f356c54b89ec3779098990f1c66b033a2",
+  "node_id": "req:a-claim-derived-under-a-refuted-supposition-says-so",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim derived under a supposition that is now refuted reads that it rests on a refuted supposition, not as an open conditional that still holds",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19: \"Capture + add to phase 6\" (capstone trial)",
+    "statement": "A step that assumes a supposition holds inside the hypothetical, which is correct logic. But once the supposition itself reads refuted outside, the claims derived under it read \"rests on a refuted supposition (S)\". They no longer count as live conditional support or as a standing objection, and the what-if names them.\nMEASURED 2026-10-19 in the FICTIONAL capstone: after U1, S2 (\"the export variant's capabilities are in the fielded radar\") read REFUTED, yet H-agile's step from R3 under S2 still read \"holds\", \"assumed… held inside it whatever its own truth\".",
+    "status": "accepted"
+  }
+}

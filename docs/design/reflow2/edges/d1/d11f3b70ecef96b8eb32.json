@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:88776cf042c5e1a13d66bff86c9962e87f54ff1f6883256a6f06113bf38bea0f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-on-one-machine-opens-as-one-view-through-the-door",
+  "properties": {
+    "evidence": "A local view would inherit the hub gaps phase 4 fixes, so it is best built after them; not strictly required.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:through-a-hub-every-tool-can-run-on-one-named-member"
+}

@@ -450,6 +450,9 @@ reflow2 — a persistent design brain for building things with an AI agent.
   reflow2 init <dir>    set up ONE repo to carry its design (for a project you share)
   reflow2 update        bring THIS project's reflow2 files up to the version
                         installed on this machine  (--check to preview)
+  reflow2 init --remove [<dir>]
+                        take reflow2's kit back out of ONE project; the design
+                        stays, and update never brings the kit back (--check)
   reflow2 check         run the design gate against the committed export
   reflow2 hook vscode   the loop nudge, as VS Code's hooks run it (reads the
                         event on stdin; .github/hooks/reflow2.json calls it)

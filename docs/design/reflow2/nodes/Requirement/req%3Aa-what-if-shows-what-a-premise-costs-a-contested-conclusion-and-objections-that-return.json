@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:33aaf670589efca163c2e0ae7951026ee60a7a8581d6e29f768f0b1417820550",
+  "content_hash": "sha256:332e651d7c9c20ff08586e3a6e66eb3e7d17be211462023b3a578515430045a1",
   "node_id": "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:33aaf670589efca163c2e0ae7951026ee60a7a8581d6e29f768f0b1417820550",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -10,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial)",
     "statement": "propagate_from on a premise says, per route, what the conclusion loses, even when the conclusion already reads unknown or contested (for example \"route B loses its last unobjected premise\"). It also names every objection that comes back into force because the reply that answered it lost its support: reinstatement in reverse.\nObserved in the cogito trial (2026-10-18): losing con:def-thought reached 29 nodes, but req:i-exist \"did not change, because it was already unknown\". The walking objection, whose reply rested on that premise, showed up only as a \"risk crossing\", not as coming back.",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

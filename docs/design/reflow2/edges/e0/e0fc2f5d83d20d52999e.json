@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:211e07b1524633ba9048d6ee31bd9d7d1375a7114f5ca6b973e9d59e51bc4952",
+  "content_hash": "sha256:a04059b5105c5ee0283a449a7753e71b6b35fa61a0e64f3923949cea932fee88",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:a-conclusion-whose-every-route-is-contested-reads-contested",
+  "prev_item_hash": "sha256:211e07b1524633ba9048d6ee31bd9d7d1375a7114f5ca6b973e9d59e51bc4952",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

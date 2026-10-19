@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f10a2a4015c7bc8e9f50cd10323c5ee9b714e2d86d948e1d7a8bdb10cf144cff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-trials-on-0-88-0",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

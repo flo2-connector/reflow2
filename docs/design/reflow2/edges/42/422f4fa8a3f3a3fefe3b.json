@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:67d7ff58edfb8546655a152315c9a3d56f25404cc26b5bf05a5e27db67386841",
+  "content_hash": "sha256:b1fdf963e1cbc1eeca7f57771d3a54b98d0368f40a3d126b7fd3656c38124039",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:through-a-hub-every-tool-can-run-on-one-named-member",
+  "prev_item_hash": "sha256:67d7ff58edfb8546655a152315c9a3d56f25404cc26b5bf05a5e27db67386841",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

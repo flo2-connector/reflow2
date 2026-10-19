@@ -20,6 +20,7 @@ import os
 import pathlib
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -1953,6 +1954,243 @@ class VsCodeTerminalRoute(unittest.TestCase):
         self.assertIn("create  .github/instructions/reflow2.instructions.md", changes)
         self.assertIn("create  .github/hooks/reflow2.json", changes)
         self.assertIn("create  .github/skills/genesis/SKILL.md", changes)
+
+
+class AKitRemovedStaysRemoved(unittest.TestCase):
+    """A project can take reflow2's kit out on purpose, and `reflow2 update`
+    never brings a removed kit back
+    (req:a-project-can-remove-its-kit-and-update-never-brings-a-removed-kit-back).
+
+    THE FIELD CASE (Anthony's work machine, 2026-10-13, 0.83.5): `reflow2 update`
+    in 11 hub-member repos whose kit had been deleted by hand recreated ~72 files
+    and appended lines to four tracked files. Root cause
+    (fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19):
+    the receipt's PRESENCE was the whole test of "a kit is installed here", a
+    missing kit file is by design read as "give me the kit's copy", and there was
+    no recorded state for "this project removed its kit" and no per-project remove.
+
+    Three invariants, each driven the way the `reflow2` wrapper drives the
+    installer (`reflow2_init.py --binary B ...`, no tty), in a real git repo:
+
+    1. `--remove` deletes the kit files nobody edited (naming the ones it keeps),
+       strips the lines the kit appended to tracked files, marks the receipt
+       removed, and leaves the design store alone.
+    2. `--update` refuses, in the words it uses for a project with no receipt,
+       when the receipt says removed OR when none of the files it records remain.
+       One deleted file still means "give me the kit's copy".
+    3. A live receipt with no `harnesses` key never makes a non-interactive
+       update install every MCP harness: it refuses and names the choice.
+    """
+
+    THEIR_GITIGNORE = "node_modules/\n"
+    THEIR_GITATTRIBUTES = "*.png binary\n"
+    THEIR_AGENTS = "# Our project\n\nOur own rules.\n"
+    THEIR_COPILOT = "# Copilot\n\nOur copilot rules.\n"
+    STORE = "the design store: not the kit's to touch\n"
+
+    def setUp(self):
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="reflow2-remove-test-"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        # A binary that refuses everything: nothing here needs a real store, and
+        # the installer reports a refused export rather than failing on it.
+        self.stub = self.tmp / "reflow2-mcp"
+        self.stub.write_text("#!/bin/sh\nexit 1\n")
+        self.stub.chmod(0o755)
+
+    def git(self, p, *args) -> str:
+        return subprocess.run(["git", *args], cwd=p, capture_output=True, text=True,
+                              check=True).stdout
+
+    def field_project(self, name="proj") -> pathlib.Path:
+        """A repo shaped like the field's: its own AGENTS.md, .gitignore,
+        .gitattributes and copilot instructions, committed, and a design store in
+        `.reflow2/` that git does not see (the 0.80.0 `.git/info/exclude` shape)."""
+        p = self.tmp / name
+        p.mkdir()
+        self.git(p, "init", "-q", ".")
+        (p / ".gitignore").write_text(self.THEIR_GITIGNORE)
+        (p / ".gitattributes").write_text(self.THEIR_GITATTRIBUTES)
+        (p / "AGENTS.md").write_text(self.THEIR_AGENTS)
+        (p / ".github").mkdir()
+        (p / ".github" / "copilot-instructions.md").write_text(self.THEIR_COPILOT)
+        (p / ".git" / "info").mkdir(parents=True, exist_ok=True)
+        (p / ".git" / "info" / "exclude").write_text(".reflow2/\n")
+        (p / ".reflow2" / "graph").mkdir(parents=True)
+        (p / ".reflow2" / "graph" / "CURRENT").write_text(self.STORE)
+        self.git(p, "add", "-A")
+        self.git(p, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "base")
+        return p
+
+    def status(self, p) -> str:
+        return self.git(p, "status", "--porcelain", "-uall")
+
+    def run_init(self, p, *args) -> subprocess.CompletedProcess:
+        """The installer as the `reflow2` wrapper runs it, with no tty."""
+        return subprocess.run(
+            [sys.executable, str(HERE / "reflow2_init.py"), "--binary", str(self.stub),
+             *args, str(p)],
+            capture_output=True, text=True, stdin=subprocess.DEVNULL, timeout=120)
+
+    def remove_by_hand(self, p):
+        """What the person did: every new file outside `.reflow2/` deleted, every
+        tracked file restored. The receipt, inside `.reflow2/`, stays."""
+        self.git(p, "checkout", "--", ".")
+        self.git(p, "clean", "-fdq")
+        self.assertEqual(self.status(p), "", "precondition: the kit is gone by hand")
+        self.assertTrue((p / init.STAMP).exists(), "precondition: the receipt stayed")
+
+    def receipt(self, p) -> dict:
+        return json.loads((p / init.STAMP).read_text())
+
+    # ---- 2. the guard: update never brings a removed kit back ----------------
+
+    def test_the_field_case_a_kit_removed_by_hand_is_not_brought_back_by_update(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        self.assertGreater(len(self.receipt(p)["installed_files"]), 50,
+                           "precondition: the receipt records the whole terminal route")
+        self.remove_by_hand(p)
+
+        out = self.run_init(p, "--update")
+
+        self.assertEqual(out.returncode, 1, f"update must refuse:\n{out.stdout}\n{out.stderr}")
+        self.assertIn("carries a design but no installed kit", out.stderr,
+                      "the refusal uses the words for a project with no receipt")
+        self.assertIn("reflow2 init", out.stderr, "and names the command that would work")
+        self.assertEqual(self.status(p), "", "nothing was recreated or appended")
+
+    def test_one_deleted_kit_file_still_means_give_me_the_kits_copy(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        (p / ".github" / "skills" / "genesis" / "SKILL.md").unlink()
+        self.assertIsNone(init.why_not_an_update(p),
+                          "deleting ONE kit file is how a person accepts the kit's copy")
+
+    def test_a_receipt_that_says_removed_is_refused_by_update(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        self.assertEqual(self.run_init(p, "--remove").returncode, 0)
+        after_remove = self.status(p)
+
+        out = self.run_init(p, "--update")
+
+        self.assertEqual(out.returncode, 1, f"update must refuse:\n{out.stdout}\n{out.stderr}")
+        self.assertIn("carries a design but no installed kit", out.stderr)
+        self.assertIn("removed", out.stderr, "say WHY there is no kit")
+        self.assertEqual(self.status(p), after_remove, "update wrote nothing")
+
+    def test_a_deliberate_init_after_a_remove_installs_again(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        self.assertEqual(self.run_init(p, "--remove").returncode, 0)
+        init.install(p, self.stub, False, ["vscode-cli"])
+        self.assertNotIn("removed", self.receipt(p), "a first install is a live receipt again")
+        self.assertIsNone(init.why_not_an_update(p))
+
+    # ---- 1. the remove --------------------------------------------------------
+
+    def test_remove_takes_out_the_kit_keeps_edits_strips_lines_and_leaves_the_design(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        edited = p / ".github" / "skills" / "adopt" / "SKILL.md"
+        edited.write_text(edited.read_text() + "\nOur team always runs this on Mondays.\n")
+        edited_text = edited.read_text()
+
+        out = self.run_init(p, "--remove")
+
+        self.assertEqual(out.returncode, 0, f"{out.stdout}\n{out.stderr}")
+        self.assertEqual(edited.read_text(), edited_text, "a person's edit is never deleted")
+        self.assertIn(".github/skills/adopt/SKILL.md", out.stdout, "and the kept file is named")
+        # What git sees is the repo before the install, plus the one kept edit
+        # and the one ignore line kept for the store.
+        self.assertEqual(self.status(p),
+                         " M .gitignore\n?? .github/skills/adopt/SKILL.md\n",
+                         "every untouched kit file is gone and every appended line stripped")
+        self.assertEqual((p / ".gitignore").read_text(), self.THEIR_GITIGNORE + "\n.reflow2/\n",
+                         "everything the kit added to .gitignore goes, except .reflow2/")
+        # Anthony, 2026-10-19, "Keep the ignore line": the design store stays,
+        # so the line keeping it out of commits stays, by .gitignore itself.
+        self.assertTrue(self.git(p, "check-ignore", "-v", ".reflow2/graph").startswith(".gitignore:"),
+                        "the kept store is still ignored by the project's own .gitignore")
+        self.assertEqual((p / ".gitattributes").read_text(), self.THEIR_GITATTRIBUTES)
+        self.assertEqual((p / "AGENTS.md").read_text(), self.THEIR_AGENTS)
+        self.assertEqual((p / ".github" / "copilot-instructions.md").read_text(),
+                         self.THEIR_COPILOT)
+        self.assertEqual((p / ".reflow2" / "graph" / "CURRENT").read_text(), self.STORE,
+                         "the design store is untouched")
+        receipt = self.receipt(p)
+        self.assertTrue(receipt.get("removed"), f"the receipt says removed: {receipt}")
+        self.assertNotIn("harnesses", receipt, "a removed kit serves no harness")
+
+    def test_remove_check_previews_and_writes_nothing(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        before = self.status(p)
+        receipt = (p / init.STAMP).read_text()
+
+        out = self.run_init(p, "--remove", "--check")
+
+        self.assertEqual(out.returncode, 0, f"{out.stdout}\n{out.stderr}")
+        self.assertIn("delete  .github/skills/genesis/SKILL.md", out.stdout)
+        self.assertIn(".gitignore", out.stdout, "the stripped lines are previewed too")
+        self.assertEqual(self.status(p), before, "a preview writes nothing")
+        self.assertEqual((p / init.STAMP).read_text(), receipt)
+
+    def test_files_the_kit_created_whole_are_deleted_whole(self):
+        p = self.tmp / "fresh"
+        p.mkdir()
+        self.git(p, "init", "-q", ".")
+        init.install(p, self.stub, False, ["claude"])
+        for rel in (".gitignore", ".gitattributes", "CLAUDE.md", "AGENTS.md"):
+            self.assertTrue((p / rel).exists(), f"precondition: the kit created {rel}")
+
+        out = self.run_init(p, "--remove")
+
+        self.assertEqual(out.returncode, 0, f"{out.stdout}\n{out.stderr}")
+        for rel in (".gitattributes", "CLAUDE.md", "AGENTS.md", ".claude/commands"):
+            self.assertFalse((p / rel).exists(), f"{rel} was the kit's alone, so it goes")
+        self.assertEqual((p / ".gitignore").read_text(), ".reflow2/\n",
+                         "the one line that keeps the kept store out of commits stays")
+        self.assertEqual(subprocess.run(["git", "check-ignore", "-q", ".reflow2/graph"],
+                                        cwd=p).returncode, 0,
+                         "after a remove, the design store is still ignored")
+        warned = out.stdout.split("Git no longer ignores", 1)[-1].split("\n\n", 1)[0] \
+            if "Git no longer ignores" in out.stdout else ""
+        self.assertNotIn(".reflow2/", warned, "the store is not among what git now sees")
+        self.assertNotIn(".git/info/exclude", out.stdout)
+        self.assertIn(".mcp.json", out.stdout,
+                      "what remove leaves in place is named, not left to be found")
+
+    def test_the_wrapper_passes_remove_through_to_the_installer(self):
+        spec = importlib.util.spec_from_file_location("reflow2_install", HERE / "reflow2_install.py")
+        inst = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(inst)
+        self.assertIn('init)      shift; exec python3 "$KIT/../tools/reflow2_init.py" '
+                      '--binary "$BIN" "$@"', inst.WRAPPER,
+                      "`reflow2 init --remove` reaches the installer unchanged")
+        self.assertIn("reflow2 init --remove", inst.WRAPPER, "and the help names it")
+
+    # ---- 3. no recorded harness: refuse, never install them all ---------------
+
+    def test_a_receipt_with_no_harnesses_makes_a_noninteractive_update_refuse(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["claude"])
+        receipt = self.receipt(p)
+        del receipt["harnesses"]
+        (p / init.STAMP).write_text(json.dumps(receipt, indent=2) + "\n")
+        before = self.status(p)
+
+        out = self.run_init(p, "--update")
+
+        self.assertEqual(out.returncode, 1, f"update must refuse:\n{out.stdout}\n{out.stderr}")
+        self.assertIn("--harness", out.stderr, "the refusal names the choice")
+        self.assertEqual(self.status(p), before, "no harness's files were written")
+        for rel in ("opencode.json", ".vscode", ".grok", ".opencode"):
+            self.assertFalse((p / rel).exists(), f"{rel} was never asked for")
+
+        named = self.run_init(p, "--update", "--harness", "claude")
+        self.assertEqual(named.returncode, 0, f"{named.stdout}\n{named.stderr}")
+        self.assertEqual(self.receipt(p)["harnesses"], ["claude"])
 
 
 if __name__ == "__main__":

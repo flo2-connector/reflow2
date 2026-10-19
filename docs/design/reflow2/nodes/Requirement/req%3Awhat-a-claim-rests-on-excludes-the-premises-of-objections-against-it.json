@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:ad212918fafa2daa86a1d29cdf1666e1d2b4f6fe262f69f79a834ba309c6dd26",
+  "content_hash": "sha256:4f3cda1a56be956c55eec0a6be750e120b40a9736b8255fa8edbc17a4dedbe2d",
   "node_id": "req:what-a-claim-rests-on-excludes-the-premises-of-objections-against-it",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:ad212918fafa2daa86a1d29cdf1666e1d2b4f6fe262f69f79a834ba309c6dd26",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -10,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-19 (trolley trial)",
     "statement": "reasoning_report's rests_on and uncited_premises for a claim list only what supports it. The premises of objections against the claim or its foundations are listed apart, as what stands against it. A step (Inference) used as a premise is not listed as an uncited premise.\nMEASURED 2026-10-19 in the trolley trial: \"Switch: turning permissible\" was said to rest on the Footbridge judgment, a premise of an objection against one of its principles, and steps used as premises were listed among the \"uncited premises\".",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

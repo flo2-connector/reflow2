@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5a5dbc26ed493fff39f8e5d7c12f60089855e322c0441dea050361ac86769cf4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-p5-hypothesis-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

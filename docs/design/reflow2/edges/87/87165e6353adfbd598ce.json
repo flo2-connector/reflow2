@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e9c198d4423d73fc2d1d1af9f57cc7170eaca6d107a045dc740efcae348bd968",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-site-shows-the-capstone-as-a-worked-demo",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-demo-the-capstone"
+}

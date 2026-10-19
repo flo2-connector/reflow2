@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b45e5c6aa74711db11402b707abe417c932aa47706d689e6695388e0d1c6571c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-project-can-remove-its-kit-and-update-never-brings-it-back",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:init"
+}

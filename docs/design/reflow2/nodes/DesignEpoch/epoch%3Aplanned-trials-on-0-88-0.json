@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:69d70dbd509ca9354a8edb1b8efa6a5c532ccba8e144705fbea6c82f3fba0ffb",
+  "node_id": "epoch:planned-trials-on-0-88-0",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Step 2 of epoch:planned-reasoning-build-list. Runs once 0.88.0 is on flo2.io.\n- The capstone: design driven by uncertain intelligence (dec:idea-design-driven-by-uncertain-intelligence-as-the-capstone-trial), on fictional or open-source data only. It needs phase 2's reason-to-exist reading.\n- Chris's stage-5 design (flo2.io 7aa8a90d21c8956c, outside the hub by Anthony's choice), re-read once Chris answers his six questions.\n- The logic rung: De Morgan, NAND universality and A∨¬A, each by a calc truth table and by natural deduction.",
+    "epoch_type": "milestone",
+    "name": "Trials on reflow2 0.88.0: the intelligence capstone, the re-read of Chris's stage-5 design, and the logic rung",
+    "sequence": 761,
+    "status": "planned"
+  }
+}

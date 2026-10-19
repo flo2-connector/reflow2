@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:da9aa9e01e809d7fa6f714be07a974d2067d5213d3d18377daefdfe84af20f93",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "xref:0bee0c00b35845f6:dec:idea-how-a-statistical-hypothesis-test-is-designed-computed-and-read",
+  "properties": {
+    "evidence": "Option (b), kept by Anthony 2026-10-19."
+  },
+  "to_id": "req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-shown"
+}

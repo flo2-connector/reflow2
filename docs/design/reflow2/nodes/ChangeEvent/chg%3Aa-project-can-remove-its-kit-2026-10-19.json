@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:8d5912dd8b8f89b8cd155a8a463d7d58a7346fd16f9b85d77adb6a1ab136ad46",
+  "node_id": "chg:a-project-can-remove-its-kit-2026-10-19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "2cbcbc47f,ac38947fc",
+    "detected_at": "2026-10-19",
+    "name": "A project can remove its kit, and update never brings a removed kit back",
+    "rationale": "From the root cause fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19: the receipt's presence was the whole test of \"a kit is installed here\", a missing kit file is by design read as \"give me the kit's copy\", there was no recorded state for \"removed\" and no per-project remove — so `update` wrote ~72 files back into 11 hand-cleaned repos and re-armed itself by rewriting the receipt. Anthony chose \"Remove command + guard\" (the requirement, accepted 2026-10-19). The cause is corrected, not contained: the receipt now records the removal, and `update` reads the receipt AND whether anything it lists is still there, so the install event is no longer read as a live fact about the project (the same class as fact:defect-a-stale-kit-receipt-silently-decides-whether-the-loop-nudge-is-owed). The single-file case is kept on purpose; it is how a person accepts the kit's copy. The harness refusal closes measurement (3) of the root cause: step 4 of resolve_harnesses (install everything when nobody can be asked) stays for a first install only. Tests first: 8 of 9 cases in tools/test_init.py AKitRemovedStaysRemoved failed on main 5d75151, the field case among them (update exited 0 and wrote 79 paths). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "`reflow2 init --remove` (preview with --check) takes reflow2's kit out of one project: it deletes the kit files nobody edited and names the edited ones it keeps, strips what the kit appended to .gitignore, .gitattributes, .reflow2.toml and the instruction files, marks .reflow2/kit-version.json removed, and leaves the design store alone. `reflow2 update` now refuses, in its no-kit words, when the receipt says removed or when none of the files it records is left (one deleted file still updates), and a live receipt with no `harnesses` makes a non-interactive update refuse and name `--harness` instead of installing every MCP harness. The wrapper passes `init --remove` through unchanged; SETUP.md documents it."
+  }
+}

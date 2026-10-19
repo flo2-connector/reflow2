@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f716f5746a2bc3e7d5fd3e4f5c9cbee234f9040ebd2c1e345ba74f5c1bcb7abf",
+  "node_id": "ver:a-removed-kit-stays-removed-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tools/test_init.py, class AKitRemovedStaysRemoved, 9 cases, run in CI's core job (`python3 tools/test_init.py`). Each drives the installer as the `reflow2` wrapper does (`reflow2_init.py --binary <stub> ...`, stdin not a tty) in a real git repo shaped like the field's (its own AGENTS.md, .gitignore, .gitattributes and copilot instructions; a store in .reflow2/ excluded by .git/info/exclude). (1) Field case: init --harness vscode-cli, delete the kit by hand, `--update` exits 1 with \"carries a design but no installed kit\" and git status stays empty. (2) One deleted kit file still updates. (3) `--remove` then `--update`: refused, naming \"removed\", nothing written. (4) init after remove installs again. (5) `--remove` deletes untouched kit files, keeps and names an edited stub, leaves the four tracked files byte-identical to before the install and the store untouched, and the receipt says removed with no harnesses. (6) `--remove --check` lists and writes nothing. (7) Files the kit created whole (.gitignore, .gitattributes, CLAUDE.md, AGENTS.md, .claude/commands) are deleted whole, and .mcp.json is named as left in place. (8) The wrapper passes `init --remove` through and its help names it. (9) A live receipt with no `harnesses`: `--update` exits 1 naming `--harness`, writes nothing; `--update --harness claude` then succeeds and records it.",
+    "findings": "Failing first on main 5d75151: 8 of 9 failed (case 2, one deleted file still updates, passed on main as it should). Field case on main: update exited 0, wrote 79 paths back and modified the 4 tracked files; no-harnesses update exited 0 and wrote .grok/config.toml, the OpenCode plugin, opencode.json and .vscode/mcp.json; `--remove` was an unrecognized argument. With the fix: 142 of 142 in test_init.py pass; the field case refuses with nothing written.",
+    "kind": "verification",
+    "last_run_at": "2026-10-19",
+    "level": "integration",
+    "location": "tools/test_init.py",
+    "method": "test",
+    "name": "A removed kit stays removed (test_init.py AKitRemovedStaysRemoved)",
+    "status": "passing"
+  }
+}

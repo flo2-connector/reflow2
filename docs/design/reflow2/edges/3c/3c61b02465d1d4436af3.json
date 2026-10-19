@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dda8ce5f4f5a6974c890b713e229265a2360e03a62331383e4434769cf6b3e16",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:what-has-lost-its-reason-now-is-one-read",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

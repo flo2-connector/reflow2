@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e0d9e17e1d389e0daf40c20f338faa86df46b5db794cadb1595125df9fc11e0",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-capstone-trial-ran-on-0-88-0-and-reasons-to-exist-follow-an-intelligence-update-2026-10-19",
+  "properties": {
+    "evidence": "Capstone gaps 4 and 8."
+  },
+  "to_id": "req:a-requirements-read-back-follows-its-reason-to-the-evidence"
+}

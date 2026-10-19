@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:682c7111143d7ed2d2b556890350f92e0aa509301b8ad94fef97df1317e11365",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-work-agent-put-a-field-idea-in-the-public-guide-and-not-in-the-field-log-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
