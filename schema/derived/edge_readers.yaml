@@ -108,6 +108,7 @@ readers:
   export.rs::current_acceptances: { kind: not_derived, edges: [CHANGED], why: "The document form of artifact.rs::current_acceptance: which acceptance is current for each artifact in an export, so export_graph can elide the node copy it equals and import_graph can derive it back. One hop per artifact; it composes no relation." }
   export.rs::export_surface: { kind: unjudged, edges: [CONSUMES, CONTAINS, PROVIDES, REALIZES, SPECIFIES, VERIFIES] }
   export.rs::import_graph_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The import: writes a document's nodes and edges, normalising a legacy AUTHORED_BY on the way in; its edge rewrites come from narrowing::edge_rewrite_for. It answers one restore and derives no relation." }
+  far.rs::reasoning_references: { kind: not_derived, edges: [CONTRADICTS], why: "A listing: which of this design's references to another design take part in its reasoning (either end of an objection, or a premise or conclusion of a step), one hop each, so the server knows which far nodes to read before a call. It derives no relation." }
   fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }
   flow.rs::part_of_flow: { kind: unjudged, edges: [PART_OF_FLOW] }
   flowdown.rs::receive_from_design: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A writer: holds a requirement another design sent, and draws DECOMPOSES (a piece) or GOVERNED_BY (a derived requirement) to the reference standing in for the sender's node." }

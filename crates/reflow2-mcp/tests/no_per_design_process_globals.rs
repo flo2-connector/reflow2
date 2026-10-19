@@ -159,6 +159,36 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          serves a view from inside another's. Read in one place, `service::view::serve`.",
     ),
     (
+        "reflow2-mcp/src/service/far.rs",
+        "WALK_AMONG",
+        "A tokio TASK-LOCAL beside VIEW_GRAPH_IDS, and the same shape: the designs a \
+         change walk may continue into on the ONE tool call now being served (the hub and \
+         the members the caller may read), set by `view::serve` around that call and gone \
+         when it returns (req:reasoning-crosses-designs-within-a-hub). It is the host's \
+         word about one call, never a property of a design: two calls through two hubs \
+         each see only their own, and a call that did not come through a hub sees none.",
+    ),
+    (
+        "reflow2-core/src/far.rs",
+        "thread_local!",
+        "The declaration of SCOPE, below: the core's one per-call scope, for the far \
+         readings a call was handed (req:reasoning-crosses-designs-within-a-hub).",
+    ),
+    (
+        "reflow2-core/src/far.rs",
+        "SCOPE",
+        "A THREAD-LOCAL holding the far readings of the ONE call whose synchronous step is \
+         running on this thread: `far::scoped` sets it around that step and restores what \
+         was there after, even on a panic, and the server's `FarScoped` sets it on every \
+         poll of one call's future, so it never outlives the step and is never seen by \
+         another call. It is the reading of other designs that THIS call's caller may \
+         read, never a property of the design it is consulted from: two calls on one \
+         design, by callers who may read different designs, each see only their own. It \
+         is a thread-local rather than a field on the design handle precisely because the \
+         handle is shared between callers, and a reading put there would reach a caller \
+         who may not read the far design.",
+    ),
+    (
         "reflow2-mcp/src/service/unit.rs",
         "CALL",
         "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: \

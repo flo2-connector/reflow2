@@ -723,6 +723,32 @@ opposite orders cannot deadlock on tokio's writer-preferring `RwLock`
 (`tests/a_hubs_address_serves_a_view_over_its_members.rs` runs H1 over [A, B] against H2 over
 [B, A], routed writes included, under a deadline).
 
+**Reasoning crosses designs, at the same layer** (since 2026-10-19,
+`req:reasoning-crosses-designs-within-a-hub`; `crates/reflow2-core/src/far.rs` and
+`crates/reflow2-mcp/src/service/far.rs`). The core holds one design and opens no other, so the
+registry is the assembler, and a local `--registry-root` behind a gateway or bearer gate gets it
+exactly as flo2.io does:
+
+- **A premise in another design reads as it reads there.** Before each call on a design whose
+  reasoning names a reference `xref:<design>:<node>` (a premise, a conclusion or either end of an
+  objection), `call_tool_unshaped` reads each far node IN ITS OWN DESIGN
+  (`RegistryHandle::read_other_design`, that design's guard alone, before this design's is
+  taken) and hands the readings to the call through `FarScoped`, which installs them in the
+  core's per-call scope (`reflow2_core::far::scoped`) on every poll. The premise then carries
+  the far truth; a far proof status short of `proven` keeps a confirmed line here from
+  `proven`; what the far node holds only under there makes the claim here `conditional`. A far
+  node that is gone reads `stale`, and a far design the caller may not read (the readable set on
+  THIS call), or any server that reaches no other design, reads `unreachable`: unknown, never
+  holding. Readings are per call and never stored: two callers may read different designs.
+- **Through a hub, a change walk continues.** `propagate_from` and `propagate_change` called
+  through a hub's address carry the radius on into each design of the view (`WALK_AMONG`, set by
+  `view::serve`: the hub and the readable members) holding a reference to a node the walk
+  reached, and on from there, each design entered once. The references are named in
+  `boundary_crossings` with their design's prefix and each radius comes back under
+  `across_designs`, whose ids already carry their own design's prefix and are skipped by the
+  member prefixer (`view::ACROSS_DESIGNS`). A call that does not come through a hub's address is
+  unchanged.
+
 **What flo2 must send:** on EVERY call to a hub's own design, reads included,
 `reflow2/view_graph_ids` (the hub's members ∩ what the caller may read) together with
 `reflow2/readable_graph_ids` and `reflow2/writes_for` — and the same `reflow2/view_graph_ids` on a

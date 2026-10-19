@@ -37,6 +37,7 @@ use reflow2_core::{
 };
 
 /// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
+mod far;
 mod unit;
 mod view;
 pub(crate) use unit::{CallScope, CallUnit, GraphHold, Settled, SharedGraph};
@@ -8624,23 +8625,30 @@ impl ReflowService {
                 let signer = self
                     .caller_rule
                     .signer_verified(writes_for.as_deref(), verified.as_ref());
+                // A PREMISE IN ANOTHER DESIGN READS AS IT READS THERE
+                // (`far`, req:reasoning-crosses-designs-within-a-hub): each one
+                // this design's reasoning names is read in its own design now,
+                // before this call takes this design's guard, and handed to the
+                // call for its length. Nothing, at no cost, where this design
+                // names none or this server reaches no other design.
+                let far = self.far_readings(readable.as_deref()).await;
                 scope
-                    .run(
-                        SIGNER.scope(
-                            signer,
-                            ACTING.scope(
-                                acting,
-                                WRITES_FOR.scope(
-                                    writes_for,
-                                    READABLE_GRAPH_IDS.scope(
-                                        readable,
-                                        crate::arguments::TRANSPORT
-                                            .scope(transport, self.tool_router.call(tcc)),
+                    .run(SIGNER.scope(
+                        signer,
+                        ACTING.scope(
+                            acting,
+                            WRITES_FOR.scope(
+                                writes_for,
+                                READABLE_GRAPH_IDS.scope(
+                                    readable,
+                                    crate::arguments::TRANSPORT.scope(
+                                        transport,
+                                        far::FarScoped::new(far, self.tool_router.call(tcc)),
                                     ),
                                 ),
                             ),
                         ),
-                    )
+                    ))
                     .await
             }
         };

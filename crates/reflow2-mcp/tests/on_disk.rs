@@ -31,6 +31,7 @@ mod a_stores_identity_follows_its_real_path;
 mod an_exposed_server_verifies_bearer_tokens;
 mod design_identity;
 mod loop_status_says_what_is_not_exported;
+mod reasoning_crosses_designs_within_a_hub;
 mod the_remote_client_measures_the_folders_own_files;
 mod the_server_keeps_the_export_current;
 mod through_a_hub_every_tool_runs_on_one_named_member;

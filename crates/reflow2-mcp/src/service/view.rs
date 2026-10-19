@@ -292,7 +292,53 @@ pub(super) async fn serve(
         .iter()
         .cloned()
         .partition(|m| not_readable(m, readable.as_deref()).is_none());
+    // A CHANGE WALK CONTINUES AMONG THE VIEW'S DESIGNS (`super::far`,
+    // req:reasoning-crosses-designs-within-a-hub): every call made below on one
+    // design may carry its walk on into the hub and the members the caller may
+    // read, and no further.
+    let among: Vec<String> = std::iter::once(hub_id.clone())
+        .chain(reachable.iter().cloned())
+        .collect();
+    super::far::WALK_AMONG
+        .scope(
+            Some(among),
+            serve_in_view(
+                hub,
+                request,
+                context,
+                policy,
+                tool,
+                hub_id,
+                own,
+                member,
+                registry,
+                members,
+                readable,
+                reachable,
+                unreachable,
+            ),
+        )
+        .await
+}
 
+/// [`serve`] past the admission and the view's membership, with the walk's
+/// reach in force.
+#[allow(clippy::too_many_arguments)]
+async fn serve_in_view(
+    hub: &ReflowService,
+    request: CallToolRequestParams,
+    context: RequestContext<RoleServer>,
+    policy: ContentPolicy,
+    tool: String,
+    hub_id: String,
+    own: RequestContext<RoleServer>,
+    member: Option<String>,
+    registry: RegistryHandle,
+    members: Vec<String>,
+    readable: Option<Vec<String>>,
+    reachable: Vec<String>,
+    unreachable: Vec<String>,
+) -> Result<CallToolResponse, McpError> {
     // A name nothing serves: the hub refuses it, as it always has.
     let Some(served) = hub.tool_router.get(&tool) else {
         return shaped(policy, on_one(hub, request, own).await);
@@ -598,7 +644,11 @@ fn prefix_held_values(v: &mut JsonValue, member: &str, holds: &mut impl FnMut(&s
                 .cloned()
                 .collect();
             for (k, val) in o.iter_mut() {
-                if elsewhere.contains(k) || k.ends_with("graph_id") || k.ends_with("graph_ids") {
+                if elsewhere.contains(k)
+                    || k == ACROSS_DESIGNS
+                    || k.ends_with("graph_id")
+                    || k.ends_with("graph_ids")
+                {
                     continue;
                 }
                 prefix_held_values(val, member, holds);
@@ -1052,7 +1102,7 @@ pub(crate) fn prefix_ids(v: &mut JsonValue, graph_id: &str) {
                 .cloned()
                 .collect();
             for (k, val) in o.iter_mut() {
-                if elsewhere.contains(k) {
+                if elsewhere.contains(k) || k == ACROSS_DESIGNS {
                     continue;
                 }
                 if is_id_key(k) {
@@ -1105,6 +1155,11 @@ fn names_a_node_elsewhere(key: &str, object: &JsonMap<String, JsonValue>) -> boo
             .is_some_and(|s| !s.is_empty())
     })
 }
+
+/// The key a change walk carries the designs it continued into under
+/// (`super::far`): each entry's ids already carry THAT design's prefix, so a
+/// member's prefix is never put on them.
+pub(crate) const ACROSS_DESIGNS: &str = "across_designs";
 
 fn is_id_key(k: &str) -> bool {
     k == "id" || (k.ends_with("_id") && !k.ends_with("graph_id"))
