@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:12449a59e54667cab04200cc7ae9d8e470589afbf2afb8806de7c1202242a128",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:reasoning-is-attached-to-the-structure-it-justifies",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

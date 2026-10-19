@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cae84741d6914d8b88acaa6c019a3f93a37d850b3203a706179795147ff6a03b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-attached-to-the-structure-it-justifies-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:8292ed3e33223b7722ae89f0c3f0ba4f590efd04bad20792144fc632598f7853",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-core"
+}

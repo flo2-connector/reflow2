@@ -123,7 +123,7 @@ readers:
   graph.rs::consumes_from: { kind: unjudged, edges: [CONSUMES] }
   graph.rs::contain_component: { kind: unjudged, edges: [CONTAINS] }
   graph.rs::contains: { kind: unjudged, edges: [CONTAINS] }
-  graph.rs::create_edge_unstamped: { kind: not_derived, edges: [AUTHORED_BY], why: "The store's only edge write. It asks the call's signer (intent::Signer, #616 fix 4) before storing an AUTHORED_BY; it answers one write and derives no relation." }
+  graph.rs::create_edge_unstamped_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The store's only edge write. It asks the call's signer (intent::Signer, #616 fix 4) before storing an AUTHORED_BY; it answers one write and derives no relation." }
   graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
   graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer)." }
   graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
@@ -182,6 +182,7 @@ readers:
   readiness.rs::add_readiness: { kind: not_derived, edges: [HAS_READINESS], why: "A writer: records a ReadinessAssessment and its HAS_READINESS edge, which readiness_gate reads." }
   readiness.rs::forecast_readiness: { kind: not_derived, edges: [HAS_TEMPORAL_FACT, VALID_FROM], why: "A writer: records a dated forecast (HAS_TEMPORAL_FACT, VALID_FROM) that readiness_gate reads. #631 named it as readiness_gate's code; it computes nothing." }
   readiness.rs::gate_on: { kind: not_derived, edges: [GATED_ON], why: "A writer: draws the GATED_ON threshold readiness_gate reads." }
+  reason_to_exist.rs::governing_decisions: { kind: not_derived, edges: [GOVERNED_BY], why: "Lists the Decisions one requirement is GOVERNED_BY (a parks ruling aside), for its reason_to_exist: one hop and a type check." }
   reasoning.rs::cited_sources: { kind: not_derived, edges: [DOCUMENTS], why: "Lists the Artifacts that DOCUMENT one node, with where to open each: a one-hop projection for the reasoning read-back." }
   reasoning.rs::claim_reading: { kind: not_derived, edges: [CONTRADICTS], why: "Reads one node for the reasoning read-back: what it stands against and what corroborates it, one hop each. Its truth and its objections come from the follows relation's own code." }
   reasoning.rs::contested_governor: { kind: not_derived, edges: [GOVERNED_BY], why: "Finds the Decision set to `contested` that governs one node: one hop and a status read." }

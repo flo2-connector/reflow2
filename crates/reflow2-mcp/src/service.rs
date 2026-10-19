@@ -2251,7 +2251,7 @@ pub struct ReleaseClaimReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct RequirementLineageReq {
-    /// The Requirement (`req:…`) whose lineage is being set — `original`, `decomposed` (a 1:1 split of a parent) or `derived` (technical necessity a Decision created).
+    /// The Requirement (`req:…`) whose lineage is being set — `original`, `decomposed` (a 1:1 split of a parent) or `derived` (brought into existence by a Decision: a necessity it forced, or the owner's words chosen through it).
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
     #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
@@ -2466,6 +2466,19 @@ pub struct SatisfiesReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::satisfies_coverage_opt")]
     pub coverage: Option<String>,
+    /// WHY this satisfier meets the requirement, in words — the edge's declared `evidence`.
+    /// Free text, never read as a link: name the claim that argues for the edge in `argued_by`.
+    #[serde(default)]
+    pub evidence: Option<String>,
+    /// THE CLAIM THAT ARGUES FOR THIS EDGE, by id: a statement of its own ("X satisfies Y")
+    /// that a step concludes (add_inference). Refused unless it names a node of this design.
+    /// The claim's verdict is then read beside the edge on get_node's edges listing, and a
+    /// change that breaks the claim names the edge in propagate_from. A claim whose premise is
+    /// this requirement's delivery, computed along this very edge, reads as circular: argue
+    /// from what delivery rests on (the capability realized, its check passing) instead.
+    /// Re-drawing an existing edge keeps every property the call leaves out.
+    #[serde(default)]
+    pub argued_by: Option<String>,
 }
 
 /// A Component PROVIDES an Interface. `from_id` / `to_id` is the taught spelling; the role names
@@ -2562,6 +2575,13 @@ pub struct DependsOnReq {
     /// typed tool is never narrower than its schema.
     #[serde(default)]
     pub to_type: Option<String>,
+    /// THE CLAIM THAT ARGUES FOR THIS DEPENDENCY, by id: a statement of its own ("X depends
+    /// on Y") that a step concludes (add_inference). Refused unless it names a node of this
+    /// design. Its verdict is read beside the edge on get_node's edges listing, and a change
+    /// that breaks it names the edge in propagate_from. Re-drawing an existing edge keeps
+    /// every property the call leaves out.
+    #[serde(default)]
+    pub argued_by: Option<String>,
 }
 
 /// A parent Component CONTAINS a child. `from_id` / `to_id` is the taught spelling; the role names

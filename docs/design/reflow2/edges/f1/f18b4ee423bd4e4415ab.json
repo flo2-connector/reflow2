@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0ba601caacdbe58227131e8ac18cd9c3b5040fd8147324e22a1cc84ed176fdb2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:reasoning-is-attached-to-the-structure-it-justifies-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

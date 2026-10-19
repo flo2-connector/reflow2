@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:baa56ad16cb0c8e9e94671419ff8eea717b048946a9653dd4dcc801b9406d139",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-attached-to-the-structure-it-justifies-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:b3267c7d9f99051bb00211324e4c7e81095930f483e9900c9cff7ed945c4fb0a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

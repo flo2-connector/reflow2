@@ -71,6 +71,10 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # reasoning attached to the structure it justifies (2026-10-18, phase 2):
+    # an edge's `argued_by`, the argument reading `circular`, a requirement's
+    # `reason_to_exist`, and propagate_from's `reasons_to_exist_lost`.
+    "argued_by", "circular", "reason_to_exist", "reasons_to_exist_lost",
     # design-a-proof (2026-10-17): the fields a proof is recorded with —
     # add_inference's `assumed`, `discharges`, `generalizes_over`,
     # `independent_of`, `independent_except`, `rule`, `rule_name`, `warrant`,

@@ -1504,8 +1504,25 @@ fn decorate(
     } else {
         None
     };
+    // A REQUIREMENT'S REASON TO EXIST (req:an-edge-names-the-claim-that-
+    // argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist,
+    // item 1): the Decision(s) it is GOVERNED_BY and each one's support,
+    // read apart from whether it is delivered. Omitted on a requirement no
+    // Decision governs, and on every other type.
+    let reason_to_exist = if node_type == reflow2_core::nodes::node::REQUIREMENT {
+        g.reason_to_exist(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
+        if let Some(r) = reason_to_exist {
+            obj.insert("reason_to_exist".to_string(), r);
+        }
         if let Some(sr) = statement_reading {
             obj.insert("statement_reading".to_string(), sr);
         }

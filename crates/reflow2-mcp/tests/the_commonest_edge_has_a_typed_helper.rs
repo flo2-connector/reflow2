@@ -100,6 +100,7 @@ async fn a_component_coupling_has_one_typed_call() {
             to_id: "cmp:stage".into(),
             from_type: None,
             to_type: None,
+            argued_by: None,
         }))
         .await
         .expect("a component coupling is one typed call, not a raw create_edge");
@@ -132,6 +133,7 @@ async fn a_coupling_to_a_component_that_does_not_exist_is_refused() {
             to_id: "cmp:nobody-made-this".into(),
             from_type: None,
             to_type: None,
+            argued_by: None,
         }))
         .await
         .expect_err("an edge to an absent node is refused through every typed helper");

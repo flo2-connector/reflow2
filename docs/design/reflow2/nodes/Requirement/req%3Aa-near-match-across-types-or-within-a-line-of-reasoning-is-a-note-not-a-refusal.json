@@ -1,10 +1,11 @@
 {
-  "content_hash": "sha256:f752d16d9e85bb3da68e57a3d5b60764fa1af725c0035d79856e7ef067086e55",
+  "content_hash": "sha256:d932c5606556955d2c0bf231600270867a37a9b1faa3d583d0de1a009487c6c3",
   "node_id": "req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:f752d16d9e85bb3da68e57a3d5b60764fa1af725c0035d79856e7ef067086e55",
   "properties": {
     "kind": "functional",
-    "lineage": "original",
+    "lineage": "derived",
     "name": "A near-match across types, or between two records of a line of reasoning, is a note on a successful write, never a refusal",
     "priority": "high",
     "provenance": "authored",

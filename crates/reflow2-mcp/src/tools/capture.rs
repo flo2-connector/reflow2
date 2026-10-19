@@ -2602,10 +2602,10 @@ impl ReflowService {
                        app must have a checkout system\" → enter-a-card, apply-a-discount, \
                        receive-a-receipt). Delivery rolls UP this edge: the parent is delivered \
                        when EVERY child is, so a decomposed parent needs no capability of its own. \
-                       Do NOT use for a requirement that adds new technical necessity nobody asked \
-                       for — that is *derived*, it belongs to the Decision that forced it \
-                       (set_requirement_lineage `derived` + governed_by), and re-opening that \
-                       decision may remove its reason to exist. Marks the child `decomposed`. \
+                       Do NOT use for a requirement a Decision brought into being — a technical \
+                       necessity it forced, or the owner's words chosen through it — that is \
+                       *derived*, it belongs to that Decision (set_requirement_lineage `derived` + \
+                       governed_by), and re-opening that decision may remove its reason to exist. Marks the child `decomposed`. \
                        Refuses a cycle: a tree that contains itself has no leaves and could never \
                        roll up.",
         title = "Decompose a Requirement",
@@ -2621,13 +2621,16 @@ impl ReflowService {
 
     #[tool(
         description = "Set where a Requirement came from — `original` (the stakeholder's own \
-                       word), `decomposed` (a 1:1 split of a parent, normally set for you by \
-                       `decomposes`), or `derived` (technical necessity nobody asked for, created \
-                       by a design decision — pair it with governed_by to that Decision). Distinct \
-                       from `provenance`, which says how the node entered the graph rather than \
-                       where the need came from. The classes behave differently: delivery rolls up \
-                       a decomposition, and a derived requirement may lose its reason to exist if \
-                       the decision behind it is re-opened.",
+                       word, stated directly), `decomposed` (a 1:1 split of a parent, normally set \
+                       for you by `decomposes`), or `derived` (brought into existence by a \
+                       Decision: a technical necessity nobody asked for that a design decision \
+                       forced, or the owner's words chosen through a Decision — the option they \
+                       picked, stated as intent; pair it with governed_by to that Decision, whose \
+                       support get_node then reads as the requirement's `reason_to_exist`). \
+                       Distinct from `provenance`, which says how the node entered the graph \
+                       rather than where the need came from. The classes behave differently: \
+                       delivery rolls up a decomposition, and a derived requirement may lose its \
+                       reason to exist if the decision behind it loses its support or is re-opened.",
         title = "Set Requirement Lineage",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -4099,6 +4102,20 @@ impl ReflowService {
                 "to_type",
                 reflow2_core::nodes::node::COMPONENT,
             )?;
+            if req.argued_by.is_some() {
+                let stored = g
+                    .draw_edge_keeping(
+                        reflow2_core::nodes::edge::DEPENDS_ON,
+                        &from_type,
+                        &req.from_id,
+                        &to_type,
+                        &req.to_id,
+                        reflow2_core::nodes::Props::new()
+                            .set_opt("argued_by", req.argued_by.as_deref()),
+                    )
+                    .map_err(dyno_err)?;
+                return edge_with_argument(g, stored);
+            }
             g.depends_on_between(&from_type, &req.from_id, &to_type, &req.to_id)
                 .map_err(dyno_err)?
         }))
@@ -4268,16 +4285,20 @@ impl ReflowService {
             "to_type",
             reflow2_core::nodes::node::REQUIREMENT,
         )?;
-        ok_json(EdgeDto::from(
-            g.satisfies_between(
+        let stored = g
+            .draw_edge_keeping(
+                reflow2_core::nodes::edge::SATISFIES,
                 &from_type,
                 &req.from_id,
                 &to_type,
                 &req.to_id,
-                req.coverage.as_deref(),
+                reflow2_core::nodes::Props::new()
+                    .set_opt("coverage", req.coverage.as_deref())
+                    .set_opt("evidence", req.evidence.as_deref())
+                    .set_opt("argued_by", req.argued_by.as_deref()),
             )
-            .map_err(dyno_err)?,
-        ))
+            .map_err(dyno_err)?;
+        edge_with_argument(g, stored)
     }
 }
 
@@ -4300,6 +4321,31 @@ impl ReflowService {
                 .map_err(dyno_err)?,
         )
     }
+}
+
+/// An edge as written, with the claim it names in `argued_by` read beside it
+/// (`argument`) when it names one; the bare edge, byte for byte, when not.
+pub(crate) fn edge_with_argument(
+    g: &reflow2_core::DesignGraph,
+    stored: reflow2_core::foundation::store::StoredEdge,
+) -> Result<CallToolResult, McpError> {
+    let props: std::collections::BTreeMap<String, reflow2_core::foundation::core::Value> = stored
+        .properties
+        .iter()
+        .map(|(k, v)| (k.clone(), v.clone()))
+        .collect();
+    let argument = g
+        .edge_argument(&stored.edge_type, &stored.from_id, &stored.to_id, &props)
+        .map_err(dyno_err)?;
+    let mut reply = serde_json::to_value(EdgeDto::from(stored))
+        .map_err(|e| McpError::internal_error(e.to_string(), None))?;
+    if let (Some(a), Some(obj)) = (argument, reply.as_object_mut()) {
+        obj.insert(
+            "argument".to_string(),
+            serde_json::to_value(a).map_err(|e| McpError::internal_error(e.to_string(), None))?,
+        );
+    }
+    ok_json(reply)
 }
 
 /// What a stored `parks` ruling does, said on the write that stores it.

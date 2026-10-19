@@ -103,7 +103,7 @@ schema:
         polarity: "+"
         modality: "necessary"
         inverse: true
-        modifiers: { data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", optional: "modality", weight: "strength", weight_basis: "provenance" }
+        modifiers: { argued_by: "evidence", data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", optional: "modality", weight: "strength", weight_basis: "provenance" }
         splits:
           - property: "dependency_type"
             note: "Unset keeps the reading above: the source needs the target to function. `optional` is a modality modifier, not a split — a split REPLACES the reading, so it could not soften a data flow without erasing it."
@@ -126,6 +126,7 @@ schema:
         frequency: { type: float, description: "Interactions per unit time, if known (raw signal behind weight)." }
         data_volume: { type: float, description: "Bytes/records per interaction, if known (raw signal behind weight)." }
         weight_basis: { type: enum, values: [estimated, evidence, measured], default: estimated, description: "How the weight was set: an LLM estimate, grounded in evidence, or measured from telemetry." }
+        argued_by: { type: string, node_ref: true, description: "THE CLAIM THAT ARGUES FOR THIS EDGE, by id (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist, Anthony 2026-10-18): a statement of its own (\"X satisfies Y\", usually a Requirement with `statement_kind`) that an Inference concludes. A typed link, not prose: it must name a node of this design when written, and the claim's computed truth is read BESIDE the edge (get_node's edges listing, `argument`; reasoning_report's `argues_for`), so breaking the claim in a change walk names this edge (propagate_from `arguments_lost`). It changes nothing the edge itself counts for: delivery along a SATISFIES is computed as it always was. A claim whose premise is the target's delivery computed along this same edge reads `circular`. Written by `satisfies` / `depends_on` `argued_by`, or create_edge. ABSENT MEANS NO ARGUMENT IS RECORDED for the edge." }
 
     PART_OF_FLOW:
       from: Capability

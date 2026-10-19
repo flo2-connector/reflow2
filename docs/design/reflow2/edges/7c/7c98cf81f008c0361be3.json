@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:483f8fd06f6bc64d3f960668417ecc807074a21fbbbdf885c3bf4fd076498c0c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-attached-to-the-structure-it-justifies-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:846f53581a4a382434cebdf276dd5b0ad35dd5df90470adb1c5e2940b2ab2e9a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-commonest-edge-has-a-typed-helper"
+}

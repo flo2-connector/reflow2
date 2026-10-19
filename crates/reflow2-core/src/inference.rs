@@ -2289,7 +2289,7 @@ impl DesignGraph {
     }
 
     /// What a NODE rests on through every step concluding it.
-    fn rests_on_closure_of_node(&self, id: &str) -> Result<BTreeSet<String>, DynoError> {
+    pub(crate) fn rests_on_closure_of_node(&self, id: &str) -> Result<BTreeSet<String>, DynoError> {
         let mut all = BTreeSet::new();
         for st in self.inferences_concluding(id)? {
             all.extend(self.rests_on_closure(&st)?);

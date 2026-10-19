@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7a9e39cef1df648e4c0a59455fbe97ccc5f3345e252838bb451d9242b8a83236",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-the-commonest-edge-has-a-typed-helper",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
