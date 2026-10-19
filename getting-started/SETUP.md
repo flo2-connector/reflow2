@@ -59,6 +59,21 @@ cd my-thing && reflow2 init .
 That writes a short pointer file, a project-scope MCP config and `.gitignore` lines — and
 nothing else. Commit the pointer file and your design export; the graph directory stays local.
 
+To take the in-repo half back out of ONE project, keeping its design:
+
+```bash
+cd my-thing && reflow2 init --remove --check    # what it would delete, keep and strip
+cd my-thing && reflow2 init --remove
+```
+
+It deletes the kit files nobody edited (and names the edited ones it keeps), strips the lines
+the kit added to `.gitignore`, `.gitattributes` and your instruction files, and marks
+`.reflow2/kit-version.json` removed. The design store and its export are not touched, and
+`reflow2 update` refuses in that project from then on, so it never brings the kit back.
+`reflow2 init .` installs it again. Deleting the kit by hand is read the same way once none of
+the files the receipt records is left; deleting ONE kit file still means "give me reflow2's
+copy" on the next update.
+
 ### VS Code where MCP is blocked: the terminal route
 
 Where an organisation's policy blocks MCP servers in VS Code, the agent can still reach reflow2

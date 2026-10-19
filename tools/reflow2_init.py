@@ -4,6 +4,7 @@
     python3 tools/reflow2_init.py ~/projects/my-thing
     python3 tools/reflow2_init.py ~/projects/my-thing --check    # what would change
     python3 tools/reflow2_init.py ~/projects/my-thing            # re-run to update
+    python3 tools/reflow2_init.py ~/projects/my-thing --remove   # take the kit back out
 
 Installs the **design environment** and nothing else: a short pointer file, an
 MCP config with the binary path already filled in, and the directory the design
@@ -645,6 +646,9 @@ def resolve_harnesses(
        waiting for an answer nobody can give is worse than the clutter this
        feature removes, and silently narrowing an automated install would break
        pipelines that were working. It is announced rather than assumed.
+       ONLY FOR A FIRST INSTALL: where a kit is already installed and its
+       receipt names no harness, this refuses and names the choice instead
+       (req:a-project-can-remove-its-kit-and-update-never-brings-a-removed-kit-back).
     """
     if requested is not None:
         known, unknown = parse_harness_arg(requested)
@@ -668,6 +672,26 @@ def resolve_harnesses(
         )
     if interactive:
         return prompt_for_harnesses(), None
+    if live_receipt(project) is not None:
+        # A KIT IS INSTALLED AND NOBODY RECORDED FOR WHICH HARNESS. Step 4 is
+        # for a first install nobody can answer; on an installed project it
+        # wrote every MCP harness's config and plugin into a repo that had
+        # chosen one (measured 2026-10-19: a receipt without `harnesses` made
+        # `reflow2 update` write opencode.json, .vscode/mcp.json,
+        # .grok/config.toml and the OpenCode plugin into a Claude project). The
+        # choice is the person's, so it is named and nothing is written.
+        print(
+            "error: this project's install receipt does not say which harness "
+            "opens it, and there is no terminal to ask.\n"
+            f"  Updating would write the files of EVERY MCP harness "
+            f"({', '.join(IMPLIED_BY_ALL)}), so nothing was written.\n"
+            "  Name the harness(es) once; the receipt remembers the answer:\n"
+            "      reflow2 update --harness <names>\n"
+            f"  where <names> is one or more of "
+            f"{', '.join(list(HARNESSES) + list(HARNESS_ALIASES))}, or 'all'.",
+            file=sys.stderr,
+        )
+        return [], "unasked"
     return list(IMPLIED_BY_ALL), (
         "harness: not asked (no tty and no --harness) — installed for ALL of "
         f"{', '.join(IMPLIED_BY_ALL)}. Pass --harness to narrow it, or to add "
@@ -885,6 +909,21 @@ def pointer_targets(
     ]
 
 
+def created_pointer_text(name: str, reflow2_doc: str) -> str:
+    """The whole of an instruction file `ensure_pointer` creates, so `--remove`
+    can tell a file reflow2 made from one a person wrote."""
+    return (
+        f"# {name}\n\n"
+        f"**Read [{reflow2_doc}]({reflow2_doc}).** It is the primary instruction file for "
+        f"this repo and follows the [agents.md](https://agents.md) convention, so every "
+        f"agent working here reads the same thing.\n\n"
+        f"This file exists only because some harnesses read `{name}` "
+        f"first. Keeping the content in one place rather than duplicating it is "
+        f"deliberate: a rule only one collaborator's tool ever sees is worse than no rule "
+        f"at all.\n\n" + POINTER_LINE.format(side=reflow2_doc) + "\n"
+    )
+
+
 def ensure_pointer(instruction_file: Path, reflow2_doc: str) -> str | None:
     """Point an instruction file at reflow2's, creating it only if the project
     has no instruction file at all.
@@ -899,16 +938,7 @@ def ensure_pointer(instruction_file: Path, reflow2_doc: str) -> str | None:
     line = POINTER_LINE.format(side=reflow2_doc)
     if not instruction_file.exists():
         instruction_file.parent.mkdir(parents=True, exist_ok=True)
-        instruction_file.write_text(
-            f"# {instruction_file.name}\n\n"
-            f"**Read [{reflow2_doc}]({reflow2_doc}).** It is the primary instruction file for "
-            f"this repo and follows the [agents.md](https://agents.md) convention, so every "
-            f"agent working here reads the same thing.\n\n"
-            f"This file exists only because some harnesses read `{instruction_file.name}` "
-            f"first. Keeping the content in one place rather than duplicating it is "
-            f"deliberate: a rule only one collaborator's tool ever sees is worse than no rule "
-            f"at all.\n\n" + line + "\n"
-        )
+        instruction_file.write_text(created_pointer_text(instruction_file.name, reflow2_doc))
         return (
             f"{instruction_file.name}  (CREATED — this project had no instruction file, and "
             f"{reflow2_doc} alone is not read first by every harness; without this the install "
@@ -1164,6 +1194,21 @@ def ensure_hooks(project: Path, force: bool) -> list[str]:
     return notes
 
 
+# The comment `ensure_gitattributes` writes above its one line. A constant so
+# `--remove` strips exactly what was appended and nothing a person wrote.
+GITATTRIBUTES_NOTE = (
+    "\n# The design export is one large JSON document, so two people who edited\n"
+    "# DIFFERENT parts of the design still collide here — and git resolves it by\n"
+    "# lines, which is the wrong unit for a graph. reflow2's three-way merge\n"
+    "# compares per node and per property against the common ancestor, so disjoint\n"
+    "# work merges itself and only a real both-sides conflict stops for a human.\n"
+    "#\n"
+    "# The driver itself is per-clone (git will not let a repo configure an\n"
+    "# executable); reflow2_init.py sets it. Without it git falls back to its\n"
+    "# normal text merge, which is safe — you just resolve the JSON by hand.\n"
+)
+
+
 def ensure_gitattributes(project: Path) -> str | None:
     """Ask git to merge the design record with reflow2's driver, not by lines.
 
@@ -1189,18 +1234,7 @@ def ensure_gitattributes(project: Path) -> str | None:
         return None
     block = (
         "\n" if existing and not existing.endswith("\n") else ""
-    ) + (
-        "\n# The design export is one large JSON document, so two people who edited\n"
-        "# DIFFERENT parts of the design still collide here — and git resolves it by\n"
-        "# lines, which is the wrong unit for a graph. reflow2's three-way merge\n"
-        "# compares per node and per property against the common ancestor, so disjoint\n"
-        "# work merges itself and only a real both-sides conflict stops for a human.\n"
-        "#\n"
-        "# The driver itself is per-clone (git will not let a repo configure an\n"
-        "# executable); reflow2_init.py sets it. Without it git falls back to its\n"
-        "# normal text merge, which is safe — you just resolve the JSON by hand.\n"
-        f"{line}\n"
-    )
+    ) + GITATTRIBUTES_NOTE + f"{line}\n"
     attrs.write_text(existing + block)
     verb = "created" if not existing else "added to"
     return (
@@ -1591,6 +1625,14 @@ def export_to_record(project: Path) -> tuple[str, str]:
     return rel, "the convention, since this design keeps no export yet; edit it here to move it"
 
 
+# The note `record_export` writes above its table. A constant so `--remove`
+# strips exactly the block the terminal route wrote and nothing else.
+EXPORT_RECORD_NOTE = (
+    "# Where this design's committed export lives. Every writing call, the VS Code\n"
+    "# Stop hook, reflow2 init and the CI gate read it, so they never disagree.\n"
+)
+
+
 def record_export(project: Path) -> str | None:
     """Write `[export] path` into `.reflow2.toml`: the ONE record every writing
     call, the Stop hook, `reflow2_check.py` and this script read
@@ -1603,10 +1645,7 @@ def record_export(project: Path) -> str | None:
     toml = project / design_io.RECORD_FILE
     existing = toml.read_text() if toml.exists() else ""
     block = ("\n" if existing and not existing.endswith("\n") else "") + (
-        "\n" if existing else "") + (
-        "# Where this design's committed export lives. Every writing call, the VS Code\n"
-        "# Stop hook, reflow2 init and the CI gate read it, so they never disagree.\n"
-        f'[export]\npath = "{rel}"\n')
+        "\n" if existing else "") + EXPORT_RECORD_NOTE + f'[export]\npath = "{rel}"\n'
     toml.write_text(existing + block)
     return f"{'update' if existing else 'create'}  .reflow2.toml  ([export] path = \"{rel}\" — {why})"
 
@@ -1952,6 +1991,31 @@ def why_gone(rel: str) -> str:
             if is_skill_path(rel) else "no longer shipped by the kit")
 
 
+def read_receipt(project: Path) -> dict | None:
+    """The install receipt, or None when there is none or it cannot be read."""
+    try:
+        data = json.loads((project / STAMP).read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def live_receipt(project: Path) -> dict | None:
+    """The receipt of a kit that is installed: present, readable, not removed."""
+    receipt = read_receipt(project)
+    return None if receipt is None or receipt.get("removed") else receipt
+
+
+def no_kit_here(project: Path, why: str, then: str = "") -> str:
+    """The one refusal for a project with a design and no kit, whatever the
+    reason there is no kit: the words `update` has used since it existed."""
+    return (
+        f"{project} carries a design but no installed kit — {why}.\n"
+        "  There is nothing here to bring forward; that is a first "
+        f"install:\n      reflow2 init {project}" + then
+    )
+
+
 def why_not_an_update(project: Path) -> str | None:
     """Why `reflow2 update` must not run here — `None` when it may.
 
@@ -1977,14 +2041,37 @@ def why_not_an_update(project: Path) -> str | None:
     the right command is named. Absence of a kit is not staleness.
     """
     if (project / STAMP).exists():
+        # THE RECEIPT RECORDS AN INSTALL EVENT, NOT THAT A KIT IS HERE NOW
+        # (fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19).
+        # It lives in `.reflow2/`, beside the design, so removing the kit and
+        # keeping the design keeps the receipt; read as "installed", it made
+        # `update` write ~72 files back into 11 repos whose kit had been removed.
+        # Two states read as no kit: a receipt `--remove` marked, and one whose
+        # every recorded file is gone. ONE file gone is not removal: deleting a
+        # kit file is how a person asks for the kit's copy back.
+        receipt = read_receipt(project) or {}
+        if receipt.get("removed"):
+            return no_kit_here(
+                project,
+                f"its receipt says the kit was removed "
+                f"({receipt.get('removed_at') or 'date not recorded'}, `reflow2 init --remove`)",
+            )
+        recorded = receipt.get("installed_files")
+        if isinstance(recorded, dict) and recorded and not any(
+                (project / rel).exists() for rel in recorded):
+            return no_kit_here(
+                project,
+                f"none of the {len(recorded)} files its receipt records is here any "
+                f"more, so the kit was removed by hand",
+                f"\n  To record that, so no later update asks again:\n"
+                f"      reflow2 init --remove {project}",
+            )
         return None
     if (project / ".reflow2").exists():
-        return (
-            f"{project} carries a design but no installed kit — reflow2 is "
-            "registered machine-wide and this project was never set up in "
-            "itself.\n"
-            "  There is nothing here to bring forward; that is a first "
-            f"install:\n      reflow2 init {project}"
+        return no_kit_here(
+            project,
+            "reflow2 is registered machine-wide and this project was never set "
+            "up in itself",
         )
     return (
         f"{project} has no reflow2 setup to update.\n"
@@ -2195,6 +2282,240 @@ def install(
     return done
 
 
+# ---- taking the kit back out (`reflow2 init --remove`) ---------------------
+#
+# req:a-project-can-remove-its-kit-and-update-never-brings-a-removed-kit-back,
+# from fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19.
+# Until it existed, the only way to take the kit out of ONE project was by hand,
+# and the receipt that stayed behind in `.reflow2/` made the next `update` put
+# every file back. The remove is the install's own rules run backwards: what
+# reflow2 wrote and nobody touched goes; anything a person edited stays and is
+# named; the design store is never touched; and the receipt records the removal,
+# so `update` refuses (why_not_an_update) until `reflow2 init` installs again.
+
+
+def kit_files_by_path(project: Path, manifest: dict) -> dict[str, bytes | None]:
+    """Every path this kit writes or a receipt recorded, with what this kit
+    writes there (None when only the receipt knows the path). Every harness's
+    files, whichever were chosen: a file byte-identical to the kit's is the
+    kit's wherever it came from."""
+    out: dict[str, bytes | None] = {}
+    for src, rel in FILES:
+        out[rel] = src.read_bytes()
+        out[SIDECAR.get(rel, f"REFLOW2_{rel}")] = src.read_bytes()
+    for src, rel in TREES:
+        for path in sorted(src.rglob("*")):
+            if path.is_file():
+                out[(Path(rel) / path.relative_to(src)).as_posix()] = path.read_bytes()
+    for rel, content in vscode_cli_files().items():
+        out[rel] = content.encode("utf-8")
+    for pattern in VSCODE_OWNED_GLOBS:
+        for found in sorted(project.glob(pattern)):
+            out.setdefault(found.relative_to(project).as_posix(), None)
+    for rel in manifest:
+        out.setdefault(rel, None)
+    return out
+
+
+def removal_verdict(project: Path, rel: str, kit: bytes | None, manifest: dict) -> str | None:
+    """`delete` (reflow2 wrote it and nobody touched it), `keep` (reflow2 wrote
+    it and somebody edited it), or None (absent, or never reflow2's)."""
+    dst = project / rel
+    if not dst.is_file():
+        return None
+    recorded = manifest.get(rel)
+    if recorded is not None and file_sha(dst) == recorded:
+        return "delete"
+    data = dst.read_bytes()
+    if kit is not None and data == kit:
+        return "delete"
+    state = None
+    if rel.endswith(".md"):
+        try:
+            state = owned_marker_state(data.decode("utf-8"))
+        except UnicodeDecodeError:
+            state = None
+    if state == "intact":
+        return "delete"
+    if recorded is not None or state == "edited":
+        return "keep"
+    return None
+
+
+def without_block(text: str, block: str) -> str:
+    """`text` with every copy of an appended `block` taken out, and the blank
+    line the append put before it."""
+    while block in text:
+        at = text.index(block)
+        head = text[:at]
+        text = (head.rstrip("\n") + "\n" if head.strip() else "") + text[at + len(block):]
+    return text
+
+
+def stripped_text(project: Path, rel: str) -> tuple[str, str] | None:
+    """What a tracked file reads with the kit's appended lines taken out, and
+    what was taken: None when the kit added nothing to it. An empty result means
+    the kit created the whole file."""
+    path = project / rel
+    if not path.is_file():
+        return None
+    try:
+        text = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return None
+    if rel == ".gitignore":
+        after = without_block(text, gitignore_block())
+        what = "the lines reflow2 added (its store and MCP configs)"
+    elif rel == ".gitattributes":
+        after = text
+        for m in re.finditer(re.escape(GITATTRIBUTES_NOTE) + r"[^\n]+ merge=reflow2\n", text):
+            after = without_block(after, m.group(0))
+        what = "the merge=reflow2 line and its note"
+    elif rel == design_io.RECORD_FILE:
+        # Only the block the terminal route wrote, byte for byte: anything else
+        # in this file (a hosted design's address, a person's edit) is not the kit's.
+        after = text
+        for m in re.finditer(re.escape(EXPORT_RECORD_NOTE) + r'\[export\]\npath = "[^"\n]*"\n', text):
+            after = without_block(after, m.group(0))
+        what = "the [export] table the terminal route wrote"
+    else:
+        after, what = text, "the line pointing at reflow2's instructions"
+        for side in ("AGENTS.md", "REFLOW2.md"):
+            if text == created_pointer_text(Path(rel).name, side):
+                after = ""
+                break
+            after = without_block(after, "\n" + POINTER_LINE.format(side=side) + "\n")
+    if after == text:
+        return None
+    return ("" if not after.strip() else after), what
+
+
+def left_in_place(project: Path) -> list[str]:
+    """What `--remove` deliberately leaves, said so nobody has to find it."""
+    out = []
+    for spec in MCP_CONFIGS:
+        path = project / spec["path"]
+        try:
+            if path.is_file() and "reflow2" in path.read_text(encoding="utf-8"):
+                out.append(f"{spec['path']}  its reflow2 entry (this machine's MCP config; "
+                           f"delete the entry if no harness here should reach the design)")
+        except (OSError, UnicodeDecodeError):
+            pass
+    hooks = project / ".claude" / "settings.local.json"
+    try:
+        if hooks.is_file() and "loop_nudge" in hooks.read_text(encoding="utf-8"):
+            out.append(".claude/settings.local.json  the loop-nudge hooks (this machine's)")
+    except (OSError, UnicodeDecodeError):
+        pass
+    if (project / design_io.RECORD_FILE).exists():
+        out.append(f"{design_io.RECORD_FILE}  what is in it beyond the kit's [export] "
+                   f"table is not the kit's")
+    try:
+        driver = subprocess.run(["git", "config", "--get", "merge.reflow2.driver"],
+                                cwd=project, capture_output=True, text=True, timeout=10)
+        if driver.returncode == 0 and driver.stdout.strip():
+            out.append("git config merge.reflow2.*  this clone's merge driver "
+                       "(git config --remove-section merge.reflow2)")
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return out
+
+
+def no_longer_ignored(project: Path) -> list[str]:
+    """Machine state still here that git now sees, once the kit's ignore lines
+    are gone: the design store above all, which `--remove` keeps."""
+    out = []
+    for _, line in IGNORE_LINES:
+        if not (project / line).exists():
+            continue
+        try:
+            got = subprocess.run(["git", "check-ignore", "-q", line], cwd=project,
+                                 capture_output=True, timeout=10)
+        except (OSError, subprocess.SubprocessError):
+            continue
+        if got.returncode == 1:
+            out.append(line)
+    return out
+
+
+def remove_kit(project: Path, apply: bool) -> list[str]:
+    """Take reflow2's kit out of `project`, or, with `apply` False, say what
+    that would do. Returns one line per step, in the same words either way."""
+    receipt = read_receipt(project) or {}
+    manifest = receipt.get("installed_files")
+    manifest = manifest if isinstance(manifest, dict) else {}
+    steps: list[str] = []
+    gone: set[str] = set()
+    kept: dict[str, str] = {}
+    for rel, kit in sorted(kit_files_by_path(project, manifest).items()):
+        verdict = removal_verdict(project, rel, kit, manifest)
+        if verdict == "delete":
+            gone.add(rel)
+            steps.append(f"delete  {rel}")
+            if apply:
+                (project / rel).unlink()
+                parent = (project / rel).parent
+                while parent != project and parent.is_dir() and not any(parent.iterdir()):
+                    parent.rmdir()
+                    parent = parent.parent
+        elif verdict == "keep":
+            kept[rel] = manifest.get(rel) or file_sha(project / rel)
+            steps.append(f"keep    {rel}  (it has your edits, so it is yours: "
+                         f"delete it yourself if you do not want it)")
+    for rel in [".gitignore", ".gitattributes", design_io.RECORD_FILE, *INSTRUCTION_FILES]:
+        if rel in gone or (got := stripped_text(project, rel)) is None:
+            continue
+        after, what = got
+        if after:
+            steps.append(f"strip   {rel}  ({what})")
+        else:
+            steps.append(f"delete  {rel}  (reflow2 created it, and nothing else is in it)")
+        if apply:
+            if after:
+                (project / rel).write_text(after, encoding="utf-8")
+            else:
+                (project / rel).unlink()
+    steps.append(f"mark    {STAMP}  removed (`reflow2 update` then refuses here "
+                 f"until `reflow2 init` installs again)")
+    if apply:
+        mark = kit_version()
+        removed = {
+            "removed": True,
+            "removed_at": datetime.date.today().isoformat(),
+            "removed_by": {k: mark.get(k) for k in ("reflow2_version", "commit")},
+            "was": {k: receipt.get(k) for k in ("reflow2_version", "commit")},
+            # The edited files kept, so a later `reflow2 init` still knows they
+            # were reflow2's once and leaves them alone (place_kit_file).
+            "installed_files": dict(sorted(kept.items())),
+        }
+        (project / STAMP).parent.mkdir(exist_ok=True)
+        (project / STAMP).write_text(json.dumps(removed, indent=2) + "\n")
+    return steps
+
+
+def run_remove(project: Path, check: bool) -> int:
+    """`reflow2 init --remove [--check]`."""
+    if not (project / STAMP).exists() and not (project / ".reflow2").exists():
+        print(f"error: {project} has no reflow2 setup to remove.", file=sys.stderr)
+        return 1
+    steps = remove_kit(project, apply=not check)
+    print(("Would remove" if check else "Removed") + f" reflow2's kit from {project}\n")
+    for step in steps:
+        print(f"  {step}")
+    if leftovers := left_in_place(project):
+        print("\nLeft in place on purpose:")
+        for item in leftovers:
+            print(f"  {item}")
+    if not check and (seen := no_longer_ignored(project)):
+        print("\nGit no longer ignores these, and they are still here (machine state; "
+              "keep them out of commits, e.g. in .git/info/exclude):")
+        for line in seen:
+            print(f"  {line}")
+    print("\nThe design (.reflow2/ and its committed export) was not touched." if not check
+          else "\nNothing was written. Run it without --check to remove.")
+    return 0
+
+
 VSCODE_CLI_NEXT = """VS Code with MCP blocked (the terminal route):
   - COMMIT what this wrote under .github/ (instructions, hooks, skills, prompts): it is the
     setup your team shares. `reflow2 update` refreshes reflow2's own copies and leaves any
@@ -2219,6 +2540,13 @@ def main() -> int:
                          "machine's reflow2. Refuses a project with no install "
                          "receipt rather than performing a first install under "
                          "a word that promises otherwise")
+    ap.add_argument("--remove", action="store_true",
+                    help="take reflow2's kit back out of this project: delete "
+                         "the kit files nobody edited (naming the ones kept), "
+                         "strip the lines it added to tracked files, and mark "
+                         "the receipt removed so `update` never brings it "
+                         "back. The design is not touched. With --check, a "
+                         "preview. Optional project, as with --update")
     ap.add_argument("--check", action="store_true",
                     help="report what would change; write nothing")
     ap.add_argument("--force-mcp", action="store_true",
@@ -2237,8 +2565,11 @@ def main() -> int:
                          "Pass it on a re-run to add a harness.")
     opts = ap.parse_args()
 
+    if opts.update and opts.remove:
+        print("error: --update and --remove are opposites; pass one", file=sys.stderr)
+        return 1
     if opts.project is None:
-        if not opts.update:
+        if not (opts.update or opts.remove):
             # `init` has always named its target, and defaulting it to the cwd
             # would make a mistyped command create a kit wherever you happened
             # to be standing. `update` may default because it refuses to act on
@@ -2248,6 +2579,8 @@ def main() -> int:
         opts.project = "."
 
     project = Path(opts.project).expanduser().resolve()
+    if opts.remove:
+        return run_remove(project, opts.check)
     if opts.update and (why := why_not_an_update(project)):
         print(f"error: {why}", file=sys.stderr)
         return 1
@@ -2272,12 +2605,9 @@ def main() -> int:
         return 1
 
     existing = project / STAMP
-    previously = None
-    if existing.exists():
-        try:
-            previously = json.loads(existing.read_text())
-        except json.JSONDecodeError:
-            pass
+    # A removed kit's receipt is no prior install: `init` after `--remove` is a
+    # first install, said as one.
+    previously = live_receipt(project) if existing.exists() else None
 
     if opts.check:
         if not project.exists():
