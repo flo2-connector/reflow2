@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f3e6caf9b56592d310dd09eaef08c6d0013c621cb5d8f6c2212e01c5de376cea",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

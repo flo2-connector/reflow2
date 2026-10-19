@@ -4397,6 +4397,7 @@ impl DesignGraph {
             .iter()
             .chain(debt.uncited_premise_ids.iter())
             .chain(debt.shown_not_proven_ids.iter())
+            .chain(debt.unverified_citation_ids.iter())
             .cloned()
             .collect();
         affected.sort();
@@ -4410,14 +4411,20 @@ impl DesignGraph {
             severity: 0.2,
             title: format!(
                 "The reasoning owes: {} unconfirmed step(s), {} uncited premise(s), {} claim(s) \
-                 shown but not proven",
-                debt.unconfirmed_steps, debt.uncited_premises, debt.shown_not_proven
+                 shown but not proven, {} unverified citation(s)",
+                debt.unconfirmed_steps,
+                debt.uncited_premises,
+                debt.shown_not_proven,
+                debt.unverified_citations
             ),
             description: "A line of reasoning is recorded, and parts of it rest on nobody's \
                  word yet. Each step is confirmed by a person or a checker (add_inference with \
                  `confirmed_by` and `confirmed_how` — the owner's word, never an agent's); each \
                  premise it rests on cites its source (an Artifact that DOCUMENTS it) or, for a \
-                 definition or axiom, is marked taken as given (`taken_as_given`). A claim reads \
+                 definition or axiom, is marked taken as given (`taken_as_given`). A result \
+                 cited from elsewhere is checked against its source by registering that source \
+                 with a checksum and drawing DOCUMENTS from it; until then it reads \
+                 `cited_unverified` and what rests on it reads conditional. A claim reads \
                  `proven` only when every step under one holding line is confirmed. \
                  reasoning_report reads each one."
                 .to_string(),
@@ -4425,8 +4432,8 @@ impl DesignGraph {
             suggested_depth: 2,
             evidence: format!(
                 "{} of {} step(s) unconfirmed ({}); {} uncited premise(s) ({}); {} claim(s) \
-                 shown but not proven ({}); {} premise(s) taken as given. Lists name at most {} \
-                 id(s) each.",
+                 shown but not proven ({}); {} unverified citation(s) ({}); {} premise(s) taken \
+                 as given. Lists name at most {} id(s) each.",
                 debt.unconfirmed_steps,
                 debt.steps,
                 debt.unconfirmed_step_ids.join(", "),
@@ -4434,6 +4441,8 @@ impl DesignGraph {
                 debt.uncited_premise_ids.join(", "),
                 debt.shown_not_proven,
                 debt.shown_not_proven_ids.join(", "),
+                debt.unverified_citations,
+                debt.unverified_citation_ids.join(", "),
                 debt.stated_foundations,
                 debt.list_cap
             ),
@@ -4497,24 +4506,48 @@ impl DesignGraph {
         for (step, g) in self.generalizations_that_do_not_hold()? {
             let mut affected = vec![step.clone()];
             affected.extend(g.fixed_by.iter().map(|f| f.id.clone()));
-            let fixed: Vec<String> = g
+            affected.extend(g.named_by_open_assumptions.iter().map(|f| f.id.clone()));
+            affected.extend(g.undeclared_open_assumptions.iter().cloned());
+            let mut why: Vec<String> = g
                 .fixed_by
                 .iter()
                 .map(|f| format!("{} fixes {}", f.id, f.fixes.join(", ")))
                 .collect();
-            push(
-                affected,
+            why.extend(g.named_by_open_assumptions.iter().map(|f| {
+                format!(
+                    "{} is an assumption still open at the step and names {}",
+                    f.id,
+                    f.fixes.join(", ")
+                )
+            }));
+            why.extend(g.undeclared_open_assumptions.iter().map(|a| {
+                format!("{a} is an assumption still open at the step and declares no variables")
+            }));
+            let title = if g.fixed_by.is_empty() {
+                format!(
+                    "'{step}' generalizes over {} while an assumption still open at it names it",
+                    g.over.join(", ")
+                )
+            } else {
                 format!(
                     "'{step}' generalizes over {}, which something it rests on fixes",
                     g.over.join(", ")
-                ),
+                )
+            };
+            push(
+                affected,
+                title,
                 "A step that generalizes over a variable holds only when nothing it rests on \
                  fixes that variable — a record about one value proves nothing for an arbitrary \
-                 one. The step reads unknown, and its conclusion unsupported, until either the \
-                 premise is replaced by one about an arbitrary value or the step stops \
-                 generalizing over it."
+                 one — and when no assumption still open at the step names it: a hypothesis \
+                 about F must be discharged before the proof generalizes over F (the \
+                 eigenvariable rule). An open assumption that declares no `variables` leaves \
+                 that unanswerable. The step reads unknown, and its conclusion unsupported, \
+                 until the premise is replaced by one about an arbitrary value, the assumption \
+                 is discharged on this step or one beneath it (or declares its variables), or \
+                 the step stops generalizing over it."
                     .to_string(),
-                fixed.join("; "),
+                why.join("; "),
             );
         }
         for i in self.stated_independence()? {
@@ -4536,6 +4569,34 @@ impl DesignGraph {
                     .to_string(),
                 i.why.clone(),
             );
+        }
+        if let Some(debt) = self.reasoning_debt()? {
+            for step in &debt.cases_not_declared_exhaustive_ids {
+                push(
+                    vec![step.clone()],
+                    format!("'{step}' splits on cases that nothing declares exhaustive"),
+                    "A proof by cases holds only when its cases cover every possibility, and \
+                     that is the owner's word or a checker's, never reflow2's. The step names its \
+                     `cases` and no `cases_exhaustive`, so it does not hold. Name the record that \
+                     says the cases are all the cases (add_inference's `cases_exhaustive`: a \
+                     statement taken as given, a computed check, or a shown lemma), or ask the \
+                     owner."
+                        .to_string(),
+                    format!("cases named on {step}; no cases_exhaustive"),
+                );
+            }
+            for falsum in &debt.inconsistency_ids {
+                push(
+                    vec![falsum.clone()],
+                    format!("'{falsum}' is a contradiction derived under no assumption"),
+                    "A falsum (a contradiction) is derived and no assumption open beneath it can \
+                     be discharged to explain it: the foundations it rests on contradict each \
+                     other. Every claim the design draws from them is in question until one of \
+                     them is withdrawn or corrected — the owner's call."
+                        .to_string(),
+                    format!("{falsum} reads inconsistent"),
+                );
+            }
         }
         Ok(())
     }

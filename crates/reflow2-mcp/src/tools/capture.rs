@@ -3017,7 +3017,7 @@ impl ReflowService {
                        conclusion, and a circle. One step concludes one node; several steps \
                        concluding a node are alternatives, read as ANY. The same id again revises \
                        the step and ADDS the premises given. For a proof: `assumed` premises \
-                       hold as hypotheses until a later step `discharges` them; \
+                       hold until a step `discharges` them; `cases` makes a proof by cases; \
                        `generalizes_over` and `independent_of` are checked. \
                        Ask for this to say that a claim follows from other things in the design.",
         title = "Add an Inference Step",
@@ -3045,6 +3045,8 @@ impl ReflowService {
             generalizes_over: req.generalizes_over.clone(),
             independent_of: req.independent_of.clone(),
             independent_except: req.independent_except.clone(),
+            cases: req.cases.clone(),
+            cases_exhaustive: req.cases_exhaustive.clone(),
         };
         // Which links were there before the call, so the reply can say what it
         // drew and what it found already drawn.
@@ -4474,9 +4476,26 @@ pub struct AddInferenceReq {
     pub discharges: Option<Vec<String>>,
     /// The VARIABLES this step generalizes over, by name (`L`, `n`) — "for an
     /// arbitrary list L". Checked: the step does not hold while anything it
-    /// rests on, at any depth, lists the variable in its `fixes`. Overwrites.
+    /// rests on, at any depth, lists the variable in its `fixes`, NOR while an
+    /// undischarged assumption beneath the step names it among its variables
+    /// or fixes (or declares no variables): discharge the hypothesis first,
+    /// on this step or one beneath it. Overwrites.
     #[serde(default)]
     pub generalizes_over: Option<Vec<String>>,
+    /// A PROOF BY CASES: the cases' hypotheses, by id, each assumed by the
+    /// branch that proves the conclusion under it. This step discharges them
+    /// (each must be assumed beneath it, or the call is refused naming what
+    /// is). It holds only when `cases_exhaustive` names the record saying they
+    /// cover every possibility. Overwrites.
+    #[serde(default)]
+    pub cases: Option<Vec<String>>,
+    /// The record saying the `cases` are EXHAUSTIVE ("every integer is even or
+    /// odd"), by id — a person's word (taken as given) or a checker's (a
+    /// computed check through its kept record), never reflow2's. Drawn as a
+    /// premise of the step; refused unless it names a node. Overwrites; `""`
+    /// removes it.
+    #[serde(default)]
+    pub cases_exhaustive: Option<String>,
     /// Other STEPS this line is stated independent of (Inference ids), e.g. a
     /// second proof of the same claim. Checked: the lines may share no step
     /// other than those under the lemmas in `independent_except`. Overwrites.

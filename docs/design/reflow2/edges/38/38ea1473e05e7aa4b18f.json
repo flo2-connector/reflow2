@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0f58a8a736e7ffd1ca6389b530dee31032f0a3f855aaac9a67aebdf9fde1b884",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-proof-states-what-it-really-does-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

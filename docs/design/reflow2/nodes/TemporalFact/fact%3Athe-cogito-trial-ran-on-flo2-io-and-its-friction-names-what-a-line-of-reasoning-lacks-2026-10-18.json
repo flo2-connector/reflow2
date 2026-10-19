@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:5724907073b78ff8f059e4d8f9d0b5c3042042adf70ba56cdc0ffcf0db1fd6ed",
+  "node_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "MEASURED 2026-10-18: the cogito trial (flo2.io 989598dd02246a81, reflow2 0.87.0, through the hub) matched its source-checked reference, and showed six things a line of reasoning cannot yet say",
+    "source": "who:ajs",
+    "statement": "The first philosophy trial of a line of reasoning: Descartes' cogito. It is a three-agent trial: Anthony as owner, a designer given only the question, and an observer holding a reference checked against Descartes' Principles I.7–I.10 (Veitch, read verbatim), SEP \"Descartes' Epistemology\" and Wikipedia. It ran on flo2.io design 989598dd02246a81, on reflow2 0.87.0, entirely through the hub.\n\nCOVERAGE MATCHED THE REFERENCE:\n- the hidden premise \"whatever thinks exists\" made explicit;\n- Principles I.10, which concedes it, raised as an objection;\n- three rival readings of the step: syllogism, intuition (Second Replies) and performance (Hintikka);\n- the walking objection answered;\n- Lichtenberg/Russell and circularity standing;\n- \"a thinking thing\" kept downstream.\nMissing: only SEP's indirect-doubt scope limit. 25 claims, 12 steps, 7 objections, 5 replies.\nOWNER'S ANSWERS: B is Descartes' own, with A and C as rivals; the decision is set `contested` by his word. Lichtenberg stands. The step-claim workaround is kept.\n\nWHAT IT COULD NOT SAY (observed; no cause stated):\n1. An objection (CONTRADICTS) aimed at an INFERENCE is stored and not read. The step still read `holds`, and reasoning_report did not list it. This was reported by the designer, not re-measured. The workaround: each challenged warrant becomes a taken-as-given premise for the objection to aim at. This is the measured need for idea (b), the undercutting objection, in dec:idea-what-reflow2-takes-from-the-argumentation-frameworks.\n2. There is no way to say a step is not an inference. The intuition reading is an Inference whose rule_name says so.\n3. A conclusion whose every route is contested reads proof_status `unproven`, the word also used for refuted.\n4. There is no form for a reply that concedes an objection against one reading and moves to another (Descartes' answer to the syllogism objections).\n5. A what-if on a conclusion already unknown shows nothing, and it does not report an objection coming back when its reply loses support.\n6. MEASURED BY THE OBSERVER: with dec:which-reading-of-the-cogito set `contested` and the three readings GOVERNED_BY it, reasoning_report on the conclusion still lists `contested_by_design: []`, and it treats the owner's choice of B as nothing (the three routes stay equal). The unscoped walk, which does list contested Decisions, runs on the hub's own design when called through the hub, so a member's contested disputes cannot be read through the hub.\n\nAlso seen:\n- no statement_kind for an objection, reply, unstated premise or method rule (supposition is phase 3);\n- add_* writes are not contained in the project, so detect_gaps on the project raised software gaps;\n- discharged suppositions are listed `unsupported` (fixed by #770, not yet live);\n- the persona block (~600 characters) on every reply;\n- replies mix prefixed and unprefixed ids;\n- reasoning_report's prose budget blanked fields at small budgets.\n\nObserver file: the session scratchpad, cogito-trial/OBSERVER.md.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "reasoning_report",
+      "propagate_from",
+      "add_inference"
+    ],
+    "subject_id": "dec:idea-philosophical-arguments-as-trials-of-a-line-of-reasoning",
+    "valid_from": "2026-10-18"
+  }
+}

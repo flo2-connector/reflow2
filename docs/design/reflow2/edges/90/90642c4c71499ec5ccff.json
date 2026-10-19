@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02e1d096244c357bc51a7d7fcb9c613bb88b12c1ecd2567f72e8e124e8a9f42d",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "properties": {
+    "evidence": "The trial's smaller read-back and write faults, captured as one requirement."
+  },
+  "to_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed"
+}

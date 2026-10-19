@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:57ac1a0118e14ba4c388b07fce00986c9977c8b1effbb0f092a95d7731cf2149",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

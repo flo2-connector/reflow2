@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:190ef43e979606ed00de510ac8f93273bb8ff47a462b155e9784235513feb11c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-the-generalization-check-read-only-fixes-and-never-the-assumptions-open-at-the-step-2026-10-18",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

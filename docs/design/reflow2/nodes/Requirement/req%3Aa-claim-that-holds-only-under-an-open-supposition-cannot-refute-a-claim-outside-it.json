@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1622acdf1abada7fb02ce3e2ebe6d46d57a3aa4842e7766e1594d2b4e247f145",
+  "node_id": "req:a-claim-that-holds-only-under-an-open-supposition-cannot-refute-a-claim-outside-it",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "SOUNDNESS: a claim that holds only under an undischarged supposition cannot refute or defeat a claim outside that supposition's scope",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" and \"see if there is anything else of note\" in the AI branch he added",
+    "statement": "A result derived under an assumption that no step discharges is \"a result inside an argument, not a proof of it\" (reflow2's own wording). It must not act as an established attacker against a claim outside that argument. At most it contests that claim conditionally, and the read-back names the supposition it depends on.\nMEASURED by the observer on 2026-10-18, in the AI branch Anthony added to the cogito design (flo2.io 989598dd02246a81, 0.87.0):\n- req:ai-is-res-cogitans-if reads `conditional`: \"it holds only under the assumption(s) req:suppose-ai-authentically-doubts, which no step on the way to it discharges\".\n- Yet its CONTRADICTS edge makes req:ai-not-res-cogitans read REFUTED: \"refuted by req:ai-is-res-cogitans-if, which holds\".\n- The edge's own evidence says the two are \"kept as the open dispute this branch is about\".\nSo a conditional result, used outside its assumption's scope, certifies a refutation. This is the same class as the generalization soundness hole N19, which phase 3 fixes: a check that ignores open assumptions.",
+    "status": "accepted"
+  }
+}

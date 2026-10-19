@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d0dff02c03e41aab6b5f400ba2eb444b0b3acb14fd1ec8816c05b53d9c1653e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:cc42d5fff33d8d438b3d4b1a47de648e3aa9c3f14f5d3aa17308275fb419f7ff",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-command"
+}

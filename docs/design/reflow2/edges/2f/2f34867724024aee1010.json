@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b1e861cca466ff29901b214df4b569e96b8ec5a9db6457209fc864363059e313",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-step-can-say-it-is-not-an-inference",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

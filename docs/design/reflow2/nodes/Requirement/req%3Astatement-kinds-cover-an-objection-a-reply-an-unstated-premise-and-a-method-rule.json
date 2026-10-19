@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cc7d5a1e88a8aeb21dc930e6e8ecb4e73a50d2c1ed125f698ceb4340b5ddfb44",
+  "node_id": "req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A statement's kind can say it is an objection, a reply, an unstated premise or a rule of method, as a line of reasoning needs",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial)",
+    "statement": "statement_kind (or an equivalent field) covers the roles a line of reasoning gives its statements: objection, reply, unstated (suppressed) premise, and rule of method. Each reads accordingly. A supposition or hypothesis is already in phase 3 (req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems, item 3).\nObserved in the cogito trial (2026-10-18): none fitted, so the designer used `proposition` or `axiom` and put the role in the text.",
+    "status": "proposed"
+  }
+}

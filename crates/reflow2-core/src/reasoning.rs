@@ -102,8 +102,11 @@ pub const REASONING_DEBT_NOTE: &str = "What the reasoning still owes. An UNCONFI
      NOT AS STATED: an ASSUMPTION NO STEP DISCHARGES (what rests on it holds only under it), a \
      GENERALIZATION over a variable something beneath it fixes (the step does not hold), and a \
      STATED INDEPENDENCE the lines do not bear out (they share a step no named lemma accounts \
-     for). Confirming a step is the owner's word, never an agent's. reasoning_report reads each \
-     one in full.";
+     for), a CASE SPLIT whose cases nothing declares exhaustive (the step does not hold), and an \
+     INCONSISTENCY (a falsum derived under no open assumption: the foundations contradict each \
+     other). An UNVERIFIED CITATION is a result cited from elsewhere that no pinned source \
+     documents: what rests on it reads conditional until its source is checked. Confirming a \
+     step is the owner's word, never an agent's. reasoning_report reads each one in full.";
 
 /// What the reasoning of a design still owes: counted by `loop_status` and
 /// raised as one low-severity `unconfirmed_reasoning` gap.
@@ -135,6 +138,18 @@ pub struct ReasoningDebt {
     /// Steps whose stated independence the structure does not bear out.
     pub independence_not_borne_out: usize,
     pub independence_not_borne_out_ids: Vec<String>,
+    /// Results cited from elsewhere (taken as given) that no pinned source
+    /// documents: what rests on each reads conditional on it.
+    pub unverified_citations: usize,
+    pub unverified_citation_ids: Vec<String>,
+    /// Case splits whose cases nothing declares exhaustive: each does not
+    /// hold.
+    pub cases_not_declared_exhaustive: usize,
+    pub cases_not_declared_exhaustive_ids: Vec<String>,
+    /// Falsums derived under no open assumption: the foundations they rest on
+    /// contradict each other.
+    pub inconsistencies: usize,
+    pub inconsistency_ids: Vec<String>,
     /// How many ids each list may name.
     pub list_cap: usize,
     /// What these counts mean.
@@ -144,14 +159,17 @@ pub struct ReasoningDebt {
 impl ReasoningDebt {
     /// Whether anything is owed.
     pub fn is_owed(&self) -> bool {
-        self.unconfirmed_steps + self.uncited_premises + self.shown_not_proven > 0
-            || self.not_as_stated()
+        self.confirmation_owed() || self.not_as_stated()
     }
 
     /// Whether confirming or citing is owed: an unconfirmed step, an uncited
     /// premise, or a claim shown but not proven.
     pub fn confirmation_owed(&self) -> bool {
-        self.unconfirmed_steps + self.uncited_premises + self.shown_not_proven > 0
+        self.unconfirmed_steps
+            + self.uncited_premises
+            + self.shown_not_proven
+            + self.unverified_citations
+            > 0
     }
 
     /// Whether the reasoning is NOT AS STATED somewhere: an undischarged
@@ -161,6 +179,8 @@ impl ReasoningDebt {
         self.undischarged_assumptions
             + self.generalizations_not_holding
             + self.independence_not_borne_out
+            + self.cases_not_declared_exhaustive
+            + self.inconsistencies
             > 0
     }
 }
@@ -203,7 +223,8 @@ pub enum ClaimTruth {
     /// Computed to hold, resting on no open assumption.
     Holds,
     /// Holds only under the assumption(s) in `assumes`, which no step on the
-    /// way to it discharges.
+    /// way to it discharges, or only if the unverified citation(s) in
+    /// `rests_on_unverified` say what they are recalled to say.
     Conditional,
     /// Computed to fail: refuted.
     Fails,
@@ -212,9 +233,11 @@ pub enum ClaimTruth {
 }
 
 impl ClaimTruth {
-    pub(crate) fn of(truth: Truth, assumes: &[String]) -> Self {
+    pub(crate) fn of(truth: Truth, assumes: &[String], unverified: &[String]) -> Self {
         match truth {
-            Truth::Holds if !assumes.is_empty() => ClaimTruth::Conditional,
+            Truth::Holds if !assumes.is_empty() || !unverified.is_empty() => {
+                ClaimTruth::Conditional
+            }
             Truth::Holds => ClaimTruth::Holds,
             Truth::Fails => ClaimTruth::Fails,
             Truth::Unknown => ClaimTruth::Unknown,
@@ -300,6 +323,11 @@ pub struct ClaimReading {
     /// step on the way discharges.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub assumes: Vec<String>,
+    /// THE UNVERIFIED CITATIONS it rests on (itself included, for one): results
+    /// cited from elsewhere that no pinned source documents. While any is
+    /// here, `truth` reads `conditional`, never `holds`.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_unverified: Vec<String>,
     /// The `contested` Decision that keeps its dispute open on purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
@@ -905,12 +933,19 @@ impl DesignGraph {
         };
         let (truth, why) = self.premise_truth(id)?;
         let assumes = self.assumptions_under(id)?;
-        let claim_truth = ClaimTruth::of(truth, &assumes);
-        let why = if claim_truth == ClaimTruth::Conditional {
+        let rests_on_unverified = self.unverified_under(id)?;
+        let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified);
+        let why = if claim_truth == ClaimTruth::Conditional && !assumes.is_empty() {
             format!(
                 "conditional: it holds only under the assumption(s) {}, which no step on the way \
                  to it discharges, never on its own; {why}",
                 assumes.join(", ")
+            )
+        } else if claim_truth == ClaimTruth::Conditional {
+            format!(
+                "conditional: it holds only if the unverified citation(s) {} say what they are \
+                 recalled to say, never plainly; {why}",
+                rests_on_unverified.join(", ")
             )
         } else {
             why
@@ -963,6 +998,7 @@ impl DesignGraph {
             taken_as_given: crate::inference::is_taken_as_given(&props),
             statement: self.statement_reading(id)?,
             assumes,
+            rests_on_unverified,
             contested_by_design: self.contested_governor(id)?,
             reason_to_exist: self.reason_to_exist(id)?,
             argues_for: Vec::new(),
@@ -981,7 +1017,7 @@ impl DesignGraph {
     /// every record it names: one its `location` names, or that it PRODUCES
     /// (req:the-primes-trials-small-tool-snags-are-fixed, F21: a kept record
     /// counted as cited only with an explicit `documents` link).
-    fn cited_sources(&self, id: &str) -> Result<Vec<CitedSource>, DynoError> {
+    pub(crate) fn cited_sources(&self, id: &str) -> Result<Vec<CitedSource>, DynoError> {
         if self.get_node(node::VERIFICATION, id)?.is_some() {
             return Ok(self
                 .records_of_check(id)?
@@ -1048,6 +1084,7 @@ impl DesignGraph {
         unconfirmed.sort();
         let mut uncited: Vec<String> = Vec::new();
         let mut given: Vec<String> = Vec::new();
+        let mut unverified: Vec<String> = Vec::new();
         for p in &terminal {
             let Some(ty) = self.type_holding(p)? else {
                 continue;
@@ -1059,7 +1096,12 @@ impl DesignGraph {
                 .get_node(&ty, p)?
                 .map(|n| n.properties)
                 .unwrap_or_default();
-            if crate::inference::is_taken_as_given(&props) {
+            if crate::inference::is_cited_result(&props) {
+                given.push(p.clone());
+                if self.cited_sources(p)?.iter().all(|source| !source.pinned) {
+                    unverified.push(p.clone());
+                }
+            } else if crate::inference::is_taken_as_given(&props) {
                 given.push(p.clone());
             } else if self.cited_sources(p)?.is_empty() {
                 uncited.push(p.clone());
@@ -1104,6 +1146,34 @@ impl DesignGraph {
         indep.sort();
         indep.dedup();
         let (independence_not_borne_out, indep_ids) = cap(indep);
+        let (unverified_citations, unverified_ids) = cap(unverified);
+        let mut unexhausted: Vec<String> = Vec::new();
+        let mut inconsistent: Vec<String> = Vec::new();
+        for s in &steps {
+            let cases = crate::inference::list_prop(&s.properties, "cases");
+            let declared = s
+                .properties
+                .get("cases_exhaustive")
+                .and_then(Value::as_str)
+                .is_some_and(|v| !v.trim().is_empty());
+            if !cases.is_empty() && !declared {
+                unexhausted.push(s.node_id.clone());
+            }
+        }
+        for c in &conclusions {
+            let is_falsum = self
+                .node_props(c)?
+                .is_some_and(|p| crate::inference::is_falsum(&p));
+            if is_falsum
+                && self
+                    .statement_reading(c)?
+                    .is_some_and(|r| r.reads == "inconsistent")
+            {
+                inconsistent.push(c.clone());
+            }
+        }
+        let (cases_not_declared_exhaustive, unexhausted_ids) = cap(unexhausted);
+        let (inconsistencies, inconsistency_ids) = cap(inconsistent);
         Ok(Some(ReasoningDebt {
             steps: steps.len(),
             unconfirmed_steps,
@@ -1119,6 +1189,12 @@ impl DesignGraph {
             generalization_not_holding_ids: general_ids,
             independence_not_borne_out,
             independence_not_borne_out_ids: indep_ids,
+            unverified_citations,
+            unverified_citation_ids: unverified_ids,
+            cases_not_declared_exhaustive,
+            cases_not_declared_exhaustive_ids: unexhausted_ids,
+            inconsistencies,
+            inconsistency_ids,
             list_cap: REASONING_DEBT_LIST_CAP,
             note: REASONING_DEBT_NOTE,
         }))

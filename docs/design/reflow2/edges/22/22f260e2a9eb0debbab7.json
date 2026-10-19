@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5eec0bbb2273456e93fc2ea642b58784a21d0c7ccfa39407f83a592de8dc08da",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-case-split-names-its-cases-and-holds-only-when-they-are-declared-exhaustive"
+}

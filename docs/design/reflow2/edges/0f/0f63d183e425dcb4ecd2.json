@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eb61a8df776820fc9c430c27f518c726fdc5d818193834daa716e8931c329e6b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "properties": {
+    "evidence": "Item 2 of the trial's findings, captured as a requirement."
+  },
+  "to_id": "req:a-step-can-say-it-is-not-an-inference"
+}

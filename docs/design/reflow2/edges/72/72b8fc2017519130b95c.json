@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5996c3867f82ff40b9d7bca4be6a7c9b0b945fbe29abb4dd94873f75dc4db58b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 22,
+    "action": "modified",
+    "checksum_after": "sha256:b8a35da9f05dd4338bed74075a4734440f05e3ef5d56d40827d433ec5fbb9d52",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

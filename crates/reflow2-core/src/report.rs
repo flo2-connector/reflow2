@@ -1407,21 +1407,29 @@ impl DesignGraph {
             if r.confirmation_owed() {
                 next.push(format!(
                     "THE REASONING OWES: {} unconfirmed step(s) of {}, {} uncited premise(s), {} \
-                     claim(s) shown but not proven. Not counted against `clean` — confirming a \
-                     step is the owner's word — but say it when reporting status; \
-                     reasoning_report reads each one.",
-                    r.unconfirmed_steps, r.steps, r.uncited_premises, r.shown_not_proven
+                     claim(s) shown but not proven, {} unverified citation(s). Not counted \
+                     against `clean` — confirming a step is the owner's word — but say it when \
+                     reporting status; reasoning_report reads each one.",
+                    r.unconfirmed_steps,
+                    r.steps,
+                    r.uncited_premises,
+                    r.shown_not_proven,
+                    r.unverified_citations
                 ));
             }
             if r.not_as_stated() {
                 next.push(format!(
                     "THE REASONING IS NOT AS STATED: {} assumption(s) never discharged, {} \
-                     generalization(s) over a variable something beneath fixes, {} stated \
-                     independence(s) the lines do not bear out. Each is a \
-                     `reasoning_not_as_stated` gap; reasoning_report reads them.",
+                     generalization(s) that do not hold (a variable something beneath fixes, or \
+                     an assumption still open names), {} stated independence(s) the lines do \
+                     not bear out, {} case split(s) nothing declares exhaustive, {} \
+                     inconsistenc(ies). Each is a `reasoning_not_as_stated` gap; \
+                     reasoning_report reads them.",
                     r.undischarged_assumptions,
                     r.generalizations_not_holding,
-                    r.independence_not_borne_out
+                    r.independence_not_borne_out,
+                    r.cases_not_declared_exhaustive,
+                    r.inconsistencies
                 ));
             }
         }

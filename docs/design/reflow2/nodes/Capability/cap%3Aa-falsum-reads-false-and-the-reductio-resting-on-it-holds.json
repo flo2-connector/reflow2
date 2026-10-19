@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39df02dd3343b021517dea60ed9535a69523d3f969fc0094ed46d1d4ba943b3e",
+  "node_id": "cap:a-falsum-reads-false-and-the-reductio-resting-on-it-holds",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-18 in reflow2-core's inference module (item 1 of req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems). `statement_kind: falsum` on a Requirement or Constraint. Its own truth is FALSE, always (premise_truth fails, the claim's truth fails), and statement_reading reads `false` when a step derives it under an open assumption, `inconsistent` when derived under none (the foundations contradict each other: counted by loop_status as `inconsistencies` and raised as a `reasoning_not_as_stated` gap), and `stated` while nothing derives it; never `holds` and never `refuted`. As a PREMISE it is read by whether it is derived (falsum_derivation): it holds when a step deriving it holds, carrying that derivation's assumptions, so a reductio that rests on it and discharges the supposition holds. Trial shape: π+e, where the contradiction had to be drawn inside the reductio (friction P2).",
+    "name": "A falsum (a reductio's contradiction) is a statement of its own that reads false, and the reductio resting on it holds",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

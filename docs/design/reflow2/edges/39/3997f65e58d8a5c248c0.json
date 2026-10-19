@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:52299fdaf42df570b5f18a1dbf113f968fd85c427c1adbdebfcca5bf727e9ec1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 18,
+    "action": "modified",
+    "checksum_after": "sha256:54fbaca880bdac9e396fb73d0ca49468059a53c8530290045e12189a64aa2f82",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

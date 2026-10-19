@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:33d28014fe17d3654b10049bb226ffe54fb845b2dd28ed535eac3719a67f8180",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-cited-result-reads-cited-and-an-unverified-citation-leaves-what-rests-on-it-conditional"
+}

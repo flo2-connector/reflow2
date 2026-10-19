@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:21debd3c52ab9dff090aecbe72d05587a8787814f53e10488610c3ef301509a3",
+  "node_id": "cap:a-case-split-names-its-cases-and-holds-only-when-they-are-declared-exhaustive",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-18 (item 2 of req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems). `Inference.cases` names the case hypotheses; the step discharges them (add_inference refuses one not assumed beneath it). `Inference.cases_exhaustive` (node_ref) names the record saying the cases cover every possibility; add_inference refuses one naming no node and draws it as a premise of the step. The step's reading carries `cases` {cases, declared, exhaustive_by, truth, why}; it does not hold while nothing is declared or the record does not hold. Exhaustiveness is the record's word (taken as given: the owner's; a computed check through its kept record: a checker's; a step concluding it), never reflow2's judgement of the cases. loop_status counts `cases_not_declared_exhaustive`; each is a `reasoning_not_as_stated` gap. Trial shape: Arrow's group-contraction step (inf:lemma-6), which could only `discharges` its two cases.",
+    "name": "A proof-by-cases step names its cases and the record that declares them exhaustive, and holds only while that record holds",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

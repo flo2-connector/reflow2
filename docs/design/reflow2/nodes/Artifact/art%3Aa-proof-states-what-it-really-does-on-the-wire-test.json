@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:768e5a6ed6af06efc29f2b774bb7af8dd20c8f20701a5b704f81f9f9d9f68628",
+  "node_id": "art:a-proof-states-what-it-really-does-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Phase 3 over the MCP surface: add_inference's `cases` and `cases_exhaustive` with their refusals, a reductio resting on a falsum, a generalization under an open hypothesis about its variable, and a cited theorem reading unverified until a pinned source documents it.",
+    "location": "crates/reflow2-mcp/tests/a_proof_states_what_it_really_does_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/a_proof_states_what_it_really_does_on_the_wire.rs",
+    "status": "realized"
+  }
+}

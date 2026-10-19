@@ -177,7 +177,7 @@
       },
       "statement_kind": {
         "default": null,
-        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom` or `conjecture` — a\nfield of its own, leaving `kind`'s software values alone. A definition\nor axiom reads taken as given; a conjecture reads `open`, then\n`refuted` once an objection that holds refutes it; a theorem, lemma,\ncorollary or proposition reads `stated` until a step concludes it.\nOmitted: nothing is written.",
+        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\nOmitted: nothing is written.",
         "enum": [
           "theorem",
           "lemma",
@@ -186,6 +186,8 @@
           "definition",
           "axiom",
           "conjecture",
+          "hypothesis",
+          "falsum",
           null
         ],
         "type": [

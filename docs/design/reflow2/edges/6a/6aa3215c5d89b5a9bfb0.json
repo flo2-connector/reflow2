@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:adfda526ba8ae7efbdfb59c0bad67fae9b6c7b409c340bc88ef9ba09299eab29",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-line-of-reasoning-is-held-in-its-project-and-its-gaps-fit-an-argument",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

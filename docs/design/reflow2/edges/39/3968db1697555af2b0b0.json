@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:12a6e13b6a23ee863d49f62e93d92bf6f19b577f8ed36607935d87005a31da36",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-hypothesis-reads-assumed-or-discharged",
+  "properties": {},
+  "to_id": "req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems"
+}

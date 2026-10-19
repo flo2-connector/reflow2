@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b5f2a663de8eece805bb59fd3d9dcc94cd5232d591905af63ea0725589a62e8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-proof-states-what-it-really-does-2026-10-18",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:ba663043f4a849b46d7d36d1d5efe463fa351746445a200708ef82d083558ac3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reason-to-exist-rs"
+}

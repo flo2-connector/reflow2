@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b7f541144823c1cf46a8bad6f0e43ff7429f67e684f281e803bec49df5fa7b07",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-objection-aimed-at-a-step-is-read-against-that-step",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

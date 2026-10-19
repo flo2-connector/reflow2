@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:78e2bad911df711d45fd908bf06c395fc47a94897ac4327ac2051a8c35b24a51",
+  "node_id": "cap:an-objection-holding-only-under-an-open-supposition-contests-and-never-refutes-outside-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-18 (phase 3, item 0b; req:a-claim-that-holds-only-under-an-open-supposition-cannot-refute-a-claim-outside-it). In inference.rs an objection (opposing CONTRADICTS) is judged against its target's OWN reading: one that holds only under an assumption no step discharges, or only if an unverified citation is right, that the target does not hold under too reads `stands` with `holds_only_under` naming them — it contests the target, whose why names the supposition — and refutes only a target inside the same scope. The reading chosen is CONTESTED, not a \"conditional refutation\": outside S only \"if S, then not T\" is established, which the design records as a statement of its own (discharge S) and which then objects outright. The same class at each place it was found: a conditional reply answers no objection (no reinstatement); attack_standing and is_a_standing_refutation (detect_defects) follow the scoped standing; holding_inferences_within, and so the delivery roll-up, excludes a step holding only under an open assumption or unverified citation; conclusions_that_do_not_follow counts such a result as not supporting a `met` or `accepted`. Measured case: the cogito trial's req:ai-not-res-cogitans, refuted on main, contested here.",
+    "name": "An objection that holds only under an open supposition contests a claim outside it and never refutes it; a conditional result delivers nothing and supports no claimed status",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

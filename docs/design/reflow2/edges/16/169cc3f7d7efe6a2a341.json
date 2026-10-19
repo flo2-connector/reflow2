@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2361cedc94da6d833b86136d91644794fc2f5ce06912dddacf32c98625416cfc",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
+  "properties": {
+    "evidence": "Item 6 of the trial's findings (measured by the observer), captured as a requirement."
+  },
+  "to_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading"
+}

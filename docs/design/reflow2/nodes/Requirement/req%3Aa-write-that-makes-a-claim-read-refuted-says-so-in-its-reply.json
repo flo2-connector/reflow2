@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7db5bddb9b40d058b6a54e0dd05017e10975cdb8314e9e89e4005f926a1a3d19",
+  "node_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A write that makes another claim read refuted says so in its reply, and how to keep the two as a dispute instead",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito AI branch)",
+    "statement": "When an edge or claim written changes another claim's reading to refuted (or defeated), the write's reply names that claim and its new reading. When the writer's own evidence or note calls it a dispute, the reply says how to record it as one (a mutual attack, or a Decision kept `contested`).\nObserved on 2026-10-18 in the cogito design's AI branch: a chat drew one opposing CONTRADICTS between the functionalist and Cartesian verdicts, with evidence \"kept as the open dispute this branch is about\". The Cartesian verdict silently became `refuted`. The session made no read-back, so nobody saw it.",
+    "status": "proposed"
+  }
+}
