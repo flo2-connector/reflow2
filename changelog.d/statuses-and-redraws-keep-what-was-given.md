@@ -9,9 +9,11 @@
   constructors that take an approver (`add_decision`, `add_requirement`) now
   store exactly the status given, on a create and on a revise (a revise back to
   `proposed` was silently ignored too). A status the schema does not know is
-  refused, naming the legal ones, before anything is written. **What to do:**
-  nothing, unless you relied on it: `approver` passed with no `status`, or with
-  `proposed`, is now refused, because there is nothing for it to sign.
+  refused, naming the legal ones, before anything is written. An `approver`
+  passed with no `status`, or with `proposed`, has nothing to sign: it is no
+  longer drawn, and the reply says so under `approver_not_drawn`. **What to
+  do:** nothing. To record the owner's word, pass the status they chose with
+  their name.
 - **Re-drawing an edge keeps the properties the call leaves out, for every typed
   edge helper.** `satisfies` already did, and `depends_on` did only when given
   `argued_by`; the other 23 helpers `draw_edges` runs (`allocate`, `verifies`,
