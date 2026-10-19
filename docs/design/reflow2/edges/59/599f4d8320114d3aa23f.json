@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9d9304e49cf1242f2fd6a3737df6dab8852a38a1e356f9a778740d8b432a1172",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:service-view",
+  "properties": {
+    "covers": "whole",
+    "note": "the four routing-rule and prefix unit tests live in service/view.rs's tests module"
+  },
+  "to_id": "ver:through-a-hub-every-tool-runs-on-one-named-member-tests"
+}
