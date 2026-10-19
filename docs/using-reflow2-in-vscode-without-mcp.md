@@ -252,6 +252,21 @@ Each was root-caused on 2026-10-02, and its finding is in reflow2's design under
     `git checkout --` for the tracked files, deleting the files it created (all carry the run's timestamp), and
     putting `kit-version.json` back from the store backup. A fix could make `update` check that the recorded
     files still exist before bringing a kit forward, or refuse the way it does when no record exists.
+22. **A write's "no export was kept current" hint omits `.reflow2.toml`** (0.87.0, field run 2026-10-19; not
+    yet recorded in reflow2's design). A write against a store kept outside any repo (`--graph-path` to a
+    folder of its own) says it kept no export because no `--export-to` was given and no MCP configuration
+    (`.mcp.json`, `opencode.json`, `.vscode/mcp.json`, `.grok/config.toml`) names one. An untracked
+    `.reflow2.toml` with `[export] path = …` in the store's folder works: every later write kept the export
+    current and `sync_status` read `in_step`. The hint could name it as the first option.
+23. **`delete_node` requires `node_type`; the readers do not** (0.87.0, 2026-10-19). `get_node` and
+    `review_relations` resolve the type from the id prefix (`frag:`, `dec:` …); `delete_node` refuses without
+    it, so the one destructive call is the one that cannot take a bare id. Resolving it the same way, and
+    refusing only an id held by two types, would match the rest.
+24. **`describe_schema`'s brief form leaves nested item shapes as `$ref`** (0.87.0, 2026-10-19).
+    `review_relations`' `links.items` comes back as `{"$ref": "#/$defs/RelationLinkReq"}` with the `$defs`
+    not included; `full: true` puts them under `served.inputSchema.$defs`. `reflow2-mcp --describe
+    review_relations` prints the fields (`relation`, `other_id`, `evidence`, `incoming`) and is the one to
+    use until the brief form inlines or includes its `$defs`.
 
 ## Fixed since the report
 
@@ -294,6 +309,9 @@ Numbered as in the report. Each change shipped in v0.78.0, and each row was chec
   Half fixed. The item shape is published and a string entry is refused naming the tool and the field (#656).
   A location that is a URL is still compared with the swept paths as a literal string
   (`fact:root-cause-coverage-report-reads-an-artifact-location-as-a-literal-path-a-meaning-the-shared-location-rule-never-reached-2026-10-02`).
+  Still true on 0.87.0 (field run 2026-10-19): a sweep of plain repo paths claimed 0 of 21 files, with no
+  warning. Sweeping the same files in the artifacts' URL form (commit-pinned, spaces as `%20`) claimed 13 of
+  21 and left `unobserved_locations` empty, so build the sweep in whatever form the locations use.
 - **A Verification recording a test collection error read as "did not work as designed".** Fixed (#662):
   record the outcome `blocked`, which raises `blocked_verification` and says nothing is known about the part.
 - **`export_graph` with no `path` prints the whole design to stdout.** Still true, and documented: without a
