@@ -68,7 +68,9 @@ cd my-thing && reflow2 init --remove
 
 It deletes the kit files nobody edited (and names the edited ones it keeps), strips the lines
 the kit added to `.gitignore`, `.gitattributes` and your instruction files, and marks
-`.reflow2/kit-version.json` removed. The design store and its export are not touched, and
+`.reflow2/kit-version.json` removed. It keeps the `.reflow2/` line in `.gitignore`, so the
+design store it leaves can never be committed by accident. The store and its export are not
+touched, and
 `reflow2 update` refuses in that project from then on, so it never brings the kit back.
 `reflow2 init .` installs it again. Deleting the kit by hand is read the same way once none of
 the files the receipt records is left; deleting ONE kit file still means "give me reflow2's

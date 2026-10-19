@@ -1021,6 +1021,10 @@ IGNORE_LINES = [
 ]
 
 
+# The one ignore line `--remove` leaves: the store it keeps.
+STORE_IGNORE = ".reflow2/"
+
+
 def gitignore_block() -> str:
     out = []
     for comment, line in IGNORE_LINES:
@@ -2364,8 +2368,15 @@ def stripped_text(project: Path, rel: str) -> tuple[str, str] | None:
     except (OSError, UnicodeDecodeError):
         return None
     if rel == ".gitignore":
-        after = without_block(text, gitignore_block())
-        what = "the lines reflow2 added (its store and MCP configs)"
+        # EVERYTHING BUT `.reflow2/`: the remove keeps the design store, and
+        # an ignore line taken away with the kit would leave it one `git add .`
+        # from being committed (Anthony, 2026-10-19: "Keep the ignore line").
+        block = gitignore_block()
+        after = without_block(text, block)
+        if block in text and STORE_IGNORE not in after.splitlines():
+            after = without_block(text.replace(block, STORE_IGNORE + "\n", 1), block)
+        what = (f"the lines reflow2 added, except {STORE_IGNORE}, which keeps "
+                f"the design store out of commits")
     elif rel == ".gitattributes":
         after = text
         for m in re.finditer(re.escape(GITATTRIBUTES_NOTE) + r"[^\n]+ merge=reflow2\n", text):
@@ -2422,11 +2433,11 @@ def left_in_place(project: Path) -> list[str]:
 
 
 def no_longer_ignored(project: Path) -> list[str]:
-    """Machine state still here that git now sees, once the kit's ignore lines
-    are gone: the design store above all, which `--remove` keeps."""
+    """This machine's files still here that git now sees, once the kit's ignore
+    lines are gone. Never the design store: its ignore line stays."""
     out = []
     for _, line in IGNORE_LINES:
-        if not (project / line).exists():
+        if line == STORE_IGNORE or not (project / line).exists():
             continue
         try:
             got = subprocess.run(["git", "check-ignore", "-q", line], cwd=project,
@@ -2507,8 +2518,8 @@ def run_remove(project: Path, check: bool) -> int:
         for item in leftovers:
             print(f"  {item}")
     if not check and (seen := no_longer_ignored(project)):
-        print("\nGit no longer ignores these, and they are still here (machine state; "
-              "keep them out of commits, e.g. in .git/info/exclude):")
+        print("\nGit no longer ignores these, and they are still here (this machine's "
+              "files, carrying its absolute paths; do not commit them):")
         for line in seen:
             print(f"  {line}")
     print("\nThe design (.reflow2/ and its committed export) was not touched." if not check

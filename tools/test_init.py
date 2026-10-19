@@ -2101,10 +2101,17 @@ class AKitRemovedStaysRemoved(unittest.TestCase):
         self.assertEqual(out.returncode, 0, f"{out.stdout}\n{out.stderr}")
         self.assertEqual(edited.read_text(), edited_text, "a person's edit is never deleted")
         self.assertIn(".github/skills/adopt/SKILL.md", out.stdout, "and the kept file is named")
-        # What git sees is the repo before the install, plus the one kept edit.
-        self.assertEqual(self.status(p), "?? .github/skills/adopt/SKILL.md\n",
+        # What git sees is the repo before the install, plus the one kept edit
+        # and the one ignore line kept for the store.
+        self.assertEqual(self.status(p),
+                         " M .gitignore\n?? .github/skills/adopt/SKILL.md\n",
                          "every untouched kit file is gone and every appended line stripped")
-        self.assertEqual((p / ".gitignore").read_text(), self.THEIR_GITIGNORE)
+        self.assertEqual((p / ".gitignore").read_text(), self.THEIR_GITIGNORE + "\n.reflow2/\n",
+                         "everything the kit added to .gitignore goes, except .reflow2/")
+        # Anthony, 2026-10-19, "Keep the ignore line": the design store stays,
+        # so the line keeping it out of commits stays, by .gitignore itself.
+        self.assertTrue(self.git(p, "check-ignore", "-v", ".reflow2/graph").startswith(".gitignore:"),
+                        "the kept store is still ignored by the project's own .gitignore")
         self.assertEqual((p / ".gitattributes").read_text(), self.THEIR_GITATTRIBUTES)
         self.assertEqual((p / "AGENTS.md").read_text(), self.THEIR_AGENTS)
         self.assertEqual((p / ".github" / "copilot-instructions.md").read_text(),
@@ -2140,8 +2147,17 @@ class AKitRemovedStaysRemoved(unittest.TestCase):
         out = self.run_init(p, "--remove")
 
         self.assertEqual(out.returncode, 0, f"{out.stdout}\n{out.stderr}")
-        for rel in (".gitignore", ".gitattributes", "CLAUDE.md", "AGENTS.md", ".claude/commands"):
+        for rel in (".gitattributes", "CLAUDE.md", "AGENTS.md", ".claude/commands"):
             self.assertFalse((p / rel).exists(), f"{rel} was the kit's alone, so it goes")
+        self.assertEqual((p / ".gitignore").read_text(), ".reflow2/\n",
+                         "the one line that keeps the kept store out of commits stays")
+        self.assertEqual(subprocess.run(["git", "check-ignore", "-q", ".reflow2/graph"],
+                                        cwd=p).returncode, 0,
+                         "after a remove, the design store is still ignored")
+        warned = out.stdout.split("Git no longer ignores", 1)[-1].split("\n\n", 1)[0] \
+            if "Git no longer ignores" in out.stdout else ""
+        self.assertNotIn(".reflow2/", warned, "the store is not among what git now sees")
+        self.assertNotIn(".git/info/exclude", out.stdout)
         self.assertIn(".mcp.json", out.stdout,
                       "what remove leaves in place is named, not left to be found")
 

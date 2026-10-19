@@ -5,7 +5,8 @@
   strips the lines the kit added to `.gitignore`, `.gitattributes`, `.reflow2.toml` and your
   instruction files (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, …), and
   marks `.reflow2/kit-version.json` removed. The design store and its export are not
-  touched. `--remove --check` previews it. It also says what it leaves on purpose (this
+  touched, and the `.reflow2/` line stays in `.gitignore` so the store is never committed
+  by accident. `--remove --check` previews it. It also says what it leaves on purpose (this
   machine's MCP config entries, the loop-nudge hooks, the git merge driver) and which
   machine files git no longer ignores. **What to do:** to take the kit out of a project, run
   `reflow2 init --remove` in it; `reflow2 init .` installs it again. The `reflow2` command
