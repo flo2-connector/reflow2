@@ -766,7 +766,7 @@ impl DesignGraph {
         completeness: Option<&str>,
         conformance: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::REALIZES,
             node::ARTIFACT,
             artifact_id,
@@ -818,7 +818,7 @@ impl DesignGraph {
                 node_id: target_id.to_string(),
             });
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::DOCUMENTS,
             node::ARTIFACT,
             artifact_id,

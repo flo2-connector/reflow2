@@ -31,7 +31,7 @@
       },
       "approver": {
         "default": null,
-        "description": "The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the\nsame call as the status it signs. Draws `AUTHORED_BY role=approver`, the\nedge `rule:design-intent-moves-only-on-the-owners-word` is checked by.\nREQUIRED when the status is past the landing default; an id naming no\nContributor is REFUSED before anything is written, because a typo would\notherwise attach the owner's authority to a name nobody can check.",
+        "description": "The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the\nsame call as the status it signs. Draws `AUTHORED_BY role=approver`, the\nedge `rule:design-intent-moves-only-on-the-owners-word` is checked by.\nREQUIRED when the status settles. It signs only a status this call\nstores past `proposed`: with no `status`, or with `proposed`, it is not\ndrawn, and the reply says so under `approver_not_drawn`. An id naming no\nContributor is REFUSED before anything is written, because a typo would\notherwise attach the owner's authority to a name nobody can check.",
         "type": [
           "string",
           "null"

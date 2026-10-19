@@ -843,7 +843,7 @@ impl ReflowService {
         req: PerformedInReq,
     ) -> Result<CallToolResult, McpError> {
         ok_json(EdgeDto::from(
-            g.create_edge(
+            g.draw_edge_keeping(
                 reflow2_core::nodes::edge::PERFORMED_IN,
                 reflow2_core::nodes::node::VERIFICATION,
                 &req.verification_id,

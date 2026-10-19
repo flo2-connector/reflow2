@@ -319,7 +319,7 @@ impl DesignGraph {
                 message: format!("must be a finite number, got {c}"),
             });
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::CONSTRAINS,
             source_type,
             constraint_id,

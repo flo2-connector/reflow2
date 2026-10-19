@@ -63,7 +63,7 @@ impl DesignGraph {
         flow_id: &str,
         step_order: Option<i64>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::PART_OF_FLOW,
             node::CAPABILITY,
             capability_id,

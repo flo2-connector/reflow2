@@ -366,7 +366,7 @@ impl DesignGraph {
         target_type: &str,
         target_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::VERIFIES,
             node::VERIFICATION,
             verification_id,
@@ -469,7 +469,7 @@ impl DesignGraph {
         note: Option<&str>,
         calibrated_at: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::CALIBRATED_AGAINST,
             from_type,
             from_id,
@@ -507,7 +507,7 @@ impl DesignGraph {
         note: Option<&str>,
         at: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::INVALIDATES,
             from_type,
             from_id,

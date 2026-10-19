@@ -907,7 +907,7 @@ impl DesignGraph {
                 )?;
             }
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::SCHEDULED_FOR,
             item_type,
             item_id,
