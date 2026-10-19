@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f815dccda2f7c796a4c29aca15da5446f37801f3fe3b10258bfa31060e7adf33",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
+  "properties": {
+    "evidence": "Each option answers the finding: explain the exception where it is met, or remove the ceremony while keeping a check."
+  },
+  "to_id": "fact:root-cause-delete-node-requires-its-type-by-ruling-and-its-refusal-never-says-so-2026-10-19"
+}

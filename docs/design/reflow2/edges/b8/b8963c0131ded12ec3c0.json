@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:037b24ebff29e840583308e10d24df8ea3c263a778dc2da8e1cbfe1a03fc5dbc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-the-no-export-hint-was-written-before-reflow2-toml-became-a-source-and-nothing-holds-it-to-the-resolver-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ce95702e04025d5107b30f76fd7231ffd7defc876cbe41c7e681a83961f32e71",
+  "node_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Options, from the 2026-10-19 root cause: (a) SMALL, keeps ruling #3b: the refusal says the type is asked for on purpose as a confirmation, and names what the id holds (\"req:one is a Requirement with N edges; pass node_type: \\\"Requirement\\\" to delete it\"). (b) MEDIUM, reopens #3b: node_type optional; when omitted, delete only if the holder's type is the one the id's prefix names by convention (req: → Requirement), refuse otherwise or on collision — the prefix becomes the caller's stated belief. (c) SMALL, reopens #3b: optional and resolved exactly like every other tool. (d) LARGER: an omitted type returns a preview (the node, its edge count, what loses a link) and a confirm step.",
+    "kind": "exploratory",
+    "name": "OPEN — field limitation 23: keep delete_node's required type and say why (naming the type the id resolves to), or let the id's prefix stand as the caller's stated type?",
+    "rationale": "The strict form was Anthony's ruling (2026-09-06) and is pinned by a test, so it is not a defect; the field met it with no reason given. Counter-argument to (b)/(c): delete is the one irreversible call, and a ruling stands until he reopens it. Counter-argument to (a): an agent copies the type the refusal names, so (a) adds a round trip and almost no check; (b) keeps a real check (prefix vs holder) without the round trip. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

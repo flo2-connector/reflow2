@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6ca95e039261acbf0bcc01b36bd00ba7e9191eb0ba21f537122c352e655b7039",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-no-export-line-names-every-source-the-resolver-reads-reflow2-toml-first",
+  "properties": {
+    "evidence": "It surfaces the record that decision made the owner of the export path.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:a-projects-export-path-is-recorded-once-in-reflow2-toml-2026-10-06"
+}
