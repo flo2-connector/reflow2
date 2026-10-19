@@ -157,7 +157,7 @@ impl DesignGraph {
         if let Some(v) = verified {
             props = props.set("verified", v);
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::COMPLIES_WITH,
             from_type,
             from_id,
@@ -184,7 +184,7 @@ impl DesignGraph {
         severity: Option<&str>,
         evidence: Option<&str>,
     ) -> Result<(), DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::VIOLATES_RULE,
             from_type,
             from_id,
@@ -282,7 +282,7 @@ impl DesignGraph {
         environment_id: &str,
         status: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::DEPLOYED_TO,
             node::RELEASE,
             release_id,
@@ -302,7 +302,7 @@ impl DesignGraph {
         resource_id: &str,
         criticality: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::REQUIRES_RESOURCE,
             from_type,
             from_id,
@@ -358,7 +358,7 @@ impl DesignGraph {
                 to_type: target_type.to_string(),
             });
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::INCLUDES,
             node::RELEASE,
             release_id,

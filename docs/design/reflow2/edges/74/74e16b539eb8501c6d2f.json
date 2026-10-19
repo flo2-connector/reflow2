@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4bdc215dae80e812d39b3332c8773a8ee7c3654e144f0fee0695218c0786a585",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-constructor-wrote-its-status-only-when-the-call-settled-and-signed-whatever-it-wrote-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

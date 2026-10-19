@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bccaa79960c98772a6d6a8183ed688eb52275cab858bf7453b03dbc814c2aeef",
+  "node_id": "chg:accept-4653012051a1d81b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.88.0 cut, step 2: the release line moves to v0.88.0; no page states what 0.88.0 changes (no page describes proofs, statement kinds or edge arguments). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

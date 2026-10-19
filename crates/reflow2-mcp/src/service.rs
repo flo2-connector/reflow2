@@ -1895,7 +1895,9 @@ pub struct RequirementReq {
     /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
     /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
     /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
-    /// REQUIRED when the status is past the landing default; an id naming no
+    /// REQUIRED when the status settles. It signs only a status this call
+    /// stores past `proposed`: with no `status`, or with `proposed`, it is not
+    /// drawn, and the reply says so under `approver_not_drawn`. An id naming no
     /// Contributor is REFUSED before anything is written, because a typo would
     /// otherwise attach the owner's authority to a name nobody can check.
     #[serde(default)]
@@ -4641,17 +4643,21 @@ pub struct DecisionReq {
     /// `rejected`. `deferred` is set aside and NOT debt — the loop stops counting
     /// it as owed. `contested` keeps a question open on purpose, both sides on
     /// the record, and is not debt either.
-    /// A status past `proposed` is REFUSED unless `approver` is named — one
-    /// call, with the signature present rather than assumed
-    /// (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
-    /// Before 2026-09-06 this took two calls that could not be batched.
+    /// The status given is the status stored, on a create and on a revise.
+    /// A status that SETTLES — `accepted`, `deferred`, `contested` — is REFUSED
+    /// unless `approver` is named: one call, with the signature present rather
+    /// than assumed (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
+    /// `rejected` and `superseded` retire an option rather than decide, and
+    /// may be recorded with or without one.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::decision_status_opt")]
     pub status: Option<String>,
     /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
     /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
     /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
-    /// REQUIRED when the status is past the landing default; an id naming no
+    /// REQUIRED when the status settles. It signs only a status this call
+    /// stores past `proposed`: with no `status`, or with `proposed`, it is not
+    /// drawn, and the reply says so under `approver_not_drawn`. An id naming no
     /// Contributor is REFUSED before anything is written, because a typo would
     /// otherwise attach the owner's authority to a name nobody can check.
     #[serde(default)]

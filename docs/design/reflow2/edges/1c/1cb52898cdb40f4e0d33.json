@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a334162c90beb8602a85e302ac49c80390e405fe705b0145044da77e3258c1c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:aaccd94968c1a96b5dfec29cdd6183303c56b1a202dca4774877d7461b100cfd"
+  },
+  "to_id": "art:understated-status-test"
+}

@@ -326,7 +326,7 @@ impl DesignGraph {
                 ),
             });
         }
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::GATED_ON,
             gate.subject_type,
             gate.subject_id,

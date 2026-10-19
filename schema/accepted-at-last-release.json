@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.87.0",
+  "reflow2_version": "0.88.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -395,6 +395,8 @@
           "conjecture",
           "corollary",
           "definition",
+          "falsum",
+          "hypothesis",
           "lemma",
           "proposition",
           "theorem"
@@ -867,6 +869,12 @@
       }
     },
     "Inference": {
+      "cases": {
+        "type": "list:string"
+      },
+      "cases_exhaustive": {
+        "type": "string"
+      },
       "confirmed_at": {
         "type": "string"
       },
@@ -1302,6 +1310,8 @@
           "conjecture",
           "corollary",
           "definition",
+          "falsum",
+          "hypothesis",
           "lemma",
           "proposition",
           "theorem"
@@ -1976,6 +1986,9 @@
         "*"
       ],
       "properties": {
+        "argued_by": {
+          "type": "string"
+        },
         "data_volume": {
           "type": "float"
         },
@@ -2530,6 +2543,9 @@
         "*"
       ],
       "properties": {
+        "argued_by": {
+          "type": "string"
+        },
         "coverage": {
           "type": "enum",
           "values": [

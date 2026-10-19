@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:47881c870ca69c362e52c7fb60d2a57a59006d460780fa5ba2b1f2a74da787e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:statuses-and-redraws-keep-what-was-given-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:bcb27f997b1114ecd8c155bb4c0bef70355ae7cfb1979abd928f6cc4769ebb24",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:graph"
+}

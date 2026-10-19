@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7d2e31a8cb86e67732a186df65657bfab75c276b3d9a58d88433715843cd5856",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:f0488b79462beaa0d3fbe2af73029bb70e851dbe0bc3b722016b6d8bce470c2e"
+  },
+  "to_id": "art:test-the-design-is-saved-one-file-per-item-mcp"
+}

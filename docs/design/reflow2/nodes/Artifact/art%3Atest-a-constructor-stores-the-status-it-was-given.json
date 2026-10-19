@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d120239fb342d0232a5c3bd68ab4bbc1347c670f9436b0463ca0ea163d5cd8be",
+  "node_id": "art:test-a-constructor-stores-the-status-it-was-given",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The class test for fact:root-cause-a-constructor-wrote-its-status-only-when-the-call-settled-and-signed-whatever-it-wrote-2026-10-19: walks all nine constructors that take a `status` (add_decision, add_requirement, add_project, add_capability, add_component, add_artifact, add_verification, add_release, add_epoch), every value the schema allows, on create and on revise, with and without an approver where the tool takes one; an approver with nothing to sign is not drawn and the reply says so; an unknown status is refused and nothing is written. In the MCP crate's in_memory program.",
+    "location": "crates/reflow2-mcp/tests/a_constructor_stores_the_status_it_was_given.rs",
+    "name": "a_constructor_stores_the_status_it_was_given.rs — every status-taking constructor stores the status it was given",
+    "status": "realized"
+  }
+}

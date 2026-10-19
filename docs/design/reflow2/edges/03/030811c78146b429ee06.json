@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9a162b475be10daf32352aa254a67c8a83d825f1e521219d6d44f9ff170a69cc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:9ecea52e0454a79fbb494d17f0e353ec37c2cad87a8e0d5fe495374c08a69104"
+  },
+  "to_id": "art:test-a-near-match-across-types-or-within-reasoning-is-a-note"
+}

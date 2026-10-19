@@ -2472,7 +2472,7 @@ impl DesignGraph {
         child_type: &str,
         child_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::CONTAINS,
             node::PROJECT,
             project_id,
@@ -2545,7 +2545,7 @@ impl DesignGraph {
         to_id: &str,
         coverage: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::SATISFIES,
             from_type,
             from_id,
@@ -2562,6 +2562,15 @@ impl DesignGraph {
     /// one property (`evidence`, `argued_by`) would otherwise silently reset
     /// the rest — a `partial` coverage read as `full` delivery
     /// (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
+    ///
+    /// ONE RULE FOR EVERY TYPED EDGE HELPER since 2026-10-19: each of them
+    /// (`allocate`, `verifies`, `governed_by`, `realizes`, …) draws through
+    /// here, so a re-draw that names fewer properties never erases the rest.
+    /// Until then only `satisfies`, and `depends_on` when given `argued_by`,
+    /// did; 23 of the 25 helpers `draw_edges` runs replaced the whole bag
+    /// (`tests/a_redrawn_edge_keeps_what_the_call_leaves_out.rs` in the MCP
+    /// crate). `create_edge` itself still REPLACES: it is the generic write
+    /// that sets an edge's whole property bag, and the store's upsert.
     pub fn draw_edge_keeping(
         &mut self,
         edge_type: &str,
@@ -2641,7 +2650,7 @@ impl DesignGraph {
         };
         let child_type = end_type(child_id)?;
         let parent_type = end_type(parent_id)?;
-        let edge = self.create_edge(
+        let edge = self.draw_edge_keeping(
             edge::DECOMPOSES,
             child_type,
             child_id,
@@ -2705,7 +2714,7 @@ impl DesignGraph {
         capability_id: &str,
         component_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::ALLOCATED_TO,
             node::CAPABILITY,
             capability_id,
@@ -2756,7 +2765,7 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::DEPENDS_ON,
             from_type,
             from_id,
@@ -2808,7 +2817,7 @@ impl DesignGraph {
         question_id: &str,
         note: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::ANSWERS,
             from_type,
             from_id,
@@ -2827,7 +2836,7 @@ impl DesignGraph {
         ruling: Option<&str>,
         note: Option<&str>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::GOVERNED_BY,
             from_type,
             from_id,
@@ -3121,7 +3130,7 @@ impl DesignGraph {
         // Same refusal as `authored_by`: `owned_by` takes a Contributor for the
         // same reasons and fails the same indistinguishable way without it.
         self.require_contributor(contributor_id, "owned_by", "own this")?;
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::OWNED_BY,
             from_type,
             from_id,
@@ -3151,7 +3160,7 @@ impl DesignGraph {
         component_id: &str,
         interface_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::PROVIDES,
             node::COMPONENT,
             component_id,
@@ -3186,7 +3195,7 @@ impl DesignGraph {
         consumer_id: &str,
         interface_id: &str,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge(
+        self.draw_edge_keeping(
             edge::CONSUMES,
             consumer_type,
             consumer_id,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:380df9c39d14c78d1406abe75119910b0d3bc5465c5c35815e6863d47069cb86",
+  "node_id": "chg:accept-fcf06fd5f0199694",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.88.0 cut, step 1: the schema snapshot is re-blessed from the 0.88.0 build (11 passed); it gains statement_kind hypothesis and falsum, Inference cases and cases_exhaustive, and argued_by/evidence on the edges #771 declared. No narrowing. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

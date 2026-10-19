@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:700ba5589ed01dab0308d61c952631fff25aaa23fc0f8bbf63d4059367ea8a68",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:ae8f0136dfcdd5a9e713bb9862e9cd561e96300d2373b0a511862c3f3c8f2d80"
+  },
+  "to_id": "art:test-a-fields-own-terms-have-one-home"
+}

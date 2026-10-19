@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ef446b3279fa73d9cc021ab0614a41c32ffaec5147d57a90807242bb5ebe2872",
+  "edge_type": "CHANGED",
+  "from_id": "chg:statuses-and-redraws-keep-what-was-given-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:a3e6dd17a473330eda687a9737b4dfa822cc9d9d5cb856c4776241a8e4f58540",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:artifact"
+}

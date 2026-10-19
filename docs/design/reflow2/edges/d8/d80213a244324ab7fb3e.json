@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:293fb4ad637669c707bf035ec7ef0a8ad83d2963625861e8d9f0d0b0b8f678da",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:9ed2c5ad77627105d604aaab9317b6511b2414c4e32bac30a954c297029333af"
+  },
+  "to_id": "art:a-proof-states-what-it-really-does-on-the-wire-test"
+}

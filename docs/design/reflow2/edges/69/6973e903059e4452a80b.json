@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:07db74755d1860702d9be33a4b9605e835aea44a3de208f8258600d12399b28f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:statuses-and-redraws-keep-what-was-given-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-constructor-stores-the-status-it-was-given-tests"
+}

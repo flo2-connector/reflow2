@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5371456508b55dc785b43064183942fc8f98b42b5b55e5ec3da8df58f8f6847c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:0a54babb1e19da0fe67b353fc07d25f05de24a38cd4a2ad5a0ad95bdda6affd2"
+  },
+  "to_id": "art:toolsnap-ask-question"
+}

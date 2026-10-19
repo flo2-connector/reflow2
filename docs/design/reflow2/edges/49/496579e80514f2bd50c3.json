@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a1d4f2ec957b4b87b9bf5adb37cfea337e50801abbae7bcd3c3ed0d91687a13e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:d88a265d74e656ebb68f83e1973eec58eca8fbeffd3ccfb249a247649fa5765d"
+  },
+  "to_id": "art:docs-interaction-surfaces"
+}

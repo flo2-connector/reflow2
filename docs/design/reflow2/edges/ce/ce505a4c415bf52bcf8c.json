@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:97b686e8f808d14415dd7e8d47d767b88527dce2533f0b53f8343aed0949a514",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-redrawn-edge-keeps-what-the-call-leaves-out",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-redrawn-edge-keeps-what-the-call-leaves-out-tests"
+}

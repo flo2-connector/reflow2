@@ -961,6 +961,76 @@ pub(crate) fn approver_must_exist(
     ))
 }
 
+/// A constructor's status is checked against the schema BEFORE anything is
+/// written: it is written after the node, and a refusal then would leave the
+/// node behind. (Until 2026-10-19 an unknown Decision status was not refused at
+/// all: it did not settle, so it was not written, and the node landed
+/// `proposed` without a word.)
+pub(crate) fn status_must_be_known(
+    tool: &str,
+    node_type: &str,
+    status: Option<&str>,
+) -> Result<(), McpError> {
+    if let (Some(st), Some(legal)) = (
+        status,
+        reflow2_core::schema::enum_values(node_type, "status"),
+    ) && !legal.iter().any(|l| l == st)
+    {
+        return Err(McpError::invalid_params(
+            format!(
+                "`{tool}`: `{st}` is not a {node_type} status — one of {}. Nothing was written.",
+                legal.join(", ")
+            ),
+            None,
+        ));
+    }
+    Ok(())
+}
+
+/// Whether a constructor's `approver` signs: only a status THIS call stores
+/// past the landing one — never the landing status, and never a status the
+/// call did not store. `Some(note)` when an approver was passed and there was
+/// nothing for it to sign: the signature is not drawn, and the reply says so
+/// (`approver_not_drawn`). Not refused, so a client that passes its approver
+/// on every call keeps working (an MCP call that worked keeps working until a
+/// release has announced otherwise).
+///
+/// The class this pins (`tests/a_constructor_stores_the_status_it_was_given.rs`,
+/// fact:root-cause-a-constructor-wrote-its-status-only-when-the-call-settled-and-signed-whatever-it-wrote-2026-10-19):
+/// `add_decision` wrote its status only when the call SETTLED — the settle
+/// table's answer, which since 2026-09-29 excludes `rejected` and `superseded`
+/// — and drew the signature whatever it wrote, so a Decision its owner
+/// rejected landed `proposed` carrying the owner's approval. Two questions,
+/// "is the owner's name needed?" and "is the status written?", were answered
+/// by one boolean. They are separate now: the settle gate answers the first,
+/// and the status a constructor is given is always the status it stores.
+pub(crate) fn approver_has_a_status_to_sign(
+    status: Option<&str>,
+    approver: Option<&str>,
+    landing: &str,
+) -> Option<String> {
+    approver?;
+    let sets = match status {
+        None => "sets no `status`".to_string(),
+        Some(s) if s == landing => {
+            format!("sets `status: {landing}`, where a node lands with nobody's word")
+        }
+        Some(_) => return None,
+    };
+    Some(format!(
+        "`approver` was NOT drawn: it is the owner's signature on the status a call stores \
+         past `{landing}`, and this call {sets}, so there was nothing for it to sign. Pass the \
+         `status` the owner chose with it to record their word."
+    ))
+}
+
+/// Say in the reply that an `approver` was passed and not drawn.
+pub(crate) fn attach_not_drawn(reply: &mut JsonValue, note: Option<String>) {
+    if let (Some(note), Some(obj)) = (note, reply.as_object_mut()) {
+        obj.insert("approver_not_drawn".into(), JsonValue::String(note));
+    }
+}
+
 /// Draw the signature: `AUTHORED_BY role=approver`, dated when the caller says.
 pub(crate) fn sign_as_approver(
     g: &mut reflow2_core::graph::DesignGraph,
@@ -1753,6 +1823,12 @@ impl ReflowService {
         let node_ty = reflow2_core::nodes::node::REQUIREMENT;
         // Which calls settle is DECLARED (crate::settles), served on the tool,
         // and read here — never re-derived per handler.
+        status_must_be_known("add_requirement", node_ty, req.status.as_deref())?;
+        let not_drawn = approver_has_a_status_to_sign(
+            req.status.as_deref(),
+            req.approver.as_deref(),
+            "proposed",
+        );
         let settles = crate::settles::rule("add_requirement").settles_str(req.status.as_deref());
         crate::settles::gate(
             "add_requirement",
@@ -1800,8 +1876,13 @@ impl ReflowService {
         // The owner's word, in the same call. Applied after every guard that
         // could still undo the create, so a refusal never leaves a signed
         // half-node behind.
-        if settles {
-            g.set_requirement_status(&req.id, req.status.as_deref().unwrap_or("proposed"))
+        // The status it was GIVEN is the status it stores — on a create and on
+        // a revise, whether or not the call settles. Whether the owner's name
+        // is needed is the settle gate's question, asked above; it never
+        // decides what is written
+        // (fact:add-decision-given-status-rejected-and-an-approver-writes-proposed-and-says-nothing-2026-10-18).
+        if let Some(status) = req.status.as_deref() {
+            g.set_requirement_status(&req.id, status)
                 .map_err(dyno_err)?;
         }
         // `priority` reaches the store here because the core constructor does
@@ -1849,13 +1930,15 @@ impl ReflowService {
                 ("fixes", req.fixes.as_ref()),
             ],
         )?;
-        sign_as_approver(
-            &mut g,
-            node_ty,
-            &req.id,
-            req.approver.as_deref(),
-            req.acted_at.as_deref(),
-        )?;
+        if not_drawn.is_none() {
+            sign_as_approver(
+                &mut g,
+                node_ty,
+                &req.id,
+                req.approver.as_deref(),
+                req.acted_at.as_deref(),
+            )?;
+        }
         let mut edges = crate::drawn_edges::DrawnEdges::new();
         let kept = keep_the_choice(
             &mut g,
@@ -1875,6 +1958,7 @@ impl ReflowService {
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
+        attach_not_drawn(&mut reply, not_drawn);
         with_capture_notes(
             reply,
             "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
@@ -3471,6 +3555,12 @@ impl ReflowService {
         let node_ty = reflow2_core::nodes::node::DECISION;
         // Which calls settle is DECLARED (crate::settles), served on the tool,
         // and read here — never re-derived per handler.
+        status_must_be_known("add_decision", node_ty, req.status.as_deref())?;
+        let not_drawn = approver_has_a_status_to_sign(
+            req.status.as_deref(),
+            req.approver.as_deref(),
+            "proposed",
+        );
         let settles = crate::settles::rule("add_decision").settles_str(req.status.as_deref());
         crate::settles::gate(
             "add_decision",
@@ -3647,18 +3737,24 @@ impl ReflowService {
         }
         // The owner's word, in the same call: applied after every guard that
         // could still undo the create, so a refusal never leaves a signed
-        // half-node behind. `proposed` is the landing state and needs no write.
-        if settles {
-            g.set_decision_status(&req.id, req.status.as_deref().unwrap_or("proposed"))
-                .map_err(dyno_err)?;
+        // half-node behind. The status it was GIVEN is the status it stores,
+        // whether or not the call settles: `rejected` and `superseded` retire
+        // rather than decide, so the gate does not ask for a name, and until
+        // 2026-10-19 that same answer also skipped the write — the Decision
+        // landed `proposed` with the owner's signature drawn below all the same
+        // (fact:add-decision-given-status-rejected-and-an-approver-writes-proposed-and-says-nothing-2026-10-18).
+        if let Some(status) = req.status.as_deref() {
+            g.set_decision_status(&req.id, status).map_err(dyno_err)?;
         }
-        sign_as_approver(
-            &mut g,
-            node_ty,
-            &req.id,
-            req.approver.as_deref(),
-            req.acted_at.as_deref(),
-        )?;
+        if not_drawn.is_none() {
+            sign_as_approver(
+                &mut g,
+                node_ty,
+                &req.id,
+                req.approver.as_deref(),
+                req.acted_at.as_deref(),
+            )?;
+        }
         // After the owner's word, so where a replaced decision stands is read
         // from the status this call just settled.
         let kept = keep_the_choice(
@@ -3701,6 +3797,7 @@ impl ReflowService {
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
+        attach_not_drawn(&mut reply, not_drawn);
         if let (Some(block), Some(obj)) = (name_open, reply.as_object_mut()) {
             obj.insert("name_still_reads_open".into(), JsonValue::Object(block));
         }
@@ -4089,38 +4186,36 @@ impl ReflowService {
         g: &mut reflow2_core::DesignGraph,
         req: DependsOnReq,
     ) -> Result<CallToolResult, McpError> {
-        ok_json(EdgeDto::from({
-            let from_type = crate::service::resolve_node_type_or(
-                g,
-                req.from_type.as_deref(),
+        let from_type = crate::service::resolve_node_type_or(
+            g,
+            req.from_type.as_deref(),
+            &req.from_id,
+            "from_type",
+            reflow2_core::nodes::node::COMPONENT,
+        )?;
+        let to_type = crate::service::resolve_node_type_or(
+            g,
+            req.to_type.as_deref(),
+            &req.to_id,
+            "to_type",
+            reflow2_core::nodes::node::COMPONENT,
+        )?;
+        // One path with or without `argued_by`: a re-draw keeps every
+        // property the call leaves out, the argument an earlier call named
+        // included. Until 2026-10-19 the call without `argued_by` went
+        // through a replacing write and erased it, while this tool's field
+        // text already said a re-draw keeps what it leaves out.
+        let stored = g
+            .draw_edge_keeping(
+                reflow2_core::nodes::edge::DEPENDS_ON,
+                &from_type,
                 &req.from_id,
-                "from_type",
-                reflow2_core::nodes::node::COMPONENT,
-            )?;
-            let to_type = crate::service::resolve_node_type_or(
-                g,
-                req.to_type.as_deref(),
+                &to_type,
                 &req.to_id,
-                "to_type",
-                reflow2_core::nodes::node::COMPONENT,
-            )?;
-            if req.argued_by.is_some() {
-                let stored = g
-                    .draw_edge_keeping(
-                        reflow2_core::nodes::edge::DEPENDS_ON,
-                        &from_type,
-                        &req.from_id,
-                        &to_type,
-                        &req.to_id,
-                        reflow2_core::nodes::Props::new()
-                            .set_opt("argued_by", req.argued_by.as_deref()),
-                    )
-                    .map_err(dyno_err)?;
-                return edge_with_argument(g, stored);
-            }
-            g.depends_on_between(&from_type, &req.from_id, &to_type, &req.to_id)
-                .map_err(dyno_err)?
-        }))
+                reflow2_core::nodes::Props::new().set_opt("argued_by", req.argued_by.as_deref()),
+            )
+            .map_err(dyno_err)?;
+        edge_with_argument(g, stored)
     }
 
     /// The body of [`Self::governed_by`] over a graph the caller already holds: the

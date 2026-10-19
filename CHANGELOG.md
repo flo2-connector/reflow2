@@ -31,6 +31,254 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.88.0] — 2026-10-19
+
+**Minor. Reasoning is attached to the structure it justifies, a proof states what it really does,
+and a constructor or an edge re-draw keeps what it was given.** It contains:
+- #770: a premise has a truth (a standing measured finding holds; an accepted Decision reads its
+  owner's acceptance and its chain side by side), honest proof readings, and `graph_report` takes
+  a reply budget;
+- #771: a requirement reads its reason to exist, an edge names the claim that argues for it
+  (`argued_by`), and delivery argued along its own edge reads circular;
+- #772: a contradiction (`falsum`) and a supposition (`hypothesis`) are statement kinds of their
+  own, a proof by cases names its cases, a cited result reads `cited`, a claim that holds only
+  under an open supposition contests rather than refutes, and a generalization over a variable an
+  open assumption names does not hold;
+- #773: `add_decision` and `add_requirement` store the status they are given, and every typed
+  edge helper keeps the properties a re-draw leaves out.
+
+The MCP surface stays at 200 tools. New arguments: `cases` and `cases_exhaustive` on
+`add_inference`; `evidence` and `argued_by` on `satisfies`; `argued_by` on `depends_on`;
+`budget_chars` on `graph_report`. New reply fields include `reason_to_exist`, `argument`,
+`argues_for`, `reasons_to_exist_lost`, `arguments_lost` and `approver_not_drawn`.
+- **🛑 The schema stamp moves** (`statement_kind` gains `hypothesis` and `falsum`): upgrade every
+  seat together. A v0.87.0 seat refuses a store or an export holding either value, measured at
+  this cut ([docs/upgrading-to-v0.88.0.md](docs/upgrading-to-v0.88.0.md)).
+- **A correction to the v0.87.0 notes:** they said 0.86.0 "imports 0.87.0's export". An older
+  binary refuses a plain import of a newer export; it needs `--accept-newer`.
+
+**Nothing is deprecated or removed in this release** (the deprecation registry is empty).
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary, checked on the 0.88.0 release build:
+- `reflow2 write add_requirement` records a `hypothesis` and a `falsum`, and `reflow2 read
+  get_node` reads the supposition `discharged` and the contradiction `false`; the theorem the
+  reductio concludes reads `shown`;
+- `reflow2 write satisfies` takes `argued_by` and replies with the claim's `argument` beside the
+  edge, and a bare re-draw keeps it;
+- `reflow2 write add_decision` with `status: rejected` and an approver stores `rejected`.
+
+**Still needs a hosted gateway such as flo2.io:** the same as in 0.87.0, the hub view (asking a
+hub and hearing from every member, the merged `search_design`, and cross-design reads by graph
+id). `--call` refuses `--remote`, and `reflow2 read` does not take it.
+
+### Added
+
+- **🛑 Upgrade every seat together: the schema stamp moves.** `statement_kind`
+  (on Requirement and Constraint) gains two values, `hypothesis` and
+  `falsum`, so the stamp's `enum_values` move. No node or edge type is added.
+  Measured with the published 0.87.0 binary on a store and an export this
+  build wrote:
+  - 0.87.0 REFUSES to open a store holding either value, naming it
+    (`Requirement.statement_kind = "falsum"`).
+  - It opens a store this build wrote that holds neither, with its warning
+    that it is behind.
+  - It refuses to import an export holding either value, all or nothing,
+    even with `--accept-newer`.
+  - This build opens a 0.87.0 store unchanged.
+  Update every machine, harness and server that opens a design together,
+  before anyone records a proof with the new values. **What to do:** upgrade every
+  seat; stop any shared server still on the old binary
+  (`reflow2-mcp --graph-path <path> --stop-shared`). Nothing needs migrating
+  ([docs/upgrading-to-v0.88.0.md](docs/upgrading-to-v0.88.0.md)).
+- **A contradiction is a statement of its own, and it reads false.** A
+  `falsum` (statement_kind `falsum`) is the contradiction a reductio derives.
+  It reads `false`, never `holds`, and a reductio resting on it reads it by
+  whether it is derived, so the reductio holds and discharges its
+  supposition. A falsum derived under no open assumption reads
+  `inconsistent`: the foundations contradict each other, and `loop_status`
+  and `detect_gaps` say so. On the π+e trial the contradiction had to be
+  drawn inside the reductio's warrant.
+- **A hypothesis has a kind of its own.** `statement_kind: hypothesis` is a
+  supposition, an induction hypothesis or a case. It reads `assumed` while
+  open and `discharged` once a step discharges it, where it read "stated, not
+  shown" (the Arrow and π+e trials).
+- **A proof by cases names its cases and what makes them all the cases.**
+  `add_inference` takes `cases` (the case hypotheses, discharged by the step
+  and refused unless assumed beneath it) and `cases_exhaustive` (the record
+  saying the cases cover every possibility, refused unless it names a node,
+  and drawn as a premise). The step reads `cases` with `declared` and that
+  record's truth, and holds only while it holds. Exhaustiveness is the
+  owner's word or a checker's, never reflow2's. A split nothing declares
+  exhaustive is counted (`cases_not_declared_exhaustive`) and raised as a
+  `reasoning_not_as_stated` gap.
+
+- **A requirement reads its reason to exist.** `get_node` on a Requirement a
+  Decision governs, and `reasoning_report` on it, carry `reason_to_exist`: each
+  governing Decision with the owner's `acceptance`, the verdict of the chain
+  that concludes it beside it, and its `support` (`accepted_and_its_chain_holds`,
+  `accepted_without_a_holding_chain`, `not_settled`, `withdrawn` ...), read
+  apart from whether the requirement is delivered. A `parks` ruling is not a
+  reason to exist. It used to say only "delivered by the roll-up".
+- **A change that breaks a Decision's support names what it governs.**
+  `propagate_from` (and `propagate_change`) carry `reasons_to_exist_lost`: every
+  Decision the change leaves without a holding line (a seed, or a conclusion
+  whose row no longer reads `still_supported`, `accepted_without_a_holding_chain`
+  included) with every Requirement GOVERNED_BY it, named. They were reached only
+  as distance rings before.
+- **An edge names the claim that argues for it.** `SATISFIES` and `DEPENDS_ON`
+  take `argued_by`, a typed link to a claim (a statement a step concludes),
+  refused at write unless it names a node of the design. `satisfies` and
+  `depends_on` take `argued_by`, and `satisfies` takes `evidence`, the edge's
+  declared field it could not set before. The claim's verdict is read beside
+  the edge: `argument` on `get_node`'s edges listing and on the write's reply,
+  `argues_for` on the claim in `reasoning_report`, and `arguments_lost` on a
+  change walk that breaks the claim. A claim deleted later is reported by
+  `detect_defects` (`dangling_reference`).
+- **Delivery argued along its own edge reads `circular`.** A claim "X
+  satisfies Y" resting on Y, where Y holds only because X delivers it along that
+  very SATISFIES, reads `circular` beside the edge, with the reason.
+
+### Changed
+
+- **A result cited from elsewhere reads `cited`, and a recalled one reads
+  `cited_unverified`.** A theorem, lemma or corollary taken as given is a
+  citation, never an axiom. (A proposition taken as given stays what it was: a
+  stated position an argument starts from.) It reads `cited` when an Artifact with
+  a checksum DOCUMENTS it (its source, read and pinned), and
+  `cited_unverified` otherwise. What rests on an unverified citation reads
+  `conditional` on it (`rests_on_unverified` on the claim and the step),
+  never plain `holds`; `loop_status` counts `unverified_citations`. **What to
+  do:** a proof resting on a recalled theorem now reads conditional rather
+  than shown. Register the source you checked as an Artifact with its
+  checksum and draw DOCUMENTS to the citation; the served `design-a-proof`
+  skill says how. Measured on the trial designs: π+e's theorem moves from
+  shown to conditional on Lindemann and the algebraic-closure theorem.
+- **The design-a-proof skill has a recipe for each of these, and agrees with
+  the tools.** It said a theorem is never taken as given while a cited
+  theorem is exactly that; it now says one way to record a citation, how a
+  recalled reference reads, and how it becomes checked.
+
+- **A measured finding counts as a premise.** A TemporalFact used as a premise of
+  a step used to read "reflow2 computes no truth", so a choice resting on a
+  measurement could never hold. A finding now reads `holds` when it is measured
+  (or states no basis, which the schema reads as measured) and still stands:
+  nothing INVALIDATES it, it states no end (`valid_to`, or a VALID_TO epoch),
+  and no accepted decision discontinues it. A `forecast`, an ended or an
+  invalidated finding reads `unknown`, with the reason. **What to do:** nothing;
+  steps resting on a standing finding may now hold where they read unknown.
+- **An accepted Decision a step concludes reads its owner's acceptance and its
+  chain side by side.** It used to read only its chain's verdict, so a first,
+  incomplete chain made an accepted decision read unsupported. It now holds on
+  its acceptance, and `reasoning_report` carries `acceptance` and `chain` (the
+  chain's own verdict and why) on it. The change walk still shows a lost chain:
+  the row reads `conclusion_reads: accepted_without_a_holding_chain`, and the
+  `conclusion_does_not_follow` finding still asks about the chain. A settled
+  Decision's `says` is now its `chose`, not the deliberation's text.
+- **A ChangeEvent never reads false.** It is history: an objection to it no
+  longer makes it `fails`. A counter-argument is recorded as a statement of its
+  own (a Requirement with `statement_kind`) that CONTRADICTS the claim, and
+  answered there. **What to do:** a ChangeEvent drawn as the objection to a
+  claim now leaves that claim contested until the argument is re-recorded as a
+  statement and answered; the served skills say how.
+- **The served skills agree that a Decision may be a chain's conclusion** when
+  its premises are checkable. `capture-intent` used to say an Inference never
+  concludes a Decision, while `brainstorm` and the served instructions said it
+  could.
+- **`graph_report` takes `budget_chars`** (default 30,000) and trims prose to
+  fit, every count and id kept, with a budget block saying what it withheld. On
+  reflow2's own design the report had grown to 31,137 characters with no way
+  to narrow it. **What to do:** pass a larger `budget_chars` if your client has
+  the room and you want every word.
+
+- **`derived` lineage covers the owner's words chosen through a Decision.** It
+  read as "technical necessity nobody asked for" alone, so a requirement
+  stating an option the owner chose was left `original`. No value was added and
+  no stored requirement changes; the schema, `set_requirement_lineage` and
+  `decomposes` say it. **What to do:** set such a requirement `derived` and keep
+  its GOVERNED_BY to the Decision.
+- **capture-intent, brainstorm and the served instructions say how to record a
+  requirement's reason to exist and how to argue for an edge.**
+
+### Fixed
+
+- **A claim that holds only under an open supposition no longer refutes a
+  claim outside it.** An objection holding only under an assumption no step
+  discharges (or only if an unverified citation is right) used to refute its
+  target outright. Measured on the cogito trial (flo2.io 989598dd02246a81):
+  `req:ai-not-res-cogitans` read refuted by a verdict that held only under
+  "suppose an AI authentically doubts". Such an objection now CONTESTS the
+  target and names the supposition (`holds_only_under` on the objection); it
+  refutes only a target that holds under the same assumptions. The same
+  class, fixed at each place it was found:
+  - a conditional reply no longer answers an objection (so it no longer
+    reinstates the claim the objection attacked);
+  - `detect_defects`' reading of an attack follows the scoped standing;
+  - a requirement concluded only by a conditional step is no longer DELIVERED
+    by the roll-up;
+  - a `met` or `accepted` status resting only on a conditional result is
+    reported as `conclusion_does_not_follow`.
+  **What to do:** where a claim now reads contested, discharge the
+  supposition into a statement of its own ("if S, then not T") and let that
+  object, or keep the dispute open on purpose.
+
+- **A generalization no longer holds over a variable an open assumption
+  names.** A step that generalized over F while a hypothesis about F was still
+  open (undischarged) read `holds`, which the eigenvariable rule of natural
+  deduction forbids: reflow2 would certify an invalid universal
+  generalization (the Arrow trial). The step now does not hold while an
+  assumption open at it lists the variable in its `variables` or `fixes`, or
+  declares no `variables` at all; the reading names it under
+  `generalization.named_by_open_assumptions` or
+  `undeclared_open_assumptions`. Discharging and generalizing on one step (a
+  conditional proof over F) is read discharge first and still holds. **What
+  to do:** give every hypothesis its `variables` (an empty list when it names
+  none), and discharge a hypothesis before the step that generalizes over a
+  variable it mentions.
+
+- **A discharged assumption is no longer listed under `unsupported`** in
+  `reasoning_report`; it is read under `assumptions` ("assumed, discharged by
+  …"). Measured on two proof trials: π+e's supposition and all 8 of Arrow's
+  assumptions read unsupported. An assumption that is also an ordinary premise
+  somewhere is still listed.
+- **A claim that holds only under an undischarged assumption reads
+  `truth: conditional`** in `reasoning_report`, naming the assumption, where it
+  read `holds` beside `proof_status: conditional`.
+- **A settled or deliberate objection is no longer a structural contradiction.**
+  In a line of reasoning (a step's premise or conclusion, or a statement), an
+  opposing CONTRADICTS whose objection is answered, or that stands undecided and
+  states its reason in `evidence`, is counted under
+  `swept.suppressed_as_objection` instead of being reported by `detect_defects`
+  and counted by `loop_status`. reasoning_report reads it as answered or still
+  contested. A CONTRADICTS outside any line of reasoning, or a standing one
+  that states no reason, is still reported.
+
+- **`add_decision` stores the status it is given.** With `status: rejected` or
+  `superseded` it stored the Decision `proposed` — and, when an `approver` was
+  passed, drew the owner's signature on it all the same, so a proposed Decision
+  carried an approval. Only the decisive statuses (`accepted`, `deferred`,
+  `contested`) were ever written, because the same check that decides whether
+  the owner's name is needed also decided whether the status was written. Both
+  constructors that take an approver (`add_decision`, `add_requirement`) now
+  store exactly the status given, on a create and on a revise (a revise back to
+  `proposed` was silently ignored too). A status the schema does not know is
+  refused, naming the legal ones, before anything is written. An `approver`
+  passed with no `status`, or with `proposed`, has nothing to sign: it is no
+  longer drawn, and the reply says so under `approver_not_drawn`. **What to
+  do:** nothing. To record the owner's word, pass the status they chose with
+  their name.
+- **Re-drawing an edge keeps the properties the call leaves out, for every typed
+  edge helper.** In 0.87.0 every helper `draw_edges` runs except `authored_by`
+  (`satisfies`, `depends_on`, `allocate`, `verifies`, `realizes`,
+  `governed_by`, `deploy_to`, `violates_rule`, …) replaced the edge's whole
+  property bag, so a bare re-draw erased a `partial` coverage, an allocation's
+  weight, a check's coverage, a realization's completeness, a granted
+  variance's status or a governing note — and adding `evidence` or `argued_by`
+  to an existing edge would have dropped the rest. What a call names still
+  replaces that one property.
+  **What to do:** to clear a property, delete the edge and draw it again, or set
+  the whole bag with `create_edge`, which still replaces.
+
 ## [0.87.0] — 2026-10-18
 
 **Minor. A proof is recorded without fighting the duplicate guard, and reads back whole.** It

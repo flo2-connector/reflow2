@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:970bceddaef95cae07bec11ce365e09356e9af57d7d1c7340de5383bde99e1ff",
+  "node_id": "epoch:v0880-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The minor in which reasoning is attached to the structure it justifies, a proof states what it really does, and constructors and edge redraws keep what they were given. It carries:\n- #770: a premise has a truth (a measured finding holds; an accepted Decision reads acceptance and chain side by side), honest proof readings, graph_report takes a budget;\n- #771 (phase 2): a requirement reads its reason to exist, an edge names the claim that argues for it (argued_by), circular delivery reads circular;\n- #772 (phase 3): statement_kind gains hypothesis and falsum (the schema stamp moves), proofs by cases, cited results, open suppositions contest rather than refute, generalization over an open assumption's variable does not hold;\n- #773 (P3.5): add_decision/add_requirement store the status given; every typed edge helper keeps what a redraw leaves out; the cut itself.\n\nPinned here: rel:v0880, the increment's ChangeEvents (found by diffing ids against the v0.87.0 tag's committed copy), and the cut's drift acceptances.",
+    "epoch_type": "release_cut",
+    "name": "v0.88.0 release cut (2026-10-19)",
+    "sequence": 746,
+    "status": "arrived"
+  }
+}

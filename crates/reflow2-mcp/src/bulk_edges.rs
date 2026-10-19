@@ -57,7 +57,7 @@ use serde_json::{Value as JsonValue, json};
 use crate::service::ReflowService;
 
 /// Every typed edge helper `draw_edges` runs, by served tool name.
-pub(crate) const HELPERS: &[&str] = &[
+pub const HELPERS: &[&str] = &[
     "allocate",
     "answers",
     "authored_by",
