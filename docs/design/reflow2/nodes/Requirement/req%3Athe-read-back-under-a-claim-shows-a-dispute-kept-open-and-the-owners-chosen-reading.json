@@ -1,8 +1,8 @@
 {
-  "content_hash": "sha256:17d331fb75e0802ca960f717f5433d947aadaeac950f8435da199a01c64825aa",
+  "content_hash": "sha256:8eb6377345b048cc2a670aadedffd7dc7234d4cd98b3bc664e8a5b0a2b50d762",
   "node_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading",
   "node_type": "Requirement",
-  "prev_item_hash": "sha256:9e29d40efad94cadc2ca610b1360dae1b8b327daa3772ad5b4e7070f29068609",
+  "prev_item_hash": "sha256:17d331fb75e0802ca960f717f5433d947aadaeac950f8435da199a01c64825aa",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -11,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial)",
     "statement": "When a Decision set to `contested` governs steps under a claim, reasoning_report on that claim lists it in contested_by_design. When that Decision names one route as the reading the design holds, the read-back marks that route as the held reading and the others as rivals, rather than three equal alternatives.\nMEASURED by the observer in the cogito trial (2026-10-18): dec:which-reading-of-the-cogito was set `contested` by the owner's word, with the three reading steps GOVERNED_BY it. reasoning_report on req:i-exist still read contested_by_design: [], and the owner's choice of reading B changed nothing. Only the unscoped walk roots contested Decisions, and through a hub that walk runs on the hub's own design (see the hub requirement recorded the same day).\n\nALSO MEASURED 2026-10-19 (trolley trial): reasoning_report ON a contested dispute Decision returns the Decision alone (\"unsupported\"). It does not walk the rival positions it governs. So the read-back should work in both directions: from a claim to the dispute that governs its steps, and from a dispute Decision to its positions, each with what it rests on (the issue/positions read-back, idea (f) of the frameworks decision).",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

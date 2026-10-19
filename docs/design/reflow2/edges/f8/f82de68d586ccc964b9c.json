@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9f6fb888a0878914c8dc95c0c0c5030b8853d347f42124a4b827b71ff2098ceb",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p5-hypothesis-tests"
+}

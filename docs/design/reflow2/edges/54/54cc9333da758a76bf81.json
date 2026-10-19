@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e94889ab1ca9138a7fc222f234b7ebf74052f3687c27fce3efce5fa3404cc38e",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-check-resting-on-a-claim-that-loses-support-reads-stale",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

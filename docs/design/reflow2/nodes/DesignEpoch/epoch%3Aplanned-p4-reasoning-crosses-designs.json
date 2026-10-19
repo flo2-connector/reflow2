@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e508705b23d2bf5c91cde495bf21073f48f93c137d3aa09679b854994ab1a9ba",
+  "node_id": "epoch:planned-p4-reasoning-crosses-designs",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "Step 3 of epoch:planned-reasoning-build-list. It is B of the 2026-10-18 build list (req:reasoning-crosses-designs-within-a-hub), together with the hub gaps three trials met (req:through-a-hub-every-tool-can-run-on-one-named-member). Both are about reasoning and management across a hub's members.",
+    "epoch_type": "milestone",
+    "name": "Phase 4: reasoning crosses designs within a hub, and every hub tool can be aimed at one member",
+    "sequence": 762,
+    "status": "planned"
+  }
+}

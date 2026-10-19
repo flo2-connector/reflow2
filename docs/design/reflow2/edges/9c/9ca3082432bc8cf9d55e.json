@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:738eea7913202978c548ff0c251ce52b6005a4c75171219fa086878a8d729b00",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-step-can-say-it-is-not-an-inference",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

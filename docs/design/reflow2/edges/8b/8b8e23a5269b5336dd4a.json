@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c93f2c34b88c8acf6ab2c3a45e25b4fc6660db75168040a599e209c3bef96e6a",
+  "edge_type": "REALIZES",
+  "from_id": "art:machine-install",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-project-can-remove-its-kit-and-update-never-brings-it-back"
+}

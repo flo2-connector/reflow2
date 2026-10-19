@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b98355bf17fc05c1a9dddefb4d185c952293590008f5f8f5d2c5f9e06377851d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-removed-kit-stays-removed-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

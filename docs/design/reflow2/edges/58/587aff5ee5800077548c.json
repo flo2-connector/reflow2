@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d952eb368e863e608fc786278b92c0ee79e868c2edf8a8706ebc4aa6dfb67349",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-p4-reasoning-crosses-designs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

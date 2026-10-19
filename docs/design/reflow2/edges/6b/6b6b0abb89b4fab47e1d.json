@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b7492b0c42d821ad6399658f728c26c376cc3f7891ceee5d20d578dc81d0ad76",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

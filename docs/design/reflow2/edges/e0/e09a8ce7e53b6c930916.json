@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:61fd10b37f20f1ad2d8c0d139ff779b92b715befc9228a52ba0fca23286d5914",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

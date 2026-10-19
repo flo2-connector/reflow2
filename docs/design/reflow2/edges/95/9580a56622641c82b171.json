@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:87a811c99d8e74fed8443cdbc57688e88c02d8368a61e564ac4c02a8db00d033",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:natural-deduction-gaps-from-the-logic-rung-are-closed",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-19"
+  },
+  "to_id": "epoch:planned-p6-argument-gaps"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ae90f9cb321fbe2177e15e2737171539713cf70b73b4205a35336f7c1ec05808",
+  "node_id": "req:a-project-can-remove-its-kit-and-update-never-brings-a-removed-kit-back",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A project can remove reflow2's kit on purpose (a per-project remove that deletes untouched kit files, strips the lines it added to tracked files and marks the receipt removed), and `update` never brings a removed kit back: it refuses when the receipt says removed or when none of the recorded files remain",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19: chose \"Remove command + guard\" after the root cause of the field log's 2026-10-13 entry",
+    "statement": "From the root cause reflow2:fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19, measured on 0.83.5's kit and main.\n1. A PER-PROJECT REMOVE, for example `reflow2 init --remove`:\n   - it deletes the kit files the person has not edited, and names the edited ones it keeps;\n   - it strips the lines the kit appended to tracked files (.gitignore, .gitattributes, AGENTS.md, .github/copilot-instructions.md);\n   - it marks .reflow2/kit-version.json as removed, keeping the design store untouched.\n2. A GUARD: `update` refuses, in the words it uses for a project with no receipt, when the receipt says removed OR when none of the files it records remain. A single deleted file still means \"give me the kit's copy\", as tested today.\n3. A receipt with no `harnesses` key never makes a non-interactive update install every MCP harness (measured side finding). It refuses and names the choice.\nField case: on the work machine's hub, update recreated about 72 files in 11 member repos where the kit had been removed by hand, and restoring the receipt from backup did not stop the next update.",
+    "status": "accepted"
+  }
+}

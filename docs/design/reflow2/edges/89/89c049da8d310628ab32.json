@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:67a065b51db4fdac5b7f2d409bd23e19a3c1fb2c6fb7663c4d87717df47a23de",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-hub-on-one-machine-opens-as-one-view-through-the-door",
+  "properties": {
+    "evidence": "Opening member stores locally needs to know where each member's store is on this machine, which is idea 13, still open.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-hub-on-one-machine-can-say-where-each-tracked-design-is-reached-from-the-door"
+}

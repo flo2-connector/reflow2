@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:cfaea314395b8c7b94b8e68f83eb8f3f23a62ac0c72b773ecb6875532ee7a9ff",
+  "node_id": "req:natural-deduction-gaps-from-the-logic-rung-are-closed",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Natural deduction records honestly: a proof by cases can name an assumed disjunction, a rule is the step's rule (not a premise), one formula can recur under different suppositions, a premise can be used twice, each line can say whether it shows ⊨ or ⊢, and a theorem reads which part stands",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19: \"Capture + add to phase 6\" (logic rung, fact:the-logic-rung-ran-on-0-88-0-and-its-friction-names-what-natural-deduction-lacks-2026-10-19)",
+    "statement": "From the logic rung (2026-10-19, e104c2efbcc0fb6d, 0.88.0):\n1. cases_exhaustive can name a disjunction ASSUMED in the same subproof; it is read as assumed there, not by its standing status.\n2. A step's rule is a first-class reference (to a rule node), so a what-if on a rule reaches its steps without listing the rule as a premise.\n3. The same formula under different suppositions need not be a new node each time (⊥ was recorded twenty times).\n4. A premise can be used twice in one step (A, A ⊢ A∧A).\n5. A line of support can say what relation it establishes (semantic ⊨ by truth table, derivability ⊢ by deduction).\n6. A theorem that is a conjunction or biconditional reads which part stands after a what-if.\n7. A step resting on an unverified citation reads conditional at the step, not only at the claim; and the independence check also compares shared cited foundations, not only shared steps.",
+    "status": "accepted"
+  }
+}

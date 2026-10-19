@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:82fea04e674c0a748332511d0164fbca3c9ade452b63b052a0ae18258de6cf09",
+  "content_hash": "sha256:19a363676c04a20fd6dbabb8de2e4b4f5cf88cad28aa8d3daf17777379325fa6",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule",
+  "prev_item_hash": "sha256:82fea04e674c0a748332511d0164fbca3c9ade452b63b052a0ae18258de6cf09",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

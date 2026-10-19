@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b6b50520e30562b6d354e5bd09b67f9da9d7fb19134d69fa1967d015cd4e8a7a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-can-remove-its-kit-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-removed-kit-stays-removed-tests"
+}

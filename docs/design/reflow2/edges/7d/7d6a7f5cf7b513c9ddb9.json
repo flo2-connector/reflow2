@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:579c3b1380d5c49b79b0b91f99507a629e1a5f5d69ca84eacf7c3aee3f6ac459",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-project-can-remove-its-kit-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:11d0a3171f1d00a76c0c4b5d2ee33987ae3bd88276fcdb38f0521276cd208683",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-init"
+}

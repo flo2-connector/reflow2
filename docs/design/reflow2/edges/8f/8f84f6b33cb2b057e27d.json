@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:86852d908d2b6d2b77b90a4b1671633bb7d98f5eab031bfd5d7e01dcfca66156",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-requirements-read-back-follows-its-reason-to-the-evidence",
+  "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

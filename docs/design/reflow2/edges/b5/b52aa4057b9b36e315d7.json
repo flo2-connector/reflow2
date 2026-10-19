@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:2f16ef2629d2359e3c0b785f5c58e95cf2cdf05a9e746469d6287a69f482394d",
+  "content_hash": "sha256:9d1387abb52390d7a3d551cacdf3a908eab1bd41d2503cf15e5f3fd6af560b1f",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply",
+  "prev_item_hash": "sha256:2f16ef2629d2359e3c0b785f5c58e95cf2cdf05a9e746469d6287a69f482394d",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

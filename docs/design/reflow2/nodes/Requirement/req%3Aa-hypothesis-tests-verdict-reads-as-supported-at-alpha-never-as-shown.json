@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e4af14652d003f6bd608f4204c7ad6b532245dded2f57fbf513a1345bd1fa120",
+  "node_id": "req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-shown",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim supported by a statistical hypothesis test reads \"supported at α (p, test, n)\", never `holds` or `shown`; a non-significant result reads \"not rejected\", never \"H0 true\"; and the test's assumptions are premises an objection can attack",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19, keeping (b) of the hypothesis-test brainstorm (flo2-calc 0bee0c00b35845f6)",
+    "statement": "When a claim's support is a hypothesis test (a kept calc record of a named test):\n- its reading names α, the p-value, the test and n;\n- it is never shown, proven or holds;\n- a non-significant result reads \"not rejected at α\";\n- the test's assumptions (normality, independence, expected counts) are premises of the step, so an objection can attack them;\n- the read-back keeps \"evidence, not proof\", as reflow2 already rules (fact:the-methods-of-proof-mostly-fit-an-inference-and-three-need-more-2026-10-14).\nOption (b) of flo2-calc's dec:idea-how-a-statistical-hypothesis-test-is-designed-computed-and-read, kept with (a).",
+    "status": "accepted"
+  }
+}

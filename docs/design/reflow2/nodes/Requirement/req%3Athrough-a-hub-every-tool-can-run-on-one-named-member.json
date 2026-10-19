@@ -1,8 +1,8 @@
 {
-  "content_hash": "sha256:2fc6c8bd681e508158752df08a7bface34b67110faac44537d0d4451c6e0d8f3",
+  "content_hash": "sha256:bf5dd26692aeba429853095054aa1e742aa44f07245620db9e736d21c92a701b",
   "node_id": "req:through-a-hub-every-tool-can-run-on-one-named-member",
   "node_type": "Requirement",
-  "prev_item_hash": "sha256:2b6cf3989432fc920bb1b20b78eef3f8c2dee3f1bb3cd46d9ae0b00d529e43c6",
+  "prev_item_hash": "sha256:2fc6c8bd681e508158752df08a7bface34b67110faac44537d0d4451c6e0d8f3",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -11,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito and Arrow trials, through the hub)",
     "statement": "Managing at the hub level (his word 2026-10-18: the hub is the only server) needs every tool to reach a member. Two parts:\n(1) A tool that takes no node id can be run on one named member through the hub. Today these act on the hub's own design only:\n- loop_status;\n- reasoning_report without `claim`, the only walk that roots contested Decisions;\n- detect_gaps with no scope;\n- describe_schema, find_tools, find_skills, get_skill and get_instructions;\n- claim_region and release_claim (the one-PR hold on reflow2's design had to be released through the chat connector);\n- usage_report.\n(2) A routed reply prefixes EVERY id it returns, so it can be pasted back. Today `premises` come back prefixed, while `assumes`, `conclusion`, `discharges`, error text and reasoning_report's summary lists do not.\nSeen in the Arrow trial (H2, H4, H5) and the cogito trial (2026-10-18). This is a gap against req:a-hub-is-an-on-demand-view-over-its-members-designs-and-every-tool-runs-over-it-with-writes-landing-in-the-owning-design (\"every ordinary reflow2 tool runs unchanged\").\n\n(3) ALSO 2026-10-19 (trolley trial): search_design and scan_nodes through the hub cannot be limited to one member. A blind-trial designer searching its own design was shown reflow2-design nodes about that very trial, which is a contamination route. They take an optional member to search or scan.",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

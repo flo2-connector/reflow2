@@ -1,13 +1,19 @@
 {
-  "content_hash": "sha256:cb3ae40e1c77b7b54bf94989fabb3d03b0b9d992517e907d6c8ba1517797e561",
+  "content_hash": "sha256:1045a8710d50387c30c8a5ac59d49b86207f0958eb9b6db2064b86686a34133c",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return",
+  "prev_item_hash": "sha256:cb3ae40e1c77b7b54bf94989fabb3d03b0b9d992517e907d6c8ba1517797e561",
   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"
