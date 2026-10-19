@@ -148,7 +148,103 @@ pub const NOT_ASKED: &str = "reflow2: export NOT written (--no-export): the comm
      now behind this write. One writing call without --no-export, or `--call export_graph`, \
      brings it current.";
 
+/// A place [`find`] reads the export's name from.
+///
+/// THE ONE LIST: [`find`] reads [`SOURCES`] in that order, and the line a write
+/// prints when none of them names an export ([`unconfigured`]) is generated
+/// from the same list, so a source added to the lookup is named in the line
+/// with no second list to keep
+/// (`req:the-no-export-line-names-every-source-a-writing-call-reads`). Until
+/// 2026-10-19 the line was a hand-written sentence that #691 never updated when
+/// it added the `.reflow2.toml` record, so the line never named the one source
+/// that persists
+/// (`fact:root-cause-the-no-export-hint-was-written-before-reflow2-toml-became-a-source-and-nothing-holds-it-to-the-resolver-2026-10-19`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Source {
+    /// `--export-to FILE` on this command line: this one call.
+    Flag,
+    /// The project's `.reflow2.toml` `[export] path`: every later write, the
+    /// Stop hook, `reflow2 init` and the gate read it.
+    Recorded,
+    /// The project's MCP configurations ([`MCP_CONFIGS`]): the file a
+    /// long-lived server for this design keeps.
+    Configs,
+}
+
+/// Every source [`find`] reads, in the order it reads them (the first that
+/// names a file wins).
+pub const SOURCES: [Source; 3] = [Source::Flag, Source::Recorded, Source::Configs];
+
+impl Source {
+    /// Who named a found target, as a source of this list. Exhaustive, so a new
+    /// way of naming the export cannot be added without a source here, and
+    /// through it a phrase in the line.
+    pub fn of(named_by: &NamedBy) -> Source {
+        match named_by {
+            NamedBy::Flag => Source::Flag,
+            NamedBy::Recorded => Source::Recorded,
+            NamedBy::Config(_) => Source::Configs,
+        }
+    }
+
+    /// Whether this source keeps naming the export for every later write.
+    /// The line names the persistent record before the per-call flag.
+    fn persists(self) -> bool {
+        match self {
+            Source::Recorded | Source::Configs => true,
+            Source::Flag => false,
+        }
+    }
+
+    /// How the line a write prints names this source, for the project at
+    /// `root`: the exact file and the exact form to write.
+    pub fn hint(self, root: &Path) -> String {
+        match self {
+            Source::Recorded => format!(
+                "record it in {} as [export] path = \"<FILE>\" (read by every later write, \
+                 the Stop hook, reflow2 init and the gate)",
+                root.join(crate::pointer::FILE).display()
+            ),
+            Source::Flag => "pass --export-to <FILE> for one call".to_string(),
+            Source::Configs => format!(
+                "name it with --export-to in the reflow2 server entry of an MCP configuration \
+                 in {} ({})",
+                root.display(),
+                MCP_CONFIGS.join(", ")
+            ),
+        }
+    }
+}
+
+/// The line a writing call prints when nothing names an export for its design.
+///
+/// Generated from [`SOURCES`]: the record first, because it persists for every
+/// later write and is the one a store outside any repository has; then the
+/// flag; then the configurations.
+pub fn unconfigured(root: &Path, notes: &[String]) -> String {
+    let mut order: Vec<Source> = SOURCES.to_vec();
+    // The record first, then the per-call flag, then the configurations: a
+    // stable sort keeps find()'s order within each rank.
+    order.sort_by_key(|s| match s {
+        Source::Recorded => 0,
+        s if !s.persists() => 1,
+        _ => 2,
+    });
+    let hints: Vec<String> = order.iter().map(|s| s.hint(root)).collect();
+    let mut line = format!(
+        "reflow2: no export was kept current — nothing names one for this design. The write is \
+         in the store. To keep the committed export current: {}.",
+        hints.join("; or ")
+    );
+    if !notes.is_empty() {
+        line.push_str(&format!(" Not read: {}.", notes.join("; ")));
+    }
+    line
+}
+
 /// Which file a writing call to the store at `graph_path` keeps current.
+///
+/// Reads [`SOURCES`] in order; the first that names a file wins.
 ///
 /// `Err` is a refusal to print before anything is opened: the project's
 /// configurations disagree about which file it is.
@@ -156,33 +252,54 @@ pub fn find(graph_path: &str, export_to: Option<&str>, no_export: bool) -> Resul
     if no_export {
         return Ok(Found::NotAsked);
     }
-    if let Some(path) = export_to {
-        return Ok(Found::Target(Target {
-            path: path.to_string(),
-            named_by: NamedBy::Flag,
-        }));
-    }
     let root = crate::wall_check::project_root(Some(graph_path), None);
-    if let Some(rel) = crate::pointer::recorded_export(&crate::pointer::location_for(graph_path))
-        .map_err(|why| format!("{why} Nothing was opened and nothing was written."))?
-    {
-        // Relative to the folder the record sits in; a trailing `/` keeps the
-        // item layout's directory form, which export_graph reads from it.
-        let mut path = normalize(&root.join(rel.trim_end_matches('/')))
-            .display()
-            .to_string();
-        if rel.ends_with('/') {
-            path.push('/');
+    for source in SOURCES {
+        let found = match source {
+            Source::Flag => export_to.map(|path| {
+                Found::Target(Target {
+                    path: path.to_string(),
+                    named_by: NamedBy::Flag,
+                })
+            }),
+            Source::Recorded => recorded(graph_path, &root)?,
+            Source::Configs => {
+                let cwd = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
+                let store = normalize(&cwd.join(graph_path));
+                let home = std::env::var_os("HOME").map(PathBuf::from);
+                Some(from_configs(&root, &store, home.as_deref())?)
+            }
+        };
+        if let Some(found) = found {
+            return Ok(found);
         }
-        return Ok(Found::Target(Target {
-            path,
-            named_by: NamedBy::Recorded,
-        }));
     }
-    let cwd = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
-    let store = normalize(&cwd.join(graph_path));
-    let home = std::env::var_os("HOME").map(PathBuf::from);
-    from_configs(&root, &store, home.as_deref())
+    // The configurations always answer, so this is reached only if a source is
+    // added after them that names nothing: nothing named an export.
+    Ok(Found::Unconfigured {
+        root,
+        notes: Vec::new(),
+    })
+}
+
+/// [`find`]'s record half: the project's `.reflow2.toml` `[export] path`.
+fn recorded(graph_path: &str, root: &Path) -> Result<Option<Found>, String> {
+    let Some(rel) = crate::pointer::recorded_export(&crate::pointer::location_for(graph_path))
+        .map_err(|why| format!("{why} Nothing was opened and nothing was written."))?
+    else {
+        return Ok(None);
+    };
+    // Relative to the folder the record sits in; a trailing `/` keeps the
+    // item layout's directory form, which export_graph reads from it.
+    let mut path = normalize(&root.join(rel.trim_end_matches('/')))
+        .display()
+        .to_string();
+    if rel.ends_with('/') {
+        path.push('/');
+    }
+    Ok(Some(Found::Target(Target {
+        path,
+        named_by: NamedBy::Recorded,
+    })))
 }
 
 /// [`find`]'s configuration half, with the environment passed in.
@@ -448,21 +565,6 @@ pub fn report(tool: &str, target: &Target, flushed: &crate::auto_export::Flushed
     }
 }
 
-/// The line a writing call prints when nothing names an export for its design.
-pub fn unconfigured(root: &Path, notes: &[String]) -> String {
-    let mut line = format!(
-        "reflow2: no export was kept current — no --export-to was given, and no MCP configuration \
-         in {} ({}) names one for this design. The write is in the store; pass --export-to <FILE> \
-         to keep the committed export current.",
-        root.display(),
-        MCP_CONFIGS.join(", ")
-    );
-    if !notes.is_empty() {
-        line.push_str(&format!(" Not read: {}.", notes.join("; ")));
-    }
-    line
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -625,6 +727,82 @@ mod tests {
         );
         assert_eq!(t.path, "out.json");
         assert_eq!(t.named_by, NamedBy::Flag);
+    }
+
+    /// `req:the-no-export-line-names-every-source-a-writing-call-reads`: the
+    /// line a write prints when nothing names its export names every place
+    /// [`find`] reads — the project's `.reflow2.toml` `[export] path` FIRST (the
+    /// record every later write, the Stop hook, `reflow2 init` and the gate
+    /// read), then `--export-to` for one call, then each MCP configuration.
+    /// Measured 2026-10-19 on 0.87.0 and 0.88.0 (field limitation 22): the line
+    /// named the flag and the configurations and never the record, although
+    /// find() has read it second since #691.
+    #[test]
+    fn the_no_export_line_names_the_record_first_then_the_flag_then_the_configurations() {
+        let root = Path::new("/somewhere/mystore");
+        let line = unconfigured(root, &[]);
+        let record = root.join(".reflow2.toml").display().to_string();
+        let at = |needle: &str| {
+            line.find(needle)
+                .unwrap_or_else(|| panic!("the line does not name {needle:?}: {line}"))
+        };
+        let record_at = at(&record);
+        assert!(line.contains("[export] path = \""), "{line}");
+        let flag_at = at("--export-to <FILE>");
+        assert!(record_at < flag_at, "the record comes first: {line}");
+        for rel in MCP_CONFIGS {
+            assert!(at(rel) > flag_at, "the configurations come last: {line}");
+        }
+    }
+
+    /// THE CLASS: every source [`find`] reads is named in the line, by the
+    /// phrase generated for it, and every way a target can be named is a
+    /// source of that list. A source added to the lookup without a phrase does
+    /// not compile ([`Source::hint`] is exhaustive); one left out of [`SOURCES`]
+    /// is never read by [`find`], so this fails on the target it would name.
+    #[test]
+    fn every_source_find_reads_is_named_in_the_no_export_line() {
+        let root = Path::new("/somewhere/mystore");
+        let line = unconfigured(root, &[]);
+        for source in SOURCES {
+            assert!(
+                line.contains(&source.hint(root)),
+                "{source:?} is read by find() and not named: {line}"
+            );
+        }
+        let every_named_by = [
+            NamedBy::Flag,
+            NamedBy::Recorded,
+            NamedBy::Config(".mcp.json".into()),
+        ];
+        for named_by in &every_named_by {
+            // A new variant fails to compile here until it is listed above.
+            match named_by {
+                NamedBy::Flag | NamedBy::Recorded | NamedBy::Config(_) => {}
+            }
+            assert!(SOURCES.contains(&Source::of(named_by)), "{named_by:?}");
+        }
+    }
+
+    /// And the list is the order find() reads: a recorded export is found with
+    /// an MCP configuration naming another file, and the flag wins over both.
+    #[test]
+    fn find_reads_the_sources_in_the_listed_order() {
+        let (_d, root, _store) = project();
+        let graph = root.join(".reflow2/graph").display().to_string();
+        write(
+            &root,
+            ".mcp.json",
+            &mcp_json("mcpServers", "./.reflow2/graph", "./docs/design/p.json"),
+        );
+        write(&root, ".reflow2.toml", "[export]\npath = \"rec.json\"\n");
+        let t = target(find(&graph, None, false).unwrap());
+        assert_eq!(Source::of(&t.named_by), SOURCES[1], "{t:?}");
+        let t = target(find(&graph, Some("flag.json"), false).unwrap());
+        assert_eq!(Source::of(&t.named_by), SOURCES[0], "{t:?}");
+        std::fs::remove_file(root.join(".reflow2.toml")).unwrap();
+        let t = target(find(&graph, None, false).unwrap());
+        assert_eq!(Source::of(&t.named_by), SOURCES[2], "{t:?}");
     }
 
     /// The configuration files read here are the ones the installer writes.

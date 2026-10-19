@@ -1441,8 +1441,9 @@ impl ReflowService {
 /// convention, not a rule, and a silently wrong node is worse than a required
 /// field. `field` names the parameter in the refusal so the way through is
 /// stated. Constructors and `delete_node` do not use this: you cannot create
-/// a thing without saying what it is, and the one destructive read keeps the
-/// strict form on purpose.
+/// a thing without saying what it is, and the one destructive call resolves an
+/// omitted type more strictly — the id's prefix must name the holder's type
+/// (`ReflowService::delete_node`, Anthony 2026-10-19, reopening ruling #3b).
 /// fact:defect-typed-tool-parameter-names-are-inconsistent,
 /// dec:idea-one-way-to-name-which-node-across-the-tool-surface.
 /// [`resolve_node_type`] for a typed helper that used to hard-wire one type:
@@ -4918,7 +4919,9 @@ pub struct GapIdReq {
 #[serde(deny_unknown_fields)]
 pub struct TypedIdReq {
     /// The schema type name of the node to delete, as declared (`Requirement`, `Decision` …). Deleting removes EVERY edge attached to it and there is no undo — see the retire-from-design skill before using this on anything with history.
-    pub node_type: String,
+    /// Optional since 2026-10-19: when omitted, the id's PREFIX is taken as the type you mean (`req:` → Requirement, `dec:` → Decision …), and the node is deleted only when the one type holding the id is that type. A prefix that names no type, a holder of another type, or an id held by two types is REFUSED, nothing is deleted, and the refusal names what the id holds. Passed, it is used exactly as given.
+    #[serde(default)]
+    pub node_type: Option<String>,
     /// The id of the node to delete. Returns true if it existed; a missing id is reported, not an error.
     pub id: String,
 }

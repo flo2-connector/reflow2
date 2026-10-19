@@ -98,6 +98,61 @@ pub mod node {
     pub fn is_design_type(node_type: &str) -> bool {
         DESIGN_TYPES.contains(&node_type)
     }
+
+    /// THE TYPED-ID CONVENTION, as one table: the prefix before an id's first
+    /// `:` and the node type it names. The constructors' `id` descriptions
+    /// state each one (`req:<slug>` by convention …), and reflow2's own
+    /// generated ids use the rest (`snap:`, `frag:`, `drift:`, `question:`,
+    /// `xref:`); `tests/the_id_prefix_table_covers_every_stated_convention.rs`
+    /// in the MCP crate fails if a served description states a prefix this
+    /// table does not hold.
+    ///
+    /// A CONVENTION, NOT A RULE: an id may be written under any type. Read by
+    /// `delete_node`, which takes the prefix as the caller's stated type when
+    /// none is passed (`req:delete-node-takes-the-id-prefix-as-the-callers-stated-type`).
+    pub const ID_PREFIXES: &[(&str, &str)] = &[
+        ("proj", PROJECT),
+        ("req", REQUIREMENT),
+        ("con", CONSTRAINT),
+        ("rule", DESIGN_RULE),
+        ("question", QUESTION),
+        ("who", CONTRIBUTOR),
+        ("cap", CAPABILITY),
+        ("flow", FLOW),
+        ("actor", ACTOR),
+        ("cmp", COMPONENT),
+        ("sub", COMPONENT),
+        ("sys", COMPONENT),
+        ("ifc", INTERFACE),
+        ("dec", DECISION),
+        ("art", ARTIFACT),
+        ("frag", FRAGMENT),
+        ("ver", VERIFICATION),
+        ("drift", DRIFT_EVENT),
+        ("rel", RELEASE),
+        ("env", ENVIRONMENT),
+        ("envrule", ENVIRONMENT_RULE),
+        ("res", RESOURCE),
+        ("xref", RESOURCE),
+        ("epoch", DESIGN_EPOCH),
+        ("fact", TEMPORAL_FACT),
+        ("snap", SNAPSHOT),
+        ("chg", CHANGE_EVENT),
+        ("rdy", READINESS_ASSESSMENT),
+        ("inf", INFERENCE),
+    ];
+
+    /// The type an id's prefix names by [`ID_PREFIXES`], with the prefix read;
+    /// `(prefix, None)` when the prefix names no type, and `None` when the id
+    /// has no `:` at all.
+    pub fn type_named_by_prefix(id: &str) -> Option<(&str, Option<&'static str>)> {
+        let (prefix, _) = id.split_once(':')?;
+        let named = ID_PREFIXES
+            .iter()
+            .find(|(p, _)| *p == prefix)
+            .map(|(_, t)| *t);
+        Some((prefix, named))
+    }
 }
 
 /// Edge type names, matching `schema/*.yaml`.
@@ -637,5 +692,31 @@ mod the_threading_set_is_read_from_the_walk {
                 "{does_not} does not thread"
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod the_id_prefix_table {
+    use super::node::*;
+
+    /// Every type the convention names is a type the schema declares, and no
+    /// prefix is listed twice (a second row would never be read).
+    #[test]
+    fn names_declared_types_and_each_prefix_once() {
+        let schema = crate::schema::parsed_schema().expect("schema");
+        let mut seen = std::collections::HashSet::new();
+        for (prefix, node_type) in ID_PREFIXES {
+            assert!(
+                schema.node_types.contains_key(*node_type),
+                "{prefix}: {node_type} is not declared"
+            );
+            assert!(seen.insert(*prefix), "{prefix} is listed twice");
+        }
+        assert_eq!(
+            type_named_by_prefix("req:x"),
+            Some(("req", Some(REQUIREMENT)))
+        );
+        assert_eq!(type_named_by_prefix("thing:x"), Some(("thing", None)));
+        assert_eq!(type_named_by_prefix("plain"), None);
     }
 }
