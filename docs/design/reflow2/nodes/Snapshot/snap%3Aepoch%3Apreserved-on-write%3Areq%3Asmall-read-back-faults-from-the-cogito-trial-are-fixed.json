@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:46d75f161deb26cb238f33f6be34887856ccf2e8695f8242aa9ae9f1ea09d96a",
+  "node_id": "snap:epoch:preserved-on-write:req:small-read-back-faults-from-the-cogito-trial-are-fixed",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"Small read-back and write faults from the cogito trial are fixed: taken-as-given claims listed unsupported, stale step names, an uncounted source field, one answer from one record, prose blanked under budget, and self-asked questions that cannot be withdrawn\",\"priority\":\"low\",\"provenance\":\"authored\",\"source\":\"@ajs, 2026-10-18: \\\"Capture the shortcomings (gaps) from the trial\\\" (cogito trial)\",\"statement\":\"From the cogito trial (2026-10-18, 0.87.0):\\n1. A taken-as-given claim is listed under both stated_foundations and `unsupported` (\\\"no step concludes it\\\"). (Discharged suppositions under `unsupported` are fixed by #770, not yet live.)\\n2. A step's auto-generated name goes stale when its premises change (\\\"all of 1 premise(s)\\\" after a second was added).\\n3. A `source` field is stored but silently not counted as citing. The write's reply should say a source counts only through a documenting Artifact, and how to add one.\\n4. An answer that settles several nodes can be linked from only one record per ANSWERS call (four step-claims, one edge, three named in a note).\\n5. reasoning_report with budget_chars 8,000 or 12,000 applied an internal budget of about 2,500–6,500 and blanked 17 prose fields while the reply was only about 4,800 characters.\\n6. withdraw_question takes a gap_id, so a question the agent asked itself (no gap) cannot be withdrawn; a correction had to be asked instead (seen before).\",\"status\":\"proposed\"}",
+    "target_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed",
+    "target_type": "Requirement"
+  }
+}

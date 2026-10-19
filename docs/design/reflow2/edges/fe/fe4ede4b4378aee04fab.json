@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:413f40f12f5646b0ac7b4ba58e707ba33ba9daf3109fb8cc310c0969379325f5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:1b8762d0754d990f05460f86d284a036276643685e7b346677f681429d2d4b63"
+  },
+  "to_id": "art:server-currency-test"
+}

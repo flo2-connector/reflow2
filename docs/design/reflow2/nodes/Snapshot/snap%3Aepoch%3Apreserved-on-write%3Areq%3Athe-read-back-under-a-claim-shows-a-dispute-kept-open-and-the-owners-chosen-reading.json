@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0cc26774276dd82044b456d1c54f8ea63c6d37388b552f032d384b6dd063b0a0",
+  "node_id": "snap:epoch:preserved-on-write:req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"DEPENDS_ON\",\"other_type\":\"Requirement\",\"other_id\":\"req:through-a-hub-every-tool-can-run-on-one-named-member\",\"properties\":{\"evidence\":\"Through a hub, the unscoped walk that roots contested Decisions can only reach a member once hub tools can name the member.\",\"optional\":false,\"weight_basis\":\"estimated\"}}]",
+    "state": "{\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"The read-back under a claim shows a dispute the owner keeps open on purpose, and which route the owner holds as the reading, when those govern the claim's steps\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"@ajs, 2026-10-18: \\\"Capture the shortcomings (gaps) from the trial\\\" (cogito trial)\",\"statement\":\"When a Decision set to `contested` governs steps under a claim, reasoning_report on that claim lists it in contested_by_design. When that Decision names one route as the reading the design holds, the read-back marks that route as the held reading and the others as rivals, rather than three equal alternatives.\\nMEASURED by the observer in the cogito trial (2026-10-18): dec:which-reading-of-the-cogito was set `contested` by the owner's word, with the three reading steps GOVERNED_BY it. reasoning_report on req:i-exist still read contested_by_design: [], and the owner's choice of reading B changed nothing. Only the unscoped walk roots contested Decisions, and through a hub that walk runs on the hub's own design (see the hub requirement recorded the same day).\",\"status\":\"proposed\"}",
+    "target_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading",
+    "target_type": "Requirement"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:081d43277265adabee4d0c9496055740929b75993c0cd2a70ba7a4c8ea3d8ea9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:b8a35da9f05dd4338bed74075a4734440f05e3ef5d56d40827d433ec5fbb9d52"
+  },
+  "to_id": "art:derived-edge-readers"
+}

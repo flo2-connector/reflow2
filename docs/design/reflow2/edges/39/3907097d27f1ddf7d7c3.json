@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cd7798949b9ece466bfcfcc7b46450e5e9cfa0b8a8545eddbc3a56a991b46520",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:what-a-claim-rests-on-excludes-the-premises-of-objections-against-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

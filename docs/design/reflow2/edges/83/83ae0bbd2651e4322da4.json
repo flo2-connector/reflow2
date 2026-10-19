@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d1078f41d79a53b03382a70132a6e3d329fb519d391ed104fa3e1bef60c609dd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-redrawn-edge-keeps-what-the-call-leaves-out-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

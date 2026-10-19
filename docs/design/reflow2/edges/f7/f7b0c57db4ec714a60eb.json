@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8425c4c1f6a981f0ea326527c10fb0ffc87bc3e2b123e04c1ff0c320fa9264da",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:db2740c80b7ef5212cc279975696faedafd0f937c80c03c842d7ea3ab6511e48"
+  },
+  "to_id": "art:fixture-poc-case-1-a-decision-concluded-by-its-chain"
+}

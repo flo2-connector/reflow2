@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:7b62b92a3e8c5fd6e472d87f9846c22b64aaf8deed868a9d98ecef01cd65e009",
+  "node_id": "chg:statuses-and-redraws-keep-what-was-given-2026-10-19",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "225b20dec,a4b091d21",
+    "detected_at": "2026-10-19",
+    "name": "A constructor stores the status it was given, every typed edge helper keeps what a redraw leaves out, and a stale GOVERNED_BY note is corrected",
+    "rationale": "Asked for as the three follow-ups from phase 2 (#771). Cause of (1), walked with the root-cause skill and measured: fact:root-cause-a-constructor-wrote-its-status-only-when-the-call-settled-and-signed-whatever-it-wrote-2026-10-19 — one boolean (the settle table's) answered two questions, so #635 narrowing the Decision row silently narrowed the write. Class pinned: every constructor that takes a status stores exactly what it is given or refuses naming why, and never draws an approver edge on a status it did not store; all nine status-taking constructors are walked, every value, create and revise (tests/a_constructor_stores_the_status_it_was_given.rs, 5 of 5 failing on main 6a45d4b first). Choice: an approver with nothing to sign is NOTED, not refused, so an MCP client that passes its approver on every call keeps working (a narrowing needs a deprecating release first). (2) is the recurrence of the replace-the-bag mechanism (fact:twenty-three-of-twenty-five-typed-edge-helpers-replaced-an-edges-properties-on-a-redraw-2026-10-19); no Decision in the design says a helper must replace, so every helper now keeps (tests/a_redrawn_edge_keeps_what_the_call_leaves_out.rs, 3 of 4 failing first). No schema change: the stamp does not move for these. Two toolsnap goldens move (add_decision, add_requirement field text). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Three follow-ups from phase 2 (P3.5, PR #773). (1) add_decision and add_requirement store exactly the status given, on create and on revise: add_decision had stored rejected/superseded as proposed (with or without an approver) while drawing the approver edge, and both ignored a revise back to proposed. The settle gate now only decides whether a name is needed; an approver with nothing to sign (no status, or proposed) is not drawn and the reply says so (approver_not_drawn); an unknown status is refused before the create. (2) Every core typed edge helper draws through DesignGraph::draw_edge_keeping, so a redraw keeps the properties the call leaves out (23 of 25 helpers replaced the whole bag); depends_on takes one path with or without argued_by; create_edge still replaces. (3) The GOVERNED_BY note on req:a-near-match-across-types-or-within-a-line-of-reasoning-is-a-note-not-a-refusal now says lineage derived, which phase 2 set."
+  }
+}

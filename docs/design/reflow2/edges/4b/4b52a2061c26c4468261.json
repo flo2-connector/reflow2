@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:16e110fc98d0f6d974f6231287ab9b216a2e69a2777dc3b7fd9992eb32ac7de9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-redrawn-edge-keeps-what-the-call-leaves-out",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e91296a6c5c859e4d9f64fd971debef249916a09bd940b8059cc084a4ebf9289",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:5c7e14f3b4136cdbeca8f16b2ebcdcf6e4fe325fb7314e0c0fbb9d50130d5e82"
+  },
+  "to_id": "art:test-a-terminal-agent-auto-approves-reads-and-confirms-each-write"
+}

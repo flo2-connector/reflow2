@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3886f5043c706f9e2bb32b5e98f30b6cfb0962a4069642101ca2430bc1082691",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:bulk-edges",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

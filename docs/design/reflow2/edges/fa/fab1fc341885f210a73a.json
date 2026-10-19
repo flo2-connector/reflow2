@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98514beb95846f4e1966921aa22e07127dc5d3d9d43a819d5d4b6110a773e6a4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:536d7876e9e7a3b8b2c2dc64120c9cde87368ded39355ac203234d62f9f0a099"
+  },
+  "to_id": "art:site-why-html"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d54620313476dde02317bb4be83def599136e644ec3099fb79dd8b81855f985",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:47e57f55fee6f3f7f78d764be03fc9903ff249d5da36ac23b67aa959bcd660dc"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

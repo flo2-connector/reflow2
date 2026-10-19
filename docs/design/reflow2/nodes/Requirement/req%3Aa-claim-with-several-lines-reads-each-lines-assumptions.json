@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c937f29d7bb5b9cf0b34ccd57210c1c416578ec0c4cb2bdfd50512871bd145e0",
+  "node_id": "req:a-claim-with-several-lines-reads-each-lines-assumptions",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A claim supported by several lines reads the assumptions of each line, holding under any one of them, and a step citing it inherits only what its chosen line needs",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19 (trolley trial)",
+    "statement": "When a claim holds by several lines, each resting on different open assumptions, its reading names every line's assumption set: it holds under A, or under B, or under C. It never shows only the first. A step that cites the claim inherits the weakest assumption set that still supports it, never another line's assumption.\nMEASURED 2026-10-19 in the trolley trial (0.87.0): \"Driver: steering permissible\" is supported by five principles, yet reads \"conditional on act consequentialism\" only. A Thomson-2008 step citing the shared position \"switch-turn-impermissible\" inherited Foot's assumption from the other line. This bears on PR #772's open-assumption fixes (items 0 and 0b): it should be checked whether that PR already reads per line.",
+    "status": "proposed"
+  }
+}

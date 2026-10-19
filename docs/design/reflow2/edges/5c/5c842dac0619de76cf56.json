@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b86a8ee742f3cade1d79ec96366f8c715cf8834027cc65b0977f4ccf930d59d8",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-trolley-trial-ran-on-flo2-io-and-rival-positions-have-no-honest-form-but-a-contested-decision-2026-10-19",
+  "properties": {
+    "evidence": "Finding 3 of the trolley trial, captured as a requirement."
+  },
+  "to_id": "req:a-served-skill-designs-an-argument-for-and-against"
+}

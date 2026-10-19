@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:299b2e10600ddb68a6f034682d92f796e54fd49ca0e432bb74e7bc7875ad57b5",
+  "node_id": "art:test-a-redrawn-edge-keeps-what-the-call-leaves-out",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:b0b54c16536fcb1a62befa1872d311dfa42cbd8d84bf376239f9a3110d3ed4da",
+    "description": "The class test for fact:twenty-three-of-twenty-five-typed-edge-helpers-replaced-an-edges-properties-on-a-redraw-2026-10-19: for every helper draw_edges runs, draw bare, put a declared property on the edge the bare call does not name, draw bare again, and the property must still be there; depends_on without argued_by keeps the argument; a named property still overrides; and a table check fails when a helper is neither a row nor excluded with its reason. In the MCP crate's in_memory program.",
+    "location": "crates/reflow2-mcp/tests/a_redrawn_edge_keeps_what_the_call_leaves_out.rs",
+    "name": "a_redrawn_edge_keeps_what_the_call_leaves_out.rs — every typed edge helper keeps what a redraw leaves out",
+    "status": "realized"
+  }
+}

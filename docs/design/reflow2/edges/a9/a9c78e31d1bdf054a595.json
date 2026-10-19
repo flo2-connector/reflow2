@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8628a84e2bcdbab1d617931e0f0dd78f0f850e573ec6527c4d91743d5ad7d601",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:9150e01643a52c38795729538031a0637671a13eebb9eab5f8f53318475a9a01"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-wire-test"
+}

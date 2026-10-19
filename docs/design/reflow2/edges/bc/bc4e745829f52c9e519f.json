@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af77310ade22377df6eec20a0259f409bf9955f46e9a3bcd11d26a181be5d242",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:f5e1d2c75a562ad7fbd4a823770c35d1611923ac813fcd2b4e26a615f01e21e8"
+  },
+  "to_id": "art:test-a-requirement-linked-to-no-other-intent-is-noticed"
+}

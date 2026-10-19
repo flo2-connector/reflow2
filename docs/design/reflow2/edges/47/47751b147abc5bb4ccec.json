@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7a5aa8a0faedf3f9ee2435ee8409aca40b0df84c341fae6f4a431784fb962dbb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:twenty-three-of-twenty-five-typed-edge-helpers-replaced-an-edges-properties-on-a-redraw-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

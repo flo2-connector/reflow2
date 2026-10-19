@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9c9003d997f5c1eef5768ae88875466e3a13a379a1d7f653f4aa927036c4db2c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-trolley-trial-ran-on-flo2-io-and-rival-positions-have-no-honest-form-but-a-contested-decision-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

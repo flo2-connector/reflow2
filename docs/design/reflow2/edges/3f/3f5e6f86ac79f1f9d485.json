@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f933079955480a1361013d493be5cc62ae8e94c4c03b1b6eb29e6a6a29732276",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0880",
+  "properties": {
+    "as_checksum": "sha256:a59f696e34bb75e003c3c7f32ef9479b2a784f692008a8723e733ccf9e8f109a"
+  },
+  "to_id": "art:test-a-claims-step-count-counts-each-step-once"
+}
