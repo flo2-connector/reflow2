@@ -88,6 +88,7 @@ pub mod preserve;
 pub mod propagate;
 pub mod provenance;
 pub mod readiness;
+pub mod reason_to_exist;
 pub mod reasoning;
 pub mod regions;
 pub mod relate;

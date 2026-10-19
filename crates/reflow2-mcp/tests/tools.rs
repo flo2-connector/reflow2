@@ -128,6 +128,8 @@ async fn seeded() -> ReflowService {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        evidence: None,
+        argued_by: None,
         from_type: None,
         to_type: None,
     })));
@@ -258,6 +260,8 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
         coverage: None,
+        evidence: None,
+        argued_by: None,
         from_type: None,
         to_type: None,
     })));

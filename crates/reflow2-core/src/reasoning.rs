@@ -212,7 +212,7 @@ pub enum ClaimTruth {
 }
 
 impl ClaimTruth {
-    fn of(truth: Truth, assumes: &[String]) -> Self {
+    pub(crate) fn of(truth: Truth, assumes: &[String]) -> Self {
         match truth {
             Truth::Holds if !assumes.is_empty() => ClaimTruth::Conditional,
             Truth::Holds => ClaimTruth::Holds,
@@ -303,6 +303,15 @@ pub struct ClaimReading {
     /// The `contested` Decision that keeps its dispute open on purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
+    /// For a Requirement a Decision governs: WHY IT EXISTS — each governing
+    /// Decision and its support — read apart from `truth`, which says whether
+    /// it is delivered (crate::reason_to_exist).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reason_to_exist: Option<crate::reason_to_exist::ReasonToExist>,
+    /// The edges that name this claim in `argued_by`: what it argues for, each
+    /// with how the argument reads (`argued`, `circular` ...).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub argues_for: Vec<crate::reason_to_exist::ArguedEdge>,
 }
 
 /// A point still contested: an objection stands against the claim, neither
@@ -543,6 +552,14 @@ impl DesignGraph {
         let mut claims = Vec::with_capacity(order.len());
         for id in &order {
             claims.push(self.claim_reading(id)?);
+        }
+        // What each claim argues for: every edge naming it in `argued_by`,
+        // read once for the whole walk.
+        let mut argued = self.edges_argued_by()?;
+        for c in &mut claims {
+            if let Some(edges) = argued.remove(&c.id) {
+                c.argues_for = edges;
+            }
         }
         // Each premise by its name, so a step reads with the words of what it
         // rests on, not ids alone.
@@ -947,6 +964,8 @@ impl DesignGraph {
             statement: self.statement_reading(id)?,
             assumes,
             contested_by_design: self.contested_governor(id)?,
+            reason_to_exist: self.reason_to_exist(id)?,
+            argues_for: Vec::new(),
             acceptance,
             chain,
             node_type,

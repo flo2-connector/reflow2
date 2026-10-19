@@ -244,6 +244,13 @@ loads it and it takes precedence over the served one of the same name.
      thought" — say "every step can be checked." A short rationale paragraph may stay beside the
      chain for the reader. The three skills that produce the most consequential recommendations
      — **root-cause**, **brainstorm** and **capture-intent** — each name their own moment.
+   - **When a requirement exists because of a choice, or a link is argued for.**
+     A requirement's reason to exist is the Decision it is GOVERNED_BY: record the choice as a Decision (concluded by its chain when its premises are checkable), draw `governed_by` from the requirement to it, and set the requirement's lineage `derived`, which covers both a technical necessity the Decision forced and the owner's words chosen through it.
+     Never make the requirement the chain's conclusion: why it exists and whether it is delivered stay two claims.
+     `get_node` and `reasoning_report` read it back as `reason_to_exist`, and a change that breaks the Decision's support names the requirement (`propagate_from`, `reasons_to_exist_lost`).
+     To argue for an edge, record the claim as a statement of its own ("X satisfies Y", `statement_kind: proposition`), conclude it with a step over what the claim rests on, and name it on the edge with `argued_by` (`satisfies` and `depends_on` take it; `satisfies` also takes `evidence`).
+     The claim's verdict is then read beside the edge, and a change that breaks it names the edge.
+     Argue from what delivery rests on (the capability realized, its check passing), never from the requirement's delivery: that is computed along the very edge, and the argument reads `circular`.
 2. **DETECT gaps and ask.** Run `detect_gaps`. For each gap, call `gap_to_prompt` to turn it
    into a plain question (see the handshake below), ask the **user**, then write their answer
    back as a Requirement or a node property. Do this **before** building. If the user judges a

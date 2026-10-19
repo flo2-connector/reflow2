@@ -937,6 +937,33 @@ impl DesignGraph {
         out
     }
 
+    /// The node-reference properties `edge_type` declares, paired with the
+    /// value this edge carries for each — the edge's counterpart of
+    /// [`Self::declared_node_refs`], read by the write guard, the import's
+    /// report and `detect_defects`' `dangling_reference`.
+    pub(crate) fn declared_edge_node_refs(
+        &self,
+        edge_type: &str,
+        props: &std::collections::HashMap<String, Value>,
+    ) -> Vec<(String, String)> {
+        let Some(def) = self.schema().edge_types.get(edge_type) else {
+            return Vec::new();
+        };
+        let mut out: Vec<(String, String)> = def
+            .properties
+            .iter()
+            .filter(|(_, d)| d.node_ref)
+            .filter_map(|(name, _)| match props.get(name) {
+                Some(Value::String(target)) if !target.is_empty() => {
+                    Some((name.clone(), target.clone()))
+                }
+                _ => None,
+            })
+            .collect();
+        out.sort();
+        out
+    }
+
     /// The refusal a dangling node reference gets, worded in one place so the
     /// write path and the import path cannot come to say it differently.
     pub(crate) fn dangling_node_ref_error(node_type: &str, prop: &str, target: &str) -> DynoError {
@@ -1219,14 +1246,45 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+    }
+
+    /// [`Self::create_edge`] with the edge's node-reference guard NOT run here
+    /// — reserved for [`Self::import_graph`], which reports a dangling
+    /// reference rather than refusing the restore, exactly as it does for a
+    /// node's (`ImportReport::dangling_node_refs`).
+    pub(crate) fn create_edge_refs_checked_later(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        props: impl Into<std::collections::HashMap<String, Value>>,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, false)
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn create_edge_with(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        props: impl Into<std::collections::HashMap<String, Value>>,
+        check_refs: bool,
+    ) -> Result<StoredEdge, DynoError> {
         let mut props = props.into();
         // AN AUTHORSHIP WRITTEN THROUGH AN AGENT (`crate::acting`): the roles
         // an AUTHORED_BY write newly asserts are stamped with the agent the
         // write goes through. The typed `authored_by` stamps its one role and
         // comes in below this, at `create_edge_unstamped`.
         let through = self.stamp_through_acting_agent(edge_type, from_id, to_id, &mut props)?;
-        let stored =
-            self.create_edge_unstamped(edge_type, from_type, from_id, to_type, to_id, props)?;
+        let stored = self.create_edge_unstamped_with(
+            edge_type, from_type, from_id, to_type, to_id, props, check_refs,
+        )?;
         if let Some(acting) = through {
             self.record_acts_for(&acting, to_id)?;
         }
@@ -1243,6 +1301,20 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
+    ) -> Result<StoredEdge, DynoError> {
+        self.create_edge_unstamped_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn create_edge_unstamped_with(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        props: impl Into<std::collections::HashMap<String, Value>>,
+        check_refs: bool,
     ) -> Result<StoredEdge, DynoError> {
         // BOTH ENDPOINTS MUST EXIST. The schema validates the endpoint TYPES
         // against the edge's declared `from`/`to`, which is a different question
@@ -1292,6 +1364,17 @@ impl DesignGraph {
         let mut props = props.into();
         if let Some(def) = self.schema().edge_types.get(edge_type) {
             widen_ints_for_float_props(&def.properties, &mut props);
+        }
+        // AN EDGE PROPERTY THAT NAMES A NODE is guarded like a node's
+        // (`refuse_dangling_node_refs`): `argued_by`, the claim that argues
+        // for the edge, must name a node this design holds
+        // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
+        if check_refs {
+            for (prop, target) in self.declared_edge_node_refs(edge_type, &props) {
+                if self.node_types_holding(&target)?.is_empty() {
+                    return Err(Self::dangling_node_ref_error(edge_type, &prop, &target));
+                }
+            }
         }
         // ⭐ A SIGNATURE IS THE CALLER'S OWN, CHECKED WHERE IT IS WRITTEN
         // (`crate::intent::Signer`, #616 fix 4). This is the store's only
@@ -2470,6 +2553,32 @@ impl DesignGraph {
             to_id,
             Props::new().set_opt("coverage", coverage),
         )
+    }
+
+    /// Draw an edge of `edge_type`, KEEPING every property an existing edge
+    /// of that type between the same two nodes already carries and the call
+    /// does not name: `given` overrides, nothing else is dropped. The store
+    /// replaces an edge's properties whole, so a typed tool re-drawn to add
+    /// one property (`evidence`, `argued_by`) would otherwise silently reset
+    /// the rest — a `partial` coverage read as `full` delivery
+    /// (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
+    pub fn draw_edge_keeping(
+        &mut self,
+        edge_type: &str,
+        from_type: &str,
+        from_id: &str,
+        to_type: &str,
+        to_id: &str,
+        given: Props,
+    ) -> Result<StoredEdge, DynoError> {
+        let mut props: std::collections::HashMap<String, Value> = self
+            .outgoing(from_id, Some(edge_type))?
+            .into_iter()
+            .find(|e| e.to_id == to_id)
+            .map(|e| e.properties.into_iter().collect())
+            .unwrap_or_default();
+        props.extend(given.build());
+        self.create_edge(edge_type, from_type, from_id, to_type, to_id, props)
     }
 
     /// `child DECOMPOSES parent` — split one requirement into smaller testable

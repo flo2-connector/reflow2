@@ -8,6 +8,14 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "argued_by": {
+        "default": null,
+        "description": "THE CLAIM THAT ARGUES FOR THIS DEPENDENCY, by id: a statement of its own (\"X depends\non Y\") that a step concludes (add_inference). Refused unless it names a node of this\ndesign. Its verdict is read beside the edge on get_node's edges listing, and a change\nthat breaks it names the edge in propagate_from. Re-drawing an existing edge keeps\nevery property the call leaves out.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",

@@ -2042,7 +2042,28 @@ impl DesignGraph {
                 node.properties.clone().into_iter().collect();
             n += self.declared_node_refs(node_type, &props).len();
         }
+        // And every edge property that names a node (`argued_by`).
+        for t in self.edge_types_declaring_node_refs() {
+            for e in self.all_edges_of_type(&t, index)? {
+                let props: std::collections::HashMap<String, Value> =
+                    e.properties.into_iter().collect();
+                n += self.declared_edge_node_refs(&t, &props).len();
+            }
+        }
         Ok(n)
+    }
+
+    /// The edge types whose schema declares a node-reference property, sorted.
+    fn edge_types_declaring_node_refs(&self) -> Vec<String> {
+        let mut out: Vec<String> = self
+            .schema()
+            .edge_types
+            .iter()
+            .filter(|(_, d)| d.properties.values().any(|p| p.node_ref))
+            .map(|(t, _)| t.clone())
+            .collect();
+        out.sort();
+        out
     }
 
     /// Coupling visible at each declared decomposition level. See
@@ -2359,6 +2380,45 @@ impl DesignGraph {
                     hubs: Vec::new(),
                     refusal: None,
                 });
+            }
+        }
+
+        // The same rule for an EDGE property that names a node — `argued_by`,
+        // the claim that argues for an edge
+        // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
+        // The write refuses one that names nothing; one whose claim was
+        // deleted afterwards dangles, and is reported here on the edge's two
+        // ends.
+        for t in self.edge_types_declaring_node_refs() {
+            for e in self.all_edges_of_type(&t, &index)? {
+                let props: std::collections::HashMap<String, Value> =
+                    e.properties.clone().into_iter().collect();
+                for (prop, target) in self.declared_edge_node_refs(&t, &props) {
+                    if index.contains_key(&target) {
+                        continue;
+                    }
+                    let affected = vec![e.from_id.clone(), e.to_id.clone()];
+                    issues.push(HealIssue {
+                        id: issue_id(HealCategory::DanglingReference, &affected),
+                        category: HealCategory::DanglingReference,
+                        severity: HealSeverity::Warning,
+                        message: format!(
+                            "The {t} edge '{}' -> '{}' has `{prop}: {target}`, and '{target}' \
+                             names no node in this design — so the edge names an argument the \
+                             design does not have.",
+                            e.from_id, e.to_id
+                        ),
+                        suggested_fix_type: None,
+                        repair_is_a_judgement: Some(
+                            "No mechanical repair: the claim was retired, renamed or never \
+                             recorded, and only a person can say which. Re-draw the edge naming \
+                             the claim that argues for it now, or record that claim again.",
+                        ),
+                        affected_ids: affected,
+                        hubs: Vec::new(),
+                        refusal: None,
+                    });
+                }
             }
         }
 

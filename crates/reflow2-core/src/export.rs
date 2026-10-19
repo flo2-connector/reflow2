@@ -674,7 +674,23 @@ impl DesignGraph {
                                 e.edge_type, e.from_id, e.to_id, r.becomes, r.why
                             ));
                         }
-                        match self.create_edge(edge_type, ft, &e.from_id, tt, &e.to_id, props) {
+                        // An edge property naming a node resolves against
+                        // the whole document too, and a dangling one is
+                        // reported beside the nodes', never refused.
+                        for (prop, target) in self.declared_edge_node_refs(edge_type, &props) {
+                            if !types.contains_key(target.as_str())
+                                && !existing.contains_key(&target)
+                            {
+                                dangling_node_refs.push(format!(
+                                    "{} {} -> {}.{prop} -> {target} (names no node in the \
+                                     document or the graph)",
+                                    edge_type, e.from_id, e.to_id
+                                ));
+                            }
+                        }
+                        match self.create_edge_refs_checked_later(
+                            edge_type, ft, &e.from_id, tt, &e.to_id, props,
+                        ) {
                             Ok(stored) => {
                                 edges_written += 1;
                                 for key in stored.properties.keys() {

@@ -8,6 +8,14 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "argued_by": {
+        "default": null,
+        "description": "THE CLAIM THAT ARGUES FOR THIS EDGE, by id: a statement of its own (\"X satisfies Y\")\nthat a step concludes (add_inference). Refused unless it names a node of this design.\nThe claim's verdict is then read beside the edge on get_node's edges listing, and a\nchange that breaks the claim names the edge in propagate_from. A claim whose premise is\nthis requirement's delivery, computed along this very edge, reads as circular: argue\nfrom what delivery rests on (the capability realized, its check passing) instead.\nRe-drawing an existing edge keeps every property the call leaves out.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "coverage": {
         "default": null,
         "description": "HOW MUCH of the requirement this capability meets: `full` / `partial` / `planned`. The\ndelivery line counts only a `full` (or unstated) satisfier: a capability that only partly\nmeets a need does not deliver it, and before 2026-09-16 this field was declared on the\nedge, unreachable from this tool, and every SATISFIES read as full (bhome).",
@@ -30,6 +38,14 @@
           "node"
         ],
         "type": "string"
+      },
+      "evidence": {
+        "default": null,
+        "description": "WHY this satisfier meets the requirement, in words — the edge's declared `evidence`.\nFree text, never read as a link: name the claim that argues for the edge in `argued_by`.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "from_id": {
         "description": "The node that satisfies it — a `Capability`, or a `Component` or `Artifact` (declared for\nSATISFIES).",

@@ -171,6 +171,19 @@ pub struct BlastRadius {
     /// which is every radius of a design that records no Inference.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub inferences: Vec<crate::inference::InferenceImpact>,
+    /// REQUIREMENTS LOSING THEIR REASON TO EXIST
+    /// (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist,
+    /// item 2): each Decision the change leaves without support — a seed, or
+    /// a conclusion of `inferences` that no longer reads `still_supported`,
+    /// `accepted_without_a_holding_chain` included — with every Requirement
+    /// GOVERNED_BY it, named, whatever its distance in `impacted`. Absent
+    /// when the change reaches no governing Decision.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub reasons_to_exist_lost: Vec<crate::reason_to_exist::ReasonToExistLost>,
+    /// EDGES LOSING THEIR ARGUMENT (item 3): each edge whose `argued_by`
+    /// claim the change leaves without support. Absent when none is.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub arguments_lost: Vec<crate::reason_to_exist::ArgumentLost>,
 }
 
 impl BlastRadius {
@@ -237,6 +250,8 @@ impl BlastRadius {
             interfaces_reached: self.interfaces_reached.clone(),
             continue_in: self.continue_in.clone(),
             inferences: self.inferences.clone(),
+            reasons_to_exist_lost: self.reasons_to_exist_lost.clone(),
+            arguments_lost: self.arguments_lost.clone(),
         }
     }
 }
@@ -309,6 +324,12 @@ pub struct BlastRadiusSummary {
     /// broken or weakened is the answer a session acts on, not detail.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub inferences: Vec<crate::inference::InferenceImpact>,
+    /// See [`BlastRadius::reasons_to_exist_lost`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub reasons_to_exist_lost: Vec<crate::reason_to_exist::ReasonToExistLost>,
+    /// See [`BlastRadius::arguments_lost`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub arguments_lost: Vec<crate::reason_to_exist::ArgumentLost>,
 }
 
 /// Options for a propagation run.
@@ -685,6 +706,10 @@ impl DesignGraph {
         // bounded by `max_depth`: a step's verdict is not a distance, and the
         // walk ends where a conclusion still stands.
         let inferences = self.inference_walk(seed_ids)?;
+        // What the change costs the reasons to exist and the arguments the
+        // design records (crate::reason_to_exist), read from the same walk.
+        let (reasons_to_exist_lost, arguments_lost) =
+            self.reasons_and_arguments_lost(seed_ids, &inferences)?;
 
         Ok(BlastRadius {
             seeds,
@@ -697,6 +722,8 @@ impl DesignGraph {
             interfaces_reached,
             continue_in,
             inferences,
+            reasons_to_exist_lost,
+            arguments_lost,
         })
     }
 

@@ -174,6 +174,12 @@ pub struct EdgeRow {
     /// follows it. Absent on an ordinary edge.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub twin_of: Option<String>,
+    /// THE CLAIM THAT ARGUES FOR THIS EDGE, read beside it, when the edge
+    /// names one in `argued_by` (crate::reason_to_exist): the claim's truth,
+    /// its proof status, and whether the argument is circular. Absent when the
+    /// edge names none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub argument: Option<crate::reason_to_exist::EdgeArgument>,
 }
 
 /// One edge type holding most of what matched.
@@ -320,18 +326,23 @@ impl Reader<'_> {
             missing: node.is_none() && held_by.is_empty(),
             held_by,
         };
+        let properties: BTreeMap<String, Value> = e
+            .properties
+            .iter()
+            .map(|(k, v)| (k.clone(), v.clone()))
+            .collect();
+        let argument = self
+            .g
+            .edge_argument(&e.edge_type, &e.from_id, &e.to_id, &properties)?;
         Ok(EdgeRow {
             edge_type: e.edge_type.clone(),
             direction: side,
             from_id: e.from_id.clone(),
             to_id: e.to_id.clone(),
             other,
-            properties: e
-                .properties
-                .iter()
-                .map(|(k, v)| (k.clone(), v.clone()))
-                .collect(),
+            properties,
             twin_of,
+            argument,
         })
     }
 }
