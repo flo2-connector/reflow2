@@ -683,10 +683,24 @@ answers alone and `view_note` says why the view was not served. Each call is the
 - **Not viewed** (`service::view::NOT_VIEWED`, one const with the reason per group): export and
   import, releases and the cut, claims and holds, seats, served text (`get_instructions`,
   `get_skill`, `list_skills`, `find_tools`, `find_skills`, `describe_schema`), and the
-  cross-design tools that already name their other design. These act on the hub alone and say so
-  in `view_note`.
+  cross-design tools that already name their other design. Naming no member, these act on the hub
+  alone and say so in `view_note`. **An id naming a member routes them like any tool** (since
+  2026-10-19: the routing step comes first, so `add_release {id: "<member>:rel:…"}` lands in that
+  member instead of being written into the hub under its literal prefixed id).
+- **Aimed: `member` runs ANY tool on one design** (`view::MEMBER_ARGUMENT`,
+  `req:through-a-hub-every-tool-can-run-on-one-named-member`). Through a hub's address every call
+  may pass `member`, the graph_id of a member or of the hub itself; the view takes it out of the
+  arguments and runs the tool on that design alone — the tools that take no node id
+  (`loop_status`, `reasoning_report` with no claim, `detect_gaps` with no scope, `describe_schema`,
+  `get_skill`, `usage_report` …) and the not-viewed ones (`claim_region`, `release_claim`) included,
+  and a `search_design` or `scan_nodes` then covers that design only. `tools/list` declares
+  `member` on every tool ONLY when the listing request carries `reflow2/view_graph_ids` and the
+  server admits a view; every other listing is byte-identical to what it was, so the toolsnap
+  goldens do not move. `member` naming no design of the view, beside an id of another member, or
+  on a call that names no view is refused before anything runs. `aim` is the one routing rule, and
+  `every_served_tool_can_be_aimed_at_one_member` holds it over the whole served list.
 
-**The prefix rule, kept small on purpose.** In a member's reply, a string under a key named `id`
+**The prefix rule.** In a member's reply, a string under a key named `id`
 or ending in `_id` (`node_id`, `from_id`, `to_id`, `target_id`, `subject_id`, `source_id`,
 `other_id`, `artifact_id`, `decision_id`, `verification_id`, `capability_id`, …) gets
 `"<graph_id>:"`; so does every string item of an array under a key ending in `_ids`; under
@@ -694,7 +708,13 @@ or ending in `_id` (`node_id`, `from_id`, `to_id`, `target_id`, `subject_id`, `s
 A and B get it. A key ending in `graph_id`/`graph_ids` names a design and is left alone, as is all
 free text; so is an id a cross-design record places in ANOTHER design — `<p>_node_id`
 (`design_node_id`, `to_node_id`, `from_node_id`) beside a non-empty `<p>`, `<p>_design` or
-`<p>_graph_id`. (Merged search also prefixes its `stale` ids.)
+`<p>_graph_id`. (Merged search also prefixes its `stale` ids.) **Since 2026-10-19, by value as
+well as by key:** any whole string value that is an id the call passed with the member's prefix,
+or a node id the member holds (looked up on the member, under its guard alone, after its call),
+gets the prefix whatever its key — a step's `assumes`, `conclusion`, `discharges`, `cases`, a
+summary list; and a refusal's text (an `isError` reply or a protocol error) gets the same ids
+prefixed where they stand in its words. A successful reply's prose is still never rewritten: it
+may be stored content, and a prefix pasted back inside prose would be stored with it.
 
 **One design's guard at a time.** Every call the view makes is `call_tool_unshaped` on ONE design,
 awaited to the end before the next starts, and it takes and drops that design's guard inside —
@@ -705,7 +725,8 @@ opposite orders cannot deadlock on tokio's writer-preferring `RwLock`
 
 **What flo2 must send:** on EVERY call to a hub's own design, reads included,
 `reflow2/view_graph_ids` (the hub's members ∩ what the caller may read) together with
-`reflow2/readable_graph_ids` and `reflow2/writes_for`. A member it leaves out of the view is
+`reflow2/readable_graph_ids` and `reflow2/writes_for` — and the same `reflow2/view_graph_ids` on a
+`tools/list` of a hub's own design, which is what makes the listing declare `member`. A member it leaves out of the view is
 simply not reached; one it names but leaves out of the readable set is reported `unreachable`
 and refused when routed to.
 

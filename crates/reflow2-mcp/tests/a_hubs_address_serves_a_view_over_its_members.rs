@@ -5,7 +5,8 @@
 //! trusted host passes `_meta["reflow2/view_graph_ids"]` — the hub's members
 //! the caller may read — on every call to a hub's own design, and reflow2
 //! serves that address as a view over the hub and those members at the tool
-//! layer. Nothing new is published: no tool, no argument.
+//! layer. No tool is added; the one argument a hub's listing declares,
+//! `member`, is held by `through_a_hub_every_tool_runs_on_one_named_member.rs`.
 //!
 //! WHAT IS ASSERTED, over the real binary serving H, A and B under one root
 //! behind a trusted gateway (readable [H, A, B], view [A, B] unless a test
@@ -42,12 +43,12 @@ use std::time::{Duration, Instant};
 
 use serde_json::{Value, json};
 
-const GATEWAY: &str = "flo2.io";
-const READABLE: &str = "reflow2/readable_graph_ids";
-const VIEW: &str = "reflow2/view_graph_ids";
-const CALLER: &str = "who:tester";
+pub(super) const GATEWAY: &str = "flo2.io";
+pub(super) const READABLE: &str = "reflow2/readable_graph_ids";
+pub(super) const VIEW: &str = "reflow2/view_graph_ids";
+pub(super) const CALLER: &str = "who:tester";
 
-fn tmp_root(tag: &str) -> PathBuf {
+pub(super) fn tmp_root(tag: &str) -> PathBuf {
     let dir = std::env::temp_dir().join(format!(
         "reflow2-hub-view-{tag}-{}-{}",
         std::process::id(),
@@ -60,7 +61,7 @@ fn tmp_root(tag: &str) -> PathBuf {
     dir
 }
 
-fn bin() -> PathBuf {
+pub(super) fn bin() -> PathBuf {
     let mut p = std::env::current_exe().expect("test binary has a path");
     p.pop();
     if p.ends_with("deps") {
@@ -91,7 +92,7 @@ impl WaitKill for Child {
 /// Mint a design over stdio holding the caller as a Contributor and one
 /// requirement only it has — `req:<marker>`, whose statement carries `word` —
 /// and return its graph_id.
-fn mint(dir: &Path, marker: &str, word: &str) -> String {
+pub(super) fn mint(dir: &Path, marker: &str, word: &str) -> String {
     mint_holding(
         dir,
         &[(format!("req:{marker}"), format!("only-in-{marker} {word}"))],
@@ -100,7 +101,7 @@ fn mint(dir: &Path, marker: &str, word: &str) -> String {
 
 /// Mint a design over stdio holding the caller as a Contributor and the
 /// requirements given as (id, statement), and return its graph_id.
-fn mint_holding(dir: &Path, requirements: &[(String, String)]) -> String {
+pub(super) fn mint_holding(dir: &Path, requirements: &[(String, String)]) -> String {
     let store = dir.join(".reflow2").join("graph");
     let mut child = Command::new(bin())
         .arg("--graph-path")
@@ -165,9 +166,9 @@ fn mint_holding(dir: &Path, requirements: &[(String, String)]) -> String {
         .to_string()
 }
 
-struct Server {
+pub(super) struct Server {
     child: Child,
-    port: u16,
+    pub(super) port: u16,
 }
 
 impl Drop for Server {
@@ -179,7 +180,7 @@ impl Drop for Server {
 
 /// A registry over `root`, flo2.io's shape; `gateway` declares the trusted
 /// host the way a container does, or leaves the server with none.
-fn serve(root: &Path, gateway: Option<&str>) -> Server {
+pub(super) fn serve(root: &Path, gateway: Option<&str>) -> Server {
     let mut cmd = Command::new(bin());
     cmd.arg("--registry-root")
         .arg(root)
@@ -215,7 +216,12 @@ fn serve(root: &Path, gateway: Option<&str>) -> Server {
 }
 
 /// One HTTP exchange: (headers, body), the body de-chunked.
-fn exchange(port: u16, path: &str, body: &str, session: Option<&str>) -> (String, String) {
+pub(super) fn exchange(
+    port: u16,
+    path: &str,
+    body: &str,
+    session: Option<&str>,
+) -> (String, String) {
     let mut s = std::net::TcpStream::connect(("127.0.0.1", port)).expect("connect");
     s.set_read_timeout(Some(Duration::from_secs(300))).ok();
     let mut req = format!(
@@ -258,7 +264,7 @@ fn exchange(port: u16, path: &str, body: &str, session: Option<&str>) -> (String
 }
 
 /// The JSON-RPC message answering `id`, as the exact text the server sent.
-fn raw_reply(body: &str, id: u64) -> String {
+pub(super) fn raw_reply(body: &str, id: u64) -> String {
     let mut candidates: Vec<String> = body
         .lines()
         .filter_map(|l| l.strip_prefix("data:"))
@@ -280,25 +286,25 @@ fn raw_reply(body: &str, id: u64) -> String {
         })
 }
 
-struct Session {
-    port: u16,
-    path: String,
-    sid: String,
-    next: u64,
+pub(super) struct Session {
+    pub(super) port: u16,
+    pub(super) path: String,
+    pub(super) sid: String,
+    pub(super) next: u64,
 }
 
 /// What a call came back with: the reply as sent, and its parsed form.
-struct Reply {
-    raw: String,
-    value: Value,
+pub(super) struct Reply {
+    pub(super) raw: String,
+    pub(super) value: Value,
 }
 
 impl Reply {
-    fn result(&self) -> &Value {
+    pub(super) fn result(&self) -> &Value {
         &self.value["result"]
     }
     /// `Ok(structuredContent)` or `Err(the refusal's text)`.
-    fn outcome(&self) -> Result<Value, String> {
+    pub(super) fn outcome(&self) -> Result<Value, String> {
         if let Some(e) = self.value.get("error") {
             return Err(e.to_string());
         }
@@ -308,7 +314,7 @@ impl Reply {
         }
         Ok(r.get("structuredContent").cloned().unwrap_or(Value::Null))
     }
-    fn text(&self) -> String {
+    pub(super) fn text(&self) -> String {
         self.result()["content"]
             .as_array()
             .map(|blocks| {
@@ -323,7 +329,7 @@ impl Reply {
 }
 
 impl Session {
-    fn open(port: u16, graph_id: &str) -> Session {
+    pub(super) fn open(port: u16, graph_id: &str) -> Session {
         let path = format!("/g/{graph_id}/mcp");
         let (head, body) = exchange(
             port,
@@ -358,7 +364,7 @@ impl Session {
     /// Call `tool` as the gateway would: `_meta` names the signed-in person,
     /// the designs they may read when `readable` is given, and the hub's
     /// members when `view` is given.
-    fn call(
+    pub(super) fn call(
         &mut self,
         tool: &str,
         args: Value,
@@ -387,7 +393,7 @@ impl Session {
 /// H, A and B under one root, each holding the caller and one requirement:
 /// `req:hub` (word `harbour`), `req:alpha` (`aardvark`), `req:beta`
 /// (`zanzibar`). Returns (root, H, A, B).
-fn hub_and_members(tag: &str) -> (PathBuf, String, String, String) {
+pub(super) fn hub_and_members(tag: &str) -> (PathBuf, String, String, String) {
     let root = tmp_root(tag);
     let mut ids = Vec::new();
     for (dir, marker, word) in [
@@ -417,13 +423,13 @@ fn copy_tree(from: &Path, to: &Path) {
     }
 }
 
-fn ok(reply: &Reply, what: &str) -> Value {
+pub(super) fn ok(reply: &Reply, what: &str) -> Value {
     reply
         .outcome()
         .unwrap_or_else(|e| panic!("{what} must answer, but was refused: {e}"))
 }
 
-fn refused(reply: &Reply, what: &str) -> String {
+pub(super) fn refused(reply: &Reply, what: &str) -> String {
     match reply.outcome() {
         Err(text) => text,
         Ok(v) => panic!("{what} must be refused, but answered: {v}"),

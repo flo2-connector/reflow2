@@ -8735,10 +8735,16 @@ impl ServerHandler for ReflowService {
         _request: Option<rmcp::model::PaginatedRequestParams>,
         context: rmcp::service::RequestContext<RoleServer>,
     ) -> Result<rmcp::model::ListToolsResult, McpError> {
-        Ok(crate::tool_listing::tools_result(
-            self.tools_with_lessons().await,
-            &context,
-        ))
+        let mut tools = self.tools_with_lessons().await;
+        // A HUB'S LISTING DECLARES `member` ON EVERY TOOL: when the listing
+        // request names the view (`_meta["reflow2/view_graph_ids"]`, as on a
+        // call) and this server serves one, every tool can be aimed at one
+        // design of it (`view::MEMBER_ARGUMENT`). Anywhere else the listing
+        // is exactly what it was.
+        if view::lists_a_view(self, &context) {
+            view::declare_member(&mut tools);
+        }
+        Ok(crate::tool_listing::tools_result(tools, &context))
     }
 
     /// The macro's own `call_tool`, plus one sentence on an unknown-field
@@ -8772,6 +8778,22 @@ impl ServerHandler for ReflowService {
             .scope(view, async move {
                 if VIEW_GRAPH_IDS.with(Option::is_some) {
                     view::serve(self, request, context, policy).await
+                } else if request
+                    .arguments
+                    .as_ref()
+                    .is_some_and(|a| a.contains_key(view::MEMBER_ARGUMENT))
+                {
+                    // `member` aims a call at one design of a hub's view; with
+                    // no view named, it is refused before anything runs, in
+                    // words that say so rather than "unknown argument".
+                    crate::content_policy::shape(
+                        policy,
+                        Ok(rmcp::model::CallToolResponse::Complete(
+                            CallToolResult::error(vec![ContentBlock::text(
+                                view::member_without_a_view(&request.name),
+                            )]),
+                        )),
+                    )
                 } else {
                     crate::content_policy::shape(
                         policy,
