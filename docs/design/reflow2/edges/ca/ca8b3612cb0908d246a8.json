@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:82d1b28fe550a42332d1c7d968bf0db7e3f06e7c07a3ba1fe991dc51bf385a04",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-reasoning-crosses-designs-within-a-hub",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:reasoning-crosses-designs-within-a-hub-tests"
+}
