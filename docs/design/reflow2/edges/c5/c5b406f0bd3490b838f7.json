@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:91a7dbc5d6ab3c25b21ae53b4fa81c82e1c3a31ce9c8665caaf89951ee0b6141",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:01207faee18abee9e9e84d3ad49aa5811a79c8e9b8ec3332ed13c3a5dcb0ec69",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-through-a-hub-every-tool-runs-on-one-named-member",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b7818ebc1f90930d630c2f64bdf1f3d8d3bde23b621ac159e6d0b1b0320b96bc",
+  "node_id": "chg:accept-e0321d02ef705dc9",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "name": "one mod line for the new test file",
+    "subject": "system"
+  }
+}

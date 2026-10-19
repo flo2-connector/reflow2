@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fc9d58955f0cf4348053b28447d32e9aa07f1e5873abd6c21584b01cb046e0a9",
+  "node_id": "art:test-through-a-hub-every-tool-runs-on-one-named-member",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "An on_disk module (tests/on_disk.rs). It reuses the hub-view test file's helpers (mint, serve, Session), made pub(super) for it. It drives the real binary as a --registry-root server behind a trusted gateway, with three designs minted over stdio.",
+    "location": "crates/reflow2-mcp/tests/through_a_hub_every_tool_runs_on_one_named_member.rs",
+    "name": "tests/through_a_hub_every_tool_runs_on_one_named_member.rs — five tests over a real registry with a hub and two members: the hub's listing declares `member`, the tools the trials could not aim run on the member named, every id in a routed reply is prefixed, add_release by a member's id lands there, `member` refused where it cannot be honoured",
+    "status": "realized"
+  }
+}

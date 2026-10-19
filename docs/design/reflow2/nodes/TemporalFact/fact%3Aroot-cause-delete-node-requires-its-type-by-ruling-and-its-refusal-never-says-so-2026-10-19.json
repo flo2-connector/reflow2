@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ae36f408a0154234b814fd0432ec72500d4c1b792ec311df43f6d85812f564aa",
+  "node_id": "fact:root-cause-delete-node-requires-its-type-by-ruling-and-its-refusal-never-says-so-2026-10-19",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "ROOT CAUSE (walked, measured on 0.87.0 and 0.88.0): delete_node demanding node_type is not a missed tool but ruling #3b's deliberate exception (2026-09-06, pinned by delete_node_still_requires_the_type_on_purpose); the field read it as an inconsistency because the refusal gives no reason, and the protection it buys is only the caller's stated type, which an agent copies from the refusal or the id prefix",
+    "statement": "Field limitation 23 (VS Code --call run, 2026-10-19, 0.87.0): \"delete_node requires node_type; the readers do not\". OBSERVED on 0.87.0 and 0.88.0: `--call delete_node --args '{\"id\":\"req:one\"}'` exits 2 with \"`node_type` is required and was not given: a string. — The schema type name of the node to delete, as declared (`Requirement`, `Decision` …). Deleting removes EVERY edge attached to it and there is no undo — see the retire-from-design skill …\". req:one survives (get_node after). CANDIDATES: (A) delete_node was missed when convention (i) made the type optional — REFUTED: chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface names delete_node's TypedIdReq as DELIBERATELY UNCHANGED (\"the one destructive read keeps the strict form so a typo'd id that happens to exist under another type cannot delete that other thing\"), and tests/a_node_is_named_by_its_id_and_the_type_is_optional.rs pins it. (B) the refusal does not say the strictness is deliberate or why, so a caller who has met the optional type everywhere else reads a defect — CONFIRMED by the text above: it says the field is required and that deletion is irreversible, never that the type is asked for as a confirmation, nor which type the id resolves to. (C) outside the component, the safety argument itself: the type protects only when the caller's belief differs from the holder's type; the resolver already refuses an id held by two types, and ids carry their type's prefix by convention, so an agent fills node_type from the prefix or from the refusal and gains no check — NOT MEASURED on an agent; inferred from the resolver's code and the convention. (D) observation wrong — REFUTED: reproduced. CLASS: a deliberate exception to a surface-wide convention that is explained only in a ChangeEvent, not where the caller meets it. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "delete_node"
+    ],
+    "subject_id": "chg:a-node-is-named-by-its-id-and-the-type-is-optional-across-the-relation-surface",
+    "valid_from": "2026-09-06"
+  }
+}

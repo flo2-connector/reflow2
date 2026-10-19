@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a8bd90cdb79acf578143bdbba94c2f9a47b357f5100a1937713ba0dbc2eb8ffc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:through-a-hub-every-tool-runs-on-one-named-member-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5e582caad0d789d294e503af80ecf2d6f2e65761ca5898e2b1df9528974dab1f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:through-a-hub-every-tool-runs-on-one-named-member-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

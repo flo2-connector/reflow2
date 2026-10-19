@@ -11,17 +11,32 @@
 //! 1. **Not admitted** — no registry, or no trusted gateway and no bearer gate
 //!    (the admission `ReflowService::other_design` uses). The hub answers
 //!    alone, and a `view_note` says why the view was not served.
-//! 2. **Not viewed** — a tool in [`NOT_VIEWED`]. The hub answers alone, and a
-//!    `view_note` says so.
+//! 2. **Aimed** — the call passes [`MEMBER_ARGUMENT`] (`member`), the graph_id
+//!    of one member, or of the hub itself. Taken out of the arguments, it runs
+//!    the SAME tool on that design alone, whatever the tool: one that takes no
+//!    node id (`loop_status`, `detect_gaps`, `describe_schema`, `get_skill` …)
+//!    and one the view does not otherwise serve (`claim_region`, `add_release`
+//!    …) included. `tools/list` declares it on every tool when the listing
+//!    request names the view (`req:through-a-hub-every-tool-can-run-on-one-named-member`).
 //! 3. **Routed** — a string anywhere in the arguments is `"<member>:<rest>"`.
 //!    The prefix is stripped and the SAME tool runs on that member alone, its
-//!    ids prefixed back in the reply. Two members named is refused before
-//!    anything runs; a member outside the readable set is refused naming the
-//!    id and nothing of its content.
-//! 4. **A write naming no member** — the hub's own design, exactly as before.
-//! 5. **Fan-out** — a read naming no member runs on the hub, then on each
+//!    ids prefixed back in the reply. This comes BEFORE the not-viewed list,
+//!    so an id naming a member is never written into the hub under its
+//!    literal prefixed form (measured 2026-10-19 with `add_release`). Two
+//!    designs named is refused before anything runs; a member outside the
+//!    readable set is refused naming the id and nothing of its content.
+//! 4. **Not viewed** — a tool in [`NOT_VIEWED`], naming no member. The hub
+//!    answers alone, and a `view_note` says so and how to aim it.
+//! 5. **A write naming no member** — the hub's own design, exactly as before.
+//! 6. **Fan-out** — a read naming no member runs on the hub, then on each
 //!    readable member in turn, and answers `by_design`; `search_design` is
 //!    the one MERGED reply, every design's hits ranked together.
+//!
+//! EVERY ID IN A MEMBER'S REPLY CARRIES ITS DESIGN'S PREFIX: under the
+//! key-named rule ([`prefix_ids`]), AND any whole string value that is a node
+//! id the member holds or an id the call passed in (a step's `assumes`, its
+//! `conclusion`, `discharges`, `cases`, a summary list …), AND the ids in a
+//! refusal's text ([`prefix_ids_in_text`]). Stored prose is never rewritten.
 //!
 //! ⭐ ONE DESIGN'S GUARD AT A TIME. Every call here is
 //! `call_tool_unshaped` on ONE design, awaited to its end before the next
@@ -29,6 +44,8 @@
 //! holds two designs' guards, and never the hub's while a member's is taken —
 //! which is what keeps two hubs viewing the same members in opposite orders
 //! from deadlocking on tokio's writer-preferring `RwLock`.
+
+use std::collections::{HashMap, HashSet};
 
 use rmcp::model::{CallToolRequestParams, CallToolResponse, CallToolResult, ContentBlock};
 use rmcp::service::RequestContext;
@@ -99,12 +116,129 @@ const TWO_DESIGNS: &str = "a write lands in one design; a relation across design
                            link record made in one of them — use review_relations with \
                            other_design and other_id";
 
+/// THE ARGUMENT THAT AIMS ANY CALL AT ONE DESIGN OF A HUB'S VIEW: the graph_id
+/// of a member, or of the hub itself. Honoured on every tool through a hub's
+/// address and taken out of the arguments before the tool sees them; declared
+/// on every tool by `tools/list` only when that listing names a view, so a
+/// design served alone publishes exactly what it did before.
+pub(crate) const MEMBER_ARGUMENT: &str = "member";
+
+/// What `member` says in a hub's `tools/list`.
+pub(crate) const MEMBER_DESCRIPTION: &str = "THROUGH A HUB'S ADDRESS ONLY: the graph_id of \
+     one design of this hub's view (a member, or the hub itself) to run this tool on, alone. \
+     It reaches every tool, the ones that take no node id included (loop_status, detect_gaps \
+     with no scope, describe_schema, get_skill, claim_region, usage_report …), and a search or \
+     scan then covers that design only. Ids in the reply carry the design's graph_id as a \
+     prefix ('<graph_id>:<id>'). Omit it and the call routes by the '<graph_id>:' prefix on \
+     the ids it names, or, naming none, a read runs over every design in the view.";
+
+/// Where one call made to a hub's address runs.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub(crate) enum Aim {
+    /// The hub's own design alone, with the `view_note` to add, if any.
+    Hub(Option<String>),
+    /// One member alone, by graph_id.
+    Member(String),
+    /// The hub, then each readable member in turn.
+    FanOut,
+}
+
+/// THE ROUTING RULE of a call made to a hub's address with the view admitted,
+/// decided before anything runs. `member` is the `member` argument, already
+/// taken out of `args`. Pure, so the class it decides — every served tool can
+/// be aimed at one member — is held over the whole served list by a test.
+pub(crate) fn aim(
+    tool: &str,
+    is_write: bool,
+    arguments_refused: bool,
+    member: Option<&str>,
+    args: Option<&rmcp::model::JsonObject>,
+    hub_id: &str,
+    members: &[String],
+) -> Result<Aim, String> {
+    let named = members_named(args, members);
+    let two = |designs: Vec<String>| {
+        format!(
+            "REFUSED, and nothing ran: this call names {} designs of this hub's view ({}): \
+             {TWO_DESIGNS}.",
+            designs.len(),
+            designs.join(", ")
+        )
+    };
+    // AIMED: `member` names the one design the call runs on.
+    if let Some(m) = member {
+        let mut designs = vec![m.to_string()];
+        designs.extend(named.iter().filter(|n| n.as_str() != m).cloned());
+        if designs.len() > 1 {
+            return Err(two(designs));
+        }
+        if m == hub_id {
+            return Ok(Aim::Hub(Some(format!(
+                "`member` named the hub's own design ({hub_id}), so `{tool}` ran there alone."
+            ))));
+        }
+        if members.iter().any(|x| x == m) {
+            return Ok(Aim::Member(m.to_string()));
+        }
+        return Err(format!(
+            "REFUSED, and nothing ran: `{MEMBER_ARGUMENT}` names design {m}, which is not a \
+             design of this hub's view — the hub ({hub_id}) or one of the members the host \
+             named on this call ({}).",
+            if members.is_empty() {
+                "none".to_string()
+            } else {
+                members.join(", ")
+            }
+        ));
+    }
+    // ROUTED: an id of exactly one member, for every tool — the not-viewed
+    // ones included, so a member's id is never stored in the hub as written.
+    match named.as_slice() {
+        [] => {}
+        [one] => return Ok(Aim::Member(one.clone())),
+        several => return Err(two(several.to_vec())),
+    }
+    // NOT VIEWED: the hub alone, saying so and how to aim it.
+    if NOT_VIEWED.contains(&tool) {
+        return Ok(Aim::Hub(Some(format!(
+            "`{tool}` is not served as a view: it acted on the hub's own design ({hub_id}) only. \
+             To run it on a member, pass `{MEMBER_ARGUMENT}` with that member's graph_id, or \
+             name the member's ids with their '<graph_id>:' prefix."
+        ))));
+    }
+    // A WRITE NAMING NO MEMBER, or arguments the schema refuses: the hub's own
+    // design, exactly as before the view existed (a refusal said once, not
+    // once per design).
+    if is_write || arguments_refused {
+        return Ok(Aim::Hub(None));
+    }
+    Ok(Aim::FanOut)
+}
+
+/// Take `member` out of a call's arguments: `Ok(None)` when absent (or null),
+/// the graph_id when a non-empty string, refused otherwise.
+pub(crate) fn take_member(
+    args: Option<&mut rmcp::model::JsonObject>,
+) -> Result<Option<String>, String> {
+    let Some(args) = args else {
+        return Ok(None);
+    };
+    match args.remove(MEMBER_ARGUMENT) {
+        None | Some(JsonValue::Null) => Ok(None),
+        Some(JsonValue::String(s)) if !s.trim().is_empty() => Ok(Some(s.trim().to_string())),
+        Some(other) => Err(format!(
+            "REFUSED, and nothing ran: `{MEMBER_ARGUMENT}` must be the graph_id of one design of \
+             this hub's view, as a string; got {other}."
+        )),
+    }
+}
+
 /// Serve one call made to a hub's address with a view named
 /// (`VIEW_GRAPH_IDS` set). Returns the answer already shaped for the client,
 /// so `call_tool` hands it back as it is.
 pub(super) async fn serve(
     hub: &ReflowService,
-    request: CallToolRequestParams,
+    mut request: CallToolRequestParams,
     context: RequestContext<RoleServer>,
     policy: ContentPolicy,
 ) -> Result<CallToolResponse, McpError> {
@@ -118,11 +252,25 @@ pub(super) async fn serve(
     // Every call made on one design goes without the view key: a design
     // never serves a view from inside another's.
     let own = without_view(&context);
+    // `member` is the view's own argument, never the tool's: out it comes,
+    // before the schema check or any design reads the arguments.
+    let member = take_member(request.arguments.as_mut())
+        .map_err(|why| McpError::invalid_params(why, None))?;
 
-    // 1. NOT ADMITTED: the hub alone, saying why.
+    // 1. NOT ADMITTED: the hub alone, saying why — unless the call aimed at a
+    // member, which this server cannot reach, so nothing runs.
     let registry = match admitted(hub) {
         Ok(registry) => registry,
         Err(why) => {
+            if let Some(m) = member.as_deref().filter(|m| *m != hub_id) {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "REFUSED, and nothing ran: `{MEMBER_ARGUMENT}` names design {m}, and this \
+                         server serves no hub's view: {why}."
+                    ),
+                    None,
+                ));
+            }
             let note = format!(
                 "This call named a view (_meta[\"{VIEW_GRAPH_IDS_META}\"]) and this server does \
                  not serve one: {why}. This reply is design {hub_id} alone."
@@ -157,24 +305,22 @@ pub(super) async fn serve(
     )
     .is_empty();
 
-    // 2. NOT VIEWED: the hub alone, saying so.
-    if NOT_VIEWED.contains(&tool.as_str()) {
-        let note = format!(
-            "`{tool}` is not served as a view: it acted on the hub's own design ({hub_id}) only, \
-             whatever the view names. Call it on a member's own address to act there."
-        );
-        return shaped(policy, noted(on_one(hub, request, own).await, &note));
-    }
-
-    // 3. ROUTED: an id of exactly one member.
-    let named_members = members_named(request.arguments.as_ref(), &members);
-    match named_members.as_slice() {
-        [] => {}
-        [member] => {
+    let aimed = aim(
+        &tool,
+        is_write,
+        arguments_refused,
+        member.as_deref(),
+        request.arguments.as_ref(),
+        &hub_id,
+        &members,
+    )
+    .map_err(|why| McpError::invalid_params(why, None))?;
+    match aimed {
+        Aim::Member(member) => {
             return route(
                 hub,
                 &registry,
-                member,
+                &member,
                 readable.as_deref(),
                 request,
                 &context,
@@ -182,33 +328,23 @@ pub(super) async fn serve(
             )
             .await;
         }
-        several => {
-            return Err(McpError::invalid_params(
-                format!(
-                    "REFUSED, and nothing ran: this call names ids in {} designs of this hub's \
-                     view ({}): {TWO_DESIGNS}.",
-                    several.len(),
-                    several.join(", ")
-                ),
-                None,
-            ));
+        Aim::Hub(Some(note)) => {
+            return shaped(policy, noted(on_one(hub, request, own).await, &note));
         }
+        Aim::Hub(None) => return shaped(policy, on_one(hub, request, own).await),
+        Aim::FanOut => {}
     }
 
-    // 4. A WRITE NAMING NO MEMBER, or arguments the schema refuses: the hub's
-    // own design, exactly as before the view existed (a refusal said once,
-    // not once per design).
-    if is_write || arguments_refused {
-        return shaped(policy, on_one(hub, request, own).await);
-    }
-
-    // 5. FAN-OUT: the hub, then each readable member, one at a time.
+    // FAN-OUT: the hub, then each readable member, one at a time.
     let forwarded = forwarded(hub, &context);
     let mut replies: Vec<(String, Result<CallToolResponse, McpError>)> = Vec::new();
     replies.push((hub_id.clone(), on_one(hub, request.clone(), own).await));
     for member in &reachable {
         let answer = match registry.member(member).await {
-            Ok(held) => on_one(held.service(), request.clone(), forwarded.clone()).await,
+            Ok(held) => {
+                let answer = on_one(held.service(), request.clone(), forwarded.clone()).await;
+                prefix_reply(answer, member, held.service(), &HashSet::new()).await
+            }
             Err(refusal) => Err(member_refusal(member, refusal)),
         };
         replies.push((member.clone(), answer));
@@ -224,6 +360,43 @@ pub(super) async fn serve(
     } else {
         view.by_design(replies, policy)
     }
+}
+
+/// Whether a `tools/list` request names a view this server serves: the
+/// listing then declares `member` on every tool.
+pub(super) fn lists_a_view(hub: &ReflowService, context: &RequestContext<RoleServer>) -> bool {
+    readable_graph_ids_in(context.meta.get(VIEW_GRAPH_IDS_META)).is_some() && admitted(hub).is_ok()
+}
+
+/// Declare `member` on every tool of a hub's listing.
+pub(super) fn declare_member(tools: &mut [rmcp::model::Tool]) {
+    for t in tools {
+        let mut schema: rmcp::model::JsonObject = (*t.input_schema).clone();
+        let props = schema
+            .entry("properties")
+            .or_insert_with(|| JsonValue::Object(JsonMap::new()));
+        if let JsonValue::Object(p) = props {
+            p.insert(
+                MEMBER_ARGUMENT.into(),
+                json!({
+                    "type": ["string", "null"],
+                    "default": null,
+                    "description": MEMBER_DESCRIPTION,
+                }),
+            );
+        }
+        t.input_schema = std::sync::Arc::new(schema);
+    }
+}
+
+/// The refusal a call passing `member` gets where no hub's view is served:
+/// the argument aims a call at one design of a view, and there is none.
+pub(super) fn member_without_a_view(tool: &str) -> String {
+    format!(
+        "REFUSED, and nothing ran: `{MEMBER_ARGUMENT}` aims a call at one design of a hub's \
+         view, and is honoured only through a hub's address; this call to `{tool}` was not made \
+         through one. Call it without `{MEMBER_ARGUMENT}`, or through the hub."
+    )
 }
 
 /// The registry a view reaches its members through — or why this server
@@ -306,9 +479,13 @@ async fn route(
     if let Some(why) = not_readable(member, readable) {
         return Err(McpError::invalid_params(why, None));
     }
+    // What the call passed with the member's prefix: each is an id of that
+    // member's, whether or not it holds it, so a reply or refusal echoing one
+    // gives it back as it came.
+    let mut passed = HashSet::new();
     if let Some(args) = request.arguments.as_mut() {
         for v in args.values_mut() {
-            strip_member(v, member);
+            strip_member_noting(v, member, &mut passed);
         }
     }
     let held = registry
@@ -316,22 +493,159 @@ async fn route(
         .await
         .map_err(|r| member_refusal(member, r))?;
     let answer = on_one(held.service(), request, forwarded(hub, context)).await;
+    let answer = prefix_reply(answer, member, held.service(), &passed).await;
     drop(held);
-    let answer = answer.map(|response| match response {
-        CallToolResponse::Complete(mut r) if r.is_error != Some(true) => {
-            if let Some(v) = r.structured_content.as_mut() {
-                prefix_ids(v, member);
-            }
-            CallToolResponse::Complete(r)
-        }
-        other => other,
-    });
     let note = format!(
-        "This call named an id in design {member}, a member of this hub's view, so it ran \
-         there alone. Ids that design holds carry its graph_id as a prefix ('{member}:<id>'); \
-         pass one back through this hub and the call goes to {member} again."
+        "This call ran on design {member} alone, a member of this hub's view. Ids that design \
+         holds carry its graph_id as a prefix ('{member}:<id>'); pass one back through this hub, \
+         or pass `{MEMBER_ARGUMENT}: \"{member}\"`, and the call goes to {member} again."
     );
     shaped(policy, noted(answer, &note))
+}
+
+/// EVERY ID IN A MEMBER'S REPLY CARRIES ITS DESIGN'S PREFIX. Applied to one
+/// member's answer while the caller still holds that member (never the
+/// hub's guard: the member's read guard is taken here, alone, after its call
+/// has finished):
+///
+/// - a structured reply gets the key-named rule ([`prefix_ids`]), then every
+///   whole string value that is an id `passed` in or a node id the member
+///   holds ([`prefix_held_values`]) — a step's `assumes`, `conclusion`,
+///   `discharges`, `cases`, a summary list, whatever its key is called;
+/// - a refusal — an `isError` reply's text or a protocol error's message —
+///   gets the same ids prefixed where they stand in its words
+///   ([`prefix_ids_in_text`]).
+///
+/// A successful reply's text blocks are left as they are: they are a
+/// signpost, or served prose, and the payload is the reply.
+async fn prefix_reply(
+    answer: Result<CallToolResponse, McpError>,
+    member: &str,
+    svc: &ReflowService,
+    passed: &HashSet<String>,
+) -> Result<CallToolResponse, McpError> {
+    let g = svc.graph.read().await;
+    let mut seen: HashMap<String, bool> = HashMap::new();
+    let mut holds = |s: &str| -> bool {
+        if passed.contains(s) {
+            return true;
+        }
+        if !looks_like_an_id(s) {
+            return false;
+        }
+        if let Some(known) = seen.get(s) {
+            return *known;
+        }
+        let held = g
+            .node_types_holding(s)
+            .map(|types| !types.is_empty())
+            .unwrap_or(false);
+        seen.insert(s.to_string(), held);
+        held
+    };
+    match answer {
+        Err(mut e) => {
+            e.message = prefix_ids_in_text(&e.message, member, &mut holds).into();
+            Err(e)
+        }
+        Ok(CallToolResponse::Complete(mut r)) if r.is_error == Some(true) => {
+            r.content = r
+                .content
+                .into_iter()
+                .map(|b| match b.as_text() {
+                    Some(t) => ContentBlock::text(prefix_ids_in_text(&t.text, member, &mut holds)),
+                    None => b,
+                })
+                .collect();
+            Ok(CallToolResponse::Complete(r))
+        }
+        Ok(CallToolResponse::Complete(mut r)) => {
+            if let Some(v) = r.structured_content.as_mut() {
+                prefix_ids(v, member);
+                prefix_held_values(v, member, &mut holds);
+            }
+            Ok(CallToolResponse::Complete(r))
+        }
+        other => other,
+    }
+}
+
+/// Could `s` be a node id? Ids follow the typed-prefix convention
+/// (`req:…`, `who:…`), so one holds a `:` and no whitespace, and is short.
+/// Only such a string is looked up; anything else is prose or a value.
+fn looks_like_an_id(s: &str) -> bool {
+    !s.is_empty() && s.len() <= 512 && s.contains(':') && !s.contains(char::is_whitespace)
+}
+
+/// Every whole string value in `v` for which `holds` says it is the member's
+/// id gets the member's prefix — except under a key naming a design
+/// (`…graph_id`, `…graph_ids`) or an id a cross-design record places in
+/// ANOTHER design ([`names_a_node_elsewhere`]), as in [`prefix_ids`].
+fn prefix_held_values(v: &mut JsonValue, member: &str, holds: &mut impl FnMut(&str) -> bool) {
+    match v {
+        JsonValue::String(s) => {
+            if !s.starts_with(&format!("{member}:")) && holds(s) {
+                *s = prefixed(s, member);
+            }
+        }
+        JsonValue::Array(items) => items
+            .iter_mut()
+            .for_each(|i| prefix_held_values(i, member, holds)),
+        JsonValue::Object(o) => {
+            let elsewhere: Vec<String> = o
+                .keys()
+                .filter(|k| names_a_node_elsewhere(k, o))
+                .cloned()
+                .collect();
+            for (k, val) in o.iter_mut() {
+                if elsewhere.contains(k) || k.ends_with("graph_id") || k.ends_with("graph_ids") {
+                    continue;
+                }
+                prefix_held_values(val, member, holds);
+            }
+        }
+        _ => {}
+    }
+}
+
+/// The member's ids prefixed where they stand in a refusal's words. A word
+/// is a run of non-space characters; the quotes, brackets and punctuation
+/// around an id (`'req:x'`, `(req:x)`, `req:x,`, `req:x:`) are kept and only
+/// the id between them is prefixed, when `holds` says it is the member's.
+pub(crate) fn prefix_ids_in_text(
+    text: &str,
+    member: &str,
+    holds: &mut impl FnMut(&str) -> bool,
+) -> String {
+    const OPEN: &[char] = &['"', '\'', '`', '(', '[', '{', '<'];
+    const CLOSE: &[char] = &[
+        '"', '\'', '`', ')', ']', '}', '>', ',', ';', '.', ':', '!', '?',
+    ];
+    let mine = format!("{member}:");
+    let mut out = String::with_capacity(text.len());
+    let mut rest = text;
+    while !rest.is_empty() {
+        let start = rest
+            .find(|c: char| !c.is_whitespace())
+            .unwrap_or(rest.len());
+        out.push_str(&rest[..start]);
+        rest = &rest[start..];
+        let end = rest.find(char::is_whitespace).unwrap_or(rest.len());
+        let word = &rest[..end];
+        rest = &rest[end..];
+        let core_start = word.len() - word.trim_start_matches(OPEN).len();
+        let inner = &word[core_start..];
+        let core = inner.trim_end_matches(CLOSE);
+        if !core.is_empty() && !core.starts_with(&mine) && holds(core) {
+            out.push_str(&word[..core_start]);
+            out.push_str(&mine);
+            out.push_str(core);
+            out.push_str(&inner[core.len()..]);
+        } else {
+            out.push_str(word);
+        }
+    }
+    out
 }
 
 /// What reaching a member the caller may read said, as the caller hears it.
@@ -683,7 +997,14 @@ fn member_of<'a>(s: &str, members: &'a [String]) -> Option<&'a String> {
 }
 
 /// Strip `"<member>:"` from every string value that carries it.
+#[cfg(test)]
 fn strip_member(v: &mut JsonValue, member: &str) {
+    strip_member_noting(v, member, &mut HashSet::new());
+}
+
+/// Strip `"<member>:"` from every string value that carries it, noting in
+/// `passed` each value as it is now, unprefixed.
+fn strip_member_noting(v: &mut JsonValue, member: &str, passed: &mut HashSet<String>) {
     match v {
         JsonValue::String(s) => {
             if let Some(rest) = s
@@ -691,11 +1012,16 @@ fn strip_member(v: &mut JsonValue, member: &str) {
                 .and_then(|r| r.strip_prefix(':'))
                 .map(String::from)
             {
+                passed.insert(rest.clone());
                 *s = rest;
             }
         }
-        JsonValue::Array(items) => items.iter_mut().for_each(|i| strip_member(i, member)),
-        JsonValue::Object(o) => o.values_mut().for_each(|i| strip_member(i, member)),
+        JsonValue::Array(items) => items
+            .iter_mut()
+            .for_each(|i| strip_member_noting(i, member, passed)),
+        JsonValue::Object(o) => o
+            .values_mut()
+            .for_each(|i| strip_member_noting(i, member, passed)),
         _ => {}
     }
 }
@@ -957,6 +1283,128 @@ mod tests {
                 "the guard must see {named} as a cross-design read, or it guards nothing: {held:?}"
             );
         }
+    }
+
+    /// THE CLASS (req:through-a-hub-every-tool-can-run-on-one-named-member):
+    /// through a hub's address, EVERY served tool — read or write, viewed or
+    /// not, taking a node id or none — runs on the one member `member` names,
+    /// and on the one member an id's prefix names. Read off the served list,
+    /// so a tool added later is held to it without anyone listing it.
+    #[test]
+    fn every_served_tool_can_be_aimed_at_one_member() {
+        let svc = ReflowService::in_memory().expect("in-memory service");
+        let members = vec!["A".to_string(), "B".to_string()];
+        let by_id: rmcp::model::JsonObject =
+            serde_json::from_value(json!({"any": ["A:req:x"]})).unwrap();
+        let tools = svc.tool_router.list_all();
+        assert!(tools.len() > 100, "the whole surface: {}", tools.len());
+        for tool in &tools {
+            let name = tool.name.as_ref();
+            let write = crate::receipt::is_write(tool);
+            for refused in [false, true] {
+                assert_eq!(
+                    aim(name, write, refused, Some("A"), None, "H", &members),
+                    Ok(Aim::Member("A".into())),
+                    "`member` aims {name} at A"
+                );
+                assert_eq!(
+                    aim(name, write, refused, None, Some(&by_id), "H", &members),
+                    Ok(Aim::Member("A".into())),
+                    "an id prefixed A: aims {name} at A"
+                );
+                assert!(
+                    matches!(
+                        aim(name, write, refused, Some("H"), None, "H", &members),
+                        Ok(Aim::Hub(Some(_)))
+                    ),
+                    "`member` naming the hub runs {name} on the hub alone"
+                );
+                assert!(
+                    aim(name, write, refused, Some("Z"), None, "H", &members).is_err(),
+                    "`member` naming no design of the view is refused for {name}"
+                );
+                let b_id: rmcp::model::JsonObject =
+                    serde_json::from_value(json!({"id": "B:req:y"})).unwrap();
+                assert!(
+                    aim(name, write, refused, Some("A"), Some(&b_id), "H", &members).is_err(),
+                    "`member` A beside an id of B is two designs, refused for {name}"
+                );
+            }
+        }
+    }
+
+    /// `member` is the view's own argument: no tool may take one of its own,
+    /// or a hub would strip the tool's argument as an aim.
+    #[test]
+    fn no_served_tool_takes_an_argument_named_member() {
+        let svc = ReflowService::in_memory().expect("in-memory service");
+        let taking: Vec<String> = svc
+            .tool_router
+            .list_all()
+            .iter()
+            .filter(|t| {
+                crate::receipt::published_input_schema(t)
+                    .get("properties")
+                    .and_then(|p| p.as_object())
+                    .is_some_and(|p| p.contains_key(MEMBER_ARGUMENT))
+            })
+            .map(|t| t.name.to_string())
+            .collect();
+        assert!(taking.is_empty(), "{taking:?}");
+    }
+
+    #[test]
+    fn a_whole_value_or_a_refusals_word_naming_a_held_id_is_prefixed() {
+        let held = ["req:a", "inf:s", "req:passed"];
+        let mut holds = |s: &str| held.contains(&s);
+        let mut v = json!({
+            "assumes": ["req:a"],
+            "conclusion": "req:a",
+            "cases": [{"case": "inf:s"}],
+            "statement": "req:a is prose",
+            "free": "not:held",
+            "graph_id": "req:a",
+            "linked": {"design": "OTHER", "design_node_id": "req:a"},
+            "already": "G:req:a",
+        });
+        prefix_held_values(&mut v, "G", &mut holds);
+        assert_eq!(v["assumes"], json!(["G:req:a"]));
+        assert_eq!(v["conclusion"], "G:req:a");
+        assert_eq!(v["cases"][0]["case"], "G:inf:s");
+        assert_eq!(v["statement"], "req:a is prose", "prose is never rewritten");
+        assert_eq!(v["free"], "not:held");
+        assert_eq!(v["graph_id"], "req:a", "a design id is not a node id");
+        assert_eq!(v["linked"]["design_node_id"], "req:a", "another design's");
+        assert_eq!(v["already"], "G:req:a", "never prefixed twice");
+
+        let text = "no node 'req:passed' (premise of inf:s): see req:a, req:a. and `req:a`; \
+                    not:held stays";
+        assert_eq!(
+            prefix_ids_in_text(text, "G", &mut holds),
+            "no node 'G:req:passed' (premise of G:inf:s): see G:req:a, G:req:a. and `G:req:a`; \
+             not:held stays"
+        );
+        assert_eq!(
+            prefix_ids_in_text("  G:req:a  x", "G", &mut holds),
+            "  G:req:a  x"
+        );
+    }
+
+    #[test]
+    fn member_is_taken_out_of_the_arguments_and_must_be_a_graph_id() {
+        let mut args: rmcp::model::JsonObject =
+            serde_json::from_value(json!({"member": " A ", "query": "q"})).unwrap();
+        assert_eq!(take_member(Some(&mut args)), Ok(Some("A".into())));
+        assert!(!args.contains_key("member"));
+        let mut null: rmcp::model::JsonObject =
+            serde_json::from_value(json!({"member": null})).unwrap();
+        assert_eq!(take_member(Some(&mut null)), Ok(None));
+        for bad in [json!(""), json!(3), json!(["A"])] {
+            let mut a = rmcp::model::JsonObject::new();
+            a.insert("member".into(), bad);
+            assert!(take_member(Some(&mut a)).is_err());
+        }
+        assert_eq!(take_member(None), Ok(None));
     }
 
     /// A read of one design's own seams is a read like any other: a view fans

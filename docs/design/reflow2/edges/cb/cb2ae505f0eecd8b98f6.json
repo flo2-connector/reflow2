@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a77986c2d51b552143bf6e62210707b956c6533006f2f9db67619078ba8ccdd5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:through-a-hub-every-tool-runs-on-one-named-member",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
