@@ -71,6 +71,19 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # a proof states what it really does (2026-10-18, phase 3): the statement
+    # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
+    # statement reads (`statement_reading`: `taken_as_given`, `cited`,
+    # `cited_unverified`, `assumed`'s twin `discharged`, `not_assumed`,
+    # `inconsistent`, `stated`, `open`, `refuted`), add_inference's `cases`
+    # and `cases_exhaustive`, a claim's `assumes` and `rests_on_unverified`,
+    # and loop_status's `unverified_citations` and
+    # `cases_not_declared_exhaustive`.
+    "theorem", "lemma", "corollary", "proposition", "conjecture", "hypothesis", "falsum",
+    "statement_reading", "taken_as_given", "cited", "cited_unverified", "discharged",
+    "not_assumed", "inconsistent", "stated", "open", "refuted", "cases", "cases_exhaustive",
+    "assumes", "rests_on_unverified", "unverified_citations", "cases_not_declared_exhaustive",
+    "stands", "holds_only_under",
     # reasoning attached to the structure it justifies (2026-10-18, phase 2):
     # an edge's `argued_by`, the argument reading `circular`, a requirement's
     # `reason_to_exist`, and propagate_from's `reasons_to_exist_lost`.

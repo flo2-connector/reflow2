@@ -42,9 +42,11 @@ schema:
         confirmed_how: { type: enum, values: [unconfirmed, person, checker], default: unconfirmed, indexed: true, description: "HOW the step was confirmed: `person` — a named human checked it; `checker` — a proof-checking program verified it; `unconfirmed` (the default) — nobody has, so a proof built on it reads SHOWN, never PROVEN (req:a-design-can-be-a-proof)." }
         confirmed_at: { type: string, description: "WHEN the step was confirmed, as an ISO 8601 timestamp. Absent when unconfirmed." }
         discharges: { type: "list:string", description: "THE ASSUMPTIONS THIS STEP DISCHARGES, by id (req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable, Anthony 2026-10-17): each names a node some step this one rests on takes as an `assumed` premise (PREMISE_OF with `role: assumed`). A reductio discharges its supposition; an induction step discharges its hypothesis. Once discharged, this step's conclusion no longer rests on the assumption: its truth, its foundations and the what-if read without it, and reasoning_report shows it \"assumed, discharged by\" this step. An assumption that no step discharges is reported (the `reasoning_not_as_stated` gap). Written by add_inference's `discharges`, refused unless the step really rests on it as an assumption. ABSENT MEANS IT DISCHARGES NOTHING; no default." }
-        generalizes_over: { type: "list:string", description: "THE VARIABLES THIS STEP GENERALIZES OVER, by name (`L`, `n`) — \"for an arbitrary finite list L\" made checkable (Anthony's choice, 2026-10-17: declared and checked). reflow2 checks that NO premise in the step's chain FIXES one of them: no node the step rests on, at any depth, lists the variable in its `fixes`. A violation makes the step NOT HOLD — its verdict reads `unknown` with the reason, so its conclusion reads unsupported, never refuted. A STRUCTURAL check, not a logic: a variable is the same variable wherever the same name is used, and what the statements say is never read. Written by add_inference's `generalizes_over`. ABSENT MEANS IT GENERALIZES OVER NOTHING." }
+        generalizes_over: { type: "list:string", description: "THE VARIABLES THIS STEP GENERALIZES OVER, by name (`L`, `n`) — \"for an arbitrary finite list L\" made checkable (Anthony's choice, 2026-10-17: declared and checked). reflow2 checks that NO premise in the step's chain FIXES one of them: no node the step rests on, at any depth, lists the variable in its `fixes`. AND THAT NO ASSUMPTION STILL OPEN AT THE STEP NAMES ONE (the eigenvariable rule of natural deduction, fixed 2026-10-18 after the Arrow trial certified a generalization over F under an open hypothesis about F): an `assumed` premise beneath the step that neither it nor a step on the way discharges NAMES a variable when its `variables` or its `fixes` lists it, and one that declares no `variables` at all leaves the check unanswerable, so the step does not hold until it declares them (an empty list says it names none). An assumption this same step discharges is closed first: discharge, then generalize, which is how a conditional proof over F ends. A violation makes the step NOT HOLD — its verdict reads `unknown` with the reason, so its conclusion reads unsupported, never refuted. A STRUCTURAL check, not a logic: a variable is the same variable wherever the same name is used, and what the statements say is never read. Written by add_inference's `generalizes_over`. ABSENT MEANS IT GENERALIZES OVER NOTHING." }
         independent_of: { type: "list:string", description: "OTHER STEPS THIS LINE OF REASONING IS STATED INDEPENDENT OF, by id — typically another step concluding the same claim (a second proof). reflow2 CHECKS THE STATEMENT: the two lines may share no step other than those under the lemmas named in `independent_except`; definitions and axioms the lines start from share no step, so they never count against it. A statement the structure does not bear out is reported (the `reasoning_not_as_stated` gap) and read on the step's `independence`. Written by add_inference's `independent_of`. ABSENT MEANS NO SUCH STATEMENT." }
         independent_except: { type: "list:string", description: "THE LEMMAS THE LINES MAY SHARE, by id, when this step is stated independent of others (`independent_of`): a step under one of these — the steps concluding it, and everything they rest on — does not count against the statement. Written by add_inference's `independent_except`. ABSENT MEANS THEY MAY SHARE NO STEP AT ALL." }
+        cases: { type: "list:string", description: "THE CASES THIS STEP SPLITS ON, by id: a proof by cases (∨-elimination) names each case's hypothesis — a statement (statement_kind `hypothesis`) that the branch proving the case takes up as an `assumed` premise (req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems, item 2, Anthony 2026-10-18). The step's premises are each branch's conclusion; it DISCHARGES every case it names, as `discharges` would, and each must be assumed beneath it (add_inference refuses one that is not). A case split holds only when its cases are DECLARED EXHAUSTIVE (`cases_exhaustive`); without it the step does not hold and reads why. Written by add_inference's `cases`. ABSENT MEANS THE STEP SPLITS ON NO CASES." }
+        cases_exhaustive: { type: string, node_ref: true, description: "THE RECORD THAT SAYS THE CASES COVER EVERY POSSIBILITY, by id — \"every integer is even or odd\", the major premise of ∨-elimination. reflow2 never judges exhaustiveness: it is the OWNER'S word or a CHECKER'S, and it is read through that record's own computed truth — taken as given (somebody's word, named by its AUTHORED_BY), a passing check (a checker's, through its kept record), or a step concluding it (shown or proven). add_inference draws it as a premise of the step, so losing it reaches the step in a change walk. The step reads `cases.declared` and the record's truth; while it does not hold, neither does the step. Written by add_inference's `cases_exhaustive`, refused unless it names a node of the design. ABSENT MEANS THE CASES ARE NOT DECLARED EXHAUSTIVE." }
       embedding_field: warrant
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 85 }
       discrimination:
@@ -146,11 +148,13 @@ schema:
               P" and its conclusion "P implies Q", each a statement of its own.
           - term: proof by contradiction
             means: >-
-              The supposition not-P is a statement of its own, an `assumed` premise
-              (add_inference's `assumed`) of the steps that derive a contradiction from
-              it; the step concluding P names it in `discharges` (a reductio). Assumed,
-              it holds inside the argument whatever its own truth, so its falsity never
-              fails a step; discharged, P no longer rests on it.
+              The supposition not-P is a statement of its own (statement_kind
+              `hypothesis`), an `assumed` premise (add_inference's `assumed`) of the step
+              that derives the contradiction; the contradiction is a statement of its own
+              too (statement_kind `falsum`), which reads false; and the step concluding P
+              from it names the supposition in `discharges` (a reductio). Assumed, the
+              supposition holds inside the argument whatever its own truth, so its falsity
+              never fails a step; discharged, P no longer rests on it.
           - term: proof by construction
             means: >-
               A step whose premises are a constructed object and the shown statement
@@ -164,10 +168,13 @@ schema:
               same cases are only evidence for anything beyond them.
           - term: case analysis
             means: >-
-              The same record as a proof by exhaustion: an Inference whose premises are
-              each case and the statement that the cases cover every possibility. Not
-              DECOMPOSES, which rolls delivery up and has no place for that statement or
-              for the rule.
+              A proof by cases: each case's hypothesis is a statement (statement_kind
+              `hypothesis`) assumed by the branch that proves the conclusion under it;
+              the step concluding it from the branches names the hypotheses in `cases`
+              (it discharges them) and the record saying they cover every possibility in
+              `cases_exhaustive`, the owner's word or a checker's. Without that record
+              the step does not hold. Not DECOMPOSES, which rolls delivery up and has no
+              place for that statement or for the rule.
           - term: proof by double counting
             means: >-
               A step whose premises are two counts of one set and whose conclusion is

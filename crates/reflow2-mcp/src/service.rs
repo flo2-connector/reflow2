@@ -1971,11 +1971,15 @@ pub struct RequirementReq {
     #[serde(default)]
     pub taken_as_given: Option<bool>,
     /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
-    /// `corollary`, `proposition`, `definition`, `axiom` or `conjecture` — a
-    /// field of its own, leaving `kind`'s software values alone. A definition
-    /// or axiom reads taken as given; a conjecture reads `open`, then
-    /// `refuted` once an objection that holds refutes it; a theorem, lemma,
-    /// corollary or proposition reads `stated` until a step concludes it.
+    /// `corollary`, `proposition`, `definition`, `axiom`, `conjecture`,
+    /// `hypothesis` or `falsum` — a field of its own, leaving `kind`'s
+    /// software values alone. A definition or axiom reads taken as given; a
+    /// conjecture reads `open`, then `refuted` once an objection that holds
+    /// refutes it; a theorem, lemma, corollary or proposition reads `stated`
+    /// until a step concludes it; a theorem, lemma or corollary taken as given
+    /// reads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a
+    /// supposition, an induction hypothesis, a case) reads `assumed` or
+    /// `discharged`; a falsum (a reductio's contradiction) reads false.
     /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
@@ -4056,11 +4060,15 @@ pub struct AddConstraintReq {
     #[serde(default)]
     pub taken_as_given: Option<bool>,
     /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
-    /// `corollary`, `proposition`, `definition`, `axiom` or `conjecture` — a
-    /// field of its own, leaving `kind`'s software values alone. A definition
-    /// or axiom reads taken as given; a conjecture reads `open`, then
-    /// `refuted` once an objection that holds refutes it; a theorem, lemma,
-    /// corollary or proposition reads `stated` until a step concludes it.
+    /// `corollary`, `proposition`, `definition`, `axiom`, `conjecture`,
+    /// `hypothesis` or `falsum` — a field of its own, leaving `kind`'s
+    /// software values alone. A definition or axiom reads taken as given; a
+    /// conjecture reads `open`, then `refuted` once an objection that holds
+    /// refutes it; a theorem, lemma, corollary or proposition reads `stated`
+    /// until a step concludes it; a theorem, lemma or corollary taken as given
+    /// reads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a
+    /// supposition, an induction hypothesis, a case) reads `assumed` or
+    /// `discharged`; a falsum (a reductio's contradiction) reads false.
     /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_statement_kind_opt")]

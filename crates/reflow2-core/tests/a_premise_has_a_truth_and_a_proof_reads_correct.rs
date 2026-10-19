@@ -514,8 +514,10 @@ fn an_accidental_contradiction_is_still_reported() {
 // ─── D (3): a conditional claim does not read holds ─────────────────────────
 
 /// Every claim of every fixture whose proof_status is `conditional` reads
-/// `truth: conditional` (never `holds`), names the assumption it rests on in
-/// its why, and lists it under `assumes`.
+/// `truth: conditional` (never `holds`), names what it is conditional on in
+/// its why, and lists it: an assumption under `assumes`, or, since phase 3
+/// (req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems,
+/// item 4), an unverified citation under `rests_on_unverified`.
 #[test]
 fn a_conditional_claim_never_reads_holds() {
     let mut seen = 0;
@@ -532,9 +534,15 @@ fn a_conditional_claim_never_reads_holds() {
                 "{name}: {}: {}",
                 c["id"], c["why"]
             );
-            let assumes = c["assumes"].as_array().expect("assumes");
-            assert!(!assumes.is_empty(), "{name}: {}", c["id"]);
-            for a in assumes {
+            let mut on: Vec<Json> = c["assumes"].as_array().cloned().unwrap_or_default();
+            on.extend(
+                c["rests_on_unverified"]
+                    .as_array()
+                    .cloned()
+                    .unwrap_or_default(),
+            );
+            assert!(!on.is_empty(), "{name}: {}", c["id"]);
+            for a in &on {
                 assert!(
                     c["why"].as_str().unwrap().contains(a.as_str().unwrap()),
                     "{name}: {}: {}",

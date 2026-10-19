@@ -367,10 +367,21 @@ pub struct InferenceReading {
     /// every assumption is discharged.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub assumes: Vec<String>,
+    /// THE UNVERIFIED CITATIONS this step's verdict rests on, at any depth:
+    /// results cited from elsewhere that no pinned source documents
+    /// (req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-
+    /// theorems, item 4). Empty when every citation beneath it is verified.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_unverified: Vec<String>,
     /// The assumptions this step DISCHARGES, as it records them
     /// (`discharges`): a reductio's supposition, an induction hypothesis.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub discharges: Vec<String>,
+    /// The case split this step makes (`cases`, `cases_exhaustive`), read:
+    /// which cases, and whether they are DECLARED EXHAUSTIVE and by what.
+    /// Absent when it splits on no cases.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cases: Option<CasesReading>,
     /// The variables it generalizes over, and whether anything it rests on
     /// fixes one (`generalizes_over`, checked). Absent when it declares none.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -382,6 +393,28 @@ pub struct InferenceReading {
     pub independence: Vec<IndependenceReading>,
 }
 
+/// A step's case split, read (`cases`, `cases_exhaustive`): a proof by cases
+/// holds only when its cases are DECLARED exhaustive, and the declaration is a
+/// record's word — the owner's (taken as given) or a checker's (a passing
+/// computed check) — never reflow2's.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct CasesReading {
+    /// The cases' hypotheses, as the step names them. Each is discharged by
+    /// the step.
+    pub cases: Vec<String>,
+    /// Whether a record is named as saying the cases are exhaustive.
+    pub declared: bool,
+    /// That record, when one is named.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exhaustive_by: Option<String>,
+    /// Its computed truth, when one is named: the split holds only while it
+    /// holds.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub truth: Option<Truth>,
+    /// Why, in a sentence.
+    pub why: String,
+}
+
 /// A step's generalization over its declared variables, checked
 /// (req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable).
 ///
@@ -391,27 +424,54 @@ pub struct InferenceReading {
 /// (`n=40`, `L=all the primes`) or a bare name: the record is about that one
 /// value, not an arbitrary one. A step that generalizes over `v` HOLDS ONLY
 /// WHEN NOTHING IT RESTS ON, AT ANY DEPTH, FIXES `v` (assumed premises
-/// included). `variables` (what a record mentions) is read only to show which
-/// records the variable runs through. Structural, not a logic: the same name
-/// is the same variable, and what a statement says is never read.
+/// included).
+///
+/// # The eigenvariable rule (fixed 2026-10-18, the Arrow trial's N19)
+///
+/// AND ONLY WHEN NO ASSUMPTION STILL OPEN AT THE STEP NAMES `v`. Natural
+/// deduction allows ∀-introduction over x only when x is free in no
+/// assumption the conclusion still depends on; a step that generalized over
+/// F under an open hypothesis about F read `holds` until then
+/// (`fact:root-cause-the-generalization-check-read-only-fixes-and-never-the-assumptions-open-at-the-step-2026-10-18`).
+/// An assumption is OPEN at the step when it is assumed beneath it and
+/// neither the step nor a step on the way discharges it — the step's own
+/// discharges close first, so a conditional proof that discharges a
+/// hypothesis on F and generalizes over F in one step stays valid. It NAMES
+/// `v` when its `variables` or its `fixes` lists `v`; one that declares no
+/// `variables` at all leaves the question unanswerable, so the step does not
+/// hold until it does (an empty list declares that it names none).
+///
+/// `variables` is otherwise read only to show which records the variable runs
+/// through. Structural, not a logic: the same name is the same variable, and
+/// what a statement says is never read.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct GeneralizationReading {
     /// The variables the step generalizes over.
     pub over: Vec<String>,
-    /// Whether the check passes: nothing in the chain fixes any of them.
+    /// Whether the check passes: nothing in the chain fixes any of them, and
+    /// no assumption open at the step names one or leaves it unanswerable.
     pub holds: bool,
     /// Every record in the chain that fixes one, with what it fixes.
     pub fixed_by: Vec<FixedBy>,
+    /// Every assumption OPEN at the step that names one of them, with the
+    /// ones it names (the eigenvariable rule).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub named_by_open_assumptions: Vec<FixedBy>,
+    /// Assumptions open at the step that declare no `variables`, so whether
+    /// they name one cannot be told: the step does not hold until they do.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub undeclared_open_assumptions: Vec<String>,
     /// Records in the chain that mention one of them (`variables`).
     pub mentioned_by: Vec<String>,
 }
 
-/// One record that fixes a variable a step generalizes over.
+/// One record that fixes, or (open) names, a variable a step generalizes over.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct FixedBy {
     /// The record.
     pub id: String,
-    /// What it fixes, as it says (`n=40`).
+    /// What it fixes, as it says (`n=40`); for an open assumption, the
+    /// variables of the generalization it names.
     pub fixes: Vec<String>,
 }
 
@@ -454,13 +514,18 @@ pub struct AssumptionReading {
 /// What a statement says it is (`statement_kind`) and how it reads now.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct StatementReading {
-    /// `theorem`, `lemma`, `corollary`, `proposition`, `definition`, `axiom`
-    /// or `conjecture`.
+    /// `theorem`, `lemma`, `corollary`, `proposition`, `definition`, `axiom`,
+    /// `conjecture`, `hypothesis` or `falsum`.
     pub kind: String,
-    /// How it reads: `taken_as_given` (a definition or axiom), `stated` (a
-    /// theorem, lemma, corollary or proposition no step concludes yet), `open` (a conjecture nothing
-    /// shows or refutes), `refuted` (an objection that holds refutes it), or
-    /// the proof status of a concluded one: `proven`, `shown`, `conditional`,
+    /// How it reads: `taken_as_given` (a definition or axiom), `cited` (a
+    /// theorem, lemma or corollary taken as given: a result from
+    /// elsewhere, checked against a pinned source), `cited_unverified` (one no
+    /// pinned source documents), `stated` (a result no step concludes yet, or
+    /// a falsum nothing derives), `open` (a conjecture nothing shows or
+    /// refutes), `refuted` (an objection that holds refutes it), `assumed` /
+    /// `discharged` / `not_assumed` (a hypothesis), `false` / `inconsistent`
+    /// (a falsum derived under an assumption, or under none), or the proof
+    /// status of a concluded one: `proven`, `shown`, `conditional`,
     /// `contested`, `unproven`.
     pub reads: &'static str,
     /// Why, in a sentence.
@@ -626,6 +691,12 @@ struct Read {
     truth: Truth,
     why: String,
     assumes: BTreeSet<String>,
+    /// THE UNVERIFIED CITATIONS it rests on: results cited from elsewhere
+    /// (taken as given) that no pinned source documents. Carried like an
+    /// assumption — what rests on one holds only if it says what it is
+    /// recalled to say — but never discharged by a step: checking its source
+    /// is what clears it.
+    unverified: BTreeSet<String>,
 }
 
 impl Read {
@@ -634,6 +705,7 @@ impl Read {
             truth,
             why,
             assumes: BTreeSet::new(),
+            unverified: BTreeSet::new(),
         }
     }
 
@@ -653,12 +725,21 @@ pub struct ObjectionReading {
     pub truth: Truth,
     /// Why, in a sentence.
     pub why: String,
-    /// `refutes` (it holds), `stands` (neither established nor answered) or
-    /// `answered` (it fails, so it no longer counts).
+    /// `refutes` (it holds, inside the claim's scope), `stands` (neither
+    /// established nor answered, or holding only under a supposition the
+    /// claim is outside: `holds_only_under`) or `answered` (it fails, so it
+    /// no longer counts).
     pub standing: &'static str,
     /// The edge's own `evidence`, when it carries one.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub evidence: Option<String>,
+    /// For an objection that holds only under an assumption no step
+    /// discharges (or an unverified citation) that the claim it opposes does
+    /// not hold under: those, by id. It then `stands` — it contests — and
+    /// never refutes (req:a-claim-that-holds-only-under-an-open-supposition-
+    /// cannot-refute-a-claim-outside-it). Empty otherwise.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub holds_only_under: Vec<String>,
 }
 
 fn standing_of(truth: Truth) -> &'static str {
@@ -678,6 +759,8 @@ struct StepRecord {
     confirmation: Confirmation,
     discharges: Vec<String>,
     generalizes_over: Vec<String>,
+    cases: Vec<String>,
+    cases_exhaustive: Option<String>,
 }
 
 /// A `list:string` property as a sorted, deduplicated list; empty when absent.
@@ -702,7 +785,7 @@ pub fn fixed_variable(entry: &str) -> &str {
 }
 
 /// The statement kinds `statement_kind` may say.
-pub const STATEMENT_KINDS: [&str; 7] = [
+pub const STATEMENT_KINDS: [&str; 9] = [
     "theorem",
     "lemma",
     "corollary",
@@ -710,7 +793,57 @@ pub const STATEMENT_KINDS: [&str; 7] = [
     "definition",
     "axiom",
     "conjecture",
+    "hypothesis",
+    "falsum",
 ];
+
+/// The kinds that, TAKEN AS GIVEN, are a result CITED FROM ELSEWHERE
+/// (req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-
+/// theorems, item 4): a theorem, a lemma, a corollary — results somebody
+/// proved. NOT `proposition`: in a line of reasoning a proposition taken as
+/// given is a stated position the argument starts from (a premise of an
+/// argument for and against, "X satisfies Y" on an argued edge), so it stays
+/// taken as given, as a definition or an axiom does.
+pub const CITED_KINDS: [&str; 3] = ["theorem", "lemma", "corollary"];
+
+/// A node's `statement_kind`, when it says one.
+pub fn statement_kind(props: &HashMap<String, Value>) -> Option<&str> {
+    prop(props, "statement_kind")
+}
+
+/// Whether a node states a RESULT CITED FROM ELSEWHERE: a theorem, lemma or
+/// corollary marked taken as given ([`CITED_KINDS`]). It is never a foundation
+/// the way a definition or axiom is: it was proved somewhere else, and it
+/// reads `cited` (or `cited_unverified`).
+pub fn is_cited_result(props: &HashMap<String, Value>) -> bool {
+    statement_kind(props).is_some_and(|k| CITED_KINDS.contains(&k)) && is_taken_as_given(props)
+}
+
+/// Whether a node is a FALSUM: a contradiction derived inside a reductio.
+pub fn is_falsum(props: &HashMap<String, Value>) -> bool {
+    statement_kind(props) == Some("falsum")
+}
+
+/// The variables a record NAMES: its `variables` and the variables its
+/// `fixes` bind. `None` when it declares no `variables` at all, which leaves
+/// open whether it names a given one (ABSENT MEANS NOBODY SAID); an empty
+/// list is a declaration that it names none.
+pub fn named_variables(props: &HashMap<String, Value>) -> Option<BTreeSet<String>> {
+    let declared = matches!(
+        props.get("variables"),
+        Some(Value::List(_)) | Some(Value::String(_))
+    );
+    if !declared {
+        return None;
+    }
+    let mut out: BTreeSet<String> = list_prop(props, "variables").into_iter().collect();
+    out.extend(
+        list_prop(props, "fixes")
+            .iter()
+            .map(|f| fixed_variable(f).to_string()),
+    );
+    Some(out)
+}
 
 fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
     props.get(key).and_then(Value::as_str)
@@ -845,6 +978,11 @@ impl DesignGraph {
             confirmation,
             discharges: list_prop(&n.properties, "discharges"),
             generalizes_over: list_prop(&n.properties, "generalizes_over"),
+            cases: list_prop(&n.properties, "cases"),
+            cases_exhaustive: prop(&n.properties, "cases_exhaustive")
+                .map(str::trim)
+                .filter(|s| !s.is_empty())
+                .map(str::to_string),
         }))
     }
 
@@ -879,6 +1017,13 @@ impl DesignGraph {
     /// discharged on the way to it.
     pub fn assumptions_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
         Ok(self.premise_reading(id)?.assumes.into_iter().collect())
+    }
+
+    /// The UNVERIFIED CITATIONS `id` rests on, as the design stands: results
+    /// cited from elsewhere, beneath it or itself, that no pinned source
+    /// documents, sorted. Empty when it rests on none.
+    pub fn unverified_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        Ok(self.premise_reading(id)?.unverified.into_iter().collect())
     }
 
     /// What a node counted LOST by a change reads as: UNSUPPORTED (unknown) —
@@ -958,6 +1103,7 @@ impl DesignGraph {
                 truth: r.verdict,
                 why,
                 assumes: r.assumes.into_iter().collect(),
+                unverified: r.rests_on_unverified.into_iter().collect(),
             });
         }
         if self.is_discontinued(id)? {
@@ -987,10 +1133,22 @@ impl DesignGraph {
         // every step resting on it is reported broken; one that is unknown
         // contests it; one that fails is answered. `supporting` (corroboration)
         // is never an objection.
-        let objections = self.objections_within(id, ev, depth)?;
+        //
+        // AND ONLY INSIDE ITS SCOPE (req:a-claim-that-holds-only-under-an-open-
+        // supposition-cannot-refute-a-claim-outside-it, 2026-10-18, the cogito
+        // trial). An objection that holds only under an assumption no step
+        // discharges — or only if an unverified citation says what it is
+        // recalled to say — is a result inside an argument. Against a claim
+        // outside that argument it establishes only "if S, then not this",
+        // which refutes nothing: it CONTESTS the claim and names S. Against a
+        // claim that holds under the same assumptions (inside the scope) it
+        // refutes, as it does inside any hypothetical argument. The node's own
+        // reading is computed first, because it is the scope.
+        let own = self.own_truth(id, &node_type, ev, depth)?;
+        let objections = self.objections_within(id, ev, depth, &own)?;
         let refuting: Vec<&str> = objections
             .iter()
-            .filter(|o| o.truth == Truth::Holds)
+            .filter(|o| o.standing == "refutes")
             .map(|o| o.id.as_str())
             .collect();
         if !refuting.is_empty() {
@@ -999,24 +1157,45 @@ impl DesignGraph {
                 format!("refuted by {}, which holds", refuting.join(", ")),
             ));
         }
-        let own = self.own_truth(id, &node_type, ev, depth)?;
-        let standing: Vec<&str> = objections
+        let standing: Vec<&ObjectionReading> = objections
             .iter()
-            .filter(|o| o.truth == Truth::Unknown)
-            .map(|o| o.id.as_str())
+            .filter(|o| o.standing == "stands")
             .collect();
         if standing.is_empty() || own.truth == Truth::Fails {
             return Ok(own);
         }
+        let conditional: Vec<String> = standing
+            .iter()
+            .filter(|o| !o.holds_only_under.is_empty())
+            .map(|o| {
+                format!(
+                    "{} holds only under {}, outside which it contests and never refutes",
+                    o.id,
+                    o.holds_only_under.join(", ")
+                )
+            })
+            .collect();
+        let ids: Vec<&str> = standing.iter().map(|o| o.id.as_str()).collect();
         Ok(Read {
             truth: Truth::Unknown,
-            why: format!(
-                "contested: {} stand(s) against it, neither established nor answered; on its own, \
-                 {}",
-                standing.join(", "),
-                own.why
-            ),
+            why: if conditional.is_empty() {
+                format!(
+                    "contested: {} stand(s) against it, neither established nor answered; on its \
+                     own, {}",
+                    ids.join(", "),
+                    own.why
+                )
+            } else {
+                format!(
+                    "contested: {} stand(s) against it, neither established nor answered ({}); on \
+                     its own, {}",
+                    ids.join(", "),
+                    conditional.join("; "),
+                    own.why
+                )
+            },
             assumes: own.assumes,
+            unverified: own.unverified,
         })
     }
 
@@ -1029,14 +1208,24 @@ impl DesignGraph {
         // `id` is on the path, so an objection that comes back to it reads
         // the way its truth reads it: unknown.
         ev.nodes.insert(id.to_string());
-        self.objections_within(id, &mut ev, INFERENCE_DEPTH)
+        // Its own reading is the scope an objection is judged against.
+        let own = match self.type_holding(id)? {
+            Some(ty) => self.own_truth(id, &ty, &mut ev, INFERENCE_DEPTH)?,
+            None => Read::plain(Truth::Unknown, String::new()),
+        };
+        self.objections_within(id, &mut ev, INFERENCE_DEPTH, &own)
     }
 
+    /// The objections against `id`, each judged against `scope` — the
+    /// target's own reading: an objection holding only under an assumption or
+    /// an unverified citation the target does not hold under too STANDS (it
+    /// contests), and never refutes.
     fn objections_within(
         &self,
         id: &str,
         ev: &mut Eval<'_>,
         depth: usize,
+        scope: &Read,
     ) -> Result<Vec<ObjectionReading>, DynoError> {
         let mut out = Vec::new();
         for e in self.incoming(id, Some(edge::CONTRADICTS))? {
@@ -1048,10 +1237,37 @@ impl DesignGraph {
             if alignment == "supporting" {
                 continue;
             }
-            let (truth, why) = self.truth_of(&e.from_id, ev, depth.saturating_sub(1))?;
+            let r = self.truth_full(&e.from_id, ev, depth.saturating_sub(1))?;
+            let truth = r.truth;
+            let outside: Vec<String> = r
+                .assumes
+                .difference(&scope.assumes)
+                .chain(r.unverified.difference(&scope.unverified))
+                .cloned()
+                .collect();
+            let (standing, why) = if truth == Truth::Holds && !outside.is_empty() {
+                (
+                    "stands",
+                    format!(
+                        "{}; it holds only under {}, which the claim it opposes does not hold \
+                         under, so it contests that claim and does not refute it (only \"if {}, \
+                         then not this\" is established)",
+                        r.why,
+                        outside.join(", "),
+                        outside.join(" and ")
+                    ),
+                )
+            } else {
+                (standing_of(truth), r.why)
+            };
             out.push(ObjectionReading {
                 node_type: self.type_holding(&e.from_id)?,
-                standing: standing_of(truth),
+                standing,
+                holds_only_under: if truth == Truth::Holds {
+                    outside
+                } else {
+                    Vec::new()
+                },
                 evidence: e
                     .properties
                     .get("evidence")
@@ -1093,11 +1309,11 @@ impl DesignGraph {
         let mut verdicts = Vec::new();
         for s in &steps {
             let r = self.step_reading(s, ev, depth)?;
-            verdicts.push((s.clone(), r.verdict, r.assumes));
+            verdicts.push((s.clone(), r.verdict, r.assumes, r.rests_on_unverified));
         }
         let said: Vec<String> = verdicts
             .iter()
-            .map(|(s, v, _)| format!("{s} {}", v.as_str()))
+            .map(|(s, v, _, _)| format!("{s} {}", v.as_str()))
             .collect();
         // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
         // step that fails or cannot be read leaves its conclusion without
@@ -1108,13 +1324,17 @@ impl DesignGraph {
         // Of the holding steps, the one resting on the FEWEST open
         // assumptions decides what the node holds under: a line that needs
         // no assumption beats one that does (alternatives are ANY).
+        // Then the fewest UNVERIFIED CITATIONS: a line resting on a citation
+        // nobody checked holds only if the citation says what it is recalled
+        // to say, so a line that needs none beats one that does.
         let best = verdicts
             .iter()
-            .filter(|(_, v, _)| *v == Truth::Holds)
-            .min_by_key(|(_, _, a)| a.len());
-        if let Some((_, _, assumes)) = best {
+            .filter(|(_, v, _, _)| *v == Truth::Holds)
+            .min_by_key(|(_, _, a, u)| (a.len(), u.len()));
+        if let Some((_, _, assumes, unverified)) = best {
             let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
-            let why = if assumes.is_empty() {
+            let unverified: BTreeSet<String> = unverified.iter().cloned().collect();
+            let mut why = if assumes.is_empty() {
                 format!("concluded by {}", said.join("; "))
             } else {
                 format!(
@@ -1124,10 +1344,17 @@ impl DesignGraph {
                     assumes.iter().cloned().collect::<Vec<_>>().join(", ")
                 )
             };
+            if !unverified.is_empty() {
+                why.push_str(&format!(
+                    ", resting on the unverified citation(s) {}",
+                    unverified.iter().cloned().collect::<Vec<_>>().join(", ")
+                ));
+            }
             return Ok(Some(Read {
                 truth: Truth::Holds,
                 why,
                 assumes,
+                unverified,
             }));
         }
         Ok(Some(Read::plain(
@@ -1254,6 +1481,15 @@ impl DesignGraph {
             ));
         }
 
+        // A FALSUM IS FALSE (req:a-proof-can-state-a-contradiction-cases-
+        // suppositions-and-cited-theorems, item 1). A contradiction derived
+        // inside a reductio is never a truth: what its derivation shows is that
+        // the assumptions under it cannot all hold. A step resting on it reads
+        // it by whether it is DERIVED ([`Self::falsum_derivation`]).
+        if is_falsum(&n.properties) {
+            return self.falsum_truth(id, node_type, ev, depth);
+        }
+
         // A CONCLUSION IS WHATEVER ITS STEPS YIELD. For a requirement a
         // realized, checked satisfier still delivers it directly, as it always
         // has; its own `met` is a claim the steps are checked against, never a
@@ -1279,6 +1515,20 @@ impl DesignGraph {
                 ));
             }
             return Ok(chain);
+        }
+
+        // A RESULT CITED FROM ELSEWHERE (item 4): a theorem, lemma or corollary
+        // taken as given holds AS CITED, and one no pinned
+        // source documents is carried as an unverified citation.
+        if node_type == node::REQUIREMENT && is_cited_result(&n.properties) {
+            return self.citation_read(id);
+        }
+        if node_type == node::CONSTRAINT && is_cited_result(&n.properties) {
+            let (truth, why) = self.constraint_truth(id, &n.properties)?;
+            if truth != Truth::Holds {
+                return Ok(Read::plain(truth, why));
+            }
+            return self.citation_read(id);
         }
 
         let (truth, why) = match node_type {
@@ -1369,6 +1619,138 @@ impl DesignGraph {
         Ok(Read::plain(truth, why))
     }
 
+    /// A falsum's own truth: FALSE, always, with what its derivation shows.
+    fn falsum_truth(
+        &self,
+        id: &str,
+        node_type: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Read, DynoError> {
+        let Some(d) = self.concluded_by_steps(id, node_type, ev, depth)? else {
+            return Ok(Read::plain(
+                Truth::Fails,
+                "a falsum (⊥): false. Nothing derives it yet, so it shows nothing".to_string(),
+            ));
+        };
+        if d.truth != Truth::Holds {
+            return Ok(Read::plain(
+                Truth::Fails,
+                format!(
+                    "a falsum (⊥): false, and not derived: {}; a reductio resting on it does not \
+                     hold until it is",
+                    d.why
+                ),
+            ));
+        }
+        let why = if d.assumes.is_empty() {
+            format!(
+                "a falsum (⊥): false, and derived under NO open assumption ({}): the foundations \
+                 it rests on are INCONSISTENT",
+                d.why
+            )
+        } else {
+            format!(
+                "a falsum (⊥): false. It is derived under the assumption(s) {} ({}), which shows \
+                 they cannot all hold with what else it rests on: a reductio that discharges one \
+                 of them concludes its negation",
+                d.assumes.iter().cloned().collect::<Vec<_>>().join(", "),
+                d.why
+            )
+        };
+        Ok(Read {
+            truth: Truth::Fails,
+            why,
+            assumes: d.assumes,
+            unverified: d.unverified,
+        })
+    }
+
+    /// A falsum read AS A PREMISE: by whether it is derived. A reductio rests
+    /// on "⊥ follows from the supposition", never on "⊥ is true", so the
+    /// premise holds when a step deriving it holds, carrying the assumptions
+    /// that derivation is under (which the reductio then discharges); and it
+    /// is unknown, never false, while nothing derives it.
+    fn falsum_derivation(
+        &self,
+        id: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Read, DynoError> {
+        if ev.nodes.contains(id) {
+            ev.cuts += 1;
+            return Ok(Read::plain(
+                Truth::Unknown,
+                "it comes back to itself through its support, and a circle has no verdict"
+                    .to_string(),
+            ));
+        }
+        let Some(node_type) = self.type_holding(id)? else {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                "no single node of the design holds this id".to_string(),
+            ));
+        };
+        ev.nodes.insert(id.to_string());
+        let derivation = self.concluded_by_steps(id, &node_type, ev, depth);
+        ev.nodes.remove(id);
+        Ok(match derivation? {
+            Some(d) if d.truth == Truth::Holds => Read {
+                truth: Truth::Holds,
+                why: format!("a falsum (⊥), derived: {}", d.why),
+                assumes: d.assumes,
+                unverified: d.unverified,
+            },
+            Some(d) => Read::plain(
+                Truth::Unknown,
+                format!("a falsum (⊥) not derived: {}", d.why),
+            ),
+            None => Read::plain(
+                Truth::Unknown,
+                "a falsum (⊥) nothing derives: there is no contradiction to rest on yet"
+                    .to_string(),
+            ),
+        })
+    }
+
+    /// The pinned sources that document `id`: Artifacts that DOCUMENTS it
+    /// and carry a checksum — the version that was read.
+    fn pinned_sources(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        Ok(self
+            .cited_sources(id)?
+            .into_iter()
+            .filter(|s| s.pinned)
+            .map(|s| s.id)
+            .collect())
+    }
+
+    /// A cited result as a premise: it holds AS CITED, and unless a pinned
+    /// source documents it, it is an UNVERIFIED citation that everything
+    /// resting on it carries.
+    fn citation_read(&self, id: &str) -> Result<Read, DynoError> {
+        let pinned = self.pinned_sources(id)?;
+        if !pinned.is_empty() {
+            return Ok(Read::plain(
+                Truth::Holds,
+                format!(
+                    "cited, not proved here: a result from elsewhere, checked against its pinned \
+                     source(s) {}",
+                    pinned.join(", ")
+                ),
+            ));
+        }
+        Ok(Read {
+            truth: Truth::Holds,
+            why: "cited, unverified: a result from elsewhere that no pinned source documents \
+                  (recalled, or named only in its `source` text), so what rests on it holds only \
+                  if it says what it is recalled to say. Register the source that was read as an \
+                  Artifact with its checksum, and draw DOCUMENTS from it"
+                .to_string(),
+            assumes: BTreeSet::new(),
+            unverified: BTreeSet::from([id.to_string()]),
+        })
+    }
+
     /// A Constraint holds while nothing records it violated: it FAILS when a
     /// VIOLATES edge reaches it or its budget is exceeded, and is UNKNOWN while
     /// its budget cannot be judged (a contribution unstated).
@@ -1444,7 +1826,9 @@ impl DesignGraph {
         for (a, in_steps) in assumed_in {
             let mut discharged_by = Vec::new();
             for d in &steps {
-                if !list_prop(&d.properties, "discharges").contains(&a) {
+                if !list_prop(&d.properties, "discharges").contains(&a)
+                    && !list_prop(&d.properties, "cases").contains(&a)
+                {
                     continue;
                 }
                 let under = self.steps_under(&d.node_id)?;
@@ -1620,12 +2004,15 @@ impl DesignGraph {
     ) -> Result<Vec<(String, GeneralizationReading)>, DynoError> {
         let mut out = Vec::new();
         for st in self.scan_nodes(node::INFERENCE)? {
-            let over = list_prop(&st.properties, "generalizes_over");
-            if over.is_empty() {
+            if list_prop(&st.properties, "generalizes_over").is_empty() {
                 continue;
             }
-            let g = self.generalization_reading(&st.node_id, &over)?;
-            if !g.holds {
+            // Read through the step, so the assumptions open at it count.
+            if let Some(g) = self
+                .inference_reading(&st.node_id)?
+                .and_then(|r| r.generalization)
+                && !g.holds
+            {
                 out.push((st.node_id.clone(), g));
             }
         }
@@ -1646,9 +2033,53 @@ impl DesignGraph {
             return Ok(None);
         };
         let (truth, why) = self.premise_truth(id)?;
+        if kind == "falsum" {
+            // A FALSUM READS FALSE: `false` when derived under an assumption
+            // (the reductio's contradiction), `inconsistent` when derived under
+            // none, `stated` while nothing derives it — never holds, and never
+            // "refuted", which is what an objection does to a claim.
+            let lost = BTreeSet::new();
+            let mut ev = Eval::new(&lost);
+            let d = self.falsum_derivation(id, &mut ev, INFERENCE_DEPTH)?;
+            let reads = if d.truth != Truth::Holds {
+                "stated"
+            } else if d.assumes.is_empty() {
+                "inconsistent"
+            } else {
+                "false"
+            };
+            return Ok(Some(StatementReading { kind, reads, why }));
+        }
         let proof = self.proof_reading(id)?;
         let (reads, why): (&'static str, String) = if truth == Truth::Fails {
             ("refuted", why)
+        } else if kind == "hypothesis" {
+            // A HYPOTHESIS IS ASSUMED, never "stated, not shown" (item 3).
+            match self.assumptions()?.into_iter().find(|a| a.id == id) {
+                Some(a) if !a.discharged_by.is_empty() => (
+                    "discharged",
+                    format!(
+                        "a hypothesis: assumed in {} and discharged by {}, so nothing concluded \
+                         past that step rests on it",
+                        a.assumed_in.join(", "),
+                        a.discharged_by.join(", ")
+                    ),
+                ),
+                Some(a) => (
+                    "assumed",
+                    format!(
+                        "a hypothesis: assumed in {}, and no step discharges it, so what rests on \
+                         it holds only under it",
+                        a.assumed_in.join(", ")
+                    ),
+                ),
+                None => (
+                    "not_assumed",
+                    "a hypothesis no step takes up: a step takes it up as an `assumed` premise \
+                     (add_inference's `assumed`), and it is never read as a premise that holds"
+                        .to_string(),
+                ),
+            }
         } else if matches!(kind.as_str(), "definition" | "axiom") {
             (
                 "taken_as_given",
@@ -1656,6 +2087,17 @@ impl DesignGraph {
             )
         } else if let Some(p) = proof {
             (p.status.as_str(), p.why)
+        } else if CITED_KINDS.contains(&kind.as_str())
+            && self
+                .node_props(id)?
+                .is_some_and(|props| is_cited_result(&props))
+        {
+            // A RESULT CITED FROM ELSEWHERE (item 4), never an axiom.
+            if self.pinned_sources(id)?.is_empty() {
+                ("cited_unverified", why)
+            } else {
+                ("cited", why)
+            }
         } else if kind == "conjecture" {
             (
                 "open",
@@ -1692,7 +2134,9 @@ impl DesignGraph {
                 note: Some("no Inference holds this id".to_string()),
                 confirmation: Confirmation::default(),
                 assumes: Vec::new(),
+                rests_on_unverified: Vec::new(),
                 discharges: Vec::new(),
+                cases: None,
                 generalization: None,
                 independence: Vec::new(),
             });
@@ -1711,7 +2155,9 @@ impl DesignGraph {
             note: None,
             confirmation: rec.confirmation,
             assumes: Vec::new(),
+            rests_on_unverified: Vec::new(),
             discharges: rec.discharges.clone(),
+            cases: None,
             generalization: None,
             independence: Vec::new(),
         };
@@ -1752,6 +2198,7 @@ impl DesignGraph {
         // everything that rests on the step until a step DISCHARGES it.
         let mut values = Vec::new();
         let mut assumes: BTreeSet<String> = BTreeSet::new();
+        let mut unverified: BTreeSet<String> = BTreeSet::new();
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
                 values.push(Truth::Holds);
@@ -1768,9 +2215,16 @@ impl DesignGraph {
                 });
                 continue;
             }
-            let r = self.truth_full(&p, ev, depth - 1)?;
+            // A FALSUM is read as a premise by whether it is DERIVED: a
+            // reductio rests on "⊥ follows", never on "⊥ is true".
+            let r = if self.node_props(&p)?.is_some_and(|props| is_falsum(&props)) {
+                self.falsum_derivation(&p, ev, depth - 1)?
+            } else {
+                self.truth_full(&p, ev, depth - 1)?
+            };
             values.push(r.truth);
             assumes.extend(r.assumes);
+            unverified.extend(r.unverified);
             reading.premises.push(PremiseReading {
                 node_type: self.type_holding(&p)?,
                 id: p,
@@ -1780,11 +2234,11 @@ impl DesignGraph {
                 name: None,
             });
         }
-        ev.path.remove(inference_id);
-        for d in &rec.discharges {
+        // The cases of a case split are discharged by it, as `discharges`
+        // would (∨-elimination closes each case's hypothesis).
+        for d in rec.discharges.iter().chain(rec.cases.iter()) {
             assumes.remove(d);
         }
-        reading.assumes = assumes.into_iter().collect();
         reading.holding = values.iter().filter(|v| **v == Truth::Holds).count();
         reading.failing = values.iter().filter(|v| **v == Truth::Fails).count();
         reading.unknown = values.len() - reading.holding - reading.failing;
@@ -1792,24 +2246,108 @@ impl DesignGraph {
             Ok(v) => reading.verdict = v,
             Err(why) => reading.note = Some(why),
         }
+        // A CASE SPLIT HOLDS ONLY WHEN ITS CASES ARE DECLARED EXHAUSTIVE
+        // (item 2). Which record declares it is the step's to say; whether it
+        // holds is that record's own computed truth — the owner's word (taken
+        // as given) or a checker's (a passing computed check) — never
+        // reflow2's judgement of the cases.
+        if !rec.cases.is_empty() {
+            let cases = match &rec.cases_exhaustive {
+                None => CasesReading {
+                    cases: rec.cases.clone(),
+                    declared: false,
+                    exhaustive_by: None,
+                    truth: None,
+                    why: format!(
+                        "it splits on the cases {} and nothing declares them exhaustive: name \
+                         the record saying they cover every possibility in `cases_exhaustive` \
+                         (the owner's word, or a checker's)",
+                        rec.cases.join(", ")
+                    ),
+                },
+                Some(by) => {
+                    let r = self.truth_full(by, ev, depth - 1)?;
+                    unverified.extend(r.unverified.iter().cloned());
+                    assumes.extend(r.assumes.iter().cloned());
+                    CasesReading {
+                        cases: rec.cases.clone(),
+                        declared: true,
+                        exhaustive_by: Some(by.clone()),
+                        truth: Some(r.truth),
+                        why: format!(
+                            "the cases {} are declared exhaustive by {by}, which {}: {}",
+                            rec.cases.join(", "),
+                            r.truth.as_str(),
+                            r.why
+                        ),
+                    }
+                }
+            };
+            let gate = cases.truth.unwrap_or(Truth::Unknown);
+            if gate != Truth::Holds {
+                if reading.verdict == Truth::Holds || gate == Truth::Fails {
+                    reading.verdict = if gate == Truth::Fails {
+                        Truth::Fails
+                    } else {
+                        Truth::Unknown
+                    };
+                }
+                let why = if cases.declared {
+                    format!(
+                        "a case split holds only while its cases are exhaustive; {}",
+                        cases.why
+                    )
+                } else {
+                    format!(
+                        "a case split holds only when its cases are declared exhaustive; {}",
+                        cases.why
+                    )
+                };
+                reading.note = Some(match reading.note.take() {
+                    Some(n) => format!("{n}; {why}"),
+                    None => why,
+                });
+            }
+            reading.cases = Some(cases);
+        }
+        ev.path.remove(inference_id);
+        reading.rests_on_unverified = unverified.into_iter().collect();
         // A GENERALIZATION IS CHECKED (Anthony's choice of 2026-10-17:
         // declared and checked). A step generalizing over a variable that
         // something it rests on FIXES does not hold: its verdict reads
         // unknown with the reason, so its conclusion is unsupported, never
         // refuted.
+        // THE EIGENVARIABLE RULE (2026-10-18, the Arrow trial's N19): and
+        // over a variable no assumption still OPEN at this step names. The
+        // open ones are `assumes`, read after this step's own discharges.
         if !rec.generalizes_over.is_empty() {
-            let g = self.generalization_reading(inference_id, &rec.generalizes_over)?;
+            let g = self.generalization_reading(inference_id, &rec.generalizes_over, &assumes)?;
             if !g.holds {
-                let fixed: Vec<String> = g
+                let mut reasons: Vec<String> = g
                     .fixed_by
                     .iter()
                     .map(|f| format!("{} fixes {}", f.id, f.fixes.join(", ")))
                     .collect();
+                reasons.extend(g.named_by_open_assumptions.iter().map(|f| {
+                    format!(
+                        "{} is an assumption still open at this step and names {}",
+                        f.id,
+                        f.fixes.join(", ")
+                    )
+                }));
+                reasons.extend(g.undeclared_open_assumptions.iter().map(|a| {
+                    format!(
+                        "{a} is an assumption still open at this step and declares no \
+                         `variables`, so whether it names one cannot be told (an empty list says \
+                         it names none)"
+                    )
+                }));
                 let why = format!(
                     "it generalizes over {}, and {}: a step generalizes only over a variable \
-                     nothing it rests on fixes",
+                     nothing it rests on fixes and no assumption still open at it names \
+                     (discharge the assumption first, on this step or one beneath it)",
                     g.over.join(", "),
-                    fixed.join("; ")
+                    reasons.join("; ")
                 );
                 if reading.verdict == Truth::Holds {
                     reading.verdict = Truth::Unknown;
@@ -1821,6 +2359,7 @@ impl DesignGraph {
             }
             reading.generalization = Some(g);
         }
+        reading.assumes = assumes.into_iter().collect();
         Ok(reading)
     }
 
@@ -1831,6 +2370,7 @@ impl DesignGraph {
         &self,
         step: &str,
         over: &[String],
+        open: &BTreeSet<String>,
     ) -> Result<GeneralizationReading, DynoError> {
         let wanted: BTreeSet<&str> = over.iter().map(String::as_str).collect();
         let mut fixed_by = Vec::new();
@@ -1859,17 +2399,59 @@ impl DesignGraph {
                 mentioned_by.push(id);
             }
         }
+        let mut named_by_open_assumptions = Vec::new();
+        let mut undeclared_open_assumptions = Vec::new();
+        for a in open {
+            let Some(props) = self.node_props(a)? else {
+                undeclared_open_assumptions.push(a.clone());
+                continue;
+            };
+            match named_variables(&props) {
+                None => undeclared_open_assumptions.push(a.clone()),
+                Some(names) => {
+                    let hit: Vec<String> = over
+                        .iter()
+                        .filter(|v| names.contains(v.as_str()))
+                        .cloned()
+                        .collect();
+                    if !hit.is_empty() {
+                        named_by_open_assumptions.push(FixedBy {
+                            id: a.clone(),
+                            fixes: hit,
+                        });
+                    }
+                }
+            }
+        }
         Ok(GeneralizationReading {
             over: over.to_vec(),
-            holds: fixed_by.is_empty(),
+            holds: fixed_by.is_empty()
+                && named_by_open_assumptions.is_empty()
+                && undeclared_open_assumptions.is_empty(),
             fixed_by,
+            named_by_open_assumptions,
+            undeclared_open_assumptions,
             mentioned_by,
         })
     }
 
-    /// The steps concluding `id` whose rule holds, sorted — what delivers a
-    /// requirement an Inference concludes. `depth` bounds the chain, shared
-    /// with the roll-up that asked.
+    /// A node's properties, when exactly one node holds `id`.
+    pub(crate) fn node_props(&self, id: &str) -> Result<Option<HashMap<String, Value>>, DynoError> {
+        let Some(ty) = self.type_holding(id)? else {
+            return Ok(None);
+        };
+        Ok(self.get_node(&ty, id)?.map(|n| n.properties))
+    }
+
+    /// The steps concluding `id` whose rule holds OUTRIGHT, sorted — what
+    /// delivers a requirement an Inference concludes. `depth` bounds the
+    /// chain, shared with the roll-up that asked.
+    ///
+    /// A step holding only under an assumption no step discharges, or only
+    /// if an unverified citation is right, is a result inside an argument and
+    /// delivers nothing (req:a-claim-that-holds-only-under-an-open-supposition-
+    /// cannot-refute-a-claim-outside-it, the same class: until 2026-10-18 it
+    /// counted as delivering).
     pub(crate) fn holding_inferences_within(
         &self,
         id: &str,
@@ -1879,7 +2461,9 @@ impl DesignGraph {
         let mut ev = Eval::new(&lost);
         let mut holding = Vec::new();
         for s in self.inferences_concluding(id)? {
-            if self.step_reading(&s, &mut ev, depth)?.verdict == Truth::Holds {
+            let r = self.step_reading(&s, &mut ev, depth)?;
+            if r.verdict == Truth::Holds && r.assumes.is_empty() && r.rests_on_unverified.is_empty()
+            {
                 holding.push(s);
             }
         }
@@ -2078,7 +2662,25 @@ impl DesignGraph {
             if supported == Truth::Holds && node_type == node::DECISION && claimed == "accepted" {
                 supported = self
                     .concluded_by_steps(&c, &node_type, &mut ev, INFERENCE_DEPTH)?
-                    .map_or(Truth::Holds, |r| r.truth);
+                    .map_or(Truth::Holds, |r| {
+                        if r.assumes.is_empty() && r.unverified.is_empty() {
+                            r.truth
+                        } else {
+                            Truth::Unknown
+                        }
+                    });
+            }
+            // A CONDITIONAL RESULT SUPPORTS NO CLAIMED STATUS: holding only
+            // under an open assumption (or an unverified citation), it is a
+            // result inside an argument, and a `met` or `accepted` resting on
+            // it claims more than its steps support (the same class as
+            // req:a-claim-that-holds-only-under-an-open-supposition-cannot-
+            // refute-a-claim-outside-it).
+            if supported == Truth::Holds {
+                let r = self.truth_full(&c, &mut ev, INFERENCE_DEPTH)?;
+                if !r.assumes.is_empty() || !r.unverified.is_empty() {
+                    supported = Truth::Unknown;
+                }
             }
             if supported == Truth::Holds {
                 continue;
@@ -2158,7 +2760,18 @@ impl DesignGraph {
         if !self.is_in_a_line_of_reasoning(objection)? && !self.is_in_a_line_of_reasoning(target)? {
             return Ok(None);
         }
-        Ok(Some(standing_of(self.premise_truth(objection)?.0)))
+        // Read through the target's scoped objections, so an objection holding
+        // only under a supposition the target is outside reads `stands`.
+        Ok(Some(
+            match self
+                .objections_to(target)?
+                .into_iter()
+                .find(|o| o.id == objection)
+            {
+                Some(o) => o.standing,
+                None => standing_of(self.premise_truth(objection)?.0),
+            },
+        ))
     }
 
     /// An opposing CONTRADICTS from `objection` to `target` that REFUTES it, in
@@ -2173,7 +2786,11 @@ impl DesignGraph {
         if !self.is_in_a_line_of_reasoning(objection)? && !self.is_in_a_line_of_reasoning(target)? {
             return Ok(false);
         }
-        if self.premise_truth(objection)?.0 != Truth::Holds {
+        if !self
+            .objections_to(target)?
+            .iter()
+            .any(|o| o.id == objection && o.standing == "refutes")
+        {
             return Ok(false);
         }
         Ok(self.premise_truth(target)?.0 == Truth::Fails)
@@ -2472,6 +3089,25 @@ impl DesignGraph {
                         "it holds only under the assumption(s) {}, which no step on the way to it \
                          discharges: a result inside an argument, not a proof of it",
                         assumes.join(", ")
+                    ),
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
+                }));
+            }
+        }
+        // A derivation holds only IF AN UNVERIFIED CITATION says what it is
+        // recalled to say (item 4): conditional on it, never shown outright.
+        if any_holds && conclusion_truth == Truth::Holds {
+            let unverified = self.unverified_under(id)?;
+            if !unverified.is_empty() {
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Conditional,
+                    why: format!(
+                        "it holds only if the unverified citation(s) {} say what they are \
+                         recalled to say: no pinned source documents them",
+                        unverified.join(", ")
                     ),
                     total_steps: total,
                     confirmed_steps: confirmed,
@@ -2818,7 +3454,16 @@ impl DesignGraph {
         } else {
             Vec::new()
         };
-        if let Some(discharges) = &spec.discharges {
+        // A case split discharges its cases, so each must be assumed beneath
+        // the step exactly as a discharge must.
+        let mut closing: Vec<(&str, &Vec<String>)> = Vec::new();
+        if let Some(d) = &spec.discharges {
+            closing.push(("discharges", d));
+        }
+        if let Some(c) = &spec.cases {
+            closing.push(("cases", c));
+        }
+        for (field, discharges) in closing {
             let mut assumed_here: Vec<String> = spec.assumed.clone();
             assumed_here.extend(
                 stored_links
@@ -2835,12 +3480,12 @@ impl DesignGraph {
             for d in discharges {
                 if !open.contains(d) {
                     return Err(invalid(
-                        "discharges",
+                        field,
                         format!(
                             "'{d}' is not assumed anywhere this step rests on, so there is \
                              nothing to discharge: mark it `assumed` on the step that supposes \
-                             it (add_inference's `assumed`), then name it here. Assumed beneath \
-                             this step: {}",
+                             it (add_inference's `assumed`), then name it in `{field}`. Assumed \
+                             beneath this step: {}",
                             if open.is_empty() {
                                 "nothing".to_string()
                             } else {
@@ -2856,6 +3501,7 @@ impl DesignGraph {
             ("discharges", &spec.discharges),
             ("independent_of", &spec.independent_of),
             ("independent_except", &spec.independent_except),
+            ("cases", &spec.cases),
         ] {
             if let Some(items) = list
                 && items.iter().any(|v| v.trim().is_empty())
@@ -2880,6 +3526,22 @@ impl DesignGraph {
                 }
             }
         }
+        let exhaustive_by: Option<(String, String)> =
+            match spec.cases_exhaustive.as_deref().map(str::trim) {
+                None | Some("") => None,
+                Some(by) => {
+                    if by == spec.id || by == spec.conclusion {
+                        return Err(invalid(
+                            "cases_exhaustive",
+                            format!(
+                                "'{by}' cannot say this step's own cases are exhaustive: name the \
+                             record (\"every integer is even or odd\") that does"
+                            ),
+                        ));
+                    }
+                    Some((by.to_string(), self.one_type_for(by, "cases_exhaustive")?))
+                }
+            };
         if let Some(lemmas) = &spec.independent_except {
             for l in lemmas {
                 if self.node_types_holding(l)?.is_empty() {
@@ -2950,6 +3612,7 @@ impl DesignGraph {
             ("generalizes_over", &spec.generalizes_over),
             ("independent_of", &spec.independent_of),
             ("independent_except", &spec.independent_except),
+            ("cases", &spec.cases),
         ] {
             if let Some(items) = list {
                 let mut items: Vec<String> = items.iter().map(|v| v.trim().to_string()).collect();
@@ -2964,6 +3627,15 @@ impl DesignGraph {
                     );
                 }
             }
+        }
+        match spec.cases_exhaustive.as_deref().map(str::trim) {
+            Some("") => {
+                props.remove("cases_exhaustive");
+            }
+            Some(by) => {
+                props.insert("cases_exhaustive".into(), Value::String(by.to_string()));
+            }
+            None => {}
         }
         let mut builder = Props::new();
         for (k, v) in props {
@@ -2986,6 +3658,22 @@ impl DesignGraph {
             };
             self.create_edge(edge::PREMISE_OF, ty, p, node::INFERENCE, &spec.id, props)?;
             drawn.push(format!("{p} PREMISE_OF {}", spec.id));
+        }
+        // The exhaustiveness record is a premise of the split: losing it
+        // reaches the step in a change walk.
+        if let Some((by, ty)) = &exhaustive_by
+            && !stored_links.iter().any(|(s, _)| s == by)
+            && !typed.iter().any(|(p, _)| p == by)
+        {
+            self.create_edge(
+                edge::PREMISE_OF,
+                ty,
+                by,
+                node::INFERENCE,
+                &spec.id,
+                Props::new(),
+            )?;
+            drawn.push(format!("{by} PREMISE_OF {}", spec.id));
         }
         if self.conclusion_of(&spec.id)?.is_none() {
             self.create_edge(
@@ -3067,6 +3755,12 @@ pub struct InferenceSpec {
     pub independent_of: Option<Vec<String>>,
     /// The lemmas the independent lines may share. Overwrites.
     pub independent_except: Option<Vec<String>>,
+    /// The cases this step splits on: each case's hypothesis, assumed by the
+    /// branch that proves it and discharged here. Overwrites.
+    pub cases: Option<Vec<String>>,
+    /// The record saying the cases are exhaustive, drawn as a premise of the
+    /// step. Overwrites; an empty string removes it.
+    pub cases_exhaustive: Option<String>,
 }
 
 /// What [`DesignGraph::add_inference`] wrote.

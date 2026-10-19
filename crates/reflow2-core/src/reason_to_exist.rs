@@ -381,7 +381,8 @@ impl DesignGraph {
             .and_then(|n| prop(&n.properties, "name"));
         let (truth, why) = self.premise_truth(claim)?;
         let assumes = self.assumptions_under(claim)?;
-        let truth = ClaimTruth::of(truth, &assumes);
+        let unverified = self.unverified_under(claim)?;
+        let truth = ClaimTruth::of(truth, &assumes, &unverified);
         let circular = if truth == ClaimTruth::Holds || truth == ClaimTruth::Conditional {
             self.circular_along(edge_type, from_id, to_id, claim)?
         } else {
