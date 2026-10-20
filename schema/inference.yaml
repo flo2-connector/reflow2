@@ -369,7 +369,12 @@ schema:
               `fails` and every step resting on B is reported broken; while A is not
               yet established, B reads `unknown` (contested); once A fails (answered by
               a reply, a CONTRADICTS against A), it no longer counts. B's own `status`
-              does not move — its owner settles that.
+              does not move — its owner settles that. When B is an Inference, A attacks
+              the STEP ITSELF — its warrant or rule, not a premise or the conclusion —
+              and is read against it: while A holds the step is defeated and supports
+              nothing (its conclusion is left unsupported, never refuted), while A stands
+              the step is contested, and once A is answered the step is reinstated
+              (req:an-objection-aimed-at-a-step-is-read-against-that-step).
       extraction_hint: Two decisions/requirements/claims that conflict (or, with alignment=supporting, reinforce).
 
     # VALIDATES retired 2026-07-22 (dec:edge-orthogonality): orthogonal-in-name-

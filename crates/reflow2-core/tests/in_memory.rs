@@ -114,6 +114,7 @@ mod allocation;
 mod alternatives;
 mod an_acknowledgement_says_whose;
 mod an_approval_does_not_erase_authorship;
+mod an_argument_reads_step_objections_and_every_lines_assumptions;
 mod an_edge_says_only_what_it_was_told;
 mod an_edge_says_whether_anyone_checked;
 mod an_export_says_where_it_was_taken;
