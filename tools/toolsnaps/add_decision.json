@@ -27,10 +27,11 @@
         "properties": {
           "alignment": {
             "default": null,
-            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
+            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. `conceding`:\na reply grants an objection against what it attacks (draw it with\ncreate_edge to name the reading it moves to, `moves_to`). Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
             "enum": [
               "opposing",
               "supporting",
+              "conceding",
               null
             ],
             "type": [

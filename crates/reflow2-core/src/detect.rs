@@ -1977,6 +1977,20 @@ struct Population {
     reasoning_only: bool,
 }
 
+/// Whether a Project's free-text `domain` names a line of reasoning: an
+/// argument, a proof or reasoning, by whole word.
+fn names_a_line_of_reasoning(domain: &str) -> bool {
+    domain
+        .to_lowercase()
+        .split(|c: char| !c.is_alphanumeric())
+        .any(|w| {
+            matches!(
+                w,
+                "argument" | "arguments" | "proof" | "proofs" | "reasoning"
+            )
+        })
+}
+
 impl DesignGraph {
     /// Whether this design is a REASONING DESIGN — a proof or an argument with
     /// nothing to build — decided from its structure alone, never from a label:
@@ -1990,6 +2004,13 @@ impl DesignGraph {
     ///
     /// One statement outside the reasoning makes it an ordinary design again,
     /// so the phase questions come back the moment there is something to build.
+    ///
+    /// OR ITS PROJECT SAYS IT IS ONE (req:a-line-of-reasoning-is-held-in-its-
+    /// project-and-its-gaps-fit-an-argument, the cogito and trolley trials,
+    /// Arrow's N21): with nothing to build and at least one Inference, a
+    /// Project whose `domain` names an argument, a proof or reasoning makes it
+    /// a reasoning design even when a statement or two stands outside the
+    /// reasoning (genesis's own top requirement, an unattached judgement).
     pub fn is_a_reasoning_design(&self) -> Result<bool, DynoError> {
         if self.count_nodes(node::INFERENCE)? == 0
             || self.count_nodes(node::CAPABILITY)? > 0
@@ -1997,6 +2018,14 @@ impl DesignGraph {
             || self.count_nodes(node::FLOW)? > 0
         {
             return Ok(false);
+        }
+        if self.scan_live_nodes(node::PROJECT)?.iter().any(|p| {
+            p.properties
+                .get("domain")
+                .and_then(crate::foundation::core::Value::as_str)
+                .is_some_and(names_a_line_of_reasoning)
+        }) {
+            return Ok(true);
         }
         let mut any = false;
         for r in self.scan_live_nodes(node::REQUIREMENT)? {
@@ -7767,6 +7796,12 @@ impl DesignGraph {
     /// holds one own project in every design measured so far.
     fn detect_artifact_standard(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
         use crate::foundation::store::StoredNode;
+        // NOT ASKED OF A REASONING DESIGN with no drawing or model in it: an
+        // argument or a proof exchanges no design files, and the question
+        // read a line of reasoning as a build (req:a-line-of-reasoning-is-held-
+        // in-its-project-and-its-gaps-fit-an-argument). A drawing or model
+        // added to it brings the question back.
+        let reasoning_only = self.is_a_reasoning_design()?;
         let standards: BTreeMap<String, StoredNode> = self
             .scan_live_nodes(node::ENVIRONMENT_RULE)?
             .into_iter()
@@ -7811,6 +7846,9 @@ impl DesignGraph {
 
             if declared.is_empty() {
                 let at_stake = domain_artifacts.len();
+                if reasoning_only && at_stake == 0 {
+                    continue;
+                }
                 // TWO KEYS FOR ONE QUESTION, on purpose. "None known" is
                 // recorded by acknowledging this finding, and an
                 // acknowledgement is permanent for its id — so the id changes
@@ -8268,6 +8306,14 @@ impl DesignGraph {
     }
 
     fn detect_closure_criterion(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        // NOT ASKED OF A REASONING DESIGN: "DONE" over its live requirements
+        // reads its claims as deliverables. What an argument owes is read by
+        // `reasoning_report` and counted by `loop_status` (the reasoning
+        // debt), not by a closure over requirements (req:a-line-of-reasoning-
+        // is-held-in-its-project-and-its-gaps-fit-an-argument).
+        if self.is_a_reasoning_design()? {
+            return Ok(());
+        }
         let live_reqs = self
             .scan_live_nodes(node::REQUIREMENT)?
             .into_iter()

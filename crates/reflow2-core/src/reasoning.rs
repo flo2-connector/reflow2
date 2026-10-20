@@ -194,6 +194,15 @@ pub struct SupportStep {
     /// WHY its premises support its conclusion, as the step records it.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub warrant: Option<String>,
+    /// When a `contested` Decision governs this step — a dispute between
+    /// rival readings kept open on purpose — that Decision, and whether it
+    /// holds this step as ITS reading (`held`: a GOVERNED_BY with `ruling:
+    /// held`) or as a `rival` (req:the-read-back-under-a-claim-shows-a-
+    /// dispute-kept-open-and-the-owners-chosen-reading). Absent otherwise.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dispute: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub as_reading: Option<&'static str>,
 }
 
 /// A source cited for a claim: an Artifact that DOCUMENTS it.
@@ -354,9 +363,17 @@ pub struct ClaimReading {
     /// `supported` rather than `holds`. Empty when it rests on none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_tests: Vec<String>,
-    /// The `contested` Decision that keeps its dispute open on purpose.
+    /// The `contested` Decision that keeps its dispute open on purpose: one
+    /// governing the claim itself, or one governing the steps that conclude
+    /// it (rival readings of one argument).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
+    /// WHAT KEEPS IT FROM HOLDING, WHEN ONLY A DISPUTE DOES: the objections
+    /// standing against it, against a step under it or against a premise it
+    /// rests on, and the `contested` Decisions it rests on
+    /// (req:a-conclusion-whose-every-route-is-contested-reads-contested).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub contested_by: Vec<String>,
     /// For a Requirement a Decision governs: WHY IT EXISTS — each governing
     /// Decision and its support — read apart from `truth`, which says whether
     /// it is delivered (crate::reason_to_exist).
@@ -410,6 +427,43 @@ pub struct HeldOpen {
     pub name: Option<String>,
     /// The nodes it governs: the sides kept.
     pub sides: Vec<String>,
+    /// The side the Decision holds as its reading (GOVERNED_BY `ruling:
+    /// held`), the others being rivals. Absent when it names none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub held_reading: Option<String>,
+}
+
+/// One position of a question kept open: a node a Decision governs, read
+/// with what it rests on — the issue/positions read-back (idea (f) of
+/// dec:idea-what-reflow2-takes-from-the-argumentation-frameworks).
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct Position {
+    /// The position.
+    pub id: String,
+    /// Its name, when it has one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    /// Its computed truth, as its claim reading says it.
+    pub truth: ClaimTruth,
+    /// Proven, shown, conditional, supported, contested or unproven, when a
+    /// step concludes it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub proof_status: Option<ProofStatus>,
+    /// `held` when the Decision holds it as its reading, `rival` when it
+    /// names another, absent when it names none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub as_reading: Option<&'static str>,
+    /// The terminal premises its support rests on.
+    pub rests_on: Vec<String>,
+    /// The assumptions it holds under, lightest line.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumes: Vec<String>,
+    /// Every line it holds on, when there are several.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub holds_under_any_of: Vec<crate::inference::LineConditions>,
+    /// The objections standing against it or against its routes.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub contested_by: Vec<String>,
 }
 
 /// A claim with no support.
@@ -452,6 +506,12 @@ pub struct ReasoningReport {
     /// summary lists below cover the whole walk the same way, so a short page
     /// never reads as a reasoning that rests on nothing.
     pub rests_on: Vec<String>,
+    /// UNDER ONE CLAIM: what the objections against it, or against what it
+    /// rests on, rest on — what stands against the claim, never what supports
+    /// it (req:what-a-claim-rests-on-excludes-the-premises-of-objections-
+    /// against-it). Absent on a whole-design read, and when nothing objects.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub against_rests_on: Vec<String>,
     /// Premises that cite no source: they rest on someone's word. Fine for a
     /// value; a factual one needs a source. A premise marked TAKEN AS GIVEN is
     /// not here: it is in `stated_foundations`.
@@ -470,6 +530,13 @@ pub struct ReasoningReport {
     pub steps_objected: Vec<StepObjected>,
     /// Disputes kept open on purpose.
     pub contested_by_design: Vec<HeldOpen>,
+    /// READ ON A DECISION: the positions it governs, each with its truth,
+    /// what it rests on and whether the Decision holds it as its reading —
+    /// the read-back from a question to its positions
+    /// (req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-
+    /// owners-chosen-reading). Absent for any other claim.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub positions: Vec<Position>,
     /// Claims with no support: no step concludes them, no source is cited,
     /// and on their own they are unknown.
     pub unsupported: Vec<Unsupported>,
@@ -699,17 +766,43 @@ impl DesignGraph {
 
         // WHAT IT RESTS ON: premises of steps in the reasoning that no step
         // concludes. An ASSUMED premise is not something the reasoning rests
-        // on: it is in `assumptions`.
+        // on: it is in `assumptions`. A STEP used as a premise is not either:
+        // it is walked into, and what it rests on is here.
+        //
+        // UNDER ONE CLAIM, ONLY ITS OWN SUPPORT (req:what-a-claim-rests-on-
+        // excludes-the-premises-of-objections-against-it, the trolley trial):
+        // the premises of objections against the claim or its foundations
+        // are what stands against it, listed apart in `against_rests_on`.
+        // Measured: "Switch: turning permissible" was said to rest on the
+        // Footbridge judgment, a premise of an objection to one of its
+        // principles.
+        let support_closure: Option<BTreeSet<String>> = match claim {
+            Some(c) => Some(self.support_closure(c)?),
+            None => None,
+        };
         let mut rests_on: BTreeSet<String> = BTreeSet::new();
+        let mut against: BTreeSet<String> = BTreeSet::new();
         for c in &claims {
+            let own = support_closure
+                .as_ref()
+                .is_none_or(|closure| closure.contains(&c.id));
             for s in &c.support {
                 for p in &s.reading.premises {
-                    if p.role != Some("assumed") && self.inferences_concluding(&p.id)?.is_empty() {
+                    if p.role == Some("assumed")
+                        || p.node_type.as_deref() == Some(node::INFERENCE)
+                        || !self.inferences_concluding(&p.id)?.is_empty()
+                    {
+                        continue;
+                    }
+                    if own {
                         rests_on.insert(p.id.clone());
+                    } else {
+                        against.insert(p.id.clone());
                     }
                 }
             }
         }
+        let against_rests_on: Vec<String> = against.difference(&rests_on).cloned().collect();
         let by_id: BTreeMap<&str, &ClaimReading> =
             claims.iter().map(|c| (c.id.as_str(), c)).collect();
         let uncited_premises: Vec<String> = rests_on
@@ -748,7 +841,7 @@ impl DesignGraph {
         let mut steps_objected = Vec::new();
         for c in &claims {
             for s in &c.support {
-                if let Some(reads @ ("defeated" | "contested")) = s.reading.objected {
+                if let Some(reads @ ("defeated" | "contested" | "conceded")) = s.reading.objected {
                     steps_objected.push(StepObjected {
                         step: s.reading.inference.clone(),
                         conclusion: c.id.clone(),
@@ -771,6 +864,23 @@ impl DesignGraph {
                 .filter(|o| o.standing == "stands")
                 .map(|o| o.id.clone())
                 .collect();
+            // CONTESTED THROUGH ITS ROUTES (req:a-conclusion-whose-every-
+            // route-is-contested-reads-contested): no objection against the
+            // claim itself, but a dispute holds up every route that would
+            // otherwise hold it — so the tally counts it too.
+            // A dispute kept open ON PURPOSE (a `contested` Decision) is read
+            // under `contested_by_design`, never as still contested.
+            let standing: Vec<String> = if standing.is_empty() && c.truth == ClaimTruth::Unknown {
+                let mut by = Vec::new();
+                for id in &c.contested_by {
+                    if !self.is_contested_decision(id)? {
+                        by.push(id.clone());
+                    }
+                }
+                by
+            } else {
+                standing
+            };
             if !standing.is_empty() && c.contested_by_design.is_none() {
                 still_contested.push(StillContested {
                     claim: c.id.clone(),
@@ -788,6 +898,7 @@ impl DesignGraph {
                     decision: c.id.clone(),
                     name: c.name.clone(),
                     sides: self.governed_by_decision(&c.id)?,
+                    held_reading: self.held_reading(&c.id)?,
                 });
                 continue;
             }
@@ -819,6 +930,37 @@ impl DesignGraph {
             }
         }
 
+        // A QUESTION READ BACK TO ITS POSITIONS: asked on a Decision that
+        // governs nodes, each position with what it rests on.
+        let mut positions = Vec::new();
+        if let Some(id) = claim
+            && self.get_node(node::DECISION, id)?.is_some()
+        {
+            let held = self.held_reading(id)?;
+            for side in self.governed_by_decision(id)? {
+                let c = match claims.iter().find(|c| c.id == side) {
+                    Some(c) => c.clone(),
+                    None => self.claim_reading(&side)?,
+                };
+                positions.push(Position {
+                    as_reading: held
+                        .as_ref()
+                        .map(|h| if *h == side { "held" } else { "rival" }),
+                    rests_on: self
+                        .foundations_of(&side)?
+                        .into_iter()
+                        .map(|f| f.id)
+                        .collect(),
+                    id: side,
+                    name: c.name,
+                    truth: c.truth,
+                    proof_status: c.proof_status,
+                    assumes: c.assumes,
+                    holds_under_any_of: c.holds_under_any_of,
+                    contested_by: c.contested_by,
+                });
+            }
+        }
         let note = roots.is_empty().then(|| NOTHING_TO_READ.to_string());
         let not_walked_note = (!not_walked.is_empty()).then(|| {
             format!(
@@ -849,11 +991,13 @@ impl DesignGraph {
             not_walked,
             not_walked_note,
             rests_on: rests_on.into_iter().collect(),
+            against_rests_on,
             uncited_premises,
             stated_foundations,
             still_contested,
             steps_objected,
             contested_by_design,
+            positions,
             unsupported,
             assumptions,
             independence,
@@ -967,8 +1111,24 @@ impl DesignGraph {
     /// against.
     fn reasoning_neighbours(&self, id: &str, both_ways: bool) -> Result<Vec<String>, DynoError> {
         let mut next: BTreeSet<String> = BTreeSet::new();
+        // A STEP USED AS A PREMISE is walked into: its own premises and what
+        // objects to it (req:what-a-claim-rests-on-excludes-the-premises-of-
+        // objections-against-it).
+        if self.get_node(node::INFERENCE, id)?.is_some() {
+            next.extend(self.premises_of(id)?);
+            for e in self.incoming(id, Some(edge::CONTRADICTS))? {
+                if !is_supporting(&e.properties) {
+                    next.insert(e.from_id);
+                }
+            }
+        }
         for s in self.inferences_concluding(id)? {
             next.extend(self.premises_of(&s)?);
+            // A DISPUTE BETWEEN RIVAL READINGS of this claim's steps, kept
+            // open on purpose, is read with the claim.
+            if let Some(d) = self.contested_governor(&s)? {
+                next.insert(d);
+            }
             // AN OBJECTION AIMED AT A STEP under this claim is read with it
             // (req:an-objection-aimed-at-a-step-is-read-against-that-step):
             // the step is not a claim of its own, so its objectors are walked
@@ -1027,6 +1187,7 @@ impl DesignGraph {
         let rests_on_unverified = parts.unverified;
         let rests_on_tests = parts.tests;
         let (holds_under_any_of, lines_capped) = (parts.lines, parts.lines_capped);
+        let contested_by = parts.contested_by;
         let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified, &rests_on_tests);
         let why = if claim_truth == ClaimTruth::Conditional && holds_under_any_of.len() > 1 {
             // EVERY LINE IS NAMED (req:a-claim-with-several-lines-reads-each-
@@ -1071,12 +1232,26 @@ impl DesignGraph {
             (None, None)
         };
         let mut support = Vec::new();
+        let mut steps_dispute: Option<String> = None;
         for s in self.inferences_concluding(id)? {
             if let Some(reading) = self.inference_reading(&s)? {
                 let warrant = self
                     .get_node(node::INFERENCE, &s)?
                     .and_then(|n| prop(&n.properties, "warrant"));
-                support.push(SupportStep { reading, warrant });
+                let dispute = self.contested_governor(&s)?;
+                let as_reading = match &dispute {
+                    Some(d) => self.reading_role(&s, d)?,
+                    None => None,
+                };
+                if steps_dispute.is_none() {
+                    steps_dispute = dispute.clone();
+                }
+                support.push(SupportStep {
+                    reading,
+                    warrant,
+                    dispute,
+                    as_reading,
+                });
             }
         }
         let mut objects_to: Vec<String> = Vec::new();
@@ -1111,7 +1286,8 @@ impl DesignGraph {
             lines_capped,
             rests_on_unverified,
             rests_on_tests,
-            contested_by_design: self.contested_governor(id)?,
+            contested_by_design: self.contested_governor(id)?.or(steps_dispute),
+            contested_by,
             reason_to_exist: self.reason_to_exist(id)?,
             argues_for: Vec::new(),
             acceptance,
@@ -1329,6 +1505,51 @@ impl DesignGraph {
         }
         found.sort();
         Ok(found.into_iter().next())
+    }
+
+    /// Everything `claim`'s own support reaches: the claim, the premises of
+    /// every step concluding it, and on down through each premise's steps
+    /// (a step used as a premise included) — never through an objection.
+    fn support_closure(&self, claim: &str) -> Result<BTreeSet<String>, DynoError> {
+        let mut seen: BTreeSet<String> = BTreeSet::from([claim.to_string()]);
+        let mut queue: VecDeque<String> = VecDeque::from([claim.to_string()]);
+        while let Some(x) = queue.pop_front() {
+            let mut steps = self.inferences_concluding(&x)?;
+            if self.get_node(node::INFERENCE, &x)?.is_some() {
+                steps.push(x.clone());
+            }
+            for st in steps {
+                for p in self.premises_of(&st)? {
+                    if seen.insert(p.clone()) {
+                        queue.push_back(p);
+                    }
+                }
+            }
+        }
+        Ok(seen)
+    }
+
+    /// How `decision` holds `side`: `held` when the GOVERNED_BY from the side
+    /// says `ruling: held`, `rival` when the Decision holds another side,
+    /// `None` when it holds none.
+    fn reading_role(&self, side: &str, decision: &str) -> Result<Option<&'static str>, DynoError> {
+        let Some(held) = self.held_reading(decision)? else {
+            return Ok(None);
+        };
+        Ok(Some(if held == side { "held" } else { "rival" }))
+    }
+
+    /// The side a Decision holds as its reading: the first, in id order, whose
+    /// GOVERNED_BY to it says `ruling: held`.
+    fn held_reading(&self, decision: &str) -> Result<Option<String>, DynoError> {
+        let mut held: Vec<String> = self
+            .incoming(decision, Some(edge::GOVERNED_BY))?
+            .into_iter()
+            .filter(|e| e.properties.get("ruling").and_then(Value::as_str) == Some("held"))
+            .map(|e| e.from_id)
+            .collect();
+        held.sort();
+        Ok(held.into_iter().next())
     }
 
     /// The nodes a Decision governs, sorted.

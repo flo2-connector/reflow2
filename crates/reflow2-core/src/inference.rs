@@ -138,7 +138,7 @@ pub const EQUIVALENCES: &str = "A closed chain of equivalences (A ⇒ B ⇒ C �
      premise beside its antecedent, so each step is modus ponens and the support stays acyclic.";
 
 /// The rules a step may state, as `Inference.rule` spells them.
-pub const INFERENCE_RULES: [&str; 3] = ["all", "any", "k_of_n"];
+pub const INFERENCE_RULES: [&str; 4] = ["all", "any", "k_of_n", "immediate"];
 
 /// A premise's truth, or a step's verdict: three values, never two.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
@@ -172,6 +172,11 @@ pub enum InferenceRule {
     Any,
     /// At least `k` premises must hold.
     KOfN(i64),
+    /// NOT AN INFERENCE (req:a-step-can-say-it-is-not-an-inference): the
+    /// conclusion is grasped immediately — by intuition, self-evidence or a
+    /// self-verifying act — not derived. Any premises are what it is grasped
+    /// IN, read as `all`; with none it holds on the grasp alone.
+    Immediate,
 }
 
 /// The rule over premise values, three-valued (Kleene). `Err` names why the
@@ -181,11 +186,14 @@ pub fn combine(rule: InferenceRule, values: &[Truth]) -> Result<Truth, String> {
     let holds = values.iter().filter(|v| **v == Truth::Holds).count() as i64;
     let fails = values.iter().filter(|v| **v == Truth::Fails).count() as i64;
     let unknown = n - holds - fails;
+    if n == 0 && rule == InferenceRule::Immediate {
+        return Ok(Truth::Holds);
+    }
     if n == 0 {
         return Err("it has no premises, so nothing supports its conclusion".to_string());
     }
     Ok(match rule {
-        InferenceRule::All => {
+        InferenceRule::All | InferenceRule::Immediate => {
             if fails > 0 {
                 Truth::Fails
             } else if unknown > 0 {
@@ -291,10 +299,15 @@ pub enum ProofStatus {
     /// shown).
     Supported,
     /// A derivation holds, but an objection stands against the conclusion:
-    /// neither established nor answered (requirement A).
+    /// neither established nor answered (requirement A). Or no derivation
+    /// holds, but one would were the disputes under it — objections standing
+    /// against its steps or premises, a `contested` Decision it rests on —
+    /// settled its way.
     Contested,
-    /// No derivation holds (the conclusion does not follow), or an objection
-    /// that holds refutes it.
+    /// No derivation holds (the conclusion does not follow) and no dispute is
+    /// what keeps one from holding, or an objection that holds refutes it. A
+    /// claim no route holds while a dispute holds one up is `Contested`
+    /// (req:a-conclusion-whose-every-route-is-contested-reads-contested).
     Unproven,
 }
 
@@ -435,6 +448,15 @@ pub struct InferenceReading {
     /// rule). Absent when nothing objects to the step.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub objected: Option<&'static str>,
+    /// WHAT KEEPS THIS STEP FROM HOLDING, WHEN ONLY A DISPUTE DOES: the
+    /// objections standing against it or against a premise it rests on, and
+    /// the `contested` Decisions it rests on. Its verdict is unknown, and it
+    /// would hold were they settled its way: a CONTESTED route, never an
+    /// unsupported one (req:a-conclusion-whose-every-route-is-contested-
+    /// reads-contested). Empty when it holds, fails, or is unknown for any
+    /// other reason.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub contested_by: Vec<String>,
     /// Every minimal line, lightest first, for the readers above it.
     #[serde(skip)]
     lines: Vec<Condition>,
@@ -908,6 +930,7 @@ pub(crate) struct ClaimParts {
     pub tests: Vec<String>,
     pub lines: Vec<LineConditions>,
     pub lines_capped: bool,
+    pub contested_by: Vec<String>,
 }
 
 /// Several lines in words: "under con:a; or under con:b; or under con:c".
@@ -949,6 +972,14 @@ struct Read {
     /// confirmed (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-
     /// never-as-shown).
     evidential: BTreeSet<String>,
+    /// WHAT KEEPS IT FROM HOLDING, WHEN A DISPUTE DOES: the objections that
+    /// stand against it, against a step under it or against a premise it
+    /// rests on, and the `contested` Decisions it rests on — so a claim whose
+    /// every route is held up only by standing objections reads `contested`,
+    /// never `unproven`, a word that also covers a claim nothing supports
+    /// (req:a-conclusion-whose-every-route-is-contested-reads-contested).
+    /// Empty for a node that holds, or is unknown for any other reason.
+    contested_by: BTreeSet<String>,
 }
 
 /// A reference's reading as a premise here: the far node's truth when it was
@@ -1017,7 +1048,15 @@ impl Read {
             assumes: best.assumes,
             unverified: best.unverified,
             evidential: best.evidential,
+            contested_by: BTreeSet::new(),
         }
+    }
+
+    /// This reading, unknown only because a dispute holds it up: `by` stand
+    /// against it or against what it rests on.
+    fn contested(mut self, by: BTreeSet<String>) -> Self {
+        self.contested_by = by;
+        self
     }
 
     /// What EVERY line holds under: the scope an objection is judged against.
@@ -1046,6 +1085,37 @@ impl Read {
     }
 }
 
+/// How one record reads refuted: what it reads (`refuted`, `defeated`,
+/// `conceded`), what holds against it, and why.
+type RefutedAs = (&'static str, Vec<String>, String);
+
+/// How the watched records read before a write: see
+/// [`DesignGraph::watch_refutations`].
+#[derive(Debug, Clone, Default)]
+pub struct RefutationWatch {
+    before: BTreeMap<String, Option<&'static str>>,
+}
+
+/// A record a write turned refuted, defeated or conceded — served in the
+/// write's reply as `now_refuted`.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct NowRefuted {
+    /// The record.
+    pub id: String,
+    /// `refuted` (a claim an objection that holds refutes), `defeated` (a
+    /// step an objection that holds defeats) or `conceded` (granted by a
+    /// reply).
+    pub reads: &'static str,
+    /// The objections that hold against it.
+    pub by: Vec<String>,
+    /// Why, in a sentence.
+    pub why: String,
+    /// For a claim: how to keep it and its objector as an open dispute
+    /// instead, if that is what was meant.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub keep_as_dispute: Option<String>,
+}
+
 /// One objection against a node, as the node's truth reads it.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct ObjectionReading {
@@ -1072,6 +1142,24 @@ pub struct ObjectionReading {
     /// cannot-refute-a-claim-outside-it). Empty otherwise.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub holds_only_under: Vec<String>,
+    /// THE REPLY THAT GRANTS IT (req:a-reply-can-concede-an-objection-
+    /// against-one-reading-and-move-to-another): a CONTRADICTS marked
+    /// `alignment: conceding` from a reply that holds. The objection then
+    /// counts against what it attacks as if it held — `standing: conceded` —
+    /// by the arguer's own admission. Absent when nothing concedes it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub conceded_by: Option<String>,
+    /// Where that reply moves the argument instead: the conceding edge's
+    /// `moves_to`, the reading the argument is meant as. Absent when the
+    /// concession names none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub moves_to: Option<String>,
+}
+
+/// Whether an objection's standing counts against its target as holding:
+/// one that `refutes`, or one a reply concedes.
+pub fn counts_as_holding(standing: &str) -> bool {
+    standing == "refutes" || standing == "conceded"
 }
 
 fn standing_of(truth: Truth) -> &'static str {
@@ -1116,8 +1204,10 @@ pub fn fixed_variable(entry: &str) -> &str {
     entry.split_once('=').map_or(entry, |(name, _)| name).trim()
 }
 
-/// The statement kinds `statement_kind` may say.
-pub const STATEMENT_KINDS: [&str; 9] = [
+/// The statement kinds `statement_kind` may say. The last four are the roles
+/// a line of reasoning gives its statements
+/// (req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule).
+pub const STATEMENT_KINDS: [&str; 13] = [
     "theorem",
     "lemma",
     "corollary",
@@ -1127,6 +1217,10 @@ pub const STATEMENT_KINDS: [&str; 9] = [
     "conjecture",
     "hypothesis",
     "falsum",
+    "objection",
+    "reply",
+    "unstated_premise",
+    "method_rule",
 ];
 
 /// The kinds that, TAKEN AS GIVEN, are a result CITED FROM ELSEWHERE
@@ -1186,12 +1280,16 @@ fn prop<'a>(props: &'a HashMap<String, Value>, key: &str) -> Option<&'a str> {
 /// and never as an uncited premise
 /// (req:the-loop-sees-unconfirmed-steps-and-uncited-premises).
 ///
-/// A statement whose `statement_kind` is `definition` or `axiom` is taken as
-/// given too, unless it says `taken_as_given: false` in so many words.
+/// A statement whose `statement_kind` is `definition`, `axiom` or
+/// `method_rule` (a rule of method the reasoning follows) is taken as given
+/// too, unless it says `taken_as_given: false` in so many words.
 pub fn is_taken_as_given(props: &HashMap<String, Value>) -> bool {
     match props.get("taken_as_given").and_then(Value::as_bool) {
         Some(said) => said,
-        None => matches!(prop(props, "statement_kind"), Some("definition" | "axiom")),
+        None => matches!(
+            prop(props, "statement_kind"),
+            Some("definition" | "axiom" | "method_rule")
+        ),
     }
 }
 
@@ -1286,6 +1384,7 @@ impl DesignGraph {
         let parsed = match rule.as_str() {
             "all" => Ok(InferenceRule::All),
             "any" => Ok(InferenceRule::Any),
+            "immediate" => Ok(InferenceRule::Immediate),
             "k_of_n" => match k {
                 Some(k) => Ok(InferenceRule::KOfN(k)),
                 None => Err("its rule is k_of_n and it states no k".to_string()),
@@ -1364,6 +1463,7 @@ impl DesignGraph {
             assumes: r.assumes.into_iter().collect(),
             unverified: r.unverified.into_iter().collect(),
             tests: r.evidential.into_iter().collect(),
+            contested_by: r.contested_by.into_iter().collect(),
             why: r.why,
         })
     }
@@ -1383,6 +1483,138 @@ impl DesignGraph {
     /// documents, sorted. Empty when it rests on none.
     pub fn unverified_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
         Ok(self.premise_reading(id)?.unverified.into_iter().collect())
+    }
+
+    // ─── A write that refutes says so ──────────────────────────────────────
+
+    /// The records a CONTRADICTS from `id` reaches as an attack: each opposing
+    /// target, and for a concession the targets of the objection it grants —
+    /// what a write touching `id` could turn refuted.
+    pub fn attack_targets_of(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        let mut out: BTreeSet<String> = BTreeSet::new();
+        for e in self.outgoing(id, Some(edge::CONTRADICTS))? {
+            match e.properties.get("alignment").and_then(Value::as_str) {
+                Some("supporting") => {}
+                Some("conceding") => {
+                    out.extend(self.attack_targets_of_objection(&e.to_id)?);
+                }
+                _ => {
+                    out.insert(e.to_id);
+                }
+            }
+        }
+        Ok(out.into_iter().collect())
+    }
+
+    /// The opposing targets of an objection, one hop.
+    pub fn attack_targets_of_objection(&self, objection: &str) -> Result<Vec<String>, DynoError> {
+        let mut out: Vec<String> = self
+            .outgoing(objection, Some(edge::CONTRADICTS))?
+            .into_iter()
+            .filter(|e| {
+                !matches!(
+                    e.properties.get("alignment").and_then(Value::as_str),
+                    Some("supporting" | "conceding")
+                )
+            })
+            .map(|e| e.to_id)
+            .collect();
+        out.sort();
+        out.dedup();
+        Ok(out)
+    }
+
+    /// Note how each of `ids` reads now, before a write, so
+    /// [`Self::refuted_since`] can say which the write turned refuted.
+    pub fn watch_refutations(
+        &self,
+        ids: impl IntoIterator<Item = String>,
+    ) -> Result<RefutationWatch, DynoError> {
+        let mut before = BTreeMap::new();
+        for id in ids {
+            if before.contains_key(&id) {
+                continue;
+            }
+            let state = self.refutation_state(&id)?.map(|(reads, _, _)| reads);
+            before.insert(id, state);
+        }
+        Ok(RefutationWatch { before })
+    }
+
+    /// Every watched record a write turned REFUTED (a claim), or DEFEATED or
+    /// CONCEDED (a step), that did not read so before it
+    /// (req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply).
+    /// Measured in the cogito trial's AI branch: one CONTRADICTS between rival
+    /// verdicts made one read refuted, and nothing said so.
+    pub fn refuted_since(&self, watch: &RefutationWatch) -> Result<Vec<NowRefuted>, DynoError> {
+        let mut out = Vec::new();
+        for (id, was) in &watch.before {
+            let Some((reads, by, why)) = self.refutation_state(id)? else {
+                continue;
+            };
+            if *was == Some(reads) {
+                continue;
+            }
+            let step = self.get_node(node::INFERENCE, id)?.is_some();
+            let keep_as_dispute = (!step).then(|| {
+                format!(
+                    "If {id} and {} are rival positions in an open dispute rather than a \
+                     refutation, draw a CONTRADICTS back from {id} to {} as well: both then read \
+                     contested and neither refuted. Or keep both under a Decision the owner sets \
+                     `contested`.",
+                    by.join(", "),
+                    by.join(" and to ")
+                )
+            });
+            out.push(NowRefuted {
+                id: id.clone(),
+                reads,
+                by,
+                why,
+                keep_as_dispute,
+            });
+        }
+        Ok(out)
+    }
+
+    /// `Some((reads, by, why))` when `id` reads refuted, defeated or conceded
+    /// by objections that hold against it: for a step its `objected`, for any
+    /// other record its truth failing through an objection.
+    fn refutation_state(&self, id: &str) -> Result<Option<RefutedAs>, DynoError> {
+        if let Some(r) = self.inference_reading(id)? {
+            let Some(reads @ ("defeated" | "conceded")) = r.objected else {
+                return Ok(None);
+            };
+            let by = r
+                .objections
+                .iter()
+                .filter(|o| counts_as_holding(o.standing))
+                .map(|o| o.id.clone())
+                .collect();
+            return Ok(Some((reads, by, r.note.unwrap_or_default())));
+        }
+        let (truth, why) = self.premise_truth(id)?;
+        if truth != Truth::Fails {
+            return Ok(None);
+        }
+        let holding: Vec<ObjectionReading> = self
+            .objections_to(id)?
+            .into_iter()
+            .filter(|o| counts_as_holding(o.standing))
+            .collect();
+        if holding.is_empty() {
+            return Ok(None);
+        }
+        let reads = if holding.iter().all(|o| o.standing == "conceded") {
+            "conceded"
+        } else {
+            "refuted"
+        };
+        Ok(Some((
+            reads,
+            holding.into_iter().map(|o| o.id).collect(),
+            why,
+        )))
     }
 
     /// What a node counted LOST by a change reads as: UNSUPPORTED (unknown) —
@@ -1453,15 +1685,22 @@ impl DesignGraph {
         if node_type == node::INFERENCE {
             let r = self.step_reading(id, ev, depth)?;
             let why = match &r.note {
-                Some(note) if r.objected == Some("defeated") => {
+                Some(note) if matches!(r.objected, Some("defeated" | "conceded")) => {
                     format!("a step defeated by an objection to the step itself: {note}")
                 }
                 Some(note) if r.verdict == Truth::Unknown => {
                     format!("a step whose verdict is unknown: {note}")
                 }
+                _ if r.rule == "immediate" => format!(
+                    "not an inference: an immediate grasp (rule `immediate`), which {}",
+                    r.verdict.as_str()
+                ),
                 _ => format!("a step whose rule `{}` {}", r.rule, r.verdict.as_str()),
             };
-            return Ok(Read::with_lines(r.verdict, why, r.lines, r.lines_capped));
+            let contested: BTreeSet<String> = r.contested_by.iter().cloned().collect();
+            return Ok(
+                Read::with_lines(r.verdict, why, r.lines, r.lines_capped).contested(contested)
+            );
         }
         if self.is_discontinued(id)? {
             return Ok(Read::plain(
@@ -1503,10 +1742,13 @@ impl DesignGraph {
         // reading is computed first, because it is the scope.
         let own = self.own_truth(id, &node_type, ev, depth)?;
         let objections = self.objections_within(id, ev, depth, &own)?;
-        let refuting: Vec<&str> = objections
+        let refuting: Vec<String> = objections
             .iter()
-            .filter(|o| o.standing == "refutes")
-            .map(|o| o.id.as_str())
+            .filter(|o| counts_as_holding(o.standing))
+            .map(|o| match &o.conceded_by {
+                Some(reply) => format!("{} (conceded by {reply})", o.id),
+                None => o.id.clone(),
+            })
             .collect();
         if !refuting.is_empty() {
             return Ok(Read::plain(
@@ -1535,6 +1777,17 @@ impl DesignGraph {
         let ids: Vec<&str> = standing.iter().map(|o| o.id.as_str()).collect();
         Ok(Read {
             truth: Truth::Unknown,
+            // CONTESTED only when its own support holds, or is itself held up
+            // only by a dispute: a claim nothing supports stays unsupported
+            // whatever objects to it.
+            contested_by: if own.truth == Truth::Holds || !own.contested_by.is_empty() {
+                ids.iter()
+                    .map(|s| s.to_string())
+                    .chain(own.contested_by.iter().cloned())
+                    .collect()
+            } else {
+                BTreeSet::new()
+            },
             lines: own.lines,
             lines_capped: own.lines_capped,
             why: if conditional.is_empty() {
@@ -1599,7 +1852,9 @@ impl DesignGraph {
                 .get("alignment")
                 .and_then(Value::as_str)
                 .unwrap_or("opposing");
-            if alignment == "supporting" {
+            // Corroboration is never an objection, and a CONCESSION is the
+            // granting of one: neither attacks its target.
+            if alignment == "supporting" || alignment == "conceding" {
                 continue;
             }
             let r = self.truth_full(&e.from_id, ev, depth.saturating_sub(1))?;
@@ -1655,8 +1910,30 @@ impl DesignGraph {
             } else {
                 (standing_of(truth), r.why)
             };
+            // GRANTED BY A REPLY THAT HOLDS: the objection counts against its
+            // target as if it held, whatever its own truth — the arguer has
+            // conceded it, and moved the argument to another reading.
+            let (standing, why, conceded_by, moves_to) = match self
+                .concession_of(&e.from_id, ev, depth)?
+            {
+                Some((reply, moves_to)) => (
+                    "conceded",
+                    format!(
+                        "conceded: the reply {reply} grants it against this{}; on its own, {why}",
+                        moves_to
+                            .as_deref()
+                            .map(|m| format!(", and moves the argument to {m}"))
+                            .unwrap_or_default()
+                    ),
+                    Some(reply),
+                    moves_to,
+                ),
+                None => (standing, why, None, None),
+            };
             out.push(ObjectionReading {
                 node_type: self.type_holding(&e.from_id)?,
+                conceded_by,
+                moves_to,
                 standing,
                 holds_only_under: if truth == Truth::Holds {
                     outside
@@ -1675,6 +1952,37 @@ impl DesignGraph {
         }
         out.sort_by(|a, b| a.id.cmp(&b.id));
         Ok(out)
+    }
+
+    /// The reply that CONCEDES `objection` — a CONTRADICTS marked `alignment:
+    /// conceding` from a reply that holds — with the reading it moves the
+    /// argument to (`moves_to`), when one does. The first in id order.
+    fn concession_of(
+        &self,
+        objection: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Option<(String, Option<String>)>, DynoError> {
+        let mut conceding: Vec<(String, Option<String>)> = self
+            .incoming(objection, Some(edge::CONTRADICTS))?
+            .into_iter()
+            .filter(|e| e.properties.get("alignment").and_then(Value::as_str) == Some("conceding"))
+            .map(|e| {
+                let to = e
+                    .properties
+                    .get("moves_to")
+                    .and_then(Value::as_str)
+                    .map(str::to_string);
+                (e.from_id, to)
+            })
+            .collect();
+        conceding.sort();
+        for (reply, moves_to) in conceding {
+            if self.truth_full(&reply, ev, depth.saturating_sub(1))?.truth == Truth::Holds {
+                return Ok(Some((reply, moves_to)));
+            }
+        }
+        Ok(None)
     }
 
     /// What the steps concluding `id` yield, ANY across them: `holds` when one
@@ -1704,11 +2012,15 @@ impl DesignGraph {
         let mut verdicts = Vec::new();
         let mut holding_lines: Vec<Condition> = Vec::new();
         let mut lines_capped = false;
+        let mut contested_routes: Vec<(String, Vec<String>)> = Vec::new();
         for s in &steps {
             let r = self.step_reading(s, ev, depth)?;
             if r.verdict == Truth::Holds {
                 holding_lines.extend(r.lines.iter().cloned());
                 lines_capped |= r.lines_capped;
+            }
+            if !r.contested_by.is_empty() {
+                contested_routes.push((s.clone(), r.contested_by.clone()));
             }
             verdicts.push((s.clone(), r.verdict));
         }
@@ -1783,6 +2095,35 @@ impl DesignGraph {
                 lines,
                 lines_capped,
             )));
+        }
+        // CONTESTED, NOT UNSUPPORTED (req:a-conclusion-whose-every-route-is-
+        // contested-reads-contested, the cogito trial): no route holds, and at
+        // least one would hold were the disputes under it settled its way. It
+        // reads contested, naming what stands against each such route, never
+        // `unproven` — the word that also covers a claim nothing supports.
+        if !contested_routes.is_empty() {
+            let against: Vec<String> = contested_routes
+                .iter()
+                .map(|(s, by)| format!("{s} by {}", by.join(", ")))
+                .collect();
+            let by: BTreeSet<String> = contested_routes
+                .iter()
+                .flat_map(|(_, by)| by.iter().cloned())
+                .collect();
+            return Ok(Some(
+                Read::plain(
+                    Truth::Unknown,
+                    format!(
+                        "contested: no route holds while a dispute holds up {} of its {} route(s) \
+                         — {} — neither established nor answered ({})",
+                        contested_routes.len(),
+                        verdicts.len(),
+                        against.join("; "),
+                        said.join("; ")
+                    ),
+                )
+                .contested(by),
+            ));
         }
         Ok(Some(Read::plain(
             Truth::Unknown,
@@ -2015,12 +2356,17 @@ impl DesignGraph {
                 Some(s @ ("rejected" | "superseded")) => {
                     (Truth::Fails, format!("the decision is {s}"))
                 }
-                Some("contested") => (
-                    Truth::Unknown,
-                    "the decision is contested, by design: both sides are kept and no verdict \
-                     is owed"
-                        .to_string(),
-                ),
+                // A DISPUTE KEPT OPEN ON PURPOSE: what rests on it is
+                // contested by design, never merely unsupported.
+                Some("contested") => {
+                    return Ok(Read::plain(
+                        Truth::Unknown,
+                        "the decision is contested, by design: both sides are kept and no \
+                         verdict is owed"
+                            .to_string(),
+                    )
+                    .contested(BTreeSet::from([id.to_string()])));
+                }
                 other => (
                     Truth::Unknown,
                     format!(
@@ -2598,8 +2944,63 @@ impl DesignGraph {
             return Ok(Some(StatementReading { kind, reads, why }));
         }
         let proof = self.proof_reading(id)?;
+        // AN OBJECTION OR A REPLY READS BY HOW IT STANDS AGAINST WHAT IT
+        // ATTACKS (req:statement-kinds-cover-an-objection-a-reply-an-unstated-
+        // premise-and-a-method-rule): a reply is an objection to an objection.
+        if matches!(kind.as_str(), "objection" | "reply") {
+            if truth == Truth::Fails {
+                // ANSWERED: a reply that holds fails it, so it no longer
+                // counts against anything.
+                return Ok(Some(StatementReading {
+                    kind,
+                    reads: "answered",
+                    why: format!("answered, so it no longer counts: {why}"),
+                }));
+            }
+            return Ok(Some(self.attack_reading(id, &kind, why)?));
+        }
+        let contested = truth == Truth::Unknown
+            && proof.is_none()
+            && !self.premise_reading(id)?.contested_by.is_empty();
         let (reads, why): (&'static str, String) = if truth == Truth::Fails {
             ("refuted", why)
+        } else if contested {
+            // A FOUNDATION UNDER A STANDING OBJECTION reads contested, never
+            // "stated" (req:a-conclusion-whose-every-route-is-contested-reads-
+            // contested, the stage-5 re-read).
+            ("contested", why)
+        } else if kind == "unstated_premise" {
+            if is_taken_as_given(&self.node_props(id)?.unwrap_or_default()) {
+                (
+                    "taken_as_given",
+                    format!(
+                        "an unstated premise the argument relies on, made explicit and taken as \
+                         given: {why}"
+                    ),
+                )
+            } else if let Some(p) = proof {
+                (
+                    p.status.as_str(),
+                    format!(
+                        "an unstated premise the argument relies on, made explicit: {}",
+                        p.why
+                    ),
+                )
+            } else {
+                (
+                    "stated",
+                    format!(
+                        "an unstated premise the argument relies on, made explicit; nothing shows \
+                         it and it is not taken as given: {why}"
+                    ),
+                )
+            }
+        } else if kind == "method_rule" && truth == Truth::Holds && proof.is_none() {
+            (
+                "taken_as_given",
+                "a rule of method: how the reasoning proceeds, taken as given by choice"
+                    .to_string(),
+            )
         } else if kind == "hypothesis" {
             // A HYPOTHESIS IS ASSUMED, never "stated, not shown" (item 3).
             match self.assumptions()?.into_iter().find(|a| a.id == id) {
@@ -2695,6 +3096,7 @@ impl DesignGraph {
             lines_capped: false,
             objections: Vec::new(),
             objected: None,
+            contested_by: Vec::new(),
             lines: vec![Condition::default()],
         };
         let Some(rec) = self.step_record(inference_id)? else {
@@ -2759,9 +3161,12 @@ impl DesignGraph {
         // them by its rule below.
         let mut values = Vec::new();
         let mut parts: Vec<(Truth, Vec<Condition>)> = Vec::new();
+        // Per premise, what holds it up when only a dispute does.
+        let mut disputed: Vec<BTreeSet<String>> = Vec::new();
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
                 values.push(Truth::Holds);
+                disputed.push(BTreeSet::new());
                 parts.push((
                     Truth::Holds,
                     vec![Condition {
@@ -2790,6 +3195,11 @@ impl DesignGraph {
             };
             values.push(r.truth);
             reading.lines_capped |= r.lines_capped;
+            disputed.push(if r.truth == Truth::Unknown {
+                r.contested_by.clone()
+            } else {
+                BTreeSet::new()
+            });
             parts.push((r.truth, r.lines));
             reading.premises.push(PremiseReading {
                 node_type: self.type_holding(&p)?,
@@ -2808,6 +3218,22 @@ impl DesignGraph {
             Ok(v) => reading.verdict = v,
             Err(why) => reading.note = Some(why),
         }
+        // WOULD IT HOLD WERE EVERY DISPUTE UNDER IT SETTLED ITS WAY? Each
+        // premise held up only by a dispute counted as holding: if the rule
+        // then holds, the step is a contested route, not an unsupported one.
+        let settled: Vec<Truth> = values
+            .iter()
+            .zip(&disputed)
+            .map(|(v, d)| if d.is_empty() { *v } else { Truth::Holds })
+            .collect();
+        let would_hold = parsed
+            .clone()
+            .and_then(|rule| combine(rule, &settled))
+            .is_ok_and(|v| v == Truth::Holds);
+        // A gate the step's own structure fails (a case split nothing
+        // declares exhaustive, a generalization over a fixed variable) is no
+        // dispute: such a step is not contested, whatever stands elsewhere.
+        let mut gated = false;
         // A CASE SPLIT HOLDS ONLY WHEN ITS CASES ARE DECLARED EXHAUSTIVE
         // (item 2). Which record declares it is the step's to say; whether it
         // holds is that record's own computed truth — the owner's word (taken
@@ -2848,6 +3274,7 @@ impl DesignGraph {
             };
             let gate = cases.truth.unwrap_or(Truth::Unknown);
             if gate != Truth::Holds {
+                gated = true;
                 if reading.verdict == Truth::Holds || gate == Truth::Fails {
                     reading.verdict = if gate == Truth::Fails {
                         Truth::Fails
@@ -2965,6 +3392,7 @@ impl DesignGraph {
                     g.over.join(", "),
                     reasons.join("; ")
                 );
+                gated = true;
                 if reading.verdict == Truth::Holds {
                     reading.verdict = Truth::Unknown;
                 }
@@ -2995,6 +3423,7 @@ impl DesignGraph {
             reading.lines.clone(),
             reading.lines_capped,
         );
+        let before_objections = reading.verdict;
         let objections = self.objections_within(inference_id, ev, depth, &scope)?;
         ev.path.remove(inference_id);
         if !objections.is_empty() {
@@ -3003,12 +3432,41 @@ impl DesignGraph {
                 .filter(|o| o.standing == "refutes")
                 .map(|o| o.id.as_str())
                 .collect();
+            let conceded: Vec<String> = objections
+                .iter()
+                .filter(|o| o.standing == "conceded")
+                .map(|o| {
+                    format!(
+                        "{} grants {} against it{}",
+                        o.conceded_by.as_deref().unwrap_or(""),
+                        o.id,
+                        o.moves_to
+                            .as_deref()
+                            .map(|m| format!(" and moves the argument to {m}"))
+                            .unwrap_or_default()
+                    )
+                })
+                .collect();
             let standing: Vec<&str> = objections
                 .iter()
                 .filter(|o| o.standing == "stands")
                 .map(|o| o.id.as_str())
                 .collect();
-            let (objected, why) = if !refuting.is_empty() {
+            let (objected, why) = if !conceded.is_empty() {
+                // CONCEDED (req:a-reply-can-concede-an-objection-against-one-
+                // reading-and-move-to-another): the arguer grants the
+                // objection against this reading and moves to another, so
+                // this route supports nothing and the move is named.
+                reading.verdict = Truth::Fails;
+                (
+                    "conceded",
+                    format!(
+                        "conceded: {}; this reading supports nothing, and the argument is meant \
+                         as the one it moves to",
+                        conceded.join("; ")
+                    ),
+                )
+            } else if !refuting.is_empty() {
                 reading.verdict = Truth::Fails;
                 (
                     "defeated",
@@ -3049,6 +3507,32 @@ impl DesignGraph {
                 });
             }
             reading.objections = objections;
+        }
+        // A CONTESTED ROUTE: unknown, and held up only by disputes — the
+        // objections standing against the step itself, and those under the
+        // premises it rests on.
+        if reading.verdict == Truth::Unknown && !gated {
+            let mut by: BTreeSet<String> = BTreeSet::new();
+            let step_contested = reading.objected == Some("contested");
+            if step_contested {
+                by.extend(
+                    reading
+                        .objections
+                        .iter()
+                        .filter(|o| o.standing == "stands")
+                        .map(|o| o.id.clone()),
+                );
+            }
+            let premises_hold_up = before_objections == Truth::Holds
+                || (before_objections == Truth::Unknown && would_hold);
+            if premises_hold_up && (step_contested || before_objections == Truth::Unknown) {
+                if before_objections == Truth::Unknown {
+                    for d in &disputed {
+                        by.extend(d.iter().cloned());
+                    }
+                }
+                reading.contested_by = by.into_iter().collect();
+            }
         }
         // A step that does not hold reads, as it always has, the union of
         // what every premise rests on.
@@ -3174,6 +3658,84 @@ impl DesignGraph {
             named_by_open_assumptions,
             undeclared_open_assumptions,
             mentioned_by,
+        })
+    }
+
+    /// How an `objection` or a `reply` reads: by how it stands against each
+    /// record it attacks — `refutes` (it holds; for a reply, `answers`),
+    /// `stands`, `answered`, or `conceded` / `concedes` when a reply grants
+    /// it. One that attacks nothing yet reads `stated`.
+    fn attack_reading(
+        &self,
+        id: &str,
+        kind: &str,
+        why: String,
+    ) -> Result<StatementReading, DynoError> {
+        let mut standings: Vec<(String, &'static str)> = Vec::new();
+        let mut concedes: Vec<String> = Vec::new();
+        for e in self.outgoing(id, Some(edge::CONTRADICTS))? {
+            match e.properties.get("alignment").and_then(Value::as_str) {
+                Some("supporting") => continue,
+                Some("conceding") => {
+                    concedes.push(e.to_id);
+                    continue;
+                }
+                _ => {}
+            }
+            let st = self
+                .objections_to(&e.to_id)?
+                .into_iter()
+                .find(|o| o.id == id)
+                .map(|o| o.standing)
+                .unwrap_or("stands");
+            standings.push((e.to_id, st));
+        }
+        if !concedes.is_empty() && standings.is_empty() {
+            return Ok(StatementReading {
+                kind: kind.to_string(),
+                reads: "concedes",
+                why: format!(
+                    "a reply that grants {} against what it attacks, and moves the argument on",
+                    concedes.join(", ")
+                ),
+            });
+        }
+        let pick = |want: &str| -> Vec<String> {
+            standings
+                .iter()
+                .filter(|(_, s)| *s == want)
+                .map(|(t, _)| t.clone())
+                .collect()
+        };
+        let (reads, against): (&'static str, Vec<String>) = if !pick("conceded").is_empty() {
+            ("conceded", pick("conceded"))
+        } else if !pick("refutes").is_empty() {
+            (
+                if kind == "reply" {
+                    "answers"
+                } else {
+                    "refutes"
+                },
+                pick("refutes"),
+            )
+        } else if !pick("stands").is_empty() {
+            ("stands", pick("stands"))
+        } else if !pick("answered").is_empty() {
+            ("answered", pick("answered"))
+        } else {
+            return Ok(StatementReading {
+                kind: kind.to_string(),
+                reads: "stated",
+                why: format!(
+                    "a{} {kind} aimed at nothing yet: {why}",
+                    if kind == "objection" { "n" } else { "" }
+                ),
+            });
+        };
+        Ok(StatementReading {
+            kind: kind.to_string(),
+            reads,
+            why: format!("{reads} against {}: {why}", against.join(", ")),
         })
     }
 
@@ -3531,7 +4093,7 @@ impl DesignGraph {
         if !self
             .objections_to(target)?
             .iter()
-            .any(|o| o.id == objection && o.standing == "refutes")
+            .any(|o| o.id == objection && counts_as_holding(o.standing))
         {
             return Ok(false);
         }
@@ -3906,6 +4468,23 @@ impl DesignGraph {
                 counts: PROOF_COUNTS_MEAN,
             }));
         }
+        // NO ROUTE HOLDS, BUT A DISPUTE IS WHAT HOLDS ONE UP: contested, never
+        // unproven (req:a-conclusion-whose-every-route-is-contested-reads-
+        // contested). The cogito's "I exist" read `unproven` while all three
+        // of its readings were only contested.
+        if !any_holds && conclusion_truth == Truth::Unknown {
+            let r = self.premise_reading(id)?;
+            if !r.contested_by.is_empty() {
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Contested,
+                    why: r.why,
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
+                }));
+            }
+        }
         if any_proven_chain {
             Ok(Some(ProofReading {
                 status: ProofStatus::Proven,
@@ -4122,8 +4701,9 @@ impl DesignGraph {
                 "rule",
                 format!(
                     "'{}' is not a rule. The legal values: `all` (every premise must hold), \
-                     `any` (one is enough) and `k_of_n` (at least k of them, with `k`). A named \
-                     rule such as modus ponens is `all` with `rule_name`",
+                     `any` (one is enough), `k_of_n` (at least k of them, with `k`) and \
+                     `immediate` (not an inference: the conclusion is grasped directly). A \
+                     named rule such as modus ponens is `all` with `rule_name`",
                     spec.rule
                 ),
             ));
@@ -4171,10 +4751,14 @@ impl DesignGraph {
         } else {
             Vec::new()
         };
-        if given.is_empty() && stored.is_empty() {
+        // An IMMEDIATE grasp may stand on no premise: it is not an inference.
+        if given.is_empty() && stored.is_empty() && spec.rule != "immediate" {
             return Err(invalid(
                 "premises",
-                "a step needs at least one premise: what supports the conclusion?".to_string(),
+                "a step needs at least one premise: what supports the conclusion? (A conclusion \
+                 grasped directly, not inferred, is a step with rule `immediate`, which may name \
+                 none.)"
+                    .to_string(),
             ));
         }
         let mut typed: Vec<(String, String)> = Vec::new();

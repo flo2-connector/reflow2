@@ -147,18 +147,19 @@
         ]
       },
       "premises": {
-        "description": "The premises, by id: any records the design holds — requirements,\nchecks, decisions, constraints, other steps. At least one.",
+        "description": "The premises, by id: any records the design holds — requirements,\nchecks, decisions, constraints, other steps. At least one, except for\nrule `immediate`, which may name none.",
         "items": {
           "type": "string"
         },
         "type": "array"
       },
       "rule": {
-        "description": "HOW THE PREMISES SUPPORT THE CONCLUSION: `all` (every premise must hold),\n`any` (one is enough) or `k_of_n` (at least `k` must hold). A named rule\nsuch as modus ponens is `all` with `rule_name`.",
+        "description": "HOW THE PREMISES SUPPORT THE CONCLUSION: `all` (every premise must hold),\n`any` (one is enough) or `k_of_n` (at least `k` must hold). A named rule\nsuch as modus ponens is `all` with `rule_name`. `immediate`: NOT AN\nINFERENCE — the conclusion is grasped directly (an intuition, a\nself-evident or self-verifying grasp); its premises, if any, are what\nit is grasped in.",
         "enum": [
           "all",
           "any",
-          "k_of_n"
+          "k_of_n",
+          "immediate"
         ],
         "type": "string"
       },

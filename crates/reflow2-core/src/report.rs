@@ -2485,7 +2485,7 @@ impl DesignGraph {
                 if e.properties
                     .get("alignment")
                     .and_then(crate::foundation::core::Value::as_str)
-                    == Some("supporting")
+                    .is_some_and(|a| a == "supporting" || a == "conceding")
                 {
                     continue;
                 }

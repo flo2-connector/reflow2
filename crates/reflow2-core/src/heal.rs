@@ -2744,8 +2744,10 @@ impl DesignGraph {
             if e.properties
                 .get("alignment")
                 .and_then(Value::as_str)
-                .is_some_and(|a| a == "supporting")
+                .is_some_and(|a| a == "supporting" || a == "conceding")
             {
+                // A CONCESSION (`conceding`) grants the target; it is no
+                // conflict either.
                 continue;
             }
             // AND THE SAME ARGUMENT ONE PROPERTY ACROSS. The comment above

@@ -49,6 +49,8 @@ already exist under another name.
 - **A `falsum`** is a contradiction derived inside a reductio (⊥: "π is algebraic and
   transcendental"). It is a Requirement with `statement_kind` `falsum` (section 3a), and it
   reads FALSE, never holds.
+- **An `objection`, a `reply`, an `unstated_premise` or a `method_rule`** are the roles a line of
+  reasoning that is not a proof gives its statements: see design-an-argument.
 - **A statement about a variable** lists it in `variables` ("every n ≥ 2 has a prime divisor"
   mentions n). **A statement about one value** lists it in `fixes` as `n=40` or `L=all the primes`.
   **Give every hypothesis its `variables`**, an empty list when it names none: the generalization

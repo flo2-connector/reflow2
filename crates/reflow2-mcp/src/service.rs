@@ -869,6 +869,50 @@ pub const CHANGE_EVENT_HAS_NO_DESCRIPTION: &str = "a ChangeEvent has no `descrip
      goes in `summary` (WHAT changed — indexed and searchable) or `rationale` (WHY, and the \
      lesson). Re-send with one of those instead of `description`.";
 
+/// THE RECORDS A WRITE COULD TURN REFUTED, read before it: the targets of
+/// the CONTRADICTS links the write draws (for a concession, the targets of
+/// the objection it grants), and the targets `id` already attacks
+/// (req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply).
+pub(crate) fn watch_attacks(
+    g: &reflow2_core::DesignGraph,
+    id: Option<&str>,
+    links: &[(String, String, Option<String>)],
+) -> Result<reflow2_core::inference::RefutationWatch, McpError> {
+    let mut ids: Vec<String> = Vec::new();
+    if let Some(id) = id {
+        ids.extend(g.attack_targets_of(id).map_err(dyno_err)?);
+    }
+    for (_from, to, alignment) in links {
+        match alignment.as_deref() {
+            Some("supporting") => {}
+            Some("conceding") => ids.extend(g.attack_targets_of_objection(to).map_err(dyno_err)?),
+            _ => ids.push(to.clone()),
+        }
+    }
+    g.watch_refutations(ids).map_err(dyno_err)
+}
+
+/// The reply, carrying `now_refuted` when the write turned a watched record
+/// refuted, defeated or conceded — each with what holds against it and, for
+/// a claim, how to keep the two as an open dispute instead. Unchanged when
+/// it turned none.
+pub(crate) fn with_now_refuted(
+    mut reply: JsonValue,
+    g: &reflow2_core::DesignGraph,
+    watch: &reflow2_core::inference::RefutationWatch,
+) -> Result<JsonValue, McpError> {
+    let now = g.refuted_since(watch).map_err(dyno_err)?;
+    if !now.is_empty()
+        && let Some(obj) = reply.as_object_mut()
+    {
+        obj.insert(
+            "now_refuted".into(),
+            serde_json::to_value(now).map_err(ser_err)?,
+        );
+    }
+    Ok(reply)
+}
+
 pub(crate) fn dyno_err(e: DynoError) -> McpError {
     match e {
         // Caused by what the caller supplied — a bad id, type, edge, value, or
@@ -4287,7 +4331,9 @@ pub struct RelationLinkReq {
     pub other_name: Option<String>,
     /// CONTRADICTS only. `opposing`: the two conflict — and what an unsaid
     /// alignment is STORED AS, which `detect_defects` reports as a
-    /// contradiction. `supporting`: they corroborate each other. Saying
+    /// contradiction. `supporting`: they corroborate each other. `conceding`:
+    /// a reply grants an objection against what it attacks (draw it with
+    /// create_edge to name the reading it moves to, `moves_to`). Saying
     /// "corroboration" in `evidence` does not set it; only this field does.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::contradicts_alignment_opt")]
