@@ -259,5 +259,6 @@ mod verifies_reaches_a_constraint;
 mod verifies_reaches_an_interface;
 mod verify_drift;
 mod vocabulary_coverage_reports_what_was_never_used;
+mod what_ifs_and_what_goes_stale;
 mod what_next;
 mod write_side;

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:34114d0bde80cb2b93f6de09ff1094b36804ca17de867f7b7193299e39385098",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:what-ifs-and-what-goes-stale-tests",
+  "properties": {},
+  "to_id": "cap:a-check-whose-conditions-lose-support-reads-stale"
+}

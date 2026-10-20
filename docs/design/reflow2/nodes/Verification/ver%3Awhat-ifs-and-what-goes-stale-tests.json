@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:16955cbe9f7f67e074a7cea4eedd1c6436ae219f2194601be280946303d2078c",
+  "node_id": "ver:what-ifs-and-what-goes-stale-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/what_ifs_and_what_goes_stale.rs. Class invariants over the trolley, cogito and argument-trial capstone designs and the five proof trials: a what-if on any assumed principle reads every position resting on it (trolley: dropping act consequentialism leaves the footbridge push unsupported, the switch turn still supported by double effect); a what-if from a premise never fans down a sibling DECOMPOSES; every row says what its claim read before; a contested claim's loss and returning objections are named; a passing check whose reasoned conditions lose support reads stale; a claim derived under a refuted supposition says so; loop_status names what has lost its reason now; a requirement's read-back follows its reason to the evidence. All nine failed on main 48f2865 and pass on the branch.",
+    "findings": "9 passed on feat/what-ifs-and-what-goes-stale (782b63df6), ~74 s; 9 failed on main 48f2865.",
+    "kind": "verification",
+    "last_run_at": "2026-10-20",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/what_ifs_and_what_goes_stale.rs",
+    "method": "test",
+    "name": "What-ifs and what goes stale: nine core class tests",
+    "status": "passing"
+  }
+}

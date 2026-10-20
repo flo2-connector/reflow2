@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0d4007b8a25ff519fe3cfeddb72069c5ee5c78ce480839c118392cc50d636af",
+  "edge_type": "REALIZES",
+  "from_id": "art:reason-to-exist-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-requirements-read-back-follows-its-reason-to-the-evidence"
+}

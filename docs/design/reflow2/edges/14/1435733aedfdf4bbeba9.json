@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:59335093bda93ba77b3b43c71cf9e62c4446fe7340a62275bd3f6389f945761c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-what-if-from-a-statement-never-fans-down-a-sibling-decomposes",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

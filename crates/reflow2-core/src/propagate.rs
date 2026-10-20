@@ -184,6 +184,17 @@ pub struct BlastRadius {
     /// claim the change leaves without support. Absent when none is.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub arguments_lost: Vec<crate::reason_to_exist::ArgumentLost>,
+    /// OBJECTIONS THAT COME BACK (req:a-what-if-shows-what-a-premise-costs-a-
+    /// contested-conclusion-and-objections-that-return): each objection a
+    /// lost reply had answered, which now counts again, with what it
+    /// attacks. Absent when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub objections_returning: Vec<crate::inference::ObjectionReturning>,
+    /// CHECKS GONE STALE (req:a-check-resting-on-a-claim-that-loses-support-
+    /// reads-stale): each check whose conditions the change leaves without
+    /// support, with those conditions. Absent when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
 }
 
 impl BlastRadius {
@@ -252,6 +263,8 @@ impl BlastRadius {
             inferences: self.inferences.clone(),
             reasons_to_exist_lost: self.reasons_to_exist_lost.clone(),
             arguments_lost: self.arguments_lost.clone(),
+            objections_returning: self.objections_returning.clone(),
+            checks_gone_stale: self.checks_gone_stale.clone(),
         }
     }
 }
@@ -330,6 +343,12 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::arguments_lost`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub arguments_lost: Vec<crate::reason_to_exist::ArgumentLost>,
+    /// See [`BlastRadius::objections_returning`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub objections_returning: Vec<crate::inference::ObjectionReturning>,
+    /// See [`BlastRadius::checks_gone_stale`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
 }
 
 /// Options for a propagation run.
@@ -428,8 +447,10 @@ impl DesignGraph {
         let mut visited: HashMap<String, ImpactedNode> = HashMap::new();
         // The last field: which way this path has gone along a line of
         // reasoning, if at all. See the walk below.
-        let mut queue: VecDeque<(String, usize, Vec<Hop>, bool, bool, ReasoningWay)> =
-            VecDeque::new();
+        // The last two fields: whether the path set out from a statement of a
+        // line of reasoning, and whether it has climbed a DECOMPOSES to a
+        // parent since. See the walk below.
+        let mut queue: VecDeque<WalkItem> = VecDeque::new();
         // The ways each node has been walked on from, so a node reached first
         // one way is walked on again when another way reaches it.
         let mut walked_ways: HashMap<String, Vec<ReasoningWay>> = HashMap::new();
@@ -447,11 +468,15 @@ impl DesignGraph {
                     false,
                     false,
                     ReasoningWay::Neither,
+                    self.takes_part_in_reasoning(s)?,
+                    false,
                 ));
             }
         }
 
-        while let Some((id, depth, via, crosses_risk, crosses_boundary, way)) = queue.pop_front() {
+        while let Some((id, depth, via, crosses_risk, crosses_boundary, way, reasoned, climbed)) =
+            queue.pop_front()
+        {
             let neighbors = self.impact_neighbors(&id, &inference_edges, &adjacency)?;
             for nb in neighbors {
                 // Skip edges to nodes that don't exist, and back to seeds.
@@ -488,6 +513,24 @@ impl DesignGraph {
                 } else {
                     way
                 };
+                // A WHAT-IF ON A PREMISE REACHES WHAT RESTS ON IT, not every
+                // sibling its parent decomposes into (req:a-what-if-on-a-
+                // premise-reaches-only-what-rests-on-it; the stage-5 re-read:
+                // Premises 2, 5 and 6 each reached the same 66 nodes through
+                // the deliverable they decompose). A path that set out from a
+                // statement of the reasoning may climb a DECOMPOSES to the
+                // parent, and never turns back down to the parent's other
+                // parts.
+                let decomposes = nb.hop.edge_type == edge::DECOMPOSES;
+                if reasoned
+                    && climbed
+                    && decomposes
+                    && nb.hop.direction == ImpactDirection::Downstream
+                {
+                    continue;
+                }
+                let next_climbed =
+                    climbed || (decomposes && nb.hop.direction == ImpactDirection::Upstream);
                 if visited.contains_key(&nb.id) {
                     // BFS: first visit is the shortest path. A node reached
                     // first one way is walked on again the first time another
@@ -504,6 +547,8 @@ impl DesignGraph {
                             seen.crosses_risk_edge,
                             seen.crosses_published_boundary,
                             next_way,
+                            reasoned,
+                            next_climbed,
                         ));
                     }
                     continue;
@@ -556,6 +601,8 @@ impl DesignGraph {
                     next_crosses,
                     next_boundary,
                     next_way,
+                    reasoned,
+                    next_climbed,
                 ));
             }
         }
@@ -705,7 +752,8 @@ impl DesignGraph {
         // The stated steps the change reaches, read by their rules. Not
         // bounded by `max_depth`: a step's verdict is not a distance, and the
         // walk ends where a conclusion still stands.
-        let inferences = self.inference_walk(seed_ids)?;
+        let walk = self.inference_walk_full(seed_ids)?;
+        let inferences = walk.rows;
         // What the change costs the reasons to exist and the arguments the
         // design records (crate::reason_to_exist), read from the same walk.
         let (reasons_to_exist_lost, arguments_lost) =
@@ -724,6 +772,8 @@ impl DesignGraph {
             inferences,
             reasons_to_exist_lost,
             arguments_lost,
+            objections_returning: walk.objections_returning,
+            checks_gone_stale: walk.checks_gone_stale,
         })
     }
 
@@ -910,6 +960,22 @@ impl DesignGraph {
         self.propagate_from(&seed_refs, opts)
     }
 }
+
+/// One path of the propagation walk: the node, its distance, the hops that
+/// reached it, whether it crossed a risk edge and a published boundary, which
+/// way it has gone along a line of reasoning, whether it set out from a
+/// statement of a line of reasoning, and whether it has climbed a DECOMPOSES
+/// since.
+type WalkItem = (
+    String,
+    usize,
+    Vec<Hop>,
+    bool,
+    bool,
+    ReasoningWay,
+    bool,
+    bool,
+);
 
 /// Which way a propagation path has gone along a line of reasoning
 /// (PREMISE_OF / CONCLUDES): not at all, up to the grounds, or down to what

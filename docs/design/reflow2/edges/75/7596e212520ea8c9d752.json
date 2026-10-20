@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:3232dfd0b5e3a03ef581cdc725ea0999e75a5acef778be741bbc34f257e14857",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-check-whose-conditions-lose-support-reads-stale",
+  "properties": {},
+  "to_id": "req:a-check-resting-on-a-claim-that-loses-support-reads-stale"
+}

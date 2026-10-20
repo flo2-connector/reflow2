@@ -1432,6 +1432,22 @@ impl DesignGraph {
                     r.inconsistencies
                 ));
             }
+            // WHAT HAS LOST ITS REASON NOW (req:what-has-lost-its-reason-now-
+            // is-one-read): the state, read whole, not a what-if's delta.
+            if r.reasons_lost_now() {
+                next.push(format!(
+                    "WHAT HAS LOST ITS REASON NOW: {} requirement(s) whose reason to exist is \
+                     lost or stands on its Decision's acceptance alone ({}), {} accepted \
+                     decision(s) no line of whose chain holds ({}), {} stale check(s) whose \
+                     conditions no longer hold ({}). reasoning_report reads each one.",
+                    r.reasons_lost,
+                    r.reason_lost_ids.join(", "),
+                    r.decisions_without_a_holding_chain,
+                    r.decision_without_a_holding_chain_ids.join(", "),
+                    r.stale_checks,
+                    r.stale_check_ids.join(", ")
+                ));
+            }
         }
 
         Ok(LoopStatus {

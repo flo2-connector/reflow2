@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2870f84f2279029c8d29bc29556752c5b6e49ac255ba038d11c361660d6b8adb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 15,
+    "action": "modified",
+    "checksum_after": "sha256:a658e2c3fc900ba73870d956581609d24193e217df86818c5bde1f4a1ea37e24",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

@@ -131,11 +131,12 @@ their subject rather than reflow2's:
 
 A position no line holds, but which a line would hold were the disputes under it settled, reads
 `contested` and names what stands against each such line (`contested_by`); `unproven` means no
-line holds for another reason. Say "contested", never "refuted", for the first. To say what losing a principle costs,
-read `holds_under_any_of`: a position every line of which names the principle loses all its
-support without it, and one with a line under another principle keeps that line. A what-if
-(`propagate_from`) on a principle the steps take up in `assumed` says nothing about what any
-position loses, because an assumption holds inside its step whatever its own truth.
+line holds for another reason. Say "contested", never "refuted", for the first. To see what losing a principle costs, run `propagate_from` on it. Each step that takes it up
+gets a row saying what its position read before (`conclusion_was`) and after
+(`conclusion_reads`): `unsupported` when every line rested on the principle, or `still_supported`
+with `still_holds_under` naming the lines that remain. An objection the principle answered comes
+back under `objections_returning`, and the position's other routes the change never reaches are
+listed in `untouched_routes`.
 
 Then run `loop_status` and `detect_gaps`, and say what the argument still owes.
 
@@ -143,7 +144,5 @@ Then run `loop_status` and `detect_gaps`, and say what the argument still owes.
 
 - reflow2 does not establish that a position is right, that a principle is true, that an
   objection is sound or that a source says what it is cited for: it reads the structure only.
-- A what-if shows little on a position that already reads contested, and says nothing about a
-  principle taken up in `assumed`; read the lines and the objections directly.
 - There is no record yet for a principle that is silent on a case: say it in the record's own
   words.

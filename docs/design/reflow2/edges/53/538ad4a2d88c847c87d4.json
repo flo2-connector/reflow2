@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:28852cd0535e855cd71cae63008c25512298d7b0dee24ec29d29912c767706c0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-test-whose-criteria-moved-supports-nothing-until-acknowledged",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

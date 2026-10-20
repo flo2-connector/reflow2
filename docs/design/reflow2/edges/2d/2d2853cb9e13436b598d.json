@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4b9e1d0fa66d7e60daa90442b4722fc7539a3a0ee9a44c53a6a05517659d3107",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:0489079cbdaf12bd3252c2c16e56908730c98842114407e5d7f311c44370b4d1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-proof-says-what-it-assumes-test"
+}

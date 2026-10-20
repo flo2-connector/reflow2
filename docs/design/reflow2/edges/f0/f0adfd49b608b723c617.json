@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:348fd834968d8d6a156a5244eed32dc6ca6292084e21e67e118ce229306d31b7",
+  "content_hash": "sha256:6db3adf00a14ca51e8141c29e92bf2d6bdd98f403cf6f2c4a4e984c5afe7b1c6",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-claim-with-one-contested-route-reads-contested-or-every-route",
+  "prev_item_hash": "sha256:348fd834968d8d6a156a5244eed32dc6ca6292084e21e67e118ce229306d31b7",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

@@ -1991,6 +1991,34 @@ fn names_a_line_of_reasoning(domain: &str) -> bool {
         })
 }
 
+/// What a `criteria_changed_after_data` gap is keyed on: the check, and each
+/// criterion that moved with its field — a different set is a different
+/// finding, so an acknowledgement does not carry over.
+fn criteria_gap_affected(
+    check: &str,
+    changes: &[crate::hypothesis::CriterionChange],
+) -> Vec<String> {
+    let mut affected = vec![check.to_string()];
+    for c in changes {
+        affected.push(format!("{}#{}", c.criterion, c.field));
+    }
+    affected.sort();
+    affected.dedup();
+    affected
+}
+
+/// The id of the `criteria_changed_after_data` gap a check with these moved
+/// criteria raises: what an owner acknowledges to let it count again.
+pub(crate) fn criteria_gap_id(
+    check: &str,
+    changes: &[crate::hypothesis::CriterionChange],
+) -> String {
+    gap_id(
+        GapSource::CriteriaChangedAfterData,
+        &criteria_gap_affected(check, changes),
+    )
+}
+
 impl DesignGraph {
     /// Whether this design is a REASONING DESIGN — a proof or an argument with
     /// nothing to build — decided from its structure alone, never from a label:
@@ -4986,14 +5014,7 @@ impl DesignGraph {
     ) -> Result<(), DynoError> {
         for (ver, changes) in self.tests_with_moved_criteria()? {
             let name = node_name(&ver);
-            let mut affected = vec![ver.node_id.clone()];
-            // The criteria that moved, and the field: a different set is a
-            // different finding, so an acknowledgement does not carry over.
-            for c in &changes {
-                affected.push(format!("{}#{}", c.criterion, c.field));
-            }
-            affected.sort();
-            affected.dedup();
+            let affected = criteria_gap_affected(&ver.node_id, &changes);
             let named: Vec<String> = changes
                 .iter()
                 .map(|c| {

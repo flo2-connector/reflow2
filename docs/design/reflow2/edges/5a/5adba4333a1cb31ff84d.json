@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:979f3bcdcc6d1861acee9eb8fd0d925a5073f7aee1bc6dbf37b33f566ebe11e7",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-test-whose-criteria-moved-reads-unknown-until-acknowledged-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-test-whose-criteria-moved-reads-unknown-until-acknowledged-tests"
+}

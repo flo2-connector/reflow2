@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:63708b0034c38a6a5227ba941610c1891c0dabbf615d0c296dd15103a1ce4311",
+  "node_id": "cap:a-what-if-from-a-statement-never-fans-down-a-sibling-decomposes",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (propagate.rs propagate_from, WalkItem). A path that set out from a node taking part in a line of reasoning may climb a DECOMPOSES (upstream) to its parent, and is never followed back down a DECOMPOSES (downstream) to a sibling, so two premises of one deliverable reach what rests on each and their totals differ (the stage-5 re-read: Premises 2, 5 and 6 each reached the same 66 nodes).",
+    "name": "A what-if from a statement of the reasoning climbs to the parent it decomposes and never fans back down to the parent's other parts",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

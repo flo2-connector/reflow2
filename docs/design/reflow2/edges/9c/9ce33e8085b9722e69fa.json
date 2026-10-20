@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b65f78247fd06869b3136632dad24c499b52ef8e456bdcc8e2ac8b7da2ab5c5e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-what-if-says-what-a-contested-claim-loses-and-which-objections-come-back",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

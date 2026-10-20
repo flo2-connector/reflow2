@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e277418d2545149ee9396f99648515ceeff5ae1994464f75b33d4aeb931fb94",
+  "node_id": "cap:a-check-whose-conditions-lose-support-reads-stale",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.rs check_conditions, stale_conditions; query.rs get_node; reasoning.rs ClaimReading). The reasoned claims that CONSTRAIN a Verification are its conditions, each read holds / conditional / contested / unsupported / refuted; it is stale when one does not hold outright, shown as `check_conditions` on get_node and in reasoning_report; a passing stale check reads unknown as a premise; propagate_from lists `checks_gone_stale`; the reasoning debt counts stale checks. The capstone's threat-emulator test reads stale (it stayed planned with no marker).",
+    "name": "A check whose reasoned conditions lose their support reads stale, naming each, and a what-if lists it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

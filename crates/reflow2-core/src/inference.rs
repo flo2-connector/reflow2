@@ -457,6 +457,12 @@ pub struct InferenceReading {
     /// other reason.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub contested_by: Vec<String>,
+    /// THE REFUTED SUPPOSITIONS it was derived under: open suppositions it,
+    /// or a premise beneath it, takes up as `assumed` while they read refuted
+    /// outside the argument (req:a-claim-derived-under-a-refuted-supposition-
+    /// says-so). The step then does not hold. Empty almost always.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_refuted_suppositions: Vec<String>,
     /// Every minimal line, lightest first, for the readers above it.
     #[serde(skip)]
     lines: Vec<Condition>,
@@ -601,6 +607,54 @@ pub struct StatementReading {
     pub why: String,
 }
 
+/// The change walk, whole: its rows, the objections it brings back and the
+/// checks it leaves stale.
+#[derive(Debug, Clone, Default)]
+pub struct InferenceWalk {
+    pub rows: Vec<InferenceImpact>,
+    pub objections_returning: Vec<ObjectionReturning>,
+    pub checks_gone_stale: Vec<StaleCheck>,
+}
+
+/// An objection a change brings back into force: the reply that answered it
+/// is lost, so it counts again (reinstatement in reverse).
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ObjectionReturning {
+    /// The objection.
+    pub objection: String,
+    /// The reply that answered it, which the change takes away.
+    pub answered_by: String,
+    /// What it attacks again.
+    pub against: Vec<String>,
+    /// `refutes` (it holds again) or `stands` (it contests again).
+    pub now: &'static str,
+    /// Why, in a sentence.
+    pub why: String,
+    /// How far from a seed.
+    pub distance: usize,
+}
+
+/// A check a change leaves stale, with each condition that no longer holds.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct StaleCheck {
+    /// The check.
+    pub check: String,
+    /// The conditions it was run against that no longer hold outright.
+    pub conditions: Vec<ConditionReading>,
+}
+
+/// How a reading reads, in one word: `holds`, `conditional`, `contested`,
+/// `unsupported` or `refuted`.
+fn reads_as(r: &Read) -> &'static str {
+    match r.truth {
+        Truth::Holds if !r.assumes.is_empty() || !r.unverified.is_empty() => "conditional",
+        Truth::Holds => "holds",
+        Truth::Fails => "refuted",
+        Truth::Unknown if !r.contested_by.is_empty() => "contested",
+        Truth::Unknown => "unsupported",
+    }
+}
+
 /// What losing a premise does to one step: the change walk's row.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct InferenceImpact {
@@ -639,6 +693,7 @@ pub struct InferenceImpact {
     pub conclusion_after: Truth,
     /// WHICH IS TRUE OF THE CLAIM (req:unsupported-is-not-refuted):
     /// `still_supported` (another line holds it: `still_supported_by`),
+    /// `contested` (no line holds it, and a dispute still holds one up),
     /// `unsupported` (nothing left holds it — it is not thereby false),
     /// `refuted` (an objection that holds refutes it), or, for an accepted
     /// Decision, `accepted_without_a_holding_chain` (it stands on its owner's
@@ -647,6 +702,25 @@ pub struct InferenceImpact {
     /// The steps concluding the claim that still hold with the losses counted.
     /// Empty unless `conclusion_reads` is `still_supported`.
     pub still_supported_by: Vec<String>,
+    /// What the claim read BEFORE the change: `holds`, `conditional`,
+    /// `contested`, `unsupported` or `refuted` — so a change to a claim that
+    /// was already only contested says what it cost
+    /// (req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-
+    /// objections-that-return).
+    pub conclusion_was: &'static str,
+    /// When the claim is still supported: every line it still holds on, with
+    /// what each holds under (req:a-what-if-on-an-assumed-principle-shows-
+    /// what-holds-only-under-it). Empty otherwise.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub still_holds_under: Vec<LineConditions>,
+    /// The claim's other routes the change does not reach at all — whatever
+    /// each reads — so a reader can tell a route the change leaves alone from
+    /// one it costs. Empty when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub untouched_routes: Vec<String>,
+    /// The refuted suppositions the step rests on after the change.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_refuted_suppositions: Vec<String>,
     /// Every premise with its truth after the loss.
     pub premises: Vec<PremiseReading>,
 }
@@ -743,6 +817,9 @@ struct Eval<'l> {
     /// beneath it rests on a provisional `unknown`, so it is not memoized:
     /// asked again from elsewhere, it is computed again.
     cuts: usize,
+    /// Every assumption some step discharges (`discharges` or `cases`), read
+    /// once per evaluation: an OPEN supposition is one no step discharges.
+    discharged: Option<BTreeSet<String>>,
 }
 
 impl<'l> Eval<'l> {
@@ -753,6 +830,7 @@ impl<'l> Eval<'l> {
             path: BTreeSet::new(),
             nodes: BTreeSet::new(),
             cuts: 0,
+            discharged: None,
         }
     }
 }
@@ -980,6 +1058,12 @@ struct Read {
     /// (req:a-conclusion-whose-every-route-is-contested-reads-contested).
     /// Empty for a node that holds, or is unknown for any other reason.
     contested_by: BTreeSet<String>,
+    /// THE REFUTED SUPPOSITIONS IT WAS DERIVED UNDER: open suppositions (never
+    /// discharged) a step beneath it takes up as `assumed` while they read
+    /// refuted outside (req:a-claim-derived-under-a-refuted-supposition-says-
+    /// so). What rests on one is no live conditional support and no standing
+    /// objection. Empty almost always.
+    refuted_under: BTreeSet<String>,
 }
 
 /// A reference's reading as a premise here: the far node's truth when it was
@@ -1049,7 +1133,15 @@ impl Read {
             unverified: best.unverified,
             evidential: best.evidential,
             contested_by: BTreeSet::new(),
+            refuted_under: BTreeSet::new(),
         }
+    }
+
+    /// This reading, unknown because it was derived under the refuted
+    /// suppositions `under`.
+    fn under_refuted(mut self, under: BTreeSet<String>) -> Self {
+        self.refuted_under = under;
+        self
     }
 
     /// This reading, unknown only because a dispute holds it up: `by` stand
@@ -1088,6 +1180,28 @@ impl Read {
 /// How one record reads refuted: what it reads (`refuted`, `defeated`,
 /// `conceded`), what holds against it, and why.
 type RefutedAs = (&'static str, Vec<String>, String);
+
+/// A check's conditions, read: see [`DesignGraph::check_conditions`].
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct CheckConditions {
+    /// Whether one of them no longer holds outright.
+    pub stale: bool,
+    /// Why, in a sentence.
+    pub why: String,
+    /// Each condition, read.
+    pub conditions: Vec<ConditionReading>,
+}
+
+/// One condition a check was run against, read now.
+#[derive(Debug, Clone, Default, serde::Serialize)]
+pub struct ConditionReading {
+    /// The claim that constrains the check.
+    pub id: String,
+    /// `holds`, `conditional`, `contested`, `unsupported` or `refuted`.
+    pub reads: &'static str,
+    /// Why, in a sentence.
+    pub why: String,
+}
 
 /// How the watched records read before a write: see
 /// [`DesignGraph::watch_refutations`].
@@ -1698,14 +1812,31 @@ impl DesignGraph {
                 _ => format!("a step whose rule `{}` {}", r.rule, r.verdict.as_str()),
             };
             let contested: BTreeSet<String> = r.contested_by.iter().cloned().collect();
-            return Ok(
-                Read::with_lines(r.verdict, why, r.lines, r.lines_capped).contested(contested)
-            );
+            let refuted: BTreeSet<String> =
+                r.rests_on_refuted_suppositions.iter().cloned().collect();
+            return Ok(Read::with_lines(r.verdict, why, r.lines, r.lines_capped)
+                .contested(contested)
+                .under_refuted(refuted));
         }
         if self.is_discontinued(id)? {
             return Ok(Read::plain(
                 Truth::Fails,
                 "discontinued by an accepted decision".to_string(),
+            ));
+        }
+        // A CLAIM REPLACED BY ANOTHER (`replaces`, recorded as OBSOLETES from
+        // its successor) feeds no chain any more
+        // (req:a-requirements-read-back-follows-its-reason-to-the-evidence,
+        // the capstone trial: after A2 was replaced by A2b, A2 still kept a
+        // decision's chain holding). It is unsupported, never refuted: the
+        // successor is what the reasoning rests on now.
+        if let Some(by) = self.replaced_by(id)? {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                format!(
+                    "replaced by {by}: a claim another takes the place of feeds no chain; what \
+                     rested on it rests on {by} only if a step says so"
+                ),
             ));
         }
         // HISTORY IS NEVER REFUTED (req:the-records-a-choice-rests-on-carry-a-
@@ -1780,6 +1911,7 @@ impl DesignGraph {
             // CONTESTED only when its own support holds, or is itself held up
             // only by a dispute: a claim nothing supports stays unsupported
             // whatever objects to it.
+            refuted_under: own.refuted_under.clone(),
             contested_by: if own.truth == Truth::Holds || !own.contested_by.is_empty() {
                 ids.iter()
                     .map(|s| s.to_string())
@@ -1886,7 +2018,23 @@ impl DesignGraph {
                 })
                 .min_by_key(|(o, t)| (o.len(), t.len()))
                 .unwrap_or_default();
-            let (standing, why) = if truth == Truth::Holds && !tests.is_empty() {
+            let (standing, why) = if truth != Truth::Holds && !r.refuted_under.is_empty() {
+                // NO STANDING OBJECTION: it was derived under a supposition
+                // that now reads refuted (req:a-claim-derived-under-a-refuted-
+                // supposition-says-so).
+                (
+                    "answered",
+                    format!(
+                        "it rests on the refuted supposition(s) {}, so it no longer counts: {}",
+                        r.refuted_under
+                            .iter()
+                            .cloned()
+                            .collect::<Vec<_>>()
+                            .join(", "),
+                        r.why
+                    ),
+                )
+            } else if truth == Truth::Holds && !tests.is_empty() {
                 (
                     "stands",
                     format!(
@@ -1954,6 +2102,127 @@ impl DesignGraph {
         Ok(out)
     }
 
+    /// A check's CONDITIONS: the claims that CONSTRAIN it and take part in a
+    /// line of reasoning (a test setting concluded from an assessment), each
+    /// read now — `holds`, `conditional`, `contested`, `unsupported` or
+    /// `refuted`; and whether the check is STALE: one of them no longer holds
+    /// outright (req:a-check-resting-on-a-claim-that-loses-support-reads-
+    /// stale). `None` for a check no reasoned claim constrains, or not a
+    /// Verification.
+    pub fn check_conditions(&self, id: &str) -> Result<Option<CheckConditions>, DynoError> {
+        if self.get_node(node::VERIFICATION, id)?.is_none() {
+            return Ok(None);
+        }
+        let lost = BTreeSet::new();
+        let mut ev = Eval::new(&lost);
+        let conditions = self.condition_readings(id, &mut ev, INFERENCE_DEPTH)?;
+        if conditions.is_empty() {
+            return Ok(None);
+        }
+        let failing: Vec<String> = conditions
+            .iter()
+            .filter(|c| c.reads != "holds")
+            .map(|c| c.id.clone())
+            .collect();
+        Ok(Some(CheckConditions {
+            stale: !failing.is_empty(),
+            why: if failing.is_empty() {
+                "every condition it was run against holds".to_string()
+            } else {
+                format!(
+                    "STALE: the condition(s) {} it was run against no longer hold outright, so \
+                     whatever status it records says nothing about them until they are settled \
+                     or it is run again",
+                    failing.join(", ")
+                )
+            },
+            conditions,
+        }))
+    }
+
+    /// The conditions of `id` that no longer hold outright, read in `ev`
+    /// (so a what-if's losses count); `None` when every one holds or none is
+    /// reasoned.
+    fn stale_conditions(
+        &self,
+        id: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Option<Vec<ConditionReading>>, DynoError> {
+        let failing: Vec<ConditionReading> = self
+            .condition_readings(id, ev, depth)?
+            .into_iter()
+            .filter(|c| c.reads != "holds")
+            .collect();
+        Ok((!failing.is_empty()).then_some(failing))
+    }
+
+    fn condition_readings(
+        &self,
+        id: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Vec<ConditionReading>, DynoError> {
+        let mut out = Vec::new();
+        let mut seen = BTreeSet::new();
+        for e in self.incoming(id, Some(edge::CONSTRAINS))? {
+            let c = e.from_id;
+            if !seen.insert(c.clone()) || !self.is_in_a_line_of_reasoning(&c)? {
+                continue;
+            }
+            let r = self.truth_full(&c, ev, depth.saturating_sub(1))?;
+            let reads = match r.truth {
+                Truth::Holds if !r.assumes.is_empty() || !r.unverified.is_empty() => "conditional",
+                Truth::Holds => "holds",
+                Truth::Fails => "refuted",
+                Truth::Unknown if !r.contested_by.is_empty() => "contested",
+                Truth::Unknown => "unsupported",
+            };
+            out.push(ConditionReading {
+                id: c,
+                reads,
+                why: r.why,
+            });
+        }
+        out.sort_by(|a, b| a.id.cmp(&b.id));
+        Ok(out)
+    }
+
+    /// The live statement that REPLACES `id` — an OBSOLETES into it from a
+    /// Requirement or Constraint that is not itself dropped or discontinued —
+    /// when one does. A Decision's OBSOLETES is a withdrawal, read as
+    /// discontinued elsewhere.
+    pub fn replaced_by(&self, id: &str) -> Result<Option<String>, DynoError> {
+        let mut by: Vec<String> = Vec::new();
+        for e in self.incoming(id, Some(edge::OBSOLETES))? {
+            for ty in [node::REQUIREMENT, node::CONSTRAINT] {
+                if let Some(n) = self.get_node(ty, &e.from_id)?
+                    && prop(&n.properties, "status") != Some("dropped")
+                    && !self.is_discontinued(&e.from_id)?
+                {
+                    by.push(e.from_id.clone());
+                }
+            }
+        }
+        by.sort();
+        Ok(by.into_iter().next())
+    }
+
+    /// Whether some step discharges `id` (`discharges` or `cases`): a
+    /// supposition closed somewhere, not an open one. Read once per
+    /// evaluation.
+    fn discharged_somewhere(&self, id: &str, ev: &mut Eval<'_>) -> Result<bool, DynoError> {
+        if ev.discharged.is_none() {
+            let mut all = BTreeSet::new();
+            for st in self.scan_nodes(node::INFERENCE)? {
+                all.extend(list_prop(&st.properties, "discharges"));
+                all.extend(list_prop(&st.properties, "cases"));
+            }
+            ev.discharged = Some(all);
+        }
+        Ok(ev.discharged.as_ref().is_some_and(|d| d.contains(id)))
+    }
+
     /// The reply that CONCEDES `objection` — a CONTRADICTS marked `alignment:
     /// conceding` from a reply that holds — with the reading it moves the
     /// argument to (`moves_to`), when one does. The first in id order.
@@ -2013,6 +2282,7 @@ impl DesignGraph {
         let mut holding_lines: Vec<Condition> = Vec::new();
         let mut lines_capped = false;
         let mut contested_routes: Vec<(String, Vec<String>)> = Vec::new();
+        let mut refuted_routes: BTreeSet<String> = BTreeSet::new();
         for s in &steps {
             let r = self.step_reading(s, ev, depth)?;
             if r.verdict == Truth::Holds {
@@ -2021,6 +2291,9 @@ impl DesignGraph {
             }
             if !r.contested_by.is_empty() {
                 contested_routes.push((s.clone(), r.contested_by.clone()));
+            }
+            if r.verdict != Truth::Holds {
+                refuted_routes.extend(r.rests_on_refuted_suppositions.iter().cloned());
             }
             verdicts.push((s.clone(), r.verdict));
         }
@@ -2123,6 +2396,28 @@ impl DesignGraph {
                     ),
                 )
                 .contested(by),
+            ));
+        }
+        // DERIVED UNDER A REFUTED SUPPOSITION (req:a-claim-derived-under-a-
+        // refuted-supposition-says-so): it says so, and is no open
+        // conditional that still holds.
+        if !refuted_routes.is_empty() {
+            return Ok(Some(
+                Read::plain(
+                    Truth::Unknown,
+                    format!(
+                        "unsupported: it rests on the refuted supposition(s) {} — derived under a \
+                         supposition that now reads refuted, so it no longer holds even \
+                         conditionally ({})",
+                        refuted_routes
+                            .iter()
+                            .cloned()
+                            .collect::<Vec<_>>()
+                            .join(", "),
+                        said.join("; ")
+                    ),
+                )
+                .under_refuted(refuted_routes),
             ));
         }
         Ok(Some(Read::plain(
@@ -2329,6 +2624,27 @@ impl DesignGraph {
                     )
                 }
             }
+            // A CHECK WHOSE CONDITIONS LOST THEIR SUPPORT IS STALE
+            // (req:a-check-resting-on-a-claim-that-loses-support-reads-stale):
+            // a passing check run against settings concluded from claims that
+            // no longer hold says nothing about them.
+            node::VERIFICATION
+                if status.as_deref() == Some("passing")
+                    && self.stale_conditions(id, ev, depth)?.is_some() =>
+            {
+                let failing = self.stale_conditions(id, ev, depth)?.unwrap_or_default();
+                (
+                    Truth::Unknown,
+                    format!(
+                        "stale: it was run against conditions that no longer hold — {}",
+                        failing
+                            .iter()
+                            .map(|c| format!("{} ({})", c.id, c.reads))
+                            .collect::<Vec<_>>()
+                            .join("; ")
+                    ),
+                )
+            }
             node::VERIFICATION => match status.as_deref() {
                 Some("passing") => match self.computed_check_truth(id, &n.properties)? {
                     // A HYPOTHESIS TEST, KEPT: read from its record's block
@@ -2480,10 +2796,32 @@ impl DesignGraph {
                 ),
             ));
         }
-        // A criterion changed after the data is REPORTED (the
-        // `criteria_changed_after_data` gap and the check's `test_reading`),
-        // never folded into the truth: the requirement asks for a report, and
-        // a legitimate change must not silently unsay the test.
+        // A CRITERION CHANGED AFTER THE DATA stops the test counting until
+        // its owner acknowledges the change with a reason
+        // (req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-
+        // acknowledged; dec:idea-should-a-criterion-changed-after-the-data-
+        // move-the-tests-reading, option b). Until 2026-10-20 it was only
+        // reported. Every write still lands; nothing is refused.
+        let (moved, _) = self.criteria_changes(id)?;
+        if !moved.is_empty()
+            && self
+                .gap_acknowledgement(&crate::detect::criteria_gap_id(id, &moved))?
+                .is_none()
+        {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                format!(
+                    "its criteria moved after its data ({}): it supports nothing until the owner \
+                     acknowledges the change with a reason (acknowledge the \
+                     criteria_changed_after_data gap); then it reads as before",
+                    moved
+                        .iter()
+                        .map(|c| format!("{} `{}`", c.criterion, c.field))
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                ),
+            ));
+        }
         Ok(Read::one(
             Truth::Holds,
             test.supported(),
@@ -3097,6 +3435,7 @@ impl DesignGraph {
             objections: Vec::new(),
             objected: None,
             contested_by: Vec::new(),
+            rests_on_refuted_suppositions: Vec::new(),
             lines: vec![Condition::default()],
         };
         let Some(rec) = self.step_record(inference_id)? else {
@@ -3161,10 +3500,42 @@ impl DesignGraph {
         // them by its rule below.
         let mut values = Vec::new();
         let mut parts: Vec<(Truth, Vec<Condition>)> = Vec::new();
+        // The refuted suppositions this step, or a premise it rests on, was
+        // derived under.
+        let mut refuted_sup: BTreeSet<String> = BTreeSet::new();
         // Per premise, what holds it up when only a dispute does.
         let mut disputed: Vec<BTreeSet<String>> = Vec::new();
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
+                // AN OPEN SUPPOSITION — one no step anywhere discharges, a
+                // principle an argument applies, a hypothesis left open — is
+                // read for what it is outside the argument, twice:
+                let open = !self.discharged_somewhere(&p, ev)?;
+                // (A what-if that DROPS it is read at the claims, not here:
+                // inside the argument it still holds, and a step that later
+                // discharges it is untouched — see `without_dropped`.)
+                // REFUTED OUTSIDE (req:a-claim-derived-under-a-refuted-
+                // supposition-says-so, the capstone trial): inside the argument
+                // it holds whatever its own truth, which is correct logic; but
+                // once it reads refuted, what is derived under it is no live
+                // conditional support and no standing objection.
+                if open && self.truth_full(&p, ev, depth - 1)?.truth == Truth::Fails {
+                    values.push(Truth::Unknown);
+                    disputed.push(BTreeSet::new());
+                    parts.push((Truth::Unknown, vec![Condition::default()]));
+                    refuted_sup.insert(p.clone());
+                    reading.premises.push(PremiseReading {
+                        node_type: self.type_holding(&p)?,
+                        id: p,
+                        truth: Truth::Unknown,
+                        why: "assumed, but the supposition reads refuted outside the argument: \
+                              what is derived under it rests on a refuted supposition"
+                            .to_string(),
+                        role: Some("assumed"),
+                        name: None,
+                    });
+                    continue;
+                }
                 values.push(Truth::Holds);
                 disputed.push(BTreeSet::new());
                 parts.push((
@@ -3195,6 +3566,9 @@ impl DesignGraph {
             };
             values.push(r.truth);
             reading.lines_capped |= r.lines_capped;
+            if r.truth != Truth::Holds {
+                refuted_sup.extend(r.refuted_under.iter().cloned());
+            }
             disputed.push(if r.truth == Truth::Unknown {
                 r.contested_by.clone()
             } else {
@@ -3508,6 +3882,19 @@ impl DesignGraph {
             }
             reading.objections = objections;
         }
+        if reading.verdict != Truth::Holds && !refuted_sup.is_empty() {
+            let names: Vec<String> = refuted_sup.iter().cloned().collect();
+            let why = format!(
+                "it rests on the refuted supposition(s) {}: held inside the argument, but refuted \
+                 outside it, so what it concludes is no live conditional support",
+                names.join(", ")
+            );
+            reading.note = Some(match reading.note.take() {
+                Some(n) => format!("{n}; {why}"),
+                None => why,
+            });
+            reading.rests_on_refuted_suppositions = names;
+        }
         // A CONTESTED ROUTE: unknown, and held up only by disputes — the
         // objections standing against the step itself, and those under the
         // premises it rests on.
@@ -3792,13 +4179,36 @@ impl DesignGraph {
     /// Empty when no seed is a premise of anything — the whole cost for a
     /// design that records no Inference is one adjacency read per seed.
     pub fn inference_walk(&self, seeds: &[&str]) -> Result<Vec<InferenceImpact>, DynoError> {
+        Ok(self.inference_walk_full(seeds)?.rows)
+    }
+
+    /// [`Self::inference_walk`], with what the change brings BACK and what it
+    /// leaves STALE beside the rows: every objection whose reply the change
+    /// takes away (reinstatement in reverse), and every check whose
+    /// conditions it leaves without support.
+    pub fn inference_walk_full(&self, seeds: &[&str]) -> Result<InferenceWalk, DynoError> {
         let mut lost: BTreeSet<String> = seeds.iter().map(|s| s.to_string()).collect();
+        let mut lost_at: BTreeMap<String, usize> =
+            seeds.iter().map(|s| (s.to_string(), 0)).collect();
         // Every step reached, with the distance it was first reached at.
         let mut reached: BTreeMap<String, usize> = BTreeMap::new();
         let mut frontier: Vec<(String, usize)> = seeds.iter().map(|s| (s.to_string(), 1)).collect();
+        // The open suppositions (no step discharges them): dropping one costs
+        // every step that takes it up (req:a-what-if-on-an-assumed-principle-
+        // shows-what-holds-only-under-it).
+        let before_set = BTreeSet::new();
+        let mut before_ev = Eval::new(&before_set);
+        let mut returning: Vec<ObjectionReturning> = Vec::new();
+        let mut returned: BTreeSet<String> = BTreeSet::new();
+        // Claims that hold only under a dropped assumption: reached, not lost.
+        let mut under_dropped: BTreeSet<String> = BTreeSet::new();
         loop {
+            let mut frontier_later: Vec<(String, usize)> = Vec::new();
             while let Some((x, distance)) = frontier.pop() {
                 let mut rests: Vec<String> = self.steps_resting_on(&x)?;
+                if lost.contains(&x) {
+                    rests.extend(self.steps_assuming(&x)?);
+                }
                 // A lost STEP is reached itself: its conclusion is what it costs.
                 if self.get_node(node::INFERENCE, &x)?.is_some() {
                     rests.push(x.clone());
@@ -3809,8 +4219,11 @@ impl DesignGraph {
             }
             // Carry on past every conclusion that held and no longer does — it
             // is left UNSUPPORTED, and what rests on it loses its support in
-            // turn. Losses only grow, so a conclusion that stood a round ago
-            // may fall now: re-read until nothing new is lost.
+            // turn — and past one that was only CONTESTED and is now left with
+            // nothing (req:a-what-if-shows-what-a-premise-costs-a-contested-
+            // conclusion-and-objections-that-return: "route B loses its last
+            // unobjected premise"). Losses only grow, so a conclusion that
+            // stood a round ago may fall now: re-read until nothing new is lost.
             let mut ev = Eval::new(&lost);
             let mut newly: Vec<(String, usize)> = Vec::new();
             for (s, distance) in &reached {
@@ -3820,23 +4233,93 @@ impl DesignGraph {
                 if lost.contains(&c) || newly.iter().any(|(n, _)| *n == c) {
                     continue;
                 }
-                if self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0 != Truth::Holds
-                    && self.premise_truth(&c)?.0 == Truth::Holds
+                let raw = self.truth_full(&c, &mut ev, INFERENCE_DEPTH)?;
+                let after = self.without_dropped(raw.clone(), &lost);
+                let before = self.truth_full(&c, &mut before_ev, INFERENCE_DEPTH)?;
+                // HELD ONLY UNDER A DROPPED ASSUMPTION: it still holds inside
+                // the argument, so it is not counted lost — a step that
+                // discharges the assumption above it is untouched (a reductio
+                // whose supposition is dropped still holds) — but what rests
+                // on it is reached and read without the dropped lines.
+                if before.truth == Truth::Holds
+                    && raw.truth == Truth::Holds
+                    && after.truth != Truth::Holds
                 {
+                    if under_dropped.insert(c.clone()) {
+                        frontier_later.push((c, distance + 1));
+                    }
+                    continue;
+                }
+                let fell = before.truth == Truth::Holds && after.truth != Truth::Holds;
+                let lost_its_dispute = before.truth == Truth::Unknown
+                    && !before.contested_by.is_empty()
+                    && after.truth == Truth::Unknown
+                    && after.contested_by.is_empty();
+                if fell || lost_its_dispute {
                     newly.push((c, distance + 1));
                 }
             }
-            if newly.is_empty() {
+            // OBJECTIONS THAT COME BACK: a reply the change takes away no
+            // longer answers its objection, which counts again against what
+            // it attacks — and what rests on that is reached in turn.
+            let mut came_back: Vec<(String, usize)> = Vec::new();
+            for (x, at) in lost_at.clone() {
+                for e in self.outgoing(&x, Some(edge::CONTRADICTS))? {
+                    if matches!(
+                        e.properties.get("alignment").and_then(Value::as_str),
+                        Some("supporting" | "conceding")
+                    ) {
+                        continue;
+                    }
+                    let o = e.to_id;
+                    if returned.contains(&o) {
+                        continue;
+                    }
+                    let was = self.truth_full(&o, &mut before_ev, INFERENCE_DEPTH)?.truth;
+                    let now = self.truth_full(&o, &mut ev, INFERENCE_DEPTH)?.truth;
+                    if was != Truth::Fails || now == Truth::Fails {
+                        continue;
+                    }
+                    returned.insert(o.clone());
+                    let against = self.attack_targets_of_objection(&o)?;
+                    returning.push(ObjectionReturning {
+                        objection: o.clone(),
+                        answered_by: x.clone(),
+                        now: if now == Truth::Holds {
+                            "refutes"
+                        } else {
+                            "stands"
+                        },
+                        why: format!(
+                            "{x} answered it, and the change takes {x} away: it {} again against \
+                             {}",
+                            if now == Truth::Holds {
+                                "holds"
+                            } else {
+                                "stands"
+                            },
+                            against.join(", ")
+                        ),
+                        against: against.clone(),
+                        distance: at + 1,
+                    });
+                    for t in against {
+                        came_back.push((t, at + 1));
+                    }
+                }
+            }
+            if newly.is_empty() && came_back.is_empty() && frontier_later.is_empty() {
                 break;
             }
+            frontier.extend(frontier_later);
             for (c, distance) in newly {
                 lost.insert(c.clone());
+                lost_at.insert(c.clone(), distance);
                 frontier.push((c, distance));
             }
+            frontier.extend(came_back);
         }
 
-        let before_set = BTreeSet::new();
-        let mut before_ev = Eval::new(&before_set);
         let mut after_ev = Eval::new(&lost);
         let mut rows = Vec::new();
         for (s, distance) in &reached {
@@ -3853,28 +4336,38 @@ impl DesignGraph {
                 r.note = Some(why);
                 r
             } else {
-                self.step_reading(s, &mut after_ev, INFERENCE_DEPTH)?
+                let r = self.step_reading(s, &mut after_ev, INFERENCE_DEPTH)?;
+                self.step_without_dropped(r, &lost)
             };
-            let conclusion_after = match &after.conclusion {
-                Some(c) => self.truth_of(c, &mut after_ev, INFERENCE_DEPTH)?.0,
-                None => Truth::Unknown,
+            let (conclusion_was, conclusion_after, conclusion_read) = match &after.conclusion {
+                Some(c) => {
+                    let was = self.truth_full(c, &mut before_ev, INFERENCE_DEPTH)?;
+                    let now = self.truth_full(c, &mut after_ev, INFERENCE_DEPTH)?;
+                    let now = self.without_dropped(now, &lost);
+                    (reads_as(&was), now.truth, Some(now))
+                }
+                None => ("unsupported", Truth::Unknown, None),
             };
             // The other lines: every step concluding the claim that still
-            // holds with the losses counted.
+            // holds with the losses counted, and every one the change does not
+            // reach at all, whatever it reads.
             let mut still_supported_by = Vec::new();
-            if conclusion_after == Truth::Holds
-                && let Some(c) = &after.conclusion
-            {
+            let mut untouched_routes = Vec::new();
+            if let Some(c) = &after.conclusion {
                 for other in self.inferences_concluding(c)? {
                     if lost.contains(&other) {
                         continue;
                     }
-                    if self
-                        .step_reading(&other, &mut after_ev, INFERENCE_DEPTH)?
-                        .verdict
-                        == Truth::Holds
+                    if conclusion_after == Truth::Holds && {
+                        let r = self.step_reading(&other, &mut after_ev, INFERENCE_DEPTH)?;
+                        self.step_without_dropped(r, &lost).verdict == Truth::Holds
+                    } {
+                        still_supported_by.push(other.clone());
+                    }
+                    if !reached.contains_key(&other)
+                        && self.rests_on_closure(&other)?.is_disjoint(&lost)
                     {
-                        still_supported_by.push(other);
+                        untouched_routes.push(other);
                     }
                 }
             }
@@ -3887,11 +4380,18 @@ impl DesignGraph {
                     Some(c) => self.is_accepted_decision(c)?,
                     None => false,
                 };
-            let conclusion_reads = match conclusion_after {
-                Truth::Holds if held_by_acceptance_alone => "accepted_without_a_holding_chain",
-                Truth::Holds => "still_supported",
-                Truth::Fails => "refuted",
-                Truth::Unknown => "unsupported",
+            let conclusion_reads = match (&conclusion_read, conclusion_after) {
+                (_, Truth::Holds) if held_by_acceptance_alone => "accepted_without_a_holding_chain",
+                (_, Truth::Holds) => "still_supported",
+                (_, Truth::Fails) => "refuted",
+                (Some(r), Truth::Unknown) if !r.contested_by.is_empty() => "contested",
+                (_, Truth::Unknown) => "unsupported",
+            };
+            let still_holds_under = match &conclusion_read {
+                Some(r) if conclusion_reads == "still_supported" => {
+                    r.lines.iter().map(LineConditions::of).collect()
+                }
+                _ => Vec::new(),
             };
             let lost_premises: Vec<String> = after
                 .premises
@@ -3916,8 +4416,12 @@ impl DesignGraph {
                 after: after.verdict,
                 lost_premises,
                 conclusion_after,
+                conclusion_was,
                 conclusion_reads,
                 still_supported_by,
+                still_holds_under,
+                untouched_routes,
+                rests_on_refuted_suppositions: after.rests_on_refuted_suppositions,
                 premises: after.premises,
             });
         }
@@ -3926,7 +4430,128 @@ impl DesignGraph {
                 .cmp(&b.distance)
                 .then_with(|| a.inference.cmp(&b.inference))
         });
-        Ok(rows)
+        // CHECKS GONE STALE (req:a-check-resting-on-a-claim-that-loses-
+        // support-reads-stale): a check constrained by a claim the change
+        // leaves without support, named with each condition that no longer
+        // holds.
+        let mut touched: BTreeSet<String> = lost.clone();
+        touched.extend(rows.iter().filter_map(|r| r.conclusion.clone()));
+        let mut checks: BTreeSet<String> = BTreeSet::new();
+        for t in &touched {
+            for e in self.outgoing(t, Some(edge::CONSTRAINS))? {
+                if self.get_node(node::VERIFICATION, &e.to_id)?.is_some() {
+                    checks.insert(e.to_id);
+                }
+            }
+        }
+        let mut checks_gone_stale = Vec::new();
+        for check in checks {
+            if self
+                .stale_conditions(&check, &mut before_ev, INFERENCE_DEPTH)?
+                .is_some()
+            {
+                continue;
+            }
+            if let Some(failing) = self.stale_conditions(&check, &mut after_ev, INFERENCE_DEPTH)? {
+                checks_gone_stale.push(StaleCheck {
+                    check,
+                    conditions: failing,
+                });
+            }
+        }
+        Ok(InferenceWalk {
+            rows,
+            objections_returning: returning,
+            checks_gone_stale,
+        })
+    }
+
+    /// A reading in a what-if that DROPS assumptions (req:a-what-if-on-an-
+    /// assumed-principle-shows-what-holds-only-under-it): every line that
+    /// still rests on a dropped assumption — one taken up and not
+    /// discharged on the way here — goes. With none left, what held reads
+    /// UNSUPPORTED in the what-if; with some left, it holds on those.
+    /// Inside a step that discharges the assumption nothing changes, which
+    /// is why this is read at a claim and never at a step's premise.
+    fn without_dropped(&self, r: Read, lost: &BTreeSet<String>) -> Read {
+        if r.truth != Truth::Holds || lost.is_empty() {
+            return r;
+        }
+        let keep: Vec<Condition> = r
+            .lines
+            .iter()
+            .filter(|l| l.assumes.is_disjoint(lost))
+            .cloned()
+            .collect();
+        if keep.len() == r.lines.len() {
+            return r;
+        }
+        if keep.is_empty() {
+            let dropped: BTreeSet<String> = r
+                .lines
+                .iter()
+                .flat_map(|l| l.assumes.intersection(lost).cloned())
+                .collect();
+            return Read::plain(
+                Truth::Unknown,
+                format!(
+                    "unsupported in this what-if: every line it held on rests on the dropped \
+                     assumption(s) {}",
+                    dropped.into_iter().collect::<Vec<_>>().join(", ")
+                ),
+            );
+        }
+        let why = format!(
+            "{}; without the dropped assumption(s) it holds on its remaining line(s)",
+            r.why
+        );
+        Read::with_lines(Truth::Holds, why, keep, r.lines_capped)
+    }
+
+    /// A step's reading in a what-if that drops assumptions: it no longer
+    /// holds when every line it holds on rests on one.
+    fn step_without_dropped(
+        &self,
+        mut r: InferenceReading,
+        lost: &BTreeSet<String>,
+    ) -> InferenceReading {
+        if r.verdict != Truth::Holds || lost.is_empty() {
+            return r;
+        }
+        let keep: Vec<Condition> = r
+            .lines
+            .iter()
+            .filter(|l| l.assumes.is_disjoint(lost))
+            .cloned()
+            .collect();
+        if keep.is_empty() {
+            r.verdict = Truth::Unknown;
+            r.note =
+                Some("every line it held on rests on an assumption this what-if drops".to_string());
+            r.holds_under_any_of = Vec::new();
+        } else if keep.len() < r.lines.len() {
+            r.assumes = keep[0].assumes.iter().cloned().collect();
+            r.holds_under_any_of = if keep.len() > 1 {
+                keep.iter().map(LineConditions::of).collect()
+            } else {
+                Vec::new()
+            };
+            r.lines = keep;
+        }
+        r
+    }
+
+    /// The steps that take `id` up as an `assumed` premise, sorted.
+    fn steps_assuming(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        let mut steps: Vec<String> = self
+            .outgoing(id, Some(edge::PREMISE_OF))?
+            .into_iter()
+            .filter(|e| e.properties.get("role").and_then(Value::as_str) == Some("assumed"))
+            .map(|e| e.to_id)
+            .collect();
+        steps.sort();
+        steps.dedup();
+        Ok(steps)
     }
 
     // ─── The finding ───────────────────────────────────────────────────────
