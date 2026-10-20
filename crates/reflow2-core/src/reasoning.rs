@@ -226,6 +226,11 @@ pub enum ClaimTruth {
     /// way to it discharges, or only if the unverified citation(s) in
     /// `rests_on_unverified` say what they are recalled to say.
     Conditional,
+    /// Holds only through a STATISTICAL TEST (`rests_on_tests`): supported at
+    /// that test's α, evidence and never proof — a reader is never told it
+    /// holds (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-
+    /// never-as-shown).
+    Supported,
     /// Computed to fail: refuted.
     Fails,
     /// Nothing reflow2 computes says either way.
@@ -233,11 +238,17 @@ pub enum ClaimTruth {
 }
 
 impl ClaimTruth {
-    pub(crate) fn of(truth: Truth, assumes: &[String], unverified: &[String]) -> Self {
+    pub(crate) fn of(
+        truth: Truth,
+        assumes: &[String],
+        unverified: &[String],
+        tests: &[String],
+    ) -> Self {
         match truth {
             Truth::Holds if !assumes.is_empty() || !unverified.is_empty() => {
                 ClaimTruth::Conditional
             }
+            Truth::Holds if !tests.is_empty() => ClaimTruth::Supported,
             Truth::Holds => ClaimTruth::Holds,
             Truth::Fails => ClaimTruth::Fails,
             Truth::Unknown => ClaimTruth::Unknown,
@@ -271,9 +282,11 @@ pub struct ClaimReading {
     /// back (req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub says: Option<String>,
-    /// Computed — holds, conditional, fails or unknown — never the node's own
-    /// status. `conditional` when it holds only under an assumption no step
-    /// on the way discharges (named in `assumes` and in `why`).
+    /// Computed — holds, conditional, supported, fails or unknown — never the
+    /// node's own status. `conditional` when it holds only under an
+    /// assumption no step on the way discharges (named in `assumes` and in
+    /// `why`); `supported` when it holds only through a statistical test
+    /// (`rests_on_tests`).
     pub truth: ClaimTruth,
     /// Why, in a sentence.
     pub why: String,
@@ -328,6 +341,10 @@ pub struct ClaimReading {
     /// here, `truth` reads `conditional`, never `holds`.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_unverified: Vec<String>,
+    /// THE STATISTICAL TESTS it rests on, at any depth: what makes it read
+    /// `supported` rather than `holds`. Empty when it rests on none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_tests: Vec<String>,
     /// The `contested` Decision that keeps its dispute open on purpose.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contested_by_design: Option<String>,
@@ -934,7 +951,8 @@ impl DesignGraph {
         let (truth, why) = self.premise_truth(id)?;
         let assumes = self.assumptions_under(id)?;
         let rests_on_unverified = self.unverified_under(id)?;
-        let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified);
+        let rests_on_tests = self.tests_under(id)?;
+        let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified, &rests_on_tests);
         let why = if claim_truth == ClaimTruth::Conditional && !assumes.is_empty() {
             format!(
                 "conditional: it holds only under the assumption(s) {}, which no step on the way \
@@ -946,6 +964,12 @@ impl DesignGraph {
                 "conditional: it holds only if the unverified citation(s) {} say what they are \
                  recalled to say, never plainly; {why}",
                 rests_on_unverified.join(", ")
+            )
+        } else if claim_truth == ClaimTruth::Supported {
+            format!(
+                "supported at α, never proven: it holds only through the statistical test(s) {}, \
+                 which are evidence at their significance level; {why}",
+                rests_on_tests.join(", ")
             )
         } else {
             why
@@ -999,6 +1023,7 @@ impl DesignGraph {
             statement: self.statement_reading(id)?,
             assumes,
             rests_on_unverified,
+            rests_on_tests,
             contested_by_design: self.contested_governor(id)?,
             reason_to_exist: self.reason_to_exist(id)?,
             argues_for: Vec::new(),

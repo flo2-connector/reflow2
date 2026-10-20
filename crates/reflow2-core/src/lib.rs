@@ -68,6 +68,7 @@ pub mod graph;
 pub mod graph_read;
 pub mod heal;
 pub mod hierarchy;
+pub mod hypothesis;
 pub mod identity;
 pub mod ility;
 pub mod inference;

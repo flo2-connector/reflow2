@@ -284,6 +284,12 @@ pub enum ProofStatus {
     /// discharges): a result inside a hypothetical argument, never a proof of
     /// the claim on its own.
     Conditional,
+    /// A derivation holds, but it rests on a STATISTICAL TEST
+    /// ([`crate::hypothesis`]): SUPPORTED AT α, evidence and never proof, so
+    /// never `shown` or `proven`, however its steps are confirmed
+    /// (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-
+    /// shown).
+    Supported,
     /// A derivation holds, but an objection stands against the conclusion:
     /// neither established nor answered (requirement A).
     Contested,
@@ -298,6 +304,7 @@ impl ProofStatus {
             ProofStatus::Proven => "proven",
             ProofStatus::Shown => "shown",
             ProofStatus::Conditional => "conditional",
+            ProofStatus::Supported => "supported",
             ProofStatus::Contested => "contested",
             ProofStatus::Unproven => "unproven",
         }
@@ -379,6 +386,12 @@ pub struct InferenceReading {
     /// theorems, item 4). Empty when every citation beneath it is verified.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_unverified: Vec<String>,
+    /// THE STATISTICAL TESTS this step's verdict rests on, at any depth:
+    /// checks whose support is a hypothesis test that rejected H0
+    /// ([`crate::hypothesis`]). A step resting on one holds as EVIDENCE at
+    /// that test's α, never as proof. Empty when it rests on none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_tests: Vec<String>,
     /// The assumptions this step DISCHARGES, as it records them
     /// (`discharges`): a reductio's supposition, an induction hypothesis.
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -703,6 +716,13 @@ struct Read {
     /// recalled to say — but never discharged by a step: checking its source
     /// is what clears it.
     unverified: BTreeSet<String>,
+    /// THE STATISTICAL TESTS it rests on ([`crate::hypothesis`]): checks whose
+    /// support is a hypothesis test that rejected H0. Carried like an
+    /// unverified citation and never discharged: what rests on one is
+    /// SUPPORTED AT α, evidence and never proof, however its steps are
+    /// confirmed (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-
+    /// never-as-shown).
+    evidential: BTreeSet<String>,
 }
 
 /// A reference's reading as a premise here: the far node's truth when it was
@@ -731,6 +751,13 @@ fn far_read(far: &crate::far::FarReading) -> Read {
             ),
             assumes: BTreeSet::new(),
             unverified: far.holds_only_if.iter().cloned().collect(),
+            // A far claim that is only SUPPORTED there (it rests on a
+            // statistical test) is evidence here too.
+            evidential: if far.proof_status.as_deref() == Some("supported") {
+                BTreeSet::from([format!("xref:{}:{}", far.design, far.node_id)])
+            } else {
+                BTreeSet::new()
+            },
         },
         FarState::Stale | FarState::Unreachable => Read::plain(Truth::Unknown, far.why.clone()),
     }
@@ -743,6 +770,7 @@ impl Read {
             why,
             assumes: BTreeSet::new(),
             unverified: BTreeSet::new(),
+            evidential: BTreeSet::new(),
         }
     }
 
@@ -1141,6 +1169,7 @@ impl DesignGraph {
                 why,
                 assumes: r.assumes.into_iter().collect(),
                 unverified: r.rests_on_unverified.into_iter().collect(),
+                evidential: r.rests_on_tests.into_iter().collect(),
             });
         }
         if self.is_discontinued(id)? {
@@ -1233,6 +1262,7 @@ impl DesignGraph {
             },
             assumes: own.assumes,
             unverified: own.unverified,
+            evidential: own.evidential,
         })
     }
 
@@ -1282,7 +1312,26 @@ impl DesignGraph {
                 .chain(r.unverified.difference(&scope.unverified))
                 .cloned()
                 .collect();
-            let (standing, why) = if truth == Truth::Holds && !outside.is_empty() {
+            // EVIDENCE AGAINST IS NOT A COUNTEREXAMPLE
+            // (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-
+            // as-shown): an objection that holds only through a statistical
+            // test is evidence against the claim at α, so it contests the claim
+            // and never refutes it.
+            let tests: Vec<String> = r
+                .evidential
+                .difference(&scope.evidential)
+                .cloned()
+                .collect();
+            let (standing, why) = if truth == Truth::Holds && !tests.is_empty() {
+                (
+                    "stands",
+                    format!(
+                        "{}; it rests on the statistical test(s) {}, so it is evidence against                          the claim at α, not a refutation: it contests the claim and never                          refutes it",
+                        r.why,
+                        tests.join(", ")
+                    ),
+                )
+            } else if truth == Truth::Holds && !outside.is_empty() {
                 (
                     "stands",
                     format!(
@@ -1346,11 +1395,17 @@ impl DesignGraph {
         let mut verdicts = Vec::new();
         for s in &steps {
             let r = self.step_reading(s, ev, depth)?;
-            verdicts.push((s.clone(), r.verdict, r.assumes, r.rests_on_unverified));
+            verdicts.push((
+                s.clone(),
+                r.verdict,
+                r.assumes,
+                r.rests_on_unverified,
+                r.rests_on_tests,
+            ));
         }
         let said: Vec<String> = verdicts
             .iter()
-            .map(|(s, v, _, _)| format!("{s} {}", v.as_str()))
+            .map(|(s, v, _, _, _)| format!("{s} {}", v.as_str()))
             .collect();
         // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
         // step that fails or cannot be read leaves its conclusion without
@@ -1364,13 +1419,16 @@ impl DesignGraph {
         // Then the fewest UNVERIFIED CITATIONS: a line resting on a citation
         // nobody checked holds only if the citation says what it is recalled
         // to say, so a line that needs none beats one that does.
+        // Then the fewest STATISTICAL TESTS: a deductive line beats one that
+        // rests on evidence, which supports the claim only at its α.
         let best = verdicts
             .iter()
-            .filter(|(_, v, _, _)| *v == Truth::Holds)
-            .min_by_key(|(_, _, a, u)| (a.len(), u.len()));
-        if let Some((_, _, assumes, unverified)) = best {
+            .filter(|(_, v, _, _, _)| *v == Truth::Holds)
+            .min_by_key(|(_, _, a, u, t)| (a.len(), u.len(), t.len()));
+        if let Some((_, _, assumes, unverified, tests)) = best {
             let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
             let unverified: BTreeSet<String> = unverified.iter().cloned().collect();
+            let evidential: BTreeSet<String> = tests.iter().cloned().collect();
             let mut why = if assumes.is_empty() {
                 format!("concluded by {}", said.join("; "))
             } else {
@@ -1387,11 +1445,18 @@ impl DesignGraph {
                     unverified.iter().cloned().collect::<Vec<_>>().join(", ")
                 ));
             }
+            if !evidential.is_empty() {
+                why.push_str(&format!(
+                    ", resting on the statistical test(s) {}",
+                    self.tests_said(&evidential)?
+                ));
+            }
             return Ok(Some(Read {
                 truth: Truth::Holds,
                 why,
                 assumes,
                 unverified,
+                evidential,
             }));
         }
         Ok(Some(Read::plain(
@@ -1600,6 +1665,14 @@ impl DesignGraph {
             }
             node::VERIFICATION => match status.as_deref() {
                 Some("passing") => match self.computed_check_truth(id, &n.properties)? {
+                    // A HYPOTHESIS TEST, KEPT: read from its record's block
+                    // (crate::hypothesis), never as plain `holds`.
+                    Some((Truth::Holds, _))
+                        if n.properties
+                            .contains_key(crate::hypothesis::HYPOTHESIS_TEST) =>
+                    {
+                        return self.test_read(id, &n.properties, ev, depth);
+                    }
                     Some(computed) => computed,
                     None => (Truth::Holds, "the check is passing".to_string()),
                 },
@@ -1665,6 +1738,109 @@ impl DesignGraph {
         Ok(Read::plain(truth, why))
     }
 
+    /// A HYPOTHESIS TEST'S READING as a premise, once its kept record counts
+    /// (`crate::hypothesis`): a test that did not reject H0 reads NOT
+    /// REJECTED and supports nothing; one that did is SUPPORTED AT α, carried
+    /// as evidence by everything that rests on it — but only while every
+    /// assumption it DEPENDS_ON holds, and only when it was tested at no more
+    /// than it spends of its α budget.
+    fn test_read(
+        &self,
+        id: &str,
+        props: &HashMap<String, Value>,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Read, DynoError> {
+        let test = match crate::hypothesis::HypothesisTest::from_props(props) {
+            Some(Ok(t)) => t,
+            Some(Err(e)) => {
+                return Ok(Read::plain(
+                    Truth::Unknown,
+                    format!("its hypothesis test cannot be read: {e}"),
+                ));
+            }
+            None => {
+                return Ok(Read::plain(
+                    Truth::Unknown,
+                    "it carries no hypothesis test to read".to_string(),
+                ));
+            }
+        };
+        if !test.reject_h0 {
+            return Ok(Read::plain(Truth::Unknown, test.not_rejected()));
+        }
+        let mut assumes = BTreeSet::new();
+        let mut unverified = BTreeSet::new();
+        let mut evidential = BTreeSet::from([id.to_string()]);
+        let mut against = Vec::new();
+        for e in self.outgoing(id, Some(edge::DEPENDS_ON))? {
+            let r = self.truth_full(&e.to_id, ev, depth.saturating_sub(1))?;
+            match r.truth {
+                Truth::Holds => {
+                    assumes.extend(r.assumes);
+                    unverified.extend(r.unverified);
+                    evidential.extend(r.evidential);
+                }
+                Truth::Fails => against.push(format!("{} is refuted: {}", e.to_id, r.why)),
+                Truth::Unknown => {
+                    against.push(format!("{} is not established: {}", e.to_id, r.why))
+                }
+            }
+        }
+        if !against.is_empty() {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                format!(
+                    "its test rejected H0 at α = {} (p = {}), but an assumption it rests on does                      not hold, so it supports nothing (unsupported, never refuted): {}",
+                    test.alpha,
+                    test.p_shown(),
+                    against.join("; ")
+                ),
+            ));
+        }
+        if let Some(over) = self.alpha_overspent(id, &test)? {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                format!(
+                    "its test rejected H0, but it was {over} (p = {}, {}, {})",
+                    test.p_shown(),
+                    test.named(),
+                    test.n_shown()
+                ),
+            ));
+        }
+        // A criterion changed after the data is REPORTED (the
+        // `criteria_changed_after_data` gap and the check's `test_reading`),
+        // never folded into the truth: the requirement asks for a report, and
+        // a legitimate change must not silently unsay the test.
+        Ok(Read {
+            truth: Truth::Holds,
+            why: test.supported(),
+            assumes,
+            unverified,
+            evidential,
+        })
+    }
+
+    /// Each statistical test in `ids`, as its reading names it.
+    fn tests_said(&self, ids: &BTreeSet<String>) -> Result<String, DynoError> {
+        let mut out = Vec::new();
+        for t in ids {
+            match self.hypothesis_test_of(t)? {
+                Some(test) => out.push(format!("{t}, {}", test.supported())),
+                None => out.push(format!("{t}, {}", crate::hypothesis::EVIDENCE_NOT_PROOF)),
+            }
+        }
+        Ok(out.join("; "))
+    }
+
+    /// THE STATISTICAL TESTS `id` rests on, as the design stands: checks whose
+    /// support is a hypothesis test that rejected H0, beneath it or itself,
+    /// sorted. Empty when it rests on none.
+    pub fn tests_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        Ok(self.premise_reading(id)?.evidential.into_iter().collect())
+    }
+
     /// A falsum's own truth: FALSE, always, with what its derivation shows.
     fn falsum_truth(
         &self,
@@ -1709,6 +1885,7 @@ impl DesignGraph {
             why,
             assumes: d.assumes,
             unverified: d.unverified,
+            evidential: d.evidential,
         })
     }
 
@@ -1746,6 +1923,7 @@ impl DesignGraph {
                 why: format!("a falsum (⊥), derived: {}", d.why),
                 assumes: d.assumes,
                 unverified: d.unverified,
+                evidential: d.evidential,
             },
             Some(d) => Read::plain(
                 Truth::Unknown,
@@ -1794,6 +1972,7 @@ impl DesignGraph {
                 .to_string(),
             assumes: BTreeSet::new(),
             unverified: BTreeSet::from([id.to_string()]),
+            evidential: BTreeSet::new(),
         })
     }
 
@@ -2181,6 +2360,7 @@ impl DesignGraph {
                 confirmation: Confirmation::default(),
                 assumes: Vec::new(),
                 rests_on_unverified: Vec::new(),
+                rests_on_tests: Vec::new(),
                 discharges: Vec::new(),
                 cases: None,
                 generalization: None,
@@ -2202,6 +2382,7 @@ impl DesignGraph {
             confirmation: rec.confirmation,
             assumes: Vec::new(),
             rests_on_unverified: Vec::new(),
+            rests_on_tests: Vec::new(),
             discharges: rec.discharges.clone(),
             cases: None,
             generalization: None,
@@ -2245,6 +2426,7 @@ impl DesignGraph {
         let mut values = Vec::new();
         let mut assumes: BTreeSet<String> = BTreeSet::new();
         let mut unverified: BTreeSet<String> = BTreeSet::new();
+        let mut tests: BTreeSet<String> = BTreeSet::new();
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
                 values.push(Truth::Holds);
@@ -2271,6 +2453,7 @@ impl DesignGraph {
             values.push(r.truth);
             assumes.extend(r.assumes);
             unverified.extend(r.unverified);
+            tests.extend(r.evidential);
             reading.premises.push(PremiseReading {
                 node_type: self.type_holding(&p)?,
                 id: p,
@@ -2315,6 +2498,7 @@ impl DesignGraph {
                     let r = self.truth_full(by, ev, depth - 1)?;
                     unverified.extend(r.unverified.iter().cloned());
                     assumes.extend(r.assumes.iter().cloned());
+                    tests.extend(r.evidential.iter().cloned());
                     CasesReading {
                         cases: rec.cases.clone(),
                         declared: true,
@@ -2358,6 +2542,7 @@ impl DesignGraph {
         }
         ev.path.remove(inference_id);
         reading.rests_on_unverified = unverified.into_iter().collect();
+        reading.rests_on_tests = tests.into_iter().collect();
         // A GENERALIZATION IS CHECKED (Anthony's choice of 2026-10-17:
         // declared and checked). A step generalizing over a variable that
         // something it rests on FIXES does not hold: its verdict reads
@@ -3154,6 +3339,26 @@ impl DesignGraph {
                         "it holds only if the unverified citation(s) {} say what they are \
                          recalled to say: no pinned source documents them",
                         unverified.join(", ")
+                    ),
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
+                }));
+            }
+        }
+        // A derivation holds only THROUGH A STATISTICAL TEST: supported at
+        // its α, evidence and never proof, however its steps are confirmed.
+        if any_holds && conclusion_truth == Truth::Holds {
+            let tests = self.tests_under(id)?;
+            if !tests.is_empty() {
+                let set: BTreeSet<String> = tests.into_iter().collect();
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Supported,
+                    why: format!(
+                        "it holds only through the statistical test(s) {}, so it is supported, \
+                         never shown or proven",
+                        self.tests_said(&set)?
                     ),
                     total_steps: total,
                     confirmed_steps: confirmed,

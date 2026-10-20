@@ -347,6 +347,7 @@ async fn a_check_records_its_targets_and_the_run_it_just_had_in_one_call() {
         computed: None,
         variables: None,
         fixes: None,
+        hypothesis_block: None,
     })));
     assert_eq!(out["properties"]["status"], "passing");
     assert_eq!(out["properties"]["findings"], "12 of 12 passed");
@@ -382,6 +383,7 @@ async fn a_finding_without_a_run_is_refused_and_an_unknown_target_refuses_the_wh
         computed: None,
         variables: None,
         fixes: None,
+        hypothesis_block: None,
     };
     let mut r = base();
     r.findings = Some("12 of 12".into());

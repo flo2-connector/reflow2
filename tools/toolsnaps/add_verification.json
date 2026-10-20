@@ -76,6 +76,15 @@
           "null"
         ]
       },
+      "hypothesis_block": {
+        "additionalProperties": true,
+        "default": null,
+        "description": "A HYPOTHESIS TEST FROM flo2-calc: the `hypothesis_test` object of the\ntested value in its kept record (record schema 10), passed exactly as\nthe record holds it. Needs `test`, `alpha.value`, `p_value.value`, `n`,\n`decision` and `reject_h0`; a block missing one is refused by its path\nand nothing is written. It marks the check computed, writes each of its\n`assumptions` as a Constraint the check DEPENDS_ON (taken as given, so\nan objection can attack it), draws CONSTRAINS from the α Constraint its\n`alpha.source.design_node` names (with the record's α as the\n`contribution` when that Constraint has a `limit`; one already drawn is\nkept), and on the first call locks its criteria. As a premise it then\nreads \"supported at α (p, test, n)\", never proof, or \"not rejected at\nα\".",
+        "type": [
+          "object",
+          "null"
+        ]
+      },
       "id": {
         "description": "The verification's id — `ver:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"

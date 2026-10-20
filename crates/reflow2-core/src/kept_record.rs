@@ -37,7 +37,8 @@
 //! drift detection already compares the file with that checksum. A record that
 //! is kept STATES THE RESULT through the `outcome` on its PRODUCES edge when
 //! there is one, and otherwise through the check's `findings`, which restate
-//! what the record holds.
+//! what the record holds, or its `hypothesis_test`, the record's own block for
+//! a statistical test ([`crate::hypothesis`]).
 //!
 //! # What it does not check
 //!
@@ -293,6 +294,19 @@ impl DesignGraph {
                 format!(
                     "the computed check is passing through its kept record {}, and its findings \
                      state the result",
+                    ids.join(", ")
+                ),
+            )));
+        }
+        // A HYPOTHESIS TEST'S BLOCK IS THE RECORD'S OWN STATEMENT of its
+        // result (crate::hypothesis), copied from the record when the test was
+        // recorded, so it states the result as findings would.
+        if str_prop(props, crate::hypothesis::HYPOTHESIS_TEST).is_some() {
+            return Ok(Some((
+                Truth::Holds,
+                format!(
+                    "the computed check is passing through its kept record {}, and its \
+                     hypothesis test states the result",
                     ids.join(", ")
                 ),
             )));

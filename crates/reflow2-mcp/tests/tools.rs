@@ -884,6 +884,7 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
         computed: None,
         variables: None,
         fixes: None,
+        hypothesis_block: None,
     })));
     j!(s.verifies(Parameters(VerifiesReq {
         verification_id: "ver:flight".into(),
@@ -2171,6 +2172,7 @@ async fn loop_status_digests_the_verification_roll_instead_of_rolling_it() {
             computed: None,
             variables: None,
             fixes: None,
+            hypothesis_block: None,
         })));
         j!(s.set_verification_status(Parameters(VerificationStatusReq {
             verification_id: id,
