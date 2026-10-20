@@ -31,6 +31,146 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.89.0] — 2026-10-19
+
+**Minor. A hub's members become reachable one by one and reasoning crosses them, and a project
+can take reflow2's kit back out.** It contains:
+- #774: `reflow2 init --remove` takes the kit out of a project and keeps its design, and
+  `reflow2 update` no longer brings a removed kit back;
+- #775: through a hub's address every tool takes an optional `member` (declared only on a hub's
+  listing), every member id in a routed reply carries its prefix, and an id naming a member
+  routes every tool to it;
+- #776: a premise in another design reads the far node's live truth and proof status (`stale`
+  when the far node is gone, `unreachable` when its design cannot be read), a change walk through
+  a hub carries on into the members that cite what it reached (`boundary_crossings`,
+  `across_designs`), a writing `--call` that keeps no export names `.reflow2.toml` first, and
+  `delete_node` takes the id's prefix as the type when `node_type` is left out.
+
+The MCP surface stays at 200 tools. `delete_node.node_type` becomes optional; it is the only
+change on the plain listing, and every skill and `get_instructions` read the same as in 0.88.0,
+measured against the published 0.88.0 binary. A hub's listing declares `member` on every tool
+when the host names the hub's members on the listing request. New reply fields:
+`boundary_crossings` entries in another design and `across_designs` on a change walk through a
+hub, and `node_type` on a bare-id `delete_node`.
+- **The schema stamp does not move**: no node type, edge type or enum value changed (the
+  snapshot re-blessed with its version alone). No upgrade note is owed. As with every release, an
+  older binary warns on a store this one wrote and refuses a plain import of its export without
+  `--accept-newer`.
+
+**Nothing is deprecated or removed in this release** (the deprecation registry is empty).
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets, checked on the 0.89.0 release build:
+- `reflow2 init --remove` takes the kit back out and keeps `.reflow2/`; `reflow2 update` then
+  refuses there and says `reflow2 init` installs again;
+- a writing call that keeps no export says to record it in `<project>/.reflow2.toml` as
+  `[export] path = "<FILE>"` first, then `--export-to`, then an MCP configuration;
+- `reflow2 write delete_node '{"id":"req:…"}'` deletes by bare id and names the type it
+  deleted; an id whose prefix names another type than the one holding it is refused, and
+  nothing is deleted.
+
+**Still needs a server that holds the members:** the hub view and everything new in it (`member`,
+prefixed ids in routed replies, a far premise's live truth, a change walk that crosses designs).
+That is flo2.io's gateway once it serves 0.89.0, with flo2 #172 for `member` on a hosted hub's
+listing, or your own `--registry-root` server behind a gateway that names each caller and the
+hub's members. `--call` refuses both `--remote` and `--registry-root`.
+
+### Added
+
+- **`reflow2 init --remove` takes reflow2's kit back out of one project, and keeps its
+  design.** It deletes the kit files nobody edited and names the edited ones it keeps,
+  strips the lines the kit added to `.gitignore`, `.gitattributes`, `.reflow2.toml` and your
+  instruction files (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, …), and
+  marks `.reflow2/kit-version.json` removed. The design store and its export are not
+  touched, and the `.reflow2/` line stays in `.gitignore` so the store is never committed
+  by accident. `--remove --check` previews it. It also says what it leaves on purpose (this
+  machine's MCP config entries, the loop-nudge hooks, the git merge driver) and which
+  machine files git no longer ignores. **What to do:** to take the kit out of a project, run
+  `reflow2 init --remove` in it; `reflow2 init .` installs it again. The `reflow2` command
+  passes `--remove` through unchanged, so the installed wrapper needs no update; re-run the
+  installer only for the new help line.
+
+- **A premise in another design now reads as it reads there.** A step whose
+  premise is a reference to a node in another design (`xref:<design>:<node>`,
+  drawn by `review_relations` with `other_design`) used to read that premise as
+  "reflow2 computes no truth for a Resource", so a claim citing a theorem proved
+  in another design read unproven. On a registry server behind a trusted host
+  (flo2.io, or a local `--registry-root` with a gateway or bearer gate), the far
+  node is now read in its own design before each call, under that design's
+  guard alone and only if the caller may read it: the premise carries the far
+  node's truth, its proof status there limits a proof here (a far result that is
+  only `shown` keeps a fully confirmed line here at `shown`), and what it holds
+  only under there (an unverified citation, an open assumption) makes the claim
+  here `conditional`. A far node that is gone reads **stale**, and a far design
+  the caller may not read, or a server that reaches no other design, reads
+  **unreachable**: both unknown, never holding. Nothing read across is stored.
+- **Through a hub, a change walk continues into the designs that cite what it
+  reached.** `propagate_from` and `propagate_change` called through a hub's
+  address now carry the radius on into every design of the view (that the
+  caller may read) holding a reference to a node the walk reached, and on from
+  there. Each reference is named in `boundary_crossings` with its design's
+  prefix, and each design's radius comes back under `across_designs`
+  (`design`, `from_design`, `entered_at`, `radius`). A call that does not come
+  through a hub's address is unchanged.
+
+- **Through a hub, any tool can be run on one named member with `member`.** A call made to a
+  hub's address may pass `member`, the graph_id of one of its members (or of the hub itself), and
+  the tool runs on that design alone. This reaches the tools that take no node id, which until now
+  answered for the hub or for every design at once: `loop_status`, `reasoning_report` with no
+  claim, `detect_gaps` with no scope, `describe_schema`, `find_tools`, `find_skills`, `get_skill`,
+  `get_instructions` and `usage_report`. It also reaches `claim_region` and `release_claim`, and it
+  keeps a `search_design` or `scan_nodes` to that one design. A hub's `tools/list` declares
+  `member` on every tool when the host names the hub's members on the listing request. Every other
+  listing is unchanged. **What to do:** nothing; a host serving hubs (flo2.io) sends
+  `_meta["reflow2/view_graph_ids"]` on a hub's `tools/list` as it does on its calls.
+
+### Changed
+
+- **`delete_node` no longer requires `node_type`.** Omitted, the id's prefix is
+  taken as the type you mean (`req:` → Requirement, `dec:` → Decision …), and
+  the node is deleted only when the one type holding the id is that type. A
+  holder of another type, an id held by two types, or a prefix that names no
+  type is refused, nothing is deleted, and the refusal names what the id holds
+  and the `node_type` to pass. A `node_type` you pass works exactly as before.
+  The reply to a bare-id delete also names the `node_type` it deleted.
+
+### Fixed
+
+- **`reflow2 update` no longer brings back a kit somebody removed.** It used to treat the
+  install receipt's presence as "a kit is installed here", so in a project whose kit was
+  deleted by hand it wrote the whole kit back (measured in the field: ~72 files in each of
+  11 repos, and lines appended to four tracked files), and restoring the receipt did not
+  stop the next run. It now refuses, in the words it uses for a project with no receipt,
+  when the receipt says removed or when none of the files it records is left. Deleting ONE
+  kit file still means "give me reflow2's copy". **What to do:** in a project whose kit you
+  removed by hand, run `reflow2 init --remove` once to record it (and strip any lines left
+  behind).
+- **An update no longer installs every MCP harness when the receipt does not say which.**
+  A receipt with no `harnesses` list made a non-interactive `reflow2 update` write
+  `opencode.json`, `.vscode/mcp.json`, `.grok/config.toml` and the OpenCode plugin into a
+  project that had chosen one harness. It now refuses and names the choice. **What to do:**
+  `reflow2 update --harness <names>` once; the receipt remembers the answer. A first
+  install with no terminal and no `--harness` still installs every MCP harness, as before.
+
+- **A writing `--call` that keeps no export now says how to name one in
+  `.reflow2.toml`.** The line said only "no --export-to was given, and no MCP
+  configuration … names one", although the lookup has read the project's
+  `.reflow2.toml` `[export] path` since 2026-10-06 (#691): the one record every later write,
+  the Stop hook, `reflow2 init` and the gate read, and the one a store outside
+  any repository has. The line is now built from the lookup's own list of
+  sources, that file first (`<project>/.reflow2.toml` as
+  `[export] path = "<FILE>"`), then `--export-to <FILE>` for one call, then the
+  MCP configurations, and a test fails if a source is added without it.
+
+- **Every id in a reply routed to a hub's member now carries the member's prefix.** Until now
+  only ids under keys named `…_id` or `…_ids` did. A reasoning step's `assumes`, `conclusion`,
+  `discharges` and `cases`, a report's summary lists, and the ids named in a refusal's words came
+  back bare, so they could not be passed back through the hub.
+- **A tool the hub's view does not serve no longer writes a member's id into the hub.**
+  `add_release {id: "<member>:rel:…"}` through a hub stored a Release in the hub's own design under
+  that literal prefixed id, and nothing could delete it through the hub. An id naming a member now
+  routes every tool to that member.
+
 ## [0.88.0] — 2026-10-19
 
 **Minor. Reasoning is attached to the structure it justifies, a proof states what it really does,
