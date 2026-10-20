@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:35862b93926843d560226b090f381bddf608cf0e4e655c98e1dda7b88889dbf4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:an-argument-is-designed-with-a-skill-that-agrees-with-the-tools-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

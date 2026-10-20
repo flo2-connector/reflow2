@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f609db37477ea7b17ed6b033f1ef7f609f61ee7292f3f8a7e2129449a2066582",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-claim-names-every-line-it-holds-on-with-what-each-holds-under",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

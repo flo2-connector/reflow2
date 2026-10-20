@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b752d2fad28675336127f7be960f9ff2d2dd38b6b359d8bcc672122d3d78948e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:design-an-argument-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

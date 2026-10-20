@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:972a2b9eec8ca5c0bc30e7d3eee5ed5cb2e2fd7fb31ac4a2bd52f58fd27c11a9",
+  "content_hash": "sha256:1cb121fe4f9e265ae7fcf192e32ee30c16d0faf0374f5acce659d238b587827a",
   "node_id": "dec:idea-holm-and-benjamini-hochberg-in-the-alpha-budget",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:972a2b9eec8ca5c0bc30e7d3eee5ed5cb2e2fd7fb31ac4a2bd52f58fd27c11a9",
   "properties": {
+    "chose": "(a), Anthony's word 2026-10-20 \"Go with your recommendations\": keep the α budget as built in #778 (a sum budget with Bonferroni shares, checked by budget_report; Holm and Benjamini–Hochberg recorded as the procedure's Decision, not judged). The default the recipe teaches stays family-wise error (FWER): reflow2's claims back decisions, where one false claim is what to avoid. Not (b) or (c) now: no trial has yet run a family large enough to need Holm's or BH's extra power, so new code waits for one; revisit when a trial does (Holm first, since it keeps the same FWER promise). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
     "decision": "OPEN, for Anthony. As built on feat/hypothesis-tests (2026-10-19), a family's α is a sum budget (composition sum): each test spends the α it ran at, and the served recipe gives Bonferroni shares rounded down. Holm (step-down) and Benjamini–Hochberg (false discovery rate) are not sums, so the recipe records the procedure as a Decision and keeps Bonferroni shares as the budget. Options: (a) keep it (as built; no code); (b) a new `composition` value (e.g. `holm`, `fdr_bh`) under which budget_report orders the family's p-values and judges each test's decision against its step-down threshold, reading the p-values from the recorded blocks; (c) leave the rollup alone and add a read-only family report beside it. Also open: whether FWER or FDR is the default the recipe teaches (as built: FWER, Bonferroni).",
     "kind": "exploratory",
-    "name": "Should the α budget judge Holm and Benjamini–Hochberg, or keep Bonferroni shares only? And is FWER or FDR the default?",
+    "name": "SETTLED 2026-10-20: the α budget keeps Bonferroni shares, family-wise error is the default, and Holm/BH are recorded but not judged until a real trial needs them (option a)",
     "rationale": "The requirement says add code only where the rollup cannot express it; Holm and BH are exactly what it cannot, so this is the owner's call rather than a guess. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

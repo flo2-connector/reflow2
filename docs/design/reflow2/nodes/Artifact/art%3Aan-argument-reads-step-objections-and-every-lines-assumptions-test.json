@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:13bfc8214328cd9dd2c1c472a779a1b79f59adf4ad1b6900e6e005730d1d5401",
+  "node_id": "art:an-argument-reads-step-objections-and-every-lines-assumptions-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:2504c2c200b5f2d34b626ec9eee71c0887e0e8b1d2cfae6f49328b10111cbf67",
+    "description": "Eight core tests: class invariants over the two argument trials (trolley, cogito) and five proof trials for an objection aimed at a step and for every line's assumptions, plus the measured shapes built by hand.",
+    "location": "crates/reflow2-core/tests/an_argument_reads_step_objections_and_every_lines_assumptions.rs",
+    "name": "crates/reflow2-core/tests/an_argument_reads_step_objections_and_every_lines_assumptions.rs",
+    "status": "realized"
+  }
+}

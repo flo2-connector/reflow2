@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7303047014020979f1e27224d93f29a3a507ed837509dc7c9ed31a184dc381b1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-principle-in-an-argument-is-assumed-or-taken-as-given",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

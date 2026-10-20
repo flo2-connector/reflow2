@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:7a10838a16d4ac74d601846dc0dcf7013023f9d02771130063ff0dcbff85f36d",
+  "content_hash": "sha256:dd25487ef8f343fd94b5033ebfaa9b6612e6c27d3085525f263ed9afa03032fb",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading",
+  "prev_item_hash": "sha256:7a10838a16d4ac74d601846dc0dcf7013023f9d02771130063ff0dcbff85f36d",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

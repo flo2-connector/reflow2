@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:97a952704509f4775faa6d5e6342dc8309323d70c325277cf37bc9b33e1b0c6c",
+  "node_id": "art:design-an-argument-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:dae7d65a6f38325b7fbace976e0f26f49cf3be8b731aafc8658b7c2691b095aa",
+    "description": "The slash command that runs the design-an-argument skill on a question in the person's own words.",
+    "location": "getting-started/commands/design-an-argument.md",
+    "name": "getting-started/commands/design-an-argument.md — the /design-an-argument command",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:3021e3be6389bbcd9d9e837f3cab35925e4b762d4e94af17384676b8ebdb7d9f",
+  "node_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A test whose criteria moved after its data reads unknown until the owner acknowledges the change with a reason",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-20 (\"Go with your recommendations\", option b of dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading)",
+    "statement": "When a hypothesis test's locked criteria (its α Constraint's limit or statement, what the check verifies, its governing test Decision, or the record re-attached at another α) change after its data arrived, the test reads unknown (\"its criteria moved after the data\") and supports nothing above it until the owner acknowledges the criteria_changed_after_data gap with a reason; once acknowledged it reads as it did before. Every write still lands; nothing is refused. A change made before the data changes nothing, as today.",
+    "status": "accepted"
+  }
+}

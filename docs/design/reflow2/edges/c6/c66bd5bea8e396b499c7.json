@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4e0bff2b9f469c010234c36e60974e108772e32ca9b1c9b394eecb8e7105158e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:an-argument-reads-step-objections-and-every-lines-assumptions-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

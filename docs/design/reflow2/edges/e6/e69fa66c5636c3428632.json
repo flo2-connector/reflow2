@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a024311ce81031e7dc98b72b3d4445a2c182cad15c017c240af8583915e138dc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:16e4126897c393f6a86d07bdf29e9615c75c6731e1adec016128eb1e528b1a88",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-brainstorm-skill-mirror"
+}

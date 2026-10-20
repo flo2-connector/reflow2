@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e877d39992b04ddf2d52e1c1ecdc107bf456676ce4072006e1dda6b904e6b4b2",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged",
+  "properties": {},
+  "to_id": "dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading"
+}
