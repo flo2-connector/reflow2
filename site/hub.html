@@ -115,7 +115,9 @@
           left: <code>continue_in</code> names each member to carry on in. There, the skill calls
           <code>propagate_from</code> with <code>arriving_from</code> and the interfaces the ripple
           reached, and the member's own pins say where it enters. You get one radius per design
-          reached, and a plain statement of any design the record has no way into.</li>
+          reached, and a plain statement of any design the record has no way into. At a hub's own
+          address on a server that holds the members (<a href="#across">below</a>), the walk carries
+          on by itself.</li>
         <li><b>Hand a requirement to the design that owns it.</b> When something recorded in the hub
           turns out to belong to a part, it is sent, never copied: <code>receive_from_design</code>
           in the part first, then <code>send_to_design</code> in the hub. It travels by
@@ -130,8 +132,9 @@
         where everything went.
       </p>
       <p class="quiet">
-        Not yet: one call that searches the hub and every member together. It is recorded as
-        intent; today the skill searches member by member.
+        With reflow2 alone the skill searches member by member. One call that searches the hub and
+        every member together needs a hub's own address on a server that holds them
+        (<a href="#across">below</a>).
       </p>
     </section>
 
@@ -195,7 +198,20 @@
         <code>search_design</code> ranks every design's hits together and applies your one
         <code>limit</code> to the merged list; the reply says how many hits each design found
         (<code>found_by_design</code>) and how many fell outside the limit (<code>hits_withheld</code>).
-        An id written as <code>&lt;member&gt;:&lt;id&gt;</code> sends the call to that member alone.
+        An id written as <code>&lt;member&gt;:&lt;id&gt;</code> sends the call to that member alone, and
+        <code>member</code>, a member's graph id, does the same for any tool, including the ones that
+        take no id, such as <code>loop_status</code>, <code>detect_gaps</code> and
+        <code>get_skill</code>. Every id in a member's reply carries its prefix, so it can be passed
+        straight back.
+      </p>
+      <p>
+        Reasoning and change cross the members too. A step whose premise is a record in another
+        member reads that record's truth and proof status there, at the moment you ask. A premise
+        whose record is gone reads <b>stale</b>, and one in a design you cannot read reads
+        <b>unreachable</b>; neither counts as holding. A change walk (<code>propagate_from</code>,
+        <code>propagate_change</code>) carries on into every member that cites what it reached,
+        names each crossing (<code>boundary_crossings</code>), and gives each design's radius under
+        <code>across_designs</code>.
       </p>
       <p>
         <code>compare_designs</code> and <code>compose_and_analyse</code> take the other design by its
@@ -203,8 +219,9 @@
         and <code>list</code> with <code>offset</code> reads one list a page at a time.
       </p>
       <p class="quiet">
-        This needs a server that holds the members, such as flo2.io. <code>reflow2 read</code> and
-        <code>--call</code> on your own machine open one design and cannot reach a hub's members.
+        This needs a server that holds the members: flo2.io, or your own <code>--registry-root</code>
+        server behind a gateway that names each caller and the hub's members. <code>reflow2 read</code>
+        and <code>--call</code> on your own machine open one design and cannot reach a hub's members.
       </p>
     </section>
 
@@ -213,7 +230,7 @@
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
         Apache License 2.0 ·
-        Checked against reflow2 v0.88.0.
+        Checked against reflow2 v0.89.0.
       </p>
     </footer>
   </main>

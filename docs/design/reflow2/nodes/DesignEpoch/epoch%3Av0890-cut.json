@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ce5137e264f3228030285891cd3365d7fceb7ba1e84f17162d650df12b4dd08e",
+  "node_id": "epoch:v0890-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The minor in which a hub's members become reachable one by one, reasoning and change cross them, and a project can take reflow2's kit back out. It carries:\n- #774: init --remove, and update never brings a removed kit back;\n- #775 (P4a): `member` on every tool through a hub, prefixed ids in every routed reply, an id naming a member routes every tool;\n- #776 (P4b): a far premise reads its live truth (stale/unreachable), propagate continues into view members holding an xref, the no-export line names .reflow2.toml first, delete_node by bare id;\n- the cut itself (release/v0.89.0).\n\nPinned here: rel:v0890, the increment's ChangeEvents (found by diffing ids against the v0.88.0 tag's committed copy, plus the live writes since), and the cut's drift acceptances.",
+    "epoch_type": "release_cut",
+    "name": "v0.89.0 release cut (2026-10-19)",
+    "sequence": 766,
+    "status": "arrived"
+  }
+}

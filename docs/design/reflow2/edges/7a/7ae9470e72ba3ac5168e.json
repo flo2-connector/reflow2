@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0068053d5596223b38ddfc50c8428113477d9076482b0e5ef6164b9544a9adb1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-stage-5-re-read-ran-on-0-88-0-on-six-working-assumptions-and-reads-unknown-throughout-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

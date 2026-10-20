@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f165fbab1976231a4ccfc1083ad3d7b3ae1fb05151473fcf75357f8acbf6790d",
+  "node_id": "chg:accept-c4bfd8d658906473",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.89.0 cut, step 2: the release line moves to v0.89.0; the hub paragraph stays true (it already says a change is followed from one design into the next). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

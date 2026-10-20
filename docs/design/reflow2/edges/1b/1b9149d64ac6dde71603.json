@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:237f62e78fd44149a8c321de0b2592425c174e775d5b8f431296d09bbd227fa5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0890",
+  "properties": {
+    "as_checksum": "sha256:ba663043f4a849b46d7d36d1d5efe463fa351746445a200708ef82d083558ac3"
+  },
+  "to_id": "art:reason-to-exist-rs"
+}
