@@ -34,7 +34,7 @@ schema:
     Inference:
       properties:
         name: { type: string, indexed: true, fulltext: true, description: "A short handle for the step — what search_design and the reports render. Optional: add_inference composes one from the rule and the conclusion when none is given." }
-        rule: { type: enum, values: [all, any, k_of_n], default: all, indexed: true, description: "HOW THE PREMISES SUPPORT THE CONCLUSION, as a combination reflow2 checks over each premise's computed truth — holds, fails or unknown, evaluated three-valued: `all` — every premise must hold (AND: one failing premise fails the step, and with none failing an unknown one leaves it unknown); `any` — one holding premise is enough (OR: redundant support, alternative grounds); `k_of_n` — at least `k` of the premises must hold (a quorum, two-out-of-three voting). `all` is the default and says nothing new: it is the AND delivery has always applied to a decomposition, written down. A NAMED RULE IS CHECKED BY ITS COMBINATION: modus ponens is `all` over P and P → Q, with `rule_name: modus ponens`." }
+        rule: { type: enum, values: [all, any, k_of_n, immediate], default: all, indexed: true, description: "HOW THE PREMISES SUPPORT THE CONCLUSION, as a combination reflow2 checks over each premise's computed truth — holds, fails or unknown, evaluated three-valued: `all` — every premise must hold (AND: one failing premise fails the step, and with none failing an unknown one leaves it unknown); `any` — one holding premise is enough (OR: redundant support, alternative grounds); `k_of_n` — at least `k` of the premises must hold (a quorum, two-out-of-three voting). `all` is the default and says nothing new: it is the AND delivery has always applied to a decomposition, written down. A NAMED RULE IS CHECKED BY ITS COMBINATION: modus ponens is `all` over P and P → Q, with `rule_name: modus ponens`. `immediate` says the step is NOT AN INFERENCE (req:a-step-can-say-it-is-not-an-inference, Anthony 2026-10-18): the conclusion is grasped directly — by intuition, self-evidence or a self-verifying act — rather than derived. Any premises are what it is grasped IN, read as `all`; with none it holds on the grasp alone. It reads \"not an inference\", and an objection can still aim at it." }
         k: { type: int, description: "For `k_of_n` only: how many premises must hold. Required with that rule and refused with any other; 1 ≤ k ≤ the number of premises, checked when the step is written with its premises (add_inference). A step whose premises were later removed below k reads `unknown` and says why, never `holds`." }
         rule_name: { type: string, indexed: true, fulltext: true, description: "The rule's name in its own field, free text — `modus ponens`, `induction`, `redundant sensors`, `two-out-of-three voting`. A LABEL, NOT A CHECK: reflow2 checks the step by its `rule` (the combination) and never by this name." }
         warrant: { type: string, fulltext: true, description: "WHY these premises support this conclusion, in the author's words — the part of the step a person can challenge. reflow2 records it and never judges it." }
@@ -329,20 +329,22 @@ schema:
         form: "primitive"
         primitive: "compares"
         polarity: "carried"
-        modifiers: { alignment: "polarity", confidence: "confidence", evidence: "evidence" }
+        modifiers: { alignment: "polarity", confidence: "confidence", evidence: "evidence", moves_to: "other" }
         splits:
           - property: "alignment"
             note: "Unset is `opposing`, the schema default."
             values:
               opposing: { form: "primitive", primitive: "compares", sub: "conflicts", polarity: "-" }
               supporting: { form: "primitive", primitive: "compares", sub: "corroborates", polarity: "+" }
+              conceding: { form: "primitive", primitive: "compares", sub: "concedes", polarity: "+", note: "A reply grants the objection against what it attacks, and moves the argument to the reading named in `moves_to`." }
         basis: "classified"
       inference_category: tension
       pass_1_extractable: true
       properties:
         confidence: { type: float, range: [0.0, 1.0] }
         evidence: { type: string }
-        alignment: { type: enum, values: [opposing, supporting], default: opposing, description: "opposing = conflict; supporting = corroboration. Both stored here." }
+        alignment: { type: enum, values: [opposing, supporting, conceding], default: opposing, description: "opposing = conflict; supporting = corroboration; conceding = the source, a reply, GRANTS the target, an objection, against what that objection attacks, and moves the argument to another reading named in `moves_to` (req:a-reply-can-concede-an-objection-against-one-reading-and-move-to-another): the objection then counts against its target as if it held, while the reply holds. All stored here." }
+        moves_to: { type: string, node_ref: true, description: "With `alignment: conceding` only: the reading the argument is meant as instead — usually the step (an Inference) of another reading — by id. Read on the objection as `moves_to`, and on the conceded step's reading." }
       # WHAT MATHEMATICS CALLS THIS (req:the-vocabulary-is-served-in-a-fields-own-terms).
       # Served in describe_schema and find_tools, never in tools/list. One term,
       # one home per field; tests/a_fields_own_terms_have_one_home.rs holds the table.

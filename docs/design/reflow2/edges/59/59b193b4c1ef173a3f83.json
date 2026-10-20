@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:66daa88f8666eb2ba14b06c1debf1c0f5da484edc6866bcced17119efde129e0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:statement-kinds-say-objection-reply-unstated-premise-and-method-rule",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

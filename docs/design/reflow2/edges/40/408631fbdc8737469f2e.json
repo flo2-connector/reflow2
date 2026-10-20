@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:292c7e6c178688fb149c1dc7ddf9db6fa8e4e73d9420c596edfaf1ec00fb727c",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-reply-concedes-an-objection-against-one-reading-and-moves-to-another"
+}

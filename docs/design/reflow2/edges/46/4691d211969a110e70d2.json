@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:88ba0961ab7e6a2d99297c3b04f4899ddf64f5f0ae9415175c82c3e06c7f1b11",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-inference",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-step-can-be-an-immediate-grasp-not-an-inference"
+}

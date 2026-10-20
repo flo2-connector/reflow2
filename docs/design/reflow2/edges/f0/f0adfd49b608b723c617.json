@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:348fd834968d8d6a156a5244eed32dc6ca6292084e21e67e118ce229306d31b7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-claim-with-one-contested-route-reads-contested-or-every-route",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

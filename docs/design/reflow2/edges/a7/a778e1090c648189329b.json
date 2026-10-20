@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:06fdc14b0731363c02fcfeee4e9892aa335b7e434b1f5058d609c146a7bb0db6",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:statement-kinds-say-objection-reply-unstated-premise-and-method-rule"
+}

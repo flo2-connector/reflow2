@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:d3d2bbcb08fb58cc5eadf252136b1de85b11f4823c50386509f5e927654b41f0",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

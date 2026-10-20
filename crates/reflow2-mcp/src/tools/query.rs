@@ -509,6 +509,21 @@ impl ReflowService {
         {
             return Err(McpError::invalid_params(why, None));
         }
+        // A CONTRADICTS that turns a claim refuted says so in the reply
+        // (req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply).
+        let drawn: Vec<(String, String, Option<String>)> = if req.edge_type == "CONTRADICTS" {
+            vec![(
+                req.from_id.clone(),
+                req.to_id.clone(),
+                props
+                    .get("alignment")
+                    .and_then(|v| v.as_str())
+                    .map(str::to_string),
+            )]
+        } else {
+            Vec::new()
+        };
+        let watch = crate::service::watch_attacks(&g, None, &drawn)?;
         let edge = g.create_edge(
             &req.edge_type,
             &from_type,
@@ -518,7 +533,10 @@ impl ReflowService {
             props,
         );
         match edge {
-            Ok(e) => ok_json(EdgeDto::from(e)),
+            Ok(e) => {
+                let reply = serde_json::to_value(EdgeDto::from(e)).map_err(ser_err)?;
+                ok_json(crate::service::with_now_refuted(reply, &g, &watch)?)
+            }
             // Say what would have worked — see `edge_error`.
             Err(e) => Err(edge_error(&g, &from_type, &to_type, e)),
         }

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d1d845a06b970899c516ee9655a3c35d0b20eaa43b92dafecc8d88a7d4e54b46",
+  "node_id": "art:an-argument-reads-as-it-is-written-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three MCP tests: a write that refutes a claim or defeats a step says so in now_refuted with how to keep a dispute, and the argument forms (statement kinds, rule immediate, ruling held, a conceding CONTRADICTS with moves_to) are written through the tools.",
+    "location": "crates/reflow2-mcp/tests/an_argument_reads_as_it_is_written_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/an_argument_reads_as_it_is_written_on_the_wire.rs",
+    "status": "realized"
+  }
+}

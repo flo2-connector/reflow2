@@ -80,6 +80,16 @@ NON_TOOL_TERMS = {
     "premises", "conclusion", "claim", "objections", "objected", "contested", "defeated",
     "answered", "holds_under_any_of", "still_contested", "steps_objected",
     "contested_by_design", "unsupported",
+    # design-an-argument, phase 6 PR 2 (2026-10-20): the argument statement
+    # kinds (`objection`, `reply`, `unstated_premise`, `method_rule`), rule
+    # `immediate`, a conceding CONTRADICTS (`alignment` `conceding`,
+    # `moves_to`), governed_by's `ruling` `held` (`held_reading`), how an
+    # objection or reply reads (`refutes`, `conceded`, `concedes`), a claim's
+    # `contested_by`, a write's `now_refuted`, and the read-back's
+    # `rests_on`, `against_rests_on` and `positions`.
+    "objection", "reply", "unstated_premise", "method_rule", "immediate", "alignment",
+    "conceding", "moves_to", "held", "held_reading", "refutes", "conceded", "concedes",
+    "contested_by", "now_refuted", "rests_on", "against_rests_on", "positions",
     # a proof states what it really does (2026-10-18, phase 3): the statement
     # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
     # statement reads (`statement_reading`: `taken_as_given`, `cited`,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c0d4fcf60cf07a040b2d8fa70ee83affc030e275b4b9092bf9e9442336dcdb63",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-core",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:statement-kinds-say-objection-reply-unstated-premise-and-method-rule"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:196e6d913917d03b13e86504f54787561876ff110218bd0bf37d82c3464df61c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-claim-held-up-only-by-disputes-reads-contested",
+  "properties": {},
+  "to_id": "req:a-conclusion-whose-every-route-is-contested-reads-contested"
+}

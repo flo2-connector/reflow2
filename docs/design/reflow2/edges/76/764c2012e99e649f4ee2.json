@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2ec7e961ecfdce22935c516ead66fc80884ad3a73df7486ce686df29738b848",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-an-argument-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-reply-concedes-an-objection-against-one-reading-and-moves-to-another"
+}

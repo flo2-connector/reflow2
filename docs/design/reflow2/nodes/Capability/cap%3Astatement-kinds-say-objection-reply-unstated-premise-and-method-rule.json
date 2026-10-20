@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:30d9a58587b671b6196dfe73fe9e82b2893a19e58e65e77274ea6f4ed41bea59",
+  "node_id": "cap:statement-kinds-say-objection-reply-unstated-premise-and-method-rule",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (core.yaml statement_kind on Requirement and Constraint; inference.rs STATEMENT_KINDS, attack_reading, is_taken_as_given). An objection reads by how it stands against what it attacks (stands, refutes, answered, conceded); a reply reads answers, stands or concedes; an unstated premise is made explicit and not taken as given unless it says so; a rule of method is taken as given by default. Widening only: the schema stamp moves.",
+    "name": "statement_kind says objection, reply, unstated premise or rule of method, and each reads accordingly",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

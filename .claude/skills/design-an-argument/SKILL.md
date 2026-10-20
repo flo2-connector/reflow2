@@ -34,6 +34,10 @@ words, because the position or objection may already exist under another name.
   given: each step that applies it takes it up in `assumed` (section 3). Every position derived
   from it then reads `conditional` on it — "holds if this principle is accepted" — which is what
   an argument for and against says.
+- **A premise the argument relies on without saying it** ("whatever thinks exists") is made
+  explicit as a Requirement with `statement_kind` `unstated_premise`; it is not taken as given
+  unless you mark it so. **A rule of method** ("accept only what cannot be doubted") has
+  `statement_kind` `method_rule` and reads taken as given, by choice.
 - **Evidence about what people judge** (a survey, a brain-imaging study) is descriptive. Register
   the source as an Artifact that DOCUMENTS the statement it reports; never make it a premise of a
   position about what is right.
@@ -50,12 +54,15 @@ A position ("the bystander may turn the trolley") is a Requirement (`add_require
   ANY ONE of them: its read-back names every line in `holds_under_any_of`, each with the principle
   it rests on, never the first alone. A step citing such a position inherits only the line it
   needs.
+- **A claim grasped directly, not inferred** (an intuition, a self-evident or self-verifying
+  grasp) is a step with `rule` `immediate`: it reads "not an inference", may name no premise (any
+  premises are what it is grasped in), and an objection can still aim at it.
 - A principle that gives no verdict on a case gets no step. Say so in the case's or the
   principle's text; there is no record for "silent" yet.
 
 ## 4. Objections aim at what they attack, and replies answer them
 
-An objection is a statement of its own (a Requirement, `statement_kind` `proposition`, with its
+An objection is a statement of its own (a Requirement, `statement_kind` `objection`, with its
 source and the reason in its words), drawn as a CONTRADICTS from it to what it attacks with
 `review_relations`, the reason in `evidence`. Aim it at the right record:
 
@@ -69,10 +76,22 @@ source and the reason in its words), drawn as a CONTRADICTS from it to what it a
   conclusion is left unsupported, never refuted), `answered` once a reply answers it. Never write
   the warrant as an extra premise just to give the objection something to aim at.
 
-A reply is drawn the same way: a CONTRADICTS from the reply to the objection. An objection that
-holds refutes its target; one nobody establishes or answers contests it; one answered no longer
-counts. An objection that holds only under one principle contests a position that also holds
-under another, and never refutes it.
+A reply (`statement_kind` `reply`) is drawn the same way: a CONTRADICTS from the reply to the
+objection. An objection that holds refutes its target; one nobody establishes or answers contests
+it; one answered no longer counts. An objection that holds only under one principle contests a
+position that also holds under another, and never refutes it. Each reads how it stands: an
+objection `stands`, `refutes`, `answered` or `conceded`; a reply `answers`, `stands` or
+`concedes`.
+
+**A reply that grants an objection against one reading and moves to another** ("granted, against
+the syllogism; the argument is meant as an intuition") is a CONTRADICTS from the reply to the
+objection with `alignment` `conceding` and `moves_to` naming the other reading's step, drawn with
+`create_edge`. The conceded reading then reads `objected: conceded` and supports nothing, the
+objection names the reply and the move, and the claim stands or falls on the reading moved to.
+
+**Watch every write's reply.** A write that turns a claim refuted, or a step defeated, says so in
+`now_refuted`, with what holds against it and, for a claim, how to keep the two as an open dispute
+instead. If you meant a dispute, act on it at once.
 
 ## 5. Rival positions are an open dispute, never a one-way contradiction
 
@@ -83,8 +102,10 @@ only on the direction the edge was drawn. Keep them as a dispute in one of two w
 - **a CONTRADICTS each way** (two `review_relations` calls, each with the reason): both read
   contested and neither is refuted, whatever the order;
 - **a Decision the owner keeps open on purpose**: `add_decision` naming the question, each
-  position `governed_by` it, and the owner sets it `contested`. Setting it is the owner's word,
-  never yours: put it to them with `ask_question`.
+  position (or each rival reading's step) `governed_by` it, and the owner sets it `contested`.
+  When the owner holds one side as the reading, its `governed_by` carries `ruling` `held`; the
+  others read as rivals. Both are the owner's word, never yours: put them to them with
+  `ask_question`.
 
 Anything else only the owner can settle — which principles to consider, whether an objection is
 answered, which reading of a text is meant — is a question of your own: `ask_question` with
@@ -94,10 +115,13 @@ records their answer.
 ## 6. Read each question back, in the reader's own words
 
 `reasoning_report` on each position reads it back: its computed truth, the steps under it with
-each step's principle and warrant, the objections against it and against each step, and how each
-stands. Read the whole design with no `claim` for the summary lists: `still_contested`,
-`steps_objected` (each step an objection defeats or contests), `contested_by_design` (the
-disputes the owner keeps open) and `unsupported`. Tell the reader, per question, in the words of
+each step's principle and warrant, the objections against it and against each step, how each
+stands, what it rests on (`rests_on`, its own support only) and what its objections rest on
+(`against_rests_on`). Read on a dispute Decision, it lists the `positions` with what each rests
+on and which the owner holds. Read the whole design with no `claim` for the summary lists:
+`still_contested`, `steps_objected` (each step an objection defeats, contests or a reply
+concedes), `contested_by_design` (the disputes the owner keeps open, with any `held_reading`) and
+`unsupported`. Tell the reader, per question, in the words of
 their subject rather than reflow2's:
 
 - which positions stand, and under which principles (`conditional` names them; with several
@@ -105,8 +129,9 @@ their subject rather than reflow2's:
 - which objections stand against a position, a principle or a step, and which are answered;
 - what is kept open on purpose, and that this is the owner's choice, not unfinished work.
 
-A position whose every line is contested reads `unproven` today, the word also used for refuted:
-read its objections and say it is contested, not refuted. To say what losing a principle costs,
+A position no line holds, but which a line would hold were the disputes under it settled, reads
+`contested` and names what stands against each such line (`contested_by`); `unproven` means no
+line holds for another reason. Say "contested", never "refuted", for the first. To say what losing a principle costs,
 read `holds_under_any_of`: a position every line of which names the principle loses all its
 support without it, and one with a line under another principle keeps that line. A what-if
 (`propagate_from`) on a principle the steps take up in `assumed` says nothing about what any
@@ -118,10 +143,7 @@ Then run `loop_status` and `detect_gaps`, and say what the argument still owes.
 
 - reflow2 does not establish that a position is right, that a principle is true, that an
   objection is sound or that a source says what it is cited for: it reads the structure only.
-- A dispute Decision's own read-back does not yet walk the positions it governs; read each
-  position instead.
 - A what-if shows little on a position that already reads contested, and says nothing about a
   principle taken up in `assumed`; read the lines and the objections directly.
-- There is no record yet for a step that is not an inference (an immediate intuition), for a
-  reply that concedes one reading and moves to another, or for a principle that is silent on a
-  case: say each in the record's own words.
+- There is no record yet for a principle that is silent on a case: say it in the record's own
+  words.

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2328ba7ec773a7a251a5a1ae40152ad6cc1132de5cea6a2c5ee614ca5f2d0b48",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-held-up-only-by-disputes-reads-contested"
+}

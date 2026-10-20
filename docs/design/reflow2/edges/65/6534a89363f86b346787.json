@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fe31dc43e603ca32c28696ee6d969d4cd265f7a592f509ef0a88f47d7ff87302",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:901a4a0cf4c023d4e9a52489d0debe27ebc3f8f836fb4462c0f00b369662690c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-an-argument-skill"
+}

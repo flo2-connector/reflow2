@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:699bbc21ed3c82f1bc1e7a15cebdc915f3d4ca13add1deeedd1192d488dccb6f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-claim-held-up-only-by-disputes-reads-contested",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

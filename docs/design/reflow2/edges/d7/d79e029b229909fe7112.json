@@ -1,14 +1,16 @@
 {
-  "content_hash": "sha256:a9b43bf16d0ef4cad27ec0da3c2ee251e0830c522c73567305891a1561c224fe",
+  "content_hash": "sha256:c5e2876b33200afd63312f2a333ec19eed4a51691d551a3c4a38db4eebf8e965",
   "edge_type": "AUTHORED_BY",
   "from_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent",
+  "prev_item_hash": "sha256:a9b43bf16d0ef4cad27ec0da3c2ee251e0830c522c73567305891a1561c224fe",
   "properties": {
     "approved_at": "2026-10-19",
     "approved_via": [
       "who:agent-8d84cd1476"
     ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
       "author",

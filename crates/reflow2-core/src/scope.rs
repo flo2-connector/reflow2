@@ -68,7 +68,7 @@ use crate::foundation::core::DynoError;
 use crate::detect::{GapCandidate, GapRow, GapScope, NARROW_THE_SCOPE, ReplyBudget, budget_gaps};
 use crate::graph::DesignGraph;
 use crate::heal::HealIssue;
-use crate::nodes::edge;
+use crate::nodes::{edge, node};
 use crate::propagate::PropagateOptions;
 
 /// Default radius for a scope, in hops from the seed.
@@ -311,12 +311,52 @@ impl DesignGraph {
     /// list that goes stale. See the module docs for why this is not the
     /// propagation radius on its own.
     pub fn scope_region(&self, seed_id: &str, depth: usize) -> Result<BTreeSet<String>, DynoError> {
-        let owned = self.containment_closure(seed_id)?;
+        let mut owned = self.containment_closure(seed_id)?;
+        // A PROJECT HOLDS ITS LINE OF REASONING (req:a-line-of-reasoning-is-
+        // held-in-its-project-and-its-gaps-fit-an-argument): the claims,
+        // steps, objections and replies of a design's reasoning are written by
+        // tools that take no project, so nothing CONTAINS them. A Project seed
+        // owns every one that no other Project contains. Measured in the
+        // cogito trial: detect_gaps on the project had region_size 1.
+        if self.get_node(node::PROJECT, seed_id)?.is_some() {
+            owned.extend(self.reasoning_held_by(seed_id)?);
+        }
         let seeds: Vec<&str> = owned.iter().map(String::as_str).collect();
         let radius = self.propagate_from(&seeds, PropagateOptions { max_depth: depth })?;
         let mut ids = owned;
         ids.extend(radius.impacted.into_iter().map(|i| i.node_id));
         Ok(ids)
+    }
+
+    /// The nodes of the design's line of reasoning that no Project other than
+    /// `project` contains: every Inference, what each concludes and rests on,
+    /// and both ends of every opposing CONTRADICTS that touches them.
+    fn reasoning_held_by(&self, project: &str) -> Result<BTreeSet<String>, DynoError> {
+        let mut elsewhere: BTreeSet<String> = BTreeSet::new();
+        for p in self.scan_nodes(node::PROJECT)? {
+            if p.node_id != project {
+                elsewhere.extend(self.containment_closure(&p.node_id)?);
+            }
+        }
+        let mut held: BTreeSet<String> = BTreeSet::new();
+        for st in self.scan_nodes(node::INFERENCE)? {
+            held.insert(st.node_id.clone());
+            held.extend(self.premises_of(&st.node_id)?);
+            if let Some(c) = self.conclusion_of(&st.node_id)? {
+                held.insert(c);
+            }
+        }
+        let mut attacks: Vec<String> = Vec::new();
+        for id in &held {
+            for e in self.incoming(id, Some(edge::CONTRADICTS))? {
+                attacks.push(e.from_id);
+            }
+        }
+        held.extend(attacks);
+        Ok(held
+            .into_iter()
+            .filter(|id| !elsewhere.contains(id))
+            .collect())
     }
 
     /// Everything at or beneath `seed_id` on the containment spine — the axis-Y

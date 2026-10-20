@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:8a128c2e3730fd1770598b4407637fef44b8781a1870d47385f5b13866b5c8b0",
+  "node_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "c1efe4d95",
+    "detected_at": "2026-10-20",
+    "name": "Phase 6, PR 2: how an argument reads",
+    "rationale": "Anthony's \"Start phase 6\" (2026-10-20), PR 2 of the split (\"how an argument reads\"), after #779 merged as fc5d9f82. Choices made where the requirements left one: (1) one contested route is enough for a claim to read contested (dec:idea-a-claim-with-one-contested-route-reads-contested-or-every-route, proposed): the cogito's \"I exist\" has two contested readings and a third unsupported for another reason; (2) a conceded objection counts against its target as if it held, so a conceded step fails and supports nothing; (3) a rule of method is taken as given by default, an unstated premise is not; (4) a Project's domain naming an argument, a proof or reasoning makes a design with steps and nothing to build a reasoning design; (5) now_refuted's dispute hint is given for every refuted claim, not only when the writer's evidence calls it a dispute; (6) create_edges, draw_edges and add_decision related_to do not watch for refutation yet (deferred in docs/requirements-coverage.md); (7) a dispute kept open on purpose (a contested Decision) stays under contested_by_design and out of still_contested. Adopted the coordinating session's live writes of 2026-10-20 (two Decisions settled, req:a-what-if-on-an-assumed-principle-shows-what-holds-only-under-it, the extended evidence requirement and its snapshot). Failing first on main fc5d9f8: all 10 core tests and all 3 MCP tests failed.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "Eight requirements of epoch:planned-p6-argument-gaps. Schema widening only (the stamp moves): statement_kind gains objection, reply, unstated_premise, method_rule; Inference.rule gains immediate; CONTRADICTS alignment gains conceding with a moves_to node_ref; GOVERNED_BY ruling gains held. A claim no route holds while a dispute holds one up reads contested and names what stands against each route (contested_by); a given foundation under a standing objection reads contested; still_contested counts them. A contested Decision on a claim's steps is read with the claim, the held reading marked, and positions read back from the Decision. A conceding reply grants an objection against one reading and moves to another. review_relations, create_edge, add_requirement and add_constraint reply now_refuted. rests_on is a claim's own support (against_rests_on apart); a step used as a premise is walked into. A Project's scope holds its reasoning; an argument design is not asked an artifact standard or a closure criterion. Six toolsnaps change (enum values, two descriptions); 200 tools."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:aaf606121f3e7a09134df8707e631029934b532d39cae98e607d6bd76fb50202",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-step-can-be-an-immediate-grasp-not-an-inference",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

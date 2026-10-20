@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b23cb647067dd32682858513d01c99f8cb5e643cb964ec282b8f3b0f810c0025",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:what-a-claim-rests-on-is-its-own-support"
+}

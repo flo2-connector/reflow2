@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:58d4559cf976989000821961d6ec67345e4e3079d1b5d75cc3f71d4a3123ff50",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-project-holds-its-line-of-reasoning-and-is-asked-an-arguments-questions",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

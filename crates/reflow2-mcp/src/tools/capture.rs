@@ -1820,6 +1820,7 @@ impl ReflowService {
         Parameters(req): Parameters<RequirementReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
         let node_ty = reflow2_core::nodes::node::REQUIREMENT;
         // Which calls settle is DECLARED (crate::settles), served on the tool,
         // and read here — never re-derived per handler.
@@ -1959,6 +1960,7 @@ impl ReflowService {
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
         attach_not_drawn(&mut reply, not_drawn);
+        let reply = crate::service::with_now_refuted(reply, &g, &watch)?;
         with_capture_notes(
             reply,
             "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
@@ -2976,6 +2978,7 @@ impl ReflowService {
         Parameters(req): Parameters<AddConstraintReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
         let node_ty = reflow2_core::nodes::node::CONSTRAINT;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
@@ -3069,6 +3072,7 @@ impl ReflowService {
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
+        let reply = crate::service::with_now_refuted(reply, &g, &watch)?;
         with_capture_notes(
             reply,
             "loop: a Constraint binds what it CONSTRAINS — wire it, then run detect_gaps",
@@ -3444,10 +3448,29 @@ impl ReflowService {
         // (`crate::service::unit`) closed the raw lock to handlers.
         let mut g = self.write_lock().await?;
         links.extend(cross_design_links(&mut g, across)?);
-        ok_json(
-            g.review_relations(&node_type, &req.node_id, &links, req.note.as_deref())
-                .map_err(dyno_err)?,
-        )
+        let drawn: Vec<(String, String, Option<String>)> = links
+            .iter()
+            .filter(|l| l.relation == "CONTRADICTS")
+            .map(|l| {
+                let (from, to) = if l.incoming {
+                    (l.other_id.clone(), req.node_id.clone())
+                } else {
+                    (req.node_id.clone(), l.other_id.clone())
+                };
+                let alignment = l
+                    .properties
+                    .get("alignment")
+                    .and_then(|v| v.as_str())
+                    .map(str::to_string);
+                (from, to, alignment)
+            })
+            .collect();
+        let watch = crate::service::watch_attacks(&g, Some(&req.node_id), &drawn)?;
+        let outcome = g
+            .review_relations(&node_type, &req.node_id, &links, req.note.as_deref())
+            .map_err(dyno_err)?;
+        let reply = serde_json::to_value(outcome).map_err(ser_err)?;
+        ok_json(crate::service::with_now_refuted(reply, &g, &watch)?)
     }
 
     #[tool(
@@ -4518,11 +4541,15 @@ pub struct AddInferenceReq {
     pub id: String,
     /// HOW THE PREMISES SUPPORT THE CONCLUSION: `all` (every premise must hold),
     /// `any` (one is enough) or `k_of_n` (at least `k` must hold). A named rule
-    /// such as modus ponens is `all` with `rule_name`.
+    /// such as modus ponens is `all` with `rule_name`. `immediate`: NOT AN
+    /// INFERENCE — the conclusion is grasped directly (an intuition, a
+    /// self-evident or self-verifying grasp); its premises, if any, are what
+    /// it is grasped in.
     #[schemars(schema_with = "crate::enum_schema::inference_rule_req")]
     pub rule: String,
     /// The premises, by id: any records the design holds — requirements,
-    /// checks, decisions, constraints, other steps. At least one.
+    /// checks, decisions, constraints, other steps. At least one, except for
+    /// rule `immediate`, which may name none.
     pub premises: Vec<String>,
     /// The ONE node this step concludes. A node may be concluded by several
     /// steps (alternative derivations, read as ANY); a step concludes one.

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:927230a0c771e55475d46c1c94cb86bffb08de2e15468059c2085411d98712a3",
+  "node_id": "dec:idea-a-claim-with-one-contested-route-reads-contested-or-every-route",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "What the reader sees, for a claim no route holds. Built: it reads \"contested\" when at least one route would hold were the dispute under it settled, naming what stands against each such route; \"unproven\" when no route is held up by a dispute. The cogito's \"I exist\" has three readings: two are contested, the third (performance) lacks a premise for another reason, and it reads contested. Options: (a) one contested route is enough, as built; (b) every route must be contested, so \"I exist\" would stay \"unproven\". Recommended: (a): a reader is told the claim would stand if the dispute went its way, and \"unproven\" keeps its meaning of nothing holding it up. It is wrong if a reader should be told a route is missing for other reasons before being told the claim is disputed; the why names the other routes either way.",
+    "kind": "exploratory",
+    "name": "IDEA (proposed 2026-10-20, phase 6 PR 2): does a claim read contested when ONE of its routes is held up only by a dispute (built), or only when EVERY route is?",
+    "no_relation_note": "Governs cap:a-claim-held-up-only-by-disputes-reads-contested (drawn next); its near matches are the requirement and the cogito trial fact it was built from.",
+    "rationale": "The requirement's name says \"every route\", its statement \"every line of support held up only by standing objections or contested premises\", and its measured case (the cogito) has a third route unsupported for another reason, yet was observed and recorded as \"all three routes were only contested\". (a) fits the measured case; (b) fits the name.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}
