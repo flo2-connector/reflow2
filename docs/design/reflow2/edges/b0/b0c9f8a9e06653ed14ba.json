@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5866c549b0e24a516bd4a6983bafd6c55cca569ca5574ab8188bcf921e52642f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:e218e62cd88389c6269608aa5717a1b6578cb0926f5dd21cdb1e2bef6396772f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

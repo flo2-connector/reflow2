@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f5fe4a6ead19499017975500d2ef7a968e066238565222dfff250b95a60b2092",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2504c2c200b5f2d34b626ec9eee71c0887e0e8b1d2cfae6f49328b10111cbf67",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:an-argument-reads-step-objections-and-every-lines-assumptions-test"
+}

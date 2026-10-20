@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c794d6720bbf0f7871868bec70c452f62be73324f3ee7f8a15130cde26e9cf8f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:design-an-argument-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

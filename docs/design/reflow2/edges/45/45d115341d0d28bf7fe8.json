@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9a104acda73354550585374ad5a9eeeded9b95fe98503af25a11edbc692b3137",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:5fcb4c9b91dfe0b7a2306f97053eca570721f5101e0f230db49fe195e2f7aa0c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-an-argument-skill"
+}

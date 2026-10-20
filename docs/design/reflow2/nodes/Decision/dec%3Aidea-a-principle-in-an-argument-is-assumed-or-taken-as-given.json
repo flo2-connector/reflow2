@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ce07c747e855ce04b254e67e951ef6d156d2c7b22f798231d68bea2a8c87622a",
+  "node_id": "dec:idea-a-principle-in-an-argument-is-assumed-or-taken-as-given",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "What the reader sees, for a position derived from a principle. Built (the skill's recipe): the step takes the principle in `assumed`, so the position reads \"conditional: holds under this principle\", a position several principles support names each, but an objection against the principle is read on the principle only (the positions already say they hold only if it does), and a what-if on the principle says nothing about the positions. Options: (a) assumed, as built — matches what the trolley trial's designer did and its observer expected; (b) taken as given — positions read plain \"holds\" (shown), an objection against a principle contests every position on it, and a what-if on it works. Recommended: (a). It is wrong if Anthony wants an objection to a principle to reach every position resting on it now, rather than after the later phase 6 PR on contested foundations.",
+    "kind": "exploratory",
+    "name": "IDEA (proposed 2026-10-20, phase 6 PR 1): does the argument skill record a principle as assumed in each step that applies it (built), or as taken as given?",
+    "no_relation_note": "Governs cap:a-served-skill-teaches-designing-an-argument (drawn as GOVERNED_BY next); the near matches are the requirement and the trolley trial fact this choice was made under.",
+    "rationale": "The skill has to pick one recipe so its readings agree with the tools. (a) is the honest one for \"positions on principles\" (each is a result inside an argument from a chosen principle); (b) reads better under objections and what-ifs today. Later phase 6 PRs (a contested foundation reads contested; a what-if on a premise reaches what rests on it) narrow the gap either way.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

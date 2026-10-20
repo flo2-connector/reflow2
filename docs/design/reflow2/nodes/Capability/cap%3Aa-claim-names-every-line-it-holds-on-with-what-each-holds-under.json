@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d707d243b36a5ac5e368f02015a8fdf2b71c81bfb7e2f311be5bf77637cc7f78",
+  "node_id": "cap:a-claim-names-every-line-it-holds-on-with-what-each-holds-under",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (crates/reflow2-core/src/inference.rs: Condition, minimal_lines, cross_lines, k_of_n_lines). Each reading carries every MINIMAL line with its open assumptions, unverified citations and statistical tests, lightest first (the lightest decides `assumes`, `rests_on_unverified`, `rests_on_tests`, as before). A holding step crosses its premises' lines by its rule (`all`: every combination; `any`: any holding premise; `k_of_n`: any k), minus what it discharges, so it inherits only what its cheapest line needs (the trolley trial: a Thomson-2008 step inherited Foot's principle). A claim takes every holding step's lines and names them in `holds_under_any_of` on its read-back, its foundations and a step's inference_reading, and its proof status names each line when conditional (Driver, held by five principles, read \"only under act consequentialism\"). An objection's scope is what EVERY line of its target holds under, so one holding only under one line's assumption contests a claim another line holds outside it, and never refutes it. At most LINES_CAP (32) lines are kept, lightest first, with `lines_capped` saying so; a k_of_n step over more than 256 combinations takes all holding premises together and says it was capped. A step that does not hold reads, as before, the union of what its premises rest on.",
+    "name": "A claim names every line it holds on with what each holds under, and a step citing it inherits only its cheapest line",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

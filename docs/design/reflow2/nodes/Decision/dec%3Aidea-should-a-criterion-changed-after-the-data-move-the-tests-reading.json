@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:ca7d72e471de639e05eea9082e672f9f4df624d19bfc130b9e91cab57fbc6ae2",
+  "content_hash": "sha256:d11591f9ac333d227ffd69e326fd808d8e7223510a8af165881e0053a0c35c77",
   "node_id": "dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:ca7d72e471de639e05eea9082e672f9f4df624d19bfc130b9e91cab57fbc6ae2",
   "properties": {
+    "chose": "(b), Anthony's word 2026-10-20 \"Go with your recommendations\": a test whose α, hypothesis, chosen test or re-run α moved after its data reads unknown (\"its criteria moved after the data\") until the owner acknowledges the criteria_changed_after_data gap with a reason; once acknowledged it reads as before. Nothing is refused: every write still lands. Not (a): a warning alone lets a moved goalpost support a claim. Not (c): judging at the original α would also unsay an honest correction (a typo in α) with no way back, where (b) costs one acknowledgement. Built in P6 as req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
     "decision": "OPEN, for Anthony. As built on feat/hypothesis-tests (2026-10-19), a criterion changed after a test's data (α, the hypothesis, the chosen test, or the record re-run at another α) is REPORTED — the criteria_changed_after_data gap and test_reading.criteria_changed, both values and dates — and the test still reads \"supported at α\". The requirement says \"reported … nothing is refused\". Options: (a) keep it report-only (as built); (b) the test reads unknown (\"its criteria moved after the data\") until the owner acknowledges the gap with a reason, so a moved goalpost never supports a claim silently; (c) it reads supported at the ORIGINAL α only (the lock's), so a test that passes only under the moved α reads not rejected. Counter-argument to (b)/(c): a legitimate correction (a typo in α, a hypothesis reworded without changing its meaning) would unsay a valid result until someone acknowledges it.",
     "kind": "exploratory",
-    "name": "Should a criterion changed after the data move the test's reading, or only be reported?",
+    "name": "SETTLED 2026-10-20: a criterion changed after the data stops the test counting until the owner acknowledges the change with a reason (option b)",
     "rationale": "A judgement call the build could not settle from the requirement's text, recorded instead of guessed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

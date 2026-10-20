@@ -1,0 +1,2979 @@
+{
+ "content_hash": "sha256:86f2d9b5a703be4b1c30ee1ba891d8abb0fe73ce02e962a12458bd34a8278b49",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-d82ad83a71",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:which-reading-of-the-cogito",
+   "properties": {
+    "note": "Same answer as question 1: B is Descartes's own; A and C stay as rivals; open on purpose."
+   },
+   "to_id": "question:asked-correction-to-my-first-question-in-this-batch-403ef3"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:which-reading-of-the-cogito",
+   "properties": {
+    "note": "Owner: B is Descartes's own reading; A and C stay as rivals; the dispute stays open on purpose."
+   },
+   "to_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:link-thinking-has-a-thinker",
+   "properties": {
+    "note": "Owner: KEEP the four step-claims taken as given, as a workaround until reflow2 can aim an objection at a step. Linked from this one of the four; the other three are unchanged too."
+   },
+   "to_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:obj-only-thinking-is-certain",
+   "properties": {
+    "note": "Owner: the Lichtenberg/Russell objection STANDS; the minimal-subject reply stays recorded but does not settle it. Nothing changed: the objection already reads `stands`."
+   },
+   "to_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-correction-to-my-first-question-in-this-batch-403ef3",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-correction-to-my-first-question-in-this-batch-403ef3",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:link-thinking-has-a-thinker"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-only-thinking-is-certain"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:reply-minimal-subject"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:link-am-only-what-i-know"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:link-existence-intuited-in-thinking"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:link-minor-known-independently"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:link-thinking-has-a-thinker"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:cogito-as-intuition"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:cogito-as-performance"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:cogito-as-syllogism"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:deceived-or-not",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-thought",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:discourse-v-two-tests",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:dream-doubt",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:method-of-doubt",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:nothing-has-no-attributes",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:which-reading-of-the-cogito",
+   "properties": {
+    "approved_at": "2026-10-18",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:cartesian-verdict-on-ai",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-not-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:cogito-as-intuition",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:cogito-as-performance",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:cogito-as-syllogism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:cogito-cannot-decide-for-another",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dilemma-thinking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:functionalist-verdict-on-ai",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:major-from-common-notion",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:only-thought-survives",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:reply-walking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rule-from-cogito",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:thinking-is-mine",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:what-am-i",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:descartes-cogito",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-correction-to-my-first-question-in-this-batch-403ef3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ai-is-res-cogitans-if",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ai-not-res-cogitans",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ai-question-not-settled-by-cogito",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:clear-distinct-rule",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:denial-self-defeating",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:i-am-thinking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:i-exist",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-ai-fails-two-tests",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-am-only-what-i-know",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-cogito-first-person-only",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-existence-intuited-in-thinking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-functional-identity",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-minor-known-independently",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:link-thinking-has-a-thinker",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-begs-the-question",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-cartesian-circle",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-hobbes-act-and-subject",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-llm-passes-language-mark",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-major-premise-doubtful",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-only-thinking-is-certain",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-principles-concedes-major",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-walking-would-do",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:only-thought-inseparable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-minimal-subject",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-notion-not-premise",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-present-perception",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-scope-of-med2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-walking-doubtable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sum-res-cogitans",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:suppose-ai-authentically-doubts",
+   "properties": {
+    "authored_via": [
+     "who:agent-d82ad83a71"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:suppose-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:suppose-not-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:there-is-thinking",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thinking-if-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thinking-if-not-deceived",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:whatever-thinks-exists",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:cartesian-verdict-on-ai",
+   "properties": {},
+   "to_id": "req:ai-not-res-cogitans"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-deceived",
+   "properties": {},
+   "to_id": "req:thinking-if-deceived"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-not-deceived",
+   "properties": {},
+   "to_id": "req:thinking-if-not-deceived"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:cogito-as-intuition",
+   "properties": {},
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:cogito-as-performance",
+   "properties": {},
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:cogito-as-syllogism",
+   "properties": {},
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:cogito-cannot-decide-for-another",
+   "properties": {},
+   "to_id": "req:ai-question-not-settled-by-cogito"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dilemma-thinking",
+   "properties": {},
+   "to_id": "req:there-is-thinking"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:functionalist-verdict-on-ai",
+   "properties": {},
+   "to_id": "req:ai-is-res-cogitans-if"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:major-from-common-notion",
+   "properties": {},
+   "to_id": "req:whatever-thinks-exists"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:only-thought-survives",
+   "properties": {},
+   "to_id": "req:only-thought-inseparable"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:reply-walking",
+   "properties": {},
+   "to_id": "req:reply-walking-doubtable"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rule-from-cogito",
+   "properties": {},
+   "to_id": "req:clear-distinct-rule"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:thinking-is-mine",
+   "properties": {},
+   "to_id": "req:i-am-thinking"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:what-am-i",
+   "properties": {},
+   "to_id": "req:sum-res-cogitans"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ai-is-res-cogitans-if",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "One says an AI can be a res cogitans, the other that it cannot; both cannot hold. Kept as the open dispute this branch is about."
+   },
+   "to_id": "req:ai-not-res-cogitans"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-begs-the-question",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The circularity objection denies that 'I think' is known independently of 'I exist': the syllogistic step presupposes its conclusion. Aimed at reading A through the condition it needs."
+   },
+   "to_id": "req:link-minor-known-independently"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-cartesian-circle",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Arnauld's circle denies that the clear-and-distinct rule is secured without circularity."
+   },
+   "to_id": "req:clear-distinct-rule"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-hobbes-act-and-subject",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Hobbes denies that 'I am a thing that thinks' licenses 'I am only a mind': the thinking thing may be a body. Aimed at inf:what-am-i through its reified warrant."
+   },
+   "to_id": "req:link-am-only-what-i-know"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-llm-passes-language-mark",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "LLMs show flexible, context-responsive language, which is the first Part V mark the step-claim says no machine can show."
+   },
+   "to_id": "req:link-ai-fails-two-tests"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-major-premise-doubtful",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Objection 1 denies that the unstated major premise is certain under the method of doubt, which is what reading A needs."
+   },
+   "to_id": "req:whatever-thinks-exists"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-only-thinking-is-certain",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lichtenberg/Russell deny the passage from 'thinking is going on' to 'I think': the step adds a subject the evidence does not supply. Aimed at the step inf:thinking-is-mine through its reified warrant."
+   },
+   "to_id": "req:link-thinking-has-a-thinker"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-principles-concedes-major",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Objection 5 denies that reading B is Descartes's own account, citing Principles I.10. Aimed at reading B through its reified warrant."
+   },
+   "to_id": "req:link-existence-intuited-in-thinking"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-walking-would-do",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Gassendi denies that thought has the special self-evidence reading B claims for it: any act would serve. Aimed at reading B through its reified warrant."
+   },
+   "to_id": "req:link-existence-intuited-in-thinking"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:reply-minimal-subject",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The minimal-subject reply denies that 'I' adds anything beyond the thinking's being had by whatever does it."
+   },
+   "to_id": "req:obj-only-thinking-is-certain"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:reply-notion-not-premise",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "I.10's general truth is a notion understood, not a premise reasoned from, so I.10 does not concede reading A."
+   },
+   "to_id": "req:obj-principles-concedes-major"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:reply-present-perception",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Descartes's memory reply: God secures remembered conclusions only, so the present perceptions the proof uses are not circularly validated."
+   },
+   "to_id": "req:obj-cartesian-circle"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:reply-scope-of-med2",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Meditation II claims only what he knows himself to be; the real distinction waits for Meditation VI."
+   },
+   "to_id": "req:obj-hobbes-act-and-subject"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:reply-walking-doubtable",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Descartes's Fifth Replies: 'I walk' is doubtable, so only walking-as-thought gives certainty; thought is special after all."
+   },
+   "to_id": "req:obj-walking-would-do"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:ai-is-res-cogitans-if",
+   "properties": {
+    "evidence": "The functionalist verdict's second half is that the cogito would hold for the AI, so it reuses the cogito's conclusion pattern.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:link-cogito-first-person-only",
+   "properties": {
+    "evidence": "It draws out the scope already stated on the cogito's conclusion: certain for the thinker, while thinking, and only THAT I am.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:i-exist"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "inf:cogito-as-intuition",
+   "properties": {
+    "note": "The decision names this step Descartes's own reading."
+   },
+   "to_id": "dec:which-reading-of-the-cogito"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "inf:cogito-as-performance",
+   "properties": {
+    "note": "Kept as a rival interpretation; the dispute stays open."
+   },
+   "to_id": "dec:which-reading-of-the-cogito"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "inf:cogito-as-syllogism",
+   "properties": {
+    "note": "Kept as a rival interpretation; the dispute stays open."
+   },
+   "to_id": "dec:which-reading-of-the-cogito"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:deceived-or-not",
+   "properties": {},
+   "to_id": "inf:dilemma-thinking"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:case-deceived"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:case-not-deceived"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:cogito-cannot-decide-for-another"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:functionalist-verdict-on-ai"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:major-from-common-notion"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-thought",
+   "properties": {},
+   "to_id": "inf:reply-walking"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:discourse-v-two-tests",
+   "properties": {},
+   "to_id": "inf:cartesian-verdict-on-ai"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:dream-doubt",
+   "properties": {},
+   "to_id": "inf:only-thought-survives"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:dream-doubt",
+   "properties": {},
+   "to_id": "inf:reply-walking"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:method-of-doubt",
+   "properties": {},
+   "to_id": "inf:case-not-deceived"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:nothing-has-no-attributes",
+   "properties": {},
+   "to_id": "inf:major-from-common-notion"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:denial-self-defeating",
+   "properties": {},
+   "to_id": "inf:cogito-as-performance"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:i-am-thinking",
+   "properties": {},
+   "to_id": "inf:cogito-as-intuition"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:i-am-thinking",
+   "properties": {},
+   "to_id": "inf:cogito-as-syllogism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:i-exist",
+   "properties": {},
+   "to_id": "inf:rule-from-cogito"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:i-exist",
+   "properties": {},
+   "to_id": "inf:what-am-i"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-ai-fails-two-tests",
+   "properties": {},
+   "to_id": "inf:cartesian-verdict-on-ai"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-am-only-what-i-know",
+   "properties": {},
+   "to_id": "inf:what-am-i"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-cogito-first-person-only",
+   "properties": {},
+   "to_id": "inf:cogito-cannot-decide-for-another"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-existence-intuited-in-thinking",
+   "properties": {},
+   "to_id": "inf:cogito-as-intuition"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-functional-identity",
+   "properties": {},
+   "to_id": "inf:functionalist-verdict-on-ai"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-minor-known-independently",
+   "properties": {},
+   "to_id": "inf:cogito-as-syllogism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:link-thinking-has-a-thinker",
+   "properties": {},
+   "to_id": "inf:thinking-is-mine"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:only-thought-inseparable",
+   "properties": {},
+   "to_id": "inf:what-am-i"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:suppose-ai-authentically-doubts",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:functionalist-verdict-on-ai"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:suppose-deceived",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:case-deceived"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:suppose-not-deceived",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:case-not-deceived"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:there-is-thinking",
+   "properties": {},
+   "to_id": "inf:cogito-as-performance"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:there-is-thinking",
+   "properties": {},
+   "to_id": "inf:only-thought-survives"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:there-is-thinking",
+   "properties": {},
+   "to_id": "inf:thinking-is-mine"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thinking-if-deceived",
+   "properties": {},
+   "to_id": "inf:dilemma-thinking"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thinking-if-not-deceived",
+   "properties": {},
+   "to_id": "inf:dilemma-thinking"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:whatever-thinks-exists",
+   "properties": {},
+   "to_id": "inf:cogito-as-syllogism"
+  }
+ ],
+ "graph_id": "989598dd02246a81",
+ "nodes": [
+  {
+   "node_id": "con:deceived-or-not",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Either a deceiver deceives me in everything, or not",
+    "priority": "medium",
+    "statement": "Either there is some supremely powerful and cunning deceiver who deceives me in everything he can, or there is not. (Excluded middle, applied to the evil-demon hypothesis.)",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-thought",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: thought (cogitatio)",
+    "priority": "medium",
+    "statement": "By \"thought\" I mean everything that happens in me of which I am immediately aware: doubting, understanding, affirming, denying, willing, refusing, imagining, and sensing taken as seeming to see, hear, feel. Even if what I seem to see is false, that I seem to see cannot be false. [Recalled from memory: Meditation II (1641) and Principles of Philosophy I.9 (1644); wording paraphrased, not quoted.]",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:discourse-v-two-tests",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Discourse Part V: two marks that separate a mind from a machine",
+    "priority": "medium",
+    "statement": "A machine could be built to utter words and act, yet two marks would always show it is not a true man (a mind): (1) it could not arrange words flexibly to answer the sense of whatever is said in its presence; (2) though it might do some things as well as or better than we do, it would fail at others, showing it acts not from understanding but from the disposition of its organs, whereas reason is a universal instrument usable in every kind of situation. [Recalled: Discourse on the Method, Part V (1637). Paraphrase. Taken here as Descartes's stated position, not argued for in this design.]",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:dream-doubt",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "The dream doubt: anything bodily can be doubted",
+    "priority": "medium",
+    "statement": "There is no sure sign by which waking can be told from dreaming, so any belief that I walk, sit by the fire, or have a body at all can be doubted; and a deceiver of supreme power could make me err even about the simplest things. Under the method these are given as doubtable. [Recalled: Meditation I. Paraphrase. Taken here as the method's starting result, not argued for in this design.]",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:method-of-doubt",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "The method of doubt",
+    "priority": "medium",
+    "statement": "Rule of method: withhold assent from anything in which the slightest doubt can be found, as carefully as from what is plainly false, and accept as a foundation only what no doubt can touch. Applying it, I am now doubting everything I can. [Recalled: Discourse on the Method Part IV (1637); Meditation I (1641). Paraphrase.]",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:nothing-has-no-attributes",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Common notion: nothingness has no attributes",
+    "priority": "medium",
+    "statement": "Nothingness has no attributes or qualities: wherever some attribute (such as thinking) is found, there must be some thing or substance that has it. Descartes counts this a common notion known by the natural light. [Recalled: Principles of Philosophy I.11 and I.52; also stated among the axioms at the end of the Second Replies. Unsure of the exact section numbers.]",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:agent-d82ad83a71",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/mcp-oauth-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"Claude-User\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "Claude-User"
+   }
+  },
+  {
+   "node_id": "dec:which-reading-of-the-cogito",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "The design treats reading B, \"I think, I exist\" grasped in one self-evident intuition and not inferred (Second Replies), as Descartes's own account of the cogito: inf:cogito-as-intuition. Readings A (a syllogism with the unstated premise \"whatever thinks exists\", inf:cogito-as-syllogism) and C (a self-verifying performance, Hintikka, inf:cogito-as-performance) stay recorded as rival interpretations. Which reading is right is a dispute the design keeps open deliberately; it owes no verdict.",
+    "kind": "choice",
+    "name": "Reading B (one intuition) is Descartes's own; the A/B/C dispute is kept open on purpose",
+    "rationale": "The owner's answers to questions 1 and 4 of batch cogito-round-1 (Anthony Sligar, who:acct-23984879ca). B is the reading Descartes gives when he is pressed (Second Replies); A is what the \"ergo\" of the Discourse and the Principles suggests, and Principles I.10 (Objection 5) keeps it alive; C is a later reconstruction offered against the circularity objection. Recorded by the designer agent; the status that keeps it open (`contested`) is the owner's to set. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:cartesian-verdict-on-ai",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "AI branch: Part V tests applied to an AI",
+    "rule": "all",
+    "rule_name": "application of Descartes's two marks (modus ponens)",
+    "warrant": "Whatever fails a Part V mark acts from the disposition of its parts and is a mechanism, not a mind; an AI fails at least one mark; so an AI is a mechanism (res extensa) that exists but does not think. The weight falls on the step-claim that an AI fails the marks, which the LLM objection presses."
+   }
+  },
+  {
+   "node_id": "inf:case-deceived",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:thinking-if-deceived",
+    "rule": "all",
+    "rule_name": "conditional proof (case 1 of a dilemma)",
+    "warrant": "To be deceived is to seem to see, to believe falsely: each is a thought in the defined sense. So under the deceiver hypothesis something is thinking. The deceiver can make the content of a thought false; he cannot make it false that the thought occurs."
+   }
+  },
+  {
+   "node_id": "inf:case-not-deceived",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:thinking-if-not-deceived",
+    "rule": "all",
+    "rule_name": "conditional proof (case 2 of a dilemma)",
+    "warrant": "With no deceiver, I am still doing what the method has me do, doubting; doubting is a thought in the defined sense. So thinking is going on in this case too."
+   }
+  },
+  {
+   "node_id": "inf:cogito-as-intuition",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Reading B: the cogito as one intuition, not an inference",
+    "rule": "all",
+    "rule_name": "simple intuition of the mind (NOT AN INFERENCE: recorded as a step only because the tool has no other form)",
+    "warrant": "Descartes's own account: \"I am thinking, therefore I exist\" is not deduced by syllogism from \"whatever thinks exists\"; the mind recognises it \"as something self-evident by a simple intuition\", grasping the existence in the thinking in one act. The general proposition is learned from the particular case, not the other way round. [Recalled: Second Replies (1641), to Mersenne. Paraphrase; I am fairly sure of the content, not of the wording.] Honestly, this is not a step from a premise to a conclusion at all: premise and conclusion are two aspects of one self-evident grasp."
+   }
+  },
+  {
+   "node_id": "inf:cogito-as-performance",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Reading C: the cogito as performance (Hintikka)",
+    "rule": "all",
+    "rule_name": "performative self-verification (not a deduction from content)",
+    "warrant": "The certainty does not come from a premise whose content implies the conclusion, but from the act: in thinking \"I exist\" (or trying to think \"I do not exist\") I make it true. \"Cogito\" names the thinking-act by which the sentence verifies itself. [Recalled: Hintikka 1962.] This reading is offered as an answer to the circularity worry; the tool has no form for a reply that concedes an objection against one reading and moves to another, so it is recorded as an alternative line."
+   }
+  },
+  {
+   "node_id": "inf:cogito-as-syllogism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Reading A: the cogito as a syllogism (enthymeme)",
+    "rule": "all",
+    "rule_name": "syllogism with a suppressed major premise (universal instantiation + modus ponens)",
+    "warrant": "Whatever thinks exists; I think; therefore I exist. The \"ergo\" of the Discourse and the Principles read literally, as an inference. Valid in form; its weight falls on the unstated major premise and on whether the minor premise already contains the conclusion."
+   }
+  },
+  {
+   "node_id": "inf:cogito-cannot-decide-for-another",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "AI branch: the first-person limit blocks a verdict from outside",
+    "rule": "all",
+    "rule_name": "scope of the cogito applied to a third party",
+    "warrant": "Thought is what happens in me of which I am immediately aware (con:def-thought), and the cogito's certainty comes only from that awareness. An observer has no such awareness of an AI's states, so the cogito gives the observer nothing to decide with; whatever verdict is reached about an AI rests on other grounds (behaviour tests, dualism, functionalism), none of which carries the cogito's certainty."
+   }
+  },
+  {
+   "node_id": "inf:dilemma-thinking",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:suppose-deceived",
+     "req:suppose-not-deceived"
+    ],
+    "name": "all of 3 premise(s) support req:there-is-thinking",
+    "rule": "all",
+    "rule_name": "proof by cases (constructive dilemma)",
+    "warrant": "Either the deceiver exists or not; in each case thinking is going on; so thinking is going on, whichever holds. This is why the doubt, pushed to its limit, cannot remove this one thing: the more I am deceived, the more I am thinking."
+   }
+  },
+  {
+   "node_id": "inf:functionalist-verdict-on-ai",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "AI branch: functionalism plus genuine doubt gives a thinking AI",
+    "rule": "all",
+    "rule_name": "functional identification, under a supposition",
+    "warrant": "Doubting is a thought (con:def-thought); a mind is whatever realises thought's functional roles (functionalism); so an AI that genuinely doubts is a thinking thing, and its own doubting certifies its existence to itself. Holds only under the supposition, which nothing here discharges: the result is conditional, as it should be."
+   }
+  },
+  {
+   "node_id": "inf:major-from-common-notion",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:whatever-thinks-exists",
+    "rule": "all",
+    "rule_name": "instantiation of a common notion",
+    "warrant": "Thinking is an attribute; nothingness has no attributes; so whatever has the attribute of thinking is something, i.e. exists."
+   }
+  },
+  {
+   "node_id": "inf:only-thought-survives",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:only-thought-inseparable",
+    "rule": "all",
+    "rule_name": "elimination under the doubt",
+    "warrant": "Going through what I took myself to be: having a body, walking, eating, sensing through organs all fall to the dream and deceiver doubts; thinking alone survives them, as the dilemma showed."
+   }
+  },
+  {
+   "node_id": "inf:reply-walking",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:reply-walking-doubtable",
+    "rule": "all",
+    "rule_name": "application of the method's own results",
+    "warrant": "The dream doubt already makes \"I walk\" doubtable, so it cannot be a first certainty; the definition of thought counts \"I seem to walk\" as a thought, so what survives of the walking is a thinking. Both grounds are ones Gassendi's objection has to accept inside the method."
+   }
+  },
+  {
+   "node_id": "inf:rule-from-cogito",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:clear-distinct-rule",
+    "rule": "all",
+    "rule_name": "generalisation from a paradigm case",
+    "warrant": "In this first knowledge there is nothing but a clear and distinct perception of what I affirm; that would not make me certain if anything I perceived so clearly and distinctly could be false. So I may take as a general rule that whatever I perceive very clearly and distinctly is true. [Recalled: Meditation III. Descartes then calls in God to secure the rule, which is where the circle objection bites.]"
+   }
+  },
+  {
+   "node_id": "inf:thinking-is-mine",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:i-am-thinking",
+    "rule": "all",
+    "rule_name": "first-person givenness (taken, not argued, by Descartes)",
+    "warrant": "The doubting is given to the doubter as his own: Descartes never separates \"thinking occurs\" from \"I think\", and offers no argument for the passage. This step is recorded so the passage can be challenged; it is exactly where the Lichtenberg-Russell objection aims."
+   }
+  },
+  {
+   "node_id": "inf:what-am-i",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:sum-res-cogitans",
+    "rule": "all",
+    "rule_name": "identification of what I am with what cannot be doubted of me",
+    "warrant": "I exist, and of what I am only thinking is beyond doubt; so, speaking strictly, I am only a thing that thinks: a mind, an intellect, a reason. [Recalled: Meditation II.] Whether this \"only\" is epistemic (all I KNOW I am) or metaphysical (all I AM) is the point Hobbes, and later Arnauld, press."
+   }
+  },
+  {
+   "node_id": "proj:descartes-cogito",
+   "node_type": "Project",
+   "properties": {
+    "domain": "argument",
+    "mode": "flexible",
+    "name": "Descartes' cogito (line-of-reasoning trial)",
+    "objective": "A reader can see what \"I think, therefore I am\" rests on, whether it is an inference at all, and which objections stand or have been answered.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-correction-to-my-first-question-in-this-batch-403ef3",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Same answer as the first question: B is Descartes' own reading, on the Second Replies. A and C are kept as rival interpretations, and the dispute stays open on purpose.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "cogito-round-1",
+    "batch_position": 4,
+    "question": "Correction to my first question in this batch: I wrote that reading B alone carries \"I exist\". That was already out of date when I asked. As recorded now, none of the three readings holds: A and B are contested (Objections 1, 4 and 5, plus Objection 2 against \"I think\"), and C rests on an unargued lemma. With that corrected, which reading should the design treat as Descartes's own?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-do-you-accept-the-minimal-subject-reply-to-70422c",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Standing. The minimal-subject reply stays recorded but does not settle the objection.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "cogito-round-1",
+    "batch_position": 2,
+    "context_setter": "The step from \"thinking is going on\" to \"I think\" is the one Descartes takes without argument.",
+    "question": "Do you accept the \"minimal subject\" reply to Lichtenberg and Russell, so that the conclusion is only \"a thinker of this thought exists, now\"? Or do you count their objection as standing, so that what the doubt leaves certain is only \"thinking is going on\"? Today the objection stands, and that is the main reason \"I think\" and \"I exist\" read contested.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-should-the-four-step-claims-the-thinking-is-bcf8c2",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Keep the four step-claims, taken as given, for now. It is a workaround until reflow2 can aim an objection at a step itself.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "cogito-round-1",
+    "batch_position": 3,
+    "context_setter": "reflow2 does not count an objection aimed at a step, so each challenged step's warrant was made a statement of its own for the objection to aim at.",
+    "question": "Should the four step-claims (the thinking is mine; existence is grasped in the thinking; \"I think\" is known independently of \"I exist\"; I am strictly only what I know myself to be) stay taken as given, as Descartes takes them? Or should each be left open until it is argued for? I marked them taken as given so each step holds unless an objection against it stands; leaving them open would make every route to \"I exist\" unknown.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-which-reading-of-the-cogito-should-this-design-10565f",
+   "node_type": "Question",
+   "properties": {
+    "answer": "B is Descartes' own reading, on the Second Replies. A and C are kept as rival interpretations, and the dispute stays open on purpose.",
+    "answered_at": "2026-10-18",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "cogito-round-1",
+    "batch_position": 1,
+    "context_setter": "The design of \"I think, therefore I am\" records the conclusion \"I exist\" reached three ways. Whether it is an inference at all is the first thing a reader will ask.",
+    "question": "Which reading of the cogito should this design treat as Descartes's own: A (a syllogism with the unstated premise \"whatever thinks exists\"), B (one self-evident intuition, not an inference, as in the Second Replies), or C (a self-verifying performance, Hintikka)? All three are recorded as alternative routes to \"I exist\"; right now B alone carries the conclusion and A and C do not hold.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:ai-is-res-cogitans-if",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "AI branch, functionalist verdict: an AI that genuinely doubts is a thinking thing, and the cogito holds for it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "If an AI functions as a mind, genuinely doubting its own existence and reflecting on its states, it is a res cogitans; and the act of doubting would prove its existence TO ITSELF, so the cogito applies to it as it does to Descartes.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ai-not-res-cogitans",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "AI branch, Cartesian verdict: an AI exists, but as res extensa, not res cogitans",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "Under Descartes's framework an AI plainly EXISTS, as an extended thing (res extensa), a mechanism. What it is not is a thinking thing (res cogitans): it imitates thought without being a subject that doubts, wills or senses. The question \"does AI exist?\" is therefore really \"is AI a res cogitans?\", and the Cartesian answer is no. [Built on Discourse Part V (1637); note the date is 1637, not 1837.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ai-question-not-settled-by-cogito",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "AI branch, conclusion: the cogito cannot settle from outside whether an AI thinks",
+    "priority": "critical",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "Because the cogito certifies only the thinker's own existence, no outside observer can use it to decide whether an AI is a thinking thing. Neither the Cartesian verdict nor the functionalist verdict is settled by the cogito: the Cartesian rests on Part V behaviour tests (and on dualism), the functionalist on behaviour and structure. Both are third-person bets. Only the AI itself, if it thinks, would have the cogito's certainty, and an AI's own report (e.g. Claude, 2026-10-18: it cannot tell from inside whether its doubting is genuine or a good description of doubting) does not close the gap for anyone else.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:clear-distinct-rule",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Built on the cogito: whatever I perceive clearly and distinctly is true",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The general rule: whatever I perceive very clearly and distinctly is true. Descartes extracts it from the cogito (in it there is nothing but a clear and distinct perception of what I affirm) and later secures it through a non-deceiving God. Downstream of the cogito, not part of it. [Recalled: opening of Meditation III.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:denial-self-defeating",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Thinking \"I do not exist\" defeats itself",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The thought or assertion \"I do not exist\", made by me, is existentially inconsistent: the act of thinking or uttering it makes it false. So \"I exist\" verifies itself in the very act of thinking it. This is the performative reading. [Recalled: Jaakko Hintikka, \"Cogito, ergo sum: Inference or Performance?\", Philosophical Review 1962. Descartes's own \"whenever it is put forward by me or conceived in my mind\" (Meditation II) is the text it leans on.]",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:i-am-thinking",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "I think (cogito): the thinking is mine",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "I think: the thinking that is occurring is mine, had by a subject who doubts, is deceived, seems to see. This is the \"cogito\" premise as Descartes states it, in the first person.",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:i-exist",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "I am, I exist (the cogito's conclusion)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "I am, I exist: this is necessarily true each time I put it forward or conceive it in my mind, and it is certain, beyond the reach of every doubt the method raises, including the deceiver. Its scope is narrow: it holds for as long as I am thinking, and says only THAT I am, not yet WHAT I am. [Recalled: \"je pense, donc je suis\", Discourse Part IV (1637); \"ego sum, ego existo\", Meditation II (1641), where no \"therefore\" appears; \"ego cogito, ergo sum\", Principles I.7 (1644).]",
+    "statement_kind": "theorem",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:link-ai-fails-two-tests",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: no machine, an AI included, can meet both Part V marks",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "An AI, however it is built, acts from the arrangement of its parts (in modern terms, its program and weights), so it fails at least one of the two marks of con:discourse-v-two-tests: it cannot respond with flexible language to whatever is said, or cannot use reason across unbounded situations. [Descartes's 1637 expectation applied to modern AI; recorded as taken as given so the objection against it has something to aim at.]",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-am-only-what-i-know",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: what I am, strictly, is what I know myself to be",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "STEP-CLAIM (the warrant of inf:what-am-i, made a statement so it can be objected to): since thinking alone cannot be doubted of me, I am, speaking strictly, only a thing that thinks: a mind. Read epistemically (all I KNOW myself to be) or metaphysically (all I AM); the objections exploit the gap.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-cogito-first-person-only",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: the cogito certifies existence only to the one who thinks it",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "The cogito's certainty is available only from the inside: it proves \"I exist\" to the thinker, in the act of thinking. It supplies no test a third party can run on someone else, human or machine; another's mind is never given to me the way my own thinking is. [Follows the scope already recorded on req:i-exist: \"for as long as I am thinking\", and only THAT I am. Added in the AI branch, 2026-10-18.]",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-existence-intuited-in-thinking",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: in grasping that I think, I grasp in the same act that I exist",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "STEP-CLAIM (the warrant of reading B, made a statement so it can be objected to): in being aware that I am thinking I am, in one and the same self-evident act, aware that I exist; and this holds of thinking in a way it holds of no other act. [Recalled: Second Replies.]",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-functional-identity",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim (functionalism): being a mind is a matter of functional organisation, not substance",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "What makes something a mind is what it does: doubting, reflecting on its own processes, holding internal states that play the roles thoughts play. Whatever realises that organisation, neurons or silicon, is a mind. [Functionalism (Putnam, 1960s, and after); recalled. Rejects Descartes's requirement of an immaterial substance.]",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-minor-known-independently",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: \"I think\" is known without first knowing \"I exist\"",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "STEP-CLAIM (a condition reading A needs if it is not to beg the question, made a statement so the circularity objection has something to aim at): the minor premise \"I think\" is known to me independently of, and not on the strength of, the conclusion \"I exist\".",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:link-thinking-has-a-thinker",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Step-claim: if thinking occurs, it is someone's, mine",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "STEP-CLAIM (the warrant of inf:thinking-is-mine, made a statement so it can be objected to): if thinking is going on, there is a subject who is doing it, and in this case that subject is me. Descartes takes this, never argues it.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:obj-begs-the-question",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 4: as an inference it begs the question",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "standard objection; Kierkegaard, Concluding Unscientific Postscript (1846), recalled and unsure",
+    "statement": "OBJECTION. \"I think\" already asserts that there is an I who thinks, so a premise that is accepted only if I already exist cannot prove that I exist: the inference is valid but circular, it presupposes its conclusion. (\"If I am thinking, what wonder that I am.\") [Recalled: a standard objection; the quoted gibe I attribute to Kierkegaard, Concluding Unscientific Postscript (1846), unsure.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-cartesian-circle",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 6 (Arnauld): the Cartesian circle",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Arnauld, Fourth Objections (1641), recalled",
+    "statement": "OBJECTION. Descartes can be sure that what he perceives clearly and distinctly is true only because God exists and is no deceiver; but he proves God exists only from what he perceives clearly and distinctly. The rule is secured by an argument that already relies on it. [Recalled: Arnauld, Fourth Objections (1641); a version also in the Second Objections.] AIM: the clear-and-distinct rule built on the cogito, not the cogito itself; whether it reaches back to the cogito is the question Descartes's reply answers.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-hobbes-act-and-subject",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 7 (Hobbes): a thinking thing need not be a mind; it may be a body",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Hobbes, Third Objections (1641), recalled",
+    "statement": "OBJECTION. From \"I think\" it follows that I am a thing that thinks, not that I am a mind or intellect: Descartes runs together the act (thinking) and its subject. For all the cogito shows, the thing that thinks may be corporeal. [Recalled: Hobbes, Third Objections (1641).] AIM: the step from \"I exist\" to \"I am only a thing that thinks\", not \"I exist\".",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-llm-passes-language-mark",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection (AI branch): large language models already show the first Part V mark",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "OBJECTION. Modern language models arrange words flexibly to answer the sense of what is said to them across open-ended topics: the very behaviour Descartes said no machine could show. So the first mark no longer separates mind from machine, and req:link-ai-fails-two-tests cannot rest on it. Whether the second mark (universal reason) still holds is left open. AIM: the step-claim that an AI fails both marks, not the cogito itself.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-major-premise-doubtful",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 1: the syllogism's major premise has not survived the doubt",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Second Objections (1641), recalled; Gassendi, Fifth Objections (1641), recalled",
+    "statement": "OBJECTION. Read as a syllogism, the cogito rests on \"whatever thinks exists\", a general truth known before the particular. But the method has put general truths in doubt: if a deceiver can make me err about 2 + 3 = 5, he can make me err about \"nothingness has no attributes\". So the first certainty would rest on a premise the method has not cleared. [Recalled: pressed in the Second Objections (Mersenne and others) and by Gassendi; I am unsure which objector states it in exactly this form.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-only-thinking-is-certain",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 2 (Lichtenberg, Nietzsche, Russell): only \"there is thinking\" is certain, not \"I think\"",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Lichtenberg, Waste Books; Nietzsche, Beyond Good and Evil 16-17; Russell, History of Western Philosophy (all recalled)",
+    "statement": "OBJECTION. What the doubt leaves certain is only that thinking occurs. \"I think\" adds a subject, a thing that has the thoughts, which the grammar supplies and the evidence does not: we should say \"it thinks\", as we say \"it lightens\". So the step from \"thinking is going on\" to \"I think\" is unwarranted, and with it \"I exist\" if \"I\" means a self or substance. [Recalled: G. C. Lichtenberg, Waste Books (1790s); Nietzsche, Beyond Good and Evil \u00a716-17 (1886); Russell, History of Western Philosophy (1945). Related later worries that \"I\" does not refer (Anscombe, \"The First Person\", 1975) are recalled, less surely.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-principles-concedes-major",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 5: Descartes himself concedes the major premise (Principles I.10)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Descartes, Principles of Philosophy I.10 (1644), recalled",
+    "statement": "OBJECTION (to reading B as Descartes's view). In Principles I.10 Descartes says that to know \"I think, therefore I am\" one must know what thought, existence and certainty are, and that \"it is impossible that what thinks should not exist\". That looks like the major premise of reading A, so the \"simple intuition\" account of the Second Replies is not his settled view, or he is inconsistent. [Recalled; section number and wording unsure. A standard interpretive debate.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-walking-would-do",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection 3 (Gassendi): \"I walk, therefore I am\" would do as well",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Gassendi, Fifth Objections (1641), recalled",
+    "statement": "OBJECTION. There is nothing special about thinking: from any action of mine I could infer that I exist, \"I walk, therefore I am\". So the cogito is no privileged intuition in thought; it is an ordinary inference from an act to an agent, resting on the general principle that whatever acts exists. [Recalled: Gassendi, Fifth Objections (1641).]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:only-thought-inseparable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Of what I took myself to be, only thinking survives the doubt",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Of everything I believed I was (a body, one that eats, walks, senses through organs), all can be doubted under the dream and deceiver hypotheses except thinking: that alone cannot be detached from me while I exist. [Recalled: Meditation II.]",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:reply-minimal-subject",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Reply to 2: \"I\" here claims only a minimal subject, and thought is never given unowned",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "REPLY. At this point \"I\" claims no persisting soul or substance, only whatever is now doing this thinking, and only \"for as long as I think\" (Meditation II). And a thought is never met unowned: \"there is thinking\" is an abstraction from \"I am thinking\", not a datum that comes first. [My reconstruction of the usual defence; recalled, not cited to one author.] Whether this answers the objection, or concedes it by shrinking \"I\" to the thinking itself, is the open point.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:reply-notion-not-premise",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Reply to 5: in I.10 the general truth is a notion understood, not a premise reasoned from",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Descartes, Principles I.10 (1644), recalled",
+    "statement": "REPLY. Principles I.10 says these are \"very simple notions which by themselves give no knowledge of anything existing\". Understanding what thought and existence are is needed to grasp the words \"I think, I exist\", but nothing is inferred from them; so I.10 is consistent with the Second Replies. [Recalled; my reading of the usual reconciliation.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:reply-present-perception",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Reply to 6 (Descartes): God secures remembered conclusions, not what I perceive now",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Descartes, Second and Fourth Replies (1641), recalled",
+    "statement": "REPLY. The guarantee from God is needed only for conclusions I remember having demonstrated once I no longer attend to the proof, not for what I perceive clearly while attending to it. The cogito, and the premises of the proof of God while I attend to them, need no such guarantee; so there is no circle. [Recalled: Second Replies and Fourth Replies (1641).] Commentators dispute whether this saves the rule; few think the circle touches the cogito itself.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:reply-scope-of-med2",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Reply to 7 (Descartes): Meditation II claims only what I know of myself, not yet that I am no body",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Descartes, Meditation II; Third Replies (1641), recalled",
+    "statement": "REPLY. In Meditation II Descartes says he does not yet know whether the bodily things he imagines are distinct from the \"I\" he knows; he claims only that, as far as he knows, he is a thinking thing. That mind is really distinct from body is argued only in Meditation VI. And \"mind\" is simply his name for a thinking thing, so no act is confused with its subject. [Recalled: Meditation II; Third Replies; Preface to the Meditations.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:reply-walking-doubtable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Reply to 3 (Descartes): walking can be doubted; only the awareness of walking cannot",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Descartes, Fifth Replies (1641); Principles I.9 (1644), recalled",
+    "statement": "REPLY. \"I walk, therefore I am\" gives no certainty, because I may be dreaming that I walk; its premise falls to the doubt. What does survive is \"I seem to walk, I am aware of walking\", and that is a thought. So any act serves only as far as it is a thought: thinking is special because it is the one act whose occurrence the doubt cannot remove. [Recalled: Fifth Replies (1641); Principles I.9 makes the same point with seeing and walking.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:sum-res-cogitans",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Beyond the cogito: I am a thing that thinks",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "What then am I? A thing that thinks (res cogitans): a thing that doubts, understands, affirms, denies, wills, refuses, imagines and senses. Thought alone cannot be separated from me. The NEXT claim of Meditation II, not the cogito itself; recorded so objections aimed at it are not mistaken for objections to \"I exist\". Whether this thing is also bodily is left open until Meditation VI. [Recalled.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:suppose-ai-authentically-doubts",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition (AI branch): an AI genuinely doubts its own existence",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "AJ's chat with Claude, 2026-10-18 (AI branch)",
+    "statement": "Suppose an AI does not merely produce text about doubting, but actually doubts: an internal, first-person state of doubting its own existence.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:suppose-deceived",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition: a supreme deceiver deceives me in everything",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose there is a deceiver of supreme power and cunning who deliberately deceives me in everything he can (the evil-demon hypothesis of Meditation I, taken up for the sake of argument). [Recalled.]",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:suppose-not-deceived",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition: there is no such deceiver",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose there is no such deceiver, and I am simply doubting, as the method has me do.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:there-is-thinking",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Thinking is going on (this doubting is occurring)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Thinking is now occurring: whether or not I am deceived, this doubting, seeming, being-deceived is happening. This is the datum the doubt cannot remove, stated without yet saying whose it is.",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:thinking-if-deceived",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "If I am deceived, thinking is going on",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If the deceiver deceives me, then I am being deceived, and being deceived (seeming to see, believing falsely) is a kind of thinking: so thinking is going on. \"Let him deceive me as much as he can, he will never bring it about that I am nothing so long as I think I am something.\" [Recalled: Meditation II; paraphrase of a passage I remember closely.]",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:thinking-if-not-deceived",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "If I am not deceived, thinking is still going on",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If there is no deceiver, I am still doubting, as the method has me do, and doubting is a kind of thinking: so thinking is going on.",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:whatever-thinks-exists",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "UNSTATED major premise: whatever thinks exists",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Whatever thinks, exists (in order to think one must exist). UNSTATED in the Meditations and the Discourse; it is what the cogito needs if it is read as a syllogism. Descartes names it in Principles I.10 as one of the simplest notions, which \"by itself gives no knowledge of anything existing\". [Recalled; section number unsure.]",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.89.0",
+  "schema_version": 1
+ }
+}

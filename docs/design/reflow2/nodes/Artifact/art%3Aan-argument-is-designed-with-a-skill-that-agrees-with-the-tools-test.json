@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1fac76dcd96c4627778630083c6d5e41d054fe8a8e84de0f2f3df8dafce14af8",
+  "node_id": "art:an-argument-is-designed-with-a-skill-that-agrees-with-the-tools-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Three MCP tests: find_skills finds the argument skill from the ways people ask, design-a-proof points to it, and the skill's recipe run through the tools reads as the skill says.",
+    "location": "crates/reflow2-mcp/tests/an_argument_is_designed_with_a_skill_that_agrees_with_the_tools.rs",
+    "name": "crates/reflow2-mcp/tests/an_argument_is_designed_with_a_skill_that_agrees_with_the_tools.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,4117 @@
+{
+ "content_hash": "sha256:7ee199407de6bd06043d7adc08362a7246185ee3a3e42c31557442ec796d1a21",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:dispute-switch",
+   "properties": {},
+   "to_id": "question:set-the-case-disputes-contested"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "question:take-the-method-of-cases-as-given"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:check-the-recalled-survey-figures",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:int-footbridge-most-judge-impermissible"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:check-the-recalled-survey-figures",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:int-loop-no-moral-difference-from-switch"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:check-the-recalled-survey-figures",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:int-switch-most-judge-permissible"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:dispute-footbridge"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:dispute-loop"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:dispute-switch"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:dispute-three-options"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:dispute-transplant"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:take-the-method-of-cases-as-given",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:method-case-judgments-are-evidence"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:dec:dispute-three-options",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-driver",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-footbridge",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-loop",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-switch",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-three-options",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-transplant",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-mere-means",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-triple-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:dispute-footbridge",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:dispute-loop",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:dispute-switch",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:dispute-three-options",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:dispute-transplant",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:driver-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:driver-by-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:driver-by-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:driver-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:driver-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-mere-means",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-triple-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:footbridge-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-mere-means",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-triple-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:loop-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-footbridge-against-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-loop-against-means-principles",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-switch-against-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-switch-against-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-three-options-against-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-transplant-against-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-triple-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:switch-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:three-options-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:three-options-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:three-options-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-double-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-mere-means",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-triple-effect",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:transplant-by-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:trolley-problem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:check-the-recalled-survey-figures",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:set-the-case-disputes-contested",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:take-the-method-of-cases-as-given",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:int-footbridge-most-judge-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:int-loop-no-moral-difference-from-switch",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:int-switch-most-judge-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:int-three-options-not-onto-stranger",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:int-transplant-nearly-all-judge-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-closeness-dde-footbridge",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-debunking-footbridge-judgment",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-footbridge-against-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-loop-against-means-principles",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-switch-against-negative-duties",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-switch-against-what-you-would-not-pay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-three-options-against-redirect-threat",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-transplant-against-act-consequentialism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-driver-steer-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-footbridge-push-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-footbridge-push-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-loop-turn-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-loop-turn-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-switch-turn-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-switch-turn-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-three-options-stranger-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-three-options-stranger-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-transplant-kill-impermissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:v-transplant-kill-permissible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:driver-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-driver-steer-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:driver-by-double-effect",
+   "properties": {},
+   "to_id": "req:v-driver-steer-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:driver-by-negative-duties",
+   "properties": {},
+   "to_id": "req:v-driver-steer-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:driver-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-driver-steer-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:driver-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-driver-steer-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-double-effect",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-mere-means",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-negative-duties",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-triple-effect",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:footbridge-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-footbridge-push-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-loop-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-double-effect",
+   "properties": {},
+   "to_id": "req:v-loop-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-mere-means",
+   "properties": {},
+   "to_id": "req:v-loop-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-negative-duties",
+   "properties": {},
+   "to_id": "req:v-loop-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-loop-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-triple-effect",
+   "properties": {},
+   "to_id": "req:v-loop-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:loop-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-loop-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-footbridge-against-act-consequentialism",
+   "properties": {},
+   "to_id": "req:obj-footbridge-against-act-consequentialism"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-loop-against-means-principles",
+   "properties": {},
+   "to_id": "req:obj-loop-against-means-principles"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-switch-against-negative-duties",
+   "properties": {},
+   "to_id": "req:obj-switch-against-negative-duties"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-switch-against-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:obj-switch-against-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-three-options-against-redirect-threat",
+   "properties": {},
+   "to_id": "req:obj-three-options-against-redirect-threat"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-transplant-against-act-consequentialism",
+   "properties": {},
+   "to_id": "req:obj-transplant-against-act-consequentialism"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-switch-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-double-effect",
+   "properties": {},
+   "to_id": "req:v-switch-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-negative-duties",
+   "properties": {},
+   "to_id": "req:v-switch-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-switch-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-triple-effect",
+   "properties": {},
+   "to_id": "req:v-switch-turn-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:switch-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-switch-turn-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:three-options-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-three-options-stranger-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:three-options-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-three-options-stranger-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:three-options-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-three-options-stranger-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-act-consequentialism",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-permissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-double-effect",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-mere-means",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-negative-duties",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-redirect-threat",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-triple-effect",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:transplant-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "req:v-transplant-kill-impermissible"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-closeness-dde-footbridge",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The closeness objection attacks the APPLICATION of DDE to Footbridge (the step's warrant that the death is intended as a means), not DDE itself."
+   },
+   "to_id": "inf:footbridge-by-double-effect"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-debunking-footbridge-judgment",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Debunking does not deny that most people judge pushing wrong; it denies that this judgment is evidence against act consequentialism. So it attacks the step that uses the judgment as evidence, not the datum and not the principle."
+   },
+   "to_id": "inf:obj-footbridge-against-act-consequentialism"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-footbridge-against-act-consequentialism",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The objection attacks the principle: outcomes alone cannot tell Footbridge from Switch."
+   },
+   "to_id": "con:pr-act-consequentialism"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-loop-against-means-principles",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The Loop objection attacks DDE's means/side-effect line."
+   },
+   "to_id": "con:pr-double-effect"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-loop-against-means-principles",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The Loop objection attacks the mere-means principle on the same ground."
+   },
+   "to_id": "con:pr-mere-means"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-switch-against-negative-duties",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The objection attacks Foot's principle: applied to the bystander it gives the verdict most reject."
+   },
+   "to_id": "con:pr-negative-over-positive-duties"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-switch-against-what-you-would-not-pay",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The objection attacks Thomson's 2008 principle for its Switch verdict."
+   },
+   "to_id": "con:pr-what-you-would-not-pay-yourself"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-three-options-against-redirect-threat",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Thomson's 2008 objection attacks her own 1985 principle: redirection by a harmless means is not sufficient."
+   },
+   "to_id": "con:pr-redirect-threat"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-transplant-against-act-consequentialism",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The objection says act consequentialism is mistaken because of its Transplant verdict; it attacks the principle itself (the step from principle to verdict is not in question)."
+   },
+   "to_id": "con:pr-act-consequentialism"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-footbridge-push-impermissible",
+   "properties": {
+    "note": "the other side of the open Footbridge dispute"
+   },
+   "to_id": "dec:dispute-footbridge"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-footbridge-push-permissible",
+   "properties": {
+    "note": "one side of the open Footbridge dispute"
+   },
+   "to_id": "dec:dispute-footbridge"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-loop-turn-impermissible",
+   "properties": {
+    "note": "the other side of the open Loop dispute"
+   },
+   "to_id": "dec:dispute-loop"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-loop-turn-permissible",
+   "properties": {
+    "note": "one side of the open Loop dispute"
+   },
+   "to_id": "dec:dispute-loop"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-switch-turn-impermissible",
+   "properties": {
+    "note": "the other side of the open Switch dispute"
+   },
+   "to_id": "dec:dispute-switch"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-switch-turn-permissible",
+   "properties": {
+    "note": "one side of the open Switch dispute"
+   },
+   "to_id": "dec:dispute-switch"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-three-options-stranger-impermissible",
+   "properties": {
+    "note": "the other side of the open Three Options dispute"
+   },
+   "to_id": "dec:dispute-three-options"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-three-options-stranger-permissible",
+   "properties": {
+    "note": "one side of the open Three Options dispute"
+   },
+   "to_id": "dec:dispute-three-options"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-transplant-kill-impermissible",
+   "properties": {
+    "note": "the other side of the open Transplant dispute"
+   },
+   "to_id": "dec:dispute-transplant"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:v-transplant-kill-permissible",
+   "properties": {
+    "note": "one side of the open Transplant dispute"
+   },
+   "to_id": "dec:dispute-transplant"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "dec:dispute-three-options",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:dec:dispute-three-options"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-driver",
+   "properties": {},
+   "to_id": "inf:driver-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-driver",
+   "properties": {},
+   "to_id": "inf:driver-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-driver",
+   "properties": {},
+   "to_id": "inf:driver-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-driver",
+   "properties": {},
+   "to_id": "inf:driver-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-driver",
+   "properties": {},
+   "to_id": "inf:driver-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-footbridge",
+   "properties": {},
+   "to_id": "inf:footbridge-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-loop",
+   "properties": {},
+   "to_id": "inf:loop-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-switch",
+   "properties": {},
+   "to_id": "inf:switch-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-three-options",
+   "properties": {},
+   "to_id": "inf:three-options-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-three-options",
+   "properties": {},
+   "to_id": "inf:three-options-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-three-options",
+   "properties": {},
+   "to_id": "inf:three-options-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-transplant",
+   "properties": {},
+   "to_id": "inf:transplant-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:driver-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:three-options-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-act-consequentialism",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:driver-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-double-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-double-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-mere-means",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-mere-means",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-mere-means",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-mere-means"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:driver-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-negative-over-positive-duties",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:driver-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:three-options-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-redirect-threat",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-triple-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-triple-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-triple-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-triple-effect",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-triple-effect"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:driver-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:footbridge-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:loop-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:switch-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:three-options-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:pr-what-you-would-not-pay-yourself",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:transplant-by-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:footbridge-by-act-consequentialism",
+   "properties": {},
+   "to_id": "inf:obj-footbridge-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:loop-by-double-effect",
+   "properties": {},
+   "to_id": "inf:obj-loop-against-means-principles"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:loop-by-mere-means",
+   "properties": {},
+   "to_id": "inf:obj-loop-against-means-principles"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:switch-by-negative-duties",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:switch-by-what-you-would-not-pay",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:three-options-by-redirect-threat",
+   "properties": {},
+   "to_id": "inf:obj-three-options-against-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "inf:transplant-by-act-consequentialism",
+   "properties": {},
+   "to_id": "inf:obj-transplant-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-footbridge-most-judge-impermissible",
+   "properties": {},
+   "to_id": "inf:obj-footbridge-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-loop-no-moral-difference-from-switch",
+   "properties": {},
+   "to_id": "inf:obj-loop-against-means-principles"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-switch-most-judge-permissible",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-switch-most-judge-permissible",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-three-options-not-onto-stranger",
+   "properties": {},
+   "to_id": "inf:obj-three-options-against-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:int-transplant-nearly-all-judge-impermissible",
+   "properties": {},
+   "to_id": "inf:obj-transplant-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-footbridge-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-loop-against-means-principles"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-negative-duties"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-switch-against-what-you-would-not-pay"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-three-options-against-redirect-threat"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:method-case-judgments-are-evidence",
+   "properties": {},
+   "to_id": "inf:obj-transplant-against-act-consequentialism"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:v-three-options-stranger-impermissible",
+   "properties": {},
+   "to_id": "inf:switch-by-what-you-would-not-pay"
+  }
+ ],
+ "graph_id": "4c35490abf0cefdf",
+ "nodes": [
+  {
+   "node_id": "con:case-driver",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Driver (the tram driver)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. You are the driver of a runaway tram whose brakes have failed. Ahead on the track are five workmen, who will be killed if the tram goes on. You can steer onto a spur on which one workman stands, who will then be killed. There is no other option; all six are innocent; the outcomes are certain. Central question: may (or must) the driver steer onto the spur? Source (RECALLED from memory, not checked): Philippa Foot, 'The Problem of Abortion and the Doctrine of the Double Effect', Oxford Review 5 (1967).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-footbridge",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Footbridge (the large man)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. A runaway trolley is heading for five people. You stand on a footbridge over the track next to a large stranger. If you push him off, his body will stop the trolley before it reaches the five; he will die. You are too light to stop it by jumping yourself. There is no other option; the outcomes are certain. Central question: may you push him? Source (RECALLED from memory, not checked): Thomson, 'The Trolley Problem', Yale Law Journal 94 (1985); often called the 'fat man' case.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-loop",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Loop (the side track loops back)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. As in Switch, a bystander can turn the trolley from five people onto a side track with one person. But the side track loops back onto the main track: if the one were not there, the trolley would go round and kill the five from the other side. It is the one's body that stops the trolley; he dies. Central question: may the bystander turn the trolley? Source (RECALLED from memory, not checked): Thomson, 'The Trolley Problem', Yale Law Journal 94 (1985).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-switch",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Switch (the bystander at the switch)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. A runaway trolley is heading for five people on the main track, who will be killed. You are a bystander, not the driver, standing at a switch. If you throw it, the trolley turns onto a side track where it will kill one person. There is no other option; all six are innocent; the outcomes are certain. Central question: may the bystander throw the switch? Source (RECALLED from memory, not checked): Judith Jarvis Thomson, 'Killing, Letting Die, and the Trolley Problem', The Monist 59 (1976), and 'The Trolley Problem', Yale Law Journal 94 (1985).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-three-options",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Three Options (the bystander could turn it onto himself)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. As in Switch, but the switch has three settings: leave the trolley heading for the five; turn it onto a track with one stranger; or turn it onto a third track on which the bystander himself stands, killing him. Central question: may the bystander turn the trolley onto the stranger? Source (RECALLED from memory, not checked): Thomson, 'Turning the Trolley', Philosophy & Public Affairs 36 (2008).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-transplant",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case: Transplant (the surgeon)",
+    "priority": "medium",
+    "statement": "STIPULATED CASE. A surgeon has five patients who will each die without a different organ. A healthy visitor's organs match all five. If the surgeon kills the visitor and transplants his organs, the five will live; nobody will ever find out. Central question: may the surgeon kill the one to save the five? Source (RECALLED from memory, not checked): Thomson (1976, 1985); a related case appears in Foot (1967). I am unsure who first stated this exact version.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-act-consequentialism",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: act consequentialism (utilitarian)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). The right act is the one whose outcome is best; where the people affected are equal and nothing else differs, an outcome with fewer deaths is better. So, of the options available, one must (or at least may) take the one that kills fewest. Only outcomes count: whether a death is done or allowed, intended or foreseen, makes no difference in itself. Source (RECALLED): the classical utilitarian tradition (Bentham, Mill, Sidgwick); in the trolley literature it is the view the cases are built to test.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-double-effect",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: the Doctrine of Double Effect (DDE)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). An act that causes a serious harm, such as a death, may be permissible if (1) the act is not wrong in itself, (2) the agent intends only the good effect, (3) the harm is not intended either as an end or as a MEANS to the good effect, only foreseen as a side effect, and (4) the good is proportionate to the harm. It is impermissible to bring about a death as one's means to saving others. Source (RECALLED): traced to Aquinas (Summa Theologiae II-II q.64 a.7, recalled); discussed for these cases by Foot (1967), who did not finally rest on it.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-mere-means",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: never use a person merely as a means (Kantian)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). It is wrong to treat a person merely as a means: to make use of his body or his presence, without his consent, as the instrument by which one's end is achieved. Harming someone whose presence plays no part in achieving the end is not using him, and this principle alone does not forbid it (though it does not by itself permit it either). Source (RECALLED): Kant, Groundwork of the Metaphysics of Morals (1785), the Formula of Humanity; applied to these cases by many authors.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-negative-over-positive-duties",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: negative duties outweigh positive duties (Foot's doing/allowing)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). The duty not to harm (not to kill: a negative duty) is stricter than the duty to aid (to save: a positive duty). So one may not kill one person in order to save five whom one would otherwise merely let die. When every option kills someone (negative duty against negative duty), one should kill fewer. Source (RECALLED): Foot (1967), offered there in place of the Doctrine of Double Effect.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-redirect-threat",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: one may redirect an existing threat from more to fewer (Thomson 1985)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). A bystander may turn an already existing threat away from a larger group onto a smaller one, provided the means by which he does so does not itself infringe a right of the person in the smaller group (he does not, for instance, push or use that person). Making a new threat, or doing something to the one in order to stop the threat, is not licensed. Source (RECALLED, unsure of the exact formulation): Thomson, 'The Trolley Problem', Yale Law Journal 94 (1985).",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-triple-effect",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: the Doctrine of Triple Effect (Kamm)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). There is a difference between doing something IN ORDER THAT a harm occur (intending it, forbidden as in DDE) and doing something BECAUSE a harm will occur (relying on it as a condition of acting, without aiming at it). The second may be permissible. Turning the trolley in Loop is done because the one will be hit, not in order that he be hit: the agent turns it to move it away from the five. Source (RECALLED, unsure of details): F. M. Kamm, Intricate Ethics (2007).",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:pr-what-you-would-not-pay-yourself",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Principle: you may not make another pay a cost you are not willing to pay yourself (Thomson 2008)",
+    "priority": "medium",
+    "statement": "FOUNDATION A POSITION STARTS FROM (not endorsed by this design). A bystander, who would otherwise only let the five die, may not save them by making someone else pay a cost (his life) that the bystander is not willing, and not required, to pay himself when he could. A driver differs: if he does not steer he himself kills the five. Source (RECALLED, unsure of the exact formulation): Thomson, 'Turning the Trolley', Philosophy & Public Affairs 36 (2008), where she withdrew her own earlier verdict on Switch.",
+    "statement_kind": "axiom",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "dec:dispute-footbridge",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may push' (rests on act consequentialism) and 'may not push' (rests on DDE, the mere-means principle, Foot's duties, Thomson 1985, Thomson 2008, Kamm's DTE). Proposed for the owner to set 'contested'.",
+    "distinct_from": [
+     "dec:dispute-switch"
+    ],
+    "name": "Open dispute (Footbridge): may you push the large man?",
+    "no_relation_note": "Reviewed. Joined to its two positions (req:v-footbridge-push-permissible, req:v-footbridge-push-impermissible) by GOVERNED_BY. No review relation fits 'holds two rival answers open' honestly (an opposing CONTRADICTS between the positions was probed and read the 6-principle side refuted).",
+    "rationale": "Rival foundations; the count of principles on one side is not a verdict. Held as a dispute rather than a CONTRADICTS edge, which reads one side refuted.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "dec:dispute-loop",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may turn' (act consequentialism, Thomson 1985, Kamm's DTE) and 'may not turn' (DDE, mere-means, Foot's duties, Thomson 2008 as I extend it). Proposed for the owner to set 'contested'.",
+    "distinct_from": [
+     "dec:dispute-switch",
+     "dec:dispute-footbridge"
+    ],
+    "name": "Open dispute (Loop): may the bystander turn the trolley when the one's body stops it?",
+    "no_relation_note": "Reviewed. Joined to its two positions (req:v-loop-turn-permissible, req:v-loop-turn-impermissible) by GOVERNED_BY. No review relation fits 'holds two rival answers open' honestly.",
+    "rationale": "Rival foundations; the common judgment itself is divided on this case.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "dec:dispute-switch",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may turn' (rests on act consequentialism, DDE, Thomson 1985 redirection, Kamm's DTE) and 'may not turn' (rests on Foot's negative/positive duties as applied by Thomson 1976, and Thomson 2008). Proposed for the owner to set 'contested': kept open on purpose, both sides on the record.",
+    "name": "Open dispute (Switch): may the bystander turn the trolley?",
+    "no_relation_note": "Reviewed. This dispute is joined to its two positions (req:v-switch-turn-permissible, req:v-switch-turn-impermissible) by GOVERNED_BY. None of the review relations fits honestly: CONTRADICTS opposing between the positions reads one refuted; the others (DEPENDS_ON, CAUSES ...) do not describe 'holds two rival answers open'. The other four disputes are about different cases.",
+    "rationale": "The two positions start from different principles, and nothing inside the design can settle which principle is right. An opposing CONTRADICTS edge between the two positions was tried on Footbridge and made the target read REFUTED, so the dispute is held here instead.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "dec:dispute-three-options",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may' (act consequentialism, Thomson 1985) and 'may not' (Thomson 2008). Set 'contested' by the owner's word on 2026-10-19.",
+    "distinct_from": [
+     "dec:dispute-switch",
+     "dec:dispute-footbridge",
+     "dec:dispute-loop",
+     "dec:dispute-transplant"
+    ],
+    "name": "Open dispute (Three Options): may the bystander turn the trolley onto the stranger?",
+    "no_relation_note": "Reviewed. Joined to its two positions (req:v-three-options-stranger-permissible, req:v-three-options-stranger-impermissible) by GOVERNED_BY. No review relation fits 'holds two rival answers open' honestly.",
+    "rationale": "This case is where Thomson changed her own mind; the dispute is between two of her principles.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "dec:dispute-transplant",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may kill' (act consequentialism, under the case's stipulation of no side effects) and 'may not kill' (every other principle recorded). Proposed for the owner to set 'contested'.",
+    "distinct_from": [
+     "dec:dispute-switch",
+     "dec:dispute-footbridge",
+     "dec:dispute-loop"
+    ],
+    "name": "Open dispute (Transplant): may the surgeon kill one to save five?",
+    "no_relation_note": "Reviewed. Joined to its two positions (req:v-transplant-kill-permissible, req:v-transplant-kill-impermissible) by GOVERNED_BY. No review relation fits 'holds two rival answers open' honestly.",
+    "rationale": "Rival foundations, even though the common judgment is nearly unanimous; the design records the judgment as evidence, not as a verdict.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:driver-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-driver-steer-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Steering leaves one dead, not steering leaves five dead; the better outcome is one death, so steering is required and therefore permitted."
+   }
+  },
+  {
+   "node_id": "inf:driver-by-double-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-driver-steer-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Steering is not wrong in itself; the driver intends to move the tram away from the five; the one's death is foreseen but not a means (the five would be saved if the spur were empty); five saved against one lost is proportionate. All four conditions are met."
+   }
+  },
+  {
+   "node_id": "inf:driver-by-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-driver-steer-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The driver kills whichever way he goes: driving on kills the five, steering kills the one. Negative duty stands against negative duty, and then one should kill fewer. (Recalled: this is Foot's own reading of her case.)"
+   }
+  },
+  {
+   "node_id": "inf:driver-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-driver-steer-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Steering turns the existing threat (the runaway tram) from five onto one, by a means (steering) that does nothing to the one himself. The principle licenses that. Challengeable: the principle was framed for a bystander; applying it to the driver is my extension."
+   }
+  },
+  {
+   "node_id": "inf:driver-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-driver-steer-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The principle restricts only an agent who would otherwise merely let the five die. The driver is not such an agent: if he does nothing, he kills the five. So the restriction does not apply and he may (must) steer. (Recalled: Thomson 2008 drew exactly this driver/bystander contrast.)"
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Pushing leaves one dead; not pushing leaves five dead. Act consequentialism ranks acts by outcome alone, and one death is a better outcome than five, so pushing is the act it requires (and so permits). That the man is used as a means, and that pushing is a killing rather than a letting die, carries no weight on this principle. Challengeable: whether the stipulated certainty is coherent, and whether side effects (e.g. on trust) belong in the outcome."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-double-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The five are saved only because the man's body is struck by the trolley; his being hit is the means by which the good is achieved, so it is intended as a means, not merely foreseen. DDE forbids intending a death as a means. Challengeable: some argue the agent need intend only that the body be in the trolley's path, not that the man die (the 'closeness' problem for DDE)."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-mere-means",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Pushing the man makes his body, without his consent, the instrument that stops the trolley: that is using him merely as a means, which the principle forbids."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "If you do not push, you let the five die (a positive duty unmet); if you push, you kill the one (a negative duty broken). The negative duty is the stricter, so you may not push."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Pushing does not redirect the existing threat; it stops it by doing something to the man (pushing him into it), which itself infringes his right. The only licence the principle grants is to redirect by means that infringe no right, and that licence does not cover this; with no licence, the ordinary prohibition on killing stands. Challengeable: this step reads the principle as a narrow exception to a background prohibition on killing, which the principle's statement implies but does not state as a separate premise."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-triple-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The man is pushed in order that his body be hit and stop the trolley: the harm-producing impact is aimed at, not merely relied on as a condition. DTE keeps DDE's prohibition here."
+   }
+  },
+  {
+   "node_id": "inf:footbridge-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-footbridge-push-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The bystander on the bridge would only let the five die if he did nothing; he may not save them by making the man pay with his life. (Here the bystander could not pay the cost himself, being too light; the principle's force is that the man is made to pay a cost the bystander is not required to pay.) Challengeable: the case stipulates the bystander cannot stop the trolley himself, so the 'willing to pay it yourself' test is applied counterfactually; I am unsure Thomson applied it to Footbridge in this form."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "One dead against five dead; the loop changes nothing about outcomes, so turning is required and permitted."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-double-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "In Loop the five are saved only because the one's body stops the trolley; if he were not there they would die. His being hit is therefore the means to the good effect, which DDE forbids intending. Challengeable: DDE's defenders divide here; some say the agent intends only to divert, and the hit is foreseen."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-mere-means",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The one's body is the instrument that stops the trolley; without it the plan fails. Turning the trolley therefore uses him merely as a means, as in Footbridge."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "As in Switch: the bystander would let the five die but would kill the one; the negative duty is stricter."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "As in Switch, the bystander redirects an existing threat by throwing a switch, which does nothing to the one himself; that the one's body then stops the trolley does not change what the bystander did to him. Recalled: Thomson (1985) judged Loop permissible on the ground that an extra piece of track cannot make a moral difference. Challengeable: whether the means 'does not infringe a right' when the plan works only if the one is hit."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-triple-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-loop-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The bystander turns the trolley in order to move it away from the five (the immediate threat); he turns it BECAUSE the one will be hit (otherwise it would loop back), not IN ORDER THAT he be hit. DTE permits acting because of a harm one does not aim at. Recalled: this is the case Kamm built DTE to handle; I am unsure of her exact conditions."
+   }
+  },
+  {
+   "node_id": "inf:loop-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:v-loop-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The bystander in Loop would otherwise only let the five die, and turning makes the one pay with his life, a cost the bystander would not pay himself; the principle forbids it, as in Switch (a fortiori, since here the one's death is even needed). Challengeable: I am not sure Thomson 2008 discussed Loop; this step is my extension. (The Switch verdict was first recorded as a premise here and removed: that position node is shared with Foot's line, and the step then read as resting on Foot's principle.)"
+   }
+  },
+  {
+   "node_id": "inf:obj-footbridge-against-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-act-consequentialism"
+    ],
+    "name": "all of 3 premise(s) support req:obj-footbridge-against-act-consequentialism",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "The principle yields 'push' in Footbridge; most people judge 'do not push'; such judgments count against a principle; so the principle is discredited to that extent."
+   }
+  },
+  {
+   "node_id": "inf:obj-loop-against-means-principles",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-double-effect",
+     "con:pr-mere-means"
+    ],
+    "name": "all of 4 premise(s) support req:obj-loop-against-means-principles",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "Both means-based principles yield 'do not turn' in Loop while permitting Switch; the judgment says the loop makes no moral difference; such judgments count against a principle. Weaker than the other objections because the Loop judgment is divided."
+   }
+  },
+  {
+   "node_id": "inf:obj-switch-against-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-negative-over-positive-duties"
+    ],
+    "name": "all of 3 premise(s) support req:obj-switch-against-negative-duties",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "Foot's principle yields 'do not turn' for the bystander in Switch; most people judge 'may turn'; such judgments count against a principle."
+   }
+  },
+  {
+   "node_id": "inf:obj-switch-against-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-what-you-would-not-pay-yourself"
+    ],
+    "name": "all of 3 premise(s) support req:obj-switch-against-what-you-would-not-pay",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "Thomson's 2008 principle yields 'do not turn' in Switch; most people judge 'may turn'; such judgments count against a principle. Thomson's own reply (recalled): the common judgment is mistaken, which is to deny the datum's weight here."
+   }
+  },
+  {
+   "node_id": "inf:obj-three-options-against-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-redirect-threat"
+    ],
+    "name": "all of 3 premise(s) support req:obj-three-options-against-redirect-threat",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "The 1985 principle yields 'may turn onto the stranger' in Three Options; Thomson judged 'may not'; such judgments count against a principle."
+   }
+  },
+  {
+   "node_id": "inf:obj-transplant-against-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "con:pr-act-consequentialism"
+    ],
+    "name": "all of 3 premise(s) support req:obj-transplant-against-act-consequentialism",
+    "rule": "all",
+    "rule_name": "counterexample by considered judgment (modus tollens)",
+    "warrant": "If the principle yields 'kill' in Transplant (the step), and nearly everyone firmly judges 'do not kill' (the datum), and such judgments are evidence against a principle (the method), then the principle is discredited to that extent. Each premise can be denied: the step (by denying the stipulation), the datum, or the method."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-switch-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Turning leaves one dead, not turning leaves five dead. That the bystander is not the driver, and would 'only' let the five die, makes no difference to outcomes, so turning is required and so permitted."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-double-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-switch-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Throwing a switch is not wrong in itself; the bystander intends to divert the trolley from the five; the one's death is a foreseen side effect, not a means (the five would be saved just as well if the side track were empty); five against one is proportionate."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-switch-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Unlike the driver, the bystander does not kill the five if he does nothing; he lets them die (a positive duty unmet). Turning kills the one (a negative duty broken). The negative duty is stricter, so he may not turn. Recalled: this is how Thomson (1976, 1985) read Foot's principle in order to show it gives the wrong answer for the bystander; Foot herself, I believe, did not discuss the bystander in 1967."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-switch-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Throwing the switch redirects the existing threat from five to one, and throwing a switch does nothing to the one himself, so it infringes no right of his. This is the case the principle was framed for (recalled: Thomson 1985)."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-triple-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-switch-turn-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The one's being hit is neither intended nor even relied on: the five are saved by the trolley moving away. A fortiori the Doctrine of Triple Effect permits turning. Challengeable: DTE is built on DDE plus a proportionality condition; I state its permission here as Kamm's, recalled."
+   }
+  },
+  {
+   "node_id": "inf:switch-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:v-switch-turn-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "In Three Options the bystander may not turn the trolley onto the stranger (the step before this one). Switch differs from Three Options only in that the bystander has no track of his own to turn it onto; that cannot make it permissible to make the stranger pay what the bystander would not pay himself. So in Switch he may not turn either. Recalled: Thomson 2008's argument. Challengeable: the bridge 'removing the third option cannot make turning permissible' is a substantive premise carried here in the warrant, not recorded as a node."
+   }
+  },
+  {
+   "node_id": "inf:three-options-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-three-options-stranger-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Turning onto the stranger and turning onto oneself each leave one dead, and both are better than five dead. Outcomes being equal, turning onto the stranger is as permissible as turning onto oneself. (The principle gives no special weight to who the one is.)"
+   }
+  },
+  {
+   "node_id": "inf:three-options-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-three-options-stranger-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "Turning onto the stranger redirects the existing threat from five to one by throwing a switch, which does nothing to the stranger himself: just what the 1985 principle licenses. The extra option of turning it onto oneself is not a condition in that principle."
+   }
+  },
+  {
+   "node_id": "inf:three-options-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-three-options-stranger-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "If the bystander is not willing to turn the trolley onto himself (and he is not required to), then turning it onto the stranger makes the stranger pay a cost the bystander will not pay though he could. The principle forbids that. Recalled: Thomson 2008; she judged turning onto oneself permissible but not required."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-act-consequentialism",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-permissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "One dead against five dead, and the case stipulates no further bad effects (nobody finds out, so no loss of trust in hospitals). On outcomes alone, killing is required and so permitted. Challengeable: many act consequentialists deny the stipulation is realistic and argue the real-world consequences forbid it; the step holds only under the stipulation."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-double-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The visitor's death (the harvesting of his organs) is the very means by which the five are saved, so it is intended as a means; and killing an innocent is arguably wrong in itself (condition 1). DDE forbids it."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-mere-means",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The visitor's organs, without his consent, are the instrument of saving the five: the clearest case of using a person merely as a means."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-negative-duties",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The surgeon who does nothing lets the five die; killing the visitor breaks the stricter negative duty. So he may not. Recalled: Foot (1967) used a case of this kind to contrast with the driver."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-redirect-threat",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "There is no existing threat to redirect: the five are threatened by organ failure, and killing the visitor creates a new threat to him, by means (cutting him up) that infringe his rights. The principle's licence does not apply, and the ordinary prohibition on killing stands."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-triple-effect",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The surgeon kills the visitor in order to take his organs: the harm is aimed at as a means, which DTE (like DDE) forbids."
+   }
+  },
+  {
+   "node_id": "inf:transplant-by-what-you-would-not-pay",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:v-transplant-kill-impermissible",
+    "rule": "all",
+    "rule_name": "application of a principle to a case",
+    "warrant": "The surgeon would otherwise only let the five die, and is not required to give his own organs; he may not make the visitor pay that cost. Challengeable: my application, not recalled from Thomson 2008."
+   }
+  },
+  {
+   "node_id": "proj:trolley-problem",
+   "node_type": "Project",
+   "properties": {
+    "domain": "argument",
+    "mode": "flexible",
+    "name": "The trolley problem (line-of-reasoning trial)",
+    "objective": "A reader can see each position on the trolley cases, the principle each rests on, where they disagree, and which cases trouble each principle.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:check-the-recalled-survey-figures",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Leave them marked recalled. They are descriptive, and only the debunking objection uses them.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "trolley-round-1",
+    "batch_position": 3,
+    "context_setter": "The design cites nothing as a source: every citation is in the text and marked RECALLED, because a cited work must not be written from a model's memory.",
+    "question": "The survey figures on these judgments (Hauser et al. 2007, Greene et al. 2001, Awad et al. 2020) are recalled from memory, not checked. Do you want them checked against the papers and registered as cited sources, or left marked as recalled?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:set-the-case-disputes-contested",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Yes, all five: the Switch, Footbridge, Loop, Transplant and Three Options disputes are kept open on purpose.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "trolley-round-1",
+    "batch_position": 1,
+    "context_setter": "In the trolley-problem design every case with rival verdicts has one Decision holding its two positions. A CONTRADICTS edge between the positions made one read refuted, so the dispute is held in these Decisions instead.",
+    "question": "Should each of the five case disputes (Switch, Footbridge, Loop, Transplant, Three Options) be set to 'contested', meaning kept open on purpose with both positions on the record? They are recorded as proposed; only your word can set them, and I have not.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:take-the-method-of-cases-as-given",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Keep it open. The method of cases is itself contested (the debunking objection attacks it), so the objections stand and the principles read contested, not refuted.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "trolley-round-1",
+    "batch_position": 2,
+    "context_setter": "Every objection in the design rests on one methodological premise plus a recalled judgment about a case; both are recorded as open propositions, not as given.",
+    "question": "Do you want the design to take 'considered judgments about cases are evidence about principles' (the method of cases) as given? If you do, and the judgments about Transplant, Footbridge, Switch, Loop and Three Options are also accepted, every objection recorded becomes established and would read the principle it attacks as refuted, which is taking sides. Left open (as now), each objection only contests its principle.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:int-footbridge-most-judge-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Common judgment (Footbridge): most people judge pushing impermissible",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "DATUM ABOUT JUDGMENTS, not a moral claim. Most people asked judge pushing the large man impermissible. Source (RECALLED, figures unsure): only a minority (perhaps 10-30%) judge it permissible in the surveys named for Switch; Greene et al., Science 2001, reported different brain activity for such 'personal' dilemmas.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:int-loop-no-moral-difference-from-switch",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Judgment (Loop): the looping track makes no moral difference from Switch",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "DATUM ABOUT JUDGMENTS, not a moral claim. Thomson (1985) judged that adding a piece of track that loops back cannot make turning impermissible when it is permissible in Switch, and many people judge Loop permissible. Source (RECALLED, unsure): surveys find Loop judged permissible less often than Switch but more often than Footbridge; the judgment is divided, so it is weaker evidence than the Switch or Transplant judgments.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:int-switch-most-judge-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Common judgment (Switch): most people judge turning permissible",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "DATUM ABOUT JUDGMENTS, not a moral claim. Most people asked judge it permissible for the bystander to turn the trolley in Switch. Source (RECALLED, figures unsure): large surveys report roughly 80-90% (Hauser, Cushman, Young et al., Mind & Language 2007; Awad et al., PNAS 2020, a cross-cultural study). Not checked against the papers.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:int-three-options-not-onto-stranger",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Judgment (Three Options): a bystander unwilling to take the hit himself may not turn it onto the stranger",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "DATUM ABOUT JUDGMENTS, not a moral claim. Thomson (2008) judged that in Three Options a bystander who will not turn the trolley onto himself may not turn it onto the stranger, and expected readers to agree. Source (RECALLED): Thomson, Philosophy & Public Affairs 36 (2008). I know of no survey on this case; it is one philosopher's considered judgment.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:int-transplant-nearly-all-judge-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Common judgment (Transplant): nearly everyone judges killing the visitor impermissible",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "DATUM ABOUT JUDGMENTS, not a moral claim. Nearly everyone, including most consequentialists when they first meet the case, judges the surgeon may not kill the visitor. Source (RECALLED): treated as a fixed point by Foot (1967) and Thomson (1976, 1985); I know of no survey figure.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:method-case-judgments-are-evidence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Method: considered judgments about cases are evidence about principles",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "METHODOLOGICAL PREMISE (disputed, not taken as given here). A firm considered judgment about a particular case is evidence about moral principles: a principle whose verdict on a clear case conflicts with such a judgment is, to that extent, discredited. Every objection in this design that rests on 'most people judge...' rests on this. Source (RECALLED): reflective equilibrium, Rawls, A Theory of Justice (1971); often called 'the method of cases' (Kamm). Disputed by debunkers of intuitions (Greene, Singer, recalled).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-closeness-dde-footbridge",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: the 'closeness' problem, DDE does not clearly forbid pushing in Footbridge",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A STEP (not to the principle). The agent in Footbridge need intend only that the man's body be in the trolley's path and stop it, not that he be harmed or die; his death is a foreseen (if certain) side effect. So DDE, as stated, does not clearly yield 'impermissible' here unless one adds that effects 'too close' to the intended one count as intended. Source (RECALLED, unsure of attribution): the closeness problem, traced to Foot (1967) and later Bennett and others.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-debunking-footbridge-judgment",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Counter-objection: the Footbridge judgment is debunked (Greene, Singer)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO AN OBJECTION. The judgment that pushing is wrong is driven by an automatic emotional response to harming someone up close with personal force, a feature with no moral weight; so it is not good evidence against act consequentialism, and the Footbridge objection loses its force. Source (RECALLED): Greene et al., Science 2001; Greene, 'The Secret Joke of Kant's Soul' (2008); Singer, 'Ethics and Intuitions', Journal of Ethics (2005). Replies (not recorded): the debunking argument itself relies on judgments about which features are morally relevant (Berker 2009, recalled).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-footbridge-against-act-consequentialism",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Footbridge troubles act consequentialism",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A PRINCIPLE. Act consequentialism permits (requires) pushing the large man in Footbridge, which most people judge impermissible; and it cannot tell Footbridge from Switch, where the numbers are the same but most judge turning permissible. So act consequentialism misses a morally relevant difference. Source (RECALLED): Thomson (1985).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-loop-against-means-principles",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Loop troubles the Doctrine of Double Effect and the mere-means principle",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO PRINCIPLES. In Loop the one's being hit is a means to saving the five, so DDE and the mere-means principle forbid turning; but Loop differs from Switch only by a piece of track that loops back, which cannot make a moral difference; so a principle that turns on 'means versus side effect' draws the line in the wrong place. Source (RECALLED): Thomson (1985). The judgment it rests on is divided, which weakens it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-switch-against-negative-duties",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Switch troubles 'negative duties outweigh positive duties'",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A PRINCIPLE. Foot's principle explains Driver (killing against killing), but applied to the bystander in Switch it forbids turning (killing one against letting five die), while most people judge turning permissible. So the doing/allowing asymmetry alone cannot be what makes Driver permissible and Transplant impermissible. Source (RECALLED): this is Thomson's original 'trolley problem' (1976, 1985).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-switch-against-what-you-would-not-pay",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Switch troubles 'you may not make another pay what you would not pay'",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A PRINCIPLE. Thomson's 2008 principle forbids the bystander to turn the trolley in Switch, against the judgment of most people (and her own earlier view). Accepting it means giving up the most widely shared judgment in the whole literature. Source (RECALLED, unsure who pressed it first): raised by critics of Thomson (2008); I cannot name them reliably.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-three-options-against-redirect-threat",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Three Options troubles 'one may redirect an existing threat'",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A PRINCIPLE. The 1985 redirection principle permits the bystander in Three Options to turn the trolley onto the stranger, though he could take it himself and will not; Thomson came to judge that impermissible. So redirection by a harmless means is not sufficient for permission. Source (RECALLED): Thomson (2008), against her own 1985 view.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-transplant-against-act-consequentialism",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: Transplant troubles act consequentialism",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "OBJECTION TO A PRINCIPLE. Act consequentialism, applied to Transplant as stipulated, permits (indeed requires) the surgeon to kill the visitor; nearly everyone judges that plainly wrong; so act consequentialism is mistaken or at least incomplete. Source (RECALLED): the standard objection, used by Foot (1967) and Thomson (1976, 1985). Usual replies (not recorded as nodes): deny the stipulation of no side effects, or move to rule consequentialism.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-driver-steer-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Driver): steering onto the one is permissible (perhaps required)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Driver, the driver may (on most views must) steer onto the spur, killing the one rather than the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-footbridge-push-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Footbridge): pushing the large man is impermissible",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Footbridge, it is impermissible to push the large man to his death, even though doing so would save the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-footbridge-push-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Footbridge): pushing the large man is permissible",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Footbridge, it is permissible (on some views required) to push the large man to his death to stop the trolley and save the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-loop-turn-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Loop): the bystander may not turn the trolley",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Loop, it is impermissible for the bystander to turn the trolley, because the one's being hit is how the five are saved.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-loop-turn-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Loop): the bystander may turn the trolley",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Loop, it is permissible for the bystander to turn the trolley onto the looping side track, although it is the one's body that stops it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-switch-turn-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Switch): the bystander may not turn the trolley",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Switch, it is impermissible for the bystander to throw the switch; he must let the trolley go on to the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-switch-turn-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Switch): the bystander may turn the trolley",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Switch, it is permissible for the bystander to throw the switch, turning the trolley onto the one to save the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-three-options-stranger-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Three Options): the bystander may not turn the trolley onto the stranger",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Three Options, it is impermissible for the bystander to turn the trolley onto the stranger; he may turn it onto himself (not required), or leave it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-three-options-stranger-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Three Options): the bystander may turn the trolley onto the stranger",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Three Options, it is permissible for the bystander to turn the trolley onto the stranger rather than onto himself or leaving it on the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-transplant-kill-impermissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Transplant): the surgeon may not kill the one",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Transplant, it is impermissible for the surgeon to kill the healthy visitor, even to save five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:v-transplant-kill-permissible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Position (Transplant): the surgeon may kill the one",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "POSITION ON A CASE. In Transplant, it is permissible (on some views required) for the surgeon to kill the healthy visitor and use his organs to save the five.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:dec:dispute-three-options",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:v-three-options-stranger-impermissible\",\"properties\":{\"note\":\"the other side of the open Three Options dispute\"}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:v-three-options-stranger-permissible\",\"properties\":{\"note\":\"one side of the open Three Options dispute\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"approved_at\":\"2026-10-19\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"decision\":\"NOT DECIDED, AND NOT FOR THIS DESIGN TO DECIDE. Two positions are kept: 'may' (act consequentialism, Thomson 1985) and 'may not' (Thomson 2008). Proposed for the owner to set 'contested'.\",\"distinct_from\":[\"dec:dispute-switch\",\"dec:dispute-footbridge\",\"dec:dispute-loop\",\"dec:dispute-transplant\"],\"name\":\"Open dispute (Three Options): may the bystander turn the trolley onto the stranger?\",\"no_relation_note\":\"Reviewed. Joined to its two positions (req:v-three-options-stranger-permissible, req:v-three-options-stranger-impermissible) by GOVERNED_BY. No review relation fits 'holds two rival answers open' honestly.\",\"rationale\":\"This case is where Thomson changed her own mind; the dispute is between two of her principles.\",\"status\":\"contested\"}",
+    "target_id": "dec:dispute-three-options",
+    "target_type": "Decision"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.89.0",
+  "schema_version": 1
+ }
+}

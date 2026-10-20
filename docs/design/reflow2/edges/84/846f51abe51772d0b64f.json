@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:293ec90bc01678f2ae5e8203d3da841b548dc15b778dd602e3da0334c720ca12",
+  "content_hash": "sha256:4a109652552d83a128c9f7b2e7176a1a883f0370fc148e10eecf7ed6573e4bfd",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-holm-and-benjamini-hochberg-in-the-alpha-budget",
+  "prev_item_hash": "sha256:293ec90bc01678f2ae5e8203d3da841b548dc15b778dd602e3da0334c720ca12",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

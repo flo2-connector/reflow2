@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8642d64aa7f69a5af0b7b8abf64ea96de774670c17c8b73462b99ed18ea2b927",
+  "node_id": "dec:idea-a-step-an-established-objection-defeats-reads-fails-or-unknown",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "What the reader sees: an objection aimed at a step (its warrant) that holds and nobody answers. Built: the step reads `fails` with `objected: defeated`; its conclusion reads unsupported, never refuted. Options: (a) fails, as built — a defeated warrant is false, like a refuted claim, and a change walk reports the step \"broken\"; (b) unknown, like a contested step — the step only stops supporting, and \"defeated\" lives only in `objected`. Recommended: (a). It is wrong if a reader takes \"fails\" on a step to mean its premises are false.",
+    "kind": "exploratory",
+    "name": "IDEA (proposed 2026-10-20, phase 6 PR 1): when an objection to a step is established and unanswered, does the step read \"fails\" (built) or \"unknown\"?",
+    "rationale": "req:an-objection-aimed-at-a-step-is-read-against-that-step says \"the step is defeated and does not support its conclusion\"; both options meet it. (a) keeps the three-valued verdict telling defeated apart from contested; (b) keeps `fails` meaning a premise failed. The conclusion reads the same either way.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

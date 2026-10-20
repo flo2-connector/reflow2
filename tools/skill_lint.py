@@ -71,6 +71,15 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
+    # and `conclusion`, reasoning_report's `claim`; a step's `objections`
+    # and how it stands against them (`objected`: `contested`, `defeated`,
+    # `answered`); a reading's `holds_under_any_of`; and the read-back's
+    # summary lists `still_contested`, `steps_objected`,
+    # `contested_by_design` and `unsupported`.
+    "premises", "conclusion", "claim", "objections", "objected", "contested", "defeated",
+    "answered", "holds_under_any_of", "still_contested", "steps_objected",
+    "contested_by_design", "unsupported",
     # a proof states what it really does (2026-10-18, phase 3): the statement
     # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
     # statement reads (`statement_reading`: `taken_as_given`, `cited`,

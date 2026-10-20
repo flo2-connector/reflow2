@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9ea377c0ec3ed35cb8d7cb908e578bec1694cc6a50c66956f5c6ede4dd4efae1",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-objection-aimed-at-a-step-defeats-contests-or-is-answered-against-that-step"
+}

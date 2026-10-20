@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:320684586b02c5e121a8c8400a36f5763c6d715e2e9c147caeb5a6c4b3051985",
+  "node_id": "ver:an-argument-is-designed-with-a-skill-that-agrees-with-the-tools-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "find_skills ranks design-an-argument first for \"argument\", \"line of reasoning\", \"for and against\" and \"design an argument\", and design-a-proof still first for its own words; design-a-proof's description names the argument skill and no longer sends the case to a Decision; the skill teaches the step objection, `objected`, mutual objections and `holds_under_any_of`; and its recipe run through add_constraint, add_requirement, add_inference and review_relations reads as the skill says (rival positions contested, a step objection contesting its step and listed in steps_objected, then answered, and the position naming both principles).",
+    "findings": "3 of 3 pass on the branch (cargo test -p reflow2-mcp --no-default-features --test in_memory an_argument_is_designed). Against main's core and skills all 3 failed (no served skill named design-an-argument; the step objection was not read).",
+    "kind": "verification",
+    "last_run_at": "2026-10-20",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/an_argument_is_designed_with_a_skill_that_agrees_with_the_tools.rs",
+    "method": "test",
+    "name": "An argument is designed with a skill that agrees with the tools (3 MCP tests)",
+    "status": "passing"
+  }
+}

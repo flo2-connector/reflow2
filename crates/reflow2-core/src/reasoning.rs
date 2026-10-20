@@ -333,9 +333,18 @@ pub struct ClaimReading {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub statement: Option<StatementReading>,
     /// The assumptions it holds under: `assumed` premises beneath it that no
-    /// step on the way discharges.
+    /// step on the way discharges. With several lines, the lightest line's.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub assumes: Vec<String>,
+    /// EVERY LINE it holds on, each with what it holds under, when there is
+    /// more than one (req:a-claim-with-several-lines-reads-each-lines-
+    /// assumptions): it holds under any one of them, never only the first.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub holds_under_any_of: Vec<crate::inference::LineConditions>,
+    /// True when it holds on more minimal lines than `LINES_CAP` keeps, and
+    /// only the lightest are listed.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub lines_capped: bool,
     /// THE UNVERIFIED CITATIONS it rests on (itself included, for one): results
     /// cited from elsewhere that no pinned source documents. While any is
     /// here, `truth` reads `conditional`, never `holds`.
@@ -372,6 +381,21 @@ pub struct StillContested {
     /// For it: the steps that conclude it.
     pub for_it: Vec<String>,
     /// Against it: the objections that stand.
+    pub against: Vec<String>,
+}
+
+/// A step an objection is aimed at, defeated or contested by it.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct StepObjected {
+    /// The step.
+    pub step: String,
+    /// The claim it concludes.
+    pub conclusion: String,
+    /// `defeated` (an objection to it holds: it supports nothing) or
+    /// `contested` (one stands: it supports its conclusion only once that is
+    /// settled).
+    pub reads: &'static str,
+    /// The objections that refute or stand against it.
     pub against: Vec<String>,
 }
 
@@ -437,6 +461,13 @@ pub struct ReasoningReport {
     pub stated_foundations: Vec<String>,
     /// Points still contested.
     pub still_contested: Vec<StillContested>,
+    /// STEPS AN OBJECTION IS AIMED AT that it defeats or contests
+    /// (req:an-objection-aimed-at-a-step-is-read-against-that-step): each
+    /// step, the claim it concludes, how it reads, and what stands against
+    /// it. Each is also read in full under its claim's `support`. Absent when
+    /// no objection aims at a step, or every one is answered.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub steps_objected: Vec<StepObjected>,
     /// Disputes kept open on purpose.
     pub contested_by_design: Vec<HeldOpen>,
     /// Claims with no support: no step concludes them, no source is cited,
@@ -714,6 +745,25 @@ impl DesignGraph {
         let mut still_contested = Vec::new();
         let mut contested_by_design = Vec::new();
         let mut unsupported = Vec::new();
+        let mut steps_objected = Vec::new();
+        for c in &claims {
+            for s in &c.support {
+                if let Some(reads @ ("defeated" | "contested")) = s.reading.objected {
+                    steps_objected.push(StepObjected {
+                        step: s.reading.inference.clone(),
+                        conclusion: c.id.clone(),
+                        reads,
+                        against: s
+                            .reading
+                            .objections
+                            .iter()
+                            .filter(|o| o.standing != "answered")
+                            .map(|o| o.id.clone())
+                            .collect(),
+                    });
+                }
+            }
+        }
         for c in &claims {
             let standing: Vec<String> = c
                 .objections
@@ -802,6 +852,7 @@ impl DesignGraph {
             uncited_premises,
             stated_foundations,
             still_contested,
+            steps_objected,
             contested_by_design,
             unsupported,
             assumptions,
@@ -858,7 +909,9 @@ impl DesignGraph {
         for e in self.all_edges_of_type(edge::CONTRADICTS, &index)? {
             if !is_supporting(&e.properties) {
                 objectors.insert(e.from_id);
-                targets.insert(e.to_id);
+                // A step is not a claim: an objection aimed at one leads to
+                // the claim the step concludes.
+                targets.extend(self.claim_an_objection_reaches(&e.to_id)?);
             }
         }
         let mut rest: BTreeSet<String> = objectors.clone();
@@ -916,6 +969,15 @@ impl DesignGraph {
         let mut next: BTreeSet<String> = BTreeSet::new();
         for s in self.inferences_concluding(id)? {
             next.extend(self.premises_of(&s)?);
+            // AN OBJECTION AIMED AT A STEP under this claim is read with it
+            // (req:an-objection-aimed-at-a-step-is-read-against-that-step):
+            // the step is not a claim of its own, so its objectors are walked
+            // from the claim it concludes.
+            for e in self.incoming(&s, Some(edge::CONTRADICTS))? {
+                if !is_supporting(&e.properties) {
+                    next.insert(e.from_id);
+                }
+            }
         }
         for e in self.incoming(id, Some(edge::CONTRADICTS))? {
             if !is_supporting(&e.properties) {
@@ -925,7 +987,7 @@ impl DesignGraph {
         if both_ways {
             for e in self.outgoing(id, Some(edge::CONTRADICTS))? {
                 if !is_supporting(&e.properties) {
-                    next.insert(e.to_id);
+                    next.extend(self.claim_an_objection_reaches(&e.to_id)?);
                 }
             }
         }
@@ -939,6 +1001,16 @@ impl DesignGraph {
         Ok(next.into_iter().collect())
     }
 
+    /// The claim an objection aimed at `target` is read under: the target
+    /// itself, or for a step (an Inference) the claim it concludes — a step
+    /// is read inside its claim's support, never as a claim of its own.
+    fn claim_an_objection_reaches(&self, target: &str) -> Result<Option<String>, DynoError> {
+        if self.get_node(node::INFERENCE, target)?.is_some() {
+            return self.conclusion_of(target);
+        }
+        Ok(Some(target.to_string()))
+    }
+
     fn claim_reading(&self, id: &str) -> Result<ClaimReading, DynoError> {
         let node_type = self.type_holding(id)?.unwrap_or_default();
         let props = match node_type.is_empty() {
@@ -948,12 +1020,25 @@ impl DesignGraph {
                 .map(|n| n.properties)
                 .unwrap_or_default(),
         };
-        let (truth, why) = self.premise_truth(id)?;
-        let assumes = self.assumptions_under(id)?;
-        let rests_on_unverified = self.unverified_under(id)?;
-        let rests_on_tests = self.tests_under(id)?;
+        // One evaluation of the claim, read for every part the reading needs.
+        let parts = self.claim_parts(id)?;
+        let (truth, why) = (parts.truth, parts.why);
+        let assumes = parts.assumes;
+        let rests_on_unverified = parts.unverified;
+        let rests_on_tests = parts.tests;
+        let (holds_under_any_of, lines_capped) = (parts.lines, parts.lines_capped);
         let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified, &rests_on_tests);
-        let why = if claim_truth == ClaimTruth::Conditional && !assumes.is_empty() {
+        let why = if claim_truth == ClaimTruth::Conditional && holds_under_any_of.len() > 1 {
+            // EVERY LINE IS NAMED (req:a-claim-with-several-lines-reads-each-
+            // lines-assumptions): a claim held on several lines holds under any
+            // one of them, and is never read as holding under the first alone.
+            format!(
+                "conditional: it holds on {} lines, under any one of them — {} — and never on its \
+                 own; {why}",
+                holds_under_any_of.len(),
+                crate::inference::lines_said(&holds_under_any_of)
+            )
+        } else if claim_truth == ClaimTruth::Conditional && !assumes.is_empty() {
             format!(
                 "conditional: it holds only under the assumption(s) {}, which no step on the way \
                  to it discharges, never on its own; {why}",
@@ -1022,6 +1107,8 @@ impl DesignGraph {
             taken_as_given: crate::inference::is_taken_as_given(&props),
             statement: self.statement_reading(id)?,
             assumes,
+            holds_under_any_of,
+            lines_capped,
             rests_on_unverified,
             rests_on_tests,
             contested_by_design: self.contested_governor(id)?,

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:deeac5fbe8bdeffb0cafb391817d21e38fcba14a0d8bb96008ccf742d31f64d3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-served-skill-teaches-designing-an-argument",
+  "properties": {
+    "note": "The skill's recipe is built as option (a), principles taken up in `assumed`; the owner's word on the idea decides whether it stays."
+  },
+  "to_id": "dec:idea-a-principle-in-an-argument-is-assumed-or-taken-as-given"
+}

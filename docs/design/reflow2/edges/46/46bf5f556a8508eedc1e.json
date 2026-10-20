@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:5cce1a8fb2f8056a6d59cb060b5cdce1e7e10923b435832bacc24ec0d2958d35",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged",
+  "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

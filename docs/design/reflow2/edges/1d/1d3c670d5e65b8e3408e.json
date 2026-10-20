@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e9fe697453b530fb02379865c178a1bdb2ca495f17ff900a544febcd0c8d205e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:746063549ab8cbda71d835872fa68e8168305a66bdf37a05a4538a30947ee090",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:inference-rs"
+}

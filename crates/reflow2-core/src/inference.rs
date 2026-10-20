@@ -410,6 +410,34 @@ pub struct InferenceReading {
     /// another step's reading.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub independence: Vec<IndependenceReading>,
+    /// EVERY LINE this step holds on, with what each holds under, when there
+    /// is more than one (req:a-claim-with-several-lines-reads-each-lines-
+    /// assumptions): it holds under any one of them. `assumes`,
+    /// `rests_on_unverified` and `rests_on_tests` are the lightest line's.
+    /// Empty for a step with one line, or one that does not hold.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub holds_under_any_of: Vec<LineConditions>,
+    /// True when it holds on more minimal lines than [`LINES_CAP`], and only
+    /// the lightest are listed.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub lines_capped: bool,
+    /// THE OBJECTIONS AIMED AT THIS STEP ITSELF — at its warrant or rule, not
+    /// at a premise or the conclusion: an opposing CONTRADICTS into the step
+    /// (an undercutter; req:an-objection-aimed-at-a-step-is-read-against-that-
+    /// step, Anthony 2026-10-18), each with how it stands.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub objections: Vec<ObjectionReading>,
+    /// How the step stands against them: `defeated` (one holds, unanswered:
+    /// the step FAILS and supports nothing — its conclusion is left
+    /// unsupported, never refuted), `contested` (one stands, neither
+    /// established nor answered: the step's verdict is at most unknown) or
+    /// `answered` (every one fails: the step is reinstated and reads by its
+    /// rule). Absent when nothing objects to the step.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub objected: Option<&'static str>,
+    /// Every minimal line, lightest first, for the readers above it.
+    #[serde(skip)]
+    lines: Vec<Condition>,
 }
 
 /// A step's case split, read (`cases`, `cases_exhaustive`): a proof by cases
@@ -630,9 +658,14 @@ pub struct FoundationsReading {
     /// THE ASSUMPTIONS IT HOLDS UNDER: `assumed` premises beneath it that no
     /// step on the way discharges. An assumption is never a foundation — it is
     /// taken up for the sake of argument — so it is listed here, apart, and a
-    /// discharged one is in neither list.
+    /// discharged one is in neither list. With several lines, the lightest
+    /// line's; `holds_under_any_of` names every line.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub assumes: Vec<String>,
+    /// EVERY LINE it holds on, each with what it holds under, when there is
+    /// more than one: it holds under any one of them, never only the first.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub holds_under_any_of: Vec<LineConditions>,
 }
 
 /// How many axioms the foundations list shows before saying "capped".
@@ -702,13 +735,206 @@ impl<'l> Eval<'l> {
     }
 }
 
+/// How many lines a reading keeps, each with what it holds under. A claim with
+/// more minimal lines than this keeps the lightest [`LINES_CAP`] (the ones
+/// resting on the fewest assumptions, citations and tests) and says so
+/// (`lines_capped`): the bound exists for a design whose steps multiply lines
+/// (five premises of five lines each are 3,125 combinations before the
+/// supersets go), never silently.
+pub const LINES_CAP: usize = 32;
+
+/// How many combinations of `k` premises a `k_of_n` step's lines are read
+/// over before every holding premise is taken together instead (and the
+/// reading says it was capped).
+pub const K_OF_N_COMBINATIONS_CAP: usize = 256;
+
+/// WHAT A NODE HOLDS UNDER ON ONE LINE OF SUPPORT: the open assumptions, the
+/// unverified citations and the statistical tests that line rests on
+/// (req:a-claim-with-several-lines-reads-each-lines-assumptions, Anthony
+/// 2026-10-19). A claim supported by several lines holds under ANY ONE of
+/// them; a step holds under the union of what each premise's chosen line
+/// needs, choosing per premise the line that costs least.
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+struct Condition {
+    assumes: BTreeSet<String>,
+    unverified: BTreeSet<String>,
+    evidential: BTreeSet<String>,
+}
+
+impl Condition {
+    fn union(&self, other: &Condition) -> Condition {
+        Condition {
+            assumes: self.assumes.union(&other.assumes).cloned().collect(),
+            unverified: self.unverified.union(&other.unverified).cloned().collect(),
+            evidential: self.evidential.union(&other.evidential).cloned().collect(),
+        }
+    }
+
+    /// Whether this line needs nothing `other` does not: then `other` is
+    /// never the cheaper line, and only this one is kept.
+    fn within(&self, other: &Condition) -> bool {
+        self.assumes.is_subset(&other.assumes)
+            && self.unverified.is_subset(&other.unverified)
+            && self.evidential.is_subset(&other.evidential)
+    }
+
+    /// What every line in `lines` holds under: their intersection.
+    fn common(lines: &[Condition]) -> Condition {
+        let mut it = lines.iter();
+        let Some(first) = it.next() else {
+            return Condition::default();
+        };
+        it.fold(first.clone(), |acc, l| Condition {
+            assumes: acc.assumes.intersection(&l.assumes).cloned().collect(),
+            unverified: acc
+                .unverified
+                .intersection(&l.unverified)
+                .cloned()
+                .collect(),
+            evidential: acc
+                .evidential
+                .intersection(&l.evidential)
+                .cloned()
+                .collect(),
+        })
+    }
+
+    fn weight(&self) -> (usize, usize, usize) {
+        (
+            self.assumes.len(),
+            self.unverified.len(),
+            self.evidential.len(),
+        )
+    }
+}
+
+/// The MINIMAL lines of `lines`: a line that needs everything another needs
+/// and more is never the one a reader rests on, so it goes. Sorted, stably,
+/// lightest first — fewest open assumptions, then unverified citations, then
+/// tests, the order a holding line was always chosen in — and kept to
+/// [`LINES_CAP`]; the flag says whether any were left out.
+fn minimal_lines(lines: Vec<Condition>) -> (Vec<Condition>, bool) {
+    let mut sorted = lines;
+    sorted.sort_by_key(Condition::weight);
+    let mut kept: Vec<Condition> = Vec::new();
+    for l in sorted {
+        if !kept.iter().any(|k| k.within(&l)) {
+            kept.push(l);
+        }
+    }
+    let capped = kept.len() > LINES_CAP;
+    kept.truncate(LINES_CAP);
+    if kept.is_empty() {
+        kept.push(Condition::default());
+    }
+    (kept, capped)
+}
+
+/// Every way of taking one line from each of `parts` together: what a step
+/// over all of them holds under, line by line, minimal.
+fn cross_lines(parts: &[&Vec<Condition>]) -> (Vec<Condition>, bool) {
+    let mut acc: Vec<Condition> = vec![Condition::default()];
+    let mut capped = false;
+    for part in parts {
+        let mut next = Vec::with_capacity(acc.len() * part.len().max(1));
+        for a in &acc {
+            for l in part.iter() {
+                next.push(a.union(l));
+            }
+        }
+        let (kept, c) = minimal_lines(next);
+        capped |= c;
+        acc = kept;
+    }
+    (acc, capped)
+}
+
+/// One line of support as a reading serves it: what that line holds under.
+#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
+pub struct LineConditions {
+    /// The open assumptions this line rests on: `assumed` premises beneath it
+    /// that no step on the way discharges.
+    pub assumes: Vec<String>,
+    /// The unverified citations this line rests on.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_unverified: Vec<String>,
+    /// The statistical tests this line rests on.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_tests: Vec<String>,
+}
+
+impl LineConditions {
+    fn of(c: &Condition) -> Self {
+        LineConditions {
+            assumes: c.assumes.iter().cloned().collect(),
+            rests_on_unverified: c.unverified.iter().cloned().collect(),
+            rests_on_tests: c.evidential.iter().cloned().collect(),
+        }
+    }
+
+    /// The line in words: "con:a", "con:a and con:b, if cit:x is right".
+    fn said(&self) -> String {
+        let mut parts: Vec<String> = Vec::new();
+        if !self.assumes.is_empty() {
+            parts.push(format!("under {}", self.assumes.join(" and ")));
+        }
+        if !self.rests_on_unverified.is_empty() {
+            parts.push(format!(
+                "if the unverified citation(s) {} say what they are recalled to say",
+                self.rests_on_unverified.join(", ")
+            ));
+        }
+        if !self.rests_on_tests.is_empty() {
+            parts.push(format!(
+                "through the statistical test(s) {}",
+                self.rests_on_tests.join(", ")
+            ));
+        }
+        if parts.is_empty() {
+            "outright".to_string()
+        } else {
+            parts.join(", ")
+        }
+    }
+}
+
+/// One reading of a claim, every part of it: see
+/// [`DesignGraph::claim_parts`].
+pub(crate) struct ClaimParts {
+    pub truth: Truth,
+    pub why: String,
+    pub assumes: Vec<String>,
+    pub unverified: Vec<String>,
+    pub tests: Vec<String>,
+    pub lines: Vec<LineConditions>,
+    pub lines_capped: bool,
+}
+
+/// Several lines in words: "under con:a; or under con:b; or under con:c".
+pub fn lines_said(lines: &[LineConditions]) -> String {
+    lines
+        .iter()
+        .map(LineConditions::said)
+        .collect::<Vec<_>>()
+        .join("; or ")
+}
+
 /// A node's truth as one evaluation reads it: the value, why, and the
 /// ASSUMPTIONS it holds under — every `assumed` premise beneath it that no
 /// step on the way discharges (empty for almost every node).
+///
+/// `assumes`, `unverified` and `evidential` are the LIGHTEST line's: the one a
+/// reader rests on when they rest on the least. `lines` holds every minimal
+/// line, lightest first (`lines[0]` is those three), so a claim with several
+/// lines is never read as holding under only the first
+/// (req:a-claim-with-several-lines-reads-each-lines-assumptions).
 #[derive(Debug, Clone)]
 struct Read {
     truth: Truth,
     why: String,
+    lines: Vec<Condition>,
+    /// Whether more minimal lines exist than [`LINES_CAP`] keeps.
+    lines_capped: bool,
     assumes: BTreeSet<String>,
     /// THE UNVERIFIED CITATIONS it rests on: results cited from elsewhere
     /// (taken as given) that no pinned source documents. Carried like an
@@ -732,9 +958,9 @@ struct Read {
 fn far_read(far: &crate::far::FarReading) -> Read {
     use crate::far::FarState;
     match far.state {
-        FarState::Read => Read {
-            truth: far.truth,
-            why: format!(
+        FarState::Read => Read::one(
+            far.truth,
+            format!(
                 "in design {}, where {} lives, it {}: {}{}",
                 far.design,
                 far.node_id,
@@ -749,28 +975,69 @@ fn far_read(far: &crate::far::FarReading) -> Read {
                     .map(|p| format!(" (its proof there: {p})"))
                     .unwrap_or_default()
             ),
-            assumes: BTreeSet::new(),
-            unverified: far.holds_only_if.iter().cloned().collect(),
-            // A far claim that is only SUPPORTED there (it rests on a
-            // statistical test) is evidence here too.
-            evidential: if far.proof_status.as_deref() == Some("supported") {
-                BTreeSet::from([format!("xref:{}:{}", far.design, far.node_id)])
-            } else {
-                BTreeSet::new()
+            Condition {
+                assumes: BTreeSet::new(),
+                unverified: far.holds_only_if.iter().cloned().collect(),
+                // A far claim that is only SUPPORTED there (it rests on a
+                // statistical test) is evidence here too.
+                evidential: if far.proof_status.as_deref() == Some("supported") {
+                    BTreeSet::from([format!("xref:{}:{}", far.design, far.node_id)])
+                } else {
+                    BTreeSet::new()
+                },
             },
-        },
+        ),
         FarState::Stale | FarState::Unreachable => Read::plain(Truth::Unknown, far.why.clone()),
     }
 }
 
 impl Read {
     fn plain(truth: Truth, why: String) -> Self {
+        Read::one(truth, why, Condition::default())
+    }
+
+    /// A reading with ONE line, holding under `cond`.
+    fn one(truth: Truth, why: String, cond: Condition) -> Self {
+        Read::with_lines(truth, why, vec![cond], false)
+    }
+
+    /// A reading with every minimal line it holds under, lightest first.
+    fn with_lines(truth: Truth, why: String, lines: Vec<Condition>, lines_capped: bool) -> Self {
+        let lines = if lines.is_empty() {
+            vec![Condition::default()]
+        } else {
+            lines
+        };
+        let best = lines[0].clone();
         Read {
             truth,
             why,
-            assumes: BTreeSet::new(),
-            unverified: BTreeSet::new(),
-            evidential: BTreeSet::new(),
+            lines,
+            lines_capped,
+            assumes: best.assumes,
+            unverified: best.unverified,
+            evidential: best.evidential,
+        }
+    }
+
+    /// What EVERY line holds under: the scope an objection is judged against.
+    /// An objection holding only under S refutes a claim only when the claim
+    /// holds under S on every line; a claim that also holds outside S (on
+    /// another line) is contested by it, never refuted.
+    fn scope(&self) -> Condition {
+        Condition::common(&self.lines)
+    }
+
+    /// The lines as a reading serves them, when there is more than one:
+    /// empty for a node with one line, which `assumes` already says. Only a
+    /// node whose own support holds carries several — a contested one keeps
+    /// the lines it holds on before the objection is counted, so a reader
+    /// sees what each side rests on while the dispute stands.
+    fn served_lines(&self) -> Vec<LineConditions> {
+        if self.lines.len() > 1 {
+            self.lines.iter().map(LineConditions::of).collect()
+        } else {
+            Vec::new()
         }
     }
 
@@ -1084,6 +1351,33 @@ impl DesignGraph {
         Ok(self.premise_reading(id)?.assumes.into_iter().collect())
     }
 
+    /// Everything one reading of `id` says, read ONCE: its truth and why,
+    /// the lightest line's assumptions, unverified citations and tests, and
+    /// every line when there are several. What the read-back of one claim
+    /// needs, without evaluating the claim five times.
+    pub(crate) fn claim_parts(&self, id: &str) -> Result<ClaimParts, DynoError> {
+        let r = self.premise_reading(id)?;
+        Ok(ClaimParts {
+            lines: r.served_lines(),
+            lines_capped: r.lines_capped,
+            truth: r.truth,
+            assumes: r.assumes.into_iter().collect(),
+            unverified: r.unverified.into_iter().collect(),
+            tests: r.evidential.into_iter().collect(),
+            why: r.why,
+        })
+    }
+
+    /// EVERY LINE `id` holds on, each with what it holds under, lightest
+    /// first, when it holds on more than one minimal line; and whether more
+    /// lines exist than [`LINES_CAP`] keeps. Empty when it holds on one line
+    /// (its `assumes` says that one) or does not hold
+    /// (req:a-claim-with-several-lines-reads-each-lines-assumptions).
+    pub fn lines_under(&self, id: &str) -> Result<(Vec<LineConditions>, bool), DynoError> {
+        let r = self.premise_reading(id)?;
+        Ok((r.served_lines(), r.lines_capped))
+    }
+
     /// The UNVERIFIED CITATIONS `id` rests on, as the design stands: results
     /// cited from elsewhere, beneath it or itself, that no pinned source
     /// documents, sorted. Empty when it rests on none.
@@ -1159,18 +1453,15 @@ impl DesignGraph {
         if node_type == node::INFERENCE {
             let r = self.step_reading(id, ev, depth)?;
             let why = match &r.note {
+                Some(note) if r.objected == Some("defeated") => {
+                    format!("a step defeated by an objection to the step itself: {note}")
+                }
                 Some(note) if r.verdict == Truth::Unknown => {
                     format!("a step whose verdict is unknown: {note}")
                 }
                 _ => format!("a step whose rule `{}` {}", r.rule, r.verdict.as_str()),
             };
-            return Ok(Read {
-                truth: r.verdict,
-                why,
-                assumes: r.assumes.into_iter().collect(),
-                unverified: r.rests_on_unverified.into_iter().collect(),
-                evidential: r.rests_on_tests.into_iter().collect(),
-            });
+            return Ok(Read::with_lines(r.verdict, why, r.lines, r.lines_capped));
         }
         if self.is_discontinued(id)? {
             return Ok(Read::plain(
@@ -1244,6 +1535,8 @@ impl DesignGraph {
         let ids: Vec<&str> = standing.iter().map(|o| o.id.as_str()).collect();
         Ok(Read {
             truth: Truth::Unknown,
+            lines: own.lines,
+            lines_capped: own.lines_capped,
             why: if conditional.is_empty() {
                 format!(
                     "contested: {} stand(s) against it, neither established nor answered; on its \
@@ -1295,6 +1588,11 @@ impl DesignGraph {
         scope: &Read,
     ) -> Result<Vec<ObjectionReading>, DynoError> {
         let mut out = Vec::new();
+        // THE SCOPE IS WHAT EVERY LINE OF THE TARGET HOLDS UNDER
+        // (req:a-claim-with-several-lines-reads-each-lines-assumptions): a
+        // claim that holds under S on one line and outside S on another is
+        // not inside S, so an objection holding only under S contests it.
+        let scope = scope.scope();
         for e in self.incoming(id, Some(edge::CONTRADICTS))? {
             let alignment = e
                 .properties
@@ -1306,22 +1604,33 @@ impl DesignGraph {
             }
             let r = self.truth_full(&e.from_id, ev, depth.saturating_sub(1))?;
             let truth = r.truth;
-            let outside: Vec<String> = r
-                .assumes
-                .difference(&scope.assumes)
-                .chain(r.unverified.difference(&scope.unverified))
-                .cloned()
-                .collect();
-            // EVIDENCE AGAINST IS NOT A COUNTEREXAMPLE
-            // (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-
-            // as-shown): an objection that holds only through a statistical
-            // test is evidence against the claim at α, so it contests the claim
-            // and never refutes it.
-            let tests: Vec<String> = r
-                .evidential
-                .difference(&scope.evidential)
-                .cloned()
-                .collect();
+            // The objection's own line that needs least beyond the scope: it
+            // refutes when ONE of its lines lies wholly inside the scope.
+            let (outside, tests): (Vec<String>, Vec<String>) = r
+                .lines
+                .iter()
+                .map(|line| {
+                    let outside: Vec<String> = line
+                        .assumes
+                        .difference(&scope.assumes)
+                        .chain(line.unverified.difference(&scope.unverified))
+                        .cloned()
+                        .collect();
+                    // EVIDENCE AGAINST IS NOT A COUNTEREXAMPLE
+                    // (req:a-hypothesis-tests-verdict-reads-as-supported-at-
+                    // alpha-never-as-shown): an objection that holds only
+                    // through a statistical test is evidence against the
+                    // claim at α, so it contests the claim and never refutes
+                    // it.
+                    let tests: Vec<String> = line
+                        .evidential
+                        .difference(&scope.evidential)
+                        .cloned()
+                        .collect();
+                    (outside, tests)
+                })
+                .min_by_key(|(o, t)| (o.len(), t.len()))
+                .unwrap_or_default();
             let (standing, why) = if truth == Truth::Holds && !tests.is_empty() {
                 (
                     "stands",
@@ -1393,19 +1702,19 @@ impl DesignGraph {
             }
         }
         let mut verdicts = Vec::new();
+        let mut holding_lines: Vec<Condition> = Vec::new();
+        let mut lines_capped = false;
         for s in &steps {
             let r = self.step_reading(s, ev, depth)?;
-            verdicts.push((
-                s.clone(),
-                r.verdict,
-                r.assumes,
-                r.rests_on_unverified,
-                r.rests_on_tests,
-            ));
+            if r.verdict == Truth::Holds {
+                holding_lines.extend(r.lines.iter().cloned());
+                lines_capped |= r.lines_capped;
+            }
+            verdicts.push((s.clone(), r.verdict));
         }
         let said: Vec<String> = verdicts
             .iter()
-            .map(|(s, v, _, _, _)| format!("{s} {}", v.as_str()))
+            .map(|(s, v)| format!("{s} {}", v.as_str()))
             .collect();
         // UNSUPPORTED IS NOT REFUTED (req:unsupported-is-not-refuted). A
         // step that fails or cannot be read leaves its conclusion without
@@ -1421,14 +1730,18 @@ impl DesignGraph {
         // to say, so a line that needs none beats one that does.
         // Then the fewest STATISTICAL TESTS: a deductive line beats one that
         // rests on evidence, which supports the claim only at its α.
-        let best = verdicts
-            .iter()
-            .filter(|(_, v, _, _, _)| *v == Truth::Holds)
-            .min_by_key(|(_, _, a, u, t)| (a.len(), u.len(), t.len()));
-        if let Some((_, _, assumes, unverified, tests)) = best {
-            let assumes: BTreeSet<String> = assumes.iter().cloned().collect();
-            let unverified: BTreeSet<String> = unverified.iter().cloned().collect();
-            let evidential: BTreeSet<String> = tests.iter().cloned().collect();
+        //
+        // AND EVERY LINE IS KEPT (req:a-claim-with-several-lines-reads-each-
+        // lines-assumptions, the trolley trial): the claim holds under ANY
+        // ONE of its lines, so it carries all of the minimal ones, lightest
+        // first. The lightest decides what it is read as holding under; the
+        // rest are named beside it, never dropped.
+        if !holding_lines.is_empty() {
+            let (lines, capped) = minimal_lines(holding_lines);
+            let lines_capped = lines_capped || capped;
+            let assumes = lines[0].assumes.clone();
+            let unverified = lines[0].unverified.clone();
+            let evidential = lines[0].evidential.clone();
             let mut why = if assumes.is_empty() {
                 format!("concluded by {}", said.join("; "))
             } else {
@@ -1451,13 +1764,25 @@ impl DesignGraph {
                     self.tests_said(&evidential)?
                 ));
             }
-            return Ok(Some(Read {
-                truth: Truth::Holds,
+            if lines.len() > 1 {
+                let served: Vec<LineConditions> = lines.iter().map(LineConditions::of).collect();
+                why.push_str(&format!(
+                    "; it holds on {} lines, under any one of them: {}{}",
+                    lines.len(),
+                    lines_said(&served),
+                    if lines_capped {
+                        format!(" (and more: only the lightest {LINES_CAP} are kept)")
+                    } else {
+                        String::new()
+                    }
+                ));
+            }
+            return Ok(Some(Read::with_lines(
+                Truth::Holds,
                 why,
-                assumes,
-                unverified,
-                evidential,
-            }));
+                lines,
+                lines_capped,
+            )));
         }
         Ok(Some(Read::plain(
             Truth::Unknown,
@@ -1813,13 +2138,15 @@ impl DesignGraph {
         // `criteria_changed_after_data` gap and the check's `test_reading`),
         // never folded into the truth: the requirement asks for a report, and
         // a legitimate change must not silently unsay the test.
-        Ok(Read {
-            truth: Truth::Holds,
-            why: test.supported(),
-            assumes,
-            unverified,
-            evidential,
-        })
+        Ok(Read::one(
+            Truth::Holds,
+            test.supported(),
+            Condition {
+                assumes,
+                unverified,
+                evidential,
+            },
+        ))
     }
 
     /// Each statistical test in `ids`, as its reading names it.
@@ -1880,13 +2207,7 @@ impl DesignGraph {
                 d.why
             )
         };
-        Ok(Read {
-            truth: Truth::Fails,
-            why,
-            assumes: d.assumes,
-            unverified: d.unverified,
-            evidential: d.evidential,
-        })
+        Ok(Read::with_lines(Truth::Fails, why, d.lines, d.lines_capped))
     }
 
     /// A falsum read AS A PREMISE: by whether it is derived. A reductio rests
@@ -1918,13 +2239,12 @@ impl DesignGraph {
         let derivation = self.concluded_by_steps(id, &node_type, ev, depth);
         ev.nodes.remove(id);
         Ok(match derivation? {
-            Some(d) if d.truth == Truth::Holds => Read {
-                truth: Truth::Holds,
-                why: format!("a falsum (⊥), derived: {}", d.why),
-                assumes: d.assumes,
-                unverified: d.unverified,
-                evidential: d.evidential,
-            },
+            Some(d) if d.truth == Truth::Holds => Read::with_lines(
+                Truth::Holds,
+                format!("a falsum (⊥), derived: {}", d.why),
+                d.lines,
+                d.lines_capped,
+            ),
             Some(d) => Read::plain(
                 Truth::Unknown,
                 format!("a falsum (⊥) not derived: {}", d.why),
@@ -1963,17 +2283,19 @@ impl DesignGraph {
                 ),
             ));
         }
-        Ok(Read {
-            truth: Truth::Holds,
-            why: "cited, unverified: a result from elsewhere that no pinned source documents \
-                  (recalled, or named only in its `source` text), so what rests on it holds only \
-                  if it says what it is recalled to say. Register the source that was read as an \
-                  Artifact with its checksum, and draw DOCUMENTS from it"
+        Ok(Read::one(
+            Truth::Holds,
+            "cited, unverified: a result from elsewhere that no pinned source documents \
+             (recalled, or named only in its `source` text), so what rests on it holds only if it \
+             says what it is recalled to say. Register the source that was read as an Artifact \
+             with its checksum, and draw DOCUMENTS from it"
                 .to_string(),
-            assumes: BTreeSet::new(),
-            unverified: BTreeSet::from([id.to_string()]),
-            evidential: BTreeSet::new(),
-        })
+            Condition {
+                assumes: BTreeSet::new(),
+                unverified: BTreeSet::from([id.to_string()]),
+                evidential: BTreeSet::new(),
+            },
+        ))
     }
 
     /// A Constraint holds while nothing records it violated: it FAILS when a
@@ -2344,34 +2666,16 @@ impl DesignGraph {
         depth: usize,
     ) -> Result<InferenceReading, DynoError> {
         let conclusion = self.conclusion_of(inference_id)?;
-        let Some(rec) = self.step_record(inference_id)? else {
-            return Ok(InferenceReading {
-                inference: inference_id.to_string(),
-                rule: "all".to_string(),
-                k: None,
-                rule_name: None,
-                conclusion,
-                verdict: Truth::Unknown,
-                holding: 0,
-                failing: 0,
-                unknown: 0,
-                premises: Vec::new(),
-                note: Some("no Inference holds this id".to_string()),
-                confirmation: Confirmation::default(),
-                assumes: Vec::new(),
-                rests_on_unverified: Vec::new(),
-                rests_on_tests: Vec::new(),
-                discharges: Vec::new(),
-                cases: None,
-                generalization: None,
-                independence: Vec::new(),
-            });
-        };
-        let mut reading = InferenceReading {
+        let blank = |rule: String,
+                     k: Option<i64>,
+                     rule_name: Option<String>,
+                     conclusion: Option<String>,
+                     confirmation: Confirmation,
+                     discharges: Vec<String>| InferenceReading {
             inference: inference_id.to_string(),
-            rule: rec.rule.clone(),
-            k: rec.k,
-            rule_name: rec.rule_name.clone(),
+            rule,
+            k,
+            rule_name,
             conclusion,
             verdict: Truth::Unknown,
             holding: 0,
@@ -2379,15 +2683,40 @@ impl DesignGraph {
             unknown: 0,
             premises: Vec::new(),
             note: None,
-            confirmation: rec.confirmation,
+            confirmation,
             assumes: Vec::new(),
             rests_on_unverified: Vec::new(),
             rests_on_tests: Vec::new(),
-            discharges: rec.discharges.clone(),
+            discharges,
             cases: None,
             generalization: None,
             independence: Vec::new(),
+            holds_under_any_of: Vec::new(),
+            lines_capped: false,
+            objections: Vec::new(),
+            objected: None,
+            lines: vec![Condition::default()],
         };
+        let Some(rec) = self.step_record(inference_id)? else {
+            let mut r = blank(
+                "all".to_string(),
+                None,
+                None,
+                conclusion,
+                Confirmation::default(),
+                Vec::new(),
+            );
+            r.note = Some("no Inference holds this id".to_string());
+            return Ok(r);
+        };
+        let mut reading = blank(
+            rec.rule.clone(),
+            rec.k,
+            rec.rule_name.clone(),
+            conclusion,
+            rec.confirmation.clone(),
+            rec.discharges.clone(),
+        );
         if ev.lost.contains(inference_id) {
             let (truth, why) = self.lost_truth(inference_id)?;
             reading.verdict = truth;
@@ -2423,14 +2752,23 @@ impl DesignGraph {
         // — and holds inside the argument whatever its own truth, so its
         // falsity never fails the step; it is carried, as an assumption, by
         // everything that rests on the step until a step DISCHARGES it.
+        //
+        // EACH PREMISE KEEPS EVERY LINE IT HOLDS ON (req:a-claim-with-several-
+        // lines-reads-each-lines-assumptions): `parts` holds, per premise, its
+        // truth and its minimal lines, and the step's own lines are taken from
+        // them by its rule below.
         let mut values = Vec::new();
-        let mut assumes: BTreeSet<String> = BTreeSet::new();
-        let mut unverified: BTreeSet<String> = BTreeSet::new();
-        let mut tests: BTreeSet<String> = BTreeSet::new();
+        let mut parts: Vec<(Truth, Vec<Condition>)> = Vec::new();
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
                 values.push(Truth::Holds);
-                assumes.insert(p.clone());
+                parts.push((
+                    Truth::Holds,
+                    vec![Condition {
+                        assumes: BTreeSet::from([p.clone()]),
+                        ..Condition::default()
+                    }],
+                ));
                 reading.premises.push(PremiseReading {
                     node_type: self.type_holding(&p)?,
                     id: p,
@@ -2451,9 +2789,8 @@ impl DesignGraph {
                 self.truth_full(&p, ev, depth - 1)?
             };
             values.push(r.truth);
-            assumes.extend(r.assumes);
-            unverified.extend(r.unverified);
-            tests.extend(r.evidential);
+            reading.lines_capped |= r.lines_capped;
+            parts.push((r.truth, r.lines));
             reading.premises.push(PremiseReading {
                 node_type: self.type_holding(&p)?,
                 id: p,
@@ -2463,15 +2800,11 @@ impl DesignGraph {
                 name: None,
             });
         }
-        // The cases of a case split are discharged by it, as `discharges`
-        // would (∨-elimination closes each case's hypothesis).
-        for d in rec.discharges.iter().chain(rec.cases.iter()) {
-            assumes.remove(d);
-        }
         reading.holding = values.iter().filter(|v| **v == Truth::Holds).count();
         reading.failing = values.iter().filter(|v| **v == Truth::Fails).count();
         reading.unknown = values.len() - reading.holding - reading.failing;
-        match rec.parsed.and_then(|rule| combine(rule, &values)) {
+        let parsed = rec.parsed.clone();
+        match parsed.clone().and_then(|rule| combine(rule, &values)) {
             Ok(v) => reading.verdict = v,
             Err(why) => reading.note = Some(why),
         }
@@ -2480,6 +2813,7 @@ impl DesignGraph {
         // holds is that record's own computed truth — the owner's word (taken
         // as given) or a checker's (a passing computed check) — never
         // reflow2's judgement of the cases.
+        let mut declared_by: Option<(Truth, Vec<Condition>)> = None;
         if !rec.cases.is_empty() {
             let cases = match &rec.cases_exhaustive {
                 None => CasesReading {
@@ -2496,9 +2830,8 @@ impl DesignGraph {
                 },
                 Some(by) => {
                     let r = self.truth_full(by, ev, depth - 1)?;
-                    unverified.extend(r.unverified.iter().cloned());
-                    assumes.extend(r.assumes.iter().cloned());
-                    tests.extend(r.evidential.iter().cloned());
+                    reading.lines_capped |= r.lines_capped;
+                    declared_by = Some((r.truth, r.lines.clone()));
                     CasesReading {
                         cases: rec.cases.clone(),
                         declared: true,
@@ -2540,9 +2873,60 @@ impl DesignGraph {
             }
             reading.cases = Some(cases);
         }
-        ev.path.remove(inference_id);
-        reading.rests_on_unverified = unverified.into_iter().collect();
-        reading.rests_on_tests = tests.into_iter().collect();
+        // WHAT THE STEP HOLDS UNDER, LINE BY LINE. A holding step takes, per
+        // premise its rule needs, the line of that premise that costs least
+        // together with the others' — every such combination, minimal — so a
+        // step citing a claim held on several lines inherits only what its
+        // chosen line needs, never another line's assumption (the trolley
+        // trial: a Thomson-2008 step inherited Foot's). `any` holds on any one
+        // holding premise's lines; `k_of_n` on any k of them. A step that does
+        // not hold reads, as it always has, the union of what every premise
+        // rests on.
+        let mut union = Condition::default();
+        for (_, lines) in &parts {
+            union = union.union(&lines[0]);
+        }
+        if let Some((_, lines)) = &declared_by {
+            union = union.union(&lines[0]);
+        }
+        for d in rec.discharges.iter().chain(rec.cases.iter()) {
+            union.assumes.remove(d);
+        }
+        let mut lines: Vec<Condition> = if reading.verdict == Truth::Holds {
+            let holding: Vec<&Vec<Condition>> = parts
+                .iter()
+                .filter(|(t, _)| *t == Truth::Holds)
+                .map(|(_, l)| l)
+                .collect();
+            let (mut lines, capped) = match parsed {
+                Ok(InferenceRule::Any) => {
+                    minimal_lines(holding.iter().flat_map(|l| l.iter().cloned()).collect())
+                }
+                Ok(InferenceRule::KOfN(k)) => self.k_of_n_lines(&holding, k),
+                _ => cross_lines(&parts.iter().map(|(_, l)| l).collect::<Vec<_>>()),
+            };
+            reading.lines_capped |= capped;
+            if let Some((_, by)) = &declared_by {
+                let (crossed, capped) = cross_lines(&[&lines, by]);
+                reading.lines_capped |= capped;
+                lines = crossed;
+            }
+            lines
+        } else {
+            vec![union.clone()]
+        };
+        // The cases of a case split are discharged by it, as `discharges`
+        // would (∨-elimination closes each case's hypothesis).
+        for line in &mut lines {
+            for d in rec.discharges.iter().chain(rec.cases.iter()) {
+                line.assumes.remove(d);
+            }
+        }
+        let (lines, capped) = minimal_lines(lines);
+        reading.lines_capped |= capped;
+        let assumes = lines[0].assumes.clone();
+        reading.rests_on_unverified = lines[0].unverified.iter().cloned().collect();
+        reading.rests_on_tests = lines[0].evidential.iter().cloned().collect();
         // A GENERALIZATION IS CHECKED (Anthony's choice of 2026-10-17:
         // declared and checked). A step generalizing over a variable that
         // something it rests on FIXES does not hold: its verdict reads
@@ -2550,7 +2934,8 @@ impl DesignGraph {
         // refuted.
         // THE EIGENVARIABLE RULE (2026-10-18, the Arrow trial's N19): and
         // over a variable no assumption still OPEN at this step names. The
-        // open ones are `assumes`, read after this step's own discharges.
+        // open ones are `assumes`, read after this step's own discharges —
+        // the lightest line's, so a step whose cheapest line is clean holds.
         if !rec.generalizes_over.is_empty() {
             let g = self.generalization_reading(inference_id, &rec.generalizes_over, &assumes)?;
             if !g.holds {
@@ -2591,7 +2976,133 @@ impl DesignGraph {
             reading.generalization = Some(g);
         }
         reading.assumes = assumes.into_iter().collect();
+        reading.lines = lines;
+        // AN OBJECTION AIMED AT THE STEP ITSELF (req:an-objection-aimed-at-a-
+        // step-is-read-against-that-step, Anthony 2026-10-18; the cogito and
+        // trolley trials, idea (b) of the argumentation frameworks): an
+        // opposing CONTRADICTS into the step attacks its warrant or rule, not
+        // a premise or the conclusion. It counts as far as it holds, judged
+        // against what the step holds under, exactly as an objection to a
+        // claim is: one that HOLDS defeats the step, which then fails and
+        // supports nothing (its conclusion is left unsupported, never
+        // refuted); one that STANDS contests it, leaving it at most unknown;
+        // one that is ANSWERED no longer counts, and the step is reinstated.
+        // Until 2026-10-20 such an edge was stored and never read: the step
+        // read `holds` and the read-back did not list it.
+        let scope = Read::with_lines(
+            reading.verdict,
+            String::new(),
+            reading.lines.clone(),
+            reading.lines_capped,
+        );
+        let objections = self.objections_within(inference_id, ev, depth, &scope)?;
+        ev.path.remove(inference_id);
+        if !objections.is_empty() {
+            let refuting: Vec<&str> = objections
+                .iter()
+                .filter(|o| o.standing == "refutes")
+                .map(|o| o.id.as_str())
+                .collect();
+            let standing: Vec<&str> = objections
+                .iter()
+                .filter(|o| o.standing == "stands")
+                .map(|o| o.id.as_str())
+                .collect();
+            let (objected, why) = if !refuting.is_empty() {
+                reading.verdict = Truth::Fails;
+                (
+                    "defeated",
+                    format!(
+                        "defeated by {}, which holds: an objection to this step itself (its \
+                         warrant or rule), not to a premise or the conclusion, and nothing answers \
+                         it, so the step supports nothing; its conclusion is left unsupported by \
+                         it, never refuted",
+                        refuting.join(", ")
+                    ),
+                )
+            } else if !standing.is_empty() {
+                if reading.verdict == Truth::Holds {
+                    reading.verdict = Truth::Unknown;
+                }
+                (
+                    "contested",
+                    format!(
+                        "contested: {} stand(s) against this step itself (its warrant or rule), \
+                         neither established nor answered, so it supports its conclusion only once \
+                         that is settled",
+                        standing.join(", ")
+                    ),
+                )
+            } else {
+                (
+                    "answered",
+                    "every objection to this step itself is answered, so it reads by its rule \
+                     again"
+                        .to_string(),
+                )
+            };
+            reading.objected = Some(objected);
+            if objected != "answered" {
+                reading.note = Some(match reading.note.take() {
+                    Some(n) => format!("{n}; {why}"),
+                    None => why,
+                });
+            }
+            reading.objections = objections;
+        }
+        // A step that does not hold reads, as it always has, the union of
+        // what every premise rests on.
+        if reading.verdict != Truth::Holds {
+            reading.assumes = union.assumes.iter().cloned().collect();
+            reading.rests_on_unverified = union.unverified.iter().cloned().collect();
+            reading.rests_on_tests = union.evidential.iter().cloned().collect();
+            reading.lines = vec![union];
+            reading.lines_capped = false;
+        } else if reading.lines.len() > 1 {
+            reading.holds_under_any_of = reading.lines.iter().map(LineConditions::of).collect();
+        }
         Ok(reading)
+    }
+
+    /// The lines a `k_of_n` step holds on: any `k` of its holding premises,
+    /// each combination's lines crossed. The number of combinations is bounded
+    /// ([`K_OF_N_COMBINATIONS_CAP`]); past it every holding premise is taken
+    /// together — never a lighter line than the step really has — and the
+    /// reading says it was capped.
+    fn k_of_n_lines(&self, holding: &[&Vec<Condition>], k: i64) -> (Vec<Condition>, bool) {
+        let n = holding.len();
+        let k = usize::try_from(k).unwrap_or(0).clamp(1, n.max(1));
+        let mut count: u128 = 1;
+        for i in 0..k {
+            count = count * (n - i) as u128 / (i + 1) as u128;
+            if count > K_OF_N_COMBINATIONS_CAP as u128 {
+                let (lines, _) = cross_lines(holding);
+                return (lines, true);
+            }
+        }
+        let mut all: Vec<Condition> = Vec::new();
+        let mut capped = false;
+        let mut pick: Vec<usize> = (0..k).collect();
+        loop {
+            let chosen: Vec<&Vec<Condition>> = pick.iter().map(|i| holding[*i]).collect();
+            let (lines, c) = cross_lines(&chosen);
+            capped |= c;
+            all.extend(lines);
+            // The next combination, in order.
+            let mut i = k;
+            while i > 0 && pick[i - 1] == n - k + (i - 1) {
+                i -= 1;
+            }
+            if i == 0 {
+                break;
+            }
+            pick[i - 1] += 1;
+            for j in i..k {
+                pick[j] = pick[j - 1] + 1;
+            }
+        }
+        let (lines, c) = minimal_lines(all);
+        (lines, capped || c)
     }
 
     /// The generalization check for one step over `over`: every record it
@@ -3243,6 +3754,7 @@ impl DesignGraph {
             capped,
             honest_limit: FOUNDATIONS_HONEST_LIMIT.to_string(),
             assumes: self.assumptions_under(id)?,
+            holds_under_any_of: self.lines_under(id)?.0,
         }))
     }
 
@@ -3314,13 +3826,28 @@ impl DesignGraph {
         if any_holds && conclusion_truth == Truth::Holds {
             let assumes = self.assumptions_under(id)?;
             if !assumes.is_empty() {
-                return Ok(Some(ProofReading {
-                    status: ProofStatus::Conditional,
-                    why: format!(
+                // EVERY LINE IS NAMED (req:a-claim-with-several-lines-reads-
+                // each-lines-assumptions): Driver, held by five principles,
+                // read "only under act consequentialism" until 2026-10-20.
+                let (lines, _) = self.lines_under(id)?;
+                let why = if lines.len() > 1 {
+                    format!(
+                        "it holds on {} lines, each only under an assumption no step on the way to \
+                         it discharges — {} — so it is a result inside an argument on every line, \
+                         not a proof of it",
+                        lines.len(),
+                        lines_said(&lines)
+                    )
+                } else {
+                    format!(
                         "it holds only under the assumption(s) {}, which no step on the way to it \
                          discharges: a result inside an argument, not a proof of it",
                         assumes.join(", ")
-                    ),
+                    )
+                };
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Conditional,
+                    why,
                     total_steps: total,
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
