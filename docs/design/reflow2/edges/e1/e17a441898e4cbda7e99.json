@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:1700d10063589e8316e4b41786fa8c19f36d08e2302b0958d59ffbce060bb1d3",
+  "content_hash": "sha256:115ce305be3a18f62988ad35a3adce55c6fbb3a9d9671785a7cfe8149329b4ca",
   "edge_type": "CHANGED",
   "from_id": "chg:p6-argument-skill-step-objections-and-every-lines-assumptions-2026-10-20",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1cd9129e8970143b540cda93946c7d599a77f40a99690e2132beacc539bcecb7",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:an-argument-is-designed-with-a-skill-that-agrees-with-the-tools-test"
 }

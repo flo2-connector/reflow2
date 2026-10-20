@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:81a3b041eb2357250636ffad24ad6fa7d816186b186d3c40404522277b4ca728",
+  "content_hash": "sha256:113a63b8475a32c8cc8063667f3d03b3804f0053be1228902c1d011b1a379737",
   "node_id": "art:design-an-argument-skill",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "document",
-    "checksum": "sha256:5fcb4c9b91dfe0b7a2306f97053eca570721f5101e0f230db49fe195e2f7aa0c",
     "description": "The served design-an-argument skill (phase 6, PR 1): cases given, principles chosen and taken up in `assumed`, a step per principle, objections aimed at a claim, a premise or the step itself, replies, rival positions as a contradiction each way or a Decision the owner keeps contested, and a read-back per question.",
     "location": "getting-started/skills/design-an-argument/SKILL.md",
     "name": "getting-started/skills/design-an-argument/SKILL.md — the served skill for designing an argument for and against",
