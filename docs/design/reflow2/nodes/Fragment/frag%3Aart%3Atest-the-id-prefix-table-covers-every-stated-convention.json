@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f49608f8a4c6e0021f3d2fbd59df718f71d94803844083b708567c7e9b87cc7b",
+  "node_id": "frag:art:test-the-id-prefix-table-covers-every-stated-convention",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/the_id_prefix_table_covers_every_stated_convention.rs — every prefix a served description states is a row of ID_PREFIXES"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f42a1f7759156512119903fa45d96226210f13f892244986f2bf557520341193",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-far-premise-reads-its-live-truth-and-stale-means-the-far-node-is-gone",
+  "properties": {
+    "evidence": "the reading of 'stale' in part 3 of this requirement is what this choice settles",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reasoning-crosses-designs-within-a-hub"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b1854498317aae44d3e9a52d4d2363615a38f468b3e9b396e3fc7b5d82c83ba1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:reasoning-crosses-designs-within-a-hub-2026-10-19",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

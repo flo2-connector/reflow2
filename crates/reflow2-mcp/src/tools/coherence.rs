@@ -971,6 +971,7 @@ impl ReflowService {
         let radius = g
             .propagate_change(&req.change_event_id, opts)
             .map_err(dyno_err)?;
+        let full = req.full.unwrap_or(false);
 
         // ⭐ THE EDGE PROSE IS READ HERE BECAUSE THIS IS WHERE THE READER
         // ALREADY IS. bhome caught four stale RISKS edges only because the
@@ -997,7 +998,7 @@ impl ReflowService {
             }
         }
 
-        let mut out = if req.full.unwrap_or(false) {
+        let mut out = if full {
             serde_json::to_value(&radius)
         } else {
             serde_json::to_value(radius.summarize())
@@ -1011,6 +1012,9 @@ impl ReflowService {
                 serde_json::Value::Object(edge_prose),
             );
         }
+        // Across designs only after this design's guard is dropped.
+        drop(g);
+        self.carry_walk_on(&radius, opts, &mut out).await;
         ok_json(out)
     }
 
@@ -1086,11 +1090,16 @@ impl ReflowService {
         }
         let seeds: Vec<&str> = req.seed_ids.iter().map(String::as_str).collect();
         let radius = g.propagate_from(&seeds, opts).map_err(dyno_err)?;
-        if req.full.unwrap_or(false) {
-            ok_json(radius)
+        // Across designs only after this design's guard is dropped.
+        drop(g);
+        let mut out = if req.full.unwrap_or(false) {
+            serde_json::to_value(&radius)
         } else {
-            ok_json(radius.summarize())
+            serde_json::to_value(radius.summarize())
         }
+        .map_err(ser_err)?;
+        self.carry_walk_on(&radius, opts, &mut out).await;
+        ok_json(out)
     }
 
     #[tool(

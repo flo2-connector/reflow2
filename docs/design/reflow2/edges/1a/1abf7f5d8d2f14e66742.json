@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6e2eb37f7caad74f5956c90932353de37e5557e6003a47a0b6e31f7c21616ba6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-crosses-designs-within-a-hub-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:62bb4aeea93117d6a777031578c9a63ed82cbf70fc1f8db8ee5b45f5cb879946",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

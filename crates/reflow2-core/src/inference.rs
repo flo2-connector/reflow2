@@ -52,6 +52,12 @@
 //!   claim false; only an objection that holds refutes it
 //!   (`req:unsupported-is-not-refuted`, Anthony 2026-10-17);
 //! - an Inference used as a premise is its own verdict;
+//! - a **reference to a node in another design** (`xref:<design>:<node>`)
+//!   reads as that node reads THERE — its truth, carried with what it holds
+//!   only under, and its proof status limiting a proof here — when the server
+//!   read it for this call ([`crate::far`]); a stale or unreachable far end is
+//!   unknown, never holding
+//!   (`req:reasoning-crosses-designs-within-a-hub`);
 //! - every other type is UNKNOWN, and says so.
 //!
 //! The rule is evaluated over those values the Kleene way: `all` fails when any
@@ -697,6 +703,37 @@ struct Read {
     /// recalled to say — but never discharged by a step: checking its source
     /// is what clears it.
     unverified: BTreeSet<String>,
+}
+
+/// A reference's reading as a premise here: the far node's truth when it was
+/// read, with what it holds only under carried as unverified citations, so a
+/// conclusion resting on a conditional far result reads conditional; unknown
+/// for a stale or unreachable far end, whatever it once read.
+fn far_read(far: &crate::far::FarReading) -> Read {
+    use crate::far::FarState;
+    match far.state {
+        FarState::Read => Read {
+            truth: far.truth,
+            why: format!(
+                "in design {}, where {} lives, it {}: {}{}",
+                far.design,
+                far.node_id,
+                match far.truth {
+                    Truth::Holds => "holds",
+                    Truth::Fails => "fails",
+                    Truth::Unknown => "is unknown",
+                },
+                far.why,
+                far.proof_status
+                    .as_deref()
+                    .map(|p| format!(" (its proof there: {p})"))
+                    .unwrap_or_default()
+            ),
+            assumes: BTreeSet::new(),
+            unverified: far.holds_only_if.iter().cloned().collect(),
+        },
+        FarState::Stale | FarState::Unreachable => Read::plain(Truth::Unknown, far.why.clone()),
+    }
 }
 
 impl Read {
@@ -1473,6 +1510,15 @@ impl DesignGraph {
                 "the node is not there".to_string(),
             ));
         };
+        // A NODE IN ANOTHER DESIGN, STOOD IN FOR BY A REFERENCE, READS AS IT
+        // READS THERE (req:reasoning-crosses-designs-within-a-hub, crate::far):
+        // its computed truth, carried with what it holds only under; a stale or
+        // unreachable far end is unknown, never holding.
+        if node_type == node::RESOURCE
+            && let Some(far) = self.far_premise(id)?
+        {
+            return Ok(far_read(&far));
+        }
         let status = prop(&n.properties, "status").map(str::to_string);
         if node_type == node::REQUIREMENT && status.as_deref() == Some("dropped") {
             return Ok(Read::plain(
@@ -3185,6 +3231,18 @@ impl DesignGraph {
             }
         }
         for premise_id in self.premises_of(step_id)? {
+            // A premise in another design is proven only as far as it is
+            // proven THERE: a far result that is shown, conditional or worse
+            // leaves this line unconfirmed (req:reasoning-crosses-designs-
+            // within-a-hub, part 1).
+            if let Some(far) = self.far_premise(&premise_id)?
+                && far
+                    .proof_status
+                    .as_deref()
+                    .is_some_and(|status| status != "proven")
+            {
+                *chain_confirmed = false;
+            }
             let concluding = self.inferences_concluding(&premise_id)?;
             for sub_step in &concluding {
                 self.proof_chain_walk(sub_step, chain_confirmed, under, confirmed_under, visited)?;

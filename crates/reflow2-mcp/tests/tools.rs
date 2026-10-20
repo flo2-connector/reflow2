@@ -2576,7 +2576,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         status: None,
     })));
     let deleted = j!(s.delete_node(Parameters(TypedIdReq {
-        node_type: "Component".into(),
+        node_type: Some("Component".into()),
         id: "cmp:typo".into(),
     })));
     assert_eq!(

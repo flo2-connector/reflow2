@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:79ed140a30baf635ea80ef5b9550ec5725012f14d2bb20eb12b03fc8b32ebb62",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-the-id-prefix-table-covers-every-stated-convention",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

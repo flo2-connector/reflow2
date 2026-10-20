@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1b51aefaec875eaa98defafe0bef1c5efbbaf47c20c893d6e945894bcad545cf",
+  "node_id": "cap:a-premise-in-another-design-reads-as-it-reads-there-and-a-walk-continues-through-a-hub",
+  "node_type": "Capability",
+  "properties": {
+    "description": "On a registry server behind a trusted host, before each call on a design whose reasoning names a reference xref:<design>:<node>, the server reads each far node in its own design (under that design's guard alone, only if the caller may read it) and hands the readings to the call (reflow2_core::far::scoped via service::far::FarScoped). The premise then carries the far node's truth; a far proof status short of proven keeps a confirmed line here from proven; what the far node holds only under there (unverified citation, open assumption) makes the claim here conditional. A far node that is gone reads stale; a far design the caller may not read, or any server that reaches no other design, reads unreachable: unknown, never holding. Through a hub's address, propagate_from and propagate_change continue into each design of the view (hub + readable members) holding a reference to a node the walk reached, and on from there, each design entered once: the references are named in boundary_crossings with their design's prefix and each radius comes back under across_designs. Readings are per call and never stored. Engine-side (crates/reflow2-core/src/far.rs, crates/reflow2-mcp/src/service/far.rs), so a local --registry-root hub gets it as flo2.io does.",
+    "name": "A premise in another design reads as it reads there, and through a hub a change walk continues into the designs that cite what it reached",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

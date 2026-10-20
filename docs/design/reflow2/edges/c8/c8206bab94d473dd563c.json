@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea0de51709a1db206427e1051394579466ae3d56de948a23ac2e22a47b8f64d3",
+  "edge_type": "REALIZES",
+  "from_id": "art:service-far",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-premise-in-another-design-reads-as-it-reads-there-and-a-walk-continues-through-a-hub"
+}

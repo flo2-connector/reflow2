@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3371f528ee5b839183b500ac3c7449eb5632b85963c4b925ba38eca672594bce",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

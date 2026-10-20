@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:11f6464784a6cb63930d5951b50f282a5f7dbe3d6368612451b1112cad8eec58",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-premise-in-another-design-reads-as-it-reads-there",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:reasoning-crosses-designs-within-a-hub-tests"
+}

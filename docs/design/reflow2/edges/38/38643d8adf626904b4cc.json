@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fdb32cbc5ef4c0b422ca7303578d13abb6c9ef50f7d855983809438db4123ba6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:inference",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

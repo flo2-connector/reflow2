@@ -234,7 +234,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `create_node` | **write** | Create a node of any schema type with a property object. |
 | `create_nodes` | **write** | Create or update MANY nodes in one call — the bulk form of create_node. |
 | `delete_edge` | **write** | Delete one edge by type and endpoint ids (true if it existed). |
-| `delete_node` | **write** | Delete a node by type and id, returning whether it existed. |
+| `delete_node` | **write** | Delete a node by id, returning whether it existed. |
 | `describe_schema` | read | Discover the design vocabulary before writing to it: which node types exist, which properties they require, and which edge types may join two given types |
 | `find_tools` | read | Find the reflow2 tool for a job you can describe but cannot name — 'how do I record that a file implements a capability?', 'what shows me the blast radius?' |
 | `get_node` | read | Fetch a node by type and id — `{node: {...}}` when present, `{node: null}` when absent |

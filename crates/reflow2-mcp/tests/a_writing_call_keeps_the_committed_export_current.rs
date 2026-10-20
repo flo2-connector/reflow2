@@ -461,6 +461,12 @@ fn with_no_export_named_anywhere_a_write_says_so_and_writes_none() {
     let e = err(&o);
     assert!(e.contains("no export was kept current"), "{e}");
     assert!(e.contains("--export-to"), "{e}");
+    // req:the-no-export-line-names-every-source-a-writing-call-reads: the
+    // record that persists is named first, as the exact file and form to write.
+    let record = e
+        .find(".reflow2.toml as [export] path = \"<FILE>\"")
+        .unwrap_or_else(|| panic!("the line does not name the record: {e}"));
+    assert!(record < e.find("--export-to").unwrap(), "{e}");
     assert!(
         !p.path("docs").exists(),
         "an export was written by guessing"

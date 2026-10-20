@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f60f0b0c469d428718ca7cb8fb4b382da962b893821e3614cf2fa3b34ce21345",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-premise-in-another-design-reads-as-it-reads-there-and-a-walk-continues-through-a-hub",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

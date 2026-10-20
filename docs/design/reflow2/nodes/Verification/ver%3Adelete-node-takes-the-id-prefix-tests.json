@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b1b58d7474d78d6f1b32c7bc3549a8727d81e39d3d0d4dcce0ba65cb75fd4841",
+  "node_id": "ver:delete-node-takes-the-id-prefix-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "tests/a_node_is_named_by_its_id_and_the_type_is_optional.rs: delete_node_refuses_an_id_whose_prefix_names_another_type_and_the_node_survives (replaces delete_node_still_requires_the_type_on_purpose; a passed node_type then deletes it), ..._deletes_when_the_prefix_names_the_holders_type, ..._held_by_two_types_refuses_and_both_survive, ..._whose_prefix_names_no_type_refuses, ..._that_names_nothing_reports_it. All five failed first on main 62e9c84f3 (node_type required). tests/the_id_prefix_table_covers_every_stated_convention.rs: every prefix a served description states by convention is a row of nodes::node::ID_PREFIXES (a removed row was caught: add_readiness rdy:). Core: the table names declared types, each prefix once.",
+    "findings": "9 of 9 tests in the file, 2 of 2 prefix-table tests and the core table test pass; the five delete tests failed first on main 62e9c84f3.",
+    "kind": "verification",
+    "last_run_at": "2026-10-19",
+    "location": "crates/reflow2-mcp/tests/a_node_is_named_by_its_id_and_the_type_is_optional.rs",
+    "method": "test",
+    "name": "delete_node takes the id prefix as the stated type: 5 tests + the prefix table's class pin",
+    "status": "passing"
+  }
+}

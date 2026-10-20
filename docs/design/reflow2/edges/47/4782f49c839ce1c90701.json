@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:14dbf26d31efc11e02a2c297930188629a30c94696945299c1a4cdb7bc448c46",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-no-export-line-names-every-source-a-writing-call-reads",
+  "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

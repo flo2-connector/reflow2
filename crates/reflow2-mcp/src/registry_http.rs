@@ -716,6 +716,28 @@ impl RegistryHandle {
         &self,
         graph_id: &str,
     ) -> Result<reflow2_core::GraphExport, Refusal> {
+        self.read_other_design(graph_id, |g| {
+            g.export_graph().map_err(|e| {
+                Refusal::CouldNotOpen(format!("design '{graph_id}' could not be exported: {e}"))
+            })
+        })
+        .await?
+    }
+
+    /// Run `read` on design `graph_id` under ITS read guard alone, opened if it
+    /// is not, and return what it computed: the one way a design served here
+    /// reads another ([`Self::other_design_export`] is one use of it; the far
+    /// readings a reasoning premise takes across designs are another,
+    /// `req:reasoning-crosses-designs-within-a-hub`).
+    ///
+    /// The other design's guard is taken inside and dropped before this
+    /// returns, so a caller never holds two. Authorisation is the caller's,
+    /// as for [`Self::member`].
+    pub async fn read_other_design<R>(
+        &self,
+        graph_id: &str,
+        read: impl FnOnce(&DesignGraph) -> R,
+    ) -> Result<R, Refusal> {
         let Some(inner) = self.inner.upgrade() else {
             return Err(Refusal::Busy(
                 "the registry that served this design has stopped, so no other design can be \
@@ -731,14 +753,11 @@ impl RegistryHandle {
                  again in a few seconds."
             )));
         };
-        let export = {
-            let g = store.read().await;
-            g.export_graph().map_err(|e| {
-                Refusal::CouldNotOpen(format!("design '{graph_id}' could not be exported: {e}"))
-            })?
-            // `g` drops here: the other design's guard is never held past this block.
-        };
-        Ok(export)
+        let g = store.read().await;
+        let out = read(&g);
+        // `g` drops here: the other design's guard is never held past this call.
+        drop(g);
+        Ok(out)
     }
 
     /// A member of a hub's view, for ONE call: a fresh session on design

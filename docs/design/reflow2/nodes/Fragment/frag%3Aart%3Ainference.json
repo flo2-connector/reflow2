@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:455248c3bb32c9cf2e61354f868659996f25f27d0e31fccf680d4b0898325f44",
+  "node_id": "frag:art:inference",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered inference.rs"
+  }
+}

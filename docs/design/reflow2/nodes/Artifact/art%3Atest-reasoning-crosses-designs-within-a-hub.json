@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2a00e177f489cfd0c8b48b4569001c1977bc3cf3045b5db8413067e6e578954c",
+  "node_id": "art:test-reasoning-crosses-designs-within-a-hub",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The far premise carries truth and proof status; stale and unreachable read as such and reveal nothing; a change walk continues into the citing design (boundary_crossings, across_designs) and not into one the caller may not read.",
+    "location": "crates/reflow2-mcp/tests/reasoning_crosses_designs_within_a_hub.rs",
+    "name": "tests/reasoning_crosses_designs_within_a_hub.rs — three registry tests through a hub over a proof design and a design citing it",
+    "status": "realized"
+  }
+}

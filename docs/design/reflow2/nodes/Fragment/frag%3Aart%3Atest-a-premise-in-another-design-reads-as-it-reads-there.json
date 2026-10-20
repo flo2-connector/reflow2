@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:39580806b0ba781a80a6da047598e615f35b1bd070ebd978d75c933542e1edaa",
+  "node_id": "frag:art:test-a-premise-in-another-design-reads-as-it-reads-there",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered tests/a_premise_in_another_design_reads_as_it_reads_there.rs — the core's half on two in-memory designs"
+  }
+}

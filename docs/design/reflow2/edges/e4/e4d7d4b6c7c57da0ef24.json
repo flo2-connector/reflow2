@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d3fd339a3a8736e9b62048a8ccd67aa38e99965d41bb09eb495689b791a34292",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-crosses-designs-within-a-hub-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type"
+}

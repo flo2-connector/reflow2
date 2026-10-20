@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:76a53750f2e58bb15d72e4a8f82edcdc78faf5d58db35220168b43e300f3bec5",
+  "node_id": "art:test-the-id-prefix-table-covers-every-stated-convention",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Reads every served tool's description and input schema for `<p>:<slug>` by convention / conventionally prefixed `<p>:`, and fails when the table delete_node reads lacks a stated prefix.",
+    "location": "crates/reflow2-mcp/tests/the_id_prefix_table_covers_every_stated_convention.rs",
+    "name": "tests/the_id_prefix_table_covers_every_stated_convention.rs — every prefix a served description states is a row of ID_PREFIXES",
+    "status": "realized"
+  }
+}

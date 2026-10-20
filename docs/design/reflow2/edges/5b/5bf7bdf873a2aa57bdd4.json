@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01ec4b99e56c6c7c6d25913546cfbc5b616fcb737d993c36ee8e7f7d21e5d0dc",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-delete-node-says-why-it-asks-for-the-type-or-takes-the-id-prefix-as-the-callers-word",
+  "properties": {
+    "evidence": "Option (b), chosen by Anthony 2026-10-19, captured as the requirement."
+  },
+  "to_id": "req:delete-node-takes-the-id-prefix-as-the-callers-stated-type"
+}

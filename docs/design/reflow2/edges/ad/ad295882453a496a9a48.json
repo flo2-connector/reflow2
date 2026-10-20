@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5a2ff0a1a176139a759391fd5f3eea9c6acb67c289e1d344746b12de79476b38",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-premise-in-another-design-reads-as-it-reads-there-and-a-walk-continues-through-a-hub"
+}

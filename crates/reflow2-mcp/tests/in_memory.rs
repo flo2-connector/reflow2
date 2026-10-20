@@ -171,6 +171,7 @@ mod the_export_chains_from_main;
 mod the_fourteen_holes_are_writable;
 mod the_frontier_is_served_and_a_deferral_is_a_recorded_finding;
 mod the_guard_reads_the_request_before_refusing;
+mod the_id_prefix_table_covers_every_stated_convention;
 mod the_lens_names_the_person_beside_the_id;
 mod the_mcp_surface_only_grows;
 mod the_near_match_report_is_not_cut_at_three;

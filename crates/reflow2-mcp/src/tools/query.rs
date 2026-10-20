@@ -1347,7 +1347,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Delete a node by type and id, returning whether it existed. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, record_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
+        description = "Delete a node by id, returning whether it existed. `node_type` is optional: omitted, the id's prefix is taken as the type you mean (`req:` → Requirement), and the node is deleted only when the one type holding the id is that type — otherwise nothing is deleted and the refusal names what the id holds. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, record_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
         title = "Delete a Node",
         annotations(read_only_hint = false, destructive_hint = true)
     )]
@@ -1356,8 +1356,21 @@ impl ReflowService {
         Parameters(req): Parameters<TypedIdReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        let deleted = g.delete_node(&req.node_type, &req.id).map_err(dyno_err)?;
-        ok_json(json!({ "deleted": deleted }))
+        if let Some(node_type) = &req.node_type {
+            let deleted = g.delete_node(node_type, &req.id).map_err(dyno_err)?;
+            return ok_json(json!({ "deleted": deleted }));
+        }
+        // The type omitted: the id's prefix is the caller's stated type, and
+        // the holder must match it (req:delete-node-takes-the-id-prefix-as-the-
+        // callers-stated-type). Resolved under the write lock, so nothing can
+        // change between the check and the delete.
+        let node_type = delete_type_from_prefix(&g, &req.id)?;
+        let Some(node_type) = node_type else {
+            // Nothing holds the id: reported, not an error, as with a type.
+            return ok_json(json!({ "deleted": false }));
+        };
+        let deleted = g.delete_node(&node_type, &req.id).map_err(dyno_err)?;
+        ok_json(json!({ "deleted": deleted, "node_type": node_type }))
     }
 
     #[tool(
@@ -1391,6 +1404,54 @@ impl ReflowService {
             .delete_edge(&req.edge_type, &req.from_id, &req.to_id)
             .map_err(dyno_err)?;
         ok_json(json!({ "deleted": deleted }))
+    }
+}
+
+/// The type `delete_node` deletes when none is passed: the one type holding
+/// `id`, and only when it is the type the id's prefix names by convention
+/// ([`reflow2_core::nodes::node::ID_PREFIXES`]). `Ok(None)` when nothing holds
+/// the id. Every other case is refused before anything is deleted, naming what
+/// the id holds and the way through — the prefix is the caller's stated
+/// belief, and a holder that differs from it is the typo the strict form of
+/// 2026-09-06 guarded against.
+fn delete_type_from_prefix(
+    g: &reflow2_core::DesignGraph,
+    id: &str,
+) -> Result<Option<String>, McpError> {
+    let holders = g.node_types_holding(id).map_err(dyno_err)?;
+    let edges = || -> Result<usize, McpError> {
+        Ok(g.outgoing(id, None).map_err(dyno_err)?.len()
+            + g.incoming(id, None).map_err(dyno_err)?.len())
+    };
+    let refuse = |why: String| Err(McpError::invalid_params(why, None));
+    match holders.as_slice() {
+        [] => Ok(None),
+        [held] => {
+            let n = edges()?;
+            match reflow2_core::nodes::node::type_named_by_prefix(id) {
+                Some((_, Some(named))) if named == held => Ok(Some(held.clone())),
+                Some((prefix, Some(named))) => refuse(format!(
+                    "{id:?} is a {held} with {n} edge(s), but its prefix `{prefix}:` names a \
+                     {named} by convention, so the id does not say you mean this {held}. \
+                     Nothing was deleted. If you do, pass node_type: \"{held}\"."
+                )),
+                Some((prefix, None)) => refuse(format!(
+                    "{id:?} is a {held} with {n} edge(s), and its prefix `{prefix}:` names no \
+                     type by convention, so the id does not say which type you mean to \
+                     delete. Nothing was deleted. To delete it, pass node_type: \"{held}\"."
+                )),
+                None => refuse(format!(
+                    "{id:?} is a {held} with {n} edge(s), and it has no `<prefix>:` naming a \
+                     type, so the id does not say which type you mean to delete. Nothing was \
+                     deleted. To delete it, pass node_type: \"{held}\"."
+                )),
+            }
+        }
+        many => refuse(format!(
+            "{id:?} is held by MORE THAN ONE node type ({}), so a bare id cannot say which to \
+             delete. Nothing was deleted. Pass node_type to name the one you mean.",
+            many.join(", ")
+        )),
     }
 }
 

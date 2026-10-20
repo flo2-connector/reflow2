@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ceaddca6a7d0a97d317ab83b589b870a3cdedd896ac01440db6ddc0222e49ab",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:call-export",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-no-export-line-names-every-source-tests"
+}

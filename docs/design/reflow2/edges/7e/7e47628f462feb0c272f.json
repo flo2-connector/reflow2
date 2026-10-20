@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d4d69476a772f586afef885d46d83b1934e500795c71714bdfa1e11afcbf4523",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-crosses-designs-within-a-hub-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:10d1d5be0b685fd7839809b9892ae320a0eda1f323ad84538581ba1258dccd0b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:registry-http"
+}
