@@ -62,6 +62,20 @@
           "null"
         ]
       },
+      "confidence": {
+        "default": null,
+        "description": "A JUDGEMENT'S CONFIDENCE, ICD 203 style: `low`, `moderate` or `high`.\nRead back; changes no truth. Omitted: nothing is written.",
+        "enum": [
+          "low",
+          "moderate",
+          "high",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "direction": {
         "default": null,
         "description": "`maximum` (default: total must stay at or under) / `minimum`.",
@@ -109,6 +123,23 @@
       "id": {
         "description": "The constraint's id — `con:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
+      },
+      "information_credibility": {
+        "default": null,
+        "description": "EVIDENCE'S INFORMATION CREDIBILITY, Admiralty scale: `1` confirmed …\n`5` improbable, `6` cannot be judged. Omitted: nothing is written.",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "limit": {
         "default": null,
@@ -197,6 +228,31 @@
           "null"
         ]
       },
+      "reported_at": {
+        "default": null,
+        "description": "WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the\nreport's own date). Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "source_reliability": {
+        "default": null,
+        "description": "EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely\nreliable … `E` unreliable, `F` cannot be judged. Read back; changes no\ntruth. Omitted: nothing is written.",
+        "enum": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "statement": {
         "default": null,
         "type": [
@@ -206,7 +262,7 @@
       },
       "statement_kind": {
         "default": null,
-        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\nOmitted: nothing is written.",
+        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\n`evidence` (a report, study or measurement: \"the report says X\") reads\n`cited_as_evidence` when a pinned source documents it, and what rests\non it is supported, never proven; `judgement` is an analytic judgement\ndrawn from evidence, with its `confidence`.\nOmitted: nothing is written.",
         "enum": [
           "theorem",
           "lemma",
@@ -221,6 +277,8 @@
           "reply",
           "unstated_premise",
           "method_rule",
+          "evidence",
+          "judgement",
           null
         ],
         "type": [

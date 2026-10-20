@@ -335,6 +335,10 @@ async fn it_is_not_a_capability_only_field() {
         kind: None,
         taken_as_given: None,
         statement_kind: None,
+        source_reliability: None,
+        information_credibility: None,
+        reported_at: None,
+        confidence: None,
         variables: None,
         fixes: None,
     })));

@@ -42,6 +42,19 @@
         "description": "The ONE node this step concludes. A node may be concluded by several\nsteps (alternative derivations, read as ANY); a step concludes one.",
         "type": "string"
       },
+      "conclusion_form": {
+        "default": null,
+        "description": "THE CONCLUSION IS MADE OF THE PREMISES AS PARTS: `conjunction` (∧I) or\n`biconditional` (↔I). A what-if then reads which part still stands.",
+        "enum": [
+          "conjunction",
+          "biconditional",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "confirmed_at": {
         "default": null,
         "description": "WHEN, as an ISO 8601 timestamp. Absent when unconfirmed.",
@@ -91,6 +104,19 @@
           "node"
         ],
         "type": "string"
+      },
+      "establishes": {
+        "default": null,
+        "description": "WHAT RELATION THIS LINE ESTABLISHES: `entailment` (⊨, by truth table or\nmodel) or `derivability` (⊢, by deduction). Read back; changes no truth.",
+        "enum": [
+          "entailment",
+          "derivability",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "generalizes_over": {
         "default": null,
@@ -166,6 +192,14 @@
       "rule_name": {
         "default": null,
         "description": "The rule's own name — `modus ponens`, `induction`, `redundant sensors`.\nA label: the step is checked by `rule`, never by this name.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "rule_node": {
+        "default": null,
+        "description": "THE NODE THAT STATES THIS STEP'S RULE, by id (\"Rule RAA\", an axiom of\nthe calculus) — a reference of its own, NEVER a premise: the step holds\nonly while that node holds, a what-if on it reaches every step it rules,\nand it is never listed as an uncited premise. Refused when also named in\n`premises`. Overwrites; `\"\"` removes it.",
         "type": [
           "string",
           "null"

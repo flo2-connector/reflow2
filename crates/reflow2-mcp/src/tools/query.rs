@@ -424,10 +424,28 @@ impl ReflowService {
                 None,
             ));
         }
+        // A CONTRADICTS in the batch that turns a claim refuted says so in the
+        // reply (req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-
+        // reply), as create_edge's does.
+        let drawn: Vec<(String, String, Option<String>)> = specs
+            .iter()
+            .filter(|e| e.edge_type == "CONTRADICTS")
+            .map(|e| {
+                (
+                    e.from_id.clone(),
+                    e.to_id.clone(),
+                    e.props
+                        .get("alignment")
+                        .and_then(|v| v.as_str())
+                        .map(str::to_string),
+                )
+            })
+            .collect();
+        let watch = crate::service::watch_attacks(&g, None, &drawn)?;
         let report = g
             .create_edges_with(&specs, req.check_only)
             .map_err(dyno_err)?;
-        bulk_result(report, EdgeDto::from)
+        crate::service::bulk_result_refuting(report, EdgeDto::from, &g, &watch)
     }
 
     #[tool(
@@ -466,6 +484,24 @@ impl ReflowService {
             })
             .collect();
         let mut g = self.write_lock().await?;
+        // A typed helper in the batch that turns a claim refuted says so in
+        // the reply (req:a-write-that-makes-a-claim-read-refuted-says-so-in-
+        // its-reply): every record an item names is watched, and only one the
+        // batch actually turns refuted is reported.
+        let mut named: Vec<String> = Vec::new();
+        for (_, item) in &indexed {
+            crate::bulk_edges::ids_named(&item.arguments, &mut named);
+        }
+        named.sort();
+        named.dedup();
+        named.retain(|id| g.node_types_holding(id).is_ok_and(|t| t.len() == 1));
+        // What they attack too: an item that makes an objection hold (a
+        // `satisfies` that delivers it) refutes what the objection opposes.
+        let mut ids = named.clone();
+        for id in &named {
+            ids.extend(g.attack_targets_of(id).map_err(dyno_err)?);
+        }
+        let watch = g.watch_refutations(ids).map_err(dyno_err)?;
         let report = g
             .atomically(
                 &indexed,
@@ -479,7 +515,14 @@ impl ReflowService {
                 req.check_only,
             )
             .map_err(dyno_err)?;
-        ok_json(crate::bulk_edges::reply(report, req.budget_chars))
+        let reply = serde_json::to_value(crate::bulk_edges::reply(report, req.budget_chars))
+            .map_err(ser_err)?;
+        let applied = reply.get("applied").and_then(|v| v.as_bool()) == Some(true);
+        if applied && !req.check_only {
+            ok_json(crate::service::with_now_refuted(reply, &g, &watch)?)
+        } else {
+            ok_json(reply)
+        }
     }
 
     #[tool(

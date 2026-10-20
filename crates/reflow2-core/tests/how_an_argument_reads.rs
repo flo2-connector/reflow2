@@ -536,6 +536,9 @@ fn a_step_can_say_it_is_not_an_inference() {
         independent_except: None,
         cases: None,
         cases_exhaustive: None,
+        rule_node: None,
+        establishes: None,
+        conclusion_form: None,
     })
     .expect("an immediate step may name no premise");
     let r = reading(&g, "inf:grasped");
@@ -574,6 +577,9 @@ fn a_step_can_say_it_is_not_an_inference() {
         independent_except: None,
         cases: None,
         cases_exhaustive: None,
+        rule_node: None,
+        establishes: None,
+        conclusion_form: None,
     });
     assert!(refused.is_err());
 }

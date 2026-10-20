@@ -50,7 +50,8 @@ already exist under another name.
   transcendental"). It is a Requirement with `statement_kind` `falsum` (section 3a), and it
   reads FALSE, never holds.
 - **An `objection`, a `reply`, an `unstated_premise` or a `method_rule`** are the roles a line of
-  reasoning that is not a proof gives its statements: see design-an-argument.
+  reasoning that is not a proof gives its statements: see design-an-argument. So are `evidence`
+  (a report or study, read `cited_as_evidence` and never proven) and a `judgement` drawn from it.
 - **A statement about a variable** lists it in `variables` ("every n ≥ 2 has a prime divisor"
   mentions n). **A statement about one value** lists it in `fixes` as `n=40` or `L=all the primes`.
   **Give every hypothesis its `variables`**, an empty list when it names none: the generalization
@@ -83,6 +84,14 @@ axiom: those are the reasoning's own starting points, taken as given by choice.
 rule as mathematicians call it — modus ponens, induction, reductio) and `warrant` (why these
 premises give this conclusion, in words a reader can challenge). One step concludes one statement;
 a second proof of the same statement is a second step concluding it.
+
+**The rule is a node, never a premise.** When the calculus's rules are statements of the design
+("Rule RAA", an `axiom`), name the one a step uses in `rule_node`, not in `premises`: the step
+holds only while its rule does, a what-if on the rule reaches every step it rules, and the rule is
+never counted as an uncited premise. Say what each line establishes in `establishes`:
+`entailment` (⊨, a truth table) or `derivability` (⊢, a deduction). A step whose conclusion is its
+premises joined (∧I, ↔I) says `conclusion_form` `conjunction` or `biconditional`, so a what-if
+reads which part still stands. A premise used twice (A, A ⊢ A∧A) is named twice in `premises`.
 
 **Assumptions are premises with a role.** A reductio's "suppose the primes are finite", or an
 induction hypothesis P(k), is a statement of its own, passed in `assumed` on the step that takes
@@ -124,6 +133,8 @@ under no open assumption reads `inconsistent`: the foundations contradict each o
 2. The step concluding the result from the branches names the case hypotheses in `cases` (it
    discharges them) and, in `cases_exhaustive`, the record that says they cover every
    possibility ("every integer is even or odd"). `add_inference` draws that record as a premise.
+   A disjunction ASSUMED in the same subproof (a `hypothesis` "A ∨ B" that a later →I
+   discharges) may be that record: it is read as assumed there, and the split holds under it.
 3. Whether the cases ARE exhaustive is the owner's word (that record taken as given) or a
    checker's (a computed check through its kept record), never yours and never reflow2's. Until
    one is named, the step reads `cases.declared` false and does not hold; `loop_status` counts it
@@ -131,7 +142,8 @@ under no open assumption reads `inconsistent`: the foundations contradict each o
 
 **Two lines said to be independent are checked.** On the second proof's step, `independent_of`
 names the first proof's step and `independent_except` the lemmas both may share (Goldbach's proof
-shares Lemmas 1, 2, 3 and 5 with Euclid's). A shared step under no named lemma is reported.
+shares Lemmas 1, 2, 3 and 5 with Euclid's). A shared step under no named lemma is reported, and
+so is a cited result both lines rest on: two lines through one citation stand or fall together.
 
 ## 4. A computed fact counts only through its kept record
 
@@ -259,3 +271,5 @@ each to the owner.
   the word of the record that says so.
 - A definition taken as given is the reasoning's starting point by choice; nothing here says it
   is the right one.
+- One formula under several suppositions is still one statement per occurrence: a ⊥ shared by
+  two reductios closes a circle the design refuses, so record each derived contradiction apart.

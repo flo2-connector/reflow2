@@ -100,6 +100,39 @@ schema_enum!(
     "statement_kind",
     opt
 );
+schema_enum!(
+    requirement_source_reliability_opt,
+    "Requirement",
+    "source_reliability",
+    opt
+);
+schema_enum!(
+    requirement_information_credibility_opt,
+    "Requirement",
+    "information_credibility",
+    opt
+);
+schema_enum!(requirement_confidence_opt, "Requirement", "confidence", opt);
+schema_enum!(
+    constraint_source_reliability_opt,
+    "Constraint",
+    "source_reliability",
+    opt
+);
+schema_enum!(
+    constraint_information_credibility_opt,
+    "Constraint",
+    "information_credibility",
+    opt
+);
+schema_enum!(constraint_confidence_opt, "Constraint", "confidence", opt);
+schema_enum!(inference_establishes_opt, "Inference", "establishes", opt);
+schema_enum!(
+    inference_conclusion_form_opt,
+    "Inference",
+    "conclusion_form",
+    opt
+);
 schema_enum!(requirement_priority_opt, "Requirement", "priority", opt);
 schema_enum!(requirement_concern_opt, "Requirement", "concern", opt);
 schema_enum!(requirement_kind_opt, "Requirement", "kind", opt);
