@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:d1c1b1d569897bfb202d9e458437d131185e670a505fa2046b5ce2bc87ec412b",
+  "node_id": "req:a-what-if-on-an-assumed-principle-shows-what-holds-only-under-it",
+  "node_type": "Requirement",
+  "properties": {
+    "distinct_from": [
+      "req:a-what-if-on-a-premise-reaches-only-what-rests-on-it",
+      "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A what-if on a principle assumed in an argument's steps shows which positions hold only under it, which still hold by another line, and which objections come back",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-20 (\"go with your recommendations on the 3 choices from earlier\", choice 2: assumed principles, with the what-if fixed in phase 6)",
+    "statement": "When an argument takes a principle as an assumption in the steps that apply it (the design-an-argument recipe), a what-if on dropping that principle reads every position that rests on it: which lose all support (they held only under it), which still hold by another line (naming that line's assumptions), and which objections it answered come back. Today a what-if on an assumed principle says nothing about the positions. MEASURED 2026-10-20 on the trolley design (phase 6 PR 1, #779): dropping act consequentialism should leave the footbridge \"push\" verdict unsupported and the bystander \"turn\" verdict standing on double effect (the observer's fall-out, worked by hand).",
+    "status": "accepted"
+  }
+}

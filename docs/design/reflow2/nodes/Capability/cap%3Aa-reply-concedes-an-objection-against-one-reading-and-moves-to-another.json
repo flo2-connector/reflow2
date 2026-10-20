@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:64a3adc6149812450aeff9a55f6dfd182082cfb04c178565a4ebbada8231edf3",
+  "node_id": "cap:a-reply-concedes-an-objection-against-one-reading-and-moves-to-another",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.yaml, inference.rs concession_of). A CONTRADICTS from a reply to an objection with `alignment: conceding` and `moves_to` (node_ref) grants the objection: while the reply holds, the objection counts against its target as if it held (`standing: conceded`, `conceded_by`, `moves_to`); a conceded step reads `objected: conceded` and supports nothing, so the claim stands on the reading moved to; the reply reads `concedes`, the objection `conceded`. heal and the report treat a concession as no conflict.",
+    "name": "A reply concedes an objection against one reading and moves the argument to another (CONTRADICTS alignment conceding, moves_to)",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

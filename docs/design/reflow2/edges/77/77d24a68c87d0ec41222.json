@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6e99a689acc435a0772bac5aa1cf77319a3830354e62d3d754c9d789559c1f5d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:e375ada962872c567f19ca8351c12fdf238bdd4841cb509eea7576b8e109f79e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:toolsnap-add-inference"
+}

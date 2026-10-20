@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:523197d757c3d82c361d15eb6c1789268beb122ea775c73bd454897d00f7425c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 25,
+    "action": "modified",
+    "checksum_after": "sha256:15d910f93d46526f80172af77afef8db00a3bee324dafcf2ed1adfcdd296dde5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

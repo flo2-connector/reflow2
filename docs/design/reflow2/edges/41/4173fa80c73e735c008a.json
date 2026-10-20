@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:39d2e66062737a9687af37928dd12a7e6326a540b76ac5d31562680d57ea15e7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-what-if-on-an-assumed-principle-shows-what-holds-only-under-it",
+  "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

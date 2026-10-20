@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8e59ffaccce039038b65af34a27e2417ec4ed30ae28e13e46b59298fb652dcad",
+  "node_id": "cap:a-step-can-be-an-immediate-grasp-not-an-inference",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.yaml Inference.rule; inference.rs InferenceRule::Immediate, combine, add_inference). Rule `immediate` holds on no premise, reads any premises as `all` (what it is grasped in), reads \"not an inference: an immediate grasp\", and an objection can still aim at it; add_inference accepts it with no premise, and every other rule still needs one.",
+    "name": "A step can be an immediate grasp, not an inference (rule immediate)",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6745ea8b161b61a7fd1afed338c92b04a829abf8865d1d82e36b1ad47e9d62d0",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-write-that-turns-a-claim-refuted-says-so-in-its-reply"
+}

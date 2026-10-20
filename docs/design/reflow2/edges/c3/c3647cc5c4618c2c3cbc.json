@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c05cd0dfec34df6c6bffc641a61541e840456099f25146d2b445171aede99e67",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-held-up-only-by-disputes-reads-contested"
+}

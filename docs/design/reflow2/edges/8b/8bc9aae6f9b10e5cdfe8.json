@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a9f5b0485a8facc6ab8003b9f5d588d44b1da7677e97825080667874b1c0b94",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-write-that-turns-a-claim-refuted-says-so-in-its-reply",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

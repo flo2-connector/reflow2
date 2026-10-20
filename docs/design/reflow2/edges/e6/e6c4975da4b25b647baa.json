@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ae37863243b28c756da962376069aa0b3a4097352c4052b805ecba2ec77179cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 39,
+    "action": "modified",
+    "checksum_after": "sha256:ee1c2de3b47db7f5de79ab36e037a2a64f37245e2bd332f8436b80f94310cb09",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

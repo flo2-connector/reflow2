@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4e01af63c84991ef3d1538627e914ebae4cd5db9bb16e03ef71d9b3ab12fc826",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:an-argument-reads-as-it-is-written-on-the-wire-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

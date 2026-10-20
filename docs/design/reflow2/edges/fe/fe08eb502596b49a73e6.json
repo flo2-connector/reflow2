@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:953cdee7ff4093d3b4603a6484a0efd87d58fb83e6b1829862ae0c890118e52a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:how-an-argument-reads-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

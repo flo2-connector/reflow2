@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:7303047014020979f1e27224d93f29a3a507ed837509dc7c9ed31a184dc381b1",
+  "content_hash": "sha256:8b83b3dd0e956143c9d5fff19ab8adf1ba6cb43b82ecf6936efdc6d59e73959e",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-principle-in-an-argument-is-assumed-or-taken-as-given",
+  "prev_item_hash": "sha256:7303047014020979f1e27224d93f29a3a507ed837509dc7c9ed31a184dc381b1",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

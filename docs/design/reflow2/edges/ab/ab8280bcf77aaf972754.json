@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8541c56da818ba1fd0a9819347bb7dd7310b4d2f5056c90dc84cbf9d8f105ff6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-how-an-argument-reads-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:2b0edbde0a0783223d7690cd1ed85c9c33d2aca4479097cb097c3feb2808f8d0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reasoning-rs"
+}

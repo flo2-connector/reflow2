@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:65cd02509d96c7574dca1f8c18f1ec01a03a77d18d91c450e60aa23efad08c12",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:an-argument-reads-as-it-is-written-on-the-wire-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
