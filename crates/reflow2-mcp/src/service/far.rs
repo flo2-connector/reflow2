@@ -183,15 +183,28 @@ impl ReflowService {
                     read_far_ends(registry, refs, readable.as_deref()).await,
                 ));
                 let seeds = into.clone();
+                // The radius there, and its summary with every id it holds
+                // prefixed by key AND by value (a step's `inference`, its
+                // `conclusion` …), as a routed member reply is
+                // (`view::prefix_held_values`) — under that design's guard,
+                // alone, the one time it is taken for the walk.
                 let walked = registry
                     .read_other_design(design, |g: &DesignGraph| {
-                        reflow2_core::far::scoped(readings, || {
+                        let radius = reflow2_core::far::scoped(readings, || {
                             let seeds: Vec<&str> = seeds.iter().map(String::as_str).collect();
                             g.propagate_from(&seeds, opts)
-                        })
+                        })?;
+                        let mut summary =
+                            serde_json::to_value(radius.summarize()).unwrap_or(JsonValue::Null);
+                        super::view::prefix_ids(&mut summary, design);
+                        super::view::prefix_held_values(&mut summary, design, &mut |s: &str| {
+                            super::view::looks_like_an_id(s)
+                                && g.node_types_holding(s).is_ok_and(|t| !t.is_empty())
+                        });
+                        Ok::<_, reflow2_core::DynoError>((radius, summary))
                     })
                     .await;
-                let there = match walked {
+                let (there, summary) = match walked {
                     Ok(Ok(r)) => r,
                     Ok(Err(e)) => {
                         across.push(not_walked(design, &from, e.to_string()));
@@ -205,9 +218,6 @@ impl ReflowService {
                 let entered_at: Vec<String> =
                     into.iter().map(|id| format!("{design}:{id}")).collect();
                 crossings.extend(entered_at.iter().cloned());
-                let mut summary =
-                    serde_json::to_value(there.summarize()).unwrap_or(JsonValue::Null);
-                super::view::prefix_ids(&mut summary, design);
                 across.push(json!({
                     "design": design,
                     "from_design": from,
@@ -251,13 +261,25 @@ impl ReflowService {
     }
 }
 
-/// Every node a radius stood on or reached.
+/// Every node a radius stood on or reached: its seeds, the nodes it walked
+/// within its depth, and every step and conclusion its inference walk reported.
+/// The inference walk follows a line of reasoning to its end however deep it
+/// is, so a theorem a few steps past `max_depth` is still reached when the
+/// ground under it went (measured 2026-10-19 on the real Fermat design: the
+/// theorem is 8 hops from Fermat's little theorem, past the default depth, and
+/// the inference walk names it unsupported).
 fn reached(radius: &BlastRadius) -> BTreeSet<String> {
     radius
         .seeds
         .iter()
         .cloned()
         .chain(radius.impacted.iter().map(|n| n.node_id.clone()))
+        .chain(
+            radius
+                .inferences
+                .iter()
+                .flat_map(|i| std::iter::once(i.inference.clone()).chain(i.conclusion.clone())),
+        )
         .collect()
 }
 

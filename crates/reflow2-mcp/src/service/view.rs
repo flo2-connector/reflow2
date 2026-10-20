@@ -619,7 +619,7 @@ async fn prefix_reply(
 /// Could `s` be a node id? Ids follow the typed-prefix convention
 /// (`req:…`, `who:…`), so one holds a `:` and no whitespace, and is short.
 /// Only such a string is looked up; anything else is prose or a value.
-fn looks_like_an_id(s: &str) -> bool {
+pub(super) fn looks_like_an_id(s: &str) -> bool {
     !s.is_empty() && s.len() <= 512 && s.contains(':') && !s.contains(char::is_whitespace)
 }
 
@@ -627,7 +627,11 @@ fn looks_like_an_id(s: &str) -> bool {
 /// id gets the member's prefix — except under a key naming a design
 /// (`…graph_id`, `…graph_ids`) or an id a cross-design record places in
 /// ANOTHER design ([`names_a_node_elsewhere`]), as in [`prefix_ids`].
-fn prefix_held_values(v: &mut JsonValue, member: &str, holds: &mut impl FnMut(&str) -> bool) {
+pub(super) fn prefix_held_values(
+    v: &mut JsonValue,
+    member: &str,
+    holds: &mut impl FnMut(&str) -> bool,
+) {
     match v {
         JsonValue::String(s) => {
             if !s.starts_with(&format!("{member}:")) && holds(s) {

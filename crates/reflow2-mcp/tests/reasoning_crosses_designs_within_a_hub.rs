@@ -276,8 +276,28 @@ fn a_change_walk_continues_into_a_design_that_holds_a_reference_to_what_it_reach
     assert!(
         into_c["radius"]["inferences"]
             .to_string()
-            .contains("inf:claim"),
-        "C's step resting on the reference is in C's radius: {into_c}"
+            .contains(&format!("\"{c}:inf:claim\"")),
+        "C's step resting on the reference is in C's radius, with C's prefix: {into_c}"
+    );
+
+    // A conclusion past the walk's depth that its inference walk still reaches
+    // is reached: here the theorem is two hops from the axiom and the depth is
+    // one. (On the real Fermat design the theorem is eight hops from Fermat's
+    // little theorem, past the default depth of five.)
+    let shallow = ok(
+        &on_h.call(
+            "propagate_from",
+            json!({"seed_ids": [format!("{f}:req:axiom")], "max_depth": 1}),
+            Some(&readable),
+            Some(&view),
+        ),
+        "a walk of depth 1 from F's axiom through H",
+    );
+    assert!(
+        shallow["boundary_crossings"]
+            .to_string()
+            .contains(&reference),
+        "the inference walk reached the theorem past the depth, so the walk crosses into C: {shallow}"
     );
 
     // And with C outside what the caller may read, the walk does not enter it.
