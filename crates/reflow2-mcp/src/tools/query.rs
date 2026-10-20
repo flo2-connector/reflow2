@@ -1610,8 +1610,23 @@ fn decorate(
     } else {
         None
     };
+    // A CHECK'S CONDITIONS (req:a-check-resting-on-a-claim-that-loses-
+    // support-reads-stale): the reasoned claims that constrain it, read, and
+    // whether it is stale. Only on a Verification a reasoned claim constrains.
+    let check_conditions = if node_type == reflow2_core::nodes::node::VERIFICATION {
+        g.check_conditions(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
+        if let Some(c) = check_conditions {
+            obj.insert("check_conditions".to_string(), c);
+        }
         if let Some(t) = test_reading {
             obj.insert("test_reading".to_string(), t);
         }

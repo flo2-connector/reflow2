@@ -105,7 +105,10 @@ pub const REASONING_DEBT_NOTE: &str = "What the reasoning still owes. An UNCONFI
      for), a CASE SPLIT whose cases nothing declares exhaustive (the step does not hold), and an \
      INCONSISTENCY (a falsum derived under no open assumption: the foundations contradict each \
      other). An UNVERIFIED CITATION is a result cited from elsewhere that no pinned source \
-     documents: what rests on it reads conditional until its source is checked. Confirming a \
+     documents: what rests on it reads conditional until its source is checked. And what has LOST \
+     ITS REASON NOW: a REQUIREMENT whose reason to exist reads lost or stands on its Decision's \
+     acceptance alone, an ACCEPTED DECISION no line of whose chain holds, and a STALE CHECK whose \
+     conditions no longer hold. Confirming a \
      step is the owner's word, never an agent's. reasoning_report reads each one in full.";
 
 /// What the reasoning of a design still owes: counted by `loop_status` and
@@ -150,6 +153,19 @@ pub struct ReasoningDebt {
     /// contradict each other.
     pub inconsistencies: usize,
     pub inconsistency_ids: Vec<String>,
+    /// WHAT HAS LOST ITS REASON NOW, read across the whole design and not
+    /// only as a what-if's delta (req:what-has-lost-its-reason-now-is-one-
+    /// read; the capstone trial: after U1 the 10–12 GHz requirement had
+    /// already lost its reason and no read listed it): requirements whose
+    /// reason to exist reads `lost` or `stands_on_acceptance_alone`.
+    pub reasons_lost: usize,
+    pub reason_lost_ids: Vec<String>,
+    /// Accepted Decisions a chain concludes and no line of it holds.
+    pub decisions_without_a_holding_chain: usize,
+    pub decision_without_a_holding_chain_ids: Vec<String>,
+    /// Checks whose conditions no longer hold: stale.
+    pub stale_checks: usize,
+    pub stale_check_ids: Vec<String>,
     /// How many ids each list may name.
     pub list_cap: usize,
     /// What these counts mean.
@@ -159,7 +175,7 @@ pub struct ReasoningDebt {
 impl ReasoningDebt {
     /// Whether anything is owed.
     pub fn is_owed(&self) -> bool {
-        self.confirmation_owed() || self.not_as_stated()
+        self.confirmation_owed() || self.not_as_stated() || self.reasons_lost_now()
     }
 
     /// Whether confirming or citing is owed: an unconfirmed step, an uncited
@@ -182,6 +198,13 @@ impl ReasoningDebt {
             + self.cases_not_declared_exhaustive
             + self.inconsistencies
             > 0
+    }
+
+    /// Whether something has LOST ITS REASON NOW: a requirement whose reason
+    /// to exist is lost or stands on acceptance alone, an accepted Decision
+    /// with no holding chain, or a stale check.
+    pub fn reasons_lost_now(&self) -> bool {
+        self.reasons_lost + self.decisions_without_a_holding_chain + self.stale_checks > 0
     }
 }
 
@@ -374,6 +397,11 @@ pub struct ClaimReading {
     /// (req:a-conclusion-whose-every-route-is-contested-reads-contested).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub contested_by: Vec<String>,
+    /// For a check a reasoned claim constrains: its conditions, read, and
+    /// whether it is STALE (req:a-check-resting-on-a-claim-that-loses-
+    /// support-reads-stale).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub check_conditions: Option<crate::inference::CheckConditions>,
     /// For a Requirement a Decision governs: WHY IT EXISTS — each governing
     /// Decision and its support — read apart from `truth`, which says whether
     /// it is delivered (crate::reason_to_exist).
@@ -912,10 +940,18 @@ impl DesignGraph {
             if discharged_only.contains(&c.id) {
                 continue;
             }
+            // A requirement whose reason to exist stands is not an
+            // unsupported claim: its read-back names that reason and the
+            // evidence beneath it.
+            let has_a_reason = c
+                .reason_to_exist
+                .as_ref()
+                .is_some_and(|r| r.reads == "stands");
             if c.truth == ClaimTruth::Unknown
                 && c.support.is_empty()
                 && c.sources.is_empty()
                 && c.node_type != node::ARTIFACT
+                && !has_a_reason
             {
                 unsupported.push(Unsupported {
                     id: c.id.clone(),
@@ -1122,6 +1158,21 @@ impl DesignGraph {
                 }
             }
         }
+        // A REQUIREMENT'S REASON TO EXIST is read with it: each Decision it
+        // is GOVERNED_BY that a chain of steps concludes, and on down that
+        // chain to the evidence (req:a-requirements-read-back-follows-its-
+        // reason-to-the-evidence; the capstone trial: each requirement walked
+        // 1 claim, rests_on []).
+        if self.get_node(node::REQUIREMENT, id)?.is_some() {
+            for e in self.outgoing(id, Some(edge::GOVERNED_BY))? {
+                if e.properties.get("ruling").and_then(Value::as_str) != Some("parks")
+                    && self.get_node(node::DECISION, &e.to_id)?.is_some()
+                    && !self.inferences_concluding(&e.to_id)?.is_empty()
+                {
+                    next.insert(e.to_id);
+                }
+            }
+        }
         for s in self.inferences_concluding(id)? {
             next.extend(self.premises_of(&s)?);
             // A DISPUTE BETWEEN RIVAL READINGS of this claim's steps, kept
@@ -1288,6 +1339,7 @@ impl DesignGraph {
             rests_on_tests,
             contested_by_design: self.contested_governor(id)?.or(steps_dispute),
             contested_by,
+            check_conditions: self.check_conditions(id)?,
             reason_to_exist: self.reason_to_exist(id)?,
             argues_for: Vec::new(),
             acceptance,
@@ -1462,7 +1514,53 @@ impl DesignGraph {
         }
         let (cases_not_declared_exhaustive, unexhausted_ids) = cap(unexhausted);
         let (inconsistencies, inconsistency_ids) = cap(inconsistent);
+        // WHAT HAS LOST ITS REASON NOW: the state, not a delta.
+        let mut reasons: Vec<String> = Vec::new();
+        for r in self.scan_live_nodes(node::REQUIREMENT)? {
+            if self
+                .outgoing(&r.node_id, Some(edge::GOVERNED_BY))?
+                .is_empty()
+            {
+                continue;
+            }
+            if self
+                .reason_to_exist(&r.node_id)?
+                .is_some_and(|x| matches!(x.reads, "lost" | "stands_on_acceptance_alone"))
+            {
+                reasons.push(r.node_id);
+            }
+        }
+        reasons.sort();
+        let mut chainless: Vec<String> = Vec::new();
+        for d in self.scan_live_nodes(node::DECISION)? {
+            if d.properties.get("status").and_then(Value::as_str) != Some("accepted") {
+                continue;
+            }
+            if self
+                .chain_reading(&d.node_id)?
+                .is_some_and(|(verdict, _)| verdict != Truth::Holds)
+            {
+                chainless.push(d.node_id);
+            }
+        }
+        chainless.sort();
+        let mut stale: Vec<String> = Vec::new();
+        for v in self.scan_live_nodes(node::VERIFICATION)? {
+            if self.check_conditions(&v.node_id)?.is_some_and(|c| c.stale) {
+                stale.push(v.node_id);
+            }
+        }
+        stale.sort();
+        let (reasons_lost, reason_lost_ids) = cap(reasons);
+        let (decisions_without_a_holding_chain, chainless_ids) = cap(chainless);
+        let (stale_checks, stale_ids) = cap(stale);
         Ok(Some(ReasoningDebt {
+            reasons_lost,
+            reason_lost_ids,
+            decisions_without_a_holding_chain,
+            decision_without_a_holding_chain_ids: chainless_ids,
+            stale_checks,
+            stale_check_ids: stale_ids,
             steps: steps.len(),
             unconfirmed_steps,
             uncited_premises,
@@ -1517,6 +1615,19 @@ impl DesignGraph {
             let mut steps = self.inferences_concluding(&x)?;
             if self.get_node(node::INFERENCE, &x)?.is_some() {
                 steps.push(x.clone());
+            }
+            // A requirement's support includes its reason to exist: the
+            // chain of each Decision it is GOVERNED_BY.
+            if self.get_node(node::REQUIREMENT, &x)?.is_some() {
+                for e in self.outgoing(&x, Some(edge::GOVERNED_BY))? {
+                    if e.properties.get("ruling").and_then(Value::as_str) != Some("parks")
+                        && self.get_node(node::DECISION, &e.to_id)?.is_some()
+                        && !self.inferences_concluding(&e.to_id)?.is_empty()
+                        && seen.insert(e.to_id.clone())
+                    {
+                        queue.push_back(e.to_id);
+                    }
+                }
             }
             for st in steps {
                 for p in self.premises_of(&st)? {

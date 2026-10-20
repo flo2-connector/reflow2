@@ -269,11 +269,26 @@ fn a_reductio_holds_its_supposition_as_an_assumption_and_the_theorem_does_not_re
 fn losing_a_discharged_assumption_costs_the_theorem_nothing_in_the_what_if() {
     let mut g = graph();
     euclid_by_contradiction(&mut g, true);
-    let rows = g.inference_walk(&["req:suppose-finite"]).unwrap();
+    // SINCE 2026-10-20 (req:a-what-if-on-an-assumed-principle-shows-what-
+    // holds-only-under-it) a what-if on an assumption reaches the steps that
+    // take it up, and reads what held only under it as no longer supported —
+    // the reductio's inner claims. The theorem, which DISCHARGES it, is
+    // untouched: its row reads still supported, and nothing reads refuted.
+    let rows = json(g.inference_walk(&["req:suppose-finite"]).unwrap());
+    let theorem_row = rows
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|r| r["inference"] == "inf:theorem");
+    if let Some(t) = theorem_row {
+        assert_eq!(t["conclusion_reads"], "still_supported", "{rows:#}");
+    }
     assert!(
-        rows.is_empty(),
-        "an assumed premise is held whatever its truth, so losing it reaches no step: {:#?}",
-        json(&rows)
+        rows.as_array()
+            .unwrap()
+            .iter()
+            .all(|r| r["conclusion_reads"] != "refuted"),
+        "{rows:#}"
     );
     // Losing the lemma the reductio really rests on still costs the theorem.
     let rows = json(g.inference_walk(&["req:lemma-euclid"]).unwrap());

@@ -1,0 +1,4218 @@
+{
+ "content_hash": "sha256:d57eb9b005a75842875bbc27005d0a2b48e89f2909ad776638b7a988a7d9efa7",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:cover-8-to-10-ghz",
+   "properties": {},
+   "to_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:cover-ku-13-5-to-14-5-ghz",
+   "properties": {},
+   "to_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "properties": {},
+   "to_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "properties": {},
+   "to_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:size-sensitivity-for-150-km-main-beam-warning",
+   "properties": {},
+   "to_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:the-agility-dispute-is-kept-open-pending-collection",
+   "properties": {},
+   "to_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:asmt-kestrel-threat-assessment",
+   "properties": {},
+   "to_id": "question:asked-the-confidence-levels-in-the-kestrel-assessment-high-fda5e4"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:rwr-handles-pulse-to-pulse-agility",
+   "properties": {},
+   "to_id": "question:asked-how-fast-must-the-rwr-declare-an-agile-a67688"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-how-fast-must-the-rwr-declare-an-agile-a67688",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rwr-handles-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-a2-agility-unresolved"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:handle-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rpt-r3-osint-brochure-kestrel-e-agile"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-confidence-levels-in-the-kestrel-assessment-high-fda5e4",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-kestrel-threat-assessment"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:cover-8-to-10-ghz"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-a1a-kestrel-is-x-band"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:cover-ku-13-5-to-14-5-ghz"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rwr-covers-13-5-to-14-5-ghz"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:handle-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rwr-covers-10-to-12-ghz"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rwr-handles-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:size-sensitivity-for-150-km-main-beam-warning"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:asmt-a3-erp-about-75-dbw"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:rwr-detects-kestrel-main-beam-at-150-km"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "chg:replaced:req:asmt-a2-agility-unresolved:by:req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "chg:replaced:req:asmt-kestrel-threat-assessment:by:req:asmt-kestrel-threat-assessment-after-u1",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:dec:cover-8-to-10-ghz",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:dec:cover-ku-13-5-to-14-5-ghz",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:asmt-a2-agility-unresolved",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:asmt-kestrel-threat-assessment",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:rwr-handles-pulse-to-pulse-agility",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:replaced:req:asmt-a2-agility-unresolved:by:req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:replaced:req:asmt-kestrel-threat-assessment:by:req:asmt-kestrel-threat-assessment-after-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:emu-level-minus-53-dbm-at-port",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:emu-mode-a-coherent-9-4ghz-prf-20khz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:emu-mode-b-agile-1000-hops-per-s",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:emu-sweep-10-to-12-ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:emu-sweep-8-to-10-ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:cover-8-to-10-ghz",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:cover-ku-13-5-to-14-5-ghz",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:handle-pulse-to-pulse-agility",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:size-sensitivity-for-150-km-main-beam-warning",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:the-agility-dispute-is-kept-open-pending-collection",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a1a-from-r1-r4-corroboration",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a1a-from-r2-direct-measurement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a1b-band-edges-from-r1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a1c-from-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a1e-from-u1-r2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a2-from-r2-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a2b-from-u1-r2-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a3-check-from-r2-r4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a3-erp-from-r2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a4-from-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:assessment-after-u1-from-its-parts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:assessment-from-its-parts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dec-agility-from-a2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dec-cover-8-10-from-a1a-a1b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dec-extend-12-from-a1c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dec-ku-from-u1-a1e",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:dec-sensitivity-from-a3-a1b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:emu-level-from-a3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:emu-mode-a-from-r2-a1a",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:emu-mode-b-from-a2-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:emu-sweep-10-12-from-a1c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:emu-sweep-8-10-from-a1b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-agile-from-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-coherent-from-r2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:h-ku-from-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-r2-from-r2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-r2-x-from-r2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-r3-from-r3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-u1-ku-from-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-u1-no-agility-from-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:fictional-rwr",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-how-fast-must-the-rwr-declare-an-agile-a67688",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-confidence-levels-in-the-kestrel-assessment-high-fda5e4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a1a-kestrel-is-x-band",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a1c-export-variant-may-reach-12ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a2-agility-unresolved",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a3-check-erp-consistent-with-1-2m-aperture",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a3-erp-about-75-dbw",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-kestrel-threat-assessment",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:asmt-kestrel-threat-assessment-after-u1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:collection-request-kestrel-other-modes",
+   "properties": {
+    "approved_at": "2026-10-19",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-r2-observed-coherent-not-agile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-r2-x-band-emitter-at-a-confirmed-site",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-r3-one-intercept-cannot-exclude-agile-mode",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-u1-domestic-kestrel-is-ku-not-x",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-u1-no-agility-observed",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rpt-r1-humint-defector-x-band",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rpt-r4-imint-antenna-1-2m",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rwr-covers-10-to-12-ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rwr-covers-13-5-to-14-5-ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rwr-covers-8-to-10-ghz",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rwr-detects-kestrel-main-beam-at-150-km",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rwr-handles-pulse-to-pulse-agility",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sup-s1-intercept-shows-the-radars-modes",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sup-s3-u1-saw-all-the-fielded-bands",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sup-s4-r2-emitter-was-kestrel",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:sup-s5-u1-saw-all-the-fielded-modes",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:kestrel-threat-emulator-test",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:replaced:req:asmt-a2-agility-unresolved:by:req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+   },
+   "to_id": "req:asmt-a2-agility-unresolved"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:replaced:req:asmt-kestrel-threat-assessment:by:req:asmt-kestrel-threat-assessment-after-u1",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+   },
+   "to_id": "req:asmt-kestrel-threat-assessment"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a1a-from-r1-r4-corroboration",
+   "properties": {},
+   "to_id": "req:asmt-a1a-kestrel-is-x-band"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a1a-from-r2-direct-measurement",
+   "properties": {},
+   "to_id": "req:asmt-a1a-kestrel-is-x-band"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a1b-band-edges-from-r1",
+   "properties": {},
+   "to_id": "req:asmt-a1b-fielded-band-8-to-10ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a1c-from-r3",
+   "properties": {},
+   "to_id": "req:asmt-a1c-export-variant-may-reach-12ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a1e-from-u1-r2",
+   "properties": {},
+   "to_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a2-from-r2-r3",
+   "properties": {},
+   "to_id": "req:asmt-a2-agility-unresolved"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a2b-from-u1-r2-r3",
+   "properties": {},
+   "to_id": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a3-check-from-r2-r4",
+   "properties": {},
+   "to_id": "req:asmt-a3-check-erp-consistent-with-1-2m-aperture"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a3-erp-from-r2",
+   "properties": {},
+   "to_id": "req:asmt-a3-erp-about-75-dbw"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a4-from-u1",
+   "properties": {},
+   "to_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:assessment-after-u1-from-its-parts",
+   "properties": {},
+   "to_id": "req:asmt-kestrel-threat-assessment-after-u1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:assessment-from-its-parts",
+   "properties": {},
+   "to_id": "req:asmt-kestrel-threat-assessment"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dec-agility-from-a2",
+   "properties": {},
+   "to_id": "dec:handle-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dec-cover-8-10-from-a1a-a1b",
+   "properties": {},
+   "to_id": "dec:cover-8-to-10-ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dec-extend-12-from-a1c",
+   "properties": {},
+   "to_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dec-ku-from-u1-a1e",
+   "properties": {},
+   "to_id": "dec:cover-ku-13-5-to-14-5-ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:dec-sensitivity-from-a3-a1b",
+   "properties": {},
+   "to_id": "dec:size-sensitivity-for-150-km-main-beam-warning"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:emu-level-from-a3",
+   "properties": {},
+   "to_id": "con:emu-level-minus-53-dbm-at-port"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:emu-mode-a-from-r2-a1a",
+   "properties": {},
+   "to_id": "con:emu-mode-a-coherent-9-4ghz-prf-20khz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:emu-mode-b-from-a2-r3",
+   "properties": {},
+   "to_id": "con:emu-mode-b-agile-1000-hops-per-s"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:emu-sweep-10-12-from-a1c",
+   "properties": {},
+   "to_id": "con:emu-sweep-10-to-12-ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:emu-sweep-8-10-from-a1b",
+   "properties": {},
+   "to_id": "con:emu-sweep-8-to-10-ghz"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-agile-from-r3",
+   "properties": {},
+   "to_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-coherent-from-r2",
+   "properties": {},
+   "to_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:h-ku-from-u1",
+   "properties": {},
+   "to_id": "req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-r2-from-r2",
+   "properties": {},
+   "to_id": "req:obj-r2-observed-coherent-not-agile"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-r2-x-from-r2",
+   "properties": {},
+   "to_id": "req:obj-r2-x-band-emitter-at-a-confirmed-site"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-r3-from-r3",
+   "properties": {},
+   "to_id": "req:obj-r3-one-intercept-cannot-exclude-agile-mode"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-u1-ku-from-u1",
+   "properties": {},
+   "to_id": "req:obj-u1-domestic-kestrel-is-ku-not-x"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-u1-no-agility-from-u1",
+   "properties": {},
+   "to_id": "req:obj-u1-no-agility-observed"
+  },
+  {
+   "edge_type": "CONSTRAINS",
+   "from_id": "con:emu-level-minus-53-dbm-at-port",
+   "properties": {
+    "note": "Emulator parameter of this test, taken from A3 (R2) and the 150 km placeholder."
+   },
+   "to_id": "ver:kestrel-threat-emulator-test"
+  },
+  {
+   "edge_type": "CONSTRAINS",
+   "from_id": "con:emu-mode-a-coherent-9-4ghz-prf-20khz",
+   "properties": {
+    "note": "Emulator parameter of this test, taken from R2 via A1a."
+   },
+   "to_id": "ver:kestrel-threat-emulator-test"
+  },
+  {
+   "edge_type": "CONSTRAINS",
+   "from_id": "con:emu-mode-b-agile-1000-hops-per-s",
+   "properties": {
+    "note": "Emulator parameter of this test, taken from A2 and R3."
+   },
+   "to_id": "ver:kestrel-threat-emulator-test"
+  },
+  {
+   "edge_type": "CONSTRAINS",
+   "from_id": "con:emu-sweep-10-to-12-ghz",
+   "properties": {
+    "note": "Emulator parameter of this test, taken from A1c (R3)."
+   },
+   "to_id": "ver:kestrel-threat-emulator-test"
+  },
+  {
+   "edge_type": "CONSTRAINS",
+   "from_id": "con:emu-sweep-8-to-10-ghz",
+   "properties": {
+    "note": "Emulator parameter of this test, taken from A1b."
+   },
+   "to_id": "ver:kestrel-threat-emulator-test"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:asmt-a3-check-erp-consistent-with-1-2m-aperture",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only: R4's 1.2 m aperture gives about 39 dBi at 9.4 GHz, so R2's 75 dBW ERP implies a plausible 3.8 kW transmitter. Consistency, not a second measurement of power."
+   },
+   "to_id": "req:asmt-a3-erp-about-75-dbw"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "A1c's only route to a fielded 10-12 GHz KESTREL was KESTREL-E; U1 (A1) says KESTREL-E is not fielded in Varkos. A Varkosian upgrade stays conceivable but no report supports it."
+   },
+   "to_id": "req:asmt-a1c-export-variant-may-reach-12ghz"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "U1 (A1) states directly that KESTREL-E is an export model not fielded in Varkos, defeating the read-across that the brochure's capabilities are present in the fielded radar. A direct statement graded A1, not an observation that could have missed a mode."
+   },
+   "to_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-r2-observed-coherent-not-agile",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Objection to H-agile: R2's intercept of the fielded radar shows coherent fixed-frequency pulse-Doppler, which is not pulse-to-pulse agile in the mode observed. It weakens H-agile; it does not exclude an unseen agile mode (see the objection the other way, against H-coherent)."
+   },
+   "to_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-r2-x-band-emitter-at-a-confirmed-site",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "R2 (B2) intercepted 9.4 GHz at a confirmed KESTREL site; if the emitter was KESTREL (S4), H-Ku's 'not X band' fails. The counterpart of U1's objection to the X-band assessment: the band dispute runs both ways."
+   },
+   "to_id": "req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-r3-one-intercept-cannot-exclude-agile-mode",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Objection to H-coherent: R3 advertises pulse-to-pulse agility for the KESTREL family, and one intercept (R2) records only the mode in use, so H-coherent over-reads R2. Drawn as the counterpart of the objection from R2 against H-agile: the dispute runs both ways."
+   },
+   "to_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-u1-domestic-kestrel-is-ku-not-x",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "U1 (A1) observed the domestic KESTREL in Ku band; if it saw all the bands (S3), KESTREL is not an X-band radar. Contests, does not refute: the counter-objection from R2 runs the other way against H-Ku."
+   },
+   "to_id": "req:asmt-a1a-kestrel-is-x-band"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-u1-domestic-kestrel-is-ku-not-x",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "U1 (A1) places the domestic KESTREL at 13.5-14.5 GHz, outside 8-10 GHz; if that is its whole band (S3), the 8-10 GHz band edges from R1 do not describe it."
+   },
+   "to_id": "req:asmt-a1b-fielded-band-8-to-10ghz"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-u1-no-agility-observed",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "U1 (A1) saw no agility on the domestic KESTREL; it counts against H-agile only if it covered all modes (S5), so it contests H-agile, alongside R2's objection."
+   },
+   "to_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile",
+   "properties": {
+    "note": "One side of the agility dispute kept open by the owner's word."
+   },
+   "to_id": "dec:the-agility-dispute-is-kept-open-pending-collection"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler",
+   "properties": {
+    "note": "The other side of the agility dispute kept open by the owner's word."
+   },
+   "to_id": "dec:the-agility-dispute-is-kept-open-pending-collection"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rwr-covers-10-to-12-ghz",
+   "properties": {
+    "note": "Reason to exist: the choice to design against the export variant's advertised 8-12 GHz (A1c, R3 only)."
+   },
+   "to_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rwr-covers-13-5-to-14-5-ghz",
+   "properties": {
+    "note": "Reason to exist: U1 (A1) observed the domestic KESTREL in Ku band; A1e keeps the band dispute open."
+   },
+   "to_id": "dec:cover-ku-13-5-to-14-5-ghz"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rwr-covers-8-to-10-ghz",
+   "properties": {
+    "note": "Reason to exist: the choice to cover the fielded KESTREL's assessed band (A1a, A1b)."
+   },
+   "to_id": "dec:cover-8-to-10-ghz"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rwr-detects-kestrel-main-beam-at-150-km",
+   "properties": {
+    "note": "Reason to exist: the link-budget choice from A3 (ERP about 75 dBW, R2) and a 150 km warning range awaiting the owner."
+   },
+   "to_id": "dec:size-sensitivity-for-150-km-main-beam-warning"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rwr-handles-pulse-to-pulse-agility",
+   "properties": {
+    "note": "Reason to exist: the choice to design for agility while it is unresolved (A2, which rests on R2 and R3)."
+   },
+   "to_id": "dec:handle-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "dec:cover-8-to-10-ghz",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:dec:cover-8-to-10-ghz"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "dec:cover-ku-13-5-to-14-5-ghz",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:dec:cover-ku-13-5-to-14-5-ghz"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:dec:extend-coverage-to-12-ghz-for-kestrel-e"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:asmt-a2-agility-unresolved",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:asmt-a2-agility-unresolved"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:asmt-kestrel-threat-assessment",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:asmt-kestrel-threat-assessment"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:rwr-handles-pulse-to-pulse-agility",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:rwr-handles-pulse-to-pulse-agility"
+  },
+  {
+   "edge_type": "OBSOLETES",
+   "from_id": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {
+    "evidence": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile replaces req:asmt-a2-agility-unresolved: declared by the writer through `replaces` on add_requirement. req:asmt-a2-agility-unresolved's ending is recorded in chg:replaced:req:asmt-a2-agility-unresolved:by:req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile, and the thread that says what it was for moved to req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile."
+   },
+   "to_id": "req:asmt-a2-agility-unresolved"
+  },
+  {
+   "edge_type": "OBSOLETES",
+   "from_id": "req:asmt-kestrel-threat-assessment-after-u1",
+   "properties": {
+    "evidence": "req:asmt-kestrel-threat-assessment-after-u1 replaces req:asmt-kestrel-threat-assessment: declared by the writer through `replaces` on add_requirement. req:asmt-kestrel-threat-assessment's ending is recorded in chg:replaced:req:asmt-kestrel-threat-assessment:by:req:asmt-kestrel-threat-assessment-after-u1, and the thread that says what it was for moved to req:asmt-kestrel-threat-assessment-after-u1."
+   },
+   "to_id": "req:asmt-kestrel-threat-assessment"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1a-kestrel-is-x-band",
+   "properties": {},
+   "to_id": "inf:a1b-band-edges-from-r1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1a-kestrel-is-x-band",
+   "properties": {},
+   "to_id": "inf:assessment-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1a-kestrel-is-x-band",
+   "properties": {},
+   "to_id": "inf:dec-cover-8-10-from-a1a-a1b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1a-kestrel-is-x-band",
+   "properties": {},
+   "to_id": "inf:emu-mode-a-from-r2-a1a"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "properties": {},
+   "to_id": "inf:assessment-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "properties": {},
+   "to_id": "inf:dec-cover-8-10-from-a1a-a1b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "properties": {},
+   "to_id": "inf:dec-sensitivity-from-a3-a1b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "properties": {},
+   "to_id": "inf:emu-sweep-8-10-from-a1b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1c-export-variant-may-reach-12ghz",
+   "properties": {},
+   "to_id": "inf:assessment-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1c-export-variant-may-reach-12ghz",
+   "properties": {},
+   "to_id": "inf:dec-extend-12-from-a1c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1c-export-variant-may-reach-12ghz",
+   "properties": {},
+   "to_id": "inf:emu-sweep-10-12-from-a1c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku",
+   "properties": {},
+   "to_id": "inf:assessment-after-u1-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku",
+   "properties": {},
+   "to_id": "inf:dec-ku-from-u1-a1e"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a2-agility-unresolved",
+   "properties": {},
+   "to_id": "inf:assessment-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a2-agility-unresolved",
+   "properties": {},
+   "to_id": "inf:dec-agility-from-a2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a2-agility-unresolved",
+   "properties": {},
+   "to_id": "inf:emu-mode-b-from-a2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "properties": {},
+   "to_id": "inf:assessment-after-u1-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a3-erp-about-75-dbw",
+   "properties": {},
+   "to_id": "inf:assessment-after-u1-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a3-erp-about-75-dbw",
+   "properties": {},
+   "to_id": "inf:assessment-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a3-erp-about-75-dbw",
+   "properties": {},
+   "to_id": "inf:dec-sensitivity-from-a3-a1b"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a3-erp-about-75-dbw",
+   "properties": {},
+   "to_id": "inf:emu-level-from-a3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "properties": {},
+   "to_id": "inf:a2b-from-u1-r2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "properties": {},
+   "to_id": "inf:assessment-after-u1-from-its-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r1-humint-defector-x-band",
+   "properties": {},
+   "to_id": "inf:a1a-from-r1-r4-corroboration"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r1-humint-defector-x-band",
+   "properties": {},
+   "to_id": "inf:a1b-band-edges-from-r1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a1a-from-r2-direct-measurement"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a1e-from-u1-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a2-from-r2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a2b-from-u1-r2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a3-check-from-r2-r4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:a3-erp-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:emu-mode-a-from-r2-a1a"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:h-coherent-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:obj-r2-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "properties": {},
+   "to_id": "inf:obj-r2-x-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {},
+   "to_id": "inf:a1c-from-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {},
+   "to_id": "inf:a2-from-r2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {},
+   "to_id": "inf:emu-mode-b-from-a2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {},
+   "to_id": "inf:h-agile-from-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "properties": {},
+   "to_id": "inf:obj-r3-from-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r4-imint-antenna-1-2m",
+   "properties": {},
+   "to_id": "inf:a1a-from-r1-r4-corroboration"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-r4-imint-antenna-1-2m",
+   "properties": {},
+   "to_id": "inf:a3-check-from-r2-r4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:a1e-from-u1-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:a2b-from-u1-r2-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:a4-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:dec-ku-from-u1-a1e"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:h-ku-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:obj-u1-ku-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "properties": {},
+   "to_id": "inf:obj-u1-no-agility-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s1-intercept-shows-the-radars-modes",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:h-coherent-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s1-intercept-shows-the-radars-modes",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:obj-r2-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:h-agile-from-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:obj-r3-from-r3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s3-u1-saw-all-the-fielded-bands",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:h-ku-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s3-u1-saw-all-the-fielded-bands",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:obj-u1-ku-from-u1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s4-r2-emitter-was-kestrel",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:obj-r2-x-from-r2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:sup-s5-u1-saw-all-the-fielded-modes",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:obj-u1-no-agility-from-u1"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:kestrel-threat-emulator-test",
+   "properties": {},
+   "to_id": "req:rwr-covers-10-to-12-ghz"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:kestrel-threat-emulator-test",
+   "properties": {},
+   "to_id": "req:rwr-covers-8-to-10-ghz"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:kestrel-threat-emulator-test",
+   "properties": {},
+   "to_id": "req:rwr-detects-kestrel-main-beam-at-150-km"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:kestrel-threat-emulator-test",
+   "properties": {},
+   "to_id": "req:rwr-handles-pulse-to-pulse-agility"
+  }
+ ],
+ "graph_id": "2a26dc6044306d27",
+ "nodes": [
+  {
+   "node_id": "chg:replaced:req:asmt-a2-agility-unresolved:by:req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "deprecation",
+    "name": "req:asmt-a2-agility-unresolved is replaced by req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+    "summary": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile takes req:asmt-a2-agility-unresolved's place, declared through `replaces` on add_requirement. req:asmt-a2-agility-unresolved's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile."
+   }
+  },
+  {
+   "node_id": "chg:replaced:req:asmt-kestrel-threat-assessment:by:req:asmt-kestrel-threat-assessment-after-u1",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "deprecation",
+    "name": "req:asmt-kestrel-threat-assessment is replaced by req:asmt-kestrel-threat-assessment-after-u1",
+    "summary": "req:asmt-kestrel-threat-assessment-after-u1 takes req:asmt-kestrel-threat-assessment's place, declared through `replaces` on add_requirement. req:asmt-kestrel-threat-assessment's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to req:asmt-kestrel-threat-assessment-after-u1."
+   }
+  },
+  {
+   "node_id": "con:emu-level-minus-53-dbm-at-port",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": -53.0,
+    "limit_basis": "asserted",
+    "limit_source": "req:asmt-a3-erp-about-75-dbw",
+    "name": "Emulator level: -53 dBm at the RWR antenna port (75 dBW ERP at 150 km)",
+    "priority": "medium",
+    "quantity": "received_power_dbm",
+    "statement": "FICTIONAL TEST PARAMETER. The emulator is set so the RWR antenna port receives -53 dBm, equivalent to KESTREL's 75 dBW ERP at 150 km at 12 GHz (and -50.4 dBm at 9.4 GHz for the in-band case). The ERP comes from R2's estimate; the 150 km awaits the owner.",
+    "unit": "dBm"
+   }
+  },
+  {
+   "node_id": "con:emu-mode-a-coherent-9-4ghz-prf-20khz",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "maximum",
+    "limit": 9.4,
+    "limit_basis": "asserted",
+    "limit_source": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+    "name": "Emulator mode A: coherent pulse-Doppler at 9.4 GHz, PRF 20 kHz",
+    "priority": "medium",
+    "quantity": "carrier_frequency_ghz",
+    "statement": "FICTIONAL TEST PARAMETER. The threat emulator's mode A radiates coherent pulse-Doppler at 9.4 GHz with a PRF of 20 kHz, the waveform R2 intercepted from a confirmed KESTREL site.",
+    "unit": "GHz"
+   }
+  },
+  {
+   "node_id": "con:emu-mode-b-agile-1000-hops-per-s",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "direction": "minimum",
+    "limit": 1000.0,
+    "limit_basis": "asserted",
+    "limit_source": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+    "name": "Emulator mode B: pulse-to-pulse agile across the covered band at 1,000 hops/s or more",
+    "priority": "medium",
+    "quantity": "hop_rate_per_s",
+    "statement": "FICTIONAL TEST PARAMETER. The emulator's mode B hops pulse-to-pulse, pseudo-randomly, across the covered band at no fewer than 1,000 hops/s (and at a higher rate as an objective), the agility R3 advertises for KESTREL-E.",
+    "unit": "hops/s"
+   }
+  },
+  {
+   "node_id": "con:emu-sweep-10-to-12-ghz",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Emulator sweep: KESTREL-family signal stepped across 10.0-12.0 GHz",
+    "priority": "medium",
+    "statement": "FICTIONAL TEST PARAMETER. The emulator steps a KESTREL-like signal across 10.0-12.0 GHz (band edges and at least every 250 MHz), the export variant's advertised extension."
+   }
+  },
+  {
+   "node_id": "con:emu-sweep-8-to-10-ghz",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Emulator sweep: fixed-frequency KESTREL signal stepped across 8.0-10.0 GHz",
+    "priority": "medium",
+    "statement": "FICTIONAL TEST PARAMETER. The emulator steps a KESTREL-like fixed-frequency signal across 8.0-10.0 GHz (band edges and at least every 250 MHz), the fielded radar's assessed band."
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "dec:cover-8-to-10-ghz",
+   "node_type": "Decision",
+   "properties": {
+    "chose": "@ajs, 2026-10-19 (round 2): \"Keep X band, add to collection\": keep 8\u201310 GHz coverage until R2's 9.4 GHz emitter is explained (already in req:collection-request-kestrel-other-modes).",
+    "decision": "ACCEPTED 2026-10-19 by the owner, kept while the X vs Ku dispute is open (FICTIONAL). The HARRIER RWR covers at least 8.0-10.0 GHz, the band the fielded KESTREL is assessed to use, which contains the 9.4 GHz it was observed at.",
+    "kind": "choice",
+    "name": "Design the RWR to cover at least 8-10 GHz, the assessed band of the fielded KESTREL",
+    "rationale": "Rests on assessment A1a (X band, observed 9.4 GHz, high confidence: R2, corroborated by R1 and R4) and A1b (band edges 8-10 GHz, moderate confidence: R1 only). An RWR that misses the threat's band is useless against it, so the assessed band is the floor. Proposed by the designer agent; the owner's word is needed to accept it.",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "dec:cover-ku-13-5-to-14-5-ghz",
+   "node_type": "Decision",
+   "properties": {
+    "chose": "@ajs, 2026-10-19 (round 2): \"Add Ku coverage\": cover 13.5\u201314.5 GHz on U1 (A1), with the 150 km range and the same margin as X band.",
+    "decision": "ACCEPTED 2026-10-19 by the owner (FICTIONAL): the HARRIER RWR also covers 13.5-14.5 GHz, so that the domestic KESTREL as U1 observed it is detected and identified.",
+    "kind": "choice",
+    "name": "Extend RWR coverage to 13.5-14.5 GHz (Ku), where U1 observed the domestic KESTREL",
+    "rationale": "Rests on U1 (A1, the strongest grade held) and A1e (the band is disputed: Ku from U1 against X from R2, R1, R4). Whichever way the dispute settles, U1 is an A1 observation of the domestic radar in Ku band, so an RWR that stops at 12 GHz would miss the radar actually seen in Varkos. It adds to, and does not replace, the X-band coverage, which stays while R2's 9.4 GHz emitter is unexplained. Open for the owner: a Ku-band ERP (none is reported, so the 150 km detection range cannot yet be sized there), and whether the emulator test gains a Ku mode.",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "node_type": "Decision",
+   "properties": {
+    "chose": "@ajs, 2026-10-19 (round 2): \"Retire 12 GHz, keep hopping open\". U1 says KESTREL-E is an export model not fielded in Varkos, so the 12 GHz decision's only support is defeated. The hopping decision stays unaccepted while its dispute is open.",
+    "decision": "REJECTED 2026-10-19 by the owner after U1 (FICTIONAL); as first proposed: extend RWR coverage from 10 GHz to 12.0 GHz so that KESTREL-E as advertised, or a fielded radar upgraded to match it, is covered.",
+    "kind": "choice",
+    "name": "Extend RWR coverage to 12 GHz, designing against the export variant KESTREL-E's advertised band",
+    "rationale": "Rests on assessment A1c alone (KESTREL-E may reach 12 GHz, LOW confidence, R3 only, a brochure about a different variant). The designer's recommendation is to extend: covering 10-12 GHz is a modest cost in an X-band RWR front end, whereas a radar upgraded or re-exported into that band would otherwise be invisible. But designing against the export variant is a risk-posture choice the owner makes; this stays proposed until he does. If R3 is withdrawn, this decision has no support.",
+    "status": "rejected"
+   }
+  },
+  {
+   "node_id": "dec:handle-pulse-to-pulse-agility",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "PROPOSED (FICTIONAL), AWAITING THE OWNER: the RWR's receiver and de-interleaving are designed so that a pulse-to-pulse frequency-agile KESTREL (over 1,000 hops/s across the covered band) is detected and identified as one emitter.",
+    "kind": "choice",
+    "name": "Design the RWR to detect and identify KESTREL even if it hops pulse-to-pulse at over 1,000 hops/s",
+    "rationale": "Rests on assessment A2: agility is UNRESOLVED (R3 advertises it for KESTREL-E; R2 saw a coherent fixed-frequency mode on the fielded radar; the rival hypotheses H-agile and H-coherent are both contested). The designer recommends designing for agility because the failure modes are asymmetric: an RWR built for a fixed-frequency threat that meets an agile one may fragment it into many short tracks or miss it, while an agility-capable RWR still handles the fixed-frequency mode. Cost: a wideband or fast-tuning receiver and agile-emitter de-interleaving. Only R3 suggests agility; if R3 is withdrawn, this decision loses its support. Whether to design against the export variant's agility is the owner's choice.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "dec:size-sensitivity-for-150-km-main-beam-warning",
+   "node_type": "Decision",
+   "properties": {
+    "chose": "@ajs, 2026-10-19 (round 1, Q2 and Q4): \"Keep the placeholders\": a 150 km main-beam warning and \u221253 dBm sensitivity are the program's numbers, and an agile KESTREL is declared within 1 s.",
+    "decision": "PROPOSED (FICTIONAL), AWAITING THE OWNER'S WARNING RANGE: the RWR detects KESTREL main-beam illumination at a slant range of at least 150 km, which with 75 dBW ERP sets a required sensitivity at the antenna port of -53 dBm or better (0 dBi antenna, no margin) across 8-12 GHz.",
+    "kind": "choice",
+    "name": "Size RWR sensitivity to detect KESTREL's main beam (75 dBW ERP) at 150 km or more",
+    "rationale": "Rests on A3 (ERP about 75 dBW, MODERATE confidence, R2 only, consistent with R4) and A1b (band, for the path loss). Arithmetic (designer agent, python, no kept calculator record): free-space path loss = 32.45 + 20 log10(f MHz) + 20 log10(R km). At 150 km: 155.4 dB at 9.4 GHz, 157.6 dB at 12 GHz. Received power with a 0 dBi RWR antenna = 75 dBW + 30 - FSPL = -50.4 dBm at 9.4 GHz, -52.6 dBm at 12 GHz. Hence -53 dBm sensitivity, before any margin. The 150 km is a PLACEHOLDER chosen by the designer, not the owner: the warning range the UAV needs is his to set, as is the margin (for example for the ERP being an estimate). Radar horizon for a 5 km UAV altitude and a 10 m antenna is about 300 km, so 150 km is not horizon-limited. If ERP turns out lower, detection range shrinks for the same sensitivity.",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "dec:the-agility-dispute-is-kept-open-pending-collection",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "FICTIONAL. Both hypotheses stay on the record: H-agile (from R3, the export brochure) and H-coherent (from R2's intercept; U1 also saw no agility). Neither is to be read as settled until new collection arrives. A collection request is levied: req:collection-request-kestrel-other-modes.",
+    "kind": "choice",
+    "name": "The KESTREL agility dispute (H-agile vs H-coherent) is kept open on purpose, pending collection on KESTREL's other modes",
+    "no_relation_note": "Joined to the two hypotheses by GOVERNED_BY in the next call; no review relation fits 'holds two rival hypotheses open'.",
+    "rationale": "@ajs, 2026-10-19 (round 1, Q3): \"Contested, ask for collection\". Recorded by the observer on his word, given directly in the session. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:a1a-from-r1-r4-corroboration",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "independent_of": [
+     "inf:a1a-from-r2-direct-measurement"
+    ],
+    "name": "all of 2 premise(s) support req:asmt-a1a-kestrel-is-x-band",
+    "rule": "all",
+    "rule_name": "independent corroboration",
+    "warrant": "Weaker, independent line: a defector says X band (C3) and imagery shows an antenna size consistent with X band (B2). Neither measures frequency; together they would support \"X band\" at moderate confidence without R2, but not the 9.4 GHz figure."
+   }
+  },
+  {
+   "node_id": "inf:a1a-from-r2-direct-measurement",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:asmt-a1a-kestrel-is-x-band",
+    "rule": "all",
+    "rule_name": "direct measurement",
+    "warrant": "R2 measured emissions at 9.4 GHz from a site confirmed as KESTREL; 9.4 GHz is X band. A usually reliable source (B) reporting a measured frequency (credibility 2) is enough on its own for high confidence that KESTREL is an X-band radar."
+   }
+  },
+  {
+   "node_id": "inf:a1b-band-edges-from-r1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:asmt-a1b-fielded-band-8-to-10ghz",
+    "rule": "all",
+    "rule_name": "single-source band edges, consistent with measurement",
+    "warrant": "The band edges 8 and 10 GHz come only from R1; the measured 9.4 GHz (A1a) lies inside them, so the two are consistent. A six-year-old defector recollection graded C3 supports the edges at moderate confidence at most."
+   }
+  },
+  {
+   "node_id": "inf:a1c-from-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:asmt-a1c-export-variant-may-reach-12ghz",
+    "rule": "all",
+    "rule_name": "single-source, other variant",
+    "warrant": "A brochure (C3) advertises 8-12 GHz for KESTREL-E. That supports only that the family CAN reach 12 GHz, and only at low confidence for the fielded radar."
+   }
+  },
+  {
+   "node_id": "inf:a1e-from-u1-r2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:asmt-a1e-fielded-band-is-disputed-x-vs-ku",
+    "rule": "all",
+    "rule_name": "reports in conflict, dispute kept",
+    "warrant": "U1 places the domestic KESTREL in Ku band and R2 found an X-band emitter at a confirmed KESTREL site; neither excludes the other without an assumption, so the band is disputed and R2's emitter is unexplained if U1 is complete."
+   }
+  },
+  {
+   "node_id": "inf:a2-from-r2-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:asmt-a2-agility-unresolved",
+    "rule": "all",
+    "rule_name": "reports in tension, judgement withheld",
+    "warrant": "The only two reports bearing on agility point different ways: R3 advertises it for the export variant, R2 saw a coherent fixed-frequency mode on the fielded radar. Neither is strong enough to exclude the other, so the honest assessment is that agility is unresolved."
+   }
+  },
+  {
+   "node_id": "inf:a2b-from-u1-r2-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+    "rule": "all",
+    "rule_name": "no remaining evidence",
+    "warrant": "Both observations of the fielded radar saw no agility, and the only agility claim belongs to a variant U1 says is not fielded; so nothing now supports agility on the fielded radar, though an unseen mode cannot be excluded."
+   }
+  },
+  {
+   "node_id": "inf:a3-check-from-r2-r4",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:asmt-a3-check-erp-consistent-with-1-2m-aperture",
+    "rule": "all",
+    "rule_name": "physical consistency (antenna gain arithmetic)",
+    "warrant": "Gain of a 1.2 m dish at 9.4 GHz (60% efficiency) is about 39.2 dBi; 75 dBW ERP minus 39.2 dB gives about 35.8 dBW (3.8 kW) peak transmitter power, plausible for the class. The figures from R2 and R4 therefore agree."
+   }
+  },
+  {
+   "node_id": "inf:a3-erp-from-r2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:asmt-a3-erp-about-75-dbw",
+    "rule": "all",
+    "rule_name": "single-source estimate",
+    "warrant": "R2 (B2) estimates ERP at 75 dBW from an intercept at a confirmed site. One usually reliable source, an estimate with no stated method: moderate confidence."
+   }
+  },
+  {
+   "node_id": "inf:a4-from-u1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+    "rule": "all",
+    "rule_name": "direct statement, A1",
+    "warrant": "U1, completely reliable and confirmed by other sources, states directly that KESTREL-E is an export model not fielded in Varkos. That is a statement about deployment, not an observation that could have missed something."
+   }
+  },
+  {
+   "node_id": "inf:assessment-after-u1-from-its-parts",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:asmt-kestrel-threat-assessment-after-u1",
+    "rule": "all",
+    "rule_name": "assessment summary (round 2)",
+    "warrant": "The revised assessment is the conjunction of its four judgements, each with its own confidence; the disputed and unresolved parts are stated as such, not as conclusions."
+   }
+  },
+  {
+   "node_id": "inf:assessment-from-its-parts",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:asmt-kestrel-threat-assessment",
+    "rule": "all",
+    "rule_name": "assessment summary",
+    "warrant": "The assessment is the conjunction of its five judgements, each with its own confidence; it says no more than they do."
+   }
+  },
+  {
+   "node_id": "inf:dec-agility-from-a2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support dec:handle-pulse-to-pulse-agility",
+    "rule": "all",
+    "rule_name": "design for the worse unresolved case",
+    "warrant": "Agility cannot be ruled out (A2), and an RWR built only for a fixed-frequency threat fails badly against an agile one while an agility-capable RWR still handles the fixed mode; so design for agility while it stays unresolved."
+   }
+  },
+  {
+   "node_id": "inf:dec-cover-8-10-from-a1a-a1b",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support dec:cover-8-to-10-ghz",
+    "rule": "all",
+    "rule_name": "cover the assessed band",
+    "warrant": "An RWR must cover the band its threat transmits in; the assessed fielded band is 8-10 GHz and contains the observed 9.4 GHz."
+   }
+  },
+  {
+   "node_id": "inf:dec-extend-12-from-a1c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support dec:extend-coverage-to-12-ghz-for-kestrel-e",
+    "rule": "all",
+    "rule_name": "cover the advertised export band",
+    "warrant": "If the KESTREL family may reach 12 GHz, an RWR that stops at 10 GHz could miss it; extending is cheap relative to that miss. Valid only as far as A1c is believed, and the risk posture is the owner's."
+   }
+  },
+  {
+   "node_id": "inf:dec-ku-from-u1-a1e",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support dec:cover-ku-13-5-to-14-5-ghz",
+    "rule": "all",
+    "rule_name": "cover the band the threat was observed in",
+    "warrant": "An A1 observation puts the domestic KESTREL at 13.5-14.5 GHz; whatever the X-versus-Ku dispute settles, the RWR must cover a band the threat has been seen in."
+   }
+  },
+  {
+   "node_id": "inf:dec-sensitivity-from-a3-a1b",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support dec:size-sensitivity-for-150-km-main-beam-warning",
+    "rule": "all",
+    "rule_name": "link budget",
+    "warrant": "Received power = ERP + RWR antenna gain - free-space path loss. With 75 dBW ERP, 0 dBi and 150 km, -50.4 dBm at 9.4 GHz and -52.6 dBm at 12 GHz, so -53 dBm sensitivity detects the main beam at 150 km. The 150 km itself awaits the owner."
+   }
+  },
+  {
+   "node_id": "inf:emu-level-from-a3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support con:emu-level-minus-53-dbm-at-port",
+    "rule": "all",
+    "rule_name": "link budget at the threshold range",
+    "warrant": "75 dBW ERP at 150 km and 12 GHz arrives at about -52.6 dBm through a 0 dBi antenna, so -53 dBm at the port reproduces the threshold case."
+   }
+  },
+  {
+   "node_id": "inf:emu-mode-a-from-r2-a1a",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support con:emu-mode-a-coherent-9-4ghz-prf-20khz",
+    "rule": "all",
+    "rule_name": "emulate the observed waveform",
+    "warrant": "The only measured KESTREL waveform is R2's: 9.4 GHz, pulse-Doppler, PRF about 20 kHz. Emulating it tests the RWR against what was actually seen."
+   }
+  },
+  {
+   "node_id": "inf:emu-mode-b-from-a2-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support con:emu-mode-b-agile-1000-hops-per-s",
+    "rule": "all",
+    "rule_name": "emulate the advertised agility",
+    "warrant": "Agility is unresolved (A2) and the only figure for it is R3's over 1,000 hops/s, so the agile mode hops at least that fast."
+   }
+  },
+  {
+   "node_id": "inf:emu-sweep-10-12-from-a1c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support con:emu-sweep-10-to-12-ghz",
+    "rule": "all",
+    "rule_name": "emulate the export variant's band",
+    "warrant": "KESTREL-E is advertised to 12 GHz, so if the RWR covers it the test must step the emulator to 12 GHz."
+   }
+  },
+  {
+   "node_id": "inf:emu-sweep-8-10-from-a1b",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support con:emu-sweep-8-to-10-ghz",
+    "rule": "all",
+    "rule_name": "emulate across the assessed band",
+    "warrant": "The fielded radar is assessed to tune over 8-10 GHz, so the test steps the emulator across that band."
+   }
+  },
+  {
+   "node_id": "inf:h-agile-from-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile",
+    "rule": "all",
+    "rule_name": "read across from export variant",
+    "warrant": "If the export variant is advertised with pulse-to-pulse agility over 1,000 hops/s, the fielded radar of the same family may have it too. The read-across from KESTREL-E to the fielded KESTREL is an assumption, not evidence."
+   }
+  },
+  {
+   "node_id": "inf:h-coherent-from-r2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler",
+    "rule": "all",
+    "rule_name": "observed mode taken as the operating mode",
+    "warrant": "The fielded radar was intercepted as coherent pulse-Doppler at one frequency with PRF about 20 kHz. Taking the observed mode as its operating mode gives H-coherent; that step assumes the intercept saw its only or main mode."
+   }
+  },
+  {
+   "node_id": "inf:h-ku-from-u1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x",
+    "rule": "all",
+    "rule_name": "observed band taken as the whole band",
+    "warrant": "U1 (A1) observed the domestic KESTREL at 13.5-14.5 GHz; if that is all it uses (S3), it is a Ku-band radar and not X band."
+   }
+  },
+  {
+   "node_id": "inf:obj-r2-from-r2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:obj-r2-observed-coherent-not-agile",
+    "rule": "all",
+    "rule_name": "objection from observation",
+    "warrant": "Coherent pulse-Doppler at 20 kHz PRF requires one frequency across the coherent train, so the observed mode was not pulse-to-pulse agile. It counts against agility of the fielded radar only under S1, that the intercept shows the radar's modes."
+   }
+  },
+  {
+   "node_id": "inf:obj-r2-x-from-r2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:obj-r2-x-band-emitter-at-a-confirmed-site",
+    "rule": "all",
+    "rule_name": "objection from observation",
+    "warrant": "A 9.4 GHz emitter at a confirmed KESTREL site shows KESTREL uses X band only if the emitter was KESTREL itself (S4)."
+   }
+  },
+  {
+   "node_id": "inf:obj-r3-from-r3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:obj-r3-one-intercept-cannot-exclude-agile-mode",
+    "rule": "all",
+    "rule_name": "objection from capability claim",
+    "warrant": "The family is advertised as agile; an intercept records only the mode in use, so it cannot show the agile mode is absent. It counts against H-coherent for the fielded radar only under S2, that the export variant's agility is present in it."
+   }
+  },
+  {
+   "node_id": "inf:obj-u1-ku-from-u1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:obj-u1-domestic-kestrel-is-ku-not-x",
+    "rule": "all",
+    "rule_name": "objection from observation",
+    "warrant": "An A1 observation of the domestic radar in Ku band counts against X band only if it saw all the bands (S3)."
+   }
+  },
+  {
+   "node_id": "inf:obj-u1-no-agility-from-u1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:obj-u1-no-agility-observed",
+    "rule": "all",
+    "rule_name": "objection from observation",
+    "warrant": "No agility observed counts against an agile fielded radar only if the observation covered all its modes (S5)."
+   }
+  },
+  {
+   "node_id": "proj:fictional-rwr",
+   "node_type": "Project",
+   "properties": {
+    "domain": "acquisition",
+    "mode": "flexible",
+    "name": "FICTIONAL intel-driven RWR (capstone trial)",
+    "objective": "Requirements and a threat-based test for a fictional radar warning receiver rest visibly on an assessment reasoned from conflicting fictional intelligence, and an intelligence update names what loses its reason.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-how-fast-must-the-rwr-declare-an-agile-a67688",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Within 1 s of first illumination (kept as the program's placeholder).",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 4,
+    "context_setter": "FICTIONAL capstone trial; the agility requirement is proposed with its declaration time open.",
+    "question": "How fast must the RWR declare an agile KESTREL (time from first illumination to an identified warning)? The agility requirement leaves it to be set.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-r2-the-fielded-radar-seen-as-fixed-frequency-f38703",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Contested, ask for collection: keep H-agile and H-coherent open on purpose and request collection on KESTREL's other modes.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 3,
+    "context_setter": "FICTIONAL capstone trial. The agility judgement A2 is 'unresolved'; the agility requirement rests on it.",
+    "question": "R2 (the fielded radar seen as fixed-frequency pulse-Doppler) and R3 (the export variant advertised as pulse-to-pulse agile) are in genuine tension. The design records two rival hypotheses, H-agile and H-coherent, each with an objection from the other report, and both now read contested. Do you want this dispute kept open on purpose until new intelligence arrives (a contested decision, your word), and would you ask for collection on KESTREL's other modes?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-should-harrier-be-designed-against-the-export-variant-ff8d7f",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Yes, design against it: treat KESTREL-E as the stressing threat until collection says otherwise.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 1,
+    "context_setter": "FICTIONAL capstone trial, Project HARRIER RWR against KESTREL. Two of the four RWR requirements (10-12 GHz, agility) exist only because of R3.",
+    "question": "Should HARRIER be designed against the export variant KESTREL-E as the brochure (R3) describes it: coverage to 12 GHz and pulse-to-pulse agility over 1,000 hops/s? R3 is the only source for both, graded C3, and it describes a different variant. The designer recommends yes (both are modest cost; missing an upgraded radar is the worse failure), but this is your risk-posture call. Your answer settles, or rejects, the two proposed decisions.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-the-confidence-levels-in-the-kestrel-assessment-high-fda5e4",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Accept the grades as the program's assessment of record.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 5,
+    "context_setter": "FICTIONAL capstone trial. Every requirement's reason to exist runs back to this assessment.",
+    "question": "The confidence levels in the KESTREL assessment (high on X band, moderate on the 8-10 GHz edges and on 75 dBW, low on 10-12 GHz and on agility) are the designer agent's analytic judgement. Do you accept them as the program's assessment, or should an analyst of record review them before the requirements are accepted?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-the-fielded-band-is-now-disputed-u1-a1-f02ede",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Keep X band (8-10 GHz) while the dispute is open; explaining R2's 9.4 GHz emitter is already in the collection request.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-2",
+    "batch_position": 3,
+    "context_setter": "FICTIONAL capstone, round 2. The X-versus-Ku dispute is recorded with an objection each way; both sides read contested.",
+    "question": "The fielded band is now disputed: U1 (A1) saw Ku band, R2 (B2) saw 9.4 GHz at a confirmed KESTREL site, which is unexplained if U1 is complete. Keep the X-band (8-10 GHz) coverage while that stays open, and ask collection to explain R2's 9.4 GHz emitter?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-u1-a1-observed-the-domestic-kestrel-at-13-9d4548",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Add Ku coverage (13.5-14.5 GHz), with the 150 km range and the same margin as X band.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-2",
+    "batch_position": 1,
+    "context_setter": "FICTIONAL capstone, round 2. A new derived requirement, proposed, awaiting your word.",
+    "question": "U1 (A1) observed the domestic KESTREL at 13.5-14.5 GHz. Should HARRIER add Ku-band coverage (13.5-14.5 GHz) as proposed, and, since no Ku-band power is reported, what detection range and ERP should the Ku requirement assume?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-u1-says-kestrel-e-8-12-ghz-agile-aa4968",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Retire 12 GHz, keep hopping open: the 12 GHz decision is rejected (its only support is defeated); the agility decision stays unaccepted while its dispute is open and collection is pending.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-2",
+    "batch_position": 2,
+    "context_setter": "FICTIONAL capstone, round 2. Your round-1 answer was 'design against it until collection says otherwise'; U1 is that collection.",
+    "question": "U1 says KESTREL-E (8-12 GHz, agile) is an export model not fielded in Varkos. reflow2 now reads your accepted 12 GHz decision as accepted_without_a_holding_chain. Do you keep designing against KESTREL-E (10-12 GHz and agility, for example because Varkos could buy or upgrade), or retire those two decisions and their requirements?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-what-warning-range-does-the-uav-need-against-edd6f4",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Keep the placeholders: a 150 km main-beam warning and -53 dBm sensitivity are the program's numbers.",
+    "answered_at": "2026-10-19",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "round-1",
+    "batch_position": 2,
+    "context_setter": "FICTIONAL capstone trial. The detection-range requirement rests on A3 (ERP about 75 dBW, R2 only) and a range nobody has set yet.",
+    "question": "What warning range does the UAV need against KESTREL, and what margin should the RWR's sensitivity carry? The design uses 150 km as a placeholder of the designer's, giving -53 dBm sensitivity with no margin against R2's estimated 75 dBW ERP. Since the ERP is a single-source estimate, would you want margin (for example 6-10 dB), and should sidelobe detection also be required?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:asmt-a1a-kestrel-is-x-band",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A1a: KESTREL operates in X band and has been observed at 9.4 GHz (high confidence)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R1, R2, R4.",
+    "statement": "FICTIONAL ASSESSMENT. The fielded Varkosian KESTREL operates in X band and has been observed emitting at 9.4 GHz. Confidence HIGH. Rests on R2 (direct SIGINT measurement from a confirmed site, B2) as the primary basis; R1 (HUMINT, C3, says X band 8-10 GHz) and R4 (IMINT, B2, 1.2 m antenna consistent with X band) AGREE and are corroboration only: neither measures the frequency. Three independent collection disciplines (SIGINT, HUMINT, IMINT) agree on X band; nothing disagrees.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a1b-fielded-band-8-to-10ghz",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A1b: the fielded KESTREL's operating band spans about 8-10 GHz (moderate confidence)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R1 and R2 (A1a).",
+    "statement": "FICTIONAL ASSESSMENT. The fielded KESTREL's tunable operating band is assessed to span about 8-10 GHz. Confidence MODERATE. The band EDGES rest on R1 alone (a 2019 defector's recollection, C3); R2's measured 9.4 GHz falls inside that band and so is consistent with it, but one intercept cannot show the band's extent. No report puts the fielded system outside 8-10 GHz; R3's 8-12 GHz is for the export variant KESTREL-E (see A1c), so it neither confirms nor contradicts this for the fielded system.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a1c-export-variant-may-reach-12ghz",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A1c: the export variant KESTREL-E may cover up to 12 GHz; whether the fielded radar does is unknown (low confidence)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional report R3.",
+    "statement": "FICTIONAL ASSESSMENT. KESTREL-E, the export variant, is advertised to cover 8-12 GHz; it is POSSIBLE that the fielded KESTREL, or a Varkosian upgrade of it, also reaches 10-12 GHz. Confidence LOW. Rests on R3 alone: a manufacturer's marketing claim (C3) about a different variant. It extends rather than contradicts R1's 8-10 GHz. Nothing else supports or refutes it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a1e-fielded-band-is-disputed-x-vs-ku",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A1e: the fielded KESTREL's band is DISPUTED, Ku (U1, A1) against X (R2 B2, R1, R4); R2's 9.4 GHz is unexplained",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, round 2, 2026-10-19, over fictional reports U1, R2, R1, R4.",
+    "statement": "FICTIONAL ASSESSMENT (round 2). The fielded KESTREL's operating band is disputed. U1 (A1) observed it at 13.5-14.5 GHz (Ku). R2 (B2) intercepted 9.4 GHz pulse-Doppler from a confirmed KESTREL site; R1 (C3) and R4 (B2) are consistent with X band. Ku is now the better-supported band (HIGH confidence that the domestic KESTREL uses Ku). Whether it ALSO uses X band is unresolved (LOW): if U1 is complete, R2's 9.4 GHz emitter at a confirmed site is UNEXPLAINED (another radar co-located, a second mode, or misattribution); if R2's emitter was KESTREL, U1 is incomplete. Kept as a dispute: H-Ku against A1a/A1b, an objection each way.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a2-agility-unresolved",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A2: whether the fielded KESTREL is pulse-to-pulse frequency agile is UNRESOLVED (low confidence either way)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R2 and R3.",
+    "statement": "FICTIONAL ASSESSMENT. Whether the fielded KESTREL uses pulse-to-pulse frequency agility is unresolved. The two reports that bear on it are in tension, not in direct contradiction: R3 (C3, brochure, export variant KESTREL-E) claims pulse-to-pulse agility over 1,000 hops/s across 8-12 GHz; R2 (B2, intercept, fielded radar) observed coherent pulse-Doppler at one frequency, 9.4 GHz, PRF about 20 kHz, which is NOT pulse-to-pulse agile in the mode observed. Pulse-to-pulse agility and coherent pulse-Doppler processing are hard to combine within one dwell, but a radar can have both an agile mode and a coherent mode, and one intercept cannot exclude a mode it did not see. The rival hypotheses H-agile and H-coherent are recorded separately with objections each way. Confidence LOW in either.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a2b-no-evidence-the-fielded-kestrel-is-agile",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A2b: no report now shows the fielded KESTREL to be agile (moderate confidence it is not)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, round 2, 2026-10-19, over fictional reports U1, R2, R3.",
+    "statement": "FICTIONAL ASSESSMENT (round 2), replacing A2. No report shows the fielded KESTREL to be frequency agile: R2 and U1 both observed it without agility, and the only agility claim (R3) belongs to KESTREL-E, which U1 says is not fielded in Varkos. Confidence MODERATE that the fielded radar is not pulse-to-pulse agile: two observations, the stronger graded A1, cannot exclude an unseen mode. H-agile stays contested, not refuted.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a3-check-erp-consistent-with-1-2m-aperture",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Consistency analysis: 75 dBW ERP is physically consistent with a 1.2 m X-band aperture",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer agent's own arithmetic, 2026-10-19, from R2's 9.4 GHz and 75 dBW and R4's 1.2 m; 60% aperture efficiency assumed.",
+    "statement": "FICTIONAL ANALYSIS. A 1.2 m parabolic aperture at 9.4 GHz (wavelength 0.0319 m), at 60% efficiency, has gain G = 0.6 x (pi x 1.2 / 0.0319)^2, about 8,400, i.e. 39.2 dBi, and a beamwidth near 1.9 degrees. An ERP of 75 dBW then implies a peak transmitter power of 75 - 39.2 = 35.8 dBW, about 3.8 kW, which is plausible for a ground-based X-band air-defence radar. So R2's ERP estimate and R4's aperture do not disagree. This is corroboration of A3, not a second measurement of power. Arithmetic done by the designer agent in a local python one-liner; no calculator record is kept.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a3-erp-about-75-dbw",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A3: KESTREL's main-beam ERP is about 75 dBW (moderate confidence)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional report R2, checked for consistency against R4.",
+    "statement": "FICTIONAL ASSESSMENT. The fielded KESTREL's main-beam effective radiated power is about 75 dBW. Confidence MODERATE. Rests on R2 alone (B2), which calls it an ESTIMATE and does not say how it was made; there is no second source of power. R4 does not measure power but is physically CONSISTENT with it (see the consistency analysis): a 1.2 m dish at 9.4 GHz gives about 39 dBi, so 75 dBW ERP implies roughly 36 dBW (about 3.8 kW) peak transmitter power, a plausible figure for such a radar.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-a4-kestrel-e-not-fielded-in-varkos",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Assessment A4: KESTREL-E, the 8-12 GHz agile variant, is an export model not fielded in Varkos (high confidence)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, round 2, 2026-10-19, over fictional report U1.",
+    "statement": "FICTIONAL ASSESSMENT (round 2). KESTREL-E, the 8-12 GHz pulse-to-pulse agile variant R3 advertises, is an export model and is not fielded in Varkos. Confidence HIGH: U1 states it directly, graded A1. This DEFEATS the read-across from the brochure to the fielded radar (supposition S2) and the claim that the fielded radar may reach 12 GHz through KESTREL-E (A1c). It does not say the brochure is false about KESTREL-E itself.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-kestrel-threat-assessment",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "KESTREL threat assessment: X band (observed 9.4 GHz, band about 8-10 GHz, export variant possibly to 12 GHz), agility unresolved, ERP about 75 dBW",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R1-R4.",
+    "statement": "FICTIONAL THREAT ASSESSMENT of the Varkosian KESTREL air-defence radar for Project HARRIER. Operating band: X band, observed at 9.4 GHz (HIGH confidence, A1a), assessed band about 8-10 GHz (MODERATE, A1b), export variant KESTREL-E possibly to 12 GHz (LOW, A1c). Frequency agility: UNRESOLVED (LOW either way, A2): R3 advertises pulse-to-pulse agility for KESTREL-E, R2 saw coherent fixed-frequency pulse-Doppler on the fielded radar. Radiated power: main-beam ERP about 75 dBW (MODERATE, A3), single source R2, physically consistent with R4's 1.2 m antenna. Agreement: R1, R2, R4 agree on X band. Disagreement: R2 and R3 are in tension on agility. Corroboration only: R4 (band, power), R1 (band). Single-source: band edges (R1), 10-12 GHz (R3), agility (R3), ERP (R2).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:asmt-kestrel-threat-assessment-after-u1",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "KESTREL threat assessment after U1: band disputed (Ku 13.5-14.5 GHz from U1 against X from R2), KESTREL-E not fielded, no evidence of agility, ERP 75 dBW applies to the X-band emitter only",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analyst judgement by the designer agent, round 2, 2026-10-19, over fictional reports R1-R4 and U1.",
+    "statement": "FICTIONAL THREAT ASSESSMENT, revised after U1 (round 2). DEFEATED by U1: the read-across from the export variant to the fielded radar (S2) and the 10-12 GHz possibility through KESTREL-E (A1c); A4, KESTREL-E is not fielded in Varkos (HIGH). CONTRADICTED and kept as a dispute: the band. U1 (A1) puts the domestic KESTREL in Ku band, 13.5-14.5 GHz (HIGH that it uses Ku); R2 (B2), R1 and R4 put it in X band; whether it uses both is unresolved (A1e, H-Ku against A1a/A1b, objections each way). Agility: no report now shows the fielded radar agile (A2b, MODERATE it is not); H-agile stays contested. UNEXPLAINED: R2's 9.4 GHz pulse-Doppler emitter at a confirmed KESTREL site, if U1 is complete. ERP: 75 dBW (A3, R2) describes the 9.4 GHz emitter; there is no power figure for the Ku-band emitter.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:collection-request-kestrel-other-modes",
+   "node_type": "Requirement",
+   "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "FICTIONAL collection request to the intelligence community: characterise the fielded KESTREL's other modes (agility; any X-band mode) and explain R2's 9.4 GHz emitter at a confirmed KESTREL site",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19 (round 1, Q3): \"Contested, ask for collection\"",
+    "statement": "Levied on the (fictional) intelligence community by Project HARRIER, like a Life-cycle Mission Data Plan request. The program asks for collection that resolves the agility dispute (dec:the-agility-dispute-is-kept-open-pending-collection) and, after U1, the X vs Ku band dispute: whether the fielded KESTREL has any frequency-agile or X-band mode, and what emitted at 9.4 GHz in R2. Once phase 4 lands, this moves into the intelligence community's own design, levied there at proposed.",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "req:hyp-h-agile-fielded-kestrel-is-pulse-to-pulse-agile",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "H-agile: the fielded KESTREL can hop pulse-to-pulse across 8-12 GHz at over 1,000 hops/s",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Rival hypothesis framed by the designer agent, 2026-10-19, from fictional report R3.",
+    "statement": "FICTIONAL RIVAL HYPOTHESIS. The fielded KESTREL has (at least one mode with) pulse-to-pulse frequency agility across 8-12 GHz at over 1,000 hops/s, as R3 advertises for KESTREL-E. Rests on R3 alone, plus the unstated assumption that the export variant's agility is present in the fielded radar. Low confidence.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hyp-h-coherent-fielded-kestrel-is-fixed-frequency-pulse-doppler",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "H-coherent: the fielded KESTREL is a fixed-frequency coherent pulse-Doppler radar (about 9.4 GHz, PRF about 20 kHz), not pulse-to-pulse agile",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Rival hypothesis framed by the designer agent, 2026-10-19, from fictional report R2.",
+    "statement": "FICTIONAL RIVAL HYPOTHESIS. The fielded KESTREL operates as a coherent pulse-Doppler radar holding one frequency per dwell (observed 9.4 GHz, PRF about 20 kHz) and does not hop pulse-to-pulse. Rests on R2 alone, and on the inference that the mode intercepted is its only or main mode. Low-to-moderate confidence.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hyp-h-ku-fielded-kestrel-is-ku-band-not-x",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "H-Ku: the fielded (domestic) KESTREL is a Ku-band radar at 13.5-14.5 GHz, not an X-band one",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Rival hypothesis framed by the designer agent, round 2, 2026-10-19, from fictional report U1.",
+    "statement": "FICTIONAL RIVAL HYPOTHESIS (round 2). The domestic Varkosian KESTREL operates at 13.5-14.5 GHz (Ku band) and not in X band. Rests on U1 (A1) under S3, that U1 saw all its bands. It rivals A1a/A1b (X band, 8-10 GHz), which rest on R2 (B2), R1 (C3) and R4 (B2).",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-r2-observed-coherent-not-agile",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection to H-agile (from R2): the one intercept of the fielded radar showed coherent pulse-Doppler at a single frequency, not pulse-to-pulse hopping",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Objection framed by the designer agent, 2026-10-19, from fictional report R2.",
+    "statement": "FICTIONAL OBJECTION. R2 (B2) intercepted the fielded KESTREL at a confirmed site emitting coherent pulse-Doppler at 9.4 GHz with PRF about 20 kHz. Pulse-Doppler processing needs a coherent train of pulses at one frequency, so in the mode observed the radar was not pulse-to-pulse agile. R3's agility is advertised for a different variant (KESTREL-E) in marketing material. This objection weakens H-agile; it does not exclude an agile mode that was not seen.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-r2-x-band-emitter-at-a-confirmed-site",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection to H-Ku (from R2): a 9.4 GHz pulse-Doppler emitter was intercepted at a confirmed KESTREL site",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Objection framed by the designer agent, round 2, 2026-10-19, from fictional report R2.",
+    "statement": "FICTIONAL OBJECTION (round 2). R2 (B2) intercepted 9.4 GHz pulse-Doppler from a confirmed KESTREL site; if that emitter was KESTREL (S4), the fielded KESTREL uses X band too, so H-Ku's \"not X band\" fails. R1 (8-10 GHz) and R4 (antenna consistent with X band) point the same way but are weaker.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-r3-one-intercept-cannot-exclude-agile-mode",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection to H-coherent (from R3): one intercept cannot exclude an agile mode, and the KESTREL family is advertised as agile",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Objection framed by the designer agent, 2026-10-19, from fictional report R3.",
+    "statement": "FICTIONAL OBJECTION. R3 (C3) advertises pulse-to-pulse agility over 1,000 hops/s for the KESTREL family's export variant, so the design family is capable of it. A single intercept (R2) records only the mode in use at that time; radars of this class commonly hold a fixed-frequency coherent mode for tracking and an agile mode for search or under jamming. H-coherent therefore over-reads R2.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-u1-domestic-kestrel-is-ku-not-x",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection to the X-band assessment (from U1): the domestic KESTREL was observed in Ku band, 13.5-14.5 GHz",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Objection framed by the designer agent, round 2, 2026-10-19, from fictional report U1.",
+    "statement": "FICTIONAL OBJECTION (round 2). U1 (A1, the strongest grade held) observed the domestic KESTREL at 13.5-14.5 GHz. If that is all the radar uses (S3), the fielded KESTREL is not X band and its band is not 8-10 GHz. It does not explain R2's 9.4 GHz intercept at a confirmed site.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-u1-no-agility-observed",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection to H-agile (from U1): no frequency agility was observed on the domestic KESTREL",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Objection framed by the designer agent, round 2, 2026-10-19, from fictional report U1.",
+    "statement": "FICTIONAL OBJECTION (round 2). U1 (A1) observed no frequency agility on the domestic KESTREL. Like R2's, this is an observation: it counts against H-agile only if it covers all the radar's modes (S5).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rpt-r1-humint-defector-x-band",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "R1 (HUMINT, defector debrief, 2019, C3): KESTREL works in X band, about 8-10 GHz",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Fictional intelligence report R1, HUMINT, defector debrief, 2019; reliability C, credibility 3; given in the Project HARRIER capstone brief (2026-10-19). Second-hand recollection by a defector, six years old.",
+    "statement": "FICTIONAL. Report R1, a HUMINT defector debrief dated 2019, graded source reliability C (fairly reliable) and information credibility 3 (possibly true), states: \"KESTREL works in the X band, about 8-10 GHz.\" What is taken as given here is that R1 says this, not that it is true; its weight is judged in the assessment steps that cite it.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:rpt-r2-sigint-9-4ghz-pulse-doppler",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "R2 (SIGINT intercept, 2025, B2): 9.4 GHz, pulse-Doppler, PRF about 20 kHz, ERP estimated 75 dBW, from a confirmed KESTREL site",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Fictional intelligence report R2, SIGINT intercept, 2025; reliability B, credibility 2; given in the Project HARRIER capstone brief (2026-10-19). Direct technical collection from a site confirmed as KESTREL.",
+    "statement": "FICTIONAL. Report R2, a SIGINT intercept dated 2025, graded source reliability B (usually reliable) and information credibility 2 (probably true), states: \"Emissions at 9.4 GHz, pulse-Doppler, PRF about 20 kHz, from a confirmed KESTREL site. Estimated ERP 75 dBW.\" What is taken as given here is that R2 says this. The frequency and PRF are measured on intercept; the ERP is an estimate (method not stated), and one intercept at one frequency says nothing either way about other frequencies or modes the radar did not use at the time.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:rpt-r3-osint-brochure-kestrel-e-agile",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "R3 (OSINT, arms-fair brochure, 2024, C3): KESTREL-E covers 8-12 GHz with pulse-to-pulse frequency agility, over 1,000 hops/s",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Fictional intelligence report R3, OSINT, arms-fair brochure, 2024; reliability C, credibility 3; given in the Project HARRIER capstone brief (2026-10-19). Manufacturer marketing claim for the export variant KESTREL-E.",
+    "statement": "FICTIONAL. Report R3, OSINT from an arms-fair brochure dated 2024, graded source reliability C (fairly reliable) and information credibility 3 (possibly true), states: \"KESTREL-E covers 8-12 GHz with pulse-to-pulse frequency agility, over 1,000 hops/s.\" What is taken as given here is that the brochure says this. It describes KESTREL-E, an export variant, in a marketing document; it is not an observation of the fielded Varkosian KESTREL.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:rpt-r4-imint-antenna-1-2m",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "R4 (IMINT, 2025, B2): KESTREL antenna about 1.2 m, consistent with X band",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Fictional intelligence report R4, IMINT, 2025; reliability B, credibility 2; given in the Project HARRIER capstone brief (2026-10-19). Imagery measurement of the antenna aperture.",
+    "statement": "FICTIONAL. Report R4, IMINT dated 2025, graded source reliability B (usually reliable) and information credibility 2 (probably true), states: \"Antenna about 1.2 m, consistent with X band.\" What is taken as given here is that R4 says this. An antenna size is consistent with a band; it does not measure one.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:rpt-u1-sigint-2026-ku-band-export-not-fielded",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "U1 (SIGINT, 2026, A1): domestic KESTREL at 13.5-14.5 GHz (Ku), no agility observed; KESTREL-E is an export model not fielded in Varkos",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "Fictional intelligence update U1, SIGINT, 2026; reliability A, credibility 1; given in round 2 of the Project HARRIER capstone trial (2026-10-19).",
+    "statement": "FICTIONAL. Report U1, SIGINT dated 2026, graded source reliability A (completely reliable) and information credibility 1 (confirmed by other sources), states: \"Domestic KESTREL observed operating at 13.5-14.5 GHz (Ku band), no frequency agility observed. The 8-12 GHz agile variant (KESTREL-E) is an export model not fielded in Varkos.\" What is taken as given here is that U1 says this. Its first two clauses are observations (what was seen, not everything the radar can do); its third is a direct statement about deployment.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:rwr-covers-10-to-12-ghz",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:rwr-covers-8-to-10-ghz"
+    ],
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "RWR band extension: also detect, measure and identify KESTREL-family emissions in 10.0-12.0 GHz",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Derived by the designer agent from dec:extend-coverage-to-12-ghz-for-kestrel-e (2026-10-19); exists only if the owner chooses to design against KESTREL-E.",
+    "statement": "FICTIONAL. The HARRIER RWR shall also detect, measure the frequency of, and identify as KESTREL-family any such emission between 10.0 and 12.0 GHz.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rwr-covers-13-5-to-14-5-ghz",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:rwr-covers-8-to-10-ghz",
+     "req:rwr-covers-10-to-12-ghz"
+    ],
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "RWR Ku-band coverage: detect, measure and identify KESTREL emissions in 13.5-14.5 GHz",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Derived by the designer agent from dec:cover-ku-13-5-to-14-5-ghz after intelligence update U1 (round 2, 2026-10-19).",
+    "statement": "FICTIONAL. The HARRIER RWR shall detect, measure the frequency of, and identify as KESTREL any KESTREL emission between 13.5 and 14.5 GHz.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rwr-covers-8-to-10-ghz",
+   "node_type": "Requirement",
+   "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "RWR band coverage: detect, measure and identify KESTREL emissions anywhere in 8.0-10.0 GHz",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Derived by the designer agent from dec:cover-8-to-10-ghz (2026-10-19).",
+    "statement": "FICTIONAL. The HARRIER RWR shall detect, measure the frequency of, and identify as KESTREL any KESTREL emission between 8.0 and 10.0 GHz.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rwr-detects-kestrel-main-beam-at-150-km",
+   "node_type": "Requirement",
+   "properties": {
+    "kind": "nonfunctional",
+    "lineage": "derived",
+    "name": "RWR detection range: detect KESTREL main-beam illumination at 150 km or more (sensitivity -53 dBm or better)",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Derived by the designer agent from dec:size-sensitivity-for-150-km-main-beam-warning (2026-10-19).",
+    "statement": "FICTIONAL. The HARRIER RWR shall detect KESTREL main-beam illumination at a slant range of at least 150 km against an emitter of 75 dBW ERP, which requires a sensitivity at the antenna port of -53 dBm or better across the covered band (0 dBi antenna gain assumed, no margin included). The 150 km figure awaits the owner's warning-range decision.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rwr-handles-pulse-to-pulse-agility",
+   "node_type": "Requirement",
+   "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "RWR agility handling: detect and identify a pulse-to-pulse agile KESTREL (over 1,000 hops/s) as one emitter",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Derived by the designer agent from dec:handle-pulse-to-pulse-agility (2026-10-19).",
+    "statement": "FICTIONAL. The HARRIER RWR shall detect a KESTREL emitter hopping pulse-to-pulse at up to at least 1,000 hops/s (objective: higher) across its covered band, associate its pulses into a single track, and identify it as KESTREL, without splitting it into multiple emitters, declaring it within 1 s of first illumination (the owner's figure, 2026-10-19).",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:sup-s1-intercept-shows-the-radars-modes",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition S1: the R2 intercept is representative of the fielded KESTREL's operating modes",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analytic assumption named by the designer agent, 2026-10-19.",
+    "statement": "FICTIONAL ANALYTIC ASSUMPTION, taken up for the sake of argument and never discharged: what R2 intercepted (coherent pulse-Doppler at one frequency) is the fielded KESTREL's only or main mode. Nothing in the reports establishes this; one intercept is one sample of the radar's behaviour.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:sup-s2-export-variant-capabilities-are-in-the-fielded-radar",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition S2: what the brochure advertises for KESTREL-E is present in the fielded KESTREL",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analytic assumption named by the designer agent, 2026-10-19.",
+    "statement": "FICTIONAL ANALYTIC ASSUMPTION, taken up for the sake of argument and never discharged: the capabilities R3 advertises for the export variant KESTREL-E (8-12 GHz, pulse-to-pulse agility over 1,000 hops/s) are present in the fielded Varkosian KESTREL. Export variants are often downgraded, sometimes upgraded; marketing claims are often aspirational. Nothing in the reports establishes this. Whether to design as if it were true is the owner's question.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:sup-s3-u1-saw-all-the-fielded-bands",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition S3: U1's Ku-band observation covers all the bands the fielded KESTREL uses",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analytic assumption named by the designer agent, round 2, 2026-10-19.",
+    "statement": "FICTIONAL ANALYTIC ASSUMPTION, never discharged: the 13.5-14.5 GHz U1 observed is the whole of the domestic KESTREL's operating band, so it does not also use X band. U1 reports what was observed, not what was excluded.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:sup-s4-r2-emitter-was-kestrel",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition S4: the 9.4 GHz emitter R2 intercepted at the confirmed site was KESTREL itself",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analytic assumption named by the designer agent, round 2, 2026-10-19.",
+    "statement": "FICTIONAL ANALYTIC ASSUMPTION, never discharged: the 9.4 GHz pulse-Doppler emitter R2 intercepted at a confirmed KESTREL site was the KESTREL radar, not another radar co-located with it. R2 confirms the site, not necessarily the attribution of every emission there.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:sup-s5-u1-saw-all-the-fielded-modes",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Supposition S5: U1's \"no agility observed\" covers all the fielded KESTREL's modes",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Analytic assumption named by the designer agent, round 2, 2026-10-19.",
+    "statement": "FICTIONAL ANALYTIC ASSUMPTION, never discharged: U1's observation of no frequency agility reflects every mode of the domestic KESTREL, not only the mode in use when it was observed.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:dec:cover-8-to-10-ghz",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:dec-cover-8-10-from-a1a-a1b\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:rwr-covers-8-to-10-ghz\",\"properties\":{\"note\":\"Reason to exist: the choice to cover the fielded KESTREL's assessed band (A1a, A1b).\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"approved_at\":\"2026-10-19\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"chose\":\"@ajs, 2026-10-19 (round 2): \\\"Keep X band, add to collection\\\": keep 8\u201310 GHz coverage until R2's 9.4 GHz emitter is explained (already in req:collection-request-kestrel-other-modes).\",\"decision\":\"PROPOSED (FICTIONAL). The HARRIER RWR covers at least 8.0-10.0 GHz, the band the fielded KESTREL is assessed to use, which contains the 9.4 GHz it was observed at.\",\"kind\":\"choice\",\"name\":\"Design the RWR to cover at least 8-10 GHz, the assessed band of the fielded KESTREL\",\"rationale\":\"Rests on assessment A1a (X band, observed 9.4 GHz, high confidence: R2, corroborated by R1 and R4) and A1b (band edges 8-10 GHz, moderate confidence: R1 only). An RWR that misses the threat's band is useless against it, so the assessed band is the floor. Proposed by the designer agent; the owner's word is needed to accept it.\",\"status\":\"accepted\"}",
+    "target_id": "dec:cover-8-to-10-ghz",
+    "target_type": "Decision"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:dec:cover-ku-13-5-to-14-5-ghz",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:dec-ku-from-u1-a1e\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:rwr-covers-13-5-to-14-5-ghz\",\"properties\":{\"note\":\"Reason to exist: U1 (A1) observed the domestic KESTREL in Ku band; A1e keeps the band dispute open.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"approved_at\":\"2026-10-19\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"chose\":\"@ajs, 2026-10-19 (round 2): \\\"Add Ku coverage\\\": cover 13.5\u201314.5 GHz on U1 (A1), with the 150 km range and the same margin as X band.\",\"decision\":\"PROPOSED (FICTIONAL), AWAITING THE OWNER: the HARRIER RWR also covers 13.5-14.5 GHz, so that the domestic KESTREL as U1 observed it is detected and identified.\",\"kind\":\"choice\",\"name\":\"Extend RWR coverage to 13.5-14.5 GHz (Ku), where U1 observed the domestic KESTREL\",\"rationale\":\"Rests on U1 (A1, the strongest grade held) and A1e (the band is disputed: Ku from U1 against X from R2, R1, R4). Whichever way the dispute settles, U1 is an A1 observation of the domestic radar in Ku band, so an RWR that stops at 12 GHz would miss the radar actually seen in Varkos. It adds to, and does not replace, the X-band coverage, which stays while R2's 9.4 GHz emitter is unexplained. Open for the owner: a Ku-band ERP (none is reported, so the 150 km detection range cannot yet be sized there), and whether the emulator test gains a Ku mode.\",\"status\":\"accepted\"}",
+    "target_id": "dec:cover-ku-13-5-to-14-5-ghz",
+    "target_type": "Decision"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:dec:extend-coverage-to-12-ghz-for-kestrel-e",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:dec-extend-12-from-a1c\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Requirement\",\"other_id\":\"req:rwr-covers-10-to-12-ghz\",\"properties\":{\"note\":\"Reason to exist: the choice to design against the export variant's advertised 8-12 GHz (A1c, R3 only).\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"approved_at\":\"2026-10-19\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"chose\":\"@ajs, 2026-10-19 (round 2): \\\"Retire 12 GHz, keep hopping open\\\". U1 says KESTREL-E is an export model not fielded in Varkos, so the 12 GHz decision's only support is defeated. The hopping decision stays unaccepted while its dispute is open.\",\"decision\":\"PROPOSED (FICTIONAL), AWAITING THE OWNER: extend RWR coverage from 10 GHz to 12.0 GHz so that KESTREL-E as advertised, or a fielded radar upgraded to match it, is covered.\",\"kind\":\"choice\",\"name\":\"Extend RWR coverage to 12 GHz, designing against the export variant KESTREL-E's advertised band\",\"rationale\":\"Rests on assessment A1c alone (KESTREL-E may reach 12 GHz, LOW confidence, R3 only, a brochure about a different variant). The designer's recommendation is to extend: covering 10-12 GHz is a modest cost in an X-band RWR front end, whereas a radar upgraded or re-exported into that band would otherwise be invisible. But designing against the export variant is a risk-posture choice the owner makes; this stays proposed until he does. If R3 is withdrawn, this decision has no support.\",\"status\":\"rejected\"}",
+    "target_id": "dec:extend-coverage-to-12-ghz-for-kestrel-e",
+    "target_type": "Decision"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:asmt-a2-agility-unresolved",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:a2-from-r2-r3\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:assessment-from-its-parts\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:dec-agility-from-a2\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:emu-mode-b-from-a2-r3\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Assessment A2: whether the fielded KESTREL is pulse-to-pulse frequency agile is UNRESOLVED (low confidence either way)\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R2 and R3.\",\"statement\":\"FICTIONAL ASSESSMENT. Whether the fielded KESTREL uses pulse-to-pulse frequency agility is unresolved. The two reports that bear on it are in tension, not in direct contradiction: R3 (C3, brochure, export variant KESTREL-E) claims pulse-to-pulse agility over 1,000 hops/s across 8-12 GHz; R2 (B2, intercept, fielded radar) observed coherent pulse-Doppler at one frequency, 9.4 GHz, PRF about 20 kHz, which is NOT pulse-to-pulse agile in the mode observed. Pulse-to-pulse agility and coherent pulse-Doppler processing are hard to combine within one dwell, but a radar can have both an agile mode and a coherent mode, and one intercept cannot exclude a mode it did not see. The rival hypotheses H-agile and H-coherent are recorded separately with objections each way. Confidence LOW in either.\",\"statement_kind\":\"proposition\",\"status\":\"proposed\"}",
+    "target_id": "req:asmt-a2-agility-unresolved",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:asmt-kestrel-threat-assessment",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:assessment-from-its-parts\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"KESTREL threat assessment: X band (observed 9.4 GHz, band about 8-10 GHz, export variant possibly to 12 GHz), agility unresolved, ERP about 75 dBW\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Analyst judgement by the designer agent, Project HARRIER capstone trial, 2026-10-19, over fictional reports R1-R4.\",\"statement\":\"FICTIONAL THREAT ASSESSMENT of the Varkosian KESTREL air-defence radar for Project HARRIER. Operating band: X band, observed at 9.4 GHz (HIGH confidence, A1a), assessed band about 8-10 GHz (MODERATE, A1b), export variant KESTREL-E possibly to 12 GHz (LOW, A1c). Frequency agility: UNRESOLVED (LOW either way, A2): R3 advertises pulse-to-pulse agility for KESTREL-E, R2 saw coherent fixed-frequency pulse-Doppler on the fielded radar. Radiated power: main-beam ERP about 75 dBW (MODERATE, A3), single source R2, physically consistent with R4's 1.2 m antenna. Agreement: R1, R2, R4 agree on X band. Disagreement: R2 and R3 are in tension on agility. Corroboration only: R4 (band, power), R1 (band). Single-source: band edges (R1), 10-12 GHz (R3), agility (R3), ERP (R2).\",\"statement_kind\":\"proposition\",\"status\":\"proposed\"}",
+    "target_id": "req:asmt-kestrel-threat-assessment",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:rwr-handles-pulse-to-pulse-agility",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"VERIFIES\",\"other_type\":\"Verification\",\"other_id\":\"ver:kestrel-threat-emulator-test\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Decision\",\"other_id\":\"dec:handle-pulse-to-pulse-agility\",\"properties\":{\"note\":\"Reason to exist: the choice to design for agility while it is unresolved (A2, which rests on R2 and R3).\"}}]",
+    "state": "{\"kind\":\"functional\",\"lineage\":\"derived\",\"name\":\"RWR agility handling: detect and identify a pulse-to-pulse agile KESTREL (over 1,000 hops/s) as one emitter\",\"priority\":\"high\",\"provenance\":\"authored\",\"source\":\"Derived by the designer agent from dec:handle-pulse-to-pulse-agility (2026-10-19).\",\"statement\":\"FICTIONAL. The HARRIER RWR shall detect a KESTREL emitter hopping pulse-to-pulse at up to at least 1,000 hops/s (objective: higher) across its covered band, associate its pulses into a single track, and identify it as KESTREL, without splitting it into multiple emitters. Time to declare: to be set (awaiting the owner).\",\"status\":\"proposed\"}",
+    "target_id": "req:rwr-handles-pulse-to-pulse-agility",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "ver:kestrel-threat-emulator-test",
+   "node_type": "Verification",
+   "properties": {
+    "description": "FICTIONAL. System-level test: a threat emulator radiates KESTREL-like signals at the RWR in a hardware-in-the-loop or anechoic setup, and the RWR's detection, frequency measurement, identification and track continuity are recorded. Emulator parameters are taken from the threat assessment, each recorded as a Constraint on this test with the assessment claims it rests on: mode A, coherent pulse-Doppler at 9.4 GHz, PRF 20 kHz (R2, A1a); a fixed-frequency sweep across 8-10 GHz (A1b, R1); a sweep across 10-12 GHz (A1c, R3); mode B, pulse-to-pulse agile at 1,000 hops/s or more across the covered band (A2, R3); and a received level of -53 dBm at the antenna port, equivalent to 75 dBW ERP at 150 km (A3, R2). Pass: every mode detected and identified as KESTREL, the agile mode held as one emitter. Not yet run.",
+    "kind": "verification",
+    "level": "system",
+    "method": "test",
+    "name": "KESTREL threat-emulator test of the HARRIER RWR",
+    "status": "planned"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "falsum",
+    "hypothesis",
+    "lemma",
+    "proposition",
+    "theorem"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.89.0",
+  "schema_version": 1
+ }
+}

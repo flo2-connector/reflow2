@@ -82,6 +82,30 @@ pub struct GoverningDecision {
     pub support: &'static str,
     /// Why, in a sentence.
     pub why: String,
+    /// WHAT THE DECISION'S CHAIN RESTS ON, all the way down: each terminal
+    /// premise of the steps concluding it, with its truth and the
+    /// `confidence` it records — the reports and assessments a requirement's
+    /// reason to exist comes down to (req:a-requirements-read-back-follows-
+    /// its-reason-to-the-evidence). Empty when no step concludes it.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub chain_rests_on: Vec<EvidenceRead>,
+}
+
+/// One record a Decision's chain rests on, read for a requirement's reason
+/// to exist.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct EvidenceRead {
+    /// The record.
+    pub id: String,
+    /// Its name, when it has one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    /// Its computed truth.
+    pub truth: Truth,
+    /// The confidence it records, as it records it; absent when it records
+    /// none.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub confidence: Option<serde_json::Value>,
 }
 
 /// A requirement's reason to exist: see [`REASON_TO_EXIST_NOTE`].
@@ -286,11 +310,30 @@ impl DesignGraph {
                 ),
             }
         };
+        let mut chain_rests_on = Vec::new();
+        for f in self.foundations_of(decision)? {
+            let fprops = match &f.node_type {
+                Some(t) => self
+                    .get_node(t, &f.id)?
+                    .map(|n| n.properties)
+                    .unwrap_or_default(),
+                None => Default::default(),
+            };
+            chain_rests_on.push(EvidenceRead {
+                name: prop(&fprops, "name"),
+                confidence: fprops
+                    .get("confidence")
+                    .and_then(|v| serde_json::to_value(v).ok()),
+                id: f.id,
+                truth: f.truth,
+            });
+        }
         Ok(GoverningDecision {
             decision: decision.to_string(),
             name: prop(&props, "name"),
             acceptance,
             chain,
+            chain_rests_on,
             support,
             why,
         })

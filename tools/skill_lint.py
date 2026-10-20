@@ -90,6 +90,11 @@ NON_TOOL_TERMS = {
     "objection", "reply", "unstated_premise", "method_rule", "immediate", "alignment",
     "conceding", "moves_to", "held", "held_reading", "refutes", "conceded", "concedes",
     "contested_by", "now_refuted", "rests_on", "against_rests_on", "positions",
+    # design-an-argument, phase 6 PR 3 (2026-10-20): a what-if's row on a
+    # position (`conclusion_was`, `conclusion_reads`, `still_supported`,
+    # `still_holds_under`, `untouched_routes`) and `objections_returning`.
+    "conclusion_was", "conclusion_reads", "still_supported", "still_holds_under",
+    "untouched_routes", "objections_returning",
     # a proof states what it really does (2026-10-18, phase 3): the statement
     # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
     # statement reads (`statement_reading`: `taken_as_given`, `cited`,
