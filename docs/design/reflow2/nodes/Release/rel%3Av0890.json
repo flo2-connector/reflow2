@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b3d7eb9a2e5415c3975befeb0b8cae4bc1ed6d487d87a91afe1f1fb437163345",
+  "node_id": "rel:v0890",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-19 on Anthony's word (\"go with your recommendations\": cut the release PR for phase 4, then move flo2.io; the tag push stays his), in PR release/v0.89.0. A minor carrying:\n- #774: `reflow2 init --remove` takes the kit out and keeps the design; `reflow2 update` never brings a removed kit back;\n- #775 (P4a): through a hub every tool takes optional `member` (declared only on a hub's listing), every member id in a routed reply carries its prefix, an id naming a member routes every tool;\n- #776 (P4b): a far premise reads the far node's live truth and proof status (stale = far node gone, unreachable = far design unreadable); propagate through a hub continues into members holding an xref (boundary_crossings, across_designs); the no-export line is generated from the lookup's sources with .reflow2.toml first; delete_node's node_type is optional, the id prefix taken as the stated type.\n\n200 tools, as in 0.88.0; measured against the published 0.88.0 binary, only delete_node's description and schema differ on the plain listing, and list_skills, every get_skill body and get_instructions are byte-identical. The schema stamp does NOT move (snapshot re-blessed with its version alone), so no upgrade note is owed. Nothing is deprecated or removed (deprecation::REGISTRY empty). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.89.0 — a hub's members reachable one by one, reasoning across them, and a kit that can be removed",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.89.0"
+  }
+}

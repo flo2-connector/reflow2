@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dca96116afa03dd160611cbc1ebef5a520f98a50003c11d4398cad3a5453013f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0890",
+  "properties": {
+    "as_checksum": "sha256:e912878324db0ab31e3b810b7376bbcb8b013ad752c29b8ffdec22dab18ea625"
+  },
+  "to_id": "art:a-vocabulary-change-is-never-silent-test"
+}

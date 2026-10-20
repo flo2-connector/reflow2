@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2245f322027fbe52fe9d58e21f227335c8982ed142fae06bb557e58444474ef8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0890",
+  "properties": {
+    "as_checksum": "sha256:84487de58d57d3b1e7b6286b3c27b1b67969ce9deeb9591744681760a71c22b3"
+  },
+  "to_id": "art:test-mcp-tools"
+}

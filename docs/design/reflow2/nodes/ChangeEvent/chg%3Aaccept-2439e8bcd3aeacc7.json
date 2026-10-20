@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:51114946a7024aef5b82b6406ce5e103a43c317117f2ca2981ac468a74e1610e",
+  "node_id": "chg:accept-2439e8bcd3aeacc7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.89.0 cut, step 1: the schema snapshot is re-blessed from the 0.89.0 build (11 passed); only reflow2_version moves 0.88.0 -> 0.89.0 — no type, property or enum value changed, so the stamp does not move. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

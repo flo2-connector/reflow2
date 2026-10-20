@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ba6e6441b698d2fd21e55c2e8e496c8a53248067867a78ff0e5c75ef0c0a7de2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0890",
+  "properties": {
+    "as_checksum": "sha256:be062473ff1f4943f771f27bd8448460e6151a3cc5769b284b22a0c7b0fad7cb"
+  },
+  "to_id": "art:inference-rs"
+}
