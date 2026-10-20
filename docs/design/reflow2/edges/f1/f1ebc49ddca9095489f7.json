@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:446a9c9dd35cf04c49362e23a2c3083cc7022aa4545e1374add239508e939206",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-a2c3e6cc027e782e",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:80c8d825400e442f469f3557e37574e7bf06392c72a5883a2ba05d76383595a3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:alpha-is-spent-like-a-budget-across-a-family-of-tests-test"
+}

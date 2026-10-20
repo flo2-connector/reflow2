@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:07e3d35960ba36fb3051f28913958474d659b786e2d8beafc535a110c15f316c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:hypothesis-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

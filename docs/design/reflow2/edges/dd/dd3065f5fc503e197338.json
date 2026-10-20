@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c4bfd0b30ee01af2b7e558464caff762a02f3f05d1c4b7ff420d9a1caf617422",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hypothesis-test-reads-supported-at-alpha-never-as-proof"
+}

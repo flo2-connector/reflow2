@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:510e230c20f8939b503c4dd9ee40991010c88718ad3c8dcb85eddd9252119923",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-family-of-tests-spends-alpha-through-the-budget-rollup"
+}

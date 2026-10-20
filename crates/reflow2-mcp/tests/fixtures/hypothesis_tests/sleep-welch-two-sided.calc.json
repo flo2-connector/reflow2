@@ -1,0 +1,400 @@
+{
+ "record_format": "flo2-calc computation record",
+ "schema_version": 10,
+ "status": "computed",
+ "name": "sleep-welch-two-sided",
+ "arithmetic": "Exact rational arithmetic on the inputs as written: no binary floating point. + - * / and integer powers are exact, and so is every unit conversion but deg-rad and dBm-mW, so every value not marked \"rounded\" is exact FOR THESE INPUTS and no more accurate than they are: a decimal typed for an irrational number (a truncated pi or e) is taken as exactly that decimal, not as the number it stands for (the pi and e operators are the constants themselves). A whole number is written in full. Any other value whose decimal ends (at most 40 significant digits) is written exactly; any other is written rounded half-even to 30 significant digits, and its exact value for these inputs is given beside it as a fraction. A computed value whose compound unit is exactly a simpler unit is shown in it (\"simplified_from\" names the unit it was computed in); the value does not change. Comparisons use exact values. A value marked \"rounded\" is NOT exact: it comes from pi, e, a root, exp, ln, log10, a non-whole power (or a whole one asked for \"digits\" past the digits budget), trigonometry, a deg-rad conversion, a decibel conversion or a distribution, or from arithmetic on such a value. It is a decimal of the stated number of significant digits, every one written, given no \"exact\" fraction, and \"error_at_most\" bounds its distance from the true value. Where it says \"correctly_rounded\", it is the true value rounded half-even, decided from a rigorous enclosure (Arb ball arithmetic, python-flint). A comparison, ceil, floor or round of a rounded value is answered only when its error bound decides it, and refused otherwise. An ARRAY of exact numbers stays exact through rational operations, reductions and the statistics that are rational; a value marked \"float64\" is NOT exact: an FFT, a rounded-class function over an array, an array of more elements than this record's max_exact_elements (the host's setting where it was made), or anything mixed with such a value, computed in IEEE 754 double precision. Every element of a float64 value lies within its \"error_at_most\" of the true value, a rigorous bound whose basis \"how\" names (the FFT's: Higham 2002, Theorem 24.2, for a power-of-two length; Arb's rigorous DFT for any other). An array of more than 1,024 elements is written as its sha256 over every element's text, which re-running compares.",
+ "graph": {
+  "nodes": [
+   {
+    "id": "x",
+    "value": {
+     "array": [
+      "0.7",
+      "-1.6",
+      "-0.2",
+      "-1.2",
+      "-0.1",
+      "3.4",
+      "3.7",
+      "0.8",
+      "0.0",
+      "2.0"
+     ],
+     "unit": "h"
+    },
+    "source": "Cushny and Peebles (1905), extra hours of sleep (R's sleep data)"
+   },
+   {
+    "id": "y",
+    "value": {
+     "array": [
+      "1.9",
+      "0.8",
+      "1.1",
+      "0.1",
+      "-0.1",
+      "4.4",
+      "5.5",
+      "1.6",
+      "4.6",
+      "3.4"
+     ],
+     "unit": "h"
+    },
+    "source": "Cushny and Peebles (1905), extra hours of sleep (R's sleep data)"
+   },
+   {
+    "id": "alpha",
+    "value": "0.05",
+    "source": {
+     "design_node": "con:significance-level"
+    }
+   },
+   {
+    "id": "p",
+    "op": "t_test_two_sample",
+    "args": [
+     "x",
+     "y",
+     "alpha"
+    ],
+    "alternative": "two_sided",
+    "variance": "welch"
+   }
+  ]
+ },
+ "inputs": [
+  {
+   "id": "x",
+   "value": "array 10 (exact, h)",
+   "array": {
+    "shape": [
+     10
+    ],
+    "kind": "exact",
+    "unit": "h",
+    "sha256": "sha256:0c90232d9344a407deb0e3fa6cf2ebe9625af118bef1803afedfb3fba61d2a4b"
+   },
+   "source": "Cushny and Peebles (1905), extra hours of sleep (R's sleep data)",
+   "unit": "h"
+  },
+  {
+   "id": "y",
+   "value": "array 10 (exact, h)",
+   "array": {
+    "shape": [
+     10
+    ],
+    "kind": "exact",
+    "unit": "h",
+    "sha256": "sha256:4eae707fbf47f2bfcf381c248a1b90a76947fd91bf6dbbe73c7c9e82e69074fd"
+   },
+   "source": "Cushny and Peebles (1905), extra hours of sleep (R's sleep data)",
+   "unit": "h"
+  },
+  {
+   "id": "alpha",
+   "value": "0.05",
+   "source": {
+    "design_node": "con:significance-level"
+   },
+   "unit": ""
+  }
+ ],
+ "max_exact_elements": 65536,
+ "values": [
+  {
+   "node": "x",
+   "value": "array 10 (exact, h)",
+   "array": {
+    "shape": [
+     10
+    ],
+    "kind": "exact",
+    "unit": "h",
+    "sha256": "sha256:0c90232d9344a407deb0e3fa6cf2ebe9625af118bef1803afedfb3fba61d2a4b",
+    "values": [
+     "0.7",
+     "-1.6",
+     "-0.2",
+     "-1.2",
+     "-0.1",
+     "3.4",
+     "3.7",
+     "0.8",
+     "0",
+     "2"
+    ]
+   }
+  },
+  {
+   "node": "y",
+   "value": "array 10 (exact, h)",
+   "array": {
+    "shape": [
+     10
+    ],
+    "kind": "exact",
+    "unit": "h",
+    "sha256": "sha256:4eae707fbf47f2bfcf381c248a1b90a76947fd91bf6dbbe73c7c9e82e69074fd",
+    "values": [
+     "1.9",
+     "0.8",
+     "1.1",
+     "0.1",
+     "-0.1",
+     "4.4",
+     "5.5",
+     "1.6",
+     "4.6",
+     "3.4"
+    ]
+   }
+  },
+  {
+   "node": "alpha",
+   "value": "0.05"
+  },
+  {
+   "node": "p",
+   "value": "0.0793941401873581383372485522319",
+   "rounded": {
+    "digits": 30,
+    "correctly_rounded": true,
+    "error_at_most": "5e-32",
+    "from": [
+     "p"
+    ]
+   },
+   "detail": [
+    {
+     "name": "t",
+     "value": "-1.86081346748685310152516799542",
+     "rounded": {
+      "digits": 30,
+      "correctly_rounded": true,
+      "error_at_most": "5e-30",
+      "from": [
+       "p"
+      ]
+     }
+    },
+    {
+     "name": "dof",
+     "value": "17.7764735161784901426485393405",
+     "exact": "18945868482/1065783293"
+    },
+    {
+     "name": "n1",
+     "value": "10"
+    },
+    {
+     "name": "n2",
+     "value": "10"
+    },
+    {
+     "name": "reject_H0",
+     "value": "false"
+    }
+   ],
+   "hypothesis_test": {
+    "test": "t_test_two_sample",
+    "title": "two-sample t-test of two means, Welch's (variances not assumed equal)",
+    "h0": "μ1 = μ2: the two population means are equal",
+    "h1": "μ1 ≠ μ2",
+    "alternative": "two_sided",
+    "sidedness": "two-sided: a departure either way",
+    "alpha": {
+     "node": "alpha",
+     "value": "0.05",
+     "source": {
+      "design_node": "con:significance-level"
+     }
+    },
+    "n": [
+     "10",
+     "10"
+    ],
+    "statistic": {
+     "name": "t",
+     "value": "-1.86081346748685310152516799542",
+     "rounded": {
+      "digits": 30,
+      "correctly_rounded": true,
+      "error_at_most": "5e-30",
+      "from": [
+       "p"
+      ]
+     }
+    },
+    "p_value": {
+     "value": "0.0793941401873581383372485522319",
+     "rounded": {
+      "digits": 30,
+      "correctly_rounded": true,
+      "error_at_most": "5e-32",
+      "from": [
+       "p"
+      ]
+     }
+    },
+    "p_value_method": "Student's t distribution at Welch-Satterthwaite's degrees of freedom (exact for these data): Welch's approximation to the statistic's distribution; that t tail as the regularized incomplete beta (Arb), correctly rounded",
+    "assumptions": [
+     "the two samples are independent of each other, and the observations within each are independent",
+     "each comes from a normal population (a judgement, not checked here)",
+     "the two variances are not assumed equal (Welch)"
+    ],
+    "decision": "fail to reject H0 at α = 0.05",
+    "reject_h0": false,
+    "variance": "welch",
+    "dof": {
+     "value": "17.7764735161784901426485393405",
+     "exact": "18945868482/1065783293"
+    }
+   }
+  }
+ ],
+ "result": {
+  "node": "p",
+  "value": "0.0793941401873581383372485522319",
+  "rounded": {
+   "digits": 30,
+   "correctly_rounded": true,
+   "error_at_most": "5e-32",
+   "from": [
+    "p"
+   ]
+  },
+  "detail": [
+   {
+    "name": "t",
+    "value": "-1.86081346748685310152516799542",
+    "rounded": {
+     "digits": 30,
+     "correctly_rounded": true,
+     "error_at_most": "5e-30",
+     "from": [
+      "p"
+     ]
+    }
+   },
+   {
+    "name": "dof",
+    "value": "17.7764735161784901426485393405",
+    "exact": "18945868482/1065783293"
+   },
+   {
+    "name": "n1",
+    "value": "10"
+   },
+   {
+    "name": "n2",
+    "value": "10"
+   },
+   {
+    "name": "reject_H0",
+    "value": "false"
+   }
+  ],
+  "hypothesis_test": {
+   "test": "t_test_two_sample",
+   "title": "two-sample t-test of two means, Welch's (variances not assumed equal)",
+   "h0": "μ1 = μ2: the two population means are equal",
+   "h1": "μ1 ≠ μ2",
+   "alternative": "two_sided",
+   "sidedness": "two-sided: a departure either way",
+   "alpha": {
+    "node": "alpha",
+    "value": "0.05",
+    "source": {
+     "design_node": "con:significance-level"
+    }
+   },
+   "n": [
+    "10",
+    "10"
+   ],
+   "statistic": {
+    "name": "t",
+    "value": "-1.86081346748685310152516799542",
+    "rounded": {
+     "digits": 30,
+     "correctly_rounded": true,
+     "error_at_most": "5e-30",
+     "from": [
+      "p"
+     ]
+    }
+   },
+   "p_value": {
+    "value": "0.0793941401873581383372485522319",
+    "rounded": {
+     "digits": 30,
+     "correctly_rounded": true,
+     "error_at_most": "5e-32",
+     "from": [
+      "p"
+     ]
+    }
+   },
+   "p_value_method": "Student's t distribution at Welch-Satterthwaite's degrees of freedom (exact for these data): Welch's approximation to the statistic's distribution; that t tail as the regularized incomplete beta (Arb), correctly rounded",
+   "assumptions": [
+    "the two samples are independent of each other, and the observations within each are independent",
+    "each comes from a normal population (a judgement, not checked here)",
+    "the two variances are not assumed equal (Welch)"
+   ],
+   "decision": "fail to reject H0 at α = 0.05",
+   "reject_h0": false,
+   "variance": "welch",
+   "dof": {
+    "value": "17.7764735161784901426485393405",
+    "exact": "18945868482/1065783293"
+   }
+  }
+ },
+ "formula": [
+  {
+   "node": "p",
+   "text": "p = t_test_two_sample(x, y, alpha; variance=welch, alternative=two_sided) ≈ 0.0793941401873581383372485522319",
+   "latex": "\\text{p} = \\operatorname{t\\_test\\_two\\_sample}\\left(\\text{x},\\ \\text{y},\\ \\text{alpha};\\ \\text{variance=welch},\\ \\text{alternative=two\\_sided}\\right) \\approx 0.0793941401873581383372485522319"
+  }
+ ],
+ "working": [
+  {
+   "step": 1,
+   "node": "x",
+   "text": "x = array 10 (exact, h)",
+   "latex": "\\text{x} = \\text{array 10 (exact, h)}",
+   "label": "given"
+  },
+  {
+   "step": 2,
+   "node": "y",
+   "text": "y = array 10 (exact, h)",
+   "latex": "\\text{y} = \\text{array 10 (exact, h)}",
+   "label": "given"
+  },
+  {
+   "step": 3,
+   "node": "alpha",
+   "text": "alpha = 0.05",
+   "latex": "\\text{alpha} = 0.05",
+   "label": "given"
+  },
+  {
+   "step": 4,
+   "node": "p",
+   "text": "p = t_test_two_sample(x, y, alpha; variance=welch, alternative=two_sided) ≈ 0.0793941401873581383372485522319; where t = -1.86081346748685310152516799542, dof = 18945868482/1065783293, n1 = 10, n2 = 10, reject_H0 = false",
+   "latex": "\\text{p} = \\operatorname{t\\_test\\_two\\_sample}\\left(\\text{x},\\ \\text{y},\\ \\text{alpha};\\ \\text{variance=welch},\\ \\text{alternative=two\\_sided}\\right) \\approx 0.0793941401873581383372485522319;\\ \\text{where }\\text{t} = -1.86081346748685310152516799542,\\ \\text{dof} = \\frac{18945868482}{1065783293},\\ \\text{n1} = 10,\\ \\text{n2} = 10,\\ \\text{reject\\_H0} = \\text{false}",
+   "label": "rounded: 30 significant digits, correctly rounded, error at most 5e-32"
+  }
+ ],
+ "produced_by": {
+  "flo2_calc": "0.10.0",
+  "pint": "0.26.1",
+  "python_flint": "0.9.0",
+  "numpy": "2.5.3"
+ },
+ "content_hash": "sha256:eeccae5af0395e4300754dfe84705fca136cf55c75917e71834c80a99fc4e4f7"
+}

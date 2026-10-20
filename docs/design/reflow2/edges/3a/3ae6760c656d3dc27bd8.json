@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:05bc15e1237ff289ae8f499e307fd090df10bf01da5afb5bac166b2b062a6678",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:88c065eb1be24003af9b58a13024f1baabc224caacd8c4a6d71d198c4c4cdca2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-skill"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c99c3e6576aba6fe54ee369268065d77ebd7433c57ad67cf60bb844551958d98",
+  "node_id": "chg:baseline-00e4e46084cae123",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:hypothesis-rs' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position. Caller's note: new in phase 5, reflow2's half (feat/hypothesis-tests)",
+    "subject": "record"
+  }
+}

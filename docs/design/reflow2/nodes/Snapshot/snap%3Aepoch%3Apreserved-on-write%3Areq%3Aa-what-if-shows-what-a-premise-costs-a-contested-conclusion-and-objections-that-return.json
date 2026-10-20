@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:90269ec8cf541db5810560edcbc394213b4a5eafe9a54dda2193c713b3db1b5f",
+  "node_id": "snap:epoch:preserved-on-write:req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-10-19\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}},{\"direction\":\"out\",\"edge_type\":\"SCHEDULED_FOR\",\"other_type\":\"DesignEpoch\",\"other_id\":\"epoch:planned-p6-argument-gaps\",\"properties\":{\"modality\":\"expected\",\"recorded_at\":\"2026-10-19\"}}]",
+    "state": "{\"kind\":\"functional\",\"lineage\":\"original\",\"name\":\"A what-if says what losing a premise costs a conclusion that is already contested, and names an objection that comes back when its reply loses support\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"@ajs, 2026-10-18: \\\"Capture the shortcomings (gaps) from the trial\\\" (cogito trial)\",\"statement\":\"propagate_from on a premise says, per route, what the conclusion loses, even when the conclusion already reads unknown or contested (for example \\\"route B loses its last unobjected premise\\\"). It also names every objection that comes back into force because the reply that answered it lost its support: reinstatement in reverse.\\nObserved in the cogito trial (2026-10-18): losing con:def-thought reached 29 nodes, but req:i-exist \\\"did not change, because it was already unknown\\\". The walking objection, whose reply rested on that premise, showed up only as a \\\"risk crossing\\\", not as coming back.\",\"status\":\"accepted\"}",
+    "target_id": "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return",
+    "target_type": "Requirement"
+  }
+}

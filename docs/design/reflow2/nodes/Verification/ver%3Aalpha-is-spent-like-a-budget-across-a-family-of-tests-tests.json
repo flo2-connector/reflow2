@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:39c56cca35b0363d62f689b70f68ff2bfdee01e250629c8241133339897202c8",
+  "node_id": "ver:alpha-is-spent-like-a-budget-across-a-family-of-tests-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three tests at a Bonferroni share of 0.0166 against a family limit of 0.05 read within (total 0.0498); a fourth recorded later reads exceeded and is named. A share drawn by hand at 0.0166 is kept when the record ran at 0.05, and the test reads unknown naming both numbers and the family Constraint. The served design-a-proof skill names Bonferroni, Holm, Benjamini–Hochberg, budget_report and rounding each share down.",
+    "findings": "3 of 3 pass on the branch. On main at 1b6604801 all failed: two because add_verification refused `hypothesis_test`, and the recipe test because the served skill did not name Bonferroni.",
+    "kind": "verification",
+    "last_run_at": "2026-10-19",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/alpha_is_spent_like_a_budget_across_a_family_of_tests.rs",
+    "method": "test",
+    "name": "α is spent like a budget across a family of tests (3 MCP tests)",
+    "status": "passing"
+  }
+}

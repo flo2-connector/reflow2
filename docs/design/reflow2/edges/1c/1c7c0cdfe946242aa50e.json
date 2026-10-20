@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:92a137e73f638f9addffbde3fffc5ab0885d035baac41ac3a78f9d8165af994d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:96cf6303c2304bd3cd15b6b881bc4e95eccc2d7c1b4b6440d5b3031bfb6026d9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kept-record-rs"
+}

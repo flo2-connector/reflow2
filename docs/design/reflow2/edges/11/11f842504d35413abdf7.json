@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9fb80099e8ebc726462be7b42141504c29be29c4ff6410c5b0f880e711b3e897",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:0cc0eaa376034e66e8ee160e602d68b94c38a80054c2818d62afe5870aa73714",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:inference-rs"
+}

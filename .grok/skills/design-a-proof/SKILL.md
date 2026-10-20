@@ -1,6 +1,6 @@
 ---
 name: design-a-proof
-description: Use when the design IS an argument that a statement is true — "design a proof", "prove a theorem", "show this mathematical claim follows", "record this proof step by step", "is this conjecture refuted?", "two independent proofs of the same result", or a proof by contradiction, by induction, by exhaustion or by construction. Records each statement with what it is (theorem, lemma, corollary, proposition, definition, axiom, conjecture, hypothesis, falsum), each step with its rule and warrant, assumptions the proof discharges, a reductio's contradiction, a proof by cases and whether its cases are declared exhaustive, results cited from elsewhere and whether their source was checked, the variables a step generalizes over, computed facts only through their kept records, and lines stated independent; then reads the proof back and says what it shows and what it does not. Never confirms a step on the owner's behalf. Not for an argument for and against a choice (that is a Decision), and not for software requirements.
+description: Use when the design IS an argument that a statement is true — "design a proof", "prove a theorem", "show this mathematical claim follows", "record this proof step by step", "is this conjecture refuted?", "two independent proofs of the same result", or a proof by contradiction, by induction, by exhaustion or by construction. Records each statement with what it is (theorem, lemma, corollary, proposition, definition, axiom, conjecture, hypothesis, falsum), each step with its rule and warrant, assumptions the proof discharges, a reductio's contradiction, a proof by cases and whether its cases are declared exhaustive, cited results and whether their source was checked, the variables a step generalizes over, computed facts only through their kept records, a hypothesis test as supported at α, and lines stated independent; then reads back what the proof shows and does not. Never confirms a step on the owner's behalf. Not for an argument for and against a choice (that is a Decision), and not for software requirements.
 metadata: {composes: [STANDING, WRITES, MINTS, REPORTS, MEASURES], audience: anyone, summary: "Record a mathematical proof step by step, then read back what it shows and what it does not."}
 ---
 
@@ -140,6 +140,54 @@ not passing, and holds nothing up. A computation at one value fixes that value: 
 Evidence for a conjecture beyond its cases (n² + n + 41 prime for n = 0 to 39) is corroboration,
 never a premise.
 
+## 4a. A statistical test supports a claim at α, and never proves it
+
+A hypothesis test is evidence, not proof. flo2-calc computes it and keeps it as a record; reflow2
+reads that record and never re-runs the statistic.
+
+1. **Design it before the data.** The hypothesis is a Requirement. α is a Constraint with a
+   `limit` (`add_constraint`). The chosen test is a Decision. The check is planned with
+   `add_verification`, `verifies` the hypothesis, and `governed_by` the test's Decision.
+2. **Compute it in flo2-calc** with α's `source` set to that Constraint (`{"design_node": "con:…"}`).
+   Register the record as an Artifact with its checksum and name it in the check's `location`.
+3. **Attach the data in one call:** `add_verification` on the same check, with `status`,
+   `location`, `last_run_at`, and `hypothesis_block` set to the record's `hypothesis_test` object,
+   copied whole. The reply says what it wrote (`hypothesis_test_recorded`).
+
+How it reads, on the step resting on it and on every claim above:
+
+- **A test that rejects H0** reads "supported at α = 0.05 (p = …, the test, n = …)". A claim
+  resting on it reads `supported`, never `shown`, `holds` or `proven`, however its steps are
+  confirmed. A deductive line to the same claim is preferred when there is one.
+- **A test that does not reject H0** reads "not rejected at α" and supports nothing. Never write
+  that it shows H0 true.
+- **Its assumptions** (independence, normality, expected counts) are written as Constraints the
+  check rests on, `con:<check>-assumption-<n>`. To doubt one, draw a CONTRADICTS from a statement
+  of your own to it. While that objection stands, the test supports nothing.
+- **A test used as an objection** contests the claim. It never refutes it.
+
+**The criteria are locked when the data arrive.** The first attachment records α, the hypothesis,
+the test's Decision and the record's own test and α, as they stand. Link all three before that
+call. If any of them changes afterwards, it is reported as `criteria_changed_after_data`, with
+both values and the dates of the ChangeEvents that made the change. Nothing is refused. When the
+change was legitimate, the owner acknowledges the gap with the reason. A new study is a new
+check. reflow2 cannot see a change made outside the design.
+
+**α across a family of tests is a budget.**
+
+1. The family-wise error rate is a Constraint with `limit` 0.05, a `quantity` and
+   `composition: sum`.
+2. Each test's α names that Constraint as its source. Recording the test draws CONSTRAINS with
+   the α it ran at as its `contribution`.
+3. `budget_report` then says whether the family is within. A test added later is in the sum.
+
+Bonferroni gives each of k tests α/k. **Round each share DOWN:** use 0.0166 for three tests at
+0.05, never 0.0167, because 3 × 0.0167 = 0.0501 is over. Holm (step-down: the sorted p-values
+against α/k, α/(k−1) …) and Benjamini–Hochberg (it controls the false discovery rate, not the
+family-wise rate) cannot be summed. Keep the Bonferroni shares as the budget, record the
+procedure as a Decision, and say which procedure decided each test. A test run at more than its
+share reads unknown, because the family's error rate is not then controlled.
+
 ## 5. A counterexample refutes; a question waits on the owner
 
 A counterexample is a statement shown by its own step, with a CONTRADICTS from it to the
@@ -179,6 +227,8 @@ the statuses exactly:
   unverified citation says what it is recalled to say. Its truth in the read-back says
   `conditional` too, never holds, and names the assumption (`assumes`) or the citation
   (`rests_on_unverified`).
+- `supported`: it holds only through a statistical test (section 4a): evidence at that test's α,
+  never proof. Its truth in the read-back says `supported` and names the tests (`rests_on_tests`).
 - `unproven`: no line holds, or a counterexample that holds refutes it.
 
 `proof_status` on `get_node` also counts the steps under the claim, and its `counts` says what the

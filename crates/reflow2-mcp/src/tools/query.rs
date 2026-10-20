@@ -1579,8 +1579,24 @@ fn decorate(
     } else {
         None
     };
+    // A STATISTICAL TEST'S READING (reflow2_core::hypothesis): supported at α,
+    // not rejected, or unknown, with its assumptions, what it spends and any
+    // criterion changed after its data. Only on a Verification that carries
+    // one.
+    let test_reading = if node_type == reflow2_core::nodes::node::VERIFICATION {
+        g.test_reading(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     if let Some(obj) = rendered.as_object_mut() {
         obj.insert("discontinued".to_string(), json!(discontinued));
+        if let Some(t) = test_reading {
+            obj.insert("test_reading".to_string(), t);
+        }
         if let Some(r) = reason_to_exist {
             obj.insert("reason_to_exist".to_string(), r);
         }

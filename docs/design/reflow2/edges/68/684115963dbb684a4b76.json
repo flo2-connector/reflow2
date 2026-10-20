@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:22caefe0f3bec40049644c0f8f37a5304f982eecbc749dc7c5ebe8683ba00a25",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:972bb5303f6c7e668f77906d05cd0b31543824cbf1d0dff888a7e5b9a1fc7542",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-command"
+}

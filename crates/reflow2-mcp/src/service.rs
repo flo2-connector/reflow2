@@ -3067,6 +3067,20 @@ pub struct VerificationReq {
     /// written.
     #[serde(default)]
     pub fixes: Option<Vec<String>>,
+    /// A HYPOTHESIS TEST FROM flo2-calc: the `hypothesis_test` object of the
+    /// tested value in its kept record (record schema 10), passed exactly as
+    /// the record holds it. Needs `test`, `alpha.value`, `p_value.value`, `n`,
+    /// `decision` and `reject_h0`; a block missing one is refused by its path
+    /// and nothing is written. It marks the check computed, writes each of its
+    /// `assumptions` as a Constraint the check DEPENDS_ON (taken as given, so
+    /// an objection can attack it), draws CONSTRAINS from the α Constraint its
+    /// `alpha.source.design_node` names (with the record's α as the
+    /// `contribution` when that Constraint has a `limit`; one already drawn is
+    /// kept), and on the first call locks its criteria. As a premise it then
+    /// reads "supported at α (p, test, n)", never proof, or "not rejected at
+    /// α".
+    #[serde(default)]
+    pub hypothesis_block: Option<JsonMap<String, JsonValue>>,
 }
 
 /// One target of a Verification, for `add_verification`'s `verifies` list.

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47b03438a644273eeffdbbb3fc5101aa675b3b9d101370d5141de468da4ded0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-hypothesis-test-reads-supported-at-alpha-never-as-proof"
+}

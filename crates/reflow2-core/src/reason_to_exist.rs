@@ -382,8 +382,12 @@ impl DesignGraph {
         let (truth, why) = self.premise_truth(claim)?;
         let assumes = self.assumptions_under(claim)?;
         let unverified = self.unverified_under(claim)?;
-        let truth = ClaimTruth::of(truth, &assumes, &unverified);
-        let circular = if truth == ClaimTruth::Holds || truth == ClaimTruth::Conditional {
+        let tests = self.tests_under(claim)?;
+        let truth = ClaimTruth::of(truth, &assumes, &unverified, &tests);
+        let circular = if matches!(
+            truth,
+            ClaimTruth::Holds | ClaimTruth::Conditional | ClaimTruth::Supported
+        ) {
             self.circular_along(edge_type, from_id, to_id, claim)?
         } else {
             None
@@ -392,6 +396,7 @@ impl DesignGraph {
             (_, Some(_)) => "circular",
             (ClaimTruth::Holds, None) => "argued",
             (ClaimTruth::Conditional, None) => "argued_conditionally",
+            (ClaimTruth::Supported, None) => "argued_from_evidence",
             (ClaimTruth::Fails, None) => "refuted",
             (ClaimTruth::Unknown, None) => "unsupported",
         };

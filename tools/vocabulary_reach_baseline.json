@@ -225,6 +225,12 @@
       "kind": "machine_written",
       "reason": "reconcile_verification with record_events stamps what the real run REPORTED, agreeing or not. A caller-set value would assert a run nobody fed back \u2014 the exact thing the stamp exists to tell apart from a typed claim (dec:a-reconcile-stamps-every-check-it-compared).",
       "written_by": "reconcile_verification (verify.rs)"
+    },
+    {
+      "property": "Verification.criteria_at_data",
+      "kind": "machine_written",
+      "reason": "The criteria lock: what a hypothesis test's criteria said at the write that first attached its data. A caller-set value would let anyone move the lock and erase the very change it exists to report.",
+      "written_by": "add_verification with hypothesis_block (hypothesis.rs::record_hypothesis_test)"
     }
   ]
 }

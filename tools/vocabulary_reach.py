@@ -134,6 +134,10 @@ ALIASED = {
     # record whether the checksum was measured or asserted, and a caller has no
     # parameter to claim either (2026-09-18).
     ("Artifact", "checksum_basis"): "recorded by the server on link_artifact and set_artifact_checksum(s); no parameter, by design",
+    # The record's block is passed as add_verification's `hypothesis_block`: an
+    # argument named `hypothesis_test` made add_verification and
+    # reconcile_verification a mutually confusable pair in find_tools (2026-10-19).
+    ("Verification", "hypothesis_test"): "add_verification's `hypothesis_block` parameter",
 }
 
 

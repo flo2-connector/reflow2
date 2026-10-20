@@ -186,6 +186,16 @@ pub enum GapSource {
     /// check somebody tried to run and could not is a fault in the checking
     /// itself, and may be hiding a failure.
     BlockedVerification,
+    /// A STATISTICAL TEST WHOSE CRITERIA CHANGED AFTER ITS DATA: its α, its
+    /// chosen test, its hypothesis, or the record's own test or α no longer
+    /// say what they said when its data were first attached (the lock
+    /// `Verification.criteria_at_data`, [`crate::hypothesis`]). Moved
+    /// goalposts and hypotheses written after the results (HARKing) made
+    /// visible from the design's own history
+    /// (req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported,
+    /// Anthony 2026-10-19). Never a refusal: a change can be legitimate, so
+    /// it is said, with both values, and acknowledged with a reason.
+    CriteriaChangedAfterData,
     /// A recorded divergence whose second question was never answered: a
     /// `DriftEvent` with `resolved: false`. Reality moved, the movement was
     /// *observed and written down* — and then nobody said what it meant.
@@ -886,6 +896,7 @@ impl GapSource {
             // capability acknowledgement with nothing to tell the user why.
             GapSource::FailingVerification => "failing_verification",
             GapSource::BlockedVerification => "blocked_verification",
+            GapSource::CriteriaChangedAfterData => "criteria_changed_after_data",
             GapSource::UnresolvedDrift => "unresolved_drift",
             GapSource::UnreleasedComponent => "unreleased_component",
             // Must match the serde snake_case of the variant: clients match on
@@ -1158,6 +1169,10 @@ impl GapSource {
             | GapSource::UnrealizedCapability
             | GapSource::FailingVerification
             | GapSource::BlockedVerification
+            // Per-test, and per CHANGE: the id hashes the criteria that moved,
+            // so accepting "α was raised on the supervisor's word" does not
+            // also accept the hypothesis being reworded next week.
+            | GapSource::CriteriaChangedAfterData
             | GapSource::UnresolvedDrift
             | GapSource::UnreleasedComponent
             | GapSource::StatusContradiction
@@ -2952,6 +2967,7 @@ impl DesignGraph {
         self.detect_repo_know_how(&mut gaps)?;
         self.detect_failing_verifications(&mut gaps)?;
         self.detect_blocked_verifications(&mut gaps)?;
+        self.detect_criteria_changed_after_data(&mut gaps)?;
         self.detect_unresolved_drift(&mut gaps)?;
         self.detect_unreleased_components(&mut gaps)?;
         self.detect_releases_without_epoch(&mut gaps)?;
@@ -4935,6 +4951,76 @@ impl DesignGraph {
     /// this exists to stop. The check's own `findings`, when recorded, are what
     /// usually says what stopped it, so the gap points at them rather than
     /// guessing.
+    fn detect_criteria_changed_after_data(
+        &self,
+        gaps: &mut Vec<GapCandidate>,
+    ) -> Result<(), DynoError> {
+        for (ver, changes) in self.tests_with_moved_criteria()? {
+            let name = node_name(&ver);
+            let mut affected = vec![ver.node_id.clone()];
+            // The criteria that moved, and the field: a different set is a
+            // different finding, so an acknowledgement does not carry over.
+            for c in &changes {
+                affected.push(format!("{}#{}", c.criterion, c.field));
+            }
+            affected.sort();
+            affected.dedup();
+            let named: Vec<String> = changes
+                .iter()
+                .map(|c| {
+                    format!(
+                        "{} `{}`: {} → {}",
+                        c.criterion,
+                        c.field,
+                        c.at_data.as_deref().unwrap_or("(nothing)"),
+                        c.now.as_deref().unwrap_or("(nothing)")
+                    )
+                })
+                .collect();
+            gaps.push(GapCandidate {
+                id: gap_id(GapSource::CriteriaChangedAfterData, &affected),
+                gap_source: GapSource::CriteriaChangedAfterData,
+                scope: GapScope::Capability,
+                severity: 0.6,
+                title: format!(
+                    "“{name}”: {} of its criteria changed after its data",
+                    changes.len()
+                ),
+                description: format!(
+                    "The statistical test “{name}” was judged against criteria fixed before its \
+                     data. {} Changing α, the test or the hypothesis after the data is how a \
+                     result is made to pass (p-hacking) or a hypothesis is written to fit it \
+                     (HARKing). It can be legitimate: if it was, acknowledge this with the \
+                     reason; if not, restore the criterion and read the test against it.",
+                    changes
+                        .iter()
+                        .map(|c| c.says.clone())
+                        .collect::<Vec<_>>()
+                        .join(" ")
+                ),
+                affected_ids: vec![ver.node_id.clone()]
+                    .into_iter()
+                    .chain(
+                        changes
+                            .iter()
+                            .map(|c| c.criterion.clone())
+                            .filter(|c| c != &ver.node_id),
+                    )
+                    .collect::<std::collections::BTreeSet<_>>()
+                    .into_iter()
+                    .collect(),
+                suggested_depth: 2,
+                evidence: format!(
+                    "Verification '{}' carries the criteria lock taken when its data were first \
+                     attached (criteria_at_data); now: {}.",
+                    ver.node_id,
+                    named.join("; ")
+                ),
+            });
+        }
+        Ok(())
+    }
+
     fn detect_blocked_verifications(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
         let index = self.node_type_index()?;
         for ver in self.scan_live_nodes(node::VERIFICATION)? {

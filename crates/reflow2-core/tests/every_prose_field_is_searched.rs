@@ -119,6 +119,8 @@ const NOT_PROSE: &[(&str, NotProse)] = &[
     ("TemporalFact.valid_from", When),
     ("TemporalFact.valid_to", When),
     ("TemporalFact.value", Payload),
+    ("Verification.criteria_at_data", Payload),
+    ("Verification.hypothesis_test", Payload),
     ("Verification.last_failed_run_at", When),
     ("Verification.last_reconciled_at", When),
     ("Verification.last_run_at", When),

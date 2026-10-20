@@ -528,6 +528,16 @@ NON_TOOL_TERMS = {
     "event",
     "failing_verification",
     "blocked_verification",
+    # phase 5, reflow2's half (2026-10-19): a hypothesis test read from its
+    # kept record — the gap, the argument, the stored block, the reply field,
+    # the reading and the truth words design-a-proof teaches.
+    "criteria_changed_after_data",
+    "hypothesis_block",
+    "hypothesis_test",
+    "hypothesis_test_recorded",
+    "rests_on_tests",
+    "supported",
+    "holds",
     "flexible",
     "gap",
     "generated_content",

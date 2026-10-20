@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:d0ee17f75cd5d3d8487842321b2b00b3dfc4ea5009649a5b22449656f35cb812",
+  "node_id": "req:a-what-if-on-a-premise-reaches-only-what-rests-on-it",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A what-if on a premise reaches what rests on it, not everything its parent requirement decomposes into, so two premises' reach can be told apart",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-19: \"yes, I want them added to phase 6\" (stage-5 re-read gaps)",
+    "statement": "propagate_from (and propagate_change) seeded on a premise of a line of reasoning counts and lists what rests on that premise: the steps it is a premise of, their conclusions, and onward. A walk that climbs a DECOMPOSES edge to the parent requirement and fans back down to every sibling is reported apart from the reasoning reach (or not followed for a premise), so the totals and risk crossings of two different premises differ when their reach differs.\nObserved in the stage-5 re-read (2026-10-19, flo2.io 7aa8a90d21c8956c, 0.88.0): what-ifs on Premise 2, Premise 5 and Premise 6, whose reasoning reach is 1, 4 and 1 steps, each reported total_impacted 66 and the same nine risk_crossings, because each premise DECOMPOSES the deliverable req:argument-is-the-deliverable and the walk fans out from there.",
+    "status": "accepted"
+  }
+}

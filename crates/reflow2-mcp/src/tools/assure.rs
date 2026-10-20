@@ -120,6 +120,19 @@ impl ReflowService {
         // Refuse a create with no name BEFORE writing: `str` above leaves a
         // placeholder and relies on this call to refuse (see add_artifact).
         __rf.finish()?;
+        // A hypothesis test's block is read BEFORE anything is written, so a
+        // block the reading cannot use refuses the whole call.
+        if let Some(block) = &req.hypothesis_block
+            && let Err(why) = reflow2_core::hypothesis::HypothesisTest::from_block_named(
+                &JsonValue::Object(block.clone()),
+                "hypothesis_block",
+            )
+        {
+            return Err(McpError::invalid_params(
+                format!("`add_verification`: {why}. Nothing was written."),
+                None,
+            ));
+        }
         // Every target is resolved BEFORE the create, so an unknown or
         // ambiguous target refuses the whole call rather than leaving a check
         // behind that verifies only some of what was asked.
@@ -183,6 +196,20 @@ impl ReflowService {
                 ("fixes", req.fixes.as_ref()),
             ],
         )?;
+        // A HYPOTHESIS TEST, recorded last: its kept record, status and the
+        // targets it verifies are in place, so the lock it may take reads them
+        // (reflow2_core::hypothesis).
+        let recorded = match &req.hypothesis_block {
+            Some(block) => Some(
+                g.record_hypothesis_test(
+                    &req.id,
+                    &JsonValue::Object(block.clone()),
+                    req.last_run_at.as_deref(),
+                )
+                .map_err(dyno_err)?,
+            ),
+            None => None,
+        };
         let node = g
             .get_node(reflow2_core::nodes::node::VERIFICATION, &req.id)
             .map_err(dyno_err)?
@@ -202,6 +229,12 @@ impl ReflowService {
                         .map(|(_, id)| serde_json::Value::String(id.clone()))
                         .collect(),
                 ),
+            );
+        }
+        if let (Some(obj), Some(r)) = (v.as_object_mut(), recorded) {
+            obj.insert(
+                "hypothesis_test_recorded".into(),
+                serde_json::to_value(r).map_err(ser_err)?,
             );
         }
         edges.attach(&mut v);

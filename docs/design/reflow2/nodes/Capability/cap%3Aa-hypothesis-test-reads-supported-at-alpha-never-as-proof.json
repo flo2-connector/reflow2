@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0848e83659660c4fd8300fe91f650cbc921dcec3a945ca8dadeaf70ec2a1dd22",
+  "node_id": "cap:a-hypothesis-test-reads-supported-at-alpha-never-as-proof",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-19 (branch feat/hypothesis-tests, crates/reflow2-core/src/hypothesis.rs and inference.rs). add_verification takes `hypothesis_block`: the `hypothesis_test` object of flo2-calc 0.10.0's kept record (record schema 10), validated by its path before anything is written and kept on Verification.hypothesis_test. The check is computed, so it counts only through its kept record; then a test that rejects H0 reads \"supported at α = a (p = …, the test, n = …): evidence, not proof\" and is carried (Read.evidential, like an unverified citation) by everything resting on it: proof_status `supported`, ClaimTruth `supported`, statement_reading `supported`, InferenceReading.rests_on_tests, never shown/proven/holds however the steps are confirmed; a deductive line to the same claim is preferred. A test that does not reject H0 reads \"not rejected at α … never shows H0 true\" and supports nothing. Each record assumption is written as a Constraint (taken as given, statement_kind proposition) the check DEPENDS_ON; a refuted or contested assumption leaves the test supporting nothing (unsupported, never refuted). A test used as an objection stands (contests) and never refutes. get_node on the check carries test_reading. reflow2 never re-computes the statistic and reads the block it is given, not the file's bytes.",
+    "name": "A hypothesis test reads \"supported at α\" from its kept record, never as shown or proven; its assumptions are records an objection can attack",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

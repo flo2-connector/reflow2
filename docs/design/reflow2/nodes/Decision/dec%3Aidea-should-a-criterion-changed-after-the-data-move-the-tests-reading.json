@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ca7d72e471de639e05eea9082e672f9f4df624d19bfc130b9e91cab57fbc6ae2",
+  "node_id": "dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "OPEN, for Anthony. As built on feat/hypothesis-tests (2026-10-19), a criterion changed after a test's data (α, the hypothesis, the chosen test, or the record re-run at another α) is REPORTED — the criteria_changed_after_data gap and test_reading.criteria_changed, both values and dates — and the test still reads \"supported at α\". The requirement says \"reported … nothing is refused\". Options: (a) keep it report-only (as built); (b) the test reads unknown (\"its criteria moved after the data\") until the owner acknowledges the gap with a reason, so a moved goalpost never supports a claim silently; (c) it reads supported at the ORIGINAL α only (the lock's), so a test that passes only under the moved α reads not rejected. Counter-argument to (b)/(c): a legitimate correction (a typo in α, a hypothesis reworded without changing its meaning) would unsay a valid result until someone acknowledges it.",
+    "kind": "exploratory",
+    "name": "Should a criterion changed after the data move the test's reading, or only be reported?",
+    "rationale": "A judgement call the build could not settle from the requirement's text, recorded instead of guessed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

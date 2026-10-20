@@ -143,6 +143,11 @@ readers:
   heal.rs::rule_populations: { kind: unjudged, edges: [ANTICIPATES, CONTRADICTS, DUPLICATES] }
   heal.rs::survivor_reading: { kind: not_derived, edges: [AUTHORED_BY, DUPLICATES], why: "Reads one merge candidate for the survivor ranking: counts its edges leaving DUPLICATES out (a redundancy claim is not the design using the node) and takes its earliest authored_at as a date. One node's own record, one hop; it composes no relation." }
   hierarchy.rs::move_component: { kind: unjudged, edges: [CONTAINS] }
+  hypothesis.rs::changes_to: { kind: not_derived, edges: [AT_EPOCH, CHANGED], why: "Names the ChangeEvents that CHANGED one criterion, with their dates and epoch, for the criteria-lock report. One hop, a list for a reader; it derives no relation." }
+  hypothesis.rs::criterion_nodes: { kind: not_derived, edges: [GOVERNED_BY, VERIFIES], why: "Lists one test's criteria as the design links them now: what the check VERIFIES and the Decisions it is GOVERNED_BY, one hop each. A projection for the lock; it derives no relation." }
+  hypothesis.rs::record_hypothesis_test: { kind: not_derived, edges: [CONSTRAINS, DEPENDS_ON], why: "A writer: records a test from its kept record, drawing DEPENDS_ON to each assumption and CONSTRAINS from the α Constraint its record names, reading that one CONSTRAINS only to keep one already drawn. It derives no relation." }
+  hypothesis.rs::test_assumptions: { kind: not_derived, edges: [DEPENDS_ON], why: "Lists the assumptions one test DEPENDS_ON, one hop, each with its own truth, for get_node's test_reading. It derives no relation." }
+  hypothesis.rs::test_reading: { kind: not_derived, edges: [CONSTRAINS], why: "get_node's reading of one test: reads the one CONSTRAINS from its α node to say what it spends. It derives no relation." }
   ingest.rs::ingest: { kind: unjudged, edges: [ALLOCATED_TO, CONSUMES, DEPENDS_ON, GOVERNED_BY, PROVIDES, SATISFIES, VERIFIES] }
   ingest.rs::link_fragment_epoch: { kind: unjudged, edges: [OCCURS_DURING] }
   ingest.rs::suspect_duplicate: { kind: unjudged, edges: [DUPLICATES] }

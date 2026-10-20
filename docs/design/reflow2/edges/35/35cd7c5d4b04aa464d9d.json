@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8c3c841b975c5f6fd5810be3bfceff7e8aeaf00bf003814e70980d1b14872210",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-hypothesis-tests-verdict-reads-supported-at-alpha-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

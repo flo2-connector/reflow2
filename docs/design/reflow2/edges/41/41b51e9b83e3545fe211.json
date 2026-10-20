@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:807ae4a2f492ec40a2beea4e9bf46eda2cf7a3d4bb0af7ca06ca96257fa7d920",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-a-proof-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-family-of-tests-spends-alpha-through-the-budget-rollup"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b05332ceaabb05b1088bdacd27a7c02a3e27edeca935a2ebf0885b3b281f3c2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-hypothesis-tests-verdict-reads-supported-at-alpha-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-hypothesis-tests-verdict-reads-supported-at-alpha-tests"
+}

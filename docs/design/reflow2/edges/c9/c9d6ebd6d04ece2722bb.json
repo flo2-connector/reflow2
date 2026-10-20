@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a0c1180f5d8a0ef20e62b7a997ec9ebc5f885a819338e384cf5973fe8f978dc6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:7231333a061156b3849ec903fe24fdde209015b30ff89b8a94c9602d14db58f9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reason-to-exist-rs"
+}
