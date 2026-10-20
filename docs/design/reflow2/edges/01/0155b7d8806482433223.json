@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fb6f512b43194c20f4654b2ff0ec1273d831add796c52c1cc2e0d66699bfaac6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:loop-status-names-what-has-lost-its-reason-now",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

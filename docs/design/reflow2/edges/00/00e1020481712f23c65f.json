@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:da2154e525a0dca5202f93fc3f8d8f55185c254cef43e9bdf2608451df67f01e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-what-if-from-a-statement-never-fans-down-a-sibling-decomposes"
+}

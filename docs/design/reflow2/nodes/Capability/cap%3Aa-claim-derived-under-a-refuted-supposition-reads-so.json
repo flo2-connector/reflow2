@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9993180b795989d1642f4393eb11bad54d8336924d3e22887e1188b2b471ed41",
+  "node_id": "cap:a-claim-derived-under-a-refuted-supposition-reads-so",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.rs step_reading, concluded_by_steps, objections_within). An `assumed` premise no step anywhere discharges that reads refuted makes its step not hold (`rests_on_refuted_suppositions`); the claim reads \"rests on the refuted supposition(s) S\"; an objection derived so reads `answered`. Only suppositions no step discharges, so a reductio's is never caught. The capstone's H-agile, derived under S2 after U1 refuted S2, no longer reads holds.",
+    "name": "A claim derived under an open supposition that now reads refuted says so, and no longer stands as an objection",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

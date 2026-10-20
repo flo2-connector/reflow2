@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:613f17dfeb258a881a42eb2e18d47f7fad278661165794465abe0c91160d1fd9",
+  "node_id": "cap:a-what-if-says-what-a-contested-claim-loses-and-which-objections-come-back",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.rs inference_walk_full; propagate.rs BlastRadius.objections_returning). Each row carries `conclusion_was` (holds, conditional, contested, unsupported, refuted), `conclusion_reads` may be `contested`, and `untouched_routes` names the claim's other steps the change never reaches, whatever they read. A claim that was only contested and is left with nothing is carried on like one that fell. An objection a lost reply had answered is listed in `objections_returning` with what it attacks, and those targets are reached in turn.",
+    "name": "A what-if says what a contested claim loses, names the routes it never reaches, and names each objection that comes back",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

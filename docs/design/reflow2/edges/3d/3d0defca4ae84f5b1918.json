@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:4cebac246c01295fc12d243b394235e23a2462dfc3120fa7f9f0c50c40427705",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-test-whose-criteria-moved-supports-nothing-until-acknowledged",
+  "properties": {},
+  "to_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged"
+}

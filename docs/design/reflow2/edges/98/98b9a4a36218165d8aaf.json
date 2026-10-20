@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4cc698ac7ae79db7436f1b952d8109fb9d5dd461df4b23f0dee0330d26c3bd62",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:2933da454af27d234e2ec78b770c7ef9c721a747e431d1e0ffa8706486723975",
+  "node_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "782b63df6",
+    "detected_at": "2026-10-20",
+    "name": "Phase 6, PR 3: what-ifs and what goes stale",
+    "rationale": "Phase 6's argument-gaps build list, PR 3 of 4, plus req:a-what-if-on-an-assumed-principle-shows-what-holds-only-under-it. Before this, a what-if on a principle that some objection step discharged returned no rows at all, because discharge was read globally; a passing check stayed passing however its conditions moved; and a test whose α was relaxed after the data kept counting as support. Each requirement is pinned by a class invariant over the trolley, cogito and argument-trial capstone designs and the proof trials, and each test failed on main 48f2865 first. Judgement calls are proposed, not settled: dec:idea-a-refuted-supposition-voids-only-open-suppositions. No schema type, property or enum changed (only derived declarations), so the stamp is unchanged. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "A what-if on an assumed principle now reads every position resting on it (trolley: dropping act consequentialism leaves the footbridge push unsupported while the switch turn stands on double effect); a what-if from a premise never fans down a sibling DECOMPOSES; each row says what its claim read before, what still holds it and under what; a contested claim's loss and the objections that come back are named; a passing check whose reasoned conditions lose support reads stale (get_node check_conditions); a claim derived under a refuted supposition says so; a requirement replaced through OBSOLETES reads replaced; a test whose criteria moved after its data reads unknown until acknowledged; loop_status names what has lost its reason now; a requirement's read-back follows its governing decision's chain to the evidence."
+  }
+}

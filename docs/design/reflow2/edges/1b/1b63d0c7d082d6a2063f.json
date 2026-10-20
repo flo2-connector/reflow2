@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ace5ec0533e1885024c1b98029c50a01c45b1535d4812fcfe23ba0acb146b391",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-check-whose-conditions-lose-support-reads-stale"
+}

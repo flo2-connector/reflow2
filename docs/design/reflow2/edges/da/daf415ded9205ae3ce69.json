@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9def61cec96c543f37de40d1939fae14d7f0b3eaa55417b329ff5f0223c7d44c",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-what-if-on-an-assumed-principle-reads-every-position-on-it"
+}

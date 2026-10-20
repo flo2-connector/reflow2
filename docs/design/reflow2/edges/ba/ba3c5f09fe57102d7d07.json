@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f0a45266d386c32ef1d72b1d4cdf35771aa03bbf424c9e9ec1f70b14539eaacf",
+  "edge_type": "REALIZES",
+  "from_id": "art:propagate",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-check-whose-conditions-lose-support-reads-stale"
+}

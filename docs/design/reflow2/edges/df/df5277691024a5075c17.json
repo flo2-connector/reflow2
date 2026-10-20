@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cb1d0f957bdae3deb9873706a868e78843116ac277f1642dbce5ce3b5dae4b50",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-test-whose-criteria-moved-reads-unknown-until-acknowledged-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

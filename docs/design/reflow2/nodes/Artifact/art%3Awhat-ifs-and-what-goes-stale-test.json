@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2ac77658209ad4ef3b37e227de356610c232907c492644ad36054412eea28241",
+  "node_id": "art:what-ifs-and-what-goes-stale-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Nine core tests for phase 6 PR 3: class invariants over the trolley, cogito and capstone designs and the five proof trials (what-ifs on assumed principles, premises' reach, rows' before-readings, stale checks, refuted suppositions, what has lost its reason now, a requirement's read-back to the evidence), and the measured shapes.",
+    "location": "crates/reflow2-core/tests/what_ifs_and_what_goes_stale.rs",
+    "name": "crates/reflow2-core/tests/what_ifs_and_what_goes_stale.rs",
+    "status": "realized"
+  }
+}

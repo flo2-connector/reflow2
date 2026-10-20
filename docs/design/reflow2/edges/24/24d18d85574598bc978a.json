@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b1f4fe432e5e5acda53e6e24bb5efe4f7292a6851ee4a0dd4ad18e32aea5029",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:loop-status-names-what-has-lost-its-reason-now"
+}

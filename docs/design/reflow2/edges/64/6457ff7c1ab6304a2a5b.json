@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:14419a7d131866ccd855d980f96ea361c82537a90ffca0ccaf84e06789f7619b",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-what-if-says-what-a-contested-claim-loses-and-which-objections-come-back"
+}

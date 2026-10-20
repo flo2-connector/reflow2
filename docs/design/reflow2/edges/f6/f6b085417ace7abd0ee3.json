@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7f080f480b2e33a7c222da5944c8cc5703b6d42ccb629b0b58b8cd32912e7cd7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-what-if-on-an-assumed-principle-reads-every-position-on-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

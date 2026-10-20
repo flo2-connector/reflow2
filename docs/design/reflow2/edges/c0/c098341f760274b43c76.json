@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:dc49d0fbbe0f3d6aa833c2b591c99dc6b85757097ee9567276dfbfae8b45c248",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-what-ifs-and-what-goes-stale-2026-10-20",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-test-whose-criteria-moved-supports-nothing-until-acknowledged"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c2ad00be2bedf016e096bc6edb1311576a45fdf524e19da9cad49cc938668c12",
+  "node_id": "art:a-test-whose-criteria-moved-reads-unknown-until-acknowledged-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two MCP tests on a real flo2-calc record: α relaxed after the data stops the claim on the test reading supported until the gap is acknowledged with a reason, and a change before the data changes nothing.",
+    "location": "crates/reflow2-mcp/tests/a_test_whose_criteria_moved_reads_unknown_until_acknowledged.rs",
+    "name": "crates/reflow2-mcp/tests/a_test_whose_criteria_moved_reads_unknown_until_acknowledged.rs",
+    "status": "realized"
+  }
+}

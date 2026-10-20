@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:632839f4b8a7dd3d16aac478b2ce3b461ca5ee69537654844a1dcfc9ff32298c",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:what-ifs-and-what-goes-stale-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:what-ifs-and-what-goes-stale-tests"
+}

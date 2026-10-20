@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:28b1ff922c77157d899c8478e64699499775abc7ae0b584d4b227641a081972e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-refuted-supposition-voids-only-open-suppositions",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
