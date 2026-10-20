@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc80299b6428d1302e96adcc4edbd5d07dd2ea0daca34983c6f32f3d3837aad0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-hypothesis-tests-verdict-reads-supported-at-alpha-tests"
+}

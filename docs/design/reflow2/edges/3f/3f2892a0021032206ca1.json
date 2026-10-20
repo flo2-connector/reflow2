@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa2a8c49ee7d6474143e187e68c41f55673424bd75a71258fbc71d92aeb5e315",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:f95350fe44964b72a25878a50eec68bd98796e495c812bd716c1f78073ca25b1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9604c1cfe9ebaaa8026f2f887aa20de924ee0853469ac56dd8c6058cdd53366a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:e3c9e605b34c070bf4f6f62f58a4c0571539b2a8dad7ce5518748906e1940cbf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:gap-surfacing-doc"
+}

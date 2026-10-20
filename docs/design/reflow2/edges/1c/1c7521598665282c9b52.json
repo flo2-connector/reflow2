@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:961a99f0c9969779b73b87bc668c757bfaeb7fec38f8cab4742630f4c0f3b9a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:1e169f3cd7641f551e1ba245c94fcadcc608cca7791824b85ccceafa94ef5ad5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:vocabulary-reach-baseline"
+}

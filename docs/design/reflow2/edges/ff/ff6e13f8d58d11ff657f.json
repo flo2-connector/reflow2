@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:27d08be844cec84025cece6242c602e49874f0cafea402eb5d71c3e5925c3c3c",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-tests-criteria-are-locked-when-its-data-arrive-and-a-later-change-is-reported",
+  "properties": {},
+  "to_id": "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported"
+}

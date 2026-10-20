@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7557d3142176938f2bdaf98ba5939213e599d4a83f0e659ee93358fd775e118e",
+  "edge_type": "REALIZES",
+  "from_id": "art:hypothesis-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-tests-criteria-are-locked-when-its-data-arrive-and-a-later-change-is-reported"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b7d36f7d3466182946ad0b564fa669b9c87764e21b1ac4010f8dc8bdaa60d66e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-00e4e46084cae123",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6698b1123dfedf59eade5b063d90030495c540d3219f951187362ffa693dda94",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hypothesis-rs"
+}

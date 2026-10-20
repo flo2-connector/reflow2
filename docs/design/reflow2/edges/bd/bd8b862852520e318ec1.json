@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4e56f0d994224910f8a9581dc41952adbe5cace6613ea9a2d924fc3c3afbd40f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-hypothesis-test-reads-supported-at-alpha-never-as-proof",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

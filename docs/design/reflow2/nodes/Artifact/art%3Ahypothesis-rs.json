@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b19bc82851362bd1f66bc99ddf166ec8e281dd2425db6df886b34b81ff892778",
+  "node_id": "art:hypothesis-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "location": "crates/reflow2-core/src/hypothesis.rs",
+    "name": "crates/reflow2-core/src/hypothesis.rs — a statistical hypothesis test read from its kept flo2-calc record: the reading, the criteria lock, the α spend",
+    "status": "realized"
+  }
+}

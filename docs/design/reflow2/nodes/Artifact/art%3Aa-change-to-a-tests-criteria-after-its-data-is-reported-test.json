@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:227aa41b26a97e064d0f251196b5246444c005755332bbf60671e6c96e48d76f",
+  "node_id": "art:a-change-to-a-tests-criteria-after-its-data-is-reported-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "location": "crates/reflow2-mcp/tests/a_change_to_a_tests_criteria_after_its_data_is_reported.rs",
+    "name": "crates/reflow2-mcp/tests/a_change_to_a_tests_criteria_after_its_data_is_reported.rs",
+    "status": "realized"
+  }
+}

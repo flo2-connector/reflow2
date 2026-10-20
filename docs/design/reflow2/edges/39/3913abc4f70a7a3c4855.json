@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ef5f32dc4f6b808ee099686f0e922933e78e30ebda0f6dc369e2f253a9955a58",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p5-hypothesis-tests-reflow2-half-2026-10-19",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:e4ebdf09aee2d70e5fed50f8a32ab3fdbda459ee954b2d12972f8df90af8dea3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

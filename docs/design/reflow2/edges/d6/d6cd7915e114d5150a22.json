@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b8f851200fd23cf5a93f3c9c717f3f1dc8e7efeb41a57d59dda924e87c65b1b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-change-to-a-tests-criteria-after-its-data-is-reported-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-change-to-a-tests-criteria-after-its-data-is-reported-tests"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1662643390ec4a9c8d803b1c22f26edc7e0959cc6029a77810032b459976249",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "fact:the-stage-5-re-read-ran-on-0-88-0-on-six-working-assumptions-and-reads-unknown-throughout-2026-10-19",
+  "properties": {
+    "evidence": "The still_supported_by part of gap (3) is this requirement's class; its statement now carries the stage-5 instance."
+  },
+  "to_id": "req:a-what-if-shows-what-a-premise-costs-a-contested-conclusion-and-objections-that-return"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e8399b3ad8c961237e741fe6eb59f822955bdf6a56723fb476e7876c4ca354e6",
+  "node_id": "cap:a-family-of-tests-spends-alpha-through-the-budget-rollup",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-19 (branch feat/hypothesis-tests). Mostly the served recipe (design-a-proof §4a) over budget.rs: the family-wise error rate is a Constraint with a limit and composition sum, each test's α names it as its source, and budget_report sums the shares. Code only where the rollup cannot: recording a test draws CONSTRAINS from the α Constraint its record names, with the record's α as `contribution` when that Constraint has a limit (basis evidence, source the check; a CONSTRAINS already drawn is kept, never overwritten), so a test added later is in the sum and visibly over; and a test run at more than the share it spends reads unknown (hypothesis.rs alpha_overspent). Bonferroni shares are rounded down; Holm and Benjamini–Hochberg are not sums and are recorded as the procedure's Decision while the budget holds Bonferroni shares.",
+    "name": "A family of tests spends α through the budget rollup: each test spends the α it ran at, a later one is in the sum, and one run above its share reads unknown",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

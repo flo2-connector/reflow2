@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:48d57a8ba5bab511b721cd16d10e8b01257193e816ea1db2f1c491d005f96e0e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-family-of-tests-spends-alpha-through-the-budget-rollup",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

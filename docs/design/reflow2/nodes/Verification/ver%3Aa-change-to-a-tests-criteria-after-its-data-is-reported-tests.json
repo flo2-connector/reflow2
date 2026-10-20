@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:3b4335226de06b4e571368272391982555b1346ab402c854189ad63cc290d8b9",
+  "node_id": "ver:a-change-to-a-tests-criteria-after-its-data-is-reported-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "The class over every kind of criterion changed after the data — α (the Constraint's limit 0.05 → 0.1), the hypothesis's statement, the test Decision's decision, and the record re-attached at another α — each reported on test_reading.criteria_changed with both values and the attach date, and named in the criteria_changed_after_data gap, while every write lands. The same change made before the data is not reported. A ChangeEvent that changed α is named with its date.",
+    "findings": "3 of 3 pass on the branch. On main at 1b6604801 all failed: add_verification refused `hypothesis_test` as not a parameter of its published input schema.",
+    "kind": "verification",
+    "last_run_at": "2026-10-19",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_change_to_a_tests_criteria_after_its_data_is_reported.rs",
+    "method": "test",
+    "name": "A change to a test's criteria after its data is reported (3 MCP tests)",
+    "status": "passing"
+  }
+}

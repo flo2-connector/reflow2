@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4a7fa1fd9263a76a1241285400845556df3dae3f41e966c0055c2276f1051c89",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-change-to-a-tests-criteria-after-its-data-is-reported-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
