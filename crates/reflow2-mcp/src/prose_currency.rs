@@ -188,7 +188,13 @@ fn excerpt(s: &str) -> String {
 /// however exactly it matched the incident. Tuned against the live design:
 /// `unresolved` and `tbd` were dropped for firing on prose about everything
 /// else, and each addition costs a false positive somewhere.
-const OPEN_QUESTION_MARKERS: [&str; 9] = [
+///
+/// `awaiting the owner` and `proposed, awaiting` (2026-10-20, item 15 of
+/// req:small-read-back-faults-from-the-cogito-trial-are-fixed): a decision's
+/// OWN text written while it was proposed ("PROPOSED…, AWAITING THE OWNER")
+/// went unread once it was accepted, because only "open" phrasing was looked
+/// for.
+const OPEN_QUESTION_MARKERS: [&str; 11] = [
     "not yet decided",
     "to be decided",
     "not been decided",
@@ -198,6 +204,8 @@ const OPEN_QUESTION_MARKERS: [&str; 9] = [
     "open question",
     "not settled",
     "awaiting a decision",
+    "awaiting the owner",
+    "proposed, awaiting",
 ];
 
 /// Prose fields a governed node may carry, first non-empty wins.

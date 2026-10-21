@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3cdae164c7555b4184b1e0e9c311b38d087ac7bd56fb8b8217ce23e6bb755178",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-principle-can-say-it-is-silent-on-a-case"
+}

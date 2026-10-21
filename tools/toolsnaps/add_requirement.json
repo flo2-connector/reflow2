@@ -198,6 +198,25 @@
           "null"
         ]
       },
+      "same_formula_as": {
+        "default": null,
+        "description": "THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula\nderived under several suppositions (⊥ in each reductio) is one record\nper occurrence, each naming the first; the read-back groups them. It\nchanges no truth. Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "silent_on": {
+        "default": null,
+        "description": "THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither\nfor nor against. Read back on the claim. Overwrites; omitted: nothing\nis written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "source": {
         "default": null,
         "description": "WHO OR WHAT STATED THIS NEED — a person, a regulation, a stakeholder,\nor ANOTHER DESIGN that levied it on this one.\n\n⭐ IT IS THE SECOND HALF OF THE MECHANISM THIS DESIGN ALREADY DOCUMENTS\nFOR A CONSUMER'S ASK. `dec:idea-gap-flows-to-the-dependency` says a\nlevied requirement is expressible today as \"add_requirement (lands\nproposed) + authored_by <them> role=author + source '<their design>' +\nprovenance imported\" — and until 2026-09-22 this constructor accepted\nNEITHER of the last two, so the documented path could only be finished\nthrough the generic escape hatch.\n\nMEASURED the day it was added: of 263 Requirements in this design,\n**one** carried a `source` — the one written by hand that afternoon,\nthrough `create_node`, while following the design's own instructions.\nThe property was declared, the instruction existed, and the tool could\nnot write it.",

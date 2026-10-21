@@ -1685,6 +1685,30 @@ fn decorate(
         if let Some(reading) = inference_reading {
             obj.insert("inference_reading".to_string(), reading);
         }
+        // EVERY FOUNDATION HOLDS AND NO DERIVATION DOES: both are true, and
+        // the reply says why, rather than showing "holds" beside "no
+        // derivation holds" (item 13 of req:small-read-back-faults-from-the-
+        // cogito-trial-are-fixed, the capstone).
+        let all_foundations_hold = foundations.as_ref().is_some_and(|f| {
+            f["foundations"]
+                .as_array()
+                .is_some_and(|a| !a.is_empty() && a.iter().all(|x| x["truth"] == "holds"))
+        });
+        let not_derived = proof_status
+            .as_ref()
+            .is_some_and(|p| matches!(p["status"].as_str(), Some("unproven" | "contested")));
+        if all_foundations_hold && not_derived {
+            obj.insert(
+                "foundations_and_proof".to_string(),
+                json!(
+                    "Every foundation holds, and no derivation does: both are true. What fails is \
+                     between them — a STEP: its rule over its premises, a premise it concludes on \
+                     the way, an objection to the step or to a claim on the way, or a gate (a case \
+                     split not declared exhaustive, a generalization, the step's rule node). \
+                     reasoning_report on this claim reads each step."
+                ),
+            );
+        }
         if let Some(f) = foundations {
             obj.insert("foundations".to_string(), f);
         }
@@ -1956,16 +1980,63 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     };
     let claims = o.remove("claims").unwrap_or(JsonValue::Null);
     let page = o.remove("page").unwrap_or(JsonValue::Null);
-    let room = budget.saturating_sub(chars_of(&claims) + chars_of(&page) + 32);
-    let mut rest = crate::reply_budget::bound_reply(
-        JsonValue::Object(std::mem::take(o)),
-        room,
-        "The claims are whole; what was cut is outside them. Read one claim with \
-         reasoning_report on its id, or pass a larger budget_chars.",
-    );
-    if let Some(r) = rest.as_object_mut() {
-        r.insert("claims".into(), claims);
-        r.insert("page".into(), page);
+    let summary = JsonValue::Object(std::mem::take(o));
+    let hint = "The claims are whole; what was cut is outside them. Read one claim with \
+                reasoning_report on its id, or pass a larger budget_chars.";
+    let whole = |room: usize| -> JsonValue {
+        let mut rest = crate::reply_budget::bound_reply(summary.clone(), room, hint);
+        if let Some(r) = rest.as_object_mut() {
+            r.insert("claims".into(), claims.clone());
+            r.insert("page".into(), page.clone());
+        }
+        rest
+    };
+    // THE SUMMARY GETS EVERY CHARACTER THE CLAIMS LEAVE (items 5 and 7 of
+    // req:small-read-back-faults-from-the-cogito-trial-are-fixed): the room was
+    // estimated once, the budget block's own size came out of it, and with
+    // budget_chars 8,000 the cogito trial got a 4,800-character reply with 17
+    // prose fields blanked — and a note naming an internal budget, down to "a
+    // budget of 0". The room now grows by the slack the reply leaves, and the
+    // note names the caller's budget.
+    let mut room = budget.saturating_sub(chars_of(&claims) + chars_of(&page) + 32);
+    let mut out = whole(room);
+    for _ in 0..6 {
+        let used = chars_of(&out);
+        if used >= budget || room >= budget {
+            break;
+        }
+        let grown = (room + (budget - used)).min(budget);
+        let tried = whole(grown);
+        if chars_of(&tried) > budget {
+            break;
+        }
+        room = grown;
+        out = tried;
     }
-    rest
+    while room > 0 && chars_of(&out) > budget {
+        room = room.saturating_sub((chars_of(&out) - budget).max(64));
+        out = whole(room);
+    }
+    let reply_chars = chars_of(&out);
+    if let Some(b) = out.get_mut("budget").and_then(|b| b.as_object_mut()) {
+        let inner = b
+            .get("budget_chars")
+            .and_then(|v| v.as_u64())
+            .unwrap_or(room as u64);
+        b.insert("budget_chars".into(), json!(budget));
+        b.insert("summary_room".into(), json!(inner));
+        b.insert("reply_chars".into(), json!(reply_chars));
+        if let Some(note) = b.get("note").and_then(|n| n.as_str()) {
+            let note = note.replacen(
+                &format!("against a budget of {inner},"),
+                &format!(
+                    "outside its whole claims, against the {inner} characters the claims leave of \
+                     budget_chars {budget},"
+                ),
+                1,
+            );
+            b.insert("note".into(), json!(note));
+        }
+    }
+    out
 }

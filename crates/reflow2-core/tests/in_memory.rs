@@ -234,6 +234,7 @@ mod search;
 mod seat_liveness_shared;
 mod serialize;
 mod sibling_merge;
+mod small_faults_and_one_formula;
 mod stale_seat;
 mod structural;
 mod structure_with_no_function_is_asked_about;

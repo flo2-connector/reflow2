@@ -710,6 +710,10 @@ impl DesignGraph {
             if c.properties.get("limit").and_then(Value::as_f64).is_none() {
                 continue;
             }
+            // A SETPOINT is a value held, not a budget: it has nothing to close.
+            if c.properties.get("direction").and_then(Value::as_str) == Some("setpoint") {
+                continue;
+            }
             swept += 1;
             let r = self.budget_report(&c.node_id)?;
             let margin = c.properties.get("margin").and_then(Value::as_f64);

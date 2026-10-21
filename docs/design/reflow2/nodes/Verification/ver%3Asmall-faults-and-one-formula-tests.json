@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ed25234f2d60c33950de0a0b7b79ab9186e5bacc3a49b1b7bcb833708f9277ea",
+  "node_id": "ver:small-faults-and-one-formula-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/small_faults_and_one_formula.rs: no stated foundation listed unsupported (every fixture); a generated step name follows its premises; a kept calc record is an executable form and a run fed back (the logic rung's four truth tables); a setpoint is never a budget; a walk from a check never crosses a GOVERNED_BY (every check of every fixture); the logic rung's 21 ⊥ group as one formula with no truth moving; what rests on an undocumented report reads conditional (capstone). All seven failed on main 9b7b3bd.",
+    "findings": "7 passed on feat/small-faults-and-one-formula (10a0fd9e8); 7 failed on main 9b7b3bd; core suite passing.",
+    "kind": "verification",
+    "last_run_at": "2026-10-21",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/small_faults_and_one_formula.rs",
+    "method": "test",
+    "name": "Small faults and one formula: seven core class tests",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b42531f0be033d9fcb3960c5133ac5a01c078c5fce272fd2887da988c786b3f",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-an-argument-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-principle-can-say-it-is-silent-on-a-case"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:71313c52e726f40c83ccb7d41226ea15c23f4d3206ac14615ca89d3353072f85",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a9a09d0c8cdd7f9a7a7fea8e3fdf22d85fcd448ed2d3f32bdd9d3913194fac4f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:prose-currency"
+}

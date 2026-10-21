@@ -167,6 +167,7 @@ mod search_first_fires_at_the_tool;
 mod served_skills;
 mod sessions_cannot_cross_designs;
 mod settling_a_decision_records_which_option_won;
+mod small_faults_are_fixed_on_the_wire;
 mod the_argument_check_agrees_with_the_deserialiser;
 mod the_changelog_balance_only_adds_to_the_reply;
 mod the_cli_describes_a_tool_with_its_schema_and_lessons;

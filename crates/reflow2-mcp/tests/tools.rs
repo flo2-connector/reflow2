@@ -98,6 +98,8 @@ async fn seeded() -> ReflowService {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));
@@ -250,6 +252,8 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));
@@ -1418,6 +1422,8 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));
@@ -1553,6 +1559,7 @@ async fn asking_a_gap_records_the_question_it_asked() {
         answered_by: None,
         answered_at: None,
         record: None,
+        also_records: None,
         record_type: None,
         note: None,
     })));
@@ -1591,6 +1598,7 @@ async fn asking_a_gap_records_the_question_it_asked() {
             answered_by: None,
             answered_at: None,
             record: None,
+            also_records: None,
             record_type: None,
             note: None,
         }))
@@ -2770,6 +2778,8 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));
@@ -2808,6 +2818,8 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));
@@ -3968,6 +3980,8 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));

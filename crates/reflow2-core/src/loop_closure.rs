@@ -106,7 +106,16 @@ impl DesignGraph {
                 claiming += 1;
             }
             let outcome = str_prop(&v, "last_reconciled_outcome");
-            if outcome.is_some() || mismatched.contains(&v.node_id) {
+            // A COMPUTED CHECK'S KEPT RECORD IS A RUN THAT CAME BACK (item 11
+            // of req:small-read-back-faults-from-the-cogito-trial-are-fixed):
+            // its result is the calculator's own output, pinned, never a
+            // status somebody typed — the logic rung's truth tables read
+            // "never closed" while every one was such a record.
+            if outcome.is_some()
+                || mismatched.contains(&v.node_id)
+                || ((status == "passing" || status == "failing")
+                    && self.computed_with_a_kept_record(&v.node_id, &v.properties)?)
+            {
                 compared += 1;
             }
             // RUN evidence only. A check somebody TYPED as `failing` is a

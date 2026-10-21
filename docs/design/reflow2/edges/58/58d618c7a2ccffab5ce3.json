@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:7026ee5c951fba825374ce0f51c873189b2a7ccd0fea1dbbef68e517a2b56ea4",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:small-faults-are-fixed-on-the-wire-tests",
+  "properties": {},
+  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
+}

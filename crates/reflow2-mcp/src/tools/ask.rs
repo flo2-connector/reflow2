@@ -435,6 +435,15 @@ impl ReflowService {
             )?),
             None => None,
         };
+        // Every other record it became, typed BEFORE anything is written, so a
+        // missing one refuses the whole call.
+        let mut also: Vec<(String, String)> = Vec::new();
+        for rid in req.also_records.iter().flatten() {
+            also.push((
+                resolve_node_type(&g, None, rid, "also_records")?,
+                rid.clone(),
+            ));
+        }
         let found = g
             .answer_question_by(
                 id,
@@ -465,6 +474,19 @@ impl ReflowService {
             ));
         }
         let mut reply = json!({ "answered": true, "question": id });
+        if !also.is_empty() {
+            let qid = g
+                .question_named(id)
+                .map_err(dyno_err)?
+                .unwrap_or_else(|| id.to_string());
+            let mut drawn = Vec::new();
+            for (ty, rid) in &also {
+                g.answers(ty, rid, &qid, req.note.as_deref())
+                    .map_err(dyno_err)?;
+                drawn.push(rid.clone());
+            }
+            reply["answers_also_drawn_from"] = json!(drawn);
+        }
         match req.answered_by.as_deref() {
             Some(who) => reply["answered_by"] = json!(who),
             None => {
@@ -490,7 +512,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Withdraw a question asked in error or overtaken by events. Kept in the graph, not deleted. \u{1f6d1} THIS IS NOT HOW YOU FIX BAD WORDING, AND THERE IS NO TOOL THAT IS. A Question records WHAT WAS ASKED, and the answer stored beside it was given to those exact words \u{2014} so editing it afterwards would make the record a claim about what somebody wishes they had asked. The immutability is deliberate, not a missing feature: two projects went looking for an edit tool in the 2026-09-02 reports and the absence cost them more than the wording did. IF THE PHRASING CAME OUT AS RAW DETECTOR JARGON, the cause was almost certainly the replayed gap being mutilated between the two passes \u{2014} fixed 2026-09-02, so asking again now produces the phrasing you meant. Withdraw is for a question that should not have been asked or no longer applies; a question asked BADLY is a different fact. \
+        description = "Withdraw a question asked in error or overtaken by events. Kept in the graph, not deleted. \u{1f6d1} THIS IS NOT HOW YOU FIX BAD WORDING, AND THERE IS NO TOOL THAT IS. A Question records WHAT WAS ASKED, and the answer stored beside it was given to those exact words \u{2014} so editing it afterwards would make the record a claim about what somebody wishes they had asked. The immutability is deliberate, not a missing feature: two projects went looking for an edit tool in the 2026-09-02 reports and the absence cost them more than the wording did. IF THE PHRASING CAME OUT AS RAW DETECTOR JARGON, the cause was almost certainly the replayed gap being mutilated between the two passes \u{2014} fixed 2026-09-02, so asking again now produces the phrasing you meant. Withdraw is for a question that should not have been asked or no longer applies; a question asked BADLY is a different fact. Name it by the `gap_id` it was asked about or by its own `question_id` (one asked with ask_question has no gap). \
                        Ask for this to retract a question.",
         title = "Withdraw a Question",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -501,6 +523,27 @@ impl ReflowService {
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let found = g.withdraw_question(&req.gap_id).map_err(dyno_err)?;
+        if !found {
+            // Say what exists, so a wrong id is fixed in one round trip
+            // rather than read as "nothing to withdraw".
+            let mut known = g.known_question_ids().map_err(dyno_err)?;
+            known.sort();
+            known.truncate(20);
+            return Err(McpError::invalid_params(
+                format!(
+                    "no question is asked about `{}` or has it as its id: pass the `gap_id` it \
+                     was asked about or its `question_id` (open_questions lists both). Questions \
+                     here: {}",
+                    req.gap_id,
+                    if known.is_empty() {
+                        "none".to_string()
+                    } else {
+                        known.join(", ")
+                    }
+                ),
+                None,
+            ));
+        }
         ok_json(json!({ "withdrawn": found, "gap_id": req.gap_id }))
     }
 }

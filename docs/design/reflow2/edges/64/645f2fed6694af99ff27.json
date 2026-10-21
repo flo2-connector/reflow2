@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3db28a31789e6905918dbbe78b7e337e74d45521a20901eeee79dacdd8eeacc1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 16,
+    "action": "modified",
+    "checksum_after": "sha256:e248a5e469c74409caf42b64b3e312a432ac2b660bd16c315af4fb2a7c9771a8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

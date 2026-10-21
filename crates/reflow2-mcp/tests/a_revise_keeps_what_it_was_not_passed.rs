@@ -93,6 +93,9 @@ const CONTEXT: &[(&str, &str, &str)] = &[
     ("add_readiness", "target_id", "req:seed"),
     // Validated against a value set the schema does not publish.
     ("add_requirement", "provenance", "imported"),
+    // A node reference: the formula an occurrence names must exist.
+    ("add_requirement", "same_formula_as", "req:seed"),
+    ("add_constraint", "same_formula_as", "req:seed"),
 ];
 
 /// Enum values a tool publishes and then refuses on this path, with the reason

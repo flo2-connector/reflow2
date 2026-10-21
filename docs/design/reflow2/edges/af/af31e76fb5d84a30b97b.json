@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5336af37befa9341219cfd3d7235f5c617fa3c9cd026c79d1e3685f7c5416fa9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:closure",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

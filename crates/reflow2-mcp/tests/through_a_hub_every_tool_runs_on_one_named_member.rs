@@ -53,11 +53,17 @@ fn declares_member(tool: &Value) -> bool {
 }
 
 /// Every whole string anywhere in `v`.
+/// Every string value in `v` that stands where an id may — never a NAME, which
+/// is words even when the words are the node's own id (a node named by its id
+/// keeps that name through a hub: phase 6 PR 5).
 fn strings(v: &Value, out: &mut Vec<String>) {
     match v {
         Value::String(s) => out.push(s.clone()),
         Value::Array(items) => items.iter().for_each(|i| strings(i, out)),
-        Value::Object(o) => o.values().for_each(|i| strings(i, out)),
+        Value::Object(o) => o
+            .iter()
+            .filter(|(k, _)| *k != "name" && !k.ends_with("_name"))
+            .for_each(|(_, i)| strings(i, out)),
         _ => {}
     }
 }

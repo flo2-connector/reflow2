@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a4066142710a54212c940e49f919970766c7e6b8b221288fd335d25048f05ef2",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
+}

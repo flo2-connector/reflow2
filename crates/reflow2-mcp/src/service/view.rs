@@ -648,10 +648,15 @@ pub(super) fn prefix_held_values(
                 .cloned()
                 .collect();
             for (k, val) in o.iter_mut() {
+                // A NAME is words, even when the words are the id: a node named
+                // by its own id read "reflow2:req:x" as its name through a hub
+                // (phase 4's small fault, folded into phase 6 PR 5).
                 if elsewhere.contains(k)
                     || k == ACROSS_DESIGNS
                     || k.ends_with("graph_id")
                     || k.ends_with("graph_ids")
+                    || k == "name"
+                    || k.ends_with("_name")
                 {
                     continue;
                 }
@@ -1203,6 +1208,26 @@ fn prefixed_sentence(s: &str, graph_id: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// A NAME IS WORDS, even when the words are the node's own id: a held id
+    /// under any other key is the member's and gets its prefix, and a `name`
+    /// (or `<x>_name`) is left as written. Phase 4 saw a node named by its id
+    /// read back as "reflow2:req:x" through a hub; folded into phase 6 PR 5.
+    #[test]
+    fn a_name_equal_to_its_id_is_never_prefixed() {
+        let mut v = json!({
+            "node": {"node_id": "req:x", "name": "req:x"},
+            "other": "req:x",
+            "rows": [{"premise_name": "req:x", "premise": "req:x"}],
+        });
+        let mut holds = |s: &str| s == "req:x";
+        prefix_held_values(&mut v, "G", &mut holds);
+        assert_eq!(v["node"]["name"], "req:x", "{v:#}");
+        assert_eq!(v["rows"][0]["premise_name"], "req:x", "{v:#}");
+        assert_eq!(v["other"], "G:req:x", "{v:#}");
+        assert_eq!(v["rows"][0]["premise"], "G:req:x", "{v:#}");
+        assert_eq!(v["node"]["node_id"], "G:req:x", "{v:#}");
+    }
 
     #[test]
     fn the_prefix_rule_names_ids_id_lists_and_edge_sentences_and_nothing_else() {

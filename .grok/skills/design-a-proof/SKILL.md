@@ -271,5 +271,7 @@ each to the owner.
   the word of the record that says so.
 - A definition taken as given is the reasoning's starting point by choice; nothing here says it
   is the right one.
-- One formula under several suppositions is still one statement per occurrence: a ⊥ shared by
-  two reductios closes a circle the design refuses, so record each derived contradiction apart.
+- One formula under several suppositions is one statement per occurrence: a ⊥ shared by two
+  reductios closes a circle the design refuses. Record each derived contradiction apart, and give
+  every one after the first `same_formula_as` naming the first; the read-back groups them under
+  `formulas`.

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b255eafdf4c263f986ec6850f040f6f634afda920ee1dc733b435b66b481eaf1",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-formula-is-one-record-per-occurrence-naming-its-formula"
+}

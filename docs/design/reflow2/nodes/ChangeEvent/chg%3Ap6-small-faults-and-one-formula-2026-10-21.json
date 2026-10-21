@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:508de90b8c89cc22db7de5f1c8496f8faa6f61912662a1608474670b687dee4d",
+  "node_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "10a0fd9e8",
+    "detected_at": "2026-10-21",
+    "name": "Phase 6, PR 5: small faults and one formula",
+    "rationale": "Phase 6's last PR: req:small-read-back-faults-from-the-cogito-trial-are-fixed; item 3 of req:natural-deduction-gaps-from-the-logic-rung-are-closed as dec:idea-one-formula-under-several-suppositions-is-one-node-or-one-per-occurrence chose (b); and dec:idea-what-rests-on-unsourced-evidence-reads-supported-or-conditional chose (b), which changes what #782 built (the capstone's A3 consistency check, resting on the undocumented R4, now reads conditional). dec:idea-an-objection-resting-on-evidence-contests-or-refutes chose (a), as built. Each test failed on main 9b7b3bd first. The schema widened (direction setpoint; Constraint.source; silent_on; same_formula_as), so the stamp moves. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "The trials' small faults 1–15 (stated foundations not unsupported; generated step names follow premises; source text noted; one answer from several records; reasoning_report spends and names its budget; self-asked questions withdrawn by id; silent_on; session counts say when uncounted; kept calc records are executable and fed back; setpoint and source on constraints; foundations-and-proof note; a check's walk never crosses GOVERNED_BY; a settled decision's own PROPOSED text caught), the hub's name-prefix fault, one formula as one record per occurrence (same_formula_as, read-back `formulas`), and what rests on an undocumented report reads conditional on it."
+  }
+}

@@ -514,17 +514,33 @@ impl ReflowService {
                     )),
                 );
             }
+            // A SERVER THAT HAS SEEN ONLY THIS CALL CANNOT COUNT A SESSION (item
+            // 10 of req:small-read-back-faults-from-the-cogito-trial-are-fixed:
+            // through a hub on flo2.io the block read `writes: 0` after 60–150
+            // writes). The count is per server instance; one that began with
+            // this call says it counted nothing rather than reporting a zero
+            // that reads as "this session wrote nothing".
+            let counted = reads + writes > 1;
             if let Some(obj) = payload.as_object_mut() {
-                obj.insert(
-                    "session".into(),
-                    json!({
+                obj.insert("session".into(), {
+                    let mut b = json!({
                         "seat": self.seat.id().to_string(),
                         "reads": reads,
                         "writes": writes,
                         "read_only": self.is_read_only(),
                         "reads_before_a_write_is_owed": READS_BEFORE_A_WRITE_IS_OWED,
-                    }),
-                );
+                        "counted": counted,
+                    });
+                    if !counted {
+                        b["note"] = json!(
+                            "this server instance has seen no call before this one, so it \
+                                 cannot count the session: a gateway or a per-request transport \
+                                 may start one per call. `reads` and `writes` here say nothing \
+                                 about what the session wrote."
+                        );
+                    }
+                    b
+                });
             }
         }
         // THE LENS RIDES THIS REPLY TOO, and the reason is a field report.

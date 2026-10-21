@@ -110,6 +110,10 @@ NON_TOOL_TERMS = {
     "reported_at",
     "rule_node",
     "source_reliability",
+    # Phase 6 PR 5: the occurrence's formula, and a principle's silence.
+    "formulas",
+    "same_formula_as",
+    "silent_on",
     # a proof states what it really does (2026-10-18, phase 3): the statement
     # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
     # statement reads (`statement_reading`: `taken_as_given`, `cited`,

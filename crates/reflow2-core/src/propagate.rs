@@ -531,6 +531,20 @@ impl DesignGraph {
                 }
                 let next_climbed =
                     climbed || (decomposes && nb.hop.direction == ImpactDirection::Upstream);
+                // A PATH THAT LEFT A CHECK FOR WHAT IT CHECKS NEVER CROSSES A
+                // GOVERNED_BY (item 14 of req:small-read-back-faults-from-the-
+                // cogito-trial-are-fixed: from the capstone's threat test the
+                // radius climbed VERIFIES, then GOVERNED_BY up to a Decision and
+                // down to every requirement it governs, at distance 4–5). A
+                // check is evidence about what it checks and what that delivers;
+                // the Decision that governs them is not changed by a test.
+                if nb.hop.edge_type == edge::GOVERNED_BY
+                    && via.iter().any(|h| {
+                        h.edge_type == edge::VERIFIES && h.direction == ImpactDirection::Upstream
+                    })
+                {
+                    continue;
+                }
                 if visited.contains_key(&nb.id) {
                     // BFS: first visit is the shortest path. A node reached
                     // first one way is walked on again the first time another

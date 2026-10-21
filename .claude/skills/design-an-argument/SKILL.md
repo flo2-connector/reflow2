@@ -30,7 +30,8 @@ words, because the position or objection may already exist under another name.
   the other") is a Constraint (`add_constraint`) with `statement_kind` `proposition` and
   `taken_as_given`. It reads taken as given: a stated foundation. Give it no `limit`.
 - **A principle** ("minimise deaths", "do not use a person merely as a means") is a Constraint
-  too, with `statement_kind` `proposition`. It is CHOSEN, not shown, so do not mark it taken as
+  too, with `statement_kind` `proposition`. One that gives no verdict on a case lists the case in
+  `silent_on`. It is CHOSEN, not shown, so do not mark it taken as
   given: each step that applies it takes it up in `assumed` (section 3). Every position derived
   from it then reads `conditional` on it — "holds if this principle is accepted" — which is what
   an argument for and against says.
@@ -41,7 +42,8 @@ words, because the position or objection may already exist under another name.
 - **A report, study or measurement** is `statement_kind` `evidence` ("the report says X"), with
   `source_reliability` (A–F), `information_credibility` (1–6) and `reported_at`. Register its
   source as an Artifact with a checksum that DOCUMENTS it: it then reads `cited_as_evidence`, and
-  what rests on it reads `supported`, never proven. A judgement drawn from it is `judgement`,
+  what rests on it reads `supported`, never proven. Until then what rests on it reads
+  `conditional` on the report. A judgement drawn from it is `judgement`,
   with `confidence` (low, moderate, high). Evidence about what people judge is descriptive: never
   a premise of a position about what is right.
 

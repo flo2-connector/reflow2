@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:4ec1832bb69759b9f080b807f36cf2e313f5d058f4bf530a0af7e37e1c606f5e",
+  "content_hash": "sha256:c57384914d3b13e53cb8f4d28ae8c9156a3af9b2555bd4bf4f50b1e86155c41c",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-an-objection-resting-on-evidence-contests-or-refutes",
+  "prev_item_hash": "sha256:4ec1832bb69759b9f080b807f36cf2e313f5d058f4bf530a0af7e37e1c606f5e",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

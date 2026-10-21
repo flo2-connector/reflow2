@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:381531d8f892049217e04ae7813cf46a709a59afa605bdd288afa1c170771256",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce4f2f6b6688769d877d958677834eb9d3ff3abc7aa5cbfaa265ece3995b4235",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:small-faults-are-fixed-on-the-wire-tests"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ea2ad6455ae034ab509c81f1674c1b39c830105b16514c8803eec27888cbd7e7",
+  "node_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-21 (item 12 of req:small-read-back-faults-from-the-cogito-trial-are-fixed; budget.rs, closure.rs, inference.rs constraint_truth): direction `setpoint` (a test parameter such as \"carrier 9.4 GHz\"): budget_report reads it ungated, the closure budgets leg skips it, and it holds as a value, never exceeded. add_constraint takes `source`, stored on the Constraint. A limit with no direction still reads as a maximum.",
+    "name": "A constraint can be a setpoint — a value held, never a budget — and name its source",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

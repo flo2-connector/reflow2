@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:69a417e4c27f5272d1840ca6acf62beff23402ea9fcba2a9ca73cb7e23b376a0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:afa6b1e2e7cbd184aea38e23375bc0a0d2d12679096e4204e4eed71517aad583",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

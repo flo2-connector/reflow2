@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e2bcd67c3ba7084d1a65e00a06fb0c75079025e15225c4d5c3ca3534f9c762b9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:one-formula-is-one-record-per-occurrence-naming-its-formula",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

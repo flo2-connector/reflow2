@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:08b89a57ffdb90162e8660b5cc3787961de5455d6892e099fdc56b49342a70f6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:4c33a7846b2891b9b98d399e4b988ef2e5bb51fd3fb1004ed2a4eceffef9a73d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:detect"
+}

@@ -126,7 +126,7 @@ readers:
   graph.rs::contains: { kind: unjudged, edges: [CONTAINS] }
   graph.rs::create_edge_unstamped_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The store's only edge write. It asks the call's signer (intent::Signer, #616 fix 4) before storing an AUTHORED_BY; it answers one write and derives no relation." }
   graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
-  graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer)." }
+  graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, PREMISE_OF, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer); a deleted PREMISE_OF refreshes the step's generated name, which is a stored label, not a derived relation." }
   graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
   graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
   graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }

@@ -866,9 +866,14 @@ impl DesignGraph {
                     .filter(|t| !t.is_empty())
                     .map(str::to_string),
                 verifies,
+                // A KEPT CALCULATOR RECORD IS AN EXECUTABLE FORM (item 11 of
+                // req:small-read-back-faults-from-the-cogito-trial-are-fixed):
+                // calc re-runs a pinned `.calc.json`, so a computed check with
+                // one is not "a sentence with nothing to run".
                 has_executable_form: !self
                     .incoming(&v.node_id, Some(edge::IMPLEMENTS))?
-                    .is_empty(),
+                    .is_empty()
+                    || self.computed_with_a_kept_record(&v.node_id, &v.properties)?,
             });
         }
         // Failing first, then by id: the loud ones lead, and a stable order
