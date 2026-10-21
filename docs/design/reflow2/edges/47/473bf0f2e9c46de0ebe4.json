@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4ec1832bb69759b9f080b807f36cf2e313f5d058f4bf530a0af7e37e1c606f5e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-objection-resting-on-evidence-contests-or-refutes",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

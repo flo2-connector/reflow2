@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:60b3c4b01df784ee13706fbc1244fd6ac95700a2789927db9dc24f42f199db2d",
+  "node_id": "req:the-reasons-lost-scan-costs-loop-status-no-more-than-half-again",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "The reasons-lost scan added to loop_status in #781 costs an owner-scoped loop_status no more than half again what it cost before",
+    "priority": "low",
+    "provenance": "authored",
+    "source": "Anthony, 2026-10-20 (\"go with your suggestion\": stop the speed work in phase 6 PR 4, record the slowdown as a follow-up)",
+    "statement": "loop_status, plain and scoped to one owner, costs no more than 1.5x what it did on main before #781 (48f28651) on the full reflow2 design with a release build. MEASURED 2026-10-20 (release build, median of 3): plain 1.37 s -> 1.47 s (fine); scoped to who:ajs 1.10 s -> 2.07 s (1.9x, over); graph_report 1.80 -> 1.83 s; reviewed_gaps 6.83 -> 7.45 s. The extra cost is the reasons-lost scan (what has lost its reason now). A follow-up, kept out of phase 6 on Anthony's word so the phase's features are not held up by about one second on one scoped call.",
+    "status": "accepted"
+  }
+}

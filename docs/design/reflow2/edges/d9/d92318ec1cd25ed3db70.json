@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4ed01b972c56a92030f547bdcd9a2839a233666af879a839c6701a1717ecc0fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:bff808a8da581384f470aac7cdf4fb241062cf27fe4a680abce2a9d14a1d3146",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9fdd2edccc0e05a6389ef9f8ac5e4713cacab3e191f937051059af0a246a4532",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:82db2e9ea83394094b6ae22bc16d0e975e9d90457eda61f5021b85c9717c48a4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-an-argument-skill"
+}

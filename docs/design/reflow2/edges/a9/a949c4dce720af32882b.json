@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:21e5971cff76cf229232d356bfd84e506bc4cf59e5eed94ea1857cc28649a757",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-steps-rule-is-a-node-of-its-own-never-a-premise",
+  "properties": {},
+  "to_id": "req:natural-deduction-gaps-from-the-logic-rung-are-closed"
+}

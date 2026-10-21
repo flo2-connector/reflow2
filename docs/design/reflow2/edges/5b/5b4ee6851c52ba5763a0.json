@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bc85e30decd96783306e29f9d9917f42b381aaa737bd84016b4ee0c302cfcf57",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 16,
+    "action": "modified",
+    "checksum_after": "sha256:8f1521f56e23875720596b06f69ac88b54ac208d980454153b0a2b4451d24d02",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

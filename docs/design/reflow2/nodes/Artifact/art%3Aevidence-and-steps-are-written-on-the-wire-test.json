@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:538f2d38499eb2ae570c0f56b296e69a131d845e3abdc9740e32053dab4a93f1",
+  "node_id": "art:evidence-and-steps-are-written-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Five MCP tests for phase 6 PR 4: evidence and its grade written through add_requirement and read cited_as_evidence; rule_node, establishes, conclusion_form and a premise twice through add_inference; now_refuted from create_edges, draw_edges and add_decision's related_to.",
+    "location": "crates/reflow2-mcp/tests/evidence_and_steps_are_written_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/evidence_and_steps_are_written_on_the_wire.rs",
+    "status": "realized"
+  }
+}

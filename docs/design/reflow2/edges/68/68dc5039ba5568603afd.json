@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f02a04f5e88444704ba4d5424702aeae3a5a0ab47cee063ae0b735279cd3bd1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:bfa8b6eaabd738b013ca917adfeb9aa4f0ea10c076eb41a054d67254c00a30a7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-export-can-be-ordered-before-its-writes"
+}

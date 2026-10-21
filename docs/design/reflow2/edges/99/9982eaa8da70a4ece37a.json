@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:40aae5e3d4a21dcd058c175fb496a08ce6c66f0c6ddfcb10e4a42d332da3c150",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:cb7a0bebb0c95e3bacd951adcdbc25a45b3f19cffd5f882f518bca4f1a94b552",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:how-an-argument-reads-test"
+}

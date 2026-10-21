@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:21f6a4149782f1b83c3561e21fa6a272bb796dae149219e4fce130652237cc05",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:natural-deduction-records-its-forms-honestly"
+}

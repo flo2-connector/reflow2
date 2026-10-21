@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:574158752ed529d2d9a86d8dc0f29cb3c9aca07ecb461f2866ca0bd214a2a516",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:no-statement-of-a-line-of-reasoning-awaits-the-owners-word",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

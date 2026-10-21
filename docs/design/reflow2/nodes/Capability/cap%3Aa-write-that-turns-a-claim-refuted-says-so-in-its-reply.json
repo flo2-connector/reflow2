@@ -1,9 +1,10 @@
 {
-  "content_hash": "sha256:f81f8a4ce1e3b462ff6c23a74602ee5a23c41da333e2d8f2d96da38f208962c9",
+  "content_hash": "sha256:7b3580b127d0fcddbb9c86a02094378e16bf05c70752d888a20d7ae80a29bbbf",
   "node_id": "cap:a-write-that-turns-a-claim-refuted-says-so-in-its-reply",
   "node_type": "Capability",
+  "prev_item_hash": "sha256:f81f8a4ce1e3b462ff6c23a74602ee5a23c41da333e2d8f2d96da38f208962c9",
   "properties": {
-    "description": "Built 2026-10-20 (inference.rs watch_refutations / refuted_since; MCP service.rs watch_attacks / with_now_refuted). review_relations, create_edge, add_requirement and add_constraint read, before the write, every record the write's CONTRADICTS links (and the written node's own) attack, and reply `now_refuted` for each the write turned refuted, defeated or conceded: what holds against it, why, and for a claim `keep_as_dispute` (draw a CONTRADICTS back, or a contested Decision). Not yet watched: create_edges, draw_edges, add_decision related_to.",
+    "description": "Built 2026-10-20 (inference.rs watch_refutations / refuted_since; MCP service.rs watch_attacks / with_now_refuted). review_relations, create_edge, add_requirement and add_constraint read, before the write, every record the write's CONTRADICTS links (and the written node's own) attack, and reply `now_refuted` for each the write turned refuted, defeated or conceded: what holds against it, why, and for a claim `keep_as_dispute` (draw a CONTRADICTS back, or a contested Decision). Since phase 6 PR 4 (2026-10-20, service.rs bulk_result_refuting, bulk_edges.rs ids_named): create_edges watches its CONTRADICTS targets, draw_edges every record an item names and what each attacks (documenting a recalled counterexample's source turns it into a refutation, and the reply says so), and add_decision's related_to its CONTRADICTS links.",
     "name": "A write that turns a claim refuted, or a step defeated, says so in its reply, with how to keep a dispute instead",
     "provenance": "authored",
     "status": "realized"

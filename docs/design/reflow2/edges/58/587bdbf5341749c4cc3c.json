@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4a9cb8bb773a135577aa92aef88530ad0634382efc3b480f0ae412eb2511f8d",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:evidence-is-cited-as-evidence-with-its-grade-and-what-rests-on-it-reads-supported"
+}

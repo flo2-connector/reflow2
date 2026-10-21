@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b8b9f2b5f91e5f24bbbda8e97da35c4d6ff31c2289a65f7550df392e959c6a21",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:evidence-and-steps-are-written-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:evidence-and-steps-are-written-on-the-wire-tests"
+}

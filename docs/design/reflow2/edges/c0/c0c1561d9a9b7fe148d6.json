@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c1e5eab3b4c352011e254d72414d43a4bf58a1dd5aac88bd843a70efa892a82c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:ffd3674fcf3e27ec61fa5782407650cee5490e9162e867762b439c5d8682281d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7d9777f60235a974ead59c64e8eefd7cb01a216a7ba75df72999fec3d8fcc4eb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:5a4e133de206c9457c751551ebc7a8c6499e4d605a8f13ceffec65289221932c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:bulk-edges"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fe3078b639c68e97d5a0d6b3c3e877176ebfc00bbdb35497b72e084fc04ef2a6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-evidence-and-natural-deduction-2026-10-20",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:9358d917dc3632b8a567aca16b181d75ab27cd458fa694285a414071601834bc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:every-prose-field-is-searched-test"
+}
