@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5ecac709d4f462f4d0f0ad1baf61b4b7f5cc688e29bac2fc710ffe7a0becbf13",
+  "node_id": "cap:a-steps-rule-is-a-node-of-its-own-never-a-premise",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.rs step_reading, inference_walk_full rule index, add_inference rule_node). Item 2 of the natural-deduction requirement. On the logic rung, moving its 14 rule Constraints out of the premises into rule_node leaves every what-if on a rule exactly as it was, and no rule is listed among what the reasoning rests on or its uncited premises.",
+    "name": "A step's rule can be a node of its own (rule_node), never a premise: the step holds only while it does, and a what-if on it reaches every step it rules",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

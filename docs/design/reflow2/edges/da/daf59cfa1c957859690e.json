@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7c98af65874b82d38a0349d420807c77c7cf7b4a0c92508d67bafa3c10a47f02",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:evidence-is-cited-as-evidence-with-its-grade-and-what-rests-on-it-reads-supported"
+}

@@ -101,6 +101,10 @@ fn requirement(id: &str, name: &str, statement: &str) -> RequirementReq {
         kind: None,
         taken_as_given: None,
         statement_kind: None,
+        source_reliability: None,
+        information_credibility: None,
+        reported_at: None,
+        confidence: None,
         variables: None,
         fixes: None,
     }

@@ -145,6 +145,7 @@ mod every_test_file_runs_in_exactly_one_program;
 mod every_tool_is_found_by_a_query_in_the_users_words;
 mod every_tool_list_carries_the_cache_hints_its_protocol_requires;
 mod every_writer_settles_through_one_rule;
+mod evidence_and_steps_are_written_on_the_wire;
 mod feedback_is_a_computed_tally;
 mod find_tools_ranks_what_the_query_means;
 mod get_node_reads_its_edges;

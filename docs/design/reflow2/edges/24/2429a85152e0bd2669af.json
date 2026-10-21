@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a9152dc62af446bf4a532aaab9ab7d0b1b267c65005bc7bf219b988ce5a047c2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:evidence-and-natural-deduction-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

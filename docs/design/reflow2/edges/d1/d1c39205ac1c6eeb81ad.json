@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7d13ae04692864ae453ce8bd31540f4c53c5dbb08b51d3d1b31493e86c518e1",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-an-argument-skill",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:evidence-is-cited-as-evidence-with-its-grade-and-what-rests-on-it-reads-supported"
+}

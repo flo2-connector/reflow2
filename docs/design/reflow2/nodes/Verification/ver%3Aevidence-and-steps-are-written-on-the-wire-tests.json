@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9ba2e2747b0cb02cf02ca6b05f130a0e550dcdc710d40ef5fc25fccfa698054b",
+  "node_id": "ver:evidence-and-steps-are-written-on-the-wire-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/evidence_and_steps_are_written_on_the_wire.rs: the new fields through add_requirement and add_inference, and now_refuted from create_edges, draw_edges and add_decision's related_to. All five failed on main 4dd766d.",
+    "findings": "5 passed on feat/evidence-logic-and-small-faults (4c69a2e3a); MCP suite 904 passed; 5 failed on main 4dd766d.",
+    "kind": "verification",
+    "last_run_at": "2026-10-20",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/evidence_and_steps_are_written_on_the_wire.rs",
+    "method": "test",
+    "name": "Evidence and steps are written on the wire: five MCP tests",
+    "status": "passing"
+  }
+}

@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:28b1ff922c77157d899c8478e64699499775abc7ae0b584d4b227641a081972e",
+  "content_hash": "sha256:3e25edddc138de24f7ffd3e20dcf52d7468ca28dba622a7caf1139c0dab66e76",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-refuted-supposition-voids-only-open-suppositions",
+  "prev_item_hash": "sha256:28b1ff922c77157d899c8478e64699499775abc7ae0b584d4b227641a081972e",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

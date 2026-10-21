@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:3fd52c72a6e30d1c1f5b0211afe96083947706baa32944f2e5e049a415872004",
+  "content_hash": "sha256:affc551c550ba3d00b69bcea4cc6ba1912968d6a193e735ed95b2557aa64a802",
   "node_id": "dec:idea-a-refuted-supposition-voids-only-open-suppositions",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:3fd52c72a6e30d1c1f5b0211afe96083947706baa32944f2e5e049a415872004",
   "properties": {
+    "chose": "(a), Anthony's word 2026-10-20 \"merge 781 and go with (a)\": a claim derived under a supposition later refuted says so (rests_on_refuted_suppositions) only while that supposition is open; a supposition some step discharges (a proof by contradiction supposes the opposite on purpose) voids nothing. It never breaks a valid proof. Known gap, accepted for now: a supposition discharged in one place but left open in another is not caught. Not (b) yet (track discharge per line of reasoning): more precise and more work; revisit when a trial hits the gap. Not (c): marking proofs by contradiction by hand puts the burden on the person. Built in #781. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
     "decision": "Built as (a), PROPOSED, awaiting Anthony. In plain terms: when a step rests on something it merely supposes, and that supposition is shown false, the step's conclusion reads unsupported and says which supposition was refuted — UNLESS some other step in the argument discharges the supposition (a proof by contradiction supposes the opposite on purpose, and its whole point is that the supposition fails). (a) Only suppositions no step discharges anywhere are caught (built). (b) Track discharge per line of reasoning, so a supposition discharged in one proof but left open in another is still caught in the second. (c) Catch every refuted supposition and let the proof-by-contradiction steps be marked as exempt by hand.",
     "kind": "exploratory",
-    "name": "A claim derived under a supposition that turns out false reads unsupported only when no step in the argument discharges that supposition",
+    "name": "SETTLED 2026-10-20: a refuted supposition voids a conclusion only when nothing in the argument discharges it (option a, as built)",
     "rationale": "(a) is what the code can read today without new structure, and it never breaks a correct proof by contradiction (the pi+e, cogito and five proof trials all keep their readings). Its cost: a design that discharges a supposition in one place and leans on it as open elsewhere is not caught in the second place. (b) is the correct general rule but needs the walk to carry the discharge scope per line, which is more than this PR. (c) puts a manual flag on every reductio, which an agent will forget. Worked case: the argument-trial capstone's agility hypothesis rests on supposition S2, which the data refuted; its step now reads unsupported naming S2. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

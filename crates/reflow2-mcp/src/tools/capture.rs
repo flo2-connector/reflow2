@@ -1920,7 +1920,16 @@ impl ReflowService {
             &mut g,
             node_ty,
             &req.id,
-            &[("statement_kind", req.statement_kind.as_deref())],
+            &[
+                ("statement_kind", req.statement_kind.as_deref()),
+                ("source_reliability", req.source_reliability.as_deref()),
+                (
+                    "information_credibility",
+                    req.information_credibility.as_deref(),
+                ),
+                ("reported_at", req.reported_at.as_deref()),
+                ("confidence", req.confidence.as_deref()),
+            ],
         )?;
         set_optional_lists(
             &mut g,
@@ -3024,7 +3033,16 @@ impl ReflowService {
             &mut g,
             reflow2_core::nodes::node::CONSTRAINT,
             &req.id,
-            &[("statement_kind", req.statement_kind.as_deref())],
+            &[
+                ("statement_kind", req.statement_kind.as_deref()),
+                ("source_reliability", req.source_reliability.as_deref()),
+                (
+                    "information_credibility",
+                    req.information_credibility.as_deref(),
+                ),
+                ("reported_at", req.reported_at.as_deref()),
+                ("confidence", req.confidence.as_deref()),
+            ],
         )?
         .unwrap_or(stored);
         let stored = set_optional_lists(
@@ -3135,6 +3153,9 @@ impl ReflowService {
             independent_except: req.independent_except.clone(),
             cases: req.cases.clone(),
             cases_exhaustive: req.cases_exhaustive.clone(),
+            rule_node: req.rule_node.clone(),
+            establishes: req.establishes.clone(),
+            conclusion_form: req.conclusion_form.clone(),
         };
         // Which links were there before the call, so the reply can say what it
         // drew and what it found already drawn.
@@ -3720,6 +3741,11 @@ impl ReflowService {
         // echo-its-related-to-computed-2026-09-28). The refusal stays scoped;
         // honouring what the caller asked for never was a matter of kind.
         let mut edges = crate::drawn_edges::DrawnEdges::new();
+        // A CONTRADICTS in `related_to` that turns a claim refuted says so
+        // in the reply (req:a-write-that-makes-a-claim-read-refuted-says-so-
+        // in-its-reply; until 2026-10-20 only review_relations, create_edge,
+        // add_requirement and add_constraint did).
+        let mut watch: Option<reflow2_core::inference::RefutationWatch> = None;
         if req.related_to.is_some() || req.no_relation_note.is_some() {
             let mut links: Vec<RelationLink> = Vec::new();
             let (across, local): (Vec<_>, Vec<_>) = req
@@ -3751,6 +3777,24 @@ impl ReflowService {
                     properties,
                 });
             }
+            let drawn: Vec<(String, String, Option<String>)> = links
+                .iter()
+                .filter(|l| l.relation == "CONTRADICTS")
+                .map(|l| {
+                    let (from, to) = if l.incoming {
+                        (l.other_id.clone(), req.id.clone())
+                    } else {
+                        (req.id.clone(), l.other_id.clone())
+                    };
+                    let alignment = l
+                        .properties
+                        .get("alignment")
+                        .and_then(|v| v.as_str())
+                        .map(str::to_string);
+                    (from, to, alignment)
+                })
+                .collect();
+            watch = Some(crate::service::watch_attacks(&g, Some(&req.id), &drawn)?);
             // The outcome carries the subject-first sentences. It used to be
             // dropped here, so the reply named no edge for any kind.
             let outcome = g
@@ -3824,6 +3868,10 @@ impl ReflowService {
         if let (Some(block), Some(obj)) = (name_open, reply.as_object_mut()) {
             obj.insert("name_still_reads_open".into(), JsonValue::Object(block));
         }
+        let reply = match &watch {
+            Some(w) => crate::service::with_now_refuted(reply, &g, w)?,
+            None => reply,
+        };
         with_capture_notes(
             reply,
             &hint,
@@ -4618,6 +4666,23 @@ pub struct AddInferenceReq {
     /// removes it.
     #[serde(default)]
     pub cases_exhaustive: Option<String>,
+    /// THE NODE THAT STATES THIS STEP'S RULE, by id ("Rule RAA", an axiom of
+    /// the calculus) — a reference of its own, NEVER a premise: the step holds
+    /// only while that node holds, a what-if on it reaches every step it rules,
+    /// and it is never listed as an uncited premise. Refused when also named in
+    /// `premises`. Overwrites; `""` removes it.
+    #[serde(default)]
+    pub rule_node: Option<String>,
+    /// WHAT RELATION THIS LINE ESTABLISHES: `entailment` (⊨, by truth table or
+    /// model) or `derivability` (⊢, by deduction). Read back; changes no truth.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::inference_establishes_opt")]
+    pub establishes: Option<String>,
+    /// THE CONCLUSION IS MADE OF THE PREMISES AS PARTS: `conjunction` (∧I) or
+    /// `biconditional` (↔I). A what-if then reads which part still stands.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::inference_conclusion_form_opt")]
+    pub conclusion_form: Option<String>,
     /// Other STEPS this line is stated independent of (Inference ids), e.g. a
     /// second proof of the same claim. Checked: the lines may share no step
     /// other than those under the lemmas in `independent_except`. Overwrites.

@@ -95,6 +95,21 @@ NON_TOOL_TERMS = {
     # `still_holds_under`, `untouched_routes`) and `objections_returning`.
     "conclusion_was", "conclusion_reads", "still_supported", "still_holds_under",
     "untouched_routes", "objections_returning",
+    # Phase 6 PR 4 (req:evidence-carries-its-source-grade-and-confidence-and-
+    # is-not-intent, req:natural-deduction-gaps-from-the-logic-rung-are-closed):
+    # field names and values the skills now teach.
+    "biconditional",
+    "cited_as_evidence",
+    "conclusion_form",
+    "conjunction",
+    "derivability",
+    "entailment",
+    "establishes",
+    "information_credibility",
+    "judgement",
+    "reported_at",
+    "rule_node",
+    "source_reliability",
     # a proof states what it really does (2026-10-18, phase 3): the statement
     # kinds a recipe names (`theorem` ... `hypothesis`, `falsum`), how a
     # statement reads (`statement_reading`: `taken_as_given`, `cited`,

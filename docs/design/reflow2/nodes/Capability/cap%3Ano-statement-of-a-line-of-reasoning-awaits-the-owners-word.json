@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:33e8e4f72eb2bbd8ad0d8585d01e152fa5ddf23df63e36d74c51482897ab578a",
+  "node_id": "cap:no-statement-of-a-line-of-reasoning-awaits-the-owners-word",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (awaiting.rs): awaiting_word, read by the owner-scoped loop_status, skips any Requirement carrying a statement_kind. Measured 2026-10-19: the capstone listed 7 analytic claims there, the logic rung 19 lemmas.",
+    "name": "No statement of a line of reasoning — a report, a judgement, a lemma — is listed as delivered intent awaiting the owner's word",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

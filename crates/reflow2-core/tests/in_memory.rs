@@ -169,6 +169,7 @@ mod every_prose_field_is_searched;
 mod every_rule_a_project_parent_cures_says_so;
 mod every_test_file_runs_in_exactly_one_program;
 mod evidence;
+mod evidence_and_natural_deduction;
 mod evidence_has_somewhere_to_go;
 mod evidence_quality;
 mod export;

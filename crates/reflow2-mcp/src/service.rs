@@ -1627,6 +1627,22 @@ pub(crate) fn bulk_result<T, D: serde::Serialize>(
     ok_json(json!({ "applied": true, "written": written.len(), "items": written }))
 }
 
+/// [`bulk_result`], carrying `now_refuted` when the applied batch turned a
+/// watched record refuted, defeated or conceded.
+pub(crate) fn bulk_result_refuting<T, D: serde::Serialize>(
+    report: reflow2_core::bulk::BulkReport<T>,
+    render: impl Fn(T) -> D,
+    g: &reflow2_core::DesignGraph,
+    watch: &reflow2_core::inference::RefutationWatch,
+) -> Result<CallToolResult, McpError> {
+    if report.check_only || !report.applied {
+        return bulk_result(report, render);
+    }
+    let written: Vec<D> = report.written.into_iter().map(render).collect();
+    let reply = json!({ "applied": true, "written": written.len(), "items": written });
+    ok_json(with_now_refuted(reply, g, watch)?)
+}
+
 /// Refuse a `change_type` that belongs to one specific write path.
 ///
 /// `baseline_established` means *this artifact had no checksum and now has one;
@@ -2028,10 +2044,34 @@ pub struct RequirementReq {
     /// reads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a
     /// supposition, an induction hypothesis, a case) reads `assumed` or
     /// `discharged`; a falsum (a reductio's contradiction) reads false.
+    /// `evidence` (a report, study or measurement: "the report says X") reads
+    /// `cited_as_evidence` when a pinned source documents it, and what rests
+    /// on it is supported, never proven; `judgement` is an analytic judgement
+    /// drawn from evidence, with its `confidence`.
     /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
     pub statement_kind: Option<String>,
+    /// EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely
+    /// reliable … `E` unreliable, `F` cannot be judged. Read back; changes no
+    /// truth. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::requirement_source_reliability_opt")]
+    pub source_reliability: Option<String>,
+    /// EVIDENCE'S INFORMATION CREDIBILITY, Admiralty scale: `1` confirmed …
+    /// `5` improbable, `6` cannot be judged. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::requirement_information_credibility_opt")]
+    pub information_credibility: Option<String>,
+    /// WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the
+    /// report's own date). Omitted: nothing is written.
+    #[serde(default)]
+    pub reported_at: Option<String>,
+    /// A JUDGEMENT'S CONFIDENCE, ICD 203 style: `low`, `moderate` or `high`.
+    /// Read back; changes no truth. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::requirement_confidence_opt")]
+    pub confidence: Option<String>,
     /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
     /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
     /// generalizes over one. Omitted: nothing is written.
@@ -4131,10 +4171,34 @@ pub struct AddConstraintReq {
     /// reads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a
     /// supposition, an induction hypothesis, a case) reads `assumed` or
     /// `discharged`; a falsum (a reductio's contradiction) reads false.
+    /// `evidence` (a report, study or measurement: "the report says X") reads
+    /// `cited_as_evidence` when a pinned source documents it, and what rests
+    /// on it is supported, never proven; `judgement` is an analytic judgement
+    /// drawn from evidence, with its `confidence`.
     /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_statement_kind_opt")]
     pub statement_kind: Option<String>,
+    /// EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely
+    /// reliable … `E` unreliable, `F` cannot be judged. Read back; changes no
+    /// truth. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_source_reliability_opt")]
+    pub source_reliability: Option<String>,
+    /// EVIDENCE'S INFORMATION CREDIBILITY, Admiralty scale: `1` confirmed …
+    /// `5` improbable, `6` cannot be judged. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_information_credibility_opt")]
+    pub information_credibility: Option<String>,
+    /// WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the
+    /// report's own date). Omitted: nothing is written.
+    #[serde(default)]
+    pub reported_at: Option<String>,
+    /// A JUDGEMENT'S CONFIDENCE, ICD 203 style: `low`, `moderate` or `high`.
+    /// Read back; changes no truth. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constraint_confidence_opt")]
+    pub confidence: Option<String>,
     /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
     /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
     /// generalizes over one. Omitted: nothing is written.

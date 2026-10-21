@@ -38,9 +38,12 @@ words, because the position or objection may already exist under another name.
   explicit as a Requirement with `statement_kind` `unstated_premise`; it is not taken as given
   unless you mark it so. **A rule of method** ("accept only what cannot be doubted") has
   `statement_kind` `method_rule` and reads taken as given, by choice.
-- **Evidence about what people judge** (a survey, a brain-imaging study) is descriptive. Register
-  the source as an Artifact that DOCUMENTS the statement it reports; never make it a premise of a
-  position about what is right.
+- **A report, study or measurement** is `statement_kind` `evidence` ("the report says X"), with
+  `source_reliability` (A–F), `information_credibility` (1–6) and `reported_at`. Register its
+  source as an Artifact with a checksum that DOCUMENTS it: it then reads `cited_as_evidence`, and
+  what rests on it reads `supported`, never proven. A judgement drawn from it is `judgement`,
+  with `confidence` (low, moderate, high). Evidence about what people judge is descriptive: never
+  a premise of a position about what is right.
 
 ## 3. Each position is derived by a step
 

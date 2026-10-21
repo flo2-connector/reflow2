@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3f499c3b27135d9ce053dd7cdb1f1b10604109f08e74792e4269f9d8f79ad2d4",
+  "node_id": "cap:evidence-is-cited-as-evidence-with-its-grade-and-what-rests-on-it-reads-supported",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-20 (inference.rs evidence_read, Grade, grade_of; reasoning.rs EvidenceItem; add_requirement / add_constraint fields). statement_kind `evidence` and `judgement`; source_reliability (A–F), information_credibility (1–6), reported_at, confidence (low/moderate/high) stored as indexed fields. Evidence reads cited_as_evidence when a pinned Artifact DOCUMENTS it, evidence_unverified otherwise; it holds as evidence, so what rests on it reads supported (an objection resting on it contests, never refutes). reasoning_report lists every piece of evidence and judgement with its grade; each claim carries its grade.",
+    "name": "A report is recorded as evidence with its source grade, cited as evidence through the source that documents it, and what rests on it reads supported, never proven",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -127,6 +127,23 @@ pub struct DrawEdgeItem {
     pub arguments: JsonValue,
 }
 
+/// Every string an item's arguments carry, at the top level and in lists:
+/// the records the item names, watched for a refutation the batch causes.
+pub(crate) fn ids_named(arguments: &JsonValue, out: &mut Vec<String>) {
+    let Some(obj) = arguments.as_object() else {
+        return;
+    };
+    for v in obj.values() {
+        match v {
+            JsonValue::String(s) => out.push(s.clone()),
+            JsonValue::Array(items) => {
+                out.extend(items.iter().filter_map(|i| i.as_str().map(str::to_string)))
+            }
+            _ => {}
+        }
+    }
+}
+
 /// `draw_edges` arguments.
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]

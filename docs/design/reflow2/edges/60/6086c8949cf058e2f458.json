@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61b4678fcc8c182827e2cd8da5e755ebda4aacdd7488dea9ccce2ea0e5d6f98b",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-inference",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-steps-rule-is-a-node-of-its-own-never-a-premise"
+}

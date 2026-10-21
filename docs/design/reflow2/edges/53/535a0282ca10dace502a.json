@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b1f3d13414e61ed219f506db04a17a10ac68bdd94aa450a0226ea8d8a2e6c25e",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:natural-deduction-records-its-forms-honestly"
+}

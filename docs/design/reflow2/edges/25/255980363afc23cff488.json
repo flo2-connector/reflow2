@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:da3733e60d4319889553af31d2b432818639a3755961d2f4b52344feedbdd72e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:evidence-and-steps-are-written-on-the-wire-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

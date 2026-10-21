@@ -85,6 +85,16 @@ impl DesignGraph {
             if status != "proposed" {
                 continue;
             }
+            // A STATEMENT OF A LINE OF REASONING IS NOT INTENT
+            // (req:evidence-carries-its-source-grade-and-confidence-and-is-not-
+            // intent): a report, an analytic judgement, a lemma — anything
+            // carrying a `statement_kind` — is what the reasoning says, never
+            // a need awaiting its owner's acceptance. Measured 2026-10-19: the
+            // capstone's loop_status listed 7 analytic claims here, the logic
+            // rung 19 lemmas.
+            if req.properties.contains_key("statement_kind") {
+                continue;
+            }
             if self.arrival(&index, &req.node_id)? != Some(Arrival::Delivered) {
                 continue;
             }

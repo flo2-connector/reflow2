@@ -359,6 +359,11 @@ pub struct ClaimReading {
     /// Marked TAKEN AS GIVEN: a stated foundation, never an uncited premise.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub taken_as_given: bool,
+    /// ITS GRADE, as fields: a piece of evidence's source reliability,
+    /// information credibility and date, a judgement's confidence
+    /// (req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub grade: Option<crate::inference::Grade>,
     /// What the statement says it is (`statement_kind`) and how it reads:
     /// a conjecture reads `open` or `refuted`, a theorem `stated` until a
     /// step concludes it. Absent when it says nothing.
@@ -411,6 +416,24 @@ pub struct ClaimReading {
     /// with how the argument reads (`argued`, `circular` ...).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub argues_for: Vec<crate::reason_to_exist::ArguedEdge>,
+}
+
+/// A piece of evidence or an analytic judgement, read: what it is, how it
+/// reads, and its grade.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct EvidenceItem {
+    pub id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    /// `evidence` or `judgement`, or another kind that carries a grade.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kind: Option<String>,
+    /// How it reads: `cited_as_evidence`, `evidence_unverified`, or a
+    /// judgement's proof status (`supported` ...).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reads: Option<&'static str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub grade: Option<crate::inference::Grade>,
 }
 
 /// A point still contested: an objection stands against the claim, neither
@@ -581,6 +604,12 @@ pub struct ReasoningReport {
     /// beneath them fixes: each does not hold (its reading says which).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub generalizations_not_holding: Vec<String>,
+    /// THE EVIDENCE AND JUDGEMENTS the walk read, each with how it reads and
+    /// its grade: reports cited as evidence (or unverified), and analytic
+    /// judgements with their confidence (req:evidence-carries-its-source-
+    /// grade-and-confidence-and-is-not-intent). Empty when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub evidence: Vec<EvidenceItem>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
@@ -1009,6 +1038,23 @@ impl DesignGraph {
             )
         });
 
+        let evidence: Vec<EvidenceItem> = claims
+            .iter()
+            .filter(|c| {
+                c.grade.is_some()
+                    || c.statement
+                        .as_ref()
+                        .is_some_and(|s| matches!(s.kind.as_str(), "evidence" | "judgement"))
+            })
+            .map(|c| EvidenceItem {
+                id: c.id.clone(),
+                name: c.name.clone(),
+                kind: c.statement.as_ref().map(|s| s.kind.clone()),
+                reads: c.statement.as_ref().map(|s| s.reads),
+                grade: c.grade.clone(),
+            })
+            .collect();
+
         // THE PAGE: whole claims from `offset`, at most `limit` of them.
         let total_claims = claims.len();
         let start = offset.unwrap_or(0).min(total_claims);
@@ -1038,6 +1084,7 @@ impl DesignGraph {
             assumptions,
             independence,
             generalizations_not_holding,
+            evidence,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,
@@ -1331,6 +1378,7 @@ impl DesignGraph {
             objections: self.objections_to(id)?,
             sources: self.cited_sources(id)?,
             taken_as_given: crate::inference::is_taken_as_given(&props),
+            grade: crate::inference::grade_of(&props),
             statement: self.statement_reading(id)?,
             assumes,
             holds_under_any_of,
@@ -1436,7 +1484,7 @@ impl DesignGraph {
                 .get_node(&ty, p)?
                 .map(|n| n.properties)
                 .unwrap_or_default();
-            if crate::inference::is_cited_result(&props) {
+            if crate::inference::is_cited_result(&props) || crate::inference::is_evidence(&props) {
                 given.push(p.clone());
                 if self.cited_sources(p)?.iter().all(|source| !source.pinned) {
                     unverified.push(p.clone());
