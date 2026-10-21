@@ -866,7 +866,9 @@ pub enum GapSource {
 pub fn name_leads_with_open(name: &str) -> bool {
     let t = name.trim_start();
     let first: String = t.chars().take_while(|c| c.is_alphanumeric()).collect();
-    if first == "OPEN" {
+    // PROPOSED in capitals is the same stale copy of a status (item 15 of
+    // req:small-read-back-faults-from-the-cogito-trial-are-fixed).
+    if first == "OPEN" || first == "PROPOSED" {
         return true;
     }
     t.to_lowercase().starts_with("open question")
@@ -2655,6 +2657,11 @@ impl DesignGraph {
     /// refused. The loop then went on reporting "follow it up rather than
     /// asking again" about something it structurally could not close, which is
     /// the exact failure that instruction exists to prevent.
+    /// [`Self::resolve_question_id`], for a caller outside the crate.
+    pub fn question_named(&self, id: &str) -> Result<Option<String>, DynoError> {
+        self.resolve_question_id(id)
+    }
+
     fn resolve_question_id(&self, id: &str) -> Result<Option<String>, DynoError> {
         let derived = asked_question_id(id);
         if self.get_node(node::QUESTION, &derived)?.is_some() {

@@ -8,6 +8,17 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "also_records": {
+        "default": null,
+        "description": "EVERY OTHER RECORD THIS ANSWER BECAME, when one answer settles several\n(four step-claims settled by one reply): `ANSWERS` is drawn from each,\nas from `record`. Each must exist, or nothing is written (item 4 of\nreq:small-read-back-faults-from-the-cogito-trial-are-fixed: one answer\ncould be linked from one record only, the rest named in a note).",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "answer": {
         "description": "What was said in reply, in the answerer's own words.",
         "type": "string"

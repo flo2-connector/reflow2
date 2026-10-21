@@ -1150,7 +1150,21 @@ impl ReflowService {
         // over the decision — the 2026-09-09 incident, fired at the moment the
         // divergence is created rather than found by a sweep later.
         let hits = if settles && !was_accepted {
-            crate::tools::capture::governed_open_prose(&g, &req.decision_id)
+            let mut hits = crate::tools::capture::governed_open_prose(&g, &req.decision_id);
+            // AND THE DECISION'S OWN TEXT (item 15 of req:small-read-back-
+            // faults-from-the-cogito-trial-are-fixed): "PROPOSED…, AWAITING THE
+            // OWNER", written while it was proposed, reads wrong the moment it
+            // is accepted, and only governed nodes were read.
+            if let Ok(Some(own)) = g.get_node(reflow2_core::nodes::node::DECISION, &req.decision_id)
+                && let Some(hit) = crate::prose_currency::open_prose(
+                    &req.decision_id,
+                    reflow2_core::nodes::node::DECISION,
+                    |f| own.properties.get(f).and_then(|v| v.as_str()),
+                )
+            {
+                hits.push(hit);
+            }
+            hits
         } else {
             Vec::new()
         };

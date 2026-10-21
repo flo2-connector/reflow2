@@ -1929,6 +1929,7 @@ impl ReflowService {
                 ),
                 ("reported_at", req.reported_at.as_deref()),
                 ("confidence", req.confidence.as_deref()),
+                ("same_formula_as", req.same_formula_as.as_deref()),
             ],
         )?;
         set_optional_lists(
@@ -1937,6 +1938,7 @@ impl ReflowService {
             &req.id,
             &[
                 ("variables", req.variables.as_ref()),
+                ("silent_on", req.silent_on.as_ref()),
                 ("fixes", req.fixes.as_ref()),
             ],
         )?;
@@ -1970,6 +1972,7 @@ impl ReflowService {
         kept.attach(&mut reply)?;
         attach_not_drawn(&mut reply, not_drawn);
         let reply = crate::service::with_now_refuted(reply, &g, &watch)?;
+        let reply = crate::service::with_source_note(reply, &g, &req.id, req.source.is_some())?;
         with_capture_notes(
             reply,
             "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
@@ -3034,6 +3037,7 @@ impl ReflowService {
             reflow2_core::nodes::node::CONSTRAINT,
             &req.id,
             &[
+                ("source", req.source.as_deref()),
                 ("statement_kind", req.statement_kind.as_deref()),
                 ("source_reliability", req.source_reliability.as_deref()),
                 (
@@ -3042,6 +3046,7 @@ impl ReflowService {
                 ),
                 ("reported_at", req.reported_at.as_deref()),
                 ("confidence", req.confidence.as_deref()),
+                ("same_formula_as", req.same_formula_as.as_deref()),
             ],
         )?
         .unwrap_or(stored);
@@ -3051,6 +3056,7 @@ impl ReflowService {
             &req.id,
             &[
                 ("variables", req.variables.as_ref()),
+                ("silent_on", req.silent_on.as_ref()),
                 ("fixes", req.fixes.as_ref()),
             ],
         )?
@@ -3091,6 +3097,7 @@ impl ReflowService {
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
         let reply = crate::service::with_now_refuted(reply, &g, &watch)?;
+        let reply = crate::service::with_source_note(reply, &g, &req.id, req.source.is_some())?;
         with_capture_notes(
             reply,
             "loop: a Constraint binds what it CONSTRAINS — wire it, then run detect_gaps",

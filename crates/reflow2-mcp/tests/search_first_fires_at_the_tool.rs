@@ -75,6 +75,8 @@ fn req(
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     }

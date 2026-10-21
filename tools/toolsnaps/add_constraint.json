@@ -82,6 +82,7 @@
         "enum": [
           "maximum",
           "minimum",
+          "setpoint",
           null
         ],
         "type": [
@@ -231,6 +232,33 @@
       "reported_at": {
         "default": null,
         "description": "WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the\nreport's own date). Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "same_formula_as": {
+        "default": null,
+        "description": "THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula\nderived under several suppositions (⊥ in each reductio) is one record\nper occurrence, each naming the first; the read-back groups them. It\nchanges no truth. Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "silent_on": {
+        "default": null,
+        "description": "THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither\nfor nor against. Read back on the claim. Overwrites; omitted: nothing\nis written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "source": {
+        "default": null,
+        "description": "WHO OR WHAT STATED IT — a test plan, a standard, a person, a report.\nText only: a source counts as CITED only through an Artifact that\nDOCUMENTS the constraint, and the reply says so. Omitted: nothing is\nwritten.",
         "type": [
           "string",
           "null"

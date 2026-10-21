@@ -223,6 +223,17 @@ impl DesignGraph {
                 .any(|r| r.location.as_deref().is_some_and(calc))
     }
 
+    /// Whether a check is COMPUTED and keeps its record pinned: the run's own
+    /// output, kept, which the calculator can re-run.
+    pub fn computed_with_a_kept_record(
+        &self,
+        verification_id: &str,
+        props: &std::collections::HashMap<String, Value>,
+    ) -> Result<bool, DynoError> {
+        let records = self.records_of_check(verification_id)?;
+        Ok(self.check_is_computed(props, &records) && records.iter().any(CheckRecord::is_kept))
+    }
+
     /// A `passing` check's truth as a premise, when it is a computed one:
     /// `None` for a check that is not computed (it reads as it always did).
     pub(crate) fn computed_check_truth(

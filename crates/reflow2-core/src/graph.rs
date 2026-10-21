@@ -1519,8 +1519,16 @@ impl DesignGraph {
         if edge_type == edge::AUTHORED_BY {
             self.check_signature_removal(from_id, to_id)?;
         }
-        self.engine
-            .delete_edge(&self.graph_id, edge_type, from_id, to_id)
+        let deleted = self
+            .engine
+            .delete_edge(&self.graph_id, edge_type, from_id, to_id)?;
+        // A STEP'S GENERATED NAME FOLLOWS ITS PREMISES (item 9 of req:small-
+        // read-back-faults-from-the-cogito-trial-are-fixed): the trolley trial
+        // read "all of 2 premise(s)" after a premise edge was deleted.
+        if deleted && edge_type == edge::PREMISE_OF {
+            self.refresh_generated_step_name(to_id)?;
+        }
+        Ok(deleted)
     }
 
     // ---- Atomic batches (HEAL's apply step, import, the bulk forms) --------

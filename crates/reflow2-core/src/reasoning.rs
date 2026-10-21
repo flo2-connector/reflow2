@@ -364,6 +364,15 @@ pub struct ClaimReading {
     /// (req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub grade: Option<crate::inference::Grade>,
+    /// THE CASES IT GIVES NO VERDICT ON (`silent_on`): a principle silent on
+    /// a case is neither for nor against it (item 8 of req:small-read-back-
+    /// faults-from-the-cogito-trial-are-fixed). Empty when it says none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub silent_on: Vec<String>,
+    /// THE FORMULA IT IS AN OCCURRENCE OF (`same_formula_as`), when it names
+    /// one: grouped under `formulas` in the read-back.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub same_formula_as: Option<String>,
     /// What the statement says it is (`statement_kind`) and how it reads:
     /// a conjecture reads `open` or `refuted`, a theorem `stated` until a
     /// step concludes it. Absent when it says nothing.
@@ -416,6 +425,15 @@ pub struct ClaimReading {
     /// with how the argument reads (`argued`, `circular` ...).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub argues_for: Vec<crate::reason_to_exist::ArguedEdge>,
+}
+
+/// One formula and the occurrences of it the walk read.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct FormulaOccurrences {
+    /// The formula: the record its occurrences name.
+    pub formula: String,
+    /// Every occurrence, the formula's own record first when the walk read it.
+    pub occurrences: Vec<String>,
 }
 
 /// A piece of evidence or an analytic judgement, read: what it is, how it
@@ -610,6 +628,12 @@ pub struct ReasoningReport {
     /// grade-and-confidence-and-is-not-intent). Empty when there are none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub evidence: Vec<EvidenceItem>,
+    /// ONE FORMULA, SEVERAL OCCURRENCES: each formula some walked statement
+    /// names in `same_formula_as`, with every occurrence the walk read
+    /// (dec:idea-one-formula-under-several-suppositions-is-one-node-or-one-
+    /// per-occurrence, option b). Empty when none names one.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub formulas: Vec<FormulaOccurrences>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
@@ -976,11 +1000,17 @@ impl DesignGraph {
                 .reason_to_exist
                 .as_ref()
                 .is_some_and(|r| r.reads == "stands");
+            // A STATED FOUNDATION IS NOT UNSUPPORTED (item 1 of req:small-read-
+            // back-faults-from-the-cogito-trial-are-fixed): taken as given, it
+            // is listed under `stated_foundations`; if it reads unknown, an
+            // objection is what holds it there. The cogito trial listed such a
+            // claim in both, as "no step concludes it".
             if c.truth == ClaimTruth::Unknown
                 && c.support.is_empty()
                 && c.sources.is_empty()
                 && c.node_type != node::ARTIFACT
                 && !has_a_reason
+                && !c.taken_as_given
             {
                 unsupported.push(Unsupported {
                     id: c.id.clone(),
@@ -1055,6 +1085,27 @@ impl DesignGraph {
             })
             .collect();
 
+        let mut grouped: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+        for c in &claims {
+            if let Some(f) = &c.same_formula_as {
+                grouped.entry(f.clone()).or_default().insert(c.id.clone());
+            }
+        }
+        let formulas: Vec<FormulaOccurrences> = grouped
+            .into_iter()
+            .map(|(formula, rest)| {
+                let mut occurrences = Vec::new();
+                if claims.iter().any(|c| c.id == formula) {
+                    occurrences.push(formula.clone());
+                }
+                occurrences.extend(rest.into_iter().filter(|o| *o != formula));
+                FormulaOccurrences {
+                    formula,
+                    occurrences,
+                }
+            })
+            .collect();
+
         // THE PAGE: whole claims from `offset`, at most `limit` of them.
         let total_claims = claims.len();
         let start = offset.unwrap_or(0).min(total_claims);
@@ -1085,6 +1136,7 @@ impl DesignGraph {
             independence,
             generalizations_not_holding,
             evidence,
+            formulas,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,
@@ -1379,6 +1431,8 @@ impl DesignGraph {
             sources: self.cited_sources(id)?,
             taken_as_given: crate::inference::is_taken_as_given(&props),
             grade: crate::inference::grade_of(&props),
+            silent_on: crate::inference::list_prop(&props, "silent_on"),
+            same_formula_as: prop(&props, "same_formula_as"),
             statement: self.statement_reading(id)?,
             assumes,
             holds_under_any_of,

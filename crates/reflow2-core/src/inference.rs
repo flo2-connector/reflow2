@@ -3153,9 +3153,10 @@ impl DesignGraph {
         let why = if pinned.is_empty() {
             format!(
                 "evidence{grade}, unverified: no pinned source documents it, so it is named only \
-                 in its `source` text. It holds as evidence, and what rests on it is supported, \
-                 never proven. Register the report that was read as an Artifact with its \
-                 checksum, and draw DOCUMENTS from it"
+                 in its `source` text. What rests on it holds only if the report says what it is \
+                 recalled to say — conditional on it, as on a recalled citation — until its source \
+                 is documented; then it is supported, never proven. Register the report that was \
+                 read as an Artifact with its checksum, and draw DOCUMENTS from it"
             )
         } else {
             format!(
@@ -3164,12 +3165,21 @@ impl DesignGraph {
                 pinned.join(", ")
             )
         };
+        // AN UNDOCUMENTED REPORT IS AN UNVERIFIED CITATION
+        // (dec:idea-what-rests-on-unsourced-evidence-reads-supported-or-
+        // conditional, option b, accepted 2026-10-20): what rests on it reads
+        // CONDITIONAL on it until its source is documented.
+        let unverified = if pinned.is_empty() {
+            BTreeSet::from([id.to_string()])
+        } else {
+            BTreeSet::new()
+        };
         Ok(Read::one(
             Truth::Holds,
             why,
             Condition {
                 assumes: BTreeSet::new(),
-                unverified: BTreeSet::new(),
+                unverified,
                 evidential: BTreeSet::from([id.to_string()]),
             },
         ))
@@ -3190,6 +3200,12 @@ impl DesignGraph {
             .collect();
         if !breakers.is_empty() {
             return Ok((Truth::Fails, format!("violated by {}", breakers.join(", "))));
+        }
+        if prop(props, "direction") == Some("setpoint") {
+            return Ok((
+                Truth::Holds,
+                "a setpoint: a value the thing is held at, never a budget to exceed".to_string(),
+            ));
         }
         if props.get("limit").is_some_and(|v| !v.is_null()) {
             let report = self.budget_report(id)?;
@@ -5445,8 +5461,8 @@ impl DesignGraph {
                 return Ok(Some(ProofReading {
                     status: ProofStatus::Conditional,
                     why: format!(
-                        "it holds only if the unverified citation(s) {} say what they are \
-                         recalled to say: no pinned source documents them",
+                        "it holds only if the unverified citation(s) or undocumented report(s) \
+                         {} say what they are recalled to say: no pinned source documents them",
                         unverified.join(", ")
                     ),
                     total_steps: total,
@@ -6153,11 +6169,57 @@ impl DesignGraph {
             )?;
             drawn.push(format!("{} CONCLUDES {}", spec.id, spec.conclusion));
         }
+        // A revise that adds premises leaves a generated name saying the old
+        // count; say the new one (item 2).
+        let stored_node = if spec.name.is_none() {
+            self.refresh_generated_step_name(&spec.id)?;
+            self.get_node(node::INFERENCE, &spec.id)?
+                .unwrap_or(stored_node)
+        } else {
+            stored_node
+        };
         Ok(InferenceWritten {
             node: stored_node,
             edges_drawn: drawn,
             revised: existing.is_some(),
         })
+    }
+
+    /// Rewrite a step's name when it is still the one reflow2 GENERATED
+    /// ("all of 2 premise(s) support X") and no longer says its premises
+    /// (items 2 and 9 of req:small-read-back-faults-from-the-cogito-trial-are-
+    /// fixed: the cogito trial read "all of 1 premise(s)" after a second was
+    /// added, the trolley trial after one was deleted). A name somebody wrote
+    /// is never touched.
+    pub(crate) fn refresh_generated_step_name(&mut self, step: &str) -> Result<(), DynoError> {
+        let Some(n) = self.get_node(node::INFERENCE, step)? else {
+            return Ok(());
+        };
+        let Some(name) = prop(&n.properties, "name").map(str::to_string) else {
+            return Ok(());
+        };
+        let Some(conclusion) = self.conclusion_of(step)? else {
+            return Ok(());
+        };
+        let rule = prop(&n.properties, "rule").unwrap_or("all").to_string();
+        let k = n.properties.get("k").and_then(Value::as_i64);
+        let head = match k {
+            Some(k) => format!("{k} of "),
+            None => format!("{rule} of "),
+        };
+        let tail = format!(" premise(s) support {conclusion}");
+        let generated = name
+            .strip_prefix(&head)
+            .and_then(|r| r.strip_suffix(&tail))
+            .is_some_and(|count| count.parse::<usize>().is_ok());
+        if !generated {
+            return Ok(());
+        }
+        let now = format!("{head}{}{tail}", self.premises_of(step)?.len());
+        if now != name {
+            self.upsert_node(node::INFERENCE, step, Props::new().set("name", now))?;
+        }
+        Ok(())
     }
 
     /// The one type holding `id`, or a refusal naming the role it was given in.

@@ -892,6 +892,38 @@ pub(crate) fn watch_attacks(
     g.watch_refutations(ids).map_err(dyno_err)
 }
 
+/// The reply, carrying `source_note` when the write gave a statement of a
+/// line of reasoning a `source` and nothing DOCUMENTS it: the text is kept and
+/// never counted as citing (item 3 of req:small-read-back-faults-from-the-
+/// cogito-trial-are-fixed — measured in the cogito trial, a `source` field was
+/// stored and silently not counted).
+pub(crate) fn with_source_note(
+    mut reply: JsonValue,
+    g: &reflow2_core::DesignGraph,
+    id: &str,
+    source_given: bool,
+) -> Result<JsonValue, McpError> {
+    if !source_given || !g.is_in_a_line_of_reasoning(id).map_err(dyno_err)? {
+        return Ok(reply);
+    }
+    let documented = !g
+        .incoming(id, Some(reflow2_core::nodes::edge::DOCUMENTS))
+        .map_err(dyno_err)?
+        .is_empty();
+    if !documented && let Some(obj) = reply.as_object_mut() {
+        obj.insert(
+            "source_note".into(),
+            JsonValue::String(format!(
+                "`source` is kept as text and does not count as citing: `{id}` is cited only \
+                 through an Artifact that DOCUMENTS it. Register what was read (add_artifact, \
+                 with its checksum, so it is pinned) and draw `documents` from it to `{id}`; \
+                 until then reasoning_report lists it as uncited."
+            )),
+        );
+    }
+    Ok(reply)
+}
+
 /// The reply, carrying `now_refuted` when the write turned a watched record
 /// refuted, defeated or conceded — each with what holds against it and, for
 /// a claim, how to keep the two as an open dispute instead. Unchanged when
@@ -2072,6 +2104,17 @@ pub struct RequirementReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_confidence_opt")]
     pub confidence: Option<String>,
+    /// THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither
+    /// for nor against. Read back on the claim. Overwrites; omitted: nothing
+    /// is written.
+    #[serde(default)]
+    pub silent_on: Option<Vec<String>>,
+    /// THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula
+    /// derived under several suppositions (⊥ in each reductio) is one record
+    /// per occurrence, each naming the first; the read-back groups them. It
+    /// changes no truth. Omitted: nothing is written.
+    #[serde(default)]
+    pub same_formula_as: Option<String>,
     /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
     /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
     /// generalizes over one. Omitted: nothing is written.
@@ -4179,6 +4222,12 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_statement_kind_opt")]
     pub statement_kind: Option<String>,
+    /// WHO OR WHAT STATED IT — a test plan, a standard, a person, a report.
+    /// Text only: a source counts as CITED only through an Artifact that
+    /// DOCUMENTS the constraint, and the reply says so. Omitted: nothing is
+    /// written.
+    #[serde(default)]
+    pub source: Option<String>,
     /// EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely
     /// reliable … `E` unreliable, `F` cannot be judged. Read back; changes no
     /// truth. Omitted: nothing is written.
@@ -4199,6 +4248,17 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_confidence_opt")]
     pub confidence: Option<String>,
+    /// THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither
+    /// for nor against. Read back on the claim. Overwrites; omitted: nothing
+    /// is written.
+    #[serde(default)]
+    pub silent_on: Option<Vec<String>>,
+    /// THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula
+    /// derived under several suppositions (⊥ in each reductio) is one record
+    /// per occurrence, each naming the first; the read-back groups them. It
+    /// changes no truth. Omitted: nothing is written.
+    #[serde(default)]
+    pub same_formula_as: Option<String>,
     /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
     /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
     /// generalizes over one. Omitted: nothing is written.
@@ -7019,6 +7079,13 @@ pub struct AnswerQuestionReq {
     /// exist is REFUSED and nothing is written.
     #[serde(default)]
     pub record: Option<String>,
+    /// EVERY OTHER RECORD THIS ANSWER BECAME, when one answer settles several
+    /// (four step-claims settled by one reply): `ANSWERS` is drawn from each,
+    /// as from `record`. Each must exist, or nothing is written (item 4 of
+    /// req:small-read-back-faults-from-the-cogito-trial-are-fixed: one answer
+    /// could be linked from one record only, the rest named in a note).
+    #[serde(default)]
+    pub also_records: Option<Vec<String>>,
     /// Type of `record`, only when its id is held by more than one type.
     #[serde(default)]
     pub record_type: Option<String>,
@@ -7043,8 +7110,14 @@ pub struct OpenQuestionsReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct WithdrawQuestionReq {
-    /// NOT a node id, and NOT a question id — the `gap_id` the question was
-    /// asked ABOUT, as carried by `open_questions`.
+    /// The question to withdraw: the `gap_id` it was asked ABOUT, or — for a
+    /// question asked with `ask_question`, which no gap stands behind — its
+    /// own `question_id`, as `open_questions` carries both. Either names it
+    /// (item 6 of req:small-read-back-faults-from-the-cogito-trial-are-fixed:
+    /// a self-asked question could not be withdrawn, so a correction had to
+    /// be asked instead).
+    #[serde(alias = "question_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["question_id"]))]
     pub gap_id: String,
 }
 

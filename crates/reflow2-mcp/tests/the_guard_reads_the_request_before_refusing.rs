@@ -110,6 +110,8 @@ async fn a_part_that_meets_a_requirement_reads_like_it_and_is_not_refused() {
         information_credibility: None,
         reported_at: None,
         confidence: None,
+        silent_on: None,
+        same_formula_as: None,
         variables: None,
         fixes: None,
     })));

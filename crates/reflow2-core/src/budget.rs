@@ -676,6 +676,11 @@ impl DesignGraph {
         let open = !unstated.is_empty() || !unit_mismatched.is_empty();
         let verdict = match (limit, judged_total) {
             (None, _) => BudgetVerdict::Ungated,
+            // A SETPOINT is a value the thing is held at — a test parameter —
+            // never a ceiling or a floor (item 12 of req:small-read-back-faults-
+            // from-the-cogito-trial-are-fixed): nothing it constrains can
+            // exceed it.
+            (Some(_), _) if direction == "setpoint" => BudgetVerdict::Ungated,
             (Some(_), None) => BudgetVerdict::Incomplete,
             (Some(l), Some(judged)) if direction == "minimum" => {
                 if judged >= l {
@@ -770,11 +775,12 @@ impl DesignGraph {
         contributors: &[BudgetContributor],
         direction: &str,
     ) -> Result<(Vec<String>, f64, String), DynoError> {
-        if direction == "minimum" {
+        if direction == "minimum" || direction == "setpoint" {
             return Ok((
                 Vec::new(),
                 0.0,
-                "path analysis applies to maximum budgets; a minimum budget gates the total only"
+                "path analysis applies to maximum budgets; a minimum budget gates the total only, \
+                 and a setpoint is no budget"
                     .into(),
             ));
         }
