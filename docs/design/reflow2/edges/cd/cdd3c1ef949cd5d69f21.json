@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e81c94a932e1f311fc9d806f8a46192a0bec6846897f8feea64385e5f949fb7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:one-formula-is-one-record-per-occurrence-naming-its-formula"
+}

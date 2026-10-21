@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:637651477d0c08ffac991b36c6be9c766b92d83d5b5859f3c7cb74b53b48d4c7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-revise-keeps-what-it-was-not-passed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:090524a670737d9ebb47a523c628b0e1face82ab8778b00e13b4b1ae6fda131f",
+  "content_hash": "sha256:51863c3cff0f10f960ca8ff0acd9afda078aa17daf94a864a8719533af48fba2",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-what-rests-on-unsourced-evidence-reads-supported-or-conditional",
+  "prev_item_hash": "sha256:090524a670737d9ebb47a523c628b0e1face82ab8778b00e13b4b1ae6fda131f",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

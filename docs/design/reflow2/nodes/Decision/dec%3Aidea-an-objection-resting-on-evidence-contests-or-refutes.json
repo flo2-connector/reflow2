@@ -1,12 +1,14 @@
 {
-  "content_hash": "sha256:a10183ff507a6bc99cd929e68c840878428a19830e9a4a871d5e6eb58e2720fa",
+  "content_hash": "sha256:fde8c556a254009d7ef569f04751d097e1b78f8845b9362eebb78dc166795fcf",
   "node_id": "dec:idea-an-objection-resting-on-evidence-contests-or-refutes",
   "node_type": "Decision",
+  "prev_item_hash": "sha256:a10183ff507a6bc99cd929e68c840878428a19830e9a4a871d5e6eb58e2720fa",
   "properties": {
+    "chose": "(a) An objection whose only support is evidence (a report, a study, a statistical test) contests the claim and never refutes it, whatever the report's grade; the owner settles it. As built in #782. Anthony's word 2026-10-20: \"Merge 782. Then go with your recommendations\". Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
     "decision": "Built as (a), PROPOSED, awaiting Anthony. In plain terms: an objection whose only support is evidence (a report, a study, a statistical test) is evidence against, not a counterexample. (a) It contests the claim it opposes and never refutes it, the rule statistical tests already follow (built: reports now share it). (b) A report the owner grades highly (source A, credibility 1) refutes; lower grades contest.",
     "kind": "exploratory",
-    "name": "Does an objection that rests on a report refute what it opposes, or only contest it?",
+    "name": "An objection resting only on evidence contests what it opposes and never refutes it",
     "rationale": "(a) extends the existing rule for statistical tests (req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-shown) to reports, and matches the capstone observer's expectation that rival assessments stay a dispute, not a one-way refutation. (b) would make a grade change a truth, which the requirement says a grade never does. Measured 2026-10-20: no reading in the trial designs changes by it — the capstone's U1 objections already contest, because each holds only under supposition S3 — so it decides what a design that cites a report alone against a claim will read. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "proposed"
+    "status": "accepted"
   }
 }

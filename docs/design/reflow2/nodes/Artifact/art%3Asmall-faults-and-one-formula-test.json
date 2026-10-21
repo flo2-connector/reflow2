@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:34079b5d67204d723cc3c975fa61a571359221fd0a7175feb49a60d99ec165bb",
+  "node_id": "art:small-faults-and-one-formula-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Seven core tests for phase 6 PR 5: small faults 1, 2/9, 11, 12 and 14 as classes over the trial fixtures; one formula as one record per occurrence on the logic rung; what rests on an undocumented report reads conditional on the capstone.",
+    "location": "crates/reflow2-core/tests/small_faults_and_one_formula.rs",
+    "name": "crates/reflow2-core/tests/small_faults_and_one_formula.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1fae76e82511445c535381e1a73e994764ced7a837213098bd24616229a7d867",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:33cdcb4c4fee163b793a6cefe0f15e4d105ee71024eba00f86fcb4c2df94bcf2",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

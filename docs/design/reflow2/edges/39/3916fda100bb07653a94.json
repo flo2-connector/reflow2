@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f8087171f3a1200da84f20d824d78a06686096f7de1bc06209d8356810a0f8d4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-principle-can-say-it-is-silent-on-a-case",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

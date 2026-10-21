@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3024925020285bb04a69fe9728874146977d1a009840c4c520359aab81416c9a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:daed042e93c7da00b6db6fb77e12e2f3bda70fdd8bf6a4b0dbeb8d4a44a3fc52",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-skill"
+}

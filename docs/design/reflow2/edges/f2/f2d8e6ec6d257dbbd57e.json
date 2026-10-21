@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e9bf891daf583b35171b71e9495070fd01fa72732441bfc33f1566ab1e036c55",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b2f337fe5b0940649eef3ebf4fe2204b1557c25f231f11c89653bd092baa822",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-core",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:one-formula-is-one-record-per-occurrence-naming-its-formula"
+}

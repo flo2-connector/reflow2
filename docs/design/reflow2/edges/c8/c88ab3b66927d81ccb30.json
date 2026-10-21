@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:29466e480f45775e6a7579bb675afda88965c36290baa3f747ad6bc7c690b18b",
+  "edge_type": "REALIZES",
+  "from_id": "art:budget",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source"
+}

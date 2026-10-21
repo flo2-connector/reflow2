@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd61efeab8c49b40f3225087fd194a3dc032e7c5c8170f1428047fb8347c8890",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:small-faults-are-fixed-on-the-wire-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

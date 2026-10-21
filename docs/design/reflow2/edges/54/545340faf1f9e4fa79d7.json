@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:22267a5f08231148052403498c55b7bf74bfba83fcc4e1a7d0e523afd5f78ab7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:02ec5c6459574d0cc99651c922079e09a4c93dd3c4629b968fa111f421f606e4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kept-record-rs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c59e93ade953089d6ce01acd3c95834205cb060cee20213e770511e14bc9694b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:008f73a6deb508344a3b81aa07f255ad00fcd0a33596d6ca04b130cd8b75716c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-revise-keeps-what-it-was-not-passed"
+}

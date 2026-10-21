@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1c7e843e6c14d2b6550efa877d3c6492e76732347dae7a2f8ec0fc29a8847d67",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p6-small-faults-and-one-formula-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:795b2adc9b25e1bb97f9b6b5e7bbfd49e7d2829418e48030438122d8d2004e86",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}

@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:50716adc100b16b012cca60cdae119a280cf3f2efbf43c1677096dab4bb9cbd9",
+  "content_hash": "sha256:e2cbb901c71032ca543bdfc7122cb25beda77d62d736f3102b3066301d7e6b7e",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-one-formula-under-several-suppositions-is-one-node-or-one-per-occurrence",
+  "prev_item_hash": "sha256:50716adc100b16b012cca60cdae119a280cf3f2efbf43c1677096dab4bb9cbd9",
   "properties": {
+    "approved_at": "2026-10-20",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

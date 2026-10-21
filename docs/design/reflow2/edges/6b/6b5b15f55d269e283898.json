@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6aec6fa28c13611e45427a436a161eb6563d7466fb9c6a3655250493e3489ccb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
