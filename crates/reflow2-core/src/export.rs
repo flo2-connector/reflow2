@@ -365,6 +365,40 @@ pub struct ImportReport {
     #[serde(skip_serializing_if = "crate::twins::TwinRepairs::is_empty")]
     #[serde(default)]
     pub twin_repairs: crate::twins::TwinRepairs,
+    /// Properties a node ALREADY IN THE DESIGN held before the import and does
+    /// not hold after it, counted by `Type.property`. Whole-node import (the
+    /// default) removes what a document leaves out; this is where that is
+    /// said, so a partial document can never silently wipe data.
+    ///
+    /// Measured 2026-10-20 in hxm_program: 454 Artifacts imported as
+    /// `{name, location}` lost `checksum`, `checksum_basis` and `status`, and
+    /// the reply said `nodes_written: 454` and nothing else
+    /// (`req:an-import-says-what-it-removed-and-merges-only-when-asked`).
+    /// Always empty under `merge`, which removes nothing.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    #[serde(default)]
+    pub properties_removed: BTreeMap<String, usize>,
+    /// Properties a node already in the design held with a DIFFERENT value
+    /// after the import, counted by `Type.property` — whether the document
+    /// stated the new value or the schema's default replaced one the document
+    /// left out. A value overwritten is counted here and never under
+    /// `materialized`: until 2026-10-21 an `artifact_type` reset from `config`
+    /// to the default `code`, and an accepted Requirement's `status` reset to
+    /// `proposed`, were reported as defaults filled in.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    #[serde(default)]
+    pub properties_changed: BTreeMap<String, usize>,
+    /// A few of the existing nodes that lost properties, each with what it
+    /// lost — at most [`REMOVED_FROM_SHOWN`], the count of the rest said in
+    /// the last line — so the caller can look before moving on.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    #[serde(default)]
+    pub removed_from: Vec<String>,
+    /// Said whenever anything was removed: what happened and how to keep what
+    /// a partial document leaves out next time.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(default)]
+    pub removed_note: Option<String>,
 }
 
 /// How an import may deviate from the safe default.
@@ -373,7 +407,18 @@ pub struct ImportOptions {
     /// Import a document stamped by a reflow2 NEWER than this crate. Refused
     /// by default — see [`DesignGraph::import_graph_with`].
     pub accept_newer: bool,
+    /// Merge each node the design already holds: the document's properties
+    /// overwrite, and every stored property the document leaves out SURVIVES,
+    /// as `upsert_node` (create_node, create_nodes) does. Off by default, so a
+    /// document is a complete statement of the nodes it names: an export→import
+    /// round trip reproduces a design, and a document can remove a property
+    /// (`dec:import-merges-or-demands-whole-nodes`, accepted 2026-10-21: whole
+    /// nodes unless the call asks to merge).
+    pub merge: bool,
 }
+
+/// How many existing nodes an import names in `removed_from`, at most.
+pub const REMOVED_FROM_SHOWN: usize = 5;
 
 impl DesignGraph {
     /// Export the whole graph, deterministically.
@@ -564,11 +609,34 @@ impl DesignGraph {
             // from the document's own edges, so it is not "materialised": the
             // document stated it, once, where it belongs.
             let accepted = current_acceptances(&doc.edges);
+            // WHAT AN EXISTING NODE LOSES OR HAS CHANGED is measured against
+            // the node as it stood before this document touched it, by the
+            // document's own type (`existing` maps an id to the type holding
+            // it). Read before the write, so a node named twice in one
+            // document is compared with the store, not with itself.
+            let mut properties_removed: BTreeMap<String, usize> = BTreeMap::new();
+            let mut properties_changed: BTreeMap<String, usize> = BTreeMap::new();
+            let mut removed_from: Vec<String> = Vec::new();
+            let mut nodes_losing = 0usize;
             for (index, n) in doc.nodes.iter().enumerate() {
                 let mut stated = n.properties.clone();
                 fill_accepted_checksum(&n.node_type, &n.node_id, &mut stated, &accepted);
-                let props: std::collections::HashMap<String, Value> =
+                let before: Option<std::collections::HashMap<String, Value>> =
+                    if existing.get(&n.node_id).map(String::as_str) == Some(n.node_type.as_str()) {
+                        self.get_node(&n.node_type, &n.node_id)?
+                            .map(|stored| stored.properties)
+                    } else {
+                        None
+                    };
+                let mut props: std::collections::HashMap<String, Value> =
                     stated.clone().into_iter().collect();
+                if options.merge
+                    && let Some(before) = &before
+                {
+                    for (k, v) in before {
+                        props.entry(k.clone()).or_insert_with(|| v.clone());
+                    }
+                }
                 for (prop, target) in self.declared_node_refs(&n.node_type, &props) {
                     pending_refs.push((
                         index,
@@ -581,10 +649,46 @@ impl DesignGraph {
                 match self.create_node_refs_checked_later(&n.node_type, &n.node_id, props) {
                     Ok(stored) => {
                         for key in stored.properties.keys() {
-                            if !stated.contains_key(key) {
+                            // A default filled in is a key neither the
+                            // document nor the node held. One the node
+                            // already held is its own value kept (merge) or
+                            // replaced — counted below, never as a fill.
+                            if !stated.contains_key(key)
+                                && !before.as_ref().is_some_and(|b| b.contains_key(key))
+                            {
                                 *materialized
                                     .entry(format!("{}.{key}", n.node_type))
                                     .or_insert(0) += 1;
+                            }
+                        }
+                        if let Some(before) = &before {
+                            let mut lost: Vec<&str> = Vec::new();
+                            for (key, was) in before {
+                                match stored.properties.get(key) {
+                                    None => {
+                                        lost.push(key);
+                                        *properties_removed
+                                            .entry(format!("{}.{key}", n.node_type))
+                                            .or_insert(0) += 1;
+                                    }
+                                    Some(now) if now != was => {
+                                        *properties_changed
+                                            .entry(format!("{}.{key}", n.node_type))
+                                            .or_insert(0) += 1;
+                                    }
+                                    Some(_) => {}
+                                }
+                            }
+                            if !lost.is_empty() {
+                                nodes_losing += 1;
+                                if removed_from.len() < REMOVED_FROM_SHOWN {
+                                    lost.sort_unstable();
+                                    removed_from.push(format!(
+                                        "{}: {}",
+                                        n.node_id,
+                                        lost.join(", ")
+                                    ));
+                                }
                             }
                         }
                     }
@@ -759,6 +863,18 @@ impl DesignGraph {
                 dangling_node_refs,
                 materialized,
                 twin_repairs,
+                removed_note: removed_note(&properties_removed, nodes_losing),
+                properties_removed,
+                properties_changed,
+                removed_from: {
+                    if nodes_losing > removed_from.len() {
+                        removed_from.push(format!(
+                            "… and {} more node(s); `properties_removed` counts them all",
+                            nodes_losing - removed_from.len()
+                        ));
+                    }
+                    removed_from
+                },
             })
         })();
 
@@ -774,6 +890,24 @@ impl DesignGraph {
             }
         }
     }
+}
+
+/// The sentence an import says when it removed properties from nodes the
+/// design already held. `None` when it removed none.
+fn removed_note(removed: &BTreeMap<String, usize>, nodes: usize) -> Option<String> {
+    if removed.is_empty() {
+        return None;
+    }
+    let total: usize = removed.values().sum();
+    Some(format!(
+        "This import REMOVED {total} stored value(s) from {nodes} node(s) the design already \
+         held. A document states each node whole, so what it leaves out is removed: that is how \
+         an export→import round trip reproduces a design and how a document drops a property. \
+         `properties_removed` counts them by Type.property and `removed_from` names a few. If \
+         the document was meant to EDIT those nodes, restore them from your last export, then \
+         import with `merge: true` (or write the edits with create_nodes), which keeps what a \
+         call leaves out."
+    ))
 }
 
 /// Put back the `checksum` (and its `checksum_basis`) an export left off an

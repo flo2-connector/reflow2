@@ -326,6 +326,7 @@ async fn every_statement_of_the_proof_trial_is_written_with_no_distinct_from() {
             document: rest.as_object().cloned(),
             path: None,
             accept_newer: None,
+            merge: None,
         }))
         .await
         .expect("the trial imports");

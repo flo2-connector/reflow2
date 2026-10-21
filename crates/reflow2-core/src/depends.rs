@@ -734,6 +734,15 @@ pub struct ObservedUpstream {
     /// nothing to add.
     #[serde(default)]
     pub detail: Option<String>,
+    /// Every node id the record read holds, when the reader had the whole
+    /// record in hand (an export on disk). What a link into that design is
+    /// checked against: a far node absent from it reads `stale`
+    /// (`req:a-link-into-a-pinned-design-says-when-its-record-is-gone`).
+    /// `None` when the reader saw only a fingerprint, as at an address, and
+    /// then no link is judged gone. Never serialized: it is the record's
+    /// whole id list, not something a reply should carry.
+    #[serde(skip)]
+    pub node_ids: Option<std::collections::BTreeSet<String>>,
 }
 
 /// One thing to say about a declared dependency's upstream design.
@@ -783,6 +792,8 @@ impl UpstreamFinding {
                 | "no_interface_to_follow"
                 | "link_into_undeclared_design"
                 | "link_far_end_moved"
+                | "link_far_end_stale"
+                | "link_far_end_unreachable"
                 | "received_waiting"
         )
     }
@@ -804,6 +815,17 @@ pub struct MemberRelation {
     /// For `uses`, the Interface ids the use crosses; omitted when none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub interfaces: Vec<String>,
+    /// The member's source revision this design last reviewed it at: the
+    /// pin's `version` (a tag or a commit), which the hub re-declares when it
+    /// catches up (`req:a-hubs-check-shows-each-members-reviewed-revision`).
+    /// reflow2 fetches nothing; the hub's own tooling reads the member's
+    /// source and re-declares.
+    pub reviewed_revision: String,
+    /// Beside it, the state of the member's design record on this pass — the
+    /// kind of this pin's watch finding: `unchanged`, `moved`, `never_seen`,
+    /// `missing`, `unreadable`, `unreachable`, `refused`, `graph_id_mismatch`,
+    /// `not_observed`, or `not_watched` when the pin names nowhere to read it.
+    pub record_state: String,
 }
 
 /// What the declared dependencies say about the designs upstream of them.
@@ -1101,6 +1123,12 @@ impl DesignGraph {
             }
         }
 
+        // Every finding so far is one pin's watch finding, at most one per
+        // pin: the state each member's record is read in, below.
+        let record_state: BTreeMap<String, &'static str> = findings
+            .iter()
+            .map(|f| (f.dependency.clone(), f.kind))
+            .collect();
         let moved = findings.iter().filter(|f| f.kind == "moved").count();
         let unknown = findings
             .iter()
@@ -1183,6 +1211,12 @@ impl DesignGraph {
                     d.relation.clone()
                 },
                 interfaces: d.interfaces.clone(),
+                reviewed_revision: d.version.clone(),
+                record_state: record_state
+                    .get(&d.id)
+                    .copied()
+                    .unwrap_or("not_watched")
+                    .to_string(),
             });
         }
 
@@ -1240,10 +1274,50 @@ impl DesignGraph {
                 ));
                 continue;
             };
-            let Some(now) = by_id
-                .get(pin.id.as_str())
-                .and_then(|o| o.content_hash.as_deref())
-            else {
+            // THE FAR NODE ITSELF, against the record read on this pass
+            // (`req:a-link-into-a-pinned-design-says-when-its-record-is-gone`):
+            // gone from a record read whole reads `stale`; a record that
+            // could not be read leaves the far end `unreachable` — unknown,
+            // never read as still there. Measured 2026-10-21 on 0.89.0: a far
+            // node deleted upstream read only as `link_far_end_moved`.
+            let observed = by_id.get(pin.id.as_str());
+            let at = pin
+                .design_export
+                .as_deref()
+                .or(pin.design_address.as_deref())
+                .unwrap_or("its record");
+            match observed {
+                Some(o) if o.state == "read" => {
+                    if let Some(ids) = &o.node_ids
+                        && !ids.contains(&r.node_id)
+                    {
+                        findings.push(finding(
+                            "link_far_end_stale",
+                            format!(
+                                "stale: design {}'s record at {at} no longer holds {} ('{}'), so \
+                                 the link names nothing there and is never read as holding. Link \
+                                 to what it became, or remove the link.",
+                                r.design, r.node_id, r.name
+                            ),
+                        ));
+                        continue;
+                    }
+                }
+                Some(o) => {
+                    findings.push(finding(
+                        "link_far_end_unreachable",
+                        format!(
+                            "unreachable: design {}'s record at {at} could not be read on this \
+                             pass ({}), so whether {} ('{}') is still there is unknown, never \
+                             read as holding.",
+                            r.design, o.state, r.node_id, r.name
+                        ),
+                    ));
+                    continue;
+                }
+                None => {}
+            }
+            let Some(now) = observed.and_then(|o| o.content_hash.as_deref()) else {
                 continue;
             };
             match r.fingerprint_at_link.as_deref() {

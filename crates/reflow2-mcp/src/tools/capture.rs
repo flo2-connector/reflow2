@@ -3470,6 +3470,29 @@ impl ReflowService {
         let node_type = self
             .resolve_type(req.node_type.as_deref(), &req.node_id, "node_type")
             .await?;
+        // A far node the pinned design's export does not hold is refused
+        // before anything is written. The export is read here, before the
+        // write lock, which is never held across file reads it need not be.
+        if !across.is_empty() && !self.served_from_registry() {
+            let declared = {
+                let g = self.graph.read().await;
+                g.declared_dependencies().map_err(dyno_err)?
+            };
+            let missing = crate::upstream::far_nodes_not_in_their_export(
+                &declared,
+                across.iter().map(|l| {
+                    (
+                        l.other_design.as_deref().unwrap_or_default(),
+                        l.other_id.as_str(),
+                    )
+                }),
+            );
+            if !missing.is_empty() {
+                return Err(crate::upstream::refuse_far_nodes_not_in_their_export(
+                    &missing,
+                ));
+            }
+        }
         // Through `write_lock` like every other write. This took the raw lock
         // until 2026-10-02, so its edges were written outside the crediting,
         // agent stamp and signing the hold carries; the unit
@@ -3764,6 +3787,25 @@ impl ReflowService {
                         .as_deref()
                         .is_some_and(|d| !d.trim().is_empty())
                 });
+            // The same check review_relations makes before its lock; here the
+            // write lock is already held, so the declarations are read under
+            // it and the export is read once per pinned design.
+            if !across.is_empty() && !self.served_from_registry() {
+                let missing = crate::upstream::far_nodes_not_in_their_export(
+                    &g.declared_dependencies().map_err(dyno_err)?,
+                    across.iter().map(|l| {
+                        (
+                            l.other_design.as_deref().unwrap_or_default(),
+                            l.other_id.as_str(),
+                        )
+                    }),
+                );
+                if !missing.is_empty() {
+                    return Err(crate::upstream::refuse_far_nodes_not_in_their_export(
+                        &missing,
+                    ));
+                }
+            }
             links.extend(cross_design_links(&mut g, across)?);
             for l in local {
                 // `g` (the write lock) is already held here, so resolve IN-lock: the

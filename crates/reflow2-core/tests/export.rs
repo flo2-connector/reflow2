@@ -544,7 +544,13 @@ fn a_document_written_by_a_newer_reflow2_is_refused_unless_accepted() {
     );
 
     let report = g
-        .import_graph_with(&doc, reflow2_core::ImportOptions { accept_newer: true })
+        .import_graph_with(
+            &doc,
+            reflow2_core::ImportOptions {
+                accept_newer: true,
+                ..Default::default()
+            },
+        )
         .expect("accepted on purpose");
     assert_eq!(report.nodes_written, doc.nodes.len());
 }

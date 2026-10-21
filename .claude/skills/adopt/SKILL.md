@@ -149,9 +149,12 @@ recorded.
   that in one day before re-doing the work. Include the Fragments and `YIELDED` edges from Phase 0,
   and a `checksum` on each code Artifact (hash the file), because the checksum is what makes later
   drift detectable.
-  ⚠️ **This is the bulk route and there is no incremental equivalent.** Recording ONE verification
-  mid-session is still a typed call that cannot reach those fields, so the constructor is not
-  redundant — it is the wrong door for bulk and the only door for everything else.
+  ⚠️ **`import_graph` is the bulk route for NEW records. To edit records already in the design in
+  bulk, use `create_nodes`**, which reaches the whole schema too and keeps every property a call
+  leaves out. `import_graph` states each node WHOLE: a node it names loses what the document omits
+  (the reply counts it in `properties_removed`) unless the call passes `merge: true`. Recording ONE
+  verification mid-session is still a typed call that cannot reach those fields, so the constructor
+  is not redundant — it is the wrong door for bulk and the only door for everything else.
 - **Model the whole repo, not a region.** A partial graph emits gaps indistinguishable from
   real ones — the detectors cannot yet tell "nothing delivers this" from "nobody has drawn the
   edge yet". Coarse-over-everything is safe; deep-over-a-corner is noise.

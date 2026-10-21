@@ -152,6 +152,15 @@ NON_TOOL_TERMS = {
     # (depends.rs `relation_not_stated`, `no_interface_to_follow`).
     "relation", "interfaces", "part_of", "uses",
     "relation_not_stated", "no_interface_to_follow",
+    # hub (2026-10-21, phase 7 PR 1): a member's reviewed source revision
+    # beside its record's state on upstream_status `members` (the pin's
+    # `version`), search_design's `not_searched`, and the two finding kinds a
+    # link into a member pinned by its export reads (depends.rs).
+    "version", "reviewed_revision", "record_state", "not_searched",
+    "link_far_end_stale", "link_far_end_unreachable",
+    # adopt (2026-10-21): import_graph's reply field for what a whole-node
+    # import removed from records that already existed (export.rs).
+    "properties_removed",
     # hub (2026-10-06): carrying a radius across designs — the radius fields
     # `design`, `continue_in`, `seeds`, `interfaces_reached`, and
     # propagate_from's `arriving_from` (propagate.rs, coherence.rs).

@@ -441,21 +441,22 @@ impl ReflowService {
     #[tool(
         description = "Load an exported design into this graph. THE DOCUMENT SHAPE: \
                        {\"nodes\":[{\"node_type\":\"Requirement\",\"node_id\":\"req:x\",\"properties\":{...}}],\"edges\":[{\"edge_type\":\"SATISFIES\",\"from_id\":\"cap:x\",\"to_id\":\"req:x\",\"properties\":{}}]}. \
-                       That is the whole required envelope — `graph_id`, `stamp`, `content_hash` and \
-                       `prev_content_hash` are OPTIONAL on the way in, and `edges` may be omitted. Endpoint \
+                       Only `nodes` is required: `graph_id`, `stamp` and both hashes are OPTIONAL on the way \
+                       in, and `edges` may be omitted. Endpoint \
                        types are recovered from the nodes in the document or from this graph; describe_schema \
-                       lists each node_type's properties. EACH NODE MUST BE COMPLETE: validation applies to the \
-                       whole node, so a partial node is refused rather than merged. Upsert, not replace: ids \
-                       already present are overwritten and anything not in the document is left alone — clear \
-                       the graph first for a clean restore. Atomic: a document that fails validation leaves the \
-                       graph untouched, and EVERY invalid item is reported in one response; an edge whose \
-                       endpoint is missing is reported, not dropped. IDENTITY: an EMPTY store adopts the \
-                       document's `graph_id` (reported as `adopted_identity`); a store already holding one \
-                       keeps its name. A document stamped by a NEWER reflow2 than this server is REFUSED unless \
-                       `accept_newer` — it would write this binary's defaults onto records the newer one left \
-                       implicit (the 853 of 2026-09-14). `materialized` in the report names every Type.property \
-                       written that the document did not state. Ask for this when you want to load a design or \
-                       model file that someone exported or sent you.",
+                       lists each node_type's properties. EACH NODE IS STATED WHOLE: a node already here is \
+                       replaced, so a property the document leaves out is removed; the reply counts each \
+                       removal and change in `properties_removed` / `properties_changed`. A node is refused only \
+                       when it lacks a required property. To EDIT existing nodes, pass `merge: true` (what the \
+                       document omits is kept) or use create_nodes. Anything not in the document is left \
+                       alone. Atomic: a document that fails validation leaves the graph untouched, and EVERY \
+                       invalid item is reported in one response; an edge whose endpoint is missing is reported, \
+                       not dropped. IDENTITY: an EMPTY store adopts the document's `graph_id` \
+                       (`adopted_identity`); a store already holding one keeps its name. A document from a NEWER \
+                       reflow2 is REFUSED unless `accept_newer`: it would write this binary's defaults onto \
+                       what the newer one left implicit. `materialized` names every \
+                       Type.property written that the document did not state. Ask for this when you want to \
+                       load a design or model file that someone exported or sent you.",
         title = "Import a Design",
         annotations(read_only_hint = false, destructive_hint = true)
     )]
@@ -508,6 +509,7 @@ impl ReflowService {
                 doc,
                 reflow2_core::export::ImportOptions {
                     accept_newer: req.accept_newer.unwrap_or(false),
+                    merge: req.merge.unwrap_or(false),
                 },
             )
             .map_err(dyno_err)?;
