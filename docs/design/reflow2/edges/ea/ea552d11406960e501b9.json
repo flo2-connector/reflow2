@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6d2e9a8812de752360b1e20a01f41aeb2d0ef4dd9ddcafe0613eddb8fa03f039",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-tracked-search-from-exports-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 27,
+    "action": "modified",
+    "checksum_after": "sha256:917562248efe746f51c39ffd4e6e2eb695f37502a93a7202dd1d8535d25f8d6b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-query"
+}

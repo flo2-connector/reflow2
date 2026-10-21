@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:435994d91a747f23c499778e9409f3e8df28539709b43c7052064b47516610f6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-4dbc65b20b16dffe",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:45795f10f97bd86e2a794f76c15fd76bd40699d87830c625e9fc5d30ac2cb24e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:one-search-reaches-every-design-a-hub-tracks-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3a711787afc8379c8a9023eebb95eb0ed84d7f61e89cc1a698c2b707e6785f3a",
+  "edge_type": "REALIZES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-absence-claim-names-where-it-was-checked-in-the-served-text"
+}

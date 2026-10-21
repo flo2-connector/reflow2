@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d6129c3a502c41cf5685570cd356f8bdbdcc865f27eadd3470955cd717a263e6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:p7-tracked-search-from-exports-2026-10-21",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

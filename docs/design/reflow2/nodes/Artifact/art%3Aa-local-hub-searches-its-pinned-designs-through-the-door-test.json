@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7c4eb03fa8d567cfa9b2c67a7cbd8ba8309330754fb262f548ba91b0031daaa2",
+  "node_id": "art:a-local-hub-searches-its-pinned-designs-through-the-door-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "On disk, the real binary through `reflow2 read|write`: a hub store pinning a member by its export, a missing export and an address; the tracked search finds the member's word under its prefixed id, names the other two with their states, opens the hit with get_node, and refuses a write aimed at the member with its export untouched.",
+    "location": "crates/reflow2-mcp/tests/a_local_hub_searches_its_pinned_designs_through_the_door.rs",
+    "name": "crates/reflow2-mcp/tests/a_local_hub_searches_its_pinned_designs_through_the_door.rs",
+    "status": "realized"
+  }
+}

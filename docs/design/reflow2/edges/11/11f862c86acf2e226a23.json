@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8a6a03160154df616ab21cbb263bf187f744c3392fd0b64516900026c3a02411",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-d9bc2b76779357da",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:48f719ec9d776f3054412f09b17319a5f6027cd517c1097131aebddf497179b7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service-tracked"
+}

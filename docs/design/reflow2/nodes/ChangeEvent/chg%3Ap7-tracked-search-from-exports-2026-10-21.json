@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:5c4557e27326b16b4567eb98182c8eabcfd924bc22cbd6373065f8fae3f934ba",
+  "node_id": "chg:p7-tracked-search-from-exports-2026-10-21",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "ac61d63a6",
+    "detected_at": "2026-10-21",
+    "name": "Phase 7, PR 2: one search reaches a hub and every design it pins, from their committed exports",
+    "rationale": "Phase 7 PR 2 (epoch:planned-p7-a-hub-on-one-machine, sequence 768), on Anthony's word 2026-10-21 (\"Go with recommendations ... start another reflow2 epoch/increment\"), from hxm_program's hub feedback of 2026-10-20, item 1: a one-person hub of 15 local designs (3,174 nodes) where policy blocks MCP and only `reflow2 read|write` reaches the design. Delivers req:one-search-reaches-every-design-a-hub-tracks for committed exports (accepted 2026-09-28) and req:a-claim-that-the-design-holds-nothing-says-where-it-was-checked, as dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub chose. The argument name tracked_designs is the one the requirement and capability settled; tool_confusability --validate still agrees 228/228 top-1. The merged reply reuses the hub view's merge (merged_search_payload) so a local hub and a hosted hub answer one search in one shape; scores still come from each design's own index, so cross-design order is a guide. Each test is a class invariant across pin states and node types and failed on main 001c20951 first. Measured on a release build: 15 exports, 3,180 nodes, 4,731 edges cost 2.0-3.1 s and 143-184 MB peak per tracked search through the door (plain search 0.09 s, 46 MB); a get_node aimed at one export 0.17-0.28 s. No schema change, so the stamp does not move. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "search_design takes tracked_designs: on a design that pins others and is not served from a registry, each pinned design's committed export is read into a fresh in-memory, read-only design that reaches no server, searched with the same query, and merged in the hub view's shape (one limit, each hit's design, a pinned design's ids prefixed '<graph_id>:'); every pinned design not searched is in not_searched with a state (missing, unreadable, not_reached, nowhere, not_read, not_followed) and why. A read aimed at a pinned design (member, or a prefixed id) runs on its export alone, so get_node opens a hit; a write aimed at one is refused. Works through the --call door with no registry and no hub server. Through a hub's address the view already searches every member and says the argument adds nothing; on a registry the handler says it was not served. The served instructions gain 'When you say something is not in the design, say where you looked', and the hub skill's search step names the tracked search and citing a sibling's record. The address half is deferred as cap:a-tracked-search-reaches-a-design-at-its-address."
+  }
+}

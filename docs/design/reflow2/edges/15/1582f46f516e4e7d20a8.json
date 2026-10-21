@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e0e70734f11fe67bd99199c452fb60fab2eaba76459100201efc57012cf285f3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:one-search-reaches-every-design-a-hub-tracks-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

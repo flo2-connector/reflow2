@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8ed59f8e32d32e065a4eb99a7574e8b12160867c59d6ff8b5d3cd5fe24c31d8f",
+  "node_id": "art:one-search-reaches-every-design-a-hub-tracks-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "In memory, through call_tool (an in-process MCP client): the tracked search across every pin state (export present, missing, at an address, nowhere, not a design, an export of another design) and three node types; the reply unchanged without the argument; a design pinning nothing says so; the one limit; a hit opened by prefixed id and by member; a write aimed at a pinned design refused with its export untouched; the served instructions and hub skill text.",
+    "location": "crates/reflow2-mcp/tests/one_search_reaches_every_design_a_hub_tracks.rs",
+    "name": "crates/reflow2-mcp/tests/one_search_reaches_every_design_a_hub_tracks.rs",
+    "status": "realized"
+  }
+}

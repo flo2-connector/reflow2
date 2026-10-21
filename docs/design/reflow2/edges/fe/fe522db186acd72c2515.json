@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d98b0876d7dab9f73d9eb6816ef182ce4c03c0d6536e63f322cbe0d8a66bd231",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-tracked-search-from-exports-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-tracked-search-reaches-a-design-at-its-address"
+}

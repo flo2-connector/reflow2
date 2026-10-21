@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c54d09b3dbe74d73a6eeca6a325d2f7dca5b5b49ab46f1c44a65571b6c3c4847",
+  "node_id": "art:service-tracked",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "Phase 7 PR 2. Served where a call is received (ReflowService::call_tool), when no hub's view is named and the design is not served from a registry: search_design with tracked_designs loads each pinned design's committed export into a fresh in-memory, read-only, non-reaching design and merges the hits in the hub view's shape; a read aimed at a pinned design (member, or a '<graph_id>:' id) runs on that export alone; a write aimed at one is refused.",
+    "location": "crates/reflow2-mcp/src/service/tracked.rs",
+    "name": "service/tracked.rs — a design that pins others searches and reads them from their committed exports (tracked_designs; reads aimed by member or prefix)",
+    "status": "realized"
+  }
+}

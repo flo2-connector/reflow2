@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e41621d15c8496b656a9b71e15b0e62122d408a20ce6c81953c24d963089209f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-tracked-search-reaches-a-design-at-its-address",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
