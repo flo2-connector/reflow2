@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a8ed053701040ae29c0638ee6752701f41c93bfc8e08283bf6e2f7ee3e1c22e2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-1e4e32d729ae3440",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6816dde41d8f6f81adf88ec283b1c968094fd70dba841fe683c9b64573253c58",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-hubs-check-shows-each-members-reviewed-revision-test"
+}

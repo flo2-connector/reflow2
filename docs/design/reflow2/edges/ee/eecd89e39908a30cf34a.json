@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e0cddffebc1d2cc6eb8dee5198a54578930ecbcc82c09d9bd1da765fc11311ba",
+  "edge_type": "REALIZES",
+  "from_id": "art:depends",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-hubs-check-shows-each-members-reviewed-revision"
+}

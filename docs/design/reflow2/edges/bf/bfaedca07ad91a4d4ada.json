@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:739ed68d64c003a237eef68e2e98fbbaf21c3ee661eca211103c589bfd83dbe5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:7445d96b5c23009c0116ddb72138ba9d8db62bace970870798701faca77df552",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:adopt-skill"
+}

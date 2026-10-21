@@ -1629,6 +1629,7 @@ async fn a_design_round_trips_through_export_and_import() {
         document: Some(obj(&doc)),
         path: None,
         accept_newer: None,
+        merge: None,
     })));
     assert_eq!(
         report["nodes_written"].as_u64().unwrap(),
@@ -1671,6 +1672,7 @@ async fn importing_something_that_is_not_an_export_fails_loud() {
             document: Some(obj(&serde_json::json!({"nodes": "not a list"}))),
             path: None,
             accept_newer: None,
+            merge: None,
         }))
         .await
         .is_err(),

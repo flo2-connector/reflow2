@@ -108,6 +108,42 @@
         "description": "Present only when the coherence loop is owed something.",
         "type": "string"
       },
+      "not_searched": {
+        "description": "Present only on a design that pins other designs (external_dependency with a graph_id): each pinned design this search did NOT look in, with where it could be read and why it was not searched. A hit missing here says nothing about them.",
+        "items": {
+          "properties": {
+            "dependency": {
+              "description": "The pin's id here.",
+              "type": "string"
+            },
+            "design": {
+              "description": "The pinned design's graph_id.",
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "read_at": {
+              "description": "`export` (a path) or `address`; empty when the pin names neither.",
+              "type": "object"
+            },
+            "why": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "design",
+            "dependency",
+            "why"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "not_searched_note": {
+        "description": "Beside `not_searched`: how many pinned designs were not looked in.",
+        "type": "string"
+      },
       "searched": {
         "description": "How many of the design's nodes the search ran over (the search index's own count). It says WHICH empty an empty `hits` is: nothing matched among this many.",
         "type": "integer"

@@ -48,6 +48,7 @@ fn seen(state: &str, hash: Option<&str>, graph_id: Option<&str>) -> ObservedUpst
         graph_id: graph_id.map(str::to_string),
         nodes: Some(120),
         detail: None,
+        node_ids: None,
     }
 }
 

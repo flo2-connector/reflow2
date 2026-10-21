@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fab0bb77fc7ed0fa75fb9a7ceddbea14707a112df603eb75a3bd0dbfc468e428",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:92a563b17e09296756b952d4eb2c0fb4138f95ebf06d55948ef78a5ed55d77d6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

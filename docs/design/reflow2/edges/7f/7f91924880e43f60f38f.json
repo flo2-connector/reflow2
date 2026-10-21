@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0588a594f17a19a1717388cb095922563eeb2307095cfc7b584d203d2d9c1790",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:6e42da1b1de19d26718394c96c4990950dbe108b75006782045a19da7c772d22",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:import-from-a-newer-reflow2-test"
+}

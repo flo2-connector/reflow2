@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c13aa46afc5744e7267f5bf3d44f323f7c12d942721e6a34eac60f0d3be7e39c",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:an-import-says-what-it-removed-tests",
+  "properties": {},
+  "to_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked"
+}

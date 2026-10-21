@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:98c66fcfabaf77ad27b095dfac599c78e203b282d24e3acbeae9b103d5149e5b",
+  "node_id": "chg:baseline-2f7141769224e95a",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:a-hub-view-names-the-pinned-designs-outside-it-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position.",
+    "subject": "record"
+  }
+}

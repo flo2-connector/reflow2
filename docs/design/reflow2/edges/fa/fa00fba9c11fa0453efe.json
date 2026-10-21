@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:189445ecdb0ab5ade02c761708a9092e10c6a5c0d50d6691237289512c432fc1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:155eea437dadc5f056702852afd20a06952b7a8306c8d0d7574d93f766cfcf8c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-reasoning-read-back-keeps-its-words-and-pages"
+}

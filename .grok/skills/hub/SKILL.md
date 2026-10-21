@@ -61,10 +61,17 @@ the part receives is `proposed` until its owner accepts it; `loop_status` there 
 2. **Say what moved, in one line.** When the host gives it (flo2.io says, per design, how many
    changes it has had since this person last opened the hub), repeat it as one line, never as a
    report. Locally, `upstream_status` answers the same question against the versions the hub last
-   recorded. "Nothing moved" is worth saying too.
+   recorded: each member shows `reviewed_revision` (the source revision the hub last reviewed it
+   at, its pin's `version`) beside `record_state` (whether its design record moved). "Nothing
+   moved" is worth saying too.
+   **To catch up with a member's source**, reflow2 fetches nothing: the hub's own tooling reads
+   what changed in the member, then re-declares the pin, `external_dependency` with the same `id`
+   and the new `version`, which also re-takes the baseline of the member's record.
 3. **Read a child design only when a request needs it.** Every child you read costs the
    conversation context, and most requests touch one or two designs. A `search_design` in the child
-   you suspect beats reading them all.
+   you suspect beats reading them all. A search in a local hub covers the hub alone, and its reply
+   names in `not_searched` every pinned design it did not look in: "nothing found" there is never
+   "nothing anywhere".
 4. **An impact question that crosses designs is a radius per design, carried on member to
    member.** An edge cannot cross a store, so a blast radius stops at the design it runs in. Run it
    where the change starts. Then repeat until no new design is reached:
@@ -179,4 +186,7 @@ capture in the destination.
   servers cannot share an edge. Pass `other_design` (that design's id) with `other_id` on a relation
   (`review_relations`, or `related_to` on a decision): this design keeps a typed reference to the far
   node, search shows it, and `upstream_status` says when the far design has changed since the link
-  was made, or when nothing here declares that design.
+  was made, or when nothing here declares that design. For a design pinned by its committed export
+  it also reads the far node there: `link_far_end_stale` when the export no longer holds it,
+  `link_far_end_unreachable` when the export cannot be read; and a link to a node that export does
+  not hold is refused when you draw it.

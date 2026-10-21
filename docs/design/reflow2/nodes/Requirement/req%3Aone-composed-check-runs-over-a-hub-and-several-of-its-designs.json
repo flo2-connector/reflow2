@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:2e4f1a1ae3f4fec95b29b0277b0ea414edb0720ae618c8b7ee565b435f033dfc",
+  "node_id": "req:one-composed-check-runs-over-a-hub-and-several-of-its-designs",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "distinct_from": [
+      "req:two-or-more-designs-are-compared-on-one-topic-on-demand"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "One composed check runs over the hub and any set of its designs, and says which findings belong to which design and to each pair",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "hxm_program hub feedback 2026-10-20, item 2; Anthony (who:ajs) 2026-10-21",
+    "statement": "compose_and_analyse takes a list of designs (committed exports, or the designs a hub pins) instead of one other design, composes each under its own namespace in memory, and attributes every finding to one design or to a pair (for example ansible×bluesky-tiled-plugins), so seams between two members are analysed even when neither is the design calling. It is still built in memory and thrown away: no design, the hub's included, changes (its export's content hash is the same afterwards). Today it takes one `other` and one namespace (compose.rs:117-205), so a hub effort spanning 3-6 designs is run pairwise and stitched by hand. Distinct from req:two-or-more-designs-are-compared-on-one-topic-on-demand, which compares topic neighbourhoods side by side rather than composing whole designs.",
+    "status": "accepted"
+  }
+}

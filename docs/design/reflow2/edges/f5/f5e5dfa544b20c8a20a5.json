@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e12f07911508af38c32e1c461e0283ed718848192173847299d17c8bae6a20b7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 17,
+    "action": "modified",
+    "checksum_after": "sha256:f8f30f85751b5d6fbc79765bd2c77602786447888fe8c5dbc0ada506eac4f30c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-coherence"
+}

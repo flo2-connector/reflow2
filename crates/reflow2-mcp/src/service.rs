@@ -6687,6 +6687,15 @@ pub struct ImportGraphReq {
     /// then names exactly what was written that the document did not state.
     #[serde(default)]
     pub accept_newer: Option<bool>,
+    /// Keep what a partial node leaves out. Default false: the document states
+    /// each node WHOLE, so a property a node already holds and the document
+    /// omits is removed (a round trip reproduces the design; a document can
+    /// drop a property), and the reply counts it in `properties_removed`.
+    /// true: each node the design already holds takes the document's
+    /// properties and keeps every other one it has, as create_nodes does. A
+    /// node not yet in the design is written as stated either way.
+    #[serde(default)]
+    pub merge: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

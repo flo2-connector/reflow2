@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:83377d1df27a128e56c262c3d7726b4e02c02b08a8a1921a6929205f16caab6e",
+  "node_id": "art:an-import-says-what-it-removed-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Four MCP tests for phase 7 PR 1, item 1: an import counts what it removed or changed on existing nodes, and merges only when asked.",
+    "location": "crates/reflow2-mcp/tests/an_import_says_what_it_removed_and_merges_only_when_asked.rs",
+    "name": "crates/reflow2-mcp/tests/an_import_says_what_it_removed_and_merges_only_when_asked.rs",
+    "status": "realized"
+  }
+}

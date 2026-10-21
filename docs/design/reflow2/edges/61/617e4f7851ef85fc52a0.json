@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:92209db0d3f2d0312bea1812d0a5d2af21d75b346a4582bda0e901e4e241128c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

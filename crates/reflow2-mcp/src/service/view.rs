@@ -877,6 +877,7 @@ impl View<'_> {
         let mut failed = JsonMap::new();
         let mut loop_hints = JsonMap::new();
         let mut designs_searched: Vec<String> = Vec::new();
+        let mut pinned_unsearched: Vec<JsonValue> = Vec::new();
         let mut limit = JsonValue::Null;
         for (id, answer) in replies {
             let member = (id != self.hub_id).then_some(id.as_str());
@@ -908,8 +909,23 @@ impl View<'_> {
             if let Some(hint) = v.get("loop_hint") {
                 loop_hints.insert(id.clone(), hint.clone());
             }
+            // A design pinned by one in the view and not itself searched is
+            // named once, by the first design that pins it.
+            for mut pin in v["not_searched"].as_array().cloned().unwrap_or_default() {
+                if let Some(o) = pin.as_object_mut() {
+                    o.insert("pinned_by".into(), JsonValue::String(id.clone()));
+                }
+                pinned_unsearched.push(pin);
+            }
             designs_searched.push(id);
         }
+        let mut seen = std::collections::BTreeSet::new();
+        pinned_unsearched.retain(|p| {
+            let design = p["design"].as_str().unwrap_or_default().to_string();
+            !designs_searched.contains(&design)
+                && !self.members.contains(&design)
+                && seen.insert(design)
+        });
         // Stable, so equal scores keep the hub-first design order.
         hits.sort_by(|a, b| {
             let score = |h: &JsonValue| h["score"].as_f64().unwrap_or(f64::NEG_INFINITY);
@@ -966,6 +982,16 @@ impl View<'_> {
             }
             if !loop_hints.is_empty() {
                 o.insert("loop_hints".into(), JsonValue::Object(loop_hints));
+            }
+            if !pinned_unsearched.is_empty() {
+                o.insert(
+                    "not_searched_note".into(),
+                    JsonValue::String(crate::upstream::not_searched_note(
+                        pinned_unsearched.len(),
+                        true,
+                    )),
+                );
+                o.insert("not_searched".into(), JsonValue::Array(pinned_unsearched));
             }
         }
         let sentence = format!(

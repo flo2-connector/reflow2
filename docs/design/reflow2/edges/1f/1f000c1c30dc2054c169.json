@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9c6a919630f04e9fee52e69fa5e635f229401c1a999b526d55ecd3947f4a4543",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b29778c68fe5fff7",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:8583352b6972439d3a9a7c16b9b27ffa31cfc58907fdb91fe0fdbba2c70402b3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-link-into-a-pinned-design-says-when-its-record-is-gone-test"
+}

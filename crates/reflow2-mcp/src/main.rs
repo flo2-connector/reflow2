@@ -2229,6 +2229,7 @@ async fn main() -> anyhow::Result<()> {
                 doc,
                 reflow2_core::export::ImportOptions {
                     accept_newer: cli.accept_newer,
+                    merge: false,
                 },
             )
             .context("failed to import the design")?;
@@ -2273,6 +2274,23 @@ async fn main() -> anyhow::Result<()> {
                 env!("CARGO_PKG_VERSION")
             );
             for (key, n) in &report.materialized {
+                eprintln!("  {n}x {key}");
+            }
+        }
+        // What the store held and no longer does: a whole-node import
+        // replaces each node it names, so a document that leaves a property
+        // out removes it, and this is the only place a CLI restore says so.
+        if let Some(note) = &report.removed_note {
+            eprintln!("reflow2: {note}");
+            for (key, n) in &report.properties_removed {
+                eprintln!("  {n}x {key} removed");
+            }
+        }
+        if !report.properties_changed.is_empty() {
+            eprintln!(
+                "reflow2: values that changed on nodes the store already held, by Type.property:"
+            );
+            for (key, n) in &report.properties_changed {
                 eprintln!("  {n}x {key}");
             }
         }

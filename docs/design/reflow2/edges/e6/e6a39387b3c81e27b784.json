@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:03c54cc74a1d3d79afdfa45579f91d2f4e8f10d5090e4028650a46a3ee645990",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-hubs-check-shows-each-members-reviewed-revision-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-hubs-check-shows-each-members-reviewed-revision-tests"
+}

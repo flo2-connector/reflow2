@@ -39,6 +39,7 @@ async fn trial() -> (ReflowService, BTreeMap<String, Value>) {
         document: doc.as_object().cloned(),
         path: None,
         accept_newer: None,
+        merge: None,
     }))
     .await
     .expect("the trial imports");

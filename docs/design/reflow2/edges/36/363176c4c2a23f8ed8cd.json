@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:e51b2daa144cd99ca8f3dad383dc39880606e35b804b3f1a7ea5d46830f93617",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:two-designs-are-linked-on-exact-evidence-and-a-similar-name-is-only-a-candidate",
+  "properties": {
+    "approved_at": "2026-10-21",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

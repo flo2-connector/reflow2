@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1c3069e3a61d9ba5907e59dcd43d73e32e9498a942a721ea03cf64b9a184261b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-link-into-a-pinned-design-says-when-its-record-is-gone-tests"
+}

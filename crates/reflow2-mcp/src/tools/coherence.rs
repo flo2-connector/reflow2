@@ -678,7 +678,13 @@ impl ReflowService {
                 // Links into other designs get their own key, for the same
                 // reason relations do: `upstream_moved` means a watched design moved.
                 let is_link = |f: &reflow2_core::UpstreamFinding| {
-                    matches!(f.kind, "link_into_undeclared_design" | "link_far_end_moved")
+                    matches!(
+                        f.kind,
+                        "link_into_undeclared_design"
+                            | "link_far_end_moved"
+                            | "link_far_end_stale"
+                            | "link_far_end_unreachable"
+                    )
                 };
                 // Intent another design sent, waiting on this owner's word.
                 let is_inbox = |f: &reflow2_core::UpstreamFinding| f.kind == "received_waiting";

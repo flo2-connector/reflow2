@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1fc72f5429049d45052483ab4ff8bc7c78d4598b330bd174e5823c5bdf57419e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-search-names-the-pinned-designs-it-did-not-search"
+}

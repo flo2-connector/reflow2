@@ -123,6 +123,32 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                                 search index's own count). It says WHICH empty an empty \
                                 `hits` is: nothing matched among this many."
             },
+            "not_searched": {
+                "type": "array",
+                "description": "Present only on a design that pins other designs \
+                                (external_dependency with a graph_id): each pinned design \
+                                this search did NOT look in, with where it could be read \
+                                and why it was not searched. A hit missing here says \
+                                nothing about them.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "design": { "type": "string", "description": "The pinned design's graph_id." },
+                        "name": { "type": "string" },
+                        "dependency": { "type": "string", "description": "The pin's id here." },
+                        "read_at": {
+                            "type": "object",
+                            "description": "`export` (a path) or `address`; empty when the pin names neither."
+                        },
+                        "why": { "type": "string" }
+                    },
+                    "required": ["design", "dependency", "why"]
+                }
+            },
+            "not_searched_note": {
+                "type": "string",
+                "description": "Beside `not_searched`: how many pinned designs were not looked in."
+            },
             "loop_hint": {
                 "type": "string",
                 "description": "Present only when the coherence loop is owed something."
@@ -1333,7 +1359,24 @@ impl ReflowService {
                 req.limit.unwrap_or(10),
             )
             .map_err(dyno_err)?;
-        self.ok_read(&g, result)
+        // A design that PINS other designs says which of them this search did
+        // not look in. One that pins none answers exactly as before.
+        let pins = crate::upstream::pins_not_searched(
+            &g.declared_dependencies().map_err(dyno_err)?,
+            self.served_from_registry(),
+        );
+        if pins.is_empty() {
+            return self.ok_read(&g, result);
+        }
+        let mut reply = serde_json::to_value(result).map_err(ser_err)?;
+        if let Some(o) = reply.as_object_mut() {
+            o.insert(
+                "not_searched_note".into(),
+                JsonValue::String(crate::upstream::not_searched_note(pins.len(), false)),
+            );
+            o.insert("not_searched".into(), JsonValue::Array(pins));
+        }
+        self.ok_read(&g, reply)
     }
 
     #[tool(

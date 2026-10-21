@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:488772da0d4142f3e43cb07e2f920cbf3f5eafb8be0a8778805aabf0de78d950",
+  "node_id": "req:a-hubs-check-shows-each-members-reviewed-revision",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The hub's check shows each member's reviewed source revision beside whether its design moved",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "hxm_program hub feedback 2026-10-20, item 6; Anthony (who:ajs) 2026-10-21",
+    "statement": "upstream_status shows, for each pinned member, the source revision the hub last reviewed it at (the pin's `version`, re-declared when the hub catches up) beside the state of the member's export, so a hub keeping members in step with fast-moving source needs no fact convention of its own. reflow2 still does no fetching: the hub's own tooling fetches and re-declares the pin. The hub skill says how. Measured 2026-10-21: the pin already carries `source` and a required `version` (service.rs:5346-5349), but upstream_status prints the version only inside its `moved` sentence and never reads the export's taken_at (depends.rs:710-737).",
+    "status": "accepted"
+  }
+}

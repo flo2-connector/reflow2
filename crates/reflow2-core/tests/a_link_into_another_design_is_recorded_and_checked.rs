@@ -71,6 +71,7 @@ fn seen(hash: &str) -> ObservedUpstream {
         graph_id: Some("design-b".into()),
         nodes: Some(10),
         detail: None,
+        node_ids: None,
     }
 }
 

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:45d0a806e4f18f8a5f1f6dcb4edb14907bfa47d9b079dd6f2de95c7efccf923f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:ee3868d48e4b000615474cb4e5344737a3641ea174c188cc8a4bed7f75798ba8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service-view"
+}

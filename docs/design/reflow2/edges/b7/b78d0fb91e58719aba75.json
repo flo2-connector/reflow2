@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:940b975b740291bd063279730ef6bebef92919733cc91b567d0d6d8e57eabc58",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:one-composed-check-runs-over-a-hub-and-several-of-its-designs",
+  "properties": {
+    "approved_at": "2026-10-21",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

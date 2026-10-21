@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e18c5c1c81022e0e55f1988650ccdbb023db568a2d65495796d95c2341c28248",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked",
+  "properties": {},
+  "to_id": "req:an-import-says-what-it-removed-and-merges-only-when-asked"
+}

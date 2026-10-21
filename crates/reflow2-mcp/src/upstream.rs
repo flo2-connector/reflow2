@@ -188,6 +188,9 @@ pub async fn observe_everywhere(
                     graph_id: Some(f.graph_id),
                     nodes: Some(f.nodes),
                     detail: None,
+                    // Only the fingerprint is kept from a server's answer, so
+                    // no link into it is judged gone.
+                    node_ids: None,
                 },
                 Err(n) => ObservedUpstream {
                     detail: Some(n.detail),
@@ -207,6 +210,7 @@ fn bare(t: &UpstreamTarget, state: &str) -> ObservedUpstream {
         graph_id: None,
         nodes: None,
         detail: None,
+        node_ids: None,
     }
 }
 
@@ -242,6 +246,9 @@ fn observe_one(t: &UpstreamTarget) -> ObservedUpstream {
         graph_id: Some(doc.graph_id.clone()),
         nodes: Some(doc.nodes.len()),
         detail: None,
+        // The record is in hand whole, so a link into it is checked against
+        // the nodes it actually holds.
+        node_ids: Some(doc.nodes.iter().map(|n| n.node_id.clone()).collect()),
     }
 }
 
@@ -490,4 +497,161 @@ fn failed(e: anyhow::Error) -> NotFingerprinted {
         };
     }
     NotFingerprinted::unreachable(format!("{e:#}"))
+}
+
+/// Every design this one PINS that a search of this design did not look in,
+/// each with where it could be read and why it was not searched — the small
+/// half of `req:one-search-reaches-every-design-a-hub-tracks`, so a search on
+/// a hub that answers "nothing found" never reads as nothing found anywhere.
+///
+/// Measured 2026-10-21 on 0.89.0 in hxm_program's hub, which pins fourteen
+/// member designs by their committed exports and is reached only through the
+/// --call door: a search for a word only a member held answered from the hub
+/// alone, with nothing saying fourteen designs were never looked in.
+///
+/// A pin names a design when it carries a `graph_id`; a code dependency that
+/// names none is not a design left unsearched. Nothing is read: an export is
+/// only checked to be there, and not even that on a server that holds many
+/// designs (`registry`), where an export path names a file on its host.
+pub fn pins_not_searched(
+    declared: &[reflow2_core::DependencyDeclaration],
+    registry: bool,
+) -> Vec<Value> {
+    let stated = |v: &Option<String>| {
+        v.as_deref()
+            .map(str::trim)
+            .filter(|s| !s.is_empty())
+            .map(str::to_string)
+    };
+    let mut out = Vec::new();
+    for d in declared {
+        let Some(design) = stated(&d.graph_id) else {
+            continue;
+        };
+        let (read_at, why) = match (stated(&d.design_export), stated(&d.design_address)) {
+            (Some(path), _) if registry => (
+                json!({"export": path}),
+                "pinned by an export path, which a server holding many designs does not read; \
+                 this search covered this design only"
+                    .to_string(),
+            ),
+            (Some(path), _) if std::path::Path::new(&path).exists() => (
+                json!({"export": path}),
+                format!(
+                    "pinned by its committed export at {path}; this search covered this design \
+                     only, so search that design itself to see what it holds"
+                ),
+            ),
+            (Some(path), _) => (
+                json!({"export": path}),
+                format!(
+                    "pinned by a committed export at {path}, which is missing, so nothing could \
+                     read it; this search covered this design only"
+                ),
+            ),
+            (None, Some(address)) => (
+                json!({"address": address}),
+                format!(
+                    "pinned at the server {address}; search_design does not reach another \
+                     server, so search that design where it is served"
+                ),
+            ),
+            (None, None) => (
+                json!({}),
+                "pinned with nowhere to read it: the pin names neither an export nor an \
+                 address, so no search could reach it"
+                    .to_string(),
+            ),
+        };
+        out.push(json!({
+            "design": design,
+            "name": d.name,
+            "dependency": d.id,
+            "read_at": read_at,
+            "why": why,
+        }));
+    }
+    out
+}
+
+/// The sentence beside [`pins_not_searched`]: how many, and what an empty
+/// answer does and does not say. `in_view` when the search was a hub view's,
+/// which covered the designs it lists rather than one.
+pub fn not_searched_note(count: usize, in_view: bool) -> String {
+    let covered = if in_view {
+        "This search covered the designs in `designs_searched`, and they pin"
+    } else {
+        "This search covered THIS design only. It pins"
+    };
+    format!(
+        "{covered} {count} other design(s) it did not look in, named in `not_searched` with \
+         where each could be read and why it was not searched, so a hit missing here says \
+         nothing about them. Search each where it is held: its own store, its export imported \
+         into a scratch store, or through a hub's address with `member`."
+    )
+}
+
+/// Each far node a new link names that the pinned design's committed export
+/// does NOT hold, as a sentence naming the node and the export — so a link
+/// into a pinned design is checked to exist when it is drawn
+/// (`req:a-link-into-a-pinned-design-says-when-its-record-is-gone`).
+///
+/// Measured 2026-10-21 on 0.89.0 through the --call door: `review_relations`
+/// drew `xref:<design>:<node>` to a node the pinned export did not hold, and
+/// nothing said so until the link was read much later — or never.
+///
+/// Only a design this one pins by an export is checked, and only when the
+/// export reads: a link into a design pinned at an address, or not pinned at
+/// all, or whose export is missing, is drawn as before, and `upstream_status`
+/// then says the far end is unknown. Never called on a server that holds many
+/// designs, where an export path names a file on its host.
+pub fn far_nodes_not_in_their_export<'a>(
+    declared: &[reflow2_core::DependencyDeclaration],
+    links: impl IntoIterator<Item = (&'a str, &'a str)>,
+) -> Vec<String> {
+    let mut held: std::collections::BTreeMap<String, Option<std::collections::BTreeSet<String>>> =
+        std::collections::BTreeMap::new();
+    let mut out = Vec::new();
+    for (design, node_id) in links {
+        let (design, node_id) = (design.trim(), node_id.trim());
+        let Some(path) = declared
+            .iter()
+            .find(|d| d.graph_id.as_deref().map(str::trim) == Some(design))
+            .and_then(|d| d.design_export.as_deref())
+            .map(str::trim)
+            .filter(|p| !p.is_empty())
+        else {
+            continue;
+        };
+        let ids = held.entry(path.to_string()).or_insert_with(|| {
+            crate::saved_design::read_export(path)
+                .ok()
+                .and_then(identified)
+                .map(|doc| doc.nodes.into_iter().map(|n| n.node_id).collect())
+        });
+        if let Some(ids) = ids
+            && !ids.contains(node_id)
+        {
+            out.push(format!(
+                "{node_id} is not in design {design}'s committed export at {path}, the record \
+                 this design pins it by, so the link would name nothing there"
+            ));
+        }
+    }
+    out
+}
+
+/// The refusal for [`far_nodes_not_in_their_export`]'s findings.
+pub fn refuse_far_nodes_not_in_their_export(missing: &[String]) -> rmcp::ErrorData {
+    rmcp::ErrorData::invalid_params(
+        format!(
+            "Nothing was written: {} link(s) name a node the other design's committed export \
+             does not hold.\n  - {}\nCheck the id against that design (search it, or read its \
+             export). If the node was added after the export was taken, have that design export \
+             again, re-declare the pin to take the new baseline, and link again.",
+            missing.len(),
+            missing.join("\n  - ")
+        ),
+        None,
+    )
 }

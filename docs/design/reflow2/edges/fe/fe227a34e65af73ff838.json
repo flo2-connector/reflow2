@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61a9920b8ad2e7e1e4e919a50d80c22bc777dfe8f59e060f07fc38b0dcde4c59",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-link-into-a-pinned-design-says-when-its-record-is-gone"
+}
