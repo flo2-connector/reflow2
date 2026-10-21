@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:273e71fd0db32de224448a1e6ed838b69b3da1fa230a5b8863904884859f1294",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:92fe461ac4fa0c062defbe3a2d8860c920f3ad02d3fe539063a877d77b7f5ec1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-link-into-another-design-is-recorded-and-checked"
+}

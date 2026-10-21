@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:da333861e2482532a757796cfb47a8c086c9ebee2738c34ab1c5c3d5792e38c3",
+  "node_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-21 (phase 7 PR 1). import_graph keeps whole-node semantics by default; its reply counts, by Type.property, every property removed (`properties_removed`) or changed (`properties_changed`) on a node the design already held, names up to five in `removed_from`, and says what to do in `removed_note`. `merge: true` keeps every stored property a partial node leaves out (as create_nodes does). A value the schema default replaced (artifact_type config→code, an accepted Requirement's status→proposed) is counted as changed, never under `materialized`, which now counts only keys neither the document nor the node held. The served description no longer promises a partial node is refused (only one missing a required property is); the adopt skill sends bulk edits of existing records to create_nodes. The CLI --import prints the removals. Core: export.rs ImportOptions.merge and the report fields; MCP: ImportGraphReq.merge.",
+    "name": "An import counts what it removed or changed on records that already existed, and merges only when the call asks",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

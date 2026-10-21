@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:b55dee69b6a68e85022444cf9f1ce5a177b5c06d2a7a528b43216d4c53111e55",
+  "node_id": "art:a-hub-view-names-the-pinned-designs-outside-it-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "One on-disk MCP test for phase 7 PR 1, item 2 through a hub's view: the merged search names only the pinned designs outside the view.",
+    "location": "crates/reflow2-mcp/tests/a_hub_view_names_the_pinned_designs_outside_it.rs",
+    "name": "crates/reflow2-mcp/tests/a_hub_view_names_the_pinned_designs_outside_it.rs",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8c732955e875f38f67385674c76b13b90bb33fa7de83ef883453966105b7d5ef",
+  "node_id": "art:a-hubs-check-shows-each-members-reviewed-revision-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Two MCP tests for phase 7 PR 1, item 3: every member shows its reviewed revision beside its record's state, and a re-declare catches up.",
+    "location": "crates/reflow2-mcp/tests/a_hubs_check_shows_each_members_reviewed_revision.rs",
+    "name": "crates/reflow2-mcp/tests/a_hubs_check_shows_each_members_reviewed_revision.rs",
+    "status": "realized"
+  }
+}

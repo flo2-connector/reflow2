@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:dd94c5820125d08734153a1147c1c2bb58dc2beeef924c6bb59263453e40d525",
+  "node_id": "req:a-link-into-a-pinned-design-says-when-its-record-is-gone",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A link from a hub record to a record in a pinned design says when that record is gone from the design's saved copy",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "hxm_program hub feedback 2026-10-20, item 4; Anthony (who:ajs) 2026-10-21",
+    "statement": "On a design with no server (the --call door), a cross-design link (xref) from a hub record to a node in a pinned member is checked against that member's committed export: it reads `stale` when the far node is gone from the export and `unreachable` when the export is missing, as #776 does on a server, and the link is checked to exist when it is drawn. Measured 2026-10-21 on 0.89.0: review_relations drew an xref to a node absent from the pinned export without a check; after the far node was deleted and re-exported, upstream_status said only `moved` / `link_far_end_moved`, never that the node is gone, and search returned the xref with no stale mark. Reading the far node's live truth from an export (a far premise) is the larger half and is not this requirement.",
+    "status": "accepted"
+  }
+}

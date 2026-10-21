@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5cc52a4c9d2ac06865da97954b9511e9c5228edf79ce32ed3c9825494f07d6e1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:abffdfe1971d4c14f6029fb40dcbfd2f62efb24d0bf61d87a10cdb767790b6c0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-near-match-across-types-or-within-reasoning-is-a-note"
+}

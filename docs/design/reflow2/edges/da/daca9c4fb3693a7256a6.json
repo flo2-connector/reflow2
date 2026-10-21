@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2ee50169db32fce518c64eb4257a7765b46530dc654498a11e04963ebea1c2c4",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-hubs-check-shows-each-members-reviewed-revision",
+  "properties": {
+    "modality": "expected"
+  },
+  "to_id": "epoch:planned-p7-a-hub-on-one-machine"
+}

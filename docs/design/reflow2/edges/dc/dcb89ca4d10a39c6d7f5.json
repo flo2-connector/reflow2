@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d2e1bdc323322f680cd8cbedab749ac7c78679e8e365fc93a4077ffa489732a0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-link-into-a-pinned-design-says-when-its-record-is-gone-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-link-into-a-pinned-design-says-when-its-record-is-gone-tests"
+}

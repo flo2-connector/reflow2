@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b2f931ed61c2f73f34f433c3b7323ed8b357ffe59f5ad58e83c777278aba0b24",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked"
+}

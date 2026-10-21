@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:278b63286926d2fae72ac4f8590220ab06af292463426394a74581d048bfcbac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-search-names-the-pinned-designs-it-did-not-search",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

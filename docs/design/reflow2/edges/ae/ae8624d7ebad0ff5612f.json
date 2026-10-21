@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2d0387998ab1e77198a9240d16b9041bfd0c12a2ba836b00af8cc0c32119abc6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:2b4d24a198002a1d2dcf4d4a8b61cd73e7664b340ac34da0fa2c5efa0cf02fbe",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

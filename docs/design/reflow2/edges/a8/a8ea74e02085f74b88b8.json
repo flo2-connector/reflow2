@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:8d5ed61b2266ca2deec1b4bc969774d3b3860e08b6fb82e2b0b81ef13e780ec9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-link-into-a-pinned-design-says-when-its-record-is-gone",
+  "properties": {
+    "approved_at": "2026-10-21",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

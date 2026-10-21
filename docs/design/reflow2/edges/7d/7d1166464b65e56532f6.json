@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a30354728a58e2ba2d8d90afec7ae93828c381ea66efa8fa16daa2c699eb2bdf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:16bc58b8621c7bf6d0d7576ec31841c59db315bc263631b12c53faa9156a8435",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:upstream-judgement-test"
+}

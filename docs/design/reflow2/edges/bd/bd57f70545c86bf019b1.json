@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7cf32553f3248c31c9345dc3acdaaaae30e6094b0ceb4c0257c41ff2c49f4d40",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:an-import-says-what-it-removed-and-merges-only-when-asked",
+  "properties": {
+    "modality": "expected"
+  },
+  "to_id": "epoch:planned-p7-a-hub-on-one-machine"
+}

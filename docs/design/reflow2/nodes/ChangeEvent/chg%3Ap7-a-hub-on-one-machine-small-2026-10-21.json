@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e98d7f5f45d475cd02d5d6ce11d6328f53957874e606799d9f93836d26b4d1ba",
+  "node_id": "chg:p7-a-hub-on-one-machine-small-2026-10-21",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "b0f53dbfb",
+    "detected_at": "2026-10-21",
+    "name": "Phase 7, PR 1: a hub on one machine, the small items",
+    "rationale": "Phase 7 PR 1 (epoch:planned-p7-a-hub-on-one-machine), on Anthony's word 2026-10-21, from hxm_program's hub feedback of 2026-10-20 (items 5, 1's small defect, 6 and 4's small half): req:an-import-says-what-it-removed-and-merges-only-when-asked as dec:import-merges-or-demands-whole-nodes chose (whole nodes unless the call asks to merge); the small defect inside req:one-search-reaches-every-design-a-hub-tracks; req:a-hubs-check-shows-each-members-reviewed-revision; req:a-link-into-a-pinned-design-says-when-its-record-is-gone (far-premise truth from an export not in scope). Each test is a class invariant and failed on main d388b60ee first. The `materialized` misreport the requirement's measurement names is the same cause as the missing removal count (the reply compared what was stored with the document, never with the node as it stood), and measured wider than recorded: an accepted Requirement's status and priority reset to the defaults were reported as defaults filled in; fixed here by counting a value the node held under properties_changed. merge was chosen as the argument name after tool_confusability found no confusable pair (import_graph stays first for its own query). No schema change, so the stamp does not move. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "import_graph counts, by Type.property, what it removed (properties_removed) or changed (properties_changed) on nodes the design already held, names a few (removed_from, removed_note), and takes merge: true to keep what a partial node leaves out; a value the schema default replaced is counted as changed, never under materialized; the served description stops promising a refusal it did not make, and the adopt skill sends bulk edits to create_nodes. search_design on a design that pins others names every pinned design it did not search, and why (not_searched, not_searched_note), through a hub's view too. upstream_status shows each member's reviewed_revision (the pin's version) beside its record_state, and the hub skill says how a hub re-declares the pin to catch up. A link into a design pinned by its export reads link_far_end_stale when the export no longer holds the far node and link_far_end_unreachable when the export cannot be read, and a link to a node the export does not hold is refused when drawn."
+  }
+}

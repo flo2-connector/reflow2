@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f67cb87fbd4d54a8199f0bd07da8e43dd4dc1e01467e046b0f4edc1bbb61a02",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-search-names-every-pinned-design-it-did-not-search-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-search-names-every-pinned-design-it-did-not-search-tests"
+}

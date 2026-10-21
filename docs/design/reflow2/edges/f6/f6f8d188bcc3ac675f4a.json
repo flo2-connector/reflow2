@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db7fe5ec63135790f12a9a5704ea9fc254c54da7e2923d8a06e98091430f08bf",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:one-composed-check-runs-over-a-hub-and-several-of-its-designs",
+  "properties": {
+    "modality": "expected"
+  },
+  "to_id": "epoch:planned-p7-a-hub-on-one-machine"
+}

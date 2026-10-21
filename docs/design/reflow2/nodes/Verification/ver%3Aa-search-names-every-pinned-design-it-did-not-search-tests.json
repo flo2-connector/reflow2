@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:fba8d6250567e157cf426d44a33b2558826deb135687c4b384326363bdb3a33d",
+  "node_id": "ver:a-search-names-every-pinned-design-it-did-not-search-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_search_names_every_pinned_design_it_did_not_search.rs (in memory; the CLASS: a pin by export present, export missing, address and nowhere is each named with a reason; a design pinning nothing, or only a code dependency, answers as before) and crates/reflow2-mcp/tests/a_hub_view_names_the_pinned_designs_outside_it.rs (on disk, a registry behind a gateway: a merged search through a hub's view names only the pinned design outside the view, with pinned_by).",
+    "findings": "3 passed on feat/p7-a-hub-on-one-machine-small; the two naming tests failed on main d388b60ee (no `not_searched` in the reply, in memory and through the view); the pins-nothing test passes on main by design.",
+    "kind": "verification",
+    "last_run_at": "2026-10-21",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_search_names_every_pinned_design_it_did_not_search.rs",
+    "method": "test",
+    "name": "A search names every pinned design it did not search: two MCP tests and one hub-view test",
+    "status": "passing"
+  }
+}

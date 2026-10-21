@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c38cc8930467edfc3d0ff11e11fa19f83e13839f255eaeac0adc32762cb6718c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-search-names-every-pinned-design-it-did-not-search-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

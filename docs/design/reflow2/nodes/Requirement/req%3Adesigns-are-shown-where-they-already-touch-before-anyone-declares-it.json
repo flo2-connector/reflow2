@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:0e42c5cacca74a30c6e5f3f6f706624dc53a5c47d0ff09f3f6eeeef4e6781953",
+  "node_id": "req:designs-are-shown-where-they-already-touch-before-anyone-declares-it",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "Two designs are shown where they already touch before anyone declares it, and an empty answer says what was checked",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "hxm_program hub feedback 2026-10-20, item 3; Anthony (who:ajs) 2026-10-21",
+    "statement": "Composing or pairing two designs reports the links their records already show, labelled `computed` and never read as declared: the same file (artifact location or checksum) in both; a pin in one naming the other's graph_id or source repository. Interfaces with closely matching names and the same medium are listed as candidates for the person to confirm. The reply says which seams were declared and which computed, and carries the link_status rollup proposed in fact:defect-whether-a-project-link-is-real-cannot-be-asked, so an empty seam set reads \"these designs never touch\" or \"nothing was checked\", never \"they agree\". Measured 2026-10-21: pair_designs already computes name-based pairs (exchange.rs:84-114), but compose_and_analyse never calls it, and no artifact or pin evidence is used anywhere.",
+    "status": "accepted"
+  }
+}

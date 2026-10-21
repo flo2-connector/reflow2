@@ -1,10 +1,12 @@
 {
-  "content_hash": "sha256:244475eae424da87e8eef3708fbd66fee3ee697e963e36d3d7a0d143d7e65007",
+  "content_hash": "sha256:768020c4585c2ec814567c8b7183e70b6cff481d8396cf9a0d2d11869f82388a",
   "edge_type": "AUTHORED_BY",
   "from_id": "epoch:planned-p6-argument-gaps",
+  "prev_item_hash": "sha256:244475eae424da87e8eef3708fbd66fee3ee697e963e36d3d7a0d143d7e65007",
   "properties": {
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
       "author"

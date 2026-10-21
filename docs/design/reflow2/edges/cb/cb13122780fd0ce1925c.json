@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:12186a0239791f28866f13128d711798ac98e48925007b604ff1741abb48307f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:import-from-a-newer-reflow2-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
