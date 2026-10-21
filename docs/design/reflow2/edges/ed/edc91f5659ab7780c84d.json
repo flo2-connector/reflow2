@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d328b99286e806d6068567b024b46c3e2a494f705ea1635baa7cad40c4bf4ac9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:36ad49f2ceff2e0f725a48a87b4c387956eb822e1106df2806691fcb4a7482f8"
+  },
+  "to_id": "art:site-counts-tool"
+}

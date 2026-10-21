@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d5f3542d02c7c5b407aeab8d7cf2f5d7dcebe1f3fc92014340dcc09a3ab39a87",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:7c221ff092dae097f9ae49d2c3d1ecaa229cc4b3d1f2774ce2329969c49efda6"
+  },
+  "to_id": "art:grok-shell-feedback-2026-08-30"
+}

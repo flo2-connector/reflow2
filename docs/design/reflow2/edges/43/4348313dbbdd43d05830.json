@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:398b4e246ad0929742c6553f467b9ee82890f2623b619628af28972307d92d23",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:df4c1f32f511b01d05d6a9af16fda9cc0c21ffa884cfcacb34386cf4cff7ccab"
+  },
+  "to_id": "art:test-the-schema-serves-the-rules-that-tell-the-types-apart"
+}

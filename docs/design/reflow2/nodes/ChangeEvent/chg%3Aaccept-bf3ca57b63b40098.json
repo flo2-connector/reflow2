@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2d6b8adec93eef50767d1a047d7d0e85c8bed8bbfdc4a7d6a9aac7f4218b4354",
+  "node_id": "chg:accept-bf3ca57b63b40098",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.90.0 cut, step 1: the schema snapshot is re-blessed from the 0.90.0 build (11 passed). The stamp MOVES: statement_kind gains objection, reply, unstated_premise, method_rule, evidence and judgement; Constraint.direction gains setpoint; Inference.rule gains immediate; CONTRADICTS.alignment gains conceding and GOVERNED_BY.ruling gains held; new enum properties source_reliability, information_credibility, confidence, establishes, conclusion_form; new properties reported_at, silent_on, same_formula_as, Constraint.source, rule_node, PREMISE.uses, CONTRADICTS.moves_to, Verification.hypothesis_test and criteria_at_data. Node and edge types unchanged (28, 68). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

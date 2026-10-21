@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:abfc721158e9caa1105e6ba2cf26b60c62afc2b399d2056de597b72dd4f2121e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:1933d5ceb0f94b7141088b62b6e8e7ab44fc1a8d7f1e1fd4839d7bc34f4adcd9"
+  },
+  "to_id": "art:test-the-fourteen-holes-are-writable"
+}

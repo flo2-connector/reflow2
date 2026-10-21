@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:61254e42ee2c176b31ff9da94ee904f6799fffbb8600c6fa82e7f1f9e1c7af85",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:df4c813eb186fe979b549095102e83a507ca090f21a57c56c2882be14b177c07"
+  },
+  "to_id": "art:xrt-demo-genesis-feedback-2026-09-16"
+}

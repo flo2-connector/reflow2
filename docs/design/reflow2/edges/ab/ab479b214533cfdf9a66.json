@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01eabab8d9f714da7baf62f7df7146d8d9b54d5a65d831574c14a49f36198cc5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:6081f0a2792154cf9abab7d75961cd2223ecf2505bdb45496768b77eda7ed59d"
+  },
+  "to_id": "art:test-a-server-drains-before-it-stops"
+}
