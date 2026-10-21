@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5da0f5e34db7c28c7707827ce6124fc726b85fcd030c6a4ca46ceae555496bcb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:56c6f0373a2cd3e5925d5db207ab9c2a0ed462bf61b699198999535016bd8ff3"
+  },
+  "to_id": "art:test-every-client-mode-honours-read-only"
+}

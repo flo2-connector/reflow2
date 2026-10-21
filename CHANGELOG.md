@@ -31,6 +31,283 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.90.0] — 2026-10-21
+
+**Minor. A line of reasoning that is not a proof can be recorded and read: arguments for and
+against, evidence with its grade, statistical tests, and what-ifs that say what goes stale.** It
+contains:
+- #778: a claim resting on a statistical hypothesis test reads "supported at α", never shown;
+  the test's criteria are locked when its data arrives; α is spent like a budget across a family
+  of tests (Bonferroni, Holm and Benjamini–Hochberg in the `design-a-proof` skill);
+- #779: the `design-an-argument` skill, an objection aimed at a step read against that step, and
+  a claim held on several lines naming every line's assumptions;
+- #780: statement kinds for an argument (`objection`, `reply`, `unstated_premise`,
+  `method_rule`), a step that is not an inference (`immediate`), a reply that concedes, the
+  owner's held reading of a dispute, a conclusion held up only by disputes reading `contested`,
+  a write that says what it turns refuted, and an argument held in its project;
+- #781: a what-if on a principle reads every position on it, says what a contested claim loses
+  and which objections come back, and names the checks it leaves stale; a test whose criteria
+  moved reads unknown until acknowledged; a what-if on a premise reaches only what rests on it;
+- #782: evidence and judgements with their grade (`source_reliability`,
+  `information_credibility`, `reported_at`, `confidence`), natural deduction (`rule_node`,
+  `establishes`, `conclusion_form`, a premise used twice, `holds_as` at the step), and
+  `now_refuted` from the bulk edge writers;
+- #783: fifteen small read-back faults, one formula recorded once per occurrence
+  (`same_formula_as`), undocumented evidence reading `conditional`, and the hub's name-prefix
+  fault.
+
+**Behaviour you will notice:**
+- a claim resting on a hypothesis test reads **`supported`** at α where a passing check read
+  `shown`, and a test that does not reject H0 supports nothing;
+- a conclusion held up only by disputes reads **`contested`** where it read `unproven`;
+- what rests on an undocumented report reads **`conditional`**, and `supported` once a
+  checksum-pinned source DOCUMENTS it;
+- a change walk from a check **stops before a GOVERNED_BY**, so it reaches less than it did;
+- `loop_status.session` says **`counted: false`** on a server that has seen only that call,
+  instead of reporting zero writes.
+
+The MCP surface stays at 200 tools; nine take new arguments or values, measured against the
+published 0.89.0 binary: `add_requirement`, `add_constraint`, `add_inference`,
+`add_verification` (`hypothesis_block`), `answer_question` (`also_records`), `governed_by`
+(`ruling: held`), `add_decision` and `review_relations` (`alignment: conceding`), and
+`withdraw_question` (a `question_id` in `gap_id`, which also takes that name). One skill is new,
+`design-an-argument` (34 skills); `design-a-proof`, `brainstorm` and `detect-and-ask` changed;
+`get_instructions` reads the same.
+- **🛑 The schema stamp moves** (six new `statement_kind` values, `rule: immediate`,
+  `direction: setpoint`, and new enum properties): upgrade every seat together — the flo2.io
+  engine, a local `reflow2-mcp`, the `--call` binary, and committed design copies. A v0.89.0 seat
+  refuses a store or an export holding a new value, and misreads a `setpoint` as a budget,
+  measured at this cut ([docs/upgrading-to-v0.90.0.md](docs/upgrading-to-v0.90.0.md)).
+
+**Nothing is deprecated or removed in this release** (the deprecation registry is empty).
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary, checked on the 0.90.0 release build:
+- `reflow2 read get_skill '{"name":"design-an-argument"}'` serves the argument skill, and
+  `find_skills` "for and against" ranks it first;
+- `reflow2 write add_requirement` takes `statement_kind: evidence` with `source_reliability`,
+  `information_credibility` and `reported_at` (and `judgement` with `confidence`); a claim resting
+  on that report reads `conditional`, then `supported` once a pinned source DOCUMENTS it, and
+  `reasoning_report` lists the evidence with its `grade`;
+- an `objection` drawn CONTRADICTS onto the step makes the step `contested` and the claim
+  `contested`;
+- `add_verification` with a flo2-calc `hypothesis_block` makes the claim read `supported` at
+  α = 0.05 (p, the test and n named);
+- `propagate_from` on the report reads each step's `conclusion_was` and what is lost;
+- `add_constraint` takes `direction: setpoint` and `source`, and `budget_report` reads it
+  `ungated`;
+- `loop_status.session` reads `counted: false` on the one-shot call.
+
+**Still needs a hosted gateway such as flo2.io:** the same as in 0.89.0, the hosted hub view
+(asking a hub and hearing from every member, the merged `search_design`, `member`), and
+cross-design reads by graph id without your own `--registry-root` server. `--call` refuses
+`--remote` and `--registry-root`, and `reflow2 read` does not take them.
+
+### Added
+
+- **A served skill for designing an argument: `design-an-argument` (`/design-an-argument`).**
+  For a line of reasoning that is not a proof — an argument for and against, rival positions on
+  principles, objections and replies. It records cases as given and principles as chosen, derives
+  each position from a principle, aims each objection at what it attacks (a claim, a premise or
+  the step itself), and keeps rival positions as an open dispute: a contradiction each way, or a
+  Decision the owner keeps `contested`, never a one-way contradiction that silently refutes one
+  side. `find_skills` finds it from "argument", "line of reasoning" and "for and against", and
+  `design-a-proof` now points to it instead of excluding the case.
+
+- **Evidence is recorded as evidence, with its grade.** `add_requirement` and `add_constraint` take
+  `statement_kind` `evidence` (a report, study or measurement: "the report says X") and `judgement`
+  (an analytic judgement drawn from evidence). They also take `source_reliability` (A–F),
+  `information_credibility` (1–6), `reported_at` and `confidence` (low, moderate, high), stored as
+  fields.
+  - A piece of evidence that a checksum-pinned source DOCUMENTS reads `cited_as_evidence`, and what
+    rests on it reads `supported`, never shown or proven. With no pinned source it reads
+    `evidence_unverified`, and what rests on it reads `conditional` on it (below, under Changed).
+  - `reasoning_report` lists every piece of evidence and every judgement under `evidence`, each with
+    how it reads and its `grade`. Every claim carries its `grade`.
+  - No statement of a line of reasoning — anything with a `statement_kind` — is listed by
+    `loop_status` as delivered intent awaiting the owner's word. Before this, the capstone trial
+    listed 7 analytic claims there, and the logic rung 19 lemmas.
+- **Natural deduction records what the logic rung could not.**
+  - `add_inference` takes `rule_node`: the node that states the step's rule. It is never a premise.
+    The step holds only while its rule holds, a what-if on the rule reaches every step it rules, and
+    the rule is never an uncited premise.
+  - `add_inference` takes `establishes` (`entailment` ⊨ or `derivability` ⊢).
+  - `add_inference` takes `conclusion_form` (`conjunction` or `biconditional`). A what-if row for
+    such a step lists its `parts`, and which part still stands.
+  - A premise named twice is used twice (A, A ⊢ A∧A). The second mention was dropped silently
+    before.
+  - A case split may name a disjunction assumed in the same subproof as `cases_exhaustive`. It is
+    read as assumed there and drawn as an `assumed` premise, so the →I that discharges it holds.
+  - A step that holds on an open assumption or an unverified citation reads
+    `holds_as: conditional` at the step itself, and one resting only on evidence reads
+    `holds_as: supported`.
+  - Two lines stated independent that rest on the same cited result, or on the same piece of
+    evidence, are not independent (`shared_citations`).
+- **More writes say what they turn refuted.** `create_edges`, `draw_edges` and `add_decision`'s
+  `related_to` now name in `now_refuted` what they turn refuted, as `create_edge` and
+  `review_relations` already did.
+
+- **Statement kinds for an argument: `objection`, `reply`, `unstated_premise` and `method_rule`.**
+  These are on `add_requirement` and `add_constraint`. An objection reads how it stands
+  (`stands`, `refutes`, `answered` or `conceded`). A reply reads `answers`, `stands` or
+  `concedes`. An unstated premise is made explicit and is not taken as given unless it says so.
+  A rule of method is taken as given by choice.
+- **A step that is not an inference: rule `immediate`.** A claim grasped directly, by intuition,
+  self-evidence or a self-verifying act, is a step that reads "not an inference". It may name no
+  premise, and an objection can still aim at it.
+- **A reply that concedes one reading and moves to another.** Draw a CONTRADICTS with
+  `alignment: conceding` and `moves_to` from the reply to the objection. The conceded reading
+  reads `objected: conceded` and supports nothing. The objection names the reply and the move.
+- **The owner's chosen reading of a dispute kept open.** A `governed_by` from the chosen side
+  to the dispute Decision carries `ruling: held`. The read-back marks that side `held` and the
+  others `rival`. Read on the Decision, `reasoning_report` lists its `positions`, each with what
+  it rests on.
+- **A write that turns a claim refuted says so.** This applies to `review_relations`,
+  `create_edge`, `add_requirement` and `add_constraint`. The reply names, under `now_refuted`, a
+  claim it turned refuted or a step it turned defeated or conceded. For a claim, it also says
+  how to keep the two as an open dispute instead.
+
+- **A claim supported by a statistical hypothesis test reads "supported at α", never shown or
+  proven.** `add_verification` takes `hypothesis_block`: the `hypothesis_test` object of the tested
+  value in a flo2-calc 0.10.0 kept record (record schema 10), copied whole. The check is then
+  computed, so it counts only through its kept record, and a test that rejects H0 reads
+  "supported at α = 0.05 (p = 0.0397, the test, n = 10, 10)". Every claim resting on it reads
+  `supported` in `proof_status`, `statement_reading` and `reasoning_report`, however its steps
+  are confirmed; a deductive line to the same claim is still preferred. A test that does not
+  reject H0 reads "not rejected at α" and supports nothing, never "H0 true". The test's
+  assumptions are written as Constraints the check rests on (`con:<check>-assumption-<n>`), so an
+  objection can attack each. A test used as an objection contests a claim and never refutes it.
+  `get_node` on the check carries `test_reading`.
+- **A change to a test's criteria after its data arrived is reported.** The first
+  `add_verification` with `hypothesis_block` locks the criteria as they stand
+  (`Verification.criteria_at_data`): the α Constraint the record names, the hypothesis the check
+  verifies, the test's Decision it is governed by, and the record's own test and α. A later
+  change to any of them raises `criteria_changed_after_data`, with both values and the
+  ChangeEvents that made it. Nothing is refused. **What to do:** link the hypothesis, α and the
+  test's Decision to the check before attaching the data; acknowledge the gap with the reason
+  when a change was legitimate.
+- **α is spent like a budget across a family of tests.** A test whose record names an α
+  Constraint with a `limit` draws CONSTRAINS from it with the α it was run at as its
+  `contribution`, so `budget_report` sums the family and a test added later is visibly over. A
+  test run at more than the share drawn for it reads unknown. The `design-a-proof` skill has the
+  recipe: Bonferroni shares rounded down, and how Holm and Benjamini–Hochberg are recorded.
+
+- **One formula, one record per occurrence.** A statement can name the formula it is an
+  occurrence of (`same_formula_as`, on `add_requirement` and `add_constraint`), and
+  `reasoning_report` groups the occurrences under `formulas`. A ⊥ shared by several reductios
+  still cannot be one record, because that closes a circle.
+- **A principle can say it is silent on a case** (`silent_on`), and the read-back shows it.
+- **`add_constraint` takes `source`, and `direction: setpoint`.** A setpoint is a value held, such
+  as a test parameter. It is never a budget, so it is never exceeded.
+- **One answer can link from every record it became**: `answer_question`'s `also_records`.
+- **A self-asked question can be withdrawn by its own id**: `withdraw_question` takes
+  `question_id`. An unknown id is refused, and the refusal names the questions that exist.
+
+- **A what-if on a principle that an argument assumes now reads every position on it.**
+  `propagate_from` on a principle that the steps take up in `assumed` used to say nothing about
+  the positions. Each step on the principle now gets a row:
+  - the position reads `unsupported` when every line of it rested on the principle;
+  - it reads `still_supported` when a line remains, and `still_holds_under` names the remaining
+    lines.
+
+  For example, on the trolley design, dropping act consequentialism leaves the footbridge "push"
+  verdict unsupported, while the bystander "turn" verdict still stands on double effect. A
+  reductio whose supposition is dropped still holds.
+- **A what-if says what a contested claim loses, and which objections come back.** Each row now
+  says:
+  - what its claim read before the change (`conclusion_was`);
+  - which of the claim's routes the change never reaches (`untouched_routes`).
+
+  A claim that was only contested, and that the change leaves with nothing, is followed onward
+  like any claim that falls. An objection whose answering reply the change takes away is listed
+  under `objections_returning`, and what it attacks is read again.
+- **A check whose conditions lose their support reads stale.** A check constrained by reasoned
+  claims (a test setting concluded from an assessment) carries `check_conditions` on `get_node`
+  and in `reasoning_report`. Each condition is read, and the check is marked stale when one no
+  longer holds outright. A passing stale check holds nothing up as a premise. `propagate_from`
+  names the checks a change leaves stale (`checks_gone_stale`).
+- **What has lost its reason now is one read.** `loop_status` counts and names, across the whole
+  design and not only as a what-if's change:
+  - requirements whose reason to exist is lost, or stands on acceptance alone;
+  - accepted decisions none of whose chains holds;
+  - stale checks.
+
+### Changed
+
+- **What rests on an undocumented report reads `conditional` on it.** It reads `supported` once a
+  checksum-pinned source DOCUMENTS the report. This follows
+  `dec:idea-what-rests-on-unsourced-evidence-reads-supported-or-conditional`, option (b): #782
+  first read it `supported`, and #783 changed that before any release carried it. **What to do:**
+  register the report's source as an Artifact with a checksum and draw DOCUMENTS from it to the
+  report.
+
+- **A test whose criteria moved after its data reads unknown until the owner acknowledges the
+  change.** A changed α, test or hypothesis no longer only reports the
+  `criteria_changed_after_data` gap: the test supports nothing until that gap is acknowledged
+  with a reason. Every write still lands. **What to do:** to accept a change made on purpose,
+  acknowledge the gap with your reason.
+
+### Fixed
+
+- **An objection aimed at a step is read against that step.** A CONTRADICTS into an Inference
+  attacks the step's warrant or rule. It used to be stored and ignored: the step read `holds` and
+  `reasoning_report` did not list it. The step's reading now lists it under `objections` and says
+  how it stands in `objected`: `defeated` while the objection holds (the step supports nothing;
+  its conclusion is left unsupported, never refuted), `contested` while it stands, `answered`
+  once a reply answers it. `reasoning_report` walks such objections from the claim the step
+  concludes and lists each defeated or contested step under `steps_objected`. **What to do:** if
+  you wrote a challenged warrant as an extra premise only to give an objection a target, you can
+  now aim the objection at the step itself.
+- **A claim held on several lines names every line.** A claim supported by several steps, each
+  resting on different assumptions, holds under any one of them. It used to read as holding under
+  the first line's assumption alone ("Driver: steering permissible", held by five principles, read
+  "conditional on act consequentialism"). Its read-back, foundations and proof status now name
+  every line in `holds_under_any_of`. A step citing such a claim inherits only what its own
+  cheapest line needs, never another line's assumption. An objection holding only under one
+  line's assumption contests a claim that also holds outside it, and no longer refutes it.
+
+- **A conclusion held up only by disputes reads `contested`, not `unproven`.** A claim reads
+  `contested` when no route holds, but a route would hold if the objections standing against
+  its steps or premises were settled. It names what stands against each such route
+  (`contested_by`). A foundation taken as given under a standing objection now reads contested,
+  and so does what rests on it. The read-back's `still_contested` counts them.
+- **A claim's read-back shows a dispute kept open on its steps.** A `contested` Decision that
+  governs a claim's rival readings is listed under the claim's `contested_by_design`.
+- **What a claim rests on is its own support.** Under one claim, `rests_on` and
+  `uncited_premises` no longer list the premises of objections against it. Those premises are
+  listed apart, under `against_rests_on`. A step used as a premise is walked into and is never
+  an uncited premise.
+- **An argument is held in its project, and is asked an argument's questions.** A Project's
+  scope reaches every step of the design's reasoning, and what those steps conclude and rest on.
+  A design with steps and nothing to build, whose Project's domain names an argument or a
+  proof, is no longer asked for an artifact standard or a closure criterion over its "live
+  requirements".
+
+- A stated foundation is no longer listed under `unsupported` as well.
+- A step's generated name now follows its premises when one is added or deleted.
+- A statement's `source` text is now said not to count as citing (`source_note`).
+- `reasoning_report` now uses the whole budget it is given, and its note names that budget, never
+  "a budget of 0".
+- `loop_status.session` now says when a server that has seen only this call could not count a
+  session (`counted: false`), instead of reporting zero writes.
+- A computed check with a kept calculator record now counts as an executable form, and as a run
+  fed back.
+- `get_node` now says why every foundation holds while no derivation does
+  (`foundations_and_proof`).
+- A walk from a check no longer crosses a GOVERNED_BY.
+- A settled decision's own "PROPOSED…, awaiting the owner" is now caught by
+  `settled_question_prose`.
+- Through a hub, a node name equal to its id is no longer prefixed.
+
+- **A claim derived under a supposition that now reads refuted says so.** It no longer reads as a
+  conditional that still holds, and an objection derived that way no longer stands.
+- **A what-if on a premise reaches only what rests on it.** It no longer fans out to every sibling
+  of the parent requirement that the premise decomposes.
+- **A requirement's read-back follows its reason to exist down to the evidence.** The read-back
+  now walks each governing decision's chain, and `rests_on` lists the reports underneath it.
+  `reason_to_exist` names them (`chain_rests_on`, with any recorded `confidence`). A claim that
+  another claim replaces no longer keeps a decision's chain holding.
+
 ## [0.89.0] — 2026-10-19
 
 **Minor. A hub's members become reachable one by one and reasoning crosses them, and a project

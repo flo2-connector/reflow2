@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65fe3e2400da17cc0e7d6f5db511f13b02aa347fc7541ec5bbe985f92fc060f1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:19da954548a76c054a6dc083c3436ea52cfc0c1706e8f45a137552ba7f1e62e7"
+  },
+  "to_id": "art:a-proof-states-what-it-really-does-test"
+}

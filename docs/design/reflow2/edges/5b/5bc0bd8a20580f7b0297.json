@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b35794f3e2dfae9261abbbd18a3042db5d2576926256f3ac9bfaad05e5d7fc52",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:cd484ec060c4314ae3ced458d3d0d2a57e28ed3794fe9779d3ab5d57725fb42e"
+  },
+  "to_id": "art:core-far"
+}

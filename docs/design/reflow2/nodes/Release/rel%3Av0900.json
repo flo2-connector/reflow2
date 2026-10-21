@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9fa13ffe89f8ea59726028d26515c0083324cf0d44a918e6db1601e74ba2d068",
+  "node_id": "rel:v0900",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-21 on Anthony's word (\"Merge 783. Then cut the reflow2 release, move it to flo2.io, then hxm_program\"; the tag push stays his), in PR release/v0.90.0. A minor carrying:\n- #778 (P5): a claim resting on a hypothesis test reads supported at alpha, never shown; the criteria lock; alpha spent as a budget (Bonferroni, Holm, BH);\n- #779 (P6 PR1): the design-an-argument skill; objections aimed at a step; every line's assumptions;\n- #780 (P6 PR2): contested instead of unproven; disputes read both ways; concessions; a write says what it refutes; statement kinds objection/reply/unstated_premise/method_rule; rule immediate; rests-on; an argument held in its project;\n- #781 (P6 PR3): what-ifs and what goes stale; a moved test reads unknown until acknowledged; a what-if on a premise reaches only what rests on it;\n- #782 (P6 PR4): evidence and judgement with source_reliability, information_credibility, reported_at, confidence; natural deduction (rule_node, establishes, conclusion_form, PREMISE.uses, holds_as); now_refuted from the bulk edge writers;\n- #783 (P6 PR5): small faults 1-15 (setpoint, Constraint.source, silent_on, also_records, withdraw_question by question id, a walk from a check stops before GOVERNED_BY, loop_status.session counted); same_formula_as; undocumented evidence reads conditional; the hub name-prefix fault.\n\n200 tools, as in 0.89.0; measured against the published 0.89.0 binary, nine tools' input schemas differ (new arguments and enum values) and withdraw_question's description; 34 skills (design-an-argument new; design-a-proof, brainstorm and detect-and-ask bodies changed); get_instructions byte-identical. THE SCHEMA STAMP MOVES (enum_values: six statement_kind values, Inference.rule immediate, Constraint.direction setpoint, new enum properties), so docs/upgrading-to-v0.90.0.md is owed and written, measured with the published 0.89.0 binary: every seat upgrades together. Nothing is deprecated or removed. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "name": "v0.90.0 — arguments, evidence and tests read for what they are, and what-ifs that say what goes stale",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.90.0"
+  }
+}

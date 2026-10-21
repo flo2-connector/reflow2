@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fda4d0fd428e4792a7f35d33cd22c3b2ed5b00923810bc56de40056f4d288e16",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-105aa397181d2029",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 19,
+    "action": "modified",
+    "checksum_after": "sha256:71b68444e7ed885edefc5686a456ac121542b0ba5fe09fe9c9102f31f7a0dc8f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:dependency-manifest"
+}

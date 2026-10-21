@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8750c94c618bce3c173dc37c46487fcc42e00a407e9770d3ac14a7d231b24391",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:c7be30ffb8a5f10b86fa8febc7c02be309926fd992bf8b294e60ba83e03017ec"
+  },
+  "to_id": "art:toolsnap-add-inference"
+}

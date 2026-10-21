@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d81460b347d33947118ef6b4bf69b86718bc17a61430818f9f9d4397cec07ef",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:3851501d157ddd16dfeeaad71faa5b21e86b29650807c2ba7e6c73c735e7279f"
+  },
+  "to_id": "art:an-argument-reads-as-it-is-written-on-the-wire-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ebdb78b409428df5dcf8068242e234b44ff8151ba0cc4bad7045fa748895e96",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:7d810733363a9cc4286730c9ecf4489a186241de604d3050b8718f94f8733111"
+  },
+  "to_id": "art:test-reasoning-is-attached-to-the-structure-it-justifies"
+}

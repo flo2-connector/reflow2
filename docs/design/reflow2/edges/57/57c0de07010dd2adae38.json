@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f5d3785236ebd52210ec733941fcbe831b2e2b6ed25bd255c708879bef2a136c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:622f547b7b94192d7d1c358e21ed88eb684864581e3035c35aedb9015af2ea99"
+  },
+  "to_id": "art:the-changelog-balance-only-adds-to-the-reply-test"
+}

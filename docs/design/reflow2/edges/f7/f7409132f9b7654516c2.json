@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b66a0be096bbc78aa1c7aec83c1616c448e81363eace6709a003ce75e3774abf",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:33f16e61f906eede2cf82def70a6d7f1469144fdcb027f668800a0120dc3dbbb"
+  },
+  "to_id": "art:evidence-and-steps-are-written-on-the-wire-test"
+}

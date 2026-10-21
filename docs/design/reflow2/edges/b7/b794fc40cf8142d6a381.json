@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:15ab6c5022324c8ae881ca2ab23545c6e08df6031bdeec7e4e9a0a9c0d01bc68",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0900",
+  "properties": {
+    "as_checksum": "sha256:2e4f91e04b598e2a32746089870ae7c81092c2ec2aa3830c033bcf0157aa426e"
+  },
+  "to_id": "art:drain"
+}

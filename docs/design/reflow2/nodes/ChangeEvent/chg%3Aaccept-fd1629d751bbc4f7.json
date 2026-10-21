@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e5a8c124b82e0c1da51d141c27d10d24062cc957c4392406d20b6b4a61b92f10",
+  "node_id": "chg:accept-fd1629d751bbc4f7",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.90.0 cut, step 2: the release line moves to v0.90.0; its upgrade steps (snapshot, upgrade every seat together, read the notes) already cover a stamp move. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

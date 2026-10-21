@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.89.0",
+  "reflow2_version": "0.90.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -327,11 +327,20 @@
           "usability"
         ]
       },
+      "confidence": {
+        "type": "enum",
+        "values": [
+          "high",
+          "low",
+          "moderate"
+        ]
+      },
       "direction": {
         "type": "enum",
         "values": [
           "maximum",
-          "minimum"
+          "minimum",
+          "setpoint"
         ]
       },
       "distinct_from": {
@@ -339,6 +348,17 @@
       },
       "fixes": {
         "type": "list:string"
+      },
+      "information_credibility": {
+        "type": "enum",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
       },
       "limit": {
         "type": "float"
@@ -383,6 +403,29 @@
       "rationale": {
         "type": "string"
       },
+      "reported_at": {
+        "type": "string"
+      },
+      "same_formula_as": {
+        "type": "string"
+      },
+      "silent_on": {
+        "type": "list:string"
+      },
+      "source": {
+        "type": "string"
+      },
+      "source_reliability": {
+        "type": "enum",
+        "values": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
+        ]
+      },
       "statement": {
         "type": "string",
         "required": true,
@@ -395,11 +438,17 @@
           "conjecture",
           "corollary",
           "definition",
+          "evidence",
           "falsum",
           "hypothesis",
+          "judgement",
           "lemma",
+          "method_rule",
+          "objection",
           "proposition",
-          "theorem"
+          "reply",
+          "theorem",
+          "unstated_premise"
         ]
       },
       "taken_as_given": {
@@ -875,6 +924,13 @@
       "cases_exhaustive": {
         "type": "string"
       },
+      "conclusion_form": {
+        "type": "enum",
+        "values": [
+          "biconditional",
+          "conjunction"
+        ]
+      },
       "confirmed_at": {
         "type": "string"
       },
@@ -891,6 +947,13 @@
       },
       "discharges": {
         "type": "list:string"
+      },
+      "establishes": {
+        "type": "enum",
+        "values": [
+          "derivability",
+          "entailment"
+        ]
       },
       "generalizes_over": {
         "type": "list:string"
@@ -912,10 +975,14 @@
         "values": [
           "all",
           "any",
+          "immediate",
           "k_of_n"
         ]
       },
       "rule_name": {
+        "type": "string"
+      },
+      "rule_node": {
         "type": "string"
       },
       "warrant": {
@@ -1237,6 +1304,14 @@
           "usability"
         ]
       },
+      "confidence": {
+        "type": "enum",
+        "values": [
+          "high",
+          "low",
+          "moderate"
+        ]
+      },
       "designation": {
         "type": "enum",
         "values": [
@@ -1249,6 +1324,17 @@
       },
       "fixes": {
         "type": "list:string"
+      },
+      "information_credibility": {
+        "type": "enum",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
       },
       "kind": {
         "type": "enum",
@@ -1295,8 +1381,28 @@
       "rationale": {
         "type": "string"
       },
+      "reported_at": {
+        "type": "string"
+      },
+      "same_formula_as": {
+        "type": "string"
+      },
+      "silent_on": {
+        "type": "list:string"
+      },
       "source": {
         "type": "string"
+      },
+      "source_reliability": {
+        "type": "enum",
+        "values": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
+        ]
       },
       "statement": {
         "type": "string",
@@ -1310,11 +1416,17 @@
           "conjecture",
           "corollary",
           "definition",
+          "evidence",
           "falsum",
           "hypothesis",
+          "judgement",
           "lemma",
+          "method_rule",
+          "objection",
           "proposition",
-          "theorem"
+          "reply",
+          "theorem",
+          "unstated_premise"
         ]
       },
       "status": {
@@ -1430,6 +1542,9 @@
       "computed": {
         "type": "bool"
       },
+      "criteria_at_data": {
+        "type": "string"
+      },
       "description": {
         "type": "string"
       },
@@ -1438,6 +1553,9 @@
       },
       "fixes": {
         "type": "list:string"
+      },
+      "hypothesis_test": {
+        "type": "string"
       },
       "kind": {
         "type": "enum",
@@ -1947,6 +2065,7 @@
         "alignment": {
           "type": "enum",
           "values": [
+            "conceding",
             "opposing",
             "supporting"
           ]
@@ -1959,6 +2078,9 @@
           ]
         },
         "evidence": {
+          "type": "string"
+        },
+        "moves_to": {
           "type": "string"
         }
       }
@@ -2138,6 +2260,7 @@
         "ruling": {
           "type": "enum",
           "values": [
+            "held",
             "parks"
           ]
         }
@@ -2407,6 +2530,9 @@
             "assumed",
             "premise"
           ]
+        },
+        "uses": {
+          "type": "int"
         }
       }
     },
