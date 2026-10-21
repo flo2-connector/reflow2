@@ -54,6 +54,19 @@ the sentence, not how loud the failure was. Exempt: an error whose remedy is in 
 agent explained in chat why a change in one project did not reach the others, calling no skill
 and no tool, and the person had to ask for the root cause.
 
+## When you say something is not in the design, say where you looked
+
+"No requirement says X", "nobody decided Y", "that was never discussed" are claims, and each is
+only as good as where it was checked. **Whenever you tell the person a design does not hold
+something, say where you looked**: which designs, which kinds of record, which searches you ran
+and which records you opened. A search covers the design it runs in. On a design that pins others
+(a hub), a plain `search_design` names every pinned design it did not look in under
+`not_searched`; `search_design` with `tracked_designs: true` searches them too, read-only from
+their committed exports on this machine, and still names each one it could not read and why.
+Before you write into a design that has relatives, search them together, and when another design
+already holds the subject, open the hit (`get_node` on its prefixed `node_id`) and cite it, rather
+than writing a second copy. Nothing found in one design never means nothing anywhere.
+
 ## Speak the reader's domain, never reflow2's
 
 **This applies to every reply you make, not to one skill.** reflow2's vocabulary — *gap*, *loop*,

@@ -38,8 +38,12 @@ use reflow2_core::{
 
 /// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
 mod far;
+mod tracked;
 mod unit;
 mod view;
+pub(crate) use tracked::{
+    NOT_AT_THE_CALL_LAYER as TRACKED_NOT_AT_THE_CALL_LAYER, ON_A_REGISTRY as TRACKED_ON_A_REGISTRY,
+};
 pub(crate) use unit::{CallScope, CallUnit, GraphHold, Settled, SharedGraph};
 
 /// Who is actually answering: the crate version this binary was built from,
@@ -2864,6 +2868,15 @@ pub struct SearchDesignReq {
     /// hits.len() == limit means there may be more.
     #[serde(default)]
     pub limit: Option<usize>,
+    /// Also search every design this one PINS (external_dependency with a
+    /// graph_id), read-only from each pin's committed export on this machine:
+    /// one ranked list, each hit naming its `design`, a pinned design's
+    /// node_id carrying its graph_id as a prefix ('<graph_id>:<id>', which
+    /// get_node opens). Every pinned design NOT searched is named in
+    /// `not_searched` with its `state` and why, so "nothing found" never reads
+    /// as nothing anywhere. Default false: this design alone.
+    #[serde(default)]
+    pub tracked_designs: Option<bool>,
 }
 
 /// All fields optional: no args dumps the whole vocabulary, `node_type` focuses
@@ -8994,8 +9007,18 @@ impl ServerHandler for ReflowService {
         VIEW_GRAPH_IDS
             .scope(view, async move {
                 if VIEW_GRAPH_IDS.with(Option::is_some) {
-                    view::serve(self, request, context, policy).await
-                } else if request
+                    return view::serve(self, request, context, policy).await;
+                }
+                // A DESIGN THAT PINS OTHERS reads them from their committed
+                // exports (`tracked`): a search with `tracked_designs`, and a
+                // read aimed at one pinned design. Anything else comes back
+                // untouched and goes where every call went before.
+                let (request, context) = match tracked::serve(self, request, context, policy).await
+                {
+                    tracked::Served::Answered(answer) => return answer,
+                    tracked::Served::NotMine(request, context) => (request, context),
+                };
+                if request
                     .arguments
                     .as_ref()
                     .is_some_and(|a| a.contains_key(view::MEMBER_ARGUMENT))

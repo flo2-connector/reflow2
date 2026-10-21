@@ -158,6 +158,10 @@ NON_TOOL_TERMS = {
     # link into a member pinned by its export reads (depends.rs).
     "version", "reviewed_revision", "record_state", "not_searched",
     "link_far_end_stale", "link_far_end_unreachable",
+    # hub (2026-10-21, phase 7 PR 2): a tracked search's hit field
+    # `node_id` (prefixed with a pinned design's graph_id) and the `state` of
+    # each pinned design it could not search (service/tracked.rs).
+    "node_id", "state",
     # adopt (2026-10-21): import_graph's reply field for what a whole-node
     # import removed from records that already existed (export.rs).
     "properties_removed",

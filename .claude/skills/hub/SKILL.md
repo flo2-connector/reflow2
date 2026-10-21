@@ -69,9 +69,11 @@ the part receives is `proposed` until its owner accepts it; `loop_status` there 
    and the new `version`, which also re-takes the baseline of the member's record.
 3. **Read a child design only when a request needs it.** Every child you read costs the
    conversation context, and most requests touch one or two designs. A `search_design` in the child
-   you suspect beats reading them all. A search in a local hub covers the hub alone, and its reply
-   names in `not_searched` every pinned design it did not look in: "nothing found" there is never
-   "nothing anywhere".
+   you suspect beats reading them all. In a local hub, `search_design` with `tracked_designs: true`
+   searches the hub and every design it pins, read-only from their committed exports, in one
+   ranked list: each hit names its `design`, and a member's `node_id` carries its graph_id prefix,
+   which `get_node` opens. Every pinned design it could not read is named in `not_searched` with
+   its `state` and why, so "nothing found" there is never "nothing anywhere".
 4. **An impact question that crosses designs is a radius per design, carried on member to
    member.** An edge cannot cross a store, so a blast radius stops at the design it runs in. Run it
    where the change starts. Then repeat until no new design is reached:
@@ -102,8 +104,11 @@ format, which belongs to reflow2, so I'm recording it in reflow2."*
   reference. When a hub note needs a child's detail, name the child's node id rather than restating
   what it says.
 - **Several facts in one breath go to several designs.** Split them, and say each destination.
-- **Search before you create**, in the design you are writing to, so a child does not get a second
-  copy of something it already holds.
+- **Search before you create**, across the family: from a local hub, `search_design` with
+  `tracked_designs: true`; on a server's hub, its address searches every member; holding several
+  addresses, one search per design. When another design already holds the subject, settled or
+  brainstormed, open it and cite it by its node id in what you write, rather than a second copy.
+  Saying it is not there? Say which designs you searched.
 - **Run the skill the fact calls for** (brainstorm, capture-intent, root-cause, jot) against the
   design you chose. This skill decides where; that one decides how.
 - **Where to record is not where to look.** Above all for a root cause: a failure that shows in one
