@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:45e62b15bd276af7f35d76890a3ba6b284caae294d1558c5ac93f76a58d3c262",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-a-served-skill-change-is-kept-only-when-a-measured-gain-holds",
+  "properties": {
+    "evidence": "That idea applies the lower-bound rule to reflow2's own served text; this one offers the same rule to every user's decisions."
+  },
+  "to_id": "dec:idea-a-choice-made-on-a-measured-comparison-says-whether-the-difference-is-real"
+}

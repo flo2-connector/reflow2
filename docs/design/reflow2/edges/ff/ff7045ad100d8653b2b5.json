@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:c45d69be2cec184c175a105764893af2f12b66a67a3ce647851fce7bff022bf9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-reflow2-as-a-design-tool-can-learn-from-harness-evolution-research",
+  "properties": {
+    "approved_at": "2026-10-21",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c0781a1da051dd22045408affd9f6482a66eb49593671c6c2206b152df8897d6",
+  "node_id": "fact:root-cause-get-skill-attaches-every-lesson-unbounded-so-six-skills-outgrow-a-chat-reply-on-reflow2s-design-2026-10-21",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (walked, measured), half of it here: get_skill takes only `name` and attaches every lesson the design holds for the step, with no bound, so its reply grows with the design. On reflow2's own design (copy at a8e3be96) 6 of 34 skills exceed flo2's chat reply (29,267): root-cause 54,054 (body 19,230, 26 lessons 31,446), capture-intent 43,912, detect-and-ask 35,514, where-am-i 35,033, brainstorm 31,786, adopt 30,081. Every body alone fits. The other half is flo2's (it serves a reflow2 skill whole, never in parts): flo2 design 1a97fc1f1de4d5d2, fact:get-skill-brainstorm-on-reflow2s-design-is-refused-reply-too-large-on-0-90-0-2026-10-21",
+    "statement": "Measured 2026-10-21 with the published 0.90.0 and 0.89.0 binaries on reflow2's committed design copy (origin/main a8e3be96) imported into scratch stores; reply sized as flo2's gateway sizes it (compact JSON). 0.89.0 measures the same (brainstorm 31,782), so 0.90.0 did not cause it. Same class as dec:idea-get-skill-serves-a-summary-or-one-section (2026-10-06, the VS Code chat harness's inline limit): a reply whose size depends on how much the design holds, checked only on a design holding little. The full walk (candidates, refutations, what is not established) is on the flo2 finding. Proposed fix, not yet chosen: get_skill takes budget_chars and holds the lessons to it (the body always whole; the newest lessons kept, the rest counted and named by id), and the reply-bound gate exercises get_skill on a design holding many lessons. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "steps": [
+      "get_skill"
+    ],
+    "subject_id": "cap:a-lesson-is-served-at-the-step-it-concerns",
+    "valid_from": "2026-10-21"
+  }
+}
