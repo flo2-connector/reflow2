@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c99db5085fc933b23a07db077a99800df62c3c56afcdce08e12bd5a0040f2353",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-a-pin-threads-in-a-composed-check",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

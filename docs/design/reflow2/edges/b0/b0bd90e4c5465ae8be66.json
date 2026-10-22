@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2bf10d116e4a0e451af21995a42a34c5127069e286914b798a2ceb9d72d12333",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-a-pin-threads-in-a-composed-check",
+  "properties": {
+    "evidence": "The question is how that capability draws a pin link; it exists only because the capability draws one from the pin node.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:a-composition-computes-where-its-designs-already-touch"
+}

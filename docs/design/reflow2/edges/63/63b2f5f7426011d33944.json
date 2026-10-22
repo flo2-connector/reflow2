@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:364806e4f748808fd8450e148c50d5c54b8626c44888a37ac3b64a5b73ab760e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:2f06a849fc2a7ea70d791d875869b866ac5a2bbd1d8f97897c6954afa986f75f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

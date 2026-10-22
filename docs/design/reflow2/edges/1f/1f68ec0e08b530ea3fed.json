@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8608c842dd0749b26c8fce0eab87dc4475a23608b9c6604118fd015f3c70ae18",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:546a4615e0121fd0b31b4e97b72f5600a25458779e32d825825466bdc24af027",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-composed-check-through-a-hubs-address-reads-its-members-live-test"
+}

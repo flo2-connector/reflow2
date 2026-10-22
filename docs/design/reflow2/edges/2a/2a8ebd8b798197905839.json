@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fbf3ea7677536bb52107d890d4c8fbda24406a00772a0e3d0d50619ec97e2c48",
+  "edge_type": "REALIZES",
+  "from_id": "art:service-composed",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-composition-computes-where-its-designs-already-touch"
+}

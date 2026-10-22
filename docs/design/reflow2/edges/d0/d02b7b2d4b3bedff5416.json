@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:baecdac4986af86725ce106ced16ba32e8e0a2eaf3f3a6ecf8b5d0ee112985a9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:6b92b658718566a2df5897729a03bcf64ae5799e583d531fb9741d3b463b9a9e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-local-hub-composes-its-pinned-designs-through-the-door-test"
+}

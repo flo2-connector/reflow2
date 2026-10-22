@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:93979b4e225fcf4a0eba53abbc13e747bf3b443345fae653dd2e01a41d8e7e9a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-composition-computes-where-its-designs-already-touch",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:compose"
+}

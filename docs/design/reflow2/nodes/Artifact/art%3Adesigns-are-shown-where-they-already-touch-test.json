@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:917640333a60d5c7ced6ea9542742179c2e5f67f8586e0751bc5a520d5db0746",
+  "node_id": "art:designs-are-shown-where-they-already-touch-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Class tests for req:designs-are-shown-where-they-already-touch-before-anyone-declares-it across evidence kinds (location in one repository, equal checksum, pin by graph_id, pin by repository, bare common filenames, name only), across two designs (the one-other-design call, pair_designs) and several (other_graph_ids, tracked_designs), and across pin states (missing export, address): exact evidence is a drawn computed link that threads a member to the others; a bare path or stock checksum is set aside; a name is a candidate only; every pair has a link_status; the one-other-design reply only gains the link fields; nothing is written.",
+    "location": "crates/reflow2-mcp/tests/designs_are_shown_where_they_already_touch.rs",
+    "name": "crates/reflow2-mcp/tests/designs_are_shown_where_they_already_touch.rs",
+    "status": "realized"
+  }
+}

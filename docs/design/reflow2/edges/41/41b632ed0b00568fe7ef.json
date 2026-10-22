@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:60a433f67aea56f9cc4039b7d8bd0bcfb13c4f9915e9e46e2985911220f555d6",
+  "edge_type": "CAUSES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "steps_resting_on in inference.rs filters role == \"assumed\" (checked at origin/main), and takes_part_in_reasoning is built on it, so assumed premises stopped counting as taking part in reasoning when commit 4879171c5 narrowed the helper for the what-if.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-proof-statements-fall-through-to-software-predicates-and-assumed-premises-stopped-counting-2026-10-22"
+}

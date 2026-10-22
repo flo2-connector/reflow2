@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:53240c2e4f67113bb0fb1ebe4cde7d99159cf416ce559a8247fd8b11274ea4b3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:91eef402a6c4f7ab892831a811e2d83b0ef96cf3bdb42c9b3991af69f19293f9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}

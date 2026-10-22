@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c2dbe4121e17e1467901f07c3fb8f424128c988d840c7e8d8a6e32600467ad8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:touch"
+}

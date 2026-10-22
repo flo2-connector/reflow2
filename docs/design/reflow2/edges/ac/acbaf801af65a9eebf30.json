@@ -1,13 +1,20 @@
 {
-  "content_hash": "sha256:d37cb3018c0406c9a76fe6ecd50a7fd3bc32bea49d10581810358f2883a8f6ac",
+  "content_hash": "sha256:239d8fb78287808db94e198343dc0882caea69db666953a00bc9005aab6b7702",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-composed-check-says-which-findings-only-the-composition-made",
+  "prev_item_hash": "sha256:d37cb3018c0406c9a76fe6ecd50a7fd3bc32bea49d10581810358f2883a8f6ac",
   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+      "who:agent-d82ad83a71"
+    ],
     "authored_via": [
-      "who:agent-8d84cd1476"
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

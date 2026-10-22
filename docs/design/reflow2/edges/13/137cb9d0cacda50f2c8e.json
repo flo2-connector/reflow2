@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ef4b59d63cd30d2931e77b61bcf8d255ed091a835e66af5ac4b8bd47fb721a66",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-lucas-penrose-trial-ran-on-0-90-0-and-every-objection-lands-on-a-translation-never-on-godel-2026-10-22",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6037dad1a54d468e27b47d07a4d97c304e14fa4e2bf577ea970c2df6c378c88e",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule",
+  "properties": {
+    "evidence": "The unstated-premise statement kind it asks for is option (a) here: a bridge is often exactly an unstated premise."
+  },
+  "to_id": "dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim"
+}

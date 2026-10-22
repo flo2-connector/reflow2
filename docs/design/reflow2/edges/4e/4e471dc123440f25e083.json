@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:13552e8081fc8ce5783f5dde813095a4c01d108e5e07ac1ea7c242822d35f6b2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 21,
+    "action": "modified",
+    "checksum_after": "sha256:027b02abd9f0e740753ec402f6c56b96bb7d372dbb4cb342126115591c5378a8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:28258c6ce18842fed918f916580b5a6d5525d1d5d148fff2f9c715945644235b",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-composition-computes-where-its-designs-already-touch",
+  "properties": {},
+  "to_id": "req:designs-are-shown-where-they-already-touch-before-anyone-declares-it"
+}

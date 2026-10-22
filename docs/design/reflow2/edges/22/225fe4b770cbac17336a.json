@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:75787d422c4fcb135733c0c1a8cfe2f46aa37be80c52c72dc646fc0aefae8802",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-composition-computes-where-its-designs-already-touch"
+}

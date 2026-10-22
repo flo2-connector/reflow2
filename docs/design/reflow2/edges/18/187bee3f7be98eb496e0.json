@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:192a5baa3afb81e2d2ad4eb15f3b69f37ab4091f1cbb496a2d7c083b811c6d6c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-one-domains-proof-used-to-prove-anothers-claim",
+  "properties": {
+    "evidence": "Option (d) and the pushback's honest reading both need a conclusion to show which chosen axioms or stances it rests on.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-conclusion-shows-the-axioms-it-rests-on"
+}

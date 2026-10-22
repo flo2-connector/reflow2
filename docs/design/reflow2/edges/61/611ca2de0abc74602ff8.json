@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:841dc79d74c1c975d8889c8e84a23b50fa7769c440f760ee4d380a314878eb51",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:relation-candidates-are-offered-never-drawn",
+  "properties": {
+    "evidence": "Offering relation candidates without drawing them is the existing case of the same rule: the person, not the agent, turns a proposed link into a real one."
+  },
+  "to_id": "dec:idea-brainstorm-proposes-speculative-links-between-two-things"
+}
