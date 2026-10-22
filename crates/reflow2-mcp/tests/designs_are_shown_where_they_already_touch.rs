@@ -412,10 +412,15 @@ fn links_between<'a>(reply: &'a Value, list: &str, a: &str, b: &str) -> Vec<&'a 
 fn status(reply: &Value, a: &str, b: &str) -> String {
     let ls = &reply["link_status"];
     for key in [format!("{a}×{b}"), format!("{b}×{a}")] {
-        if ls["linked"].get(&key).is_some() {
+        let listed = |status: &str| {
+            ls[status]
+                .as_array()
+                .is_some_and(|l| l.iter().any(|e| e["pair"].as_str() == Some(key.as_str())))
+        };
+        if listed("linked") {
             return "linked".into();
         }
-        if ls["candidates_only"].get(&key).is_some() {
+        if listed("candidates_only") {
             return "candidates_only".into();
         }
         if ls["not_checked"]

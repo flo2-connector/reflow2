@@ -42,7 +42,11 @@ flows up) or a **peer it uses** across named interfaces, or both. Never infer it
 Interface ids the use crosses). For each interface, run the link-projects skill so this design
 mirrors it. `upstream_status` lists every member with its relation, and reports one linked by
 nothing a ripple could follow: `relation_not_stated`, or `no_interface_to_follow` for a `uses`
-link with no mirrored Interface. Put those to the person as one question per member.
+link with no mirrored Interface. Put those to the person as one question per member. **Then
+connect the pin to what uses it**: `depends_on` from the hub's component or capability that uses
+that design to the pin. A pin nothing in the hub is wired to threads only itself to the member, so
+the composed check (section 2, step 5) reads that member as a cut-off cluster, and that finding is
+true.
 
 **When a requirement or decision of the whole belongs to a part, send it down; never copy it.** Ask
 the person, then make both writes, the part's first: `receive_from_design` in the part, then
@@ -96,7 +100,9 @@ the part receives is `proposed` until its owner accepts it; `loop_status` there 
    hub. Report the pairs, and name every design in `not_composed`. An empty `by_pair` is not
    agreement: read `link_status`, which says for every pair whether it is `linked` (declared, or
    computed on exact evidence: the same file, a pin naming the other), has only name
-   `candidates` for the person to confirm, `never_touch`es, or was `not_checked`.
+   `candidates` for the person to confirm, `never_touch`es, or was `not_checked`. A member filed
+   as a cut-off cluster under its pair with the hub usually means the hub's pin of it is wired to
+   nothing: connect the pin to the component or capability that uses that design.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

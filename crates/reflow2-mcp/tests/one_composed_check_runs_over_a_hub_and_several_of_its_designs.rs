@@ -673,8 +673,10 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
         json!({"tracked_designs": true, "budget_chars": 1_000_000}),
     )
     .await;
-    // 6,000 since phase 7 step 4 (4,500 before): every pair's `link_status`
-    // is never sampled, so the whole a bounded reply keeps grew by its size.
+    // 6,000 since phase 7 step 4 (4,500 before). With every list sampled,
+    // every finding's ids cut and every map key withheld, what a bound keeps
+    // whole here is still 4,697 characters: `not_composed` (five designs, 839),
+    // the counts, and the `budget` block that says what was withheld (1,662).
     let budget = 6_000;
     let bounded = call(
         &h.c,
@@ -693,8 +695,8 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
     assert_eq!(bounded["designs_composed"], full["designs_composed"]);
     assert_eq!(bounded["read_from"], full["read_from"]);
     assert_eq!(
-        bounded["link_status"], full["link_status"],
-        "every pair's status survives the bound"
+        bounded["link_status"]["counts"], full["link_status"]["counts"],
+        "every status's count survives the bound"
     );
     assert_eq!(
         bounded["not_composed"].as_array().map(Vec::len),
@@ -714,9 +716,9 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
                 || path == "of_the_whole"
                 || path == "declared_links"
                 || path == "computed_links"
-                || path == "candidates",
-            "only finding and link lists are sampled, never what was asked or a pair's \
-             status: {path}"
+                || path == "candidates"
+                || path.starts_with("link_status."),
+            "only finding and link lists are sampled, never what was asked: {path}"
         );
     }
     // Unasked, the default bound is the 30,000 the gate holds every reply to.

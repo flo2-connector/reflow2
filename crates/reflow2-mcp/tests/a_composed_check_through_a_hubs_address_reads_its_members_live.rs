@@ -70,8 +70,8 @@ fn through_a_hubs_address_the_composed_check_reads_every_member_live() {
     // Every pair of the three designs composed has a status, read from the
     // live stores; none was left unchecked.
     let ls = &got["link_status"];
-    let statused = ls["linked"].as_object().map_or(0, |m| m.len())
-        + ls["candidates_only"].as_object().map_or(0, |m| m.len())
+    let statused = ls["linked"].as_array().map_or(0, Vec::len)
+        + ls["candidates_only"].as_array().map_or(0, Vec::len)
         + ls["never_touch"].as_array().map_or(0, Vec::len);
     assert_eq!(statused, 3, "three designs, three pairs: {ls}");
     assert_eq!(ls["not_checked"], json!([]), "{ls}");

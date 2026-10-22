@@ -1423,12 +1423,23 @@ impl ReflowService {
         drop(g);
         match budget {
             None => ok_json(report),
-            Some(budget) => ok_json(crate::reply_budget::bound_reply_sampling(
+            Some(budget) => ok_json(crate::service::composed::bound_composed(
                 serde_json::to_value(report).map_err(crate::service::ser_err)?,
                 budget,
                 "Every count is still here. A shortened finding list is a sample: raise \
                  `budget_chars` if this client has the room, or open one finding's id with \
                  get_node.",
+                &[
+                    "seam_findings",
+                    "our_findings",
+                    "their_findings",
+                    "skipped_edges",
+                    "declared_links",
+                    "computed_links",
+                    "candidates",
+                ],
+                &[],
+                &["seam_findings", "our_findings", "their_findings"],
             )),
         }
     }

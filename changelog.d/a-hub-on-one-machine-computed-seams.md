@@ -19,10 +19,26 @@
   counted under `set_aside`.
 - **Every pair says what was checked.** `link_status` files every pair of
   designs as `linked`, `candidates_only`, `never_touch` (checked, no evidence)
-  or `not_checked` (a design of the pair was not read), so an empty seam never
-  reads as agreement. The composed reply's note now says that a design with no
+  or `not_checked` (a design of the pair was not read), with a count per
+  status, so an empty seam never reads as agreement. The composed reply's note now says that a design with no
   link to the others reads as a cut-off cluster, a finding the composition
   made and the design alone does not have.
+
+- **The hub skill tells an owner to connect each pin to what uses it**
+  (`depends_on` from the hub's component or capability to the pin): a pin
+  wired to nothing threads only itself, so the composed check reads that
+  member as a cut-off cluster, and that finding is true.
+
+### Fixed
+
+- **A composed reply holds its budget.** Over a hub of fifteen designs the
+  reply was 58,505 characters at the default budget of 30,000, because every
+  list was at its floor of one whole finding and some findings name a whole
+  cut-off cluster. When sampling lists is not enough, each finding's ids are
+  cut to a few (it keeps `affected_ids_total`) and then whole `by_design` /
+  `by_pair` keys are withheld, each named in `withheld_to_fit`; every count
+  stays in `counts`. `link_status` is sampled like any list, its counts kept.
+  The one-other-design call does the same when it is given `budget_chars`.
 
 ### Changed
 

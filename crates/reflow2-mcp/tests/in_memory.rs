@@ -36,6 +36,7 @@ mod a_change_to_a_tests_criteria_after_its_data_is_reported;
 mod a_claims_step_count_counts_each_step_once;
 mod a_closure_criterion_is_declared_on_the_served_surface;
 mod a_composed_prompt_serves_its_pieces;
+mod a_composed_reply_holds_its_budget;
 mod a_constructor_accepts_the_owners_word_in_one_call;
 mod a_constructor_names_every_edge_it_drew;
 mod a_constructor_says_what_it_replaced;

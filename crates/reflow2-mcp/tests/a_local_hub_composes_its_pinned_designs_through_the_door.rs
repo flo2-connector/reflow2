@@ -317,15 +317,24 @@ fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_check
         "{got}"
     );
     let ls = &got["link_status"];
+    let entry = |status: &str, pair: String| -> Value {
+        ls[status]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|e| e["pair"] == json!(pair))
+            .cloned()
+            .unwrap_or(Value::Null)
+    };
     assert_eq!(
-        ls["linked"][format!("{a}×{p}")]["computed"],
+        entry("linked", format!("{a}×{p}"))["computed"],
         json!(1),
         "{ls}"
     );
     // The hub's own interface and tiled's: a candidate, not a link.
-    assert_eq!(
-        ls["candidates_only"][format!("{hub_id}×{t}")],
-        json!(null),
+    assert!(
+        entry("candidates_only", format!("{hub_id}×{t}")).is_null()
+            && !entry("linked", format!("{hub_id}×{t}")).is_null(),
         "the hub pins tiled, so that pair is linked by the pin: {ls}"
     );
     assert!(
