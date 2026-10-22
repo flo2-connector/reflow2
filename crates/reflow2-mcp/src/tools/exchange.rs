@@ -1361,14 +1361,21 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement (measured 2026-09-11; cause recorded). On a registry server behind a trusted host, pass `other_graph_id` instead of `design`: the other design is read by graph_id from the designs the server holds, inside the set the host says you may read; `namespace` defaults to it.",
-        title = "Compose and Analyse Two Designs",
+        description = "Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. It imports theirs beside yours and runs reflow2's ORDINARY checks over the whole, so a seam problem arrives as the gap it already is: a contract with no provider, a requirement nothing satisfies across the join. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, and each design's ids are namespaced, so none overwrites another. ONE other design: `design` (an export, with `namespace`), or `other_graph_id` on a registry server behind a trusted host; findings come back OURS / THEIRS / SEAM. SEVERAL at once, for an effort across a hub's designs: `other_graph_ids`, or `tracked_designs: true` for every design this one pins (through a hub's address, every member). Served alone (the --call door) each is read from its committed export, on a registry from its live store; findings come back `by_design`, `by_pair` ('a×b') and `across`, and each design not read is named in `not_composed`. Run it over a hub before changing what several of its designs share. ⚠ Namespaced designs share no node: an empty seam or pair list means they never touch, not that they agree. For declared seams, feed `pair_designs`' pairs to `seam_report`.",
+        title = "Compose and Analyse Designs Together",
         annotations(read_only_hint = true)
     )]
     pub async fn compose_and_analyse(
         &self,
         Parameters(req): Parameters<ComposeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // SEVERAL DESIGNS AT ONCE (`other_graph_ids`, `tracked_designs`):
+        // `service::composed`. Every other call is the one-other-design path
+        // below, byte for byte.
+        if crate::service::composed_asks_for_several(&req) {
+            return self.compose_several(req).await;
+        }
+        let budget = req.budget_chars;
         // ONE OTHER DESIGN, from exactly one of two sources: inline, as always,
         // or BY GRAPH_ID through the registry this design is served from
         // (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`),
@@ -1413,7 +1420,18 @@ impl ReflowService {
                 }
             };
         let g = self.graph.read().await;
-        ok_json(g.compose_and_analyse(&doc, &namespace).map_err(dyno_err)?)
+        let report = g.compose_and_analyse(&doc, &namespace).map_err(dyno_err)?;
+        drop(g);
+        match budget {
+            None => ok_json(report),
+            Some(budget) => ok_json(crate::reply_budget::bound_reply_sampling(
+                serde_json::to_value(report).map_err(crate::service::ser_err)?,
+                budget,
+                "Every count is still here. A shortened finding list is a sample: raise \
+                 `budget_chars` if this client has the room, or open one finding's id with \
+                 get_node.",
+            )),
+        }
     }
 }
 

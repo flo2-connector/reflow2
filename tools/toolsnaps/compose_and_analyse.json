@@ -2,11 +2,21 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. Rather than comparing them, it imports theirs alongside yours and runs reflow2's ORDINARY checks over the whole, so seam problems arrive as the gaps they already are: a contract with no provider once both sides are visible, a requirement nothing satisfies across the join, a duplicate that is one thing named twice. Findings are attributed OURS / THEIRS / SEAM, and the seam ones are what neither design could have found alone. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, so your design is unchanged and your exports never start carrying theirs. Ids are namespaced, because two designs routinely name different things the same and a plain import would silently overwrite yours. ⚠ AND THE NAMESPACING IS WHY `seam_findings` CAN BE EMPTY ON A SEAM BUILT FOR IT: the halves share no node, so nothing touches across the boundary and there is no seam to find unless the correspondence is supplied. Run `pair_designs` first and feed its pairs to `seam_report`; read an empty `seam_findings` here as the designs never touching, not as agreement (measured 2026-09-11; cause recorded). On a registry server behind a trusted host, pass `other_graph_id` instead of `design`: the other design is read by graph_id from the designs the server holds, inside the set the host says you may read; `namespace` defaults to it.",
+  "description": "Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. It imports theirs beside yours and runs reflow2's ORDINARY checks over the whole, so a seam problem arrives as the gap it already is: a contract with no provider, a requirement nothing satisfies across the join. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, and each design's ids are namespaced, so none overwrites another. ONE other design: `design` (an export, with `namespace`), or `other_graph_id` on a registry server behind a trusted host; findings come back OURS / THEIRS / SEAM. SEVERAL at once, for an effort across a hub's designs: `other_graph_ids`, or `tracked_designs: true` for every design this one pins (through a hub's address, every member). Served alone (the --call door) each is read from its committed export, on a registry from its live store; findings come back `by_design`, `by_pair` ('a×b') and `across`, and each design not read is named in `not_composed`. Run it over a hub before changing what several of its designs share. ⚠ Namespaced designs share no node: an empty seam or pair list means they never touch, not that they agree. For declared seams, feed `pair_designs`' pairs to `seam_report`.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON the reply may spend (default 30,000 when\nseveral designs are composed; unbounded for one other design unless\ngiven). Over it, prose is cut first, then the longest finding lists\nare sampled and named in `budget.lists_shortened`; every count stays.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "design": {
         "additionalProperties": true,
         "default": null,
@@ -31,10 +41,29 @@
           "string",
           "null"
         ]
+      },
+      "other_graph_ids": {
+        "default": null,
+        "description": "SEVERAL designs at once, by graph_id: all are composed with this one\nin ONE combined graph, and each finding is attributed to the one\ndesign, the pair of designs or the several designs it names. Served alone\n(stdio, the --call door), each must be a design this one pins\n(external_dependency with that graph_id), read from its committed\nexport; on a server holding many designs, from its live store inside\nthe set the host says you may read. Not with `design`,\n`other_graph_id` or `namespace`: each design's ids carry its graph_id.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "tracked_designs": {
+        "default": null,
+        "description": "`true` composes this design with EVERY design it pins, as\n`other_graph_ids` would; each one that could not be read is named in\n`not_composed` with a `state` and why. Through a hub's address: every\nmember of the view.",
+        "type": [
+          "boolean",
+          "null"
+        ]
       }
     },
     "type": "object"
   },
   "name": "compose_and_analyse",
-  "title": "Compose and Analyse Two Designs"
+  "title": "Compose and Analyse Designs Together"
 }

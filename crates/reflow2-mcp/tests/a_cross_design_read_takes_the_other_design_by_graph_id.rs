@@ -625,6 +625,9 @@ async fn a_server_without_a_registry_says_where_other_graph_id_is_served() {
             design: None,
             namespace: None,
             other_graph_id: Some("someone-else".into()),
+            other_graph_ids: None,
+            tracked_designs: None,
+            budget_chars: None,
         }))
         .await
         .expect_err("compose by graph_id on a server without a registry is refused");
@@ -657,6 +660,9 @@ async fn a_server_without_a_registry_says_where_other_graph_id_is_served() {
             design: None,
             namespace: None,
             other_graph_id: None,
+            other_graph_ids: None,
+            tracked_designs: None,
+            budget_chars: None,
         }))
         .await
         .expect_err("nothing to compose is a refusal");

@@ -16,10 +16,12 @@
 //! ⚠️ THESE TESTS SHARE ONE PROCESS, as in `in_memory.rs`.
 
 mod a_code_folder_attaches_to_the_design_it_names;
+mod a_composed_check_through_a_hubs_address_reads_its_members_live;
 mod a_degraded_server_recovers_when_its_cause_clears;
 mod a_held_designs_read_is_as_true_as_the_live_one;
 mod a_hub_view_names_the_pinned_designs_outside_it;
 mod a_hubs_address_serves_a_view_over_its_members;
+mod a_local_hub_composes_its_pinned_designs_through_the_door;
 mod a_local_hub_searches_its_pinned_designs_through_the_door;
 mod a_one_shot_open_reports_its_version_verdict;
 mod a_read_only_server_with_no_store_serves_the_latent_surface;

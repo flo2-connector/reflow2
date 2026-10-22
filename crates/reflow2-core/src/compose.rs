@@ -135,14 +135,7 @@ impl DesignGraph {
             ours.nodes.iter().map(|n| n.node_id.clone()).collect();
 
         // Theirs, namespaced, so nothing of ours is overwritten.
-        let mut theirs = other.clone();
-        for n in &mut theirs.nodes {
-            n.node_id = ns(namespace, &n.node_id);
-        }
-        for e in &mut theirs.edges {
-            e.from_id = ns(namespace, &e.from_id);
-            e.to_id = ns(namespace, &e.to_id);
-        }
+        let theirs = namespaced(other, namespace);
         let report = combined.import_graph(&theirs)?;
 
         let is_ours = |id: &str| our_ids.contains(id);
@@ -205,6 +198,20 @@ impl DesignGraph {
     }
 }
 
+/// A copy of `other` with every node id, and both ends of every edge, under
+/// `{namespace}::` — the one rewrite both compositions make.
+fn namespaced(other: &GraphExport, namespace: &str) -> GraphExport {
+    let mut theirs = other.clone();
+    for n in &mut theirs.nodes {
+        n.node_id = ns(namespace, &n.node_id);
+    }
+    for e in &mut theirs.edges {
+        e.from_id = ns(namespace, &e.from_id);
+        e.to_id = ns(namespace, &e.to_id);
+    }
+    theirs
+}
+
 fn bucket(side: Side) -> &'static str {
     match side {
         Side::Seam => "seam",
@@ -216,4 +223,194 @@ fn bucket(side: Side) -> &'static str {
 /// A defect's affected ids, however the issue names them.
 fn defect_ids(issue: &HealIssue) -> Vec<String> {
     issue.affected_ids.clone()
+}
+
+// ── SEVERAL DESIGNS AT ONCE ─────────────────────────────────────────────────
+//
+// `req:one-composed-check-runs-over-a-hub-and-several-of-its-designs`: a hub
+// effort spans three to six designs, and composing them pairwise with THIS
+// design never analyses the seam between two of the others. So the same
+// mechanism takes a list: this design unchanged, each other design under its
+// own `{design}::` namespace, ONE combined graph built in memory and thrown
+// away, the ordinary checks run once over the whole. A finding is attributed
+// to the SET of designs its ids belong to — one design, a pair, or more —
+// rather than to ours / theirs / seam, which only means anything with two.
+
+/// One other design composed in by [`DesignGraph::compose_many`]: its export
+/// and the name its ids are namespaced under (its graph_id, as a rule).
+#[derive(Debug, Clone, Copy)]
+pub struct ComposeWith<'a> {
+    pub design: &'a str,
+    pub export: &'a GraphExport,
+}
+
+/// What one design brought into the combined graph.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ComposedDesign {
+    pub design: String,
+    pub nodes: usize,
+    pub edges: usize,
+    /// Edges the import could not place, with the reason — never dropped in
+    /// silence.
+    pub skipped_edges: Vec<String>,
+}
+
+/// One finding from the combined graph, attributed to the designs it names.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct AttributedFinding {
+    /// `gap` or `defect`.
+    pub kind: &'static str,
+    pub source: String,
+    pub title: String,
+    /// This design's ids as they are; another design's as `<design>:<id>`,
+    /// the form a hub's view and a read aimed at a pinned design open.
+    pub affected_ids: Vec<String>,
+    /// The designs its ids belong to, once each: this design first, then in
+    /// the order they were composed. One design is that design's own finding;
+    /// two is the seam between them; more is a finding across them all.
+    /// EMPTY when it names no node at all ("nothing confirms it works"): it is
+    /// about the composition as a whole, which no one design owns. (The
+    /// two-design composition files such a finding as ours.)
+    pub designs: Vec<String>,
+}
+
+/// What analysing this design and several others together found.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct ManyComposedReport {
+    /// This design's graph_id: its ids are not prefixed.
+    pub this_design: String,
+    pub this_nodes: usize,
+    /// Each other design, in the order composed.
+    pub composed: Vec<ComposedDesign>,
+    /// Every finding of the ordinary checks over the whole, in the order the
+    /// checks return them (gaps, then defects).
+    pub findings: Vec<AttributedFinding>,
+}
+
+impl DesignGraph {
+    /// Analyse this design together with several others at once, without
+    /// touching any (`req:one-composed-check-runs-over-a-hub-and-several-of-its-designs`).
+    ///
+    /// Each other design's ids go under `{design}::`, so no two collide;
+    /// a design named twice, an empty name, or this design's own graph_id is
+    /// refused rather than composed into a collision. With no other design the
+    /// combined graph is this design alone, and every finding is its own.
+    pub fn compose_many(
+        &self,
+        others: &[ComposeWith<'_>],
+    ) -> Result<ManyComposedReport, DynoError> {
+        let this = self.graph_id().to_string();
+        let mut seen: std::collections::BTreeSet<&str> = std::collections::BTreeSet::new();
+        for o in others {
+            if o.design.trim().is_empty() {
+                return Err(DynoError::Query(
+                    "every design composed needs a name to namespace its ids under; one was \
+                     empty"
+                        .to_string(),
+                ));
+            }
+            if o.design == this {
+                return Err(DynoError::Query(format!(
+                    "{this} is this design itself, which is always composed; name the other \
+                     designs only"
+                )));
+            }
+            if !seen.insert(o.design) {
+                return Err(DynoError::Query(format!(
+                    "design {} is named twice; each design is composed once",
+                    o.design
+                )));
+            }
+        }
+
+        let mut combined = DesignGraph::open_in_memory()?;
+        let ours = self.export_graph()?;
+        combined.import_graph(&ours)?;
+        let our_ids: std::collections::BTreeSet<String> =
+            ours.nodes.iter().map(|n| n.node_id.clone()).collect();
+
+        let mut composed = Vec::with_capacity(others.len());
+        for o in others {
+            let theirs = namespaced(o.export, o.design);
+            let report = combined.import_graph(&theirs)?;
+            composed.push(ComposedDesign {
+                design: o.design.to_string(),
+                nodes: theirs.nodes.len(),
+                edges: report.edges_written,
+                skipped_edges: report
+                    .skipped_edges
+                    .iter()
+                    .map(|s| format!("{s:?}"))
+                    .collect(),
+            });
+        }
+
+        // Which design an id belongs to, and the form a reader opens it by.
+        // Ours first (an id of ours may itself contain `::`), then the
+        // longest namespace that prefixes it.
+        let mut by_length: Vec<&str> = others.iter().map(|o| o.design).collect();
+        by_length.sort_by_key(|d| std::cmp::Reverse(d.len()));
+        let place = |id: &str| -> (Option<String>, String) {
+            if our_ids.contains(id) {
+                return (Some(this.clone()), id.to_string());
+            }
+            for d in &by_length {
+                if let Some(rest) = id.strip_prefix(&format!("{d}::")) {
+                    return (Some((*d).to_string()), format!("{d}:{rest}"));
+                }
+            }
+            (None, id.to_string())
+        };
+        let order: Vec<&str> = std::iter::once(this.as_str())
+            .chain(others.iter().map(|o| o.design))
+            .collect();
+        let attribute = |kind: &'static str, source: String, title: String, ids: &[String]| {
+            let mut named: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+            let mut affected_ids = Vec::with_capacity(ids.len());
+            for id in ids {
+                let (design, shown) = place(id);
+                if let Some(d) = design {
+                    named.insert(d);
+                }
+                affected_ids.push(shown);
+            }
+            let designs = order
+                .iter()
+                .filter(|d| named.contains(**d))
+                .map(|d| (*d).to_string())
+                .collect();
+            AttributedFinding {
+                kind,
+                source,
+                title,
+                affected_ids,
+                designs,
+            }
+        };
+
+        let mut findings = Vec::new();
+        for gap in combined.detect_gaps()? {
+            let source = serde_json::to_string(&gap.gap_source)
+                .unwrap_or_default()
+                .trim_matches('"')
+                .to_string();
+            findings.push(attribute("gap", source, gap.title, &gap.affected_ids));
+        }
+        for defect in combined.open_defects()? {
+            let ids = defect_ids(&defect);
+            findings.push(attribute(
+                "defect",
+                format!("{:?}", defect.category),
+                defect.message.clone(),
+                &ids,
+            ));
+        }
+
+        Ok(ManyComposedReport {
+            this_design: this,
+            this_nodes: ours.nodes.len(),
+            composed,
+            findings,
+        })
+    }
 }

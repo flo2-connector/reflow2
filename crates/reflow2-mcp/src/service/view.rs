@@ -326,7 +326,7 @@ pub(super) async fn serve(
 #[allow(clippy::too_many_arguments)]
 async fn serve_in_view(
     hub: &ReflowService,
-    request: CallToolRequestParams,
+    mut request: CallToolRequestParams,
     context: RequestContext<RoleServer>,
     policy: ContentPolicy,
     tool: String,
@@ -350,6 +350,16 @@ async fn serve_in_view(
         request.arguments.as_ref().unwrap_or(&empty),
     )
     .is_empty();
+
+    // ONE COMPOSED CHECK OVER THE HUB AND ITS MEMBERS (`super::composed`):
+    // `compose_and_analyse` naming several designs runs on the hub, reading
+    // each member from its live store through the one door, inside the
+    // readable set; `tracked_designs` names every member the host named.
+    if member.is_none()
+        && let Some(note) = composes_the_view(&tool, request.arguments.as_mut(), &hub_id, &members)
+    {
+        return shaped(policy, noted(on_one(hub, request, own).await, &note));
+    }
 
     let aimed = aim(
         &tool,
@@ -407,6 +417,49 @@ async fn serve_in_view(
     } else {
         view.by_design(replies, policy)
     }
+}
+
+/// Whether a call made to a hub's address is a composed check over several
+/// of its designs, and the `view_note` that says so. `tracked_designs: true`
+/// becomes `other_graph_ids` naming every member the host named (one outside
+/// the readable set is then refused by the door and named `unreachable`, never
+/// dropped). A call naming a member's id routes as any call does.
+fn composes_the_view(
+    tool: &str,
+    args: Option<&mut rmcp::model::JsonObject>,
+    hub_id: &str,
+    members: &[String],
+) -> Option<String> {
+    if tool != "compose_and_analyse" {
+        return None;
+    }
+    let args = args?;
+    if !members_named(Some(args), members).is_empty() {
+        return None;
+    }
+    let tracked = args
+        .get(super::composed::TRACKED_DESIGNS)
+        .and_then(JsonValue::as_bool)
+        == Some(true);
+    let named = args.contains_key(super::composed::OTHER_GRAPH_IDS);
+    if !tracked && !named {
+        return None;
+    }
+    if tracked && !named && !members.is_empty() {
+        args.remove(super::composed::TRACKED_DESIGNS);
+        args.insert(super::composed::OTHER_GRAPH_IDS.into(), json!(members));
+    }
+    Some(format!(
+        "compose_and_analyse through hub {hub_id}'s address: the hub's design composed with the \
+         designs named{}, each read from its LIVE STORE on this server, inside the set of designs \
+         the host says you may read (one outside it is named in `not_composed` as \
+         `unreachable`). Nothing was written to any of them.",
+        if tracked {
+            format!(" (every member of this hub's view: {})", members.join(", "))
+        } else {
+            String::new()
+        }
+    ))
 }
 
 /// Whether a `tools/list` request names a view this server serves: the

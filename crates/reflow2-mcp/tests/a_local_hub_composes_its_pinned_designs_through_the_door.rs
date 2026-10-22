@@ -1,0 +1,197 @@
+//! A HUB ON ONE MACHINE, REACHED ONLY THROUGH THE `--call` DOOR, runs ONE
+//! composed check over itself and the designs it pins — the door's own run of
+//! `tests/one_composed_check_runs_over_a_hub_and_several_of_its_designs.rs`
+//! (`req:one-composed-check-runs-over-a-hub-and-several-of-its-designs`).
+//!
+//! hxm_program's hub (fifteen designs, organisation policy blocking MCP) has
+//! `reflow2 read|write` and nothing else: no registry, no hub server. Measured
+//! 2026-10-21 on 0.90.0, `reflow2 read compose_and_analyse` with
+//! `tracked_designs` was refused by the schema, and `other_graph_id` is served
+//! only by a registry. Here, on the real binary and real stores: a hub pinning
+//! two members by their exports, one export that is missing, and one design at
+//! an address; the two members' composition yields a finding of their pair.
+
+use std::path::Path;
+use std::process::{Command, Output, Stdio};
+
+use serde_json::{Value, json};
+
+fn bin() -> &'static str {
+    env!("CARGO_BIN_EXE_reflow2-mcp")
+}
+
+fn run(home: &Path, graph: &Path, verb: &str, tool: &str, args: &Value) -> Output {
+    Command::new(bin())
+        .arg("--graph-path")
+        .arg(graph)
+        .args([verb, tool, &args.to_string()])
+        .env("HOME", home)
+        .env("XDG_CONFIG_HOME", home.join(".config"))
+        .env("REFLOW2_CONFIG_DIR", home.join("reflow2-config"))
+        .env("RUST_LOG", "error")
+        .env_remove("REFLOW2_CONTENT_POLICY")
+        .env_remove("REFLOW2_TRUSTED_GATEWAY")
+        .stdin(Stdio::null())
+        .output()
+        .expect("the binary runs")
+}
+
+fn ok(o: &Output, what: &str) -> Value {
+    assert_eq!(
+        o.status.code(),
+        Some(0),
+        "{what}: {}\n{}",
+        String::from_utf8_lossy(&o.stdout),
+        String::from_utf8_lossy(&o.stderr)
+    );
+    serde_json::from_slice(&o.stdout).unwrap_or_else(|e| panic!("{what}: not JSON ({e})"))
+}
+
+#[test]
+fn a_hub_composes_itself_with_its_pinned_exports_through_the_door_and_writes_nothing() {
+    let dir = tempfile::Builder::new()
+        .prefix("reflow2-door-composed-")
+        .tempdir()
+        .unwrap();
+    let home = dir.path().join("home");
+    std::fs::create_dir_all(&home).unwrap();
+    let hub = dir.path().join("hub/.reflow2/graph");
+
+    // Two members, each a store of its own with its committed export.
+    let mut members: Vec<(String, std::path::PathBuf, Vec<u8>)> = Vec::new();
+    for name in ["ansible", "tiled"] {
+        let store = dir.path().join(format!("{name}/.reflow2/graph"));
+        let export = dir.path().join(format!("{name}/design.json"));
+        for (tool, args) in [
+            (
+                "add_project",
+                json!({"id": format!("proj:{name}"), "name": name}),
+            ),
+            (
+                "add_requirement",
+                json!({"id": "req:feed", "name": format!("{name} feed"),
+                       "statement": format!("{name} is fed from the stream.")}),
+            ),
+            (
+                "add_component",
+                json!({"id": "cmp:store", "name": format!("{name} store"),
+                       "description": "the member's own store"}),
+            ),
+            ("export_graph", json!({"path": export.to_string_lossy()})),
+        ] {
+            ok(&run(&home, &store, "write", tool, &args), tool);
+        }
+        let graph_id =
+            serde_json::from_slice::<Value>(&std::fs::read(&export).unwrap()).unwrap()["graph_id"]
+                .as_str()
+                .unwrap()
+                .to_string();
+        members.push((graph_id, export.clone(), std::fs::read(&export).unwrap()));
+    }
+
+    ok(
+        &run(
+            &home,
+            &hub,
+            "write",
+            "add_requirement",
+            &json!({"id": "req:pdf-firewall", "name": "PDF firewall fix",
+                    "statement": "The PDF firewall admits the stream."}),
+        ),
+        "the hub's requirement",
+    );
+    let mut pins: Vec<Value> = members
+        .iter()
+        .enumerate()
+        .map(|(i, (graph_id, export, _))| {
+            json!({"id": format!("dep:m{i}"), "name": format!("m{i}"),
+                   "source": format!("https://example.org/m{i}"), "version": "abc123",
+                   "graph_id": graph_id, "design_export": export.to_string_lossy()})
+        })
+        .collect();
+    pins.push(
+        json!({"id": "dep:gone", "name": "gone", "source": "https://example.org/gone",
+                     "version": "def456", "graph_id": "gone",
+                     "design_export": dir.path().join("gone/design.json").to_string_lossy()}),
+    );
+    pins.push(
+        json!({"id": "dep:hosted", "name": "hosted", "source": "https://example.org/hosted",
+                     "version": "v1", "graph_id": "hosted",
+                     "design_address": "http://127.0.0.1:9/g/hosted/mcp"}),
+    );
+    for pin in pins {
+        ok(
+            &run(&home, &hub, "write", "external_dependency", &pin),
+            "a pin",
+        );
+    }
+    let hub_hash = |tag: &str| -> String {
+        let path = dir.path().join(format!("hub-{tag}.json"));
+        ok(
+            &run(
+                &home,
+                &hub,
+                "write",
+                "export_graph",
+                &json!({"path": path.to_string_lossy()}),
+            ),
+            "the hub's export",
+        );
+        serde_json::from_slice::<Value>(&std::fs::read(&path).unwrap()).unwrap()["content_hash"]
+            .as_str()
+            .unwrap()
+            .to_string()
+    };
+    let before = hub_hash("before");
+
+    // ONE READ composes the hub with every design it pins.
+    let composed = ok(
+        &run(
+            &home,
+            &hub,
+            "read",
+            "compose_and_analyse",
+            &json!({"tracked_designs": true}),
+        ),
+        "the composed check",
+    );
+    let (a, t) = (members[0].0.as_str(), members[1].0.as_str());
+    let hub_id = composed["this_design"].as_str().unwrap().to_string();
+    assert_eq!(
+        composed["designs_composed"],
+        json!([hub_id, a, t]),
+        "{composed}"
+    );
+    let pair = composed["by_pair"][format!("{a}×{t}")]
+        .as_array()
+        .unwrap_or_else(|| panic!("the two members' pair has a finding: {composed}"));
+    let states: Vec<(&str, &str)> = composed["not_composed"]
+        .as_array()
+        .expect("not_composed")
+        .iter()
+        .map(|n| (n["design"].as_str().unwrap(), n["state"].as_str().unwrap()))
+        .collect();
+    assert_eq!(
+        states,
+        [("gone", "missing"), ("hosted", "not_reached")],
+        "{composed}"
+    );
+
+    // A finding's id opens, from the member's export, through `read`.
+    let id = pair[0]["affected_ids"][0].as_str().unwrap();
+    let node = ok(
+        &run(&home, &hub, "read", "get_node", &json!({"id": id})),
+        "a pair finding's id opened",
+    );
+    assert!(!node["node"].is_null(), "{node}");
+
+    // NOTHING WAS WRITTEN: the hub's content hash, and every member's export.
+    assert_eq!(hub_hash("after"), before, "the hub's design is unchanged");
+    for (graph_id, export, bytes) in &members {
+        assert_eq!(
+            &std::fs::read(export).unwrap(),
+            bytes,
+            "{graph_id}'s export"
+        );
+    }
+}

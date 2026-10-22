@@ -367,7 +367,7 @@ pub enum Sampling {
 /// completeness of the list.
 #[must_use]
 pub fn bound_reply(full: Value, budget: usize, hint: &str) -> Value {
-    bound_reply_with(full, budget, hint, Sampling::Forbidden)
+    bound_reply_with(full, budget, hint, Sampling::Forbidden, None)
 }
 
 /// Bound a reply, and permit shortening its lists if prose alone could not
@@ -382,11 +382,28 @@ pub fn bound_reply(full: Value, budget: usize, hint: &str) -> Value {
 /// characters, one id list of 608,049 characters among several.
 #[must_use]
 pub fn bound_reply_sampling(full: Value, budget: usize, hint: &str) -> Value {
-    bound_reply_with(full, budget, hint, Sampling::Allowed)
+    bound_reply_with(full, budget, hint, Sampling::Allowed, None)
+}
+
+/// [`bound_reply_sampling`], shortening ONLY the lists named in `only` — a
+/// path ending in `.` names every list directly under that object, any other
+/// is one list's exact path. Every other list stays whole, at any budget: for
+/// a reply that is a sample of findings beside lists that say WHAT was asked
+/// (which designs were composed, which were not), where a sample of the
+/// second kind would be a quieter answer wearing a complete one's shape.
+#[must_use]
+pub fn bound_reply_sampling_only(full: Value, budget: usize, hint: &str, only: &[&str]) -> Value {
+    bound_reply_with(full, budget, hint, Sampling::Allowed, Some(only))
 }
 
 #[must_use]
-fn bound_reply_with(full: Value, budget: usize, hint: &str, sampling: Sampling) -> Value {
+fn bound_reply_with(
+    full: Value,
+    budget: usize,
+    hint: &str,
+    sampling: Sampling,
+    only: Option<&[&str]>,
+) -> Value {
     let full_chars = chars_of(&full);
     if full_chars <= budget {
         return full;
@@ -430,6 +447,18 @@ fn bound_reply_with(full: Value, budget: usize, hint: &str, sampling: Sampling) 
     }
     let mut lists = Vec::new();
     collect_lists(&body, "", &mut lists);
+    if let Some(only) = only {
+        lists.retain(|l| {
+            only.iter().any(|o| match o.strip_suffix('.') {
+                Some(parent) => l
+                    .path
+                    .strip_prefix(parent)
+                    .and_then(|rest| rest.strip_prefix('.'))
+                    .is_some_and(|key| !key.contains('.')),
+                None => l.path == *o,
+            })
+        });
+    }
     let mut capped = body.clone();
     // Each round takes the measured excess out of the lists and re-measures,
     // because the block that names them grows as they are named; a round that

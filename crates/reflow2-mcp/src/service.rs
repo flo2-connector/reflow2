@@ -37,10 +37,12 @@ use reflow2_core::{
 };
 
 /// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
+mod composed;
 mod far;
 mod tracked;
 mod unit;
 mod view;
+pub(crate) use composed::asks_for_several as composed_asks_for_several;
 pub(crate) use tracked::{
     NOT_AT_THE_CALL_LAYER as TRACKED_NOT_AT_THE_CALL_LAYER, ON_A_REGISTRY as TRACKED_ON_A_REGISTRY,
 };
@@ -5930,6 +5932,28 @@ pub struct ComposeReq {
     /// Refused on a single-design server, and for a design outside that set.
     #[serde(default)]
     pub other_graph_id: Option<String>,
+    /// SEVERAL designs at once, by graph_id: all are composed with this one
+    /// in ONE combined graph, and each finding is attributed to the one
+    /// design, the pair of designs or the several designs it names. Served alone
+    /// (stdio, the --call door), each must be a design this one pins
+    /// (external_dependency with that graph_id), read from its committed
+    /// export; on a server holding many designs, from its live store inside
+    /// the set the host says you may read. Not with `design`,
+    /// `other_graph_id` or `namespace`: each design's ids carry its graph_id.
+    #[serde(default)]
+    pub other_graph_ids: Option<Vec<String>>,
+    /// `true` composes this design with EVERY design it pins, as
+    /// `other_graph_ids` would; each one that could not be read is named in
+    /// `not_composed` with a `state` and why. Through a hub's address: every
+    /// member of the view.
+    #[serde(default)]
+    pub tracked_designs: Option<bool>,
+    /// How many characters of JSON the reply may spend (default 30,000 when
+    /// several designs are composed; unbounded for one other design unless
+    /// given). Over it, prose is cut first, then the longest finding lists
+    /// are sampled and named in `budget.lists_shortened`; every count stays.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
