@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9312ed24f3479887bdf928d9d18b2ce394d2e0c844cf1e68b97007e65443f865",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-stdio-session-answers-a-message-of-any-length-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

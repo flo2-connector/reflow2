@@ -240,7 +240,14 @@ pub async fn run_waiting(
     let (ours, theirs) = tokio::io::duplex(1 << 20);
     let degraded = crate::degraded::DegradedService::awaiting(reason, graph_path.to_string());
     tokio::spawn(async move {
-        match degraded.serve(tokio::io::split(theirs)).await {
+        // No line bound, as on stdio itself (main.rs `stdio_unbounded`): this
+        // pipe carries the client's own lines, which rmcp 3.6.0 would drop
+        // past 16 MiB.
+        let (r, w) = tokio::io::split(theirs);
+        let transport =
+            rmcp::transport::async_rw::AsyncRwTransport::<rmcp::RoleServer, _, _>::new_server(r, w)
+                .with_max_line_length(usize::MAX);
+        match degraded.serve(transport).await {
             Ok(running) => {
                 let _ = running.waiting().await;
             }

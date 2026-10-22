@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:ce5c47121db5f1e5e91cecd29baf92c3decd6663f3b11c985c48a4bd9ccca795",
+  "node_id": "dec:idea-an-mcp-connection-bounds-a-message-and-answers-with-an-error-when-it-is-exceeded",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-22, on #789 (reflow2 moves to rmcp 3.6.0): \"Yes on: lift rmcp's new 16 MiB limit on ordinary MCP connections, so they behave as before.\"\n\nMEASURED IN #789: rmcp 3.6.0 (#1049) bounds an incoming line at 16 MiB. A longer line is logged and DROPPED, and no reply is sent, so the client waits forever. A 17 MiB get_node and a 37 MB export_graph hung on 3.6.0 and answered on 3.5.0. #789 lifts the bound on the --call door's in-process pipe and, on his word, on stdio too, so MCP behaves exactly as before (reflow2's rule that a removal needs a deprecating release first). HTTP already caps a request at 4 MiB with a 413.\n\nTHE IDEA, not chosen: put a bound back on stdio as a guard against a runaway or hostile client, but:\n(a) answer an oversized message with a JSON-RPC error naming the limit and the alternatives (send a design by path, or over HTTP), never silence;\n(b) announce it in a release's notes before it takes effect;\n(c) choose the size from measured use. The largest real request seen is far under 16 MiB.\n\nCOUNTER-ARGUMENT: a stdio client is the person's own agent on their own machine, so the guard protects little. The silent hang is rmcp's behaviour, so (a) may need an upstream change or a reflow2 wrapper around the transport.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "exploratory",
+    "name": "IDEA (proposed): an MCP stdio connection bounds the size of one incoming message, and answers an oversized one with a clear error instead of silence, announced in a release before it takes effect",
+    "rationale": "Recorded as an idea so the limit isn't lost when #789 lifts it. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

@@ -9,7 +9,7 @@ use anyhow::Context;
 use clap::{CommandFactory, FromArgMatches, Parser};
 use reflow2_mcp::degraded::DegradedService;
 use reflow2_mcp::service::ReflowService;
-use rmcp::{ServiceExt, transport::stdio};
+use rmcp::{ServiceExt, transport::async_rw::AsyncRwTransport};
 use tracing_subscriber::EnvFilter;
 
 /// Commands that do one thing and exit, instead of serving.
@@ -1192,6 +1192,22 @@ async fn describe_tools(cli: &Cli, mode: reflow2_mcp::one_shot::Mode) -> anyhow:
     }
 }
 
+/// Standard input and output as the server's transport, with NO line bound —
+/// exactly as on rmcp 3.5.0 and before.
+///
+/// rmcp 3.6.0 (#1049) bounds an incoming line at 16 MiB and DISCARDS a longer
+/// one with only a log line, so the client that sent it waits for a reply that
+/// never comes. Anthony, 2026-10-22: "lift rmcp's new 16 MiB limit on ordinary
+/// MCP connections, so they behave as before". Measured before lifting it: a
+/// 17 MiB request was answered on 3.5.0 and dropped on 3.6.0. HTTP keeps its
+/// own 4 MiB request cap, which is answered (413), and is unchanged. Whether a
+/// connection should bound a message and ANSWER when it is exceeded is open:
+/// dec:idea-an-mcp-connection-bounds-a-message-and-answers-with-an-error-when-it-is-exceeded.
+fn stdio_unbounded() -> AsyncRwTransport<rmcp::RoleServer, tokio::io::Stdin, tokio::io::Stdout> {
+    AsyncRwTransport::new_server(tokio::io::stdin(), tokio::io::stdout())
+        .with_max_line_length(usize::MAX)
+}
+
 /// Serve `service` to an in-process client over an in-memory pipe, make one
 /// call, and take the server down. The call goes through `call_tool` exactly
 /// as a session's would — usage recorded, refusals hinted — because the point
@@ -1203,8 +1219,21 @@ async fn call_over_pipe(
 ) -> anyhow::Result<Result<rmcp::model::CallToolResult, rmcp::ErrorData>> {
     let (server_rx, client_tx) = tokio::io::duplex(1 << 22);
     let (client_rx, server_tx) = tokio::io::duplex(1 << 22);
+    // NO LINE BOUND ON THIS PIPE, on either end. rmcp 3.6.0 (#1049) caps an
+    // incoming line at 16 MiB and DISCARDS a longer one with only a log line,
+    // so the side waiting for it waits forever. Both ends are this process and
+    // the bytes are already in its memory, so the bound protects nothing here,
+    // and replies do pass it: `--call export_graph` on reflow2's own design is
+    // ~37 MB, and on 3.6.0 with the default it hung until killed. Sessions on
+    // stdio are unbounded too ([`stdio_unbounded`]).
+    let server_transport =
+        AsyncRwTransport::<rmcp::RoleServer, _, _>::new_server(server_rx, server_tx)
+            .with_max_line_length(usize::MAX);
+    let client_transport =
+        AsyncRwTransport::<rmcp::RoleClient, _, _>::new_client(client_rx, client_tx)
+            .with_max_line_length(usize::MAX);
     let server = tokio::spawn(async move {
-        match service.serve((server_rx, server_tx)).await {
+        match service.serve(server_transport).await {
             Ok(running) => {
                 let _ = running.waiting().await;
             }
@@ -1212,7 +1241,7 @@ async fn call_over_pipe(
         }
     });
     let client = OneShotClient
-        .serve((client_rx, client_tx))
+        .serve(client_transport)
         .await
         .map_err(|e| anyhow::anyhow!("{e}"))
         .context("the in-process handshake failed")?;
@@ -1840,7 +1869,7 @@ async fn main() -> anyhow::Result<()> {
         } else {
             tracing::info!("reflow2-mcp serving an EPHEMERAL design over stdio");
             let running = service
-                .serve(stdio())
+                .serve(stdio_unbounded())
                 .await
                 .context("failed to start MCP stdio server")?;
             running.waiting().await.context("MCP server error")?;
@@ -2642,7 +2671,7 @@ async fn main() -> anyhow::Result<()> {
                 }
                 let degraded = DegradedService::new(reason, cli.graph_path.clone());
                 let running = degraded
-                    .serve(stdio())
+                    .serve(stdio_unbounded())
                     .await
                     .context("failed to start the degraded MCP server")?;
                 running
@@ -2689,7 +2718,7 @@ async fn main() -> anyhow::Result<()> {
             } else {
                 tracing::info!("reflow2-mcp serving over stdio");
                 let running = service
-                    .serve(stdio())
+                    .serve(stdio_unbounded())
                     .await
                     .context("failed to start MCP stdio server")?;
                 running.waiting().await.context("MCP server error")?;
@@ -2759,7 +2788,7 @@ async fn main() -> anyhow::Result<()> {
                 .await?;
             } else {
                 let running = degraded
-                    .serve(stdio())
+                    .serve(stdio_unbounded())
                     .await
                     .context("failed to start the degraded MCP server")?;
                 running
@@ -3005,7 +3034,7 @@ async fn serve_latent(
     };
     if cli.http.is_none() && !cli.serve_shared {
         let running = latent
-            .serve(stdio())
+            .serve(stdio_unbounded())
             .await
             .context("failed to start the latent MCP server")?;
         running.waiting().await.context("latent MCP server error")?;
@@ -3545,7 +3574,7 @@ async fn attach_to_named_design(
 async fn serve_degraded_stdio(reason: String, graph_path: &str) -> anyhow::Result<()> {
     let degraded = DegradedService::new(reason, graph_path.to_string());
     let running = degraded
-        .serve(stdio())
+        .serve(stdio_unbounded())
         .await
         .context("failed to start the degraded MCP server")?;
     running

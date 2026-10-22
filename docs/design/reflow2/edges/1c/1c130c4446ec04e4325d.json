@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1511ca902a1190314f6fa433921ab0cba65f3b30808b4dc5c819f70c7d64982b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-navier-stokes-map-rung-ran-on-0-90-0-and-a-claim-reads-as-a-claim-but-reflow2-has-no-claimed-reading-2026-10-22",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

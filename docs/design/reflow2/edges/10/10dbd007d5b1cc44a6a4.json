@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0259b717dbe89f6f6cfbe321051e74d18b1c24a986c73efe0872aa77cdc338c4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:handshake",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e06568a4feebc164773be19b8d0d0ff30796400d1df1bf8e0d90a3bef2486658",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-mcp-connection-bounds-a-message-and-answers-with-an-error-when-it-is-exceeded",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

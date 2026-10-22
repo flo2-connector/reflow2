@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:17d395fd7cde081b140910aea614b642fb3916ba5d765e8e774b130aea45a78a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-3-6-0-and-the-call-doors-pipe-takes-no-line-bound-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 22,
+    "action": "modified",
+    "checksum_after": "sha256:71bec44b552e83152807b6424aea0e87f6219e52a62a9a707f604d676081b531",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

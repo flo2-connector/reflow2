@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:311dc3d83bc65947bdca3584229f4a631475a528b60468652bb33cdfedf95df8",
+  "node_id": "art:a-stdio-session-answers-a-message-of-any-length-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "A design and a degraded design served on stdio each answer a request longer than 16 MiB and a following ping. Guards the lifted rmcp 3.6.0 line bound (main.rs stdio_unbounded); without it the long request gets no reply.",
+    "location": "crates/reflow2-mcp/tests/a_stdio_session_answers_a_message_of_any_length.rs",
+    "name": "a_stdio_session_answers_a_message_of_any_length.rs",
+    "status": "realized"
+  }
+}

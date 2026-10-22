@@ -223,3 +223,77 @@ fn while_a_server_holds_the_graph_a_read_answers_from_a_snapshot_and_a_write_ref
     let _ = holder.kill();
     let _ = holder.wait();
 }
+
+/// A call whose request and reply are each longer than 16 MiB is answered.
+///
+/// rmcp 3.6.0 (#1049) bounds an incoming line at 16 MiB and DISCARDS a longer
+/// one with only a log line. The door runs its call over an in-process pipe of
+/// that transport, so with rmcp's default the side waiting for the long line
+/// waited forever: measured 2026-10-22, this exact call answered in 1.5 s on
+/// rmcp 3.5.0 and was still waiting when killed at 120 s on 3.6.0, and
+/// `--call export_graph` on reflow2's own design (~37 MB) hung the same way.
+/// `get_node` echoes the id it could not find, so ONE call carries a long line
+/// each way: the request into the server and the reply back to the door.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn a_call_longer_than_rmcps_line_bound_is_answered_both_ways() {
+    use std::io::Write;
+    use std::time::{Duration, Instant};
+    let dir = tempfile::tempdir().expect("tempdir");
+    let graph = dir.path().join("graph");
+    let o = call(&graph, "add_project", r#"{"id":"proj:big","name":"Big"}"#);
+    assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+
+    let long_id = format!("req:{}", "x".repeat(17 * 1024 * 1024));
+    let args = serde_json::json!({ "id": long_id }).to_string();
+    let mut child = Command::new(bin())
+        .args([
+            "--graph-path",
+            graph.to_str().unwrap(),
+            "--call",
+            "get_node",
+            "--args",
+            "-",
+        ])
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::piped())
+        .spawn()
+        .expect("spawn");
+    let mut stdin = child.stdin.take().unwrap();
+    let writer = std::thread::spawn(move || stdin.write_all(args.as_bytes()));
+    let stdout = child.stdout.take().unwrap();
+    let reader = std::thread::spawn(move || {
+        let mut out = Vec::new();
+        std::io::Read::read_to_end(&mut { stdout }, &mut out).map(|_| out)
+    });
+    // Bounded, so a regression fails here instead of hanging the suite.
+    let deadline = Instant::now() + Duration::from_secs(120);
+    let status = loop {
+        if let Some(s) = child.try_wait().expect("wait") {
+            break s;
+        }
+        if Instant::now() > deadline {
+            let _ = child.kill();
+            let _ = child.wait();
+            panic!("a call longer than 16 MiB got no answer within 120 s: the door hung");
+        }
+        std::thread::sleep(Duration::from_millis(100));
+    };
+    writer.join().unwrap().expect("the arguments were written");
+    let out = reader.join().unwrap().expect("stdout read");
+    let mut err = String::new();
+    std::io::Read::read_to_string(&mut child.stderr.take().unwrap(), &mut err).unwrap();
+    assert!(status.success(), "{err}");
+    assert!(
+        !err.contains("exceeded the maximum line length"),
+        "a line was discarded: {err}"
+    );
+    assert!(
+        out.len() > 16 * 1024 * 1024,
+        "the reply carries the long id back, so it passes the bound too: {} bytes",
+        out.len()
+    );
+    let v: serde_json::Value = serde_json::from_slice(&out).expect("stdout is one JSON document");
+    assert!(v["node"].is_null(), "no such node, and it says so");
+}
