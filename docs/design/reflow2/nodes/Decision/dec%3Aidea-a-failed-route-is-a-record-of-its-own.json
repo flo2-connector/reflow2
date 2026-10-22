@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:912970e7ec0da6c0aee3d535ebcf2d5e692f8cb3c3503cc0247a979b16251574",
+  "node_id": "dec:idea-a-failed-route-is-a-record-of-its-own",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Kept as an idea by @ajs, 2026-10-22.\n\nFROM Tao (same page):\n- The value of an open problem lies in what attempts teach: \"the difficulty landscape, which techniques are promising\".\n- Insights \"only emerge from public iteration of failed attempts\".\n- Trail markers and maps versus a helicopter.\n- A once-solved problem's teaching value is \"permanently degraded\".\n\nTODAY: the heat rung's k < 0 case was recorded as finding-k-negative-proofs-fail, with DEPENDS_ON edges to the failing steps. The designer found no relation meaning \"this is the step that fails\", and those review edges then inflated a what-if's blast radius to 40 nodes (friction 2 and 3). Lucas–Penrose: no relation for \"sides with\". reflow2 keeps refuted conjectures and roads not taken (brainstorm, considered options, and the speculative links Anthony asked to keep as considered), but has no reading of \"an attempted route, and where it broke\".\n\nOPTIONS:\n(a) a statement kind, `failed_route` or `attempt`, plus a relation `FAILS_AT` naming the step and the reason; read back beside the routes that hold, never walked by a what-if as a dependency;\n(b) reuse the objection machinery: a failed route is an objection to a candidate step;\n(c) nothing new; prose on the finding.\n\nPUSHBACK: it must not inflate the reasoning. A failed route supports nothing and should never count toward a conclusion. Its value is for the reader (the map), so it belongs in the read-back and in search, not in truth computation.\n\nSIZE (a finding): (a) moderate; (b) small, but may misread; (c) nothing.\n\nIt pairs with dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it: a discarded speculative link is one kind of failed route. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "exploratory",
+    "name": "OPEN (D, from Tao's AI views): should a FAILED ROUTE be a record of its own (\"this approach was tried, it fails at this step, for this reason\"), read back as part of the reasoning rather than lost in prose?",
+    "rationale": "Tao argues failed attempts are where much of the value lies, and today's trials had no faithful way to record one. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

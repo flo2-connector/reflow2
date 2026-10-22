@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:34acd9e7a6ab535b5e7cf080362d77e2bf10ae554e7d55280b5faa27a944c136",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent",
+  "properties": {
+    "evidence": "Evidence already carries a source grade and credibility; option (c) extends that to citations."
+  },
+  "to_id": "dec:idea-a-source-says-what-kind-of-support-it-gives"
+}

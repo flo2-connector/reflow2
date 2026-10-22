@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8e75cad0a2d795ee2dd7584f9dc0107e3c852106e99a70d3050a5fb9be674767",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-failed-route-is-a-record-of-its-own",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

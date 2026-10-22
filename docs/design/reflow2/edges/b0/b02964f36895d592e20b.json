@@ -1,13 +1,18 @@
 {
-  "content_hash": "sha256:76e8a59016412eb365c7d10f024e8fc157acfbae95288c1567867d88c1b2c2aa",
+  "content_hash": "sha256:3481e715f6cc6b7de2573a460cc93e44b3d7d4031fee32d9fb36b10bd1bcd96f",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-a-map-of-the-riemann-hypothesis-as-the-ladder-rung-after-the-heat-equation",
   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

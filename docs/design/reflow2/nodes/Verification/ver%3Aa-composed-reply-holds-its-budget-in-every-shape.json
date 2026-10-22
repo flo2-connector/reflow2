@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a0deb2d23d875e799db66f7987e61047179fc6b19587f5fec456c99ee678513e",
+  "node_id": "ver:a-composed-reply-holds-its-budget-in-every-shape",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Across budgets (default 30,000, 12,000, 6,000, 60,000) and shapes (other_graph_ids with one and two designs, tracked_designs over ten pinned exports, the one-other-design call with budget_chars): the compact reply is at most the budget; counts are equal to the whole reply's; designs_composed is whole; a reply that fits is byte-identical to the whole one; one that does not carries budget.applied; a finding whose ids were cut keeps affected_ids_total and withheld_to_fit names the rungs taken. PR 3's bounded test holds at 6,000 (its original 4,500 does not: what a bound keeps whole there, not_composed for five designs, the counts and the budget block, is 4,697 characters).",
+    "findings": "Failed on PR 4's head c8d6e2e29 first (two other designs at 6,000: 6,428 characters; no withheld_to_fit). Passing after: 2/2. Measured through the door on PR 3's fixture (hub + 15 exports) with the release build: 29,957 bytes at the default 30,000 (58,505 before), 11,950 at 12,000, 59,983 at 60,000; 908,179 characters whole.",
+    "kind": "verification",
+    "last_run_at": "2026-10-22",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_composed_reply_holds_its_budget.rs",
+    "method": "test",
+    "name": "A composed reply holds its budget in every shape, keeps every count and names what it withheld",
+    "status": "passing"
+  }
+}

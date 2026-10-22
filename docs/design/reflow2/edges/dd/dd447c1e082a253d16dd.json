@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d11e9b76d59079f71abb46b9f535dd248c2b07e54ab44c09b9bd996f6a79c8ef",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-decision-rolls-up-a-line-of-reasoning-kept-inline-or-as-its-own-design",
+  "properties": {
+    "evidence": "His systems-engineering framing — the reasoning as a component of the higher design — is this accepted requirement applied to a line of reasoning.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:recursive-black-box-decomposition"
+}

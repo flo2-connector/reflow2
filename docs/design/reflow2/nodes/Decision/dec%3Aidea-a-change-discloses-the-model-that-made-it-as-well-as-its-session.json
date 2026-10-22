@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1f2e4f197354b8592462de903309d6e3a5b6661952dbbb5bc53affd743417283",
+  "node_id": "dec:idea-a-change-discloses-the-model-that-made-it-as-well-as-its-session",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Kept as an idea by @ajs, 2026-10-22.\n\nFROM Tao (same page): \"Normalize responsible disclosure: disclose actual chat logs, not merely that AI was used, so failures and iteration become visible.\" Also: \"making disclosure of AI use routine\".\n\nTODAY: every ChangeEvent the agent records ends \"Session: <conversation link>\" (the agent's standing practice, from flo2's accepted 1a97fc1f1de4d5d2:dec:idea-a-change-names-the-model-and-session-that-made-it, 2026-10-10, option b). That decision left the MODEL LABEL, readable agent names and in-session pointers as considered. Commits already carry \"Co-Authored-By: Claude Opus 5.5\". Design records do not.\n\nOPTIONS:\n(a) ChangeEvent (or AUTHORED_BY by an agent) carries the model id and harness, from the caller, as recorded and never inferred;\n(b) the session link only, as today; the transcript holds the rest;\n(c) both, plus a disclosure line in read-backs (\"these steps were written by an agent; none confirmed\").\n\nPUSHBACK:\n- A model label is easy to state and hard to verify. reflow2 cannot check what model called it, so it would be asserted.\n- The session link already gives the full log, which is what Tao asks for. (c)'s read-back line is arguably the more useful half: who confirmed nothing is already computed (confirmation readings).\n\nSIZE (a finding): (a) small; (b) nothing; (c) small.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "exploratory",
+    "name": "OPEN (E, from Tao's AI views): should a change an agent records disclose the MODEL (and harness) that made it, beside the session link it already carries, reopening the part of flo2's 10-10 decision that left the model label as considered?",
+    "rationale": "Tao's disclosure norm matches a practice we already follow (session links) and re-raises the part we set aside (the model label). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "proposed"
+  }
+}

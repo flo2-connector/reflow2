@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6062b73545a9e83aeba9a80bff6dda4abba12f3de46dbe0b5aa04973025b1f12",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-line-of-reasoning-is-read-back-as-an-exposition-a-person-can-follow-forward",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

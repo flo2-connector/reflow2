@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b613de765851d419d657d6f129e0958ac45d03bd9f944849cd63e4af138dcbc7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-composed-reply-holds-its-budget-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

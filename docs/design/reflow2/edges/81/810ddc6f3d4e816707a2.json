@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:f8337a821ac853ff2dde5f775d9fd0a1e09ae9455ef7341a61df7ad5d726185c",
+  "content_hash": "sha256:e63e8744bfe6bb05a54da53432470d1d1b285fcaa0cdad4b839b2c414b977dc6",
   "edge_type": "CHANGED",
   "from_id": "chg:p7-computed-seams-2026-10-22",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5fe3b6fa29fef51eec4d7b6579bd01767908ea6d3a8095f8c08c0651bf0aece1",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:designs-are-shown-where-they-already-touch-test"
 }
