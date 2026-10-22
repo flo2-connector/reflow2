@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ce901ee01428a7aba9205261d31f5bf09d02ad75b11fa796a72fb2782ac1e855",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

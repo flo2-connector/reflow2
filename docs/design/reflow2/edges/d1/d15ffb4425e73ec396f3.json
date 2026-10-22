@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:392b384073dc9c9e3ff56f58aa4112236fd0c4f9434028d5b916ed713a3c8351",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 20,
+    "action": "modified",
+    "checksum_after": "sha256:a95ca7467ed8ec315053a0e59f53c35b90460dddbf89fb9c53ed2b5cdebe10bc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

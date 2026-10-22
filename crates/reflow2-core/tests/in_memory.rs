@@ -205,6 +205,7 @@ mod mirror_surface;
 mod move_component;
 mod no_fabricated_repairs;
 mod nothing_asks_what_a_session_made_false;
+mod one_composed_check_runs_over_several_designs;
 mod one_nodes_edges_are_read_back_as_edges;
 mod orphan_attachment;
 mod persistence;

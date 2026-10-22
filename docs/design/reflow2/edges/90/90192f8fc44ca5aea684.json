@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:13029188ca21c1ca1f0f356e77031bfd0b3d097fa8bfee6196d91e71bbea111d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-composed-check-says-which-findings-only-the-composition-made",
+  "properties": {
+    "evidence": "Option (d): computed links between designs are what would thread linked members into one body, shrinking the class this asks about.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:designs-are-shown-where-they-already-touch-before-anyone-declares-it"
+}

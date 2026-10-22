@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:27d9bbb1e6f4084a8befdb687cac798418c2ae56aef608d55b2956b14d835896",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-check-run-on-the-data-that-shaped-the-design-reads-as-tuned",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

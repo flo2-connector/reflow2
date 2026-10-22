@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:23e257328be73553b5ae790694b8628861474049726d4cf8157aeafdcd0c1e22",
+  "node_id": "art:one-composed-check-runs-over-several-designs-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Core class tests of compose_many: across none, one and several other designs every finding is filed under exactly the designs its ids name; one other design finds what compose_and_analyse finds, side for side; a pair of two other designs; nothing written; colliding names refused.",
+    "location": "crates/reflow2-core/tests/one_composed_check_runs_over_several_designs.rs",
+    "name": "crates/reflow2-core/tests/one_composed_check_runs_over_several_designs.rs",
+    "status": "realized"
+  }
+}

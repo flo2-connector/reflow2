@@ -366,7 +366,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `analyze_alternatives` | **read** | Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70). |
 | `certify_preservation` | **read** | Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling. |
 | `compare_designs` | **read** | Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. |
-| `compose_and_analyse` | **read** | Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present. |
+| `compose_and_analyse` | **read** | Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. |
 | `export_graph` | **read** | The whole design as one portable document — every node and edge, sorted so two exports of an unchanged graph are byte-identical. |
 | `export_surface` | **read** | Export ONLY the published surface — the contracts others are entitled to rely on, and nothing internal. |
 | `merge_designs` | **read** | Propose a three-way merge of two divergent designs against their common ancestor — compare's write-side sibling (BL-80). |

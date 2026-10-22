@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b2953f49954244761eefd8a7cca31f565e476482ee4632ff7d28b7e5c5e0aed8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:a-local-hub-composes-its-pinned-designs-through-the-door-test"
+}

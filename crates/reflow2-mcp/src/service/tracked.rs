@@ -86,12 +86,12 @@ pub(super) enum Served {
 
 /// One design this one pins by graph_id, as its pin states it.
 #[derive(Debug, Clone)]
-struct Pin {
-    design: String,
-    name: String,
-    dependency: String,
-    export: Option<String>,
-    address: Option<String>,
+pub(crate) struct Pin {
+    pub(crate) design: String,
+    pub(crate) name: String,
+    pub(crate) dependency: String,
+    pub(crate) export: Option<String>,
+    pub(crate) address: Option<String>,
 }
 
 /// A pinned design read from its export, or why it was not.
@@ -250,7 +250,7 @@ fn two_designs(designs: &[String]) -> McpError {
 
 /// The designs a declaration list pins, once each, in declaration order. A
 /// pin naming no graph_id is a code dependency, not a design.
-fn pins_of(declared: &[reflow2_core::DependencyDeclaration]) -> Vec<Pin> {
+pub(crate) fn pins_of(declared: &[reflow2_core::DependencyDeclaration]) -> Vec<Pin> {
     let stated = |v: &Option<String>| {
         v.as_deref()
             .map(str::trim)
@@ -280,7 +280,38 @@ fn pins_of(declared: &[reflow2_core::DependencyDeclaration]) -> Vec<Pin> {
 /// that serves read-only and reaches no server — or say, in a `state` and a
 /// sentence, why it could not be.
 fn read(pin: &Pin) -> Reading {
-    let not = |state: &'static str, why: String| Reading::NotRead { state, why };
+    let (doc, path) = match read_document(pin) {
+        Ok(read) => read,
+        Err((state, why)) => return Reading::NotRead { state, why },
+    };
+    let opened = reflow2_core::DesignGraph::open_in_memory_as(&pin.design).and_then(|mut g| {
+        g.import_graph(&doc)?;
+        Ok(g)
+    });
+    match opened {
+        Ok(g) => Reading::Read {
+            service: Box::new(
+                ReflowService::wrap(g)
+                    .without_reaching_out()
+                    .into_read_only(),
+            ),
+            path,
+        },
+        Err(e) => Reading::NotRead {
+            state: "unreadable",
+            why: format!("the export at {path} could not be loaded: {e}"),
+        },
+    }
+}
+
+/// THE ONE RESOLUTION OF A PIN TO ITS COMMITTED EXPORT: the document and the
+/// path it was read from, or a `state` and a sentence saying why it could not
+/// be read. The tracked search loads the document into a searchable design
+/// ([`read`]); a composition needs only the document, so it stops here.
+pub(crate) fn read_document(
+    pin: &Pin,
+) -> Result<(reflow2_core::GraphExport, String), (&'static str, String)> {
+    let not = |state: &'static str, why: String| Err((state, why));
     let Some(path) = pin.export.as_deref() else {
         return match pin.address.as_deref() {
             Some(address) => not(
@@ -332,28 +363,12 @@ fn read(pin: &Pin) -> Reading {
             ),
         );
     }
-    let opened = reflow2_core::DesignGraph::open_in_memory_as(&pin.design).and_then(|mut g| {
-        g.import_graph(&doc)?;
-        Ok(g)
-    });
-    match opened {
-        Ok(g) => Reading::Read {
-            service: Box::new(
-                ReflowService::wrap(g)
-                    .without_reaching_out()
-                    .into_read_only(),
-            ),
-            path: path.to_string(),
-        },
-        Err(e) => not(
-            "unreadable",
-            format!("the export at {path} could not be loaded: {e}"),
-        ),
-    }
+    Ok((doc, path.to_string()))
 }
 
-/// One pinned design that was not searched, in `not_searched`'s shape.
-fn not_searched_entry(pin: &Pin, state: &str, why: &str) -> JsonValue {
+/// One pinned design that was not searched, in `not_searched`'s shape — and
+/// not composed, in `not_composed`'s, which is the same.
+pub(crate) fn not_searched_entry(pin: &Pin, state: &str, why: &str) -> JsonValue {
     let read_at = match (&pin.export, &pin.address) {
         (Some(path), _) => json!({"export": path}),
         (None, Some(address)) => json!({"address": address}),

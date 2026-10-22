@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:efd7cb80f0357a0be5a31a922510fff152977885617170dc5c79225b2fa8d076",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:compose-and-analyse-takes-several-designs-at-once"
+}

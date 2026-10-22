@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f5bf050fe201980142dc919935f0b640967bc67f30b6d78b39dedb0dd8056f9f",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:skill-adherence-is-measured",
+  "properties": {
+    "evidence": "That requirement measures whether the kit's skills are USED; this idea measures whether a change to them makes the work BETTER. It saw the gap (\"nothing measures whether the PRACTICE is\") from the use side."
+  },
+  "to_id": "dec:idea-a-served-skill-change-is-kept-only-when-a-measured-gain-holds"
+}

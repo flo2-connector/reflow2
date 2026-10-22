@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a0a2b7c8a9f3439444f2a19d1d305a294deb6f5c68797394dbb4513f27ef2858",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-composed-check-files-each-finding-under-its-designs-and-names-each-design-it-could-not-read"
+}

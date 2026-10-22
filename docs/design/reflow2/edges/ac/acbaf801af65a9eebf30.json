@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d37cb3018c0406c9a76fe6ecd50a7fd3bc32bea49d10581810358f2883a8f6ac",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-composed-check-says-which-findings-only-the-composition-made",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -162,6 +162,10 @@ NON_TOOL_TERMS = {
     # `node_id` (prefixed with a pinned design's graph_id) and the `state` of
     # each pinned design it could not search (service/tracked.rs).
     "node_id", "state",
+    # hub (2026-10-21, phase 7 PR 3): compose_and_analyse over several
+    # designs — the argument naming them and the reply's attribution and
+    # not-composed lists (service/composed.rs).
+    "other_graph_ids", "by_design", "by_pair", "not_composed",
     # adopt (2026-10-21): import_graph's reply field for what a whole-node
     # import removed from records that already existed (export.rs).
     "properties_removed",

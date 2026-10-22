@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:88d2fadb7d6a06413a78b71b4b36f82a68307dfa7ffc3b251382a282cb235004",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-get-skill-attaches-every-lesson-unbounded-so-six-skills-outgrow-a-chat-reply-on-reflow2s-design-2026-10-21",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

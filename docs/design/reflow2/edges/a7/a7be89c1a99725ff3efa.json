@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0443b6a75414df36becbdd5b503efba23eeb27e7a285ea5d52d5c1f51ec0b5e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "dec:idea-a-composed-check-says-which-findings-only-the-composition-made"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:53d2bcaca30a24b8e49a295278bab5b7ebf33db50c23f7d91789898f2f690032",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged",
+  "properties": {
+    "evidence": "That requirement already reads a check whose criteria moved after its data as weaker; this idea reads a check run on the data that shaped the design the same way. Same family: what the data was allowed to touch."
+  },
+  "to_id": "dec:idea-a-check-run-on-the-data-that-shaped-the-design-reads-as-tuned"
+}

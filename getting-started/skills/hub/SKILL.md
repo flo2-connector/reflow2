@@ -87,6 +87,14 @@ the part receives is `proposed` until its owner accepts it; `loop_status` there 
    row from another design names that one. Say where the record has no way through, never skip
    it: a `continue_in` with no seeds, or a member that answers `arrived: false`. The relations and
    mirrored interfaces from section 1 are what make a way through.
+5. **Before work that several designs share, run one composed check over them.** When an effort
+   or a fix spans three or more designs, call `compose_and_analyse` from the hub with
+   `tracked_designs: true` (every design it pins; through a hub's address, every member), or with
+   `other_graph_ids` naming the designs the effort touches. It runs the ordinary checks over all
+   of them together, in memory, and writes nothing. Each finding comes back under `by_design`, or
+   `by_pair` for two designs, so a finding between two members shows even when neither is the
+   hub. Report the pairs, and name every design in `not_composed`. An empty `by_pair` is not
+   agreement: designs touch there only where a check reads both.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

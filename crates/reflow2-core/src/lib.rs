@@ -147,7 +147,10 @@ pub use compare::{
     DiffAncestry, DiffBand, DiffSummary, EdgeRef, LIVE_GRAPH_LABEL, ManifestDelta, NodeRef,
     PropertyDivergence, UnmappedChange, changelog_rule, compare_designs,
 };
-pub use compose::{ComposedFinding, ComposedReport, Side};
+pub use compose::{
+    AttributedFinding, ComposeWith, ComposedDesign, ComposedFinding, ComposedReport,
+    ManyComposedReport, Side,
+};
 pub use confirm::{ClaimConfirmation, ConfirmationLedger, ConfirmationState};
 pub use consumption::{ConsumptionObservation, ConsumptionReport};
 pub use corpus::{
