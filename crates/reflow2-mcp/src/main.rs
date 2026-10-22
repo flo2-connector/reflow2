@@ -1201,10 +1201,24 @@ async fn call_over_pipe(
     tool: &str,
     arguments: rmcp::model::JsonObject,
 ) -> anyhow::Result<Result<rmcp::model::CallToolResult, rmcp::ErrorData>> {
+    use rmcp::transport::async_rw::AsyncRwTransport;
     let (server_rx, client_tx) = tokio::io::duplex(1 << 22);
     let (client_rx, server_tx) = tokio::io::duplex(1 << 22);
+    // NO LINE BOUND ON THIS PIPE, on either end. rmcp 3.6.0 (#1049) caps an
+    // incoming line at 16 MiB and DISCARDS a longer one with only a log line,
+    // so the side waiting for it waits forever. Both ends are this process and
+    // the bytes are already in its memory, so the bound protects nothing here,
+    // and replies do pass it: `--call export_graph` on reflow2's own design is
+    // ~37 MB, and on 3.6.0 with the default it hung until killed. A session on
+    // stdio keeps rmcp's default; the bound is for a peer we do not control.
+    let server_transport =
+        AsyncRwTransport::<rmcp::RoleServer, _, _>::new_server(server_rx, server_tx)
+            .with_max_line_length(usize::MAX);
+    let client_transport =
+        AsyncRwTransport::<rmcp::RoleClient, _, _>::new_client(client_rx, client_tx)
+            .with_max_line_length(usize::MAX);
     let server = tokio::spawn(async move {
-        match service.serve((server_rx, server_tx)).await {
+        match service.serve(server_transport).await {
             Ok(running) => {
                 let _ = running.waiting().await;
             }
@@ -1212,7 +1226,7 @@ async fn call_over_pipe(
         }
     });
     let client = OneShotClient
-        .serve((client_rx, client_tx))
+        .serve(client_transport)
         .await
         .map_err(|e| anyhow::anyhow!("{e}"))
         .context("the in-process handshake failed")?;

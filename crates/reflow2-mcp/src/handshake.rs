@@ -154,7 +154,8 @@ impl Handshake {
 /// recorded `negotiated` as a revision the client never received whenever a
 /// client asked for one past `NO_INITIALIZE`.
 ///
-/// This is rmcp 3.5.0's rule (src/service/server.rs:486). What keeps it honest
+/// This is rmcp 3.5.0's rule, unchanged in 3.6.0 (src/service/server.rs:471
+/// there; 486 in 3.5.0). What keeps it honest
 /// now is `tests/an_initialize_is_recorded_as_rmcp_answered_it.rs`, which
 /// compares this record with the version rmcp actually put on the wire.
 pub fn negotiate(
