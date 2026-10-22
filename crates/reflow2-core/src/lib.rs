@@ -118,6 +118,7 @@ pub mod surprises;
 pub mod sync;
 pub mod temporal;
 pub mod topic;
+pub mod touch;
 pub mod twins;
 pub mod unexported;
 pub mod verify;
@@ -242,6 +243,10 @@ pub use temporal::{
     ArrivalDelta, BaselineSource, ChangeAction, ChangeEventRecord, ChangeRecord, ChangeSubject,
     ChangeType, EpochType, PlanRevision, PriorStateCoverage, RationaleBasis, ScheduleOutcome,
     ScheduledItem, SnapshotEdge, parse_snapshot_edges, parse_snapshot_state,
+};
+pub use touch::{
+    LINKS_NOTE, NameCandidate, PairTouch, SetAside, TouchDesign, TouchLink, Touching,
+    where_designs_touch,
 };
 pub use verify::{
     CapabilityVerification, InvalidatedFinding, InvalidationClaim, ObservedFile,

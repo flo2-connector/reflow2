@@ -466,7 +466,14 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
         "by_pair",
         "across",
     ] {
-        assert_eq!(two[key], tracked[key], "{key}");
+        let (mut a, mut b) = (two[key].clone(), tracked[key].clone());
+        // The pairs with a pin that could not be read are `not_checked` in
+        // the tracked reply only: it is the one that asked for them.
+        if key == "counts" {
+            a["link_status"]["not_checked"] = json!(null);
+            b["link_status"]["not_checked"] = json!(null);
+        }
+        assert_eq!(a, b, "{key}");
     }
     // Naming a pin that cannot be read: composed without it, and named.
     let with_missing = call(
@@ -568,15 +575,23 @@ async fn the_one_other_design_call_keeps_its_exact_reply_across_its_old_shapes()
         assert_eq!(
             keys,
             [
+                "candidates",
+                "computed_links",
+                "declared_links",
                 "imported_edges",
                 "imported_graph_id",
                 "imported_nodes",
+                "link_status",
+                "links_note",
                 "namespace",
                 "our_findings",
                 "seam_findings",
+                "set_aside",
                 "skipped_edges",
                 "their_findings"
-            ]
+            ],
+            "the old keys, and only the link fields phase 7 step 4 added \
+             (req:designs-are-shown-where-they-already-touch-before-anyone-declares-it)"
         );
     }
     // The old refusals, word for word.
@@ -658,7 +673,9 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
         json!({"tracked_designs": true, "budget_chars": 1_000_000}),
     )
     .await;
-    let budget = 4_500;
+    // 6,000 since phase 7 step 4 (4,500 before): every pair's `link_status`
+    // is never sampled, so the whole a bounded reply keeps grew by its size.
+    let budget = 6_000;
     let bounded = call(
         &h.c,
         "compose_and_analyse",
@@ -676,6 +693,10 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
     assert_eq!(bounded["designs_composed"], full["designs_composed"]);
     assert_eq!(bounded["read_from"], full["read_from"]);
     assert_eq!(
+        bounded["link_status"], full["link_status"],
+        "every pair's status survives the bound"
+    );
+    assert_eq!(
         bounded["not_composed"].as_array().map(Vec::len),
         Some(5),
         "not_composed is never sampled: {bounded}"
@@ -690,8 +711,12 @@ async fn the_composed_reply_is_bounded_and_its_counts_survive() {
             path.starts_with("by_design.")
                 || path.starts_with("by_pair.")
                 || path == "across"
-                || path == "of_the_whole",
-            "only finding lists are sampled: {path}"
+                || path == "of_the_whole"
+                || path == "declared_links"
+                || path == "computed_links"
+                || path == "candidates",
+            "only finding and link lists are sampled, never what was asked or a pair's \
+             status: {path}"
         );
     }
     // Unasked, the default bound is the 30,000 the gate holds every reply to.

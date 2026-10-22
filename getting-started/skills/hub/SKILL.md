@@ -94,7 +94,9 @@ the part receives is `proposed` until its owner accepts it; `loop_status` there 
    of them together, in memory, and writes nothing. Each finding comes back under `by_design`, or
    `by_pair` for two designs, so a finding between two members shows even when neither is the
    hub. Report the pairs, and name every design in `not_composed`. An empty `by_pair` is not
-   agreement: designs touch there only where a check reads both.
+   agreement: read `link_status`, which says for every pair whether it is `linked` (declared, or
+   computed on exact evidence: the same file, a pin naming the other), has only name
+   `candidates` for the person to confirm, `never_touch`es, or was `not_checked`.
 
 ## 3. Where a fact goes — the lowest design that owns all of it
 

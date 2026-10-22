@@ -53,6 +53,7 @@ use crate::foundation::core::DynoError;
 use crate::export::GraphExport;
 use crate::graph::DesignGraph;
 use crate::heal::HealIssue;
+use crate::touch::{NameCandidate, PairTouch, SetAside, TouchDesign, TouchLink, Touching};
 
 /// Which design a finding belongs to.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
@@ -100,6 +101,22 @@ pub struct ComposedReport {
     pub our_findings: Vec<ComposedFinding>,
     /// Findings wholly within theirs — reported, not yours to fix.
     pub their_findings: Vec<ComposedFinding>,
+    /// Where the two designs touch, read from what their records hold
+    /// ([`crate::touch`]): references one records to a node of the other,
+    /// each drawn as an edge labelled `declared` in the combined graph.
+    pub declared_links: Vec<TouchLink>,
+    /// Links computed on exact evidence (the same file, a pin naming the
+    /// other design), each drawn as an edge labelled `computed`, so the
+    /// checks above saw across the join through it. Never read as declared.
+    pub computed_links: Vec<TouchLink>,
+    /// Interfaces whose names closely match with the same medium: for a
+    /// person to confirm. Never drawn, never read by a check.
+    pub candidates: Vec<NameCandidate>,
+    /// The pair's status: `linked`, `candidates_only` or `never_touch`.
+    pub link_status: PairTouch,
+    /// Matches looked at and set aside as no evidence, counted.
+    pub set_aside: SetAside,
+    pub links_note: String,
 }
 
 /// Prefix an id, leaving an already-prefixed one alone.
@@ -137,6 +154,39 @@ impl DesignGraph {
         // Theirs, namespaced, so nothing of ours is overwritten.
         let theirs = namespaced(other, namespace);
         let report = combined.import_graph(&theirs)?;
+
+        // WHERE THEY ALREADY TOUCH, drawn as real edges in the combined graph
+        // before any check runs (`req:designs-are-shown-where-they-already-touch-before-anyone-declares-it`).
+        let this = self.graph_id().to_string();
+        let their_key = if namespace == this {
+            format!("{namespace} (composed)")
+        } else {
+            namespace.to_string()
+        };
+        let mut touching = crate::touch::where_designs_touch(&[
+            TouchDesign {
+                key: &this,
+                graph_id: &this,
+                export: &ours,
+            },
+            TouchDesign {
+                key: &their_key,
+                graph_id: &other.graph_id,
+                export: other,
+            },
+        ]);
+        draw_links(&mut combined, &mut touching, |d, id| {
+            if d == this {
+                id.to_string()
+            } else {
+                ns(namespace, id)
+            }
+        })?;
+        let link_status = touching
+            .pairs(&[this.as_str(), their_key.as_str()])
+            .into_iter()
+            .next()
+            .expect("two designs make one pair");
 
         let is_ours = |id: &str| our_ids.contains(id);
         let classify = |ids: &[String]| -> Side {
@@ -194,8 +244,65 @@ impl DesignGraph {
             seam_findings: buckets.remove("seam").unwrap_or_default(),
             our_findings: buckets.remove("ours").unwrap_or_default(),
             their_findings: buckets.remove("theirs").unwrap_or_default(),
+            declared_links: touching
+                .links
+                .iter()
+                .filter(|l| l.link == "declared")
+                .cloned()
+                .collect(),
+            computed_links: touching
+                .links
+                .iter()
+                .filter(|l| l.link == "computed")
+                .cloned()
+                .collect(),
+            candidates: touching.candidates,
+            link_status,
+            set_aside: touching.set_aside,
+            links_note: crate::touch::LINKS_NOTE.to_string(),
         })
     }
+}
+
+/// Draw every link whose two ends are in the combined graph as a real edge,
+/// labelled with its kind, then rewrite its ids to the form the reply shows
+/// (`shown`). A link that cannot be drawn says why, in its `detail`.
+fn draw_links(
+    combined: &mut DesignGraph,
+    touching: &mut Touching,
+    shown: impl Fn(&str, &str) -> String,
+) -> Result<(), DynoError> {
+    use crate::foundation::core::Value;
+    for l in &mut touching.links {
+        let from = shown(&l.from_design, &l.from_id);
+        let to = shown(&l.to_design, &l.to_id);
+        l.drawn = Some(false);
+        if !l.to_type.is_empty() && !l.to_id.is_empty() {
+            let mut props: std::collections::HashMap<String, Value> =
+                std::collections::HashMap::new();
+            props.insert(crate::touch::LINK_PROPERTY.to_string(), Value::from(l.link));
+            props.insert("evidence".to_string(), Value::from(l.evidence));
+            props.insert("note".to_string(), Value::from(l.detail.as_str()));
+            match combined.create_edge(
+                crate::touch::LINK_EDGE,
+                &l.from_type,
+                &from,
+                &l.to_type,
+                &to,
+                props,
+            ) {
+                Ok(_) => l.drawn = Some(true),
+                Err(e) => l.detail = format!("{}; not drawn: {e}", l.detail),
+            }
+        }
+        l.from_id = from;
+        l.to_id = to;
+    }
+    for c in &mut touching.candidates {
+        c.a_id = shown(&c.a_design, &c.a_id);
+        c.b_id = shown(&c.b_design, &c.b_id);
+    }
+    Ok(())
 }
 
 /// A copy of `other` with every node id, and both ends of every edge, under
@@ -285,6 +392,14 @@ pub struct ManyComposedReport {
     /// Every finding of the ordinary checks over the whole, in the order the
     /// checks return them (gaps, then defects).
     pub findings: Vec<AttributedFinding>,
+    /// Where the designs already touch ([`crate::touch`]): declared and
+    /// computed links (each drawn as a labelled edge in the combined graph
+    /// before the checks ran) and name candidates (never drawn), with ids in
+    /// the form `affected_ids` uses.
+    pub touching: Touching,
+    /// Every pair of the designs composed, in composition order, with its
+    /// status.
+    pub pairs: Vec<PairTouch>,
 }
 
 impl DesignGraph {
@@ -343,6 +458,42 @@ impl DesignGraph {
                     .map(|s| format!("{s:?}"))
                     .collect(),
             });
+        }
+
+        // WHERE THEY ALREADY TOUCH, drawn as real edges before any check runs
+        // (`req:designs-are-shown-where-they-already-touch-before-anyone-declares-it`).
+        let mut touch_set = vec![TouchDesign {
+            key: &this,
+            graph_id: &this,
+            export: &ours,
+        }];
+        touch_set.extend(others.iter().map(|o| TouchDesign {
+            key: o.design,
+            graph_id: o.design,
+            export: o.export,
+        }));
+        let mut touching = crate::touch::where_designs_touch(&touch_set);
+        draw_links(&mut combined, &mut touching, |d, id| {
+            if d == this { id.to_string() } else { ns(d, id) }
+        })?;
+        // The reply shows another design's ids as `<design>:<id>`.
+        let display = |d: &str, combined_id: &str| -> String {
+            if d == this {
+                combined_id.to_string()
+            } else {
+                combined_id
+                    .strip_prefix(&format!("{d}::"))
+                    .map(|rest| format!("{d}:{rest}"))
+                    .unwrap_or_else(|| combined_id.to_string())
+            }
+        };
+        for l in &mut touching.links {
+            l.from_id = display(&l.from_design, &l.from_id);
+            l.to_id = display(&l.to_design, &l.to_id);
+        }
+        for c in &mut touching.candidates {
+            c.a_id = display(&c.a_design, &c.a_id);
+            c.b_id = display(&c.b_design, &c.b_id);
         }
 
         // Which design an id belongs to, and the form a reader opens it by.
@@ -406,11 +557,17 @@ impl DesignGraph {
             ));
         }
 
+        let keys: Vec<&str> = std::iter::once(this.as_str())
+            .chain(others.iter().map(|o| o.design))
+            .collect();
+        let pairs = touching.pairs(&keys);
         Ok(ManyComposedReport {
-            this_design: this,
             this_nodes: ours.nodes.len(),
+            this_design: this,
             composed,
             findings,
+            touching,
+            pairs,
         })
     }
 }

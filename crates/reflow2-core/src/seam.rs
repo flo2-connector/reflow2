@@ -553,6 +553,18 @@ pub struct PairingReport {
     pub unclassified_ours: Vec<String>,
     pub unclassified_theirs: Vec<String>,
     pub note: String,
+    /// Where the two designs touch on EXACT evidence, read from their records
+    /// ([`crate::touch`]): references one records to a node of the other.
+    /// The name pairs above are not evidence that the designs touch.
+    pub declared_links: Vec<crate::touch::TouchLink>,
+    /// Links computed on exact evidence: the same file in both, a pin in one
+    /// naming the other's graph_id or source repository.
+    pub computed_links: Vec<crate::touch::TouchLink>,
+    /// The pair's status from those links: `linked` or `never_touch`.
+    pub link_status: crate::touch::PairTouch,
+    /// Matches looked at and set aside as no evidence, counted.
+    pub set_aside: crate::touch::SetAside,
+    pub links_note: String,
 }
 
 /// The axes that decide whether two boundaries CAN be connected at all.
@@ -567,9 +579,9 @@ pub struct PairingReport {
 const BASE_AXES: [&str; 3] = ["medium", "transport_security", "auth"];
 
 /// Names cleared this bar to be considered the same contract at all.
-const PAIR_FUZZY_THRESHOLD: u32 = 60;
+pub(crate) const PAIR_FUZZY_THRESHOLD: u32 = 60;
 /// At or above this, the name match is certain enough to pair without asking.
-const PAIR_CERTAIN_THRESHOLD: u32 = 85;
+pub(crate) const PAIR_CERTAIN_THRESHOLD: u32 = 85;
 
 fn iface_name(props: &[(String, Value)], id: &str) -> String {
     prop(props, "name").unwrap_or_else(|| id.to_string())
@@ -618,6 +630,38 @@ impl DesignGraph {
 
         let ours = interfaces(&ours_doc);
         let theirs = interfaces(other);
+
+        // WHERE THE TWO ALREADY TOUCH, on exact evidence: what the records
+        // hold, apart from any name match below.
+        let this = self.graph_id().to_string();
+        let their_key = if other.graph_id == this || other.graph_id.trim().is_empty() {
+            "other".to_string()
+        } else {
+            other.graph_id.clone()
+        };
+        let touching = crate::touch::where_designs_touch(&[
+            crate::touch::TouchDesign {
+                key: &this,
+                graph_id: &this,
+                export: &ours_doc,
+            },
+            crate::touch::TouchDesign {
+                key: &their_key,
+                graph_id: &other.graph_id,
+                export: other,
+            },
+        ]);
+        let mut link_status = touching
+            .pairs(&[this.as_str(), their_key.as_str()])
+            .into_iter()
+            .next()
+            .expect("two designs make one pair");
+        // Name candidates are this report's own `paired` / `candidates`; the
+        // status here speaks for exact evidence alone.
+        link_status.candidates = 0;
+        if link_status.status == "candidates_only" {
+            link_status.status = "never_touch";
+        }
 
         let mut paired = Vec::new();
         let mut candidates = Vec::new();
@@ -779,9 +823,26 @@ impl DesignGraph {
                  `unclassified_*` is counted because `internal` is the DEFAULT, so it cannot tell \
                  'deliberately internal' from 'never classified' — a design that did no labelling \
                  would otherwise report a clean seam. Pairing says WHICH boundaries correspond; \
-                 run seam_report on `paired` to find out whether the full contracts agree.",
+                 run seam_report on `paired` to find out whether the full contracts agree. A name \
+                 pair is never evidence that the designs touch: that is `declared_links`, \
+                 `computed_links` and `link_status`.",
                 BASE_AXES.join(", ")
             ),
+            declared_links: touching
+                .links
+                .iter()
+                .filter(|l| l.link == "declared")
+                .cloned()
+                .collect(),
+            computed_links: touching
+                .links
+                .iter()
+                .filter(|l| l.link == "computed")
+                .cloned()
+                .collect(),
+            link_status,
+            set_aside: touching.set_aside,
+            links_note: crate::touch::LINKS_NOTE.to_string(),
         })
     }
 }

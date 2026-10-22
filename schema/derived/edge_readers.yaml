@@ -50,6 +50,7 @@ readers:
   compare.rs::changelog_point: { kind: unjudged, edges: [AT_EPOCH] }
   compare.rs::changelog_view: { kind: unjudged, edges: [AT_EPOCH, CHANGED] }
   compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
+  compose.rs::draw_links: { kind: not_derived, edges: [DEPENDS_ON], why: "A writer into a THROWAWAY combined graph: draws each link touch.rs found between two composed designs (a declared reference, or exact evidence) as one DEPENDS_ON edge labelled link: declared|computed, before the ordinary checks run over the composition. It reads no edge and derives no relation; the evidence is read from export documents in touch.rs, which names no edge type." }
   confirm.rs::artifact_claims: { kind: not_derived, edges: [CHANGED, DEPENDS_ON], why: "A counter over ONE artifact's own history: its DriftEvents (incoming DEPENDS_ON) and its accepted changes (incoming CHANGED with accepted_baseline), each read once per ledger and summed per capability by confirmation_ledger. It derives no relation." }
   confirm.rs::confirmation_ledger: { kind: unjudged, edges: [ALLOCATED_TO, CHANGED, REALIZES, VERIFIES] }
   confirm.rs::event_claim: { kind: not_derived, edges: [CHANGED], why: "Classifies ONE accepting ChangeEvent once per ledger: whether it is a first baseline, its date, and which non-Artifact nodes it CHANGED, which decides whether an accept moved the design. It derives no relation." }

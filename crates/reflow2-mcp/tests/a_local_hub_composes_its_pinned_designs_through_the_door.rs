@@ -195,3 +195,166 @@ fn a_hub_composes_itself_with_its_pinned_exports_through_the_door_and_writes_not
         );
     }
 }
+
+/// THROUGH THE DOOR, where the pinned designs touch is computed from their
+/// exports (`req:designs-are-shown-where-they-already-touch-before-anyone-declares-it`):
+/// a hub pinning three members — two in ONE repository sharing a file, one
+/// with only a closely named interface — and one whose export is missing.
+#[test]
+fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_checked() {
+    let dir = tempfile::Builder::new()
+        .prefix("reflow2-door-touch-")
+        .tempdir()
+        .unwrap();
+    let home = dir.path().join("home");
+    std::fs::create_dir_all(&home).unwrap();
+    let hub = dir.path().join("hub/.reflow2/graph");
+    let mut ids: Vec<String> = Vec::new();
+    for (name, extra) in [
+        (
+            "ansible",
+            json!({"node_type": "Artifact", "id": "art:pdf-tasks",
+                   "props": {"name": "pdfstream role tasks",
+                             "location": "roles/pdfstream/tasks/main.yml"}}),
+        ),
+        (
+            "pdf",
+            json!({"node_type": "Artifact", "id": "art:role",
+                   "props": {"name": "the role it runs",
+                             "location": "./roles/pdfstream/tasks/main.yml"}}),
+        ),
+        (
+            "tiled",
+            json!({"node_type": "Interface", "id": "ifc:stream",
+                   "props": {"name": "Tiled stream", "medium": "REST"}}),
+        ),
+    ] {
+        let store = dir.path().join(format!("{name}/.reflow2/graph"));
+        let export = dir.path().join(format!("{name}/design.json"));
+        for (verb, tool, args) in [
+            (
+                "write",
+                "add_component",
+                json!({"id": "cmp:role", "name": format!("{name} role"), "description": "it"}),
+            ),
+            ("write", "create_node", extra.clone()),
+            (
+                "write",
+                "export_graph",
+                json!({"path": export.to_string_lossy()}),
+            ),
+        ] {
+            ok(&run(&home, &store, verb, tool, &args), tool);
+        }
+        ids.push(
+            serde_json::from_slice::<Value>(&std::fs::read(&export).unwrap()).unwrap()["graph_id"]
+                .as_str()
+                .unwrap()
+                .to_string(),
+        );
+    }
+    ok(
+        &run(
+            &home,
+            &hub,
+            "write",
+            "create_node",
+            &json!({"node_type": "Interface", "id": "ifc:stream",
+                    "props": {"name": "tiled streams", "medium": "REST"}}),
+        ),
+        "the hub's interface",
+    );
+    let repo = |name: &str| match name {
+        "tiled" => "https://github.com/bluesky/bluesky-tiled-plugins",
+        _ => "https://github.com/NSLS2/ansible",
+    };
+    for (i, name) in ["ansible", "pdf", "tiled"].iter().enumerate() {
+        ok(
+            &run(
+                &home,
+                &hub,
+                "write",
+                "external_dependency",
+                &json!({"id": format!("dep:{name}"), "name": name, "source": repo(name),
+                        "version": "v1", "graph_id": ids[i],
+                        "design_export": dir.path().join(format!("{name}/design.json")).to_string_lossy()}),
+            ),
+            "a pin",
+        );
+    }
+    ok(
+        &run(
+            &home,
+            &hub,
+            "write",
+            "external_dependency",
+            &json!({"id": "dep:gone", "name": "gone", "source": "https://example.org/gone",
+                    "version": "v1", "graph_id": "gone",
+                    "design_export": dir.path().join("gone/design.json").to_string_lossy()}),
+        ),
+        "the missing pin",
+    );
+    let got = ok(
+        &run(
+            &home,
+            &hub,
+            "read",
+            "compose_and_analyse",
+            &json!({"tracked_designs": true}),
+        ),
+        "the composed check",
+    );
+    let (a, p, t) = (ids[0].as_str(), ids[1].as_str(), ids[2].as_str());
+    let hub_id = got["this_design"].as_str().unwrap().to_string();
+    // The shared file: computed, drawn, on the location in one repository.
+    assert!(
+        got["computed_links"].as_array().unwrap().iter().any(|l| {
+            l["evidence"] == json!("same_location")
+                && l["from_id"] == json!(format!("{a}:art:pdf-tasks"))
+                && l["to_id"] == json!(format!("{p}:art:role"))
+                && l["drawn"] == json!(true)
+        }),
+        "{got}"
+    );
+    let ls = &got["link_status"];
+    assert_eq!(
+        ls["linked"][format!("{a}×{p}")]["computed"],
+        json!(1),
+        "{ls}"
+    );
+    // The hub's own interface and tiled's: a candidate, not a link.
+    assert_eq!(
+        ls["candidates_only"][format!("{hub_id}×{t}")],
+        json!(null),
+        "the hub pins tiled, so that pair is linked by the pin: {ls}"
+    );
+    assert!(
+        got["candidates"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|c| c["a_design"] == json!(hub_id) && c["b_design"] == json!(t)),
+        "{got}"
+    );
+    assert_eq!(
+        ls["never_touch"],
+        json!([format!("{a}×{t}"), format!("{p}×{t}")]),
+        "{ls}"
+    );
+    let not_checked: Vec<&str> = ls["not_checked"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|v| v.as_str().unwrap())
+        .collect();
+    assert_eq!(
+        not_checked,
+        [
+            format!("{hub_id}×gone"),
+            format!("{a}×gone"),
+            format!("{p}×gone"),
+            format!("{t}×gone")
+        ],
+        "{ls}"
+    );
+}

@@ -52,7 +52,16 @@ pub(crate) const OTHER_GRAPH_IDS: &str = "other_graph_ids";
 pub(crate) const TRACKED_DESIGNS: &str = "tracked_designs";
 
 /// How a pair of designs is written as one key: `a×b`, in composition order.
-pub(crate) const PAIR_JOIN: &str = "×";
+pub(crate) const PAIR_JOIN: &str = reflow2_core::touch::PAIR_JOIN;
+
+/// The sentence the composed reply carries on Anthony's choice (a) of
+/// `dec:idea-a-composed-check-says-which-findings-only-the-composition-made`:
+/// a design beside others it has no link to reads as a cut-off cluster.
+pub(crate) const CUT_OFF_SENTENCE: &str = "A design with no link to the others reads, beside \
+     them, as a cut-off cluster (`unthreaded_cluster`, \"no traceability edge to the main body\", \
+     the main body being the largest design): a finding the composition made, which that design \
+     alone does not have. Links (below) thread linked designs into one body; a pin that nothing \
+     in its own design is wired to threads only itself to the design it names.";
 
 /// Whether a `compose_and_analyse` call asks for several designs at once —
 /// the shape this module serves; any other call keeps the one-other-design
@@ -275,7 +284,15 @@ impl ReflowService {
              designs in `other_graph_ids` (a pair alone gives that seam in full), or raise \
              `budget_chars` if this client has the room. Open a finding's id with get_node: \
              another design's id carries its graph_id prefix.",
-            &["by_design.", "by_pair.", "across", "of_the_whole"],
+            &[
+                "by_design.",
+                "by_pair.",
+                "across",
+                "of_the_whole",
+                "declared_links",
+                "computed_links",
+                "candidates",
+            ],
         ))
     }
 }
@@ -361,6 +378,68 @@ fn shape(
     let k = report.composed.len();
     let missed = not_composed.len();
 
+    // WHERE THE DESIGNS TOUCH, and every pair's status — the not-composed
+    // designs' pairs included, as `not_checked`.
+    let mut linked = JsonMap::new();
+    let mut candidates_only = JsonMap::new();
+    let mut never_touch: Vec<JsonValue> = Vec::new();
+    let mut not_checked: Vec<JsonValue> = Vec::new();
+    for p in &report.pairs {
+        let key = format!("{}{PAIR_JOIN}{}", p.a, p.b);
+        match p.status {
+            "linked" => {
+                linked.insert(
+                    key,
+                    json!({"declared": p.declared, "computed": p.computed,
+                           "candidates": p.candidates}),
+                );
+            }
+            "candidates_only" => {
+                candidates_only.insert(key, json!(p.candidates));
+            }
+            _ => never_touch.push(JsonValue::String(key)),
+        }
+    }
+    // A pair with a design not composed was not checked; `not_composed`
+    // says why that design was not read.
+    let missing: Vec<String> = not_composed
+        .iter()
+        .filter_map(|n| Some(n.get("design")?.as_str()?.to_string()))
+        .collect();
+    for (i, m) in missing.iter().enumerate() {
+        for d in order.iter().chain(&missing[i + 1..]) {
+            let key = if order.contains(d) {
+                format!("{d}{PAIR_JOIN}{m}")
+            } else {
+                format!("{m}{PAIR_JOIN}{d}")
+            };
+            not_checked.push(JsonValue::String(key));
+        }
+    }
+    let link_counts = json!({
+        "linked": linked.len(),
+        "candidates_only": candidates_only.len(),
+        "never_touch": never_touch.len(),
+        "not_checked": not_checked.len(),
+    });
+    let declared_links: Vec<&reflow2_core::TouchLink> = report
+        .touching
+        .links
+        .iter()
+        .filter(|l| l.link == "declared")
+        .collect();
+    let computed_links: Vec<&reflow2_core::TouchLink> = report
+        .touching
+        .links
+        .iter()
+        .filter(|l| l.link == "computed")
+        .collect();
+    let links_counted = json!({
+        "declared": declared_links.len(),
+        "computed": computed_links.len(),
+        "candidates": report.touching.candidates.len(),
+    });
+
     let opened = if on_registry {
         "read from its live store on this server, inside the set the host says you may read"
     } else {
@@ -380,10 +459,13 @@ fn shape(
          written. Each other design's ids carry its graph_id ('<graph_id>:<id>', which get_node \
          opens); this design's are unprefixed. `by_design` holds the findings naming one design \
          only, `by_pair` those naming exactly two ('a{PAIR_JOIN}b'), `across` three or more, and \
-         `of_the_whole` none (about the combined graph, which no one design owns). ⚠ Each design \
-         is composed under its own namespace, so no two share a node: a pair appears in \
-         `by_pair` only where a check reads both at once, and a pair absent from it was not \
-         found to touch, which is not agreement. {not_sentence}"
+         `of_the_whole` none (about the combined graph, which no one design owns). Each design \
+         is composed under its own namespace, so no two share a node: they touch only through \
+         `declared_links` and `computed_links`, each drawn as an edge labelled `declared` or \
+         `computed` before the checks ran, so a finding across one is filed `by_pair`. \
+         ⚠ `link_status` says for EVERY pair whether it is `linked`, `candidates_only`, \
+         `never_touch` (checked: no evidence) or `not_checked`; a pair absent from `by_pair` \
+         is never agreement. {CUT_OFF_SENTENCE} {not_sentence}"
     );
 
     let composed: Vec<JsonValue> = report
@@ -412,12 +494,26 @@ fn shape(
             "across": across.len(),
             "of_the_whole": whole.len(),
             "pairs_composed": pairs_composed,
+            "links": links_counted,
+            "link_status": link_counts,
         },
         "by_design": findings_by_design,
         "by_pair": findings_by_pair,
         "across": across,
         "of_the_whole": whole,
         "not_composed": not_composed,
+        "link_status": {
+            "linked": linked,
+            "candidates_only": candidates_only,
+            "never_touch": never_touch,
+            "not_checked": not_checked,
+        },
+        "declared_links": declared_links,
+        "computed_links": computed_links,
+        "candidates": report.touching.candidates,
+        "set_aside": report.touching.set_aside,
+        "repositories": report.touching.repositories,
+        "links_note": reflow2_core::LINKS_NOTE,
         "composed_note": note,
     });
     if let Some(note) = tracked_note {

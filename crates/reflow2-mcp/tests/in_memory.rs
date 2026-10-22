@@ -132,6 +132,7 @@ mod an_unknown_field_refusal_names_the_nearest_parameter;
 mod an_upstream_export_is_read_without_being_imported;
 mod built_work_reads_as_built_on_the_wire;
 mod derived_relations_are_served;
+mod designs_are_shown_where_they_already_touch;
 mod discontinued_reaches_the_reader;
 mod every_argument_refusal_names_the_tool_and_the_field_path;
 mod every_client_mode_honours_read_only;
