@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:ae0f72058cd300bff85271b20dc5f8b23bfbfe1d9664c8f08269cf6c39b6b778",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-reads-reason-lost",
+  "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
