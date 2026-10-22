@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:adec1996c3dcb9f30d27d098947bc7a47809a0499f41ff948e8a0a00c7778c6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-3-6-0-and-the-call-doors-pipe-takes-no-line-bound-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:05a6dfd9be6bcf00b6bcbc08be3a7fdf142b37bd34e3e5f9f8f7ed07f12090b7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-build-can-call-one-tool-from-the-shell-test"
+}

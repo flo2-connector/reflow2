@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1365da87b860853468f98e8307144eb4f39d6b2f7491b81b2c4df48fc4235f70",
+  "edge_type": "CHANGED",
+  "from_id": "chg:rmcp-3-6-0-and-the-call-doors-pipe-takes-no-line-bound-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:2a01a31a5121f05c8fd3e1629e096a5896a91470ba28d2b7de5795764aff6755",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:main"
+}
