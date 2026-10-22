@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. BM25 keyword search over every field a node's prose is written in (name, statement, description, a rationale, a change's summary, a check's findings, an interface's spec ...; never an id, date, hash, path or where a record came from), ranked, optionally scoped to one node type. Search BEFORE creating a node that might already exist, and to map the user's words to the node they mean. Result reports its own bounds: hits.len() == limit means there may be more, and a non-empty `stale` list means the index has drifted from the store. Each hit also lists, under `linked`, the records directly linked to it (a review relation or DECOMPOSES, with the direction), so a linked family comes back together even where only one of its records carries your words. Ask for this to find out whether anyone has written something down about a subject, such as budgets.",
+  "description": "Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. BM25 keyword search over every field a node's prose is written in (name, statement, description, a rationale, a change's summary, a check's findings, an interface's spec ...; never an id, date, hash, path or where a record came from), ranked, optionally scoped to one node type. Search BEFORE creating a node that might already exist, and to map the user's words to the node they mean. Result reports its own bounds: hits.len() == limit means there may be more, and a non-empty `stale` list means the index has drifted from the store. Each hit also lists, under `linked`, the records directly linked to it (a review relation or DECOMPOSES, with the direction), so a linked family comes back together even where only one of its records carries your words. On a design that pins others (a hub), `tracked_designs: true` searches them too, from their committed exports. Ask for this to find out whether anyone has written something down about a subject, such as budgets.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -28,6 +28,14 @@
       "query": {
         "description": "Keywords to search for — tokenized BM25 over every field a node's prose\nis written in: name, statement, description, a rationale, a change's\nsummary ... (not substring or regex). Use the words the design would\nuse: \"persistence\", \"dedup window\", \"latency budget\".",
         "type": "string"
+      },
+      "tracked_designs": {
+        "default": null,
+        "description": "Also search every design this one PINS (external_dependency with a\ngraph_id), read-only from each pin's committed export on this machine:\none ranked list, each hit naming its `design`, a pinned design's\nnode_id carrying its graph_id as a prefix ('<graph_id>:<id>', which\nget_node opens). Every pinned design NOT searched is named in\n`not_searched` with its `state` and why, so \"nothing found\" never reads\nas nothing anywhere. Default false: this design alone.",
+        "type": [
+          "boolean",
+          "null"
+        ]
       }
     },
     "required": [
@@ -39,6 +47,13 @@
   "outputSchema": {
     "description": "A ranked list of design nodes matching the query, with the bounds of the search stated so a caller can tell a complete answer from a truncated one.",
     "properties": {
+      "designs_searched": {
+        "description": "On a search over several designs: the graph_id of each design searched, this one first. `found_by_design`, `searched_by_design` and `hits_withheld` give each one's count and what the one `limit` left out; with `tracked_designs`, `read_from` names the export each pinned design was read from.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
       "hits": {
         "description": "Matching nodes, best first. Scores are comparable WITHIN one result list and not across queries.",
         "items": {
@@ -49,6 +64,10 @@
             },
             "as_of": {
               "description": "The date the claim was made, when it carries one.",
+              "type": "string"
+            },
+            "design": {
+              "description": "Present on a search over several designs (`tracked_designs`, or a hub's address): the graph_id of the design this hit is in.",
               "type": "string"
             },
             "linked": {
@@ -127,6 +146,10 @@
               "description": "`export` (a path) or `address`; empty when the pin names neither.",
               "type": "object"
             },
+            "state": {
+              "description": "With `tracked_designs`: why it was not searched, in one word — `missing`, `unreadable`, `not_reached` (at an address), `nowhere`, `not_read` (past the read cap) or `not_followed` (pinned by a pinned design).",
+              "type": "string"
+            },
             "why": {
               "type": "string"
             }
@@ -154,6 +177,10 @@
           "type": "string"
         },
         "type": "array"
+      },
+      "tracked_note": {
+        "description": "With `tracked_designs`, when it added nothing: why.",
+        "type": "string"
       }
     },
     "required": [

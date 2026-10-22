@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4dce8452a6ec0dd398b9808d8c32fea04db18803b835ba2f46d04a7108a546c9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-local-hub-lists-member-on-its-tools",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

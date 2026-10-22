@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:fe3ce1d72a86433bb5902c5ec965b4b560eab761eb5bf44ab1c66e466685e224",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:service-tracked",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

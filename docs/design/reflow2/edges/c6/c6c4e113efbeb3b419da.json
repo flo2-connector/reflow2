@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:98f083134adfd0593544abd295dde4b760accc3fac8378eea92a5d89d1dbef79",
+  "edge_type": "REALIZES",
+  "from_id": "art:service-view",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:search-design-reaches-the-designs-a-hub-tracks"
+}

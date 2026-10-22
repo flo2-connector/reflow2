@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:3a9670ba72615dc3cd67e88812dd77e7ea360cfb86317852b6de749e5b4f4760",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-local-hub-searches-its-pinned-designs-through-the-door-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

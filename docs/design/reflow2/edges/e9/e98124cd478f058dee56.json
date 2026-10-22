@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:406f2485b6e5fa400eafd66f1441cac03ef164461f25d4574df3f32d03aca04b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-tracked-designs-search-names-each-designs-hits-and-each-it-could-not-reach",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

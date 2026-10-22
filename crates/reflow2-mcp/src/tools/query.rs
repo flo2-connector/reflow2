@@ -72,6 +72,12 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                             "description": "The node's name at hit time; empty if it has none."
                         },
                         "score": { "type": "number", "description": "BM25 relevance." },
+                        "design": {
+                            "type": "string",
+                            "description": "Present on a search over several designs \
+                                            (`tracked_designs`, or a hub's address): the \
+                                            graph_id of the design this hit is in."
+                        },
                         "age_days": {
                             "type": "integer",
                             "description": "Present only on a node carrying a date — how old \
@@ -140,6 +146,14 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                             "type": "object",
                             "description": "`export` (a path) or `address`; empty when the pin names neither."
                         },
+                        "state": {
+                            "type": "string",
+                            "description": "With `tracked_designs`: why it was not searched, \
+                                            in one word — `missing`, `unreadable`, \
+                                            `not_reached` (at an address), `nowhere`, \
+                                            `not_read` (past the read cap) or `not_followed` \
+                                            (pinned by a pinned design)."
+                        },
                         "why": { "type": "string" }
                     },
                     "required": ["design", "dependency", "why"]
@@ -148,6 +162,19 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
             "not_searched_note": {
                 "type": "string",
                 "description": "Beside `not_searched`: how many pinned designs were not looked in."
+            },
+            "designs_searched": {
+                "type": "array",
+                "description": "On a search over several designs: the graph_id of each design \
+                                searched, this one first. `found_by_design`, \
+                                `searched_by_design` and `hits_withheld` give each one's count \
+                                and what the one `limit` left out; with `tracked_designs`, \
+                                `read_from` names the export each pinned design was read from.",
+                "items": { "type": "string" }
+            },
+            "tracked_note": {
+                "type": "string",
+                "description": "With `tracked_designs`, when it added nothing: why."
             },
             "loop_hint": {
                 "type": "string",
@@ -1341,7 +1368,9 @@ impl ReflowService {
                        list means the index has drifted from the store. Each hit also lists, \
                        under `linked`, the records directly linked to it (a review relation or \
                        DECOMPOSES, with the direction), so a linked family comes back together \
-                       even where only one of its records carries your words. \
+                       even where only one of its records carries your words. On a design that \
+                       pins others (a hub), `tracked_designs: true` searches them too, from their \
+                       committed exports. \
                        Ask for this to find out whether anyone has written something down about a subject, such as budgets.",
         title = "Search the Design",
         output_schema = search_design_output_schema(),
@@ -1365,16 +1394,32 @@ impl ReflowService {
             &g.declared_dependencies().map_err(dyno_err)?,
             self.served_from_registry(),
         );
-        if pins.is_empty() {
+        // `tracked_designs` is served where a call is received
+        // (`service::tracked`), which takes it out before this handler runs.
+        // Reaching here with it means it was not served on this path, and the
+        // reply says so rather than let it read as honoured.
+        let tracked_note = req.tracked_designs.unwrap_or(false).then(|| {
+            if self.served_from_registry() {
+                crate::service::TRACKED_ON_A_REGISTRY
+            } else {
+                crate::service::TRACKED_NOT_AT_THE_CALL_LAYER
+            }
+        });
+        if pins.is_empty() && tracked_note.is_none() {
             return self.ok_read(&g, result);
         }
         let mut reply = serde_json::to_value(result).map_err(ser_err)?;
         if let Some(o) = reply.as_object_mut() {
-            o.insert(
-                "not_searched_note".into(),
-                JsonValue::String(crate::upstream::not_searched_note(pins.len(), false)),
-            );
-            o.insert("not_searched".into(), JsonValue::Array(pins));
+            if !pins.is_empty() {
+                o.insert(
+                    "not_searched_note".into(),
+                    JsonValue::String(crate::upstream::not_searched_note(pins.len(), false)),
+                );
+                o.insert("not_searched".into(), JsonValue::Array(pins));
+            }
+            if let Some(note) = tracked_note {
+                o.insert("tracked_note".into(), JsonValue::String(note.to_string()));
+            }
         }
         self.ok_read(&g, reply)
     }

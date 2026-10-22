@@ -382,6 +382,7 @@ async fn serve_in_view(
     }
 
     // FAN-OUT: the hub, then each readable member, one at a time.
+    let tracked_asked = super::tracked::asks_for_tracked_designs(&tool, request.arguments.as_ref());
     let forwarded = forwarded(hub, &context);
     let mut replies: Vec<(String, Result<CallToolResponse, McpError>)> = Vec::new();
     replies.push((hub_id.clone(), on_one(hub, request.clone(), own).await));
@@ -402,7 +403,7 @@ async fn serve_in_view(
         tool: &tool,
     };
     if tool == "search_design" {
-        view.merged_search(replies, policy)
+        view.merged_search(replies, policy, tracked_asked)
     } else {
         view.by_design(replies, policy)
     }
@@ -468,7 +469,7 @@ fn admitted(hub: &ReflowService) -> Result<RegistryHandle, String> {
 
 /// Run one call on one design, as that design serves any call, with no view
 /// in force — the only way this module reaches a design.
-async fn on_one(
+pub(super) async fn on_one(
     svc: &ReflowService,
     request: CallToolRequestParams,
     context: RequestContext<RoleServer>,
@@ -564,7 +565,7 @@ async fn route(
 ///
 /// A successful reply's text blocks are left as they are: they are a
 /// signpost, or served prose, and the payload is the reply.
-async fn prefix_reply(
+pub(super) async fn prefix_reply(
     answer: Result<CallToolResponse, McpError>,
     member: &str,
     svc: &ReflowService,
@@ -725,7 +726,7 @@ fn member_refusal(member: &str, refusal: Refusal) -> McpError {
 }
 
 /// The per-client shaping `call_tool` applies to every other answer.
-fn shaped(
+pub(super) fn shaped(
     policy: ContentPolicy,
     answer: Result<CallToolResponse, McpError>,
 ) -> Result<CallToolResponse, McpError> {
@@ -735,7 +736,7 @@ fn shaped(
 /// Put `note` on a reply as its `view_note`: inside the structured payload
 /// when there is one, else as a text block of its own after the document. A
 /// refusal is left exactly as it was — its text already says what happened.
-fn noted(
+pub(super) fn noted(
     answer: Result<CallToolResponse, McpError>,
     note: &str,
 ) -> Result<CallToolResponse, McpError> {
@@ -795,11 +796,11 @@ fn reply_value(answer: Result<CallToolResponse, McpError>, member: Option<&str>)
 }
 
 /// What a fan-out reply is built from.
-struct View<'a> {
-    hub_id: &'a str,
-    members: &'a [String],
-    unreachable: &'a [String],
-    tool: &'a str,
+pub(super) struct View<'a> {
+    pub(super) hub_id: &'a str,
+    pub(super) members: &'a [String],
+    pub(super) unreachable: &'a [String],
+    pub(super) tool: &'a str,
 }
 
 impl View<'_> {
@@ -869,7 +870,43 @@ impl View<'_> {
         &self,
         replies: Vec<(String, Result<CallToolResponse, McpError>)>,
         policy: ContentPolicy,
+        tracked_asked: bool,
     ) -> Result<CallToolResponse, McpError> {
+        let mut payload = self.merged_search_payload(replies);
+        // `tracked_designs` asks a design to search the designs it PINS by
+        // their committed exports; a hub's address already searches every
+        // member of its view, live, so the argument adds nothing here, and
+        // the reply says so rather than let it read as honoured or ignored.
+        if tracked_asked && let Some(o) = payload.as_object_mut() {
+            o.insert(
+                "tracked_note".into(),
+                JsonValue::String(super::tracked::THROUGH_A_HUBS_ADDRESS.to_string()),
+            );
+        }
+        let sentence = format!(
+            "This reply is a VIEW: search_design over {} design(s) ({}), the hits merged and \
+             ranked together.",
+            designs_searched_len(&payload),
+            payload["designs_searched"]
+                .as_array()
+                .map(|a| a
+                    .iter()
+                    .filter_map(JsonValue::as_str)
+                    .collect::<Vec<_>>()
+                    .join(", "))
+                .unwrap_or_default()
+        );
+        view_result(payload, policy, &sentence)
+    }
+
+    /// The payload of [`Self::merged_search`], before it is shaped for the
+    /// client: shared with a design that searches the designs it pins by
+    /// their committed exports (`super::tracked`), so the two merged searches
+    /// answer in one shape.
+    pub(super) fn merged_search_payload(
+        &self,
+        replies: Vec<(String, Result<CallToolResponse, McpError>)>,
+    ) -> JsonValue {
         let mut hits: Vec<JsonValue> = Vec::new();
         let mut stale: Vec<JsonValue> = Vec::new();
         let mut searched = JsonMap::new();
@@ -994,20 +1031,7 @@ impl View<'_> {
                 o.insert("not_searched".into(), JsonValue::Array(pinned_unsearched));
             }
         }
-        let sentence = format!(
-            "This reply is a VIEW: search_design over {} design(s) ({}), the hits merged and \
-             ranked together.",
-            designs_searched_len(&payload),
-            payload["designs_searched"]
-                .as_array()
-                .map(|a| a
-                    .iter()
-                    .filter_map(JsonValue::as_str)
-                    .collect::<Vec<_>>()
-                    .join(", "))
-                .unwrap_or_default()
-        );
-        view_result(payload, policy, &sentence)
+        payload
     }
 }
 
@@ -1029,7 +1053,7 @@ fn designs_searched_len(payload: &JsonValue) -> usize {
 /// sentence saying it is a view, first. (A client served an EMPTY `content`
 /// fills it from the payload itself, so it gets none; the payload's own
 /// `view_note` says it there.)
-fn view_result(
+pub(super) fn view_result(
     payload: JsonValue,
     policy: ContentPolicy,
     sentence: &str,
@@ -1049,7 +1073,10 @@ fn view_result(
 
 /// The members a call names, in the order its arguments first name them: a
 /// string value anywhere in the arguments that is `"<member>:<rest>"`.
-fn members_named(args: Option<&rmcp::model::JsonObject>, members: &[String]) -> Vec<String> {
+pub(super) fn members_named(
+    args: Option<&rmcp::model::JsonObject>,
+    members: &[String],
+) -> Vec<String> {
     fn walk(v: &JsonValue, members: &[String], out: &mut Vec<String>) {
         match v {
             JsonValue::String(s) => {
@@ -1075,7 +1102,7 @@ fn members_named(args: Option<&rmcp::model::JsonObject>, members: &[String]) -> 
 
 /// The member whose graph_id `s` starts with, followed by `:` — an exact
 /// graph_id, never a prefix of one.
-fn member_of<'a>(s: &str, members: &'a [String]) -> Option<&'a String> {
+pub(super) fn member_of<'a>(s: &str, members: &'a [String]) -> Option<&'a String> {
     members
         .iter()
         .find(|m| s.len() > m.len() && s.starts_with(m.as_str()) && s.as_bytes()[m.len()] == b':')
@@ -1089,7 +1116,7 @@ fn strip_member(v: &mut JsonValue, member: &str) {
 
 /// Strip `"<member>:"` from every string value that carries it, noting in
 /// `passed` each value as it is now, unprefixed.
-fn strip_member_noting(v: &mut JsonValue, member: &str, passed: &mut HashSet<String>) {
+pub(super) fn strip_member_noting(v: &mut JsonValue, member: &str, passed: &mut HashSet<String>) {
     match v {
         JsonValue::String(s) => {
             if let Some(rest) = s

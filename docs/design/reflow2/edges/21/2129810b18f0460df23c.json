@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9d7433a50eaf349e21501c51f8f95de90f4e060cafd7a7807048ecf49facb92e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-0d86e00149254b3c",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:eab28fa82b5f96977a4654f165ce8206ea20db647ba28c9abdc721a367fd9cbb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-local-hub-searches-its-pinned-designs-through-the-door-test"
+}

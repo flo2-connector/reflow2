@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:7dc73a2bc259a2be9955e8241eccd7688c982bb7e0adedc1e82fa3ec1f3587c4",
+  "node_id": "cap:a-tracked-search-reaches-a-design-at-its-address",
+  "node_type": "Capability",
+  "properties": {
+    "description": "The half of req:one-search-reaches-every-design-a-hub-tracks that phase 7 PR 2 did not build (deferred 2026-10-21, on the brief's scope: no network fetch in PR 2). A design pinned only at an address (external_dependency design_address) is named in `not_searched` with state `not_reached` today. This would ask it with the MCP handshake and a search_design call, carrying the key `reflow2 setup` stored for that server, never on a server that does not reach out (a registry), which would report `refused` in upstream_status's own words. Open alongside dec:idea-a-one-shot-call-reaches-the-design-where-it-is-served. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "distinct_from": [
+      "cap:search-design-reaches-the-designs-a-hub-tracks",
+      "cap:a-search-names-the-pinned-designs-it-did-not-search"
+    ],
+    "name": "A tracked search also asks a pinned design at its server address, with this machine's key, and says `refused` where the server serving it does not reach out",
+    "provenance": "authored",
+    "status": "planned"
+  }
+}

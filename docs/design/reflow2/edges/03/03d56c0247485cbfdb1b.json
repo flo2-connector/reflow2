@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:889c3a749ec65d71b3afa3452d986a5aa4962cdcbcc8e7162cc7e0d99baf8acf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:baseline-0d86e00149254b3c",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

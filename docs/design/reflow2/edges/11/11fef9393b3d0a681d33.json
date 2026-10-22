@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c467d6d2dbf5b853a9d2da7e706c23900c132c51fa584581ec65ccd028921f31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-tracked-search-from-exports-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 19,
+    "action": "modified",
+    "checksum_after": "sha256:54cf08f9267d7de1b839bf81e382863ed54d50e24e1568bd94a3ddf966dd6798",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

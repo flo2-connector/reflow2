@@ -156,6 +156,7 @@ mod get_node_reads_its_edges;
 mod latent_mode;
 mod no_per_design_process_globals;
 mod no_served_text_writes_a_readers_persona_into_the_design;
+mod one_search_reaches_every_design_a_hub_tracks;
 mod one_status_contract_across_sibling_constructors;
 mod one_tool_declares_its_output_contract;
 mod orientation_needs_nothing_to_start;
