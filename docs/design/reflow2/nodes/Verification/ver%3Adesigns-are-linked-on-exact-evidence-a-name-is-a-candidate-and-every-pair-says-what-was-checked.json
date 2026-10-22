@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:1e4caf069bd4237e96aedaf09655d7330013d4cdb6bfb30abac09ab14ac74714",
+  "node_id": "ver:designs-are-linked-on-exact-evidence-a-name-is-a-candidate-and-every-pair-says-what-was-checked",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Class invariants across the evidence kinds (a location in one repository spelled two ways, an equal checksum under two names, a pin by graph_id wired into its design, a pin by repository spelled https vs scp with .git, README.md + LICENSE + Cargo.toml in two repositories with one LICENSE checksum, closely named interfaces with one medium), across two designs (the one-other-design compose_and_analyse, pair_designs) and several (other_graph_ids, tracked_designs over a hub pinning three exports, a missing export and an address): exact evidence is a computed link drawn as an edge (drawn: true) and the pair is linked; a bare path and a stock checksum are never links and are counted in set_aside; a name match is a candidate and never a link (pair candidates_only); a design touching neither is never_touch; every pair with a design not read is not_checked; a member joined by a drawn link is not a cut-off cluster beside the others and one joined only by a name is; the composed note carries the cut-off sentence; the one-other-design reply keeps its eight keys and adds exactly the six link fields with namespace::id ids; nothing is written. Through the --call door on the real binary (a_local_hub_composes_its_pinned_designs_through_the_door.rs) a hub pinning ansible and pdf in one repository, tiled with only a similar interface and a missing export gets the same_location link, the candidate, never_touch and not_checked pairs; through a hub's address on a registry (a_composed_check_through_a_hubs_address_reads_its_members_live.rs) every pair of the live members has a status and a member outside the readable set makes its pairs not_checked. Core unit tests (touch.rs) pin repository spellings, common file names and path kinds.",
+    "findings": "On feat/p7-computed-seams: MCP in_memory 3/3 new + PR 3's composed tests 19/19 (two of PR 3's assertions updated: the old reply's key set gains the six link fields; the bounded test's budget 4,500 -> 6,000 because link_status is never sampled), on_disk 5/5, core touch 3/3. On main e6d4b5a4f (src stashed): the 3 new in_memory tests failed (computed_links absent; old reply lacks link fields; Q cut off though it shares a file with P) and 4 of 5 on_disk compos tests failed (the 3 hosted link assertions and the door's where-they-touch test; PR 3's door test passed, unchanged).",
+    "kind": "verification",
+    "last_run_at": "2026-10-22",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/designs_are_shown_where_they_already_touch.rs",
+    "method": "test",
+    "name": "Two designs are linked on exact evidence only, a similar name is a candidate, and every pair says whether it was checked",
+    "status": "passing"
+  }
+}

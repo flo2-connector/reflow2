@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8f2a3b9f7790efc9c14bfe7d9476a294158d576be7b4a4d57694921e22734c98",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:seam",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d2f124d40cc38da5fd386b46853506495f15817c45a11942410aadd259587972",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-composed-reply-holds-its-budget-in-every-shape",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

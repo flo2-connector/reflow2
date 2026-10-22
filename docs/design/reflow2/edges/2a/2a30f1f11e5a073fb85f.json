@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9572ceee471f58421349f38bc1c9304203736e0b39e25322a08f3835587ca9c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-183924458db0393b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4662594f5195fca153750238d7c939daf8ed48be95268f1a1850000dc198dad3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:designs-are-shown-where-they-already-touch-test"
+}

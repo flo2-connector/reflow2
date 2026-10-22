@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:434c1d2b7075e122030a44f8a824bbdbb24c0719793144ce39ddce65a9df5262",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:62be00a9e52ee0b06a2e907d4446e4c16af66e45a54a2a8e82a48cd0d2b21d7f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test"
+}

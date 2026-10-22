@@ -85,8 +85,7 @@ impl ReflowService {
         description = "Compute the seam between this design and another by COMPLEMENTARY ROLE, instead of \
                        hand-asserting which boundaries correspond. Each boundary declares a role on \
                        `Interface.designation` and pairing matches COMPLEMENTS — `published`/`both` against \
-                       `required`/`both` — never like with like, the way a base pairs with its complement and \
-                       not a copy of itself. Two boundaries pair when their NAMES match fuzzily AND they agree \
+                       `required`/`both` — never like with like. Two boundaries pair when their NAMES match fuzzily AND they agree \
                        on medium, transport_security and auth. FIVE OUTCOMES, all useful: paired (the seam, \
                        computed); CONFLICTS, where the names match but the axes refuse — reported with EVERY \
                        refusing axis, never dropped as a non-match, because \"you publish this, I need this, \
@@ -98,7 +97,7 @@ impl ReflowService {
                        DEFAULT and cannot tell \"deliberately internal\" from \"never classified\" — otherwise \
                        a design that did no labelling reports a clean seam. Feed `paired` to seam_report to \
                        learn whether the full contracts agree (req:complementary-pairing). On a registry server, \
-                       `other_graph_id` instead of `design`. Ask for this to match our required contracts against what the other system publishes.",
+                       `other_graph_id` instead of `design`. A name pair is not evidence the designs touch; `computed_links` are. Ask for this to match our required contracts against what the other system publishes.",
         title = "Pair Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -1361,7 +1360,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. It imports theirs beside yours and runs reflow2's ORDINARY checks over the whole, so a seam problem arrives as the gap it already is: a contract with no provider, a requirement nothing satisfies across the join. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, and each design's ids are namespaced, so none overwrites another. ONE other design: `design` (an export, with `namespace`), or `other_graph_id` on a registry server behind a trusted host; findings come back OURS / THEIRS / SEAM. SEVERAL at once, for an effort across a hub's designs: `other_graph_ids`, or `tracked_designs: true` for every design this one pins (through a hub's address, every member). Served alone (the --call door) each is read from its committed export, on a registry from its live store; findings come back `by_design`, `by_pair` ('a×b') and `across`, and each design not read is named in `not_composed`. Run it over a hub before changing what several of its designs share. ⚠ Namespaced designs share no node: an empty seam or pair list means they never touch, not that they agree. For declared seams, feed `pair_designs`' pairs to `seam_report`.",
+        description = "Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. It imports theirs beside yours and runs reflow2's ORDINARY checks over the whole, so a seam problem arrives as the gap it already is: a contract with no provider, a requirement nothing satisfies across the join. NOTHING IS WRITTEN: the combined graph is built in memory and thrown away, and each design's ids are namespaced, so none overwrites another. ONE other design: `design` (an export, with `namespace`), or `other_graph_id` on a registry server behind a trusted host; findings come back OURS / THEIRS / SEAM. SEVERAL at once, for an effort across a hub's designs: `other_graph_ids`, or `tracked_designs: true` for every design this one pins (through a hub's address, every member). Served alone (the --call door) each is read from its committed export, on a registry from its live store; findings come back `by_design`, `by_pair` ('a×b') and `across`, and each design not read is named in `not_composed`. Run it over a hub before changing what several of its designs share. Where they touch is read from their records on EXACT evidence only (the same file, or a pin naming the other) and drawn as a `computed` link the checks see across; a similar name is only a `candidate` to confirm. ⚠ `link_status` says, per pair: linked, candidates_only, never_touch or not_checked, never that they agree.",
         title = "Compose and Analyse Designs Together",
         annotations(read_only_hint = true)
     )]
@@ -1424,12 +1423,23 @@ impl ReflowService {
         drop(g);
         match budget {
             None => ok_json(report),
-            Some(budget) => ok_json(crate::reply_budget::bound_reply_sampling(
+            Some(budget) => ok_json(crate::service::composed::bound_composed(
                 serde_json::to_value(report).map_err(crate::service::ser_err)?,
                 budget,
                 "Every count is still here. A shortened finding list is a sample: raise \
                  `budget_chars` if this client has the room, or open one finding's id with \
                  get_node.",
+                &[
+                    "seam_findings",
+                    "our_findings",
+                    "their_findings",
+                    "skipped_edges",
+                    "declared_links",
+                    "computed_links",
+                    "candidates",
+                ],
+                &[],
+                &["seam_findings", "our_findings", "their_findings"],
             )),
         }
     }

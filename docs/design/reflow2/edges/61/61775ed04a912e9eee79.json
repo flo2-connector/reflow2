@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0209de519452b0802a3527e3f6f04901f8361ad39baadfcdae320fb261a607d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-7ce9cdf4576fde33",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f609c40d4df76a21896a9c1f710e8eeaf2198d40df1508cacd00fc5318985804",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:touch"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:33f9fb69c84833787d7dd5c8f7b32a25dec4905d8266618b7abc29b663f853f9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-composition-computes-where-its-designs-already-touch",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

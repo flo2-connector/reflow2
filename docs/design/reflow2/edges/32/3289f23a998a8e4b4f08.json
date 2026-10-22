@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b212da018294a9449b43c6cfcab39de25b551612a15bb69dc2b6955dfc6279cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:f4c6833750bafc1292d4a825c010c494818df8ca4bd0ec42b491bf5eb72f011a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-exchange"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:72fb421eebecba4d4a3bd85232580da884bdd153da12dee471dcfae349ebcb13",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:1adc705feddfcaa50fa7e1d99fdd23e3caf3e32c87632d7fa543edc7c1580f38",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:compose"
+}

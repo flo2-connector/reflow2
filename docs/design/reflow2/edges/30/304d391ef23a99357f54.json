@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:36f5ebcd0e099db89bfe5e31f603472e2044318ad12f4bf6df49447aac480c21",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-source-says-what-kind-of-support-it-gives",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

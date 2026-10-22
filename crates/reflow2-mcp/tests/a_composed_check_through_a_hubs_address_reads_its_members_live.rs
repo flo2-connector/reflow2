@@ -12,7 +12,11 @@
 //!     `not_composed`, and nothing it holds is revealed;
 //!   · `other_graph_ids` naming one member composes that member alone;
 //!   · the one-other-design call (`other_graph_id`) through H answers in its
-//!     old shape, exactly as it did before (the path does not regress).
+//!     old shape, exactly as it did before (the path does not regress);
+//!   · where the members touch is computed from what their LIVE STORES hold
+//!     (phase 7 step 4): every pair of the designs composed has a
+//!     `link_status`, and a pair with a member outside the readable set is
+//!     `not_checked`, never `never_touch`.
 
 use serde_json::json;
 
@@ -63,6 +67,15 @@ fn through_a_hubs_address_the_composed_check_reads_every_member_live() {
             "{m}'s findings name its ids with its prefix: {got}"
         );
     }
+    // Every pair of the three designs composed has a status, read from the
+    // live stores; none was left unchecked.
+    let ls = &got["link_status"];
+    let statused = ls["linked"].as_array().map_or(0, Vec::len)
+        + ls["candidates_only"].as_array().map_or(0, Vec::len)
+        + ls["never_touch"].as_array().map_or(0, Vec::len);
+    assert_eq!(statused, 3, "three designs, three pairs: {ls}");
+    assert_eq!(ls["not_checked"], json!([]), "{ls}");
+    assert!(got["computed_links"].is_array(), "{got}");
 }
 
 #[test]
@@ -89,6 +102,11 @@ fn a_member_outside_the_readable_set_is_named_unreachable_and_reveals_nothing() 
     assert!(
         !got.to_string().contains("only-in-beta"),
         "nothing B holds is revealed: {got}"
+    );
+    assert_eq!(
+        got["link_status"]["not_checked"],
+        json!([format!("{h}×{b}"), format!("{a}×{b}")]),
+        "a pair with a member not read is not checked, never `never_touch`: {got}"
     );
 
     // Naming one member composes that one alone.
@@ -134,4 +152,14 @@ fn the_one_other_design_call_through_a_hubs_address_keeps_its_old_shape() {
     }
     assert_eq!(got["imported_graph_id"], json!(a), "{got}");
     assert!(got.get("designs_composed").is_none(), "{got}");
+    // ...and gains the link fields, the pair's status among them.
+    for key in [
+        "declared_links",
+        "computed_links",
+        "candidates",
+        "set_aside",
+    ] {
+        assert!(got.get(key).is_some(), "{key}: {got}");
+    }
+    assert!(got["link_status"]["status"].is_string(), "{got}");
 }

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d2ae2f1bb6797b3f66280148109fd5518503fb3da4ad207c40f4ffd3188a460e",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:designs-are-shown-where-they-already-touch-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:designs-are-linked-on-exact-evidence-a-name-is-a-candidate-and-every-pair-says-what-was-checked"
+}

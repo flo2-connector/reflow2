@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e20f11edba03db4a763fccc0b619db066658c25e5767a7471496e8db6b8b58bd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-reasoning-read-back-outgrows-the-client-on-repeated-premise-prose-and-text-added-after-the-budget-2026-10-22",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

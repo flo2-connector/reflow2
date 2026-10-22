@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2654dcd5a916cf5e0983928c40816a7b99face0f6f8b38514d7d598a54b23691",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:designs-are-linked-on-exact-evidence-a-name-is-a-candidate-and-every-pair-says-what-was-checked",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

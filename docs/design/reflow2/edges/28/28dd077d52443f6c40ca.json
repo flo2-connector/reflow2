@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ffbbea95a1c672813483d12345ee57ac875ea2e318b24c5b36334b59c51ca7cb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-ablation-reports-which-premises-a-conclusion-actually-needs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

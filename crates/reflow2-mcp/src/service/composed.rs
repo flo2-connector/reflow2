@@ -52,7 +52,16 @@ pub(crate) const OTHER_GRAPH_IDS: &str = "other_graph_ids";
 pub(crate) const TRACKED_DESIGNS: &str = "tracked_designs";
 
 /// How a pair of designs is written as one key: `a×b`, in composition order.
-pub(crate) const PAIR_JOIN: &str = "×";
+pub(crate) const PAIR_JOIN: &str = reflow2_core::touch::PAIR_JOIN;
+
+/// The sentence the composed reply carries on Anthony's choice (a) of
+/// `dec:idea-a-composed-check-says-which-findings-only-the-composition-made`:
+/// a design beside others it has no link to reads as a cut-off cluster.
+pub(crate) const CUT_OFF_SENTENCE: &str = "A design with no link to the others reads, beside \
+     them, as a cut-off cluster (`unthreaded_cluster`, \"no traceability edge to the main body\", \
+     the main body being the largest design): a finding the composition made, which that design \
+     alone does not have. Links (below) thread linked designs into one body; a pin that nothing \
+     in its own design is wired to threads only itself to the design it names.";
 
 /// Whether a `compose_and_analyse` call asks for several designs at once —
 /// the shape this module serves; any other call keeps the one-other-design
@@ -268,16 +277,156 @@ impl ReflowService {
             on_registry,
             tracked_note,
         );
-        ok_json(crate::reply_budget::bound_reply_sampling_only(
+        ok_json(bound_composed(
             shaped,
             budget,
-            "Every count is still here (`counts`). A shortened list is a sample: name fewer \
-             designs in `other_graph_ids` (a pair alone gives that seam in full), or raise \
-             `budget_chars` if this client has the room. Open a finding's id with get_node: \
-             another design's id carries its graph_id prefix.",
-            &["by_design.", "by_pair.", "across", "of_the_whole"],
+            "Every count is still here (`counts`, and `link_status.counts`). A shortened list \
+             is a sample: name fewer designs in `other_graph_ids` (a pair alone gives that seam \
+             in full), or raise `budget_chars` if this client has the room. Open a finding's id \
+             with get_node: another design's id carries its graph_id prefix.",
+            &[
+                "by_design.",
+                "by_pair.",
+                "across",
+                "of_the_whole",
+                "declared_links",
+                "computed_links",
+                "candidates",
+                "link_status.linked",
+                "link_status.candidates_only",
+                "link_status.never_touch",
+                "link_status.not_checked",
+            ],
+            &["by_design", "by_pair"],
+            &["across", "of_the_whole"],
         ))
     }
+}
+
+/// THE COMPOSED REPLY HOLDS ITS BUDGET (measured 2026-10-22: 58,505
+/// characters against 30,000 on a hub of fifteen exports, every list at its
+/// floor of one). The generic sampler keeps a whole entry per list and never
+/// cuts an id, and a composition breaks both: one `by_pair` key per pair, each
+/// holding a finding that names a whole cut-off cluster. So, only when the
+/// sampler alone cannot fit, the reply is reduced in rungs before it samples,
+/// each rung named in `withheld_to_fit`:
+///
+/// 1. each finding's `affected_ids` are cut to the first few (20, then 5,
+///    then 1), the finding keeping `affected_ids_total`;
+/// 2. whole keys of the per-design and per-pair maps are withheld (keeping
+///    at most 8, then 3, then 1, then none), every key's count staying in
+///    `counts`.
+///
+/// Counts, what was composed and what was not are never cut. A reply that
+/// fits is returned untouched.
+pub(crate) fn bound_composed(
+    full: JsonValue,
+    budget: usize,
+    hint: &str,
+    lists: &[&str],
+    finding_maps: &[&str],
+    finding_lists: &[&str],
+) -> JsonValue {
+    use crate::reply_budget::{bound_reply_sampling_only, chars_of};
+    let fits = |v: &JsonValue| chars_of(v) <= budget;
+    if fits(&full) {
+        return full;
+    }
+    let first = bound_reply_sampling_only(full.clone(), budget, hint, lists);
+    if fits(&first) {
+        return first;
+    }
+    // (ids kept per finding, map keys kept per map)
+    const RUNGS: [(usize, Option<usize>); 7] = [
+        (20, None),
+        (5, None),
+        (5, Some(8)),
+        (1, Some(8)),
+        (1, Some(3)),
+        (1, Some(1)),
+        (1, Some(0)),
+    ];
+    let mut last = first;
+    for (ids, keys) in RUNGS {
+        let mut body = full.clone();
+        let mut findings_cut = 0usize;
+        let mut ids_withheld = 0usize;
+        let mut cut = |f: &mut JsonValue| {
+            let Some(list) = f.get_mut("affected_ids").and_then(JsonValue::as_array_mut) else {
+                return;
+            };
+            let total = list.len();
+            if total > ids {
+                list.truncate(ids);
+                findings_cut += 1;
+                ids_withheld += total - ids;
+                f["affected_ids_total"] = json!(total);
+            }
+        };
+        for m in finding_maps {
+            if let Some(map) = body.get_mut(*m).and_then(JsonValue::as_object_mut) {
+                for list in map.values_mut() {
+                    if let Some(l) = list.as_array_mut() {
+                        l.iter_mut().for_each(&mut cut);
+                    }
+                }
+            }
+        }
+        for l in finding_lists {
+            if let Some(list) = body.get_mut(*l).and_then(JsonValue::as_array_mut) {
+                list.iter_mut().for_each(&mut cut);
+            }
+        }
+        let mut withheld = json!({
+            "affected_ids": {
+                "shown_per_finding": ids,
+                "findings_cut": findings_cut,
+                "ids_withheld": ids_withheld,
+                "note": "A finding whose ids were cut keeps `affected_ids_total`; run the \
+                         composition over fewer designs, or raise `budget_chars`, to read \
+                         them all.",
+            }
+        });
+        if let Some(keep) = keys {
+            for m in finding_maps {
+                if let Some(map) = body.get_mut(*m).and_then(JsonValue::as_object_mut) {
+                    let total = map.len();
+                    if total > keep {
+                        let drop: Vec<String> = map.keys().skip(keep).cloned().collect();
+                        for k in drop {
+                            map.remove(&k);
+                        }
+                        withheld[*m] = json!({
+                            "keys_shown": keep,
+                            "keys_total": total,
+                            "note": "the withheld keys and their counts are in `counts`",
+                        });
+                    }
+                }
+            }
+        }
+        body["withheld_to_fit"] = withheld;
+        let mut out = bound_reply_sampling_only(body, budget, hint, lists);
+        if out.get("budget").is_none() {
+            // The rung alone made it fit, so the sampler had nothing to say:
+            // the reply still says it was bounded, and where.
+            out["budget"] = json!({
+                "applied": true,
+                "budget_chars": budget,
+                "full_chars": chars_of(&full),
+                "note": format!(
+                    "WITHHELD TO FIT. The whole answer is {} characters against a budget of \
+                     {budget}: `withheld_to_fit` says what was cut. {hint}",
+                    chars_of(&full)
+                ),
+            });
+        }
+        if fits(&out) {
+            return out;
+        }
+        last = out;
+    }
+    last
 }
 
 /// One design not composed, in the tracked search's `not_searched` shape when
@@ -361,6 +510,65 @@ fn shape(
     let k = report.composed.len();
     let missed = not_composed.len();
 
+    // WHERE THE DESIGNS TOUCH, and every pair's status — the not-composed
+    // designs' pairs included, as `not_checked`.
+    let mut linked: Vec<JsonValue> = Vec::new();
+    let mut candidates_only: Vec<JsonValue> = Vec::new();
+    let mut never_touch: Vec<JsonValue> = Vec::new();
+    let mut not_checked: Vec<JsonValue> = Vec::new();
+    for p in &report.pairs {
+        let key = format!("{}{PAIR_JOIN}{}", p.a, p.b);
+        match p.status {
+            "linked" => {
+                linked.push(json!({"pair": key, "declared": p.declared,
+                                   "computed": p.computed, "candidates": p.candidates}));
+            }
+            "candidates_only" => {
+                candidates_only.push(json!({"pair": key, "candidates": p.candidates}));
+            }
+            _ => never_touch.push(JsonValue::String(key)),
+        }
+    }
+    // A pair with a design not composed was not checked; `not_composed`
+    // says why that design was not read.
+    let missing: Vec<String> = not_composed
+        .iter()
+        .filter_map(|n| Some(n.get("design")?.as_str()?.to_string()))
+        .collect();
+    for (i, m) in missing.iter().enumerate() {
+        for d in order.iter().chain(&missing[i + 1..]) {
+            let key = if order.contains(d) {
+                format!("{d}{PAIR_JOIN}{m}")
+            } else {
+                format!("{m}{PAIR_JOIN}{d}")
+            };
+            not_checked.push(JsonValue::String(key));
+        }
+    }
+    let link_counts = json!({
+        "linked": linked.len(),
+        "candidates_only": candidates_only.len(),
+        "never_touch": never_touch.len(),
+        "not_checked": not_checked.len(),
+    });
+    let declared_links: Vec<&reflow2_core::TouchLink> = report
+        .touching
+        .links
+        .iter()
+        .filter(|l| l.link == "declared")
+        .collect();
+    let computed_links: Vec<&reflow2_core::TouchLink> = report
+        .touching
+        .links
+        .iter()
+        .filter(|l| l.link == "computed")
+        .collect();
+    let links_counted = json!({
+        "declared": declared_links.len(),
+        "computed": computed_links.len(),
+        "candidates": report.touching.candidates.len(),
+    });
+
     let opened = if on_registry {
         "read from its live store on this server, inside the set the host says you may read"
     } else {
@@ -380,10 +588,13 @@ fn shape(
          written. Each other design's ids carry its graph_id ('<graph_id>:<id>', which get_node \
          opens); this design's are unprefixed. `by_design` holds the findings naming one design \
          only, `by_pair` those naming exactly two ('a{PAIR_JOIN}b'), `across` three or more, and \
-         `of_the_whole` none (about the combined graph, which no one design owns). ⚠ Each design \
-         is composed under its own namespace, so no two share a node: a pair appears in \
-         `by_pair` only where a check reads both at once, and a pair absent from it was not \
-         found to touch, which is not agreement. {not_sentence}"
+         `of_the_whole` none (about the combined graph, which no one design owns). Each design \
+         is composed under its own namespace, so no two share a node: they touch only through \
+         `declared_links` and `computed_links`, each drawn as an edge labelled `declared` or \
+         `computed` before the checks ran, so a finding across one is filed `by_pair`. \
+         ⚠ `link_status` says for EVERY pair whether it is `linked`, `candidates_only`, \
+         `never_touch` (checked: no evidence) or `not_checked`; a pair absent from `by_pair` \
+         is never agreement. {CUT_OFF_SENTENCE} {not_sentence}"
     );
 
     let composed: Vec<JsonValue> = report
@@ -412,12 +623,27 @@ fn shape(
             "across": across.len(),
             "of_the_whole": whole.len(),
             "pairs_composed": pairs_composed,
+            "links": links_counted,
+            "link_status": link_counts,
         },
         "by_design": findings_by_design,
         "by_pair": findings_by_pair,
         "across": across,
         "of_the_whole": whole,
         "not_composed": not_composed,
+        "link_status": {
+            "counts": link_counts.clone(),
+            "linked": linked,
+            "candidates_only": candidates_only,
+            "never_touch": never_touch,
+            "not_checked": not_checked,
+        },
+        "declared_links": declared_links,
+        "computed_links": computed_links,
+        "candidates": report.touching.candidates,
+        "set_aside": report.touching.set_aside,
+        "repositories": report.touching.repositories,
+        "links_note": reflow2_core::LINKS_NOTE,
         "composed_note": note,
     });
     if let Some(note) = tracked_note {

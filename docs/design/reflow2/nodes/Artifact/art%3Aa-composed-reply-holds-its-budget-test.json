@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:dd154caaf4e83fdc6c88708314488dfa1b536339211bbbac8a09d3f4280236bf",
+  "node_id": "art:a-composed-reply-holds-its-budget-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Class test that a composed reply holds its budget: a hub pinning ten exports of 151 nodes each (each member a cut-off cluster under its pair with the hub), composed with one, two and every pinned design at the default budget and at 12,000, 6,000 and 60,000, and the one-other-design call with budget_chars 12,000 and 6,000: the compact reply is at most the budget, every count survives, a reply that fits is untouched, one that does not says so; a finding whose ids were cut keeps affected_ids_total and the reply names what it withheld.",
+    "location": "crates/reflow2-mcp/tests/a_composed_reply_holds_its_budget.rs",
+    "name": "crates/reflow2-mcp/tests/a_composed_reply_holds_its_budget.rs",
+    "status": "realized"
+  }
+}

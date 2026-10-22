@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b508828196721dec8430ed68bbdf8809b385ca245d74cfa067bab0210657ce1f",
+  "edge_type": "REALIZES",
+  "from_id": "art:touch",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-composition-computes-where-its-designs-already-touch"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c752a3ae2c3f97f28edb5ce3461e4df77c0d5dfdd26149823bda1c2e92bdc201",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-change-discloses-the-model-that-made-it-as-well-as-its-session",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

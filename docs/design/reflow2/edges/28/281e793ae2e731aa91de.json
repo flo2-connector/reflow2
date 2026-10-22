@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1be77a013c7463258b00825d93929cd24abe74ec71d47b80d39a243db2e5a633",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-brainstorm-proposes-speculative-links-between-two-things",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

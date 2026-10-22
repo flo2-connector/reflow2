@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7451a1b402f10f44ad0ade1eaba6b68965fc6833513dc08a5b8d9a64af298aff",
+  "edge_type": "CAUSES",
+  "from_id": "art:touch",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "touch.rs draws a pin link from the pin node itself (the exact evidence) to the named design's anchor, and threads nothing in the pinning design; measured: wiring the hub's pins to one component took the cut-off clusters from 119 to 101, and unwired they stay at 118.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:measured-computed-links-leave-the-fixtures-118-cut-off-clusters-because-the-hubs-pins-are-wired-to-nothing-2026-10-22"
+}

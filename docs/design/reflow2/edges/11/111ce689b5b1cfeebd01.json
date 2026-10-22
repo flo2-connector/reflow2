@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:522adb6aa1cb087a3bd895d369acc5c83bc03b9a72a6eb4014ebe679bd531e1d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-what-reflow2-takes-from-taos-views-on-ai-in-mathematics",
+  "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

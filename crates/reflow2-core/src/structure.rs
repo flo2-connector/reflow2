@@ -30,7 +30,7 @@ use crate::nodes::{edge, node};
 
 /// Node types that are *not* part of the design's structural coupling and so are
 /// excluded from the design network.
-const NON_DESIGN_TYPES: &[&str] = &[
+pub(crate) const NON_DESIGN_TYPES: &[&str] = &[
     "Project",
     "DesignEpoch",
     "TemporalFact",
@@ -314,7 +314,7 @@ impl DesignNetwork {
 /// most central nodes were acknowledgements**, outranking every Component and
 /// Capability. Keying the id differently would have fixed the visible symptom
 /// and left that untouched.
-fn is_review_record(id: &str) -> bool {
+pub(crate) fn is_review_record(id: &str) -> bool {
     id.starts_with("decision:ack:")
 }
 

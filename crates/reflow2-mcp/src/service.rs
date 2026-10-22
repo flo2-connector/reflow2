@@ -37,7 +37,7 @@ use reflow2_core::{
 };
 
 /// One write unit per tool call — `dec:idea-a-refused-typed-write-stores-nothing`.
-mod composed;
+pub(crate) mod composed;
 mod far;
 mod tracked;
 mod unit;

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f3c0f58aa7ae737d55899c739cad7a82d3615c6ca331c9005efeaf60429a07f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:designs-are-linked-on-exact-evidence-a-name-is-a-candidate-and-every-pair-says-what-was-checked"
+}

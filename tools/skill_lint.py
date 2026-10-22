@@ -166,6 +166,9 @@ NON_TOOL_TERMS = {
     # designs — the argument naming them and the reply's attribution and
     # not-composed lists (service/composed.rs).
     "other_graph_ids", "by_design", "by_pair", "not_composed",
+    # hub (2026-10-22, phase 7 PR 4): where composed designs touch — each
+    # pair's status and two of its values (service/composed.rs, touch.rs).
+    "link_status", "never_touch", "not_checked",
     # adopt (2026-10-21): import_graph's reply field for what a whole-node
     # import removed from records that already existed (export.rs).
     "properties_removed",

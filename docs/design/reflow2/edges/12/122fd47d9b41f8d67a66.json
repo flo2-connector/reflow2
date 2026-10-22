@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bd9c600b2b951edc9e6d85c549d55cc6bbf9df9fd25fe2cde91ddb7212e4f8c3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-computed-seams-2026-10-22",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-composed-reply-holds-its-budget-in-every-shape"
+}

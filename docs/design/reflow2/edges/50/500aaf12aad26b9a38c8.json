@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b3a13174615bc6020fc8b21515ea72552497d653a6a666e750ea622424e0518b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-decision-rolls-up-a-line-of-reasoning-kept-inline-or-as-its-own-design",
+  "properties": {
+    "evidence": "Option (b) only works if a decision's far premise carries the far conclusion's truth and proof status, which this accepted requirement asks for.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reasoning-crosses-designs-within-a-hub"
+}
