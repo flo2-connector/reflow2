@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d53bfda57e71818c9ced72a2e847ab6a537ad5177ab7136134b49b0185132e42",
+  "node_id": "chg:baseline-8b27dd172ed3321b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "first baseline, phase 7 PR 3",
+    "subject": "record"
+  }
+}

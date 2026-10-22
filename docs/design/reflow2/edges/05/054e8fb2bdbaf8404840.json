@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b3a25d5d732dec97acdbff05e76be68e85c91a9399439c50f98d857cc1ae4a5b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

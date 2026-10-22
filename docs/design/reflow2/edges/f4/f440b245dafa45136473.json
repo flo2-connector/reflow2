@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a41cbe2336c8781066ff4d5070e19f2b7b7146c764a815973deb88edb2ac93d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-composed-check-through-a-hubs-address-reads-its-members-live-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-composed-check-files-each-finding-under-its-designs-and-names-each-design-it-could-not-read"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:593699e1567db0c304a9a3b15e5f75c60aaa5e7140e48b539c95e78f5ca0a13a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:0332e366b92a33424b99e0fe5812ec7b1c90d9ac7a0eda1b1d730fa8c152ecfe",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fa61d935b0b1dbba45fe76139ea0f6f8cf1f051b28c123124dc069bd509e24cc",
+  "node_id": "dec:idea-a-composed-check-says-which-findings-only-the-composition-made",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Found while building phase 7 PR 3 (2026-10-21). Composing 16 designs (the PR 2 fixture: 15 exports, 3,196 nodes) gave 1,910 findings; 118 of the per-design ones were UnthreadedCluster, which a member composed beside others it has no link to reads as (it is cut off from \"the main body\", which is whichever design is largest). Alone, the same member has no such finding. The reply files them under that design as its own, so a reader sees noise that composition made. Options: (a) leave it, and let the reply's note say a design with no link to the others reads as a cut-off cluster; (b) also run each design's checks alone and mark each finding `only_when_composed` (the honest answer, at about twice the cost: the checks are ~6 s of the composed check's ~6 s); (c) drop structural findings that only say two designs are disjoint, counting what was dropped; (d) wait for PR 4's computed links, which thread linked designs together and shrink the class without removing it. Recorded as brainstorming, not as a proposal. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "exploratory",
+    "name": "OPEN — should a composed check over several designs say which findings exist only because the designs were composed (each disjoint member reading as a cut-off cluster), rather than file them as that design's own?",
+    "rationale": "A composed check exists to show what only appears when designs are present together; a finding the composition manufactured looks exactly like one it discovered, and a hub owner shown 118 false \"cut-off cluster\" findings switches the check off. The counter-argument: marking requires a second pass per design, doubling a 6 s call, and PR 4's links may make most of them disappear anyway.",
+    "status": "proposed"
+  }
+}

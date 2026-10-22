@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7a21ca14e1791d34d2c11889a30f2be78aaa2c6e9ca1dad10b6e434da3518130",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-2925e6f715e45e5c",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:3629002faaaf08a4b7b1037677a07613277c6b7d05f656dad9c31f6c7c95285b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:one-composed-check-runs-over-several-designs-test"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:645043a26089d7e7b135698b42276dfb2dd5f287593db08963e7a37f5a120a6a",
+  "node_id": "art:a-local-hub-composes-its-pinned-designs-through-the-door-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The real binary through `reflow2 read`: a hub pinning two member exports, a missing export and a design at an address composes all in one call; the two members' pair has a finding; the missing and addressed pins are named; a finding's id opens; the hub's content hash and the members' exports are unchanged.",
+    "location": "crates/reflow2-mcp/tests/a_local_hub_composes_its_pinned_designs_through_the_door.rs",
+    "name": "crates/reflow2-mcp/tests/a_local_hub_composes_its_pinned_designs_through_the_door.rs",
+    "status": "realized"
+  }
+}

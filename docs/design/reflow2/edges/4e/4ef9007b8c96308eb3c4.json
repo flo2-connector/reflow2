@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d5be7490c6313f282cb86d739d90c351f214ca731c3ab579d998c9ac65b0c59d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:15c06ebdc2d98759423ce423fe0e52bcc820da8d86c70e3f7123d27029f76bb0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:compose"
+}

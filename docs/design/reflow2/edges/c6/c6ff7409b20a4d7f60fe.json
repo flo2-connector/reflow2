@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d7c99b07ac9133d872c03f289fea2116b064ea50282f933ad06e60d54e5a6f42",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 27,
+    "action": "modified",
+    "checksum_after": "sha256:773d6312c374587e20e97a271710f52b1857a143a091a4d7f50faf7b8cc2efbe",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

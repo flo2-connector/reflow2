@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0d743ca87f3c86b3ac3d2172a08cc718bde813367437d584124158232eab3631",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:compose-and-analyse-takes-several-designs-at-once",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

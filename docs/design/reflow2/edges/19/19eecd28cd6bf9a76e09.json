@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:47edc70bfabf70bf41e823767225c7bb5c1f8b4f44c731f5bd95ff900f811824",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:2dc7a1f36130485b481576b932959c1788b6fcebc4c47e8b0ab2dd7c63ce18ff",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-cross-design-read-takes-the-other-design-by-graph-id-test"
+}

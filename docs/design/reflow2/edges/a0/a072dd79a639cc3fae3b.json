@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:01035c00b1a1016b207c1f59ed84d7be7b1622e5a485306ac49e59a1a607e4bb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-015bbe061be6ac77",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:4b6ad7c2bb90b882c88beba680fbb4be6bf816a28a3dee1ae0243124827c87ed",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f8c75cb934f6b054486300b962220847cb35ef2e0cc66672e4495ad04f0bbc07",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:one-composed-check-runs-over-several-designs-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

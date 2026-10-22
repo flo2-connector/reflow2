@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:b20f25a5a71c96a466bb5f840c3cb66c941bdf0cf5bff980a77919393c56207d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:service-composed"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1b4ebc1cb936e1bf22974dbd9e36a70ed745ea3d1e8c7bf90da7434fff3fabcb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:f290bf2b06b53b1d85efd221f995249d458842964a43a70b03ede02750139126",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skills-and-tools"
+}

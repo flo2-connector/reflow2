@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8688eaf8727c18dcbffa8bb68623d139f7f1f2b2a1672b6a953acf405add062e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test"
+}

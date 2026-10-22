@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cffa57835c01c6822432beaf8573afd8adf01f2a9d107fda07b10270d5fe5e28",
+  "edge_type": "CHANGED",
+  "from_id": "chg:p7-composed-check-over-a-hub-2026-10-21",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-composed-check-files-each-finding-under-its-designs-and-names-each-design-it-could-not-read"
+}
