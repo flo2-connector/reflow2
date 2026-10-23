@@ -385,7 +385,8 @@ def run(binary: str, graph_path: str) -> int:
     # when the smoke test ran. 29 node types, 68 edge types.
     # 2026-10-17, Anchor removed: 29 -> 28 node types, and once more this
     # file was found last, by running it.
-    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 68,
+    # 2026-10-23, EQUIVALENT_TO (two statements proven equivalent): 69.
+    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 69,
          len(vocab.get("edge_types", [])))
 
     exact = s.call("describe_schema", {"from": "Capability", "to": "Component"})

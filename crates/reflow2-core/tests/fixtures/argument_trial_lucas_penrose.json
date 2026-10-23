@@ -1,0 +1,3871 @@
+{
+ "content_hash": "sha256:d2004cf25993322d9eabbf3fd7c1f66842e13391de3ad25f79b6faf0b15d2996",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-citation-here-g-del-1931-turing-1936-a6ddea",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:godel-first-incompleteness"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-citation-here-g-del-1931-turing-1936-a6ddea",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:godel-second-incompleteness"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-citation-here-g-del-1931-turing-1936-a6ddea",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-output-is-not-a-theory-lewis"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-question-does-g-del-s-theorem-03b50b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:lucas-5-reductio"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-question-does-g-del-s-theorem-03b50b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:mind-is-not-a-machine"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-translation-premises-t0-t3b-pt1-pt4-are-d947f9",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:tr-mind-can-know-fm-consistent"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-translation-premises-t0-t3b-pt1-pt4-are-d947f9",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:tr-p3-an-algorithm-would-be-knowably-sound"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-two-scope-questions-1-penrose-goes-on-from-b2212d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-parity-whiteley"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-two-scope-questions-1-penrose-goes-on-from-b2212d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:penrose-understanding-not-algorithmic"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-chalmers-knowable-soundness",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-consistency-putnam-benacerraf",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-feferman-idealized-mathematician",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-godel-disjunction",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-humans-are-fallible",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-output-is-not-a-theory-lewis",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-parity-whiteley",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-which-machine-benacerraf",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:rep-lucas-dialectic",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:rep-lucas-fallible-not-inconsistent",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:rep-penrose-1996-soundness-of-own-reasoning",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:tr-mind-can-construct-gm",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:tr-mind-can-know-fm-consistent",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:tr-mind-knowledge-is-machine-output",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:does-godel-show-the-mind-is-not-a-machine",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lucas-1-mind-as-formal-system",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lucas-2-apply-godel",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lucas-3-mind-sees-gm",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lucas-4-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lucas-5-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:obj-consistency-from-godel-ii",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-1-we-know-ck",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-2-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-3-reductio-g",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-4-not-algorithmic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-5-mind-not-machine",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:penrose-6-to-new-physics",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rival-1-conditional-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:lucas-penrose-argument",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-every-citation-here-g-del-1931-turing-1936-a6ddea",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-should-the-question-does-g-del-s-theorem-03b50b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-translation-premises-t0-t3b-pt1-pt4-are-d947f9",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-two-scope-questions-1-penrose-goes-on-from-b2212d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:formalized-first-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:godel-first-incompleteness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:godel-second-incompleteness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lucas-falsum",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lucas-fm-does-not-prove-gm",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lucas-mind-can-see-gm-true",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lucas-mind-knowledge-is-system-fm",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lucas-supposition-mind-is-a-machine",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:machine-output-is-a-formal-system",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:mind-is-not-a-machine",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-boyer-finite-output",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-chalmers-knowable-soundness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-coder-most-cannot-follow-godel",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-consistency-putnam-benacerraf",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-davis-insight-is-consistency",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-dennett-not-just-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-feferman-idealized-mathematician",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-godel-disjunction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-hofstadter-sides-with-whiteley",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-humans-are-fallible",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-maudlin-no-link",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-output-is-not-a-theory-lewis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-parity-whiteley",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-putnam-1995-unsound-or-unknowable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-transfinite-good",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-which-machine-benacerraf",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-falsum",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-g",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-quantum-consciousness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-supposition-knowably-sound-algorithm",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-understanding-not-algorithmic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:penrose-we-know-ck-does-not-halt",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-lucas-1970a-coder",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-lucas-1990-potentiality",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-lucas-1990-to-dennett",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-lucas-dialectic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-lucas-fallible-not-inconsistent",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-martin-engleman-defend-lucas",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rep-penrose-unassailable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:rival-either-or",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-mind-accepts-elementary-arithmetic",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-mind-can-construct-gm",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-mind-can-know-fm-consistent",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-mind-is-consistent",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-mind-knowledge-is-machine-output",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-p1-understanding-is-algorithm-output",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-p2-knowing-soundness-yields-knowing-ck",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-p3-an-algorithm-would-be-knowably-sound",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-p4-non-computable-capacity-means-not-a-machine",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:tr-p5-non-algorithmic-mind-needs-non-computable-physics",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:turing-halting-form",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lucas-1-mind-as-formal-system",
+   "properties": {},
+   "to_id": "req:lucas-mind-knowledge-is-system-fm"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lucas-2-apply-godel",
+   "properties": {},
+   "to_id": "req:lucas-fm-does-not-prove-gm"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lucas-3-mind-sees-gm",
+   "properties": {},
+   "to_id": "req:lucas-mind-can-see-gm-true"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lucas-4-contradiction",
+   "properties": {},
+   "to_id": "req:lucas-falsum"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lucas-5-reductio",
+   "properties": {},
+   "to_id": "req:mind-is-not-a-machine"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:obj-consistency-from-godel-ii",
+   "properties": {},
+   "to_id": "req:obj-consistency-putnam-benacerraf"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-1-we-know-ck",
+   "properties": {},
+   "to_id": "req:penrose-we-know-ck-does-not-halt"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-2-contradiction",
+   "properties": {},
+   "to_id": "req:penrose-falsum"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-3-reductio-g",
+   "properties": {},
+   "to_id": "req:penrose-g"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-4-not-algorithmic",
+   "properties": {},
+   "to_id": "req:penrose-understanding-not-algorithmic"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-5-mind-not-machine",
+   "properties": {},
+   "to_id": "req:mind-is-not-a-machine"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:penrose-6-to-new-physics",
+   "properties": {},
+   "to_id": "req:penrose-quantum-consciousness"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rival-1-conditional-proof",
+   "properties": {},
+   "to_id": "req:rival-either-or"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-boyer-finite-output",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Attacks T1's idealization to 'what the mind can come to know': actual human output is finite and trivially machine-producible."
+   },
+   "to_id": "req:tr-mind-knowledge-is-machine-output"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-chalmers-knowable-soundness",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies PT3: the contradiction Penrose derives tells against knowing one's own soundness or one's own algorithm, leaving a sound-but-not-knowably-sound or unknown algorithm open."
+   },
+   "to_id": "req:tr-p3-an-algorithm-would-be-knowably-sound"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-coder-most-cannot-follow-godel",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Attacks T3b: most people cannot follow Gödel's proof or construct G_M."
+   },
+   "to_id": "req:tr-mind-can-construct-gm"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-consistency-putnam-benacerraf",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies T3a: knowing F_M consistent is exactly what, on the mechanist hypothesis, Gödel's second theorem says the mind (= F_M) cannot do; without it, 'seeing' G_M reduces to the conditional Con(F_M) -> G_M that F_M itself proves."
+   },
+   "to_id": "req:tr-mind-can-know-fm-consistent"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-consistency-putnam-benacerraf",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The same point against Penrose's PT2: the knowledge of A's soundness that PT2 relies on is, if A is our procedure, knowledge the second theorem puts out of A's (our) reach."
+   },
+   "to_id": "req:tr-p2-knowing-soundness-yields-knowing-ck"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-davis-insight-is-consistency",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies PT2's presupposition that humans can know the soundness of the procedure they themselves use; the construction itself is mechanical."
+   },
+   "to_id": "req:tr-p2-knowing-soundness-yields-knowing-ck"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-dennett-not-just-arithmetic",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Attacks T1: there is no well-defined 'arithmetic output' of a person to identify with a formal system's theorems."
+   },
+   "to_id": "req:tr-mind-knowledge-is-machine-output"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-feferman-idealized-mathematician",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies PT1's idealization: there is no single fixed totality of 'procedures available to mathematicians' for an algorithm to encapsulate."
+   },
+   "to_id": "req:tr-p1-understanding-is-algorithm-output"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-godel-disjunction",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The second disjunct (absolutely undecidable problems) is exactly the denial that the mind can see the Gödel sentence of every machine; the theorem alone does not exclude it, so L3 in its universal form is not a consequence of Gödel."
+   },
+   "to_id": "req:lucas-mind-can-see-gm-true"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-hofstadter-sides-with-whiteley",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Hofstadter, siding with Whiteley, attacks the reductio step itself: a limit of M that the mind lacks does not discriminate, since minds have parallel limits."
+   },
+   "to_id": "inf:lucas-5-reductio"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-humans-are-fallible",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies T2: human arithmetic belief is fallible and possibly inconsistent, so Gödel's consistency hypothesis cannot be assumed of a mind."
+   },
+   "to_id": "req:tr-mind-is-consistent"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-humans-are-fallible",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Against PT3's rejection of the 'unsound algorithm' option: a fallible human procedure is just what an unsound algorithm would look like."
+   },
+   "to_id": "req:tr-p3-an-algorithm-would-be-knowably-sound"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-maudlin-no-link",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Maudlin (1995) attacks the link itself, the step from the Gödelian conclusion to non-computable quantum physics in the brain."
+   },
+   "to_id": "inf:penrose-6-to-new-physics"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-output-is-not-a-theory-lewis",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies T1: even if the mind is a machine, 'what the mind can come to know' need not be one fixed formal system's theorem set."
+   },
+   "to_id": "req:tr-mind-knowledge-is-machine-output"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-parity-whiteley",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Attacks the step, not a premise: the move from 'M has a limit the mind lacks' to 'the mind is not M' proves too much, since the mind has a parallel limit ('Lucas cannot consistently assert this sentence') that machines lack."
+   },
+   "to_id": "inf:lucas-5-reductio"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-putnam-1995-unsound-or-unknowable",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies PT3: the options of an unknowable or unsound algorithm are not excluded by the theorem, and Penrose's arguments against them are empirical speculation."
+   },
+   "to_id": "req:tr-p3-an-algorithm-would-be-knowably-sound"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-transfinite-good",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies T3b for self-extending machines: out-doing them needs ever larger constructive ordinals, which no one can name uniformly."
+   },
+   "to_id": "req:tr-mind-can-construct-gm"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-which-machine-benacerraf",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Denies T3b as applied to the mind's own machine: nothing guarantees a mind can know its own program, and the theorem suggests it cannot."
+   },
+   "to_id": "req:tr-mind-can-construct-gm"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-1970a-coder",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas (1970a) answers Coder: the argument concerns what a mind can be brought to understand."
+   },
+   "to_id": "req:obj-coder-most-cannot-follow-godel"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-1990-potentiality",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas (1990) answers Boyer: the argument concerns potential capacity, not finite actual output."
+   },
+   "to_id": "req:obj-boyer-finite-output"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-1990-to-dennett",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas (1990) answers Dennett: a machine producing the person's behaviour produces in particular their arithmetic acceptances, which meet Gödel."
+   },
+   "to_id": "req:obj-dennett-not-just-arithmetic"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-dialectic",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas's rejoinder on consistency: the mechanist must claim his model consistent to make it a model of a reasoner, and so cannot deny the mind the consistency he asserts."
+   },
+   "to_id": "req:obj-consistency-putnam-benacerraf"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-dialectic",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas's rejoinder to Benacerraf: the mechanist must specify the machine; a mechanism that cannot say which machine has become unfalsifiable."
+   },
+   "to_id": "req:obj-which-machine-benacerraf"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-lucas-fallible-not-inconsistent",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Lucas's reply to the fallibility objection: human error is corrected and does not amount to logical inconsistency, so T2 survives the objection."
+   },
+   "to_id": "req:obj-humans-are-fallible"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-martin-engleman-defend-lucas",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Martin and Engleman (1990) defend Lucas against Hofstadter's version of the parity point."
+   },
+   "to_id": "req:obj-hofstadter-sides-with-whiteley"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-martin-engleman-defend-lucas",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The same defence answers Whiteley's sentence, which Hofstadter's point extends."
+   },
+   "to_id": "req:obj-parity-whiteley"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Penrose 1996 answers Chalmers: doubting the soundness of one's own unassailable reasoning undercuts all mathematics."
+   },
+   "to_id": "req:obj-chalmers-knowable-soundness"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Penrose 1996 answers Feferman: the idealization to unassailable truth is no worse than idealizations mathematics already uses."
+   },
+   "to_id": "req:obj-feferman-idealized-mathematician"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-penrose-unassailable",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Penrose's answer to fallibility: the argument is restricted to unassailable truths, where errors are correctable and the body is sound."
+   },
+   "to_id": "req:obj-humans-are-fallible"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:rep-penrose-unassailable",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Penrose's ch. 3 arguments that an unsound or unknowable algorithm is implausible (correctable error; natural selection; AI construction) are what Putnam's objection attacks, and are his reply to it."
+   },
+   "to_id": "req:obj-putnam-1995-unsound-or-unknowable"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-boyer-finite-output"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-chalmers-knowable-soundness"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-coder-most-cannot-follow-godel"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-consistency-putnam-benacerraf"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-dennett-not-just-arithmetic"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-feferman-idealized-mathematician"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-godel-disjunction"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-hofstadter-sides-with-whiteley"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-humans-are-fallible"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-maudlin-no-link"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-output-is-not-a-theory-lewis"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-parity-whiteley"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:obj-which-machine-benacerraf"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-lucas-1970a-coder"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-lucas-1990-potentiality"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-lucas-1990-to-dennett"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-lucas-dialectic"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-lucas-fallible-not-inconsistent"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-martin-engleman-defend-lucas"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rep-penrose-1996-soundness-of-own-reasoning"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:iep-megill-lucas-penrose",
+   "properties": {},
+   "to_id": "req:rival-either-or"
+  },
+  {
+   "edge_type": "EVOLVES_INTO",
+   "from_id": "req:obj-godel-disjunction",
+   "properties": {
+    "evidence": "The objection says the theorem yields only a disjunction; the rival conclusion states that disjunction as a position of its own, derived, so it can be read beside the main conclusion."
+   },
+   "to_id": "req:rival-either-or"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:mind-is-not-a-machine",
+   "properties": {
+    "note": "Reading (1) of the open question: Lucas's and Penrose's conclusion."
+   },
+   "to_id": "dec:does-godel-show-the-mind-is-not-a-machine"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:rival-either-or",
+   "properties": {
+    "note": "Reading (2) of the open question: the critics' and Gödel's own either/or."
+   },
+   "to_id": "dec:does-godel-show-the-mind-is-not-a-machine"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-chalmers-knowable-soundness",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-chalmers-knowable-soundness"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-consistency-putnam-benacerraf",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-consistency-putnam-benacerraf"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-feferman-idealized-mathematician",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-feferman-idealized-mathematician"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-godel-disjunction",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-godel-disjunction"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-humans-are-fallible",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-humans-are-fallible"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-output-is-not-a-theory-lewis",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-output-is-not-a-theory-lewis"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-parity-whiteley",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-parity-whiteley"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-which-machine-benacerraf",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-which-machine-benacerraf"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:rep-lucas-dialectic",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:rep-lucas-dialectic"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:rep-lucas-fallible-not-inconsistent",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:rep-lucas-fallible-not-inconsistent"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:rep-penrose-1996-soundness-of-own-reasoning"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:tr-mind-can-construct-gm",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:tr-mind-can-construct-gm"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:tr-mind-can-know-fm-consistent",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:tr-mind-can-know-fm-consistent"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:tr-mind-knowledge-is-machine-output",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:tr-mind-knowledge-is-machine-output"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:formalized-first-theorem",
+   "properties": {},
+   "to_id": "inf:lucas-3-mind-sees-gm"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:godel-first-incompleteness",
+   "properties": {},
+   "to_id": "inf:lucas-2-apply-godel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:godel-second-incompleteness",
+   "properties": {},
+   "to_id": "inf:obj-consistency-from-godel-ii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:godel-second-incompleteness",
+   "properties": {},
+   "to_id": "inf:rival-1-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-falsum",
+   "properties": {},
+   "to_id": "inf:lucas-5-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-fm-does-not-prove-gm",
+   "properties": {},
+   "to_id": "inf:lucas-4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-fm-does-not-prove-gm",
+   "properties": {},
+   "to_id": "inf:rival-1-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-mind-can-see-gm-true",
+   "properties": {},
+   "to_id": "inf:lucas-4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-mind-knowledge-is-system-fm",
+   "properties": {},
+   "to_id": "inf:lucas-2-apply-godel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-mind-knowledge-is-system-fm",
+   "properties": {},
+   "to_id": "inf:lucas-4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-mind-knowledge-is-system-fm",
+   "properties": {},
+   "to_id": "inf:obj-consistency-from-godel-ii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-mind-knowledge-is-system-fm",
+   "properties": {},
+   "to_id": "inf:rival-1-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-supposition-mind-is-a-machine",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:lucas-1-mind-as-formal-system"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lucas-supposition-mind-is-a-machine",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:lucas-4-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:machine-output-is-a-formal-system",
+   "properties": {},
+   "to_id": "inf:lucas-1-mind-as-formal-system"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-falsum",
+   "properties": {},
+   "to_id": "inf:penrose-3-reductio-g"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-g",
+   "properties": {},
+   "to_id": "inf:penrose-4-not-algorithmic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-supposition-knowably-sound-algorithm",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:penrose-1-we-know-ck"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-supposition-knowably-sound-algorithm",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:penrose-2-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-understanding-not-algorithmic",
+   "properties": {},
+   "to_id": "inf:penrose-5-mind-not-machine"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-understanding-not-algorithmic",
+   "properties": {},
+   "to_id": "inf:penrose-6-to-new-physics"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:penrose-we-know-ck-does-not-halt",
+   "properties": {},
+   "to_id": "inf:penrose-2-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-accepts-elementary-arithmetic",
+   "properties": {},
+   "to_id": "inf:lucas-1-mind-as-formal-system"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-can-construct-gm",
+   "properties": {},
+   "to_id": "inf:lucas-3-mind-sees-gm"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-can-know-fm-consistent",
+   "properties": {},
+   "to_id": "inf:lucas-3-mind-sees-gm"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-is-consistent",
+   "properties": {},
+   "to_id": "inf:lucas-2-apply-godel"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-is-consistent",
+   "properties": {},
+   "to_id": "inf:obj-consistency-from-godel-ii"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-is-consistent",
+   "properties": {},
+   "to_id": "inf:rival-1-conditional-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-mind-knowledge-is-machine-output",
+   "properties": {},
+   "to_id": "inf:lucas-1-mind-as-formal-system"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-p1-understanding-is-algorithm-output",
+   "properties": {},
+   "to_id": "inf:penrose-2-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-p2-knowing-soundness-yields-knowing-ck",
+   "properties": {},
+   "to_id": "inf:penrose-1-we-know-ck"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-p3-an-algorithm-would-be-knowably-sound",
+   "properties": {},
+   "to_id": "inf:penrose-4-not-algorithmic"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-p4-non-computable-capacity-means-not-a-machine",
+   "properties": {},
+   "to_id": "inf:penrose-5-mind-not-machine"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:tr-p5-non-algorithmic-mind-needs-non-computable-physics",
+   "properties": {},
+   "to_id": "inf:penrose-6-to-new-physics"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:turing-halting-form",
+   "properties": {},
+   "to_id": "inf:penrose-1-we-know-ck"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:turing-halting-form",
+   "properties": {},
+   "to_id": "inf:penrose-2-contradiction"
+  }
+ ],
+ "graph_id": "cd9bedc1cb114de6",
+ "nodes": [
+  {
+   "node_id": "art:iep-megill-lucas-penrose",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:2537ac0604034489d03b6babbb6117b0a2d8cc984b15402659b5ff284c279c05",
+    "description": "A secondary survey of the Lucas-Penrose argument and its literature. READ by the observer, not by the designer. It documents the objections and replies it covers (consistency, inconsistency, Benacerraf, Whiteley/Hofstadter/Martin-Engleman, idealization: Boyer, Coder, Dennett, Lewis, Lucas; Chalmers, McCullough, McDermott, Feferman, Penrose 1996; Maudlin 1995; Gödel's Gibbs lecture). It does NOT cover Good 1967, Davis 1990/1993, Turing 1947/1950 or Putnam 1995, and it is not the source of the mathematics (Gödel 1931, Turing 1936), which stays recalled.",
+    "location": "https://iep.utm.edu/lp-argue/ (read in full by the trial's observer from a Web Archive copy)",
+    "name": "J. Megill, 'The Lucas-Penrose Argument about Gödel's Theorem', Internet Encyclopedia of Philosophy",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "dec:does-godel-show-the-mind-is-not-a-machine",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "Two readings of what Gödel's incompleteness theorem shows about minds are kept side by side, neither held: (1) req:mind-is-not-a-machine — the mind is not equivalent to any Turing machine (Lucas 1961; Penrose 1989, 1994); (2) req:rival-either-or — only a disjunction: either the mind is not a machine, or it is one that cannot know its own consistency / which machine it is (Gödel 1951; Benacerraf 1967). Reading (1) rests on all the translation premises including T3a and T3b (and, by Penrose's route, PT1-PT4); reading (2) rests on Gödel I and II, T0, T1 and T2, and does not use T3a or T3b.",
+    "kind": "choice",
+    "name": "Does Gödel's theorem show that the human mind is not a machine? (kept open on purpose)",
+    "rationale": "The owner's word, recorded as his answer to question:asked-should-the-question-does-g-del-s-theorem-03b50b (2026-10-22): record the dispute as a Decision set to contested, and the either/or as a rival conclusion, saying what each rests on. This record decides nothing between them.",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:lucas-1-mind-as-formal-system",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lucas-mind-knowledge-is-system-fm",
+    "rule": "all",
+    "rule_name": "conjunction of a bridge premise with a cited lemma, under a supposition",
+    "warrant": "If the mind is M (supposition), what it can know in arithmetic is what M outputs (T1); what any machine outputs is the theorem set of an effectively axiomatized system (Turing/Craig); and that set includes elementary arithmetic (T0). So the mind's arithmetic knowledge is the theorem set of a system F_M to which Gödel's theorem can apply."
+   }
+  },
+  {
+   "node_id": "inf:lucas-2-apply-godel",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lucas-fm-does-not-prove-gm",
+    "rule": "all",
+    "rule_name": "instantiation of a cited theorem (Gödel I) at F_M",
+    "warrant": "F_M is effectively axiomatized and contains arithmetic (L1) and is consistent because the mind's arithmetic output is (T2); Gödel's first theorem then gives a true sentence G_M that F_M does not prove. Since F_M's theorems are exactly what the mind can know (L1), the mind cannot know G_M."
+   }
+  },
+  {
+   "node_id": "inf:lucas-3-mind-sees-gm",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lucas-mind-can-see-gm-true",
+    "rule": "all",
+    "rule_name": "modus ponens on the formalized first theorem",
+    "warrant": "The mind can construct G_M from M (T3b); it can follow the proof that Con(F_M) implies G_M (the formalized first theorem); and it knows Con(F_M) (T3a). By modus ponens it knows G_M is true. This is Lucas's 'standing outside the system, we can see it to be true'."
+   }
+  },
+  {
+   "node_id": "inf:lucas-4-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lucas-falsum",
+    "rule": "all",
+    "rule_name": "deriving a contradiction (⊥) under the supposition",
+    "warrant": "Under the supposition, the mind can know exactly F_M's theorems (L1); G_M is not one of them (L2); yet the mind can know G_M (L3). Both cannot hold: G_M is and is not among what the mind can know."
+   }
+  },
+  {
+   "node_id": "inf:lucas-5-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:lucas-supposition-mind-is-a-machine"
+    ],
+    "generalizes_over": [
+     "M"
+    ],
+    "name": "all of 1 premise(s) support req:mind-is-not-a-machine",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum",
+    "warrant": "The supposition that the mind is some machine M led to a contradiction, and M was arbitrary (whatever machine the mechanist proposes), so the supposition is rejected: the mind is not any machine. NOTE: the contradiction was derived from the supposition TOGETHER WITH the translation premises T0, T1, T2, T3a, T3b; logic alone does not say which of them to give up. Lucas gives up the supposition; his critics give up a translation premise (most often T3a or T3b)."
+   }
+  },
+  {
+   "node_id": "inf:obj-consistency-from-godel-ii",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:obj-consistency-putnam-benacerraf",
+    "rule": "all",
+    "rule_name": "instantiation of a cited theorem (Gödel II) at F_M, under the mechanist supposition",
+    "warrant": "Under the mechanist supposition the mind can know exactly F_M's theorems (L1); F_M is consistent (T2); by Gödel's second theorem F_M does not prove Con(F_M); so the mind cannot know F_M is consistent, i.e. T3a fails if the mind is a machine. This is the objection's own support, and it rests on the very supposition Lucas's reductio is trying to refute."
+   }
+  },
+  {
+   "node_id": "inf:penrose-1-we-know-ck",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:penrose-we-know-ck-does-not-halt",
+    "rule": "all",
+    "rule_name": "following a cited construction, under the supposition",
+    "warrant": "Under the supposition mathematicians know A and know it sound; the Gödel-Turing result shows that if A is sound, C_k(k) does not halt; knowing the antecedent and following the construction, they come to know the consequent (PT2)."
+   }
+  },
+  {
+   "node_id": "inf:penrose-2-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:penrose-falsum",
+    "rule": "all",
+    "rule_name": "deriving a contradiction (⊥) under the supposition",
+    "warrant": "Mathematicians can know C_k(k) does not halt (P1); A encapsulates all they can ascertain (PT1), so A ascertains it; but a sound A does not ascertain it (Gödel-Turing). Contradiction."
+   }
+  },
+  {
+   "node_id": "inf:penrose-3-reductio-g",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:penrose-supposition-knowably-sound-algorithm"
+    ],
+    "generalizes_over": [
+     "A"
+    ],
+    "name": "all of 1 premise(s) support req:penrose-g",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum",
+    "warrant": "The supposition that mathematicians use a knowably sound algorithm A led to contradiction for arbitrary A, so no knowably sound algorithm is what they use. As with Lucas, the contradiction was derived together with the translation premises PT1 and PT2; the reductio rejects the supposition only if those are kept."
+   }
+  },
+  {
+   "node_id": "inf:penrose-4-not-algorithmic",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:penrose-understanding-not-algorithmic",
+    "rule": "all",
+    "rule_name": "modus tollens",
+    "warrant": "If understanding were algorithmic, the algorithm would be knowable and knowably sound (PT3); by G no knowably sound algorithm is in use; so understanding is not algorithmic. Everything beyond G here comes from PT3, which Penrose argues for by plausibility in ch. 3, not from Gödel's theorem."
+   }
+  },
+  {
+   "node_id": "inf:penrose-5-mind-not-machine",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:mind-is-not-a-machine",
+    "rule": "all",
+    "rule_name": "modus ponens",
+    "warrant": "Mathematical understanding is a capacity of the mind that no algorithm captures (P3); a mind with such a capacity is not equivalent to any Turing machine (PT4). This is Penrose's line to the same conclusion as Lucas's, a second, alternative derivation."
+   }
+  },
+  {
+   "node_id": "inf:penrose-6-to-new-physics",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:penrose-quantum-consciousness",
+    "rule": "all",
+    "rule_name": "modus ponens",
+    "warrant": "Understanding is not algorithmic (P3, the Gödelian argument); a physical brain producing non-algorithmic understanding must exploit non-computable physics (PT5); Penrose's candidate is orchestrated objective reduction. The Gödelian argument is this step's only reason to look for such physics."
+   }
+  },
+  {
+   "node_id": "inf:rival-1-conditional-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:lucas-supposition-mind-is-a-machine"
+    ],
+    "generalizes_over": [
+     "M"
+    ],
+    "name": "all of 4 premise(s) support req:rival-either-or",
+    "rule": "all",
+    "rule_name": "conditional proof (→I), stated as a disjunction",
+    "warrant": "Under the supposition that the mind is machine M (consistent, T2), G_M is true and not among what the mind can know (L2), and by Gödel II Con(F_M) is not among what it can know either (L1 + Gödel II). Discharging the supposition: if the mind is a machine, there are truths about it (G_M, its own consistency) it cannot know; equivalently, either it is not a machine or it cannot know them. Unlike Lucas's reductio, this line does NOT use T3a or T3b (that the mind can know its consistency and construct its own G_M)."
+   }
+  },
+  {
+   "node_id": "proj:lucas-penrose-argument",
+   "node_type": "Project",
+   "properties": {
+    "domain": "argument",
+    "mode": "flexible",
+    "name": "The Lucas-Penrose argument from Godel's incompleteness theorem (line-of-reasoning trial)",
+    "objective": "The argument recorded at its strongest with its objections and replies, where every step carrying Godel's theorem into a claim about minds is its own premise, so the reading shows exactly which step each objection attacks; compared against a reference held by the observer.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-every-citation-here-g-del-1931-turing-1936-a6ddea",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\"\n- Partly check the citations: the observer read J. Megill's Internet Encyclopedia of Philosophy article \"The Lucas-Penrose Argument about Gödel's Theorem\" in full (via the Web Archive). Register it as the source for the objections and replies it covers. The mathematics (Gödel 1931, Turing 1936) stays recalled.\n- Take the Gödel–Rosser form (consistency suffices), since the argument turns on consistency.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "lucas-penrose-round-1",
+    "batch_position": 3,
+    "question": "Every citation here (Gödel 1931, Turing 1936, Craig 1953, Lucas, Penrose, and each objector) is RECALLED, not read; two are flagged as uncertain in content (Lewis 1969 / Chihara 1972, and Feferman 1995). Do you want them checked against the sources and registered as Artifacts, and do you take Gödel's first theorem in the Rosser form recorded (consistency alone, no ω-consistency)?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-should-the-question-does-g-del-s-theorem-03b50b",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" Yes to both:\n- record the dispute as a Decision set to contested (a deliberately open question);\n- record the critics' and Gödel's own either/or (\"either the mind is not a machine, or there are absolutely unsolvable problems / we cannot know which system we are\") as a rival conclusion.\nSay what each one rests on.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "lucas-penrose-round-1",
+    "batch_position": 2,
+    "context_setter": "Lucas's reductio derives a contradiction from mechanism TOGETHER WITH five translation premises; logic alone does not say which to give up. Today the conclusion reads 'unproven', not 'contested', which may read as a verdict.",
+    "question": "Should the question 'does Gödel's theorem show the mind is not a machine?' be kept open on purpose, as a Decision you set to contested, with Lucas's and Penrose's lines on one side and the critics' reading on the other ('the theorem shows at most a disjunction: the mind is not a machine, OR it cannot know its own consistency / its own program')? I have not created that Decision or the rival conclusion; both are your call.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-the-translation-premises-t0-t3b-pt1-pt4-are-d947f9",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" Keep the translations \"taken as given\" for now, because objections reach the steps that way. Your finding that none of the three encodings reads \"conditional on this, and contested through it\" is the evidence that settled reflow2's decision: a named kind of translation (bridge) premise will be built (reflow2:dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim). Until it exists, keep the \"TRANSLATION\" name prefix.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "lucas-penrose-round-1",
+    "batch_position": 1,
+    "context_setter": "Lucas-Penrose trial: every step that carries Gödel's theorem into a claim about minds is its own premise. reflow2 offers no encoding that is both 'conditional on this premise' and 'contested through this premise'.",
+    "question": "The translation premises (T0-T3b, PT1-PT4) are recorded as ordinary premises marked 'taken as given' (by the arguer), so the objections against them reach the steps that use them; the cost is that they are listed as 'stated foundations' beside Gödel's theorem. The alternative is to record them as assumptions: then each conclusion reads 'conditional on' them, but the objections against them no longer reach the conclusions. Which reading do you want kept?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-two-scope-questions-1-penrose-goes-on-from-b2212d",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\"\n1. Yes, Penrose's step to quantum consciousness is in scope. Record it as resting on the Gödelian argument, with Maudlin's (1995) doubt that the link holds at all, aimed at that link.\n2. No, Whiteley should not stay unanswered. The IEP article gives Hofstadter (1981) siding with Whiteley, and Martin and Engleman (1990) defending Lucas against Hofstadter. Record both.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "lucas-penrose-round-1",
+    "batch_position": 4,
+    "question": "Two scope questions. (1) Penrose goes on from 'understanding is not algorithmic' to non-computable physics in the brain (with Hameroff); I left that out. In or out? (2) I recorded no reply to Whiteley's 1962 parity objection because I cannot recall Lucas's reply reliably; should it stay unanswered in the record until a source is read?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:formalized-first-theorem",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The first theorem formalized: F proves Con(F) → G_F (cited)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Implicit in Gödel 1931 (the step used for the second theorem); standard in textbook treatments (e.g. Smullyan, Gödel's Incompleteness Theorems, 1992; Boolos, The Logic of Provability, 1993). RECALLED, not read in this session.",
+    "statement": "For such a system F, F itself proves the conditional Con(F) → G_F. So anyone, or any system, that can follow Gödel's construction for F and knows F is consistent can conclude G_F; and F 'knows' the conditional too. Only the antecedent, F's consistency, is out of F's reach (by the second theorem).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:godel-first-incompleteness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Gödel's first incompleteness theorem (cited)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "K. Gödel, 'Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I', Monatshefte für Mathematik und Physik 38 (1931), 173-198; Rosser's strengthening: J.B. Rosser, J. Symbolic Logic 1 (1936). RECALLED, not read in this session.",
+    "statement": "For any formal system F that is consistent, effectively (recursively) axiomatized, and contains enough arithmetic (e.g. Robinson's Q), there is a sentence G_F of F's language such that F does not prove G_F; and G_F is true in the standard natural numbers if F is consistent. (Gödel's 1931 form also needs ω-consistency for F not to refute G_F; Rosser's 1936 sentence removes that.) Purely a result about formal systems: it says nothing by itself about minds.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:godel-second-incompleteness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Gödel's second incompleteness theorem (cited)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "K. Gödel 1931 (same paper, stated with proof sketched); full proof Hilbert and Bernays, Grundlagen der Mathematik II (1939); derivability conditions in the form usually cited from Löb 1955. RECALLED, not read in this session.",
+    "statement": "For any consistent, effectively axiomatized formal system F containing enough arithmetic (and whose provability predicate meets the Hilbert-Bernays-Löb derivability conditions), F does not prove Con(F), the arithmetic sentence expressing F's own consistency.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:lucas-falsum",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "L4 (⊥): G_M is both among and not among what the mind can know",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Contradiction reached under the mechanist supposition: G_M is something the mind can come to know (L3), and, being unprovable in F_M, is not something the mind can come to know (L1, L2).",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "M"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lucas-fm-does-not-prove-gm",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "L2: (under mechanism) F_M does not prove its Gödel sentence G_M, and G_M is true",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Under the supposition: F_M does not prove its Gödel sentence G_M, and G_M is true; so G_M is NOT among the arithmetic sentences the mind can come to know.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "M"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lucas-mind-can-see-gm-true",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "L3: the mind can see that G_M is true ('we can see our own Gödel sentence is true')",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas, Philosophy 36 (1961): 'we, standing outside the system, can see it to be true'. RECALLED (wording approximate).",
+    "statement": "For the machine M proposed as a model of the mind, the mind can come to know that G_M is true: it constructs G_M, knows F_M is consistent, and follows Gödel's proof that a consistent F_M's Gödel sentence is true.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "M"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lucas-mind-knowledge-is-system-fm",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "L1: (under mechanism) what the mind can know in arithmetic is the theorem set of a formal system F_M containing arithmetic",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Under the supposition that the mind is machine M: the arithmetic sentences the mind can come to know to be true are exactly the theorems of an effectively axiomatized formal system F_M that contains elementary arithmetic.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "M"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lucas-supposition-mind-is-a-machine",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lucas's supposition (mechanism): the mind is some machine M",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas, 'Minds, Machines and Gödel', Philosophy 36 (1961), 112-127. RECALLED, not read in this session.",
+    "statement": "Suppose, for reductio, that the human mind is equivalent to some Turing machine M (some formal system): everything the mind can do, M can do. Taken up by Lucas (1961) only to be refuted.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "M"
+    ]
+   }
+  },
+  {
+   "node_id": "req:machine-output-is-a-formal-system",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "What a Turing machine enumerates is the theorem set of a formal system (cited)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "A.M. Turing, 'On computable numbers...', Proc. London Math. Soc. 42 (1936); W. Craig, 'On axiomatizability within a system', J. Symbolic Logic 18 (1953). RECALLED, not read in this session.",
+    "statement": "The set of sentences any Turing machine enumerates (outputs as accepted) is recursively enumerable, and every recursively enumerable set of sentences is the set of theorems of some effectively axiomatized formal system (Craig's theorem). So whatever a machine outputs as arithmetic truths is exactly what some formal system proves, and Gödel's first theorem applies to it if it is consistent and contains enough arithmetic.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:mind-is-not-a-machine",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONCLUSION: the human mind is not a machine (not equivalent to any Turing machine or formal system)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas, Philosophy 36 (1961); R. Penrose, The Emperor's New Mind (Oxford, 1989); R. Penrose, Shadows of the Mind (Oxford, 1994). RECALLED.",
+    "statement": "The human mind is not equivalent to any Turing machine, nor to any formal system: no machine can produce exactly what the mind can come to know. Lucas (1961) argues it by reductio; Penrose (1989, 1994) argues the corresponding claim about human mathematical understanding.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:obj-boyer-finite-output",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Boyer 1983, idealization): a human's actual output is finite, so some machine can simulate it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D. Boyer (1983), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the paper was not read.",
+    "statement": "Any human produces only finitely many arithmetic assertions in a lifetime, and any finite list can be produced by a machine. So 'what the mind can come to know' (T1) is an idealization to an infinite potential output that no actual mind has; read as actual output, the mind is trivially matched by a machine.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-chalmers-knowable-soundness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Chalmers 1995; McCullough 1995; McDermott 1995): Penrose's reasoning shows only that no system can know it is sound and know that it is that system",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D.J. Chalmers, 'Minds, Machines, and Mathematics', Psyche 2 (1995); D. McCullough (1995) and D. McDermott (1995), Psyche symposium, grouped with Chalmers by the IEP. DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); McCullough's and McDermott's exact points are not stated here separately.",
+    "statement": "Formalized, Penrose's arguments (including the reductio of Shadows §3.16) derive a contradiction from the assumption that we know we are a given system AND know that system to be sound. The right conclusion is that the belief in our own soundness (or our knowledge of which system we are) is what fails, not that we are non-computational. A computational mind that is sound but cannot know it is, or cannot know its own algorithm, is untouched; PT3's dismissal of those options is not supported by the theorem.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-coder-most-cannot-follow-godel",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Coder 1969, idealization): most people cannot follow Gödel's proof, let alone construct G_M",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D. Coder (1969), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the paper was not read.",
+    "statement": "Most human beings cannot understand Gödel's proof or construct the Gödel sentence of a given machine. So 'the mind can construct G_M' (T3b) is true at best of a few trained logicians; the argument would show at most that those few are not machines, and even they need help with a machine of any real size.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-consistency-putnam-benacerraf",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Putnam 1960; Rogers 1957; Benacerraf 1967; Hutton 1976): the mind can 'see' G_M only by knowing F_M is consistent, which no mechanist need grant",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "H. Putnam, 'Minds and Machines' (1960); H. Rogers, Theory of Recursive Functions and Effective Computability (1957 notes, as cited by the IEP); P. Benacerraf, 'God, the Devil, and Gödel', The Monist 51 (1967); A. Hutton (1976, as cited by the IEP). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP), read by the observer; the primary papers were not read.",
+    "statement": "Following Gödel's construction gives only 'if F_M is consistent, then G_M is true', and F_M itself proves that conditional. To get G_M one must KNOW F_M is consistent. If the mind is M, that knowledge would put Con(F_M) among F_M's own theorems, which Gödel's second theorem forbids for a consistent F_M. So, on the mechanist's hypothesis, T3a is false; assuming it begs the question against mechanism. What Gödel shows is at most: if the mind is a machine, it cannot know (prove) that it is consistent.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-davis-insight-is-consistency",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Davis 1990, 1993): the only 'insight' Gödel's proof needs is knowing soundness or consistency — and nothing shows mathematicians have that about their own procedure",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "M. Davis, 'Is Mathematical Insight Algorithmic?', Behavioral and Brain Sciences 13 (1990) (commentary on The Emperor's New Mind); M. Davis, 'How Subtle is Gödel's Theorem? More on Roger Penrose', BBS 16 (1993). CITED and RECALLED, not read in this session.",
+    "statement": "Constructing C_k(k) (or G) from A is mechanical; a machine can do it too. The whole weight falls on KNOWING that A is sound. Mathematicians have no such knowledge of the procedures by which they themselves reason, and a machine given the same premise would reach the same conclusion. PT2 trades on 'we know A is sound', which is not something humans demonstrably have about their own procedure.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-dennett-not-just-arithmetic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Dennett 1972, idealization): humans do not just assert arithmetic; their output is not a formal system's theorem list",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D.C. Dennett (1972), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the paper was not read.",
+    "statement": "A human being is not a device that outputs arithmetic truths; what people assert is a mixture, shaped by many purposes, and there is no well-defined set of 'the mind's arithmetic output' to identify with a formal system's theorems. The mechanist need only say a machine produces the person's behaviour, not that some sub-machine is a sound arithmetic theorem-prover. Aimed at T1.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-feferman-idealized-mathematician",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Feferman 1995): 'the procedures available to human mathematicians' is not a single fixed body an algorithm could be said to encapsulate",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S. Feferman, 'Penrose's Gödelian Argument', Psyche 2 (dated 1995 in my recall; the IEP cites it as Feferman 1996). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the emphasis given here is recalled with moderate confidence.",
+    "statement": "Penrose treats the idealized community of mathematicians, past and future, as having one fixed totality of methods that an algorithm A either encapsulates or not (PT1), and treats 'unassailable' truth as sharply defined. Neither notion is precise enough for a Gödelian argument; and even granting them, the conclusion leaves open that mathematicians' reasoning is captured by a formal system that is not known to be sound. Feferman also noted technical slips in Penrose's presentation of the logic.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-godel-disjunction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Gödel 1951): the theorem yields only a disjunction — either the mind surpasses every machine, or there are absolutely undecidable arithmetic problems",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "K. Gödel, 'Some basic theorems on the foundations of mathematics and their implications' (Gibbs Lecture, 1951), Collected Works vol. III (Oxford, 1995), p. 310. DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the lecture itself was not read.",
+    "statement": "Gödel himself drew from his theorems only this: either the human mind infinitely surpasses the powers of any finite machine, or there exist absolutely undecidable Diophantine problems (true sentences the mind can never know). The theorem does not say which. To reach 'the mind is not a machine' one must add that the second disjunct is false — that the mind can know every such Gödel sentence — which is not a mathematical result. (Gödel himself inclined to the first disjunct on other, philosophical grounds.)",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-hofstadter-sides-with-whiteley",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Hofstadter 1981): sides with Whiteley — humans have Gödelian limits of their own, so the asymmetry Lucas needs is not there",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D.R. Hofstadter (1981), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the work itself was not read. My statement of the point is a paraphrase of the IEP grouping, recalled.",
+    "statement": "Hofstadter endorses Whiteley's parity point: a human, too, faces sentences about himself that he cannot consistently assert or know, so Lucas's step from 'M has a limit the mind lacks' to 'the mind is not M' does not discriminate minds from machines.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-humans-are-fallible",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Turing 1947, 1950 and many later): human mathematicians are fallible, perhaps inconsistent, so Gödel's hypothesis of consistency fails for the mind",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "The INCONSISTENCY objection as such is DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP). Its attribution here to A.M. Turing (1947 LMS lecture; 'Computing Machinery and Intelligence', Mind 59, 1950, §6) is NOT covered by that source and stays RECALLED.",
+    "statement": "Gödel's theorem applies only to CONSISTENT systems. Human reasoners make mistakes and may hold inconsistent beliefs; a machine allowed to err is not bound by the theorem in the same way ('if a machine is expected to be infallible, it cannot also be intelligent'). So T2, that the mind's arithmetic output is consistent, is not something the argument may assume, and Penrose's idealization to a sound procedure faces the same doubt.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-maudlin-no-link",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Maudlin 1995): even granting the Gödelian conclusion, nothing links it to quantum physics in the brain",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "T. Maudlin (1995), Psyche symposium on Shadows of the Mind, as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the paper was not read.",
+    "statement": "The step from 'understanding is not algorithmic' to 'the brain uses non-computable quantum gravity (objective reduction)' has no support of its own: the Gödelian argument says nothing about which physics, and nothing in the proposed quantum mechanism is shown to be non-computable in the way the argument needs. The link between Part I and Part II of Shadows of the Mind does not hold.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-output-is-not-a-theory-lewis",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Lewis 1969; Chihara 1972): 'what the mind can come to know' is not the output of one fixed formal system, even if the mind is a machine",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "D. Lewis, 'Lucas against Mechanism', Philosophy 44 (1969): covered by art:iep-megill-lucas-penrose (Megill, IEP) among the idealization objections. C. Chihara (1972) is NOT covered by that source and stays recalled. CAUTION: the wording of this objection is the designer's reconstruction and was not checked against the IEP text.",
+    "statement": "The mechanist claims the mind is (run by) a machine; it does not follow that the arithmetic sentences the mind 'can come to know' form the theorem set of one fixed consistent formal system. A machine can change its axioms as it learns, accept sentences by rules other than proof, or have no well-defined 'knowable arithmetic' at all; and Lucas's own procedure (Gödelizing whatever machine is shown to him) is not shown to be something he could carry out uniformly. T1 smuggles in an idealization that the mechanist need not accept.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-parity-whiteley",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Whiteley 1962): humans have their own 'Gödel sentence' — 'Lucas cannot consistently assert this sentence' — so the argument proves too much",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "C.H. Whiteley, 'Minds, Machines and Gödel: A Reply to Mr Lucas', Philosophy 37 (1962). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the paper itself was not read.",
+    "statement": "The sentence 'Lucas cannot consistently assert this sentence' is true, and Lucas cannot consistently assert it, though others (and machines) can. If having such a limit showed that a machine is not a mind, the parallel would show Lucas is not a mind. The reductio's move from 'M cannot do what the mind can' to 'the mind is not M' does not discriminate minds from machines.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-putnam-1995-unsound-or-unknowable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Putnam 1995): Penrose does not exclude that we are an unsound, or an unknowable, algorithm; that part of his case is not mathematics",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "H. Putnam, review of Shadows of the Mind, Bulletin of the American Mathematical Society 32 (1995); a shorter version in the New York Times Book Review (1994). CITED and RECALLED, not read in this session.",
+    "statement": "The mathematical core yields only G. To reach 'not algorithmic', Penrose must rule out that our reasoning is an algorithm we cannot know, or one that is not sound. His arguments against these (natural selection could not have produced it; mathematicians would have noticed) are empirical speculation, not consequences of Gödel's theorem, and they are weak: a very complex, not-perfectly-sound procedure is just what one would expect evolution to produce.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-transfinite-good",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Good 1967): 'going one better' than every machine needs a transfinite iteration no one can carry out uniformly",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "I.J. Good, 'Human and Machine Logic', British Journal for the Philosophy of Science 18 (1967); also Good, 'Gödel's Theorem is a Red Herring', BJPS 19 (1969). CITED and RECALLED, not read in this session.",
+    "statement": "Against a machine that already adds its own Gödel sentences (and iterates that through the ordinals), out-doing it requires naming ever larger constructive ordinals. There is no uniform effective way to do that, for minds or machines; so the claim that the mind can construct the Gödel sentence of EVERY machine put to it (T3b), including such self-extending ones, is not established.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-which-machine-benacerraf",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OBJECTION (Benacerraf 1967): if I am a machine I need not be able to know which machine; the argument shows only that",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "P. Benacerraf, 'God, the Devil, and Gödel', The Monist 51 (1967). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the paper itself was not read.",
+    "statement": "To construct G_M the mind must know M's specification. Nothing guarantees a mind can know its own program, and Gödel's theorem suggests it cannot (in a sense, that is what it shows). So Lucas's argument proves at most a disjunction: either the mind is not a machine, or it is a machine whose program it cannot ascertain. T3b, applied to the mind's own machine, is unsupported.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:penrose-falsum",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "P2 (⊥): A both does and does not ascertain that C_k(k) does not halt",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Contradiction reached under Penrose's supposition: since mathematicians can know C_k(k) does not halt (P1) and A encapsulates all they can ascertain (PT1), A ascertains it; but by the Gödel-Turing result, a sound A does not.",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "A"
+    ]
+   }
+  },
+  {
+   "node_id": "req:penrose-g",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Penrose's G: human mathematicians are not using a knowably sound algorithm to ascertain mathematical truth",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), ch. 2 (§2.5 or thereabouts). RECALLED.",
+    "statement": "Human mathematicians are not using a knowably sound algorithm in order to ascertain mathematical truth. (Penrose calls this conclusion G in Shadows of the Mind, 1994.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:penrose-quantum-consciousness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "P4: human understanding depends on non-computable physics (objective reduction; Orch-OR in microtubules)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), part II; Penrose and Hameroff. RECALLED.",
+    "statement": "Human mathematical understanding, and consciousness with it, depends on a non-computable physical process in the brain; Penrose's candidate is gravitationally induced objective reduction of the quantum state, orchestrated in microtubules (Orch-OR, with Hameroff). Penrose presents the Gödelian argument as the reason to look for such physics.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:penrose-supposition-knowably-sound-algorithm",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Penrose's supposition: mathematicians ascertain truth by an algorithm A they know, and know to be sound",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (Oxford, 1994), ch. 2 (the argument concluding his 'G'); prefigured in The Emperor's New Mind (1989), ch. 4 and 10. RECALLED.",
+    "statement": "Suppose, for reductio, that human mathematicians ascertain mathematical truths (in particular, that given computations do not halt) by means of some algorithm A, that they know A, and that they know A to be sound. Taken up by Penrose (1994, ch. 2) only to be refuted.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "A"
+    ]
+   }
+  },
+  {
+   "node_id": "req:penrose-understanding-not-algorithmic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "P3: human mathematical understanding is not the product of any algorithm",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, The Emperor's New Mind (1989); Shadows of the Mind (1994), ch. 2-3. RECALLED.",
+    "statement": "Human mathematical understanding is not the product of any algorithm: no Turing machine reproduces what mathematicians can come to know. (Penrose goes further, to non-computable physics in the brain; that further step is outside this record.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:penrose-we-know-ck-does-not-halt",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "P1: (under the supposition) mathematicians can know that C_k(k) does not halt",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Under Penrose's supposition: mathematicians can come to know that the computation C_k(k), constructed from A, does not halt.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "A"
+    ]
+   }
+  },
+  {
+   "node_id": "req:rep-lucas-1970a-coder",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Lucas 1970a): to Coder — the argument concerns what a mind can be brought to understand, not what every person happens to know",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas (1970a), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; my statement of the reply is recalled with low confidence.",
+    "statement": "Lucas replies to Coder that the argument concerns minds' capacities: any rational person can in principle be taught to follow Gödel's proof and see the truth of the Gödel sentence, and the mechanist's thesis is about all minds, so it is refuted if it fails for those who can.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-lucas-1990-potentiality",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Lucas 1990): the issue is potentiality, not actual finite output",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas (1990), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; not read directly.",
+    "statement": "The mechanist's claim and Lucas's argument concern what the mind CAN do — its capacities, given time and attention — not the finite list it happens to produce. A lookup machine that copies one finite life does not model a mind's capacities, so finiteness of actual output does not defeat the argument.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-lucas-1990-to-dennett",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Lucas 1990): to Dennett — the mechanist must still give the mind's arithmetic a machine model, and that model meets Gödel",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas (1990), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; my statement of the reply is recalled with low confidence.",
+    "statement": "Lucas replies to Dennett that, whatever else people do, if a machine produces the person's behaviour it produces in particular what the person can come to accept as arithmetic truth, and that part is a formal system to which Gödel's theorem applies.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-lucas-dialectic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Lucas 1968): the argument is dialectical — the mechanist must produce the machine, and then I produce its Gödel sentence",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas, 'Satan Stultified: A Rejoinder to Paul Benacerraf', The Monist 52 (1968); J.R. Lucas, 'Minds, Machines and Gödel: A Retrospect' (1996). Both as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS this reply; the primary papers were not read.",
+    "statement": "The burden is on the mechanist: to state mechanism as more than a programme, he must specify the machine he claims the mind is. Once he does, I can construct its Gödel sentence and see it true. A mechanism that cannot say which machine the mind is, and insists the mind cannot know, has retreated to an unfalsifiable claim. And the mechanist, to make his model a model of a reasoner, must claim it consistent; he cannot then deny me the consistency he asserts.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-lucas-fallible-not-inconsistent",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Lucas 1961, 1968): fallible is not inconsistent — we make and correct mistakes, but do not affirm everything",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J.R. Lucas, Philosophy 36 (1961), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS this reply. The further citations (Lucas 1968, 1970) are recalled.",
+    "statement": "Human beings make mistakes, but they are not inconsistent in the logician's sense: when they find a contradiction they retract, and they do not go on to affirm every proposition, as an inconsistent formal system would. A mechanist who models the mind by an inconsistent machine has modelled something that proves everything, which is not a mind. So the consistency the argument needs is one the mechanist must himself grant.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-martin-engleman-defend-lucas",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Martin and Engleman 1990): defend Lucas against Hofstadter — the human 'Gödel sentence' is not a Gödel sentence in the sense the argument uses",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "J. Martin and K. Engleman (1990), as reported by art:iep-megill-lucas-penrose (Megill, IEP), which DOCUMENTS it; the paper was not read and my statement of its reasoning is recalled with low confidence.",
+    "statement": "Martin and Engleman defend Lucas against Hofstadter (and so against Whiteley's parity): the sentence 'Lucas cannot consistently assert this sentence' does not stand to Lucas as G_M stands to F_M, so it does not show a human limitation of the kind Gödel's theorem shows for machines, and the asymmetry survives.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Penrose 1996): a mathematician who doubts the soundness of his own unassailable reasoning has no ground for any mathematics",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, 'Beyond the Doubting of a Shadow', Psyche 2 (1996). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the exact form of this reply is recalled with moderate confidence.",
+    "statement": "Against Chalmers and Feferman: to hold that we are a sound algorithm we could never know to be sound is to hold that our own unassailable reasoning might be unsound for all we can tell; but we do treat it as unassailable, and the §3.16 argument shows that a robot that took its own unassailable beliefs as sound would face the same contradiction. The idealization of 'what mathematicians can unassailably establish' is no worse than the idealizations mathematics already uses.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rep-penrose-unassailable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "REPLY (Penrose 1994, 1996): errors are correctable; restrict the argument to what mathematicians hold 'unassailably'",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), ch. 3; R. Penrose, 'Beyond the Doubting of a Shadow', Psyche 2 (1996), reply to the Psyche symposium. CITED and RECALLED, not read in this session.",
+    "statement": "Individual mathematicians err, but errors are recognized and corrected; the argument concerns only what mathematicians would accept as unassailably established after careful reflection, and that body is sound. An algorithm that is unsound on unassailable truths would be one whose errors mathematicians could never correct, which is not what mathematical practice looks like. Likewise an unknowable algorithm, too complex ever to be known, is implausible as the product of natural selection or of AI construction.",
+    "statement_kind": "reply",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:rival-either-or",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "RIVAL CONCLUSION (Gödel 1951; Benacerraf 1967): EITHER the mind is not a machine, OR it is one that cannot know its own consistency or which machine it is",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "K. Gödel, Gibbs Lecture (1951), Collected Works III (1995), p. 310; P. Benacerraf, The Monist 51 (1967). DOCUMENTED by art:iep-megill-lucas-penrose (Megill, IEP); the primary texts were not read.",
+    "statement": "What Gödel's theorems show about minds is only a disjunction. Gödel's form (Gibbs lecture, 1951): either the human mind infinitely surpasses any finite machine, or there exist absolutely unsolvable Diophantine problems (true arithmetic sentences the mind can never know). Benacerraf's form (1967): either the mind is not a machine, or it is a machine that cannot ascertain which machine it is (and cannot know its own consistency). Derived here as: IF the mind is a machine M, THEN G_M is a truth it cannot know and Con(F_M) is a truth it cannot know.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-mind-accepts-elementary-arithmetic",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION T0: the mind accepts at least elementary arithmetic",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Left implicit by Lucas (1961) and Penrose (1994); my reconstruction.",
+    "statement": "TRANSLATION (mathematics -> mind). What the mind can know to be true includes at least elementary arithmetic (the axioms of Robinson's Q, indeed of Peano arithmetic), so a formal system matching the mind's arithmetic output 'contains enough arithmetic' for Gödel's theorems to apply.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-mind-can-construct-gm",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION T3b: given the machine M, the mind can construct its Gödel sentence G_M",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Lucas (1961) frames it as a dialectical challenge: the mechanist must produce the machine, and Lucas then produces its Gödel sentence. RECALLED.",
+    "statement": "TRANSLATION (mathematics -> knowledge). For EVERY machine M put forward as a model of the mind, the mind can be given or come to know M's specification and carry out Gödel's construction for F_M, so as to identify G_M. Under the mechanist supposition this is the mind knowing its OWN program. (M is bound here, not free.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-mind-can-know-fm-consistent",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION T3a: the mind can come to know that the machine's system F_M is consistent",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Needed by Lucas (1961) when he says we can 'see' the Gödel sentence to be true; made explicit by his critics (Putnam 1960, Benacerraf 1967). RECALLED.",
+    "statement": "TRANSLATION (mathematics -> knowledge). For EVERY machine M put forward as a model of the mind, the mind can come to KNOW (not merely assume) that the formal system F_M is consistent. Without this, following Gödel's construction yields only 'if F_M is consistent then G_M', which F_M itself proves. Under the mechanist supposition this is the mind knowing its OWN consistency. (M is bound here, not free.)",
+    "statement_kind": "unstated_premise",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-mind-is-consistent",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION T2: the mind's arithmetic output is consistent",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Asserted and defended by J.R. Lucas, Philosophy 36 (1961) (the mind is not inconsistent in the logician's sense, though fallible). RECALLED.",
+    "statement": "TRANSLATION (mathematics -> mind). The set of arithmetic sentences the mind can come to know to be true is consistent: it never contains both a sentence and its negation. 'Consistent', a property of formal systems, is here predicated of a mind.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-mind-knowledge-is-machine-output",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION T1: if the mind is machine M, what the mind can know in arithmetic is what M outputs",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Stated in substance by J.R. Lucas, Philosophy 36 (1961) ('a machine ... is a concrete instantiation of a formal system'). RECALLED.",
+    "statement": "TRANSLATION (mathematics -> mind). For EVERY machine M: if the mind is equivalent to M, then the arithmetic sentences the mind can come to know to be true are exactly the arithmetic sentences M outputs as true. This identifies a mind's KNOWING (seeing, accepting, being able to come to know) with a machine's OUTPUT, which is what lets a theorem about formal systems speak about the mind at all. (M is bound here, not free.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-p1-understanding-is-algorithm-output",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION PT1: if mathematicians' understanding is algorithm A, whatever they can ascertain, A ascertains",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), ch. 2 ('A encapsulates all the procedures available to human mathematicians'). RECALLED (wording approximate).",
+    "statement": "TRANSLATION (mathematics -> mind). For EVERY algorithm A: if human mathematicians ascertain mathematical truth by means of A, then every claim of the form 'computation C does not halt' that they can come to ascertain is one that A ascertains. A encapsulates all their means of ascertaining such truths. (A is bound here.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-p2-knowing-soundness-yields-knowing-ck",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION PT2: knowing A and its soundness, mathematicians can come to know that C_k(k) does not halt",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), ch. 2 ('we know that C_k(k) does not stop, though A cannot ascertain it'). RECALLED.",
+    "statement": "TRANSLATION (mathematics -> knowledge). For EVERY algorithm A: if mathematicians know A and know A to be sound, they can follow the Gödel-Turing construction and thereby come to KNOW that C_k(k) does not halt. Knowledge is taken to be closed under a construction one can follow, and 'knowing A is sound' is taken to be something a human can have about the very procedure by which they know. (A is bound here.)",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-p3-an-algorithm-would-be-knowably-sound",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION PT3: if mathematical understanding were algorithmic, the algorithm would be knowable and knowably sound",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, Shadows of the Mind (1994), ch. 3. RECALLED.",
+    "statement": "TRANSLATION (mathematics -> mind). If human mathematical understanding were the product of some algorithm, that algorithm would be one mathematicians could know and know to be sound. The alternatives — an algorithm too complicated to know, one that is unsound (mathematicians in principle err on unassailable truths), or one that is sound but not knowably so — are each rejected as implausible. Penrose argues each away in Shadows of the Mind ch. 3 (including the reductio of §3.16 and the restriction to 'unassailable' truths); Gödel's theorem itself does not exclude them.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-p4-non-computable-capacity-means-not-a-machine",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION PT4: a mind with a capacity no algorithm captures is not equivalent to any Turing machine",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Left implicit by Penrose (1994); my reconstruction.",
+    "statement": "TRANSLATION (mathematics -> mind). If some capacity of the human mind (here, mathematical understanding) is not captured by any algorithm, then the mind as a whole is not equivalent to any Turing machine.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:tr-p5-non-algorithmic-mind-needs-non-computable-physics",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "TRANSLATION PT5: if understanding is non-algorithmic and the brain is physical, the brain must use non-computable physics",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "R. Penrose, The Emperor's New Mind (1989), Shadows of the Mind (1994), part II; Penrose and S. Hameroff (Orch-OR, 1990s). RECALLED; not covered as such by art:iep-megill-lucas-penrose except through Maudlin's objection.",
+    "statement": "TRANSLATION (mathematics -> physics of mind). Mathematical understanding is produced by the physical brain; known physics is computable (simulable by a Turing machine); so if understanding is not algorithmic, the brain must exploit some as yet unknown non-computable physical process. Penrose proposes that this is objective reduction of the quantum state, orchestrated in neuronal microtubules (with Hameroff).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:turing-halting-form",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The Gödel-Turing result in Penrose's halting form (cited)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "A.M. Turing, Proc. London Math. Soc. 42 (1936); stated in this form by R. Penrose, Shadows of the Mind (Oxford, 1994), ch. 2 (§2.5 as I recall). RECALLED, not read in this session.",
+    "statement": "For any algorithm A that is sound for ascertaining that computations do not halt (whenever A concludes 'C(n) does not halt', it does not), one can effectively construct, from A, a particular computation C_k(k) that does not halt and that A does not conclude does not halt. This is the unsolvability of the halting problem (Turing 1936), equivalent in force to Gödel's first theorem for Π1 sentences.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-chalmers-knowable-soundness",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-penrose-1996-soundness-of-own-reasoning\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Penrose 1996 answers Chalmers: doubting the soundness of one's own unassailable reasoning undercuts all mathematics.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-p3-an-algorithm-would-be-knowably-sound\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies PT3: the contradiction Penrose derives tells against knowing one's own soundness or one's own algorithm, leaving a sound-but-not-knowably-sound or unknown algorithm open.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Chalmers 1995): Penrose's reasoning shows only that no system can know it is sound and know that it is that system\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"D.J. Chalmers, 'Minds, Machines, and Mathematics', Psyche 2 (1995) (symposium on Shadows of the Mind). CITED and RECALLED, not read in this session.\",\"statement\":\"Formalized, Penrose's arguments (including the reductio of Shadows §3.16) derive a contradiction from the assumption that we know we are a given system AND know that system to be sound. The right conclusion is that the belief in our own soundness (or our knowledge of which system we are) is what fails, not that we are non-computational. A computational mind that is sound but cannot know it is, or cannot know its own algorithm, is untouched; PT3's dismissal of those options is not supported by the theorem.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-chalmers-knowable-soundness",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-consistency-putnam-benacerraf",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Inference\",\"other_id\":\"inf:obj-consistency-from-godel-ii\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-lucas-dialectic\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's rejoinder on consistency: the mechanist must claim his model consistent to make it a model of a reasoner, and so cannot deny the mind the consistency he asserts.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-mind-can-know-fm-consistent\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies T3a: knowing F_M consistent is exactly what, on the mechanist hypothesis, Gödel's second theorem says the mind (= F_M) cannot do; without it, 'seeing' G_M reduces to the conditional Con(F_M) -> G_M that F_M itself proves.\"}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-p2-knowing-soundness-yields-knowing-ck\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"The same point against Penrose's PT2: the knowledge of A's soundness that PT2 relies on is, if A is our procedure, knowledge the second theorem puts out of A's (our) reach.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Putnam 1960; Benacerraf 1967): the mind can 'see' G_M only by knowing F_M is consistent, which no mechanist need grant\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"H. Putnam, 'Minds and Machines', in S. Hook (ed.), Dimensions of Mind (New York UP, 1960) — made against the Gödelian argument before Lucas published; P. Benacerraf, 'God, the Devil, and Gödel', The Monist 51 (1967). CITED and RECALLED, not read in this session.\",\"statement\":\"Following Gödel's construction gives only 'if F_M is consistent, then G_M is true', and F_M itself proves that conditional. To get G_M one must KNOW F_M is consistent. If the mind is M, that knowledge would put Con(F_M) among F_M's own theorems, which Gödel's second theorem forbids for a consistent F_M. So, on the mechanist's hypothesis, T3a is false; assuming it begs the question against mechanism. What Gödel shows is at most: if the mind is a machine, it cannot know (prove) that it is consistent.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-consistency-putnam-benacerraf",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-feferman-idealized-mathematician",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-penrose-1996-soundness-of-own-reasoning\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Penrose 1996 answers Feferman: the idealization to unassailable truth is no worse than idealizations mathematics already uses.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-p1-understanding-is-algorithm-output\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies PT1's idealization: there is no single fixed totality of 'procedures available to mathematicians' for an algorithm to encapsulate.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Feferman 1995): 'the procedures available to human mathematicians' is not a single fixed body an algorithm could be said to encapsulate\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"S. Feferman, 'Penrose's Gödelian Argument', Psyche 2 (1995). CITED and RECALLED; the exact emphasis of Feferman's criticisms is recalled with moderate confidence.\",\"statement\":\"Penrose treats the idealized community of mathematicians, past and future, as having one fixed totality of methods that an algorithm A either encapsulates or not (PT1), and treats 'unassailable' truth as sharply defined. Neither notion is precise enough for a Gödelian argument; and even granting them, the conclusion leaves open that mathematicians' reasoning is captured by a formal system that is not known to be sound. Feferman also noted technical slips in Penrose's presentation of the logic.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-feferman-idealized-mathematician",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-godel-disjunction",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:lucas-mind-can-see-gm-true\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"The second disjunct (absolutely undecidable problems) is exactly the denial that the mind can see the Gödel sentence of every machine; the theorem alone does not exclude it, so L3 in its universal form is not a consequence of Gödel.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Gödel 1951): the theorem yields only a disjunction — either the mind surpasses every machine, or there are absolutely undecidable arithmetic problems\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"K. Gödel, 'Some basic theorems on the foundations of mathematics and their implications' (Josiah Willard Gibbs Lecture, 1951), published in Collected Works vol. III (Oxford, 1995). CITED and RECALLED, not read in this session.\",\"statement\":\"Gödel himself drew from his theorems only this: either the human mind infinitely surpasses the powers of any finite machine, or there exist absolutely undecidable Diophantine problems (true sentences the mind can never know). The theorem does not say which. To reach 'the mind is not a machine' one must add that the second disjunct is false — that the mind can know every such Gödel sentence — which is not a mathematical result. (Gödel himself inclined to the first disjunct on other, philosophical grounds.)\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-godel-disjunction",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-humans-are-fallible",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-lucas-fallible-not-inconsistent\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's reply to the fallibility objection: human error is corrected and does not amount to logical inconsistency, so T2 survives the objection.\"}},{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-penrose-unassailable\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Penrose's answer to fallibility: the argument is restricted to unassailable truths, where errors are correctable and the body is sound.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-mind-is-consistent\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies T2: human arithmetic belief is fallible and possibly inconsistent, so Gödel's consistency hypothesis cannot be assumed of a mind.\"}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-p3-an-algorithm-would-be-knowably-sound\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Against PT3's rejection of the 'unsound algorithm' option: a fallible human procedure is just what an unsound algorithm would look like.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Turing 1947, 1950 and many later): human mathematicians are fallible, perhaps inconsistent, so Gödel's hypothesis of consistency fails for the mind\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"A.M. Turing, lecture to the London Mathematical Society (1947); A.M. Turing, 'Computing Machinery and Intelligence', Mind 59 (1950) (§6, 'The mathematical objection'). Turing predates Lucas and answers the Gödelian objection in general. CITED and RECALLED, not read in this session.\",\"statement\":\"Gödel's theorem applies only to CONSISTENT systems. Human reasoners make mistakes and may hold inconsistent beliefs; a machine allowed to err is not bound by the theorem in the same way ('if a machine is expected to be infallible, it cannot also be intelligent'). So T2, that the mind's arithmetic output is consistent, is not something the argument may assume, and Penrose's idealization to a sound procedure faces the same doubt.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-humans-are-fallible",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-output-is-not-a-theory-lewis",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-mind-knowledge-is-machine-output\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies T1: even if the mind is a machine, 'what the mind can come to know' need not be one fixed formal system's theorem set.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Lewis 1969; Chihara 1972): 'what the mind can come to know' is not the output of one fixed formal system, even if the mind is a machine\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"D. Lewis, 'Lucas against Mechanism', Philosophy 44 (1969); C. Chihara, 'On Alleged Refutations of Mechanism Using Gödel's Incompleteness Results', Journal of Philosophy 69 (1972). CITED and RECALLED; my statement of their point is a reconstruction and may not match their exact arguments.\",\"statement\":\"The mechanist claims the mind is (run by) a machine; it does not follow that the arithmetic sentences the mind 'can come to know' form the theorem set of one fixed consistent formal system. A machine can change its axioms as it learns, accept sentences by rules other than proof, or have no well-defined 'knowable arithmetic' at all; and Lucas's own procedure (Gödelizing whatever machine is shown to him) is not shown to be something he could carry out uniformly. T1 smuggles in an idealization that the mechanist need not accept.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-output-is-not-a-theory-lewis",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-parity-whiteley",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Inference\",\"other_id\":\"inf:lucas-5-reductio\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Attacks the step, not a premise: the move from 'M has a limit the mind lacks' to 'the mind is not M' proves too much, since the mind has a parallel limit ('Lucas cannot consistently assert this sentence') that machines lack.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Whiteley 1962): humans have their own 'Gödel sentence' — 'Lucas cannot consistently assert this sentence' — so the argument proves too much\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"C.H. Whiteley, 'Minds, Machines and Gödel: A Reply to Mr Lucas', Philosophy 37 (1962), 61-62. CITED and RECALLED, not read in this session.\",\"statement\":\"The sentence 'Lucas cannot consistently assert this sentence' is true, and Lucas cannot consistently assert it, though others (and machines) can. If having such a limit showed that a machine is not a mind, the parallel would show Lucas is not a mind. The reductio's move from 'M cannot do what the mind can' to 'the mind is not M' does not discriminate minds from machines.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-parity-whiteley",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-which-machine-benacerraf",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:rep-lucas-dialectic\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's rejoinder to Benacerraf: the mechanist must specify the machine; a mechanism that cannot say which machine has become unfalsifiable.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:tr-mind-can-construct-gm\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Denies T3b as applied to the mind's own machine: nothing guarantees a mind can know its own program, and the theorem suggests it cannot.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"OBJECTION (Benacerraf 1967): if I am a machine I need not be able to know which machine; the argument shows only that\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"P. Benacerraf, 'God, the Devil, and Gödel', The Monist 51 (1967), 9-32. CITED and RECALLED, not read in this session.\",\"statement\":\"To construct G_M the mind must know M's specification. Nothing guarantees a mind can know its own program, and Gödel's theorem suggests it cannot (in a sense, that is what it shows). So Lucas's argument proves at most a disjunction: either the mind is not a machine, or it is a machine whose program it cannot ascertain. T3b, applied to the mind's own machine, is unsupported.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-which-machine-benacerraf",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:rep-lucas-dialectic",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:obj-consistency-putnam-benacerraf\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's rejoinder on consistency: the mechanist must claim his model consistent to make it a model of a reasoner, and so cannot deny the mind the consistency he asserts.\"}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:obj-which-machine-benacerraf\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's rejoinder to Benacerraf: the mechanist must specify the machine; a mechanism that cannot say which machine has become unfalsifiable.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"REPLY (Lucas 1968): the argument is dialectical — the mechanist must produce the machine, and then I produce its Gödel sentence\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"J.R. Lucas, 'Satan Stultified: A Rejoinder to Paul Benacerraf', The Monist 52 (1968); J.R. Lucas, 'Minds, Machines and Gödel: A Retrospect' (1996, in P. Millican and A. Clark (eds), Machines and Thought). CITED and RECALLED, not read in this session.\",\"statement\":\"The burden is on the mechanist: to state mechanism as more than a programme, he must specify the machine he claims the mind is. Once he does, I can construct its Gödel sentence and see it true. A mechanism that cannot say which machine the mind is, and insists the mind cannot know, has retreated to an unfalsifiable claim. And the mechanist, to make his model a model of a reasoner, must claim it consistent; he cannot then deny me the consistency he asserts.\",\"statement_kind\":\"reply\",\"status\":\"proposed\"}",
+    "target_id": "req:rep-lucas-dialectic",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:rep-lucas-fallible-not-inconsistent",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:obj-humans-are-fallible\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Lucas's reply to the fallibility objection: human error is corrected and does not amount to logical inconsistency, so T2 survives the objection.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"REPLY (Lucas 1961, 1968): fallible is not inconsistent — we make and correct mistakes, but do not affirm everything\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"J.R. Lucas, Philosophy 36 (1961); J.R. Lucas, 'Satan Stultified: A Rejoinder to Paul Benacerraf', The Monist 52 (1968); J.R. Lucas, The Freedom of the Will (Oxford, 1970). CITED and RECALLED, not read in this session.\",\"statement\":\"Human beings make mistakes, but they are not inconsistent in the logician's sense: when they find a contradiction they retract, and they do not go on to affirm every proposition, as an inconsistent formal system would. A mechanist who models the mind by an inconsistent machine has modelled something that proves everything, which is not a mind. So the consistency the argument needs is one the mechanist must himself grant.\",\"statement_kind\":\"reply\",\"status\":\"proposed\"}",
+    "target_id": "req:rep-lucas-fallible-not-inconsistent",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:rep-penrose-1996-soundness-of-own-reasoning",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:obj-chalmers-knowable-soundness\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Penrose 1996 answers Chalmers: doubting the soundness of one's own unassailable reasoning undercuts all mathematics.\"}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Requirement\",\"other_id\":\"req:obj-feferman-idealized-mathematician\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Penrose 1996 answers Feferman: the idealization to unassailable truth is no worse than idealizations mathematics already uses.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"REPLY (Penrose 1996): a mathematician who doubts the soundness of his own unassailable reasoning has no ground for any mathematics\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"R. Penrose, 'Beyond the Doubting of a Shadow', Psyche 2 (1996). CITED and RECALLED; the exact form of this reply is recalled with moderate confidence.\",\"statement\":\"Against Chalmers and Feferman: to hold that we are a sound algorithm we could never know to be sound is to hold that our own unassailable reasoning might be unsound for all we can tell; but we do treat it as unassailable, and the §3.16 argument shows that a robot that took its own unassailable beliefs as sound would face the same contradiction. The idealization of 'what mathematicians can unassailably establish' is no worse than the idealizations mathematics already uses.\",\"statement_kind\":\"reply\",\"status\":\"proposed\"}",
+    "target_id": "req:rep-penrose-1996-soundness-of-own-reasoning",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:tr-mind-can-construct-gm",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:lucas-3-mind-sees-gm\",\"properties\":{\"role\":\"assumed\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"TRANSLATION T3b: given the machine M, the mind can construct its Gödel sentence G_M\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Lucas (1961) frames it as a dialectical challenge: the mechanist must produce the machine, and Lucas then produces its Gödel sentence. RECALLED.\",\"statement\":\"TRANSLATION (mathematics -> knowledge). Whatever machine M is put forward as a model of the mind, the mind can be given or come to know M's specification and carry out Gödel's construction for F_M, so as to identify G_M. Under the mechanist supposition this is the mind knowing its OWN program.\",\"statement_kind\":\"proposition\",\"status\":\"proposed\",\"variables\":[\"M\"]}",
+    "target_id": "req:tr-mind-can-construct-gm",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:tr-mind-can-know-fm-consistent",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:lucas-3-mind-sees-gm\",\"properties\":{\"role\":\"assumed\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"TRANSLATION T3a: the mind can come to know that the machine's system F_M is consistent\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Needed by Lucas (1961) when he says we can 'see' the Gödel sentence to be true; made explicit by his critics (Putnam 1960, Benacerraf 1967). RECALLED.\",\"statement\":\"TRANSLATION (mathematics -> knowledge). For the machine M proposed as a model of the mind, the mind can come to KNOW (not merely assume) that the formal system F_M is consistent. Without this, following Gödel's construction yields only 'if F_M is consistent then G_M', which F_M itself proves.\",\"statement_kind\":\"unstated_premise\",\"status\":\"proposed\",\"variables\":[\"M\"]}",
+    "target_id": "req:tr-mind-can-know-fm-consistent",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:tr-mind-knowledge-is-machine-output",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:lucas-1-mind-as-formal-system\",\"properties\":{\"role\":\"assumed\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"TRANSLATION T1: if the mind is machine M, what the mind can know in arithmetic is what M outputs\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Stated in substance by J.R. Lucas, Philosophy 36 (1961) ('a machine ... is a concrete instantiation of a formal system'). RECALLED.\",\"statement\":\"TRANSLATION (mathematics -> mind). If the mind is equivalent to machine M, then the arithmetic sentences the mind can come to know to be true are exactly the arithmetic sentences M outputs as true. This identifies a mind's KNOWING (seeing, accepting, being able to come to know) with a machine's OUTPUT, which is what lets a theorem about formal systems speak about the mind at all.\",\"statement_kind\":\"proposition\",\"status\":\"proposed\",\"variables\":[\"M\"]}",
+    "target_id": "req:tr-mind-knowledge-is-machine-output",
+    "target_type": "Requirement"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}

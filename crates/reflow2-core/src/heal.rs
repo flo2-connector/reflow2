@@ -292,6 +292,11 @@ pub struct Suppressed {
     /// answered, or that stands and states its reason — read in
     /// reasoning_report (answered, or still contested), never a defect.
     pub objection: BTreeMap<&'static str, usize>,
+    /// Looked at and found to be a PROVEN EQUIVALENCE: an asserted DUPLICATES
+    /// edge between two statements an EQUIVALENT_TO edge also joins. Two
+    /// equivalent statements are two statements, never one to merge
+    /// (req:two-statements-can-be-recorded-as-proven-equivalent).
+    pub equivalent: BTreeMap<&'static str, usize>,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -423,6 +428,13 @@ pub struct SweepScope {
     /// out of the reply while nothing was suppressed this way.
     #[serde(skip_serializing_if = "BTreeMap::is_empty", default)]
     pub suppressed_as_objection: BTreeMap<&'static str, usize>,
+    /// Asserted duplicates left unreported because an EQUIVALENT_TO edge also
+    /// joins the pair: two statements a biconditional shows equivalent, never
+    /// a merge (req:two-statements-can-be-recorded-as-proven-equivalent; the
+    /// Riemann map was offered the merge of RH and Robin's inequality). Left
+    /// out of the reply while nothing was suppressed this way.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty", default)]
+    pub suppressed_as_equivalent: BTreeMap<&'static str, usize>,
     /// Said in WORDS when the sweep could not have found anything — an empty
     /// graph. `None` when the sweep was real, so its presence is the signal.
     #[serde(skip_serializing_if = "Option::is_none", default)]
@@ -939,6 +951,7 @@ fn merge_op_for(
     issue: &HealIssue,
     index: &HashMap<String, String>,
     complementary: &BTreeSet<(String, String)>,
+    equivalent: &BTreeSet<(String, String)>,
 ) -> Result<HealOp, String> {
     let (keep, remove) = (&issue.affected_ids[0], &issue.affected_ids[1]);
     // `x DUPLICATES x` is schema-valid (`* -> *`) and used to build a merge
@@ -983,6 +996,16 @@ fn merge_op_for(
     // DUPLICATES edge able to license the deletion through apply. Both paths
     // derive through this function, which is why the check lives here.
     let pair = ordered_pair(keep, remove);
+    // NOR IS A PAIR PROVEN EQUIVALENT (req:two-statements-can-be-recorded-as-
+    // proven-equivalent): two statements a biconditional shows equivalent
+    // have two meanings, and a merge would destroy the map that holds them.
+    if equivalent.contains(&pair) {
+        return Err(format!(
+            "'{keep}' and '{remove}' are recorded EQUIVALENT_TO each other — two statements a \
+             biconditional shows equivalent, never one statement, so they are never merged. If \
+             they really are the same statement, delete the EQUIVALENT_TO edge first and say why"
+        ));
+    }
     if complementary.contains(&pair) {
         return Err(format!(
             "'{keep}' and '{remove}' are declared COMPLEMENTS — they stand beside each other on \
@@ -1879,6 +1902,7 @@ impl DesignGraph {
             suppressed_by_held_open: suppressed.held_open,
             suppressed_by_refutation: suppressed.refuted,
             suppressed_as_objection: suppressed.objection,
+            suppressed_as_equivalent: suppressed.equivalent,
             rules: HealCategory::ALL.iter().map(|c| c.as_str()).collect(),
             note: (nodes == 0).then(|| {
                 "this graph holds no nodes, so an empty result is VACUOUS rather than clean — \
@@ -2938,11 +2962,24 @@ impl DesignGraph {
         // Suspected pairs are NOT dropped: detect_gaps raises each one as a
         // possible_duplicate the user can answer or acknowledge, which is the
         // half of dec:ask-not-repair that says a suspicion is a DETECT gap.
+        let equivalent = self.equivalent_pairs()?;
         for e in self.all_edges_of_type(edge::DUPLICATES, &index)? {
             if !matches!(
                 e.properties.get("basis").and_then(Value::as_str),
                 Some("asserted")
             ) {
+                continue;
+            }
+            // TWO EQUIVALENT STATEMENTS ARE NOT A DUPLICATE (req:two-
+            // statements-can-be-recorded-as-proven-equivalent): before the
+            // EQUIVALENT_TO edge existed, the Riemann map joined RH and Robin's
+            // inequality with DUPLICATES for want of a word, and this offered
+            // their merge. Counted, never silently dropped.
+            if equivalent.contains(&crate::detect::ordered_pair(&e.from_id, &e.to_id)) {
+                *suppressed
+                    .equivalent
+                    .entry(HealCategory::Duplicate.as_str())
+                    .or_default() += 1;
                 continue;
             }
             // The engine's recommendation first, or id order when nothing
@@ -3723,6 +3760,7 @@ impl DesignGraph {
     pub fn propose_heal(&self, options: HealOptions) -> Result<HealProposal, DynoError> {
         let index = self.node_type_index()?;
         let complementary = complementary_pairs(self, &index)?;
+        let equivalent = self.equivalent_pairs()?;
         // A LABEL, NOT A SCOPE. One Project can be named without ambiguity;
         // more than one cannot, because this tool takes no target and the
         // caller therefore chose none. Falling to the first alphabetically is
@@ -3759,7 +3797,7 @@ impl DesignGraph {
                 // The one content-free structural repair.
                 HealCategory::Duplicate => {
                     merge_candidates_considered += 1;
-                    match merge_op_for(&issue, &index, &complementary) {
+                    match merge_op_for(&issue, &index, &complementary, &equivalent) {
                         Ok(op) => {
                             let HealOp::Merge {
                                 keep_id, remove_id, ..
@@ -4090,10 +4128,11 @@ impl DesignGraph {
     fn sanctioned_operations(&self) -> Result<Vec<HealOperation>, DynoError> {
         let index = self.node_type_index()?;
         let complementary = complementary_pairs(self, &index)?;
+        let equivalent = self.equivalent_pairs()?;
         let mut ops = Vec::new();
         for issue in self.open_defects()? {
             if issue.category == HealCategory::Duplicate
-                && let Ok(op) = merge_op_for(&issue, &index, &complementary)
+                && let Ok(op) = merge_op_for(&issue, &index, &complementary, &equivalent)
             {
                 // The ranking rides along so apply can tell a merge that
                 // needs a person's pick from one the engine can recommend —

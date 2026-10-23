@@ -411,7 +411,11 @@ mod tests {
         // dec:design-authorship-identity, built for
         // req:a-write-and-an-approval-record-the-agent-and-the-person-it-acts-for.
         // It moves the stamp; the upgrade note is owed at the next cut.
-        assert_eq!(schema.edge_types.len(), 68, "expected 68 edge types");
+        // 69 since EQUIVALENT_TO (2026-10-23): two statements a cited or
+        // proven biconditional shows equivalent, never duplicates
+        // (req:two-statements-can-be-recorded-as-proven-equivalent). It moves
+        // the stamp; the upgrade note is owed at the next cut.
+        assert_eq!(schema.edge_types.len(), 69, "expected 69 edge types");
     }
 
     #[test]

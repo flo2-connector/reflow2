@@ -195,6 +195,29 @@ pub struct BlastRadius {
     /// support, with those conditions. Absent when none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
+    /// EQUIVALENTS REACHED (req:two-statements-can-be-recorded-as-proven-
+    /// equivalent, part 3): each statement the change touches — a seed, or a
+    /// claim the walk counts lost — that is proven equivalent to another,
+    /// with the other. Refuting or establishing one side settles the other;
+    /// neither side's own reading moves until then. Absent when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub equivalents_reached: Vec<EquivalentReached>,
+}
+
+/// A statement a what-if touches, and one it is proven equivalent to.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct EquivalentReached {
+    /// The statement the change touches.
+    pub from: String,
+    /// The statement proven equivalent to it.
+    pub to: String,
+    /// The biconditional that shows it, when the edge names one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub by: Option<String>,
+    /// How the equivalence stands (see [`crate::equivalence::Equivalent`]).
+    pub reads: &'static str,
+    /// Why, in a sentence.
+    pub why: String,
 }
 
 impl BlastRadius {
@@ -265,6 +288,7 @@ impl BlastRadius {
             arguments_lost: self.arguments_lost.clone(),
             objections_returning: self.objections_returning.clone(),
             checks_gone_stale: self.checks_gone_stale.clone(),
+            equivalents_reached: self.equivalents_reached.clone(),
         }
     }
 }
@@ -349,6 +373,9 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::checks_gone_stale`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
+    /// See [`BlastRadius::equivalents_reached`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub equivalents_reached: Vec<EquivalentReached>,
 }
 
 /// Options for a propagation run.
@@ -773,6 +800,38 @@ impl DesignGraph {
         let (reasons_to_exist_lost, arguments_lost) =
             self.reasons_and_arguments_lost(seed_ids, &inferences)?;
 
+        // What the change touches that is proven equivalent to something:
+        // the seeds, and every claim the walk counts lost.
+        let mut touched: BTreeSet<String> = seeds
+            .iter()
+            .filter(|s| index.contains_key(*s))
+            .cloned()
+            .collect();
+        for row in &inferences {
+            if let Some(c) = &row.conclusion
+                && row.conclusion_reads != "still_supported"
+                && row.conclusion_reads != "accepted_without_a_holding_chain"
+            {
+                touched.insert(c.clone());
+            }
+        }
+        let mut equivalents_reached = Vec::new();
+        for from in &touched {
+            for q in self.equivalents_of(from)? {
+                equivalents_reached.push(EquivalentReached {
+                    why: format!(
+                        "{} is proven equivalent to {from} ({}): whatever refutes or establishes \
+                         {from} settles {} too; its own reading does not move until then",
+                        q.id, q.reads, q.id
+                    ),
+                    from: from.clone(),
+                    to: q.id,
+                    by: q.by,
+                    reads: q.reads,
+                });
+            }
+        }
+
         Ok(BlastRadius {
             seeds,
             unknown_seeds,
@@ -788,6 +847,7 @@ impl DesignGraph {
             arguments_lost,
             objections_returning: walk.objections_returning,
             checks_gone_stale: walk.checks_gone_stale,
+            equivalents_reached,
         })
     }
 

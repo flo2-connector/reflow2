@@ -343,6 +343,11 @@ pub mod edge {
     /// Two DesignRules that deliberately stand beside each other and must never
     /// be merged. Read by `possible_duplicate`, which REFRAINS when it is drawn.
     pub const COMPLEMENTS: &str = "COMPLEMENTS";
+    /// `* → *` — two STATEMENTS a cited or proven biconditional shows
+    /// equivalent (req:two-statements-can-be-recorded-as-proven-equivalent).
+    /// Never a duplicate and never merged; no truth is read across it; a step
+    /// whose premise is equivalent to its conclusion reads `circular`.
+    pub const EQUIVALENT_TO: &str = "EQUIVALENT_TO";
     /// `* → *` — a planned/anticipated need (may lack follow-through).
     pub const ANTICIPATES: &str = "ANTICIPATES";
     /// `* → *` — source initiates target; in a process model the `role`

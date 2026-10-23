@@ -47,6 +47,16 @@ words, because the position or objection may already exist under another name.
   with `confidence` (low, moderate, high). Evidence about what people judge is descriptive: never
   a premise of a position about what is right.
 
+- **A bridge** carries a result of another field into the argument's claim: "Gödel's theorem
+  about a formal system F says something about minds" rests on "the mind's output is a formal
+  system". Record each such translation as a Requirement with `statement_kind` `bridge`, an
+  ORDINARY premise of the step that uses it — never `assumed` (immune to objection) and never
+  `taken_as_given` (filed beside the theorem as a foundation). What rests on it reads
+  `conditional` on it (`rests_on_bridges`); an objection aimed at it contests every claim resting
+  on it while the theorem under it stands; `reasoning_report` lists the bridges apart from cited
+  theorems and definitions (`bridges`); and `propagate_from` on a bridge names it under
+  `bridges_lost` on each row it costs.
+
 ## 3. Each position is derived by a step
 
 A position ("the bystander may turn the trolley") is a Requirement (`add_requirement`) with
@@ -136,7 +146,10 @@ their subject rather than reflow2's:
 
 A position no line holds, but which a line would hold were the disputes under it settled, reads
 `contested` and names what stands against each such line (`contested_by`); `unproven` means no
-line holds for another reason. Say "contested", never "refuted", for the first. To see what losing a principle costs, run `propagate_from` on it. Each step that takes it up
+line holds for another reason. Say "contested", never "refuted", for the first. A conclusion
+reached by reductio reads `contested` too when the contradiction under it rests on a contested
+premise: the dispute is carried through the ⊥, and a what-if on that premise walks through the ⊥
+to the reductio and its conclusion. To see what losing a principle costs, run `propagate_from` on it. Each step that takes it up
 gets a row saying what its position read before (`conclusion_was`) and after
 (`conclusion_reads`): `unsupported` when every line rested on the principle, or `still_supported`
 with `still_holds_under` naming the lines that remain. An objection the principle answered comes

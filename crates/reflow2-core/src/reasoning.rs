@@ -274,10 +274,13 @@ impl ClaimTruth {
         truth: Truth,
         assumes: &[String],
         unverified: &[String],
+        bridges: &[String],
         tests: &[String],
     ) -> Self {
         match truth {
-            Truth::Holds if !assumes.is_empty() || !unverified.is_empty() => {
+            Truth::Holds
+                if !assumes.is_empty() || !unverified.is_empty() || !bridges.is_empty() =>
+            {
                 ClaimTruth::Conditional
             }
             Truth::Holds if !tests.is_empty() => ClaimTruth::Supported,
@@ -396,6 +399,18 @@ pub struct ClaimReading {
     /// here, `truth` reads `conditional`, never `holds`.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_unverified: Vec<String>,
+    /// THE BRIDGES it rests on (itself included, for one): statements of kind
+    /// `bridge`, each saying a formal statement models a claim of another
+    /// field. While any is here, `truth` reads `conditional`, never `holds`
+    /// (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_bridges: Vec<String>,
+    /// THE STATEMENTS IT IS PROVEN EQUIVALENT TO (EQUIVALENT_TO, either way
+    /// round), each with how the equivalence stands. Its own truth is read
+    /// apart from them: equivalence makes neither side conditional on the
+    /// other (req:two-statements-can-be-recorded-as-proven-equivalent).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub equivalent_to: Vec<crate::equivalence::Equivalent>,
     /// THE STATISTICAL TESTS it rests on, at any depth: what makes it read
     /// `supported` rather than `holds`. Empty when it rests on none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -634,6 +649,21 @@ pub struct ReasoningReport {
     /// per-occurrence, option b). Empty when none names one.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub formulas: Vec<FormulaOccurrences>,
+    /// THE BRIDGES the reasoning rests on: premises of kind `bridge`, each
+    /// saying a formal statement models a claim of another field — listed
+    /// apart from cited theorems, definitions and uncited premises, so a
+    /// reader can ask "what translations does this conclusion rest on?" the
+    /// way they ask "what axioms?" (dec:idea-a-bridge-premise-says-a-formal-
+    /// statement-models-a-claim, option b). Empty when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub bridges: Vec<String>,
+    /// STEPS THAT ONLY RESTATE THEIR GAP, among those the walk reached: a
+    /// premise proven equivalent to the conclusion (EQUIVALENT_TO, at any
+    /// distance) or the same formula (dec:idea-speculate-the-bridge-that-
+    /// would-close-a-gap-then-test-it, option c). A flag for the owner to
+    /// judge; each step still reads by its rule. Empty when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub circular_steps: Vec<crate::equivalence::CircularStep>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
@@ -886,11 +916,24 @@ impl DesignGraph {
         let against_rests_on: Vec<String> = against.difference(&rests_on).cloned().collect();
         let by_id: BTreeMap<&str, &ClaimReading> =
             claims.iter().map(|c| (c.id.as_str(), c)).collect();
+        // A BRIDGE IS LISTED APART (dec:idea-a-bridge-premise-says-a-formal-
+        // statement-models-a-claim, option b): neither a cited theorem, nor a
+        // stated foundation, nor an uncited premise — the translations a
+        // conclusion rests on, asked for the way its axioms are.
+        let is_bridge = |c: &ClaimReading| c.statement.as_ref().is_some_and(|s| s.kind == "bridge");
+        let bridges: Vec<String> = rests_on
+            .iter()
+            .filter(|p| by_id.get(p.as_str()).is_some_and(|c| is_bridge(c)))
+            .cloned()
+            .collect();
         let uncited_premises: Vec<String> = rests_on
             .iter()
             .filter(|p| match by_id.get(p.as_str()) {
                 Some(c) => {
-                    c.node_type != node::ARTIFACT && c.sources.is_empty() && !c.taken_as_given
+                    c.node_type != node::ARTIFACT
+                        && c.sources.is_empty()
+                        && !c.taken_as_given
+                        && !is_bridge(c)
                 }
                 // A premise past the cap is not read here; nothing is said of it.
                 None => false,
@@ -899,7 +942,11 @@ impl DesignGraph {
             .collect();
         let stated_foundations: Vec<String> = rests_on
             .iter()
-            .filter(|p| by_id.get(p.as_str()).is_some_and(|c| c.taken_as_given))
+            .filter(|p| {
+                by_id
+                    .get(p.as_str())
+                    .is_some_and(|c| c.taken_as_given && !is_bridge(c))
+            })
             .cloned()
             .collect();
 
@@ -1106,6 +1153,19 @@ impl DesignGraph {
             })
             .collect();
 
+        let mut circular_steps = Vec::new();
+        let mut seen_steps: BTreeSet<String> = BTreeSet::new();
+        for c in &claims {
+            for s in &c.support {
+                if seen_steps.insert(s.reading.inference.clone())
+                    && let Some(circ) = self.circularity_of(&s.reading.inference)?
+                {
+                    circular_steps.push(circ);
+                }
+            }
+        }
+        circular_steps.sort_by(|a, b| a.step.cmp(&b.step));
+
         // THE PAGE: whole claims from `offset`, at most `limit` of them.
         let total_claims = claims.len();
         let start = offset.unwrap_or(0).min(total_claims);
@@ -1137,6 +1197,8 @@ impl DesignGraph {
             generalizations_not_holding,
             evidence,
             formulas,
+            bridges,
+            circular_steps,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,
@@ -1335,10 +1397,17 @@ impl DesignGraph {
         let (truth, why) = (parts.truth, parts.why);
         let assumes = parts.assumes;
         let rests_on_unverified = parts.unverified;
+        let rests_on_bridges = parts.bridges;
         let rests_on_tests = parts.tests;
         let (holds_under_any_of, lines_capped) = (parts.lines, parts.lines_capped);
         let contested_by = parts.contested_by;
-        let claim_truth = ClaimTruth::of(truth, &assumes, &rests_on_unverified, &rests_on_tests);
+        let claim_truth = ClaimTruth::of(
+            truth,
+            &assumes,
+            &rests_on_unverified,
+            &rests_on_bridges,
+            &rests_on_tests,
+        );
         let why = if claim_truth == ClaimTruth::Conditional && holds_under_any_of.len() > 1 {
             // EVERY LINE IS NAMED (req:a-claim-with-several-lines-reads-each-
             // lines-assumptions): a claim held on several lines holds under any
@@ -1354,6 +1423,12 @@ impl DesignGraph {
                 "conditional: it holds only under the assumption(s) {}, which no step on the way \
                  to it discharges, never on its own; {why}",
                 assumes.join(", ")
+            )
+        } else if claim_truth == ClaimTruth::Conditional && rests_on_unverified.is_empty() {
+            format!(
+                "conditional: it holds only as far as the bridge(s) {} model what they are taken \
+                 to model, never plainly; {why}",
+                rests_on_bridges.join(", ")
             )
         } else if claim_truth == ClaimTruth::Conditional {
             format!(
@@ -1438,7 +1513,9 @@ impl DesignGraph {
             holds_under_any_of,
             lines_capped,
             rests_on_unverified,
+            rests_on_bridges,
             rests_on_tests,
+            equivalent_to: self.equivalents_of(id)?,
             contested_by_design: self.contested_governor(id)?.or(steps_dispute),
             contested_by,
             check_conditions: self.check_conditions(id)?,

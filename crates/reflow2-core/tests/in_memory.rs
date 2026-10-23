@@ -212,6 +212,7 @@ mod persistence;
 mod preserve;
 mod prior_state_coverage;
 mod prohibition_in_prose;
+mod proofs_and_arguments_read_right;
 mod propagate;
 mod proposed_asserts_nothing;
 mod provenance;

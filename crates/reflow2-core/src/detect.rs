@@ -1979,6 +1979,16 @@ struct Population {
     reasoning_only: bool,
 }
 
+/// Whether a record is a STATEMENT of a line of reasoning by what it says of
+/// itself: it carries a `statement_kind`, or it is marked `taken_as_given`.
+fn is_a_statement(props: &std::collections::HashMap<String, Value>) -> bool {
+    props
+        .get("statement_kind")
+        .and_then(Value::as_str)
+        .is_some_and(|k| !k.trim().is_empty())
+        || props.contains_key("taken_as_given")
+}
+
 /// Whether a Project's free-text `domain` names a line of reasoning: an
 /// argument, a proof or reasoning, by whole word.
 fn names_a_line_of_reasoning(domain: &str) -> bool {
@@ -2023,24 +2033,35 @@ pub(crate) fn criteria_gap_id(
 
 impl DesignGraph {
     /// Whether this design is a REASONING DESIGN — a proof or an argument with
-    /// nothing to build — decided from its structure alone, never from a label:
+    /// nothing to build — decided from WHAT IT HOLDS, never from a label:
     ///
     /// - it holds at least one Inference;
     /// - it holds no Capability, Component or Flow (nothing it does or is
     ///   built from);
     /// - every live Requirement (not dropped) takes part in the reasoning: a
-    ///   step concludes it, it is a premise of one, or a CONTRADICTS joins it
-    ///   to a node that does (a conjecture a counterexample refutes).
+    ///   step concludes it, it is a premise of one (an assumed premise
+    ///   included), or a CONTRADICTS joins it to a node that does (a
+    ///   conjecture a counterexample refutes).
     ///
     /// One statement outside the reasoning makes it an ordinary design again,
     /// so the phase questions come back the moment there is something to build.
     ///
-    /// OR ITS PROJECT SAYS IT IS ONE (req:a-line-of-reasoning-is-held-in-its-
-    /// project-and-its-gaps-fit-an-argument, the cogito and trolley trials,
-    /// Arrow's N21): with nothing to build and at least one Inference, a
-    /// Project whose `domain` names an argument, a proof or reasoning makes it
-    /// a reasoning design even when a statement or two stands outside the
-    /// reasoning (genesis's own top requirement, an unattached judgement).
+    /// THE STRUCTURE DECIDES; THE DOMAIN HINT IS ONLY A FALLBACK
+    /// (fact:root-cause-proof-statements-fall-through-to-software-predicates-
+    /// and-assumed-premises-stopped-counting-2026-10-22: genesis says a hint
+    /// is "never a switch on what reflow2 computes"). The structural test is
+    /// read first and suffices: a proof whose Project says `software` or
+    /// `document` reads as the proof it is. Only when it fails — a statement
+    /// or two standing outside the reasoning (genesis's own top requirement,
+    /// an unattached judgement) — and there is still nothing to build and at
+    /// least one Inference, a Project whose `domain` names an argument, a
+    /// proof or reasoning keeps it a reasoning design
+    /// (req:a-line-of-reasoning-is-held-in-its-project-and-its-gaps-fit-an-
+    /// argument, the cogito and trolley trials, Arrow's N21). Until
+    /// 2026-10-22 the hint was read FIRST, and with assumed premises no longer
+    /// counted (the 10-17 regression) it was the only thing that made a proof
+    /// read as one: the heat-equation rung, whose domain said `document`, got
+    /// every software phase question.
     pub fn is_a_reasoning_design(&self) -> Result<bool, DynoError> {
         if self.count_nodes(node::INFERENCE)? == 0
             || self.count_nodes(node::CAPABILITY)? > 0
@@ -2049,14 +2070,21 @@ impl DesignGraph {
         {
             return Ok(false);
         }
-        if self.scan_live_nodes(node::PROJECT)?.iter().any(|p| {
+        if self.every_live_requirement_takes_part()? {
+            return Ok(true);
+        }
+        Ok(self.scan_live_nodes(node::PROJECT)?.iter().any(|p| {
             p.properties
                 .get("domain")
                 .and_then(crate::foundation::core::Value::as_str)
                 .is_some_and(names_a_line_of_reasoning)
-        }) {
-            return Ok(true);
-        }
+        }))
+    }
+
+    /// The structural half of [`Self::is_a_reasoning_design`]: there is at
+    /// least one live requirement, and every one is a statement, takes part
+    /// in the reasoning, or is joined by a CONTRADICTS to a node that does.
+    fn every_live_requirement_takes_part(&self) -> Result<bool, DynoError> {
         let mut any = false;
         for r in self.scan_live_nodes(node::REQUIREMENT)? {
             if r.properties
@@ -2067,7 +2095,14 @@ impl DesignGraph {
                 continue;
             }
             any = true;
-            if self.takes_part_in_reasoning(&r.node_id)? {
+            // A STATEMENT BELONGS TO THE REASONING by what it says it is (its
+            // `statement_kind`, or `taken_as_given`): a cited theorem a map
+            // lists beside its conjecture, an objection aimed at a step, a
+            // hypothesis a repair left unused. Measured 2026-10-22 on the heat
+            // rung, the Navier–Stokes and Riemann maps and the Lucas–Penrose
+            // argument: each held such statements, and only the domain hint
+            // kept three of the four reading as reasoning.
+            if is_a_statement(&r.properties) || self.takes_part_in_reasoning(&r.node_id)? {
                 continue;
             }
             let mut joined = false;
@@ -3204,7 +3239,13 @@ impl DesignGraph {
                 format!("{} Component(s) exist; 0 Artifacts.", pop.components),
             );
         }
-        if pop.artifacts + pop.capabilities > 0 && pop.verifications == 0 {
+        // NOT ASKED OF A REASONING DESIGN, nor the two after it (the heat-
+        // equation rung, 2026-10-22: a proof design that registers its
+        // sources is asked for tests, conventions and a deployment). Its
+        // Artifacts are the sources it cites, not a build: what checks a proof
+        // is its steps' confirmation (`unconfirmed_reasoning`), and it has
+        // nothing to deploy or operate.
+        if pop.artifacts + pop.capabilities > 0 && pop.verifications == 0 && !pop.reasoning_only {
             push(
                 gaps,
                 GapSource::BuildWithoutVerification,
@@ -3222,7 +3263,7 @@ impl DesignGraph {
         // dev_storyflow's api-boss 2026-08-08). Deliberately AFTER a build
         // exists: see GapSource::BuildWithoutGovernance for why artifacts and
         // not components are the trigger.
-        if pop.artifacts > 0 && pop.design_rules == 0 {
+        if pop.artifacts > 0 && pop.design_rules == 0 && !pop.reasoning_only {
             push(
                 gaps,
                 GapSource::BuildWithoutGovernance,
@@ -3240,7 +3281,7 @@ impl DesignGraph {
                 ),
             );
         }
-        if pop.components + pop.artifacts > 0 && pop.operate == 0 {
+        if pop.components + pop.artifacts > 0 && pop.operate == 0 && !pop.reasoning_only {
             push(
                 gaps,
                 GapSource::NoDeployOperate,
@@ -3298,6 +3339,14 @@ impl DesignGraph {
             // answered; whether the step holds is what the delivery figure and
             // `conclusion_does_not_follow` say.
             if self.is_concluded(&req.node_id)? {
+                continue;
+            }
+            // A STATEMENT IS NOT A NEED A CAPABILITY DELIVERS (the root cause
+            // of 2026-10-22, the class "proof statements fall through to
+            // software predicates"): a theorem, an axiom, a hypothesis or an
+            // objection held in a design that also builds something reads by
+            // its reasoning, never as unsatisfied intent.
+            if is_a_statement(&req.properties) {
                 continue;
             }
             // A DISCONTINUED capability is not a live satisfier, so a
@@ -3696,6 +3745,7 @@ impl DesignGraph {
                 .and_then(|t| self.get_node(t, id).ok().flatten())
                 .map_or_else(|| id.to_string(), |n| node_name(&n))
         };
+        let equivalent = self.equivalent_pairs()?;
         for e in self.all_edges_of_type(edge::DUPLICATES, &index)? {
             // Absent reads as suspected, exactly as HEAL reads it: the two must
             // agree or a pair could fall between them and be reported nowhere.
@@ -3706,6 +3756,12 @@ impl DesignGraph {
                 continue;
             }
             let (a, b) = ordered_pair(&e.from_id, &e.to_id);
+            // A pair recorded EQUIVALENT_TO is answered: two statements a
+            // biconditional shows equivalent, never a possible duplicate
+            // (req:two-statements-can-be-recorded-as-proven-equivalent).
+            if equivalent.contains(&(a.clone(), b.clone())) {
+                continue;
+            }
             let a_name = name_of(&a);
             let b_name = name_of(&b);
             let score = e.properties.get("confidence").and_then(Value::as_f64);
@@ -4648,6 +4704,27 @@ impl DesignGraph {
                  it), or withdraw the statement."
                     .to_string(),
                 i.why.clone(),
+            );
+        }
+        // A STEP THAT ONLY RESTATES ITS GAP (dec:idea-speculate-the-bridge-
+        // that-would-close-a-gap-then-test-it, option c): a premise proven
+        // equivalent to the conclusion, or the same formula. Flagged for the
+        // person to judge; the step still reads by its rule.
+        for c in self.circular_steps()? {
+            push(
+                vec![c.step.clone(), c.conclusion.clone(), c.premise.clone()],
+                format!(
+                    "'{}' is circular: its premise '{}' is equivalent to its conclusion '{}'",
+                    c.step, c.premise, c.conclusion
+                ),
+                "A step whose premise is proven equivalent to what it concludes (an EQUIVALENT_TO \
+                 edge, at any distance) or is the same formula only restates the gap it would \
+                 close: a lemma equivalent to a conjecture closes the conjecture's hole by \
+                 assuming it. Whether it begs the question is the owner's call: replace the \
+                 premise with one that is not equivalent, keep it and say why, or record the \
+                 step as speculation that was tested and dropped."
+                    .to_string(),
+                c.why.clone(),
             );
         }
         if let Some(debt) = self.reasoning_debt()? {
@@ -8411,6 +8488,21 @@ impl DesignGraph {
         ];
         for (ty, prop, what) in DISCRIMINATORS {
             let mut nodes = self.scan_live_nodes(ty)?;
+            // A STATEMENT IS NOT A SOFTWARE NEED (fact:root-cause-proof-
+            // statements-fall-through-to-software-predicates-and-assumed-
+            // premises-stopped-counting-2026-10-22, cause 3). A requirement
+            // that carries `statement_kind` is a theorem, an axiom, an
+            // objection …: that field IS its encoding, and `kind`'s values
+            // (functional, quality, business) describe software. design-a-proof
+            // says to leave `kind` alone, and this asked for it on all six
+            // proof designs and on 40 argument statements.
+            nodes.retain(|n| {
+                *ty != node::REQUIREMENT
+                    || n.properties
+                        .get("statement_kind")
+                        .and_then(Value::as_str)
+                        .is_none_or(|k| k.trim().is_empty())
+            });
             nodes.sort_by(|a, b| a.node_id.cmp(&b.node_id));
             if nodes.len() < 3 {
                 continue;
@@ -8563,9 +8655,12 @@ impl DesignGraph {
             });
         }
 
-        // The adapter the design does not know about.
+        // The adapter the design does not know about. NOT ASKED OF A
+        // REASONING DESIGN: its Artifacts are the sources a proof or an
+        // argument cites, not files of a project an agent instruction file
+        // steers (the Navier–Stokes map, 2026-10-22, registered twelve).
         let artifacts = self.scan_live_nodes(node::ARTIFACT)?.len();
-        if artifacts < 5 {
+        if artifacts < 5 || self.is_a_reasoning_design()? {
             return Ok(());
         }
         let mut projects: Vec<String> = self

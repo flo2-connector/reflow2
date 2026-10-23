@@ -426,7 +426,8 @@ impl DesignGraph {
         let assumes = self.assumptions_under(claim)?;
         let unverified = self.unverified_under(claim)?;
         let tests = self.tests_under(claim)?;
-        let truth = ClaimTruth::of(truth, &assumes, &unverified, &tests);
+        let bridges = self.bridges_under(claim)?;
+        let truth = ClaimTruth::of(truth, &assumes, &unverified, &bridges, &tests);
         let circular = if matches!(
             truth,
             ClaimTruth::Holds | ClaimTruth::Conditional | ClaimTruth::Supported

@@ -55,6 +55,7 @@ pub mod discover;
 pub mod doubt;
 pub mod drift;
 pub mod edge_prose;
+pub mod equivalence;
 pub mod export;
 pub mod far;
 pub mod fielded;

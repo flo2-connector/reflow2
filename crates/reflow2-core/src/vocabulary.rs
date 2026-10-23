@@ -924,7 +924,9 @@ mod tests {
         // relations); 61 since OWNED_BY (2026-08-09, the third "who" axis);
         // 60 since GATED_ON + HAS_READINESS (2026-08-02, BL-68); 58 before
         // that, since CALIBRATED_AGAINST (2026-08-01, req:a-fit-is-not-a-test).
-        assert_eq!(v.edge_types.len(), 68, "all edge types are listed");
+        // 69 since EQUIVALENT_TO (2026-10-23, two statements proven
+        // equivalent).
+        assert_eq!(v.edge_types.len(), 69, "all edge types are listed");
     }
 
     #[test]

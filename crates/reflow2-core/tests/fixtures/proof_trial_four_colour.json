@@ -1,0 +1,4644 @@
+{
+ "content_hash": "sha256:383b3d6d177bf911529d7192a5e47b07edacd89a4d8f0cd8d3452f0c0600eb7d",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-does-a-computer-case-analysis-count-as-a-d7d44c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:question-does-a-computer-case-analysis-count-as-a-proof"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-does-a-computer-case-analysis-count-as-a-d7d44c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-s3-computer-proof-reception"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lem-birkhoff-1913"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-euler-formula"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-jordan-curve"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:thm-tait-equivalence"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-ah-reducibility-computation"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lem-birkhoff-1913"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-heawood-1890-kempe-degree-5"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-schmidt-1981-discharging-error"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-two-coq-steps-record-the-coq-a96d3d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:coq-hypermap-to-four-color"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-two-coq-steps-record-the-coq-a96d3d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:coq-kernel-check-hypermap"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-two-coq-steps-record-the-coq-a96d3d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "ver:coq-kernel-check-2005"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-bridge-premise-that-the-coq-theorem-four-c288ea",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:bridge-four-color-states-theorem-1"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-bridge-premise-that-the-coq-theorem-four-c288ea",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "ver:bridge-definitions-inspection"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-s1-kempe-stood-ten-years"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-s2-ah-1476-configurations"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-s234-kempe-stood-eleven-years"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-s3-ah-1834-then-1482-configurations"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:obj-heawood-1890-kempe-degree-5",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:reply-ah-1989-correction",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s4-wikipedia-five-color-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-562a3009a2b3fb03",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-6fa82f33118dbae6",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-b52613046b884669",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-bdb43e7722e32770",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-simple-planar-map-colouring",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:rsst-633-configurations",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:trust-ah-hand-check",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:trust-ah-reducibility-programs",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:trust-coq-kernel",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:trust-rsst-programs",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:question-does-a-computer-case-analysis-count-as-a-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:4ct-believed-proven-1879-1890",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:4ct-open-1890-1976",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:4ct-proven-since-1976",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:5ct-proven-since-1890",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:ah-unavoidability-flawed-1981-1989",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:kempe-proof-accepted-1879-1890",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "fact:tait-proof-accepted-1880-1891",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:ah-1976-route",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:ah-reducibility-by-computer",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:ah-unavoidability-1989-corrected",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:ah-unavoidability-by-hand",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bridge-from-definitions",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:chains-cannot-cross-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:coq-2005-route",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:coq-hypermap-to-four-color",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:coq-kernel-check-hypermap",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:degree-at-most-5-from-euler",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:heawood-1890-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:heawood-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:heawood-degree-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:heawood-degree-le-4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-1879-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-chain-swap-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-contradiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-degree-4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-degree-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:kempe-degree-le-3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rsst-1997-route",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rsst-thm1-by-computer",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rsst-thm2-by-discharging",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:tait-1880-3-edge-colouring",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:tait-route-to-4ct",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:four-colour-theorem-history",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-does-a-computer-case-analysis-count-as-a-d7d44c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-should-the-two-coq-steps-record-the-coq-a96d3d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-bridge-premise-that-the-coq-theorem-four-c288ea",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bridge-four-color-states-theorem-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-ah-reducibility-computation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-ah-unavoidability-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-coq-development-2005",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-rsst-discharging-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-rsst-reducibility-computation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-tait-1880-argument",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:coq-thm-four-color",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:coq-thm-four-color-hypermap",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s1-four-color-statement-footprint",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s1-kempe-stood-ten-years",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s2-ah-1476-configurations",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s234-kempe-stood-eleven-years",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s3-ah-1834-then-1482-configurations",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-s3-computer-proof-reception",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:falsum-heawood-mc5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:falsum-kempe-mc4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-mc4-exists",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-mc5-exists",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-ah-reducibility",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-ah-unavoidability",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-birkhoff-1913",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-heawood-mc5-no-degree-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-heawood-mc5-no-degree-le-4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-kempe-chains-cannot-cross",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-kempe-mc4-no-degree-4",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-kempe-mc4-no-degree-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-kempe-mc4-no-degree-le-3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-rsst-thm1-reducibility",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-rsst-thm2-unavoidability",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-heawood-1890-kempe-degree-5",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-petersen-1891-tait-gap",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-schmidt-1981-discharging-error",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-tait-3-edge-colouring",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:reply-ah-1989-correction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-euler-formula",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-five-colour",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-four-colour",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-jordan-curve",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-tait-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:ah-reducibility-program-runs",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:ah-unavoidability-hand-check",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:bridge-definitions-inspection",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:coq-kernel-check-2005",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:rsst-reducibility-program",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-562a3009a2b3fb03",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:faf2fcecdfa8744dad17b5778e6aca58f91876bfed267b7e8cc07ffadf3d5d26",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s3-wikipedia-four-color-theorem"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-6fa82f33118dbae6",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:1258097252fa0a377dd8e7153a1c06231129aebafeb28115ec1116d61604fd53",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s1-gonthier-2008-notices"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-b52613046b884669",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c096ff0c8b5da0bb9267071b83f65679bb7ce5a54b16b3fcbdde0502c1e8d83f",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s2-rsst-fourcolor-page"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-bdb43e7722e32770",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f22fd1686d89ece613747378cc7d439085aceff48f21bd23965e881fb014fb47",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s4-wikipedia-five-color-theorem"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:ah-1976-route",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:ah-reducibility-by-computer",
+   "properties": {},
+   "to_id": "req:lem-ah-reducibility"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:ah-unavoidability-1989-corrected",
+   "properties": {},
+   "to_id": "req:lem-ah-unavoidability"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:ah-unavoidability-by-hand",
+   "properties": {},
+   "to_id": "req:lem-ah-unavoidability"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bridge-from-definitions",
+   "properties": {},
+   "to_id": "req:bridge-four-color-states-theorem-1"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:chains-cannot-cross-proof",
+   "properties": {},
+   "to_id": "req:lem-kempe-chains-cannot-cross"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:coq-2005-route",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:coq-hypermap-to-four-color",
+   "properties": {},
+   "to_id": "req:coq-thm-four-color"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:coq-kernel-check-hypermap",
+   "properties": {},
+   "to_id": "req:coq-thm-four-color-hypermap"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:degree-at-most-5-from-euler",
+   "properties": {},
+   "to_id": "req:lem-planar-vertex-degree-at-most-5"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:heawood-1890-reductio",
+   "properties": {},
+   "to_id": "req:thm-five-colour"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:heawood-contradiction",
+   "properties": {},
+   "to_id": "req:falsum-heawood-mc5"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:heawood-degree-5",
+   "properties": {},
+   "to_id": "req:lem-heawood-mc5-no-degree-5"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:heawood-degree-le-4",
+   "properties": {},
+   "to_id": "req:lem-heawood-mc5-no-degree-le-4"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-1879-reductio",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-chain-swap-proof",
+   "properties": {},
+   "to_id": "req:lem-kempe-chain-swap"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-contradiction",
+   "properties": {},
+   "to_id": "req:falsum-kempe-mc4"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-degree-4",
+   "properties": {},
+   "to_id": "req:lem-kempe-mc4-no-degree-4"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-degree-5",
+   "properties": {},
+   "to_id": "req:lem-kempe-mc4-no-degree-5"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:kempe-degree-le-3",
+   "properties": {},
+   "to_id": "req:lem-kempe-mc4-no-degree-le-3"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rsst-1997-route",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rsst-thm1-by-computer",
+   "properties": {},
+   "to_id": "req:lem-rsst-thm1-reducibility"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rsst-thm2-by-discharging",
+   "properties": {},
+   "to_id": "req:lem-rsst-thm2-unavoidability"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:tait-1880-3-edge-colouring",
+   "properties": {},
+   "to_id": "req:prop-tait-3-edge-colouring"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:tait-route-to-4ct",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-s1-kempe-stood-ten-years",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Source disagreement listed in the packet, recorded not resolved: S1 says ten years, S2/S3/S4 say 11 (1879 to 1890). Possibly only rounding or counting from a different event, but the designer does not pick one."
+   },
+   "to_id": "req:ev-s234-kempe-stood-eleven-years"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-s2-ah-1476-configurations",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Source disagreement listed in the packet, recorded not resolved: S2 gives 1476 Appel-Haken configurations, S3 gives 1,834 later reduced to 1,482. The observer did not resolve it and neither does the designer."
+   },
+   "to_id": "req:ev-s3-ah-1834-then-1482-configurations"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-s234-kempe-stood-eleven-years",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Reverse direction of the same dispute, so neither side reads refuted."
+   },
+   "to_id": "req:ev-s1-kempe-stood-ten-years"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-s3-ah-1834-then-1482-configurations",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Reverse direction of the same dispute, so neither side reads refuted."
+   },
+   "to_id": "req:ev-s2-ah-1476-configurations"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-heawood-1890-kempe-degree-5",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Heawood 1890 (cited by S1-S4): the two consecutive Kempe-chain inversions in the degree-5 case cannot always both be made, since 'inverting one chain can scramble other chains' (S1). The objection is aimed at the STEP, not at the degree-5 statement, which is true today (vacuously) and not refuted; nor at the chain lemma or the degree 3 and 4 cases."
+   },
+   "to_id": "inf:kempe-degree-5"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-petersen-1891-tait-gap",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Petersen 1891 (cited by S2, S3): a gap in Tait's argument. Aimed at the STEP: the 3-edge-colouring statement itself is true today and is not refuted, and Tait's equivalence is untouched (S2: 'Tait found an equivalent formulation')."
+   },
+   "to_id": "inf:tait-1880-3-edge-colouring"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-schmidt-1981-discharging-error",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S3: Schmidt's 1981 check of about 40% of the unavoidability portion 'found a significant error in the discharging procedure'. Aimed at the hand-checked discharging STEP as published in 1976-77, not at the unavoidability statement."
+   },
+   "to_id": "inf:ah-unavoidability-by-hand"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "con:def-simple-planar-map-colouring"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "con:rsst-633-configurations"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "req:cite-coq-development-2005"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "req:ev-s1-four-color-statement-footprint"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "req:ev-s1-kempe-stood-ten-years"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "req:obj-heawood-1890-kempe-degree-5"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gonthier-2008-notices",
+   "properties": {},
+   "to_id": "req:thm-four-colour"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "con:def-minimal-counterexample"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "con:rsst-633-configurations"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "req:cite-rsst-discharging-proof"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "req:cite-rsst-reducibility-computation"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "req:ev-s2-ah-1476-configurations"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "req:ev-s234-kempe-stood-eleven-years"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-rsst-fourcolor-page",
+   "properties": {},
+   "to_id": "req:obj-petersen-1891-tait-gap"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:cite-ah-reducibility-computation"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:cite-ah-unavoidability-proof"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:ev-s234-kempe-stood-eleven-years"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:ev-s3-ah-1834-then-1482-configurations"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:ev-s3-computer-proof-reception"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:obj-heawood-1890-kempe-degree-5"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:obj-petersen-1891-tait-gap"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:obj-schmidt-1981-discharging-error"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3-wikipedia-four-color-theorem",
+   "properties": {},
+   "to_id": "req:reply-ah-1989-correction"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s4-wikipedia-five-color-theorem",
+   "properties": {},
+   "to_id": "req:ev-s234-kempe-stood-eleven-years"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s4-wikipedia-five-color-theorem",
+   "properties": {},
+   "to_id": "req:obj-heawood-1890-kempe-degree-5"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:lem-planar-vertex-degree-at-most-5"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:obj-heawood-1890-kempe-degree-5",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:obj-heawood-1890-kempe-degree-5"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:reply-ah-1989-correction",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:reply-ah-1989-correction"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "inf:kempe-1879-reductio",
+   "properties": {},
+   "to_id": "fact:kempe-proof-accepted-1879-1890"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "inf:tait-1880-3-edge-colouring",
+   "properties": {},
+   "to_id": "fact:tait-proof-accepted-1880-1891"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "req:lem-ah-unavoidability",
+   "properties": {},
+   "to_id": "fact:ah-unavoidability-flawed-1981-1989"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "req:thm-five-colour",
+   "properties": {},
+   "to_id": "fact:5ct-proven-since-1890"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "req:thm-four-colour",
+   "properties": {},
+   "to_id": "fact:4ct-believed-proven-1879-1890"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "req:thm-four-colour",
+   "properties": {},
+   "to_id": "fact:4ct-open-1890-1976"
+  },
+  {
+   "edge_type": "HAS_TEMPORAL_FACT",
+   "from_id": "req:thm-four-colour",
+   "properties": {},
+   "to_id": "fact:4ct-proven-since-1976"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {},
+   "to_id": "inf:heawood-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {},
+   "to_id": "inf:heawood-degree-le-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {},
+   "to_id": "inf:kempe-degree-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {},
+   "to_id": "inf:kempe-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-minimal-counterexample",
+   "properties": {},
+   "to_id": "inf:kempe-degree-le-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-simple-planar-map-colouring",
+   "properties": {},
+   "to_id": "inf:heawood-degree-le-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-simple-planar-map-colouring",
+   "properties": {},
+   "to_id": "inf:kempe-chain-swap-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-simple-planar-map-colouring",
+   "properties": {},
+   "to_id": "inf:kempe-degree-le-3"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:rsst-633-configurations",
+   "properties": {},
+   "to_id": "inf:coq-kernel-check-hypermap"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:rsst-633-configurations",
+   "properties": {},
+   "to_id": "inf:rsst-thm1-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:rsst-633-configurations",
+   "properties": {},
+   "to_id": "inf:rsst-thm2-by-discharging"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-ah-hand-check",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:ah-unavoidability-1989-corrected"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-ah-hand-check",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:ah-unavoidability-by-hand"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-ah-reducibility-programs",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:ah-reducibility-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-coq-kernel",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:coq-hypermap-to-four-color"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-coq-kernel",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:coq-kernel-check-hypermap"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:trust-rsst-programs",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:rsst-thm1-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:bridge-four-color-states-theorem-1",
+   "properties": {},
+   "to_id": "inf:coq-2005-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-ah-reducibility-computation",
+   "properties": {},
+   "to_id": "inf:ah-reducibility-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-ah-unavoidability-proof",
+   "properties": {},
+   "to_id": "inf:ah-unavoidability-1989-corrected"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-ah-unavoidability-proof",
+   "properties": {},
+   "to_id": "inf:ah-unavoidability-by-hand"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-coq-development-2005",
+   "properties": {},
+   "to_id": "inf:coq-hypermap-to-four-color"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-coq-development-2005",
+   "properties": {},
+   "to_id": "inf:coq-kernel-check-hypermap"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-rsst-discharging-proof",
+   "properties": {},
+   "to_id": "inf:rsst-thm2-by-discharging"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-rsst-reducibility-computation",
+   "properties": {},
+   "to_id": "inf:rsst-thm1-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-tait-1880-argument",
+   "properties": {},
+   "to_id": "inf:tait-1880-3-edge-colouring"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:coq-thm-four-color",
+   "properties": {},
+   "to_id": "inf:coq-2005-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:coq-thm-four-color-hypermap",
+   "properties": {},
+   "to_id": "inf:coq-hypermap-to-four-color"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:ev-s1-four-color-statement-footprint",
+   "properties": {},
+   "to_id": "inf:bridge-from-definitions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:falsum-heawood-mc5",
+   "properties": {},
+   "to_id": "inf:heawood-1890-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:falsum-kempe-mc4",
+   "properties": {},
+   "to_id": "inf:kempe-1879-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-mc4-exists",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:kempe-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-mc5-exists",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:heawood-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-ah-reducibility",
+   "properties": {},
+   "to_id": "inf:ah-1976-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-ah-unavoidability",
+   "properties": {},
+   "to_id": "inf:ah-1976-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-birkhoff-1913",
+   "properties": {},
+   "to_id": "inf:ah-1976-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-birkhoff-1913",
+   "properties": {},
+   "to_id": "inf:rsst-1997-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-heawood-mc5-no-degree-5",
+   "properties": {},
+   "to_id": "inf:heawood-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-heawood-mc5-no-degree-le-4",
+   "properties": {},
+   "to_id": "inf:heawood-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {},
+   "to_id": "inf:ah-reducibility-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {},
+   "to_id": "inf:heawood-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {},
+   "to_id": "inf:kempe-degree-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {},
+   "to_id": "inf:kempe-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chain-swap",
+   "properties": {},
+   "to_id": "inf:rsst-thm1-by-computer"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chains-cannot-cross",
+   "properties": {},
+   "to_id": "inf:heawood-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chains-cannot-cross",
+   "properties": {},
+   "to_id": "inf:kempe-degree-4"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-chains-cannot-cross",
+   "properties": {},
+   "to_id": "inf:kempe-degree-5"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-mc4-no-degree-4",
+   "properties": {},
+   "to_id": "inf:kempe-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-mc4-no-degree-5",
+   "properties": {},
+   "to_id": "inf:kempe-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-kempe-mc4-no-degree-le-3",
+   "properties": {},
+   "to_id": "inf:kempe-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "inf:ah-unavoidability-1989-corrected"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "inf:ah-unavoidability-by-hand"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "inf:heawood-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "inf:kempe-contradiction"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-planar-vertex-degree-at-most-5",
+   "properties": {},
+   "to_id": "inf:rsst-thm2-by-discharging"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-rsst-thm1-reducibility",
+   "properties": {},
+   "to_id": "inf:rsst-1997-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-rsst-thm2-unavoidability",
+   "properties": {},
+   "to_id": "inf:rsst-1997-route"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-tait-3-edge-colouring",
+   "properties": {},
+   "to_id": "inf:tait-route-to-4ct"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:reply-ah-1989-correction",
+   "properties": {},
+   "to_id": "inf:ah-unavoidability-1989-corrected"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thm-euler-formula",
+   "properties": {},
+   "to_id": "inf:degree-at-most-5-from-euler"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thm-jordan-curve",
+   "properties": {},
+   "to_id": "inf:chains-cannot-cross-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:thm-tait-equivalence",
+   "properties": {},
+   "to_id": "inf:tait-route-to-4ct"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:ah-reducibility-program-runs",
+   "properties": {},
+   "to_id": "req:lem-ah-reducibility"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:ah-unavoidability-hand-check",
+   "properties": {},
+   "to_id": "req:lem-ah-unavoidability"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:bridge-definitions-inspection",
+   "properties": {},
+   "to_id": "req:bridge-four-color-states-theorem-1"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:coq-kernel-check-2005",
+   "properties": {},
+   "to_id": "req:coq-thm-four-color"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:coq-kernel-check-2005",
+   "properties": {},
+   "to_id": "req:coq-thm-four-color-hypermap"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:rsst-reducibility-program",
+   "properties": {},
+   "to_id": "req:lem-rsst-thm1-reducibility"
+  }
+ ],
+ "graph_id": "7d851f5be7cca068",
+ "nodes": [
+  {
+   "node_id": "art:s1-gonthier-2008-notices",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "Source S1. Strength: PRIMARY-AUTHOR for the Coq proof (Gonthier describing his own work in an editorially reviewed venue); SECONDARY for the history (Kempe, Birkhoff, Appel-Haken). Read by the trial observer, who gave the sha256. States Theorem 1, the Kempe pentagon error, the four_color_hypermap and four_color Coq statements and what they rest on.",
+    "location": "https://web.archive.org/web/*/ams.org/notices/200811/tx081101382p.pdf (Notices of the AMS 55(11), 2008, pp. 1382-1393)",
+    "name": "S1 Gonthier, Formal Proof - The Four-Color Theorem (Notices AMS 2008)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:s2-rsst-fourcolor-page",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "Source S2. Strength: CLAIMANT for the RSST proof (the people who did the work, on their own page, not refereed); SECONDARY for the history (Guthrie, Kempe, Heawood, Tait, Petersen, Birkhoff, Franklin, Heesch, Appel-Haken). States THEOREM 1 (reducibility, needs a computer) and THEOREM 2 (unavoidability), 633 configurations and 32 discharging rules, Appel-Haken 1476 configurations.",
+    "location": "https://thomas.math.gatech.edu/FC/fourcolor.html (fetched 2026-10-22)",
+    "name": "S2 Robertson, Sanders, Seymour, Thomas - The Four Color Theorem (web page)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:s3-wikipedia-four-color-theorem",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "Source S3. Strength: TERTIARY (an encyclopedia that cites its sources). Kempe 1879 and Tait 1880 stood 11 years; Kempe's degree-4 case correct, degree-5 case flawed; Appel-Haken 1976 (1,834 configurations later 1,482; reducibility by computer, double-checked; unavoidability by hand, 400+ pages microfiche); Schmidt 1981 error in discharging, corrected in the 1989 book; RSST 1997; Gonthier-Werner Coq 2005, only the Coq kernel to trust.",
+    "location": "https://en.wikipedia.org/wiki/Four_color_theorem (fetched 2026-10-22)",
+    "name": "S3 Wikipedia - Four color theorem",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:s4-wikipedia-five-color-theorem",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "Source S4. Strength: TERTIARY. Heawood 1890 proved the five colour theorem from Kempe's work after finding the error; Kempe's proof considered correct for 11 years; the proof outline (vertex of degree at most 5 by Euler, induction, Kempe chain 1-3 then 2-4 by planarity); the five-colour condition used only at that step.",
+    "location": "https://en.wikipedia.org/wiki/Five_color_theorem (fetched 2026-10-22)",
+    "name": "S4 Wikipedia - Five color theorem",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:baseline-562a3009a2b3fb03",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-22",
+    "name": "sha256 as given in the trial's source packet; the observer fetched and read the page. Asserted from the packet, not measured by this session.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "chg:baseline-6fa82f33118dbae6",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-22",
+    "name": "sha256 as given in the trial's source packet; the observer fetched and read the file. Asserted from the packet, not measured by this session.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "chg:baseline-b52613046b884669",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-22",
+    "name": "sha256 as given in the trial's source packet; the observer fetched and read the page. Asserted from the packet, not measured by this session.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "chg:baseline-bdb43e7722e32770",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-22",
+    "name": "sha256 as given in the trial's source packet; the observer fetched and read the page. Asserted from the packet, not measured by this session.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "con:def-minimal-counterexample",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: minimal counterexample (to the k colour statement)",
+    "priority": "medium",
+    "source": "S2 and S3 use the notion (minimal counterexample, triangulated); the wording here is RECALLED, standard.",
+    "statement": "A minimal counterexample to the k colour statement is a simple planar graph that is not properly k-colourable while every simple planar graph with fewer vertices is. For k = 4 one may also take it to be a triangulation (adding edges cannot make colouring easier). If the statement is false, a minimal counterexample exists (well-ordering of vertex counts).",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "G",
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-simple-planar-map-colouring",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: simple planar map and its proper colouring",
+    "priority": "medium",
+    "source": "S1 (Gonthier 2008) states Theorem 1 in these terms; the graph dual is RECALLED, standard.",
+    "statement": "A simple planar map is a division of the plane into regions (faces) of which any two meeting along a boundary segment are adjacent; a proper k-colouring gives each region one of k colours with adjacent regions different. Dually: a simple planar graph (regions are vertices, adjacency is edges), properly vertex-coloured.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:rsst-633-configurations",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "The RSST set of 633 configurations and 32 discharging rules",
+    "priority": "medium",
+    "source": "S2 (CLAIMANT): 633 configurations, 32 discharging rules. S1 (PRIMARY-AUTHOR for Coq) uses the 633 from [13]; S1 spells the second author 'Saunders', S2 and S3 'Sanders'.",
+    "statement": "The fixed list of 633 'good' configurations and 32 discharging rules of Robertson, Sanders, Seymour and Thomas (1995 revision [13] in S1; 1997 paper). Data both the RSST proof and the Coq proof use: S1, 'the 633 reducible configurations from [13]'.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:trust-ah-hand-check",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Trust: the hand check of Appel-Haken's unavoidability (as corrected in 1989) is right",
+    "priority": "medium",
+    "source": "S2, S3.",
+    "statement": "Accepted, not shown: the people who checked Appel-Haken's unavoidability argument by hand (over 400 pages of microfiche, S3) did so correctly once the errors Schmidt and others found were corrected (1989 book). What it asks you to trust: human checking of a very long, tedious argument that, per S2, 'as far as we know, no one has verified ... in its entirety'.",
+    "statement_kind": "proposition"
+   }
+  },
+  {
+   "node_id": "con:trust-ah-reducibility-programs",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Trust: the Appel-Haken reducibility programs computed correctly",
+    "priority": "medium",
+    "source": "Grounded in S1 (on the weakness of running code) and S3 (independent double-check).",
+    "statement": "Accepted, not shown: the 1976 Appel-Haken programs, compilers and hardware correctly decided that each configuration they reported reducible is reducible. What it asks you to trust: the programs' correctness (S1: repeated runs are 'blind to ... programmer error'), the compilers and the machines. The independent re-check with different programs and computers (S3) lowers the hardware and single-program risk, not the risk that the specification coded was wrong.",
+    "statement_kind": "proposition"
+   }
+  },
+  {
+   "node_id": "con:trust-coq-kernel",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Trust: the Coq kernel is sound (accepts only valid proofs)",
+    "priority": "medium",
+    "source": "S1 (PRIMARY-AUTHOR), S3.",
+    "statement": "Accepted, not shown: the Coq kernel that checked Gonthier and Werner's 2005 proof accepts a proof term only if it is a valid derivation in Coq's logic, and that logic is consistent. What it asks you to trust: the kernel's code (small, and S1: 'checked by a different program, whose own validity can be ascertained empirically because it does run on many inputs'), the logic, and the machine it ran on. S3: 'it is only necessary to trust the Coq kernel.' It does NOT cover whether the statement proved is the theorem: that is the bridge.",
+    "statement_kind": "proposition"
+   }
+  },
+  {
+   "node_id": "con:trust-rsst-programs",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Trust: the RSST reducibility programs computed correctly",
+    "priority": "medium",
+    "source": "S1, S2.",
+    "statement": "Accepted, not shown: the RSST programs correctly checked that each of the 633 configurations is reducible (S2: THEOREM 1 'needs a computer'). What it asks you to trust: the programs, compilers and hardware; and, for the textual part, the hand check of the discharging argument (S1: a textual argument 'which could reasonably be checked by inspection, with computer code that could not').",
+    "statement_kind": "proposition"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:ajs",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "dec:question-does-a-computer-case-analysis-count-as-a-proof",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "Whether a proof whose reducibility part is a computer case analysis no person can check by hand (Appel-Haken 1976, RSST 1997) counts as a mathematical proof is recorded as a question kept open, not settled. Either answer leaves every mathematical status in this design unchanged: what the design records is what each route needs you to trust (con:trust-ah-reducibility-programs, con:trust-rsst-programs, con:trust-coq-kernel).",
+    "kind": "choice",
+    "name": "Open question: does a computer case analysis count as a proof?",
+    "no_relation_note": "Searched the design for 'computer proof', 'reception', 'accepted'; the trust principles and the Coq verification are related in subject but this question is deliberately not linked into any support chain, so that a ruling on it cannot move a mathematical status.",
+    "rationale": "S3 reports that not all mathematicians accepted computer-based demonstrations (req:ev-s3-computer-proof-reception); S1 argues running code is weak evidence against programmer error and that a kernel-checked formal proof answers that. Reception is not truth, so the question is kept apart from the theorem: no edge runs from it to any statement's support. Proposed only; whether to keep it open on purpose (status contested) is the owner's word.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:ah-1976-route",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Appel and Haken's 1976 computer-assisted proof (repaired 1989)",
+    "rule": "all",
+    "rule_name": "no minimal counterexample: unavoidable set of reducible configurations",
+    "warrant": "A minimal counterexample is an internally 6-connected triangulation (Birkhoff), so it contains one of the unavoidable configurations; but every one of them is reducible, so cannot appear in a minimal counterexample. Hence none exists and the theorem holds. Reducibility rests on programs, unavoidability on a hand check (as corrected in 1989)."
+   }
+  },
+  {
+   "node_id": "inf:ah-reducibility-by-computer",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-ah-reducibility",
+    "rule": "all",
+    "rule_name": "reducibility by computer (a program's result)",
+    "warrant": "Each configuration's reducibility is a finite Kempe-chain case analysis, too large for hand, run by program. The step holds only as far as the programs are trusted: the report says they ran and agreed with an independent re-check; it is not a record of the run."
+   }
+  },
+  {
+   "node_id": "inf:ah-unavoidability-1989-corrected",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Appel-Haken unavoidability as corrected in the 1989 book (a hand check)",
+    "rule": "all",
+    "rule_name": "unavoidability by discharging, corrected (a hand check)",
+    "warrant": "The 1976-77 discharging argument with the errors found by Schmidt and others corrected (S3). Still a hand-checked argument: it holds only as far as that checking is trusted, and S2 reports nobody has verified the whole."
+   }
+  },
+  {
+   "node_id": "inf:ah-unavoidability-by-hand",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Appel-Haken unavoidability as published 1976-77 (Schmidt found an error, 1981)",
+    "rule": "all",
+    "rule_name": "unavoidability by discharging (a hand check)",
+    "warrant": "Discharging assigns each vertex the charge 6 - degree, whose total is 12 by Euler's formula (the same Euler fact behind the degree-at-most-5 lemma), and moves charge by rules so that a vertex with positive charge sits in a listed configuration. Checked by hand over 400+ pages (S3). Schmidt found an error in the 1976 version; see the objection and the 1989 reply."
+   }
+  },
+  {
+   "node_id": "inf:bridge-from-definitions",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:bridge-four-color-states-theorem-1",
+    "rule": "all",
+    "rule_name": "bridge by the author's account of the definitions (evidence, not proof)",
+    "warrant": "The only support held: the author says the statement rests on about 140 lines of elementary topology and real-number axioms, short enough for a skeptic to unravel. That makes the bridge checkable, not checked: no one in this trial read those lines. A human inspection of them (ver:bridge-definitions-inspection, planned) would be the real support."
+   }
+  },
+  {
+   "node_id": "inf:chains-cannot-cross-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:lem-kempe-chains-cannot-cross",
+    "rule": "all",
+    "rule_name": "application of the Jordan curve theorem",
+    "warrant": "An a-b path from v1 to v3, closed through v, is a simple closed curve with v2 on one side and v4 on the other; a c-d path from v2 to v4 would have to meet it, but it shares no colour with the a-b path and avoids v. (S1: 'By planarity, chains cannot cross'; proof RECALLED.)"
+   }
+  },
+  {
+   "node_id": "inf:coq-2005-route",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "independent_of": [
+     "inf:ah-1976-route",
+     "inf:rsst-1997-route"
+    ],
+    "name": "Gonthier and Werner's 2005 Coq proof, through the bridge",
+    "rule": "all",
+    "rule_name": "formal theorem plus bridge (the formal statement models the claim)",
+    "warrant": "The kernel-checked theorem four_color, together with the bridge premise that four_color says what Theorem 1 says, gives Theorem 1. Without the bridge the kernel's check proves a statement about Coq's definitions, not the theorem about maps."
+   }
+  },
+  {
+   "node_id": "inf:coq-hypermap-to-four-color",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:coq-thm-four-color",
+    "rule": "all",
+    "rule_name": "kernel-checked formal proof (Coq, 2005)",
+    "warrant": "Inside Coq, four_color for maps over a real_model is derived from four_color_hypermap by discretizing a map into a hypermap (S1: the final statement rests on about 40 lines of topology and 100 of real axioms). Again only as far as the kernel is trusted."
+   }
+  },
+  {
+   "node_id": "inf:coq-kernel-check-hypermap",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:coq-thm-four-color-hypermap",
+    "rule": "all",
+    "rule_name": "kernel-checked formal proof (Coq, 2005)",
+    "warrant": "The Coq kernel accepted a proof term of four_color_hypermap built in the development, including formal proofs that each of the 633 configurations is reducible and of unavoidability; no external program's output is trusted (S1, S3). Holds only as far as the kernel is trusted. Birkhoff's lemma, Euler's formula and the Kempe chain argument are proved INSIDE this development, so they are not premises here."
+   }
+  },
+  {
+   "node_id": "inf:degree-at-most-5-from-euler",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:lem-planar-vertex-degree-at-most-5",
+    "rule": "all",
+    "rule_name": "corollary of Euler's formula (counting)",
+    "warrant": "In a simple planar graph with N at least 3, every face has at least 3 edges, so 2E is at least 3F; with N - E + F = 2 this gives E at most 3N - 6, so the degrees sum to at most 6N - 12 and some vertex has degree at most 5. (S3, S4 'by Euler'; the counting is RECALLED.)"
+   }
+  },
+  {
+   "node_id": "inf:heawood-1890-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-mc5-exists"
+    ],
+    "name": "Heawood's 1890 proof of the five colour theorem",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (Heawood 1890)",
+    "warrant": "A minimal counterexample to the 5CT yields a contradiction, so none exists, so every simple planar graph is 5-colourable. Built entirely from what survived of Kempe: the degree-at-most-5 lemma and the Kempe chain and planarity lemmas (S3, S4)."
+   }
+  },
+  {
+   "node_id": "inf:heawood-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:falsum-heawood-mc5",
+    "rule": "all",
+    "rule_name": "contradiction (degree at most 5, yet none of degree at most 4 or 5)",
+    "warrant": "G is simple planar so it has a vertex of degree at most 5; the two lemmas exclude every such degree."
+   }
+  },
+  {
+   "node_id": "inf:heawood-degree-5",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-heawood-mc5-no-degree-5",
+    "rule": "all",
+    "rule_name": "Heawood 1890, degree 5 by ONE Kempe-chain swap",
+    "warrant": "With five colours on v's five neighbours, take the 1-3 chain at v1: if it misses v3, swap it and colour 1 is free; if it reaches v3, the 2-4 chain at v2 cannot reach v4 (chains cannot cross), so swap that instead and colour 2 is free. Only one swap is ever made, so Heawood's objection to Kempe's two consecutive swaps does not apply here (S4: 'the only place where the five-color condition is used')."
+   }
+  },
+  {
+   "node_id": "inf:heawood-degree-le-4",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:lem-heawood-mc5-no-degree-le-4",
+    "rule": "all",
+    "rule_name": "Heawood 1890, degree at most 4",
+    "warrant": "G - v is smaller, hence 5-colourable; at most four neighbours leave a fifth colour for v (S4 outline)."
+   }
+  },
+  {
+   "node_id": "inf:kempe-1879-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-mc4-exists"
+    ],
+    "name": "Kempe's 1879 proof of the four colour theorem (accepted 1879-1890, broken)",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (Kempe 1879)",
+    "warrant": "If a minimal counterexample existed it would yield a contradiction, so none exists, so (by well-ordering) the four colour theorem holds. Kempe's route; it stands or falls with the degree-5 step beneath it."
+   }
+  },
+  {
+   "node_id": "inf:kempe-chain-swap-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:lem-kempe-chain-swap",
+    "rule": "all",
+    "rule_name": "direct proof from the definition",
+    "warrant": "A Kempe chain is maximal, so no vertex outside it that is adjacent to it has colour a or b; exchanging a and b inside it cannot create two adjacent vertices of one colour, inside, across its boundary, or outside. (Proof RECALLED; Kempe 1879 cited by S1-S4.)"
+   }
+  },
+  {
+   "node_id": "inf:kempe-contradiction",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:falsum-kempe-mc4",
+    "rule": "all",
+    "rule_name": "contradiction (degree at most 5, yet none of degree 3, 4 or 5)",
+    "warrant": "G is simple planar, so it has a vertex of degree at most 5; the three Kempe lemmas say it has none of degree at most 3, of degree 4, or of degree 5."
+   }
+  },
+  {
+   "node_id": "inf:kempe-degree-4",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-kempe-mc4-no-degree-4",
+    "rule": "all",
+    "rule_name": "Kempe 1879, degree 4 by one Kempe-chain swap (sound)",
+    "warrant": "If v1 and v3 are not joined by a 1-3 chain, swap the chain at v1 and colour 1 is free at v; if they are, the 2-4 chain at v2 cannot reach v4 (chains cannot cross), so swap it and colour 2 is free. Only ONE swap is made, so no second chain can be scrambled. S3: 'Kempe also showed correctly that G can have no vertex of degree 4'."
+   }
+  },
+  {
+   "node_id": "inf:kempe-degree-5",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-kempe-mc4-no-degree-5",
+    "rule": "all",
+    "rule_name": "Kempe 1879, degree 5 by two consecutive Kempe-chain swaps (THE BROKEN STEP)",
+    "warrant": "Kempe's claim: with v of degree 5 and its neighbours using four colours (one repeated), 'Kempe enumerated their arrangements and showed that consecutive inversions freed a ring color' (S1). The step assumes that after the first inversion the second chain is still as it was, so a second inversion also succeeds. That assumption is what Heawood's objection attacks."
+   }
+  },
+  {
+   "node_id": "inf:kempe-degree-le-3",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:lem-kempe-mc4-no-degree-le-3",
+    "rule": "all",
+    "rule_name": "Kempe 1879, degree at most 3 (sound)",
+    "warrant": "G - v is smaller, hence 4-colourable; v's at most three neighbours use at most three colours, so v takes the fourth and G is 4-coloured, contradicting that G is a counterexample."
+   }
+  },
+  {
+   "node_id": "inf:rsst-1997-route",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "independent_except": [
+     "req:lem-birkhoff-1913",
+     "req:lem-kempe-chain-swap",
+     "req:lem-planar-vertex-degree-at-most-5"
+    ],
+    "independent_of": [
+     "inf:ah-1976-route"
+    ],
+    "name": "Robertson-Sanders-Seymour-Thomas proof (1997)",
+    "rule": "all",
+    "rule_name": "no minimal counterexample: unavoidable set of reducible configurations",
+    "warrant": "S2: a minimal counterexample is an internally 6-connected triangulation (known since 1913); by THEOREM 2 it contains a good configuration; by THEOREM 1 it cannot. 'From the above two theorems it follows that no minimal counterexample exists, and so the 4CT is true.' S2: 'The basic idea of the proof is the same as Appel and Haken's.'"
+   }
+  },
+  {
+   "node_id": "inf:rsst-thm1-by-computer",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lem-rsst-thm1-reducibility",
+    "rule": "all",
+    "rule_name": "reducibility by computer (a program's result)",
+    "warrant": "Each of the 633 configurations is shown reducible by a Kempe-chain case analysis run by program (S2: 'The first proof needs a computer'; S1: reducible configurations 'for which Kempe's argument is sound'). Holds only as far as the programs are trusted; no record of the run is held here."
+   }
+  },
+  {
+   "node_id": "inf:rsst-thm2-by-discharging",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-rsst-thm2-unavoidability",
+    "rule": "all",
+    "rule_name": "unavoidability by discharging (32 rules)",
+    "warrant": "Euler-formula charge (the same fact behind the degree-at-most-5 lemma) is moved by 32 rules so that any internally 6-connected triangulation contains one of the 633 configurations (S2). How this part was checked is not in the packet; no trust premise is recorded for it, which may understate what it needs."
+   }
+  },
+  {
+   "node_id": "inf:tait-1880-3-edge-colouring",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Tait's 1880 attempt: every bridgeless cubic planar graph is 3-edge-colourable",
+    "rule": "all",
+    "rule_name": "Tait 1880 (the failed step)",
+    "warrant": "Tait's published argument, taken as his claim that it establishes 3-edge-colourability. Its content is not available here; Petersen's objection says it has a gap."
+   }
+  },
+  {
+   "node_id": "inf:tait-route-to-4ct",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "Tait's 1880 route to the four colour theorem (failed)",
+    "rule": "all",
+    "rule_name": "modus ponens through Tait's equivalence",
+    "warrant": "If every bridgeless cubic planar graph is 3-edge-colourable, then by the equivalence the four colour theorem holds. Sound as an implication; the route fails only because its first premise was never established."
+   }
+  },
+  {
+   "node_id": "proj:four-colour-theorem-history",
+   "node_type": "Project",
+   "properties": {
+    "domain": "proof",
+    "mode": "flexible",
+    "name": "Four colour theorem history (proof-ladder trial)",
+    "objective": "The four colour theorem's proof history as a design: Kempe's accepted-then-refuted proof with the one broken step pinpointed, Heawood's five colour theorem standing on what survived, the claim back to open until Appel–Haken's computer proof, its repaired error, the Robertson–Sanders–Seymour–Thomas proof, and Gonthier's Coq check with the bridge from the formal statement to the theorem — each source at its stated strength.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-does-a-computer-case-analysis-count-as-a-d7d44c",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 2,
+    "context_setter": "S3 reports that not all mathematicians accepted computer proofs. That is about how the proof was received, not about whether the theorem is true.",
+    "question": "Does a computer case analysis count as a proof? I recorded this as a proposed Decision and linked it to nothing that holds a proof up, so no ruling on it can change a mathematical status. Do you want it kept open on purpose (status 'contested'), or settled one way?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-four-results-the-proofs-lean-on-are-cited-e8349b",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 1,
+    "context_setter": "Four colour theorem history design. These four are the premises the hand proofs and modern proofs share.",
+    "question": "Four results the proofs lean on are cited but not checked against their own source: Euler's formula, the Jordan curve theorem, Birkhoff's 1913 lemma and Tait's equivalence. Only secondary sources or memory back them, so every route reads 'conditional' on them. Do you take them as given, as standard results, or should they stay conditional until someone pins a primary source?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-i-treated-two-kinds-of-claim-differently-historical-3795fe",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 6,
+    "question": "I treated two kinds of claim differently. Historical reports of what someone did (Heawood's, Petersen's and Schmidt's objections, the Appel-Haken and RSST reports) I pinned to the S1-S4 pages that state them. Mathematical results from elsewhere (Euler, Jordan, Birkhoff, Tait's equivalence) I left unverified, because a secondary source quoting a result is not its source. Do you accept that split?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-should-the-two-coq-steps-record-the-coq-a96d3d",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 4,
+    "context_setter": "With a checker named, these two steps would read as confirmed. They would still be conditional on trusting the kernel.",
+    "question": "Should the two Coq steps record the Coq kernel as their checker (confirmed_how 'checker')? I left every step unconfirmed: that is your word or a checker's, never mine, and no kernel replay has been run or kept in this design.",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-the-bridge-premise-that-the-coq-theorem-four-c288ea",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 3,
+    "context_setter": "The Coq route stands only while the bridge stands.",
+    "question": "The bridge premise (that the Coq theorem four_color states Theorem 1) rests only on Gonthier's own description of the roughly 140 lines of definitions and real-number axioms, so it reads 'supported', not shown. Will you, or someone you name, read those lines (planned check ver:bridge-definitions-inspection)? Or do you accept the bridge on the author's account?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-the-sources-disagree-in-two-places-and-i-37c445",
+   "node_type": "Question",
+   "properties": {
+    "asked_of": "who:ajs",
+    "batch": "fc-round-1",
+    "batch_position": 5,
+    "question": "The sources disagree in two places, and I recorded both sides of each, unresolved. How long did Kempe's proof stand: ten years (S1) or eleven (S2-S4)? How many configurations did Appel-Haken use: 1476 (S2) or 1,834 later 1,482 (S3)? Leave both open, or rule on either?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "req:bridge-four-color-states-theorem-1",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "BRIDGE: the Coq theorem four_color states Theorem 1",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Stated by this designer from S1 (PRIMARY-AUTHOR). No one in this trial has read the definitions. Follows the accepted reflow2 idea dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim (option b) as far as the schema allows; that idea was not read here.",
+    "statement": "The Coq theorem four_color (forall m : map R, simple_map m -> map_colorable 4 m, for R a real_model) says what Theorem 1 says: its definitions of map, simple_map and map_colorable (about 40 lines of elementary topology) and its axioms for the reals (about 100 lines) faithfully model 'any simple planar map', 'adjacent regions' and 'coloured with four colours'. A premise of its own: the kernel's check says nothing about it.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:cite-ah-reducibility-computation",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report: Appel-Haken's 1976 computer runs found every configuration of their set reducible",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Appel-Haken 1977, cited by S3 (TERTIARY) and S2 (secondary for this history); not read. A report of what was computed, not the computation's record: no output of the programs is held here.",
+    "statement": "Appel and Haken (announced June 21, 1976) reduced the problem to a finite set of configurations, each checked reducible one by one by computer, taking over a thousand hours; this reducibility part was independently double-checked with different programs and computers (S3). The count of configurations is disputed between sources (S3: 1,834, later 1,482; S2: 1476).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-ah-unavoidability-proof",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report: Appel-Haken's unavoidability argument by discharging, checked by hand",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Appel-Haken 1977, cited by S3 and S2; not read.",
+    "statement": "Appel and Haken's unavoidability part, a discharging argument with 300+ rules (S2), 'was verified in over 400 pages of microfiche, which had to be checked by hand' (S3).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-coq-development-2005",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report (primary author): Gonthier and Werner's 2005 Coq development formalizes the whole proof",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY-AUTHOR for the Coq proof). S3 credits Werner and Gonthier.",
+    "statement": "Gonthier (with Werner) formalized the entire proof of the four colour theorem in the Coq proof assistant, achieved in 2005, after a 2000 formal proof of part of the code from [13] raised the question whether the specification itself was correct (S1). The formal proof uses the 633 reducible configurations of [13] (RSST 1995). The Coq scripts themselves were not read in this trial.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-rsst-discharging-proof",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report (claimants): RSST's discharging proof of unavoidability with 32 rules",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 (CLAIMANT), S1. The 1997 paper not read.",
+    "statement": "RSST prove THEOREM 2 (unavoidability) by discharging, with 32 discharging rules against Appel-Haken's 300+ (S2). How it was checked is not stated in the packet beyond S1's remark that both modern proofs combine a textual argument 'which could reasonably be checked by inspection' with computer code.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-rsst-reducibility-computation",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report (claimants): RSST's computer check of reducibility for the 633 configurations",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 (CLAIMANT: their own page). The 1997 paper and the programs were not read.",
+    "statement": "Robertson, Sanders, Seymour and Thomas report that their THEOREM 1 (reducibility of each of the 633 configurations) is proved with a computer: 'The first proof needs a computer' (S2).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-tait-1880-argument",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Tait's 1880 argument (as published; not read)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Tait 1880, cited by S2 and S3 (not read).",
+    "statement": "Tait's 1880 argument purporting to show that every bridgeless cubic planar graph is 3-edge-colourable. Its content is not in the packet; only that it existed and had a gap.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:coq-thm-four-color",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Coq: four_color (the final formal statement, over a real_model)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY-AUTHOR). The Coq code not read.",
+    "statement": "Variable R : real_model. Theorem four_color : forall m : map R, simple_map m -> map_colorable 4 m. (S1, verbatim.) Stated over any model R of an axiomatized real line; S1: it 'is based on about 40 lines of elementary topology, and about 100 lines axiomatizing real numbers'.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "R",
+     "m"
+    ]
+   }
+  },
+  {
+   "node_id": "req:coq-thm-four-color-hypermap",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Coq: four_color_hypermap (the combinatorial formal statement)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY-AUTHOR). The Coq code not read.",
+    "statement": "Theorem four_color_hypermap : forall g : hypermap, planar_bridgeless g -> four_colorable g. (S1, verbatim.) S1: 'the deceptively simple statement hides fairly technical definitions of hypermaps, cycle-counting, and planarity' - it is NOT on its face Theorem 1.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "g"
+    ]
+   }
+  },
+  {
+   "node_id": "req:ev-s1-four-color-statement-footprint",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Evidence (S1): what a reader must check to see four_color states Theorem 1",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2008-11",
+    "source": "S1 (PRIMARY-AUTHOR). Reliability B / credibility 2 are this designer's grading: the author describing his own work in an editorially reviewed venue, not independently confirmed here.",
+    "source_reliability": "B",
+    "statement": "Gonthier reports that the final statement four_color 'is based on about 40 lines of elementary topology, and about 100 lines axiomatizing real numbers, rather than 5,000 lines of sometimes arcane combinatorics', and that the skeptic 'still needs to unravel all the definitions to convince himself that the result lives up to its name'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-s1-kempe-stood-ten-years",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "Evidence (S1): Kempe's error took ten years to spot",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2008-11",
+    "source": "S1 (secondary for the history).",
+    "source_reliability": "B",
+    "statement": "S1: 'It took ten years to spot this error'; the Royal Society 'only realized ten years later that Alfred Kempe's 1879 solution was wrong'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-s2-ah-1476-configurations",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "Evidence (S2): Appel-Haken used 1476 configurations",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-10-22",
+    "source": "S2 (secondary for the Appel-Haken history).",
+    "source_reliability": "B",
+    "statement": "S2: RSST use 633 configurations 'against Appel-Haken's 1476'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-s234-kempe-stood-eleven-years",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Evidence (S2, S3, S4): Kempe's proof stood 11 years (1879 to 1890)",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-10-22",
+    "source": "S2 (secondary for the history), S3 and S4 (TERTIARY).",
+    "source_reliability": "C",
+    "statement": "S2: 'its incorrectness was pointed out by Heawood 11 years later'; S3: 'each false proof stood unchallenged for 11 years'; S4: 'That proof had been considered correct for 11 years'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-s3-ah-1834-then-1482-configurations",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "Evidence (S3): Appel-Haken used 1,834 configurations, later reduced to 1,482",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-10-22",
+    "source": "S3 (TERTIARY).",
+    "source_reliability": "C",
+    "statement": "S3: the proof 'reduced the infinitude of possible maps to 1,834 reducible configurations (later reduced to 1,482)'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-s3-computer-proof-reception",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Evidence (S3): not all mathematicians accepted a computer-based demonstration as a proof",
+    "no_relation_note": "Deliberately linked to no statement and no step: it reports how the Appel-Haken proof was received, and reception is not truth, so it must not lower or raise any status. It is named in the rationale of dec:question-does-a-computer-case-analysis-count-as-a-proof and in a question to the owner. Searched 'computer proof', 'accepted', 'reception': nothing else is honestly related.",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-10-22",
+    "source": "S3 (TERTIARY), fetched 2026-10-22. The packet does not mention any newspaper's refusal to report the proof, so none is recorded.",
+    "source_reliability": "C",
+    "statement": "'Not all mathematicians accepted that a computer-based demonstration could qualify as a genuine proof' (S3). A report about how the Appel-Haken proof was RECEIVED. It is descriptive: it is not a premise of, and not an objection to, any mathematical statement here, and lowers no status.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:falsum-heawood-mc5",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Contradiction in Heawood's reductio: G has a vertex of degree at most 5 and has none",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The minimal counterexample G to the five colour theorem both has a vertex of degree at most 5 (it is simple planar) and has no vertex of degree at most 4 or of degree 5.",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:falsum-kempe-mc4",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Contradiction in Kempe's reductio: G has a vertex of degree at most 5 and has none",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The minimal counterexample G to the four colour theorem both has a vertex of degree at most 5 (it is simple planar) and has no vertex of degree at most 3, 4 or 5.",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-mc4-exists",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Suppose: a minimal counterexample G to the four colour theorem exists (Kempe's reductio)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "The shape of Kempe's argument as S3 rewords it ('a minimal counterexample, triangulated').",
+    "statement": "Suppose the four colour theorem is false; then there is a minimal counterexample G, a simple planar triangulation that is not 4-colourable while every smaller one is.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-mc5-exists",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Suppose: a minimal counterexample G to the five colour theorem exists (Heawood's reductio)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S4's outline: by contradiction and induction on vertices; S3: 'changing only that the minimal counterexample requires 6 colors'.",
+    "statement": "Suppose the five colour theorem is false; then there is a minimal counterexample G, a simple planar graph that is not 5-colourable while every simple planar graph with fewer vertices is.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-ah-reducibility",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Appel-Haken reducibility: every configuration in their unavoidable set is reducible",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Appel-Haken 1976/1977, cited by S3; not read.",
+    "statement": "Each configuration in Appel and Haken's unavoidable set is reducible: it cannot appear in a minimal counterexample to the four colour theorem. Reducibility is shown by Kempe's own argument applied to configurations larger than Kempe's pentagon (S1: 'larger reducible configurations for which Kempe's argument is sound').",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lem-ah-unavoidability",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Appel-Haken unavoidability: every internally 6-connected triangulation contains one of their configurations",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Appel-Haken 1976/1977, corrected in their 1989 book; cited by S3; not read.",
+    "statement": "Every triangulation of the kind a minimal counterexample must be contains at least one configuration of Appel and Haken's set (shown by discharging, which redistributes Euler-formula charge).",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lem-birkhoff-1913",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Birkhoff 1913: every minimal counterexample is an internally 6-connected triangulation",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Birkhoff 1913, cited by S2 ('It has been known since 1913 that every minimal counterexample ... is an internally 6-connected triangulation') and S1 (Birkhoff found the first reducible configuration, ring-size 6, in 1913). Birkhoff 1913 not read; S1 and S2 are secondary for it, so it is left unverified.",
+    "statement": "Every minimal counterexample to the four colour theorem is an internally 6-connected triangulation. (The shared lemma the modern proofs start from: it lets an unavoidability theorem about internally 6-connected triangulations be applied to a minimal counterexample.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-heawood-mc5-no-degree-5",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Heawood: a minimal counterexample to 5CT has no vertex of degree 5",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S4's proof outline, which notes: 'This is the only place where the five-color condition is used in the proof. If this technique is used to prove the four-color theorem, it will fail on this step.' S3: Heawood 'use[d] Kempe chains in the degree 5 situation'.",
+    "statement": "No minimal counterexample to the five colour theorem has a vertex v of degree 5: 5-colour G - v; if v's neighbours v1..v5 use all five colours, either the 1-3 chain from v1 misses v3 (swap, freeing colour 1) or it reaches v3, and then by planarity the 2-4 chain from v2 misses v4 (swap, freeing colour 2). One swap suffices, so the step that broke Kempe's 4-colour argument is never needed.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G",
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-heawood-mc5-no-degree-le-4",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Heawood: a minimal counterexample to 5CT has no vertex of degree 4 or less",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S4 outline (remove v and 5-colour the rest by induction; only the all-five-colours case needs work). Heawood 1890 cited by S4, not read.",
+    "statement": "No minimal counterexample to the five colour theorem has a vertex of degree at most 4: delete it, 5-colour the rest by minimality, and its at most 4 neighbours leave a fifth colour free.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-kempe-chain-swap",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Kempe chain lemma: swapping a two-coloured chain keeps the colouring proper",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Kempe 1879, cited by S1, S2, S3, S4 (not read). S2: 'Kempe discovered what became known as Kempe chains' - the part of Kempe's work that survives. Proof RECALLED: maximality means no vertex outside the chain adjacent to it has colour a or b.",
+    "statement": "In a properly coloured planar graph, take two colours a and b and a Kempe chain: a maximal connected set of vertices coloured a or b. Exchanging a and b on that chain alone gives another proper colouring.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G",
+     "a",
+     "b"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-kempe-chains-cannot-cross",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Planarity lemma: Kempe chains cannot cross",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1: 'By planarity, chains cannot cross'; S4 uses it in the 5CT proof. Its proof rests on the Jordan curve theorem - RECALLED, not in the packet.",
+    "statement": "Let v have neighbours v1..vk in cyclic order in a plane graph. If an a-b chain joins v1 to v3, then no chain in two other colours c-d can join v2 to v4: the a-b path together with v closes a curve separating v2 from v4.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G",
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-kempe-mc4-no-degree-4",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Kempe (sound): a minimal counterexample to 4CT has no vertex of degree 4",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Kempe 1879 cited by S3: 'Kempe also showed correctly that G can have no vertex of degree 4'. Not read; the argument is RECALLED and matches S3/S4.",
+    "statement": "No minimal counterexample to the four colour theorem has a vertex v of degree 4: 4-colour G - v; if v's neighbours v1..v4 use all four colours, either the 1-3 Kempe chain from v1 misses v3 (swap it, freeing colour 1) or it reaches v3, and then by planarity the 2-4 chain from v2 misses v4 (swap it, freeing colour 2). One swap suffices.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G",
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-kempe-mc4-no-degree-5",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Kempe's degree-5 claim: a minimal counterexample to 4CT has no vertex of degree 5",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Kempe 1879, cited by S1, S3 and S4 (not read). S3: 'Kempe's argument was flawed for this case.'",
+    "statement": "No minimal counterexample to the four colour theorem has a vertex of degree 5. (The statement is true today - vacuously, since no minimal counterexample exists - but Kempe's 1879 argument for it is broken; see the step and Heawood's objection.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G",
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-kempe-mc4-no-degree-le-3",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Kempe (sound): a minimal counterexample to 4CT has no vertex of degree 3 or less",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Kempe 1879 cited by S3 ('degree at most 3 is easy'); not read.",
+    "statement": "No minimal counterexample to the four colour theorem has a vertex of degree at most 3: delete it, 4-colour the rest by minimality, and its at most 3 neighbours leave a fourth colour free for it.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-planar-vertex-degree-at-most-5",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Every simple planar graph has a vertex of degree at most 5",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S3 (Kempe's argument reworded) and S4 (5CT outline), both from Euler's formula; S1 gives the cubic-map form: average face arity 6 - 12/F. Derivation RECALLED: E is at most 3N - 6, so the average degree is below 6.",
+    "statement": "Every finite simple planar graph G has a vertex of degree at most 5.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-rsst-thm1-reducibility",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "RSST THEOREM 1 (reducibility): no good configuration appears in a minimal counterexample",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 (CLAIMANT).",
+    "statement": "If T is a minimal counterexample to the Four Color Theorem, then no good configuration appears in T. (S2, verbatim.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-rsst-thm2-unavoidability",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "RSST THEOREM 2 (unavoidability): every internally 6-connected triangulation contains a good configuration",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 (CLAIMANT).",
+    "statement": "For every internally 6-connected triangulation T, some good configuration appears in T. (S2, verbatim.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:obj-heawood-1890-kempe-degree-5",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Heawood's objection (1890): Kempe's degree-5 step uses two chain swaps that need not both work",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Heawood 1890, cited by S1, S2, S3, S4 (not read). Read in S1 (secondary for the history: mechanism quoted), S3 (TERTIARY: 'Kempe's argument was flawed for this case. Heawood noticed Kempe's mistake') and S4 (TERTIARY: 'Heawood found an error in it'). Heawood's own example map is RECALLED only.",
+    "statement": "In the degree-5 case Kempe performs two Kempe-chain inversions in succession. 'It is not always possible to do consecutive inversions, as inverting one chain can scramble other chains' (S1): after the first swap the second chain may no longer separate as Kempe assumed, so the colour he claims to free need not be free. Heawood exhibited a map where this happens (RECALLED; Heawood 1890 not read). The argument for the degree-5 case therefore fails; nothing in the objection touches the degree 3 or 4 cases or the chain lemma itself.",
+    "statement_kind": "objection",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:obj-petersen-1891-tait-gap",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Petersen's objection (1891): Tait's argument has a gap",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Petersen 1891, cited by S2 and S3 (not read).",
+    "statement": "Tait's 1880 argument does not establish its conclusion: 'a gap in the argument was pointed out by Petersen in 1891' (S2); 'Tait's proof was shown incorrect by Julius Petersen' (S3). What the gap was is not stated in the packet. (RECALLED, not recorded as a node: Tait later, in 1884, conjectured that every 3-connected cubic planar graph is Hamiltonian, which would give the 3-edge-colouring; Tutte refuted that in 1946.)",
+    "statement_kind": "objection",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:obj-schmidt-1981-discharging-error",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Schmidt's objection (1981): a significant error in Appel-Haken's discharging procedure",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Schmidt 1981, cited by S3 (TERTIARY); not read.",
+    "statement": "Ulrich Schmidt's 1981 thesis 'had checked about 40% of the unavoidability portion and found a significant error in the discharging procedure' (S3). As published in 1976-77, the unavoidability argument does not go through at that point.",
+    "statement_kind": "objection",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:prop-tait-3-edge-colouring",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Every bridgeless cubic planar graph is 3-edge-colourable (what Tait's 1880 argument claimed)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "The statement Tait's 1880 attempt aimed at (S2, S3; Tait 1880 not read). It is true today, as a consequence of the 4CT and Tait's equivalence, but that derivation is NOT drawn here: it would close a circle with Tait's route to the 4CT.",
+    "statement": "Every bridgeless cubic planar graph has a proper 3-edge-colouring.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "H"
+    ]
+   }
+  },
+  {
+   "node_id": "req:reply-ah-1989-correction",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Report: Appel and Haken's 1989 book corrected Schmidt's error (and others)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Appel and Haken 1989 (Every Planar Map is Four Colorable), cited by S3; not read. Whether the correction is right rests on the same kind of hand check (con:trust-ah-hand-check); S2 says no one, as far as they know, has verified the whole.",
+    "statement": "Appel and Haken's 1989 book 'explained and corrected the error discovered by Schmidt as well as several further errors found by others' (S3). Recorded as the premise of a SECOND, corrected unavoidability step, not as a reply that refutes Schmidt: Schmidt was right about the 1976 version.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:thm-euler-formula",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Euler's formula for planar graphs",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Euler; RECALLED as a standard theorem (original not read). S1 states it (N - E + F = 2) and S3/S4 invoke it; those are secondary statements, not its source, so it is left unverified.",
+    "statement": "For a connected planar graph drawn in the plane, N - E + F = 2 (vertices minus edges plus faces).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:thm-five-colour",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The five colour theorem (Heawood 1890)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "First proved by Heawood 1890, cited by S3 and S4 (Heawood 1890 not read in this trial). The proof recorded here follows S4's outline.",
+    "statement": "The regions of any simple planar map can be properly coloured with five colours (dually: every simple planar graph is properly 5-vertex-colourable).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-four-colour",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem 1: the four colour theorem",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Wording quoted from S1 (Gonthier 2008, Theorem 1), read by the observer. Posed 1852 by Francis Guthrie, first printed reference Cayley 1878 (S2).",
+    "statement": "The regions of any simple planar map can be coloured with only four colours, in such a way that any two adjacent regions have different colours.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "m"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-jordan-curve",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Jordan curve theorem",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Jordan; RECALLED as a standard theorem, not in the packet and not read. It is what 'by planarity, chains cannot cross' (S1) rests on.",
+    "statement": "A simple closed curve in the plane separates it into exactly two connected regions, an inside and an outside, and any path from one to the other meets the curve.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:thm-tait-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Tait's equivalence: 4CT iff every bridgeless cubic planar map is 3-edge-colourable",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Tait 1880, cited by S2 (not read): 'Tait found an equivalent formulation of the Four Color Theorem in terms of 3-edge-coloring.' S2 is the RSST claimants' page, SECONDARY for this history. The precise hypotheses (bridgeless, cubic, planar) are RECALLED.",
+    "statement": "The four colour theorem holds if and only if the edges of every bridgeless cubic planar graph can be properly coloured with three colours (Tait's reformulation in terms of 3-edge-colouring).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:lem-planar-vertex-degree-at-most-5",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Every simple planar graph has a vertex of degree at most 5\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"S3 (Kempe's argument reworded) and S4 (5CT outline), both from Euler's formula; S1 gives the cubic-map form: average face arity 6 - 12/F. Derivation RECALLED: E &lt;= 3N - 6, so average degree &lt; 6.\",\"statement\":\"Every finite simple planar graph G has a vertex of degree at most 5.\",\"statement_kind\":\"lemma\",\"status\":\"proposed\",\"variables\":[\"G\"]}",
+    "target_id": "req:lem-planar-vertex-degree-at-most-5",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:obj-heawood-1890-kempe-degree-5",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONTRADICTS\",\"other_type\":\"Inference\",\"other_id\":\"inf:kempe-degree-5\",\"properties\":{\"alignment\":\"opposing\",\"evidence\":\"Heawood 1890 (cited by S1-S4): the two consecutive Kempe-chain inversions in the degree-5 case cannot always both be made, since 'inverting one chain can scramble other chains' (S1). The objection is aimed at the STEP, not at the degree-5 statement, which is true today (vacuously) and not refuted; nor at the chain lemma or the degree 3 and 4 cases.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Heawood's objection (1890): Kempe's degree-5 step uses two chain swaps that need not both work\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Heawood 1890, cited by S1, S2, S3, S4 (not read). Quoted mechanism from S1 (secondary for the history). S2: 'its incorrectness was pointed out by Heawood 11 years later'.\",\"statement\":\"In the degree-5 case Kempe performs two Kempe-chain inversions in succession. 'It is not always possible to do consecutive inversions, as inverting one chain can scramble other chains' (S1): after the first swap the second chain may no longer separate as Kempe assumed, so the colour he claims to free need not be free. Heawood exhibited a map where this happens (RECALLED; Heawood 1890 not read). The argument for the degree-5 case therefore fails; nothing in the objection touches the degree 3 or 4 cases or the chain lemma itself.\",\"statement_kind\":\"objection\",\"status\":\"proposed\"}",
+    "target_id": "req:obj-heawood-1890-kempe-degree-5",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:reply-ah-1989-correction",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"DOCUMENTS\",\"other_type\":\"Artifact\",\"other_id\":\"art:s3-wikipedia-four-color-theorem\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Appel and Haken's reply (1989 book): the error corrected\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"Appel and Haken 1989 (Every Planar Map is Four Colorable), cited by S3; not read. Whether the correction is right rests on the same kind of hand check (con:trust-ah-hand-check); S2 says no one, as far as they know, has verified the whole.\",\"statement\":\"Appel and Haken's 1989 book 'explained and corrected the error discovered by Schmidt as well as several further errors found by others' (S3). With the correction the unavoidability argument goes through.\",\"statement_kind\":\"reply\",\"status\":\"proposed\",\"taken_as_given\":true}",
+    "target_id": "req:reply-ah-1989-correction",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "fact:4ct-believed-proven-1879-1890",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "1879-1890: the four colour theorem believed proven (Kempe)",
+    "source": "art:s3-wikipedia-four-color-theorem",
+    "statement": "From Kempe's 1879 proof until Heawood exposed its error in 1890, the four colour theorem was widely accepted as proven (S3: 'widely acclaimed'). The proof it rested on was wrong; the status was mistaken, not the theorem.",
+    "subject_id": "req:thm-four-colour",
+    "valid_from": "1879",
+    "valid_to": "1890",
+    "value": "{\"historical_status\": \"believed proven\", \"via\": \"inf:kempe-1879-reductio\"}"
+   }
+  },
+  {
+   "node_id": "fact:4ct-open-1890-1976",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "1890-1976: the four colour theorem open again",
+    "source": "art:s2-rsst-fourcolor-page",
+    "statement": "After Heawood's 1890 objection (and Petersen's to Tait in 1891) no accepted proof existed: the statement was an open conjecture until Appel and Haken's 1976 announcement. Partial progress in this period: Birkhoff 1913, Franklin 1922 (true for maps of at most 25 regions, S2), Heesch's reducibility and discharging (S2).",
+    "subject_id": "req:thm-four-colour",
+    "valid_from": "1890",
+    "valid_to": "1976-06-21",
+    "value": "{\"historical_status\": \"open (conjecture)\"}"
+   }
+  },
+  {
+   "node_id": "fact:4ct-proven-since-1976",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "Since 1976: the four colour theorem proven (Appel-Haken; RSST 1997; Coq 2005)",
+    "source": "art:s3-wikipedia-four-color-theorem",
+    "statement": "Proven since Appel and Haken's announcement of June 21, 1976 (S3), with an error in the unavoidability part found in 1981 and corrected in 1989; reproved by Robertson, Sanders, Seymour and Thomas in 1997 and formally verified in Coq in 2005. Doubts about computer proofs (S3) are reception, not a change of status.",
+    "subject_id": "req:thm-four-colour",
+    "valid_from": "1976-06-21",
+    "value": "{\"historical_status\": \"proven\", \"via\": [\"inf:ah-1976-route\", \"inf:rsst-1997-route\", \"inf:coq-2005-route\"]}"
+   }
+  },
+  {
+   "node_id": "fact:5ct-proven-since-1890",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "Since 1890: the five colour theorem proven (Heawood)",
+    "source": "art:s4-wikipedia-five-color-theorem",
+    "statement": "Proven by Heawood in 1890, in the same paper that exposed Kempe's error (S3, S4); never in doubt since.",
+    "subject_id": "req:thm-five-colour",
+    "valid_from": "1890",
+    "value": "{\"historical_status\": \"proven\"}"
+   }
+  },
+  {
+   "node_id": "fact:ah-unavoidability-flawed-1981-1989",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "1981-1989: Appel-Haken unavoidability known flawed, then corrected",
+    "source": "art:s3-wikipedia-four-color-theorem",
+    "statement": "From Schmidt's 1981 thesis to the 1989 book, the unavoidability part as published was known to contain a significant error in the discharging procedure; the 1989 book corrected it and further errors (S3). The 1976-77 step reads defeated; the 1989 step holds.",
+    "subject_id": "req:lem-ah-unavoidability",
+    "valid_from": "1981",
+    "valid_to": "1989",
+    "value": "{\"historical_status\": \"known flawed, awaiting correction\"}"
+   }
+  },
+  {
+   "node_id": "fact:kempe-proof-accepted-1879-1890",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "Kempe's proof accepted 1879-1890, refuted (as a proof) since 1890",
+    "source": "art:s4-wikipedia-five-color-theorem",
+    "statement": "Kempe's 1879 proof was accepted from 1879 until Heawood's 1890 objection. How long it stood is disputed between sources: 11 years (S2, S3, S4) or ten years (S1); see req:ev-s1-kempe-stood-ten-years and req:ev-s234-kempe-stood-eleven-years.",
+    "subject_id": "inf:kempe-1879-reductio",
+    "valid_from": "1879",
+    "valid_to": "1890",
+    "value": "{\"historical_status\": \"accepted as a proof\"}"
+   }
+  },
+  {
+   "node_id": "fact:tait-proof-accepted-1880-1891",
+   "node_type": "TemporalFact",
+   "properties": {
+    "basis": "measured",
+    "fact_type": "status",
+    "name": "Tait's argument stood 1880-1891, until Petersen",
+    "source": "art:s3-wikipedia-four-color-theorem",
+    "statement": "Tait's 1880 proof stood unchallenged until Petersen pointed out its gap in 1891 (S3: 'each false proof stood unchallenged for 11 years').",
+    "subject_id": "inf:tait-1880-3-edge-colouring",
+    "valid_from": "1880",
+    "valid_to": "1891",
+    "value": "{\"historical_status\": \"unchallenged\"}"
+   }
+  },
+  {
+   "node_id": "ver:ah-reducibility-program-runs",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "KIND: a program's result. Appel and Haken's programs checked each configuration's reducibility, over a thousand hours; independently double-checked with different programs and computers (S3). WHAT IT NEEDS YOU TO TRUST: con:trust-ah-reducibility-programs (program correctness, compilers, hardware; S1: repeated runs are blind to programmer error). NO KEPT RECORD of the runs is held in this design, so reflow2 reads it as asserted.",
+    "findings": "Reported by S3 (TERTIARY): all configurations found reducible; independent re-check agreed. Not observed in this trial.",
+    "kind": "verification",
+    "last_run_at": "1976",
+    "location": "not held: the 1976 program output (cited by S3)",
+    "method": "analysis",
+    "name": "AH 1976 reducibility: program runs (a program's result)",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:ah-unavoidability-hand-check",
+   "node_type": "Verification",
+   "properties": {
+    "computed": false,
+    "description": "KIND: a hand check. The unavoidability part 'was verified in over 400 pages of microfiche, which had to be checked by hand' (S3). Schmidt (1981) checked about 40% and found a significant error; corrected in the 1989 book with further errors found by others. WHAT IT NEEDS YOU TO TRUST: con:trust-ah-hand-check. S2: 'as far as we know, no one has verified it in its entirety.'",
+    "findings": "Reported by S3: as corrected in 1989, accepted; S2 reports no complete independent verification. Not observed in this trial.",
+    "kind": "verification",
+    "last_run_at": "1989",
+    "method": "inspection",
+    "name": "AH unavoidability: hand check of 400+ pages (a hand check)",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:bridge-definitions-inspection",
+   "node_type": "Verification",
+   "properties": {
+    "description": "KIND: a human inspection, not yet done. Read the definitions of map, simple_map and map_colorable (about 40 lines of elementary topology) and the real_model axioms (about 100 lines) in the Coq development, and judge whether four_color says what Theorem 1 says. Nobody in this trial has done it; the Coq code was not read.",
+    "kind": "verification",
+    "method": "inspection",
+    "name": "Bridge: read the ~140 lines of definitions and axioms behind four_color (planned)",
+    "status": "planned"
+   }
+  },
+  {
+   "node_id": "ver:coq-kernel-check-2005",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "KIND: a kernel-checked formal proof. The Coq kernel type-checked the proof terms of four_color_hypermap and four_color (S1), so the reducibility and unavoidability computations are checked inside the logic rather than trusted as program output (S3: 'This removed the need to trust the various computer programs ... it is only necessary to trust the Coq kernel'). WHAT IT NEEDS YOU TO TRUST: con:trust-coq-kernel; and, separately, the bridge (req:bridge-four-color-states-theorem-1). NO KEPT RECORD of the check (the scripts and a replay log) is held in this design.",
+    "findings": "Reported by S1 (PRIMARY-AUTHOR): achieved in 2005. Not replayed in this trial.",
+    "kind": "verification",
+    "last_run_at": "2005",
+    "location": "not held: the Coq development and a kernel replay (cited by S1)",
+    "method": "analysis",
+    "name": "Coq 2005: kernel check of the whole formal proof (a kernel-checked formal proof)",
+    "status": "passing"
+   }
+  },
+  {
+   "node_id": "ver:rsst-reducibility-program",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "KIND: a program's result. S2: THEOREM 1 'needs a computer'. WHAT IT NEEDS YOU TO TRUST: con:trust-rsst-programs. S1: both the Appel-Haken and RSST proofs combine a textual argument checkable by inspection 'with computer code that could not' be. NO KEPT RECORD of the runs is held in this design.",
+    "findings": "Reported by S2 (CLAIMANT). Not observed in this trial.",
+    "kind": "verification",
+    "last_run_at": "1997",
+    "location": "not held: the RSST programs and their output (cited by S2)",
+    "method": "analysis",
+    "name": "RSST reducibility: program runs on 633 configurations (a program's result)",
+    "status": "passing"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}
