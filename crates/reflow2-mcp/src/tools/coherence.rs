@@ -1101,7 +1101,7 @@ impl ReflowService {
                     serde_json::to_value(&arrivals).map_err(ser_err)?,
                 );
             }
-            return ok_json(out);
+            return ok_json(crate::service::bound_radius(out, req.budget_chars));
         }
         if req.seed_ids.is_empty() {
             return Err(McpError::invalid_params(
@@ -1121,7 +1121,10 @@ impl ReflowService {
         }
         .map_err(ser_err)?;
         self.carry_walk_on(&radius, opts, &mut out).await;
-        ok_json(out)
+        // HELD TO ITS BUDGET (fact:the-rocket-equation-rung-ran-on-0-90-0-…,
+        // finding (b)): at max_depth 2 the inference walk still reached
+        // distance 6, about 25k characters, and nothing bounded it.
+        ok_json(crate::service::bound_radius(out, req.budget_chars))
     }
 
     #[tool(

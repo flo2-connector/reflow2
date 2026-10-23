@@ -479,6 +479,7 @@ async fn lenses(s: &ReflowService) -> Vec<(&'static str, String)> {
     let listed = j!(s.list_skills(Parameters(ListSkillsReq { budget_chars: None })));
     let got = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let looped = j!(s.loop_status(Parameters(
         serde_json::from_value::<LoopScopeReq>(json!({})).unwrap()
@@ -600,7 +601,10 @@ async fn no_served_surface_tells_the_agent_to_write_a_readers_persona_into_the_d
     );
     assert!(names.len() >= 25, "a real catalogue: {}", names.len());
     for name in &names {
-        let skill = j!(s.get_skill(Parameters(GetSkillReq { name: name.clone() })));
+        let skill = j!(s.get_skill(Parameters(GetSkillReq {
+            name: name.clone(),
+            budget_chars: None
+        })));
         for field in ["body", "description", "summary"] {
             let text = skill[field]
                 .as_str()

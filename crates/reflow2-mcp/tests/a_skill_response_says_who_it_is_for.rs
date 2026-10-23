@@ -65,6 +65,7 @@ async fn a_skill_says_plainly_that_the_design_does_not_say_who_is_reading() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out
         .get("lens")
@@ -90,6 +91,7 @@ async fn a_skill_names_the_people_the_design_can_describe() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
@@ -111,6 +113,7 @@ async fn the_lens_reports_what_the_design_holds_never_who_is_present() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
@@ -146,6 +149,7 @@ async fn the_skill_body_still_arrives_whole() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "detect-and-ask".into(),
+        budget_chars: None,
     })));
 
     assert_eq!(

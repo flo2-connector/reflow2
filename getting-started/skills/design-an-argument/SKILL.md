@@ -152,7 +152,8 @@ records their answer.
 ## 6. Read each question back, in the reader's own words
 
 `reasoning_report` on each position reads it back: its computed truth, the steps under it with
-each step's principle and warrant, the objections against it and against each step, how each
+each step's principle and warrant (each premise's reason in short, in full once in
+`premise_whys`), the objections against it and against each step, how each
 stands, what it rests on (`rests_on`, its own support only) and what its objections rest on
 (`against_rests_on`). Read on a dispute Decision, it lists the `positions` with what each rests
 on and which the owner holds. Read the whole design with no `claim` for the summary lists:

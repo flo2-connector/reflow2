@@ -297,3 +297,41 @@ fn a_call_longer_than_rmcps_line_bound_is_answered_both_ways() {
     let v: serde_json::Value = serde_json::from_slice(&out).expect("stdout is one JSON document");
     assert!(v["node"].is_null(), "no such node, and it says so");
 }
+
+/// WHAT IS PRINTED IS WHAT THE BUDGET MEASURED (PR B "replies fit", item 5).
+/// The door printed the reply pretty-printed, so a reply held to 30,000
+/// characters printed 35,087 (the heat rung's read-back, measured 2026-10-23
+/// on 0.90.0), and one held to 60,000 printed 73,497. It prints compact JSON
+/// now: one line, the size `budget_chars` held.
+#[cfg(feature = "rocksdb")]
+#[test]
+fn a_reply_held_to_n_prints_at_most_n_characters() {
+    let dir = tempfile::tempdir().expect("tempdir");
+    let graph = dir.path().join("graph");
+    let fixture = concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/../reflow2-core/tests/fixtures/proof_trial_heat_equation.json"
+    );
+    let o = Command::new(bin())
+        .args(["--graph-path", graph.to_str().unwrap(), "--import", fixture])
+        .output()
+        .expect("the binary runs");
+    assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+    for budget in [30_000usize, 60_000] {
+        let o = call(
+            &graph,
+            "reasoning_report",
+            &format!(r#"{{"claim":"req:thm-uniqueness","budget_chars":{budget}}}"#),
+        );
+        assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+        let printed = String::from_utf8_lossy(&o.stdout);
+        let printed = printed.trim_end();
+        assert!(
+            printed.len() <= budget,
+            "held to {budget}, printed {}",
+            printed.len()
+        );
+        assert!(!printed.contains('\n'), "one line of compact JSON");
+        assert_eq!(stdout_json(&o)["page"]["budget_chars"], budget);
+    }
+}

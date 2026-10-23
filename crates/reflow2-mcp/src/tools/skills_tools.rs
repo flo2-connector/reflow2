@@ -29,6 +29,14 @@ pub struct GetSkillReq {
     /// The skill's name, as `list_skills` reports it, or the slash command a
     /// person types for it (its `shortcut`), with or without the slash.
     pub name: String,
+    /// How many characters of JSON this reply may spend (default 30,000).
+    /// The skill's body always comes WHOLE; what gives is the list of lessons
+    /// this design holds for the step, ranked newest first and withheld whole
+    /// from the end. The reply then says how many it withheld, names each by
+    /// id (`lessons.withheld_ids`; read one with get_node), and keeps the
+    /// count. Raise it only if this client has the room.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, serde::Deserialize, schemars::JsonSchema)]
@@ -235,6 +243,8 @@ impl ReflowService {
                        command a person types for it (\"/gaps\", \"gaps\"). Returns the \
                        whole SKILL.md — follow it as written. Call this BEFORE the work the skill \
                        covers, not after: these describe how to do the step, not how to report it. \
+                       The body always comes whole; the lessons this design holds for the step \
+                       are held to `budget_chars`, and any withheld are named by id. \
                        Ask for this when you want the full playbook, procedure or step-by-step guide for a kind of task — how to do it properly, not just what exists.",
         title = "Get a Skill",
         annotations(read_only_hint = true)
@@ -304,6 +314,17 @@ impl ReflowService {
                 }),
             );
         }
+        // HELD TO ITS BUDGET (fact:root-cause-get-skill-attaches-every-lesson-
+        // unbounded-so-six-skills-outgrow-a-chat-reply-on-reflow2s-design-
+        // 2026-10-21): the body whole, the lessons from the end of the ranking.
+        let payload = crate::reply_budget::keep_ranked_rows_whole(
+            payload,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "lessons",
+            "items",
+            "Read one with get_node on its id, or ask again with a larger budget_chars.",
+        );
         structured(payload)
     }
     /// The working instructions, served rather than installed.

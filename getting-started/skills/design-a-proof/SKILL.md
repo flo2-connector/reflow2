@@ -298,7 +298,9 @@ word or a checker's, never yours. Recording a proof does not prove it.
 steps under it, what it rests on, which premises cite no source, the assumptions ("assumed,
 discharged by …"), each stated independence and each generalization. Every claim comes back
 whole, in proof order; a long proof comes in pages, so read on with the reply's `next_offset`
-until there is none. Tell the reader, in the
+until there is none. Each premise in a step says its reason in short (its `why`); its full reason is
+said once, in `premise_whys` (or in its own row when it is a claim on the same page), and an
+advisory such as an unverified citation's is said once in `advisories`, with the ids it applies to. Tell the reader, in the
 words of their mathematics rather than reflow2's, what the proof shows and what it does not, using
 the statuses exactly:
 
