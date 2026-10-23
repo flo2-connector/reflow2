@@ -59,6 +59,23 @@
         "description": "The artifact's id — `art:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
         "type": "string"
       },
+      "information_credibility": {
+        "default": null,
+        "description": "HOW CREDIBLE WHAT IT SAYS IS, Admiralty scale: `1` confirmed … `4`\ndoubtful, `5` improbable, `6` cannot be judged. Graded 4 to 6, it\nchecks no citation. Omitted: nothing is written.",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "location": {
         "default": null,
         "description": "Path / URI / content-hash of the real deliverable (lives outside the graph).",
@@ -69,6 +86,31 @@
       },
       "name": {
         "default": null,
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "not_read": {
+        "default": null,
+        "description": "NAMED, NOT READ: a source named somewhere that nobody read. It never\ncounts as citing — what it DOCUMENTS stays uncited — and a checksum on\nit pins nothing. Omitted: nothing is written.",
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "source_reliability": {
+        "default": null,
+        "description": "THE SOURCE'S RELIABILITY, on the Admiralty scale evidence uses: `A`\ncompletely reliable … `D` not usually reliable, `E` unreliable, `F`\ncannot be judged. Graded D to F, it checks no citation: what it\ndocuments reads unverified. Omitted: nothing is written.",
+        "enum": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          null
+        ],
         "type": [
           "string",
           "null"

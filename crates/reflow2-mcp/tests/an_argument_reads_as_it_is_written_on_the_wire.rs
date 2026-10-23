@@ -139,6 +139,20 @@ async fn an_objection_that_defeats_a_step_is_named_in_the_write() {
     .await;
     s.statement("req:obj-begs-the-question", "objection", true)
         .await;
+    // A PINNED SOURCE documents the objection: since PR A2 one taken as
+    // given that nothing pinned documents only contests
+    // (req:an-objection-taken-as-given-with-no-pinned-source-contests-and-never-defeats).
+    s.ok(
+        "add_artifact",
+        json!({"id": "art:source-begs", "name": "the source read", "artifact_type": "document",
+               "location": "source.pdf", "checksum": "sha256:0123456789abcdef"}),
+    )
+    .await;
+    s.ok(
+        "documents",
+        json!({"artifact_id": "art:source-begs", "target_id": "req:obj-begs-the-question"}),
+    )
+    .await;
     let r = s
         .ok(
             "create_edge",

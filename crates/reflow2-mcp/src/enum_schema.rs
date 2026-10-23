@@ -114,6 +114,18 @@ schema_enum!(
 );
 schema_enum!(requirement_confidence_opt, "Requirement", "confidence", opt);
 schema_enum!(
+    artifact_source_reliability_opt,
+    "Artifact",
+    "source_reliability",
+    opt
+);
+schema_enum!(
+    artifact_information_credibility_opt,
+    "Artifact",
+    "information_credibility",
+    opt
+);
+schema_enum!(
     constraint_source_reliability_opt,
     "Constraint",
     "source_reliability",

@@ -126,6 +126,7 @@ fn requirement(id: &str, status: Option<&str>, approver: Option<&str>) -> Requir
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     }

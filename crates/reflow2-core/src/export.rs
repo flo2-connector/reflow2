@@ -1306,9 +1306,30 @@ pub struct MirrorReport {
     /// new one — the two are different operations and only one of them may
     /// remove nodes.
     pub refreshed: bool,
-    /// Ids this refresh REMOVED because the far side no longer publishes them.
-    /// Empty on a first mirror, which removes nothing by construction.
+    /// Ids the far side NO LONGER PUBLISHES. Since PR A2 a refresh never
+    /// deletes one: each is kept and marked superseded (`superseded`), with a
+    /// snapshot and a change event. Empty on a first mirror.
     pub withdrawn: Vec<String>,
+    /// THE WITHDRAWN NODES THIS REFRESH KEPT AND MARKED SUPERSEDED
+    /// (`superseded_by_surface` names the surface that withdrew them), so
+    /// what rested on them reads reason-lost instead of silently losing the
+    /// premise (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-
+    /// on-it-reads-reason-lost, part 1). A node already marked by an earlier
+    /// refresh is not counted again.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub superseded: Vec<String>,
+    /// EVERY LOCAL EDGE touching a withdrawn node, each kept: `TYPE from ->
+    /// to` (part 2). The split-capstone refresh dropped every one of them
+    /// silently — PREMISE_OF, CONSUMES, CALIBRATED_AGAINST, DOCUMENTS.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub kept_edges: Vec<String>,
+    /// The snapshots holding each superseded node's state before it was
+    /// marked.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub snapshots: Vec<String>,
+    /// The ChangeEvent recording the withdrawal, when anything was superseded.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub change_event: Option<String>,
     /// Said in words, because the counts alone do not tell you whether to worry.
     pub note: String,
 }
@@ -1339,6 +1360,23 @@ impl DesignGraph {
         &mut self,
         doc: &GraphExport,
         at: Option<&str>,
+    ) -> Result<MirrorReport, DynoError> {
+        self.mirror_surface_with(doc, at, false)
+    }
+
+    /// [`mirror_surface`](Self::mirror_surface), saying whether a refresh may
+    /// go on although this design still rests on something the new surface
+    /// WITHDRAWS (`accept_withdrawal`). Without it such a refresh is refused
+    /// and names every local edge involved; with it the withdrawn nodes are
+    /// kept, marked superseded, and every edge stays, so what rested on them
+    /// reads reason-lost until the owner re-grounds it or lets it go
+    /// (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-
+    /// reads-reason-lost).
+    pub fn mirror_surface_with(
+        &mut self,
+        doc: &GraphExport,
+        at: Option<&str>,
+        accept_withdrawal: bool,
     ) -> Result<MirrorReport, DynoError> {
         let source = doc.graph_id.clone();
         // `graph_id` became optional for import (BL-138) because import never
@@ -1389,23 +1427,38 @@ impl DesignGraph {
         // imported` is also set by corpus ingest, and the project's CONTAINS
         // edges do not span the mirrored set (measured: 5 of 13).
         let mut previously: BTreeSet<String> = BTreeSet::new();
+        // The edges the last surface brought, `TYPE|from|to` (recorded since
+        // PR A2; an older mirror recorded none, and then none is removed).
+        let mut previous_edges: BTreeSet<String> = BTreeSet::new();
         for m in &held {
-            if let Some(p) = self.get_node(node::PROJECT, &m.project_id)?
-                && let Some(list) = p.properties.get("mirror_nodes").and_then(Value::as_str)
-            {
-                previously.extend(
-                    list.split(',')
-                        .filter(|s| !s.is_empty())
-                        .map(str::to_string),
-                );
+            if let Some(p) = self.get_node(node::PROJECT, &m.project_id)? {
+                if let Some(list) = p.properties.get("mirror_nodes").and_then(Value::as_str) {
+                    previously.extend(
+                        list.split(',')
+                            .filter(|s| !s.is_empty())
+                            .map(str::to_string),
+                    );
+                }
+                if let Some(list) = p.properties.get("mirror_edges").and_then(Value::as_str) {
+                    previous_edges.extend(
+                        list.split(',')
+                            .filter(|s| !s.is_empty())
+                            .map(str::to_string),
+                    );
+                }
             }
             previously.insert(m.project_id.clone());
         }
 
-        // WOULD THIS WITHDRAW SOMETHING WE CONSUME? A partner dropping a contract
-        // you depend on is a conversation, not a cleanup (dec:ask-not-repair), and
-        // reflow2 refuses dangling edges anyway — so this refuses BEFORE writing
-        // and names both the boundary and what of ours points at it.
+        // WOULD THIS WITHDRAW SOMETHING WE REST ON? A partner dropping a
+        // contract you depend on is a conversation, not a cleanup
+        // (dec:ask-not-repair), so this refuses BEFORE writing and names both
+        // the withdrawn node and every edge of ours touching it — in EITHER
+        // direction. Until PR A2 only edges INTO a withdrawn node counted
+        // (DEPENDS_ON, ASKS_ABOUT), so the seven PREMISE_OF edges the
+        // split-capstone decisions rested on, which leave the judgment, were
+        // missed (part 4). An edge to bookkeeping (a snapshot, a change, a
+        // signature) is no dependency.
         let arriving: BTreeSet<String> = doc.nodes.iter().map(|n| n.node_id.clone()).collect();
         let withdrawn: Vec<String> = previously.difference(&arriving).cloned().collect();
         let mut blocked: Vec<String> = Vec::new();
@@ -1415,17 +1468,36 @@ impl DesignGraph {
                     blocked.push(format!("{} {} -> {}", e.edge_type, e.from_id, gone));
                 }
             }
+            for e in self.outgoing(gone, None)? {
+                if previously.contains(&e.to_id) || e.edge_type == edge::AUTHORED_BY {
+                    continue;
+                }
+                let to_type = self.type_holding(&e.to_id)?;
+                if to_type
+                    .as_deref()
+                    .is_some_and(|t| crate::temporal::BOOKKEEPING_TYPES.contains(&t))
+                {
+                    continue;
+                }
+                blocked.push(format!("{} {} -> {}", e.edge_type, gone, e.to_id));
+            }
         }
-        if !blocked.is_empty() {
+        blocked.sort();
+        blocked.dedup();
+        if !blocked.is_empty() && !accept_withdrawal {
             return Err(DynoError::Validation {
                 node_type: node::PROJECT.into(),
                 property: "mirror_of".into(),
                 message: format!(
-                    "REFUSED: this surface from '{source}' no longer publishes {} boundary(ies) \
-                     that YOUR design still points at, and nothing was changed. Withdrawn: {}. \
-                     Your edges: {}.\n\nA partner retiring a contract you consume is a \
-                     conversation between the two owners, not a cleanup this tool may do for \
-                     you. Re-point or remove your own edge first, then mirror again.",
+                    "REFUSED: this surface from '{source}' no longer publishes {} node(s) \
+                     that YOUR design still rests on or points at, and nothing was changed. \
+                     Withdrawn: {}. Your edges: {}.\n\nA partner withdrawing something you \
+                     reason from is a conversation between the two owners, not a cleanup this \
+                     tool may do for you. Either re-point your own edges first, or pass \
+                     `accept_withdrawal: true` to refresh anyway: nothing is deleted — each \
+                     withdrawn node is KEPT, marked superseded with a snapshot and a change \
+                     event, every edge above stays, and what rested on it reads reason-lost \
+                     (loop_status, reasoning_report) until you re-ground it or let it go.",
                     withdrawn.len(),
                     withdrawn.join(", "),
                     blocked.join(", "),
@@ -1433,29 +1505,46 @@ impl DesignGraph {
             });
         }
 
-        // Nothing of ours depends on what went, so replace what we hold. Removal
-        // first, so a renamed node does not read as a collision with its own
-        // former self.
-        if refreshed {
-            for gone in &previously {
-                if let Some(t) = self.node_type_index()?.get(gone) {
-                    let t = t.clone();
-                    self.delete_node(&t, gone)?;
-                }
-            }
-        }
-
         let existing = self.node_type_index()?;
         let mut collisions = Vec::new();
         let mut mirrored: BTreeSet<String> = BTreeSet::new();
+        let mut superseded: Vec<String> = Vec::new();
+        let mut snapshots: Vec<String> = Vec::new();
+        let mut change_event: Option<String> = None;
+        let new_hash = doc
+            .content_hash
+            .clone()
+            .unwrap_or_else(|| "an unhashed surface".to_string());
 
         self.begin_batch();
         let result = (|| -> Result<(usize, usize), DynoError> {
             let mut nodes_written = 0;
             for n in &doc.nodes {
-                if existing.contains_key(&n.node_id) {
-                    collisions.push(n.node_id.clone());
-                    continue;
+                if let Some(held_type) = existing.get(&n.node_id) {
+                    // OURS TO REFRESH: a node this mirror brought before (in
+                    // the last surface, or kept superseded from an earlier
+                    // one and published again). Refreshed IN PLACE, so every
+                    // local edge into it survives — a refresh used to delete
+                    // and re-create, dropping them all.
+                    let theirs = previously.contains(&n.node_id)
+                        || self
+                            .get_node(held_type, &n.node_id)?
+                            .and_then(|x| {
+                                x.properties
+                                    .get("mirrored_from")
+                                    .and_then(Value::as_str)
+                                    .map(|v| v == source)
+                            })
+                            .unwrap_or(false);
+                    if !theirs {
+                        collisions.push(n.node_id.clone());
+                        continue;
+                    }
+                    if held_type != &n.node_type {
+                        // A node that changed type is a different node: the
+                        // old one cannot carry the new one's edges.
+                        self.delete_node(held_type, &n.node_id)?;
+                    }
                 }
                 let mut props: std::collections::HashMap<String, Value> =
                     n.properties.clone().into_iter().collect();
@@ -1485,6 +1574,7 @@ impl DesignGraph {
                 nodes_written += 1;
             }
             let mut edges_written = 0;
+            let mut edge_keys: BTreeSet<String> = BTreeSet::new();
             for e in &doc.edges {
                 // Only edges wholly inside what we actually mirrored. An edge
                 // touching a collided id is dropped rather than rewired, because
@@ -1513,15 +1603,124 @@ impl DesignGraph {
                         &e.to_id,
                         props,
                     )?;
+                    edge_keys.insert(format!("{}|{}|{}", e.edge_type, e.from_id, e.to_id));
                     edges_written += 1;
                 }
             }
+            // An edge the LAST surface brought between two nodes this one
+            // still publishes, and this one no longer carries, is theirs to
+            // retract. Edges touching a withdrawn node stay with it.
+            for key in previous_edges.difference(&edge_keys) {
+                let mut parts = key.splitn(3, '|');
+                if let (Some(t), Some(f), Some(to)) = (parts.next(), parts.next(), parts.next())
+                    && mirrored.contains(f)
+                    && mirrored.contains(to)
+                {
+                    self.delete_edge(t, f, to)?;
+                }
+            }
+            // WITHDRAWN: KEPT AND MARKED SUPERSEDED, never deleted (part 1).
+            // Its state before the mark goes into a snapshot, and one change
+            // event records the withdrawal and names each node.
+            let index = self.node_type_index()?;
+            let mut marked: Vec<(String, String)> = Vec::new();
+            for gone in &withdrawn {
+                let Some(ty) = index.get(gone).cloned() else {
+                    continue;
+                };
+                let Some(stored) = self.get_node(&ty, gone)? else {
+                    continue;
+                };
+                if stored.properties.contains_key("superseded_by_surface") {
+                    continue;
+                }
+                if self
+                    .get_node(node::DESIGN_EPOCH, crate::temporal::PRESERVE_EPOCH_ID)?
+                    .is_none()
+                {
+                    self.add_epoch(
+                        crate::temporal::PRESERVE_EPOCH_ID,
+                        "Preserved on write",
+                        crate::temporal::EpochType::Revision,
+                        0,
+                    )?;
+                }
+                let snap = self.snapshot_node(crate::temporal::PRESERVE_EPOCH_ID, &ty, gone)?;
+                snapshots.push(snap.node_id);
+                let mut props = stored.properties;
+                props.insert(
+                    "superseded_by_surface".into(),
+                    Value::from(new_hash.as_str()),
+                );
+                if let Some(at) = at {
+                    props.insert("superseded_at".into(), Value::from(at));
+                }
+                self.create_node(&ty, gone, props)?;
+                marked.push((ty, gone.clone()));
+            }
+            if !marked.is_empty() {
+                let short: String = new_hash
+                    .trim_start_matches("sha256:")
+                    .chars()
+                    .take(12)
+                    .collect();
+                let id = format!(
+                    "chg:mirror-of-{source}-withdrew-{}-at-{short}",
+                    marked.len()
+                );
+                let names: Vec<&str> = marked.iter().map(|(_, id)| id.as_str()).collect();
+                self.add_change_event(
+                    &id,
+                    &format!(
+                        "'{source}' withdrew {} mirrored node(s) at surface {new_hash}",
+                        marked.len()
+                    ),
+                    crate::temporal::ChangeType::Deprecation,
+                    Some(crate::temporal::ChangeSubject::System),
+                    Some(&format!(
+                        "The surface of '{source}' at {new_hash} no longer publishes {}. Each is \
+                         KEPT here, marked superseded (`superseded_by_surface`), its prior \
+                         state in a snapshot; every local edge touching it stays.",
+                        names.join(", ")
+                    )),
+                    Some(
+                        "A refreshed mirror never deletes what the far side withdraws: what \
+                         this design rested on it must read reason-lost until its owner \
+                         re-grounds it or lets it go (req:a-superseded-mirrored-judgment-is-\
+                         kept-and-what-rested-on-it-reads-reason-lost).",
+                    ),
+                    at,
+                )?;
+                for (ty, gone) in &marked {
+                    self.changed(&id, ty, gone, crate::temporal::ChangeAction::Modified)?;
+                }
+                superseded = names.iter().map(|s| s.to_string()).collect();
+                change_event = Some(id);
+            }
+            // Recorded here so the next refresh knows which edges were theirs.
+            let joined = edge_keys.iter().cloned().collect::<Vec<_>>().join(",");
+            if let Some(proj) = doc
+                .nodes
+                .iter()
+                .find(|n| n.node_type == node::PROJECT && mirrored.contains(&n.node_id))
+                && let Some(stored) = self.get_node(node::PROJECT, &proj.node_id)?
+            {
+                let mut props: std::collections::HashMap<String, Value> =
+                    stored.properties.into_iter().collect();
+                props.insert("mirror_edges".into(), Value::from(joined.as_str()));
+                self.create_node(node::PROJECT, &proj.node_id, props)?;
+            }
             Ok((nodes_written, edges_written))
         })();
+        let kept_edges: Vec<String> = if superseded.is_empty() {
+            Vec::new()
+        } else {
+            blocked.clone()
+        };
         match result {
             Ok((mirrored_nodes, mirrored_edges)) => {
                 self.commit_batch()?;
-                let note = if collisions.is_empty() {
+                let mut note = if collisions.is_empty() {
                     format!(
                         "Mirrored {mirrored_nodes} node(s) and {mirrored_edges} edge(s) from \
                          '{source}', pinned to that surface's content hash. They are marked \
@@ -1540,6 +1739,16 @@ impl DesignGraph {
                         collisions.join(", ")
                     )
                 };
+                if !superseded.is_empty() {
+                    note.push_str(&format!(
+                        " WITHDRAWN BY THE NEW SURFACE, KEPT AND MARKED SUPERSEDED: {}. \
+                         {} local edge(s) still touch them, each kept; what rested on them now \
+                         reads reason-lost in loop_status and reasoning_report until you \
+                         re-ground it or let it go.",
+                        superseded.join(", "),
+                        kept_edges.len()
+                    ));
+                }
                 // WHAT WE HOLD OF THEIRS, recorded on their mirrored Project so a
                 // later refresh can replace exactly this set. It cannot be
                 // recovered afterwards — `provenance: imported` is also set by
@@ -1568,6 +1777,10 @@ impl DesignGraph {
                     mirror_content_hash: doc.content_hash.clone(),
                     refreshed,
                     withdrawn: withdrawn.clone(),
+                    superseded,
+                    kept_edges,
+                    snapshots,
+                    change_event,
                     mirrored_nodes,
                     mirrored_edges,
                     collisions,

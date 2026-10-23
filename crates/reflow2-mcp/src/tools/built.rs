@@ -690,7 +690,22 @@ impl ReflowService {
             &mut g,
             reflow2_core::nodes::node::ARTIFACT,
             &req.id,
-            &[("status", req.status.as_deref())],
+            &[
+                ("status", req.status.as_deref()),
+                ("source_reliability", req.source_reliability.as_deref()),
+                (
+                    "information_credibility",
+                    req.information_credibility.as_deref(),
+                ),
+            ],
+        )?
+        .unwrap_or(stored);
+        let stored = crate::tools::capture::set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::ARTIFACT,
+            &req.id,
+            "not_read",
+            req.not_read,
         )?
         .unwrap_or(stored);
         let stored = match req.checksum.as_deref() {

@@ -134,6 +134,7 @@ mod change_type_splits_its_axis;
 mod changelog;
 mod checksum_dialect;
 mod claims;
+mod claims_and_shared_premises;
 mod closure_reads_a_design_phase_and_a_build_phase;
 mod coherence_loop;
 mod compare;

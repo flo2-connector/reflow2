@@ -388,7 +388,12 @@ impl ReflowService {
                        never merged: an id that already exists here is left untouched and \
                        reported, because upsert would otherwise overwrite your design with \
                        somebody else's node, and two designs using one id for different things is \
-                       a naming conversation between owners. \
+                       a naming conversation between owners. A REFRESH (the same design again) \
+                       updates the nodes it already holds and never deletes: a node the new surface \
+                       withdraws is KEPT, marked superseded, with a snapshot and a change event; \
+                       when your design rests on it the refresh is refused naming your edges, \
+                       unless you pass accept_withdrawal, and what rested on it then reads \
+                       reason-lost. \
                        Ask for this when you want to bring in a pinned or frozen copy of what another team's design publishes — its public interfaces.",
         title = "Mirror Another Design's Surface",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -413,7 +418,11 @@ impl ReflowService {
                 .map(|n| (n.node_type.as_str(), n.node_id.as_str())),
         );
         let mirrored = g
-            .mirror_surface(&doc, req.at.as_deref())
+            .mirror_surface_with(
+                &doc,
+                req.at.as_deref(),
+                req.accept_withdrawal.unwrap_or(false),
+            )
             .map_err(dyno_err)?;
         let mut reply = serde_json::to_value(mirrored).map_err(ser_err)?;
         crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));

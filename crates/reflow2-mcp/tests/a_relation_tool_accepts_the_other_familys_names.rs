@@ -281,6 +281,7 @@ async fn the_handoff_lands_end_to_end() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));

@@ -2066,6 +2066,14 @@ pub struct RequirementReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_provenance_opt")]
     pub provenance: Option<String>,
+    /// CLAIMED BY a named party, not yet verified here: "OpenAI", "Kempe".
+    /// While nothing in the design establishes it and nothing refutes it, it
+    /// — and what rests on it — reads "claimed by OpenAI, unverified", never
+    /// as unproven or open. Put it on the statement, or
+    /// on the premise that is the claimant's argument ("their proof is
+    /// correct"). Omitted: nothing is written.
+    #[serde(default)]
+    pub claimed_by: Option<String>,
     /// TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and
     /// does not argue for. It then reads as a stated foundation, never as an
     /// uncited premise, in reasoning_report, loop_status and detect_gaps.
@@ -3003,6 +3011,24 @@ pub struct AddArtifactReq {
     /// vanished but never that its contents changed. On a REVISE of an artifact that already carries one it
     /// is REFUSED — moving a baseline is a drift disposition, which is `set_artifact_checksum`'s job.
     pub checksum: Option<String>,
+    /// NAMED, NOT READ: a source named somewhere that nobody read. It never
+    /// counts as citing — what it DOCUMENTS stays uncited — and a checksum on
+    /// it pins nothing. Omitted: nothing is written.
+    #[serde(default)]
+    pub not_read: Option<bool>,
+    /// THE SOURCE'S RELIABILITY, on the Admiralty scale evidence uses: `A`
+    /// completely reliable … `D` not usually reliable, `E` unreliable, `F`
+    /// cannot be judged. Graded D to F, it checks no citation: what it
+    /// documents reads unverified. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::artifact_source_reliability_opt")]
+    pub source_reliability: Option<String>,
+    /// HOW CREDIBLE WHAT IT SAYS IS, Admiralty scale: `1` confirmed … `4`
+    /// doubtful, `5` improbable, `6` cannot be judged. Graded 4 to 6, it
+    /// checks no citation. Omitted: nothing is written.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::artifact_information_credibility_opt")]
+    pub information_credibility: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -4213,6 +4239,14 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_limit_basis_opt")]
     pub limit_basis: Option<String>,
+    /// CLAIMED BY a named party, not yet verified here: "OpenAI", "Kempe".
+    /// While nothing in the design establishes it and nothing refutes it, it
+    /// — and what rests on it — reads "claimed by OpenAI, unverified", never
+    /// as unproven or open. Put it on the statement, or
+    /// on the premise that is the claimant's argument ("their proof is
+    /// correct"). Omitted: nothing is written.
+    #[serde(default)]
+    pub claimed_by: Option<String>,
     /// TAKEN AS GIVEN: a definition or axiom the reasoning starts from and
     /// does not argue for. It then reads as a stated foundation, never as an
     /// uncited premise, in reasoning_report, loop_status and detect_gaps.
@@ -5214,6 +5248,14 @@ pub struct MirrorSurfaceReq {
     /// mirrored project, because a mirror is a dated claim about a version.
     #[serde(default)]
     pub at: Option<String>,
+    /// A REFRESH THAT WITHDRAWS SOMETHING YOUR DESIGN RESTS ON is refused by
+    /// default, naming every edge of yours that touches it (a step's premise
+    /// included). Pass `true` to refresh anyway: nothing is deleted — each
+    /// withdrawn node is KEPT, marked superseded with a snapshot and a change
+    /// event, your edges stay, and what rested on it reads reason-lost
+    /// (loop_status, reasoning_report) until you re-ground it or let it go.
+    #[serde(default)]
+    pub accept_withdrawal: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]

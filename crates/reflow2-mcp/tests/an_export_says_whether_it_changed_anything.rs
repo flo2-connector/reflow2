@@ -78,6 +78,7 @@ fn req(id: &str, name: &str, statement: &str) -> RequirementReq {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     }

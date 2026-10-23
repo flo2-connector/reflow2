@@ -38,6 +38,14 @@
           "null"
         ]
       },
+      "claimed_by": {
+        "default": null,
+        "description": "CLAIMED BY a named party: this step is that party's argument\n(\"OpenAI's natural-language proof\"), not verified here. What rests on\nit reads \"claimed by <party>, unverified\" while nothing establishes\nit; a what-if that drops it reads the claim open again. Omitted:\nnothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "conclusion": {
         "description": "The ONE node this step concludes. A node may be concluded by several\nsteps (alternative derivations, read as ANY); a step concludes one.",
         "type": "string"

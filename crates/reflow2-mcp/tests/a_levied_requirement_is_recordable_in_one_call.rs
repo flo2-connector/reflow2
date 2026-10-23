@@ -65,6 +65,7 @@ async fn the_documented_path_for_a_levied_requirement_needs_no_escape_hatch() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -118,6 +119,7 @@ async fn omitting_them_leaves_the_default_exactly_as_it_was() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
