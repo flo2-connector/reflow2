@@ -181,8 +181,11 @@ git status --short</code></pre>
         <b>What this route reaches.</b> <code>reflow2 read</code> and <code>reflow2 write</code> work on a
         design on your own machine. A long reply fits the <code>budget_chars</code> you pass, and
         <code>compare_designs</code> between two exports reads one list a page at a time with
-        <code>list</code> and <code>offset</code>. This route cannot reach a design hosted on flo2.io, so a
-        hub's view over its members, its merged search and reads across designs by graph id need an MCP
+        <code>list</code> and <code>offset</code>. A reply prints as one line of JSON; pipe it to
+        <code>jq</code> to read it laid out. A hub on your own machine searches and checks every
+        member it pins by a committed export (<code>tracked_designs: true</code>, see
+        <a href="hub.html#alone">hubs</a>). This route cannot reach a design hosted on flo2.io, so a
+        hub's live view over its members, its merged search and reads across designs by graph id need an MCP
         client connected there. Each release's notes say what it adds to this route.
       </p>
 
@@ -337,7 +340,7 @@ docker exec reflow2 /usr/local/bin/reflow2-mcp --version</code></pre>
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
         Apache License 2.0 ·
-        Checked against reflow2 v0.90.0.
+        Checked against reflow2 v0.91.0.
       </p>
     </footer>
   </main>

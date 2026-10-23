@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4982bae2bb236c49aa7905aa9bafb3029fc115e5d0ee092c3c180d03e8ae4c90",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:2df78f573f575f505695d9a40cca1064a7e2d2f43c59475cbf5ae8faa98be270"
+  },
+  "to_id": "art:fixture-split-capstone-kestrel-assess-v2"
+}

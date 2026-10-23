@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81e3204dbe1778c3d3df055bb38ddfb3798fb7130bd865245c4a9803daa516bb",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:db859cfe7533da01f94fa8c950415199bbb0cddcc233fb1c3e0da0d4beca0205"
+  },
+  "to_id": "art:claims-and-shared-premises-test"
+}

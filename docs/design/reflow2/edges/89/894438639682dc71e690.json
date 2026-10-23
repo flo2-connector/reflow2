@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d0ffe9b8ebb4754a6a0a9c6dc382636bc49df49e98195cc14e6464b12b47f9a6",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:62be00a9e52ee0b06a2e907d4446e4c16af66e45a54a2a8e82a48cd0d2b21d7f"
+  },
+  "to_id": "art:one-composed-check-runs-over-a-hub-and-several-of-its-designs-test"
+}

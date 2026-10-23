@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ce925452edabca0d963ed0df9c06b21a3cf4f56c8e8e625fa9cba4ec18b29ad9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-959f4e965242eb72",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 22,
+    "action": "modified",
+    "checksum_after": "sha256:9ba2238e26dfca5b1a2c8a3e01879d6ac8df31c97dcad64d18b23f71748f6f70",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-accepted-at-last-release"
+}

@@ -31,6 +31,445 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.91.0] — 2026-10-23
+
+**Minor. A hub works on one machine, proofs and arguments read what they actually rest on, and
+replies fit the budget they are asked for.** It contains:
+- #785–#788 (a hub on one machine): `search_design` and `compose_and_analyse` take
+  `tracked_designs: true` and reach every design a hub pins by its committed export, read-only,
+  through the `--call` door too; a hit opens with `get_node` on its `<graph_id>:<id>`; one composed
+  check runs over the hub and its members (`other_graph_ids`, `by_design`, `by_pair`, `across`) and
+  shows where they already touch (`computed_links`, `candidates`, `link_status`) before anyone
+  declares it; `import_graph` takes `merge: true` and says what a partial node removed;
+  `upstream_status` names each member's reviewed revision; a link whose far node is gone says so;
+- #789: rmcp 3.6.0, the official Rust MCP SDK (HTTP status codes move; the SDK's new 16 MiB
+  line bound is lifted on stdio and the `--call` pipe; HTTP keeps its 4 MiB cap);
+- #790: a bridge premise (`statement_kind: bridge`), proven equivalence (`EQUIVALENT_TO`), a step
+  that only restates its gap reads `circular`, a proof read as a proof whatever its `domain`, a
+  conclusion through a contested contradiction reads `contested`, and a what-if walks through ⊥;
+- #791: a claim a named party made reads `claimed`; a status that held over a period reads
+  `withdrawn`; a source can be `not_read` and carry a grade; a refreshed mirror keeps what its
+  source withdraws, marked superseded, and what rested on it reads reason-lost; a replaced
+  judgment reads `superseded`; independence compares premises; an unsourced objection contests
+  and never defeats;
+- #792: premise reasons said once (`premise_whys`), a hub reply held to its budget with its own
+  additions counted, `get_skill` and `propagate_from` take `budget_chars`, and `--call` prints
+  compact JSON.
+
+**Behaviour you will notice:**
+- a claim a named party made and nothing here establishes reads **"claimed by <party>,
+  unverified"** (`proof_status: claimed`), where it read `unproven`;
+- two lines stated independent that **share a premise** neither derives no longer read
+  independent (`shared_premises`; `independent_except` names one on purpose);
+- a source marked **`not_read`** never cites, and an **objection nobody has sourced** contests
+  what it attacks and never defeats or refutes it;
+- `mirror_surface` re-mirroring a design **refuses** a refresh that would withdraw something your
+  design rests on, naming each edge, until you pass `accept_withdrawal: true`; nothing is deleted;
+- `get_skill` and `propagate_from` **stop at 30,000 characters** by default and name what they
+  withheld (`lessons.withheld_ids`, `budget.lists_shortened`); pass a larger `budget_chars` if
+  your client has the room;
+- `--call` and `--describe` print **compact JSON, on one line**; pipe to `jq` to read it laid out;
+- each premise row's `why` is its reason's **leading clause**; the full reason is in
+  `premise_whys`, keyed by the premise's id.
+
+The MCP surface stays at 200 tools, measured against the published 0.90.0 binary. Eleven differ:
+`add_artifact` (`source_reliability`, `information_credibility`, `not_read`), `add_requirement`
+and `add_constraint` (`claimed_by`, `statement_kind: bridge`), `add_inference` (`claimed_by`),
+`compose_and_analyse` (`other_graph_ids`, `tracked_designs`, `budget_chars`; title "Compose and
+Analyse Designs Together"), `search_design` (`tracked_designs`, and `designs_searched`,
+`not_searched`, `not_searched_note`, `tracked_note` in its output schema), `import_graph`
+(`merge`), `mirror_surface` (`accept_withdrawal`), `get_skill` and `propagate_from`
+(`budget_chars`), and `pair_designs` (description). Skills stay at 34; `design-a-proof`,
+`design-an-argument`, `hub`, `adopt`, `impact-check` and `link-projects` changed.
+`get_instructions` gains one section: when you say something is not in the design, say where you
+looked.
+- **🛑 The schema stamp moves** (a new edge type, `EQUIVALENT_TO`, and `statement_kind: bridge`,
+  with new Artifact enum properties): upgrade every seat together — the flo2.io engine, a local
+  `reflow2-mcp`, the `--call` binary, and committed design copies. A v0.90.0 seat refuses ANY
+  store this release has opened, even read-only, and refuses its exports without
+  `--accept-newer`, measured at this cut ([docs/upgrading-to-v0.91.0.md](docs/upgrading-to-v0.91.0.md)).
+
+**Nothing is deprecated or removed in this release** (the deprecation registry is empty).
+
+**The `--call` setup** (a one-shot call on a design on your own machine, as in VS Code where MCP
+is blocked) gets all of it with the binary, checked on the 0.91.0 release build:
+- **a hub on one machine**: on a hub pinning a member by its committed export,
+  `reflow2 read search_design '{"query":…,"tracked_designs":true}'` finds the member's record
+  (its `node_id` prefixed with the member's graph_id), names a member pinned only by an address
+  under `not_searched` (`not_reached`), and `reflow2 read get_node` opens the prefixed hit;
+  `compose_and_analyse` with `tracked_designs: true` composes them and draws the computed links
+  (a pin naming the member, the same file in both) with `link_status` per pair;
+- **no line bound on the pipe**: `reflow2 read export_graph '{}'` on reflow2's own design printed
+  32.7 MB on one line in 5.6 s (rmcp 3.6.0's default would have dropped it);
+- **the readings**: a premise with `claimed_by: "OpenAI"` makes the claim resting on it read
+  "claimed by OpenAI, unverified"; a second line stated independent of the first, both resting
+  on one premise taken as given, reads `holds: false` with `shared_premises`; a judgment another
+  `replaces` reads `superseded`;
+- **budgets**: `reflow2 read get_skill '{"name":"root-cause"}'` on reflow2's own design answers
+  28,923 characters, 3 of 26 lessons shown and 23 named in `withheld_ids` (0.90.0 printed
+  55,923 there);
+  `propagate_from` takes `budget_chars`;
+- **compact output**: every reply and `--describe` print one line; `| jq` lays it out.
+
+**Still needs a hosted gateway such as flo2.io:** the hosted hub view (asking a hub's address and
+hearing from every member LIVE, `member` on a hosted member), and cross-design reads by graph id
+without your own `--registry-root` server. On your own machine a hub reaches its members only
+through the exports it pins, as committed. `--call` refuses `--remote` and `--registry-root`, and
+`reflow2 read` does not take them.
+
+### Added
+
+- **One composed check runs over a hub and several of its designs, through
+  the `--call` door too.** `compose_and_analyse` takes `other_graph_ids`
+  (several designs at once) or `tracked_designs: true` (every design this one
+  pins). They are composed with this design in ONE combined graph, each under
+  its own graph_id, and reflow2's ordinary checks run once over the whole. Each
+  finding comes back under the designs it names: `by_design` for one,
+  `by_pair` (`"a×b"`) for two, `across` for more, `of_the_whole` for a finding
+  that names no node. So a finding between two members shows even when neither
+  is the design calling. On a design served alone, each design is read from
+  its pin's committed export; on a server that holds many designs, from its
+  live store, inside the set the host says you may read; through a hub's
+  address, `tracked_designs` composes every member. Every design that could
+  not be read is named in `not_composed` with the same `state` a tracked
+  search gives it (`missing`, `unreadable`, `not_reached`, `nowhere`,
+  `unreachable`). Nothing is written to any design or export, and the reply
+  is bounded by `budget_chars` (default 30,000), sampling only the finding
+  lists and keeping every count. A call naming one other design (`design` or
+  `other_graph_id`) answers exactly as before.
+- **The hub skill says when to run the composed check**: before work that
+  several of a hub's designs share.
+
+- **A composed check shows where its designs already touch, before anyone
+  declares it.** `compose_and_analyse` (one other design or several) and
+  `pair_designs` read the records the designs already hold. A reference one
+  design records to a node of another is a `declared` link. Exact evidence is
+  a `computed` link: the same file in both (an artifact location in the same
+  repository, the repository being the source a pin naming that design
+  states, or the same URL; or an equal checksum), or a pin in one design
+  naming the other's graph_id or source repository. In a composition each
+  link is drawn as a real edge in the throwaway combined graph, so the
+  ordinary checks see across it: a design joined to the others by one no
+  longer reads as a cut-off cluster beside them. Nothing is written.
+- **A similar name is a candidate, never a link.** Interfaces in two designs
+  with closely matching names and the same medium are listed under
+  `candidates` for a person to confirm; they are never drawn and never read by
+  a check. A bare relative path (README.md, LICENSE, Cargo.toml) is never
+  evidence, nor is an equal checksum of an empty or stock file; both are
+  counted under `set_aside`.
+- **Every pair says what was checked.** `link_status` files every pair of
+  designs as `linked`, `candidates_only`, `never_touch` (checked, no evidence)
+  or `not_checked` (a design of the pair was not read), with a count per
+  status, so an empty seam never reads as agreement. The composed reply's note now says that a design with no
+  link to the others reads as a cut-off cluster, a finding the composition
+  made and the design alone does not have.
+
+- **The hub skill tells an owner to connect each pin to what uses it**
+  (`depends_on` from the hub's component or capability to the pin): a pin
+  wired to nothing threads only itself, so the composed check reads that
+  member as a cut-off cluster, and that finding is true.
+
+- **`import_graph` takes `merge: true`, which keeps what a partial node leaves
+  out.** Without it an import still states each node whole, so an export→import
+  round trip reproduces a design and a document can drop a property. With it, a
+  node the design already holds takes the document's properties and keeps every
+  other one, as `create_nodes` does. **What to do:** to edit existing records in
+  bulk, pass `merge: true`, or use `create_nodes`.
+- **A search on a design that pins others names every pinned design it did not
+  look in.** `search_design` adds `not_searched` (each pinned design, where it
+  could be read, and why it was not searched) and `not_searched_note`, so
+  "nothing found" in a hub never reads as nothing found anywhere. A hub's view
+  names only the pinned designs outside it. A design that pins nothing answers
+  exactly as before.
+- **`upstream_status` shows each member's reviewed revision beside the state of
+  its record.** Each entry under `members` carries `reviewed_revision` (the
+  pin's `version`) and `record_state` (`unchanged`, `moved`, `missing`,
+  `not_watched` …). reflow2 still fetches nothing: to catch up, the hub's own
+  tooling re-declares the pin with the new `version` (the hub skill says how).
+
+- **One search reaches a hub and every design it pins, through the `--call`
+  door too.** `search_design` takes `tracked_designs: true`: on a design that
+  pins others (`external_dependency` with a `graph_id`), each pinned design's
+  committed export is read into memory, read-only, and searched with the same
+  query. The reply is one ranked list in the shape a hub's address answers
+  with: each hit names its `design`, a pinned design's `node_id` carries its
+  graph_id as a prefix (`<graph_id>:<id>`), and `designs_searched`,
+  `found_by_design`, `hits_withheld` and `read_from` say what was searched and
+  where from. Every pinned design it did not search is named in `not_searched`
+  with a `state` (`missing`, `unreadable`, `not_reached` for a design at an
+  address, `nowhere`) and why. Nothing is written to any export, no git is run
+  and nothing is fetched. Without the argument the reply is unchanged. Through
+  a hub's address on a server the view already searches every member, and the
+  reply says the argument adds nothing there.
+- **A read can be aimed at a pinned design's export.** On a design that pins
+  others, `get_node` (and any tool that changes nothing) given an id with a
+  pinned design's prefix, or `member: "<graph_id>"`, runs on that design's
+  committed export alone, so a hit from a tracked search opens. A write aimed
+  at one is refused, and nothing is written.
+- **The served instructions say: when you tell someone the design holds
+  nothing about something, say where you looked.** The hub skill's search step
+  names the tracked search and asks you to open and cite another design's
+  record on the same subject rather than write a second copy.
+
+- **A claim a named party made reads `claimed`.** `claimed_by` (on a
+  statement, on the premise that is the claimant's argument, or on a step)
+  names the party: while nothing in the design establishes it and nothing
+  refutes it, it and what rests on it read "claimed by OpenAI, unverified" —
+  `proof_status` and `statement_reading` `claimed`, `claimed_by` and the `why`
+  in `reasoning_report` — never `unproven` (which also means refuted) or
+  `open`. A what-if that drops the claimant's argument reads the claim `open`
+  again (`conclusion_was: claimed`, `conclusion_reads: open`), and leaves what
+  does not rest on it standing. `add_requirement` and `add_constraint` take
+  `claimed_by` (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-
+  claimed; the Navier–Stokes map's (C) could only read "unproven").
+- **A status that held over a period is read back.** A TemporalFact with
+  `fact_type: status`, `valid_from` and `valid_to` on a claim or a step is
+  listed under `status_over_time` in `reasoning_report` and on a step's
+  `get_node`. A claim or step that does not hold now, and whose every status
+  has ended, reads `withdrawn`, with the period and the objection that
+  withdrew it: Kempe's 1879 proof reads "withdrawn: it held 1879–1890 …,
+  withdrawn by req:obj-heawood-1890-kempe-degree-5". It lived only in dated
+  records no report read.
+- **A source can say it was named and not read, and carry a grade.**
+  `not_read: true` on an Artifact: a DOCUMENTS edge from it never takes a
+  claim off `uncited_premises`, what rests on that claim reads uncited, and a
+  checksum on it pins nothing. A source can carry evidence's Admiralty grade,
+  `source_reliability` (A–F) and `information_credibility` (1–6): graded D–F or
+  4–6, it checks no citation, and what it documents reads `cited_unverified`;
+  each cited source in `reasoning_report` says its grade and why it pins
+  nothing (dec:idea-a-source-says-what-kind-of-support-it-gives, option (c)
+  plus a "named, not read" marking; a taxonomy of source kinds stays
+  considered). The Navier–Stokes map's NOT READ paper counted as citing.
+- **🛑 Upgrade every seat together (no further move for this release): the
+  schema stamp widens again.** `Artifact` gains two enum properties,
+  `source_reliability` and `information_credibility`; `claimed_by` (string)
+  and `not_read` (bool) are added too. PR A1 already moved the stamp for the
+  next release, so this costs no second upgrade: every seat upgrades once.
+
+- **🛑 Upgrade every seat together: the schema stamp moves.** One edge type is
+  added, `EQUIVALENT_TO` (68 → 69), and `statement_kind` (on Requirement and
+  Constraint) gains `bridge`. Measured with the published 0.90.0 binary on
+  stores and an export this build wrote:
+  - 0.90.0 REFUSES to open ANY store this build has written, even one holding
+    neither addition, naming the type it lacks ("it has never heard of
+    EQUIVALENT_TO"): a new edge type moves both halves of the stamp.
+  - It refuses to import an export holding either addition, all or nothing,
+    even with `--accept-newer`.
+  - This build opens a 0.90.0 store unchanged ("Additive only — everything in
+    it still reads").
+  **What to do:** upgrade every
+  seat, flo2.io included, before anyone draws `EQUIVALENT_TO` or records a
+  `bridge`; stop any shared server still on the old binary
+  (`reflow2-mcp --graph-path <path> --stop-shared`). Nothing needs migrating.
+- **A bridge premise says a formal statement models a claim of another
+  field.** `statement_kind: bridge` ("the Lean statement F expresses (C)",
+  "the Coq statement models the theorem"). It reads `bridge`; what rests on it
+  reads `conditional` on it (`rests_on_bridges` on a claim and a step, and
+  `proof_status` says so); an objection aimed at it contests every claim
+  resting on it while the theorem under it stands; `reasoning_report` lists
+  it under `bridges`, apart from cited theorems, definitions and uncited
+  premises; and `propagate_from` names it under `bridges_lost` on each row it
+  costs. The Lucas–Penrose trial tried the three encodings there were: a
+  plain premise read "not delivered", an assumed one was immune to objection,
+  and a premise taken as given was filed beside Gödel's theorem as a
+  foundation (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim,
+  option b).
+- **Two statements can be recorded as proven equivalent.** `create_edge`
+  `EQUIVALENT_TO`, naming the biconditional in `by`. It never reads as a
+  duplicate: an asserted DUPLICATES beside it is counted under
+  `swept.suppressed_as_equivalent` and offered for no merge, HEAL refuses the
+  merge in propose and apply, and `possible_duplicate` stays quiet. Neither
+  side's reading moves (an open conjecture stays open). `reasoning_report`
+  names each claim's `equivalent_to` with how the biconditional reads, and
+  `propagate_from` names `equivalents_reached`. The Riemann map had to join RH
+  and Robin's inequality with DUPLICATES, and was offered their merge.
+- **A step that only restates its gap reads `circular`.** A step whose premise
+  is proven equivalent to its conclusion (through any chain of EQUIVALENT_TO
+  edges) or is the same formula (`same_formula_as`) carries `circular` on
+  `get_node`, is listed under `reasoning_report`'s `circular_steps`, and is put
+  to the owner as a `reasoning_not_as_stated` gap. A flag, never a verdict:
+  the step reads by its rule as before
+  (dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it,
+  option c).
+
+### Changed
+
+- **The one-other-design `compose_and_analyse` reply keeps every key it had
+  and gains the link fields** (`declared_links`, `computed_links`,
+  `candidates`, `link_status`, `set_aside`, `links_note`); its findings now
+  include what the checks see across a computed link. `pair_designs` gains
+  `declared_links`, `computed_links`, `link_status`, `set_aside` and
+  `links_note`; its name pairs are unchanged and are not evidence that the
+  designs touch.
+
+- **A proof's read-back says each premise's reason once.** `reasoning_report`
+  re-rendered every premise's whole reason in every step that took it up, and
+  said the "cited, unverified … Register the source" advisory once per
+  citation, per row: on the heat-equation rung's theorem a page asked at 60,000
+  reached the client at 63,998 characters and was refused. Each premise row's
+  `why` now holds its reason's leading clause ("cited, unverified", "concluded
+  by inf:… holds"); the full reason is said once per page in `premise_whys`,
+  keyed by the premise's id (or in its own row, when the premise is a claim on
+  the page), and an advisory is said once in `advisories`, naming every id it
+  applies to. The words of every claim, each step's rule and warrant and each
+  premise's name are unchanged. On the committed heat-equation fixture the
+  whole walk went from 133,198 to 114,072 characters, and a 60,000 page holds
+  20 whole claims instead of 18. **What to do:** read a premise's full reason
+  from `premise_whys` by its id.
+- **A reply asked at N through a hub's address arrives at N or less.** The hub
+  prefixed every member id and added its `view_note` after the member had
+  held its reply to the budget (+5,154 characters on that page). A read that
+  takes `budget_chars` is now held with the hub's additions counted: when it
+  arrives over, the hub asks the member again at a budget lowered by the
+  overshoot, and the `view_note` says so. A write is never asked twice.
+- **`get_skill` takes `budget_chars` (default 30,000).** It attached every
+  lesson the design holds for the step with no bound: `root-cause` answered
+  54,054 characters on reflow2's own design. The body always comes whole; the
+  lessons are ranked newest first and withheld whole from the end, and
+  `lessons` then says how many were withheld (`shown`, `total`) and names each
+  by id in `withheld_ids`. **What to do:** read a withheld lesson with
+  `get_node`, or ask with a larger `budget_chars` if your client has the room.
+- **`propagate_from` takes `budget_chars` (default 30,000).** `max_depth`
+  bounds the walk, not the reply: the steps a change breaks are followed to
+  the end of their reasoning, and at `max_depth` 2 the radius from one cited
+  lemma was 41,073 characters. Over budget, whole rows are withheld from the
+  end of `inferences`, `impacted`, `direct_ring`, `risk_crossings` and
+  `across_designs`; `budget.lists_shortened` names each list with `shown`,
+  `total` and the ids `withheld`, and every count stays.
+- **`--call` and `--describe` print compact JSON, and a client that reads only
+  the text block gets compact JSON there.** Both were pretty-printed, so a
+  reply held to 30,000 printed 35,087 characters (and one held to 60,000
+  printed 73,497). What is printed is now exactly what the budget measured.
+  **What to do:** pipe the output to `jq` to read it laid out.
+
+- **reflow2 is built on rmcp 3.6.0, the official Rust MCP SDK's latest
+  release (was 3.5.0).** No tool changes: all 200 tool snapshots match. What a
+  client can notice is in the SDK's own transport:
+  - Over HTTP, a request with no session that is not `initialize` is now
+    answered `400 Bad Request: Session ID is required`, where it was `422`. A
+    client that starts with `initialize`, as flo2's gateway does, sees no
+    change.
+  - On the 2026-07-28 protocol over HTTP, a tool's invalid-params refusal now
+    comes back as HTTP 200 with the JSON-RPC error inside, where it was HTTP
+    400. A JSON-RPC response posted to that stateless endpoint is refused with
+    400, where it was accepted and ignored.
+  - The SDK's new 16 MiB limit on a single incoming message is lifted, so
+    nothing changes there: a session on stdio, and the one-shot `--call`
+    door, answer a message of any length, as before (rmcp 3.6.0 would drop a
+    longer one with no reply). HTTP keeps its 4 MiB limit per request, which
+    is answered `413` and is unchanged. Tip: a large design still travels
+    best by path (`import_graph`).
+
+### Fixed
+
+- **A composed reply holds its budget.** Over a hub of fifteen designs the
+  reply was 58,505 characters at the default budget of 30,000, because every
+  list was at its floor of one whole finding and some findings name a whole
+  cut-off cluster. When sampling lists is not enough, each finding's ids are
+  cut to a few (it keeps `affected_ids_total`) and then whole `by_design` /
+  `by_pair` keys are withheld, each named in `withheld_to_fit`; every count
+  stays in `counts`. `link_status` is sampled like any list, its counts kept.
+  The one-other-design call does the same when it is given `budget_chars`.
+
+- **A partial `import_graph` no longer removes stored properties in silence.**
+  The reply now counts, by `Type.property`, every property it removed
+  (`properties_removed`) or changed (`properties_changed`) on a node the design
+  already held, names a few in `removed_from`, and says what to do in
+  `removed_note`. A hub that imported 454 Artifacts as `{name, location}` lost
+  their `checksum`, `checksum_basis` and `status`, and the reply said only
+  `nodes_written: 454`. A value the schema's default replaced, such as an
+  `artifact_type` reset from `config` to `code` or an accepted Requirement's
+  `status` reset to `proposed`, is now counted as changed, never under
+  `materialized` as a default filled in. The served description no longer
+  promises that a partial node is refused; only one missing a required property
+  is. The adopt skill sends bulk edits of existing records to `create_nodes`.
+- **A link into a design pinned by its committed export says when its far node
+  is gone.** `upstream_status` (and `loop_status`) report `link_far_end_stale`
+  when the export no longer holds the node and `link_far_end_unreachable` when
+  the export cannot be read, where before a removed node read only as
+  `link_far_end_moved`. `review_relations`, and `related_to` on a decision,
+  refuse a link to a node the pinned export does not hold, and write nothing.
+
+- **A refreshed mirror never deletes what its source withdraws.**
+  `mirror_surface` re-mirroring one design refreshes what it holds IN PLACE:
+  every local edge into a node the new surface still publishes survives (a
+  refresh used to delete and re-create, dropping a consumer's CONSUMES). A
+  node the new surface withdraws is KEPT, marked `superseded_by_surface`,
+  with a snapshot and a ChangeEvent; the reply lists `superseded`,
+  `kept_edges`, `snapshots` and `change_event`. The guard now counts every
+  local edge touching a withdrawn node, either way round — a step's
+  PREMISE_OF included — and refuses, naming each, unless `accept_withdrawal:
+  true`. What rested on a withdrawn node reads REASON LOST:
+  `rests_on_withdrawn` in `reasoning_report`, `reasons_lost` and
+  `premises_withdrawn` in `loop_status`, until the owner re-grounds the step
+  or lets the decision go; `propagate_from` seeds from the withdrawn id (it
+  answered unknown_seeds). Measured on the split-capstone trial's two
+  KESTREL-ASSESS surfaces (req:a-superseded-mirrored-judgment-is-kept-and-
+  what-rested-on-it-reads-reason-lost).
+- **A judgment another replaces reads `superseded` and is not published.** A
+  requirement `replaces` supersedes reads `superseded` (it read `contested`:
+  its own step still held, and the replacement left its truth unknown), and
+  `export_surface` no longer publishes it beside its successor.
+- **Two lines stated independent are checked against their premises.** The
+  check compared steps and cited results only, so three trials read two lines
+  "independent" though both rest on one premise: Gettier's two cases on
+  Gettier's two points, the Navier–Stokes Lean and natural-language routes on
+  the Lean-check claim. A statement neither line derives — taken as given, a
+  claim nobody has shown, an assumption nothing discharges — is now named in
+  `shared_premises` and makes the statement false, unless
+  `independent_except` names it. The vocabulary (definitions, axioms, rules of
+  method) and the theorem's own setting (premises both final steps take up)
+  are named in `shared_setting` and leave the lines independent; the four
+  colour Coq and RSST routes name the 633 configurations there, recorded as a
+  definition.
+- **`independent_of: []` clears a stated independence.** `add_inference`
+  removed a key from the map it MERGED into the stored step, so an empty list
+  (or `cases_exhaustive: ""`) left the old value standing.
+- **An objection nobody has sourced contests and never defeats.** An
+  objection marked `taken_as_given` that no pinned source documents leaves
+  what it attacks contested — "contested by an objection nobody has sourced"
+  — and never defeats or refutes it; once a pinned source documents it, it
+  holds as before. Heawood's recalled, unread objection defeated Kempe's
+  degree-5 step outright on the four colour rung (req:an-objection-taken-as-
+  given-with-no-pinned-source-contests-and-never-defeats).
+
+- **A proof is read as a proof again, whatever its Project's `domain` says.**
+  Measured on the heat-equation rung (`domain: document`), detect_gaps asked
+  11 questions, nine of them software-shaped: a structure, a quality target,
+  a closure criterion, an artifact standard, tests, conventions, a
+  deployment, a requirement `kind`, and "unlinked" hypotheses. It now asks 2.
+  Three causes (fact:root-cause-proof-statements-fall-through-to-software-
+  predicates-and-assumed-premises-stopped-counting-2026-10-22):
+  - an ASSUMED premise counts as taking part in the reasoning again. A
+    2026-10-17 change narrowed the membership test with the what-if's own
+    helper, so a hypothesis only ever assumed read as unlinked intent and a
+    proof stopped reading as one;
+  - a hypothesis has a truth of its own: it holds only under itself
+    (`conditional`), where it read "not delivered", disagreeing with its own
+    `statement_reading`;
+  - `encoding_undecided` no longer asks a statement (one carrying
+    `statement_kind`) for a software `kind`.
+  Whether a design is a proof or an argument is now read from what it holds:
+  a requirement belongs to the reasoning when it is a statement, takes part
+  in a step, or is joined by a CONTRADICTS to one that does. The `domain`
+  hint is read only when that fails. A reasoning design is no longer asked
+  for tests, conventions, a deployment or a registered agent-instructions
+  file; a design that builds something and also holds a proof is no longer
+  asked what capability satisfies each of its statements.
+- **A conclusion reached through a contested contradiction reads
+  `contested`, not `unproven`.** A reductio whose ⊥ rests on a contested
+  premise is a contested route, and the dispute is carried through the ⊥. The
+  Lucas–Penrose conclusion read "unproven, no derivation holds" while every
+  objection against it stood on a translation step under the ⊥.
+- **A what-if walks through a contradiction.** `propagate_from` reads a ⊥ by
+  its derivation, so a change that costs the derivation reaches the reductio
+  resting on it and what rests on its conclusion; it stopped at the ⊥, and
+  the row deriving it read `refuted` (the Lucas–Penrose and four colour
+  trials).
+- **A falsum carries no proof status.** It read `unproven` beside its
+  statement reading `false`; its `statement_reading` (`false`,
+  `inconsistent` or `stated`) is what it says.
+
 ## [0.90.0] — 2026-10-21
 
 **Minor. A line of reasoning that is not a proof can be recorded and read: arguments for and

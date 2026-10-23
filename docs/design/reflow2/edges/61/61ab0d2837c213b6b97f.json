@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:df8c98ef3d90b1f4bc1ae1a1eb5033144c398a426f4a7d5c1edaa1890ed79cce",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:00c776cddfcc25b2e86eae520c7928fa3cd4aa7f5504cd75fe0f54c4c00a094b"
+  },
+  "to_id": "art:reasoning-rs"
+}

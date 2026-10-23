@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8b0dc44cf6714c0029e1df3b586abc1790421929ce07cfd27dce586786e62ba",
+  "node_id": "chg:accept-997282327a2aaebc",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.91.0 cut, step 2: the release line moves to v0.91.0; 'it keeps claims, it can't judge them' stays true. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

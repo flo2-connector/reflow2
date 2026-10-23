@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:87859b6b6ecee1a039c1b76be26afe8b9944aeef3a350e751f8b4aa7091695ed",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:468aca0a6e1258d67a3ecced805f6afb0894b6838eb77b9df81c67e006064d84"
+  },
+  "to_id": "art:lens-handler-test"
+}

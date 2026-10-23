@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1abcdc06e05e64b98484a065287f5bf1a4c4289c8785be76e431b4911e0e8e8b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:6f762ba337b520628067d2e0830cafbef4a44fbe40677e90f4b5abc63a327463"
+  },
+  "to_id": "art:test-a-plain-get-instructions-returns-the-whole-document"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c3876ad827f887e14fd3077ae408f1e832e04f52bb10934833dd76831e12219a",
+  "node_id": "chg:accept-f7480556737110d4",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.91.0 cut, step 2: the release line moves to v0.91.0, and two paragraphs that 0.91.0 made false are corrected: with reflow2 alone, search_design and compose_and_analyse with tracked_designs: true now reach every member a hub pins by a committed export (computed seams included, through --call too), where the page said one call over the members needs a hosted server; the across-members section now says --call reaches members only through those exports, never live. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

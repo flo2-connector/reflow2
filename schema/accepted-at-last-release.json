@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.90.0",
+  "reflow2_version": "0.91.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -67,6 +67,17 @@
           "pending_expansion"
         ]
       },
+      "information_credibility": {
+        "type": "enum",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
       "last_confirmed_at": {
         "type": "string"
       },
@@ -78,8 +89,22 @@
         "required": true,
         "refuses_null": true
       },
+      "not_read": {
+        "type": "bool"
+      },
       "signature": {
         "type": "string"
+      },
+      "source_reliability": {
+        "type": "enum",
+        "values": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F"
+        ]
       },
       "status": {
         "type": "enum",
@@ -304,6 +329,9 @@
           "technical"
         ]
       },
+      "claimed_by": {
+        "type": "string"
+      },
       "composition": {
         "type": "enum",
         "values": [
@@ -435,6 +463,7 @@
         "type": "enum",
         "values": [
           "axiom",
+          "bridge",
           "conjecture",
           "corollary",
           "definition",
@@ -924,6 +953,9 @@
       "cases_exhaustive": {
         "type": "string"
       },
+      "claimed_by": {
+        "type": "string"
+      },
       "conclusion_form": {
         "type": "enum",
         "values": [
@@ -1288,6 +1320,9 @@
       "aliases": {
         "type": "list:string"
       },
+      "claimed_by": {
+        "type": "string"
+      },
       "concern": {
         "type": "enum",
         "values": [
@@ -1413,6 +1448,7 @@
         "type": "enum",
         "values": [
           "axiom",
+          "bridge",
           "conjecture",
           "corollary",
           "definition",
@@ -2199,6 +2235,22 @@
             0.0,
             1.0
           ]
+        }
+      }
+    },
+    "EQUIVALENT_TO": {
+      "from": [
+        "*"
+      ],
+      "to": [
+        "*"
+      ],
+      "properties": {
+        "by": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
         }
       }
     },

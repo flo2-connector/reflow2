@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e1207cdbcf444c96e6f59de0e1645cc7b2b1e8a58984fd58e2db1dbba25e7a1b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-545f8ecd0667b1da",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 42,
+    "action": "modified",
+    "checksum_after": "sha256:e12d74151598dc0996330911703d366370c6ba59fb2f19b79e012d37537619a7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}

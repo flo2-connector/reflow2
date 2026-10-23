@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cec0615401e48edf400fc85d6d7214f635d3efbcf16d6a0ea4af9f425f383f4c",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:4b2b5927636143025899e2186ffa2b2fa2a0c6e863d13d6c052ae75a2b208215"
+  },
+  "to_id": "art:test-a-premise-in-another-design-reads-as-it-reads-there"
+}
