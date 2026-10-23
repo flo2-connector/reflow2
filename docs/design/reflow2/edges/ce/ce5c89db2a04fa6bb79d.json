@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6eeafa8d9c17f2b89aa9b8d77fe36c577081cae9a4e2a991e6e86db8f65f7be9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:ea8db58541ec946707dbd8cfa372db6664b1c29564f97a57a0ee5c744d21b9fd"
+  },
+  "to_id": "art:toolsnap-reasoning-report"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:429e796bb7e4702b6d7544af12af2021dc9e5295821bbbf3bdadbfce92b254f5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:90ade83d434d5bfda855135a0e5d7364e7b467ecd24e16c6d95a600cc7e8fdde"
+  },
+  "to_id": "art:a-local-hub-composes-its-pinned-designs-through-the-door-test"
+}

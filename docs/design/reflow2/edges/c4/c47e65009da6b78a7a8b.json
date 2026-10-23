@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9e110eb762167637ba4e8ba0873450f307e3df7620de1e7b7f2b5660d4cfa9e0",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:0bd6c3a0a3a447993ae351e43f7483997859d03555a99ed9fb8af3984e764253"
+  },
+  "to_id": "art:merge"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a25d628e587977a982964064d6da72fa6a247b0a9421c959712822c34b83900",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:4679bcab869a249b3cc46135cf49168b06e23ee23b8c543afeebcca80d539a41"
+  },
+  "to_id": "art:grok-capture-intent-skill-mirror"
+}

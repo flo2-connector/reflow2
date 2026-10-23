@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0de37e68cd6dddd3c2d4837c6860ffa0dd68a1caa5220c2e5ce57d10ca1f748",
+  "node_id": "chg:accept-959f4e965242eb72",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "name": "v0.91.0 cut, step 1: the schema snapshot is re-blessed from the 0.91.0 build (11 passed). The stamp MOVES: edge type EQUIVALENT_TO is added (68 -> 69); statement_kind gains bridge; Artifact gains the enum properties source_reliability (A-F) and information_credibility (1-6), and not_read; claimed_by is added on Requirement, Constraint and Inference. Additions only; node types unchanged (28). Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

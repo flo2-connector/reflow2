@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7ff98cfa5caeccd188dfe9723fb7004297f12b2384e6f721e946d6559fd674e2",
+  "node_id": "chg:accept-275dcfe5ec9697ab",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "name": "v0.91.0 cut, step 2: the release line moves to v0.91.0, and the VS Code route's 'What this route reaches' now says a reply prints as one line of JSON (pipe it to jq) and that a hub on your own machine searches and checks the members it pins by committed export; a hosted design still needs an MCP client. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject": "system"
+  }
+}

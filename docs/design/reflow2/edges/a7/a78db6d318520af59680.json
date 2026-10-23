@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1b7a8eb9c96dfdc85c690f5c7148fa708ac7726949136c68d1427c40b8869b09",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:3b04e95bf67f15f0ca6bce9b751e12ff3ac7f7799b42f51d36921353b95650cc"
+  },
+  "to_id": "art:test-a-replaced-value-is-kept"
+}

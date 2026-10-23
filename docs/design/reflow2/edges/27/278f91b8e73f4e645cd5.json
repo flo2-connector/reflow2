@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:25f672b1b313d5c1cd5d516935552d2c9782403ff611f3e4a05a6489b895d3ef",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:bb6ac4358b8dd6c34801a743c0202416fae0139f971c1a95f585daa0ed46b3d7"
+  },
+  "to_id": "art:crosslink"
+}

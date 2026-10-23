@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:239f89c051ad439952e29be3623da6e8c193996ca7acdedd7fe94e6c74586be4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0910",
+  "properties": {
+    "as_checksum": "sha256:156539e2f1091df6a569ee9aff99e7c850e8791b5f99fb3e12a71c28d4c8f79c"
+  },
+  "to_id": "art:client-setup"
+}
