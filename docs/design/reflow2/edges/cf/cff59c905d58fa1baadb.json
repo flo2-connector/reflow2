@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd1ad5a673117bf191762c24b84cd7eec313d07e3a11225fa428043004ffcaac",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:c0d483833e98d2765e121c0524021c673262b01faf6fff513790c9f766507a24",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-loop-status-says-what-is-not-exported"
+}

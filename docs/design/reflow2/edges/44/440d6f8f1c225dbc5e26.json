@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f9ef9c0739cf170f16df041e606c8e629e5bb180dc09cd31910556e6a42d294e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-loop-status-says-what-is-not-exported",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
