@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:35b93bcbde1d2763ab6f3d971ce5be3ec736d5adc9c68f50fdbdd3fe217bfa02",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "at": "2026-10-23",
+    "note": "All four faults fixed as the fact's FIX says: assumed premises take part again, a hypothesis holds only under itself, encoding_undecided skips statements, and the structural test decides with the domain hint as a fallback. Pinned by proofs_and_arguments_read_right.rs over seven trial designs; the membership regression test failed on the reverted code."
+  },
+  "to_id": "fact:root-cause-proof-statements-fall-through-to-software-predicates-and-assumed-premises-stopped-counting-2026-10-22"
+}

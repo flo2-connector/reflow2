@@ -595,7 +595,10 @@ impl DesignGraph {
             if self.has_review_relation(id)? {
                 return Ok(true);
             }
-            for e in [edge::DECOMPOSES, edge::GOVERNED_BY] {
+            // EQUIVALENT_TO links two statements too (req:two-statements-can-
+            // be-recorded-as-proven-equivalent): the Riemann map's seven
+            // equivalence theorems read as unlinked intent for want of it.
+            for e in [edge::DECOMPOSES, edge::GOVERNED_BY, edge::EQUIVALENT_TO] {
                 if !self.outgoing(id, Some(e))?.is_empty()
                     || !self.incoming(id, Some(e))?.is_empty()
                 {

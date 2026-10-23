@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b057e3a485e541714d0ea7391f39920d28ffd1b39c203d5a08d194a9ead36748",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 29,
+    "action": "modified",
+    "checksum_after": "sha256:ef51607c257bde0226bf8787965ded2b55eb561865df4d5f0b51576bcf443f3a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

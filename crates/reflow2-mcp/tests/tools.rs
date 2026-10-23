@@ -1034,6 +1034,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 69 since EQUIVALENT_TO (2026-10-23, two statements proven
+        // equivalent);
         // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
         // stated inference step);
         // 66 since ACTS_FOR (2026-09-29, an agent acts for the person whose
@@ -1049,7 +1051,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        68,
+        69,
         "every edge type is discoverable"
     );
 }

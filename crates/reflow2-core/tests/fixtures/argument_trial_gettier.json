@@ -1,0 +1,3899 @@
+{
+ "content_hash": "sha256:227221a4757b92fd2b28995e2e2c0823f2e789a636429e1e1cf7e2ac736d659d",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "ANTICIPATES",
+   "from_id": "req:hist-dharmottara",
+   "properties": {
+    "evidence": "S2: the mirage-and-water case is a lucky true belief judged not knowledge, centuries before Gettier. Priority only; no support."
+   },
+   "to_id": "req:case-1-counterexample"
+  },
+  {
+   "edge_type": "ANTICIPATES",
+   "from_id": "req:hist-plato",
+   "properties": {
+    "evidence": "S1 fn 1: Plato seems to consider some such definition (Theaetetus 201) and perhaps accept one (Meno 98). Priority only; no support."
+   },
+   "to_id": "req:jtb-analysis"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-want-to-keep-the-overall-question-1f7c3f",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-gettier-says-his-argument-also-defeats-chisholm-s-7a0704",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:b-c-not-sufficient"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-gettier-says-his-argument-also-defeats-chisholm-s-7a0704",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:g-substitution"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-recorded-gettier-s-two-points-justification-can-a4e9f1",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:g-closure"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-recorded-gettier-s-two-points-justification-can-a4e9f1",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:g-fallibility"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-recorded-gettier-s-two-points-justification-can-a4e9f1",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:jtb-not-sufficient"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-no-false-lemmas-reads-refuted-only-because-of-b3ca19",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:case-robot-dog"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-no-false-lemmas-reads-refuted-only-because-of-b3ca19",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:repair-no-false-lemmas"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-no-false-lemmas-reads-refuted-only-because-of-b3ca19",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:robot-dog-judgement"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-packet-names-no-one-who-rejects-the-8273e3",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:case-1-judgement"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-the-packet-names-no-one-who-rejects-the-8273e3",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:case-2-judgement"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:repair-k-reliabilism"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:zag-member-nfl"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:zag-member-safety"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:zag-member-sensitivity"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-f9fa53f89aaa05d6",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:baseline-fe9e827d47afc676",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-1-coins",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-2-ford",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-barn-county",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:case-robot-dog",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:what-is-knowledge-open-question",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:barn-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:barn-jtb-nfl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:barn-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-1-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-1-justification",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-1-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-2-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-2-justification",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:case-2-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:extend-to-b-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:jtb-analysis-is-both-directions",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:not-sufficient-via-barn",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:not-sufficient-via-case-1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:not-sufficient-via-case-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:robot-dog-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:robot-dog-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:zag-applies-nfl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:zag-applies-safety",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:zag-applies-sensitivity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:zag-luck-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:zagzebski-class",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:gettier-and-the-analysis-of-knowledge",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-do-you-want-to-keep-the-overall-question-1f7c3f",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-gettier-says-his-argument-also-defeats-chisholm-s-7a0704",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-i-recorded-gettier-s-two-points-justification-can-a4e9f1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-no-false-lemmas-reads-refuted-only-because-of-b3ca19",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-the-packet-names-no-one-who-rejects-the-8273e3",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ayer-c-sufficient",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:b-c-not-sufficient",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:barn-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:barn-jtb-nfl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:barn-judgement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-1-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-1-judgement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-1-justified",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-2-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-2-judgement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:case-2-justified",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:chisholm-b-sufficient",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:g-closure",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:g-fallibility",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:g-substitution",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hist-barn-origin",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hist-dharmottara",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hist-few-endorse-sensitivity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hist-plato",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hist-traditional-analysis-a-fiction",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:jtb-analysis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:jtb-necessary",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:jtb-not-sufficient",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:jtb-sufficient",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-knowledge-first",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-kripke-red-barn",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-no-progress",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-safety-entails-truth",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-sosa-henry-knows",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:premise-knowledge-analysable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:repair-k-reliabilism",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:repair-no-false-lemmas",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:repair-safety",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:repair-sensitivity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:robot-dog-counterexample",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:robot-dog-judgement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-instance-nfl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-instance-safety",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-instance-sensitivity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-luck-verdict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-member-nfl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-member-safety",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zag-member-sensitivity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zagzebski-class-claim",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:zagzebski-recipe",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-f9fa53f89aaa05d6",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0157e33c1698bec237e8b6a6897fb266ae8efa6d5f09a75b07fb4fa7745cec65",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s2-sep-analysis-of-knowledge"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:baseline-fe9e827d47afc676",
+   "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:921346a1f490c50cdafc2053e40d31169818b3a77725137fe714a87955b5ada5",
+    "checksum_basis": "asserted"
+   },
+   "to_id": "art:s1-gettier-1963"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:barn-counterexample",
+   "properties": {},
+   "to_id": "req:barn-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:barn-jtb-nfl",
+   "properties": {},
+   "to_id": "req:barn-jtb-nfl"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:barn-verdict",
+   "properties": {},
+   "to_id": "req:barn-judgement"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-1-counterexample",
+   "properties": {},
+   "to_id": "req:case-1-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-1-justification",
+   "properties": {},
+   "to_id": "req:case-1-justified"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-1-verdict",
+   "properties": {},
+   "to_id": "req:case-1-judgement"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-2-counterexample",
+   "properties": {},
+   "to_id": "req:case-2-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-2-justification",
+   "properties": {},
+   "to_id": "req:case-2-justified"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:case-2-verdict",
+   "properties": {},
+   "to_id": "req:case-2-judgement"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:extend-to-b-c",
+   "properties": {},
+   "to_id": "req:b-c-not-sufficient"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:jtb-analysis-is-both-directions",
+   "properties": {},
+   "to_id": "req:jtb-analysis"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:not-sufficient-via-barn",
+   "properties": {},
+   "to_id": "req:jtb-not-sufficient"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:not-sufficient-via-case-1",
+   "properties": {},
+   "to_id": "req:jtb-not-sufficient"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:not-sufficient-via-case-2",
+   "properties": {},
+   "to_id": "req:jtb-not-sufficient"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:robot-dog-counterexample",
+   "properties": {},
+   "to_id": "req:robot-dog-counterexample"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:robot-dog-verdict",
+   "properties": {},
+   "to_id": "req:robot-dog-judgement"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:zag-applies-nfl",
+   "properties": {},
+   "to_id": "req:zag-instance-nfl"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:zag-applies-safety",
+   "properties": {},
+   "to_id": "req:zag-instance-safety"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:zag-applies-sensitivity",
+   "properties": {},
+   "to_id": "req:zag-instance-sensitivity"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:zag-luck-verdict",
+   "properties": {},
+   "to_id": "req:zag-luck-verdict"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:zagzebski-class",
+   "properties": {},
+   "to_id": "req:zagzebski-class-claim"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:b-c-not-sufficient",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S1: the same argument shows (c) fails if 'has the right to be sure that' is substituted throughout."
+   },
+   "to_id": "req:ayer-c-sufficient"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:b-c-not-sufficient",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S1: the same argument shows (b) fails if 'has adequate evidence for' is substituted throughout."
+   },
+   "to_id": "req:chisholm-b-sufficient"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:barn-counterexample",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §4: Henry's belief is justified and true and 'condition (4) is met', yet it is judged not knowledge, so JTB + no false lemmas is not sufficient."
+   },
+   "to_id": "req:repair-no-false-lemmas"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:jtb-not-sufficient",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "A biconditional is false when either of its directions is false; S1: '(a) is false in that the conditions stated therein do not constitute a sufficient condition'. This defeats (a) through its sufficiency direction only; the necessity direction (req:jtb-necessary) is not contradicted."
+   },
+   "to_id": "req:jtb-analysis"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:jtb-not-sufficient",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Counterexample: a justified true belief that is not knowledge is exactly the negation of 'every justified true belief is knowledge'. S1: the conditions 'do not constitute a sufficient condition'."
+   },
+   "to_id": "req:jtb-sufficient"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-knowledge-first",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §11: knowledge-first proponents suppose the project of analysing knowledge was a mistake."
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-kripke-red-barn",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §5.1: Kripke points to Barn County as a counterexample a sensitivity condition cannot account for (red-barn detail RECALLED)."
+   },
+   "to_id": "req:repair-sensitivity"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-no-progress",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §7: decades of counterexample-and-amendment led some epistemologists to doubt progress was being made: inductive evidence against there being an analysis."
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-safety-entails-truth",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "RECALLED: with the actual world among the closest, safety entails truth, so it is not logically independent of T and safety analyses fall outside the class."
+   },
+   "to_id": "req:zag-member-safety"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-sosa-henry-knows",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §10.2: Sosa judges Henry's belief apt and accepts that Henry knows there is a barn: the direct denial of the Barn County verdict."
+   },
+   "to_id": "req:barn-judgement"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:robot-dog-counterexample",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S2 §4: an apparent Gettier case that involves no inference, so the no-false-lemmas condition is met and the analysis says 'knows' where the verdict says not."
+   },
+   "to_id": "req:repair-no-false-lemmas"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:zag-instance-nfl",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The class argument instantiated at X = no false lemmas: a case meeting the analysis without knowledge exists."
+   },
+   "to_id": "req:repair-no-false-lemmas"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:zag-instance-safety",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The class argument instantiated at X = safety."
+   },
+   "to_id": "req:repair-safety"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:zag-instance-sensitivity",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The class argument instantiated at X = sensitivity."
+   },
+   "to_id": "req:repair-sensitivity"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:jtb-analysis",
+   "properties": {
+    "evidence": "(a) is an analysis; it can be correct only if knowledge has an analysis.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:repair-k-reliabilism",
+   "properties": {
+    "evidence": "A proposed analysis is worth pursuing only if knowledge has one.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:repair-no-false-lemmas",
+   "properties": {
+    "evidence": "A proposed analysis is worth pursuing only if knowledge has one.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:repair-safety",
+   "properties": {
+    "evidence": "A proposed analysis is worth pursuing only if knowledge has one.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:repair-sensitivity",
+   "properties": {
+    "evidence": "A proposed analysis is worth pursuing only if knowledge has one.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "req:premise-knowledge-analysable"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "con:case-1-coins"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "con:case-2-ford"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:ayer-c-sufficient"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:b-c-not-sufficient"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:case-1-judgement"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:case-1-justified"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:case-2-judgement"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:case-2-justified"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:chisholm-b-sufficient"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:g-closure"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:g-fallibility"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:hist-plato"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:jtb-analysis"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:jtb-necessary"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:jtb-not-sufficient"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-gettier-1963",
+   "properties": {},
+   "to_id": "req:jtb-sufficient"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "con:case-barn-county"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "con:case-robot-dog"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:barn-jtb-nfl"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:barn-judgement"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:hist-barn-origin"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:hist-dharmottara"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:hist-few-endorse-sensitivity"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:hist-traditional-analysis-a-fiction"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:obj-knowledge-first"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:obj-kripke-red-barn"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:obj-no-progress"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:obj-sosa-henry-knows"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:repair-k-reliabilism"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:repair-no-false-lemmas"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:repair-safety"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:repair-sensitivity"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:zagzebski-class-claim"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-sep-analysis-of-knowledge",
+   "properties": {},
+   "to_id": "req:zagzebski-recipe"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:obj-knowledge-first",
+   "properties": {
+    "note": "Rival position (3): no analysis; knowledge first."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:premise-knowledge-analysable",
+   "properties": {
+    "note": "The presupposition every rival in (1) and (2) shares."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:repair-k-reliabilism",
+   "properties": {
+    "note": "Rival position (2): an analysis replacing justification."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:repair-no-false-lemmas",
+   "properties": {
+    "note": "Rival position (1): a JTB+X analysis."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:repair-safety",
+   "properties": {
+    "note": "Rival position (1): an analysis adding a modal condition."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:repair-sensitivity",
+   "properties": {
+    "note": "Rival position (1): an analysis adding a modal condition."
+   },
+   "to_id": "dec:what-is-knowledge-open-question"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-1-coins",
+   "properties": {},
+   "to_id": "inf:case-1-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-1-coins",
+   "properties": {},
+   "to_id": "inf:case-1-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-1-coins",
+   "properties": {},
+   "to_id": "inf:case-1-verdict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-2-ford",
+   "properties": {},
+   "to_id": "inf:case-2-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-2-ford",
+   "properties": {},
+   "to_id": "inf:case-2-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-2-ford",
+   "properties": {},
+   "to_id": "inf:case-2-verdict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-barn-county",
+   "properties": {},
+   "to_id": "inf:barn-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-barn-county",
+   "properties": {},
+   "to_id": "inf:barn-jtb-nfl"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-barn-county",
+   "properties": {},
+   "to_id": "inf:barn-verdict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-robot-dog",
+   "properties": {},
+   "to_id": "inf:robot-dog-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:case-robot-dog",
+   "properties": {},
+   "to_id": "inf:robot-dog-verdict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:barn-counterexample",
+   "properties": {},
+   "to_id": "inf:not-sufficient-via-barn"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:barn-jtb-nfl",
+   "properties": {},
+   "to_id": "inf:barn-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:barn-judgement",
+   "properties": {},
+   "to_id": "inf:barn-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-1-counterexample",
+   "properties": {},
+   "to_id": "inf:extend-to-b-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-1-counterexample",
+   "properties": {},
+   "to_id": "inf:not-sufficient-via-case-1"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-1-judgement",
+   "properties": {},
+   "to_id": "inf:case-1-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-1-justified",
+   "properties": {},
+   "to_id": "inf:case-1-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-2-counterexample",
+   "properties": {},
+   "to_id": "inf:extend-to-b-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-2-counterexample",
+   "properties": {},
+   "to_id": "inf:not-sufficient-via-case-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-2-judgement",
+   "properties": {},
+   "to_id": "inf:case-2-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:case-2-justified",
+   "properties": {},
+   "to_id": "inf:case-2-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-closure",
+   "properties": {},
+   "to_id": "inf:case-1-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-closure",
+   "properties": {},
+   "to_id": "inf:case-2-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-fallibility",
+   "properties": {},
+   "to_id": "inf:case-1-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-fallibility",
+   "properties": {},
+   "to_id": "inf:case-2-justification"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-fallibility",
+   "properties": {},
+   "to_id": "inf:zagzebski-class"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:g-substitution",
+   "properties": {},
+   "to_id": "inf:extend-to-b-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:jtb-necessary",
+   "properties": {},
+   "to_id": "inf:jtb-analysis-is-both-directions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:jtb-sufficient",
+   "properties": {},
+   "to_id": "inf:jtb-analysis-is-both-directions"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:robot-dog-judgement",
+   "properties": {},
+   "to_id": "inf:robot-dog-counterexample"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zag-luck-verdict",
+   "properties": {},
+   "to_id": "inf:zagzebski-class"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zag-member-nfl",
+   "properties": {},
+   "to_id": "inf:zag-applies-nfl"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zag-member-safety",
+   "properties": {},
+   "to_id": "inf:zag-applies-safety"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zag-member-sensitivity",
+   "properties": {},
+   "to_id": "inf:zag-applies-sensitivity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zagzebski-class-claim",
+   "properties": {},
+   "to_id": "inf:zag-applies-nfl"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zagzebski-class-claim",
+   "properties": {},
+   "to_id": "inf:zag-applies-safety"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zagzebski-class-claim",
+   "properties": {},
+   "to_id": "inf:zag-applies-sensitivity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zagzebski-recipe",
+   "properties": {},
+   "to_id": "inf:zag-luck-verdict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:zagzebski-recipe",
+   "properties": {},
+   "to_id": "inf:zagzebski-class"
+  }
+ ],
+ "graph_id": "57e91debfac7c608",
+ "nodes": [
+  {
+   "node_id": "art:s1-gettier-1963",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "PRIMARY source: the author's own published paper. Copy of the published pages read by the trial observer 2026-10-23 and quoted in the source packet. Strength: PRIMARY (strongest in the packet).",
+    "location": "fitelson.org/proseminar/gettier.pdf",
+    "name": "S1: Gettier, \"Is Justified True Belief Knowledge?\" (Analysis 23(6), 1963, 121-123)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:s2-sep-analysis-of-knowledge",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "SECONDARY-REFERENCE: a peer-reviewed reference work that reports and assesses the literature. First published 2001, substantive revision 2026-01-21. Read by the trial observer and quoted in the source packet. Works it names that nobody in the trial read are cited here as \"cited by S2\".",
+    "location": "plato.stanford.edu/entries/knowledge-analysis/ (fetched 2026-10-23)",
+    "name": "S2: Ichikawa and Steup, \"The Analysis of Knowledge\", Stanford Encyclopedia of Philosophy (rev. 2026-01-21)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:baseline-f9fa53f89aaa05d6",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-23",
+    "name": "Full sha256 as given in the trial source packet (observer fetched plato.stanford.edu/entries/knowledge-analysis/ 2026-10-23). Asserted, not measured.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "chg:baseline-fe9e827d47afc676",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-23",
+    "name": "Full sha256 as given in the trial source packet (observer read it at fitelson.org/proseminar/gettier.pdf). Asserted, not measured: the server does not hold the file.",
+    "subject": "record"
+   }
+  },
+  {
+   "node_id": "con:case-1-coins",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case I (ten coins): the situation as Gettier stipulates it",
+    "priority": "medium",
+    "source": "S1 (PRIMARY)",
+    "statement": "Smith has strong evidence for (d) 'Jones is the man who will get the job, and Jones has ten coins in his pocket' (the president assured him; he counted the coins). (d) entails (e) 'The man who will get the job has ten coins in his pocket'; Smith sees this and accepts (e) on the grounds of (d). Unknown to Smith, he himself, not Jones, will get the job, and he himself has ten coins in his pocket. So (e) is true and (d) is false.",
+    "statement_kind": "proposition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-2-ford",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Case II (Ford / Barcelona): the situation as Gettier stipulates it",
+    "priority": "medium",
+    "source": "S1 (PRIMARY)",
+    "statement": "Smith has strong evidence for (f) 'Jones owns a Ford'. From (f) he constructs (g) 'Either Jones owns a Ford, or Brown is in Boston', (h) 'Either Jones owns a Ford, or Brown is in Barcelona', (i) 'Either Jones owns a Ford, or Brown is in Brest-Litovsk', each entailed by (f), and accepts each on the basis of (f), having no idea where Brown is. Jones does not own a Ford (he is driving a rented car), and by the sheerest coincidence Brown is in Barcelona. So (h) is true and (f) is false.",
+    "statement_kind": "proposition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-barn-county",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Barn County (fake barns): the situation as stipulated",
+    "priority": "medium",
+    "source": "S2 (SECONDARY-REFERENCE) §4: 'first given by Carl Ginet, and published by Alvin Goldman (1976)'; Ginet and Goldman 1976 cited by S2 (not read).",
+    "statement": "Henry drives through a county full of barn facades, indistinguishable from the road from real barns. He looks at the one and only real barn in the county and, by perception, believes 'there is a barn'. His belief is not inferred from any falsehood.",
+    "statement_kind": "proposition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:case-robot-dog",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Robot dog case: the situation (named by S2; details RECALLED)",
+    "priority": "medium",
+    "source": "S2 §4 names 'the robot dog case'; its details here are RECALLED, not from the packet.",
+    "statement": "RECALLED details: S hears barking from a robot dog built to fool people and believes 'there is a dog in the yard'; by chance a real (silent) dog is in the yard. The belief is perceptual, not inferred from any falsehood. S2 names the case only as one of the 'apparent examples of Gettier cases that need involve no inference'.",
+    "statement_kind": "proposition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:ajs",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "dec:what-is-knowledge-open-question",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "PROPOSED to be kept open on purpose (status `contested`, the owner's word only). The rival positions on the record: (1) knowledge has an analysis of the form JTB+X, with no-false-lemmas, sensitivity and safety as recorded candidates; (2) knowledge has an analysis that replaces justification, with simple K-reliabilism the recorded candidate; (3) knowledge has no analysis and should be taken as basic (knowledge first). What is NOT open: that JTB is not sufficient (Gettier), subject to the case verdicts and his two points.",
+    "kind": "choice",
+    "name": "The open question: does knowledge have a correct analysis, and if so, what is it?",
+    "no_relation_note": "Six positions are GOVERNED_BY this decision (four repairs, the shared analysability premise, the knowledge-first objection); those edges are its relations. No inference-layer relation is honestly owed: it is the open question itself, not a claim argued for or against.",
+    "rationale": "The packet gives no position that has stood: no-false-lemmas reads refuted, sensitivity is contested by Kripke's barn objection, safety and reliabilism meet no counterexample in the packet but stand under Zagzebski's class argument in part, and knowledge first has 'no very straightforward argument' (S2 section 11). S2 describes the field as it stands with these as live views. Settling it would claim more than either source shows, so it is offered to the owner to keep open by design.",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:barn-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:barn-counterexample",
+    "rule": "all",
+    "rule_name": "conjunction: JTB + no false lemma + not known",
+    "warrant": "The case gives a justified true belief inferred from no falsehood; the verdict gives that it is not knowledge."
+   }
+  },
+  {
+   "node_id": "inf:barn-jtb-nfl",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:barn-jtb-nfl",
+    "rule": "all",
+    "rule_name": "read off the stipulated case",
+    "warrant": "Henry sees a real barn in normal conditions, so his perceptual belief is justified and true; he infers it from nothing, so it is inferred from no falsehood. Neither of Gettier's two points is used."
+   }
+  },
+  {
+   "node_id": "inf:barn-verdict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "immediate of 1 premise(s) support req:barn-judgement",
+    "rule": "immediate",
+    "rule_name": "verdict on a case (intuition), not an inference",
+    "warrant": "Reading the case, one judges that Henry does not know: had he looked at any of the facades he would have believed the same, so the truth of his belief is luck."
+   }
+  },
+  {
+   "node_id": "inf:case-1-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:case-1-counterexample",
+    "rule": "all",
+    "rule_name": "conjunction: true + believed + justified + not known",
+    "warrant": "The case stipulates that (e) is true and that Smith accepts it; the justification step gives that he is justified; the verdict gives that he does not know. Together: a justified true belief that is not knowledge."
+   }
+  },
+  {
+   "node_id": "inf:case-1-justification",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:case-1-justified",
+    "rule": "all",
+    "rule_name": "closure of justification applied to a justified falsehood",
+    "warrant": "Smith's strong evidence justifies him in believing (d) even though (d) is false, which the first point (fallibility) allows; (d) entails (e) and Smith deduces (e) from (d) and accepts it on that basis, so by the second point (closure) he is justified in believing (e)."
+   }
+  },
+  {
+   "node_id": "inf:case-1-verdict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "immediate of 1 premise(s) support req:case-1-judgement",
+    "rule": "immediate",
+    "rule_name": "verdict on a case (intuition), not an inference",
+    "warrant": "Gettier reports the verdict as 'equally clear': reading the case, one judges that Smith does not know (e), because (e) is made true by Smith's own coins, of which he knows nothing."
+   }
+  },
+  {
+   "node_id": "inf:case-2-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:case-2-counterexample",
+    "rule": "all",
+    "rule_name": "conjunction: true + believed + justified + not known",
+    "warrant": "The case stipulates that (h) is true and that Smith accepts it; the justification step gives that he is justified; the verdict gives that he does not know. Together: a justified true belief that is not knowledge."
+   }
+  },
+  {
+   "node_id": "inf:case-2-justification",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:case-2-justified",
+    "rule": "all",
+    "rule_name": "closure of justification applied to a justified falsehood",
+    "warrant": "Smith's strong evidence justifies him in believing (f) even though (f) is false (fallibility); (f) entails the disjunction (h), which Smith deduces and accepts on that basis, so by closure he is justified in believing (h)."
+   }
+  },
+  {
+   "node_id": "inf:case-2-verdict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "immediate of 1 premise(s) support req:case-2-judgement",
+    "rule": "immediate",
+    "rule_name": "verdict on a case (intuition), not an inference",
+    "warrant": "Reading the case, one judges that Smith does not know (h): (h) is true only because Brown happens to be in Barcelona, which has nothing to do with Smith's grounds."
+   }
+  },
+  {
+   "node_id": "inf:extend-to-b-c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:b-c-not-sufficient",
+    "rule": "all",
+    "rule_name": "same argument under substitution",
+    "warrant": "If 'adequate evidence' and 'the right to be sure' satisfy the same two points as 'justified', the two cases are rebuilt word for word with them substituted, and each yields a case meeting (b) or (c) without knowledge."
+   }
+  },
+  {
+   "node_id": "inf:jtb-analysis-is-both-directions",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:jtb-analysis",
+    "rule": "all",
+    "rule_name": "biconditional introduction",
+    "warrant": "'A iff B' is the conjunction of 'if B then A' (sufficiency) and 'if A then B' (necessity). Recording the two halves separately lets each counterexample be aimed at the half it defeats."
+   }
+  },
+  {
+   "node_id": "inf:not-sufficient-via-barn",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:jtb-not-sufficient",
+    "rule": "all",
+    "rule_name": "one counterexample defeats a universal conditional",
+    "warrant": "Barn County is also a justified true belief that is not knowledge, so it is a third route to the failure of JTB's sufficiency, and one that uses neither of Gettier's two points (S2 counts it among 'counterexamples to the traditional analysis')."
+   }
+  },
+  {
+   "node_id": "inf:not-sufficient-via-case-1",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 1 premise(s) support req:jtb-not-sufficient",
+    "rule": "all",
+    "rule_name": "one counterexample defeats a universal conditional",
+    "warrant": "The sufficiency direction says every justified true belief is knowledge; one justified true belief that is not knowledge (Case I) is enough to show the conditions are not sufficient."
+   }
+  },
+  {
+   "node_id": "inf:not-sufficient-via-case-2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "independent_of": [
+     "inf:not-sufficient-via-case-1"
+    ],
+    "name": "all of 1 premise(s) support req:jtb-not-sufficient",
+    "rule": "all",
+    "rule_name": "one counterexample defeats a universal conditional",
+    "warrant": "As for Case I: Case II alone is a justified true belief that is not knowledge, so it alone shows the conditions are not sufficient. Stated as a second, independent line."
+   }
+  },
+  {
+   "node_id": "inf:robot-dog-counterexample",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:robot-dog-counterexample",
+    "rule": "all",
+    "rule_name": "conjunction: JTB + no false lemma + not known",
+    "warrant": "The case (details RECALLED) gives a justified true perceptual belief inferred from no falsehood; the verdict gives that it is not knowledge."
+   }
+  },
+  {
+   "node_id": "inf:robot-dog-verdict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "immediate of 1 premise(s) support req:robot-dog-judgement",
+    "rule": "immediate",
+    "rule_name": "verdict on a case (intuition), not an inference",
+    "warrant": "The belief is caused by the robot's barking, not by the real dog, which is there by luck; so it is judged not knowledge (RECALLED wording)."
+   }
+  },
+  {
+   "node_id": "inf:zag-applies-nfl",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:zag-instance-nfl",
+    "rule": "all",
+    "rule_name": "universal instantiation (X = no false lemmas)",
+    "warrant": "The class claim holds for every X of the shape; no false lemmas is of the shape; so there is a Gettier-style case against it."
+   }
+  },
+  {
+   "node_id": "inf:zag-applies-safety",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:zag-instance-safety",
+    "rule": "all",
+    "rule_name": "universal instantiation (X = safety)",
+    "warrant": "The class claim holds for every X of the shape; safety is (on the membership premise, which is objected to) of the shape; so there is a Gettier-style case against it."
+   }
+  },
+  {
+   "node_id": "inf:zag-applies-sensitivity",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:zag-instance-sensitivity",
+    "rule": "all",
+    "rule_name": "universal instantiation (X = sensitivity)",
+    "warrant": "The class claim holds for every X of the shape; sensitivity is (on the membership premise) of the shape; so there is a Gettier-style case against it."
+   }
+  },
+  {
+   "node_id": "inf:zag-luck-verdict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "immediate of 1 premise(s) support req:zag-luck-verdict",
+    "rule": "immediate",
+    "rule_name": "general verdict on the recipe's cases (intuition), not an inference",
+    "warrant": "Any case the recipe builds is judged as Gettier's were: a belief true merely by luck is not knowledge."
+   }
+  },
+  {
+   "node_id": "inf:zagzebski-class",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "X"
+    ],
+    "name": "all of 3 premise(s) support req:zagzebski-class-claim",
+    "rule": "all",
+    "rule_name": "general construction (for every X of the shape)",
+    "warrant": "Step (1) of the recipe needs a justified FALSE belief that meets X: fallibility supplies justified false beliefs, and X's independence from J, T, B means one of them can meet X. Step (2) makes it true by luck while keeping J, B and X. The luck verdict then says it is not knowledge. Nothing in this depends on which X, so it holds for every X of the shape."
+   }
+  },
+  {
+   "node_id": "proj:gettier-and-the-analysis-of-knowledge",
+   "node_type": "Project",
+   "properties": {
+    "domain": "argument",
+    "mode": "flexible",
+    "name": "Gettier and the analysis of knowledge (line-of-reasoning trial)",
+    "objective": "Gettier's 1963 argument against \"knowledge is justified true belief\" as a design: the definition, what exactly his cases refute, the repairs proposed since and the counterexample each met, the challenge to the whole project, and the question still open among philosophers, kept open on purpose, with each source at its stated strength.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-do-you-want-to-keep-the-overall-question-1f7c3f",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 1,
+    "context_setter": "Gettier's result is recorded as settled against the sufficiency half of JTB only. The repairs and the knowledge-first view are rival answers under one Decision, which I have only proposed.",
+    "question": "Do you want to keep the overall question (does knowledge have a correct analysis, and if so which?) open on purpose? If yes, set the Decision to `contested`; it then reads \"open by design\", not unfinished. If you would rather hold one side, say which.",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-gettier-says-his-argument-also-defeats-chisholm-s-7a0704",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 6,
+    "question": "Gettier says his argument also defeats Chisholm's (b) and Ayer's (c) \"if 'has adequate evidence for' or 'has the right to be sure that' is substituted\". That rests on an unstated premise: those terms behave like 'justified' in his two points. I left the premise unconfirmed, so the case against (b) and (c) reads contested. Do you take it as given?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-i-recorded-gettier-s-two-points-justification-can-a4e9f1",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 2,
+    "context_setter": "Neither source in the packet rejects either point. The barn case gives a third route to the same result that uses neither point, but its verdict is disputed by Sosa.",
+    "question": "I recorded Gettier's two points (justification can be had for a falsehood; justification carries across a deduction you make) as stated foundations, so his refutation of JTB's sufficiency reads settled. The other option is to treat them as chosen principles, and then the refutation reads only \"holds if both points are accepted\" (contested). Which do you want?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-no-false-lemmas-reads-refuted-only-because-of-b3ca19",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 4,
+    "context_setter": "reflow2 has no marker for a recalled case, so a recalled case counts the same as a quoted one unless you say otherwise.",
+    "question": "No-false-lemmas reads REFUTED only because of the robot dog case. S2 names it only as an \"apparent\" no-inference Gettier case; the details I recorded are RECALLED. The barn case also counts against it, but Sosa disputes that verdict, so that route reads contested. Do you accept the robot dog as refuting it, or should I downgrade it so the repair reads contested?",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-the-packet-names-no-one-who-rejects-the-8273e3",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 3,
+    "context_setter": "Case verdicts are recorded as premises the refutation rests on.",
+    "question": "The packet names no one who rejects the verdicts on Gettier's own two cases, so they read settled. From memory (RECALLED, not in the packet): Weatherson 2003 asked whether such verdicts must beat an attractive theory, and Weinberg, Nichols and Stich 2001 reported cultural variation in these verdicts, which Machery et al. 2017 failed to replicate. Should I wire these in as objections and a reply? Doing so would make the refutation of sufficiency read contested.",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "question:asked-zagzebski-s-argument-is-about-every-analysis-of-784f6b",
+   "node_type": "Question",
+   "properties": {
+    "asked_at": "2026-10-23T00:00:00Z",
+    "asked_of": "who:ajs",
+    "batch": "round-1",
+    "batch_position": 5,
+    "context_setter": "The class claim generalizes over X, and each application fixes X to one repair's condition.",
+    "question": "Zagzebski's argument is about every analysis of the form JTB+X, where X is independent of justification, truth and belief. I applied it to each repair through a membership premise, and left those premises unconfirmed, so the class argument only contests each repair. Do you accept membership for no-false-lemmas, for sensitivity (Nozick drops J), and for safety (objected to: safety may entail truth)? I left simple K-reliabilism outside the class because it replaces justification.",
+    "rephrase_degraded": false,
+    "status": "asked"
+   }
+  },
+  {
+   "node_id": "req:ayer-c-sufficient",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "(c) Ayer's analysis, sufficiency direction",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Ayer, cited by S1 (not read).",
+    "statement": "Sufficiency half of Ayer's (c): if P is true, S is sure that P is true, and S has the right to be sure that P is true, then S knows that P. (c) is cited by S1; Ayer was not read in this trial. Its necessity half is not addressed by Gettier and is not recorded.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:b-c-not-sufficient",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Chisholm's (b) and Ayer's (c) also fail as sufficient conditions",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY)",
+    "statement": "With 'has adequate evidence for' or 'has the right to be sure that' substituted for 'is justified in believing that', Cases I and II are counterexamples to the sufficiency of (b) and of (c) as well.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:barn-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Barn County is a justified true belief, inferred from no falsehood, that is not knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4",
+    "statement": "In Barn County, Henry's belief is justified, true, not inferred from any falsehood, and yet not knowledge.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:barn-jtb-nfl",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Barn County: Henry's belief is justified, true, and inferred from no falsehood",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4: 'his belief is justified and true ... Yet condition (4) is met in this case.'",
+    "statement": "Henry's belief that there is a barn is justified and true, and condition (4) (not inferred from any falsehood) is met. Note: this line uses NEITHER of Gettier's two points; the justification is perceptual and the belief is true, so no justified falsehood and no deduction is involved.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:barn-judgement",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "moderate",
+    "lineage": "original",
+    "name": "Barn County judgement: Henry does not know there is a barn",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4: 'since its truth is the result of luck, it is exceedingly plausible to judge that Henry's belief is not an instance of knowledge.'",
+    "statement": "Henry does not know that there is a barn, because the truth of his belief is the result of luck. A verdict on the case, which every refutation drawn from Barn County rests on. Sosa rejects it (req:obj-sosa-henry-knows).",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-1-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Case I is a justified true belief that is not knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY)",
+    "statement": "In Case I, Smith's belief in (e) is true, believed, and justified, yet Smith does not know (e).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-1-judgement",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "high",
+    "lineage": "original",
+    "name": "Case I judgement: Smith does not know (e)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY): 'it is equally clear that Smith does not know that (e) is true'.",
+    "statement": "Smith does not know that (e) is true. Gettier's reason: '(e) is true in virtue of the number of coins in Smith's pocket, while Smith does not know how many coins are in Smith's pocket'. A verdict on the case, which the refutation rests on as a premise. No source in the packet rejects it. (RECALLED, not wired: Weatherson 2003 asked whether such intuitions must win against a theoretically attractive analysis, and Weinberg, Nichols and Stich 2001 reported cross-cultural variation in Gettier verdicts, which Machery et al. 2017 failed to replicate. Put to the owner whether to wire these in.)",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-1-justified",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Case I: Smith is justified in believing (e)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY)",
+    "statement": "Smith is justified in believing (e) 'The man who will get the job has ten coins in his pocket'. Gettier: 'Smith is clearly justified in believing that (e) is true.'",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-2-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Case II is a justified true belief that is not knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY)",
+    "statement": "In Case II, Smith's belief in (h) is true, believed, and justified, yet Smith does not know (h).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-2-judgement",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "high",
+    "lineage": "original",
+    "name": "Case II judgement: Smith does not know (h)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY): 'Smith does not know that (h) is true, even though (i) (h) is true, (ii) Smith does believe that (h) is true, and (iii) Smith is justified in believing that (h) is true.'",
+    "statement": "Smith does not know that (h) is true. A verdict on the case, which the refutation rests on as a premise. No source in the packet rejects it. (RECALLED dissent as for Case I: see req:case-1-judgement.)",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:case-2-justified",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Case II: Smith is justified in believing (h)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY)",
+    "statement": "Smith is justified in believing (h) 'Either Jones owns a Ford, or Brown is in Barcelona'. Gettier: 'Smith is therefore completely justified in believing each of these three propositions.'",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:chisholm-b-sufficient",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "(b) Chisholm's analysis, sufficiency direction",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Chisholm, cited by S1 (not read).",
+    "statement": "Sufficiency half of Chisholm's (b): if S accepts P, S has adequate evidence for P, and P is true, then S knows that P. (b) is cited by S1; Chisholm was not read in this trial. Its necessity half is not addressed by Gettier and is not recorded.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:g-closure",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Gettier's second point: justification is closed under deduction",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Taken as given because Gettier states it as a point his argument relies on and does not argue for it; no source in the packet rejects it (RECALLED: closure principles for justification and knowledge have been questioned elsewhere, e.g. Dretske and Nozick deny closure for knowledge; not wired). Its loss is tested with propagate_from.",
+    "source": "S1 (PRIMARY), stated by Gettier as a point he relies on.",
+    "statement": "For any proposition P, if S is justified in believing P, and P entails Q, and S deduces Q from P and accepts Q as a result of this deduction, then S is justified in believing Q.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:g-fallibility",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Gettier's first point: justification is fallible",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Taken as given because Gettier states it as a point his argument relies on and does not argue for it; no source in the packet rejects it. It is a premise, not a chosen principle, so the refutation is read as resting on it outright (what-if: propagate_from).",
+    "source": "S1 (PRIMARY), stated by Gettier as a point he relies on.",
+    "statement": "In that sense of 'justified' in which S's being justified in believing P is a necessary condition of S's knowing that P, it is possible for a person to be justified in believing a proposition that is in fact false.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:g-substitution",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Unstated premise: Chisholm's and Ayer's evidence terms behave like 'justified' in Gettier's two points",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Implicit in S1's claim that 'the same argument will show that (b) and (c) fail' under substitution.",
+    "statement": "'Has adequate evidence for' (Chisholm) and 'has the right to be sure that' (Ayer) satisfy Gettier's two points (one can have it for a falsehood; it transmits across a deduction one makes and accepts), so the two cases go through with them substituted for 'is justified in believing'.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hist-barn-origin",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Historical: Barn County was first given by Carl Ginet and published by Alvin Goldman (1976)",
+    "no_relation_note": "Historical claim about who devised Barn County. Deliberately not linked to the case or its verdict: provenance does not bear on whether the verdict is right. Cited by S2.",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-01-21",
+    "source": "S2 (SECONDARY-REFERENCE) §4; Goldman 1976 cited by S2 (not read).",
+    "source_reliability": "B",
+    "statement": "The source reports the provenance of the Barn County case. Who devised the case does not bear on whether its verdict is right.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hist-dharmottara",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Historical: Gettier-type cases predate Gettier (Dharmottara, c. 770 CE, the mirage and the water)",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-01-21",
+    "source": "S2 (SECONDARY-REFERENCE); Dharmottara cited by S2 (not read).",
+    "source_reliability": "B",
+    "statement": "The source reports that such examples have been discussed since antiquity, e.g. Dharmottara c. 770 CE: we seem to see water, it is a mirage, but on reaching the spot we find water under a rock; we were just lucky, so the answer to whether we knew 'seems to be negative'. A claim about priority. It is not entered as a further counterexample, and it changes no claim's standing.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hist-few-endorse-sensitivity",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Historical: few epistemologists today endorse a sensitivity condition",
+    "no_relation_note": "Sociological report of how many hold sensitivity / no-false-lemmas. Deliberately not drawn as an objection to either repair: popularity is not an argument. Cited by S2.",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-01-21",
+    "source": "S2 (SECONDARY-REFERENCE) §4, §5.2.",
+    "source_reliability": "B",
+    "statement": "The source reports that few epistemologists today endorse a sensitivity condition on knowledge, and that the no-false-lemmas proposal is not widely accepted. A report of how many hold a view, not an argument against it: neither repair's standing is changed by it.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hist-plato",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "Historical: Plato considers such a definition (Theaetetus 201) and perhaps accepts one (Meno 98)",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "1963-06",
+    "source": "S1 (PRIMARY for what Gettier wrote) footnote 1; Plato cited by S1 (not read). Gettier's own wording is hedged ('seems', 'perhaps').",
+    "source_reliability": "B",
+    "statement": "The source reports that Plato seems to be considering some such definition at Theaetetus 201, and perhaps accepting one at Meno 98. A claim about the history of the definition, not about whether it is true: nothing epistemic rests on it.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:hist-traditional-analysis-a-fiction",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "Historical: the 'traditional' JTB analysis was never widely accepted; it was articulated by its attackers",
+    "no_relation_note": "Historical claim about WHO held (a). Deliberately drawn to nothing in the line of reasoning so it cannot change (a)'s standing; it is cited by S2 (DOCUMENTS) and named in (a)'s source field. ANTICIPATES or CONTRADICTS would both misstate it.",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-01-21",
+    "source": "S2 (SECONDARY-REFERENCE) §1; it cites Kaplan 1985, Dutant 2015, Antognazza 2015 and Le Morvan 2017 (cited by S2, not read).",
+    "source_reliability": "B",
+    "statement": "The source reports that it is 'a bit of a convenient fiction' that the so-called traditional analysis was ever widely accepted; it was primarily articulated in the 20th century by its attackers. A claim about who held (a), not about whether (a) is true: (a)'s standing is unchanged by it.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:jtb-analysis",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "(a) The JTB analysis: S knows that P iff P is true, S believes P, and S is justified in believing P",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY), Gettier's statement of his target. Whether anyone actually held it as 'the traditional analysis' is a separate historical claim (req:hist-traditional-analysis-a-fiction).",
+    "statement": "(a) S knows that P IFF (i) P is true, (ii) S believes that P, and (iii) S is justified in believing that P. A biconditional: it is the conjunction of a sufficiency direction (req:jtb-sufficient) and a necessity direction (req:jtb-necessary), recorded separately so a counterexample can be aimed at the direction it actually defeats.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:jtb-necessary",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "(a) necessity direction: knowledge requires truth, belief and justification",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY): stated as half of (a); granted, not argued, in Gettier's first point.",
+    "statement": "Left-to-right half of (a): if S knows that P, then P is true, S believes P, and S is justified in believing P. Gettier does not attack this half; his first point even grants that justification, in the sense at issue, is a necessary condition of knowing. Nothing in the packet refutes it. (RECALLED, not wired as an objection: the necessity of belief and of justification have each been questioned elsewhere, e.g. Radford 1966 on the unconfident examinee; reliabilist analyses drop justification as a condition.)",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:jtb-not-sufficient",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Gettier's conclusion: justified true belief is not sufficient for knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY): 'These two examples show that definition (a) does not state a sufficient condition for someone's knowing a given proposition.'",
+    "statement": "There is at least one justified true belief that is not knowledge, so (a) does not state a sufficient condition for someone's knowing a given proposition. This defeats the sufficiency direction of (a), and with it the biconditional (a) as a whole; it says NOTHING against the necessity direction.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:jtb-sufficient",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "(a) sufficiency direction: justified true belief is enough for knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (PRIMARY): Gettier's claim is that the conditions 'do not constitute a sufficient condition'.",
+    "statement": "Right-to-left half of (a): if P is true, S believes P, and S is justified in believing P, then S knows that P. This is the ONLY half Gettier's paper attacks.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-knowledge-first",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Knowledge first: the project of analysing knowledge was a mistake",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §11: proponents 'championed especially by Timothy Williamson's 2000 book Knowledge and Its Limits, typically suppose that the project of analyzing knowledge was a mistake ... There is no very straightforward argument for this conclusion'. Williamson 2000 cited by S2 (not read).",
+    "statement": "Knowledge is not to be analysed in other terms; it is to be taken as basic and used to explain belief, evidence and justification. The case for this consists largely in the theoretical success of the knowledge-first stance, not in one straightforward argument.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-kripke-red-barn",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Kripke's Barn County objection to sensitivity",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §5.1: 'As Saul Kripke (2011: 167-68) has pointed out, there are counterexamples to the traditional analysis that are not like this. Consider for instance the Barn County case...'; Kripke 2011 cited by S2 (not read); red-barn detail RECALLED.",
+    "statement": "There are counterexamples to the traditional analysis that a sensitivity condition does not handle; Kripke points to the Barn County case. RECALLED detail: if the facades are all green and the one real barn is red, Henry's belief 'there is a red barn' is sensitive while 'there is a barn' is not, so sensitivity says he knows there is a red barn but not that there is a barn, which is judged absurd.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-no-progress",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Argument from the record: decades of counterexample and amendment made no progress",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §7: 'After some decades of such iterations, some epistemologists began to doubt that progress was being made.'",
+    "statement": "Each proposed analysis met an intuitive counterexample and was amended, and after some decades of such iterations no analysis has stood; this is reason to doubt that a correct analysis will be found. An inductive argument against the project, not a proof.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-safety-entails-truth",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection (RECALLED): safety is not independent of truth",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED (standard reply in the safety literature); not in the packet.",
+    "statement": "On the usual reading of the counterfactual, the actual world is among the closest worlds, so a belief that is safe is true: safety entails truth and is NOT logically independent of T. If so, safety-based analyses fall outside Zagzebski's class, and her recipe's step (2), 'true merely by luck', is exactly what safety is meant to exclude.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-sosa-henry-knows",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Sosa's objection: Henry's belief is apt, so Henry knows (bullet bitten)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §10.2: 'Sosa's own response to the problem is to bite the bullet. Judging Henry's belief to be apt, Sosa accepts the outcome that Henry knows there is a barn before him.' Sosa cited by S2 (not read).",
+    "statement": "Henry's barn belief is apt (true because competent), so Henry does know that there is a barn before him. This rejects the Barn County verdict, and with it every refutation that rests on that verdict.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:premise-knowledge-analysable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Shared premise of every repair: knowledge has a correct analysis",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Implicit in every proposed analysis; named as the target of the knowledge-first view in S2 §11.",
+    "statement": "Knowledge can be analysed: there are conditions, stated without using 'knows', that are individually necessary and jointly sufficient for S's knowing that P. Every repair (and (a) itself) is an attempt to state them, so every repair rests on this one record; the arguments against the project of analysis are aimed here.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:repair-k-reliabilism",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Repair 4, simple K-reliabilism: knowledge is true belief produced by a reliable process",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §6.1 (states 'Simple K-Reliabilism').",
+    "statement": "Proposed analysis: S knows that P iff it is true that P, S believes that P, and S's belief that P was produced by a reliable cognitive process. Replaces justification rather than adding to it (so it is not of the JTB+X shape). No counterexample to it is given in the packet; none is recorded.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:repair-no-false-lemmas",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Repair 1, no false lemmas: knowledge is JTB whose belief is not inferred from any falsehood",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4; Clark 1963 cited by S2 (not read). S2: 'this no false lemmas proposal is not widely accepted.'",
+    "statement": "Proposed analysis: S knows that P iff P is true, S believes P, S is justified in believing P, and (4) S's belief that P is not inferred from any falsehood. Shape JTB+X with X = no false lemmas. Blocks both of Gettier's cases, where the belief was inferred from the falsehood (d) or (f).",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:repair-safety",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Repair 3, safety: knowledge requires a belief that could not easily have been false",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §5.2: Sosa 1999 'proposed that a safety condition ought to take the role that sensitivity was intended to play'; Sosa 1999 cited by S2 (not read).",
+    "statement": "Proposed analysis: S knows that P iff P is true, S believes P, and S's belief is safe: if S were to believe that P, it would not be false that P. No counterexample to it is given in the packet; none is recorded.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:repair-sensitivity",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Repair 2, sensitivity: knowledge requires a belief that would not be held were it false",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §5.1: 'defended by Robert Nozick (1981)'; Nozick 1981 cited by S2 (not read).",
+    "statement": "Proposed analysis: S knows that P iff P is true, S believes P, and S's belief is sensitive: if it were false that P, S would not believe that P. (RECALLED: Nozick's full tracking account adds an adherence condition and relativises to method; not in the packet.)",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:robot-dog-counterexample",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Robot dog: a justified true belief inferred from no falsehood that is not knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4 (names it as an apparent no-inference Gettier case); the analysis of the case is RECALLED.",
+    "statement": "In the robot dog case, the belief that a dog is in the yard is justified, true, inferred from no falsehood, and (S2: an 'apparent' Gettier case) not knowledge.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:robot-dog-judgement",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "moderate",
+    "lineage": "original",
+    "name": "Robot dog judgement: S does not know a dog is in the yard",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §4 (implied by calling it a Gettier case; hedged 'apparent'); wording RECALLED.",
+    "statement": "S does not know there is a dog in the yard. S2 presents the case as an 'apparent' Gettier case; the verdict is not stated in its words in the packet, and nobody in the packet rejects it.",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-instance-nfl",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Zagzebski-style counterexample exists against no false lemmas",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "By the class argument, some case meets JTB and no-false-lemmas without knowledge (Barn County and the robot dog are such cases).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-instance-safety",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Zagzebski-style counterexample exists against safety",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "By the class argument, some case meets the safety analysis without knowledge. Rests on safety's membership in the class, which is objected to.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-instance-sensitivity",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Zagzebski-style counterexample exists against sensitivity",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "By the class argument, some case meets the sensitivity analysis without knowledge.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-luck-verdict",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "moderate",
+    "lineage": "original",
+    "name": "General verdict the recipe relies on: a belief true merely by luck is not knowledge",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Implicit in Zagzebski's recipe as reported by S2 §7.",
+    "statement": "Whatever condition X a belief meets, if it was made true merely by luck in the way the recipe's step (2) arranges, it is not knowledge. This is the general form of the case verdicts, and the class argument rests on it as a premise. Sosa's bullet-biting on Barn County (req:obj-sosa-henry-knows) is a case where someone denies an instance of it.",
+    "statement_kind": "judgement",
+    "status": "proposed",
+    "variables": [
+     "X"
+    ]
+   }
+  },
+  {
+   "node_id": "req:zag-member-nfl",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "X=not inferred from any falsehood"
+    ],
+    "lineage": "original",
+    "name": "Membership: no false lemmas is JTB+X with X independent of J, T, B",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The no-false-lemmas analysis has the form JTB+X, and X (not inferred from a falsehood) is logically independent of justification, truth and belief: a justified false belief can be uninferred, and so can a justified true one.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-member-safety",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "X=safety"
+    ],
+    "lineage": "original",
+    "name": "Membership: safety is a condition independent of J, T, B",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Safety (if S were to believe P, it would not be false that P) is logically independent of truth, so an analysis that adds it is in Zagzebski's class.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zag-member-sensitivity",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "X=sensitivity"
+    ],
+    "lineage": "original",
+    "name": "Membership: sensitivity is a condition independent of J, T, B",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Sensitivity (if P were false, S would not believe P) is logically independent of truth and belief, so an analysis that adds it is in Zagzebski's class. Caveat: Nozick's analysis drops J, so it is TB+X rather than JTB+X; whether the class argument covers it as stated is put to the owner.",
+    "statement_kind": "unstated_premise",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:zagzebski-class-claim",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Zagzebski's class argument: every JTB+X with X independent of J, T, B admits a Gettier case",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S2 §7, reporting Zagzebski 1994 (cited by S2, not read).",
+    "statement": "Any analysans of the form JTB+X, where X is a condition or list of conditions logically independent from justification, truth, and belief, is susceptible to Gettier-style counterexamples. This is a claim about EVERY instance of a pattern. reflow2 has no record for a quantified claim over a class of analyses, so it is applied to each recorded repair by its own instantiation step, with a separate membership premise saying whether that repair has the shape.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "X"
+    ]
+   }
+  },
+  {
+   "node_id": "req:zagzebski-recipe",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Zagzebski's recipe for a Gettier case against any JTB+X",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Taken as given as a construction procedure (what to do), which asserts nothing by itself. What it relies on is stated separately: that a justified false belief meeting X exists (Gettier's fallibility point plus X's independence) and that the luck-modified belief is not knowledge (req:zag-luck-verdict).",
+    "source": "S2 §7, reporting Zagzebski 1994 (cited by S2, not read).",
+    "statement": "(1) Start with an example of a case where a subject has a justified false belief that also meets condition X. (2) Modify the case so that the belief is true merely by luck. The result meets J, T, B and X and is (by the usual verdict) not knowledge.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "X"
+    ]
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}

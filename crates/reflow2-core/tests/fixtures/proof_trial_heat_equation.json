@@ -1,0 +1,5698 @@
+{
+ "content_hash": "sha256:626cd02cd92e7e9d134a23047505db2f27fad6df94f9e79790932f680c22926b",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:check-tychonoff-source",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-tychonoff-example"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:check-tychonoff-source",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:conj-whole-line"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:closed-rectangle-regularity",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "con:def-problem-and-solution"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:closed-rectangle-regularity",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:E-differentiable"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:prove-k-negative-by-fourier",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:finding-k-negative-proofs-fail"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:prove-k-negative-by-fourier",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:prop-uniqueness-k-negative"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:prove-vanishing-lemma",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:prove-vanishing-lemma",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-vanishing-integral"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-continuity-and-derivative-algebra"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-integration-by-parts"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-leibniz-rule"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-mean-value-theorem"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-riemann-integral-basics"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-vanishing-integral"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:standing-hypotheses-encoding",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:standing-hypotheses-encoding",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:hyp-L-T-positive"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:standing-hypotheses-encoding",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:hyp-k-positive"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "chg:replaced:req:cite-vanishing-integral:by:req:lem-vanishing-integral",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "chg:replaced:req:hyp-L-T-positive:by:req:given-L-T-positive",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "chg:replaced:req:hyp-k-positive:by:req:given-k-positive",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:cite-vanishing-integral",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:hyp-L-T-positive",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:hyp-k-positive",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:prop-uniqueness-k-negative",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:ut-austin-m393c-hw2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:wikipedia-heat-equation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:replaced:req:cite-vanishing-integral:by:req:lem-vanishing-integral",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:replaced:req:hyp-L-T-positive:by:req:given-L-T-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:replaced:req:hyp-k-positive:by:req:given-k-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-continuity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-difference-w",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-energy-E",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-problem-neumann",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-sine-coefficients",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-differentiable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-identically-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-nonincreasing",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-nonnegative",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-prime-nonpositive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-prime-via-pde",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:E-zero-at-0",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:counterexample-whole-line",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fourier-coef-differentiable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fourier-coef-initial",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fourier-coef-ode",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fourier-coef-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:fourier-w-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:max-principle",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:mp-eps-on-boundary",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:mp-falsum",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:mp-strict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:neumann-energy-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:neumann-parts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:neumann-w-data",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:parts-identity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:uniqueness-by-specialisation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:uniqueness-fourier",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:uniqueness-max-principle",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:uniqueness-neumann",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:vanishing-falsum",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:vanishing-integral-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:vanishing-positive-near",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:vanishing-reductio",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-ge-zero-mp",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-homogeneous-pde",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-identically-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-le-zero-mp",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-regular",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-zero-boundary",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:w-zero-initial",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:whole-line-with-growth",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:heat-equation-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:check-tychonoff-source",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:closed-rectangle-regularity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:prove-k-negative-by-fourier",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:prove-vanishing-lemma",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:recalled-citations",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:standing-hypotheses-encoding",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-derivative-tests",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-extreme-value-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-integration-by-parts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-leibniz-rule",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-mean-value-theorem",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-sine-completeness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-tychonoff-example",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-tychonoff-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-vanishing-integral",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conj-whole-line",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:counterexample-whole-line",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:falsum-mp",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:falsum-vanishing",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:finding-k-negative-proofs-fail",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:given-L-T-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:given-k-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-L-T-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-k-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-mp-interior-max",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-mp-subsolution",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-two-solutions",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-two-solutions-neumann",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-vanishing-not",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:hyp-vanishing-premises",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-differentiable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-identically-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-nonincreasing",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-nonnegative",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-prime-nonpositive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-prime-via-pde",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-E-zero-at-0",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-fourier-coef-differentiable",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-fourier-coef-initial",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-fourier-coef-ode",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-fourier-coef-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-fourier-w-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-max-principle",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-mp-eps-on-boundary",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-mp-strict",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-neumann-energy-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-neumann-parts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-neumann-w-data",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-parts-identity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-vanishing-integral",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-vanishing-integral-positive",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-vanishing-positive-near",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-ge-zero-mp",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-homogeneous-pde",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-identically-zero",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-le-zero-mp",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-regular",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-zero-boundary",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-w-zero-initial",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-energy-step-fails-on-line",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:prop-uniqueness-k-negative",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-uniqueness-neumann",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:thm-whole-line-with-growth",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:acct-23984879ca"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:replaced:req:cite-vanishing-integral:by:req:lem-vanishing-integral",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+   },
+   "to_id": "req:cite-vanishing-integral"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:replaced:req:hyp-L-T-positive:by:req:given-L-T-positive",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+   },
+   "to_id": "req:hyp-L-T-positive"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:replaced:req:hyp-k-positive:by:req:given-k-positive",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "removed"
+   },
+   "to_id": "req:hyp-k-positive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-differentiable",
+   "properties": {},
+   "to_id": "req:lem-E-differentiable"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-identically-zero",
+   "properties": {},
+   "to_id": "req:lem-E-identically-zero"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-nonincreasing",
+   "properties": {},
+   "to_id": "req:lem-E-nonincreasing"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-nonnegative",
+   "properties": {},
+   "to_id": "req:lem-E-nonnegative"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-prime-nonpositive",
+   "properties": {},
+   "to_id": "req:lem-E-prime-nonpositive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-prime-via-pde",
+   "properties": {},
+   "to_id": "req:lem-E-prime-via-pde"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:E-zero-at-0",
+   "properties": {},
+   "to_id": "req:lem-E-zero-at-0"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:counterexample-whole-line",
+   "properties": {},
+   "to_id": "req:counterexample-whole-line"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fourier-coef-differentiable",
+   "properties": {},
+   "to_id": "req:lem-fourier-coef-differentiable"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fourier-coef-initial",
+   "properties": {},
+   "to_id": "req:lem-fourier-coef-initial"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fourier-coef-ode",
+   "properties": {},
+   "to_id": "req:lem-fourier-coef-ode"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fourier-coef-zero",
+   "properties": {},
+   "to_id": "req:lem-fourier-coef-zero"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:fourier-w-zero",
+   "properties": {},
+   "to_id": "req:lem-fourier-w-zero"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:max-principle",
+   "properties": {},
+   "to_id": "req:lem-max-principle"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:mp-eps-on-boundary",
+   "properties": {},
+   "to_id": "req:lem-mp-eps-on-boundary"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:mp-falsum",
+   "properties": {},
+   "to_id": "req:falsum-mp"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:mp-strict",
+   "properties": {},
+   "to_id": "req:lem-mp-strict"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:neumann-energy-zero",
+   "properties": {},
+   "to_id": "req:lem-neumann-energy-zero"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:neumann-parts",
+   "properties": {},
+   "to_id": "req:lem-neumann-parts"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:neumann-w-data",
+   "properties": {},
+   "to_id": "req:lem-neumann-w-data"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:parts-identity",
+   "properties": {},
+   "to_id": "req:lem-parts-identity"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:uniqueness",
+   "properties": {},
+   "to_id": "req:thm-uniqueness"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:uniqueness-by-specialisation",
+   "properties": {},
+   "to_id": "req:thm-uniqueness"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:uniqueness-fourier",
+   "properties": {},
+   "to_id": "req:prop-uniqueness-k-negative"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:uniqueness-max-principle",
+   "properties": {},
+   "to_id": "req:thm-uniqueness"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:uniqueness-neumann",
+   "properties": {},
+   "to_id": "req:thm-uniqueness-neumann"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:vanishing-falsum",
+   "properties": {},
+   "to_id": "req:falsum-vanishing"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:vanishing-integral-positive",
+   "properties": {},
+   "to_id": "req:lem-vanishing-integral-positive"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:vanishing-positive-near",
+   "properties": {},
+   "to_id": "req:lem-vanishing-positive-near"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:vanishing-reductio",
+   "properties": {},
+   "to_id": "req:lem-vanishing-integral"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-ge-zero-mp",
+   "properties": {},
+   "to_id": "req:lem-w-ge-zero-mp"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-homogeneous-pde",
+   "properties": {},
+   "to_id": "req:lem-w-homogeneous-pde"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-identically-zero",
+   "properties": {},
+   "to_id": "req:lem-w-identically-zero"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-le-zero-mp",
+   "properties": {},
+   "to_id": "req:lem-w-le-zero-mp"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-regular",
+   "properties": {},
+   "to_id": "req:lem-w-regular"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-zero-boundary",
+   "properties": {},
+   "to_id": "req:lem-w-zero-boundary"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:w-zero-initial",
+   "properties": {},
+   "to_id": "req:lem-w-zero-initial"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:whole-line-with-growth",
+   "properties": {},
+   "to_id": "req:thm-whole-line-with-growth"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:counterexample-whole-line",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "U is smooth, solves U_t = k·U_xx on ℝ × (0,T], has U(x,0) = 0, and is not identically zero: the conjecture's conclusion u ≡ 0 fails for it."
+   },
+   "to_id": "req:conj-whole-line"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-energy-step-fails-on-line",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "The conjecture claims the SAME energy argument works on ℝ; inf:parts-identity (boundary term) and inf:E-differentiable (Leibniz on a bounded interval) have no counterpart on ℝ, and E(t) may be infinite."
+   },
+   "to_id": "req:conj-whole-line"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:finding-k-negative-proofs-fail",
+   "properties": {
+    "evidence": "Names this as the step of the energy proof that fails when k < 0: its premise k > 0 is what makes E'(t) ≤ 0.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:finding-k-negative-proofs-fail",
+   "properties": {
+    "evidence": "Names this as the step of the maximum-principle proof that fails when k < 0: −2kε < 0 needs k > 0.",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "inf:mp-strict"
+  },
+  {
+   "edge_type": "DEPENDS_ON",
+   "from_id": "req:obj-energy-step-fails-on-line",
+   "properties": {
+    "evidence": "The objection names this step as the one that breaks on the whole line: its boundary term vanishes only by Lemma 1d (Dirichlet data at x = 0 and x = L).",
+    "optional": false,
+    "weight_basis": "estimated"
+   },
+   "to_id": "inf:parts-identity"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:ut-austin-m393c-hw2",
+   "properties": {},
+   "to_id": "req:cite-tychonoff-example"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:wikipedia-heat-equation",
+   "properties": {},
+   "to_id": "req:cite-tychonoff-uniqueness"
+  },
+  {
+   "edge_type": "EVOLVES_INTO",
+   "from_id": "req:conj-whole-line",
+   "properties": {
+    "evidence": "Adding the growth bound |u| ≤ M·exp(a·x²) turns the false conjecture into a true (cited) theorem."
+   },
+   "to_id": "req:thm-whole-line-with-growth"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:cite-continuity-and-derivative-algebra"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:cite-riemann-integral-basics"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:cite-vanishing-integral",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:cite-vanishing-integral"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:hyp-L-T-positive",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:hyp-L-T-positive"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:hyp-k-positive",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:hyp-k-positive"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:prop-uniqueness-k-negative",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:prop-uniqueness-k-negative"
+  },
+  {
+   "edge_type": "OBSOLETES",
+   "from_id": "req:given-L-T-positive",
+   "properties": {
+    "evidence": "req:given-L-T-positive replaces req:hyp-L-T-positive: declared by the writer through `replaces` on add_requirement. req:hyp-L-T-positive's ending is recorded in chg:replaced:req:hyp-L-T-positive:by:req:given-L-T-positive, and the thread that says what it was for moved to req:given-L-T-positive."
+   },
+   "to_id": "req:hyp-L-T-positive"
+  },
+  {
+   "edge_type": "OBSOLETES",
+   "from_id": "req:given-k-positive",
+   "properties": {
+    "evidence": "req:given-k-positive replaces req:hyp-k-positive: declared by the writer through `replaces` on add_requirement. req:hyp-k-positive's ending is recorded in chg:replaced:req:hyp-k-positive:by:req:given-k-positive, and the thread that says what it was for moved to req:given-k-positive."
+   },
+   "to_id": "req:hyp-k-positive"
+  },
+  {
+   "edge_type": "OBSOLETES",
+   "from_id": "req:lem-vanishing-integral",
+   "properties": {
+    "evidence": "req:lem-vanishing-integral replaces req:cite-vanishing-integral: declared by the writer through `replaces` on add_requirement. req:cite-vanishing-integral's ending is recorded in chg:replaced:req:cite-vanishing-integral:by:req:lem-vanishing-integral, and the thread that says what it was for moved to req:lem-vanishing-integral."
+   },
+   "to_id": "req:cite-vanishing-integral"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-continuity",
+   "properties": {},
+   "to_id": "inf:vanishing-positive-near"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:neumann-w-data"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:uniqueness-fourier"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:w-homogeneous-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:w-regular"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:w-zero-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-difference-w",
+   "properties": {},
+   "to_id": "inf:w-zero-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:E-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:E-nonnegative"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:E-zero-at-0"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-energy-E",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:uniqueness-by-specialisation"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:uniqueness-fourier"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:w-homogeneous-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:w-regular"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:w-zero-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-and-solution",
+   "properties": {},
+   "to_id": "inf:w-zero-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-neumann",
+   "properties": {},
+   "to_id": "inf:neumann-w-data"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-problem-neumann",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-sine-coefficients",
+   "properties": {},
+   "to_id": "inf:fourier-coef-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-sine-coefficients",
+   "properties": {},
+   "to_id": "inf:fourier-coef-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-sine-coefficients",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:E-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:E-nonnegative"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:counterexample-whole-line"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:fourier-coef-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:fourier-coef-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:mp-strict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:neumann-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:neumann-w-data"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:parts-identity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:w-homogeneous-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:w-regular"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-continuity-and-derivative-algebra",
+   "properties": {},
+   "to_id": "inf:whole-line-with-growth"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-derivative-tests",
+   "properties": {},
+   "to_id": "inf:mp-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-extreme-value-theorem",
+   "properties": {},
+   "to_id": "inf:max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-extreme-value-theorem",
+   "properties": {},
+   "to_id": "inf:mp-eps-on-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-integration-by-parts",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-integration-by-parts",
+   "properties": {},
+   "to_id": "inf:neumann-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-integration-by-parts",
+   "properties": {},
+   "to_id": "inf:parts-identity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-leibniz-rule",
+   "properties": {},
+   "to_id": "inf:E-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-leibniz-rule",
+   "properties": {},
+   "to_id": "inf:fourier-coef-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-leibniz-rule",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-mean-value-theorem",
+   "properties": {},
+   "to_id": "inf:E-nonincreasing"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-mean-value-theorem",
+   "properties": {},
+   "to_id": "inf:fourier-coef-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-mean-value-theorem",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:E-nonnegative"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:E-prime-via-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:E-zero-at-0"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:fourier-coef-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-riemann-integral-basics",
+   "properties": {},
+   "to_id": "inf:vanishing-integral-positive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-sine-completeness",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-tychonoff-example",
+   "properties": {},
+   "to_id": "inf:counterexample-whole-line"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-tychonoff-uniqueness",
+   "properties": {},
+   "to_id": "inf:whole-line-with-growth"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:falsum-mp",
+   "properties": {},
+   "to_id": "inf:mp-eps-on-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:falsum-vanishing",
+   "properties": {},
+   "to_id": "inf:vanishing-reductio"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:E-nonincreasing"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness-fourier"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-L-T-positive",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:counterexample-whole-line"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:mp-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:mp-strict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:given-k-positive",
+   "properties": {},
+   "to_id": "inf:whole-line-with-growth"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-mp-interior-max",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:mp-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-mp-subsolution",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:mp-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-mp-subsolution",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:mp-strict"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-two-solutions",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:w-homogeneous-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-two-solutions",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:w-regular"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-two-solutions",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:w-zero-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-two-solutions",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:w-zero-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-two-solutions-neumann",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:neumann-w-data"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-vanishing-not",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:vanishing-positive-near"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-vanishing-premises",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:vanishing-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-vanishing-premises",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:vanishing-integral-positive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:hyp-vanishing-premises",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:vanishing-positive-near"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-differentiable",
+   "properties": {},
+   "to_id": "inf:E-nonincreasing"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-differentiable",
+   "properties": {},
+   "to_id": "inf:E-prime-via-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-identically-zero",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-nonincreasing",
+   "properties": {},
+   "to_id": "inf:E-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-nonnegative",
+   "properties": {},
+   "to_id": "inf:E-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-prime-nonpositive",
+   "properties": {},
+   "to_id": "inf:E-nonincreasing"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-prime-via-pde",
+   "properties": {},
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-E-zero-at-0",
+   "properties": {},
+   "to_id": "inf:E-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-coef-differentiable",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-coef-differentiable",
+   "properties": {},
+   "to_id": "inf:fourier-coef-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-coef-initial",
+   "properties": {},
+   "to_id": "inf:fourier-coef-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-coef-ode",
+   "properties": {},
+   "to_id": "inf:fourier-coef-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-coef-zero",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-fourier-w-zero",
+   "properties": {},
+   "to_id": "inf:uniqueness-fourier"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-max-principle",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-max-principle",
+   "properties": {},
+   "to_id": "inf:w-le-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-mp-eps-on-boundary",
+   "properties": {},
+   "to_id": "inf:max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-mp-strict",
+   "properties": {},
+   "to_id": "inf:mp-eps-on-boundary"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-mp-strict",
+   "properties": {},
+   "to_id": "inf:mp-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-neumann-energy-zero",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-neumann-parts",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-neumann-w-data",
+   "properties": {},
+   "to_id": "inf:neumann-energy-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-neumann-w-data",
+   "properties": {},
+   "to_id": "inf:neumann-parts"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-neumann-w-data",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-parts-identity",
+   "properties": {},
+   "to_id": "inf:E-prime-nonpositive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-vanishing-integral",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-vanishing-integral",
+   "properties": {},
+   "to_id": "inf:uniqueness-neumann"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-vanishing-integral",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-vanishing-integral-positive",
+   "properties": {},
+   "to_id": "inf:vanishing-falsum"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-vanishing-positive-near",
+   "properties": {},
+   "to_id": "inf:vanishing-integral-positive"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-ge-zero-mp",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-homogeneous-pde",
+   "properties": {},
+   "to_id": "inf:E-prime-via-pde"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-homogeneous-pde",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-homogeneous-pde",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-homogeneous-pde",
+   "properties": {},
+   "to_id": "inf:w-le-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-identically-zero",
+   "properties": {},
+   "to_id": "inf:uniqueness"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-le-zero-mp",
+   "properties": {},
+   "to_id": "inf:uniqueness-max-principle"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:E-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:E-nonnegative"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:fourier-coef-differentiable"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:fourier-w-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:parts-identity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:w-identically-zero"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-regular",
+   "properties": {},
+   "to_id": "inf:w-le-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-boundary",
+   "properties": {},
+   "to_id": "inf:fourier-coef-ode"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-boundary",
+   "properties": {},
+   "to_id": "inf:parts-identity"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-boundary",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-boundary",
+   "properties": {},
+   "to_id": "inf:w-le-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-initial",
+   "properties": {},
+   "to_id": "inf:E-zero-at-0"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-initial",
+   "properties": {},
+   "to_id": "inf:fourier-coef-initial"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-initial",
+   "properties": {},
+   "to_id": "inf:w-ge-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-w-zero-initial",
+   "properties": {},
+   "to_id": "inf:w-le-zero-mp"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:prop-uniqueness-k-negative",
+   "properties": {},
+   "to_id": "inf:uniqueness-by-specialisation"
+  }
+ ],
+ "graph_id": "7f5bd325ad4e8c91",
+ "nodes": [
+  {
+   "node_id": "art:ut-austin-m393c-hw2",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:cc655df314c52d60090e8762ec017efb716c25ea7e31730873888e5fdad3c17b",
+    "description": "Read and saved by the trial's observer (owner's answer, 2026-10-22). Problem 1 constructs, by the ansatz u = Σ h_n(t) x^{2n} with g(t) = exp(−t^{−α}) for t > 0 and α > 1, \"a solution of the heat equation (due to Tychonoff) which is zero at t = 0, but which is nonzero for t > 0\", and sets it against uniqueness under a growth condition (Evans §2.3, Thm 7). CAVEAT: this is a HOMEWORK STATEMENT. It states the bounds as \"show that\" exercises rather than proving them, so it documents the construction and the claim, NOT a worked proof. Note: it uses exp(−t^{−α}), α > 1; the design's citation recalls α = 2, which is one case of this.",
+    "location": "https://web.ma.utexas.edu/users/tc/M393C-F10/393C-H2.pdf",
+    "name": "T. Chen, UT Austin M393C \"PDE I – Homework Assignment 2\" (Fall 2010)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:wikipedia-heat-equation",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:93a5814ba3dc1d9bd98e06b60d7dd4fe6c68b38fde1dd3eee6ce05e159b09699",
+    "description": "Read and saved by the trial's observer (owner's answer, 2026-10-22). Quoted: \"To determine uniqueness of solutions in the whole space it is necessary to assume additional conditions, for example an exponential bound on the growth of solutions or a sign condition (nonnegative solutions are unique by a result of David Widder).\" A secondary, tertiary source: it states that an exponential growth bound gives uniqueness, but does not state the exact form |u| ≤ M·exp(a·x²) or prove it.",
+    "location": "https://en.wikipedia.org/wiki/Heat_equation (raw wikitext as fetched 2026-10-22)",
+    "name": "Wikipedia, \"Heat equation\" (raw wikitext fetched 2026-10-22)",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:replaced:req:cite-vanishing-integral:by:req:lem-vanishing-integral",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "deprecation",
+    "name": "req:cite-vanishing-integral is replaced by req:lem-vanishing-integral",
+    "summary": "req:lem-vanishing-integral takes req:cite-vanishing-integral's place, declared through `replaces` on add_requirement. req:cite-vanishing-integral's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to req:lem-vanishing-integral."
+   }
+  },
+  {
+   "node_id": "chg:replaced:req:hyp-L-T-positive:by:req:given-L-T-positive",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "deprecation",
+    "name": "req:hyp-L-T-positive is replaced by req:given-L-T-positive",
+    "summary": "req:given-L-T-positive takes req:hyp-L-T-positive's place, declared through `replaces` on add_requirement. req:hyp-L-T-positive's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to req:given-L-T-positive."
+   }
+  },
+  {
+   "node_id": "chg:replaced:req:hyp-k-positive:by:req:given-k-positive",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "deprecation",
+    "name": "req:hyp-k-positive is replaced by req:given-k-positive",
+    "summary": "req:given-k-positive takes req:hyp-k-positive's place, declared through `replaces` on add_requirement. req:hyp-k-positive's final state and edges are this event's snapshot; 0 edge(s) of its thread moved to req:given-k-positive."
+   }
+  },
+  {
+   "node_id": "con:def-continuity",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: continuity at a point of [a,b]",
+    "priority": "medium",
+    "statement": "q: [a,b] → ℝ is continuous at x0 in [a,b] when for every ε > 0 there is δ > 0 such that |q(x) − q(x0)| < ε for every x in [a,b] with |x − x0| < δ (one-sided at a and b). q is continuous on [a,b] when it is continuous at every point.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-difference-w",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the difference w = u1 − u2",
+    "priority": "medium",
+    "statement": "For two functions u1, u2 on R, w(x,t) := u1(x,t) − u2(x,t) for (x,t) in R.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-energy-E",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the energy E(t)",
+    "priority": "medium",
+    "statement": "For t in [0, T], E(t) := ∫_0^L w(x,t)² dx, where w = u1 − u2. (The integral exists for each t once w(·,t) is continuous on [0, L].)",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "t",
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-problem-and-solution",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the problem (P) and what a solution is",
+    "priority": "medium",
+    "statement": "Let R = [0, L] × [0, T] (the closed rectangle). Given functions f on R, φ on [0, L], g and h on [0, T], a SOLUTION of problem (P) is a function u: R → ℝ such that (i) u, u_t, u_x and u_xx exist and are continuous on the closed rectangle R (at the edges t = 0, t = T, x = 0, x = L the derivatives are one-sided and extend continuously); (ii) u_t(x,t) − k·u_xx(x,t) = f(x,t) for every (x,t) in R; (iii) u(x,0) = φ(x) for every x in [0, L]; (iv) u(0,t) = g(t) and u(L,t) = h(t) for every t in [0, T]. 'There is at most one solution' means: any two solutions u1, u2 of (P) are equal at every point of R.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "u"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-problem-neumann",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the Neumann problem (P_N)",
+    "priority": "medium",
+    "statement": "As (P), with the same regularity (u, u_t, u_x, u_xx continuous on the closed rectangle R), the same equation u_t − k·u_xx = f and the same initial condition u(x,0) = φ(x), but with Dirichlet clause (iv) replaced by Neumann data: u_x(0,t) = a(t) and u_x(L,t) = b(t) for every t in [0, T], with a, b given.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "u"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-sine-coefficients",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the sine coefficients b_n(t) of w",
+    "priority": "medium",
+    "statement": "For n = 1, 2, 3, … and t in [0, T]: s_n(x) := sin(nπx/L), λ_n := (nπ/L)², and b_n(t) := (2/L) ∫_0^L w(x,t)·s_n(x) dx, where w = u1 − u2. Note s_n(0) = s_n(L) = 0 and s_n'' = −λ_n·s_n.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "n",
+     "t",
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "who:acct-23984879ca",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:E-differentiable",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 4 premise(s) support req:lem-E-differentiable",
+    "rule": "all",
+    "rule_name": "differentiation under the integral sign (cited Leibniz rule)",
+    "warrant": "Apply the Leibniz rule with F(x,t) = w(x,t)² on [0, L] × [0, T]. Its hypotheses: F is continuous on the closed rectangle (Lemma 1a: w continuous; product of continuous functions), and ∂F/∂t = 2 w w_t exists and is continuous on the closed rectangle (product rule; w and w_t continuous by Lemma 1a). This is exactly why the theorem asks for u_t continuous on the CLOSED rectangle, including t = 0 and t = T. The rule gives: E is differentiable on [0, T] (one-sided at the ends), hence continuous, with E'(t) = ∫_0^L 2 w w_t dx for every t."
+   }
+  },
+  {
+   "node_id": "inf:E-identically-zero",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 3 premise(s) support req:lem-E-identically-zero",
+    "rule": "all",
+    "rule_name": "squeeze (order of the reals)",
+    "warrant": "For an arbitrary t in [0, T]: 0 ≤ E(t) (Lemma 3) and E(t) ≤ E(0) (Lemma 8) and E(0) = 0 (Lemma 2), so 0 ≤ E(t) ≤ 0 and E(t) = 0. E(0) = 0 is used as a fixed number, not as an instance of the arbitrary t."
+   }
+  },
+  {
+   "node_id": "inf:E-nonincreasing",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 4 premise(s) support req:lem-E-nonincreasing",
+    "rule": "all",
+    "rule_name": "mean value theorem (cited)",
+    "warrant": "By Lemma 4, E is continuous on [0, T] and differentiable on (0, T); [0, T] is a genuine interval because T > 0. By Lemma 7, E'(τ) ≤ 0 for every τ. For an arbitrary t in (0, T], the mean value theorem on [0, t] gives ξ in (0, t) with E(t) − E(0) = E'(ξ)·t ≤ 0. For t = 0 the inequality E(0) ≤ E(0) is trivial. Hence E(t) ≤ E(0) for every t in [0, T]."
+   }
+  },
+  {
+   "node_id": "inf:E-nonnegative",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 4 premise(s) support req:lem-E-nonnegative",
+    "rule": "all",
+    "rule_name": "monotonicity of the integral, at an arbitrary t",
+    "warrant": "Fix an arbitrary t in [0, T]. By Lemma 1a, x ↦ w(x,t) is continuous on [0, L], so x ↦ w(x,t)² is continuous (a product of continuous functions) and therefore integrable, and it is ≥ 0 because it is a square. Monotonicity of the integral gives E(t) ≥ 0. Nothing used depends on which t was chosen, so this holds for every t in [0, T]."
+   }
+  },
+  {
+   "node_id": "inf:E-prime-nonpositive",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 5 premise(s) support req:lem-E-prime-nonpositive",
+    "rule": "all",
+    "rule_name": "combination of Lemmas 5 and 6, then sign by k > 0 and monotonicity of the integral",
+    "warrant": "Fix an arbitrary t in [0, T]. Substituting Lemma 6 into Lemma 5: E'(t) = 2k·(−∫_0^L w_x² dx) = −2k ∫_0^L w_x(x,t)² dx. The integrand w_x(·,t)² is continuous and ≥ 0, so ∫ w_x² ≥ 0 by monotonicity. Since k > 0 (THE SIGN HYPOTHESIS: with k < 0 the inequality would reverse and the argument fails), 2k > 0 and therefore E'(t) ≤ 0. The choice of t was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:E-prime-via-pde",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 3 premise(s) support req:lem-E-prime-via-pde",
+    "rule": "all",
+    "rule_name": "substitution of the equation, then linearity of the integral",
+    "warrant": "Fix an arbitrary t in [0, T]. By Lemma 1b, w_t(x,t) = k w_xx(x,t) for every x, so the integrand in Lemma 4 equals 2k·w(x,t)·w_xx(x,t) pointwise. Equal integrands have equal integrals, and the constant 2k comes out by linearity: E'(t) = 2k ∫_0^L w w_xx dx. The choice of t was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:E-zero-at-0",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-E-zero-at-0",
+    "rule": "all",
+    "rule_name": "substitution into the definition",
+    "warrant": "By definition E(0) = ∫_0^L w(x,0)² dx; by Lemma 1c the integrand is identically 0 on [0, L], and the integral of 0 is 0 (cited basic property of the Riemann integral)."
+   }
+  },
+  {
+   "node_id": "inf:counterexample-whole-line",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:counterexample-whole-line",
+    "rule": "all",
+    "rule_name": "rescaling x of Tychonoff's example",
+    "warrant": "Let u be Tychonoff's solution of u_t = u_xx and set U(x,t) = u(x/√k, t), which needs k > 0. Chain rule: U_t = u_t and U_xx = u_xx/k, so U_t = k·U_xx on ℝ × ℝ. U(x,0) = u(x/√k, 0) = 0, U is C^∞, and U(0,t) = u(0,t) > 0 for 0 < t ≤ T, so U ≢ 0 on ℝ × [0,T]."
+   }
+  },
+  {
+   "node_id": "inf:fourier-coef-differentiable",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n",
+     "t"
+    ],
+    "name": "all of 4 premise(s) support req:lem-fourier-coef-differentiable",
+    "rule": "all",
+    "rule_name": "differentiation under the integral sign (cited Leibniz rule)",
+    "warrant": "Fix n. F(x,t) = (2/L)·w(x,t)·s_n(x) is continuous on R and ∂F/∂t = (2/L)·w_t·s_n is continuous on R (Lemma 1a; products of continuous functions). The Leibniz rule gives the derivative of b_n(t) = ∫ F dx on [0, T]. n and t were arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:fourier-coef-initial",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n"
+    ],
+    "name": "all of 3 premise(s) support req:lem-fourier-coef-initial",
+    "rule": "all",
+    "rule_name": "substitution into the definition",
+    "warrant": "w(x,0) = 0 for every x (Lemma 1c), so the integrand of b_n(0) is identically 0 and b_n(0) = 0. n was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:fourier-coef-ode",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n",
+     "t"
+    ],
+    "name": "all of 8 premise(s) support req:lem-fourier-coef-ode",
+    "rule": "all",
+    "rule_name": "substitute the equation, then integrate by parts twice (cited)",
+    "warrant": "By Lemma 1b, w_t = k·w_xx, so b_n'(t) = k·(2/L)∫ w_xx s_n dx (linearity). Integrate by parts twice (w(·,t), w_x(·,t), s_n are C¹ on [0,L] by Lemma 1a): ∫ w_xx s_n = [w_x s_n]_0^L − ∫ w_x s_n' = −∫ w_x s_n' (since s_n(0) = s_n(L) = 0) = −[w s_n']_0^L + ∫ w s_n'' = ∫ w s_n'' (since w(0,t) = w(L,t) = 0, Lemma 1d) = −λ_n ∫ w s_n. Hence b_n' = −k·λ_n·b_n. BOTH boundary terms die by the Dirichlet data and by s_n vanishing at the ends. NO SIGN OF k IS USED, which is why this route survives k < 0."
+   }
+  },
+  {
+   "node_id": "inf:fourier-coef-zero",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "n",
+     "t"
+    ],
+    "name": "all of 5 premise(s) support req:lem-fourier-coef-zero",
+    "rule": "all",
+    "rule_name": "integrating factor; zero derivative gives a constant (mean value theorem)",
+    "warrant": "Fix n. Let c = k·λ_n (any real number, of either sign) and G(t) = e^{ct}·b_n(t). G is differentiable on [0,T] with G' = e^{ct}(b_n' + c·b_n) = 0 (product rule, (e^{ct})' = c·e^{ct}, Lemma F2). By the mean value theorem applied to G and to −G, G is constant on [0,T], so G(t) = G(0) = b_n(0) = 0 (Lemma F3). Since e^{ct} > 0, b_n(t) = 0. n and t were arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:fourier-w-zero",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t",
+     "x"
+    ],
+    "name": "all of 6 premise(s) support req:lem-fourier-w-zero",
+    "rule": "all",
+    "rule_name": "completeness of the sine system (cited Parseval), then Lemma V",
+    "warrant": "Fix t. g = w(·,t) is continuous on [0,L] (Lemma 1a), and all its sine coefficients b_n(t) vanish (Lemma F4). By completeness (Parseval, with the series converging): ∫_0^L g² dx = (L/2)·Σ b_n(t)² = 0. Then g² is continuous, ≥ 0, with zero integral on [0,L], where L > 0, so g² ≡ 0 by Lemma V and w(·,t) ≡ 0. t was arbitrary. WHAT THIS ROUTE NEEDS THAT THE OTHERS DO NOT: completeness of the sine system and convergence of Σ b_n² to ∫ g² (Parseval)."
+   }
+  },
+  {
+   "node_id": "inf:max-principle",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-mp-subsolution"
+    ],
+    "generalizes_over": [
+     "v"
+    ],
+    "name": "all of 2 premise(s) support req:lem-max-principle",
+    "rule": "all",
+    "rule_name": "let ε → 0 (a number ≤ c + εL² for every ε > 0 is ≤ c), then →I and ∀I over v",
+    "warrant": "v and v_ε attain their maxima on R and Γ (extreme value theorem; Γ is closed and bounded). Since 0 ≤ εx² ≤ εL² on R: max_R v ≤ max_R v_ε = max_Γ v_ε ≤ max_Γ v + εL² for every ε > 0 (M5). A real number that is ≤ c + εL² for every ε > 0 is ≤ c, so max_R v ≤ max_Γ v; the reverse inequality holds because Γ ⊂ R. Discharging M1 and generalizing over the arbitrary v gives Lemma M. No integral is used anywhere in this lemma."
+   }
+  },
+  {
+   "node_id": "inf:mp-eps-on-boundary",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-mp-interior-max"
+    ],
+    "generalizes_over": [
+     "ε"
+    ],
+    "name": "all of 3 premise(s) support req:lem-mp-eps-on-boundary",
+    "rule": "all",
+    "rule_name": "reductio (¬I) with the extreme value theorem, then ∀I over ε",
+    "warrant": "v_ε is continuous on the closed bounded set R (M2), so it attains a maximum on R (extreme value theorem). Supposing that maximum lies in Q leads to the contradiction M4, so every maximum point lies in R \\ Q = Γ, and max_R v_ε = max_Γ v_ε. ε was arbitrary, and M3, the only hypothesis naming ε, is discharged here first."
+   }
+  },
+  {
+   "node_id": "inf:mp-falsum",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:falsum-mp",
+    "rule": "all",
+    "rule_name": "derivative tests at an interior or top-edge maximum",
+    "warrant": "At the maximum point (x0, t0) of v_ε over R (M3): (1) x ↦ v_ε(x, t0) has a maximum at the interior point x0 of [0, L] and is twice differentiable there, so (v_ε)_xx(x0,t0) ≤ 0. (2) t ↦ v_ε(x0, t) on [0, t0] has its maximum at the right endpoint t0 and has a left derivative there (equal to (v_ε)_t, which exists on Q), so (v_ε)_t(x0,t0) ≥ 0. With k > 0, (v_ε)_t − k(v_ε)_xx ≥ 0 at (x0,t0), while M2 says it is < 0 there. Only existence of v_t, v_xx at points of Q is used: no continuity of derivatives, and nothing at t = 0."
+   }
+  },
+  {
+   "node_id": "inf:mp-strict",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "ε"
+    ],
+    "name": "all of 3 premise(s) support req:lem-mp-strict",
+    "rule": "all",
+    "rule_name": "direct computation, for an arbitrary ε > 0",
+    "warrant": "Fix ε > 0. εx² is a polynomial: continuous, with t-derivative 0 and second x-derivative 2ε. So v_ε is continuous on R and, by linearity of differentiation, (v_ε)_t − k(v_ε)_xx = (v_t − k v_xx) − 2kε on Q. By M1 the bracket is ≤ 0, and 2kε > 0 because k > 0 (given) and ε > 0. ε was arbitrary. THIS IS WHERE k > 0 ENTERS THE SECOND PROOF."
+   }
+  },
+  {
+   "node_id": "inf:neumann-energy-zero",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 9 premise(s) support req:lem-neumann-energy-zero",
+    "rule": "all",
+    "rule_name": "Lemmas 2–9 of the Dirichlet proof, unchanged, with N2 in place of Lemma 6 (compressed)",
+    "warrant": "Word for word the argument of Lemmas 2–9: E(0) = 0 from w(x,0) = 0; E ≥ 0; the Leibniz rule gives E'(t) = ∫ 2w w_t = 2k ∫ w w_xx; Lemma N2 gives E'(t) = −2k ∫ w_x² ≤ 0 since k > 0; the mean value theorem gives E(t) ≤ E(0) = 0, so E ≡ 0. Recorded as ONE step because every sub-step is identical to one already recorded in the Dirichlet line; only N2 differs."
+   }
+  },
+  {
+   "node_id": "inf:neumann-parts",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 3 premise(s) support req:lem-neumann-parts",
+    "rule": "all",
+    "rule_name": "integration by parts in x (cited), with the Neumann condition",
+    "warrant": "THE ONE STEP THAT CHANGES from the Dirichlet proof (inf:parts-identity). Integrating by parts exactly as there gives the boundary term w(L,t)w_x(L,t) − w(0,t)w_x(0,t). In the Dirichlet proof it vanishes because w = 0 at the ends; here it vanishes because w_x = 0 at the ends (Lemma N1), whatever w is there. The choice of t was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:neumann-w-data",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lem-neumann-w-data",
+    "rule": "all",
+    "rule_name": "subtraction of the two Neumann problems (linearity)",
+    "warrant": "As Lemmas 1a–1c, with the same f and φ. For the boundary: w_x(0,t) = a(t) − a(t) = 0 and w_x(L,t) = b(t) − b(t) = 0 (linearity of differentiation). Nothing is known about w itself at x = 0 or x = L."
+   }
+  },
+  {
+   "node_id": "inf:parts-identity",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t"
+    ],
+    "name": "all of 4 premise(s) support req:lem-parts-identity",
+    "rule": "all",
+    "rule_name": "integration by parts in x (cited), with the Dirichlet condition",
+    "warrant": "Fix an arbitrary t in [0, T] and set p(x) = w(x,t), q(x) = w_x(x,t) on [0, L]. By Lemma 1a, p' = w_x(·,t) and q' = w_xx(·,t) exist and are continuous on [0, L] (restrictions of continuous functions), so p, q ∈ C¹[0, L] and integration by parts applies: ∫ p q' = p(L)q(L) − p(0)q(0) − ∫ p' q, i.e. ∫_0^L w w_xx dx = w(L,t)w_x(L,t) − w(0,t)w_x(0,t) − ∫_0^L w_x² dx. By Lemma 1d, w(0,t) = w(L,t) = 0, so the boundary term is 0 (w_x is finite there, being continuous on the closed rectangle). The choice of t was arbitrary."
+   }
+  },
+  {
+   "node_id": "inf:uniqueness",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-two-solutions"
+    ],
+    "generalizes_over": [
+     "u1",
+     "u2"
+    ],
+    "name": "all of 5 premise(s) support req:thm-uniqueness",
+    "rule": "all",
+    "rule_name": "conditional proof (→I) then universal generalization (∀I) over the two solutions",
+    "warrant": "Lemma 10 shows u1 = u2 on R under the hypothesis that u1, u2 are solutions of (P), in the fixed setting L, T, k > 0 (taken as given). Discharging the hypothesis gives: if u1, u2 solve (P), then u1 = u2 on R. The solutions u1, u2 were arbitrary (nothing beneath this step fixes them, and the one hypothesis naming them is discharged here first), so this holds for ALL pairs of solutions, which by the definition is exactly 'at most one solution'. The setting is named as premises so that a what-if on it reaches the theorem. The theorem says nothing about existence."
+   }
+  },
+  {
+   "node_id": "inf:uniqueness-by-specialisation",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:thm-uniqueness",
+    "rule": "all",
+    "rule_name": "specialisation (∀E) of Proposition F to the theorem's k: fourth route",
+    "warrant": "Proposition F gives uniqueness for EVERY real k; instantiating it at the theorem's k (which the theorem takes to be > 0) gives the theorem at once. This step deliberately does not name k > 0 as a premise, because it does not use it: the theorem's conclusion does not need k > 0. The energy proof (at inf:E-prime-nonpositive) and the maximum-principle proof (at inf:mp-strict) DO need k > 0; this route, through the sine-coefficient argument, does not. Recorded on Anthony's word of 2026-10-22 (\"go with your recommendations on both\")."
+   }
+  },
+  {
+   "node_id": "inf:uniqueness-fourier",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-two-solutions"
+    ],
+    "generalizes_over": [
+     "k",
+     "u1",
+     "u2"
+    ],
+    "independent_except": [
+     "req:cite-continuity-and-derivative-algebra",
+     "req:lem-w-homogeneous-pde",
+     "req:lem-w-regular",
+     "req:lem-w-zero-boundary",
+     "req:lem-w-zero-initial"
+    ],
+    "independent_of": [
+     "inf:uniqueness-max-principle"
+    ],
+    "name": "all of 4 premise(s) support req:prop-uniqueness-k-negative",
+    "rule": "all",
+    "rule_name": "→I and ∀I over the two solutions and over k (third route, by sine coefficients)",
+    "warrant": "Lemma F5 gives u1 = u2 on R under the two-solutions hypothesis. Discharge it and generalize over the arbitrary u1, u2. Nothing on this route names k > 0: Lemmas 1a–1d never use a sign of k, and F2 holds for any real k. So the conclusion holds for EVERY real k, generalized over k. THIRD ROUTE: the energy proof fails for k < 0 at inf:E-prime-nonpositive and the maximum-principle proof at inf:mp-strict (req:finding-k-negative-proofs-fail); this one does not. It needs completeness of the sine system and convergence of Σ b_n² (Parseval), which neither other route needs. It shares no step with the maximum-principle route beyond Lemmas 1a–1d. With the energy route it shares Lemma V (and its steps) and the cited Leibniz rule, integration by parts, mean value theorem and Riemann basics, so it is NOT independent of the energy route."
+   }
+  },
+  {
+   "node_id": "inf:uniqueness-max-principle",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-two-solutions"
+    ],
+    "generalizes_over": [
+     "u1",
+     "u2"
+    ],
+    "independent_except": [
+     "req:cite-continuity-and-derivative-algebra",
+     "req:lem-w-homogeneous-pde",
+     "req:lem-w-regular",
+     "req:lem-w-zero-boundary",
+     "req:lem-w-zero-initial"
+    ],
+    "independent_of": [
+     "inf:uniqueness"
+    ],
+    "name": "all of 6 premise(s) support req:thm-uniqueness",
+    "rule": "all",
+    "rule_name": "antisymmetry of ≤, then →I and ∀I over the two solutions (second proof, by the maximum principle)",
+    "warrant": "w ≤ 0 (Lemma 11) and w ≥ 0 (Lemma 12) on R, so w = 0, i.e. u1 = u2, on R. Discharging the two-solutions hypothesis and generalizing over the arbitrary u1, u2 gives the theorem, in the setting L, T, k > 0. SECOND PROOF: it uses no integral of the solution, no Leibniz rule, no integration by parts, no mean value theorem. It shares with the energy proof only Lemmas 1a–1d, the definitions, the setting, and the cited algebra of continuous functions and derivatives. REGULARITY IT NEEDS: u continuous on the closed rectangle and u_t, u_xx existing on (0,L) × (0,T]; it does not need u_x at all, nor any derivative at t = 0 or continuity of derivatives. The energy proof needs u_t continuous up to t = 0 (Leibniz rule on [0,T]), and u_x, u_xx continuous up to x = 0 and x = L (integration by parts on [0,L])."
+   }
+  },
+  {
+   "node_id": "inf:uniqueness-neumann",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-two-solutions-neumann"
+    ],
+    "generalizes_over": [
+     "u1",
+     "u2"
+    ],
+    "name": "all of 8 premise(s) support req:thm-uniqueness-neumann",
+    "rule": "all",
+    "rule_name": "vanishing lemma, then →I and ∀I over the two solutions",
+    "warrant": "As Lemma 10: for each t, w(·,t)² is continuous, ≥ 0 and has integral E(t) = 0 (N3), so by Lemma V (L > 0) w(·,t) ≡ 0. Hence u1 = u2 on R. Discharge N0 and generalize over the arbitrary u1, u2. Answer to round-2 ask (c)(i): YES, the energy proof works for Neumann data; only the integration-by-parts step changes (N2), in why its boundary term vanishes."
+   }
+  },
+  {
+   "node_id": "inf:vanishing-falsum",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:falsum-vanishing",
+    "rule": "all",
+    "rule_name": "contradiction (∧I of incompatible statements)",
+    "warrant": "V4 gives ∫_a^b q > 0, while V1 says ∫_a^b q = 0. Both cannot hold."
+   }
+  },
+  {
+   "node_id": "inf:vanishing-integral-positive",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-vanishing-integral-positive",
+    "rule": "all",
+    "rule_name": "additivity and monotonicity of the integral",
+    "warrant": "Split ∫_a^b q = ∫_a^c q + ∫_c^d q + ∫_d^b q (additivity). The outer two are ≥ 0 because q ≥ 0 (V1, monotonicity). On [c,d], q ≥ q(x0)/2 (V3), so ∫_c^d q ≥ ∫_c^d q(x0)/2 dx = (d − c)·q(x0)/2 > 0 (monotonicity and the integral of a constant), since d > c and q(x0) > 0."
+   }
+  },
+  {
+   "node_id": "inf:vanishing-positive-near",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-vanishing-positive-near",
+    "rule": "all",
+    "rule_name": "ε-δ continuity with ε = q(x0)/2",
+    "warrant": "q is continuous at x0 (V1). Take ε = q(x0)/2 > 0 (V2); continuity gives δ > 0 with |q(x) − q(x0)| < q(x0)/2, hence q(x) > q(x0)/2, for every x in [a,b] with |x − x0| < δ. Let [c,d] = [x0 − δ/2, x0 + δ/2] ∩ [a,b]. Because a < b (V1), this intersection has positive length even when x0 is an endpoint a or b, so c < d, and q ≥ q(x0)/2 on [c,d]."
+   }
+  },
+  {
+   "node_id": "inf:vanishing-reductio",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "discharges": [
+     "req:hyp-vanishing-not",
+     "req:hyp-vanishing-premises"
+    ],
+    "generalizes_over": [
+     "a",
+     "b",
+     "q"
+    ],
+    "name": "all of 1 premise(s) support req:lem-vanishing-integral",
+    "rule": "all",
+    "rule_name": "reductio ad absurdum (¬I), then conditional proof (→I) and ∀I over q, a, b",
+    "warrant": "Under V1, supposing V2 (q(x0) > 0 somewhere) yields the contradiction V5, so V2 is false: q(x) ≤ 0 for every x in [a,b]. With q ≥ 0 (V1), q(x) = 0 for every x. Discharging V1 gives the implication; q, a, b were arbitrary (nothing beneath fixes them, and both hypotheses naming them are discharged here first), so it holds for every a < b and every such q."
+   }
+  },
+  {
+   "node_id": "inf:w-ge-zero-mp",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 6 premise(s) support req:lem-w-ge-zero-mp",
+    "rule": "all",
+    "rule_name": "instantiate Lemma M at v = −w",
+    "warrant": "−w is continuous on R with (−w)_t = −w_t and (−w)_xx = −w_xx on Q (linearity), and (−w)_t − k(−w)_xx = −(w_t − k w_xx) = 0 ≤ 0 (Lemma 1b). −w = 0 on Γ (Lemmas 1c, 1d). Lemma M gives max_R(−w) = 0, so −w ≤ 0, i.e. w ≥ 0, on R."
+   }
+  },
+  {
+   "node_id": "inf:w-homogeneous-pde",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lem-w-homogeneous-pde",
+    "rule": "all",
+    "rule_name": "subtraction of the two equations (linearity)",
+    "warrant": "Both solutions satisfy clause (ii) with the same f: (u1)_t − k(u1)_xx = f and (u2)_t − k(u2)_xx = f at every point of R. Subtracting, and using linearity of differentiation, w_t − k·w_xx = f − f = 0 on R."
+   }
+  },
+  {
+   "node_id": "inf:w-identically-zero",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "generalizes_over": [
+     "t",
+     "x"
+    ],
+    "name": "all of 6 premise(s) support req:lem-w-identically-zero",
+    "rule": "all",
+    "rule_name": "vanishing lemma (proved, Lemma V), at an arbitrary t",
+    "warrant": "Fix an arbitrary t in [0, T]. The function q(x) = w(x,t)² is continuous on [0, L] (Lemma 1a and products of continuous functions) and ≥ 0, and ∫_0^L q dx = E(t) = 0 by Lemma 9. Since L > 0 (given), Lemma V applies with a = 0, b = L and gives q(x) = 0, hence w(x,t) = 0, for every x in [0, L]. CONTINUITY OF w IS ESSENTIAL HERE: without it a nonzero w could have zero energy. As t was arbitrary, w = 0 at every point of R, i.e. u1 = u2 there."
+   }
+  },
+  {
+   "node_id": "inf:w-le-zero-mp",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 5 premise(s) support req:lem-w-le-zero-mp",
+    "rule": "all",
+    "rule_name": "instantiate Lemma M at v = w",
+    "warrant": "w is continuous on R and has w_t, w_xx on Q (Lemma 1a: only continuity of w on R and existence of w_t, w_xx on Q are used), and w_t − k·w_xx = 0 ≤ 0 there (Lemma 1b). Lemma M gives max_R w = max_Γ w. On Γ, w = 0: at t = 0 by Lemma 1c, at x = 0 and x = L by Lemma 1d. So max_R w = 0 and w ≤ 0 on R."
+   }
+  },
+  {
+   "node_id": "inf:w-regular",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 4 premise(s) support req:lem-w-regular",
+    "rule": "all",
+    "rule_name": "definition unfolding with the algebra of derivatives",
+    "warrant": "By the hypothesis and the definition of a solution (clause i), u1, u2 and their partials u_t, u_x, u_xx exist and are continuous on the closed rectangle R. Differentiation is linear, so w = u1 − u2 has w_t = (u1)_t − (u2)_t, w_x = (u1)_x − (u2)_x, w_xx = (u1)_xx − (u2)_xx, and a difference of continuous functions is continuous (cited algebra). This is where the regularity hypothesis enters the proof."
+   }
+  },
+  {
+   "node_id": "inf:w-zero-boundary",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-w-zero-boundary",
+    "rule": "all",
+    "rule_name": "substitution of the Dirichlet boundary conditions",
+    "warrant": "Both solutions satisfy clause (iv) with the same g and h, so w(0,t) = g(t) − g(t) = 0 and w(L,t) = h(t) − h(t) = 0 for each t in [0, T]. This is where the Dirichlet boundary condition enters the proof."
+   }
+  },
+  {
+   "node_id": "inf:w-zero-initial",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:lem-w-zero-initial",
+    "rule": "all",
+    "rule_name": "substitution of the initial condition",
+    "warrant": "Both solutions satisfy clause (iii) with the same φ, so w(x,0) = u1(x,0) − u2(x,0) = φ(x) − φ(x) = 0 for each x in [0, L]."
+   }
+  },
+  {
+   "node_id": "inf:whole-line-with-growth",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:thm-whole-line-with-growth",
+    "rule": "all",
+    "rule_name": "apply the cited growth-condition uniqueness to the difference",
+    "warrant": "The difference w of two such solutions solves w_t = k·w_xx with w(x,0) = 0 (linearity), and |w| ≤ |u1| + |u2| ≤ (M1 + M2)·exp(max(a1,a2)·x²). The cited theorem gives w ≡ 0. Tychonoff's example violates the growth bound, which is why it does not contradict this. It holds only if the citation says what it is recalled to say."
+   }
+  },
+  {
+   "node_id": "proj:heat-equation-uniqueness",
+   "node_type": "Project",
+   "properties": {
+    "domain": "document",
+    "mode": "flexible",
+    "name": "Heat equation uniqueness by the energy method (proof trial)",
+    "objective": "A proof, designed by an agent given only the theorem, that reads back as a correct proof and states every analytic assumption it rests on; compared against a reference held by the observer.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:check-tychonoff-source",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"go with your recommendations on both\". Yes. The observer read and saved two sources; register each as an Artifact with its checksum.\n\n(1) T. Chen, UT Austin M393C \"PDE I – Homework Assignment 2\" (Fall 2010), https://web.ma.utexas.edu/users/tc/M393C-F10/393C-H2.pdf, sha256 cc655df314c52d60090e8762ec017efb716c25ea7e31730873888e5fdad3c17b.\n- Problem 1 constructs, by the ansatz u = Σ h_n(t) x^{2n} with g(t) = exp(−t^{−α}) for t > 0 and α > 1, \"a solution of the heat equation (due to Tychonoff) which is zero at t = 0, but which is nonzero for t > 0\". It sets this against uniqueness under a growth condition (Evans §2.3, Thm 7).\n- CAVEAT: it is a homework statement. It states the bounds as \"show that\" exercises rather than proving them, so it documents the construction and the claim, not a worked proof.\n\n(2) Wikipedia, \"Heat equation\" (raw wikitext fetched 2026-10-22), sha256 93a5814ba3dc1d9bd98e06b60d7dd4fe6c68b38fde1dd3eee6ce05e159b09699: \"To determine uniqueness of solutions in the whole space it is necessary to assume additional conditions, for example an exponential bound on the growth of solutions or a sign condition (nonnegative solutions are unique by a result of David Widder).\"\n\nDraw DOCUMENTS from (1) to the Tychonoff example citation, and from (2) to the growth-condition uniqueness citation.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-2",
+    "batch_position": 2,
+    "question": "The whole-line conjecture is refuted by Tychonoff's example. That example is recalled, not read (Mat. Sbornik 1935; F. John, Ch. 7), so the design reads the conjecture as CONTESTED, not REFUTED. Do you want the source checked and registered, so that the refutation stands outright?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:closed-rectangle-regularity",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" Yes. MIT 18.152's reading of C^{1,2} on the closed rectangle is that the derivatives exist inside and extend continuously to the edges, and for this proof that is the same as one-sided derivatives at the edges.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-1",
+    "batch_position": 4,
+    "question": "The definition reads 'u_t continuous on the closed rectangle' as one-sided derivatives at t = 0 and t = T (and at x = 0, L) that extend continuously, which is what the Leibniz rule and the mean value theorem need at the ends. Is that the reading of the regularity hypothesis you intend?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:prove-k-negative-by-fourier",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"go with your recommendations on both\". Yes: prove the k < 0 uniqueness in the design by the Fourier sine argument, adding the completeness of the sine system as one cited (recalled) result. The point is to show \"this proof fails, yet the theorem holds by another route\" as structure, not prose.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-2",
+    "batch_position": 1,
+    "question": "For k < 0 the design records that both proofs fail (energy at Lemma 7, maximum principle at M2). It also states, as a proposition with no steps, that uniqueness is still true there, by a sine-coefficient argument that works for any real k. Do you want that argument proved out in the design? It would add one recalled citation: completeness of the sine system in L²(0,L).",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:prove-vanishing-lemma",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" Prove the vanishing lemma in the design, as a reductio: a continuous non-negative function that is positive at a point is positive on a neighbourhood, so its integral is positive.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-1",
+    "batch_position": 3,
+    "question": "The vanishing lemma (a continuous nonnegative function with zero integral is zero) is short enough to prove here, by contradiction from continuity. Should it stay a cited lemma, or be proved inside the design as its own reductio?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:recalled-citations",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" Leave the six calculus citations recalled and unverified. They are standard textbook results, and \"conditional on six unverified citations\" is the honest reading.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-1",
+    "batch_position": 2,
+    "question": "Six results are cited from memory, not read: the Leibniz rule, integration by parts, the mean value theorem, the vanishing lemma, the basic properties of the Riemann integral, and the algebra of continuous functions and derivatives (Rudin's numbering recalled, not checked). Will you accept them as recalled, or do you want a source checked and registered for any of them (which would move it from 'cited, unverified' to 'cited')?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:standing-hypotheses-encoding",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations.\" L, T, k > 0 are the theorem's FIXED SETTING, taken as given (stated foundations), not hypotheses the last step discharges. Only the two-solutions hypothesis stays assumed and discharged. Reason: the theorem opens \"Let L, T, k > 0\", and with that encoding a what-if that drops k > 0 sinks the theorem, which is what \"what if k ≤ 0?\" means.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:acct-23984879ca",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:acct-23984879ca",
+    "batch": "proof-round-1",
+    "batch_position": 1,
+    "context_setter": "The heat-equation uniqueness proof is recorded end to end; its last step discharges every hypothesis.",
+    "question": "The theorem's standing hypotheses (L > 0, T > 0, k > 0) are recorded as hypotheses that the final step discharges, so the theorem reads as the implication 'if L, T, k > 0 and u1, u2 solve (P), then u1 = u2'. Do you accept that encoding, or do you want L, T, k > 0 taken as given (the theorem's fixed setting) instead?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:cite-continuity-and-derivative-algebra",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: algebra of continuous functions and of derivatives",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: elementary calculus; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorems 4.9 and 5.3. Theorem numbers recalled, not checked.",
+    "statement": "Sums, differences, products and constant multiples of continuous functions are continuous; the restriction of a continuous function on R to a segment of R is continuous; and differentiation is linear and obeys the product rule and the chain rule: (p − q)' = p' − q', (αp)' = αp', (pq)' = p'q + pq', (p∘q)' = (p'∘q)·q', for partial derivatives as for ordinary ones; and (e^{ct})' = c·e^{ct} for every real constant c.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-derivative-tests",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: first and second derivative tests at a maximum",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: elementary calculus (Fermat's theorem on interior extrema, Rudin 3rd ed. Theorem 5.8; the second-order condition from Taylor's theorem with Peano remainder). Numbers recalled, not checked.",
+    "statement": "Let f be real on an interval I with a maximum at x0. (1) If x0 is interior to I and f is twice differentiable at x0, then f'(x0) = 0 and f''(x0) ≤ 0. (2) If x0 is the right endpoint of I and f has a left derivative there, that derivative is ≥ 0.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "f"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-extreme-value-theorem",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: extreme value theorem",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorem 4.16 (continuous image of a compact set). Theorem number recalled, not checked.",
+    "statement": "A continuous real function on a closed bounded set of ℝ² (such as the closed rectangle R) attains a maximum at some point of that set.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-integration-by-parts",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: integration by parts",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: integration by parts for the Riemann integral, a consequence of the product rule and the fundamental theorem of calculus; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorem 6.22. Theorem number recalled, not checked.",
+    "statement": "If p and q are continuously differentiable on [a,b] (p, q ∈ C¹[a,b]), then ∫_a^b p(x) q'(x) dx = p(b)q(b) − p(a)q(a) − ∫_a^b p'(x) q(x) dx.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-leibniz-rule",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: differentiation under the integral sign (Leibniz rule)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: the standard theorem on differentiating a parameter-dependent Riemann integral, e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., McGraw-Hill 1976, Theorem 9.42; T. M. Apostol, Mathematical Analysis, 2nd ed. Theorem number recalled, not checked.",
+    "statement": "If F: [a,b] × [c,d] → ℝ is continuous and its partial derivative ∂F/∂t exists and is continuous on [a,b] × [c,d], then G(t) = ∫_a^b F(x,t) dx is differentiable on [c,d] (one-sided at c and d) and G'(t) = ∫_a^b ∂F/∂t(x,t) dx.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "F",
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-mean-value-theorem",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: mean value theorem (nonpositive derivative gives nonincreasing)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: the mean value theorem of differential calculus and its corollary on monotonicity; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorems 5.10 and 5.11. Theorem numbers recalled, not checked.",
+    "statement": "If G is continuous on [c,d] and differentiable on (c,d), then for c ≤ s < t ≤ d there is ξ in (s,t) with G(t) − G(s) = G'(ξ)(t − s). Consequently, if G'(τ) ≤ 0 for every τ in (c,d), then G is nonincreasing on [c,d].",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "G"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-riemann-integral-basics",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: basic properties of the Riemann integral",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: elementary properties of the Riemann integral; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorems 6.8 and 6.12. Theorem numbers recalled, not checked.",
+    "statement": "A continuous function on [a,b] is Riemann integrable; the integral is linear (∫(αp + βq) = α∫p + β∫q for constants α, β); it is monotone (p ≤ q on [a,b] implies ∫p ≤ ∫q; in particular q ≥ 0 implies ∫q ≥ 0, and ∫0 = 0); it is additive over subintervals (for a ≤ c ≤ d ≤ b, ∫_a^b q = ∫_a^c q + ∫_c^d q + ∫_d^b q); and the integral of a constant m over [c,d] is m·(d − c).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "p",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-sine-completeness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: completeness of the sine system on (0, L) (Parseval)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: Parseval's theorem for Riemann-integrable periodic functions, W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorem 8.16, applied to the odd 2L-periodic extension of g (whose cosine coefficients vanish). Theorem number recalled, not checked.",
+    "statement": "The system {sin(nπx/L)}_{n ≥ 1} is complete in L²(0, L): for g Riemann integrable (in particular continuous) on [0, L] with sine coefficients β_n = (2/L)∫_0^L g(x) sin(nπx/L) dx, Parseval's identity (L/2)·Σ_{n≥1} β_n² = ∫_0^L g(x)² dx holds, the series converging. In particular, if every β_n = 0 then ∫_0^L g² dx = 0.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "g"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-tychonoff-example",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: Tychonoff's nonzero solution with zero initial data",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: A. N. Tychonoff (Tikhonov), \"Théorèmes d'unicité pour l'équation de la chaleur\", Matematicheskii Sbornik 42 (1935), 199–216; presented in F. John, Partial Differential Equations, 4th ed., Springer 1982, Chapter 7. Page and section numbers recalled, not checked.",
+    "statement": "There is a function u, C^∞ on ℝ × ℝ, with u_t = u_xx everywhere, u(x,0) = 0 for every x, and u(0,t) > 0 for every t > 0. Tychonoff's example: u(x,t) = Σ_{n≥0} g^{(n)}(t)·x^{2n}/(2n)!, with g(t) = exp(−1/t²) for t > 0 and g(t) = 0 for t ≤ 0. It grows in |x| faster than any exp(a·x²).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-tychonoff-uniqueness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: uniqueness on the line under the growth condition |u| ≤ M·exp(a·x²)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: Tychonoff 1935 (as above); L. C. Evans, Partial Differential Equations, 2nd ed., AMS 2010, §2.3.3, uniqueness for the Cauchy problem under the growth bound (proved there by a maximum principle); F. John, Partial Differential Equations, 4th ed., Chapter 7. Numbers recalled, not checked.",
+    "statement": "Let k > 0, T > 0. If u is continuous on ℝ × [0,T], u_t, u_x, u_xx are continuous on ℝ × (0,T], u_t = k·u_xx there, u(x,0) = 0 for every x, and |u(x,t)| ≤ M·exp(a·x²) on ℝ × [0,T] for some constants M, a > 0, then u ≡ 0 on ℝ × [0,T].",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "u"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-vanishing-integral",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited: a continuous nonnegative function with zero integral is zero",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "RECALLED, not read: standard lemma of Riemann integration, stated as an exercise in most analysis texts (e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Chapter 6, Exercise 2). Location recalled, not checked.",
+    "statement": "If a < b and q is continuous on [a,b] with q(x) ≥ 0 for every x, and ∫_a^b q(x) dx = 0, then q(x) = 0 for every x in [a,b]. (Reason recalled: if q(x0) > 0, continuity gives q > q(x0)/2 on a subinterval of positive length, forcing the integral to be positive.)",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:conj-whole-line",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Conjecture (false): the energy argument gives uniqueness on the whole real line",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The same energy argument proves uniqueness on the whole real line: if u_t = k·u_xx for all real x and 0 < t ≤ T, u is smooth, and u(x,0) = 0, then u ≡ 0.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "u"
+    ]
+   }
+  },
+  {
+   "node_id": "req:counterexample-whole-line",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Counterexample: a nonzero smooth solution on the line with zero initial data, for every k > 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For the given k > 0 and T > 0 there is a smooth U ≢ 0 on ℝ × [0,T] with U_t = k·U_xx for all real x and 0 < t ≤ T and U(x,0) = 0 for every x.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:falsum-mp",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Contradiction M4: the strict inequality fails at the interior maximum",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "At (x0, t0): (v_ε)_t − k·(v_ε)_xx ≥ 0 and (v_ε)_t − k·(v_ε)_xx < 0.",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "v",
+     "ε"
+    ]
+   }
+  },
+  {
+   "node_id": "req:falsum-vanishing",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Contradiction V5: ∫q > 0 and ∫q = 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "∫_a^b q(x) dx > 0 and ∫_a^b q(x) dx = 0.",
+    "statement_kind": "falsum",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:finding-k-negative-proofs-fail",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Finding: with k < 0 neither recorded proof establishes uniqueness",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "If k < 0 (the backward heat equation, solved forward in t from initial data), neither proof in this design establishes uniqueness. Energy proof: inf:E-prime-nonpositive fails, because E'(t) = −2k ∫ w_x² dx ≥ 0, so E is NONdecreasing; Lemma 8 (E(t) ≤ E(0)) and everything after it no longer follow, and E(0) = 0 bounds nothing. Every step before Lemma 7 (Lemmas 1–6) still holds. Maximum-principle proof: inf:mp-strict fails, because −2kε > 0; with no strict sign there is no contradiction at an interior maximum. This says only that THESE PROOFS do not establish the k < 0 case. It says nothing about whether that case is true.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:given-L-T-positive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Given: L > 0 and T > 0 (the theorem's setting)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Owner's answer to question:standing-hypotheses-encoding (Anthony, 2026-10-22): L, T, k > 0 are the theorem's fixed setting, taken as given.",
+    "statement": "The rectangle is non-degenerate: L > 0 and T > 0. Part of the theorem's fixed setting (\"Let L > 0, T > 0\"), taken as given, not a hypothesis the proof discharges.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "L",
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:given-k-positive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Given: k > 0 (the theorem's setting)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Owner's answer to question:standing-hypotheses-encoding (Anthony, 2026-10-22): L, T, k > 0 are the theorem's fixed setting, taken as given.",
+    "statement": "The diffusion coefficient k is a positive constant: k > 0. Part of the theorem's fixed setting (\"Let ... k > 0\"), taken as given, not a hypothesis the proof discharges.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-L-T-positive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis: L > 0 and T > 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The rectangle is non-degenerate: L > 0 and T > 0, so [0, L] and [0, T] are intervals of positive length.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "L",
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-k-positive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis: k > 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The diffusion coefficient k is a positive constant: k > 0.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-mp-interior-max",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis M3 (for reductio): v_ε has its maximum over R at a point of Q",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose, for contradiction, that for some ε > 0 the maximum of v_ε over R is attained at a point (x0, t0) of Q: 0 < x0 < L, 0 < t0 ≤ T.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "v",
+     "ε"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-mp-subsolution",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis M1: v is a subsolution on R",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let v: R → ℝ be continuous on the closed rectangle R, with v_t and v_xx existing at every point of Q = (0, L) × (0, T] (v_t one-sided at t = T), and v_t − k·v_xx ≤ 0 at every point of Q. Γ denotes the parabolic boundary R \\ Q = {t = 0} ∪ {x = 0} ∪ {x = L}.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-two-solutions",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis: u1 and u2 are two solutions of (P)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let u1 and u2 be arbitrary solutions of (P) in the sense of the definition: each has u, u_t, u_x, u_xx continuous on the closed rectangle R and satisfies the equation, the initial condition and both boundary conditions with the SAME data f, φ, g, h.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-two-solutions-neumann",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis N0: u1 and u2 are two solutions of (P_N)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let u1 and u2 be arbitrary solutions of the Neumann problem (P_N) with the same f, φ, a, b.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-vanishing-not",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis V2 (for reductio): q is positive at some point",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Suppose, for contradiction, that q(x0) > 0 for some x0 in [a,b].",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:hyp-vanishing-premises",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Hypothesis V1: q is continuous, nonnegative, with zero integral on [a,b], a < b",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let a < b and let q: [a,b] → ℝ be continuous, with q(x) ≥ 0 for every x in [a,b] and ∫_a^b q(x) dx = 0.",
+    "statement_kind": "hypothesis",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-differentiable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 4: E is differentiable on [0,T] with E'(t) = ∫ 2 w w_t dx",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "E is differentiable on [0, T] (one-sided at 0 and T), hence continuous there, and for every t in [0, T]: E'(t) = ∫_0^L 2 w(x,t) w_t(x,t) dx.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-identically-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 9: E(t) = 0 for every t in [0, T]",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T]: 0 ≤ E(t) ≤ E(0) = 0, so E(t) = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-nonincreasing",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 8: E(t) ≤ E(0) for every t in [0, T]",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "E is nonincreasing on [0, T]; in particular E(t) ≤ E(0) for every t in [0, T].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-nonnegative",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 3: E(t) ≥ 0 for every t in [0, T]",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T], E(t) is well defined and E(t) ≥ 0, since x ↦ w(x,t)² is continuous and nonnegative on [0, L].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-prime-nonpositive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 7: E'(t) = −2k ∫ w_x² dx ≤ 0 for every t",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T]: E'(t) = −2k ∫_0^L w_x(x,t)² dx ≤ 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-prime-via-pde",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 5: E'(t) = 2k ∫ w w_xx dx",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T]: E'(t) = 2k ∫_0^L w(x,t) w_xx(x,t) dx.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-E-zero-at-0",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 2: E(0) = 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "E(0) = ∫_0^L w(x,0)² dx = ∫_0^L 0 dx = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-fourier-coef-differentiable",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F1: each b_n is differentiable, b_n'(t) = (2/L)∫ w_t s_n dx",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n ≥ 1, b_n is differentiable on [0, T] (one-sided at the ends) with b_n'(t) = (2/L) ∫_0^L w_t(x,t)·s_n(x) dx.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-fourier-coef-initial",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F3: b_n(0) = 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n ≥ 1: b_n(0) = (2/L) ∫_0^L w(x,0)·s_n(x) dx = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-fourier-coef-ode",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F2: b_n' = −k·λ_n·b_n",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n ≥ 1 and t in [0, T]: b_n'(t) = −k·λ_n·b_n(t). No sign of k is used.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-fourier-coef-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F4: b_n(t) = 0 for every n and every t",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every n ≥ 1 and every t in [0, T]: b_n(t) = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-fourier-w-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma F5: w = 0 on R (all sine coefficients vanish)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T] and every x in [0, L]: w(x,t) = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-max-principle",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma M: weak maximum principle (proved here, no integrals)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For k > 0: every v continuous on R with v_t, v_xx existing on Q = (0,L) × (0,T] and v_t − k·v_xx ≤ 0 on Q satisfies max_R v = max_Γ v, where Γ = {t = 0} ∪ {x = 0} ∪ {x = L}.",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lem-mp-eps-on-boundary",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma M5: for every ε > 0, max_R v_ε = max_Γ v_ε",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every ε > 0, v_ε attains its maximum over R, and only at points of the parabolic boundary Γ; so max_R v_ε = max_Γ v_ε.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-mp-strict",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma M2: v + εx² is a strict subsolution",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every ε > 0, v_ε(x,t) := v(x,t) + εx² is continuous on R and satisfies (v_ε)_t − k·(v_ε)_xx = v_t − k·v_xx − 2kε ≤ −2kε < 0 at every point of Q.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "v"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-neumann-energy-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma N3: E(t) = 0 for every t (Neumann case)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For the Neumann difference w, E(t) = ∫_0^L w(x,t)² dx = 0 for every t in [0, T].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-neumann-parts",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma N2 (the step that changes): ∫ w w_xx = −∫ w_x² because w_x = 0 at the ends",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T]: ∫_0^L w w_xx dx = [w·w_x]_{x=0}^{x=L} − ∫_0^L w_x² dx = −∫_0^L w_x² dx, the boundary term vanishing because w_x(0,t) = w_x(L,t) = 0 (not because w vanishes there).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-neumann-w-data",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma N1: w solves the homogeneous Neumann problem",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "w = u1 − u2 has w, w_t, w_x, w_xx continuous on R, w_t = k·w_xx on R, w(x,0) = 0, and w_x(0,t) = w_x(L,t) = 0 for every t in [0, T].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-parts-identity",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 6: ∫ w w_xx dx = −∫ w_x² dx (boundary term vanishes)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T]: ∫_0^L w(x,t) w_xx(x,t) dx = [w(x,t) w_x(x,t)]_{x=0}^{x=L} − ∫_0^L w_x(x,t)² dx = −∫_0^L w_x(x,t)² dx, because w(0,t) = w(L,t) = 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-vanishing-integral",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma V: a continuous nonnegative function with zero integral is zero (proved here)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every a < b and every continuous q: [a,b] → ℝ with q ≥ 0 and ∫_a^b q dx = 0: q(x) = 0 for every x in [a,b].",
+    "statement_kind": "lemma",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lem-vanishing-integral-positive",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma V4: ∫_a^b q > 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "∫_a^b q(x) dx ≥ ∫_c^d q(x) dx ≥ (d − c)·q(x0)/2 > 0.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-vanishing-positive-near",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma V3: q ≥ q(x0)/2 on a subinterval of positive length",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "There are c < d in [a,b] with q(x) ≥ q(x0)/2 > 0 for every x in [c,d].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "a",
+     "b",
+     "q"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-ge-zero-mp",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 12: w ≥ 0 on R (maximum principle applied to −w)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "−w(x,t) ≤ 0, i.e. w(x,t) ≥ 0, for every (x,t) in R.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-homogeneous-pde",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1b: w solves the homogeneous heat equation",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "w_t(x,t) = k·w_xx(x,t) for every (x,t) in R (the source f cancels).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-identically-zero",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 10: w = 0 on R, so u1 = u2 on R",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every t in [0, T] and every x in [0, L]: w(x,t) = 0, that is u1(x,t) = u2(x,t).",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-le-zero-mp",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 11: w ≤ 0 on R (maximum principle applied to w)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "w(x,t) ≤ 0 for every (x,t) in R.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-regular",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1a: w, w_t, w_x, w_xx are continuous on R",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "With w = u1 − u2: the partial derivatives w_t = (u1)_t − (u2)_t, w_x = (u1)_x − (u2)_x, w_xx = (u1)_xx − (u2)_xx exist, and w, w_t, w_x, w_xx are continuous on the closed rectangle R.",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-zero-boundary",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1d: w has zero Dirichlet boundary data",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "w(0,t) = g(t) − g(t) = 0 and w(L,t) = h(t) − h(t) = 0 for every t in [0, T].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:lem-w-zero-initial",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma 1c: w has zero initial data",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "w(x,0) = φ(x) − φ(x) = 0 for every x in [0, L].",
+    "statement_kind": "lemma",
+    "status": "proposed",
+    "variables": [
+     "u1",
+     "u2"
+    ]
+   }
+  },
+  {
+   "node_id": "req:obj-energy-step-fails-on-line",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Objection: on the line the energy argument breaks at Lemmas 4 and 6",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "The energy argument does not carry over to ℝ. (1) E(t) = ∫_ℝ w² dx need not be finite (Tychonoff's solution is not square-integrable), so Lemma 2/3/9 have nothing to say. (2) inf:E-differentiable cites the Leibniz rule on a bounded interval [a,b] only; on ℝ, differentiating under the integral needs a domination condition the hypotheses do not give. (3) THE DECISIVE BREAK, inf:parts-identity: integrating by parts on [−R, R] leaves the boundary term w(R,t)w_x(R,t) − w(−R,t)w_x(−R,t), and on the line there is no Dirichlet condition (no Lemma 1d) to make it vanish, nor any decay making its limit as R → ∞ zero. So E'(t) ≤ 0 is not established.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:prop-uniqueness-k-negative",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Proposition F: uniqueness holds for every real k, in particular k < 0 (proved by sine coefficients)",
+    "no_relation_note": "Related to the finding req:finding-k-negative-proofs-fail by subject only. That finding says the recorded proofs do not reach k < 0; this proposition says the statement is nevertheless true, by another argument not recorded as steps. No relation in the offered set (CONTRADICTS, DEPENDS_ON, ...) says 'true by a different method', so none is drawn. Search: 'k < 0 backward heat uniqueness'; nearest: the theorem req:thm-uniqueness (k > 0 setting).",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For EVERY real k (in particular k < 0, the backward heat equation solved forward from initial data, where existence generally fails), the Dirichlet problem (P) on [0,L] × [0,T] has at most one solution with u, u_t, u_x, u_xx continuous on the closed rectangle: any two solutions coincide.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-uniqueness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem: the Dirichlet problem for the heat equation has at most one solution",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let L > 0, T > 0 and k > 0. For given f, φ, g, h, the problem u_t − k·u_xx = f(x,t) on 0 ≤ x ≤ L, 0 ≤ t ≤ T, with u(x,0) = φ(x), u(0,t) = g(t), u(L,t) = h(t), has at most one solution u with u, u_t, u_x, u_xx continuous on the closed rectangle [0,L] × [0,T]: for ALL solutions u1, u2, u1 = u2 on the rectangle.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "variables": [
+     "L",
+     "T",
+     "k"
+    ]
+   }
+  },
+  {
+   "node_id": "req:thm-uniqueness-neumann",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Theorem N: the Neumann problem has at most one solution",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Let L, T, k > 0. The problem (P_N) has at most one solution with u, u_t, u_x, u_xx continuous on the closed rectangle: any two solutions coincide on [0, L] × [0, T]. (Uniqueness only. With Neumann data the energy proof works unchanged except at the integration-by-parts step.)",
+    "statement_kind": "theorem",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:thm-whole-line-with-growth",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Corrected statement: uniqueness on the line holds under a growth bound",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For the given k > 0 and T > 0: two solutions of u_t = k·u_xx on ℝ × (0,T] with the same initial data, both continuous on ℝ × [0,T] and both bounded by M·exp(a·x²), coincide.",
+    "statement_kind": "theorem",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:cite-continuity-and-derivative-algebra",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-differentiable\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-nonnegative\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-prime-nonpositive\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:counterexample-whole-line\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:mp-strict\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:neumann-energy-zero\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:neumann-parts\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:neumann-w-data\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:parts-identity\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-ge-zero-mp\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-homogeneous-pde\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-identically-zero\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-regular\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:whole-line-with-growth\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Cited: algebra of continuous functions and of derivatives\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"RECALLED, not read: elementary calculus; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorems 4.9 and 5.3. Theorem numbers recalled, not checked.\",\"statement\":\"Sums, differences, products and constant multiples of continuous functions are continuous; the restriction of a continuous function on R to a segment of R is continuous; and differentiation is linear and obeys the product rule: (p − q)' = p' − q', (αp)' = αp', (pq)' = p'q + pq', for partial derivatives as for ordinary ones.\",\"statement_kind\":\"theorem\",\"status\":\"proposed\",\"taken_as_given\":true,\"variables\":[\"p\",\"q\"]}",
+    "target_id": "req:cite-continuity-and-derivative-algebra",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:cite-riemann-integral-basics",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-nonnegative\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-prime-nonpositive\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-prime-via-pde\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-zero-at-0\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Cited: basic properties of the Riemann integral\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"RECALLED, not read: elementary properties of the Riemann integral; e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Theorems 6.8 and 6.12. Theorem numbers recalled, not checked.\",\"statement\":\"A continuous function on [a,b] is Riemann integrable; the integral is linear (∫(αp + βq) = α∫p + β∫q for constants α, β); and it is monotone (p ≤ q on [a,b] implies ∫p ≤ ∫q; in particular q ≥ 0 implies ∫q ≥ 0, and ∫0 = 0).\",\"statement_kind\":\"theorem\",\"status\":\"proposed\",\"taken_as_given\":true,\"variables\":[\"p\",\"q\"]}",
+    "target_id": "req:cite-riemann-integral-basics",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:cite-vanishing-integral",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-identically-zero\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Cited: a continuous nonnegative function with zero integral is zero\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"RECALLED, not read: standard lemma of Riemann integration, stated as an exercise in most analysis texts (e.g. W. Rudin, Principles of Mathematical Analysis, 3rd ed., 1976, Chapter 6, Exercise 2). Location recalled, not checked.\",\"statement\":\"If a < b and q is continuous on [a,b] with q(x) ≥ 0 for every x, and ∫_a^b q(x) dx = 0, then q(x) = 0 for every x in [a,b]. (Reason recalled: if q(x0) > 0, continuity gives q > q(x0)/2 on a subinterval of positive length, forcing the integral to be positive.)\",\"statement_kind\":\"lemma\",\"status\":\"proposed\",\"taken_as_given\":true,\"variables\":[\"q\"]}",
+    "target_id": "req:cite-vanishing-integral",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:hyp-L-T-positive",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-nonincreasing\",\"properties\":{\"role\":\"assumed\"}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:w-identically-zero\",\"properties\":{\"role\":\"assumed\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Hypothesis: L > 0 and T > 0\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"The rectangle is non-degenerate: L > 0 and T > 0, so [0, L] and [0, T] are intervals of positive length.\",\"statement_kind\":\"hypothesis\",\"status\":\"proposed\",\"variables\":[\"L\",\"T\"]}",
+    "target_id": "req:hyp-L-T-positive",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:hyp-k-positive",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:E-prime-nonpositive\",\"properties\":{\"role\":\"assumed\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Hypothesis: k > 0\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"The diffusion coefficient k is a positive constant: k > 0.\",\"statement_kind\":\"hypothesis\",\"status\":\"proposed\",\"variables\":[\"k\"]}",
+    "target_id": "req:hyp-k-positive",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:prop-uniqueness-k-negative",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:acct-23984879ca\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"Proposition (stated, not proved here): uniqueness still holds for k < 0\",\"no_relation_note\":\"Related to the finding req:finding-k-negative-proofs-fail by subject only. That finding says the recorded proofs do not reach k < 0; this proposition says the statement is nevertheless true, by another argument not recorded as steps. No relation in the offered set (CONTRADICTS, DEPENDS_ON, ...) says 'true by a different method', so none is drawn. Search: 'k < 0 backward heat uniqueness'; nearest: the theorem req:thm-uniqueness (k > 0 setting).\",\"priority\":\"medium\",\"provenance\":\"authored\",\"statement\":\"For k < 0 the Dirichlet problem on [0,L] × [0,T] still has at most one solution in the class of the theorem (EXISTENCE generally fails: the problem is ill-posed). Recalled argument, not recorded as steps: the sine coefficients b_n(t) = (2/L) ∫_0^L w(x,t) sin(nπx/L) dx of the difference satisfy b_n'(t) = −k(nπ/L)² b_n(t) (Leibniz rule and integrating by parts twice, with w = 0 and sin = 0 at both ends) and b_n(0) = 0, so b_n ≡ 0 for every n. Completeness of the sine system in L²(0,L) then gives w(·,t) = 0. This works for every real k. Also known as backward uniqueness for the heat equation (log-convexity, Agmon–Nirenberg).\",\"statement_kind\":\"proposition\",\"status\":\"proposed\",\"variables\":[\"k\"]}",
+    "target_id": "req:prop-uniqueness-k-negative",
+    "target_type": "Requirement"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}

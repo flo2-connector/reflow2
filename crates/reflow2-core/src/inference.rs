@@ -424,6 +424,23 @@ pub struct InferenceReading {
     /// theorems, item 4). Empty when every citation beneath it is verified.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_unverified: Vec<String>,
+    /// THE BRIDGES this step's verdict rests on, at any depth: statements of
+    /// kind `bridge`, each saying a formal statement models a claim of
+    /// another field (dec:idea-a-bridge-premise-says-a-formal-statement-
+    /// models-a-claim, option b). A step resting on one is conditional on it.
+    /// Empty when it rests on none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_bridges: Vec<String>,
+    /// CIRCULAR, AND WHY: a premise of this step is proven EQUIVALENT to its
+    /// conclusion (an EQUIVALENT_TO edge, at any distance) or is the same
+    /// formula (`same_formula_as`), so the step only restates the gap it
+    /// would close (dec:idea-speculate-the-bridge-that-would-close-a-gap-
+    /// then-test-it, option c). A flag, never a verdict: the step reads by
+    /// its rule as before. Read only on the step itself (get_node,
+    /// reasoning_report's support), never inside another step's reading.
+    /// Absent when it is not circular.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circular: Option<String>,
     /// THE STATISTICAL TESTS this step's verdict rests on, at any depth:
     /// checks whose support is a hypothesis test that rejected H0
     /// ([`crate::hypothesis`]). A step resting on one holds as EVIDENCE at
@@ -689,7 +706,11 @@ pub struct StaleCheck {
 /// `unsupported` or `refuted`.
 fn reads_as(r: &Read) -> &'static str {
     match r.truth {
-        Truth::Holds if !r.assumes.is_empty() || !r.unverified.is_empty() => "conditional",
+        Truth::Holds
+            if !r.assumes.is_empty() || !r.unverified.is_empty() || !r.bridges.is_empty() =>
+        {
+            "conditional"
+        }
         Truth::Holds => "holds",
         Truth::Fails => "refuted",
         Truth::Unknown if !r.contested_by.is_empty() => "contested",
@@ -730,6 +751,12 @@ pub struct InferenceImpact {
     /// Its premises the walk counts as lost: the seeds, and conclusions it
     /// found left unsupported on the way.
     pub lost_premises: Vec<String>,
+    /// THE BRIDGES among them: lost premises of kind `bridge`. Losing a
+    /// bridge leaves the formal statement under it standing and the claim it
+    /// carried that statement into unsupported through it
+    /// (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub bridges_lost: Vec<String>,
     /// Whether the CONCLUSION still stands with the losses counted, across
     /// every step that concludes it (alternative derivations are ANY).
     pub conclusion_after: Truth,
@@ -917,6 +944,12 @@ pub const K_OF_N_COMBINATIONS_CAP: usize = 256;
 struct Condition {
     assumes: BTreeSet<String>,
     unverified: BTreeSet<String>,
+    /// THE BRIDGES the line rests on: statements of kind `bridge`, each saying
+    /// a formal statement models a claim of another field
+    /// (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim,
+    /// option b). Carried like an unverified citation — what rests on one
+    /// holds only if the modelling is faithful — and never discharged.
+    bridges: BTreeSet<String>,
     evidential: BTreeSet<String>,
 }
 
@@ -925,6 +958,7 @@ impl Condition {
         Condition {
             assumes: self.assumes.union(&other.assumes).cloned().collect(),
             unverified: self.unverified.union(&other.unverified).cloned().collect(),
+            bridges: self.bridges.union(&other.bridges).cloned().collect(),
             evidential: self.evidential.union(&other.evidential).cloned().collect(),
         }
     }
@@ -934,6 +968,7 @@ impl Condition {
     fn within(&self, other: &Condition) -> bool {
         self.assumes.is_subset(&other.assumes)
             && self.unverified.is_subset(&other.unverified)
+            && self.bridges.is_subset(&other.bridges)
             && self.evidential.is_subset(&other.evidential)
     }
 
@@ -950,6 +985,7 @@ impl Condition {
                 .intersection(&l.unverified)
                 .cloned()
                 .collect(),
+            bridges: acc.bridges.intersection(&l.bridges).cloned().collect(),
             evidential: acc
                 .evidential
                 .intersection(&l.evidential)
@@ -958,10 +994,11 @@ impl Condition {
         })
     }
 
-    fn weight(&self) -> (usize, usize, usize) {
+    fn weight(&self) -> (usize, usize, usize, usize) {
         (
             self.assumes.len(),
             self.unverified.len(),
+            self.bridges.len(),
             self.evidential.len(),
         )
     }
@@ -1017,6 +1054,10 @@ pub struct LineConditions {
     /// The unverified citations this line rests on.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_unverified: Vec<String>,
+    /// The bridges this line rests on: statements of kind `bridge`, each
+    /// saying a formal statement models a claim of another field.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_bridges: Vec<String>,
     /// The statistical tests this line rests on.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_tests: Vec<String>,
@@ -1027,6 +1068,7 @@ impl LineConditions {
         LineConditions {
             assumes: c.assumes.iter().cloned().collect(),
             rests_on_unverified: c.unverified.iter().cloned().collect(),
+            rests_on_bridges: c.bridges.iter().cloned().collect(),
             rests_on_tests: c.evidential.iter().cloned().collect(),
         }
     }
@@ -1041,6 +1083,12 @@ impl LineConditions {
             parts.push(format!(
                 "if the unverified citation(s) {} say what they are recalled to say",
                 self.rests_on_unverified.join(", ")
+            ));
+        }
+        if !self.rests_on_bridges.is_empty() {
+            parts.push(format!(
+                "if the bridge(s) {} model what they are taken to model",
+                self.rests_on_bridges.join(", ")
             ));
         }
         if !self.rests_on_tests.is_empty() {
@@ -1064,6 +1112,7 @@ pub(crate) struct ClaimParts {
     pub why: String,
     pub assumes: Vec<String>,
     pub unverified: Vec<String>,
+    pub bridges: Vec<String>,
     pub tests: Vec<String>,
     pub lines: Vec<LineConditions>,
     pub lines_capped: bool,
@@ -1102,6 +1151,11 @@ struct Read {
     /// recalled to say — but never discharged by a step: checking its source
     /// is what clears it.
     unverified: BTreeSet<String>,
+    /// THE BRIDGES it rests on (statement_kind `bridge`): carried like an
+    /// unverified citation, never discharged — what rests on one holds only
+    /// if the formal statement models the claim faithfully
+    /// (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim).
+    bridges: BTreeSet<String>,
     /// THE STATISTICAL TESTS it rests on ([`crate::hypothesis`]): checks whose
     /// support is a hypothesis test that rejected H0. Carried like an
     /// unverified citation and never discharged: what rests on one is
@@ -1152,6 +1206,7 @@ fn far_read(far: &crate::far::FarReading) -> Read {
             Condition {
                 assumes: BTreeSet::new(),
                 unverified: far.holds_only_if.iter().cloned().collect(),
+                bridges: BTreeSet::new(),
                 // A far claim that is only SUPPORTED there (it rests on a
                 // statistical test) is evidence here too.
                 evidential: if far.proof_status.as_deref() == Some("supported") {
@@ -1190,10 +1245,23 @@ impl Read {
             lines_capped,
             assumes: best.assumes,
             unverified: best.unverified,
+            bridges: best.bridges,
             evidential: best.evidential,
             contested_by: BTreeSet::new(),
             refuted_under: BTreeSet::new(),
         }
+    }
+
+    /// This reading, carried THROUGH the bridge `id`: when it holds, every
+    /// line it holds on rests on the bridge too.
+    fn through_bridge(mut self, id: &str) -> Self {
+        if self.truth == Truth::Holds {
+            for l in &mut self.lines {
+                l.bridges.insert(id.to_string());
+            }
+            self.bridges.insert(id.to_string());
+        }
+        self
     }
 
     /// This reading, unknown because it was derived under the refuted
@@ -1384,8 +1452,11 @@ pub fn fixed_variable(entry: &str) -> &str {
 /// `method_rule` are the roles a line of reasoning gives its statements
 /// (req:statement-kinds-cover-an-objection-a-reply-an-unstated-premise-and-a-method-rule);
 /// `evidence` and `judgement` are reasoning from uncertain evidence
-/// (req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent).
-pub const STATEMENT_KINDS: [&str; 15] = [
+/// (req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent);
+/// `bridge` is a translation premise carrying a formal statement into another
+/// field's claim (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-
+/// claim, option b).
+pub const STATEMENT_KINDS: [&str; 16] = [
     "theorem",
     "lemma",
     "corollary",
@@ -1401,6 +1472,7 @@ pub const STATEMENT_KINDS: [&str; 15] = [
     "method_rule",
     "evidence",
     "judgement",
+    "bridge",
 ];
 
 /// Whether a node is EVIDENCE: a report, study, survey or measurement
@@ -1704,6 +1776,7 @@ impl DesignGraph {
             truth: r.truth,
             assumes: r.assumes.into_iter().collect(),
             unverified: r.unverified.into_iter().collect(),
+            bridges: r.bridges.into_iter().collect(),
             tests: r.evidential.into_iter().collect(),
             contested_by: r.contested_by.into_iter().collect(),
             why: r.why,
@@ -1725,6 +1798,12 @@ impl DesignGraph {
     /// documents, sorted. Empty when it rests on none.
     pub fn unverified_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
         Ok(self.premise_reading(id)?.unverified.into_iter().collect())
+    }
+
+    /// THE BRIDGES `id` rests on, as the design stands: statements of kind
+    /// `bridge`, beneath it or itself, sorted. Empty when it rests on none.
+    pub fn bridges_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        Ok(self.premise_reading(id)?.bridges.into_iter().collect())
     }
 
     // ─── A write that refutes says so ──────────────────────────────────────
@@ -2068,6 +2147,7 @@ impl DesignGraph {
             },
             assumes: own.assumes,
             unverified: own.unverified,
+            bridges: own.bridges,
             evidential: own.evidential,
         })
     }
@@ -2129,6 +2209,7 @@ impl DesignGraph {
                         .assumes
                         .difference(&scope.assumes)
                         .chain(line.unverified.difference(&scope.unverified))
+                        .chain(line.bridges.difference(&scope.bridges))
                         .cloned()
                         .collect();
                     // EVIDENCE AGAINST IS NOT A COUNTEREXAMPLE
@@ -2456,6 +2537,7 @@ impl DesignGraph {
             let lines_capped = lines_capped || capped;
             let assumes = lines[0].assumes.clone();
             let unverified = lines[0].unverified.clone();
+            let bridges = lines[0].bridges.clone();
             let evidential = lines[0].evidential.clone();
             let mut why = if assumes.is_empty() {
                 format!("concluded by {}", said.join("; "))
@@ -2471,6 +2553,12 @@ impl DesignGraph {
                 why.push_str(&format!(
                     ", resting on the unverified citation(s) {}",
                     unverified.iter().cloned().collect::<Vec<_>>().join(", ")
+                ));
+            }
+            if !bridges.is_empty() {
+                why.push_str(&format!(
+                    ", and only as far as the bridge(s) {} model what they are taken to model",
+                    bridges.iter().cloned().collect::<Vec<_>>().join(", ")
                 ));
             }
             if !evidential.is_empty() {
@@ -2716,6 +2804,11 @@ impl DesignGraph {
                     ),
                 ));
             }
+            // A BRIDGE ARGUED FOR IS STILL A BRIDGE: what rests on it carries
+            // it, whatever its own argument shows.
+            if statement_kind(&n.properties) == Some("bridge") {
+                return Ok(chain.through_bridge(id));
+            }
             return Ok(chain);
         }
 
@@ -2745,6 +2838,65 @@ impl DesignGraph {
                 return Ok(Read::plain(truth, why));
             }
             return self.evidence_read(id, &n.properties);
+        }
+
+        // A BRIDGE HOLDS AS A BRIDGE (dec:idea-a-bridge-premise-says-a-formal-
+        // statement-models-a-claim, option b, chosen 2026-10-22 after the
+        // Lucas–Penrose trial): "the formal statement F models the claim P".
+        // It holds — it is the step a cross-domain argument takes — but only
+        // as itself: what rests on it carries it, like an unverified citation,
+        // so it reads CONDITIONAL on the bridge; and because it is an ordinary
+        // premise, never an assumed one, an objection to it reaches it and
+        // contests every claim resting on it. An `assumed` premise was immune
+        // to objection, a `taken_as_given` one filed the translation beside
+        // the theorem as a foundation, and a plain one read "not delivered".
+        if matches!(node_type, node::REQUIREMENT | node::CONSTRAINT)
+            && statement_kind(&n.properties) == Some("bridge")
+        {
+            return Ok(Read::one(
+                Truth::Holds,
+                "a bridge: it says a formal statement models a claim of another field, and \
+                 what rests on it holds only as far as that modelling is faithful"
+                    .to_string(),
+                Condition {
+                    bridges: BTreeSet::from([id.to_string()]),
+                    ..Condition::default()
+                },
+            ));
+        }
+
+        // A HYPOTHESIS IS ASSUMED (fact:root-cause-proof-statements-fall-
+        // through-to-software-predicates-and-assumed-premises-stopped-counting-
+        // 2026-10-22, cause 2). It is a supposition taken up for the sake of
+        // argument, so it holds only UNDER ITSELF: what rests on it as an
+        // ordinary premise holds only under it, until a step discharges it.
+        // Until 2026-10-22 it fell through to the requirement predicate below
+        // and read "not delivered" while `statement_reading` read it
+        // `assumed` or `discharged`: the two readers disagreed.
+        if matches!(node_type, node::REQUIREMENT | node::CONSTRAINT)
+            && statement_kind(&n.properties) == Some("hypothesis")
+        {
+            let assumed_in = self.steps_assuming(id)?;
+            let why = if assumed_in.is_empty() {
+                "a hypothesis: a supposition no step takes up yet, so it holds only under itself \
+                 and is never a stated foundation"
+                    .to_string()
+            } else {
+                format!(
+                    "a hypothesis: a supposition taken up in {} for the sake of argument, so it \
+                     holds only under itself, and what rests on it holds only under it until a \
+                     step discharges it",
+                    assumed_in.join(", ")
+                )
+            };
+            return Ok(Read::one(
+                Truth::Holds,
+                why,
+                Condition {
+                    assumes: BTreeSet::from([id.to_string()]),
+                    ..Condition::default()
+                },
+            ));
         }
 
         let (truth, why) = match node_type {
@@ -2902,6 +3054,7 @@ impl DesignGraph {
         }
         let mut assumes = BTreeSet::new();
         let mut unverified = BTreeSet::new();
+        let mut bridges = BTreeSet::new();
         let mut evidential = BTreeSet::from([id.to_string()]);
         let mut against = Vec::new();
         for e in self.outgoing(id, Some(edge::DEPENDS_ON))? {
@@ -2910,6 +3063,7 @@ impl DesignGraph {
                 Truth::Holds => {
                     assumes.extend(r.assumes);
                     unverified.extend(r.unverified);
+                    bridges.extend(r.bridges);
                     evidential.extend(r.evidential);
                 }
                 Truth::Fails => against.push(format!("{} is refuted: {}", e.to_id, r.why)),
@@ -2972,6 +3126,7 @@ impl DesignGraph {
             Condition {
                 assumes,
                 unverified,
+                bridges,
                 evidential,
             },
         ))
@@ -3088,10 +3243,20 @@ impl DesignGraph {
                 d.lines,
                 d.lines_capped,
             ),
+            // A DERIVATION HELD UP ONLY BY A DISPUTE IS CARRIED, not dropped
+            // (req:a-conclusion-whose-every-route-is-contested-reads-
+            // contested; the Lucas–Penrose trial, 2026-10-22): the reductio
+            // resting on a contested ⊥ is a contested route, and its
+            // conclusion reads `contested`. Until 2026-10-23 this read plain
+            // unknown, and the main conclusion read "unproven, no derivation
+            // holds" while every objection against it stood on a translation
+            // step under the ⊥.
             Some(d) => Read::plain(
                 Truth::Unknown,
                 format!("a falsum (⊥) not derived: {}", d.why),
-            ),
+            )
+            .contested(d.contested_by)
+            .under_refuted(d.refuted_under),
             None => Read::plain(
                 Truth::Unknown,
                 "a falsum (⊥) nothing derives: there is no contradiction to rest on yet"
@@ -3136,6 +3301,7 @@ impl DesignGraph {
             Condition {
                 assumes: BTreeSet::new(),
                 unverified: BTreeSet::from([id.to_string()]),
+                bridges: BTreeSet::new(),
                 evidential: BTreeSet::new(),
             },
         ))
@@ -3180,6 +3346,7 @@ impl DesignGraph {
             Condition {
                 assumes: BTreeSet::new(),
                 unverified,
+                bridges: BTreeSet::new(),
                 evidential: BTreeSet::from([id.to_string()]),
             },
         ))
@@ -3240,6 +3407,11 @@ impl DesignGraph {
         let mut ev = Eval::new(&lost);
         let mut reading = self.step_reading(inference_id, &mut ev, INFERENCE_DEPTH)?;
         reading.independence = self.independence_of(inference_id)?;
+        // CIRCULAR (dec:idea-speculate-the-bridge-that-would-close-a-gap-then-
+        // test-it, option c): a flag beside the verdict, never in its place.
+        // Read on the step itself, as `independence` is, never inside another
+        // step's reading.
+        reading.circular = self.circularity_of(inference_id)?.map(|c| c.why);
         Ok(Some(reading))
     }
 
@@ -3538,6 +3710,20 @@ impl DesignGraph {
             // "stated" (req:a-conclusion-whose-every-route-is-contested-reads-
             // contested, the stage-5 re-read).
             ("contested", why)
+        } else if kind == "bridge" {
+            // A BRIDGE READS AS A BRIDGE (dec:idea-a-bridge-premise-says-a-
+            // formal-statement-models-a-claim, option b): neither a cited
+            // result nor a foundation, and never "supported at α" — the four
+            // colour trial's bridge, recorded as a proposition with evidence,
+            // read as a statistical test.
+            (
+                "bridge",
+                format!(
+                    "a bridge: it says a formal statement models a claim of another field, so \
+                     what rests on it holds only as far as the modelling is faithful, and an \
+                     objection to it contests everything that rests on it; {why}"
+                ),
+            )
         } else if kind == "unstated_premise" {
             if is_taken_as_given(&self.node_props(id)?.unwrap_or_default()) {
                 (
@@ -3670,6 +3856,8 @@ impl DesignGraph {
             confirmation,
             assumes: Vec::new(),
             rests_on_unverified: Vec::new(),
+            rests_on_bridges: Vec::new(),
+            circular: None,
             rests_on_tests: Vec::new(),
             discharges,
             cases: None,
@@ -4044,6 +4232,7 @@ impl DesignGraph {
         reading.lines_capped |= capped;
         let assumes = lines[0].assumes.clone();
         reading.rests_on_unverified = lines[0].unverified.iter().cloned().collect();
+        reading.rests_on_bridges = lines[0].bridges.iter().cloned().collect();
         reading.rests_on_tests = lines[0].evidential.iter().cloned().collect();
         // A GENERALIZATION IS CHECKED (Anthony's choice of 2026-10-17:
         // declared and checked). A step generalizing over a variable that
@@ -4243,6 +4432,7 @@ impl DesignGraph {
         if reading.verdict != Truth::Holds {
             reading.assumes = union.assumes.iter().cloned().collect();
             reading.rests_on_unverified = union.unverified.iter().cloned().collect();
+            reading.rests_on_bridges = union.bridges.iter().cloned().collect();
             reading.rests_on_tests = union.evidential.iter().cloned().collect();
             reading.lines = vec![union];
             reading.lines_capped = false;
@@ -4254,14 +4444,16 @@ impl DesignGraph {
         // here too, not only at its claim; one resting on evidence is
         // supported. Until 2026-10-20 the step read plain `holds`.
         if reading.verdict == Truth::Holds {
-            reading.holds_as =
-                if !reading.assumes.is_empty() || !reading.rests_on_unverified.is_empty() {
-                    Some("conditional")
-                } else if !reading.rests_on_tests.is_empty() {
-                    Some("supported")
-                } else {
-                    None
-                };
+            reading.holds_as = if !reading.assumes.is_empty()
+                || !reading.rests_on_unverified.is_empty()
+                || !reading.rests_on_bridges.is_empty()
+            {
+                Some("conditional")
+            } else if !reading.rests_on_tests.is_empty() {
+                Some("supported")
+            } else {
+                None
+            };
         }
         Ok(reading)
     }
@@ -4484,7 +4676,10 @@ impl DesignGraph {
         let mut holding = Vec::new();
         for s in self.inferences_concluding(id)? {
             let r = self.step_reading(&s, &mut ev, depth)?;
-            if r.verdict == Truth::Holds && r.assumes.is_empty() && r.rests_on_unverified.is_empty()
+            if r.verdict == Truth::Holds
+                && r.assumes.is_empty()
+                && r.rests_on_unverified.is_empty()
+                && r.rests_on_bridges.is_empty()
             {
                 holding.push(s);
             }
@@ -4513,11 +4708,24 @@ impl DesignGraph {
         Ok(self.inference_walk_full(seeds)?.rows)
     }
 
+    /// How the change walk reads a conclusion: by its truth, except a FALSUM,
+    /// which it reads by its DERIVATION ([`Self::falsum_derivation`]) — what a
+    /// reductio rests on is "⊥ follows", and a ⊥'s own truth is false before
+    /// and after any change.
+    fn walk_read(&self, id: &str, ev: &mut Eval<'_>) -> Result<Read, DynoError> {
+        if self.node_props(id)?.is_some_and(|p| is_falsum(&p)) {
+            self.falsum_derivation(id, ev, INFERENCE_DEPTH)
+        } else {
+            self.truth_full(id, ev, INFERENCE_DEPTH)
+        }
+    }
+
     /// [`Self::inference_walk`], with what the change brings BACK and what it
     /// leaves STALE beside the rows: every objection whose reply the change
     /// takes away (reinstatement in reverse), and every check whose
     /// conditions it leaves without support.
     pub fn inference_walk_full(&self, seeds: &[&str]) -> Result<InferenceWalk, DynoError> {
+        let seed_set: BTreeSet<&str> = seeds.iter().copied().collect();
         let mut lost: BTreeSet<String> = seeds.iter().map(|s| s.to_string()).collect();
         let mut lost_at: BTreeMap<String, usize> =
             seeds.iter().map(|s| (s.to_string(), 0)).collect();
@@ -4588,9 +4796,16 @@ impl DesignGraph {
                 if lost.contains(&c) || newly.iter().any(|(n, _)| *n == c) {
                     continue;
                 }
-                let raw = self.truth_full(&c, &mut ev, INFERENCE_DEPTH)?;
+                // A FALSUM IS READ BY ITS DERIVATION HERE TOO (the Lucas–
+                // Penrose trial, 2026-10-22: "the what-if walk stops at the
+                // falsum and never reaches the reductio or the conclusion").
+                // Its own truth is false before and after any change, so read
+                // that way nothing about it ever "fell", and the walk ended at
+                // the ⊥. What a reductio rests on is "⊥ follows", so whether
+                // the change costs the ⊥ is whether it costs its derivation.
+                let raw = self.walk_read(&c, &mut ev)?;
                 let after = self.without_dropped(raw.clone(), &lost);
-                let before = self.truth_full(&c, &mut before_ev, INFERENCE_DEPTH)?;
+                let before = self.walk_read(&c, &mut before_ev)?;
                 // HELD ONLY UNDER A DROPPED ASSUMPTION: it still holds inside
                 // the argument, so it is not counted lost — a step that
                 // discharges the assumption above it is untouched (a reductio
@@ -4696,8 +4911,22 @@ impl DesignGraph {
             };
             let (conclusion_was, conclusion_after, conclusion_read) = match &after.conclusion {
                 Some(c) => {
-                    let was = self.truth_full(c, &mut before_ev, INFERENCE_DEPTH)?;
-                    let now = self.truth_full(c, &mut after_ev, INFERENCE_DEPTH)?;
+                    let was = self.walk_read(c, &mut before_ev)?;
+                    // A CLAIM THE WALK COUNTED LOST IS READ ON WHAT IS LEFT,
+                    // never as "lost" (req:a-conclusion-whose-every-route-is-
+                    // contested-reads-contested; the Gettier rung, 2026-10-23:
+                    // "JTB is not sufficient" read `unsupported` while its
+                    // untouched barn route was contested). Losing it is what
+                    // carries the walk on; what it is left with is read over
+                    // every other loss, as a lost step is.
+                    let now = if lost.contains(c) && !seed_set.contains(c.as_str()) {
+                        let without_it: BTreeSet<String> =
+                            lost.iter().filter(|x| *x != c).cloned().collect();
+                        let mut ev = Eval::new(&without_it);
+                        self.walk_read(c, &mut ev)?
+                    } else {
+                        self.walk_read(c, &mut after_ev)?
+                    };
                     let now = self.without_dropped(now, &lost);
                     (reads_as(&was), now.truth, Some(now))
                 }
@@ -4754,6 +4983,15 @@ impl DesignGraph {
                 .filter(|p| lost.contains(&p.id))
                 .map(|p| p.id.clone())
                 .collect();
+            let mut bridges_lost = Vec::new();
+            for p in &lost_premises {
+                if self
+                    .node_props(p)?
+                    .is_some_and(|props| statement_kind(&props) == Some("bridge"))
+                {
+                    bridges_lost.push(p.clone());
+                }
+            }
             rows.push(InferenceImpact {
                 inference: s.clone(),
                 impact: match (before.verdict, after.verdict) {
@@ -4770,6 +5008,7 @@ impl DesignGraph {
                 before: before.verdict,
                 after: after.verdict,
                 lost_premises,
+                bridges_lost,
                 conclusion_after,
                 conclusion_was,
                 conclusion_reads,
@@ -5065,9 +5304,19 @@ impl DesignGraph {
     }
 
     /// Whether `id` takes part in a line of reasoning: a step concludes it, or
-    /// it is a premise of one.
+    /// it is a premise of one — an ORDINARY premise or an ASSUMED one.
+    ///
+    /// AN ASSUMED PREMISE TAKES PART (fact:root-cause-proof-statements-fall-
+    /// through-to-software-predicates-and-assumed-premises-stopped-counting-
+    /// 2026-10-22). Until 4879171c5 (2026-10-17) this read every PREMISE_OF;
+    /// that commit narrowed [`Self::steps_resting_on`] to what a CHANGE
+    /// reaches, for the what-if, and so narrowed this too: a hypothesis only
+    /// ever assumed read as outside the reasoning, `unlinked_intent` asked
+    /// about it, and a proof design stopped reading as one. Membership reads
+    /// the edges themselves; `steps_resting_on` stays as it is for the walk.
     pub fn takes_part_in_reasoning(&self, id: &str) -> Result<bool, DynoError> {
-        Ok(!self.inferences_concluding(id)?.is_empty() || !self.steps_resting_on(id)?.is_empty())
+        Ok(!self.inferences_concluding(id)?.is_empty()
+            || !self.outgoing(id, Some(edge::PREMISE_OF))?.is_empty())
     }
 
     /// Whether `id` belongs to a line of reasoning: a step concludes it, it is
@@ -5372,6 +5621,15 @@ impl DesignGraph {
         if top_steps.is_empty() {
             return Ok(None);
         }
+        // A FALSUM IS NO CLAIM TO PROVE (the four colour trial, 2026-10-23:
+        // ⊥ read proof_status `unproven` beside `statement_reading` `false`).
+        // What a step concluding it shows is that the assumptions under it
+        // cannot all hold, and `statement_reading` says that — `false`, or
+        // `inconsistent` when nothing is assumed. A proof status for it would
+        // read the contradiction as an unproven result.
+        if self.node_props(id)?.is_some_and(|p| is_falsum(&p)) {
+            return Ok(None);
+        }
         // TWO QUESTIONS, ANSWERED APART. Whether a line is wholly confirmed is
         // judged per line, so each line walks from its own empty visited set
         // and sees every one of its steps, shared ones included. How many
@@ -5464,6 +5722,26 @@ impl DesignGraph {
                         "it holds only if the unverified citation(s) or undocumented report(s) \
                          {} say what they are recalled to say: no pinned source documents them",
                         unverified.join(", ")
+                    ),
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
+                }));
+            }
+        }
+        // A derivation holds only AS FAR AS A BRIDGE MODELS WHAT IT IS TAKEN TO
+        // MODEL (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-
+        // claim, option b): conditional on it, never shown outright.
+        if any_holds && conclusion_truth == Truth::Holds {
+            let bridges = self.bridges_under(id)?;
+            if !bridges.is_empty() {
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Conditional,
+                    why: format!(
+                        "it holds only as far as the bridge(s) {} model what they are taken to \
+                         model: a formal result carried into another field's claim through them",
+                        bridges.join(", ")
                     ),
                     total_steps: total,
                     confirmed_steps: confirmed,

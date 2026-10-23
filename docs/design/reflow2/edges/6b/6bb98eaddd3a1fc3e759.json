@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6d441e7163fc1a5eec0c7b05620c8e1d2a0813611a40e3b080ea8ae037c743b8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-735a9b46f06ba5df",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c0103e5b908a0381803fae8aecd8bd21317887e406f127ab0982d0cd4fd2ae97",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:fixture-argument-trial-lucas-penrose"
+}

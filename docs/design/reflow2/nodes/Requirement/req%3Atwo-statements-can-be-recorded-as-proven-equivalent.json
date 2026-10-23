@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:d4beac9252a70cc3cdf578977e8c7898895a0501cbfccc79b831da943afac9a0",
+  "content_hash": "sha256:0f6d53b0c7555847e0dc2bec4723ae16aa1ded0d749dedc7179bb3b75cc55621",
   "node_id": "req:two-statements-can-be-recorded-as-proven-equivalent",
   "node_type": "Requirement",
+  "prev_item_hash": "sha256:d4beac9252a70cc3cdf578977e8c7898895a0501cbfccc79b831da943afac9a0",
   "properties": {
     "concern": "core",
     "kind": "functional",
@@ -11,6 +12,6 @@
     "provenance": "authored",
     "source": "Anthony Sligar (who:ajs), dev_reflow2 hub session, 2026-10-22, Riemann-map rung",
     "statement": "Anthony, 2026-10-22, on the Riemann-map rung's question (\"Go with your recommendations for questions 1 through 3\").\n\nMEASURED: design 5cdc6110fcaa5ad5 had to join RH and Robin's inequality with DUPLICATES. detect_defects then proposed MERGING them (suggested_fix_type: merge), which would destroy the map; the owner acknowledged both suggestions as wrong. The seven equivalence theorems sat isolated, because two inference steps would form a cycle, and a step concluding RH would make RH read conditional.\n\nWHAT IT ASKS: a relation between two statements, backed by a cited or proven biconditional, that:\n(1) reads as \"equivalent\", never \"duplicate\", and is never offered for merge;\n(2) leaves each side's own reading unchanged: an open conjecture stays open;\n(3) shows in a what-if that refuting or establishing one side reaches the other;\n(4) gives the speculative-link circularity check (dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it) what it needs, so a proposed bridge equivalent to the gap is flagged mechanically, not by the agent's judgment alone.\n\nBuilt in the queued reflow2 PR \"proofs and arguments read right\". Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
-    "status": "accepted"
+    "status": "met"
   }
 }

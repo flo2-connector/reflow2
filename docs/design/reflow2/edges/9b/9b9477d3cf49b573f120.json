@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2fd9525fd02c61d98208d3cd30b0643fd3275e1f1b0a98585c84ddc4227abad2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:ceaa4ebca65df8292fbf1f7b381a7c564b58da84a69bc82e5e0976dab6b837e7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

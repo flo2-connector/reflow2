@@ -1,0 +1,2751 @@
+{
+ "content_hash": "sha256:88f4c6996777596652630c48bdb0fe6f1cd6dcf8af703a3eeaf64949384e0039",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-gamma-lower-bound"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-robin-1984-equivalence"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-schoenfeld-1976-rh-implies-explicit-pnt"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:part-platt-trudgian-2021-verified-to-3e12"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-reflow2-has-no-is-equivalent-to-link-the-932e2c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:cite-robin-1984-equivalence"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-reflow2-has-no-is-equivalent-to-link-the-932e2c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:riemann-hypothesis"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-reflow2-has-no-is-equivalent-to-link-the-932e2c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:robin-inequality-all-n"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-three-speculative-bridges-are-recorded-each-left-proposed-9c59de",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:bridge-1-robin-on-colossally-abundant-numbers"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-three-speculative-bridges-are-recorded-each-left-proposed-9c59de",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:bridge-2-almost-all-zeros-on-the-line"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-three-speculative-bridges-are-recorded-each-left-proposed-9c59de",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:bridge-3-quasi-rh-fixed-strip"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:bridge-1-robin-on-colossally-abundant-numbers",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:bridge-2-almost-all-zeros-on-the-line",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:bridge-3-quasi-rh-fixed-strip",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:file-robin-inequality-5041-5340-calc-json",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:src-wikipedia-euler-constant",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:src-wikipedia-riemann-hypothesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "chg:file-robin-inequality-5041-5340-calc-json-20261022t092914481-1ba8",
+   "properties": {
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-sigma-gamma-li",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-zeta-and-nontrivial-zeros",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "decision:ack:heal:10815be066daa220",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "decision:ack:heal:c5e6f408f44f02ce",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:bounded-robin-from-computation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rh-gives-explicit-pnt-error",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rh-gives-lindelof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rh-gives-prime-gaps",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:rh-gives-two-thirds-simple",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:riemann-hypothesis-map",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-reflow2-has-no-is-equivalent-to-link-the-932e2c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-three-speculative-bridges-are-recorded-each-left-proposed-9c59de",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bridge-2-almost-all-zeros-on-the-line",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:bridge-3-quasi-rh-fixed-strip",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-cramer-1920-rh-implies-prime-gaps",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-gamma-lower-bound",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-lagarias-2002-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-li-1997-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-littlewood-mertens-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-littlewood-rh-implies-lindelof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-montgomery-1973-pair-correlation",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-newman-1976-debruijn-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-nyman-beurling-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-robin-1984-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-schoenfeld-1976-rh-implies-explicit-pnt",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-von-koch-1901-equivalence",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cond-explicit-pnt-error",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cond-lindelof-hypothesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cond-prime-gaps",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cond-two-thirds-simple-zeros",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-gourdon-2004-first-1e13-zeros",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-odlyzko-gue-statistics",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-conrey-1989-two-fifths",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-dlvp-1899-zero-free-region",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-guth-maynard-2024-zero-density",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-hadamard-dlvp-1896-no-zeros-on-re1",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-hardy-1914-infinitely-many-on-line",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-levinson-1974-one-third",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-platt-trudgian-2021-verified-to-3e12",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-polymath15-2019-lambda-upper",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-pratt-et-al-2020-five-twelfths",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-rodgers-tao-2020-lambda-nonnegative",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-selberg-1942-positive-proportion",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:part-vinogradov-korobov-1958-zero-free-region",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:robin-inequality-5041-to-5340",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:robin-inequality-all-n",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "ver:robin-inequality-bounded-check-5041-5340",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "CHANGED",
+   "from_id": "chg:file-robin-inequality-5041-5340-calc-json-20261022t092914481-1ba8",
+   "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+   },
+   "to_id": "art:file-robin-inequality-5041-5340-calc-json"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:bounded-robin-from-computation",
+   "properties": {},
+   "to_id": "req:robin-inequality-5041-to-5340"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rh-gives-explicit-pnt-error",
+   "properties": {},
+   "to_id": "req:cond-explicit-pnt-error"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rh-gives-lindelof",
+   "properties": {},
+   "to_id": "req:cond-lindelof-hypothesis"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rh-gives-prime-gaps",
+   "properties": {},
+   "to_id": "req:cond-prime-gaps"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:rh-gives-two-thirds-simple",
+   "properties": {},
+   "to_id": "req:cond-two-thirds-simple-zeros"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-gourdon-2004-first-1e13-zeros",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only: the first 10^13 zeros computed on the line (not fully rigorous). Finite numerical evidence; never a premise."
+   },
+   "to_id": "req:riemann-hypothesis"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:ev-odlyzko-gue-statistics",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only: high-altitude zeros on the line with GUE spacing statistics. Numerical and heuristic evidence; never a premise."
+   },
+   "to_id": "req:riemann-hypothesis"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:part-platt-trudgian-2021-verified-to-3e12",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only: a rigorous BOUNDED verification (all zeros up to height 3 x 10^12 on the line). It proves the bounded statement and says nothing above that height, so it is evidence for RH, never a proof."
+   },
+   "to_id": "req:riemann-hypothesis"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:robin-inequality-5041-to-5340",
+   "properties": {
+    "alignment": "supporting",
+    "evidence": "Corroboration only, never a premise: the bounded statement is 300 instances of the open conjecture 'Robin's inequality for all n > 5040'. A finite range proves only itself and cannot show the infinite statement."
+   },
+   "to_id": "req:robin-inequality-all-n"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:file-robin-inequality-5041-5340-calc-json",
+   "properties": {},
+   "to_id": "ver:robin-inequality-bounded-check-5041-5340"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:src-wikipedia-euler-constant",
+   "properties": {},
+   "to_id": "req:cite-gamma-lower-bound"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:src-wikipedia-riemann-hypothesis",
+   "properties": {},
+   "to_id": "req:cite-robin-1984-equivalence"
+  },
+  {
+   "edge_type": "DUPLICATES",
+   "from_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+   "properties": {
+    "basis": "asserted",
+    "evidence": "CIRCULAR bridge: by the recalled colossally-abundant reduction (Robin 1984; Briggs 2006) this bridge is equivalent to Robin's inequality for all n > 5040, hence (Robin 1984) to RH. It restates the gap, it does not fill it."
+   },
+   "to_id": "req:robin-inequality-all-n"
+  },
+  {
+   "edge_type": "DUPLICATES",
+   "from_id": "req:robin-inequality-all-n",
+   "properties": {
+    "basis": "asserted",
+    "evidence": "Logically EQUIVALENT to RH by Robin's theorem (1984, cited and recalled: req:cite-robin-1984-equivalence): the same open claim in another form, said for a different reason. Never merged; proving either proves the other, so neither is evidence for the other."
+   },
+   "to_id": "req:riemann-hypothesis"
+  },
+  {
+   "edge_type": "EVOLVES_INTO",
+   "from_id": "req:part-pratt-et-al-2020-five-twelfths",
+   "properties": {
+    "evidence": "The proportion-on-the-line results (Selberg, Levinson, Conrey, Pratt et al.: > 5/12) grown up to proportion one would be this bridge. Speculative: no method is known to reach 1."
+   },
+   "to_id": "req:bridge-2-almost-all-zeros-on-the-line"
+  },
+  {
+   "edge_type": "EVOLVES_INTO",
+   "from_id": "req:part-vinogradov-korobov-1958-zero-free-region",
+   "properties": {
+    "evidence": "The zero-free regions (de la Vallee Poussin 1899, Vinogradov-Korobov 1958) shrink to width 0 as |t| grows; widened to a fixed strip of width delta they would be this bridge. Speculative: no method is known to give a fixed strip."
+   },
+   "to_id": "req:bridge-3-quasi-rh-fixed-strip"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+   "properties": {},
+   "to_id": "decision:ack:heal:10815be066daa220"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {},
+   "to_id": "decision:ack:heal:c5e6f408f44f02ce"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:robin-inequality-all-n",
+   "properties": {},
+   "to_id": "decision:ack:heal:10815be066daa220"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "req:robin-inequality-all-n",
+   "properties": {},
+   "to_id": "decision:ack:heal:c5e6f408f44f02ce"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:bridge-1-robin-on-colossally-abundant-numbers"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:bridge-2-almost-all-zeros-on-the-line",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:bridge-2-almost-all-zeros-on-the-line"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:bridge-3-quasi-rh-fixed-strip",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:bridge-3-quasi-rh-fixed-strip"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-sigma-gamma-li",
+   "properties": {},
+   "to_id": "inf:bounded-robin-from-computation"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-cramer-1920-rh-implies-prime-gaps",
+   "properties": {},
+   "to_id": "inf:rh-gives-prime-gaps"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-gamma-lower-bound",
+   "properties": {},
+   "to_id": "inf:bounded-robin-from-computation"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-littlewood-rh-implies-lindelof",
+   "properties": {},
+   "to_id": "inf:rh-gives-lindelof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-montgomery-1973-pair-correlation",
+   "properties": {},
+   "to_id": "inf:rh-gives-two-thirds-simple"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:cite-schoenfeld-1976-rh-implies-explicit-pnt",
+   "properties": {},
+   "to_id": "inf:rh-gives-explicit-pnt-error"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:rh-gives-explicit-pnt-error"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:rh-gives-lindelof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:rh-gives-prime-gaps"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:riemann-hypothesis",
+   "properties": {
+    "role": "assumed"
+   },
+   "to_id": "inf:rh-gives-two-thirds-simple"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "ver:robin-inequality-bounded-check-5041-5340",
+   "properties": {},
+   "to_id": "inf:bounded-robin-from-computation"
+  },
+  {
+   "edge_type": "VERIFIES",
+   "from_id": "ver:robin-inequality-bounded-check-5041-5340",
+   "properties": {
+    "pinned": "gamma lower bound 0.5772156649,trial divisors 1 to 73",
+    "swept": "n from 5040 to 5340"
+   },
+   "to_id": "req:robin-inequality-5041-to-5340"
+  }
+ ],
+ "graph_id": "5cdc6110fcaa5ad5",
+ "nodes": [
+  {
+   "node_id": "art:file-robin-inequality-5041-5340-calc-json",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "data",
+    "checksum": "sha256:0d903e88fc583671eb783971bed60c05c20b4a8e485f2865df91a40a2b3eb459",
+    "description": "Made by Anthony Sligar on 2026-10-22 with flo2-calc, in a chat (use_helper_tool).",
+    "location": "robin-inequality-5041-5340.calc.json",
+    "name": "robin-inequality-5041-5340.calc.json",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:src-wikipedia-euler-constant",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:9102516db72501392548860b2bbca798ffbf4e4f0d1275d27f56383b75e23f3b",
+    "description": "SOURCE STRENGTH: TERTIARY, a statement of the digits. The page gives γ = 0.57721 56649 01532 86060 65120 90082 …\n\nThis supports the design's cited lower bound 0.5772156649 (the true γ exceeds it by about 1.5e-11), so a Robin pass computed with the bound is a pass with the true γ.\n\nRegistered on Anthony's word, 2026-10-22.",
+    "location": "https://en.wikipedia.org/w/index.php?title=Euler%27s_constant&action=raw (observer's copy: scratchpad rh-src/wiki-Euler_constant.wikitext)",
+    "name": "Wikipedia, \"Euler's constant\" (raw wikitext fetched 2026-10-22): TERTIARY source for γ's digits",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "art:src-wikipedia-riemann-hypothesis",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "checksum": "sha256:14f7255dad062f29c24c19940bf982d08fcadbdb13fab5b3b3f5389c265a7ae6",
+    "description": "SOURCE STRENGTH: TERTIARY, statement only. An encyclopedia's statement of each result, with its citation. The primary papers were NOT read, so a citation documented by this reads \"the encyclopedia states this, citing X\", never \"X's proof was checked\".\n\nChecked by the observer on 2026-10-22, quoting the page:\n- Robin (1984): \"σ(n) < e^γ n log log n for all n > 5040 if and only if the Riemann hypothesis is true\".\n- Also on the page: Lagarias (2002); von Koch (1901) with Schoenfeld (1976); Nyman (1950); Levinson (1974), Conrey (1989) and Pratt et al. (2020, 5/12); Platt–Trudgian (2021, 1.2363e13 zeros, height ≤ 3e12).\n\nRegistered on Anthony's word, 2026-10-22: \"Go with your recommendations for questions 1 through 3\".",
+    "location": "https://en.wikipedia.org/w/index.php?title=Riemann_hypothesis&action=raw (observer's copy: scratchpad rh-src/wiki-Riemann_hypothesis.wikitext)",
+    "name": "Wikipedia, \"Riemann hypothesis\" (raw wikitext fetched 2026-10-22): TERTIARY source, statements only",
+    "status": "realized"
+   }
+  },
+  {
+   "node_id": "chg:file-robin-inequality-5041-5340-calc-json-20261022t092914481-1ba8",
+   "node_type": "ChangeEvent",
+   "properties": {
+    "change_type": "new_feature",
+    "detected_at": "2026-10-22",
+    "name": "robin-inequality-5041-5340.calc.json made with flo2-calc, in a chat (use_helper_tool)",
+    "subject": "system",
+    "summary": "Anthony Sligar made robin-inequality-5041-5340.calc.json (123347 bytes, sha256 0d903e88fc583671eb783971bed60c05c20b4a8e485f2865df91a40a2b3eb459) into the design with flo2-calc, in a chat (use_helper_tool). The design records it as art:file-robin-inequality-5041-5340-calc-json."
+   }
+  },
+  {
+   "node_id": "con:def-sigma-gamma-li",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: sigma(n), Euler's constant gamma, li(x), pi(x), M(x)",
+    "priority": "medium",
+    "statement": "sigma(n) is the sum of the positive divisors of n. gamma is the Euler-Mascheroni constant, the limit of H_n - ln n, where H_n = 1 + 1/2 + ... + 1/n; gamma = 0.5772156649015328606... (value recalled). pi(x) counts primes up to x; li(x) is the logarithmic integral; M(x) is the Mertens function, the sum of the Moebius function mu(n) for n <= x.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "n",
+     "x"
+    ]
+   }
+  },
+  {
+   "node_id": "con:def-zeta-and-nontrivial-zeros",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "Definition: the Riemann zeta function and its nontrivial zeros",
+    "priority": "medium",
+    "statement": "zeta(s) = sum over n >= 1 of n^(-s) for Re(s) > 1, continued meromorphically to the whole complex plane (one simple pole, at s = 1). Its trivial zeros are s = -2, -4, -6, ...; every other zero is a NONTRIVIAL zero and lies in the critical strip 0 < Re(s) < 1. The critical line is Re(s) = 1/2. N(T) counts nontrivial zeros with 0 < Im(s) <= T, and N0(T) those of them on the critical line.",
+    "statement_kind": "definition",
+    "taken_as_given": true,
+    "variables": [
+     "s",
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:ajs",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "decision:ack:heal:10815be066daa220",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "Accepted the structural defect heal:10815be066daa220.",
+    "name": "Reviewed: heal:10815be066daa220",
+    "rationale": "DO NOT MERGE. Bridge 1 (Robin at colossally abundant N) is EQUIVALENT to Robin's inequality for all n by Robin's reduction. That equivalence is exactly why the owner discarded it as circular. Keeping both records, linked, is what shows the circularity. DUPLICATES is the stand-in until reflow2 has an equivalence relation (Anthony, 2026-10-22).",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "decision:ack:heal:c5e6f408f44f02ce",
+   "node_type": "Decision",
+   "properties": {
+    "decision": "Accepted the structural defect heal:c5e6f408f44f02ce.",
+    "name": "Reviewed: heal:c5e6f408f44f02ce",
+    "rationale": "DO NOT MERGE. RH and Robin's inequality for all n > 5040 are EQUIVALENT (Robin 1984, a proven theorem), not duplicates. They are different statements in different fields, each a valid view of the gap. Merging would destroy the map. DUPLICATES is the closest relation reflow2 offers today, because it has no \"is equivalent to\" link. Anthony, 2026-10-22: \"Go with your recommendations for questions 1 through 3\": keep DUPLICATES for now, decline the merge, and have reflow2 gain a proper equivalence relation that never suggests merging (recorded in reflow2's design).",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:bounded-robin-from-computation",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 3 premise(s) support req:robin-inequality-5041-to-5340",
+    "rule": "all",
+    "rule_name": "proof by exhaustion over a finite range (computed)",
+    "warrant": "The kept calc record evaluates sigma(n) and e^gamma_lo n ln ln n for each of the 300 values n = 5041..5340 and finds the strict inequality in every case (count 300 of 301, the one failure being the control n = 5040). Since gamma_lo < gamma, the right side with gamma is larger still, so each case of Robin's inequality holds. Exhaustion over a finite range: it shows exactly this range and nothing beyond it."
+   }
+  },
+  {
+   "node_id": "inf:rh-gives-explicit-pnt-error",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:cond-explicit-pnt-error",
+    "rule": "all",
+    "rule_name": "modus ponens (under the supposition RH)",
+    "warrant": "Schoenfeld's theorem is the implication RH => bound. Taking RH as a supposition (never as shown) and applying the implication gives the bound. RH is never discharged here, so the bound holds only under RH."
+   }
+  },
+  {
+   "node_id": "inf:rh-gives-lindelof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:cond-lindelof-hypothesis",
+    "rule": "all",
+    "rule_name": "modus ponens (under the supposition RH)",
+    "warrant": "Littlewood's theorem is the implication RH => Lindelof. RH is taken up as a supposition and never discharged, so Lindelof holds here only under RH (it may also be true if RH is false; that is not recorded)."
+   }
+  },
+  {
+   "node_id": "inf:rh-gives-prime-gaps",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:cond-prime-gaps",
+    "rule": "all",
+    "rule_name": "modus ponens (under the supposition RH)",
+    "warrant": "Cramer's theorem is the implication RH => gap bound. RH is taken up as a supposition and never discharged, so the gap bound holds only under RH."
+   }
+  },
+  {
+   "node_id": "inf:rh-gives-two-thirds-simple",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "all of 2 premise(s) support req:cond-two-thirds-simple-zeros",
+    "rule": "all",
+    "rule_name": "modus ponens (under the supposition RH)",
+    "warrant": "Montgomery's pair-correlation theorem, proved under RH, gives that at least 2/3 of zeros are simple. RH is a supposition here, never discharged."
+   }
+  },
+  {
+   "node_id": "proj:riemann-hypothesis-map",
+   "node_type": "Project",
+   "properties": {
+    "domain": "proof",
+    "mode": "flexible",
+    "name": "Riemann Hypothesis map (proof-ladder trial)",
+    "objective": "A MAP of the Riemann Hypothesis, not an attempt to prove it: the conjecture reading open, its equivalent forms as cited theorems, results conditional on it reading conditional, partial results, and computed evidence reading as evidence; speculative links labelled speculation and checked for circularity.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-every-cited-theorem-here-robin-1984-lagarias-2002-64da4d",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations for questions 1 through 3.\" YES, Robin and γ first, labelled as encyclopedia (TERTIARY) sources:\n- art:src-wikipedia-riemann-hypothesis (sha256 14f7255d…) DOCUMENTS req:cite-robin-1984-equivalence;\n- art:src-wikipedia-euler-constant (sha256 9102516d…) DOCUMENTS req:cite-gamma-lower-bound.\nEach artifact's description says it is a statement of the result, not the paper. The other citations stay recalled for now. The RH page also states Lagarias, von Koch/Schoenfeld, Nyman, Levinson, Conrey, Pratt et al. and Platt–Trudgian, and can document them the same way.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-22T09:45:00Z",
+    "asked_of": "who:ajs",
+    "batch": "rh-map-round-1",
+    "batch_position": 2,
+    "context_setter": "A citation reads 'cited' only once a source someone read is pinned to it with a checksum. The observer holds a checked reference list.",
+    "question": "Every cited theorem here (Robin 1984, Lagarias 2002, Schoenfeld 1976, Platt-Trudgian 2021, and the rest) is recalled, not read, so each reads 'cited, unverified' and everything resting on one reads conditional on it. Do you want the checked references registered as Artifacts that document them, and if so, which first? The Robin equivalence and the value of Euler's constant gamma carry the computation, so they matter most.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-reflow2-has-no-is-equivalent-to-link-the-932e2c",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations for questions 1 through 3.\"\n- KEEP DUPLICATES as a stand-in for now.\n- Both merge suggestions are acknowledged as wrong, with reasons (defects heal:c5e6f408f44f02ce and heal:10815be066daa220).\n- reflow2 itself is to gain a proper \"is equivalent to\" relation (a proven biconditional between two statements) that never reads as duplicates, never suggests a merge, and does not make either side read conditional. That is recorded as an accepted requirement in reflow2's design.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-22T09:45:00Z",
+    "asked_of": "who:ajs",
+    "batch": "rh-map-round-1",
+    "batch_position": 3,
+    "context_setter": "The equivalences must stand when RH is dropped, so none of them is drawn as a step from or to RH.",
+    "question": "reflow2 has no 'is equivalent to' link. The seven equivalence theorems are separate cited records whose link to RH is in their wording only, and the one equivalent statement written out (Robin's inequality for all n > 5040) is joined to RH by a DUPLICATES link marked 'asserted'. Is that encoding acceptable to you, or should each equivalence be joined some other way?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-three-speculative-bridges-are-recorded-each-left-proposed-9c59de",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations for questions 1 through 3.\"\n- Bridge 1 (Robin at colossally abundant numbers) is DISCARDED, status dropped. It is circular: equivalent to RH, so it restates the gap. It stays on record as considered.\n- Bridges 2 (proportion one of the zeros on the line) and 3 (a fixed zero-free strip, quasi-RH) are ACCEPTED as legitimate, non-circular speculative bridges worth keeping on the map. ACCEPTED means \"a real step worth keeping\", NOT \"true\": each still reads open as a conjecture, and nothing rests on them.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_at": "2026-10-22T09:45:00Z",
+    "asked_of": "who:ajs",
+    "batch": "rh-map-round-1",
+    "batch_position": 1,
+    "context_setter": "The Riemann Hypothesis map records RH as open, with its equivalences, conditional results, partial results and evidence. The bridges are the designer's speculation, kept apart from all of that.",
+    "question": "Three speculative bridges are recorded, each left proposed. Bridge 1 (Robin's inequality at every colossally abundant number) is flagged CIRCULAR: it is equivalent to RH and only restates the gap. Bridges 2 (almost all zeros on the line) and 3 (a fixed zero-free strip, quasi-RH) are genuinely weaker than RH and would not prove it. For each one: accept it as a direction worth keeping, or discard it?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "SPECULATION, bridge 1, DISCARDED by the owner 2026-10-22 (CIRCULAR, equivalent to RH): Robin's inequality at every colossally abundant N > 5040",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Proposed by the designer as a speculative bridge. Flagged circular: equivalent to RH.",
+    "statement": "SPECULATION, not a result. Bridge: prove sigma(N)/N < e^gamma ln ln N for every colossally abundant number N > 5040, by an argument special to their prime-power structure. Recalled reduction (Robin 1984; Briggs 2006): if Robin's inequality fails at all beyond 5040, it fails at a colossally abundant number, so this bridge would give Robin's inequality for all n > 5040 and hence RH. CIRCULAR: the bridge is EQUIVALENT to RH. It restates the gap in arithmetic language (a cleaner target, and the one our bounded computation sampled), but does not fill it. Owner to accept or discard; nothing here holds.",
+    "statement_kind": "conjecture",
+    "status": "dropped",
+    "variables": [
+     "N"
+    ]
+   }
+  },
+  {
+   "node_id": "req:bridge-2-almost-all-zeros-on-the-line",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "SPECULATION, bridge 2, KEPT by the owner 2026-10-22 as a real step, still OPEN (weaker than RH, not circular): almost all zeros lie on the critical line",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Proposed by the designer as a speculative bridge. Not circular: strictly weaker than RH.",
+    "statement": "SPECULATION, not a result. Bridge: prove N0(T)/N(T) -> 1 as T -> infinity, i.e. a proportion-one set of the nontrivial zeros lies on Re(s) = 1/2. GENUINELY WEAKER than RH: it allows a density-zero set of zeros off the line, so it would NOT prove RH. A step toward it, extending the Levinson-Conrey line of partial results (currently > 5/12, Pratt et al. 2020); the mollifier method is widely believed to stall short of 1 (recalled), so it would need a new idea. Owner to accept or discard; nothing here holds.",
+    "statement_kind": "conjecture",
+    "status": "accepted",
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:bridge-3-quasi-rh-fixed-strip",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "SPECULATION, bridge 3, KEPT by the owner 2026-10-22 as a real step, still OPEN (weaker than RH, not circular): a fixed zero-free strip (quasi-RH)",
+    "priority": "medium",
+    "provenance": "authored",
+    "rationale": "Proposed by the designer as a speculative bridge. Not circular: strictly weaker than RH for delta < 1/2.",
+    "statement": "SPECULATION, not a result. Bridge: prove that for some fixed delta > 0, zeta(s) != 0 whenever Re(s) > 1 - delta. GENUINELY WEAKER than RH for any delta < 1/2 (RH is the case delta = 1/2), so it would NOT prove RH; it would give pi(x) = li(x) + O(x^(1 - delta + epsilon)), the first power saving in the prime number theorem. A step toward RH beyond the Vinogradov-Korobov region, whose width shrinks to 0 as |t| grows. Its difficulty is believed to be of the same order as RH's own (recalled), so 'weaker' does not mean 'easy'. Owner to accept or discard; nothing here holds.",
+    "statement_kind": "conjecture",
+    "status": "accepted",
+    "variables": [
+     "delta"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-cramer-1920-rh-implies-prime-gaps",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited (Cramer 1920): RH implies prime gaps O(sqrt(p) log p)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): H. Cramer, 'Some theorems concerning prime numbers', Arkiv for Matematik, Astronomi och Fysik 15 (1920).",
+    "statement": "IF RH holds, THEN p_(n+1) - p_n = O(sqrt(p_n) log p_n) for consecutive primes. (The implication is the theorem.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-gamma-lower-bound",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited value: gamma > 0.5772156649 (Euler-Mascheroni constant)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): the standard decimal expansion of gamma, computed to billions of digits (e.g. by Yee and others); first 20 digits as recalled. Any standard table (e.g. OEIS A001620) would check it.",
+    "statement": "gamma = 0.57721566490153286060... ; in particular gamma > 0.5772156649, with gamma - 0.5772156649 < 1.6e-11. flo2-calc has no gamma constant, so this lower bound is the value the computation uses.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:cite-lagarias-2002-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (Lagarias 2002): RH iff sigma(n) <= H_n + exp(H_n) ln H_n for all n",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): J. C. Lagarias, 'An elementary problem equivalent to the Riemann hypothesis', American Mathematical Monthly 109 (2002).",
+    "statement": "RH holds IF AND ONLY IF sigma(n) <= H_n + exp(H_n) ln(H_n) for every n >= 1, with equality only at n = 1.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-li-1997-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (Li 1997): RH iff every Keiper-Li coefficient lambda_n >= 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): X.-J. Li, 'The positivity of a sequence of numbers and the Riemann hypothesis', Journal of Number Theory 65 (1997).",
+    "statement": "RH holds IF AND ONLY IF lambda_n >= 0 for every n >= 1, where lambda_n = sum over nontrivial zeros rho of [1 - (1 - 1/rho)^n].",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-littlewood-mertens-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (Littlewood 1912): RH iff M(x) = O(x^(1/2+eps))",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): J. E. Littlewood, 1912 (Comptes Rendus note on consequences of RH). Attribution and year as recalled; the equivalence is standard in Titchmarsh, 'The Theory of the Riemann Zeta-Function' (2nd ed., 1986), recalled.",
+    "statement": "RH holds IF AND ONLY IF the Mertens function satisfies M(x) = O(x^(1/2 + epsilon)) for every epsilon > 0. (The stronger Mertens conjecture |M(x)| < sqrt(x) is FALSE: Odlyzko and te Riele 1985, recalled.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "x"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-littlewood-rh-implies-lindelof",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited (Littlewood c. 1912): RH implies the Lindelof hypothesis",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): J. E. Littlewood, 'Quelques consequences de l'hypothese que la fonction zeta(s) de Riemann n'a pas de zeros dans le demi-plan Re(s) > 1/2', Comptes Rendus 154 (1912). Year and venue as recalled.",
+    "statement": "IF RH holds, THEN the Lindelof hypothesis holds: zeta(1/2 + it) = O(|t|^epsilon) for every epsilon > 0 (indeed with a bound like exp(C log t / log log t)).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-montgomery-1973-pair-correlation",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited (Montgomery 1973): under RH, pair correlation and >= 2/3 simple zeros",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): H. L. Montgomery, 'The pair correlation of zeros of the zeta function', Proc. Symp. Pure Math. 24 (AMS, 1973).",
+    "statement": "IF RH holds, THEN the pair correlation of zero ordinates matches 1 - (sin(pi u)/(pi u))^2 for test functions with Fourier support in (-1, 1), and consequently at least 2/3 of the nontrivial zeros are simple.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:cite-newman-1976-debruijn-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (de Bruijn 1950, Newman 1976): RH iff Lambda <= 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): N. G. de Bruijn, 'The roots of trigonometric integrals', Duke Math. J. 17 (1950); C. M. Newman, 'Fourier transforms with only real zeros', Proc. AMS 61 (1976).",
+    "statement": "There is a real constant Lambda (the de Bruijn-Newman constant) such that the heat-flow deformation H_t of the Riemann Xi function has only real zeros exactly when t >= Lambda; RH holds IF AND ONLY IF Lambda <= 0.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:cite-nyman-beurling-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (Nyman 1950, Beurling 1955): RH iff a density criterion in L^2(0,1)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): B. Nyman, thesis, Uppsala 1950; A. Beurling, 'A closure problem related to the Riemann zeta-function', PNAS 41 (1955).",
+    "statement": "RH holds IF AND ONLY IF the constant function 1 lies in the closed span in L^2(0,1) of the functions x -> {theta/x} - theta {1/x}, 0 < theta <= 1, where {y} is the fractional part.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:cite-robin-1984-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (Robin 1984): RH iff Robin's inequality for all n > 5040",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): G. Robin, 'Grandes valeurs de la fonction somme des diviseurs et hypothese de Riemann', Journal de Mathematiques Pures et Appliquees 63 (1984).",
+    "statement": "RH holds IF AND ONLY IF sigma(n) < e^gamma n ln ln n for every integer n > 5040. (Proved unconditionally; an equivalence, so it restates the gap rather than filling it.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-schoenfeld-1976-rh-implies-explicit-pnt",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited (Schoenfeld 1976): RH implies an explicit prime-counting error bound",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): L. Schoenfeld, 'Sharper bounds for the Chebyshev functions theta(x) and psi(x). II', Mathematics of Computation 30 (1976). Constant 1/(8 pi) and threshold 2657 as recalled.",
+    "statement": "IF the Riemann Hypothesis holds, THEN |pi(x) - li(x)| < (1/(8 pi)) sqrt(x) ln x for every x >= 2657. (The implication is the theorem; it is proved unconditionally.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "x"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cite-von-koch-1901-equivalence",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Cited EQUIVALENCE (von Koch 1901): RH iff pi(x) = li(x) + O(sqrt(x) log x)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): H. von Koch, 'Sur la distribution des nombres premiers', Acta Mathematica 24 (1901).",
+    "statement": "RH holds IF AND ONLY IF pi(x) = li(x) + O(sqrt(x) log x).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "x"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cond-explicit-pnt-error",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONDITIONAL on RH: |pi(x) - li(x)| < sqrt(x) ln x / (8 pi) for x >= 2657",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every x >= 2657, |pi(x) - li(x)| < (1/(8 pi)) sqrt(x) ln x. CONDITIONAL: true if RH is true; not known unconditionally.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "x"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cond-lindelof-hypothesis",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONDITIONAL on RH: the Lindelof hypothesis",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "zeta(1/2 + it) = O(|t|^epsilon) for every epsilon > 0. CONDITIONAL: true if RH is true. Itself open; unconditionally only exponents around 13/84 are known (Bourgain 2017, recalled).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cond-prime-gaps",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONDITIONAL on RH: prime gaps are O(sqrt(p) log p)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "p_(n+1) - p_n = O(sqrt(p_n) log p_n). CONDITIONAL: true if RH is true. Unconditionally the best known exponent is about 0.525 (Baker-Harman-Pintz 2001, recalled), which is weaker.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "req:cond-two-thirds-simple-zeros",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONDITIONAL on RH: at least 2/3 of the nontrivial zeros are simple",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "At least two thirds of the nontrivial zeros of zeta (counted up to height T, as T grows) are simple. CONDITIONAL: true if RH is true (Montgomery 1973).",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:ev-gourdon-2004-first-1e13-zeros",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "EVIDENCE (Gourdon 2004): first 10^13 zeros on the line",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2004",
+    "source": "Cited, RECALLED (not read): X. Gourdon, 'The 10^13 first zeros of the Riemann Zeta function, and zeros computation at very large height', online report (2004).",
+    "source_reliability": "B",
+    "statement": "The report says the first 10^13 nontrivial zeros were computed (Odlyzko-Schoenhage method) and all lie on the critical line, with further samples near the 10^24-th zero. EVIDENCE, not proof: the method is not fully rigorous, and no finite count bears on the infinitely many zeros above it.",
+    "statement_kind": "evidence",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:ev-odlyzko-gue-statistics",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "EVIDENCE (Odlyzko 1987-2001): zero spacings follow GUE statistics",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "1987-2001",
+    "source": "Cited, RECALLED (not read): A. M. Odlyzko, 'On the distribution of spacings between zeros of the zeta function', Mathematics of Computation 48 (1987); later computations near the 10^22-nd zero (2001).",
+    "source_reliability": "A",
+    "statement": "The report says that large batches of zeros computed near the 10^20-th and 10^22-th zero all lie on the line and that their normalised spacings match the GUE random-matrix predictions (Montgomery's pair correlation). EVIDENCE for RH and for the random-matrix model, never proof.",
+    "statement_kind": "evidence",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:part-conrey-1989-two-fifths",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Conrey 1989): more than 2/5 of zeros on the line",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): J. B. Conrey, 'More than two fifths of the zeros of the Riemann zeta function are on the critical line', J. reine angew. Math. 399 (1989).",
+    "statement": "At least 40% (more than two fifths) of the nontrivial zeros lie on the critical line, and at least 40% are simple and on the line. Unconditional.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-dlvp-1899-zero-free-region",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (de la Vallee Poussin 1899): classical zero-free region",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): C.-J. de la Vallee Poussin, 'Sur la fonction zeta de Riemann et le nombre des nombres premiers inferieurs a une limite donnee', Mem. Couronnes Acad. Roy. Belgique 59 (1899). Explicit constant: M. J. Mossinghoff and T. S. Trudgian, J. Number Theory 157 (2015), recalled.",
+    "statement": "There is an absolute c > 0 such that zeta(sigma + it) != 0 for sigma > 1 - c / log(|t| + 2). Unconditional. (Explicit forms exist, e.g. Mossinghoff-Trudgian 2015 with c = 1/5.573412, recalled.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-guth-maynard-2024-zero-density",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Guth-Maynard 2024): improved zero-density estimate",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): L. Guth and J. Maynard, 'New large value estimates for Dirichlet polynomials', arXiv preprint 2405.20552 (2024). Ingham: Quart. J. Math. 1940, recalled.",
+    "statement": "N(sigma, T), the number of zeros with real part >= sigma and height <= T, satisfies N(sigma, T) << T^(30(1 - sigma)/13 + o(1)), improving Ingham's 1940 exponent 3(1 - sigma)/(2 - sigma) near sigma = 3/4. Unconditional. Bounds how many zeros could be off the line, never shows none are.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "sigma",
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-hadamard-dlvp-1896-no-zeros-on-re1",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Hadamard; de la Vallee Poussin 1896): no zeros on Re(s) = 1",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): J. Hadamard, Bull. Soc. Math. France 24 (1896); C.-J. de la Vallee Poussin, Ann. Soc. Sci. Bruxelles 20 (1896).",
+    "statement": "zeta(1 + it) != 0 for every real t; hence the Prime Number Theorem pi(x) ~ x / ln x. Unconditional.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-hardy-1914-infinitely-many-on-line",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Hardy 1914): infinitely many zeros on the critical line",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): G. H. Hardy, 'Sur les zeros de la fonction zeta(s) de Riemann', Comptes Rendus 158 (1914).",
+    "statement": "Infinitely many nontrivial zeros of zeta lie on Re(s) = 1/2. Unconditional. (Hardy and Littlewood 1921: N0(T) >> T, recalled.)",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:part-levinson-1974-one-third",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Levinson 1974): more than 1/3 of zeros on the line",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): N. Levinson, 'More than one third of zeros of Riemann's zeta-function are on sigma = 1/2', Advances in Mathematics 13 (1974).",
+    "statement": "At least about 34% (more than one third) of the nontrivial zeros lie on the critical line, in the sense of N0(T) >= 0.34 N(T) for large T. Unconditional.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-platt-trudgian-2021-verified-to-3e12",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "T=3e12"
+    ],
+    "lineage": "original",
+    "name": "PARTIAL by rigorous computation (Platt-Trudgian 2021): RH holds up to height 3 x 10^12",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): D. J. Platt and T. S. Trudgian, 'The Riemann hypothesis is true up to 3 x 10^12', Bulletin of the London Mathematical Society 53 (2021).",
+    "statement": "Every nontrivial zero rho with 0 < Im(rho) <= 3 x 10^12 has Re(rho) = 1/2 (and is simple). A BOUNDED theorem, proved with interval arithmetic: it says nothing above that height.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:part-polymath15-2019-lambda-upper",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Polymath 15, 2019): Lambda <= 0.22",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): D. H. J. Polymath, 'Effective approximation of heat flow evolution of the Riemann xi function, and a new upper bound for the de Bruijn-Newman constant', Research in the Mathematical Sciences 6 (2019).",
+    "statement": "The de Bruijn-Newman constant satisfies Lambda <= 0.22. Unconditional (partly computer-assisted). Together with Rodgers-Tao: 0 <= Lambda <= 0.22; RH is the statement Lambda = 0.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:part-pratt-et-al-2020-five-twelfths",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Pratt, Robles, Zaharescu, Zeindler 2020): more than 5/12 on the line",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): K. Pratt, N. Robles, A. Zaharescu, D. Zeindler, 'More than five-twelfths of the zeros of zeta are on the critical line', Research in the Mathematical Sciences 7 (2020).",
+    "statement": "More than 5/12 (about 41.7%) of the nontrivial zeros lie on the critical line. Unconditional; the best proportion as recalled (improving Bui-Conrey-Young 2011, about 41.05%).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-rodgers-tao-2020-lambda-nonnegative",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Rodgers-Tao 2020): Lambda >= 0",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): B. Rodgers and T. Tao, 'The de Bruijn-Newman constant is non-negative', Forum of Mathematics, Pi 8 (2020) (preprint 2018).",
+    "statement": "The de Bruijn-Newman constant satisfies Lambda >= 0 (Newman's conjecture). With Newman's equivalence, RH is now equivalent to Lambda = 0: if RH is true it is 'barely true'. Unconditional.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:part-selberg-1942-positive-proportion",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Selberg 1942): a positive proportion of zeros on the line",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): A. Selberg, 'On the zeros of Riemann's zeta-function', Skr. Norske Vid. Akad. Oslo (1942).",
+    "statement": "There is kappa > 0 with N0(T) >= kappa N(T) for all large T. Unconditional.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "T"
+    ]
+   }
+  },
+  {
+   "node_id": "req:part-vinogradov-korobov-1958-zero-free-region",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "PARTIAL (Vinogradov; Korobov 1958): widest known zero-free region",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): I. M. Vinogradov, Izv. Akad. Nauk SSSR 22 (1958); N. M. Korobov, Uspekhi Mat. Nauk 13 (1958).",
+    "statement": "There is c > 0 such that zeta(sigma + it) != 0 for sigma > 1 - c / ((log |t|)^(2/3) (log log |t|)^(1/3)), |t| >= 3. Unconditional. Still shrinks to the line Re(s) = 1 as |t| grows: no strip Re(s) > 1 - delta is known to be zero-free.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true,
+    "variables": [
+     "t"
+    ]
+   }
+  },
+  {
+   "node_id": "req:riemann-hypothesis",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The Riemann Hypothesis (OPEN)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Cited, RECALLED (not read): B. Riemann, 'Ueber die Anzahl der Primzahlen unter einer gegebenen Groesse', Monatsberichte der Berliner Akademie, 1859. Listed as one of the Clay Millennium Prize Problems (2000).",
+    "statement": "Every nontrivial zero of the Riemann zeta function has real part exactly 1/2. OPEN: not proven and not disproven. Nothing in this design is a proof of it; computed evidence corroborates it on a bounded range only.",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "s"
+    ]
+   }
+  },
+  {
+   "node_id": "req:robin-inequality-5041-to-5340",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "n=5041..5340"
+    ],
+    "lineage": "original",
+    "name": "BOUNDED: Robin's inequality holds for every n in 5041..5340",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n with 5041 <= n <= 5340 (300 values), sigma(n) < e^gamma n ln ln n. A bounded statement: it says nothing about any n outside this range and is not evidence of proof of RH.",
+    "statement_kind": "proposition",
+    "status": "proposed",
+    "variables": []
+   }
+  },
+  {
+   "node_id": "req:robin-inequality-all-n",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Robin's inequality for every n > 5040 (OPEN, equivalent to RH)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "For every integer n > 5040, sigma(n) < e^gamma n ln ln n. OPEN: by Robin's theorem (1984) this is EQUIVALENT to RH, so it is exactly as open as RH. It fails at n = 5040 and at some smaller n (e.g. 2, 3, 4, ..., 2520).",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "n"
+    ]
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:bridge-1-robin-on-colossally-abundant-numbers",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-10-22\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}},{\"direction\":\"out\",\"edge_type\":\"DUPLICATES\",\"other_type\":\"Requirement\",\"other_id\":\"req:robin-inequality-all-n\",\"properties\":{\"basis\":\"asserted\",\"evidence\":\"CIRCULAR bridge: by the recalled colossally-abundant reduction (Robin 1984; Briggs 2006) this bridge is equivalent to Robin's inequality for all n > 5040, hence (Robin 1984) to RH. It restates the gap, it does not fill it.\"}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"SPECULATION, bridge 1 (proposed; CIRCULAR, equivalent to RH): Robin's inequality at every colossally abundant N > 5040\",\"priority\":\"medium\",\"provenance\":\"authored\",\"rationale\":\"Proposed by the designer as a speculative bridge. Flagged circular: equivalent to RH.\",\"statement\":\"SPECULATION, not a result. Bridge: prove sigma(N)/N < e^gamma ln ln N for every colossally abundant number N > 5040, by an argument special to their prime-power structure. Recalled reduction (Robin 1984; Briggs 2006): if Robin's inequality fails at all beyond 5040, it fails at a colossally abundant number, so this bridge would give Robin's inequality for all n > 5040 and hence RH. CIRCULAR: the bridge is EQUIVALENT to RH. It restates the gap in arithmetic language (a cleaner target, and the one our bounded computation sampled), but does not fill it. Owner to accept or discard; nothing here holds.\",\"statement_kind\":\"conjecture\",\"status\":\"dropped\",\"variables\":[\"N\"]}",
+    "target_id": "req:bridge-1-robin-on-colossally-abundant-numbers",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:bridge-2-almost-all-zeros-on-the-line",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"EVOLVES_INTO\",\"other_type\":\"Requirement\",\"other_id\":\"req:part-pratt-et-al-2020-five-twelfths\",\"properties\":{\"evidence\":\"The proportion-on-the-line results (Selberg, Levinson, Conrey, Pratt et al.: > 5/12) grown up to proportion one would be this bridge. Speculative: no method is known to reach 1.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-10-22\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"SPECULATION, bridge 2 (proposed; WEAKER than RH, not circular): almost all zeros lie on the critical line\",\"priority\":\"medium\",\"provenance\":\"authored\",\"rationale\":\"Proposed by the designer as a speculative bridge. Not circular: strictly weaker than RH.\",\"statement\":\"SPECULATION, not a result. Bridge: prove N0(T)/N(T) -> 1 as T -> infinity, i.e. a proportion-one set of the nontrivial zeros lies on Re(s) = 1/2. GENUINELY WEAKER than RH: it allows a density-zero set of zeros off the line, so it would NOT prove RH. A step toward it, extending the Levinson-Conrey line of partial results (currently > 5/12, Pratt et al. 2020); the mollifier method is widely believed to stall short of 1 (recalled), so it would need a new idea. Owner to accept or discard; nothing here holds.\",\"statement_kind\":\"conjecture\",\"status\":\"accepted\",\"variables\":[\"T\"]}",
+    "target_id": "req:bridge-2-almost-all-zeros-on-the-line",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:bridge-3-quasi-rh-fixed-strip",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"EVOLVES_INTO\",\"other_type\":\"Requirement\",\"other_id\":\"req:part-vinogradov-korobov-1958-zero-free-region\",\"properties\":{\"evidence\":\"The zero-free regions (de la Vallee Poussin 1899, Vinogradov-Korobov 1958) shrink to width 0 as |t| grows; widened to a fixed strip of width delta they would be this bridge. Speculative: no method is known to give a fixed strip.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_at\":\"2026-10-22\",\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"SPECULATION, bridge 3 (proposed; WEAKER than RH, not circular): a fixed zero-free strip (quasi-RH)\",\"priority\":\"medium\",\"provenance\":\"authored\",\"rationale\":\"Proposed by the designer as a speculative bridge. Not circular: strictly weaker than RH for delta < 1/2.\",\"statement\":\"SPECULATION, not a result. Bridge: prove that for some fixed delta > 0, zeta(s) != 0 whenever Re(s) > 1 - delta. GENUINELY WEAKER than RH for any delta < 1/2 (RH is the case delta = 1/2), so it would NOT prove RH; it would give pi(x) = li(x) + O(x^(1 - delta + epsilon)), the first power saving in the prime number theorem. A step toward RH beyond the Vinogradov-Korobov region, whose width shrinks to 0 as |t| grows. Its difficulty is believed to be of the same order as RH's own (recalled), so 'weaker' does not mean 'easy'. Owner to accept or discard; nothing here holds.\",\"statement_kind\":\"conjecture\",\"status\":\"accepted\",\"variables\":[\"delta\"]}",
+    "target_id": "req:bridge-3-quasi-rh-fixed-strip",
+    "target_type": "Requirement"
+   }
+  },
+  {
+   "node_id": "ver:robin-inequality-bounded-check-5041-5340",
+   "node_type": "Verification",
+   "properties": {
+    "computed": true,
+    "description": "A bounded computation in flo2-calc 0.10.0, kept as robin-inequality-5041-5340.calc.json. sigma(n) is composed (calc has no divisor-sum operator) as the sum over trial divisors d = 1..73 with d | n and d^2 <= n of (d + n/d), less d when d^2 = n; the range n = 5040..5340 is a 301 x 73 grid. gamma is entered as the certified LOWER bound 0.5772156649 (true gamma = 0.57721566490153286..., recalled; gap < 1.6e-11), so the right side e^gamma_lo n ln ln n is SMALLER than Robin's, and a pass here implies a pass of Robin's inequality. n = 5040, Robin's known exception, is included as a control and must FAIL. Arithmetic is float64 with carried error bounds (sigma within 1.1e-11; ln via Arb enclosures); each comparison is decided outside its error bound. This proves only the bounded statement; it is EVIDENCE for RH, never proof.",
+    "findings": "Record re-run 2026-10-22 with rerun_record: reproduces exactly, content hash sha256:aea4c9210ab91786ebebcc2debe60c72eafbed3ddd7d9d354067735ec9e50d4e matches; file sha256 0d903e88fc583671eb783971bed60c05c20b4a8e485f2865df91a40a2b3eb459. Results: count_holding = 300 of 301; control n = 5040 holds = false (sigma(5040) = 19344, ratio sigma/(n ln ln n) = 1.790973366534881 > e^gamma_lo = 1.781072417987467849...), which is Robin's known exception and confirms the composition; so every n in 5041..5340 satisfies sigma(n) < e^gamma n ln ln n. The maximum ratio over the whole 301-value range is at n = 5040 (the exception); the maximum over 5041..5340 alone was not extracted.",
+    "fixes": [
+     "n=5041..5340"
+    ],
+    "kind": "verification",
+    "last_run_at": "2026-10-22T09:29:14Z",
+    "location": "robin-inequality-5041-5340.calc.json",
+    "method": "analysis",
+    "name": "Robin's inequality checked for n = 5041..5340 (flo2-calc)",
+    "status": "passing"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}

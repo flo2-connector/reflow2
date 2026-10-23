@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a5236feb24db3eb60c793221ba258089cf75faa1a977d7d57633f2738fdc7881",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 23,
+    "action": "modified",
+    "checksum_after": "sha256:6d7bfb932d7a01a89d2860ccbe3dbd382190f49e2c6d82418b38bf740ed400ee",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

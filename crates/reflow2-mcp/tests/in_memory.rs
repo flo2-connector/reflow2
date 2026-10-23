@@ -164,6 +164,7 @@ mod one_search_reaches_every_design_a_hub_tracks;
 mod one_status_contract_across_sibling_constructors;
 mod one_tool_declares_its_output_contract;
 mod orientation_needs_nothing_to_start;
+mod proofs_and_arguments_read_right_on_the_wire;
 mod reasoning_is_attached_to_the_structure_it_justifies;
 mod record_change_carries_the_axis;
 mod recording_a_finding_is_a_tool_call_that_demands_the_skill;

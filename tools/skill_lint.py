@@ -131,6 +131,13 @@ NON_TOOL_TERMS = {
     # an edge's `argued_by`, the argument reading `circular`, a requirement's
     # `reason_to_exist`, and propagate_from's `reasons_to_exist_lost`.
     "argued_by", "circular", "reason_to_exist", "reasons_to_exist_lost",
+    # proofs and arguments read right (PR A1, 2026-10-23): the `bridge`
+    # statement kind and what reads it (`rests_on_bridges`, reasoning_report's
+    # `bridges`, propagate_from's `bridges_lost`); an EQUIVALENT_TO edge's
+    # `by`, a claim's `equivalent_to`, propagate_from's `equivalents_reached`
+    # and reasoning_report's `circular_steps`.
+    "bridge", "bridges", "rests_on_bridges", "bridges_lost", "by", "equivalent_to",
+    "equivalents_reached", "circular_steps",
     # design-a-proof (2026-10-17): the fields a proof is recorded with —
     # add_inference's `assumed`, `discharges`, `generalizes_over`,
     # `independent_of`, `independent_except`, `rule`, `rule_name`, `warrant`,

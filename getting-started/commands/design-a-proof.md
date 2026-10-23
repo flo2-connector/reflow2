@@ -8,6 +8,7 @@ Use the **design-a-proof** skill on the statement below.
 - Record each statement with what it is (theorem, lemma, corollary, proposition, definition, axiom, conjecture, hypothesis, falsum), and each step with its rule and warrant.
 - A supposition or an induction hypothesis is a hypothesis, an assumed premise discharged by the step that closes the argument; a reductio's contradiction is a falsum; a proof by cases names its cases and the record saying they are all the cases; a generalization names its variable, and no hypothesis still open may name it; a computed fact counts only through its kept record.
 - A theorem cited from elsewhere is taken as given with its reference in `source`, and reads cited, unverified until its source is registered with a checksum.
+- A statement that a formal statement models a claim of another field is a bridge, an ordinary premise; two statements a biconditional shows equivalent are joined EQUIVALENT_TO (naming the biconditional in `by`), never DUPLICATES.
 - A statistical hypothesis test is attached from its flo2-calc record (`hypothesis_test`) and reads supported at α, never proven; its hypothesis, α and test are linked before the data, and a family of tests spends α like a budget.
 - Put anything only I can settle to me as a question of your own, and never confirm a step for me.
 - End with reasoning_report on the theorem, said in my words — shown, proven, conditional or supported, and why — then loop_status.

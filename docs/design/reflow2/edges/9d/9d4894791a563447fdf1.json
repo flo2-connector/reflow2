@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b672f32ffa740358ce352626690d4cad04dfce3a78f674e8841f469eac7ce298",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-bridge-premise-says-a-formal-statement-models-a-claim",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "cap:a-bridge-premise-reads-conditional-and-an-objection-to-it-contests-what-rests-on-it"
+}

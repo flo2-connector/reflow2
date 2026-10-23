@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:35df7f4f8e64903ae2ba95fbdee8013cdd61d2549d65675dc8d51646a3d5daa9",
+  "node_id": "ver:proofs-and-arguments-read-right-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/proofs_and_arguments_read_right.rs, PR A1: the root cause's four faults on seven trial designs (an assumed premise takes part; a hypothesis reads assumed; encoding_undecided gated on statement_kind; the same gaps under any domain, none software-shaped), contested through a ⊥ and in a what-if (Gettier), a what-if through a ⊥, the bridge kind, proven equivalence (no merge, no reading moved, a what-if reaches the other side) and the circularity check. The two regression tests (assumed premise; what-if through a ⊥) were run against the reverted code and failed there.",
+    "findings": "21 passed locally on feat/proofs-read-right (cargo test -p reflow2-core --no-default-features --test in_memory proofs_and_arguments_read_right::).",
+    "kind": "verification",
+    "last_run_at": "2026-10-23",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/proofs_and_arguments_read_right.rs",
+    "method": "test",
+    "name": "Proofs and arguments read right (21 core tests)",
+    "status": "passing"
+  }
+}

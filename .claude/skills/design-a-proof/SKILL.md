@@ -45,10 +45,19 @@ already exist under another name.
   reductio's "suppose not", an induction hypothesis P(k), a case of a case split. It is a
   Requirement with `statement_kind` `hypothesis`, passed in `assumed` on the step that takes it up
   (section 3). It reads `assumed` while open and `discharged` once a step discharges it, never
-  "stated, not shown"; one no step takes up reads `not_assumed`. It is never taken as given.
+  "stated, not shown"; one no step takes up reads `not_assumed`. It is never taken as given. Its
+  own truth reads `conditional` under itself, never "not delivered": whatever rests on it as an
+  ordinary premise holds only under it, until a step discharges it.
 - **A `falsum`** is a contradiction derived inside a reductio (⊥: "π is algebraic and
   transcendental"). It is a Requirement with `statement_kind` `falsum` (section 3a), and it
   reads FALSE, never holds.
+- **A `bridge`** says a formal statement models a claim of another field: "the Lean statement F
+  expresses (C)", "the Coq statement models the theorem". It is a Requirement with
+  `statement_kind` `bridge`, an ORDINARY premise of the step that carries the formal result into
+  the claim (never `assumed`, which would make it immune to objection, and never
+  `taken_as_given`, which would file it beside the theorem as a foundation). It reads `bridge`;
+  what rests on it reads `conditional` on it (`rests_on_bridges`); an objection aimed at it
+  contests every claim resting on it, and the formal statement under it stands.
 - **An `objection`, a `reply`, an `unstated_premise` or a `method_rule`** are the roles a line of
   reasoning that is not a proof gives its statements: see design-an-argument. So are `evidence`
   (a report or study, read `cited_as_evidence` and never proven) and a `judgement` drawn from it.
@@ -56,6 +65,10 @@ already exist under another name.
   mentions n). **A statement about one value** lists it in `fixes` as `n=40` or `L=all the primes`.
   **Give every hypothesis its `variables`**, an empty list when it names none: the generalization
   check reads them (section 3).
+
+Whether the design reads as a proof follows from what it holds — its statements and its steps —
+never from the Project's `domain`. Leave `domain` as genesis set it; a proof recorded this way
+gets proof-shaped gaps and readings whatever it says there.
 
 ## 2a. A result cited from elsewhere says whether its source was checked
 
@@ -77,6 +90,25 @@ published bound) is ONE record, written one way:
 
 `source` text alone never makes a citation checked, and a citation is never a definition or an
 axiom: those are the reasoning's own starting points, taken as given by choice.
+
+## 2b. Two statements proven equivalent are joined as equivalent, never as duplicates
+
+When a cited or proven biconditional shows two statements equivalent (RH and Robin's
+inequality), record the biconditional as a statement of its own (a cited `theorem`, section 2a,
+or one a step concludes), then join the two with `create_edge` `EQUIVALENT_TO`, naming the
+biconditional in the edge's `by`. Never `DUPLICATES`: that invites a merge, and two equivalent
+statements are two statements.
+
+- Neither side's reading moves: an open conjecture stays open, and neither becomes conditional on
+  the other. `reasoning_report` lists each claim's `equivalent_to`, with how the equivalence
+  stands (its biconditional's own reading).
+- A what-if on one side names the other under `equivalents_reached`: whatever refutes or
+  establishes one settles both.
+- A step whose premise is equivalent to its conclusion, or is the same formula, only restates
+  the gap it would close: it reads `circular`, `reasoning_report` lists it under
+  `circular_steps`, and `detect_gaps` asks the owner about it. A speculative lemma that would
+  close a hole is checked this way before anything rests on it; whether it begs the question is
+  the owner's call.
 
 ## 3. Each step is an Inference with its rule and warrant
 
@@ -241,9 +273,15 @@ the statuses exactly:
   unverified citation says what it is recalled to say. Its truth in the read-back says
   `conditional` too, never holds, and names the assumption (`assumes`) or the citation
   (`rests_on_unverified`).
+- `conditional` also when it holds only through a bridge (section 2): its read-back names it in
+  `rests_on_bridges`, and the summary lists every bridge under `bridges`, apart from cited
+  theorems and definitions.
 - `supported`: it holds only through a statistical test (section 4a): evidence at that test's α,
   never proof. Its truth in the read-back says `supported` and names the tests (`rests_on_tests`).
-- `unproven`: no line holds, or a counterexample that holds refutes it.
+- `contested`: no line holds, but a line would were the objections under it settled — including
+  a line through a reductio whose contradiction rests on a contested premise. It names what stands
+  against each line (`contested_by`). Say "contested", never "refuted" or "unproven".
+- `unproven`: no line holds for another reason, or a counterexample that holds refutes it.
 
 `proof_status` on `get_node` also counts the steps under the claim, and its `counts` says what the
 numbers mean: `total_steps` is the distinct steps under its holding lines, a step two lines share
@@ -252,7 +290,8 @@ fewer steps than a claim it rests on.
 
 Each statement's `statement_reading` says what it is and how it reads: `taken_as_given` (a
 definition or axiom), `cited` or `cited_unverified` (a result from elsewhere), `assumed`,
-`discharged` or `not_assumed` (a hypothesis), `false` or `inconsistent` (a falsum), `stated`,
+`discharged` or `not_assumed` (a hypothesis), `false` or `inconsistent` (a falsum, which carries
+no proof status of its own), `bridge`, `stated`,
 `open`, `refuted`, or the proof status above.
 
 Then run `loop_status` and say what the reasoning owes: unconfirmed steps, uncited premises,

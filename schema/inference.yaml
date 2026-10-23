@@ -489,6 +489,34 @@ schema:
         basis: { type: enum, values: [asserted, suspected], default: suspected, description: "WHO decided these cover the same ground, and therefore whether HEAL may merge them. `asserted` = a human drew this edge, which is the ONLY basis on which apply_heal will delete a node (dec:ask-not-repair). `suspected` = a heuristic proposed it — corpus ingest's fuzzy name match, an extraction pass — and it is asked as a possible_duplicate gap instead. DEFAULTS TO `suspected`, AND ABSENT READS AS `suspected` TOO: merge is irreversible, so an edge that cannot prove somebody meant it does not license a deletion. Legacy edges written before this property existed therefore stop being mergeable until re-asserted, which costs one call; the other default cost dev_storyflow ten proposed node deletions." }
       extraction_hint: Source and target cover the same ground (candidate for consolidation). `basis` says whether a human asserted it or a heuristic suspected it — only `asserted` may be merged.
 
+    # PROVEN EQUIVALENCE (req:two-statements-can-be-recorded-as-proven-equivalent,
+    # Anthony 2026-10-22, the Riemann-map rung). The map had to join RH and
+    # Robin's inequality with DUPLICATES, and detect_defects then proposed
+    # MERGING them, which would have destroyed the map. Two statements a cited or
+    # proven biconditional shows equivalent are two statements, not one.
+    EQUIVALENT_TO:
+      from: "*"
+      to: "*"
+      reading: { form: "composite", composition: "EQUIVALENT_TO(a,b) := compares(=)(a,b) ∧ ¬same-as(a,b)", components: ["compares", "same-as"], modifiers: { by: "other", evidence: "evidence" }, basis: "classified" }
+      inference_category: equivalence
+      pass_1_extractable: false
+      properties:
+        by: { type: string, node_ref: true, description: "THE BICONDITIONAL THAT SHOWS IT, by id: a statement of its own (\"RH holds if and only if σ(n) < e^γ n log log n for every n > 5040\") that is cited (a theorem taken as given) or concluded by a step. The equivalence reads by that record's computed truth — `cited`, `cited_unverified` (it holds only if the citation says what it is recalled to say), shown or proven — beside the edge. ABSENT MEANS NOTHING NAMES THE BICONDITIONAL, and the equivalence reads as asserted." }
+        evidence: { type: string, description: "Free text: where the equivalence is proved, in the author's words." }
+      extraction_hint: >
+        Two STATEMENTS a cited or proven biconditional shows equivalent: each
+        holds exactly when the other does (RH and Robin's inequality; the
+        Lagarias criterion). NOT DUPLICATES — they are two statements with two
+        meanings, and nothing ever offers them for a merge (propose_heal and
+        apply_heal refuse it, as for COMPLEMENTS). It changes NEITHER SIDE'S
+        READING: an open conjecture stays open, and neither side becomes
+        conditional on the other, because no truth is read across it. A what-if
+        on one side reaches the other (propagate_from walks it both ways). A
+        step whose premise is equivalent to its conclusion only restates the
+        gap it would close, and reads `circular`
+        (dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it,
+        option c). Draw it once, either way round: it reads the same both ways.
+
     ANTICIPATES:
       from: "*"
       to: "*"

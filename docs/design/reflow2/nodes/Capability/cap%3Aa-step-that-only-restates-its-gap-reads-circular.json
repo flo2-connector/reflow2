@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0254bcd0a1328ef1e79fdcf4bed17586986a5b28766a74a7e9950b43d2d7655d",
+  "node_id": "cap:a-step-that-only-restates-its-gap-reads-circular",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-23 in PR A1 (crates/reflow2-core/src/equivalence.rs `circularity_of`, `circular_steps`; dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it, option c). A premise in the conclusion's EQUIVALENT_TO class (any chain) or sharing its `same_formula_as` makes the step circular: get_node's inference_reading carries `circular` (why), reasoning_report lists `circular_steps`, and detect_gaps raises a reasoning_not_as_stated gap naming the step, the conclusion and the premise. The step still reads by its rule; whether it begs the question is the person's call. Measured on the Riemann map: bridge 1 (Robin on colossally abundant numbers) equivalent to Robin's inequality, equivalent to RH, reads circular as a step closing RH.",
+    "name": "A step whose premise is proven equivalent to its conclusion, or is the same formula, reads circular: flagged on the step, in reasoning_report and as a reasoning_not_as_stated gap, never as a verdict",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

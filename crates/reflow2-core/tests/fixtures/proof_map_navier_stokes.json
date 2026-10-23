@@ -1,0 +1,3434 @@
+{
+ "content_hash": "sha256:7de3a2fb6e38092de0c39d7ef67befdd7ca4b9f4c3ba24fb184cc0a45355ee21",
+ "edges": [
+  {
+   "edge_type": "ACTS_FOR",
+   "from_id": "who:agent-8d84cd1476",
+   "properties": {
+    "route": "request"
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "dec:the-lean-to-proof-correspondence-is-kept-open",
+   "properties": {},
+   "to_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:conn-lean-statement-is-c",
+   "properties": {},
+   "to_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:lem-not-a-implies-c",
+   "properties": {},
+   "to_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb"
+  },
+  {
+   "edge_type": "ANSWERS",
+   "from_id": "req:lem-not-b-implies-d",
+   "properties": {},
+   "to_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lem-not-a-implies-c"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:lem-not-b-implies-d"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:stmt-a"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:stmt-c"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-openai-announcement"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-sciam-clay-settled"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-wiki-not-verified"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-s4-lean-not-nl"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-is-this-three-way-separation-how-you-want-1ad88c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:clay-problem-resolved"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-is-this-three-way-separation-how-you-want-1ad88c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:ev-priority-not-mathematics"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-is-this-three-way-separation-how-you-want-1ad88c",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:standing-clay-not-ruled"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:conn-lean-proof-matches-nl"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:conn-lean-statement-is-c"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:obj-s4-lean-not-nl"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-speculation-1-the-force-can-be-switched-off-3497f6",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:spec-1-force-switched-off"
+  },
+  {
+   "edge_type": "ASKS_ABOUT",
+   "from_id": "question:asked-speculation-1-the-force-can-be-switched-off-3497f6",
+   "properties": {
+    "note": "what the asker's own question is about"
+   },
+   "to_id": "req:spec-2-axisymmetric-core-regularity"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:inf:c-via-lean",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AT_EPOCH",
+   "from_id": "snap:epoch:preserved-on-write:req:conn-lean-statement-is-c",
+   "properties": {},
+   "to_id": "epoch:preserved-on-write"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:openai-lean-not-read",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:openai-paper-not-read",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s2-openai-announcement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s3a-clay-news-0911",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s3b-clay-problem-page",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s4-bch-abstract",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s5-civ-abstract",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s6a-sciam-0921",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s6b-sciam-1013",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s7-wikipedia",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "art:s8-earlier-abstracts",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-clay-asks-one-of-four",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "con:def-ns-conditions",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "dec:the-lean-to-proof-correspondence-is-kept-open",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:genesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "epoch:preserved-on-write",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:a-implies-spec-2",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:c-via-lean",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:c-via-nl-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:clay-resolved-by-any-one",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:d-via-nl-proof",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lem-not-a-implies-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:lem-not-b-implies-d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:nl-correct-via-lean",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:not-a-gives-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:not-b-gives-d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:spec-1-gives-not-a",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:standing-clay-not-ruled",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "inf:standing-not-verified",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "proj:navier-stokes-map",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-is-this-three-way-separation-how-you-want-1ad88c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "question:asked-speculation-1-the-force-can-be-switched-off-3497f6",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-2d-ladyzhenskaya",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-3d-short-time",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-3d-small-data",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-civ-regularity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-cmz-forced-euler",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-leray-weak-solutions",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-partial-regularity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:cite-tao-averaged-blowup",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-lean-check-passes",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:claim-nl-proof-correct",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:clay-problem-resolved",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conn-lean-proof-matches-nl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conn-lean-statement-is-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conn-nl-result-gives-d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:conn-nl-result-meets-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-clay-news-0911",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-clay-page-active",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-euler-claims",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-openai-announcement",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-priority-not-mathematics",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-sciam-civ-reading",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-sciam-clay-settled",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-sciam-not-understood",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-wiki-clay-process",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:ev-wiki-not-verified",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-not-a-implies-c",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:lem-not-b-implies-d",
+   "properties": {
+    "approved_at": "2026-10-22",
+    "approved_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author",
+     "approver"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-s4-general-thesis",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:obj-s4-lean-not-nl",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:open-weak-uniqueness",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:spec-1-force-switched-off",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:spec-2-axisymmetric-core-regularity",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:standing-clay-not-ruled",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:standing-not-verified",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-a",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-c",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-d",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-not-a",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "AUTHORED_BY",
+   "from_id": "req:stmt-not-b",
+   "properties": {
+    "authored_via": [
+     "who:agent-8d84cd1476"
+    ],
+    "roles": [
+     "author"
+    ]
+   },
+   "to_id": "who:ajs"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:a-implies-spec-2",
+   "properties": {},
+   "to_id": "req:spec-2-axisymmetric-core-regularity"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:c-via-lean",
+   "properties": {},
+   "to_id": "req:stmt-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:c-via-nl-proof",
+   "properties": {},
+   "to_id": "req:stmt-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:clay-resolved-by-any-one",
+   "properties": {},
+   "to_id": "req:clay-problem-resolved"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:d-via-nl-proof",
+   "properties": {},
+   "to_id": "req:stmt-d"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lem-not-a-implies-c",
+   "properties": {},
+   "to_id": "req:lem-not-a-implies-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:lem-not-b-implies-d",
+   "properties": {},
+   "to_id": "req:lem-not-b-implies-d"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:nl-correct-via-lean",
+   "properties": {},
+   "to_id": "req:claim-nl-proof-correct"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:not-a-gives-c",
+   "properties": {},
+   "to_id": "req:stmt-c"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:not-b-gives-d",
+   "properties": {},
+   "to_id": "req:stmt-d"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:spec-1-gives-not-a",
+   "properties": {},
+   "to_id": "req:stmt-not-a"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:standing-clay-not-ruled",
+   "properties": {},
+   "to_id": "req:standing-clay-not-ruled"
+  },
+  {
+   "edge_type": "CONCLUDES",
+   "from_id": "inf:standing-not-verified",
+   "properties": {},
+   "to_id": "req:standing-not-verified"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:cite-civ-regularity",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "Within S5's scope only: S5's abstract says that in any construction with properties (i) and (ii) whose force stays bounded in C² up to the singular time, the force cannot vanish identically near the singular point. Speculation 1 asks exactly that for an (i),(ii) construction. S5 is abstract-only and unrefereed, so this stands against Speculation 1 rather than refuting it; a construction without (i) or (ii) is outside it."
+   },
+   "to_id": "req:spec-1-force-switched-off"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-s4-general-thesis",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S4's general thesis is aimed at the inference itself — from 'the AI formalization checks in Lean' to 'the natural-language argument is right' — saying such a check may give no confidence in the original argument. It attacks the step's warrant, not any premise."
+   },
+   "to_id": "inf:nl-correct-via-lean"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:obj-s4-lean-not-nl",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "S4's abstract states that the formalised Lean proof does not correspond to the NL proof — a direct denial of this connection, at exactly this connection's scope and no wider (abstract only, not refereed)."
+   },
+   "to_id": "req:conn-lean-proof-matches-nl"
+  },
+  {
+   "edge_type": "CONTRADICTS",
+   "from_id": "req:spec-2-axisymmetric-core-regularity",
+   "properties": {
+    "alignment": "opposing",
+    "evidence": "If Speculation 2 held, the solution in Speculation 1 after T0 would be an unforced solution with an exactly axisymmetric collapsing core, hence regular at the putative singular point — so Speculation 1 would fail. Both are speculation; neither is shown."
+   },
+   "to_id": "req:spec-1-force-switched-off"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "con:def-clay-asks-one-of-four"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "con:def-ns-conditions"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "req:open-weak-uniqueness"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "req:stmt-a"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "req:stmt-b"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "req:stmt-c"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s1-fefferman-clay",
+   "properties": {},
+   "to_id": "req:stmt-d"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-openai-announcement",
+   "properties": {},
+   "to_id": "req:ev-euler-claims"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-openai-announcement",
+   "properties": {},
+   "to_id": "req:ev-openai-announcement"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s2-openai-announcement",
+   "properties": {},
+   "to_id": "req:ev-priority-not-mathematics"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3a-clay-news-0911",
+   "properties": {},
+   "to_id": "req:ev-clay-news-0911"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s3b-clay-problem-page",
+   "properties": {},
+   "to_id": "req:ev-clay-page-active"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s4-bch-abstract",
+   "properties": {},
+   "to_id": "req:obj-s4-general-thesis"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s4-bch-abstract",
+   "properties": {},
+   "to_id": "req:obj-s4-lean-not-nl"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s5-civ-abstract",
+   "properties": {},
+   "to_id": "req:cite-civ-regularity"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s6a-sciam-0921",
+   "properties": {},
+   "to_id": "req:ev-sciam-civ-reading"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s6a-sciam-0921",
+   "properties": {},
+   "to_id": "req:ev-sciam-clay-settled"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s6b-sciam-1013",
+   "properties": {},
+   "to_id": "req:ev-priority-not-mathematics"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s6b-sciam-1013",
+   "properties": {},
+   "to_id": "req:ev-sciam-not-understood"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s7-wikipedia",
+   "properties": {},
+   "to_id": "req:ev-wiki-clay-process"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s7-wikipedia",
+   "properties": {},
+   "to_id": "req:ev-wiki-not-verified"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s8-earlier-abstracts",
+   "properties": {},
+   "to_id": "req:cite-cmz-forced-euler"
+  },
+  {
+   "edge_type": "DOCUMENTS",
+   "from_id": "art:s8-earlier-abstracts",
+   "properties": {},
+   "to_id": "req:cite-tao-averaged-blowup"
+  },
+  {
+   "edge_type": "GOVERNED_BY",
+   "from_id": "inf:nl-correct-via-lean",
+   "properties": {},
+   "to_id": "dec:the-lean-to-proof-correspondence-is-kept-open"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "inf:c-via-lean",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:inf:c-via-lean"
+  },
+  {
+   "edge_type": "HAS_SNAPSHOT",
+   "from_id": "req:conn-lean-statement-is-c",
+   "properties": {},
+   "to_id": "snap:epoch:preserved-on-write:req:conn-lean-statement-is-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ns-conditions",
+   "properties": {},
+   "to_id": "inf:lem-not-a-implies-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "con:def-ns-conditions",
+   "properties": {},
+   "to_id": "inf:lem-not-b-implies-d"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-lean-check-passes",
+   "properties": {},
+   "to_id": "inf:c-via-lean"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-lean-check-passes",
+   "properties": {},
+   "to_id": "inf:nl-correct-via-lean"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-nl-proof-correct",
+   "properties": {},
+   "to_id": "inf:c-via-nl-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:claim-nl-proof-correct",
+   "properties": {},
+   "to_id": "inf:d-via-nl-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:conn-lean-proof-matches-nl",
+   "properties": {},
+   "to_id": "inf:nl-correct-via-lean"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:conn-lean-statement-is-c",
+   "properties": {},
+   "to_id": "inf:c-via-lean"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:conn-nl-result-gives-d",
+   "properties": {},
+   "to_id": "inf:d-via-nl-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:conn-nl-result-meets-c",
+   "properties": {},
+   "to_id": "inf:c-via-nl-proof"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:ev-clay-page-active",
+   "properties": {},
+   "to_id": "inf:standing-clay-not-ruled"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:ev-sciam-not-understood",
+   "properties": {},
+   "to_id": "inf:standing-not-verified"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:ev-wiki-clay-process",
+   "properties": {},
+   "to_id": "inf:standing-clay-not-ruled"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:ev-wiki-not-verified",
+   "properties": {},
+   "to_id": "inf:standing-not-verified"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-not-a-implies-c",
+   "properties": {},
+   "to_id": "inf:not-a-gives-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:lem-not-b-implies-d",
+   "properties": {},
+   "to_id": "inf:not-b-gives-d"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:spec-1-force-switched-off",
+   "properties": {},
+   "to_id": "inf:spec-1-gives-not-a"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-a",
+   "properties": {},
+   "to_id": "inf:a-implies-spec-2"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-a",
+   "properties": {},
+   "to_id": "inf:clay-resolved-by-any-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-b",
+   "properties": {},
+   "to_id": "inf:clay-resolved-by-any-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-c",
+   "properties": {},
+   "to_id": "inf:clay-resolved-by-any-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-d",
+   "properties": {},
+   "to_id": "inf:clay-resolved-by-any-one"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-not-a",
+   "properties": {},
+   "to_id": "inf:not-a-gives-c"
+  },
+  {
+   "edge_type": "PREMISE_OF",
+   "from_id": "req:stmt-not-b",
+   "properties": {},
+   "to_id": "inf:not-b-gives-d"
+  }
+ ],
+ "graph_id": "ad65e4983833f39f",
+ "nodes": [
+  {
+   "node_id": "art:openai-lean-not-read",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "code",
+    "description": "The Lean code. NOT READ and NOT RE-RUN by the observer or the designer; whether it checks is reported only by the claimant (S2), and what formal statement it proves is not recorded in the packet.",
+    "name": "NOT READ: OpenAI's Lean formalization"
+   }
+  },
+  {
+   "node_id": "art:openai-paper-not-read",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "The paper behind the claim. NOT READ by the observer or the designer; its length (166 pages) is known only from Scientific American (S6). Registered so the map shows what the claim rests on and that nobody here has read it.",
+    "name": "NOT READ: OpenAI's natural-language proof (166-page paper)"
+   }
+  },
+  {
+   "node_id": "art:s1-fefferman-clay",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "C. Fefferman, 'Existence and smoothness of the Navier–Stokes equation', Clay Mathematics Institute. STRENGTH: PRIMARY-OFFICIAL. Read by the observer (packet S1); sha256 given in the packet only as a prefix, 'c1b5f27b…', so no checksum is pinned here. The designer read the packet, not the PDF.",
+    "location": "claymath.org/wp-content/uploads/2022/06/navierstokes.pdf",
+    "name": "S1 Fefferman, official problem statement (PRIMARY-OFFICIAL)"
+   }
+  },
+  {
+   "node_id": "art:s2-openai-announcement",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: CLAIMANT (the party making the claim, describing its own work). Read by the observer via the Web Archive; sha256 prefix 'd4100bdd…' only, so no checksum pinned.",
+    "location": "openai.com 'On the Navier–Stokes Millennium Prize Problem' (2026-09-08, updated 2026-09-10), via the Web Archive",
+    "name": "S2 OpenAI announcement, 2026-09-08 (CLAIMANT)"
+   }
+  },
+  {
+   "node_id": "art:s3a-clay-news-0911",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: PRIMARY-OFFICIAL but not a ruling. sha256 prefix '799d2328…' only.",
+    "location": "Clay Mathematics Institute news, 2026-09-11",
+    "name": "S3 Clay news item, 2026-09-11 (PRIMARY-OFFICIAL, not a ruling)"
+   }
+  },
+  {
+   "node_id": "art:s3b-clay-problem-page",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: PRIMARY-OFFICIAL. Shows the problem 'Active'. sha256 prefix 'e930f406…' only. Clay's rules page was NOT read.",
+    "location": "Clay Mathematics Institute, Navier–Stokes problem page (fetched 2026-10-22)",
+    "name": "S3 Clay Navier–Stokes problem page, fetched 2026-10-22 (PRIMARY-OFFICIAL)"
+   }
+  },
+  {
+   "node_id": "art:s4-bch-abstract",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: PRIMARY-ABSTRACT — the preprint's own abstract; not refereed; ONLY the abstract was read. No checksum given in the packet.",
+    "location": "arXiv:2610.08144 (2026-10-06) — abstract",
+    "name": "S4 Bastounis–Circelli–Hansen, arXiv:2610.08144, ABSTRACT (PRIMARY-ABSTRACT)"
+   }
+  },
+  {
+   "node_id": "art:s5-civ-abstract",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: PRIMARY-ABSTRACT; not refereed; ONLY the abstract was read. No checksum given in the packet.",
+    "location": "arXiv:2609.20803 (v1 2026-09-17, v2 2026-09-29) — abstract",
+    "name": "S5 Constantin–Ignatova–Vicol, arXiv:2609.20803, ABSTRACT (PRIMARY-ABSTRACT)"
+   }
+  },
+  {
+   "node_id": "art:s6a-sciam-0921",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: SECONDARY — journalism quoting experts. sha256 prefix '9f0f4a5d…' only.",
+    "location": "Scientific American, J. Howlett, 'Did OpenAI solve the wrong Navier–Stokes problem?', 2026-09-21",
+    "name": "S6 Scientific American, 2026-09-21 (SECONDARY)"
+   }
+  },
+  {
+   "node_id": "art:s6b-sciam-1013",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: SECONDARY — journalism quoting experts. sha256 prefix '70275a46…' only.",
+    "location": "Scientific American, J. Howlett, 'OpenAI's blockbuster math proof isn't what you think it is', 2026-10-13",
+    "name": "S6 Scientific American, 2026-10-13 (SECONDARY)"
+   }
+  },
+  {
+   "node_id": "art:s7-wikipedia",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: TERTIARY — encyclopedia. sha256 prefixes 'a8ee0e50…' and '845c4b37…' only.",
+    "location": "Wikipedia: 'Navier–Stokes existence and smoothness' and 'Millennium Prize Problems' (fetched 2026-10-22)",
+    "name": "S7 Wikipedia, two articles, fetched 2026-10-22 (TERTIARY)"
+   }
+  },
+  {
+   "node_id": "art:s8-earlier-abstracts",
+   "node_type": "Artifact",
+   "properties": {
+    "artifact_type": "document",
+    "description": "STRENGTH: PRIMARY-ABSTRACT; only the abstracts were read (Tao's paper was published in 2016). No checksums in the packet.",
+    "location": "arXiv:1402.0290 and arXiv:2309.08495 — abstracts",
+    "name": "S8 Tao arXiv:1402.0290 and Córdoba–Martínez-Zoroa arXiv:2309.08495, ABSTRACTS (PRIMARY-ABSTRACT)"
+   }
+  },
+  {
+   "node_id": "con:def-clay-asks-one-of-four",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "regulatory",
+    "concern": "core",
+    "name": "Clay asks for a proof of ONE of (A)–(D)",
+    "priority": "medium",
+    "statement": "Official wording (S1, Fefferman, Clay Mathematics Institute, PRIMARY-OFFICIAL): \"we ask for a proof of one of the following four statements.\" Resolving the Clay problem therefore means proving any one of (A), (B), (C), (D); it does not require deciding the others. This is the problem's own rule, taken as given; it says nothing about how Clay judges or awards a solution (see the Clay-standing records).",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "con:def-ns-conditions",
+   "node_type": "Constraint",
+   "properties": {
+    "category": "technical",
+    "concern": "core",
+    "name": "The numbered conditions (1)–(11) of the official statement",
+    "priority": "medium",
+    "statement": "As S1 (PRIMARY-OFFICIAL) names them: (1) the Navier–Stokes equations with viscosity ν > 0 and force f; (2) incompressibility (div u = 0); (3) the initial condition u(x,0) = u°(x); (4) a decay condition on u° and its derivatives; (5) a decay condition on f and its derivatives; (6) smoothness of p and u on R³ × [0,∞); (7) bounded energy (∫|u|² dx bounded for all t). (8)–(11) are the periodic (R³/Z³) counterparts used in (B) and (D); the packet does not quote their wording, so they are recorded by number only. Taken as given: these are the problem's definitions.",
+    "statement_kind": "definition",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "who:agent-8d84cd1476",
+   "node_type": "Contributor",
+   "properties": {
+    "description": "The agent that signed in to flo2.io as OAuth client https://claude.ai/oauth/claude-code-client-metadata (the sign-in token names it, and flo2 checks the token), calling itself \"claude-code/2.1.292 (cli)\" in its requests (its own word, not checked). flo2.io records it as the agent a change went through, beside the signed-in person it was for: attribution only, never an approval.",
+    "kind": "automated_agent",
+    "name": "claude-code"
+   }
+  },
+  {
+   "node_id": "who:ajs",
+   "node_type": "Contributor",
+   "properties": {
+    "kind": "person",
+    "name": "Anthony Sligar"
+   }
+  },
+  {
+   "node_id": "dec:the-lean-to-proof-correspondence-is-kept-open",
+   "node_type": "Decision",
+   "properties": {
+    "chose": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5\". Kept contested on purpose. Bastounis et al.'s objection and OpenAI's claim both stay on the record, and neither is treated as settled until both texts are read independently. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "decision": "Anthony, 2026-10-22 (\"Go with your recommendations on 1 through 5\", question 3). Bastounis–Circelli–Hansen (arXiv 2610.08144, abstract only) say the Lean proof does not correspond to the natural-language proof. OpenAI's claim is that it does. Neither side has been checked here: neither paper's full text nor the Lean code was read. The dispute stays on the record, with neither side treated as settled. A route to (C) or (D) that needs the correspondence reads contested by design, not as unfinished work. Separately, whether the formal statement F says the same as (C) is recorded as an open statement in its own right. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "kind": "choice",
+    "name": "The dispute over whether OpenAI's Lean proof faithfully formalizes its natural-language proof is kept open on purpose, until an independent reading of both settles it",
+    "status": "contested"
+   }
+  },
+  {
+   "node_id": "epoch:genesis",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "baseline",
+    "name": "Genesis",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "epoch:preserved-on-write",
+   "node_type": "DesignEpoch",
+   "properties": {
+    "epoch_type": "revision",
+    "name": "Preserved on write",
+    "sequence": 0,
+    "status": "arrived"
+   }
+  },
+  {
+   "node_id": "inf:a-implies-spec-2",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 1 premise(s) support req:spec-2-axisymmetric-core-regularity",
+    "rule": "all",
+    "rule_name": "specialization",
+    "warrant": "SPECULATIVE LINK, recorded to show Speculation 2 is weaker than (A), not a restatement of it: if (A) holds, every unforced solution from (4)-data is smooth for all time, so in particular every such solution with an axisymmetric collapsing core is regular at every point. The converse does not follow."
+   }
+  },
+  {
+   "node_id": "inf:c-via-lean",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:stmt-c",
+    "rule": "all",
+    "rule_name": "formal verification plus statement faithfulness",
+    "warrant": "A passing kernel check proves the formal statement F, and nothing more. (C) follows only if F faithfully expresses (C). This route does not need the natural-language proof — but it is NOT independent of the claimed route through it, because that route's premise (the NL proof is correct) may itself rest on the same Lean check (inf:nl-correct-via-lean). Both premises here are unshown: the check is claimant-reported, and no source examined F against (C)."
+   }
+  },
+  {
+   "node_id": "inf:c-via-nl-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:stmt-c",
+    "rule": "all",
+    "rule_name": "the claimed route: a correct proof of a result that meets (C)",
+    "warrant": "IF the natural-language proof is correct AND the result it proves meets every condition of (C), THEN (C) holds. Both premises are claims (CLAIMANT), neither shown here; so this route records what is claimed, not that (C) is shown."
+   }
+  },
+  {
+   "node_id": "inf:clay-resolved-by-any-one",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "any of 4 premise(s) support req:clay-problem-resolved",
+    "rule": "any",
+    "rule_name": "disjunction introduction under the problem's own rule (one of four suffices)",
+    "rule_node": "con:def-clay-asks-one-of-four",
+    "warrant": "S1 asks for \"a proof of one of the following four statements\". So showing any one of (A), (B), (C), (D) answers the problem as posed, whatever becomes of the other three. This step says nothing about Clay's recognition or award."
+   }
+  },
+  {
+   "node_id": "inf:d-via-nl-proof",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:stmt-d",
+    "rule": "all",
+    "rule_name": "the claimed route to (D)",
+    "warrant": "IF the natural-language proof is correct AND the work also establishes the periodic statement as claimed (\"and also 'D'\"), THEN (D) holds. Both premises are claimant-only."
+   }
+  },
+  {
+   "node_id": "inf:lem-not-a-implies-c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 1 premise(s) support req:lem-not-a-implies-c",
+    "rule": "all",
+    "rule_name": "instantiation of an existential (witness f ≡ 0)",
+    "warrant": "Read off the wording of (A) and (C) under the definitions of (1)–(7): a counterexample to (A) has f ≡ 0, which is smooth and meets the decay condition (5), so it is a witness for (C)'s existential. Unconfirmed: the designer's reading, put to the owner."
+   }
+  },
+  {
+   "node_id": "inf:lem-not-b-implies-d",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 1 premise(s) support req:lem-not-b-implies-d",
+    "rule": "all",
+    "rule_name": "instantiation of an existential (witness f ≡ 0)",
+    "warrant": "As on R³: a periodic counterexample to (B) has f ≡ 0, which meets (D)'s force conditions, so it witnesses (D). Unconfirmed; (8)–(11) are not quoted in the packet."
+   }
+  },
+  {
+   "node_id": "inf:nl-correct-via-lean",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:claim-nl-proof-correct",
+    "rule": "all",
+    "rule_name": "a machine check of a faithful formalization confirms the informal argument",
+    "warrant": "The claimant's implied link: if the Lean proof passes AND it faithfully formalizes the natural-language proof, the natural-language argument is confirmed. Its second premise is disputed by S4, and S4's general thesis objects to this kind of step itself."
+   }
+  },
+  {
+   "node_id": "inf:not-a-gives-c",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:stmt-c",
+    "rule": "all",
+    "rule_name": "modus ponens",
+    "warrant": "not-(A), and not-(A) implies (C), give (C). This route runs ONE WAY only: nothing here lets (C) give not-(A)."
+   }
+  },
+  {
+   "node_id": "inf:not-b-gives-d",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 2 premise(s) support req:stmt-d",
+    "rule": "all",
+    "rule_name": "modus ponens",
+    "warrant": "not-(B), and not-(B) implies (D), give (D). One way only: (D) does not give not-(B)."
+   }
+  },
+  {
+   "node_id": "inf:spec-1-gives-not-a",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "establishes": "derivability",
+    "name": "all of 1 premise(s) support req:stmt-not-a",
+    "rule": "all",
+    "rule_name": "time translation (restart the clock at T0)",
+    "warrant": "SPECULATIVE LINK. If the force is zero from T0 on and u(·,T0) is smooth, divergence-free and satisfies (4), then u(·,T0) is unforced data whose solution breaks down at T* − T0; by uniqueness of smooth solutions no global smooth solution from that data exists, which is not-(A). This is what makes Speculation 1 circular: it is a special case of not-(A)."
+   }
+  },
+  {
+   "node_id": "inf:standing-clay-not-ruled",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "any of 2 premise(s) support req:standing-clay-not-ruled",
+    "rule": "any",
+    "rule_name": "judgement from reports",
+    "warrant": "Clay's own page (PRIMARY-OFFICIAL) shows 'Active' on 2026-10-22; Wikipedia (TERTIARY) agrees and describes Clay's two-year, peer-review rule. The official page alone suffices for 'not ruled'."
+   }
+  },
+  {
+   "node_id": "inf:standing-not-verified",
+   "node_type": "Inference",
+   "properties": {
+    "confirmed_how": "unconfirmed",
+    "name": "any of 2 premise(s) support req:standing-not-verified",
+    "rule": "any",
+    "rule_name": "judgement from reports",
+    "warrant": "An encyclopedia (TERTIARY, one line 'citation needed') states the claimed result is not yet independently verified; journalism (SECONDARY) reports that, more than a month on, no one fully understands the proof. Either report alone supports 'not independently verified'; neither is a primary source, hence confidence moderate."
+   }
+  },
+  {
+   "node_id": "proj:navier-stokes-map",
+   "node_type": "Project",
+   "properties": {
+    "domain": "proof",
+    "mode": "flexible",
+    "name": "Navier–Stokes map (proof-ladder trial)",
+    "objective": "A MAP of the Navier–Stokes existence and smoothness problem as of 2026-10-22, not an attempt to prove anything. The four official statements (A)–(D) and how they relate; the classical results; OpenAI's claimed proof of (C) and (D) (2026-09-08), recorded as a claim and not as verified; its Lean formalization, recorded as evidence about a formal statement whose faithfulness to (C) is disputed; the published critiques and their scope; and what stays open (the unforced problem). Every source carries its strength. Any speculative link is labelled speculation, for the owner to accept or discard.",
+    "status": "active"
+   }
+  },
+  {
+   "node_id": "question:asked-do-you-accept-the-two-lemmas-if-a-6a88eb",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5.\" Both lemmas are accepted (req:lem-not-a-implies-c and req:lem-not-b-implies-d). The observer checked them against Fefferman's wording: (C) and (D) allow any smooth force meeting (5) or (9), and the zero force meets them, so a counterexample to (A) or (B) witnesses (C) or (D). The converse does not hold. The steps stay unconfirmed until he confirms them himself.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:ajs",
+    "batch": "ns-map-round-1",
+    "batch_position": 1,
+    "context_setter": "The map relates the four official statements as: proving any one resolves the problem; the failure of (A) implies (C), and the failure of (B) implies (D); (C) and (D) do not decide (A) or (B).",
+    "question": "Do you accept the two lemmas 'if (A) fails then (C) holds' and 'if (B) fails then (D) holds'? Each rests on the zero force meeting the decay condition (5) (or (9) for the periodic case). The packet gives (5) only as 'a decay condition', so that step is general knowledge, not quoted. Both steps are recorded as unconfirmed.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-i-mapped-the-packet-s-tiers-onto-reflow2-8183ab",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5.\" The mapping is accepted (OFFICIAL = A, ABSTRACT = B, CLAIMANT = C, SECONDARY = C, TERTIARY = D, credibility 6 unless corroborated), and the tier stays in words beside each grade. The two scales measure different things, so the words keep \"closeness to the source\" visible where the letter means \"trust in it\".",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:ajs",
+    "batch": "ns-map-round-1",
+    "batch_position": 2,
+    "context_setter": "reflow2 grades a source on two scales: reliability A–F and credibility 1–6. The packet ranks sources by distance from the primary source instead.",
+    "question": "I mapped the packet's tiers onto reflow2's reliability letters as OFFICIAL = A, ABSTRACT = B, CLAIMANT = C, SECONDARY (journalism) = C, TERTIARY (encyclopedia) = D. Credibility is 6 ('cannot be judged') unless another source in the packet agrees. Do you accept this mapping? Or should the tier be recorded only in words, since the two scales measure different things (closeness to the source versus trust in it)?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-is-this-three-way-separation-how-you-want-1ad88c",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5.\" Yes, read the map this way. The mathematical resolution, Clay's institutional standing and priority or prize matters stay separate. Clay's 2026-09-11 \"apparently been settled\" stays context only, and the priority and prize record stays unconnected to any mathematical status.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:ajs",
+    "batch": "ns-map-round-1",
+    "batch_position": 5,
+    "context_setter": "The map keeps three things apart: the mathematical 'the Clay problem is resolved' (it holds only if one of (A)–(D) is shown); Clay's institutional standing (problem page 'Active', no ruling); and priority or prize matters (recorded, but bearing on nothing).",
+    "question": "Is this three-way separation how you want the map read? In particular, should Clay's 2026-09-11 'apparently been settled' stay as context only, linked to nothing? And should the priority and prize record stay deliberately unconnected to any mathematical status?",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-should-the-lean-to-proof-correspondence-be-kept-a17aa8",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5.\" Yes to both:\n- The Lean-to-proof correspondence is kept contested on purpose (dec:the-lean-to-proof-correspondence-is-kept-open, which governs inf:nl-correct-via-lean).\n- The faithfulness of the formal statement F to (C) is now an open statement in its own right: req:conn-lean-statement-is-c is recorded as a conjecture.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:ajs",
+    "batch": "ns-map-round-1",
+    "batch_position": 3,
+    "context_setter": "S4 (abstract only) says the Lean proof does not correspond to the natural-language proof. It stands as an unanswered objection, so that connection reads 'contested'. No source examined whether the formal statement F says the same as (C).",
+    "question": "Should the Lean-to-proof correspondence be kept open on purpose, as a dispute you hold 'contested'? Or should it stay as it is now: an objection standing until someone answers or establishes it? Separately: do you want the faithfulness of the formal statement F to (C) recorded as an open question in its own right? It is the link a passing Lean check would need, and nothing in the packet addresses it.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "question:asked-speculation-1-the-force-can-be-switched-off-3497f6",
+   "node_type": "Question",
+   "properties": {
+    "answer": "Anthony, 2026-10-22: \"Go with your recommendations on 1 through 5.\" Keep both as CONSIDERED and leave them proposed; neither is accepted. Speculation 1 stays flagged circular (a special case of not-(A)), and Speculation 2 stays as a genuinely weaker statement that (A) implies.",
+    "answered_at": "2026-10-22",
+    "answered_by": "who:ajs",
+    "answered_via": "who:agent-8d84cd1476",
+    "asked_of": "who:ajs",
+    "batch": "ns-map-round-1",
+    "batch_position": 4,
+    "context_setter": "Two speculative links are recorded and labelled SPECULATION. Neither is accepted or claimed by any source.",
+    "question": "Speculation 1 ('the force can be switched off before the singularity') is circular: it is a special case of the failure of (A). Speculation 2 ('no unforced breakdown through an exactly axisymmetric collapsing core') is genuinely different: it is weaker than (A) and implied by it. Do you want to keep either, discard either, or rephrase either? They stay unaccepted until you say otherwise.",
+    "rephrase_degraded": false,
+    "status": "answered"
+   }
+  },
+  {
+   "node_id": "req:cite-2d-ladyzhenskaya",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED: in two dimensions the analogues of (A) and (B) hold (Ladyzhenskaya)",
+    "no_relation_note": "Background only. Two-dimensional result; no logical edge to the 3-D statements (A)–(D) honestly holds, so none is drawn.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "As STATED in S1 (Fefferman, Clay, PRIMARY-OFFICIAL), read by the observer. Ladyzhenskaya's original work was NOT read; S1 is a secondary statement of it.",
+    "statement": "In two space dimensions, the analogues of (A) and (B) have long been known (Ladyzhenskaya). Bears on the map only as background: it does not touch the three-dimensional (A) or (B).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-3d-short-time",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED: for any (not small) data, (A) and (B) hold on a short time interval [0,T)",
+    "no_relation_note": "Local-in-time existence; leaves global existence ((A)/(B)) open. No step to (A) holds, so none is drawn.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "As STATED in S1 (Fefferman, Clay, PRIMARY-OFFICIAL); original papers not named in the packet and not read.",
+    "statement": "For initial data that is not small, (A) and (B) hold on a short time interval [0,T), with T depending on the data. Local in time only; it leaves global existence open.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-3d-small-data",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED: in three dimensions (A) and (B) hold for small initial data",
+    "no_relation_note": "A special case of (A)/(B) (small data). It neither implies (A) nor bears on (C); a step to (A) would be false, so none is drawn.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "As STATED in S1 (Fefferman, Clay, PRIMARY-OFFICIAL); original papers not named in the packet and not read.",
+    "statement": "In three dimensions, (A) and (B) hold if the initial velocity satisfies a smallness condition. A special case of (A)/(B), not (A)/(B) themselves: it leaves large data open.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-civ-regularity",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "CITED (abstract only): Constantin–Ignatova–Vicol 2026 — the OpenAI-type mechanism cannot work with a vanishing or real-analytic force",
+    "priority": "medium",
+    "provenance": "authored",
+    "reported_at": "2026-09-29",
+    "source": "S5 Constantin, Ignatova & Vicol, arXiv:2609.20803, ABSTRACT ONLY (PRIMARY-ABSTRACT); paper not read",
+    "source_reliability": "B",
+    "statement": "Constantin, Ignatova and Vicol, arXiv:2609.20803 (v1 2026-09-17, v2 2026-09-29), per its abstract. They describe OpenAI's construction as having (i) \"the angular mean of the solution satisfies specific Type II bounds which are anisotropic\" and (ii) \"the solution is exactly axisymmetric in a collapsing core region\". They prove: solutions with a real-analytic body force that satisfy (i) and (ii) \"are in fact regular at the putative singular point\". Consequence, quoted: \"in the construction of [OpenAI], and in any construction with properties (i) and (ii) whose force remains bounded in C² up to the singular time, the force can neither vanish identically near the singular point, nor be real analytic in the space variables, locally uniformly in time.\" SCOPE: constructions with (i) and (ii) (and, for the consequence, a force bounded in C² up to the singular time). It does NOT dispute (C), which allows any smooth decaying force, and it does NOT address unforced blow-up outside properties (i) and (ii). Not refereed; abstract only.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-cmz-forced-euler",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED (abstract only): Córdoba–Martínez-Zoroa 2023 — blow-up for the FORCED 3-D Euler equations",
+    "no_relation_note": "Euler (ν = 0) with a force of limited smoothness: outside (A)–(D). Its only stated bearing (journalism: OpenAI's proof uses the same forcing 'loophole' but not this program) is not a logical relation.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S8 Córdoba & Martínez-Zoroa, arXiv:2309.08495, ABSTRACT ONLY (PRIMARY-ABSTRACT); paper not read",
+    "statement": "Córdoba and Martínez-Zoroa, arXiv:2309.08495 (2023), per its abstract: blow-up for the forced 3-D incompressible EULER equations (ν = 0), with a force in C^{1,½−ε} ∩ L² and solutions in C^{3,½} ∩ L² on [0,T). SCOPE: Euler, not Navier–Stokes; the force is of limited smoothness, not smooth. It bears on none of (A)–(D) directly. Scientific American (SECONDARY) reports expert groups saying OpenAI's proof does not follow this ('Spanish') program, though it exploits the same forcing 'loophole'.",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-leray-weak-solutions",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED: Leray (1934) — weak solutions always exist in 3-D",
+    "no_relation_note": "Weak, not smooth, solutions: does not give (A). Uniqueness of these weak solutions is the separate open record req:open-weak-uniqueness. No honest edge to (A)–(D).",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "As STATED in S1 (Fefferman, Clay, PRIMARY-OFFICIAL); Leray's 1934 paper not read.",
+    "statement": "Leray (1934) showed that the three-dimensional Navier–Stokes equations always have a weak solution with suitable growth properties. A weak solution need not be smooth, so this does not give (A).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-partial-regularity",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED: partial regularity (Scheffer; Caffarelli–Kohn–Nirenberg; simplified by F.-H. Lin)",
+    "no_relation_note": "Bounds the size of a singular set; excludes neither singularities nor their absence. No honest edge to (A) or not-(A).",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "As STATED in S1 (Fefferman, Clay, PRIMARY-OFFICIAL), the observer reading the measure statement as S1 gives it; the original papers not read.",
+    "statement": "The singular set of a suitable weak solution has one-dimensional parabolic Hausdorff measure zero (Scheffer, then Caffarelli–Kohn–Nirenberg, simplified by F.-H. Lin). Limits how large a singular set can be; does not exclude singularities, so it decides neither (A) nor not-(A).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:cite-tao-averaged-blowup",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CITED (abstract only): Tao 2014 — blow-up for an AVERAGED Navier–Stokes equation; a barrier to proving (A)",
+    "no_relation_note": "A barrier to a class of METHODS for proving (A), about a modified (averaged) equation. It does not show not-(A) and is no objection to (A) itself, so no CONTRADICTS is drawn.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S8 Tao, arXiv:1402.0290, ABSTRACT ONLY read by the observer (PRIMARY-ABSTRACT); the paper itself not read",
+    "statement": "Tao, arXiv:1402.0290 (2014; published 2016), per its abstract: it constructs finite-time blow-up for an AVERAGED Navier–Stokes equation that keeps the energy identity. \"This demonstrates that any attempt to positively resolve the Navier-Stokes global regularity problem in three dimensions has to use finer structure on the nonlinear portion … than is provided by harmonic analysis estimates and the energy identity.\" SCOPE: a barrier to a class of methods for proving (A); it is about a modified equation, so it does NOT show not-(A), and it does not bear on (C).",
+    "statement_kind": "theorem",
+    "status": "proposed",
+    "taken_as_given": true
+   }
+  },
+  {
+   "node_id": "req:claim-lean-check-passes",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CLAIM: the Lean formalization passes Lean's checker (it proves SOME formal statement F)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 OpenAI announcement — CLAIMANT only",
+    "statement": "CLAIMED, NOT SHOWN HERE. OpenAI's Lean formalization is accepted by the Lean proof checker, i.e. it is a machine-checked proof of some formal statement F. Support: the claimant only (\"Lean formalization and verification took an additional 17 hours\", S2). The Lean code was NOT read for this map, and no source in the packet reports an independent re-run. S4's abstract refers to \"the formalised Lean proof\" (that it exists), not to whether it checks. NOTE: even a passing check proves only F; what connects F to (C) is a separate record (conn-lean-statement-is-c).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:claim-nl-proof-correct",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CLAIM: OpenAI's natural-language proof is correct",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 OpenAI announcement 'On the Navier–Stokes Millennium Prize Problem', openai.com, 2026-09-08 (updated 09-10), read via the Web Archive — CLAIMANT",
+    "statement": "CLAIMED, NOT SHOWN. The natural-language (\"analytical\") proof OpenAI announced on 2026-09-08 (updated 2026-09-10) — produced by about 10,000 coordinating agents of an internal model in about 88 hours; a 166-page paper per Scientific American (S6, 2026-10-13) — is a correct proof of the result it states: \"an initially smooth fluid at rest can develop a singularity in a finite time. The fluid has a smooth force applied to it, and its energy remains finite.\" The paper was NOT read for this map. Support in the packet is the claimant's own announcement (S2). Standing: not independently verified per Wikipedia (TERTIARY, 'citation needed', as of 2026-09-18) and 'yet to be verified by the independent mathematical community'; Scientific American (SECONDARY, 2026-10-13): \"no one fully\" understands it. No source in the packet says the proof is WRONG; it is unverified, not refuted.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:clay-problem-resolved",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "The Clay problem is mathematically resolved (one of (A)–(D) is proved)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Follows from S1's wording \"we ask for a proof of one of the following four statements\"",
+    "statement": "A proof of at least one of (A), (B), (C), (D) exists, so the Clay Navier–Stokes problem, as officially posed, is answered. This is a MATHEMATICAL statement. It is NOT the same as Clay recognising or awarding a solution (Clay's page still shows the problem 'Active', 2026-10-22; see the Clay-standing record). It holds only if one of the four statements is shown.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conn-lean-proof-matches-nl",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONNECTION: the Lean proof is a faithful formalization of the natural-language proof",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 (CLAIMANT, by implication); disputed by S4 (PRIMARY-ABSTRACT)",
+    "statement": "The Lean proof follows, and corresponds to, the natural-language proof, so that its passing check is evidence for the natural-language argument. Implied by the claimant (S2 presents \"an analytical proof and a Lean formalization\" of one result). DISPUTED: Bastounis, Circelli and Hansen (S4, arXiv:2610.08144, abstract only): \"the formalised Lean proof does not correspond to the NL proof of blow-up\".",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conn-lean-statement-is-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONNECTION: the formal statement F faithfully expresses (C)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "No source in the packet; implied by the claimant's framing (S2) that the Lean formalization verifies its result",
+    "statement": "The formal theorem F that the Lean proof proves says the same thing as (C) as Fefferman words it: its definitions of smoothness, divergence-free, the decay conditions (4) and (5), bounded energy (7), the domain R³ × [0,∞) and 'no solution exists' match the official ones. This is what would let a passing Lean check bear on (C) at all. NOT EXAMINED by any source in the packet: no source says F matches (C), and none says it does not. S4 (abstract) disputes a DIFFERENT connection — the Lean proof's correspondence to the natural-language proof — not, as far as its abstract says, the formal statement's match to (C).",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conn-nl-result-gives-d",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONNECTION: the announced work also establishes (D)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 OpenAI announcement — CLAIMANT only",
+    "statement": "OpenAI's work also establishes (D), the periodic breakdown statement: CLAIMED in S2 (\"(and also 'D')\"). The packet gives no detail of how (D) follows, and the paper was not read. No other source in the packet addresses (D).",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:conn-nl-result-meets-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "CONNECTION: the announced result meets every condition of (C)",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 (CLAIMANT); S6 2026-09-21 (SECONDARY) restates it",
+    "statement": "The result OpenAI states (smooth initial data 'at rest', a smooth force, finite energy, a singularity in finite time) meets (C) as Fefferman words it: u° smooth, divergence-free and satisfying the decay condition (4); f smooth on R³ × [0,∞) and satisfying the decay condition (5); and no (p,u) satisfying (1), (2), (3), (6), (7) on all of R³ × [0,∞). CLAIMED by OpenAI (\"This resolves the Navier–Stokes Millennium Prize problem by establishing statement 'C'\"), and stated by Scientific American (SECONDARY) as solving the problem \"unambiguously\" \"according to the Clay Institute's original formulation\". Not checked here: the packet's quotation of the announcement does not mention the decay condition (5) on the force, and the paper was not read.",
+    "statement_kind": "proposition",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-clay-news-0911",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "EVIDENCE (OFFICIAL, not a ruling): Clay news item, 2026-09-11",
+    "no_relation_note": "Deliberately unlinked: an official but hedged expression ('apparently'), not a ruling. Linking it to (C) or to the Clay-resolved node would lend it the weight of verification it does not have.",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-09-11",
+    "source": "S3 Clay news 2026-09-11 — PRIMARY-OFFICIAL, not a ruling",
+    "source_reliability": "A",
+    "statement": "Clay Mathematics Institute news, 2026-09-11: \"CMI shares in the excitement of the global mathematical community as we contemplate the announcement that the Navier-Stokes problem has apparently been settled. We hope to see waves of new human understanding unleashed as the innovations behind this work are analysed and interrogated.\" STRENGTH: official source, but hedged ('apparently') and NOT a ruling; it neither verifies the proof nor changes the problem's status.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-clay-page-active",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "2",
+    "lineage": "original",
+    "name": "EVIDENCE (OFFICIAL): Clay's problem page still shows 'Active' (fetched 2026-10-22)",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-22",
+    "source": "S3 Clay problem page — PRIMARY-OFFICIAL",
+    "source_reliability": "A",
+    "statement": "Clay's Navier–Stokes problem page, fetched 2026-10-22, still shows the problem as \"Active\". STRENGTH: official, directly observed; agrees with Wikipedia (TERTIARY): \"As of October 2026, the Clay Mathematics Institute currently considers the problem 'active'.\"",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-euler-claims",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "EVIDENCE (CLAIMANT): OpenAI's statements about Euler blow-up",
+    "no_relation_note": "Euler is outside the Clay problem; claimant-only reports. No honest edge to (A)–(D).",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-09-08",
+    "source": "S2 — CLAIMANT (Euler claims); S1 — PRIMARY-OFFICIAL (Euler 'also open', as of S1's writing)",
+    "source_reliability": "C",
+    "statement": "OpenAI (S2) says its agents first resolved the UNFORCED Euler blow-up problem (its claim, with its own paper, not read), and that Alpöge and Buckmaster (concurrently) resolved the FORCED Euler problem. Both are reported here only through the claimant. S1 (PRIMARY-OFFICIAL): these problems \"are also open and very important for the Euler equations (ν = 0), although the Euler equation is not on the Clay Institute's list.\" Euler is outside the Clay problem; recorded for context only, bearing on none of (A)–(D).",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-openai-announcement",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "EVIDENCE (CLAIMANT): OpenAI's announcement of 2026-09-08",
+    "no_relation_note": "The claimant's own statement. Not drawn as a premise of the claim it makes: a claim is never recorded as supported because its claimant says so. The claims it makes are the claim-* and conn-* records.",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-09-08",
+    "source": "S2 — CLAIMANT",
+    "source_reliability": "C",
+    "statement": "OpenAI, \"On the Navier–Stokes Millennium Prize Problem\" (openai.com, 2026-09-08, updated 2026-09-10; read via the Web Archive), says: \"Our system produced an analytical proof and a Lean formalization that an initially smooth fluid at rest can develop a singularity in a finite time. The fluid has a smooth force applied to it, and its energy remains finite … This resolves the Navier–Stokes Millennium Prize problem by establishing statement 'C' (and also 'D') in the official Millennium Prize formulation.\" About 10,000 coordinating agents of an internal model, about 88 hours; \"Lean formalization and verification took an additional 17 hours.\" STRENGTH: the claimant describing its own work. It establishes WHAT is claimed, not that the claim is true.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-priority-not-mathematics",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "NOT MATHEMATICS: priority, credit and the prize",
+    "no_relation_note": "Deliberately unlinked: priority, credit and the prize are not mathematics and must bear on no mathematical status.",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "S2 — CLAIMANT; S6 2026-10-13 — SECONDARY",
+    "source_reliability": "C",
+    "statement": "Matters of priority, credit and prize, recorded so they are seen and kept APART from every mathematical status on this map: OpenAI writes \"We recognize the priority of their work on forced Euler\" (of Alpöge and Buckmaster) and \"We do not intend to claim the Millennium Prize for this result\" (S2, CLAIMANT). Camillo De Lellis, on the priority question: \"It's not anymore a matter of clearly verifiable mathematical facts\" (S6, 2026-10-13, SECONDARY). This record is deliberately NOT a premise of, nor an objection to, any statement; whether anyone claims the prize, or who has priority, changes no mathematical status.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-sciam-civ-reading",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "4",
+    "lineage": "original",
+    "name": "EVIDENCE (SECONDARY): Scientific American's reading of S5 — wider than S5's own scope",
+    "no_relation_note": "Kept apart from req:cite-civ-regularity on purpose: it states S5's result more broadly than S5's abstract does, so it is recorded at journalism's strength and not drawn as an objection to anything.",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-09-21",
+    "source": "S6 Scientific American 2026-09-21 — SECONDARY",
+    "source_reliability": "C",
+    "statement": "Scientific American, 2026-09-21, says the Constantin–Ignatova–Vicol paper (S5) \"showed that OpenAI's method can never be extended to solve the full problem\". RECORDED AT ITS OWN STRENGTH, NOT S5's: S5's abstract states a narrower result — regularity for solutions with properties (i) and (ii) and a real-analytic force, and the consequence that in constructions with (i), (ii) and a force bounded in C² up to the singular time, the force can neither vanish identically near the singular point nor be real-analytic in space. The journalist's 'never … the full problem' goes beyond what the abstract states (e.g. a modified method without (i) or (ii) is outside S5's scope).",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-sciam-clay-settled",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "EVIDENCE (SECONDARY): Scientific American, 2026-09-21 — 'the Clay problem is settled, but the main problem is not'",
+    "no_relation_note": "Expert opinion as reported by journalism. Not drawn as support for (C) or for conn-nl-result-meets-c: a reported opinion is not a verification.",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-09-21",
+    "source": "S6 Scientific American 2026-09-21 — SECONDARY",
+    "source_reliability": "C",
+    "statement": "Scientific American (Joseph Howlett), \"Did OpenAI solve the wrong Navier–Stokes problem?\", 2026-09-21. Quotes Luis Silvestre: \"The Clay problem is settled, but the main problem for the Navier-Stokes equations is not.\" The article says the result \"unambiguously\" solved the problem \"according to the Clay Institute's original formulation\", via option (C), which allows an external force. Quotes Gonzalo Cao-Labora: whether the equations can blow up only with an external force is \"really uncertain at this moment\". STRENGTH: journalism quoting experts — an expert's opinion as reported, not a verification. Recorded at this strength: it does not make (C) shown.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-sciam-not-understood",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "EVIDENCE (SECONDARY): Scientific American, 2026-10-13 — no one yet fully understands the proof",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-13",
+    "source": "S6 Scientific American 2026-10-13 — SECONDARY",
+    "source_reliability": "C",
+    "statement": "Scientific American (Joseph Howlett), \"OpenAI's blockbuster math proof isn't what you think it is\", 2026-10-13: the paper is 166 pages; \"OpenAI didn't understand its own model's proof. And still, more than a month later, no one fully does.\" Expert groups say the proof does not follow the Córdoba–Martínez-Zoroa ('Spanish') program, though it exploits the same forcing 'loophole'. STRENGTH: journalism quoting experts. Bears on VERIFICATION status, not on whether the proof is correct.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-wiki-clay-process",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "EVIDENCE (TERTIARY): Wikipedia on Clay's rules and the problem's status",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-22",
+    "source": "S7 Wikipedia (two articles) — TERTIARY",
+    "source_reliability": "D",
+    "statement": "Wikipedia, fetched 2026-10-22: Clay \"does not consider proposed solutions … until at least two years after publication\" and requires peer-reviewed publication ('Millennium Prize Problems'); \"As of October 2026, the Clay Mathematics Institute currently considers the problem 'active'\" ('Navier–Stokes existence and smoothness'). STRENGTH: encyclopedia; Clay's rules page itself was NOT read by the observer.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:ev-wiki-not-verified",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "3",
+    "lineage": "original",
+    "name": "EVIDENCE (TERTIARY): Wikipedia — the proof of (C) is not yet independently verified; unforced and real-analytic-forced cases unsolved",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-22",
+    "source": "S7 Wikipedia — TERTIARY",
+    "source_reliability": "D",
+    "statement": "Wikipedia, fetched 2026-10-22: \"As of September 18, 2026, the proof of statement (C) has not yet been independently verified\" (marked 'citation needed'); \"The claimed result has yet to be verified by the independent mathematical community\"; the problem \"with a real-analytic external force or no external force remains unsolved.\" STRENGTH: encyclopedia, one line flagged 'citation needed'.",
+    "statement_kind": "evidence",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:lem-not-a-implies-c",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma: if (A) fails, then (C) holds",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's derivation from S1's wording of (A) and (C); not stated in any source in the packet",
+    "statement": "If not-(A), then (C). Reason: a counterexample to (A) is a smooth divergence-free u° satisfying (4) with f ≡ 0 for which no (p,u) satisfies (1), (2), (3), (6), (7) on R³ × [0,∞). The zero force is smooth on R³ × [0,∞) and satisfies the decay condition (5) (any bound of the form |derivatives of f| ≤ C·(decaying weight) holds for f ≡ 0). So the pair (u°, f ≡ 0) witnesses (C). The converse FAILS to follow: (C) may be witnessed only by a non-zero force, which says nothing about f ≡ 0. Hence (A) and (C) are compatible, and (C) does not decide (A). Written by the designer from S1's wording; the packet gives (5) only as 'a decay condition on f', so the step that f ≡ 0 satisfies it is general knowledge, put to the owner.",
+    "statement_kind": "lemma",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "req:lem-not-b-implies-d",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "Lemma: if (B) fails, then (D) holds",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's derivation from S1's wording of (B) and (D); not stated in any source in the packet",
+    "statement": "If not-(B), then (D), for the same reason as on R³: a periodic counterexample to (B) with f ≡ 0, together with the zero force (which satisfies the periodic force condition (9)), witnesses (D). The converse does not follow: (D) with a non-zero force says nothing about (B). Written by the designer; the packet does not quote (8)–(11), so that f ≡ 0 meets (9) is assumed from general knowledge and put to the owner.",
+    "statement_kind": "lemma",
+    "status": "accepted"
+   }
+  },
+  {
+   "node_id": "req:obj-s4-general-thesis",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "OBJECTION (S4, general): a Lean check of an AI translation may give no confidence in the original argument",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-06",
+    "source": "S4 arXiv:2610.08144 abstract — PRIMARY-ABSTRACT",
+    "source_reliability": "B",
+    "statement": "S4 abstract (arXiv:2610.08144, ABSTRACT ONLY): in general, a Lean check of an AI translation \"may offer no confidence in the original NL argument, owing to the various difficulties in performing the translation semantically faithfully.\" SCOPE: a general methodological thesis aimed at the kind of step that infers the correctness of a natural-language proof from the machine check of its AI-made formalization. It says 'may', not 'does'; it is not a finding about (C).",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:obj-s4-lean-not-nl",
+   "node_type": "Requirement",
+   "properties": {
+    "information_credibility": "6",
+    "lineage": "original",
+    "name": "OBJECTION (S4): the Lean proof does not correspond to the natural-language proof",
+    "priority": "medium",
+    "provenance": "imported",
+    "reported_at": "2026-10-06",
+    "source": "S4 arXiv:2610.08144 abstract — PRIMARY-ABSTRACT (preprint, not refereed, abstract only read)",
+    "source_reliability": "B",
+    "statement": "Bastounis, Circelli and Hansen, \"Navier-Stokes lost in translation: Why Lean verification of AI autoformalisation does not guarantee correct natural language proofs\", arXiv:2610.08144, 2026-10-06, ABSTRACT ONLY: \"we show that the formalised Lean proof does not correspond to the NL [natural-language] proof of blow-up of solutions to the Navier-Stokes equations.\" SCOPE, as the abstract states it: the correspondence between this Lean proof and this natural-language proof. The abstract does NOT say the natural-language proof is wrong, does NOT say (C) is false, and does NOT say (as far as it is quoted) that the formal statement fails to express (C). Not refereed; full text not read.",
+    "statement_kind": "objection",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:open-weak-uniqueness",
+   "node_type": "Requirement",
+   "properties": {
+    "lineage": "original",
+    "name": "OPEN: uniqueness of weak solutions",
+    "no_relation_note": "Open question from S1; the packet relates it to none of (A)–(D), and no implication is drawn from general knowledge.",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 (Fefferman, Clay, PRIMARY-OFFICIAL), quoted",
+    "statement": "Whether weak solutions of the 3-D Navier–Stokes equations are unique. S1 (PRIMARY-OFFICIAL): \"Uniqueness of weak solutions of the Navier–Stokes equation is not known.\" Recorded as an open question, worded neutrally; nothing in the packet claims either answer.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:spec-1-force-switched-off",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "f=0 for t>=T0"
+    ],
+    "lineage": "original",
+    "name": "SPECULATION 1 (not claimed by any source): the OpenAI-type blow-up survives switching the force off before the singular time",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's speculation (proof-ladder trial speculative-links slot); not in any source",
+    "statement": "SPECULATION — written by the designer, claimed by NO source, NOT accepted. A finite-time singularity of the kind S5 attributes to OpenAI's construction (properties (i) anisotropic Type II bounds on the angular mean and (ii) exact axisymmetry in a collapsing core) can be produced with a smooth force satisfying (5) that is identically zero for all t ≥ T0, for some T0 before the singular time T*, with u(·,T0) satisfying (4). IF SHOWN it would give not-(A) (restart the clock at T0: unforced smooth data that breaks down). CIRCULAR: it is merely a special case of not-(A) — showing it IS showing not-(A) for one family of solutions — so it opens no route that not-(A) does not already name. Also, S5's consequence (abstract only) says that in constructions with (i), (ii) and a force bounded in C² up to T*, the force cannot vanish identically near the singular point — which, within that scope, stands against this speculation.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:spec-2-axisymmetric-core-regularity",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "f=0",
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "SPECULATION 2 (not claimed by any source): no unforced solution can break down through an exactly axisymmetric collapsing core",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's speculation (proof-ladder trial speculative-links slot); suggested by the scope of S5's abstract; not in any source",
+    "statement": "SPECULATION — written by the designer, claimed by NO source, NOT accepted. Every solution of the unforced 3-D Navier–Stokes equations (f ≡ 0) from smooth data satisfying (4) that is exactly axisymmetric in a collapsing core region is regular at any putative singular point — that is, S5's conclusion would hold for f ≡ 0 WITHOUT assuming its Type II bounds (i). IF SHOWN it would close one whole family of routes to not-(A) (including Speculation 1), yet leave (A) itself open, since breakdown without such a core would remain possible. NOT CIRCULAR: it is strictly weaker than (A) — (A) implies it (inf:a-implies-spec-2), but it does not imply (A) — and it is not a restatement of any of (A)–(D) or their negations.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:standing-clay-not-ruled",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "high",
+    "lineage": "original",
+    "name": "STANDING: Clay has not ruled — the problem is officially 'Active'",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Judgement drawn from the evidence: Clay has not recognised a solution; its page shows the problem 'Active' (2026-10-22). Its 2026-09-11 news ('apparently been settled') is not a ruling. Per TERTIARY sources only, Clay considers a proposed solution only after peer-reviewed publication and at least two years after publication. This is INSTITUTIONAL status: it neither makes (C) true nor false, and the mathematical node 'the Clay problem is mathematically resolved' does not rest on it.",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:standing-not-verified",
+   "node_type": "Requirement",
+   "properties": {
+    "confidence": "moderate",
+    "lineage": "original",
+    "name": "STANDING: the claimed proof has not been independently verified (as of 2026-10-22, per the packet)",
+    "priority": "medium",
+    "provenance": "authored",
+    "statement": "Judgement drawn from the evidence: as of 2026-10-22 no source in the packet reports that OpenAI's natural-language proof, or its Lean formalization, has been independently verified. This is a statement about VERIFICATION, not about correctness: it does not say the proof is wrong, and it is not an objection to the claim.",
+    "statement_kind": "judgement",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:stmt-a",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "f=0",
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "(A) Existence and smoothness on R³ (unforced)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 Fefferman, 'Existence and smoothness of the Navier–Stokes equation', Clay Mathematics Institute (claymath.org/wp-content/uploads/2022/06/navierstokes.pdf), PRIMARY-OFFICIAL, read by the observer",
+    "statement": "Official (S1, verbatim): \"Take ν > 0 and n = 3. Let u°(x) be any smooth, divergence-free vector field satisfying (4). Take f(x,t) to be identically zero. Then there exist smooth functions p(x,t), u_i(x,t) on R³ × [0,∞) that satisfy (1), (2), (3), (6), (7).\" STATUS ON THE MAP: OPEN. Known only for small data and for short times (cited results); nothing in the packet claims (A) or its negation. Logical relation: (A) and (C) are NOT negations of each other — (A) concerns f ≡ 0 only, (C) allows a force. Both can be true together. The failure of (A) implies (C) (lem:not-a-implies-c), but (C) does not decide (A).",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "u°"
+    ]
+   }
+  },
+  {
+   "node_id": "req:stmt-b",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "f=0",
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "(B) Existence and smoothness on R³/Z³ (periodic, unforced)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 Fefferman, Clay Mathematics Institute, PRIMARY-OFFICIAL, read by the observer (the packet paraphrases (B) by reference to (A); conditions (8), (10), (11) are not quoted)",
+    "statement": "Official (S1, as the packet gives it): \"The same as (A), with f identically zero, and with conditions (8), (10), (11)\" — the periodic case on R³/Z³. STATUS ON THE MAP: OPEN. Known only for small data and short times (cited results). Not decided by (D): the failure of (B) implies (D) (lem:not-b-implies-d), but (D) does not decide (B).",
+    "statement_kind": "conjecture",
+    "status": "proposed",
+    "variables": [
+     "u°"
+    ]
+   }
+  },
+  {
+   "node_id": "req:stmt-c",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "(C) Breakdown on R³ (a force is allowed)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 Fefferman, Clay Mathematics Institute, PRIMARY-OFFICIAL, read by the observer",
+    "statement": "Official (S1, verbatim): \"Take ν > 0 and n = 3. Then there exist a smooth, divergence-free vector field u°(x) on R³ and a smooth f(x,t) on R³ × [0,∞), satisfying (4), (5), for which there exist no solutions (p,u) of (1), (2), (3), (6), (7) on R³ × [0,∞).\" STATUS ON THE MAP: CLAIMED by OpenAI (2026-09-08), NOT independently verified per the sources in the packet, and not ruled on by Clay. Logical relation: (C) is strictly weaker than the failure of (A): the failure of (A) gives (C) with f ≡ 0, but (C) with a non-zero force says nothing about (A). (A) and (C) can both be true.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:stmt-d",
+   "node_type": "Requirement",
+   "properties": {
+    "fixes": [
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "(D) Breakdown on R³/Z³ (periodic, a force is allowed)",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "S1 Fefferman, Clay Mathematics Institute, PRIMARY-OFFICIAL, read by the observer (conditions (8)–(11) not quoted in the packet)",
+    "statement": "Official (S1, as the packet gives it): \"The same as (C), with conditions (8), (9), (10), (11)\" — the periodic case. STATUS ON THE MAP: CLAIMED by OpenAI (\"and also 'D'\", S2), not independently verified, not ruled on by Clay. The packet gives no implication between (C) and (D) either way; none is recorded.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:stmt-not-a",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:stmt-a",
+     "req:stmt-c"
+    ],
+    "fixes": [
+     "f=0",
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "not-(A): some unforced smooth data on R³ has no global smooth solution",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's negation of S1's (A); general logic, no source asserts it",
+    "statement": "The logical negation of (A), written out by the designer from S1's wording (not an official statement, and claimed by no source in the packet): with ν > 0, n = 3 and f ≡ 0, there is a smooth, divergence-free u° satisfying (4) for which no smooth p, u on R³ × [0,∞) satisfy (1), (2), (3), (6), (7). STATUS: OPEN. Exactly one of (A) and not-(A) is true; neither is shown. Wikipedia (TERTIARY) records the problem with no external force as unsolved; Cao-Labora (SECONDARY, quoted by Scientific American) calls blow-up only with an external force \"really uncertain at this moment\".",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "req:stmt-not-b",
+   "node_type": "Requirement",
+   "properties": {
+    "distinct_from": [
+     "req:stmt-b",
+     "req:stmt-d"
+    ],
+    "fixes": [
+     "f=0",
+     "n=3"
+    ],
+    "lineage": "original",
+    "name": "not-(B): some unforced smooth periodic data has no global smooth solution",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Designer's negation of S1's (B); general logic, no source asserts it",
+    "statement": "The logical negation of (B), written out by the designer (not official, claimed by no source in the packet): on R³/Z³ with f ≡ 0, there is smooth divergence-free periodic data for which no smooth solution satisfying (B)'s conditions exists for all time. STATUS: OPEN.",
+    "statement_kind": "conjecture",
+    "status": "proposed"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:inf:c-via-lean",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Requirement\",\"other_id\":\"req:claim-lean-check-passes\",\"properties\":{}},{\"direction\":\"in\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Requirement\",\"other_id\":\"req:conn-lean-statement-is-c\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"CONCLUDES\",\"other_type\":\"Requirement\",\"other_id\":\"req:stmt-c\",\"properties\":{}}]",
+    "state": "{\"confirmed_how\":\"unconfirmed\",\"establishes\":\"derivability\",\"independent_of\":[\"inf:c-via-nl-proof\"],\"name\":\"all of 2 premise(s) support req:stmt-c\",\"rule\":\"all\",\"rule_name\":\"formal verification plus statement faithfulness\",\"warrant\":\"A passing kernel check proves the formal statement F, and nothing more. (C) follows only if F faithfully expresses (C). This route does not need the natural-language proof — but it is NOT independent of the claimed route through it, because that route's premise (the NL proof is correct) may itself rest on the same Lean check (inf:nl-correct-via-lean). Both premises here are unshown: the check is claimant-reported, and no source examined F against (C).\"}",
+    "target_id": "inf:c-via-lean",
+    "target_type": "Inference"
+   }
+  },
+  {
+   "node_id": "snap:epoch:preserved-on-write:req:conn-lean-statement-is-c",
+   "node_type": "Snapshot",
+   "properties": {
+    "edges": "[{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}},{\"direction\":\"out\",\"edge_type\":\"PREMISE_OF\",\"other_type\":\"Inference\",\"other_id\":\"inf:c-via-lean\",\"properties\":{}}]",
+    "state": "{\"lineage\":\"original\",\"name\":\"CONNECTION: the formal statement F faithfully expresses (C)\",\"priority\":\"medium\",\"provenance\":\"authored\",\"source\":\"No source in the packet; implied by the claimant's framing (S2) that the Lean formalization verifies its result\",\"statement\":\"The formal theorem F that the Lean proof proves says the same thing as (C) as Fefferman words it: its definitions of smoothness, divergence-free, the decay conditions (4) and (5), bounded energy (7), the domain R³ × [0,∞) and 'no solution exists' match the official ones. This is what would let a passing Lean check bear on (C) at all. NOT EXAMINED by any source in the packet: no source says F matches (C), and none says it does not. S4 (abstract) disputes a DIFFERENT connection — the Lean proof's correspondence to the natural-language proof — not, as far as its abstract says, the formal statement's match to (C).\",\"statement_kind\":\"proposition\",\"status\":\"proposed\"}",
+    "target_id": "req:conn-lean-statement-is-c",
+    "target_type": "Requirement"
+   }
+  }
+ ],
+ "stamp": {
+  "edge_type_names": [
+   "ABOUT_ENTITY",
+   "ACTS_FOR",
+   "ALLOCATED_TO",
+   "ANNOTATES",
+   "ANSWERS",
+   "ANTICIPATES",
+   "ASKS_ABOUT",
+   "ASSESSED_ON",
+   "AT_EPOCH",
+   "AUTHORED_BY",
+   "BLOCKS",
+   "CALIBRATED_AGAINST",
+   "CAUSES",
+   "CHANGED",
+   "CLAIMS",
+   "COMPLEMENTS",
+   "COMPLIES_WITH",
+   "CONCLUDES",
+   "CONSTRAINS",
+   "CONSUMES",
+   "CONTAINS",
+   "CONTAINS_EPOCH",
+   "CONTRADICTS",
+   "DECOMPOSES",
+   "DEPENDS_ON",
+   "DEPLOYED_TO",
+   "DOCUMENTS",
+   "DUPLICATES",
+   "EVOLVES_INTO",
+   "GATED_ON",
+   "GOVERNED_BY",
+   "HAS_OBSERVATION",
+   "HAS_READINESS",
+   "HAS_SNAPSHOT",
+   "HAS_TEMPORAL_FACT",
+   "IMPLEMENTS",
+   "IMPOSES",
+   "INCLUDES",
+   "INTERACTS_WITH",
+   "INVALIDATES",
+   "MASKS",
+   "MITIGATES",
+   "OBSERVED_IN",
+   "OBSOLETES",
+   "OCCURS_DURING",
+   "OPERATES_IN",
+   "OWNED_BY",
+   "PART_OF_FLOW",
+   "PERFORMED_IN",
+   "PRECEDES",
+   "PREMISE_OF",
+   "PRODUCES",
+   "PROVIDES",
+   "REALIZES",
+   "REQUIRES_RESOURCE",
+   "RISKS",
+   "SATISFIES",
+   "SCHEDULED_FOR",
+   "SPECIFIES",
+   "SUPERSEDES",
+   "SUPPLEMENTS",
+   "TRIGGERS",
+   "VALID_FROM",
+   "VALID_TO",
+   "VERIFIES",
+   "VIOLATES",
+   "VIOLATES_RULE",
+   "YIELDED"
+  ],
+  "edge_types": 68,
+  "enum_values": {
+   "Actor.actor_type": [
+    "device",
+    "external_system",
+    "operator",
+    "service",
+    "stakeholder",
+    "user"
+   ],
+   "Artifact.artifact_type": [
+    "asset",
+    "binary",
+    "code",
+    "config",
+    "data",
+    "diagram",
+    "document",
+    "drawing",
+    "model",
+    "spec",
+    "test",
+    "test_result"
+   ],
+   "Artifact.audience": [
+    "consumer",
+    "internal"
+   ],
+   "Artifact.granularity": [
+    "atomic",
+    "opaque",
+    "pending_expansion"
+   ],
+   "Artifact.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Artifact.volatility": [
+    "append_only",
+    "living",
+    "stable"
+   ],
+   "Capability.delivery": [
+    "artifact",
+    "model"
+   ],
+   "Capability.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Capability.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Capability.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "ChangeEvent.change_type": [
+    "baseline_established",
+    "constraint_change",
+    "decision_settled",
+    "defect_fix",
+    "deprecation",
+    "documentation",
+    "environment_change",
+    "new_feature",
+    "performance_optimization",
+    "refactor",
+    "requirement_creep",
+    "resync",
+    "scope_change",
+    "test_failure_fix"
+   ],
+   "ChangeEvent.rationale_basis": [
+    "contemporaneous",
+    "recalled",
+    "unknown"
+   ],
+   "ChangeEvent.repair": [
+    "contained_symptom",
+    "corrected_cause"
+   ],
+   "ChangeEvent.subject": [
+    "record",
+    "system"
+   ],
+   "Component.kind": [
+    "assembly",
+    "layer",
+    "module",
+    "part",
+    "section",
+    "service",
+    "subsystem"
+   ],
+   "Component.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Component.status": [
+    "in_progress",
+    "planned",
+    "realized",
+    "verified"
+   ],
+   "Component.tier": [
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Constraint.category": [
+    "budget",
+    "business",
+    "kpp",
+    "operational",
+    "physical",
+    "regulatory",
+    "schedule",
+    "technical"
+   ],
+   "Constraint.composition": [
+    "path",
+    "sum"
+   ],
+   "Constraint.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Constraint.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Constraint.direction": [
+    "maximum",
+    "minimum",
+    "setpoint"
+   ],
+   "Constraint.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Constraint.limit_basis": [
+    "asserted",
+    "computed",
+    "measured"
+   ],
+   "Constraint.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Constraint.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Constraint.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Contributor.kind": [
+    "automated_agent",
+    "organization",
+    "person"
+   ],
+   "Decision.kind": [
+    "choice",
+    "exploratory"
+   ],
+   "Decision.quality_target": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "Decision.status": [
+    "accepted",
+    "contested",
+    "deferred",
+    "proposed",
+    "rejected",
+    "superseded"
+   ],
+   "DesignEpoch.epoch_type": [
+    "baseline",
+    "incident_response",
+    "milestone",
+    "release_cut",
+    "revision"
+   ],
+   "DesignEpoch.status": [
+    "arrived",
+    "planned"
+   ],
+   "DimensionAssessment.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DimensionObservation.dimension": [
+    "coupling",
+    "maintainability",
+    "maturity",
+    "observability",
+    "performance",
+    "reliability",
+    "scalability",
+    "security",
+    "testability"
+   ],
+   "DriftEvent.drift_type": [
+    "checksum_change",
+    "deployment_contradicted",
+    "deployment_missing",
+    "deployment_undeclared",
+    "missing_artifact",
+    "spec_mismatch",
+    "status_mismatch",
+    "undocumented_addition"
+   ],
+   "DriftEvent.severity": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Environment.env_type": [
+    "development",
+    "field",
+    "lab",
+    "physical_site",
+    "production",
+    "simulation",
+    "staging"
+   ],
+   "EnvironmentRule.rule_type": [
+    "building_code",
+    "constraint",
+    "environmental",
+    "interface",
+    "physical_law",
+    "regulatory",
+    "safety",
+    "standard",
+    "zoning"
+   ],
+   "Flow.flow_type": [
+    "capture",
+    "control_flow",
+    "data_flow",
+    "decision_flow",
+    "generation",
+    "process",
+    "retrieval"
+   ],
+   "Flow.tier": [
+    "cross_cutting",
+    "operational",
+    "strategic",
+    "tactical"
+   ],
+   "Fragment.fragment_type": [
+    "bug_fix",
+    "config",
+    "design",
+    "documentation",
+    "feedback",
+    "implementation",
+    "note",
+    "pseudocode",
+    "refactor",
+    "review",
+    "spec",
+    "test"
+   ],
+   "Fragment.note_kind": [
+    "author",
+    "director",
+    "reviewer"
+   ],
+   "Fragment.phase": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "PM"
+   ],
+   "Fragment.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Fragment.status": [
+    "ingested",
+    "integrated",
+    "superseded"
+   ],
+   "Inference.conclusion_form": [
+    "biconditional",
+    "conjunction"
+   ],
+   "Inference.confirmed_how": [
+    "checker",
+    "person",
+    "unconfirmed"
+   ],
+   "Inference.establishes": [
+    "derivability",
+    "entailment"
+   ],
+   "Inference.rule": [
+    "all",
+    "any",
+    "immediate",
+    "k_of_n"
+   ],
+   "Interface.auth": [
+    "api_key",
+    "basic",
+    "jwt",
+    "kerberos",
+    "mtls",
+    "none",
+    "oauth2",
+    "physical",
+    "signature",
+    "unspecified"
+   ],
+   "Interface.designation": [
+    "both",
+    "internal",
+    "published",
+    "required"
+   ],
+   "Interface.medium": [
+    "REST",
+    "cli",
+    "data",
+    "electrical",
+    "event",
+    "gRPC",
+    "graphql",
+    "human",
+    "json_rpc",
+    "library",
+    "mechanical",
+    "procedural",
+    "unspecified"
+   ],
+   "Interface.paradigm": [
+    "asynchronous",
+    "batch",
+    "streaming",
+    "synchronous",
+    "unspecified"
+   ],
+   "Interface.payload_format": [
+    "avro",
+    "binary",
+    "csv",
+    "form",
+    "json",
+    "msgpack",
+    "none",
+    "protobuf",
+    "text",
+    "unspecified",
+    "xml"
+   ],
+   "Interface.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Interface.transport_security": [
+    "air_gapped",
+    "ipsec",
+    "mtls",
+    "none",
+    "physical",
+    "tls",
+    "unspecified",
+    "vpn"
+   ],
+   "Project.mode": [
+    "flexible",
+    "rigid"
+   ],
+   "Project.status": [
+    "active",
+    "archived",
+    "paused"
+   ],
+   "Question.status": [
+    "answered",
+    "asked",
+    "withdrawn"
+   ],
+   "ReadinessAssessment.kind": [
+    "MRL",
+    "TRL"
+   ],
+   "Release.status": [
+    "built",
+    "deployed",
+    "planned",
+    "retired"
+   ],
+   "Release.unit_type": [
+    "binary",
+    "bundle",
+    "container",
+    "package",
+    "physical_build",
+    "publication"
+   ],
+   "Requirement.concern": [
+    "core",
+    "cost",
+    "environmental",
+    "logistics",
+    "manufacturability",
+    "other",
+    "safety",
+    "schedule",
+    "security",
+    "sustainment",
+    "usability"
+   ],
+   "Requirement.confidence": [
+    "high",
+    "low",
+    "moderate"
+   ],
+   "Requirement.designation": [
+    "internal",
+    "published"
+   ],
+   "Requirement.information_credibility": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "Requirement.kind": [
+    "business",
+    "functional",
+    "nonfunctional",
+    "quality"
+   ],
+   "Requirement.lineage": [
+    "decomposed",
+    "derived",
+    "original"
+   ],
+   "Requirement.priority": [
+    "critical",
+    "high",
+    "low",
+    "medium"
+   ],
+   "Requirement.provenance": [
+    "authored",
+    "healed",
+    "imported",
+    "inferred",
+    "planned",
+    "reconciled"
+   ],
+   "Requirement.source_reliability": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "Requirement.statement_kind": [
+    "axiom",
+    "conjecture",
+    "corollary",
+    "definition",
+    "evidence",
+    "falsum",
+    "hypothesis",
+    "judgement",
+    "lemma",
+    "method_rule",
+    "objection",
+    "proposition",
+    "reply",
+    "theorem",
+    "unstated_premise"
+   ],
+   "Requirement.status": [
+    "accepted",
+    "deferred",
+    "dropped",
+    "met",
+    "proposed"
+   ],
+   "TemporalFact.basis": [
+    "forecast",
+    "measured"
+   ],
+   "Verification.kind": [
+    "validation",
+    "verification"
+   ],
+   "Verification.last_reconciled_outcome": [
+    "blocked",
+    "failed",
+    "passed",
+    "skipped"
+   ],
+   "Verification.level": [
+    "acceptance",
+    "integration",
+    "system",
+    "unit"
+   ],
+   "Verification.method": [
+    "analysis",
+    "demonstration",
+    "inspection",
+    "measurement",
+    "observation",
+    "review",
+    "simulation",
+    "test"
+   ],
+   "Verification.status": [
+    "blocked",
+    "failing",
+    "passing",
+    "planned",
+    "skipped",
+    "superseded"
+   ]
+  },
+  "node_type_names": [
+   "Actor",
+   "Artifact",
+   "Capability",
+   "ChangeEvent",
+   "Component",
+   "Constraint",
+   "Contributor",
+   "Decision",
+   "DesignEpoch",
+   "DesignRule",
+   "DimensionAssessment",
+   "DimensionObservation",
+   "DriftEvent",
+   "Environment",
+   "EnvironmentRule",
+   "Flow",
+   "Fragment",
+   "Inference",
+   "Interface",
+   "Project",
+   "Question",
+   "ReadinessAssessment",
+   "Release",
+   "Requirement",
+   "Resource",
+   "Snapshot",
+   "TemporalFact",
+   "Verification"
+  ],
+  "node_types": 28,
+  "reflow2_version": "0.90.0",
+  "schema_version": 1
+ }
+}

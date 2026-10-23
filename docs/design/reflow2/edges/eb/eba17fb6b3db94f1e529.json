@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6a0a0510cdc478b7277470c1fdb3a07f7fff756f1a3efb953421389cbc23c07a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-gettier-rung-ran-on-0-90-0-and-a-definition-falls-in-one-direction-but-independence-ignores-shared-premises-2026-10-23",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

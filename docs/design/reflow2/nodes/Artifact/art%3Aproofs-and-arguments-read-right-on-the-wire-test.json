@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2015d5d1c8ef2e1f0fe24bac17b6c74e7244328f72508abbd1f5d31c486fabde",
+  "node_id": "art:proofs-and-arguments-read-right-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "PR A1's MCP tests (2): a bridge written through add_requirement and read through get_node, reasoning_report and propagate_from; EQUIVALENT_TO drawn through create_edge, read through reasoning_report and propagate_from, and a restating step read circular on get_node.",
+    "location": "crates/reflow2-mcp/tests/proofs_and_arguments_read_right_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/proofs_and_arguments_read_right_on_the_wire.rs",
+    "status": "realized"
+  }
+}
