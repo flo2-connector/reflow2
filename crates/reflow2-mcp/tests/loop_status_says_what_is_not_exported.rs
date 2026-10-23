@@ -274,11 +274,14 @@ fn a_never_exported_design_is_told_through_the_call_door() {
     let v = f.call("loop_status", "{}");
     assert_never_exported(&v, "--call loop_status", "--call export_graph");
     let printed = f.run(&["--graph-path", ".reflow2/graph", "--call", "loop_status"]);
+    // The door prints compact JSON (PR B "replies fit": what is printed is
+    // what the budget measured), so the headline leads the printout as its
+    // first key, at the first bytes a cut terminal keeps.
     let text = String::from_utf8_lossy(&printed.stdout);
-    let first = text.lines().nth(1).unwrap_or_default();
+    let first: String = text.chars().take(600).collect();
     assert!(
-        first.contains("\"ahead_of_export\"") && first.contains(NEVER),
-        "the headline is the printout's first line: {first}"
+        first.starts_with("{\"ahead_of_export\"") && first.contains(NEVER),
+        "the headline leads the printout: {first}"
     );
     let report = f.call("graph_report", "{}");
     assert_eq!(report["export_standing"]["state"], "never_exported");
@@ -594,26 +597,34 @@ fn the_headline_leads_the_printout_even_behind_a_long_artifact_block() {
         r#"{"id":"req:late","name":"Late","statement":"Written after the export."}"#,
     );
 
-    let head_of = |args: &[&str]| -> (usize, Vec<String>) {
+    // The door prints compact JSON (PR B "replies fit"), so "leads" is a
+    // byte position: the headline is the first key, inside the first 2,000
+    // bytes, however long the artifact block behind it.
+    let head_of = |args: &[&str]| -> (usize, String) {
         let o = f.run(args);
         assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
-        let lines: Vec<String> = String::from_utf8_lossy(&o.stdout)
-            .lines()
-            .map(String::from)
-            .collect();
-        (lines.len(), lines.into_iter().take(40).collect())
+        let text = String::from_utf8_lossy(&o.stdout).to_string();
+        let v: Value = serde_json::from_str(&text).expect("one JSON document");
+        let at = text.find("\"ahead_of_export\"");
+        assert!(
+            at.is_some_and(|at| at < 2_000),
+            "the headline leads the printout (found at {at:?} of {} bytes)",
+            text.len()
+        );
+        (
+            text.len(),
+            v["ahead_of_export"]
+                .as_str()
+                .unwrap_or_default()
+                .to_string(),
+        )
     };
-    let headline = |head: &[String]| -> String {
-        head.iter()
-            .find(|l| l.contains("\"ahead_of_export\""))
-            .cloned()
-            .unwrap_or_else(|| panic!("no headline in the first 40 lines: {head:#?}"))
-    };
+    let headline = |line: &String| -> String { line.clone() };
 
     let (total, head) = head_of(&["--graph-path", ".reflow2/graph", "--call", "loop_status"]);
     assert!(
-        total > 200,
-        "the fixture must reproduce a long artifact block: {total} lines"
+        total > 8_000,
+        "the fixture must reproduce a long artifact block: {total} bytes"
     );
     let line = headline(&head);
     assert!(
