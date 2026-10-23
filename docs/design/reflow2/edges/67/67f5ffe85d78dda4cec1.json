@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6b81986c4621b978433f80e3f7feef7e0535a60cab312f5975d51faacc43ff49",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-source-named-but-not-read-never-cites-and-a-source-carries-evidences-grade",
+  "properties": {},
+  "to_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent"
+}

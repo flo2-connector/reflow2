@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:066904cf843b06ccfa11d71224cc20ebd3f07854eae2b65fda5ba7e4975321fa",
+  "node_id": "fact:seattlearch-defect-findings-on-its-limits-reach-no-loop-or-gap-report-2026-10-23",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "OBSERVED 2026-10-23 in SeattleArch (0.90.0): four defect findings recorded against the building's own limits (the roof 3 7/16\" over the height maximum, all 24 unit areas off the area table, duplicate and missing rooms) and the six 10-16 discrepancies reach none of open_questions, detect_gaps, detect_defects or loop_status. A recurrence of the 09-28 root cause: open defect findings are never lines of `next`.",
+    "statement": "MEASURED 2026-10-23 through flo2.io, design SeattleArch (f8160a1cdf905022), reflow2 0.90.0.\n\nWHAT WAS RECORDED: 8 facts from the IFC-against-plan-set check, 4 of them fact_type `defect`. For example, fact:model-roof-top-reads-above-the-max-ridge-2026-10-23 has subject_id con:height (limit 52.708 ft): the model's standing-seam roof reads 52'-11 15/16\". Also the six discrepancy facts recorded 10-16.\n\nWHAT READS THEM: nothing.\n- open_questions: count 0.\n- detect_gaps: 21 gaps, none about any finding.\n- detect_defects: 0 defects.\n- loop_status: `next` lists unasked gaps and unchecked capabilities, but no open defect and no limit with a measurement over it.\n- The constraint con:height still reads like any other limit. A defect fact on it does not make it read broken or in question.\n\nSo the person sees \"nothing open\", while the design holds a measured reading that breaks its own height limit and has not been taken to the architect.\n\nPRECEDENT: reflow2:fact:root-cause-the-loops-order-is-fixed-for-the-design-phase-and-the-operations-signal-is-not-in-it-2026-09-28 found that \"open defect findings and failing checks are never lines of `next`\". This is the same absence, seen in a building design. No new cause is asserted here; walk root-cause before fixing.\n\nSession: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "subject_id": "cap:loop-status",
+    "valid_from": "2026-10-23"
+  }
+}

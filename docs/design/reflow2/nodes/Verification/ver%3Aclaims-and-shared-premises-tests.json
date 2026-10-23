@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:22ea9cfb7ee11bc92e4c98d5ba655384e3d420eb0ead9c2648830fcec4390252",
+  "node_id": "ver:claims-and-shared-premises-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/claims_and_shared_premises.rs: PR A2's readings on the trial exports (Navier–Stokes, four colour, Gettier, heat, Arrow, logic) and the split-capstone KESTREL-ASSESS v1/v2 surfaces — the mirror guard, keep-superseded refresh, reason-lost and re-grounding, `replaces` superseded and unpublished; claimed and the what-if back to open; Kempe withdrawn 1879–1890; shared premises and shared setting; `independent_of: []`; a source named but not read and a source's grade; an unsourced objection contests. Each regression was measured on origin/main (bd44e8154) first.",
+    "findings": "19 passed at 6e7c64624 (cargo test -p reflow2-core --no-default-features --test in_memory claims_and_shared_premises::). The whole core suite ran 2063 passed, 1 failed (every_prose_field_is_searched: claimed_by not yet marked fulltext); after that fix the failing test and this file were rerun and passed. CI runs everything.",
+    "kind": "verification",
+    "last_run_at": "2026-10-23",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/claims_and_shared_premises.rs",
+    "method": "test",
+    "name": "claims_and_shared_premises.rs (core, trial fixtures)",
+    "status": "passing"
+  }
+}

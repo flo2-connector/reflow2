@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:60331dc743a97a80da19f8e2cb4037cd22e3a70fad9ee029ed13cb90a66d3c96",
+  "edge_type": "REALIZES",
+  "from_id": "art:claims-and-shared-premises-on-the-wire-test",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back"
+}

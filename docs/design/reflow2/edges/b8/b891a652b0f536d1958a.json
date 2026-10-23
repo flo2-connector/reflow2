@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1364164e78819ee03db82ec8b86328cbab90944c21a55aac3387015ad6d978bd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f3f017aca6d9252b214ad540449c3e7985af2435f32f68c2b825d81a55cb2d61",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8c07abc4577228ff98503b70676742edd8d00aca5cc3cc42cf98c9b3a9c939f0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:596e7a0b45bfbb10137d16dffb9d6a1b611ab45fbdc94c710f674faa7e7ee63a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-an-argument-skill"
+}

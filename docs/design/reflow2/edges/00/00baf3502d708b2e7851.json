@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:42dc20ed2ae8127e22d5cc3161a4a45829655c6a3441b3a10ae04bc67f26a6f6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

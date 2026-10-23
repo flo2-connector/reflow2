@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1eab502da22bd26693bb52ffd2d2f44c6739d31a1cdf4e1f2b1fc22cc4554246",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:two-lines-stated-independent-are-checked-against-their-shared-premises"
+}
