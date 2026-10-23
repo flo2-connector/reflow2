@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:decedcba7433e3bdadec28bb6974538e6faa7429ea89874cb2b86812f0e3c991",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:36700becc8976d5efcf1e69d30ded3be89c32f74b02c2676c3df92d1727fc40f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-skills"
+}

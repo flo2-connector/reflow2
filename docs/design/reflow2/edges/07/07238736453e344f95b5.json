@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7018221f5fb47353d7e90c03c3ef38f65833c99ce1cf522143c856965805d6b",
+  "edge_type": "REALIZES",
+  "from_id": "art:replies-fit-test",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-lesson-is-served-at-the-step-it-concerns"
+}

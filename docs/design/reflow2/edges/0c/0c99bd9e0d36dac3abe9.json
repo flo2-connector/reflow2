@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:9ab310cedf60a7d4ceffd7bd7d29d6bdbd188304051b4b5a7b2822cbb98ce24e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:said-once-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476",
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5c7c2e09c7b8d6de83f53c9185ad31e43290dfecff2127dd65958424eb21d838",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:8b0a495af4c4cb4e02057d92b275343507a8f676e38b685d3762dbf45197d4af",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:lens-names-test"
+}

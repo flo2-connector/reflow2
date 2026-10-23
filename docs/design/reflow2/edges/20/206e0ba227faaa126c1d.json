@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:87a726cf77479457b0affaae4fae4b0b8c2cfd6561123fbdac751e6b2e9062c7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 31,
+    "action": "modified",
+    "checksum_after": "sha256:c318b985f9072c8849e447ecb404f14ed84b300c11b501db29528a8e04c4f8c1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

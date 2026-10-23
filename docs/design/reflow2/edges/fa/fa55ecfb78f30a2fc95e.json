@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:17bbdc81391ae85a074f865585bb5de797bfe2a8e740a7c9872967d614ef2ef2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:no-served-text-writes-a-readers-persona-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
