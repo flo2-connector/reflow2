@@ -132,9 +132,15 @@
         where everything went.
       </p>
       <p class="quiet">
-        With reflow2 alone the skill searches member by member. One call that searches the hub and
-        every member together needs a hub's own address on a server that holds them
-        (<a href="#across">below</a>).
+        With reflow2 alone, one search reaches the hub and every member it pins by a committed
+        export: <code>search_design</code> with <code>tracked_designs: true</code> reads each
+        member's export, read-only, and ranks the hits together, each naming its design. A hit opens
+        with <code>get_node</code> and its <code>&lt;member&gt;:&lt;id&gt;</code>.
+        <code>compose_and_analyse</code> with <code>tracked_designs: true</code> runs reflow2's checks
+        once over the hub and those members together, and shows where they already touch (the same
+        file in both, or a pin naming the other) before anyone declares it. Both work through
+        <code>--call</code> too. A member pinned only by its address is named as not searched; reading
+        it live needs a server that holds it (<a href="#across">below</a>).
       </p>
     </section>
 
@@ -221,7 +227,8 @@
       <p class="quiet">
         This needs a server that holds the members: flo2.io, or your own <code>--registry-root</code>
         server behind a gateway that names each caller and the hub's members. <code>reflow2 read</code>
-        and <code>--call</code> on your own machine open one design and cannot reach a hub's members.
+        and <code>--call</code> on your own machine open one design, and reach a hub's members only
+        through the exports it pins (<a href="#alone">above</a>), as committed, never live.
       </p>
     </section>
 
@@ -230,7 +237,7 @@
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
         Apache License 2.0 ·
-        Checked against reflow2 v0.90.0.
+        Checked against reflow2 v0.91.0.
       </p>
     </footer>
   </main>
