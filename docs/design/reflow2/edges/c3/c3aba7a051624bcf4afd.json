@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9929c9dcf6c609ea096b9345551738acfe0ef0622825f7bfba26d022546f6e24",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-bridge-premise-reads-conditional-and-an-objection-to-it-contests-what-rests-on-it"
+}

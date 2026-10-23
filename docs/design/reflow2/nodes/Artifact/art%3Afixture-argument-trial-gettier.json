@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1f582970edbf726c7433cc67591b44f92f57d8f188c99c6d125dcd7b28b59833",
+  "node_id": "art:fixture-argument-trial-gettier",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "Design 57e91debfac7c608 on flo2.io (reflow2 0.90.0), 85 nodes and 223 edges, exported read-only on 2026-10-23. A what-if dropping the closure principle read \"JTB is not sufficient\" `unsupported` while its untouched barn route stood contested.",
+    "location": "crates/reflow2-core/tests/fixtures/argument_trial_gettier.json",
+    "name": "argument_trial_gettier.json — the Gettier rung, exported read-only from flo2.io",
+    "status": "realized"
+  }
+}

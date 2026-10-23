@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1b351d8fa096993fca84fbadcfec12d6588c62b630e29f250a3fa5766637fad2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-95fa45e9fcdc003f",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c27d58eff5f03ba0a28347bec7afbafeddaf646e739d57acd84e0b3cb68bd17c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:proofs-and-arguments-read-right-on-the-wire-test"
+}

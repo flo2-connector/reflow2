@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2c7230ef30373cd04a9597a5ce1cbd90c5c793664742dc58bcfabd0b7432ca45",
+  "node_id": "art:fixture-proof-map-navier-stokes",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "Design ad65e4983833f39f on flo2.io (reflow2 0.90.0), 80 nodes and 166 edges, exported read-only on 2026-10-23. On 0.90.0 detect_gaps asked it for tests, conventions, a deployment, a requirement kind and a registered agent-instructions file.",
+    "location": "crates/reflow2-core/tests/fixtures/proof_map_navier_stokes.json",
+    "name": "proof_map_navier_stokes.json — the Navier–Stokes map, exported read-only from flo2.io",
+    "status": "realized"
+  }
+}

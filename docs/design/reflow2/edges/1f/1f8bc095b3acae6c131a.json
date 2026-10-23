@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:68cba03b77d86f208de320b475a6297ff4d41c8deefd20ba89c6414e6654592d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-four-colour-rung-ran-on-0-90-0-and-one-broken-step-falls-alone-but-a-status-over-time-is-never-read-2026-10-23",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

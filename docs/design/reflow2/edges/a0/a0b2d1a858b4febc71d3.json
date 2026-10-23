@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8a8c0cc8bdfaed931ed0d1318ee68bd0ba9a33a1328489172b65071d2ae435ce",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:proofs-and-arguments-read-right-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

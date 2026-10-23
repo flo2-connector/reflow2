@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5a67039b06c8bd99cb0c85dfe43069d6ad66d999f3e7b2a8b294844213d7890a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-bf98554a4adfac36",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:7f1196b4df4078bd21d1e7ae275c8fb5a6139b76a2930e5a46a698b9ffa2390b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:fixture-argument-trial-gettier"
+}

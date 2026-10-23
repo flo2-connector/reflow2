@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:99092a81f70c6aabc3a152a838e3239e77a970b610cd3d25fcaf54f1bac74731",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:proofs-and-arguments-read-right-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:proofs-and-arguments-read-right-tests"
+}

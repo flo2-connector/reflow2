@@ -1,8 +1,8 @@
 {
-  "content_hash": "sha256:3385faf4dda98da7daef844ec72a27c28895ae3668f8bd59b8279f39a75595a5",
+  "content_hash": "sha256:8ac906b6356311b3dc74d4fc4f722986c3bceba75107eb6f9b3e4488fdd1fd49",
   "node_id": "req:a-conclusion-whose-every-route-is-contested-reads-contested",
   "node_type": "Requirement",
-  "prev_item_hash": "sha256:8023378d433b1ef87ec9c9edbacdfd79fa2ee682bfe9aecff67ecf35bf53a0c9",
+  "prev_item_hash": "sha256:3385faf4dda98da7daef844ec72a27c28895ae3668f8bd59b8279f39a75595a5",
   "properties": {
     "kind": "functional",
     "lineage": "original",
@@ -11,6 +11,6 @@
     "provenance": "authored",
     "source": "@ajs, 2026-10-18: \"Capture the shortcomings (gaps) from the trial\" (cogito trial)",
     "statement": "When every line of support for a claim is held up only by standing objections or contested premises, its proof status reads `contested` and names what stands against each route. `unproven` is kept for a claim with no holding route for another reason. The read-back never lets a reader take a contested conclusion for a refuted one.\nObserved in the cogito trial (2026-10-18): req:i-exist read proof_status `unproven`, \"no derivation holds\", while all three routes were only contested. Meanwhile req:whatever-thinks-exists, in the same state, read `contested`, so the two labels disagree.\nObserved again in the stage-5 re-read (2026-10-19, flo2.io 7aa8a90d21c8956c, 0.88.0): Premises 8 and 9 are taken as given and each has a standing objection, so each reads unknown, and the claims resting on them (the 'fragments of the Tao' reading; 'AI copies moral outputs only') read plain `unproven`, the same as a claim nothing supports. The design's summary tally (read_my_design_back) counted 0 contested claims while 8 objections stood. A taken-as-given foundation under a standing objection, and everything resting on it, reads contested, and the tally counts it.",
-    "status": "accepted"
+    "status": "met"
   }
 }

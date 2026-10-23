@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:986dfdf0414391284adbf3fc61e657820074a1154512151e78830fe80f7e2153",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:548b2b7278b093c056a7c9d406d25041911b723822988c6d82b0746140c3a4c9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reason-to-exist-rs"
+}

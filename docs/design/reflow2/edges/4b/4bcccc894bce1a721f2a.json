@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2fd35fe17795ce968bf65e0f692acaa5ae083f94fc985fc8637a2544233b0a3",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-navier-stokes-as-a-trial-of-designing-a-proof",
+  "properties": {
+    "evidence": "The ladder reached its far end (Navier–Stokes, PASS 2026-10-22); these three rungs continue it."
+  },
+  "to_id": "dec:the-proof-ladder-goes-on-with-four-colour-then-the-rocket-equation-then-gettier"
+}

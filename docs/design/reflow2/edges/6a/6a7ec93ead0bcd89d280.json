@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f488ea9f131007ff483bcd7d9c95ad28a50d1c93d2a3699866cb251421bd47ba",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-step-that-only-restates-its-gap-reads-circular",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

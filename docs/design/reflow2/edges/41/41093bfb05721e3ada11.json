@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4b55ecf08367b5265c210e9866efcac264d2a64141dcf1bd04922827ee73bff3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "fact:root-cause-proof-statements-fall-through-to-software-predicates-and-assumed-premises-stopped-counting-2026-10-22"
+}

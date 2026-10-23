@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0c2369bef89df58ed4000524069cde2076c90a7583e58d6092c4e405b05fe67f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:proofs-and-arguments-read-right-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:proofs-and-arguments-read-right-on-the-wire-tests"
+}

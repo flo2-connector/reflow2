@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a4f0bc1552b15e6ec542156e8449f4f28e6c66d59d682344db328a8817fe3649",
+  "node_id": "cap:two-statements-are-recorded-proven-equivalent-never-as-duplicates",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-23 in PR A1 (crates/reflow2-core/src/equivalence.rs; schema/inference.yaml). Edge type EQUIVALENT_TO (* to *, inference category `equivalence`, 69 edge types, the stamp moves), with `by` (node_ref, the cited or proven biconditional) and `evidence`. detect_defects counts an asserted DUPLICATES beside it under swept.suppressed_as_equivalent and raises no merge; HEAL's merge guard refuses the pair in propose and apply; detect_suspected_duplicate_edges stays quiet; unlinked_intent counts it as a link. No truth is read across it. reasoning_report names each claim's `equivalent_to` with how its biconditional reads (holds, conditional, unsupported, refuted, or asserted); propagate_from walks it both ways and names `equivalents_reached`.",
+    "name": "Two statements are recorded proven equivalent (EQUIVALENT_TO, naming the biconditional in `by`): never read as duplicates or offered for a merge, neither side's reading moves, and a what-if on one names the other",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6770a1f2f69f58218aa1c1e18bcc6cce6dcccb0b1b5fbda0fa70a769e30613a0",
+  "node_id": "chg:baseline-f41fb180a4704686",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "First baseline, PR A1 (feat/proofs-read-right).",
+    "subject": "record"
+  }
+}

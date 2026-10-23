@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9a7ca36fda8a5ee3f58c08023f1952c44c23738fcea08d7590e52ca25b379456",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:fixture-proof-trial-heat-equation",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

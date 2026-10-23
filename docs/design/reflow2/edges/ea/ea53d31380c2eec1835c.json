@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fb37e49f5ffd362b0fe874fd67bec8195c9c3c3a0ce43453ded3fba1bed1f8f8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:6e4bf8b5c249afbc4309677cf6ba371ac3bc72e39b33dee1cbd27e608609bf0e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:vocabulary"
+}

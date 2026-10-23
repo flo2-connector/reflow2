@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ac70b0f5c367ea662b3aa37f2830b90d86e01b388271114bbaa92d835179896",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it",
+  "properties": {
+    "confidence": 1.0
+  },
+  "to_id": "cap:a-step-that-only-restates-its-gap-reads-circular"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe1aabdb48da561c00fa493f1a09ce719fd22832d49e36ada373a7ff92fc6d9b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:proofs-and-arguments-read-right-on-the-wire-tests"
+}

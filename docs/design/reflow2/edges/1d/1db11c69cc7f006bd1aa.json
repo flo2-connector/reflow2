@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:82be2d41946bc840f1c58d7bc5c2ffd44ea81cf506bb8336d51d828228502f9e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-27e1c63687b17dba",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:09a1e7074824ef74805a8bbda3f8717ab6b451ec8f120560c9d5d9dc7c325ad1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:equivalence-rs"
+}

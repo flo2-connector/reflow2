@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c737bff8fbb8c27d55763477c3e449a2daeeb65f1034b3cebe56c45d2586b9af",
+  "edge_type": "REALIZES",
+  "from_id": "art:equivalence-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-step-that-only-restates-its-gap-reads-circular"
+}

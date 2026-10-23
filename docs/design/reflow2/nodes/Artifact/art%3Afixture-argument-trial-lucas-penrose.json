@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7e7ef592cec74cbfffc8b409e80db315543eb06ca53857090b445cba91501364",
+  "node_id": "art:fixture-argument-trial-lucas-penrose",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "Design cd9bedc1cb114de6 on flo2.io (reflow2 0.90.0), 90 nodes and 215 edges, exported read-only on 2026-10-23. Its main conclusion read \"unproven, no derivation holds\" while every objection stood on a translation under the reductio's ⊥, and a what-if on a translation stopped at the ⊥.",
+    "location": "crates/reflow2-core/tests/fixtures/argument_trial_lucas_penrose.json",
+    "name": "argument_trial_lucas_penrose.json — the Lucas–Penrose argument trial, exported read-only from flo2.io",
+    "status": "realized"
+  }
+}

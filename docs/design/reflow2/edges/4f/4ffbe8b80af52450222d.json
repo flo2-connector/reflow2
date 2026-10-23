@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:de48f04315c047f83daacb545d76f534afce1d2bbb1e305115cbea719ac1cc85",
+  "edge_type": "CHANGED",
+  "from_id": "chg:proofs-and-arguments-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:59bf84b8cc9710a9f33314c35876681260ae2c7e28a72da13dcbbe13406ef71d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}
