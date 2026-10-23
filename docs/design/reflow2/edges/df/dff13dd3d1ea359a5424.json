@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:48577a182feef03686584c625a522a0e65678518d7671afe2bfb0d3734822315",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-source-named-but-not-read-never-cites-and-a-source-carries-evidences-grade"
+}

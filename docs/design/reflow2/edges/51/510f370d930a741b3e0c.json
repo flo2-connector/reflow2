@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9dd33bcf2231bd9ef3e5b08e7739ca96bd5cdb866c8d6fd887139e3cc312accf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:fixture-split-capstone-kestrel-assess-v1",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

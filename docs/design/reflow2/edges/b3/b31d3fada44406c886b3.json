@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ac440496051b52ec8c569a6604adf471a1e60bb554678b603d267f09375a56e8",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back"
+}

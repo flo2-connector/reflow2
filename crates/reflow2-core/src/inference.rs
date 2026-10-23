@@ -309,6 +309,24 @@ pub enum ProofStatus {
     /// against its steps or premises, a `contested` Decision it rests on —
     /// settled its way.
     Contested,
+    /// No derivation holds, no dispute holds one up, and a NAMED PARTY claims
+    /// it — on the claim itself (`claimed_by`) or on the argument it rests on
+    /// — and nobody has verified it: "claimed by <party>, unverified", never
+    /// `unproven` (which also means refuted, and also means nobody tried)
+    /// and never `open`, which hides that a claim was made
+    /// (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed).
+    Claimed,
+    /// It does not hold now, and a STATUS IT HELD OVER A PERIOD has ended (a
+    /// dated `status` record, `valid_from`–`valid_to`): accepted for a time
+    /// and withdrawn — Kempe's proof, 1879–1890 — read back with the period
+    /// and what withdrew it (same requirement).
+    Withdrawn,
+    /// Another claim takes its place (`replaces`, drawn as OBSOLETES from the
+    /// successor), or the design it was mirrored from withdrew it
+    /// (`superseded_by_surface`): it feeds no chain and is read as
+    /// superseded, never as contested (req:a-superseded-mirrored-judgment-
+    /// is-kept-and-what-rested-on-it-reads-reason-lost, part 5).
+    Superseded,
     /// No derivation holds (the conclusion does not follow) and no dispute is
     /// what keeps one from holding, or an objection that holds refutes it. A
     /// claim no route holds while a dispute holds one up is `Contested`
@@ -324,6 +342,9 @@ impl ProofStatus {
             ProofStatus::Conditional => "conditional",
             ProofStatus::Supported => "supported",
             ProofStatus::Contested => "contested",
+            ProofStatus::Claimed => "claimed",
+            ProofStatus::Withdrawn => "withdrawn",
+            ProofStatus::Superseded => "superseded",
             ProofStatus::Unproven => "unproven",
         }
     }
@@ -465,6 +486,18 @@ pub struct InferenceReading {
     /// another step's reading.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub independence: Vec<IndependenceReading>,
+    /// EVERY STATUS THE STEP HELD OVER A PERIOD (dated `status` records),
+    /// read on the step itself. Empty when it records none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub status_over_time: Vec<StatusPeriod>,
+    /// ACCEPTED FOR A PERIOD AND WITHDRAWN: the step does not hold now and
+    /// every status it held has ended — the period, and what withdrew it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub withdrawn: Option<WithdrawnReading>,
+    /// The named party whose argument this step is (`claimed_by`), when it
+    /// says one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub claimed_by: Option<String>,
     /// EVERY LINE this step holds on, with what each holds under, when there
     /// is more than one (req:a-claim-with-several-lines-reads-each-lines-
     /// assumptions): it holds under any one of them. `assumes`,
@@ -622,6 +655,23 @@ pub struct IndependenceReading {
     /// result are not independent, whatever their steps. Empty when none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub shared_citations: Vec<String>,
+    /// PREMISES both lines rest on that no named lemma accounts for: a
+    /// statement neither line derives — a proposition taken as given, a claim
+    /// nobody has shown, an assumption no step anywhere discharges (PR A2,
+    /// three trials: Navier–Stokes, four colour, Gettier). Losing one costs
+    /// both lines, so two lines through it are not independent as stated.
+    /// Empty when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub shared_premises: Vec<String>,
+    /// WHAT BOTH LINES SHARE THAT LEAVES THEM INDEPENDENT, named so a reader
+    /// sees it: the vocabulary (a definition, an axiom or a rule of method,
+    /// which fixes what the words mean and is no premise a line can lose) and
+    /// the theorem's own stated setting (a premise BOTH final steps take up
+    /// directly, as every proof of the theorem must). A definition that is
+    /// really data — a chosen list, a measured set — is recorded as a
+    /// proposition taken as given, and then counts. Empty when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub shared_setting: Vec<String>,
     /// The named lemmas both lines do rest on.
     pub shares_named: Vec<String>,
     /// The lemmas the statement names (`independent_except`).
@@ -657,7 +707,10 @@ pub struct StatementReading {
     /// pinned source documents), `stated` (a result no step concludes yet, or
     /// a falsum nothing derives), `open` (a conjecture nothing shows or
     /// refutes), `refuted` (an objection that holds refutes it), `assumed` /
-    /// `discharged` / `not_assumed` (a hypothesis), `false` / `inconsistent`
+    /// `discharged` / `not_assumed` (a hypothesis), `claimed` (a named party
+    /// claims it and nothing here establishes it), `withdrawn` (accepted for
+    /// a period that ended), `superseded` (replaced, or withdrawn by the
+    /// design it was mirrored from), `false` / `inconsistent`
     /// (a falsum derived under an assumption, or under none), or the proof
     /// status of a concluded one: `proven`, `shown`, `conditional`,
     /// `contested`, `unproven`.
@@ -766,8 +819,14 @@ pub struct InferenceImpact {
     /// `unsupported` (nothing left holds it — it is not thereby false),
     /// `refuted` (an objection that holds refutes it), or, for an accepted
     /// Decision, `accepted_without_a_holding_chain` (it stands on its owner's
-    /// acceptance, and no line of its chain holds any more).
+    /// acceptance, and no line of its chain holds any more). Since PR A2 also
+    /// `claimed` (a named party still claims it: `claimed_by`) and `open` (it
+    /// read claimed, and the change drops the claimant's argument).
     pub conclusion_reads: &'static str,
+    /// THE NAMED PARTIES who still claim the conclusion with the losses
+    /// counted. Empty when none does.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub claimed_by: Vec<String>,
     /// The steps concluding the claim that still hold with the losses counted.
     /// Empty unless `conclusion_reads` is `still_supported`.
     pub still_supported_by: Vec<String>,
@@ -1601,6 +1660,113 @@ pub fn is_taken_as_given(props: &HashMap<String, Value>) -> bool {
     }
 }
 
+/// Whether a source Artifact is marked NAMED, NOT READ (`not_read: true`):
+/// named in a packet or a text, and nobody read it. It never counts as citing
+/// (dec:idea-a-source-says-what-kind-of-support-it-gives, settled 2026-10-23).
+pub fn is_not_read(props: &HashMap<String, Value>) -> bool {
+    props.get("not_read").and_then(Value::as_bool) == Some(true)
+}
+
+/// Why a source's GRADE is too weak to check a citation against, when it is:
+/// evidence's source reliability D–F (not usually reliable, unreliable,
+/// cannot be judged) or information credibility 4–6 (doubtful, improbable,
+/// cannot be judged), reused for a source (option (c) of
+/// dec:idea-a-source-says-what-kind-of-support-it-gives). A citation it
+/// documents then reads no stronger than that: unverified. `None` for an
+/// ungraded source or one graded A–C and 1–3.
+pub fn source_grade_too_weak(props: &HashMap<String, Value>) -> Option<String> {
+    let reliability = prop(props, "source_reliability").map(str::trim);
+    let credibility = prop(props, "information_credibility").map(str::trim);
+    let weak_r = reliability.is_some_and(|r| {
+        matches!(
+            r.chars().next().map(|c| c.to_ascii_uppercase()),
+            Some('D' | 'E' | 'F')
+        )
+    });
+    let weak_c = credibility.is_some_and(|c| matches!(c.chars().next(), Some('4' | '5' | '6')));
+    if !(weak_r || weak_c) {
+        return None;
+    }
+    let mut said: Vec<String> = Vec::new();
+    if let Some(r) = reliability {
+        said.push(format!("source reliability {r}"));
+    }
+    if let Some(c) = credibility {
+        said.push(format!("information credibility {c}"));
+    }
+    Some(format!(
+        "graded {}: too weak to check a citation against, so what it documents reads no \
+         stronger than unverified",
+        said.join(", ")
+    ))
+}
+
+/// The NAMED PARTY a record says claims it (`claimed_by`), when it says one:
+/// "OpenAI", "Kempe". A claim nobody here has verified
+/// (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed).
+pub fn claimed_by(props: &HashMap<String, Value>) -> Option<&str> {
+    prop(props, "claimed_by")
+        .map(str::trim)
+        .filter(|v| !v.is_empty())
+}
+
+/// The surface that WITHDREW a mirrored node, when one did
+/// (`superseded_by_surface`, written by a refreshed `mirror_surface`).
+pub fn superseded_by_surface(props: &HashMap<String, Value>) -> Option<&str> {
+    prop(props, "superseded_by_surface")
+}
+
+/// One status a record held OVER A PERIOD: a dated `TemporalFact` with
+/// `fact_type: status` about it, read back
+/// (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed:
+/// "a status that held over a time is read back, not left in dated notes
+/// nobody reads").
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct StatusPeriod {
+    /// The dated record.
+    pub fact: String,
+    /// What it says, in its own words (its name, else its statement).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub says: Option<String>,
+    /// When the status began (`valid_from`), as recorded.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub from: Option<String>,
+    /// When it ended (`valid_to`); absent while it still holds.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub until: Option<String>,
+}
+
+impl StatusPeriod {
+    /// The period in words: "1879–1890", "since 1976".
+    pub fn period(&self) -> String {
+        match (&self.from, &self.until) {
+            (Some(f), Some(u)) => format!("{f}–{u}"),
+            (Some(f), None) => format!("since {f}"),
+            (None, Some(u)) => format!("until {u}"),
+            (None, None) => "undated".to_string(),
+        }
+    }
+}
+
+/// A claim ACCEPTED FOR A PERIOD AND WITHDRAWN: it does not hold now, and the
+/// last status it held has ended. What withdrew it is what stands against it
+/// or a step under it now.
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct WithdrawnReading {
+    /// The period it held: "1879–1890".
+    pub held: String,
+    /// The status record that says so.
+    pub fact: String,
+    /// What that record says.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub says: Option<String>,
+    /// What withdrew it: each objection standing against it, or against a
+    /// step it rests on, that is not answered.
+    pub withdrawn_by: Vec<String>,
+    /// In a sentence.
+    pub why: String,
+}
+
 /// The status values that CLAIM a node holds, per type — what the finding
 /// compares with what its steps support.
 fn claimed_holds(node_type: &str, props: &HashMap<String, Value>) -> Option<&'static str> {
@@ -2031,6 +2197,15 @@ impl DesignGraph {
                 "discontinued by an accepted decision".to_string(),
             ));
         }
+        // A MIRRORED NODE ITS SOURCE WITHDREW (req:a-superseded-mirrored-
+        // judgment-is-kept-and-what-rested-on-it-reads-reason-lost) feeds no
+        // chain: what rested on it has lost that reason. Unsupported, never
+        // refuted — the far side withdrew it, nobody showed it false.
+        if self.is_withdrawn_mirror(id)?
+            && let Some(why) = self.superseded_reason(id)?
+        {
+            return Ok(Read::plain(Truth::Unknown, why));
+        }
         // A CLAIM REPLACED BY ANOTHER (`replaces`, recorded as OBSOLETES from
         // its successor) feeds no chain any more
         // (req:a-requirements-read-back-follows-its-reason-to-the-evidence,
@@ -2243,6 +2418,24 @@ impl DesignGraph {
                         r.why
                     ),
                 )
+            } else if truth == Truth::Holds && self.is_unsourced_given(&e.from_id)? {
+                // AN OBJECTION NOBODY HAS SOURCED CONTESTS AND NEVER DEFEATS
+                // (req:an-objection-taken-as-given-with-no-pinned-source-
+                // contests-and-never-defeats): its force is the design's own
+                // word (`taken_as_given`), and no Artifact documents it by
+                // checksum. The four colour rung's Heawood objection, recalled
+                // and unread, defeated Kempe's step outright. Once a pinned
+                // source documents it, it holds as before.
+                (
+                    "stands",
+                    format!(
+                        "contested by an objection nobody has sourced: {} is taken as given and \
+                         no pinned source documents it, so it contests what it attacks and never \
+                         defeats or refutes it — register the source that was read (an Artifact \
+                         with its checksum, DOCUMENTS to it) and it holds as stated; {}",
+                        e.from_id, r.why
+                    ),
+                )
             } else if truth == Truth::Holds && !tests.is_empty() {
                 (
                     "stands",
@@ -2417,6 +2610,227 @@ impl DesignGraph {
         }
         by.sort();
         Ok(by.into_iter().next())
+    }
+
+    /// Whether `id` is an OBJECTION whose force is the design's own word:
+    /// marked `taken_as_given`, with no pinned source documenting it
+    /// (req:an-objection-taken-as-given-with-no-pinned-source-contests-and-
+    /// never-defeats). Only an objection: a counterexample is a statement
+    /// shown by its own step, and a reply answers by the rule it always had.
+    pub fn is_unsourced_given(&self, id: &str) -> Result<bool, DynoError> {
+        let Some(props) = self.node_props(id)? else {
+            return Ok(false);
+        };
+        if statement_kind(&props) != Some("objection")
+            || props.get("taken_as_given").and_then(Value::as_bool) != Some(true)
+        {
+            return Ok(false);
+        }
+        Ok(self.pinned_sources(id)?.is_empty())
+    }
+
+    /// WHY `id` IS SUPERSEDED, when it is: another claim takes its place
+    /// (`replaces`, an OBSOLETES from a live successor), or the design it was
+    /// mirrored from withdrew it (`superseded_by_surface`, written by a
+    /// refreshed mirror). `None` otherwise
+    /// (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-
+    /// reads-reason-lost, parts 1 and 5).
+    pub fn superseded_reason(&self, id: &str) -> Result<Option<String>, DynoError> {
+        if let Some(by) = self.replaced_by(id)? {
+            return Ok(Some(format!(
+                "superseded: {by} takes its place, so it feeds no chain and is not published"
+            )));
+        }
+        if let Some(props) = self.node_props(id)?
+            && let Some(at) = superseded_by_surface(&props)
+        {
+            let from = prop(&props, "mirrored_from").unwrap_or("the design it was mirrored from");
+            return Ok(Some(format!(
+                "superseded: withdrawn by {from} at surface {at}, and kept here so that what \
+                 rested on it reads reason-lost until it is re-grounded"
+            )));
+        }
+        Ok(None)
+    }
+
+    /// Whether `id` is a node a refreshed mirror withdrew and kept.
+    pub fn is_withdrawn_mirror(&self, id: &str) -> Result<bool, DynoError> {
+        Ok(self
+            .node_props(id)?
+            .is_some_and(|p| superseded_by_surface(&p).is_some()))
+    }
+
+    /// THE WITHDRAWN MIRRORED PREMISES `id` rests on, at any depth: nodes a
+    /// refreshed mirror kept and marked superseded because their source
+    /// withdrew them. Non-empty means `id` has lost a reason
+    /// (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-
+    /// reads-reason-lost, part 3). Sorted.
+    pub fn rests_on_withdrawn(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        let mut out: Vec<String> = Vec::new();
+        for n in self.rests_on_closure_of_node(id)? {
+            if self.is_withdrawn_mirror(&n)? {
+                out.push(n);
+            }
+        }
+        Ok(out)
+    }
+
+    /// THE NAMED PARTIES WHO CLAIM `id`, with the nodes in `lost` counted as
+    /// dropped: the party on `id` itself (`claimed_by`), and every party on a
+    /// statement or step `id` rests on — the claimant's argument
+    /// (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-
+    /// claimed). A party carried only by what `lost` drops no longer claims
+    /// it, and nor does `id`'s own party when the what-if drops that party's
+    /// argument and nothing of it is left: "a what-if that drops the
+    /// claimant's argument returns it to open". An assumed premise is
+    /// supposed, never relied on, so a claim on one carries nothing.
+    pub fn claimants_of(
+        &self,
+        id: &str,
+        lost: &BTreeSet<String>,
+    ) -> Result<BTreeSet<String>, DynoError> {
+        let mut live: BTreeSet<String> = BTreeSet::new();
+        let mut dropped: BTreeSet<String> = BTreeSet::new();
+        let mut seen: BTreeSet<(String, bool)> = BTreeSet::new();
+        let mut queue: Vec<(String, bool)> = self
+            .inferences_concluding(id)?
+            .into_iter()
+            .map(|s| (s, false))
+            .collect();
+        while let Some((n, cut)) = queue.pop() {
+            let cut = cut || lost.contains(&n);
+            if !seen.insert((n.clone(), cut)) {
+                continue;
+            }
+            if let Some(props) = self.node_props(&n)?
+                && let Some(party) = claimed_by(&props)
+            {
+                if cut {
+                    dropped.insert(party.to_string());
+                } else {
+                    live.insert(party.to_string());
+                }
+            }
+            if self.get_node(node::INFERENCE, &n)?.is_some() {
+                for (p, assumed) in self.premise_links(&n)? {
+                    if !assumed {
+                        queue.push((p, cut));
+                    }
+                }
+            } else {
+                for st in self.inferences_concluding(&n)? {
+                    queue.push((st, cut));
+                }
+            }
+        }
+        if let Some(props) = self.node_props(id)?
+            && let Some(party) = claimed_by(&props)
+            && !lost.contains(id)
+            && (!dropped.contains(party) || live.contains(party))
+        {
+            live.insert(party.to_string());
+        }
+        Ok(live)
+    }
+
+    /// "claimed by OpenAI, unverified" — the claim in words, for a set of
+    /// parties.
+    fn claimed_said(parties: &BTreeSet<String>) -> String {
+        format!(
+            "claimed by {}, unverified: no line of this design establishes it, and nothing \
+             refutes it",
+            parties.iter().cloned().collect::<Vec<_>>().join(" and ")
+        )
+    }
+
+    /// EVERY STATUS `id` HELD OVER A PERIOD: each dated `TemporalFact` with
+    /// `fact_type: status` about it, earliest first. Read back by
+    /// `reasoning_report`, `get_node` and the step and proof readings, so
+    /// "accepted 1879–1890, open 1890–1976" is not left in notes nobody
+    /// reads (the four colour rung's finding (a)).
+    pub fn status_over_time(&self, id: &str) -> Result<Vec<StatusPeriod>, DynoError> {
+        let mut out: Vec<StatusPeriod> = Vec::new();
+        let mut seen: BTreeSet<String> = BTreeSet::new();
+        for e in self.outgoing(id, Some(edge::HAS_TEMPORAL_FACT))? {
+            if !seen.insert(e.to_id.clone()) {
+                continue;
+            }
+            let Some(f) = self.get_node(node::TEMPORAL_FACT, &e.to_id)? else {
+                continue;
+            };
+            if prop(&f.properties, "fact_type") != Some("status") {
+                continue;
+            }
+            out.push(StatusPeriod {
+                fact: f.node_id.clone(),
+                says: prop(&f.properties, "name")
+                    .or_else(|| prop(&f.properties, "statement"))
+                    .map(str::to_string),
+                from: prop(&f.properties, "valid_from").map(str::to_string),
+                until: prop(&f.properties, "valid_to").map(str::to_string),
+            });
+        }
+        out.sort_by(|a, b| (&a.from, &a.fact).cmp(&(&b.from, &b.fact)));
+        Ok(out)
+    }
+
+    /// A CLAIM ACCEPTED FOR A PERIOD AND WITHDRAWN, read: `id` (a statement or
+    /// a step) does not hold now, every status it held over a period has
+    /// ended, and the last one names the period. What withdrew it is every
+    /// objection not answered that stands against it or a step it rests on.
+    /// `None` when it holds, or still holds a status, or held none.
+    pub fn withdrawn_reading(&self, id: &str) -> Result<Option<WithdrawnReading>, DynoError> {
+        let periods = self.status_over_time(id)?;
+        if periods.is_empty() || periods.iter().any(|p| p.until.is_none()) {
+            return Ok(None);
+        }
+        let (truth, why_now) = self.premise_truth(id)?;
+        if truth == Truth::Holds {
+            return Ok(None);
+        }
+        let Some(last) = periods
+            .iter()
+            .max_by(|a, b| (&a.until, &a.fact).cmp(&(&b.until, &b.fact)))
+        else {
+            return Ok(None);
+        };
+        let mut steps: BTreeSet<String> = BTreeSet::new();
+        if self.get_node(node::INFERENCE, id)?.is_some() {
+            steps.extend(self.steps_under(id)?);
+        } else {
+            for st in self.inferences_concluding(id)? {
+                steps.extend(self.steps_under(&st)?);
+            }
+        }
+        let mut withdrawn_by: BTreeSet<String> = BTreeSet::new();
+        for target in std::iter::once(id.to_string()).chain(steps) {
+            for e in self.incoming(&target, Some(edge::CONTRADICTS))? {
+                if e.properties.get("alignment").and_then(Value::as_str) == Some("supporting") {
+                    continue;
+                }
+                if self.premise_truth(&e.from_id)?.0 != Truth::Fails {
+                    withdrawn_by.insert(e.from_id);
+                }
+            }
+        }
+        let withdrawn_by: Vec<String> = withdrawn_by.into_iter().collect();
+        let why = format!(
+            "withdrawn: it held {} ({}), and that ended{}; now {why_now}",
+            last.period(),
+            last.says.as_deref().unwrap_or(&last.fact),
+            if withdrawn_by.is_empty() {
+                String::new()
+            } else {
+                format!(", withdrawn by {}", withdrawn_by.join(", "))
+            }
+        );
+        Ok(Some(WithdrawnReading {
+            held: last.period(),
+            fact: last.fact.clone(),
+            says: last.says.clone(),
+            withdrawn_by,
+            why,
+        }))
     }
 
     /// Whether some step discharges `id` (`discharges` or `cases`): a
@@ -3412,6 +3826,14 @@ impl DesignGraph {
         // Read on the step itself, as `independence` is, never inside another
         // step's reading.
         reading.circular = self.circularity_of(inference_id)?.map(|c| c.why);
+        // A STATUS OVER A PERIOD, read back on the step itself (PR A2): Kempe's
+        // 1879 proof "accepted 1879–1890" reads withdrawn, with the period
+        // and the objection that withdrew it.
+        reading.status_over_time = self.status_over_time(inference_id)?;
+        reading.withdrawn = self.withdrawn_reading(inference_id)?;
+        reading.claimed_by = self
+            .node_props(inference_id)?
+            .and_then(|p| claimed_by(&p).map(str::to_string));
         Ok(Some(reading))
     }
 
@@ -3519,7 +3941,13 @@ impl DesignGraph {
     /// Each stated independence of one step (`independent_of`), checked: the
     /// two lines may share no step other than those under the lemmas named
     /// in `independent_except` (a step concluding one, and every step under
-    /// that). Definitions and axioms share no step, so they never count.
+    /// that), no cited foundation, and NO PREMISE (PR A2): a statement neither
+    /// line derives — taken as given, a claim nobody has shown, an assumption
+    /// nothing discharges — whose loss would cost both. A premise beneath a
+    /// named lemma is that lemma's, and is shared with it. The vocabulary
+    /// (definitions, axioms, rules of method) and the theorem's own setting
+    /// (premises both final steps take up) are named in `shared_setting` and
+    /// leave the lines independent.
     pub fn independence_of(&self, step: &str) -> Result<Vec<IndependenceReading>, DynoError> {
         let Some(n) = self.get_node(node::INFERENCE, step)? else {
             return Ok(Vec::new());
@@ -3531,12 +3959,17 @@ impl DesignGraph {
         let except = list_prop(&n.properties, "independent_except");
         let mine = self.steps_under(step)?;
         let mut allowed: BTreeSet<String> = BTreeSet::new();
+        // What a named lemma rests on is the lemma's: sharing the lemma
+        // shares it, and naming the lemma accepts that.
+        let mut allowed_premises: BTreeSet<String> = except.iter().cloned().collect();
         for lemma in &except {
             for s in self.inferences_concluding(lemma)? {
                 allowed.extend(self.steps_under(&s)?);
             }
+            allowed_premises.extend(self.rests_on_closure_of_node(lemma)?);
         }
         let my_nodes = self.rests_on_closure(step)?;
+        let no_loss: BTreeSet<String> = BTreeSet::new();
         let mut out = Vec::new();
         for other in others {
             if other == step || self.get_node(node::INFERENCE, &other)?.is_none() {
@@ -3546,6 +3979,8 @@ impl DesignGraph {
                     holds: false,
                     shared_steps: Vec::new(),
                     shared_citations: Vec::new(),
+                    shared_premises: Vec::new(),
+                    shared_setting: Vec::new(),
                     shares_named: Vec::new(),
                     except: except.clone(),
                     why: format!(
@@ -3567,42 +4002,99 @@ impl DesignGraph {
                 .filter(|l| my_nodes.contains(*l) && their_nodes.contains(*l))
                 .cloned()
                 .collect();
+            // The premises both FINAL steps take up directly: the theorem's
+            // own stated setting, which every proof of it shares.
+            let my_direct: BTreeSet<String> = self.premises_of(step)?.into_iter().collect();
+            let setting: BTreeSet<String> = self
+                .premises_of(&other)?
+                .into_iter()
+                .filter(|p| my_direct.contains(p))
+                .collect();
             let mut shared_citations: Vec<String> = Vec::new();
+            let mut shared_premises: Vec<String> = Vec::new();
+            let mut shared_setting: Vec<String> = Vec::new();
             for f in my_nodes.intersection(&their_nodes) {
                 if except.contains(f) {
                     continue;
                 }
-                if self
-                    .node_props(f)?
-                    .is_some_and(|p| is_cited_result(&p) || is_evidence(&p))
-                {
+                let props = self.node_props(f)?.unwrap_or_default();
+                if is_cited_result(&props) || is_evidence(&props) {
                     shared_citations.push(f.clone());
+                    continue;
                 }
+                // A statement a step derives is shared through that step
+                // (`shared_steps`); a premise that is itself a step likewise.
+                // A supposition some step discharges (a reductio's ¬P, a
+                // theorem's hypothesis closed above both lines) costs nothing
+                // when lost, as the what-if reads it: never shared.
+                let mut ev = Eval::new(&no_loss);
+                if allowed_premises.contains(f)
+                    || !self.inferences_concluding(f)?.is_empty()
+                    || self.get_node(node::INFERENCE, f)?.is_some()
+                    || self.discharged_somewhere(f, &mut ev)?
+                {
+                    continue;
+                }
+                if setting.contains(f)
+                    || matches!(
+                        statement_kind(&props),
+                        Some("definition" | "axiom" | "method_rule")
+                    )
+                {
+                    shared_setting.push(f.clone());
+                    continue;
+                }
+                shared_premises.push(f.clone());
             }
-            let holds = shared_steps.is_empty() && shared_citations.is_empty();
-            let why = if !shared_citations.is_empty() && shared_steps.is_empty() {
-                format!(
-                    "the two lines both rest on the cited foundation(s) {} — a result or a piece \
-                     of evidence neither line shows, so they stand or fall together on it and \
-                     are not independent as stated: name it in `independent_except`, or the \
-                     lines are one argument",
-                    shared_citations.join(", ")
-                )
-            } else if holds {
-                if shares_named.is_empty() {
-                    format!("the two lines share no step: {step} and {other} are independent")
+            let holds = shared_steps.is_empty()
+                && shared_citations.is_empty()
+                && shared_premises.is_empty();
+            let why = if holds {
+                let setting_said = if shared_setting.is_empty() {
+                    String::new()
                 } else {
                     format!(
-                        "the two lines share no step beyond the named lemma(s) {}",
+                        "; both start from {}, the vocabulary or the theorem's own setting, which \
+                         leaves them independent",
+                        shared_setting.join(", ")
+                    )
+                };
+                if shares_named.is_empty() {
+                    format!(
+                        "the two lines share no step and no premise: {step} and {other} are \
+                         independent{setting_said}"
+                    )
+                } else {
+                    format!(
+                        "the two lines share no step and no premise beyond the named lemma(s) \
+                         {}{setting_said}",
                         shares_named.join(", ")
                     )
                 }
             } else {
+                let mut parts: Vec<String> = Vec::new();
+                if !shared_steps.is_empty() {
+                    parts.push(format!("the step(s) {}", shared_steps.join(", ")));
+                }
+                if !shared_citations.is_empty() {
+                    parts.push(format!(
+                        "the cited foundation(s) {} — a result or a piece of evidence neither \
+                         line shows",
+                        shared_citations.join(", ")
+                    ));
+                }
+                if !shared_premises.is_empty() {
+                    parts.push(format!(
+                        "the premise(s) {} — neither line derives them, and losing one costs both",
+                        shared_premises.join(", ")
+                    ));
+                }
                 format!(
-                    "the two lines both rest on {} — step(s) under no lemma the statement names, \
-                     so they are not independent as stated: name the shared lemma in \
-                     `independent_except`, or the lines are one argument",
-                    shared_steps.join(", ")
+                    "the two lines both rest on {}, under no lemma the statement names, so they \
+                     stand or fall together and are not independent as stated: name what they \
+                     share in `independent_except` (a lemma, or a premise you accept both rest \
+                     on), or the lines are one argument",
+                    parts.join("; and ")
                 )
             };
             out.push(IndependenceReading {
@@ -3611,6 +4103,8 @@ impl DesignGraph {
                 holds,
                 shared_steps,
                 shared_citations,
+                shared_premises,
+                shared_setting,
                 shares_named,
                 except: except.clone(),
                 why,
@@ -3703,13 +4197,34 @@ impl DesignGraph {
         let contested = truth == Truth::Unknown
             && proof.is_none()
             && !self.premise_reading(id)?.contested_by.is_empty();
-        let (reads, why): (&'static str, String) = if truth == Truth::Fails {
+        // PR A2: a claim another takes the place of, or its source withdrew,
+        // reads superseded; one accepted for a period that ended reads
+        // withdrawn; one a named party claims and nothing here establishes
+        // reads claimed — each before "refuted", "stated" or "open".
+        let superseded = self.superseded_reason(id)?;
+        let withdrawn = if superseded.is_none() {
+            self.withdrawn_reading(id)?
+        } else {
+            None
+        };
+        let claimants = if truth != Truth::Holds && proof.is_none() {
+            self.claimants_of(id, &BTreeSet::new())?
+        } else {
+            BTreeSet::new()
+        };
+        let (reads, why): (&'static str, String) = if let Some(s) = superseded {
+            ("superseded", s)
+        } else if let Some(w) = withdrawn {
+            ("withdrawn", w.why)
+        } else if truth == Truth::Fails {
             ("refuted", why)
         } else if contested {
             // A FOUNDATION UNDER A STANDING OBJECTION reads contested, never
             // "stated" (req:a-conclusion-whose-every-route-is-contested-reads-
             // contested, the stage-5 re-read).
             ("contested", why)
+        } else if !claimants.is_empty() {
+            ("claimed", Self::claimed_said(&claimants))
         } else if kind == "bridge" {
             // A BRIDGE READS AS A BRIDGE (dec:idea-a-bridge-premise-says-a-
             // formal-statement-models-a-claim, option b): neither a cited
@@ -3863,6 +4378,9 @@ impl DesignGraph {
             cases: None,
             generalization: None,
             independence: Vec::new(),
+            status_over_time: Vec::new(),
+            withdrawn: None,
+            claimed_by: None,
             holds_under_any_of: Vec::new(),
             lines_capped: false,
             objections: Vec::new(),
@@ -4928,9 +5446,27 @@ impl DesignGraph {
                         self.walk_read(c, &mut after_ev)?
                     };
                     let now = self.without_dropped(now, &lost);
-                    (reads_as(&was), now.truth, Some(now))
+                    // A CLAIM A NAMED PARTY MAKES reads `claimed` before the
+                    // change (PR A2), never "unsupported".
+                    let was_reads = match reads_as(&was) {
+                        "unsupported" if !self.claimants_of(c, &BTreeSet::new())?.is_empty() => {
+                            "claimed"
+                        }
+                        other => other,
+                    };
+                    (was_reads, now.truth, Some(now))
                 }
                 None => ("unsupported", Truth::Unknown, None),
+            };
+            // Who still claims it with the losses counted: dropping the
+            // claimant's argument drops the claim, and the statement returns
+            // to open (req:a-claim-made-by-a-named-party-and-not-yet-
+            // verified-reads-claimed).
+            let claimed_by_after: Vec<String> = match &after.conclusion {
+                Some(c) if conclusion_after == Truth::Unknown => {
+                    self.claimants_of(c, &lost)?.into_iter().collect()
+                }
+                _ => Vec::new(),
             };
             // The other lines: every step concluding the claim that still
             // holds with the losses counted, and every one the change does not
@@ -4969,6 +5505,8 @@ impl DesignGraph {
                 (_, Truth::Holds) => "still_supported",
                 (_, Truth::Fails) => "refuted",
                 (Some(r), Truth::Unknown) if !r.contested_by.is_empty() => "contested",
+                (_, Truth::Unknown) if !claimed_by_after.is_empty() => "claimed",
+                (_, Truth::Unknown) if conclusion_was == "claimed" => "open",
                 (_, Truth::Unknown) => "unsupported",
             };
             let still_holds_under = match &conclusion_read {
@@ -5012,6 +5550,7 @@ impl DesignGraph {
                 conclusion_after,
                 conclusion_was,
                 conclusion_reads,
+                claimed_by: claimed_by_after,
                 still_supported_by,
                 still_holds_under,
                 untouched_routes,
@@ -5630,6 +6169,46 @@ impl DesignGraph {
         if self.node_props(id)?.is_some_and(|p| is_falsum(&p)) {
             return Ok(None);
         }
+        let reading = self.proof_reading_counted(id, &top_steps)?;
+        // WHAT A CLAIM THAT DOES NOT HOLD IS, SAID BEFORE "UNPROVEN": replaced
+        // or withdrawn by its source (superseded), accepted for a period that
+        // ended (withdrawn), or claimed by a named party nobody has verified
+        // (claimed) — PR A2. A refuted claim with no such history stays
+        // `unproven`, and a contested one `contested`.
+        let Some(mut reading) = reading else {
+            return Ok(None);
+        };
+        if let Some(why) = self.superseded_reason(id)? {
+            reading.status = ProofStatus::Superseded;
+            reading.why = why;
+            return Ok(Some(reading));
+        }
+        if matches!(
+            reading.status,
+            ProofStatus::Unproven | ProofStatus::Contested
+        ) && let Some(w) = self.withdrawn_reading(id)?
+        {
+            reading.status = ProofStatus::Withdrawn;
+            reading.why = w.why;
+            return Ok(Some(reading));
+        }
+        if reading.status == ProofStatus::Unproven && self.premise_truth(id)?.0 != Truth::Fails {
+            let parties = self.claimants_of(id, &BTreeSet::new())?;
+            if !parties.is_empty() {
+                reading.status = ProofStatus::Claimed;
+                reading.why = Self::claimed_said(&parties);
+            }
+        }
+        Ok(Some(reading))
+    }
+
+    /// The proof reading by its steps alone: proven, shown, conditional,
+    /// supported, contested or unproven, with the step counts.
+    fn proof_reading_counted(
+        &self,
+        id: &str,
+        top_steps: &[String],
+    ) -> Result<Option<ProofReading>, DynoError> {
         // TWO QUESTIONS, ANSWERED APART. Whether a line is wholly confirmed is
         // judged per line, so each line walks from its own empty visited set
         // and sees every one of its steps, shared ones included. How many
@@ -5641,7 +6220,7 @@ impl DesignGraph {
         let mut any_proven_chain = false;
         let mut under: BTreeSet<String> = BTreeSet::new();
         let mut confirmed_under: BTreeSet<String> = BTreeSet::new();
-        for s in &top_steps {
+        for s in top_steps {
             let reading = self.step_reading(s, &mut ev, INFERENCE_DEPTH)?;
             if reading.verdict == Truth::Holds {
                 any_holds = true;
@@ -6394,11 +6973,32 @@ impl DesignGraph {
                 props.insert(key.into(), Value::String(v.clone()));
             }
         }
+        // WHAT THIS WRITE CLEARS: a list given empty (`independent_of: []`),
+        // `cases_exhaustive: ""`, a rule that drops `k`. `upsert_node` MERGES,
+        // so a key removed from `props` alone survived in the store: the
+        // Navier–Stokes map's `independent_of: []` left the stale statement
+        // standing, though the field's description says it overwrites (PR A2).
+        let cleared: Vec<String> = existing
+            .as_ref()
+            .map(|n| {
+                let mut keys: Vec<String> = n
+                    .properties
+                    .keys()
+                    .filter(|k| !props.contains_key(*k))
+                    .cloned()
+                    .collect();
+                keys.sort();
+                keys
+            })
+            .unwrap_or_default();
         let mut builder = Props::new();
         for (k, v) in props {
             builder = builder.set(&k, v);
         }
-        let stored_node = self.upsert_node(node::INFERENCE, &spec.id, builder)?;
+        let mut stored_node = self.upsert_node(node::INFERENCE, &spec.id, builder)?;
+        if !cleared.is_empty() {
+            stored_node = self.remove_properties(node::INFERENCE, &spec.id, &cleared)?;
+        }
         let mut drawn = Vec::new();
         for (p, ty) in &typed {
             let assumed = assumed_given.contains(p);

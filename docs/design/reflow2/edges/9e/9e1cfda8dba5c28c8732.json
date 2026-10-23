@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e693ced54a672a1c7a1b770669ced56565ee498e04afd1e9e64dda701bc4a8be",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:skill-link-projects",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

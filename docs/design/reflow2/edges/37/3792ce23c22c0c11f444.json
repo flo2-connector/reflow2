@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fb124484d554b289f80c82d07cfcda14a2551dc84ef856f9e9c0a8cb37f7b98c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:two-lines-stated-independent-are-checked-against-their-shared-premises",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

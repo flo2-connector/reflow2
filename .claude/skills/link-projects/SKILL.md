@@ -134,6 +134,14 @@ cannot choose between them. Say both, and take it to the two owners.
 `mirrors` lists what you hold and what it was pinned to. A mirror is a **dated claim about a
 version**, never a live truth — re-check it when they publish again.
 
+**Mirroring their next version refreshes in place and deletes nothing.** Your edges into what
+they still publish stay. What they no longer publish is KEPT and marked superseded, with a
+snapshot and a change event. If anything of yours rests on a withdrawn node — a step's premise, a
+consumer, a document — the refresh is refused and names each edge; pass `accept_withdrawal: true`
+once the owner agrees, and what rested on it then reads reason-lost (`rests_on_withdrawn` in
+`reasoning_report`, `reasons_lost` in `loop_status`) until it is re-grounded on their new version
+or let go. Tell the owner which decisions lost a reason; never re-point them yourself.
+
 Without this the pair has to be supplied by hand at every run, and the knowledge that *this
 boundary of mine was built against that boundary of theirs* — which was free at the moment somebody
 authored it — is thrown away.

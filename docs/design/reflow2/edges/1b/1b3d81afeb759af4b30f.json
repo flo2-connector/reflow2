@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:54c2716641962f336d0e426154545a4b68d9d40e9257562419666276ba95097d",
+  "edge_type": "REALIZES",
+  "from_id": "art:claims-and-shared-premises-on-the-wire-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-refreshed-mirror-keeps-what-its-source-withdrew-and-what-rested-on-it-reads-reason-lost"
+}

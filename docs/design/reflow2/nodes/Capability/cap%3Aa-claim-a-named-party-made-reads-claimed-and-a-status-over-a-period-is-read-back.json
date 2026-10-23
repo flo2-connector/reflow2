@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fde40ae48f59f4ebe1504f943ddc5800f2c412ea3ba691299523b65b271580e1",
+  "node_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-23, PR A2. `claimed_by` (Requirement, Constraint, Inference; add_requirement, add_constraint, add_inference) names the party. A claim that does not hold, is not contested or refuted, and carries or rests on a claim reads proof_status/statement_reading `claimed`, reasoning_report `claimed_by` and a `why` starting \"claimed by OpenAI, unverified\"; propagate_from rows read `conclusion_was: claimed` and `conclusion_reads: open` once the claimant's argument is dropped (`claimed_by` lists who still claims it). TemporalFacts with fact_type status (HAS_TEMPORAL_FACT) are read back as `status_over_time` on reasoning_report claims and a step's get_node; a claim or step that does not hold now with every status ended reads `withdrawn` (period, record, the objections that withdrew it). Measured: NS (C) unproven→claimed; Kempe's 1879 step withdrawn 1879–1890 by Heawood's objection; Tait 1880–1891.",
+    "name": "A claim a named party made reads \"claimed by <party>, unverified\", a what-if dropping the claimant's argument reads it open, and a status held over a period is read back, a claim whose period ended reading withdrawn",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

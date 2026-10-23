@@ -160,6 +160,13 @@ pub struct ReasoningDebt {
     /// reason to exist reads `lost` or `stands_on_acceptance_alone`.
     pub reasons_lost: usize,
     pub reason_lost_ids: Vec<String>,
+    /// THE WITHDRAWN PREMISES behind some of those: mirrored nodes their
+    /// source design withdrew, kept here and marked superseded, that a live
+    /// claim or decision still rests on (req:a-superseded-mirrored-judgment-
+    /// is-kept-and-what-rested-on-it-reads-reason-lost). Each claim resting
+    /// on one is counted in `reasons_lost`.
+    pub premises_withdrawn: usize,
+    pub premises_withdrawn_ids: Vec<String>,
     /// Accepted Decisions a chain concludes and no line of it holds.
     pub decisions_without_a_holding_chain: usize,
     pub decision_without_a_holding_chain_ids: Vec<String>,
@@ -239,8 +246,32 @@ pub struct CitedSource {
     /// Where a person opens it (a path or an address), when recorded.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,
-    /// Whether a checksum pins the version that was read.
+    /// Whether a checksum pins the version that was read — and the source
+    /// was read, and its grade allows checking a citation against it (PR A2,
+    /// dec:idea-a-source-says-what-kind-of-support-it-gives, option (c)).
     pub pinned: bool,
+    /// NAMED, NOT READ (`not_read: true` on the Artifact): the source is
+    /// named and nobody read it. It never counts as citing — what it
+    /// DOCUMENTS stays uncited — and it never pins (the Navier–Stokes map's
+    /// finding (c)).
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub not_read: bool,
+    /// ITS GRADE, when it carries one: evidence's source reliability (A–F)
+    /// and information credibility (1–6), reused for a source.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub grade: Option<crate::inference::Grade>,
+    /// Why it does not pin although a checksum names the version read: not
+    /// read, or graded too weak to check a citation against.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pins_nothing: Option<String>,
+}
+
+impl CitedSource {
+    /// Whether it counts as citing at all: a source named and not read
+    /// does not.
+    pub fn cites(&self) -> bool {
+        !self.not_read
+    }
 }
 
 /// A claim's truth as the read-back serves it: the three values, and
@@ -440,6 +471,32 @@ pub struct ClaimReading {
     /// with how the argument reads (`argued`, `circular` ...).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub argues_for: Vec<crate::reason_to_exist::ArguedEdge>,
+    /// THE NAMED PARTIES WHO CLAIM IT, when it does not hold here: on it
+    /// (`claimed_by`) or on the argument it rests on. While any is named and
+    /// nothing establishes it, it reads "claimed by <party>, unverified"
+    /// (req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub claimed_by: Vec<String>,
+    /// EVERY STATUS IT HELD OVER A PERIOD (dated `status` records), earliest
+    /// first — read back, not left in notes (same requirement).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub status_over_time: Vec<crate::inference::StatusPeriod>,
+    /// ACCEPTED FOR A PERIOD AND WITHDRAWN: the period, and what withdrew it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub withdrawn: Option<crate::inference::WithdrawnReading>,
+    /// SUPERSEDED: another claim takes its place (`replaces`), or the design
+    /// it was mirrored from withdrew it — why, in a sentence
+    /// (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-
+    /// reads-reason-lost, part 5).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub superseded: Option<String>,
+    /// REASON LOST: the mirrored premises beneath it that their source design
+    /// has WITHDRAWN (kept here, marked superseded). While any is named, it
+    /// rests on a reason that is gone, and `loop_status` counts it under
+    /// `reasons_lost` until it is re-grounded or let go (same requirement,
+    /// part 3).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rests_on_withdrawn: Vec<String>,
 }
 
 /// One formula and the occurrences of it the walk read.
@@ -931,7 +988,7 @@ impl DesignGraph {
             .filter(|p| match by_id.get(p.as_str()) {
                 Some(c) => {
                     c.node_type != node::ARTIFACT
-                        && c.sources.is_empty()
+                        && c.sources.iter().all(|x| !x.cites())
                         && !c.taken_as_given
                         && !is_bridge(c)
                 }
@@ -1445,6 +1502,23 @@ impl DesignGraph {
         } else {
             why
         };
+        // CLAIMED BY A NAMED PARTY, NOT VERIFIED (PR A2): said in the claim's
+        // own `why`, where its truth is printed, and listed in `claimed_by`.
+        let claimed_by: Vec<String> = if truth == Truth::Unknown {
+            self.claimants_of(id, &BTreeSet::new())?
+                .into_iter()
+                .collect()
+        } else {
+            Vec::new()
+        };
+        let why = if !claimed_by.is_empty() && contested_by.is_empty() {
+            format!(
+                "claimed by {}, unverified: no line here establishes it; {why}",
+                claimed_by.join(" and ")
+            )
+        } else {
+            why
+        };
         let concluded_decision =
             node_type == node::DECISION && !self.inferences_concluding(id)?.is_empty();
         let (acceptance, chain) = if concluded_decision {
@@ -1521,6 +1595,11 @@ impl DesignGraph {
             check_conditions: self.check_conditions(id)?,
             reason_to_exist: self.reason_to_exist(id)?,
             argues_for: Vec::new(),
+            claimed_by,
+            status_over_time: self.status_over_time(id)?,
+            withdrawn: self.withdrawn_reading(id)?,
+            superseded: self.superseded_reason(id)?,
+            rests_on_withdrawn: self.rests_on_withdrawn(id)?,
             acceptance,
             chain,
             node_type,
@@ -1546,6 +1625,9 @@ impl DesignGraph {
                     id: r.id,
                     name: r.name,
                     location: r.location,
+                    not_read: false,
+                    grade: None,
+                    pins_nothing: None,
                 })
                 .collect());
         }
@@ -1554,14 +1636,27 @@ impl DesignGraph {
             let Some(a) = self.get_node(node::ARTIFACT, &e.from_id)? else {
                 continue;
             };
+            let checksummed = a
+                .properties
+                .get("checksum")
+                .and_then(Value::as_str)
+                .is_some_and(|c| !c.is_empty());
+            let not_read = crate::inference::is_not_read(&a.properties);
+            let weak = crate::inference::source_grade_too_weak(&a.properties);
+            let pins_nothing = if !checksummed {
+                None
+            } else if not_read {
+                Some("named, not read: a source nobody read checks nothing".to_string())
+            } else {
+                weak
+            };
             out.push(CitedSource {
                 name: prop(&a.properties, "name"),
                 location: prop(&a.properties, "location"),
-                pinned: a
-                    .properties
-                    .get("checksum")
-                    .and_then(Value::as_str)
-                    .is_some_and(|c| !c.is_empty()),
+                pinned: checksummed && pins_nothing.is_none(),
+                not_read,
+                grade: crate::inference::grade_of(&a.properties),
+                pins_nothing,
                 id: e.from_id,
             });
         }
@@ -1622,7 +1717,7 @@ impl DesignGraph {
                 }
             } else if crate::inference::is_taken_as_given(&props) {
                 given.push(p.clone());
-            } else if self.cited_sources(p)?.is_empty() {
+            } else if self.cited_sources(p)?.iter().all(|x| !x.cites()) {
                 uncited.push(p.clone());
             }
         }
@@ -1709,7 +1804,39 @@ impl DesignGraph {
                 reasons.push(r.node_id);
             }
         }
+        // AND WHAT RESTS ON A PREMISE ITS SOURCE WITHDREW (req:a-superseded-
+        // mirrored-judgment-is-kept-and-what-rested-on-it-reads-reason-lost,
+        // part 3): a claim or decision whose chain reaches a mirrored node a
+        // refresh kept and marked superseded has lost that reason, until its
+        // owner re-grounds it (draws the step on something else) or lets it go
+        // (drops the requirement, supersedes or rejects the decision). The
+        // split-capstone refresh read reasons_lost 0 here.
+        let mut premises_withdrawn: BTreeSet<String> = BTreeSet::new();
+        for c in &conclusions {
+            if self.is_withdrawn_mirror(c)? || self.is_discontinued(c)? {
+                continue;
+            }
+            let let_go = self.node_props(c)?.is_some_and(|p| {
+                matches!(
+                    p.get("status").and_then(Value::as_str),
+                    Some("dropped" | "superseded" | "rejected")
+                )
+            });
+            if let_go {
+                continue;
+            }
+            let gone = self.rests_on_withdrawn(c)?;
+            if !gone.is_empty() {
+                premises_withdrawn.extend(gone);
+                reasons.push(c.clone());
+            }
+        }
         reasons.sort();
+        reasons.dedup();
+        let (premises_withdrawn_count, premises_withdrawn_ids) = (
+            premises_withdrawn.len(),
+            premises_withdrawn.into_iter().collect::<Vec<_>>(),
+        );
         let mut chainless: Vec<String> = Vec::new();
         for d in self.scan_live_nodes(node::DECISION)? {
             if d.properties.get("status").and_then(Value::as_str) != Some("accepted") {
@@ -1733,9 +1860,13 @@ impl DesignGraph {
         let (reasons_lost, reason_lost_ids) = cap(reasons);
         let (decisions_without_a_holding_chain, chainless_ids) = cap(chainless);
         let (stale_checks, stale_ids) = cap(stale);
+        let mut premises_withdrawn_ids = premises_withdrawn_ids;
+        premises_withdrawn_ids.truncate(REASONING_DEBT_LIST_CAP);
         Ok(Some(ReasoningDebt {
             reasons_lost,
             reason_lost_ids,
+            premises_withdrawn: premises_withdrawn_count,
+            premises_withdrawn_ids,
             decisions_without_a_holding_chain,
             decision_without_a_holding_chain_ids: chainless_ids,
             stale_checks,

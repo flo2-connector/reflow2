@@ -27,6 +27,14 @@
           "null"
         ]
       },
+      "claimed_by": {
+        "default": null,
+        "description": "CLAIMED BY a named party, not yet verified here: \"OpenAI\", \"Kempe\".\nWhile nothing in the design establishes it and nothing refutes it, it\n— and what rests on it — reads \"claimed by OpenAI, unverified\", never\nas unproven or open. Put it on the statement, or\non the premise that is the claimant's argument (\"their proof is\ncorrect\"). Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "composition": {
         "default": null,
         "description": "HOW THE QUANTITY COMPOSES, which is what budget_report's verdict reads: `sum` (every\ncontribution adds — mass, cost) or `path` (the heaviest DEPENDS_ON chain among the\ncontributors — end-to-end latency, where parallel branches overlap). Declared, never\ninferred from the unit. Leave it unset when nobody has said: the verdict then reads the\nsum and the report names any path total it did not read.",

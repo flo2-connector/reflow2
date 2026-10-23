@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:d007f5bec434386f57b30a72c37d44ac2311c8babdccfa5a9ae3989070f9bb72",
+  "node_id": "art:claims-and-shared-premises-on-the-wire-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "PR A2 over the MCP surface: independent_of [] clears and shared_setting is named; add_requirement claimed_by reads claimed; mirror_surface refuses a refresh withdrawing a premise and keeps it superseded with accept_withdrawal, loop_status naming the decision.",
+    "location": "crates/reflow2-mcp/tests/claims_and_shared_premises_on_the_wire.rs",
+    "name": "crates/reflow2-mcp/tests/claims_and_shared_premises_on_the_wire.rs — PR A2 over MCP",
+    "status": "realized"
+  }
+}

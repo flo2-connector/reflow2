@@ -4692,16 +4692,25 @@ impl DesignGraph {
             }
             let mut affected = vec![i.step.clone(), i.of.clone()];
             affected.extend(i.shared_steps.iter().cloned());
+            affected.extend(i.shared_citations.iter().cloned());
+            affected.extend(i.shared_premises.iter().cloned());
             push(
                 affected,
                 format!(
-                    "'{}' is stated independent of '{}', and the two lines share a step",
-                    i.step, i.of
+                    "'{}' is stated independent of '{}', and the two lines share {}",
+                    i.step,
+                    i.of,
+                    if i.shared_steps.is_empty() {
+                        "a premise"
+                    } else {
+                        "a step"
+                    }
                 ),
                 "Two lines of reasoning are stated independent, and the structure does not bear \
-                 it out: they rest on a common step that no lemma named in `independent_except` \
-                 accounts for. Name the shared lemma there (the lines are independent apart from \
-                 it), or withdraw the statement."
+                 it out: they rest on a common step, cited foundation or premise that nothing \
+                 named in `independent_except` accounts for, so losing it costs both. Name what \
+                 they share there (the lines are independent apart from it), or withdraw the \
+                 statement."
                     .to_string(),
                 i.why.clone(),
             );

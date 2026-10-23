@@ -37,6 +37,14 @@
           "null"
         ]
       },
+      "claimed_by": {
+        "default": null,
+        "description": "CLAIMED BY a named party, not yet verified here: \"OpenAI\", \"Kempe\".\nWhile nothing in the design establishes it and nothing refutes it, it\n— and what rests on it — reads \"claimed by OpenAI, unverified\", never\nas unproven or open. Put it on the statement, or\non the premise that is the claimant's argument (\"their proof is\ncorrect\"). Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "concern": {
         "default": null,
         "description": "The cross-cutting concern this need belongs to. 154 of 207 requirements\ncarried one written through the generic escape hatch.",

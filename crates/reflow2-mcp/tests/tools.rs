@@ -100,6 +100,7 @@ async fn seeded() -> ReflowService {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -254,6 +255,7 @@ async fn genesis_bootstraps_then_detect_hands_off() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -1426,6 +1428,7 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -1797,6 +1800,9 @@ async fn documents_links_a_doc_over_the_surface_and_refuses_a_ghost() {
         status: None,
         description: None,
         checksum: None,
+        not_read: None,
+        source_reliability: None,
+        information_credibility: None,
     })));
 
     let edge = j!(s.documents(Parameters(DocumentsReq {
@@ -2550,6 +2556,9 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         status: None,
         description: None,
         checksum: None,
+        not_read: None,
+        source_reliability: None,
+        information_credibility: None,
     })));
     j!(s.realizes(Parameters(RealizesReq {
         artifact_id: "art:flight-rs".into(),
@@ -2787,6 +2796,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -2827,6 +2837,7 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));
@@ -3989,6 +4000,7 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));

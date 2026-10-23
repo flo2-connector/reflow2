@@ -96,6 +96,7 @@ fn requirement(id: &str, name: &str) -> RequirementReq {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     }
@@ -358,6 +359,7 @@ async fn a_requirement_promoted_from_the_idea_that_spawned_it_is_not_refused() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));

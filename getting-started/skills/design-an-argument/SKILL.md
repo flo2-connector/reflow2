@@ -108,6 +108,28 @@ objection names the reply and the move, and the claim stands or falls on the rea
 `now_refuted`, with what holds against it and, for a claim, how to keep the two as an open dispute
 instead. If you meant a dispute, act on it at once.
 
+**An objection taken as given that no pinned source documents only contests** what it attacks,
+and never defeats or refutes it, until the source that was read is registered with a checksum
+and DOCUMENTS it. **A source named and not read** is an Artifact with `not_read: true`
+(`add_artifact`): it never counts as citing. A source can carry evidence's grade
+(`source_reliability`, `information_credibility`); graded D–F or 4–6 it checks nothing.
+
+**A position a named party holds and nobody here has verified** (an agency's assessment, a
+paper's claim) carries `claimed_by` naming the party: while nothing here establishes it, it reads
+"claimed by <party>, unverified", never `unproven` or `open`. **A position accepted for a period
+and later withdrawn** is a TemporalFact with `fact_type: status`, `valid_from` and `valid_to` on
+it: it is read back under `status_over_time`, and reads `withdrawn` with the period and what
+withdrew it. **Two lines stated independent** (`independent_of`) are checked against every
+shared premise as well as every shared step: a principle or case both rest on is named in
+`shared_premises` unless `independent_except` names it.
+
+**A judgment mirrored from another design** that a refreshed mirror no longer finds is KEPT and
+marked superseded, never deleted (`mirror_surface` refuses until you pass `accept_withdrawal`,
+naming every edge of yours that touches it). What rested on it reads reason-lost:
+`rests_on_withdrawn` in the read-back, `reasons_lost` in `loop_status`, until you re-ground the
+step on something else or let the position go. A judgment your own design replaces (`replaces`)
+reads `superseded` and is no longer published.
+
 ## 5. Rival positions are an open dispute, never a one-way contradiction
 
 Two positions on one case ("turn" and "do not turn") are rivals. **Never draw a single CONTRADICTS

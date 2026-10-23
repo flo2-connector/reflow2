@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b8cf54c0e037bf652f7c1e41ca189c0f340857618e171499863a3b94a9c9ffab",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:claims-and-shared-premises-on-the-wire-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

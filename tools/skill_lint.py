@@ -138,6 +138,14 @@ NON_TOOL_TERMS = {
     # and reasoning_report's `circular_steps`.
     "bridge", "bridges", "rests_on_bridges", "bridges_lost", "by", "equivalent_to",
     "equivalents_reached", "circular_steps",
+    # claims, superseded mirrors and shared premises (PR A2, 2026-10-23): a
+    # claim's `claimed_by` and the readings `claimed`, `withdrawn` and
+    # `superseded`; `status_over_time`; an independence's `shared_premises`
+    # and `shared_setting`; mirror_surface's `accept_withdrawal`; a claim's
+    # `rests_on_withdrawn` and loop_status's `reasons_lost`.
+    "claimed_by", "claimed", "withdrawn", "superseded", "status_over_time",
+    "shared_premises", "shared_setting", "accept_withdrawal", "rests_on_withdrawn",
+    "reasons_lost", "pins_nothing",
     # design-a-proof (2026-10-17): the fields a proof is recorded with —
     # add_inference's `assumed`, `discharges`, `generalizes_over`,
     # `independent_of`, `independent_except`, `rule`, `rule_name`, `warrant`,

@@ -235,6 +235,20 @@ async fn create_edges_says_what_it_turns_refuted() {
     let s = session().await;
     s.statement("req:claim", "proposition", true).await;
     s.statement("req:obj", "objection", true).await;
+    // A PINNED SOURCE documents the objection: since PR A2 one taken as
+    // given that nothing pinned documents only contests
+    // (req:an-objection-taken-as-given-with-no-pinned-source-contests-and-never-defeats).
+    s.ok(
+        "add_artifact",
+        json!({"id": "art:source-obj", "name": "the source read", "artifact_type": "document",
+               "location": "source.pdf", "checksum": "sha256:0123456789abcdef"}),
+    )
+    .await;
+    s.ok(
+        "documents",
+        json!({"artifact_id": "art:source-obj", "target_id": "req:obj"}),
+    )
+    .await;
     let r = s
         .ok(
             "create_edges",
@@ -250,6 +264,20 @@ async fn create_edges_says_what_it_turns_refuted() {
 async fn add_decisions_related_to_says_what_it_turns_refuted() {
     let s = session().await;
     s.statement("req:obj", "objection", true).await;
+    // A PINNED SOURCE documents the objection: since PR A2 one taken as
+    // given that nothing pinned documents only contests
+    // (req:an-objection-taken-as-given-with-no-pinned-source-contests-and-never-defeats).
+    s.ok(
+        "add_artifact",
+        json!({"id": "art:source-obj", "name": "the source read", "artifact_type": "document",
+               "location": "source.pdf", "checksum": "sha256:0123456789abcdef"}),
+    )
+    .await;
+    s.ok(
+        "documents",
+        json!({"artifact_id": "art:source-obj", "target_id": "req:obj"}),
+    )
+    .await;
     let r = s
         .ok(
             "add_decision",

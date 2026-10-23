@@ -137,10 +137,13 @@ fn the_pin_advances_so_the_staleness_register_stops_lying() {
     assert_eq!(m[0].mirrored_at.as_deref(), Some("2026-08-13"));
 }
 
-// The refreshed content must actually be theirs-as-of-now, not the old copy
-// left in place beside a new arrival.
+// The refreshed content must actually be theirs-as-of-now. A node they no
+// longer publish is KEPT and marked superseded, never deleted, since PR A2
+// (req:a-superseded-mirrored-judgment-is-kept-and-what-rested-on-it-reads-
+// reason-lost): the split-capstone refresh deleted withdrawn judgments and
+// every reason resting on them went with them.
 #[test]
-fn refreshed_nodes_carry_the_new_values_and_the_old_ones_are_gone() {
+fn refreshed_nodes_carry_the_new_values_and_the_old_ones_are_marked_superseded() {
     let mut g = host_that_mirrored_once();
     // They rename the boundary.
     g.mirror_surface(
@@ -155,11 +158,16 @@ fn refreshed_nodes_carry_the_new_values_and_the_old_ones_are_gone() {
             .is_some(),
         "the new boundary must be here"
     );
-    assert!(
-        g.get_node(node::INTERFACE, "ifc:boundary")
-            .unwrap()
-            .is_none(),
-        "the withdrawn boundary must NOT linger — that is the stale-node half of the defect"
+    let old = g
+        .get_node(node::INTERFACE, "ifc:boundary")
+        .unwrap()
+        .expect("the withdrawn boundary is kept");
+    assert_eq!(
+        old.properties
+            .get("superseded_by_surface")
+            .and_then(|v| v.as_str()),
+        Some("sha256:v2"),
+        "and marked superseded by the surface that withdrew it — never read as current"
     );
 }
 

@@ -341,6 +341,7 @@ async fn it_is_not_a_capability_only_field() {
         confidence: None,
         silent_on: None,
         same_formula_as: None,
+        claimed_by: None,
         variables: None,
         fixes: None,
     })));

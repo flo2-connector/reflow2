@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6e7e3a80b3c73a0f8c5db0b7b84329580d64749d21c85d1589cc42037658dc92",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:claims-and-shared-premises-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:claims-and-shared-premises-tests"
+}

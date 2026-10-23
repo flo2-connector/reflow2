@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fda981689a1f55963eff800b094ba9d679d3ad9190f39edf63f7f108dc75135e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

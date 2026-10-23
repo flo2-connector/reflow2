@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:468fee622968103310bcce37cc6876fa29fcde99ebb4593fdd5a90d8d89c1b59",
+  "edge_type": "REALIZES",
+  "from_id": "art:schema-build",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-source-named-but-not-read-never-cites-and-a-source-carries-evidences-grade"
+}

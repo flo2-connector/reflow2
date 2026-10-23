@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:568f96a2bd78deb2edae7e0f132b2833c033b3b83e5fe38c3424eb659d5c50e0",
+  "node_id": "art:fixture-split-capstone-kestrel-assess-v1",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "data",
+    "description": "KESTREL-ASSESS v1, the published surface Intel e195be3c56cb2d89 released on 2026-10-22 and the courier carried to acquisition (FICTIONAL; content hash dce7e883…), byte for byte as carried: four judgments KJ1–KJ4, the release interface and its artifact.",
+    "location": "crates/reflow2-core/tests/fixtures/split_capstone_kestrel_assess_v1.surface.json",
+    "name": "crates/reflow2-core/tests/fixtures/split_capstone_kestrel_assess_v1.surface.json — the split-capstone trial's released surface v1 (FICTIONAL)",
+    "status": "realized"
+  }
+}

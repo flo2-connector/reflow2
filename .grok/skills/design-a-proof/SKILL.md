@@ -91,6 +91,29 @@ published bound) is ONE record, written one way:
 `source` text alone never makes a citation checked, and a citation is never a definition or an
 axiom: those are the reasoning's own starting points, taken as given by choice.
 
+**A source named and not read** (a paper announced, a formalization nobody opened) is registered
+with `add_artifact` `not_read: true`: it never counts as citing, what it DOCUMENTS stays uncited,
+and a checksum on it pins nothing. **A source can carry a grade**, the one evidence uses:
+`source_reliability` (A–F) and `information_credibility` (1–6) on `add_artifact`. Graded D–F or
+4–6 (a homework sheet, a paraphrase), it checks no citation: what it documents reads
+`cited_unverified`, and the read-back says why under the source's `pins_nothing`.
+
+## 2a′. A claim somebody made, and a status that held for a while
+
+**A result a named party claims and nobody here has verified** (OpenAI's announced proof, a
+preprint's main theorem) is recorded with `claimed_by` naming the party ("OpenAI") on the claim
+— the statement, or the premise "their proof is correct" that the route to it rests on
+(`add_requirement`'s `claimed_by`), or the step that is their argument (`add_inference`'s). While
+nothing here establishes it, it reads `claimed` ("claimed by OpenAI, unverified"), never
+`unproven` or `open`, and so does what rests on it. A what-if (`propagate_from`) that drops the
+claimant's argument reads it `open` again and leaves what does not rest on it standing.
+
+**A status that held over a period** (Kempe's proof, accepted 1879–1890) is a TemporalFact with
+`fact_type: status`, `valid_from` and `valid_to`, on the claim or the step (`subject_id`).
+`reasoning_report` and `get_node` read each back under `status_over_time`. A claim or step that
+does not hold now, and whose every status has ended, reads `withdrawn`, with the period and the
+objection that withdrew it.
+
 ## 2b. Two statements proven equivalent are joined as equivalent, never as duplicates
 
 When a cited or proven biconditional shows two statements equivalent (RH and Robin's
@@ -176,6 +199,13 @@ under no open assumption reads `inconsistent`: the foundations contradict each o
 names the first proof's step and `independent_except` the lemmas both may share (Goldbach's proof
 shares Lemmas 1, 2, 3 and 5 with Euclid's). A shared step under no named lemma is reported, and
 so is a cited result both lines rest on: two lines through one citation stand or fall together.
+So is a **shared premise**: a statement neither line derives — taken as given, a claim nobody
+has shown, an assumption nothing discharges — under no named lemma. The reading names it in
+`shared_premises`; losing it costs both lines. What both lines share and stays harmless is named
+in `shared_setting`: definitions, axioms and rules of method, and the premises both final steps
+take up (the theorem's own hypotheses). A "definition" that is really data — a chosen list of
+configurations, a measured table — is a `proposition` taken as given, so it counts.
+`independent_of: []` withdraws the statement.
 
 ## 4. A computed fact counts only through its kept record
 
@@ -236,6 +266,11 @@ share reads unknown, because the family's error rate is not then controlled.
 
 ## 5. A counterexample refutes; a question waits on the owner
 
+**An objection taken as given that no pinned source documents only contests.** Recalled, or read
+only in a secondary account, it leaves the step it targets `contested` — "contested by an
+objection nobody has sourced" — and never defeats it. Register the source that was read (an
+Artifact with its checksum, DOCUMENTS to the objection) and it defeats the step as stated.
+
 A counterexample is a statement shown by its own step, with a CONTRADICTS from it to the
 conjecture (`review_relations`, with the reason in its evidence): once it holds, the conjecture
 reads refuted — but only if it holds outright. A counterexample or objection that holds only
@@ -281,6 +316,12 @@ the statuses exactly:
 - `contested`: no line holds, but a line would were the objections under it settled — including
   a line through a reductio whose contradiction rests on a contested premise. It names what stands
   against each line (`contested_by`). Say "contested", never "refuted" or "unproven".
+- `claimed`: no line holds, nothing refutes it, and a named party claims it (`claimed_by`).
+  Say "claimed by <party>, unverified", never "unproven" or "open".
+- `withdrawn`: it was accepted for a period that ended (`status_over_time`); say the period and
+  what withdrew it.
+- `superseded`: another claim takes its place (`replaces`), or the design it was mirrored from
+  withdrew it. It feeds no chain, and a replaced one is no longer published.
 - `unproven`: no line holds for another reason, or a counterexample that holds refutes it.
 
 `proof_status` on `get_node` also counts the steps under the claim, and its `counts` says what the
@@ -291,7 +332,7 @@ fewer steps than a claim it rests on.
 Each statement's `statement_reading` says what it is and how it reads: `taken_as_given` (a
 definition or axiom), `cited` or `cited_unverified` (a result from elsewhere), `assumed`,
 `discharged` or `not_assumed` (a hypothesis), `false` or `inconsistent` (a falsum, which carries
-no proof status of its own), `bridge`, `stated`,
+no proof status of its own), `bridge`, `claimed`, `withdrawn`, `superseded`, `stated`,
 `open`, `refuted`, or the proof status above.
 
 Then run `loop_status` and say what the reasoning owes: unconfirmed steps, uncited premises,

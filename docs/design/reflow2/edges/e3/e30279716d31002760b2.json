@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:33be85cd66f45391d9112ae4c394648604fb43b9cac7c280eb7359ea0689fede",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:e07a274afc3b58d918823a8ef9dfda849c37799b0db0d790cc56278129630caf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-levied-requirement-is-recordable-in-one-call-test"
+}

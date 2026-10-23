@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:89ed5368a5f31244078c670d6c47c7211d4863af04a7db86daf82a8bb5eaf8fa",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:claims-and-shared-premises-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:claims-and-shared-premises-on-the-wire-tests"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7afe25ad9faf68c4d8b6ea4e631407490a3ba0087b9ac7453e172046a2e64f89",
+  "node_id": "req:an-objection-taken-as-given-with-no-pinned-source-contests-and-never-defeats",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "An objection taken as given with no pinned source contests the step it targets and never defeats it; once a pinned source documents it, the usual defeat rule applies",
+    "priority": "high",
+    "provenance": "authored",
+    "statement": "@ajs, 2026-10-23: \"I agree with both\", answering my recommendation that an objection taken as given, with no source behind it, only marks the step it targets contested.\n\nMEASURED: in the four colour history rung (7d851f5be7cca068), an objection to Kempe's step (Heawood's counterexample) was taken as given with no pinned source, and it DEFEATED the step outright. That means the design's own unchecked word could knock a step out. See reflow2:fact:the-four-colour-rung-ran-on-0-90-0-and-one-broken-step-falls-alone-but-a-status-over-time-is-never-read-2026-10-23 (\"an unverified objection defeats a step outright\").\n\nWHAT IT ASKS:\n- An objection whose force rests on taken_as_given, with no Artifact documenting it by checksum, reads as a standing objection: the step it targets reads contested, and the step's conclusion reads contested through it (A1's reading), never failed or refuted.\n- When a pinned source documents the objection, the existing rule applies (cap:an-objection-aimed-at-a-step-defeats-contests-or-is-answered-against-that-step).\n- reasoning_report says why: \"contested by an objection nobody has sourced\".\n\nIt matches reflow2:dec:idea-an-objection-resting-on-evidence-contests-or-refutes (accepted): an objection resting only on evidence contests and never refutes. Built in PR A2. Session: https://claude.ai/code/session_019Xbw6PG9mXJiU2Sb421fnq",
+    "status": "met"
+  }
+}

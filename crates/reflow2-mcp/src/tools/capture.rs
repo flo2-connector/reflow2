@@ -1922,6 +1922,7 @@ impl ReflowService {
             &req.id,
             &[
                 ("statement_kind", req.statement_kind.as_deref()),
+                ("claimed_by", req.claimed_by.as_deref()),
                 ("source_reliability", req.source_reliability.as_deref()),
                 (
                     "information_credibility",
@@ -3039,6 +3040,7 @@ impl ReflowService {
             &[
                 ("source", req.source.as_deref()),
                 ("statement_kind", req.statement_kind.as_deref()),
+                ("claimed_by", req.claimed_by.as_deref()),
                 ("source_reliability", req.source_reliability.as_deref()),
                 (
                     "information_credibility",
@@ -3185,7 +3187,15 @@ impl ReflowService {
             &req.conclusion,
         )
         .map_err(dyno_err)?;
-        let written = g.add_inference(&spec).map_err(dyno_err)?;
+        let mut written = g.add_inference(&spec).map_err(dyno_err)?;
+        if let Some(stored) = set_optional_props(
+            &mut g,
+            reflow2_core::nodes::node::INFERENCE,
+            &req.id,
+            &[("claimed_by", req.claimed_by.as_deref())],
+        )? {
+            written.node = stored;
+        }
         let mut edges = crate::drawn_edges::DrawnEdges::new();
         for (p, present) in was {
             edges.record(&p, reflow2_core::nodes::edge::PREMISE_OF, &req.id, present);
@@ -4740,4 +4750,11 @@ pub struct AddInferenceReq {
     /// The lemmas the independent lines may share, by id. Overwrites.
     #[serde(default)]
     pub independent_except: Option<Vec<String>>,
+    /// CLAIMED BY a named party: this step is that party's argument
+    /// ("OpenAI's natural-language proof"), not verified here. What rests on
+    /// it reads "claimed by <party>, unverified" while nothing establishes
+    /// it; a what-if that drops it reads the claim open again. Omitted:
+    /// nothing is written.
+    #[serde(default)]
+    pub claimed_by: Option<String>,
 }

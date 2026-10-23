@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cdf6bad721b8abc9b99ca5ff847e7c6338bdb762a739a7d71cbe01ceec6c8c9e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:an-objection-nobody-has-sourced-contests-and-never-defeats",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:74e41a470e741755dd9fc0d08a5243d2adf384cce58c4d05336f0924c0ef3e7c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:an-objection-taken-as-given-with-no-pinned-source-contests-and-never-defeats",
+  "properties": {
+    "approved_at": "2026-10-23",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

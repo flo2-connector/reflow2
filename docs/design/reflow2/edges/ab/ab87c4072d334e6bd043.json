@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8fa03405ea52dd4a6a85e214213aef1e627927b28449b3a2f6c74d81356f61b6",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back"
+}

@@ -39,6 +39,9 @@ fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
         description: None,
         status: status.map(Into::into),
         checksum: None,
+        not_read: None,
+        source_reliability: None,
+        information_credibility: None,
     }
 }
 

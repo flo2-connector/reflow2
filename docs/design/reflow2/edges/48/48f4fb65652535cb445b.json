@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:57ffdb672573cf497d003ffdec7e0a7cf09088af46b563abc16d349b7980e44c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 24,
+    "action": "modified",
+    "checksum_after": "sha256:92100634bfd652be3fbc49232810e596f01973be761e955921254084c33f5235",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

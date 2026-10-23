@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:97e1ddce1b3f01fa4237ae26ea8e7dc17c5ed3a80afbd11a70be964062038fb2",
+  "node_id": "cap:an-objection-nobody-has-sourced-contests-and-never-defeats",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-23, PR A2. In objections_within, an objection (statement_kind objection, taken_as_given true) with no pinned source stands — \"contested by an objection nobody has sourced\" — so a step it attacks reads objected `contested` and the step's conclusion contested through it, never defeated, failed or refuted. Measured on the four colour fixture: as exported, S1 (pinned) DOCUMENTS Heawood's objection, so Kempe's degree-5 step reads defeated under both rules; with the documenting edges removed (the state the finding describes) 0.90.0 read defeated and this build reads contested; drawing a pinned DOCUMENTS back reads defeated.",
+    "name": "An objection taken as given that no pinned source documents contests what it attacks and never defeats or refutes it; once a pinned source documents it, the defeat rule applies",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

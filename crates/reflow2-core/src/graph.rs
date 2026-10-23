@@ -2383,18 +2383,27 @@ impl DesignGraph {
 
     /// The promises this design publishes, by id — the behavioural half of a
     /// published surface (`req:publishable-promise`).
+    ///
+    /// A REPLACED ONE STOPS BEING PUBLISHED (req:a-superseded-mirrored-
+    /// judgment-is-kept-and-what-rested-on-it-reads-reason-lost, part 5): a
+    /// requirement another takes the place of (`replaces`). In the
+    /// split-capstone trial
+    /// `replaces` left v1's four judgments published beside v2's, until they
+    /// were set internal by hand.
     pub fn published_promises(&self) -> Result<std::collections::BTreeSet<String>, DynoError> {
-        Ok(self
-            .scan_nodes(node::REQUIREMENT)?
-            .into_iter()
-            .filter(|n| {
-                n.properties
-                    .get("designation")
-                    .and_then(Value::as_str)
-                    .is_some_and(|d| d == "published")
-            })
-            .map(|n| n.node_id)
-            .collect())
+        let mut out = std::collections::BTreeSet::new();
+        for n in self.scan_nodes(node::REQUIREMENT)? {
+            let published = n
+                .properties
+                .get("designation")
+                .and_then(Value::as_str)
+                .is_some_and(|d| d == "published");
+            if !published || self.replaced_by(&n.node_id)?.is_some() {
+                continue;
+            }
+            out.insert(n.node_id);
+        }
+        Ok(out)
     }
 
     /// The published boundaries in this design, by id — the set impact analysis

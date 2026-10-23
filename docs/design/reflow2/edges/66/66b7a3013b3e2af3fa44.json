@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ce5d16a7dc3454c249dd217bb111c851d454469c13228472326b30f85b95048b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:8c1a977b516f216a21eab3349f03cd3b29bcc417fdfa4c60bdc2c6a6e9453262",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-link-projects"
+}

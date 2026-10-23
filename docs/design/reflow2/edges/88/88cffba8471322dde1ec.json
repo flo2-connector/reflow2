@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a4f886e597f24032f40a1d12a249b0d5623f5179141fceba3ae3722cbf930c28",
+  "edge_type": "CHANGED",
+  "from_id": "chg:claims-superseded-mirrors-and-shared-premises-read-right-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 9,
+    "action": "modified",
+    "checksum_after": "sha256:564e050d19df689916a3ca83c52035872e51f2fea250e5709c39091f158224f8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:enum-schema"
+}
