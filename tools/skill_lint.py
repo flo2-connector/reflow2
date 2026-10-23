@@ -797,6 +797,12 @@ NON_TOOL_TERMS = {
     # (req:a-question-is-addressed-to-a-person-and-records-who-answered). The
     # skill names them because the one-call answer IS those fields.
     "asked_of", "answered_by", "batch", "batch_position",
+    # PR B "replies fit" (2026-10-23): a reasoning read-back says each
+    # premise's reason once (its row's `why` in short, the full reason in
+    # `premise_whys`, an advisory once in `advisories`), and a blast radius
+    # is held to `budget_chars`, its `inferences` withheld whole from the end
+    # (design-a-proof, design-an-argument, impact-check name them).
+    "why", "premise_whys", "advisories", "budget_chars", "inferences", "max_depth",
 }
 
 

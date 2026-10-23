@@ -385,7 +385,13 @@ async fn serve_in_view(
             .await;
         }
         Aim::Hub(Some(note)) => {
-            return shaped(policy, noted(on_one(hub, request, own).await, &note));
+            let budget = budget_for(hub, &request);
+            let own = &own;
+            let answer = within_budget(budget, request, &note, |request| {
+                Box::pin(on_one(hub, request, own.clone()))
+            })
+            .await;
+            return shaped(policy, answer);
         }
         Aim::Hub(None) => return shaped(policy, on_one(hub, request, own).await),
         Aim::FanOut => {}
@@ -588,19 +594,124 @@ async fn route(
             strip_member_noting(v, member, &mut passed);
         }
     }
-    let held = registry
-        .member(member)
-        .await
-        .map_err(|r| member_refusal(member, r))?;
-    let answer = on_one(held.service(), request, forwarded(hub, context)).await;
-    let answer = prefix_reply(answer, member, held.service(), &passed).await;
-    drop(held);
+    let budget = budget_for(hub, &request);
     let note = format!(
         "This call ran on design {member} alone, a member of this hub's view. Ids that design \
          holds carry its graph_id as a prefix ('{member}:<id>'); pass one back through this hub, \
          or pass `{MEMBER_ARGUMENT}: \"{member}\"`, and the call goes to {member} again."
     );
-    shaped(policy, noted(answer, &note))
+    let forwarded = forwarded(hub, context);
+    let passed = &passed;
+    let answer = within_budget(budget, request, &note, |request| {
+        let forwarded = forwarded.clone();
+        Box::pin(async move {
+            let held = registry
+                .member(member)
+                .await
+                .map_err(|r| member_refusal(member, r))?;
+            let answer = on_one(held.service(), request, forwarded).await;
+            let answer = prefix_reply(answer, member, held.service(), passed).await;
+            drop(held);
+            answer
+        })
+    })
+    .await;
+    shaped(policy, answer)
+}
+
+/// One call on one design, as [`within_budget`] makes it (perhaps twice).
+type OneCall<'a> = std::pin::Pin<
+    Box<dyn std::future::Future<Output = Result<CallToolResponse, McpError>> + Send + 'a>,
+>;
+
+/// Tools whose reply is a whole document unless the caller names a cap
+/// (`reply_budget`'s document-shaped exemptions): the hub holds them to a
+/// budget only when one is passed.
+const WHOLE_UNLESS_CAPPED: &[&str] = &["get_instructions", "export_surface", "export_graph"];
+
+/// THE BUDGET A CALL THROUGH THE HUB MUST ARRIVE WITHIN, what the hub adds
+/// counted: the caller's `budget_chars`, or the shared default, for a READ
+/// tool that takes one. `None` for a write (never run twice) or a tool that
+/// takes no budget.
+///
+/// Measured 2026-10-22 (fact:root-cause-a-reasoning-read-back-outgrows-the-
+/// client-on-repeated-premise-prose-and-text-added-after-the-budget-2026-10-22):
+/// a reasoning_report page asked at 60,000 held its payload to about 58,174
+/// characters, and the hub then added +4,879 of member prefixes on 287 ids
+/// and a +275 view_note, after the budget.
+fn budget_for(hub: &ReflowService, request: &CallToolRequestParams) -> Option<usize> {
+    let name = request.name.as_ref();
+    let served = hub.tool_router.get(name)?;
+    if crate::receipt::is_write(served) {
+        return None;
+    }
+    let schema = crate::receipt::published_input_schema(served);
+    schema.get("properties")?.get("budget_chars")?;
+    let asked = request
+        .arguments
+        .as_ref()
+        .and_then(|a| a.get("budget_chars"))
+        .and_then(JsonValue::as_u64);
+    match asked {
+        Some(n) => Some(n as usize),
+        None if WHOLE_UNLESS_CAPPED.contains(&name) => None,
+        None => Some(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+    }
+}
+
+/// The characters of a reply's structured payload, as every budget here
+/// measures them; `None` for a refusal or a reply with no payload.
+fn payload_chars(answer: &Result<CallToolResponse, McpError>) -> Option<usize> {
+    match answer {
+        Ok(CallToolResponse::Complete(r)) if r.is_error != Some(true) => r
+            .structured_content
+            .as_ref()
+            .map(crate::reply_budget::chars_of),
+        _ => None,
+    }
+}
+
+/// Run `call`, put `note` on its reply as its `view_note`, and hold the
+/// whole — what the hub adds included — to `budget`: when it arrives over,
+/// ask the design again with `budget_chars` lowered by the overshoot, and
+/// say so in the note. A reply that fits the first time is exactly what the
+/// call answered, noted. A tool that pages or withholds by its own rules
+/// keeps them: the hub only lowers the budget it is asked at.
+async fn within_budget<'a>(
+    budget: Option<usize>,
+    request: CallToolRequestParams,
+    note: &str,
+    call: impl Fn(CallToolRequestParams) -> OneCall<'a>,
+) -> Result<CallToolResponse, McpError> {
+    let mut answer = noted(call(request.clone()).await, note);
+    let Some(budget) = budget else {
+        return answer;
+    };
+    let mut asked = budget;
+    for _ in 0..4 {
+        let Some(size) = payload_chars(&answer) else {
+            break;
+        };
+        if size <= budget {
+            break;
+        }
+        let lower = asked.saturating_sub(size - budget);
+        if lower == 0 || lower == asked {
+            break;
+        }
+        asked = lower;
+        let mut again = request.clone();
+        again
+            .arguments
+            .get_or_insert_with(Default::default)
+            .insert("budget_chars".into(), json!(asked));
+        let held = format!(
+            "{note} This reply was held to budget_chars {budget} with what the hub adds counted \
+             (each id's design prefix and this note): the design was asked at {asked}."
+        );
+        answer = noted(call(again).await, &held);
+    }
+    answer
 }
 
 /// EVERY ID IN A MEMBER'S REPLY CARRIES ITS DESIGN'S PREFIX. Applied to one

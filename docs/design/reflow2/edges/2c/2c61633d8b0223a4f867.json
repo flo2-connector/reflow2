@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:57c8b95e7af0fc3bdc258d26a89f9b9d196a54c598f53d85eca1a78b86eb0f94",
+  "edge_type": "REALIZES",
+  "from_id": "art:said-once-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-line-of-reasoning-reads-back"
+}

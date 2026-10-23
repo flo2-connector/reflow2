@@ -1984,13 +1984,23 @@ pub(crate) fn generic_settle(
 /// and `page` names the budget it was held to, so a budget lowered on the way
 /// shows in the result itself. Only if ONE claim and the summary still pass
 /// the budget is prose cut, and then only outside `claims`.
+///
+/// EACH PREMISE'S REASON IS SAID ONCE (crate::said_once): a premise row
+/// carries a short reading, the page cites each full reason once in
+/// `premise_whys`, and an advisory a reason would repeat for every unverified
+/// citation is said once in `advisories` with the ids it applies to — built
+/// from the rows the page keeps, so it is counted against the budget too.
 fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> JsonValue {
     use crate::reply_budget::chars_of;
-    let rows: Vec<JsonValue> = full
+    let mut rows: Vec<JsonValue> = full
         .get_mut("claims")
         .and_then(|c| c.as_array_mut())
         .map(std::mem::take)
         .unwrap_or_default();
+    let moved: Vec<std::collections::BTreeMap<String, String>> = rows
+        .iter_mut()
+        .map(crate::said_once::premise_rows)
+        .collect();
     let offset = full["offset"].as_u64().unwrap_or(0) as usize;
     let total = full["total_claims"].as_u64().unwrap_or(rows.len() as u64) as usize;
     let page_len = rows.len();
@@ -2018,7 +2028,8 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
         };
         let reads = format!(
             "{keep} of {total} claims, from offset {offset}, each WHOLE (its words in `says`, \
-             each step's rule and warrant, each premise's name), in proof order.{on} This reply \
+             each step's rule and warrant, each premise's name and its reason in short; \
+             each premise's full reason once, in `premise_whys`), in proof order.{on} This reply \
              was held to {held}.{fewer} The summary lists cover the whole walk, not this page."
         );
         if let Some(o) = v.as_object_mut() {
@@ -2041,6 +2052,11 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
                 }),
             );
         }
+        let mut cited = std::collections::BTreeMap::new();
+        for m in &moved[..keep] {
+            crate::said_once::merge_moved(&mut cited, m);
+        }
+        crate::said_once::cite_once(&mut v, &cited);
         v
     };
     // Estimate from what each claim costs, then confirm on the real reply:
@@ -2068,6 +2084,11 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     };
     let claims = o.remove("claims").unwrap_or(JsonValue::Null);
     let page = o.remove("page").unwrap_or(JsonValue::Null);
+    // The claims' own reasons, said once, stay whole with the claims.
+    let with_claims: Vec<(&str, JsonValue)> = ["premise_whys", "premise_whys_note", "advisories"]
+        .into_iter()
+        .filter_map(|k| o.remove(k).map(|v| (k, v)))
+        .collect();
     let summary = JsonValue::Object(std::mem::take(o));
     let hint = "The claims are whole; what was cut is outside them. Read one claim with \
                 reasoning_report on its id, or pass a larger budget_chars.";
@@ -2076,6 +2097,9 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
         if let Some(r) = rest.as_object_mut() {
             r.insert("claims".into(), claims.clone());
             r.insert("page".into(), page.clone());
+            for (k, v) in &with_claims {
+                r.insert((*k).into(), v.clone());
+            }
         }
         rest
     };
@@ -2086,7 +2110,11 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     // prose fields blanked — and a note naming an internal budget, down to "a
     // budget of 0". The room now grows by the slack the reply leaves, and the
     // note names the caller's budget.
-    let mut room = budget.saturating_sub(chars_of(&claims) + chars_of(&page) + 32);
+    let kept_whole: usize = with_claims
+        .iter()
+        .map(|(k, v)| k.len() + 4 + chars_of(v))
+        .sum();
+    let mut room = budget.saturating_sub(chars_of(&claims) + chars_of(&page) + kept_whole + 32);
     let mut out = whole(room);
     for _ in 0..6 {
         let used = chars_of(&out);

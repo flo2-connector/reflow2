@@ -168,6 +168,7 @@ async fn golden_thread_and_reports() {
         full: None,
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     assert!(
         radius["unknown_seeds"].is_array(),
@@ -181,6 +182,7 @@ async fn golden_thread_and_reports() {
         full: None,
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     assert_eq!(radius2["unknown_seeds"][0], "nope:x");
 }
@@ -566,6 +568,7 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
 
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     let impacted = radius["impacted"].as_array().expect("impacted array");
     assert!(
@@ -682,6 +685,7 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
 
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     assert!(
         radius["impacted"]
@@ -955,6 +959,7 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
 
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     assert!(
         radius["impacted"]
@@ -1905,6 +1910,7 @@ async fn propagate_defaults_to_a_summary_that_counts_everything() {
         full: None,
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     assert!(
         summary.get("impacted").is_none(),
@@ -1940,6 +1946,7 @@ async fn propagate_defaults_to_a_summary_that_counts_everything() {
         full: Some(true),
         arriving_from: None,
         interfaces: None,
+        budget_chars: None,
     })));
     let impacted = radius["impacted"].as_array().expect("impacted");
     assert_eq!(impacted.len() as u64, total, "same radius, both shapes");

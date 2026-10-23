@@ -1039,7 +1039,11 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
             }
         }
     };
-    println!("{}", serde_json::to_string_pretty(&body)?);
+    // COMPACT, so what is printed is what the reply budget measured
+    // (reply_budget::chars_of): pretty-printed, a reasoning_report held to
+    // 30,000 printed 35,087 characters, and one held to 60,000 printed 73,497
+    // (the heat rung, measured 2026-10-23). Pipe it to `jq` to read it laid out.
+    println!("{body}");
     if result.is_error.unwrap_or(false) {
         return Ok(2);
     }
@@ -1182,7 +1186,9 @@ async fn describe_tools(cli: &Cli, mode: reflow2_mcp::one_shot::Mode) -> anyhow:
     };
     match reply {
         Ok(v) => {
-            println!("{}", serde_json::to_string_pretty(&v)?);
+            // Compact, as `--call` prints: what is printed is what the
+            // budget it was held to measured.
+            println!("{v}");
             Ok(0)
         }
         Err(refusal) => {

@@ -45,8 +45,10 @@ use rmcp::model::{CallToolResponse, CallToolResult, ContentBlock};
 pub enum ContentPolicy {
     /// One sentence naming `structuredContent` (the default; the payload once).
     Signpost,
-    /// The payload, pretty-printed, in the text block as well — for a client
-    /// that hands its model only `content`.
+    /// The payload, as compact JSON, in the text block as well — for a client
+    /// that hands its model only `content`. Compact, so the text is exactly
+    /// the size the reply was held to: pretty-printed, it ran about 30% over
+    /// the payload the budget measured (PR B, "replies fit").
     Duplicate,
     /// No text block at all — for a client that fills the text from
     /// `structuredContent` when, and only when, it is empty.
@@ -164,9 +166,11 @@ pub fn apply(policy: ContentPolicy, result: &mut CallToolResult) -> bool {
                 .structured_content
                 .as_ref()
                 .expect("is_signpost_shape checked structured_content");
-            let text =
-                serde_json::to_string_pretty(payload).unwrap_or_else(|_| payload.to_string());
-            result.content = vec![ContentBlock::text(text)];
+            // THE TEXT IS WHAT THE BUDGET MEASURED: compact JSON, the form
+            // `reply_budget::chars_of` counts. Pretty-printed, a reply held to
+            // 30,000 arrived as 35,087 characters of text (the heat rung's
+            // read-back, measured 2026-10-23).
+            result.content = vec![ContentBlock::text(payload.to_string())];
         }
         ContentPolicy::Empty => {
             result.content = Vec::new();
@@ -283,6 +287,21 @@ mod tests {
             Some(payload),
             "structuredContent is kept"
         );
+    }
+
+    /// THE TEXT IS THE SIZE THE BUDGET MEASURED (PR B "replies fit", item 5):
+    /// a reply held to N characters by `reply_budget` is N characters of text
+    /// too. Pretty-printed it was not: the heat rung's read-back held to
+    /// 30,000 arrived as 35,087 characters of text.
+    #[test]
+    fn the_duplicated_text_is_exactly_the_size_the_budget_measured() {
+        let payload = json!({"claims": [{"id": "req:a", "says": "x", "support": [{"rule": "all"}]}],
+                             "page": {"budget_chars": 30000, "reads": "one of one"}});
+        let mut r = signposted(payload.clone());
+        assert!(apply(ContentPolicy::Duplicate, &mut r));
+        let text = r.content[0].as_text().expect("text").text.clone();
+        assert_eq!(text.len(), crate::reply_budget::chars_of(&payload));
+        assert!(!text.contains('\n'), "compact, not laid out: {text}");
     }
 
     /// `empty` sends no text block, and the structured payload still.

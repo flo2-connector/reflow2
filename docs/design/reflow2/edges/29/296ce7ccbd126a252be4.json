@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:57db9bf76a26abf53f4b393ceaa27be07d046c00b2b98eb02ce9937acc91b922",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -15,6 +15,16 @@
           "null"
         ]
       },
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000).\n`max_depth` bounds the walk, not the reply: the steps a change breaks\nare followed to the end of their reasoning however deep. Over budget,\nwhole rows are withheld from the end of `inferences`, `impacted`,\n`direct_ring`, `risk_crossings` and `across_designs`, each named by id\nin `budget.lists_shortened`; no row shown is cut and every count stays.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "full": {
         "default": null,
         "description": "`true` returns every impacted node with its full hop chain. The default\nis a summary — counts by distance, the distance-1 ring, risk crossings —\nbecause the full dump on a large design overflows what a session can\nread, and every band is still counted in the summary.",

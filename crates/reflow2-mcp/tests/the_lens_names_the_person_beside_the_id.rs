@@ -65,6 +65,7 @@ async fn two_recorded_readers_are_named_beside_their_ids() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
@@ -85,6 +86,7 @@ async fn the_people_with_nothing_on_record_are_named_too() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
 
@@ -116,6 +118,7 @@ async fn a_person_with_no_name_is_still_listed() {
 
     let out = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
+        budget_chars: None,
     })));
     let lens = out.get("lens").and_then(|v| v.as_str()).expect("lens");
     assert!(lens.contains("who:nameless"), "{lens}");

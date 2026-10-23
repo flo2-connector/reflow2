@@ -71,7 +71,10 @@ async fn seeded() -> ReflowService {
 }
 
 async fn skill_lessons(s: &ReflowService, skill: &str) -> Vec<String> {
-    let r = j!(s.get_skill(Parameters(GetSkillReq { name: skill.into() })));
+    let r = j!(s.get_skill(Parameters(GetSkillReq {
+        name: skill.into(),
+        budget_chars: None
+    })));
     r["lessons"]["items"]
         .as_array()
         .map(|a| {
@@ -93,7 +96,8 @@ async fn get_skill_carries_the_lessons_naming_that_skill_and_no_others() {
         "2026-09-12",
     ))));
     let r = j!(s.get_skill(Parameters(GetSkillReq {
-        name: "where-am-i".into()
+        name: "where-am-i".into(),
+        budget_chars: None,
     })));
     assert!(
         r["body"].as_str().is_some_and(|b| !b.is_empty()),

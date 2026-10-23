@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3d25267a288dbf209bb1d4e047a4309edb00a53caa23778851d9e1983f47be45",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:74b0e761af58fff582c20e8bf277b473c5b999a3e1b536426a79bf05c204f799",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:replies-are-bounded-gate"
+}

@@ -5822,6 +5822,34 @@ pub struct PropagateFromReq {
     /// read, and every band is still counted in the summary.
     #[serde(default)]
     pub full: Option<bool>,
+    /// How many characters of JSON this reply may spend (default 30,000).
+    /// `max_depth` bounds the walk, not the reply: the steps a change breaks
+    /// are followed to the end of their reasoning however deep. Over budget,
+    /// whole rows are withheld from the end of `inferences`, `impacted`,
+    /// `direct_ring`, `risk_crossings` and `across_designs`, each named by id
+    /// in `budget.lists_shortened`; no row shown is cut and every count stays.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
+}
+
+/// The lists a blast radius withholds rows from, whole, to fit its budget.
+pub const RADIUS_ROWS: [&str; 5] = [
+    "inferences",
+    "impacted",
+    "direct_ring",
+    "risk_crossings",
+    "across_designs",
+];
+
+/// A blast radius held to its budget: rows first, never a row's words.
+pub fn bound_radius(out: serde_json::Value, budget: Option<usize>) -> serde_json::Value {
+    crate::reply_budget::bound_reply_rows_first(
+        out,
+        budget.unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+        "Read one withheld step with get_node on its id, narrow with `max_depth` or fewer \
+         `seed_ids`, or raise `budget_chars`.",
+        &RADIUS_ROWS,
+    )
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

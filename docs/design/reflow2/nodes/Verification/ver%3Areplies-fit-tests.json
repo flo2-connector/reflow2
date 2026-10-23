@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e54b2f67551e5a8fe33251657482e2c766f7d17805c3cd4ab066d4e6f50526ba",
+  "node_id": "ver:replies-fit-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "A reply asked at N arrives at N or less, keeps its counts and names what it withheld: reasoning_report on the heat-equation rung's committed fixture (each premise's reason said once, every claim whole, the citation advisory said once with its ids; 20k/30k/60k/400k), get_skill with 40 lessons (body whole, lessons withheld from the end of the ranking and named by id), propagate_from from a cited lemma at max_depth 2 (rows withheld whole, each named, counts kept), a routed read through a hub's address (crates/reflow2-mcp/tests/a_reply_through_a_hub_fits_its_budget.rs, on disk), and --call printing at most N (a_build_can_call_one_tool_from_the_shell.rs).",
+    "findings": "All passed at 3c6f91c61: replies_fit 4/4 (in_memory, no RocksDB), a_reply_through_a_hub_fits_its_budget 1/1 (on_disk) and a_reply_held_to_n_prints_at_most_n_characters. The hub test failed on the code before the fix (17,352 characters against 16,562). cargo dev-test: 3,498 passed, 2 failed before the toolsnap update and a description revert (the tools/list golden; propagate_from's find_tools rank), both then green. CI runs everything.",
+    "kind": "verification",
+    "last_run_at": "2026-10-23",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/replies_fit.rs",
+    "method": "test",
+    "name": "replies_fit.rs and a_reply_through_a_hub_fits_its_budget.rs (PR B, replies fit)",
+    "status": "passing"
+  }
+}

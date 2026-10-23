@@ -611,6 +611,203 @@ pub fn bound_reply_list_first(full: Value, budget: usize, list: &str, hint: &str
     block.assemble(&body)
 }
 
+/// Bound a reply by withholding ROWS first, each whole, from the tail of the
+/// lists named in `only` (exact paths), by the characters each costs, to a
+/// floor of one row per list — and cut prose only if that was not enough.
+///
+/// For a reply whose rows are each an answer read whole (a step a change
+/// breaks, with its rule and premises), where cutting every row's prose
+/// would leave every row unreadable to keep them all. Each shortened list is
+/// named in `budget.lists_shortened` with `shown`, `total` and the ids of the
+/// rows withheld (`withheld`: each row's `id`, `node_id` or `inference`), so
+/// each can be read on its own. Every count elsewhere in the reply is
+/// untouched. A reply that fits is returned unchanged, byte for byte.
+#[must_use]
+pub fn bound_reply_rows_first(full: Value, budget: usize, hint: &str, only: &[&str]) -> Value {
+    let full_chars = chars_of(&full);
+    if full_chars <= budget {
+        return full;
+    }
+    let mut lists = Vec::new();
+    collect_lists(&full, "", &mut lists);
+    lists.retain(|l| only.contains(&l.path.as_str()));
+    let row_id = |r: &Value| -> Option<Value> {
+        ["id", "node_id", "inference"]
+            .iter()
+            .find_map(|k| r.get(*k).filter(|v| v.is_string()).cloned())
+    };
+    let assemble = |lists: &[ListSlot], capped: &Value| -> Value {
+        let shortened: Vec<Value> = lists
+            .iter()
+            .filter(|l| l.keep < l.total())
+            .map(|l| {
+                let rows = path_array(&full, &l.path);
+                let withheld: Vec<Value> = rows[l.keep..].iter().filter_map(row_id).collect();
+                json!({"path": l.path, "shown": l.keep, "total": l.total(), "withheld": withheld})
+            })
+            .collect();
+        let mut out = capped.clone();
+        let mut reply_chars = chars_of(&out);
+        for _ in 0..4 {
+            let named = shortened
+                .iter()
+                .map(|l| {
+                    format!(
+                        "`{}` shows {} of {}",
+                        l["path"].as_str().unwrap_or(""),
+                        l["shown"],
+                        l["total"]
+                    )
+                })
+                .collect::<Vec<_>>()
+                .join(", ");
+            let block = json!({
+                "applied": true,
+                "budget_chars": budget,
+                "full_chars": full_chars,
+                "reply_chars": reply_chars,
+                "lists_shortened": shortened,
+                "note": format!(
+                    "WITHHELD TO FIT. The whole answer is {full_chars} characters against a \
+                     budget of {budget}. What was withheld is ROWS, each whole, from the end of \
+                     its list: {named}. Each row withheld is named by id in \
+                     `lists_shortened[].withheld`; no row shown was cut, and every count is \
+                     untouched. Raise `budget_chars` if this client has the room. {hint}"
+                ),
+            });
+            out = capped.clone();
+            if let Some(o) = out.as_object_mut() {
+                o.insert("budget".into(), block);
+            }
+            let n = chars_of(&out);
+            if n == reply_chars {
+                break;
+            }
+            reply_chars = n;
+        }
+        out
+    };
+    let mut capped = full.clone();
+    for _ in 0..64 {
+        let out = assemble(&lists, &capped);
+        let now = chars_of(&out);
+        if now <= budget {
+            return out;
+        }
+        if shorten_by_chars(&mut lists, now - budget) == 0 {
+            // Every named list is at one row: what remains is prose, which
+            // the usual rungs cut, saying so in their own block.
+            let rows_note = assemble(&lists, &capped);
+            let mut out = bound_reply(capped, budget, hint);
+            if let (Some(o), Some(b)) = (out.as_object_mut(), rows_note.get("budget")) {
+                match o.get_mut("budget").and_then(Value::as_object_mut) {
+                    Some(prose) => {
+                        prose.insert("lists_shortened".into(), b["lists_shortened"].clone());
+                    }
+                    None => {
+                        o.insert("budget".into(), b.clone());
+                    }
+                }
+            }
+            return out;
+        }
+        capped = apply_caps(&full, &lists);
+    }
+    assemble(&lists, &capped)
+}
+
+/// The array at a dotted object path, or an empty slice.
+fn path_array<'a>(v: &'a Value, path: &str) -> &'a [Value] {
+    let mut at = v;
+    for part in path.split('.').filter(|p| !p.is_empty()) {
+        match at.get(part) {
+            Some(x) => at = x,
+            None => return &[],
+        }
+    }
+    at.as_array().map(Vec::as_slice).unwrap_or(&[])
+}
+
+/// Hold a reply to `budget` by withholding rows of ONE RANKED LIST from its
+/// tail, each WHOLE, down to none, and touch nothing else: for a reply whose
+/// every other part must arrive whole (a skill's body) beside a list that
+/// grows with the design (the lessons it holds for that skill).
+///
+/// The list lives at `list` inside the object at `at` (`at` empty: the
+/// reply's top level). When rows are withheld, that object says so:
+/// `shown` and `total` (counts, never budgeted away), `withheld_ids` (each
+/// withheld row's `id`, so it can be read on its own), and `withheld_note`,
+/// which says how many and how to get them (`how`). A reply that already
+/// fits is returned unchanged, byte for byte.
+///
+/// Measured 2026-10-21 (fact:root-cause-get-skill-attaches-every-lesson-
+/// unbounded-so-six-skills-outgrow-a-chat-reply-on-reflow2s-design-2026-10-21):
+/// get_skill root-cause answered 54,054 characters on reflow2's own design,
+/// a 19,230-character body and 26 lessons, because nothing bounded the list.
+#[must_use]
+pub fn keep_ranked_rows_whole(
+    full: Value,
+    budget: usize,
+    at: &str,
+    list: &str,
+    how: &str,
+) -> Value {
+    if chars_of(&full) <= budget {
+        return full;
+    }
+    let holder = |v: &Value| -> Option<Value> {
+        if at.is_empty() {
+            Some(v.clone())
+        } else {
+            v.get(at).cloned()
+        }
+    };
+    let Some(rows) = holder(&full)
+        .and_then(|h| h.get(list).and_then(Value::as_array).cloned())
+        .filter(|r| !r.is_empty())
+    else {
+        return full;
+    };
+    let total = rows.len();
+    let with = |keep: usize| -> Value {
+        let mut v = full.clone();
+        let target = if at.is_empty() {
+            Some(&mut v)
+        } else {
+            v.get_mut(at)
+        };
+        if let Some(o) = target.and_then(Value::as_object_mut) {
+            o.insert(list.to_string(), Value::Array(rows[..keep].to_vec()));
+            if keep < total {
+                let withheld: Vec<Value> = rows[keep..]
+                    .iter()
+                    .filter_map(|r| r.get("id").cloned())
+                    .collect();
+                o.insert("shown".into(), json!(keep));
+                o.insert("total".into(), json!(total));
+                o.insert("withheld_ids".into(), Value::Array(withheld));
+                o.insert(
+                    "withheld_note".into(),
+                    Value::String(format!(
+                        "WITHHELD TO FIT budget_chars {budget}: {} of the {total} in `{list}`, \
+                         whole, from the end of the ranking, so {keep} are shown. Nothing else \
+                         in this reply was cut. {how}",
+                        total - keep
+                    )),
+                );
+            }
+        }
+        v
+    };
+    let mut keep = total;
+    let mut out = with(keep);
+    while keep > 0 && chars_of(&out) > budget {
+        keep -= 1;
+        out = with(keep);
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

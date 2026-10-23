@@ -228,6 +228,24 @@ pub fn combine(rule: InferenceRule, values: &[Truth]) -> Result<Truth, String> {
     })
 }
 
+/// What a cited result reads as when no pinned source documents it: the
+/// whole `why`, the same sentence wherever such a citation is read. One
+/// constant, so a reader that says it ONCE for every id it applies to
+/// (`reasoning_report`'s `advisories`) finds every place it was said.
+pub const CITED_UNVERIFIED_WHY: &str = "cited, unverified: a result from elsewhere that no pinned \
+     source documents (recalled, or named only in its `source` text), so what rests on it holds \
+     only if it says what it is recalled to say. Register the source that was read as an Artifact \
+     with its checksum, and draw DOCUMENTS from it";
+
+/// What a piece of evidence reads as when no pinned source documents it,
+/// after `evidence` and its grade: the advisory every such report carries,
+/// said once by `reasoning_report` for every id it applies to.
+pub const EVIDENCE_UNVERIFIED_TAIL: &str = ", unverified: no pinned source documents it, so it is \
+     named only in its `source` text. What rests on it holds only if the report says what it is \
+     recalled to say — conditional on it, as on a recalled citation — until its source is \
+     documented; then it is supported, never proven. Register the report that was read as an \
+     Artifact with its checksum, and draw DOCUMENTS from it";
+
 /// One premise as a step read it.
 #[derive(Debug, Clone, serde::Serialize)]
 pub struct PremiseReading {
@@ -3707,11 +3725,7 @@ impl DesignGraph {
         }
         Ok(Read::one(
             Truth::Holds,
-            "cited, unverified: a result from elsewhere that no pinned source documents \
-             (recalled, or named only in its `source` text), so what rests on it holds only if it \
-             says what it is recalled to say. Register the source that was read as an Artifact \
-             with its checksum, and draw DOCUMENTS from it"
-                .to_string(),
+            CITED_UNVERIFIED_WHY.to_string(),
             Condition {
                 assumes: BTreeSet::new(),
                 unverified: BTreeSet::from([id.to_string()]),
@@ -3731,13 +3745,7 @@ impl DesignGraph {
             .map(|g| format!(" ({g})"))
             .unwrap_or_default();
         let why = if pinned.is_empty() {
-            format!(
-                "evidence{grade}, unverified: no pinned source documents it, so it is named only \
-                 in its `source` text. What rests on it holds only if the report says what it is \
-                 recalled to say — conditional on it, as on a recalled citation — until its source \
-                 is documented; then it is supported, never proven. Register the report that was \
-                 read as an Artifact with its checksum, and draw DOCUMENTS from it"
-            )
+            format!("evidence{grade}{EVIDENCE_UNVERIFIED_TAIL}")
         } else {
             format!(
                 "cited as evidence{grade}: the report its pinned source(s) {} document; what rests \

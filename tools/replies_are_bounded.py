@@ -170,6 +170,17 @@ def main() -> int:
             for node_type in ("Requirement", "Capability", "Decision", "Component", "TemporalFact"):
                 for brief in (False, True):
                     argument_cases.append(("scan_nodes", {"node_type": node_type, "brief": brief}))
+            # PR B "replies fit" (2026-10-23): two reads that grew with the
+            # design and took no bound. get_skill attached every lesson the
+            # design holds for the step (root-cause: 54,054 characters on
+            # reflow2's own design, fact:root-cause-get-skill-attaches-every-
+            # lesson-unbounded-…-2026-10-21), and propagate_from's radius had
+            # no budget at any depth (fact:the-rocket-equation-rung-ran-on-
+            # 0-90-0-…-2026-10-23, finding (b)). Both now hold a default, so
+            # each is also asked WHOLE (below) to prove the case still
+            # overflows and is held, not that it merely fits.
+            argument_cases.append(("get_skill", {"name": "root-cause"}))
+            argument_cases.append(("propagate_from", {"seed_ids": ["proj:reflow2"], "full": True}))
             for name, args in argument_cases:
                 label = f"{name} {json.dumps(args, separators=(',', ':'))}"
                 try:
@@ -181,6 +192,18 @@ def main() -> int:
                 measured += 1
                 size = len(raw)
                 schema = (by_name[name].get("inputSchema") or {}).get("properties") or {}
+                if size <= a.budget and "budget_chars" in schema:
+                    # Held by its default: ask it whole, to see whether the
+                    # default is doing the holding.
+                    whole = len(json.dumps(
+                        s.call(name, {**args, "budget_chars": 10_000_000}),
+                        separators=(",", ":"),
+                        ensure_ascii=False,
+                    ))
+                    if whole > a.budget:
+                        oversized += 1
+                        rows.append((whole, label, f"over budget whole, HELD BY DEFAULT to {size}"))
+                        continue
                 if size <= a.budget:
                     rows.append((size, label, "fits"))
                     continue

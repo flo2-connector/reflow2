@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:159955847f5190c7229432a69f62ed2055f9cf4312d10d8cebe45f95619e6e55",
+  "node_id": "art:said-once-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "A reasoning read-back says each premise's reason once: a premise row's `why` holds its reason's leading clause, the page cites each full reason once in `premise_whys` (or in the premise's own claim row on the page), and an advisory sentence a reason would repeat (an unverified citation's, an undocumented report's) is said once in `advisories` with the ids it applies to. Used by reasoning_report's page builder (tools/query.rs, reasoning_page).",
+    "location": "crates/reflow2-mcp/src/said_once.rs",
+    "name": "said_once.rs",
+    "status": "realized"
+  }
+}

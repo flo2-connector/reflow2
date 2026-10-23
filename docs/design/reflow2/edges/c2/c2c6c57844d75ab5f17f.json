@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8c25d11043f4845bf55162863484dbe7f8ba57d5d82ba94d19f104d867d93dcf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:ce3c29786b9125aa816938c7145cf42ba3d6916f4d1bb23d96c98f046a90ad9d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:impact-check-skill"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6b0cd225b5ec3bf1257c9a84862c208555c986a585283605da606d86c2f46860",
+  "edge_type": "CHANGED",
+  "from_id": "chg:replies-fit-2026-10-23",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:a05029cec4dcc429c0869aa7b3e62f00307a979d42bef5118f1677c2bf206c6f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-build-can-call-one-tool-from-the-shell-test"
+}

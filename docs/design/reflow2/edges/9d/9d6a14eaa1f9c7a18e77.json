@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bdce9cd26e15415aa02e96b94eefceff36a3124f7f7059534d95ea7494562a87",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-reply-through-a-hub-fits-its-budget-test",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}

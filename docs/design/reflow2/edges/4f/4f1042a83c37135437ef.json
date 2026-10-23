@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f9ffc98aed6d7e545bbf21987aca09c659df646927ef22c963c2b8d9079da453",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:replies-fit-test",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:replies-fit-tests"
+}

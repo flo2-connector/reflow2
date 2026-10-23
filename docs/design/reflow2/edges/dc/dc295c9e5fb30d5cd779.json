@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:aeeac7ace19049b25a46303e2feb92bbd43300c2a2cc42f461820fb98f151763",
+  "edge_type": "REALIZES",
+  "from_id": "art:replies-fit-test",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-oversized-reply-offers-a-bound"
+}
