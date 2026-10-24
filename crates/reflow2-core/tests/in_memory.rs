@@ -119,6 +119,7 @@ mod an_edge_says_only_what_it_was_told;
 mod an_edge_says_whether_anyone_checked;
 mod an_export_says_where_it_was_taken;
 mod an_inference_says_how_premises_support_a_conclusion;
+mod an_open_defect_finding_reaches_the_loop;
 mod an_upstream_design_is_watched_not_imported;
 mod artifact;
 mod artifact_intent;
