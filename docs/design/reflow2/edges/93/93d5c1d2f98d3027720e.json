@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ce9382e79f6a0667f8700cefcd6db3d5c9aaf3096cdc5833b0c3d034fb991c0f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-premise-says-intent-or-delivery-on-the-wire-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

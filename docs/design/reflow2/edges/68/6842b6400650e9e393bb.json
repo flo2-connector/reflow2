@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b011dceecca530a0a6c33012c8067ef7632f83c6521427a274d42c3d700bf6f3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-premise-says-whether-it-rests-on-intent-or-delivery-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

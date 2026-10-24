@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a385eecc857c36716d0c297549d4cd4e9c6ccab330f5fbcbfb783b4f2678aa0e",
+  "node_id": "chg:baseline-4188474cb3749c20",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:a-premise-says-intent-or-delivery-on-the-wire-test' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position.",
+    "subject": "record"
+  }
+}

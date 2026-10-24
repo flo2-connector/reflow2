@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cc34bb8df6e4cb7ede63bdfa630875f56795d589a0d6fe4e88a913b0bc549049",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-choice-rests-on-an-accepted-requirement-as-intent-2026-10-24",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

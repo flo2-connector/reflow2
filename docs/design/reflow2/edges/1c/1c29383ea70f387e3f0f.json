@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5232218b2b3d285d5918c5f049cc76c80b2582b87b2a7b51e9da2715fb186aea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-premise-says-whether-it-rests-on-intent-or-delivery-tests"
+}

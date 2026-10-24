@@ -3114,27 +3114,27 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record an INFERENCE STEP in one call: how premises support one conclusion, \
-                       and by which rule — `all` (every premise must hold, the AND a \
-                       decomposition has always rolled up by), `any` (one is enough: redundant \
-                       support) or `k_of_n` with `k` (a quorum). A named rule rides `rule_name` \
-                       and is checked by its combination: modus ponens is `all` over P and P → Q. \
-                       `warrant` says why. Premises can be any record. reflow2 then CHECKS THAT \
-                       THE CONCLUSION FOLLOWS, three-valued over each premise's computed truth (a \
-                       requirement delivered or met, a check passing, a decision accepted, a \
-                       constraint not violated; any other type is unknown, never guessed): a \
-                       requirement it concludes is delivered when the step holds; a blast radius \
-                       names each step a changed premise reaches BROKEN or WEAKENED; get_node on \
-                       the step reads its verdict; detect_gaps reports a status that claims more \
-                       than its steps support. It checks the FORM, never the content. Refused, \
-                       with nothing written: a rule outside the three, a `k_of_n` without \
-                       1 ≤ k ≤ the number of premises, a `k` on another rule, a missing premise or \
-                       conclusion, and a circle. One step concludes one node; several steps \
-                       concluding a node are alternatives, read as ANY. The same id again revises \
-                       the step and ADDS the premises given. For a proof: `assumed` premises \
-                       hold until a step `discharges` them; `cases` makes a proof by cases; \
-                       `generalizes_over` and `independent_of` are checked. \
-                       Ask for this to say that a claim follows from other things in the design.",
+        description = "Record an INFERENCE STEP in one call: how premises support one \
+                       conclusion, and by which rule — `all` (every premise must hold, the AND a \
+                       decomposition rolls up by), `any` (one is enough) or `k_of_n` with `k` (a quorum). A named rule rides \
+                       `rule_name`: modus ponens is `all` over P and P → Q. `warrant` says why. \
+                       reflow2 then CHECKS THAT THE CONCLUSION FOLLOWS, three-valued over each \
+                       premise's computed truth (a check passing, a decision accepted, a \
+                       constraint not violated; an Artifact or any other type is unknown, never \
+                       guessed). A requirement, capability or interface premise reads as its \
+                       OWNER'S INTENT in a step concluding a Decision (accepted holds, proposed \
+                       is unknown) and by its DELIVERY in every other step; `as_intent` and \
+                       `as_delivery` say it per premise. A computed result is a passing check \
+                       marked `computed` whose `location` names its kept record. A blast radius \
+                       names each step a changed premise reaches BROKEN or WEAKENED; get_node \
+                       on the step reads its verdict; detect_gaps reports a status that claims \
+                       more than its steps support. It checks the FORM, never the content. \
+                       Refused, with nothing written: a bad rule or `k`, a missing premise or \
+                       conclusion, and a circle. Several steps concluding a node are \
+                       alternatives, read as ANY. The same id again revises the step and ADDS \
+                       the premises given. For a proof: `assumed`, `discharges`, `cases`, \
+                       `generalizes_over` and `independent_of`. Ask for this to say that a \
+                       claim follows from other things in the design.",
         title = "Add an Inference Step",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3165,6 +3165,8 @@ impl ReflowService {
             rule_node: req.rule_node.clone(),
             establishes: req.establishes.clone(),
             conclusion_form: req.conclusion_form.clone(),
+            as_intent: req.as_intent.clone().unwrap_or_default(),
+            as_delivery: req.as_delivery.clone().unwrap_or_default(),
         };
         // Which links were there before the call, so the reply can say what it
         // drew and what it found already drawn.
@@ -4655,8 +4657,16 @@ pub struct AddInferenceReq {
     #[schemars(schema_with = "crate::enum_schema::inference_rule_req")]
     pub rule: String,
     /// The premises, by id: any records the design holds — requirements,
-    /// checks, decisions, constraints, other steps. At least one, except for
-    /// rule `immediate`, which may name none.
+    /// checks, decisions, constraints, findings, other steps. At least one,
+    /// except for rule `immediate`, which may name none. A requirement,
+    /// capability or interface is read as its owner's INTENT in a step that
+    /// concludes a Decision, and by its DELIVERY in every other step, unless
+    /// `as_intent` or `as_delivery` says otherwise. AN ARTIFACT IS NEVER A
+    /// PREMISE (it carries no truth, so it reads unknown): a source DOCUMENTS
+    /// the claim it supports, and a COMPUTED RESULT enters as a passing
+    /// Verification marked computed whose kept calculator record (an
+    /// Artifact with its checksum) is named in the check's location, with
+    /// the result in its findings.
     pub premises: Vec<String>,
     /// The ONE node this step concludes. A node may be concluded by several
     /// steps (alternative derivations, read as ANY); a step concludes one.
@@ -4697,6 +4707,22 @@ pub struct AddInferenceReq {
     /// in `premises` is assumed.
     #[serde(default)]
     pub assumed: Option<Vec<String>>,
+    /// Premises this step reads as their OWNER'S INTENT, by id: a requirement
+    /// (accepted or met holds, proposed or deferred is unknown, dropped
+    /// fails), a capability (by the needs it SATISFIES) or an interface (by
+    /// the Decisions that govern it) — "X is required", not "X is built".
+    /// Each must be an ordinary premise of this step, named in `premises` or
+    /// already linked; a statement (a `statement_kind`, or taken as given) and
+    /// every other type read as themselves and are refused here. Unmarked, a
+    /// premise of a step concluding a Decision reads as intent already.
+    #[serde(default)]
+    pub as_intent: Option<Vec<String>>,
+    /// Premises this step reads by their DELIVERY, by id: a requirement
+    /// delivered or met, a capability realized and checked — as every premise
+    /// read before 2026-10-24. Say it on a step concluding a Decision that
+    /// rests on delivery (a release, a go/no-go). Same rules as `as_intent`.
+    #[serde(default)]
+    pub as_delivery: Option<Vec<String>>,
     /// The assumptions this step DISCHARGES, by id: each must be assumed by
     /// this step or by a step it rests on, or the call is refused naming what
     /// is assumed beneath it. Its conclusion then no longer rests on them.

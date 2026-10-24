@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b73cc646ff27166ad53d76e13085b05ba01c100e32e646cf8362316cce368664",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:35044c9e41dcbe45b573c697846d02981d8b098593065359965ab2664cbbe6f3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-capture-intent-skill-mirror"
+}

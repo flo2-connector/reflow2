@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:170bf8cbbc71db0f6f84b56bf557b234d7787c410664e3db5acde36031887b00",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-premise-says-whether-it-rests-on-intent-or-delivery",
+  "properties": {},
+  "to_id": "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain"
+}

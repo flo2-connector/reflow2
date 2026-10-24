@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d5f12dfa18e97fe61867aaa4b3eae3294af0196bf8a460ceebb93fc3bf766b0",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-premise-says-intent-or-delivery-on-the-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-premise-says-whether-it-rests-on-intent-or-delivery-tests"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5835c2e5d9f5d0eaaff6efaf01e92dc1b5fb26c7109e6f0cf63c34a9b30206d2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-premise-says-whether-it-rests-on-intent-or-delivery-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-premise-says-whether-it-rests-on-intent-or-delivery-tests"
+}
