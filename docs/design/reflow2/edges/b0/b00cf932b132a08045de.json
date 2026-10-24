@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:db177b43f65f2768b26feacb3c325d621c96fc436e9d1715e52a0c0754f5c733",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:jot-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

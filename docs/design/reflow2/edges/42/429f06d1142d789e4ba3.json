@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3e7a0f5e4397a3da95ceab1bf994bf5689ecd604ff1d144077dff2c41cbe5953",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:95889d9747f4c3a818dccdf219e887d0f2b4781aec496b794828412c402dcaaf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:capture-intent-skill"
+}

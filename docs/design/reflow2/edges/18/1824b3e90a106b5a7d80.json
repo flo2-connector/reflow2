@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:ba8a387ed7af6000ef5b55363d70fdb7a91a75c87b7348ddce5c82c6870af28a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model",
+  "properties": {
+    "approved_at": "2026-10-24",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

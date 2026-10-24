@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dd1faf8b31a0a7a149ecc94a5a15c7c9d19977c1eedb8e6d84bf023ed37ef21f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:help-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

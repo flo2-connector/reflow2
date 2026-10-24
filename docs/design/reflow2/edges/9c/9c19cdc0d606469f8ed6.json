@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ad4658755a9449f1c572741a8959324e3aaed3f232349c8f8381ceb4702e68f5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:1a97fc1f1de4d5d2:req:a-person-explores-changes-to-a-real-building-model-in-a-chat-and-sees-what-each-one-does",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

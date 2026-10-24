@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:7c10594808d44d83ec2fe40e43a9927df854e69ca5d00662d2b8b3bebf25507e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "properties": {
+    "approved_at": "2026-10-24",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0037622d0d57b2460e846956f3ea63d9ac18f5ee63c35456ddf8c27a9db36403",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:governance-proposal-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

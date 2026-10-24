@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:373dbfad67d704ca754719f934709512383ea35a32f307fdd13b2335548674f4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:6b9e3d55483b1e794f9ccd5726bc998e64115ada974613b3311aca075536f90a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:onboarding-skill"
+}

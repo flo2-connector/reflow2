@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2d8e1f157fd3c15bda467675080a88569a03415387be29136d103a507eabd04b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:d3f0273599ed3a3ddfd1576170621a7fb67038dc3ec2d1256cb0e94e9c3ee020",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:hub-skill"
+}

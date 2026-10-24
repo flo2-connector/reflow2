@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ae5b13a26845a699553c91471b5d8dfec8012d4e32b7b78318e567ca3ef468b5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

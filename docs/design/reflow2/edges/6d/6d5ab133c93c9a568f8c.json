@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:f54370fe609d2f84e62c6fbf44d264560ed5e34fa1691ff8adc035a1d10d5fa5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop",
+  "properties": {
+    "approved_at": "2026-10-24",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

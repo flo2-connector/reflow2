@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:305d751cfa4e6a6609e47290bef4402b15e06497604689419c6c605a0d630820",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:e9934711b413731a575dfbd1dfb45ef72c4f7e36af04e234cdc206b9c49dea13",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-command"
+}

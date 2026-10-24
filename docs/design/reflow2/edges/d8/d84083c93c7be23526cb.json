@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6c03f10f4a69204e9e2a7ed905e40499e9d086b6391326645181d7faa48f7b86",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model",
+  "properties": {
+    "evidence": "Option (d'), kept as intent on @ajs's word 2026-10-24, and recorded in the fork's design because the geometric layer lives in the model file."
+  },
+  "to_id": "xref:23d874b1643673ad:req:an-edit-keeps-the-models-own-relations-true"
+}

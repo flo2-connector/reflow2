@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:52192ad3cedf7dffba5f2606be6e15f546be5f5abca1e2fdb95964862bf47d97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:96ba042898e2988d347d5b45f05196ba204ca0c6e590310439fa8c2e46990507",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:report-friction-skill"
+}

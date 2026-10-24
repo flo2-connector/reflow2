@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:542b5bac0d6fd0c8447f1b0f86b77d1564b0ed1c93cf9916d134e684b0d8dc28",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:hub-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

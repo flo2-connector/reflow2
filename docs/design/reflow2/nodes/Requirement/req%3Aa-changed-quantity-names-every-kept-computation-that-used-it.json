@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:ad4e8b162ccf561ca3455f88c8a8bc16a7e55de4817c74956f2631be14402953",
+  "node_id": "req:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "A changed quantity names every kept computation that used it, so a design change says which numbers must be re-run",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "@ajs, 2026-10-24, option (c) of reflow2:dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model",
+    "statement": "A kept computation record (flo2-calc's, registered as an Artifact the design points to) names the design quantities it took as inputs. When one of those quantities changes, or the part it describes changes under the redo-list requirement, the design names every kept computation that used it as to be re-run, and every decision or limit that rests on that computation as resting on a stale number until it is re-run. For a building, the examples are excavation volume (removed footprint × depth), unit count and rentable area. Computed values stay in the calculator's files, and the design holds which numbers depend on which (the 2026-10-13 dividing line). This is not reflow2 recomputing anything itself: the calculator re-runs, and the design says what must be re-run.",
+    "status": "accepted"
+  }
+}

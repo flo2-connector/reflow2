@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f9cc2fc1021096ac23d39c45084f971118d5e47ef41bddbb01f482b9384369e9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:f90f9247f55d800e0fd8f04464e57ea3b20e3af39e92b09b0fa1dc969107dd25",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:grok-brainstorm-skill-mirror"
+}

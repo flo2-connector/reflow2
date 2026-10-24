@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c77242382e97773f2bbecc8bc2da4189d4118c8c07cd63397f4330c3b6f77f13",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:kpp-proposal-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

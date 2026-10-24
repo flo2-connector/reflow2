@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a553d28610c1efb3c4ee58872b722e50aec86879d8d3d5928831440844a7cd94",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:ce306e288765e2ab0a4ded2f9af2370cc8d5aa0eccfa5bda4e76f000f16c59b6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:establish-taxonomy-skill"
+}

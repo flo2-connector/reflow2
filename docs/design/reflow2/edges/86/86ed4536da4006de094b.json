@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5d5b7978970fe293e417deef6b6acb961a715c4cc156f38310bd826fa34b5d95",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:1ddeb05976ba66661a0b991a31f4497b4b705c37f95b24227c09f676e01030a0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:parallel-work-skill"
+}

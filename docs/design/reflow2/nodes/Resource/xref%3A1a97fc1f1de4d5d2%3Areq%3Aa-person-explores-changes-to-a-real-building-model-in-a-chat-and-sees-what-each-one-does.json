@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a8e7ce09c1b6504c83ba93a96757d992d29de51f9085b20805b3cc4957bb246f",
+  "node_id": "xref:1a97fc1f1de4d5d2:req:a-person-explores-changes-to-a-real-building-model-in-a-chat-and-sees-what-each-one-does",
+  "node_type": "Resource",
+  "properties": {
+    "design_graph_id": "1a97fc1f1de4d5d2",
+    "design_node_id": "req:a-person-explores-changes-to-a-real-building-model-in-a-chat-and-sees-what-each-one-does",
+    "name": "A person explores changes to a real building model in a chat ... says which of the design's limits it keeps or breaks",
+    "resource_type": "design-node-reference"
+  }
+}

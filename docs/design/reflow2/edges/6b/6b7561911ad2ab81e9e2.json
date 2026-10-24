@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a721108bc359f3c8158b980ac266c31dc913e188b21763a83da9f8f79ea222fb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:fe2a868da825cc7186f768b2264a53f93f64f44540b8556ce1aad5606c64463a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:check-health-skill"
+}
