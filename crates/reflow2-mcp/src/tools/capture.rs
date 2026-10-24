@@ -3355,7 +3355,7 @@ impl ReflowService {
                        when any contribution is unstated, because a partial sum passed off as a \
                        total is how budgets lie. Contributors with no stated number are listed, \
                        never zeroed. The verdict reads the declared `composition` (sum, \
-                       path, or each — the worst part judged alone, named in `judged_part`); \
+                       path, or each — every contributor judged alone, the worst one named); \
                        `judged_on` and `composition_note` name which. Omit \
                        `constraint_id` to read them all at once. \
                        Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
