@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:8d28a4c85e8bc96637e1463471acee9fb52d78d1383d3451b8b7c1146cbe99a7",
+  "content_hash": "sha256:9b8de87fb406468f22adba022b28295b48abde9ef0c8932dc43485810db542ab",
   "edge_type": "CHANGED",
   "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 13,
     "action": "modified",
-    "checksum_after": "sha256:2a9c755369a824064fb408a2b57aa4522dd96f782022364340c3bc75eb253664",
+    "checksum_after": "sha256:17e28b90338c8c14f1eaf84de78b919bdc00b8a38faffc2028792fabcd6986be",
     "checksum_basis": "asserted"
   },
   "to_id": "art:schema-inference"
