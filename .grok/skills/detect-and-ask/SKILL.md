@@ -37,10 +37,11 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    record never closed** (`defect_overtaken_by_change` — a change joined to the defect, or a repair on its
    subject since the day it was recorded, and nothing says whether that was the fix; it names the
    likeliest first, and only INVALIDATES closes it; a stale open defect sent a session down a
-   wrong re-fix) and **defects still recorded broken** (`open_defect_finding` — a defect finding
-   nothing has closed, on any subject: ask whether it still holds; fixed is INVALIDATES from the
-   change or decision that fixed it, lapsed is a valid_to, and standing on purpose is the
-   person's ruling, recorded by acknowledging the gap with their reason), **open questions the design already answered by building them**
+   wrong re-fix) and **anything still recorded broken** (`open_breach` — an open defect finding,
+   a limit its own readings exceed that is not a KPP, a VIOLATES edge into a limit, or a rule
+   violation ruled must-fix and not resolved: ask whether it still holds; each gap says how its
+   kind closes, and standing on purpose is the person's ruling, recorded by acknowledging the
+   gap with their reason), **open questions the design already answered by building them**
    (`decision_overtaken_by_promotion` — an idea still reading `proposed` that EVOLVES_INTO an
    accepted requirement, a realized capability or a recorded change; the promotion landed and
    nobody went back to close the question), **prohibitions living in prose**

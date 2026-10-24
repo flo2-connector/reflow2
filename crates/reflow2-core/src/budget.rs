@@ -183,6 +183,16 @@ impl DesignGraph {
     ///   parallel branches overlap (end-to-end latency). The verdict reads the
     ///   heaviest `DEPENDS_ON` path among the contributors.
     ///
+    /// - `each` — every part meets the limit ON ITS OWN (a setback, a
+    ///   clearance, a separation distance, each unit against its own area):
+    ///   nothing adds. The verdict reads the WORST stated part — the smallest
+    ///   for a minimum, the largest for a maximum — and names it; an unstated
+    ///   part leaves it incomplete unless a stated one already breaks it, and
+    ///   a limit with no stated part reads incomplete
+    ///   (dec:a-limit-each-part-meets-on-its-own-is-composition-each, Anthony
+    ///   2026-10-24, from the Shop sample trial: the barn's 12 ft from the well
+    ///   summed with the farm loop's 102.36 ft read 114.36, within 100).
+    ///
     /// DECLARED BY THE AUTHOR, NEVER INFERRED. The same unit composes both
     /// ways — CPU-milliseconds across a batch add up, latency along a request
     /// does not — so reading it off the unit would silently change verdicts
@@ -205,8 +215,9 @@ impl DesignGraph {
                 property: "composition".into(),
                 message: format!(
                     "`{composition}` is not a composition: `sum` (every contribution adds — \
-                     mass, cost) or `path` (the heaviest dependency path — end-to-end latency, \
-                     where parallel branches overlap)"
+                     mass, cost), `path` (the heaviest dependency path — end-to-end latency, \
+                     where parallel branches overlap) or `each` (every part meets the limit on \
+                     its own — a setback, a clearance; the worst part is judged)"
                 ),
             });
         }
@@ -370,7 +381,7 @@ pub struct BudgetContributor {
 
 /// How a budget's quantity may compose — the closed set
 /// [`DesignGraph::set_constraint_composition`] accepts.
-pub const COMPOSITIONS: [&str; 2] = ["sum", "path"];
+pub const COMPOSITIONS: [&str; 3] = ["sum", "path", "each"];
 
 /// The verdict a rollup can honestly reach.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize)]
@@ -475,6 +486,10 @@ pub struct BudgetReport {
     /// read it: the owner agent's 33 ms write path read "46 ms, exceeded"
     /// with nothing saying a 33 was sitting beside it (I18, 2026-09-29).
     pub composition_note: String,
+    /// For `composition: each`: the part the verdict read — the nearest to
+    /// breaking a minimum, the largest against a maximum. `None` for any other
+    /// composition, or when no part has a stated reading.
+    pub judged_part: Option<String>,
 }
 
 /// Every budget in the design, each rolled up and judged — the design-wide
@@ -591,6 +606,22 @@ impl DesignGraph {
 
         let (worst_path, worst_path_total, path_note) = self.worst_path(&comparable, &direction)?;
 
+        // THE WORST STATED PART, for a limit each part meets on its own: the
+        // smallest reading against a minimum, the largest against anything
+        // else. Ties go to the first id, so the answer is stable.
+        let mut worst_part: Option<(String, f64)> = None;
+        for c in &comparable {
+            let Some(v) = c.contribution else { continue };
+            let worse = match &worst_part {
+                None => true,
+                Some((_, w)) if direction == "minimum" => v < *w,
+                Some((_, w)) => v > *w,
+            };
+            if worse {
+                worst_part = Some((c.node_id.clone(), v));
+            }
+        }
+
         // WHICH ROLLUP THE VERDICT READS is the Constraint's declaration, never
         // an inference from its unit (req:a-budget-says-whether-its-parts-add-up-or-run-along-a-path).
         let composition = sprop("composition");
@@ -600,6 +631,31 @@ impl DesignGraph {
             format!("{} = {worst_path_total}", worst_path.join(" → "))
         };
         let (judged_on, judged_total, composition_note) = match composition.as_deref() {
+            Some("each") => match &worst_part {
+                None => (
+                    "each",
+                    None,
+                    "composition: each — every part meets the limit on its own, and no part \
+                     has a stated reading yet, so there is nothing to judge: the verdict is \
+                     incomplete, never a breach nobody measured. State each part's reading \
+                     on its CONSTRAINS edge (`contribution`)."
+                        .to_string(),
+                ),
+                Some((part, v)) => (
+                    "each",
+                    Some(*v),
+                    format!(
+                        "composition: each — every part meets the limit on its own; the \
+                         verdict reads the {} part, {part} = {v}. The sum of every \
+                         contribution ({total}) means nothing here and is not judged.",
+                        if direction == "minimum" {
+                            "nearest"
+                        } else {
+                            "largest"
+                        }
+                    ),
+                ),
+            },
             Some("path") if direction == "minimum" => (
                 "path",
                 None,
@@ -674,6 +730,7 @@ impl DesignGraph {
         // unstated contributions make it Incomplete. A declared rollup that
         // cannot be computed leaves every gated outcome open.
         let open = !unstated.is_empty() || !unit_mismatched.is_empty();
+        let none_stated = !comparable.iter().any(|c| c.contribution.is_some());
         let verdict = match (limit, judged_total) {
             (None, _) => BudgetVerdict::Ungated,
             // A SETPOINT is a value the thing is held at — a test parameter —
@@ -682,10 +739,26 @@ impl DesignGraph {
             // exceed it.
             (Some(_), _) if direction == "setpoint" => BudgetVerdict::Ungated,
             (Some(_), None) => BudgetVerdict::Incomplete,
+            // EACH PART ON ITS OWN, against a minimum: a stated part already
+            // short breaks it whatever the unstated parts read, which is the
+            // opposite of a summed minimum, where unknowns can only add.
+            (Some(l), Some(judged)) if direction == "minimum" && judged_on == "each" => {
+                if judged < l {
+                    BudgetVerdict::Exceeded
+                } else if open {
+                    BudgetVerdict::Incomplete
+                } else {
+                    BudgetVerdict::Within
+                }
+            }
             (Some(l), Some(judged)) if direction == "minimum" => {
                 if judged >= l {
                     BudgetVerdict::Within
-                } else if open {
+                } else if open || none_stated {
+                    // NOTHING STATED IS NOTHING MEASURED: a minimum with no
+                    // reading at all is not short of anything yet. It read
+                    // `exceeded` until 2026-10-24 (the Shop sample trial's
+                    // clearances, recorded before their readings).
                     BudgetVerdict::Incomplete
                 } else {
                     BudgetVerdict::Exceeded // all stated and still short of the minimum
@@ -727,6 +800,11 @@ impl DesignGraph {
             judged_on: judged_on.to_string(),
             judged_total,
             composition_note,
+            judged_part: if judged_on == "each" {
+                worst_part.map(|(id, _)| id)
+            } else {
+                None
+            },
         })
     }
 

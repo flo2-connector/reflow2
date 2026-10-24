@@ -731,20 +731,23 @@ pub enum GapSource {
     /// with nothing saying whether that change fixed it. The mirror of the
     /// row above: a fix that never closed its finding.
     DefectOvertakenByChange,
-    /// An open `defect` TemporalFact — something measured or observed broken
-    /// that no `valid_to`, no `INVALIDATES` and no ruling has closed — on ANY
-    /// subject. One gap per finding, so each is answered on its own: fixed
-    /// (INVALIDATES from the change or decision that fixed it), lapsed
-    /// (`valid_to`), or ruled to stand (acknowledging this gap). Where
-    /// `DefectOvertakenByChange` already asks about a finding, this one is not
-    /// raised beside it: one fault, one question.
+    /// EVERY RECORDED BREACH STILL STANDING, as one reading
+    /// (dec:every-recorded-breach-still-standing-is-one-open-breach, Anthony
+    /// 2026-10-24: "Yes, one 'open breach'"): an open defect finding, an
+    /// exceeded budget on a limit that is not a KPP, a VIOLATES edge into a
+    /// Constraint, and an environment-rule violation ruled must-fix and not
+    /// resolved. One gap per breach, so each is answered on its own: fixed,
+    /// lapsed, or ruled to stand (acknowledging the gap). A defect finding
+    /// `DefectOvertakenByChange` already asks about is not asked about twice;
+    /// a KPP keeps `KppBreached` and an untriaged violation `OpenViolation`.
     ///
-    /// THE READER `dec:defects-are-temporal-facts` OWED SINCE 2026-08-06
-    /// ("nothing in the LOOP reads these yet ... that reader is the next
-    /// increment"), found missing again by two root-cause walks on 2026-09-28
-    /// and by two field cases (SeattleArch 2026-10-23, the Shop sample
-    /// 2026-10-24); required by req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop.
-    OpenDefectFinding,
+    /// Its first half is the reader `dec:defects-are-temporal-facts` owed
+    /// since 2026-08-06 ("nothing in the LOOP reads these yet ... that reader
+    /// is the next increment"), found missing again by two root-cause walks
+    /// on 2026-09-28 and by two field cases (SeattleArch 2026-10-23, the Shop
+    /// sample 2026-10-24); required by
+    /// req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop.
+    OpenBreach,
     /// A Decision still reading `proposed` that `EVOLVES_INTO` something the
     /// design has already taken up — an accepted Requirement, a realized
     /// Capability, a recorded change, a rule now in force. The question was
@@ -955,7 +958,7 @@ impl GapSource {
             GapSource::InternalOnlyDelivery => "internal_only_delivery",
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
             GapSource::DefectOvertakenByChange => "defect_overtaken_by_change",
-            GapSource::OpenDefectFinding => "open_defect_finding",
+            GapSource::OpenBreach => "open_breach",
             GapSource::DecisionOvertakenByPromotion => "decision_overtaken_by_promotion",
             GapSource::SettledDecisionNamedOpen => "settled_decision_named_open",
             GapSource::ProhibitionInProse => "prohibition_in_prose",
@@ -1056,9 +1059,9 @@ impl GapSource {
             // Per fact, and keyed on the later changes too: a further change on
             // the subject is a fresh question about a different state of it.
             GapSource::DefectOvertakenByChange => false,
-            // Per finding: each is a different thing broken, and a ruling that
+            // Per breach: each is a different thing broken, and a ruling that
             // one stands says nothing about the next.
-            GapSource::OpenDefectFinding => false,
+            GapSource::OpenBreach => false,
             // Per decision, and keyed on what it became: a second promotion
             // target arriving is a fresh claim that the question is answered,
             // so it is worth asking again.
@@ -1473,29 +1476,38 @@ pub struct PromotedIdeas {
     pub open: Vec<(crate::foundation::store::StoredNode, Vec<(String, String)>)>,
 }
 
-/// One open defect finding, as the loop reads it
-/// ([`DesignGraph::open_defect_findings`]).
+/// One open breach, as the loop reads it ([`DesignGraph::open_breaches`]).
 #[derive(Debug, Clone, serde::Serialize)]
-pub struct OpenDefectFinding {
-    /// The TemporalFact (`fact_type: defect`).
-    pub fact_id: String,
+pub struct OpenBreach {
+    /// `defect_finding`, `limit_exceeded`, `violates` or
+    /// `rule_violation_must_fix`.
+    pub kind: String,
+    /// The record that says it is broken: the TemporalFact, the Constraint,
+    /// or the EnvironmentRule.
+    pub id: String,
     pub name: String,
-    /// The node it indicts, when the finding names one.
+    /// What it is about: a finding's subject, the part that breaks a limit
+    /// (the worst part, for `composition: each`), the node a VIOLATES or
+    /// VIOLATES_RULE edge comes from.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subject_id: Option<String>,
-    /// Its `valid_from`, when it says.
+    /// When it was recorded or measured, when the record says.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub recorded_on: Option<String>,
-    /// `measured`, `forecast` ... when it says.
+    /// `measured`, `estimated` ... when the record says.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub basis: Option<String>,
-    /// The `open_defect_finding` gap that asks about it; acknowledging it is
-    /// the ruling that takes it out of the loop.
+    /// What is broken, in a clause.
+    pub detail: String,
+    /// The `open_breach` gap that asks about it; acknowledging it is the
+    /// ruling that takes it out of the loop.
     pub gap_id: String,
     /// Whether that gap is acknowledged. Always `false` in
-    /// [`DesignGraph::open_defect_findings`].
+    /// [`DesignGraph::open_breaches`].
     #[serde(skip)]
     pub ruled: bool,
+    #[serde(skip)]
+    pub affected: Vec<String>,
 }
 
 /// A detected gap, ranked for surfacing (mirrors storyflow's `ScenarioCandidate`).
@@ -3155,7 +3167,7 @@ impl DesignGraph {
         self.detect_defect_overtaken_by_change(&mut gaps)?;
         // AFTER the overtaken detector, deliberately: a finding it already asks
         // about ("did this change fix it?") is not asked about twice.
-        self.detect_open_defect_findings(&mut gaps)?;
+        self.detect_open_breaches(&mut gaps)?;
         // The same mirror one type over: an open question whose answer the
         // design has already taken up.
         self.detect_decision_overtaken_by_promotion(&mut gaps)?;
@@ -7286,13 +7298,55 @@ impl DesignGraph {
         Ok(())
     }
 
-    /// Every OPEN defect finding, with the gap that asks about it: a
-    /// TemporalFact with `fact_type: defect` that no `valid_to` and no
-    /// `INVALIDATES` closes (the shared rule, [`Self::finding_is_closed`]) and
-    /// no `parks` ruling holds. Ruled ones (their gap acknowledged) are
-    /// included and marked, so the gap pass and the loop read ONE list.
-    fn defect_findings_not_closed(&self) -> Result<Vec<OpenDefectFinding>, DynoError> {
+    /// EVERY RECORDED BREACH STILL STANDING, with the gap that asks about it
+    /// (dec:every-recorded-breach-still-standing-is-one-open-breach, Anthony
+    /// 2026-10-24: "Yes, one 'open breach'"). Four records say something is
+    /// broken, and each is read here the same way:
+    ///
+    /// - `defect_finding` — a TemporalFact with `fact_type: defect` that no
+    ///   `valid_to` and no `INVALIDATES` closes (the shared rule,
+    ///   [`Self::finding_is_closed`]);
+    /// - `limit_exceeded` — a Constraint that is not a KPP whose
+    ///   `budget_report` verdict is `exceeded` (a KPP keeps `kpp_breached`);
+    /// - `violates` — a `VIOLATES` edge into a Constraint;
+    /// - `rule_violation_must_fix` — a `VIOLATES_RULE` edge ruled `rejected`
+    ///   (must fix) that records no `resolved_at`.
+    ///
+    /// Anything a `parks` ruling holds is left out. Ruled ones (their gap
+    /// acknowledged) are included and marked, so the gap pass and the loop
+    /// read ONE list.
+    fn breaches_not_closed(&self) -> Result<Vec<OpenBreach>, DynoError> {
         let mut out = Vec::new();
+        let push = |g: &Self,
+                    out: &mut Vec<OpenBreach>,
+                    kind: &str,
+                    id: String,
+                    name: String,
+                    subject_id: Option<String>,
+                    recorded_on: Option<String>,
+                    basis: Option<String>,
+                    detail: String,
+                    mut affected: Vec<String>|
+         -> Result<(), DynoError> {
+            affected.sort();
+            affected.dedup();
+            let gap_id = gap_id(GapSource::OpenBreach, &affected);
+            let ruled = g.gap_acknowledgement(&gap_id)?.is_some();
+            out.push(OpenBreach {
+                kind: kind.to_string(),
+                id,
+                name,
+                subject_id,
+                recorded_on,
+                basis,
+                detail,
+                gap_id,
+                ruled,
+                affected,
+            });
+            Ok(())
+        };
+
         for fact in self.scan_live_nodes(node::TEMPORAL_FACT)? {
             let prop = |k: &str| {
                 fact.properties
@@ -7311,97 +7365,224 @@ impl DesignGraph {
             if let Some(s) = &subject_id {
                 affected.push(s.clone());
             }
-            let gap_id = gap_id(GapSource::OpenDefectFinding, &affected);
-            let ruled = self.gap_acknowledgement(&gap_id)?.is_some();
-            out.push(OpenDefectFinding {
-                fact_id: fact.node_id.clone(),
-                name: node_name(&fact),
+            push(
+                self,
+                &mut out,
+                "defect_finding",
+                fact.node_id.clone(),
+                node_name(&fact),
                 subject_id,
-                recorded_on: prop("valid_from").filter(|s| !s.is_empty()),
-                basis: prop("basis"),
-                gap_id,
-                ruled,
-            });
+                prop("valid_from").filter(|s| !s.is_empty()),
+                prop("basis"),
+                "recorded as a defect: something measured or observed broken".to_string(),
+                affected,
+            )?;
         }
-        // Newest first: a recurrence recorded this week is the one a session
-        // is most likely standing in; the count beside the list keeps the old
-        // ones from disappearing.
+
+        for c in self.scan_live_nodes(node::CONSTRAINT)? {
+            if self.is_parked(&c.node_id)? {
+                continue;
+            }
+            let is_kpp = c.properties.get("category").and_then(Value::as_str) == Some("kpp");
+            if !is_kpp && c.properties.get("limit").and_then(Value::as_f64).is_some() {
+                let r = self.budget_report(&c.node_id)?;
+                if r.verdict == crate::budget::BudgetVerdict::Exceeded {
+                    let mut affected = vec![c.node_id.clone()];
+                    affected.extend(r.contributors.iter().map(|p| p.node_id.clone()));
+                    let worst = r
+                        .judged_part
+                        .as_deref()
+                        .map(|p| format!(", worst part {p}"))
+                        .unwrap_or_default();
+                    let latest = r
+                        .contributors
+                        .iter()
+                        .filter_map(|p| p.measured_at.clone())
+                        .max();
+                    let basis = if r.basis_coverage.contains_key("measured") {
+                        Some("measured".to_string())
+                    } else {
+                        r.basis_coverage.keys().next().cloned()
+                    };
+                    push(
+                        self,
+                        &mut out,
+                        "limit_exceeded",
+                        c.node_id.clone(),
+                        node_name(&c),
+                        r.judged_part.clone(),
+                        latest,
+                        basis,
+                        format!(
+                            "its readings break it: {} {} against a {} of {}{worst}",
+                            r.judged_on,
+                            r.judged_total.unwrap_or(r.total),
+                            r.direction,
+                            r.limit.map(|l| l.to_string()).unwrap_or_default()
+                        ),
+                        affected,
+                    )?;
+                }
+            }
+            for e in self.incoming(&c.node_id, Some(edge::VIOLATES))? {
+                let evidence = e
+                    .properties
+                    .get("evidence")
+                    .and_then(Value::as_str)
+                    .filter(|s| !s.is_empty())
+                    .map(|s| format!(": {s}"))
+                    .unwrap_or_default();
+                push(
+                    self,
+                    &mut out,
+                    "violates",
+                    c.node_id.clone(),
+                    node_name(&c),
+                    Some(e.from_id.clone()),
+                    None,
+                    None,
+                    format!("{} is recorded as violating it{evidence}", e.from_id),
+                    vec![e.from_id.clone(), c.node_id.clone()],
+                )?;
+            }
+        }
+
+        for rule in self.scan_live_nodes(node::ENVIRONMENT_RULE)? {
+            for e in self.incoming(&rule.node_id, Some(edge::VIOLATES_RULE))? {
+                let p = |k: &str| e.properties.get(k).and_then(Value::as_str);
+                if p("status") != Some("rejected")
+                    || p("resolved_at").is_some_and(|s| !s.is_empty())
+                {
+                    continue;
+                }
+                push(
+                    self,
+                    &mut out,
+                    "rule_violation_must_fix",
+                    rule.node_id.clone(),
+                    node_name(&rule),
+                    Some(e.from_id.clone()),
+                    p("detected_at").map(str::to_string),
+                    None,
+                    format!(
+                        "{} violates it and was ruled must-fix (`rejected`), with no \
+                         `resolved_at` recorded",
+                        e.from_id
+                    ),
+                    vec![rule.node_id.clone(), e.from_id.clone()],
+                )?;
+            }
+        }
+
+        // Newest first: a breach recorded this week is the one a session is
+        // most likely standing in; the count beside the list keeps the old
+        // ones from disappearing. Undated ones follow, by id.
         out.sort_by(|a, b| {
             b.recorded_on
                 .cmp(&a.recorded_on)
-                .then(a.fact_id.cmp(&b.fact_id))
+                .then(a.id.cmp(&b.id))
+                .then(a.gap_id.cmp(&b.gap_id))
         });
         Ok(out)
     }
 
-    /// The open defect findings the loop owes an answer on: not closed, not
-    /// parked, and not ruled on (their `open_defect_finding` gap is not
-    /// acknowledged). Newest first. What `loop_status` counts and lists, so a
-    /// person never reads "nothing open" while the design holds a measurement
-    /// or an observation that something is broken
+    /// The open breaches the loop owes an answer on: not closed, not parked,
+    /// and not ruled on (their `open_breach` gap is not acknowledged). Newest
+    /// first. What `loop_status` counts and lists, so a person never reads
+    /// "nothing open" while the design records something broken
     /// (req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop).
-    pub fn open_defect_findings(&self) -> Result<Vec<OpenDefectFinding>, DynoError> {
+    pub fn open_breaches(&self) -> Result<Vec<OpenBreach>, DynoError> {
         Ok(self
-            .defect_findings_not_closed()?
+            .breaches_not_closed()?
             .into_iter()
-            .filter(|f| !f.ruled)
+            .filter(|b| !b.ruled)
             .collect())
     }
 
-    /// One `open_defect_finding` gap per open defect finding the overtaken
-    /// detector did not already ask about. See [`GapSource::OpenDefectFinding`].
-    fn detect_open_defect_findings(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+    /// One `open_breach` gap per open breach. A defect finding the overtaken
+    /// detector already asks about ("did this change fix it?") is not asked
+    /// about twice. See [`GapSource::OpenBreach`].
+    fn detect_open_breaches(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
         let asked: std::collections::HashSet<String> = gaps
             .iter()
             .filter(|g| g.gap_source == GapSource::DefectOvertakenByChange)
             .flat_map(|g| g.affected_ids.iter().cloned())
             .collect();
-        for f in self.defect_findings_not_closed()? {
-            if asked.contains(&f.fact_id) {
+        let index = self.node_type_index()?;
+        let name_of = |id: &str| {
+            index
+                .get(id)
+                .and_then(|t| self.get_node(t, id).ok().flatten())
+                .map(|n| node_name(&n))
+                .unwrap_or_else(|| id.to_string())
+        };
+        for b in self.breaches_not_closed()? {
+            if b.kind == "defect_finding" && asked.contains(&b.id) {
                 continue;
             }
-            let subject_name = match f.subject_id.as_deref() {
-                Some(s) => self
-                    .node_type_index()?
-                    .get(s)
-                    .and_then(|t| self.get_node(t, s).ok().flatten())
-                    .map(|n| node_name(&n))
-                    .unwrap_or_else(|| s.to_string()),
-                None => "no subject".to_string(),
+            let (title, close) = match b.kind.as_str() {
+                "defect_finding" => (
+                    format!("“{}” is recorded broken and nothing has closed it", b.name),
+                    "If it was fixed, draw INVALIDATES (the `invalidates` tool) from the change \
+                     or the decision that fixed it: a decision that only rests on it, or a change \
+                     that answered it, does not close it. If it lapsed, set valid_to on the fact.",
+                ),
+                "limit_exceeded" => (
+                    format!("“{}” is broken by its own readings", b.name),
+                    "It closes by itself when the design changes and the readings fit (re-state \
+                     the contribution on its CONSTRAINS edge with the new measurement), or when \
+                     the limit itself was wrong and is corrected.",
+                ),
+                "violates" => (
+                    format!(
+                        "“{}” is recorded as violating “{}”",
+                        b.subject_id.as_deref().map(name_of).unwrap_or_default(),
+                        b.name
+                    ),
+                    "When the part no longer breaks it, delete the VIOLATES edge (the record of \
+                     the change that fixed it says what happened).",
+                ),
+                _ => (
+                    format!(
+                        "“{}” was ruled must-fix against “{}” and is not recorded fixed",
+                        b.subject_id.as_deref().map(name_of).unwrap_or_default(),
+                        b.name
+                    ),
+                    "When it is fixed, record `resolved_at` on the VIOLATES_RULE edge (it is \
+                     kept for audit, never deleted); if an authority grants a variance, \
+                     `set_violation_status` `confirmed` records the waiver.",
+                ),
             };
-            let recorded = f
+            let recorded = b
                 .recorded_on
                 .as_deref()
-                .map(|d| format!("on {d}"))
-                .unwrap_or_else(|| "with no valid_from".to_string());
-            let basis = f
+                .map(|d| format!(" (as of {d})"))
+                .unwrap_or_default();
+            let basis = b
                 .basis
                 .as_deref()
-                .map(|b| format!(" (basis: {b})"))
+                .map(|x| format!(" Basis: {x}."))
                 .unwrap_or_default();
-            let mut affected = vec![f.fact_id.clone()];
-            if let Some(s) = &f.subject_id {
-                affected.push(s.clone());
-            }
             gaps.push(GapCandidate {
-                id: f.gap_id.clone(),
-                gap_source: GapSource::OpenDefectFinding,
+                id: b.gap_id.clone(),
+                gap_source: GapSource::OpenBreach,
                 scope: GapScope::Project,
                 // Beside unresolved drift (0.75) and below a failing check
-                // (0.8): a recorded defect is reality contradicting the design,
+                // (0.8): a recorded breach is reality contradicting the design,
                 // as drift is, and unlike a failing check nothing re-runs it.
                 severity: 0.75,
-                title: format!("“{}” is recorded broken and nothing has closed it", f.name),
+                title,
                 description: format!(
-                    "“{}” was recorded {recorded}{basis} as a defect of “{subject_name}”:                      something measured or observed broken. Nothing closes it — no change or                      decision INVALIDATES it and it has no valid_to — so the design still says                      it is true. If it was fixed, draw INVALIDATES (the `invalidates` tool) from                      the change or the decision that fixed it: a decision that only rests on                      it, or a change that answered it, does not close it. If it lapsed, set                      valid_to on the fact. If it stands on purpose (a waiver, a known limit                      accepted), acknowledge this gap with the reason: that ruling is kept and                      takes it out of the loop.",
-                    f.name
+                    "“{}”{recorded} is {}.{basis} The design still records it broken. {close} \
+                     If it stands on purpose (a waiver, a known limit accepted), acknowledge \
+                     this gap with the reason: that ruling is kept and takes it out of the loop.",
+                    b.name, b.detail
                 ),
-                affected_ids: affected,
+                affected_ids: b.affected.clone(),
                 suggested_depth: 1,
                 evidence: format!(
-                    "TemporalFact '{}' has fact_type=defect, no valid_to, no incoming \
-                     INVALIDATES, and no parks ruling.",
-                    f.fact_id
+                    "open breach of kind `{}` on '{}': {}.",
+                    b.kind, b.id, b.detail
                 ),
             });
         }

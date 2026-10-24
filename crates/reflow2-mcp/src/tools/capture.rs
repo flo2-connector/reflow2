@@ -2971,7 +2971,8 @@ impl ReflowService {
                        (unit-bearing, e.g. mass_kg, latency_ms), `limit`, and \
                        `direction` (maximum = stay at or under, the default). Then attach the \
                        spenders with `constrains` and read the rollup with `budget_report`; \
-                       `composition` (sum/path) says which rollup its verdict reads. \
+                       `composition` (sum/path/each) says which rollup its verdict reads — `each` for a \
+                       limit every part meets on its own (a setback, a clearance). \
                        `category: kpp` marks a KEY PERFORMANCE PARAMETER — inviolable intent, a \
                        threshold that if missed fails the whole effort — and its violations are \
                        computed and ranked above ordinary gaps. On a kpp, `limit` is the \
@@ -3330,7 +3331,9 @@ impl ReflowService {
                        `basis: measured`, `source` naming the tool, `unit` and `measured_at`, and \
                        budget_report says whether it still fits (bhome 2026-09-16: the seam existed and \
                        nothing pointed at it). For latency along a chain, draw DEPENDS_ON among the \
-                       contributors and set `composition: path`. \
+                       contributors and set `composition: path`; for a limit each part meets on its own (a \
+                       setback, a clearance, a separation distance), set `composition: each`, and \
+                       the worst part is judged and named. \
                        Ask for this when you want to say how much a part contributes \
                        to a budget or limit — its share of the mass, latency, cost or other quantity.",
         title = "Link a Constraint to Its Target",
@@ -3351,8 +3354,9 @@ impl ReflowService {
                        coverage (estimated vs measured), and an honest verdict — `incomplete` \
                        when any contribution is unstated, because a partial sum passed off as a \
                        total is how budgets lie. Contributors with no stated number are listed, \
-                       never zeroed. The verdict reads the declared `composition` (sum or \
-                       path); `judged_on` and `composition_note` name which. Omit \
+                       never zeroed. The verdict reads the declared `composition` (sum, \
+                       path, or each — the worst part judged alone, named in `judged_part`); \
+                       `judged_on` and `composition_note` name which. Omit \
                        `constraint_id` to read them all at once. \
                        Ask for this when you want to know whether a declared limit or allowance is being exceeded — a budget for latency, mass, cost or any quantity — and which contributors take it over.",
         title = "Budget Report",
