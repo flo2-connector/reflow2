@@ -731,6 +731,20 @@ pub enum GapSource {
     /// with nothing saying whether that change fixed it. The mirror of the
     /// row above: a fix that never closed its finding.
     DefectOvertakenByChange,
+    /// An open `defect` TemporalFact — something measured or observed broken
+    /// that no `valid_to`, no `INVALIDATES` and no ruling has closed — on ANY
+    /// subject. One gap per finding, so each is answered on its own: fixed
+    /// (INVALIDATES from the change or decision that fixed it), lapsed
+    /// (`valid_to`), or ruled to stand (acknowledging this gap). Where
+    /// `DefectOvertakenByChange` already asks about a finding, this one is not
+    /// raised beside it: one fault, one question.
+    ///
+    /// THE READER `dec:defects-are-temporal-facts` OWED SINCE 2026-08-06
+    /// ("nothing in the LOOP reads these yet ... that reader is the next
+    /// increment"), found missing again by two root-cause walks on 2026-09-28
+    /// and by two field cases (SeattleArch 2026-10-23, the Shop sample
+    /// 2026-10-24); required by req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop.
+    OpenDefectFinding,
     /// A Decision still reading `proposed` that `EVOLVES_INTO` something the
     /// design has already taken up — an accepted Requirement, a realized
     /// Capability, a recorded change, a rule now in force. The question was
@@ -941,6 +955,7 @@ impl GapSource {
             GapSource::InternalOnlyDelivery => "internal_only_delivery",
             GapSource::FixWithoutRecordedCause => "fix_without_recorded_cause",
             GapSource::DefectOvertakenByChange => "defect_overtaken_by_change",
+            GapSource::OpenDefectFinding => "open_defect_finding",
             GapSource::DecisionOvertakenByPromotion => "decision_overtaken_by_promotion",
             GapSource::SettledDecisionNamedOpen => "settled_decision_named_open",
             GapSource::ProhibitionInProse => "prohibition_in_prose",
@@ -1041,6 +1056,9 @@ impl GapSource {
             // Per fact, and keyed on the later changes too: a further change on
             // the subject is a fresh question about a different state of it.
             GapSource::DefectOvertakenByChange => false,
+            // Per finding: each is a different thing broken, and a ruling that
+            // one stands says nothing about the next.
+            GapSource::OpenDefectFinding => false,
             // Per decision, and keyed on what it became: a second promotion
             // target arriving is a fresh claim that the question is answered,
             // so it is worth asking again.
@@ -1453,6 +1471,31 @@ pub struct PromotedIdeas {
     pub proposed: usize,
     /// Each idea, with what it became that has landed, as `(id, name)`.
     pub open: Vec<(crate::foundation::store::StoredNode, Vec<(String, String)>)>,
+}
+
+/// One open defect finding, as the loop reads it
+/// ([`DesignGraph::open_defect_findings`]).
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct OpenDefectFinding {
+    /// The TemporalFact (`fact_type: defect`).
+    pub fact_id: String,
+    pub name: String,
+    /// The node it indicts, when the finding names one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subject_id: Option<String>,
+    /// Its `valid_from`, when it says.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub recorded_on: Option<String>,
+    /// `measured`, `forecast` ... when it says.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub basis: Option<String>,
+    /// The `open_defect_finding` gap that asks about it; acknowledging it is
+    /// the ruling that takes it out of the loop.
+    pub gap_id: String,
+    /// Whether that gap is acknowledged. Always `false` in
+    /// [`DesignGraph::open_defect_findings`].
+    #[serde(skip)]
+    pub ruled: bool,
 }
 
 /// A detected gap, ranked for surfacing (mirrors storyflow's `ScenarioCandidate`).
@@ -3110,6 +3153,9 @@ impl DesignGraph {
         // with nothing saying whether that was the fix.
         self.detect_fix_without_recorded_cause(&mut gaps)?;
         self.detect_defect_overtaken_by_change(&mut gaps)?;
+        // AFTER the overtaken detector, deliberately: a finding it already asks
+        // about ("did this change fix it?") is not asked about twice.
+        self.detect_open_defect_findings(&mut gaps)?;
         // The same mirror one type over: an open question whose answer the
         // design has already taken up.
         self.detect_decision_overtaken_by_promotion(&mut gaps)?;
@@ -7235,6 +7281,128 @@ impl DesignGraph {
                 affected_ids: affected,
                 suggested_depth: 1,
                 evidence: sweep.evidence(&fact.node_id, recorded, subject),
+            });
+        }
+        Ok(())
+    }
+
+    /// Every OPEN defect finding, with the gap that asks about it: a
+    /// TemporalFact with `fact_type: defect` that no `valid_to` and no
+    /// `INVALIDATES` closes (the shared rule, [`Self::finding_is_closed`]) and
+    /// no `parks` ruling holds. Ruled ones (their gap acknowledged) are
+    /// included and marked, so the gap pass and the loop read ONE list.
+    fn defect_findings_not_closed(&self) -> Result<Vec<OpenDefectFinding>, DynoError> {
+        let mut out = Vec::new();
+        for fact in self.scan_live_nodes(node::TEMPORAL_FACT)? {
+            let prop = |k: &str| {
+                fact.properties
+                    .get(k)
+                    .and_then(Value::as_str)
+                    .map(str::to_string)
+            };
+            if prop("fact_type").as_deref() != Some("defect") {
+                continue;
+            }
+            if self.finding_is_closed(&fact)? || self.is_parked(&fact.node_id)? {
+                continue;
+            }
+            let subject_id = prop("subject_id").filter(|s| !s.is_empty());
+            let mut affected = vec![fact.node_id.clone()];
+            if let Some(s) = &subject_id {
+                affected.push(s.clone());
+            }
+            let gap_id = gap_id(GapSource::OpenDefectFinding, &affected);
+            let ruled = self.gap_acknowledgement(&gap_id)?.is_some();
+            out.push(OpenDefectFinding {
+                fact_id: fact.node_id.clone(),
+                name: node_name(&fact),
+                subject_id,
+                recorded_on: prop("valid_from").filter(|s| !s.is_empty()),
+                basis: prop("basis"),
+                gap_id,
+                ruled,
+            });
+        }
+        // Newest first: a recurrence recorded this week is the one a session
+        // is most likely standing in; the count beside the list keeps the old
+        // ones from disappearing.
+        out.sort_by(|a, b| {
+            b.recorded_on
+                .cmp(&a.recorded_on)
+                .then(a.fact_id.cmp(&b.fact_id))
+        });
+        Ok(out)
+    }
+
+    /// The open defect findings the loop owes an answer on: not closed, not
+    /// parked, and not ruled on (their `open_defect_finding` gap is not
+    /// acknowledged). Newest first. What `loop_status` counts and lists, so a
+    /// person never reads "nothing open" while the design holds a measurement
+    /// or an observation that something is broken
+    /// (req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop).
+    pub fn open_defect_findings(&self) -> Result<Vec<OpenDefectFinding>, DynoError> {
+        Ok(self
+            .defect_findings_not_closed()?
+            .into_iter()
+            .filter(|f| !f.ruled)
+            .collect())
+    }
+
+    /// One `open_defect_finding` gap per open defect finding the overtaken
+    /// detector did not already ask about. See [`GapSource::OpenDefectFinding`].
+    fn detect_open_defect_findings(&self, gaps: &mut Vec<GapCandidate>) -> Result<(), DynoError> {
+        let asked: std::collections::HashSet<String> = gaps
+            .iter()
+            .filter(|g| g.gap_source == GapSource::DefectOvertakenByChange)
+            .flat_map(|g| g.affected_ids.iter().cloned())
+            .collect();
+        for f in self.defect_findings_not_closed()? {
+            if asked.contains(&f.fact_id) {
+                continue;
+            }
+            let subject_name = match f.subject_id.as_deref() {
+                Some(s) => self
+                    .node_type_index()?
+                    .get(s)
+                    .and_then(|t| self.get_node(t, s).ok().flatten())
+                    .map(|n| node_name(&n))
+                    .unwrap_or_else(|| s.to_string()),
+                None => "no subject".to_string(),
+            };
+            let recorded = f
+                .recorded_on
+                .as_deref()
+                .map(|d| format!("on {d}"))
+                .unwrap_or_else(|| "with no valid_from".to_string());
+            let basis = f
+                .basis
+                .as_deref()
+                .map(|b| format!(" (basis: {b})"))
+                .unwrap_or_default();
+            let mut affected = vec![f.fact_id.clone()];
+            if let Some(s) = &f.subject_id {
+                affected.push(s.clone());
+            }
+            gaps.push(GapCandidate {
+                id: f.gap_id.clone(),
+                gap_source: GapSource::OpenDefectFinding,
+                scope: GapScope::Project,
+                // Beside unresolved drift (0.75) and below a failing check
+                // (0.8): a recorded defect is reality contradicting the design,
+                // as drift is, and unlike a failing check nothing re-runs it.
+                severity: 0.75,
+                title: format!("“{}” is recorded broken and nothing has closed it", f.name),
+                description: format!(
+                    "“{}” was recorded {recorded}{basis} as a defect of “{subject_name}”:                      something measured or observed broken. Nothing closes it — no change or                      decision INVALIDATES it and it has no valid_to — so the design still says                      it is true. If it was fixed, draw INVALIDATES (the `invalidates` tool) from                      the change or the decision that fixed it: a decision that only rests on                      it, or a change that answered it, does not close it. If it lapsed, set                      valid_to on the fact. If it stands on purpose (a waiver, a known limit                      accepted), acknowledge this gap with the reason: that ruling is kept and                      takes it out of the loop.",
+                    f.name
+                ),
+                affected_ids: affected,
+                suggested_depth: 1,
+                evidence: format!(
+                    "TemporalFact '{}' has fact_type=defect, no valid_to, no incoming \
+                     INVALIDATES, and no parks ruling.",
+                    f.fact_id
+                ),
             });
         }
         Ok(())

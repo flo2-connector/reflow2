@@ -25,6 +25,11 @@ use crate::surprises::SurprisingConnection;
 /// How many items each highlight list caps at (the rest are counted, not shown).
 const TOP_N: usize = 5;
 
+/// How many open defect findings `loop_status` lists by name; the count is
+/// always the whole. reflow2's own design held 316 open on 2026-10-24, and a
+/// reply that listed them all would be refused by a host that bounds replies.
+pub const DEFECT_FINDINGS_LISTED: usize = 20;
+
 /// Word budget for a gap TITLE in the markdown roll-up.
 ///
 /// Matches `loop_status`'s 25-word Verification cut in spirit; a title is the
@@ -474,6 +479,18 @@ pub struct LoopStatus {
     /// deferral is never a way to make a question disappear (frontier.rs).
     pub deferrals_open: usize,
     pub deferrals: Vec<Deferral>,
+    /// OPEN DEFECT FINDINGS: TemporalFacts with `fact_type: defect` that no
+    /// `valid_to`, no `INVALIDATES`, no `parks` ruling and no ruling on their
+    /// `open_defect_finding` gap has closed — something measured or observed
+    /// broken that the design still says is true
+    /// (req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop).
+    /// `dec:defects-are-temporal-facts` (2026-08-06) owed this reader; until it
+    /// existed a building's roof 3 7/16" over its height limit and a barn 12 ft
+    /// from a well against 100 ft both read as "nothing open".
+    pub defect_findings_open: usize,
+    /// The newest of them, at most [`DEFECT_FINDINGS_LISTED`]; the count above
+    /// is the whole. Each names the gap that asks about it.
+    pub defect_findings: Vec<crate::detect::OpenDefectFinding>,
     /// The debt as ordered to-do lines, most blocking first. Empty when the
     /// loop is clean — and emptiness is asserted, not implied.
     pub next: Vec<String>,
@@ -1135,6 +1152,9 @@ impl DesignGraph {
         let follow_ups_open = follow_ups.len();
         let deferrals = self.open_deferrals()?;
         let deferrals_open = deferrals.len();
+        let mut defect_findings = self.open_defect_findings()?;
+        let defect_findings_open = defect_findings.len();
+        defect_findings.truncate(DEFECT_FINDINGS_LISTED);
 
         let mut next = Vec::new();
         if unanswered_questions > 0 {
@@ -1163,6 +1183,18 @@ impl DesignGraph {
                 "{unsettled_assigned_decisions} open decision(s) name someone who was asked \
                  to settle them — decide (set_decision_status), or drop the approver if \
                  nobody was actually asked"
+            ));
+        }
+        // BEFORE the gap line, and not inside it: a recorded defect is a
+        // statement that something IS broken, where most gaps say something is
+        // unsaid. Counted apart, so the one cannot hide in the other's total.
+        if defect_findings_open > 0 {
+            next.push(format!(
+                "{defect_findings_open} open defect finding(s) — something measured or \
+                 observed broken that the design still says is true (listed in \
+                 `defect_findings`, newest first; each is an `open_defect_finding` gap). \
+                 Close each one: INVALIDATES from the change or decision that fixed it, \
+                 valid_to if it lapsed, or a ruling on its gap if it stands on purpose"
             ));
         }
         if unsurfaced_gaps > 0 {
@@ -1287,6 +1319,7 @@ impl DesignGraph {
                 ),
                 (follow_ups_open, "follow-up(s) captured and never revisited"),
                 (deferrals_open, "part(s) with intent deliberately deferred"),
+                (defect_findings_open, "open defect finding(s)"),
             ] {
                 if n > 0 {
                     not_attributable.push(format!("{n} {what}"));
@@ -1470,6 +1503,8 @@ impl DesignGraph {
             follow_ups,
             deferrals_open,
             deferrals,
+            defect_findings_open,
+            defect_findings,
             verifications: self.verification_recency()?,
             loop_closure,
             assigned_decisions,

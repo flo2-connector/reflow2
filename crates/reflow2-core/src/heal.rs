@@ -1465,6 +1465,7 @@ pub const PARKING_READERS: &[&str] = &[
     "decision_overtaken_by_promotion",
     "defect_overtaken_by_change",
     "fix_without_recorded_cause",
+    "open_defect_finding",
     "orphan_node",
     "prohibition_in_prose",
     "settled_decision_named_open",

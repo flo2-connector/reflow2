@@ -1383,6 +1383,7 @@ pub(crate) fn read_debt_summary(s: &LoopStatus) -> String {
     );
     add(s.undispositioned_drift, "drift(s) awaiting disposition");
     add(s.unexamined_claims, "built capability(ies) never checked");
+    add(s.defect_findings_open, "open defect finding(s)");
     format!(
         "loop owes: {} — run loop_status for the ordered to-do list",
         parts.join(", ")
