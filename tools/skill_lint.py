@@ -434,6 +434,7 @@ NON_TOOL_TERMS = {
     # outran.
     "fix_without_recorded_cause",
     "defect_overtaken_by_change",
+    "open_defect_finding",
     # A GAP SOURCE key (2026-09-14): the same mirror one type over, named by
     # detect-and-ask and by capture-intent, where the instruction that FEEDS it
     # now lives.
