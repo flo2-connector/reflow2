@@ -1,10 +1,10 @@
 {
-  "content_hash": "sha256:57864f26628e699f6a31a38e64944152551808e57348c7c15149ecd97c0c0d86",
+  "content_hash": "sha256:b86603e52dc708bf308c27a8b1d8803a88a8e9abc590766040d2fc19c29e9f52",
   "node_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
   "node_type": "ChangeEvent",
   "properties": {
     "change_type": "new_feature",
-    "commits": "b33716ac1",
+    "commits": "b33716ac1,c63e33707,92e1dcdd0",
     "detected_at": "2026-10-24",
     "name": "A premise says whether it rests on its owner's intent or on its delivery; a design choice's step reads its needs as intent by default",
     "rationale": "Anthony's ruling, 2026-10-24 (dec:a-premise-says-whether-it-rests-on-intent-or-delivery), from the root cause fact:root-cause-a-design-choice-read-its-requirements-by-delivery-because-the-premise-truth-reused-the-delivery-line-2026-10-24 (the class of 2026-09-29's closure finding: a verdict defined for delivery reused for a design choice's grounds). The cause corrected: a premise's truth answered only \"is it delivered?\" for a requirement, capability or interface, so a choice resting on accepted intent could never read supported before it was built; the Shop sample's 19 chains all read unknown. The served capture-intent text had promised an accepted requirement was checkable (a42269d89) while the code read delivery; it now says what is read. Guard against recurrence: crates/reflow2-core/tests/a_premise_says_whether_it_rests_on_intent_or_delivery.rs, 11 class tests, 8 of the first 10 observed failing on main 61c05ad74 (an accepted requirement read \"not delivered\", an interface \"computes no truth\", a capability \"not both realized and checked\", no marker read back), and a golden of the 17 proof, argument and verification trial fixtures' readings taken on 61c05ad74, which still match; plus 2 MCP wire tests. Not changed: an accepted Decision premise still counts as uncited (outside the ruling). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",

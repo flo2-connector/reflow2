@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:a073c3bda76a9e9045b20a3f8af9cdb192923262ef5be2eb07ba14b7d89fd33d",
+  "content_hash": "sha256:53d5bab1e44dbbc95cb2260fb5e5bc0ef7660b0e02c57f530bbb0ef3ae02fdde",
   "edge_type": "CHANGED",
   "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 8,
     "action": "modified",
-    "checksum_after": "sha256:b2e4fc21a84670c26627122c79856f98653940b14fa78517d2134d50c9563c9f",
+    "checksum_after": "sha256:a1c917de0c90673a1179d4d5586cc9d916b9fe4456e676a4d25c5f9055cc0c5c",
     "checksum_basis": "asserted"
   },
   "to_id": "art:toolsnap-add-inference"
