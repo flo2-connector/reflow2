@@ -71,6 +71,10 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # capture-intent (2026-10-24, dec:a-premise-says-whether-it-rests-on-
+    # intent-or-delivery): add_inference's `as_intent` and `as_delivery`,
+    # what a premise is read as.
+    "as_intent", "as_delivery",
     # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
     # and `conclusion`, reasoning_report's `claim`; a step's `objections`
     # and how it stands against them (`objected`: `contested`, `defeated`,

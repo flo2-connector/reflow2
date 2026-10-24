@@ -188,6 +188,15 @@ const EXEMPT: &[(&str, &str, &str)] = &[
          second way to say the same thing, and one that could disagree with the lists.",
     ),
     (
+        "PREMISE_OF",
+        "reads_as",
+        "WRITTEN BY WHICH LIST A PREMISE IS IN, never by a value a caller types, exactly as \
+         `role` is: add_inference draws a premise named in `as_intent` with `reads_as: \
+         intent` and one in `as_delivery` with `reads_as: delivery` \
+         (dec:a-premise-says-whether-it-rests-on-intent-or-delivery). A `reads_as` \
+         parameter would be a second way to say the same thing.",
+    ),
+    (
         "Verification",
         "last_reconciled_outcome",
         "A STAMP, never a parameter: reconcile_verification writes it from each observed \
