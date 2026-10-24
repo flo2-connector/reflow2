@@ -135,3 +135,11 @@ the report travels, the domain does not.
 
 **Before moving on, `loop_status`.** A friction report is a graph write like any
 other, and it owes the loop the same pass.
+
+## When it is run as /report-friction
+
+By typing /report-friction the person asked for the following, in their own words:
+
+- This is for reflow2 itself — a tool that failed without saying why, a gap that fires on correct work, something I could not record. It is NOT for problems with the project we are designing.
+- Redact my design content. The report should carry the verb, never the object.
+- Show me the report before it goes anywhere, and never file it in a repository I do not control without asking me first.

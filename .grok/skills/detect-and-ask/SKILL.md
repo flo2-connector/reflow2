@@ -219,3 +219,12 @@ mid-task; an empty `next` list is the only licence to skip this workflow.
 Requirement the user has just stated in passing. `search_design` first: the
 design may already say it, and a second copy of an accepted decision is worse
 than none, because a later reader cannot tell which one is governing.
+
+## When it is run as /gaps
+
+By typing /gaps the person asked for the following, in their own words:
+
+Report to me as a person, not a data dump:
+- If there are no open gaps, say so plainly and stop.
+- Otherwise, for each gap give one plain sentence — what's missing and why it matters. No node ids, no jargon. Lead with anything that actually blocks progress.
+- If a gap needs my input, phrase it as a plain question and wait for my answer. Never invent an answer on my behalf.

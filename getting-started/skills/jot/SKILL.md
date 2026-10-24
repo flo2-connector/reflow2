@@ -90,3 +90,29 @@ the person's judgement, never the capture's.
   at all is not measured. This skill assumes a typed sentence.
 - **A thought with no design yet has nowhere to land.** A note needs a design to be recorded in; a
   per-person inbox for design-less notes was considered and not built.
+
+## When it is run as /jot
+
+By typing /jot the person asked for the following, in their own words:
+
+- Record it as a dated note on the thing it is about, in my words. Find the subject from my noun; if nothing matches, use the Project.
+- Do not ask me what kind of thing it is, and do not ask for a cause.
+- Do not work it through or turn it into a requirement, a decision or a check now. It comes back at the next boundary and I will sort it then.
+- Tell me in one line what you noted and against what.
+
+## When it is run as /log-issue
+
+By typing /log-issue the person asked for the following, in their own words:
+
+- Record it as a dated follow-up on the thing it is about, in my words. Find the subject from my noun; if nothing matches, use the Project.
+- Do not ask me what kind of thing it is, and do not ask for a cause. If I have not given one, there is none yet.
+- Do not turn it into a requirement, a decision or a check now. It comes back at the next boundary and I will sort it then.
+- Tell me in one line what you recorded and against what.
+
+## When it is run as /note
+
+By typing /note the person asked for the following, in their own words:
+
+- Record it as a dated note on the thing it is about, in my words. Find the subject from my noun; if nothing matches, use the Project.
+- Do not ask me anything about it, and do not brainstorm it now. It comes back at the next boundary and I will work it through then.
+- Tell me in one line what you noted and against what.

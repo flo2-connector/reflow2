@@ -249,3 +249,12 @@ but a promotion at step 5 is a real capture, and captures owe the loop a gap pas
 The edges from step 4 are ordinary graph writes and do show up there. That is correct and not a
 reason to skip them: an idea linked to its neighbours is exactly the sort of change a later session
 should be able to see was made.
+
+## When it is run as /brainstorm
+
+By typing /brainstorm the person asked for the following, in their own words:
+
+- I am thinking out loud. Record the ideas as ideas — open questions at `proposed`, in my words — and do not turn any of them into requirements or capabilities unless I say so.
+- Push back where there's a real counter-argument, and record it beside the idea rather than talking me out of it. If you know one option is much cheaper or much larger than another, say which and why.
+- Don't start building or researching any of this yet.
+- At the end, ask me which ones I want to keep as intent — and leave the rest recorded as considered.

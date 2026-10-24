@@ -316,3 +316,14 @@ nodes from an earlier pass or a hand-written start, and mass recovery is exactly
 where near-duplicates arrive in bulk. `search_design` on what you are about to
 add; the constructors will refuse a near-match and name it, and one merge done
 by hand is more expensive than every search you skipped.
+
+## When it is run as /adopt
+
+By typing /adopt the person asked for the following, in their own words:
+
+- Work backwards from what is actually there — code, docs, tests, whatever exists. Recover intent; don't design what you wish it were.
+- Mark inferred intent as inferred. A requirement you read out of code is not one I stated, and I need to see which is which.
+- Tell me plainly what you could NOT determine from the artifacts alone. Those are the questions only I can answer, and they are the point of the pass.
+- Say how much of the system this pass actually covered. A pass over a third of the repo that reports "no gaps" is worse than no pass at all.
+
+If this is a new project with no code yet, say so and use the **genesis** skill instead — that is the other starting point, and it works forwards from a brief.

@@ -174,3 +174,12 @@ authoritative.
 match. It does **not establish** that the build is correct: a file no Artifact
 points at is invisible, and `coverage_report` is the call that names those.
 Report what was swept, not just what passed.
+
+## When it is run as /link-artifacts
+
+By typing /link-artifacts the person asked for the following, in their own words:
+
+- Attach each file to what it actually realizes, with a content hash so later edits are detectable.
+- Use the honest edge: a document that DESCRIBES something is not an implementation of it. Do not assert REALIZES to make a gap close.
+- Reconcile against what is really on disk, and tell me what the design claims that the filesystem does not support.
+- Say what you registered and what you deliberately left alone.

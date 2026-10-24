@@ -95,3 +95,12 @@ genuinely uses no discriminator for a type, say so: `acknowledge_gap` with the r
 
 `loop_status`. The decisions and edges are ordinary writes and show up there, which is right:
 a taxonomy decided today is exactly what a later session should be able to see was settled.
+
+## When it is run as /taxonomy
+
+By typing /taxonomy the person asked for the following, in their own words:
+
+- List the categories this design will hold many of, in my words; if I left it blank, read them off the design and the artifact and tell me what you found.
+- For each, propose ONE encoding — node type, the discriminator it always carries, the edges every instance has, the name pattern — and ask me whether that is what I mean before recording anything.
+- Record each as its own Decision and move it to accepted only on my word; then govern every existing instance by it and say how many you governed.
+- When done, tell me in plain language what is now decided per category and what is still improvised — no raw ids.

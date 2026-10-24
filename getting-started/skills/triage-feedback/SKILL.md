@@ -73,3 +73,13 @@ recorded, what you could not establish, and which report causes the measurements
 `loop_status`. A triage writes findings and questions, and the loop says what they are owed —
 usually nothing beyond the relations step 3 already drew. Then ask, once, which ideas the owner
 wants promoted.
+
+## When it is run as /triage
+
+By typing /triage the person asked for the following, in their own words:
+
+- Read it as observations first; the reporter's causes are claims to measure, not facts.
+- For every issue: get_skill root-cause and follow it, then record_finding with the cause and its evidence.
+- For every idea: get_skill brainstorm, one open question each, linked to what exists.
+- Record what worked as findings too. Do not write anything back into the report.
+- End with loop_status, then ask me once which ideas to promote.

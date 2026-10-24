@@ -112,3 +112,12 @@ record should say whose word it is.
 
 `loop_status`. A confirmed KPP usually arrives with something owed — the binding you could not do
 yet, or a gap the new severity just moved to the top of the list.
+
+## When it is run as /kpp
+
+By typing /kpp the person asked for the following, in their own words:
+
+- I am telling you this may be inviolable — you still have to check you understood it the way I meant it. Ask me the consequence question before recording anything, and ask for the threshold, the unit and the objective if I left any of them out.
+- Never invent a number I did not state, and never turn my other requirements into KPPs while you are in there.
+- Bind it to the parts that actually spend the quantity if they exist; if they don't, leave it unbound and tell me that's what you did.
+- When done, tell me in plain language what is now inviolable, what it's measured against, and what breaks it — no raw ids.

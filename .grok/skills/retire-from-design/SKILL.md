@@ -79,3 +79,11 @@ is the feature, and a short answer there means the graph cannot support the ques
 The test of a good retirement: the graph can still answer *why is the design shaped like
 this?* for every survivor — because the things that shaped it are still there, marked ended,
 not vanished.
+
+## When it is run as /retire-from-design
+
+By typing /retire-from-design the person asked for the following, in their own words:
+
+- Ask me the one question that matters first: was this ever true? A real piece of history is retired ON the record; a modelling mistake is simply deleted. Confusing them either erases the past or embalms a typo.
+- Do not guess my answer from the wording. If it is ambiguous, ask.
+- Tell me what else pointed at it and what happens to those links now — a retirement that leaves dangling claims behind is not finished.

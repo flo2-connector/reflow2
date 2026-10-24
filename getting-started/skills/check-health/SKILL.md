@@ -197,3 +197,11 @@ should be absent; anything still present should be named to the user, not quietl
 A structural defect is not a style problem. A dependency loop means neither part can be built,
 tested, or reasoned about alone — and it is exactly the kind of thing that looks fine in any
 single file and only shows up in the whole graph. That's what reflow2 is for.
+
+## When it is run as /health
+
+By typing /health the person asked for the following, in their own words:
+
+Report in plain language:
+- What was found, and for each, whether it's benign/accepted-by-design or genuinely worth acting on (say which, and why).
+- Apply only the safe, mechanical fixes automatically. For anything that needs judgment, bring it to me and wait — don't reshape the design on your own.

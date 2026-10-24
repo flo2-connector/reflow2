@@ -176,3 +176,11 @@ already holds something, and bulk creation is where near-duplicates arrive by
 the dozen. Sample-search the terms the corpus uses before the batch lands; the
 duplicate guard will catch individual collisions, but it cannot tell you that
 half the folder restates what the design already says.
+
+## When it is run as /ingest-corpus
+
+By typing /ingest-corpus the person asked for the following, in their own words:
+
+- Walk the whole folder in one batched pass. This is the scale sibling of capturing one document, not a loop over it.
+- Report what you could NOT read — unreadable files, formats you skipped, anything truncated. A pass that silently drops a third of the corpus and reports success is the failure this skill exists to avoid.
+- Tell me how much of it landed, and where I should look first at what it produced.

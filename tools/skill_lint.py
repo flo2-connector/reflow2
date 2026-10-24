@@ -1478,12 +1478,13 @@ def asks_for_session_reasoning(text: str) -> list[str]:
 
 # THIN COMMANDS: A COMMAND THAT FRONTS A SKILL IS A POINTER, AND NOTHING MORE.
 #
-# A slash command is a COPIED file. The installer puts it into a project's
-# .claude/commands/ (install.sh into ~/.claude/commands/), and nothing re-copies
-# it when reflow2 is upgraded: tools/reflow2_init.py refreshes the copies only
-# when someone runs init or update in that project. The skill it names is
-# served fresh by the binary, so a command stays current only by holding
-# nothing but the skill's name.
+# A slash command is a COPIED file. reflow2_init.py puts it into a project's
+# .claude/commands/ and reflow2_install.py (run by install.sh) into
+# ~/.claude/commands/, and a new binary re-copies neither: a project's copies
+# are refreshed only when someone runs init or update there, and the user-scope
+# ones only when the installer is run again. The skill it names is served
+# fresh by the binary, so a command stays current only by holding nothing but
+# the skill's name.
 #
 # That was the premise when commands started shipping (2026-07-28: "four lines
 # that name a skill ... nothing that goes stale"), and nothing held it. From

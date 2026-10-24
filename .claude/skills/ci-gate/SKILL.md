@@ -114,3 +114,11 @@ not run (no export, no binary) — also loud, never a silent pass.
   silence CI is the same laundering.
 - **Tune, don't mute.** `--gap-threshold` moves the bar; there is no flag to skip the drift
   check, deliberately.
+
+## When it is run as /ci-gate
+
+By typing /ci-gate the person asked for the following, in their own words:
+
+- Point it at the committed design export, never at the local store — the gate has to read what everyone else can see.
+- Tell me what will turn the build red, and what deliberately will not.
+- Explain how to make a red build green HONESTLY. If the only way past the gate is to acknowledge something, say so plainly rather than showing me how to quiet it.

@@ -257,6 +257,13 @@ loads it and it takes precedence over the served one of the same name.
      thought" — say "every step can be checked." A short rationale paragraph may stay beside the
      chain for the reader. The three skills that produce the most consequential recommendations
      — **root-cause**, **brainstorm** and **capture-intent** — each name their own moment.
+   - **When you write down why a design choice was made**, in a record or in a brief to another
+     agent, name the choice and its justification: the records it rests on, the rule, the
+     warrant. Do not ask for, or write down, an agent's "own reasoning": what reflow2 keeps is a
+     stated argument, not anyone's thought process. This is a mitigation, not a measured cure: on
+     2026-10-24 an agent briefed to record "its reasoning" for its own choices was stopped by the
+     model provider's classifier on its first reply after the brief arrived, a single sample not
+     yet separated from the classifier's own variation.
    - **When a requirement exists because of a choice, or a link is argued for.**
      A requirement's reason to exist is the Decision it is GOVERNED_BY: record the choice as a Decision (concluded by its chain when its premises are checkable), draw `governed_by` from the requirement to it, and set the requirement's lineage `derived`, which covers both a technical necessity the Decision forced and the owner's words chosen through it.
      Never make the requirement the chain's conclusion: why it exists and whether it is delivered stay two claims.
